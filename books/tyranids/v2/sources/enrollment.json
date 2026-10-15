@@ -1,0 +1,590 @@
+{
+  "schema": "tyranids-v2-source-enrollment/v1",
+  "acceptedBaseHead": "47495cc55debb652b3867c8fa558e496337bcb60",
+  "edition": "11E",
+  "verifiedAt": "2026-10-15",
+  "precedence": [
+    "CONFIRMED_CURRENT_OFFICIAL_CORRECTIONS",
+    "ACCEPTED_WAHAPEDIA_11E_2026_09_27"
+  ],
+  "currentOfficialSource": {
+    "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+    "version": "v1.3",
+    "effectiveFrom": "2026-10-14",
+    "url": "https://assets.warhammer-community.com/eng_14-10_wh40k_faction_pack_tyranids-an12izciwp-np2hnkcsje.pdf"
+  },
+  "universalSource": {
+    "version": "v1.1",
+    "effectiveFrom": "2026-08-26",
+    "url": "https://assets.warhammer-community.com/eng_wh40k_core&key_universal_rules_updates-lu3grocned-rphh78bl6k.pdf"
+  },
+  "historicalOfficialSource": "books/tyranids/sources/tyranids-faction-pack-v1.2.pdf",
+  "mfmOwner": "CENTRAL_MFM_V1.6",
+  "artifacts": [
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+      "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+      "bytes": 754301,
+      "capturedSha256": "5737095A1C2669DC7FFA8D6887ACC897EDA9BF7A156C0A9466BA45A262682CDE",
+      "capturedBytes": 757293,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Barbgaunts.html",
+      "sha256": "05F8E2F08C1C62B9502EC88B67BA3D7FF06AFC4A034202ACCB54B11E6D8EA314",
+      "bytes": 296531,
+      "capturedSha256": "2058D93B6CC28E793BD670F2D095F36216E64E6CCB9D7A4916EDDC7B7ED2786C",
+      "capturedBytes": 298622,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Barbgaunts",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Biovores.html",
+      "sha256": "A811D05CE7D9EB37B1022743284598ABB9366E024AA69B64A3714459A343C73F",
+      "bytes": 307705,
+      "capturedSha256": "11BF5EE0EC87559791F481F7D6F5D77161B4EFA31943095CD10ECF4726E4BFF2",
+      "capturedBytes": 309843,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Biovores",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Broodlord.html",
+      "sha256": "13ABF21F7C27FC1FFAA45D86688B80D16C13118143E49AF0DCE3A9BCAC03F3C5",
+      "bytes": 406015,
+      "capturedSha256": "C1B6E5A77521E28902ADE09248BC98C7AE1786AF0BE8BFE461D08F9F6F025422",
+      "capturedBytes": 408314,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Broodlord",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Carnifexes.html",
+      "sha256": "D7CFA555AD17FCCC48D18429E9F8D7F993C42E35BA0DC13A1DCC4B6A151A24A3",
+      "bytes": 337475,
+      "capturedSha256": "84A621DA32B1C5D29E24C29742421758987300E8B1C2A0FA951B530D58FD609C",
+      "capturedBytes": 339726,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Carnifexes",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Deathleaper.html",
+      "sha256": "CF0CE031052CBE9EF3485B94EA9C1E2217D6ED755DE31D39296DDDDE3849532B",
+      "bytes": 347765,
+      "capturedSha256": "887D980124A01C088D11E55C67FB83121EFB1BF7712B48BC759AF5B3BAA55EF8",
+      "capturedBytes": 350046,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Deathleaper",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Exocrine.html",
+      "sha256": "8ED0B0C2AB4C4F19C8E38D6DB061A7378A3CC7710E4EC26E8251ED58764294CB",
+      "bytes": 323164,
+      "capturedSha256": "867E38F8A74EB8D8551CDD54B8EA94149E0CF33BBAC5E3692DBD64E6C3445FB3",
+      "capturedBytes": 325378,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Exocrine",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Gargoyles.html",
+      "sha256": "43EB814670FC63A431E28D70D444F04F66D2672076C07852C0186201A39F33F7",
+      "bytes": 351078,
+      "capturedSha256": "6BDF7CE91BA8976AF22FFD13EAA75049FB722AD9844D699A37946F63D1B6BC56",
+      "capturedBytes": 353359,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Gargoyles",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Genestealers.html",
+      "sha256": "4F0FCBF1168010CAB29F84D1B36B81E6A990B707BAFD3B8F153A7E849F4FBE86",
+      "bytes": 322855,
+      "capturedSha256": "C6C349C43077B6275F16B38C4BA26A168A4101B60AB76ECCEDC9B392D2C02653",
+      "capturedBytes": 325070,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Genestealers",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Harpy.html",
+      "sha256": "5F3CE844337E323AB3FE2984A92F3246190D77B2F978845BBE07630B1BD095DB",
+      "bytes": 355768,
+      "capturedSha256": "1744A67B6B435C032E6444A4423ED98C7F2608F3DF6D7DCCDA121CFE4E169239",
+      "capturedBytes": 358047,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Harpy",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Harridan.html",
+      "sha256": "E3DEFC4A6134035253B6FD9F2202AC159C533BA4F609AF133278E48281B83B2E",
+      "bytes": 328253,
+      "capturedSha256": "FCF6677387887B00309A20E9E1325D9F9621308A2A756E3CCB9703BDED7D40A0",
+      "capturedBytes": 330441,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Harridan",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Haruspex.html",
+      "sha256": "D57E1B15892B164AE43405A08E011DA37E11E17A5296E53B8613320495ECACC2",
+      "bytes": 334138,
+      "capturedSha256": "B623A4A927343E55233CFBCBFFEBFBBAB4A92819FD8AF3200725B9538133672C",
+      "capturedBytes": 336413,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Haruspex",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hierophant.html",
+      "sha256": "6EFD872F147A39378A736A8540DD364A1359DEB93E602F6C4F6460C6139B70C4",
+      "bytes": 340913,
+      "capturedSha256": "4AF2790910660AE886CF022372F98E76161DCE7321F0517597590A275FA6A1D4",
+      "capturedBytes": 343121,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hierophant",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hive-Crone.html",
+      "sha256": "CCC9240E6E1F8A13204C297220F6ABE996F1B6517DCB94C56853C929964B75DA",
+      "bytes": 356763,
+      "capturedSha256": "DD62001F04FC1E342FB4CAFB4D668009CFF750654A32AD220AC12AD7E94595E0",
+      "capturedBytes": 359040,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hive-Crone",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hive-Guard.html",
+      "sha256": "46CF7707C374759152AFF20BEAC3E543490954927EC2111167E5CAF33F9F6357",
+      "bytes": 304792,
+      "capturedSha256": "C394295CE280CA1CBA18F49657886B8175979CCF3A5807CFEE8B7111FD73F2DA",
+      "capturedBytes": 306916,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hive-Guard",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hive-Tyrant.html",
+      "sha256": "E0E77C9E44C31B95CB3C6539C5A0B7BEE54C772C85E0ADAA35FE8227D2FC215E",
+      "bytes": 405381,
+      "capturedSha256": "60A167824104E8B7C4F2202F6D3CED42A6DA0CC5CF1725E1F96B6C219C78E67E",
+      "capturedBytes": 407716,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hive-Tyrant",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hormagaunts.html",
+      "sha256": "EC15809858BFD31F9E35AAD9754E47CA83E10F3380018FEF941F46F4F3593C04",
+      "bytes": 344485,
+      "capturedSha256": "B901FFAFDDCF8D28B4FA40722233C8E68E2CBC0E37142D4A187AF87EA599152E",
+      "capturedBytes": 346826,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hormagaunts",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Hyperadapted-Raveners.html",
+      "sha256": "210E59BD33700D849DF1D04E09CAD56381D049F43D88DF7FF3A29C7E2B5D0E2D",
+      "bytes": 396417,
+      "capturedSha256": "7D54133418484DC58133B90D7F4AC56EDB293570556B071097AA662116B35DC0",
+      "capturedBytes": 398712,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Hyperadapted-Raveners",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Lictor.html",
+      "sha256": "CDAEBDA265FC6B15B1DC73C5569B88F602DB68001C028624B99B8A98CD0F4888",
+      "bytes": 331119,
+      "capturedSha256": "E484ED7C63D85E8C660DF74E62145F3569BE09E13DF2E399F717714FDBB026F1",
+      "capturedBytes": 333366,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Lictor",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Maleceptor.html",
+      "sha256": "4FCAB831A804CD2CD64578E243B4BE15E4E3A4501AA9D464C4E2B1D5DF31773B",
+      "bytes": 350848,
+      "capturedSha256": "5E18F3ADEBB7428EBB4D0655E510D3C6966856040F9D28E31F15342B9299E61D",
+      "capturedBytes": 353133,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Maleceptor",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Mawloc.html",
+      "sha256": "007103465605D139FC83AC6E49E8AB9A6B540282E4C28A45352E1500D9B8D319",
+      "bytes": 351516,
+      "capturedSha256": "C63AF717936592B2DA16CE95651D3B31821256EA447C264C5FB9349727A29AC0",
+      "capturedBytes": 353809,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Mawloc",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Mucolid-Spores.html",
+      "sha256": "FB62E16F441FA0992AD264A0A92952318399C0E5B3F5D83A98931F44FBED7DCD",
+      "bytes": 281976,
+      "capturedSha256": "64E5D11515196BEA844AA57C5589EF921604B7DD0227233AA01E76A7311746B5",
+      "capturedBytes": 284036,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Mucolid-Spores",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Neurogaunts.html",
+      "sha256": "50038878EB8CF5ED1172572BF3CE60A77DE922AB361C28E9A22BA9DE52BFFBC8",
+      "bytes": 334319,
+      "capturedSha256": "70C835541D8005549DE7FFB0CF37324074FA4A981BA117F9DE513C5CAE98B4C2",
+      "capturedBytes": 336600,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Neurogaunts",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Neurolictor.html",
+      "sha256": "AFE8ABE0B5CDF491DD07EEBBD6B5C3E302E117AF9B09BADC080EE7B8EEC38218",
+      "bytes": 350161,
+      "capturedSha256": "E1C3DC241973AC0FF1BAE4AF5ABF65238A9A040483FBAEE8ED0E0B7655B84C57",
+      "capturedBytes": 352475,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Neurolictor",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Neurotyrant.html",
+      "sha256": "719796D1EF82BBED9291C5C511899FF9323F2A2A635A42E85438E7CF04AE2C55",
+      "bytes": 406195,
+      "capturedSha256": "5973A7326F4EB23F07CDD3734DE1C0D28ECD1600CB1508BCD87F162B7AA836B7",
+      "capturedBytes": 408515,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Neurotyrant",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Norn-Assimilator.html",
+      "sha256": "FB3B49D01711FDD50E26216B6DD71A9EFDFADCCD5E22168A06F67CB1C98ED828",
+      "bytes": 364904,
+      "capturedSha256": "5F6C350E0468440A6B94BCD4164C7CC02C3F5CF628F40E198C418A3C277BEC6E",
+      "capturedBytes": 367294,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Norn-Assimilator",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Norn-Emissary.html",
+      "sha256": "B717E85BED0D2E4199C5365189FA4535595F242C0CCAE665E8DBEDE1B31DC8B6",
+      "bytes": 358310,
+      "capturedSha256": "FBA6A2D83D7D22815553CD67398ED8603593E5C00F6DE7AF01C594CD319EAB0D",
+      "capturedBytes": 360609,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Norn-Emissary",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Old-One-Eye.html",
+      "sha256": "52DAE0B473118569CE5D4E594F6B5A35FA394491A35C176BE95B89FD695C3427",
+      "bytes": 331668,
+      "capturedSha256": "F713E5AB070ACAD95AFCF6FD25B708B8E1C6BFEC65F8A6C647847BB45F004EFF",
+      "capturedBytes": 333913,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Old-One-Eye",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Parasite-Of-Mortrex.html",
+      "sha256": "F5C544C56F4A625AC0432DA61398E47D9A6A4FDB537091313EA441F0ACE5795F",
+      "bytes": 387330,
+      "capturedSha256": "DD56D502C8E52080CD705AA54C14ABB3C79873E34E026792BFE95AEF246FCD29",
+      "capturedBytes": 389564,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Parasite-Of-Mortrex",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Psychophage.html",
+      "sha256": "577FDAE9B63CCA2F4EECB85DE783DB5EE111A14F6C5CE9E3BE6D003BC08AF4C9",
+      "bytes": 344450,
+      "capturedSha256": "A0F0FD4C823633C95C78AC0BC3C859650041CC6E4952495DBA6A4C446478FC13",
+      "capturedBytes": 346742,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Psychophage",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Pyrovores.html",
+      "sha256": "E0A333B381AA89B2716E01B9DDC2A244EF58B3B55BDCAD2EF82C7CB7E200B07D",
+      "bytes": 312280,
+      "capturedSha256": "26A8E3474002DF8933E36D3ED4E78CB3F58BFA9AD8D04379BF39BAE674114DE8",
+      "capturedBytes": 314447,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Pyrovores",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Raveners.html",
+      "sha256": "F296C13D2A2411C3A00378FA18A3FD99B1C9FE74EBC59C7A9C83E56AE7BDAD49",
+      "bytes": 324237,
+      "capturedSha256": "F90B3C4B547EA930A92DCC6FB837CACB02540CDC7E0A8C4CB6FE253E5AA35833",
+      "capturedBytes": 326439,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Raveners",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Ripper-Swarms.html",
+      "sha256": "27E2D83CA6FACF74470147AE20E3BEA2DE7C862FC55A8BD3E17B32AA1F6BC8C7",
+      "bytes": 304615,
+      "capturedSha256": "D45B06C605CD4E46ED98C18A3315FA7DDA4ED105D17203817D3FD9CB79F618FB",
+      "capturedBytes": 306797,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Ripper-Swarms",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Screamer-killer.html",
+      "sha256": "0B400A5DDFC80A80BEC4F9709156DBAF11B07FF29AC9870107D547E8DA4AAD8D",
+      "bytes": 323093,
+      "capturedSha256": "B90F018E294ABEB855B2AC774A338941D15C97CCBB076AA0D611A7486FBE4BCF",
+      "capturedBytes": 325319,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Screamer-killer",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Spore-Mines.html",
+      "sha256": "8F1C1A81711A07C0544D0F060D931C1C44A962CE780A227C68255B522D57919A",
+      "bytes": 282920,
+      "capturedSha256": "85EDC400A6514F7B3ADEB695D5871C2E731CB3CE02FA1AFA5F971C7017B4C8FE",
+      "capturedBytes": 284981,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Spore-Mines",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Sporocyst.html",
+      "sha256": "EF7E051AEB17F333E8FE5E75E29A938B6BC0E763FDA1DA0EB9AB16838AA03430",
+      "bytes": 321177,
+      "capturedSha256": "9E925B9D0C7B07C5951F9462D8134D477C1147C799D6E2B0D583A335869BC21D",
+      "capturedBytes": 323389,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Sporocyst",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Termagants.html",
+      "sha256": "8D7AB6E1CD22BC3581D83F77C1560819F78EA9039373A6D64A380DFB59239E9B",
+      "bytes": 355064,
+      "capturedSha256": "2188474970303567A771F2EB7FA12FC2FF69A95A3835E1A46BD51C137CEA9F76",
+      "capturedBytes": 357390,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Termagants",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tervigon.html",
+      "sha256": "AC576EFA1D9619F7063F5DCE99264776948BC79F1E316DEE6952DAAD8824F72B",
+      "bytes": 396653,
+      "capturedSha256": "B6331C083874F7BE38191933F83EFE60B680452D8C36A7818A0D9496BDDF6404",
+      "capturedBytes": 398969,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tervigon",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/The-Red-Terror.html",
+      "sha256": "AB1FE54451A8A059726AD20EF45EA02DC85617326B351480D45F8832BACD8225",
+      "bytes": 357498,
+      "capturedSha256": "BF1A698DF35E0D36A8FB5F2ACC2D284245BC27B5BB96C02A9CD42841FD0E3588",
+      "capturedBytes": 359803,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/The-Red-Terror",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/The-Swarmlord.html",
+      "sha256": "F0D55F999E0FC0E0B54D4B4C07FA5610A99DFFD016CA7BE89155229E110BCDC8",
+      "bytes": 360402,
+      "capturedSha256": "6DEDC8A433FA726EE8B074FF08AC78F5EC523AFAF74ECB1A6D0A703A1ED770D8",
+      "capturedBytes": 362720,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/The-Swarmlord",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Toxicrene.html",
+      "sha256": "4CAAF96A3A1C378E4D0F9B656438B473DB8F4348B553EA3DAE60F4CBE12B60D3",
+      "bytes": 330975,
+      "capturedSha256": "6574C495C86A183BEF446853BAFC30C1FEDBF4DC33B371C06D59C941C86D57C4",
+      "capturedBytes": 333210,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Toxicrene",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Trygon.html",
+      "sha256": "087FEA9A60D81B677E62B2307E6CF555529505D4C8677DC4DF021773850B1F51",
+      "bytes": 349743,
+      "capturedSha256": "2D8DB12484CA22A62822120F4F4C29FA6336CFCF97C172C3E7ED340184E98E11",
+      "capturedBytes": 352036,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Trygon",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Prime-with-Lash-Whip.html",
+      "sha256": "F3EB275FB9251AB2785C758E0DAF8BF4DB4D2AC23AE7F9C74291FBE5434120D9",
+      "bytes": 379840,
+      "capturedSha256": "C9B39884465018569C4DEA3AC7ECE0DDF0B703D7F746533A6C6836B10A5BCB55",
+      "capturedBytes": 382052,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyranid-Prime-with-Lash-Whip",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Warriors-With-Melee-Bio-weapons.html",
+      "sha256": "8AEFDE4386AF27C83D1D0B561C46644F8004B3AD692108A68D57F105EDAF4900",
+      "bytes": 343783,
+      "capturedSha256": "C86026B2C7FDAC1632BD940CA1F0722A7F460513335B48AF3F81DA26952F0B4E",
+      "capturedBytes": 346054,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyranid-Warriors-With-Melee-Bio-weapons",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Warriors-With-Ranged-Bio-weapons.html",
+      "sha256": "1291BD3823691A0DCF0D77A499E60C50D0005C150095166AAF7E78B3E8D7C3D8",
+      "bytes": 354858,
+      "capturedSha256": "82F09A5BCB9BB65147F220CC006631015534DE6059BD7481AD0142400A7D39DC",
+      "capturedBytes": 357157,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyranid-Warriors-With-Ranged-Bio-weapons",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrannocyte.html",
+      "sha256": "A6D9887274346F18D619DB81C0562BA968E14EC84CBDBB4E2EDAB13C862A5153",
+      "bytes": 391524,
+      "capturedSha256": "294A1387947B2C879B07FF63372A91DAC6F98C5E47FB085A29B92E4DEF9C90A4",
+      "capturedBytes": 393910,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyrannocyte",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrannofex.html",
+      "sha256": "73C5A48639453DDEA56860C730EAA1D4AA95CF5026230203BA93AB987B5E652F",
+      "bytes": 334587,
+      "capturedSha256": "C714843A22DC429F8D0C83D4C491EDF8E3ADA9537C99A881EAF8E6C34EDF4E53",
+      "capturedBytes": 336811,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyrannofex",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html",
+      "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E",
+      "bytes": 296414,
+      "capturedSha256": "D8675A30C1DF071AE28CC63DE00829AA60DB8F7C5D296E0D1EAD6F917A80DE4C",
+      "capturedBytes": 298509,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Tyrant-Guard",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Venomthropes.html",
+      "sha256": "6E38BD27149968C68E2FC58687CBC8CC16A8F1423FB3F9EB7CD4E5BCCB596C94",
+      "bytes": 301919,
+      "capturedSha256": "04F89425371F274D605BB1A45CABBC3FA8DA3CDE19569F4EE795CFE9FFEF740E",
+      "capturedBytes": 304015,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Venomthropes",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Von-Ryan-s-Leapers.html",
+      "sha256": "9D0D77FB3457DA5667BA69CE056AA86E293FE21C86F42C3D289C0FBBD6783C2C",
+      "bytes": 330940,
+      "capturedSha256": "D130D9FF8BB688B6432A9F4AB688C1CE54EB265D0A07297E8CB47B72D8E24EAE",
+      "capturedBytes": 333174,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Von-Ryan-s-Leapers",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Hive-Tyrant.html",
+      "sha256": "881301943FB408BDE1719478C8F1216BDF42C168CDF0A82C6F978CACFCAF8501",
+      "bytes": 433199,
+      "capturedSha256": "08F69B0D2C327BF10470B06654E715EBE489DA8F95F279F0DEBC37AF613B228E",
+      "capturedBytes": 435578,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Winged-Hive-Tyrant",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Tyranid-Prime.html",
+      "sha256": "C2EF18BD580219B4CF287F2FC525CD7CF76FF710219C8C982AAAF8602B337302",
+      "bytes": 410223,
+      "capturedSha256": "FF2B7B9AAEC462B2D8E72921AE6CFE0EAF86A87CC2E9CC9B54B36B09486F1B0A",
+      "capturedBytes": 412507,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Winged-Tyranid-Prime",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/Zoanthropes.html",
+      "sha256": "7646DF944A3E32EC4AD7A968D2FC177003C772EAF20D599939794D41A9088FD6",
+      "bytes": 325587,
+      "capturedSha256": "41E9771C8EC26D1E187E32C19DAC894E7540A7EB5A4A7B7C2D618A14C29999DD",
+      "capturedBytes": 327751,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/Zoanthropes",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+      "sha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3",
+      "bytes": 513052
+    },
+    {
+      "path": "books/tyranids/sources/waha-11e-current-2026-09-27/pages.json",
+      "sha256": "E8921FDC13E8AA52166F4ED18811B4818923C6DFD370B4AF9F6F1AA7943D578E",
+      "bytes": 6147
+    },
+    {
+      "path": "books/tyranids/sources/tyranids-faction-pack-v1.2.pdf",
+      "sha256": "D7531867BA2C0939C098DBD247E459E611B206FE009C1BA031C896BCBC541663",
+      "bytes": 17016648
+    },
+    {
+      "path": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+      "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+      "bytes": 17016449
+    },
+    {
+      "path": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+      "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+      "bytes": 935104
+    },
+    {
+      "path": "mfm/sources/v1.6/tyranids.json",
+      "sha256": "175C853DBF824B3576D3B75829EAAC0D64DD705AB791315C348C2624AC64CAD3",
+      "bytes": 40780
+    }
+  ],
+  "excludedAsAuthority": [
+    "legacy Tyranids content/runtime",
+    "BSData wrapper with unresolved enrollment SHA",
+    "historical 10E rules"
+  ]
+}

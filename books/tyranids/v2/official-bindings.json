@@ -1,0 +1,233 @@
+{
+  "schema": "tyranids-v2-official-source-bindings/v1",
+  "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+  "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+  "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+  "effectiveFrom": "2026-10-14",
+  "occurrences": [
+    {
+      "id": "gw-v1.3-datasheet-the-swarmlord-ability",
+      "page": 20,
+      "bbox": [
+        301,
+        327,
+        558,
+        382
+      ],
+      "textSha256": "A0341B98AC6A46BB268F671876E73C44EA8BDF84631FC4086A69452EB66567D7",
+      "mode": "REPLACE_BLOCK",
+      "targetSourceId": "datasheet-the-swarmlord:section:1",
+      "blockIndex": 1,
+      "ruleName": "Malign Presence",
+      "beforeSha256": "9169960FBCAAE591F551D20EE3E73303F936C8819253A61DCD0E41C9AD1E014F"
+    },
+    {
+      "id": "gw-v1.3-datasheet-hive-tyrant-ability",
+      "page": 20,
+      "bbox": [
+        40,
+        569,
+        292,
+        636
+      ],
+      "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+      "mode": "REPLACE_BLOCK",
+      "targetSourceId": "datasheet-hive-tyrant:section:1",
+      "blockIndex": 0,
+      "ruleName": "Will of the Hive Mind",
+      "beforeSha256": "922B90636F82699158E3D7A3C3E220B43D127956C20329B1021C3C906F6065F8"
+    },
+    {
+      "id": "gw-v1.3-datasheet-winged-hive-tyrant-ability",
+      "page": 20,
+      "bbox": [
+        40,
+        569,
+        292,
+        636
+      ],
+      "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+      "mode": "REPLACE_BLOCK",
+      "targetSourceId": "datasheet-winged-hive-tyrant:section:1",
+      "blockIndex": 0,
+      "ruleName": "Will of the Hive Mind",
+      "beforeSha256": "922B90636F82699158E3D7A3C3E220B43D127956C20329B1021C3C906F6065F8"
+    },
+    {
+      "id": "gw-v1.3-synaptic-goading-effect",
+      "page": 19,
+      "bbox": [
+        301,
+        613,
+        558,
+        712
+      ],
+      "textSha256": "B43131AF7299CCAB5AD35993EBCDD5DEF2BBFA9F6FD08D5765411B07EFF3534E",
+      "mode": "REPLACE_STRATAGEM_EFFECT",
+      "targetSourceId": "detachment-unending-swarm:stratagem:1",
+      "beforeSha256": "73E2935CC969A4D7B11837C146BC52DDB55B6ED19AAB0411859B82E86DCBB1B4"
+    },
+    {
+      "id": "gw-v1.3-harpy-hover-removal",
+      "page": 21,
+      "bbox": [
+        40,
+        162,
+        292,
+        194
+      ],
+      "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+      "mode": "SUPPRESS_REFERENCE",
+      "targetSourceId": "datasheet-harpy:rule-reference:2"
+    },
+    {
+      "id": "gw-v1.3-parasite-shadow-in-the-warp",
+      "page": 20,
+      "bbox": [
+        40,
+        228,
+        292,
+        255
+      ],
+      "textSha256": "28B29D001783D131932284ED8CF0E64E240276BC0103F019D9A00C83D3D872DA",
+      "mode": "ADD_REFERENCE",
+      "targetSourceId": "datasheet-parasite-of-mortrex",
+      "newSourceId": "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official"
+    },
+    {
+      "id": "gw-v1.3-norn-assimilator-harpooned",
+      "page": 20,
+      "bbox": [
+        301,
+        63,
+        558,
+        153
+      ],
+      "textSha256": "898BC72563C56767881F10CA6856AA2DF66DA8E44E08146454EFDC09D0537350",
+      "mode": "REPLACE_WEAPON_ABILITY",
+      "targetSourceId": "datasheet-norn-assimilator:weapon:1:ability:harpooned"
+    },
+    {
+      "id": "gw-v1.3-biovores-hidden-faq",
+      "page": 21,
+      "bbox": [
+        40,
+        228,
+        292,
+        261
+      ],
+      "textSha256": "71A2F8C5D12D961A7DF2A8D673C1DBABC528E751E56702BB9A1016CEB33A6F2F",
+      "mode": "ADD_FAQ",
+      "newSourceId": "faq-biovores-seed-spore-mines-hidden-v1.3"
+    },
+    {
+      "id": "gw-v1.3-foul-spores-update",
+      "page": 20,
+      "bbox": [
+        301,
+        744,
+        558,
+        782
+      ],
+      "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+      "mode": "UNRESOLVED_EVIDENCE",
+      "targetIds": [
+        "datasheet-venomthropes:section:1"
+      ]
+    },
+    {
+      "id": "gw-v1.3-foul-spores-faq",
+      "page": 21,
+      "bbox": [
+        40,
+        679,
+        292,
+        724
+      ],
+      "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+      "mode": "UNRESOLVED_EVIDENCE",
+      "targetIds": [
+        "faq-20"
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-left",
+      "page": 19,
+      "bbox": [
+        40,
+        195,
+        292,
+        790
+      ],
+      "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+      "mode": "VERIFY_CURRENT",
+      "targetIds": [
+        "army-rule-synapse:definition",
+        "army-rule-shadow-in-the-warp:definition",
+        "detachment-assimilation-swarm:rule",
+        "detachment-assimilation-swarm:enhancement:2"
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right",
+      "page": 19,
+      "bbox": [
+        301,
+        195,
+        558,
+        790
+      ],
+      "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+      "mode": "VERIFY_CURRENT",
+      "targetIds": [
+        "detachment-crusher-stampede:rule",
+        "detachment-crusher-stampede:stratagem:4",
+        "detachment-synaptic-nexus:stratagem:4",
+        "detachment-unending-swarm:rule",
+        "detachment-vanguard-onslaught:enhancement:2"
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left",
+      "page": 20,
+      "bbox": [
+        40,
+        60,
+        292,
+        799
+      ],
+      "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+      "mode": "VERIFY_CURRENT",
+      "targetIds": [
+        "detachment-vanguard-onslaught:enhancement:4",
+        "datasheet-biovores:section:1",
+        "datasheet-carnifexes:section:1",
+        "datasheet-exocrine:weapon:1",
+        "datasheet-harpy:section:1",
+        "datasheet-neurolictor",
+        "datasheet-norn-assimilator"
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right",
+      "page": 20,
+      "bbox": [
+        301,
+        155,
+        558,
+        742
+      ],
+      "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+      "mode": "VERIFY_CURRENT",
+      "targetIds": [
+        "datasheet-psychophage",
+        "datasheet-sporocyst:section:1",
+        "datasheet-termagants:section:1",
+        "datasheet-trygon:section:1",
+        "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+        "datasheet-tyrannocyte:section:1",
+        "datasheet-tyrannofex:weapon:3"
+      ]
+    }
+  ]
+}

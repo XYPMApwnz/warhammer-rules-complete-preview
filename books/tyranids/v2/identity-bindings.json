@@ -1,0 +1,4386 @@
+{
+  "schema": "tyranids-v2-persistent-identities/v1",
+  "authority": "PERSISTENT_SOURCE_IDENTITY_REGISTRY_NO_RUNTIME_TITLE_JOINS",
+  "bindings": [
+    {
+      "sourceEntityId": "army-rule-synapse",
+      "id": "army-rule-synapse",
+      "kind": "ARMY_RULE",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "army-rule-synapse:definition",
+      "id": "army-rule-synapse:definition",
+      "kind": "ARMY_RULE_COMPONENT",
+      "ownerSourceId": "army-rule-synapse"
+    },
+    {
+      "sourceEntityId": "army-rule-shadow-in-the-warp",
+      "id": "army-rule-shadow-in-the-warp",
+      "kind": "ARMY_RULE",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "army-rule-shadow-in-the-warp:definition",
+      "id": "army-rule-shadow-in-the-warp:definition",
+      "kind": "ARMY_RULE_COMPONENT",
+      "ownerSourceId": "army-rule-shadow-in-the-warp"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault",
+      "id": "detachment-subterranean-assault",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:rule",
+      "id": "detachment-subterranean-assault:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:enhancement:1",
+      "id": "detachment-subterranean-assault:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:enhancement:2",
+      "id": "detachment-subterranean-assault:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:enhancement:3",
+      "id": "detachment-subterranean-assault:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
+      "id": "detachment-subterranean-assault:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:1",
+      "id": "detachment-subterranean-assault:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:2",
+      "id": "detachment-subterranean-assault:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:3",
+      "id": "detachment-subterranean-assault:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:4",
+      "id": "detachment-subterranean-assault:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:5",
+      "id": "detachment-subterranean-assault:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-subterranean-assault:stratagem:6",
+      "id": "detachment-subterranean-assault:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-subterranean-assault"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet",
+      "id": "detachment-invasion-fleet",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:rule",
+      "id": "detachment-invasion-fleet:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:rule:table:1",
+      "id": "detachment-invasion-fleet:rule:table:1",
+      "kind": "SOURCE_PRESENTATION_NOTE",
+      "ownerSourceId": "detachment-invasion-fleet:rule"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:rule:table:2",
+      "id": "detachment-invasion-fleet:rule:table:2",
+      "kind": "SOURCE_PRESENTATION_NOTE",
+      "ownerSourceId": "detachment-invasion-fleet:rule"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:rule:table:3",
+      "id": "detachment-invasion-fleet:rule:table:3",
+      "kind": "SOURCE_PRESENTATION_NOTE",
+      "ownerSourceId": "detachment-invasion-fleet:rule"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:enhancement:1",
+      "id": "detachment-invasion-fleet:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:enhancement:2",
+      "id": "detachment-invasion-fleet:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:enhancement:3",
+      "id": "detachment-invasion-fleet:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:enhancement:4",
+      "id": "detachment-invasion-fleet:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:1",
+      "id": "detachment-invasion-fleet:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:2",
+      "id": "detachment-invasion-fleet:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:3",
+      "id": "detachment-invasion-fleet:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:4",
+      "id": "detachment-invasion-fleet:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:5",
+      "id": "detachment-invasion-fleet:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-invasion-fleet:stratagem:6",
+      "id": "detachment-invasion-fleet:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-invasion-fleet"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus",
+      "id": "detachment-synaptic-nexus",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:rule",
+      "id": "detachment-synaptic-nexus:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
+      "id": "detachment-synaptic-nexus:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:enhancement:2",
+      "id": "detachment-synaptic-nexus:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:enhancement:3",
+      "id": "detachment-synaptic-nexus:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:enhancement:4",
+      "id": "detachment-synaptic-nexus:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:1",
+      "id": "detachment-synaptic-nexus:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:2",
+      "id": "detachment-synaptic-nexus:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:3",
+      "id": "detachment-synaptic-nexus:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:4",
+      "id": "detachment-synaptic-nexus:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:5",
+      "id": "detachment-synaptic-nexus:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-synaptic-nexus:stratagem:6",
+      "id": "detachment-synaptic-nexus:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-synaptic-nexus"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm",
+      "id": "detachment-assimilation-swarm",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:rule",
+      "id": "detachment-assimilation-swarm:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:enhancement:1",
+      "id": "detachment-assimilation-swarm:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:enhancement:2",
+      "id": "detachment-assimilation-swarm:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:enhancement:3",
+      "id": "detachment-assimilation-swarm:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:enhancement:4",
+      "id": "detachment-assimilation-swarm:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:1",
+      "id": "detachment-assimilation-swarm:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:2",
+      "id": "detachment-assimilation-swarm:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:3",
+      "id": "detachment-assimilation-swarm:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:4",
+      "id": "detachment-assimilation-swarm:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:5",
+      "id": "detachment-assimilation-swarm:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-assimilation-swarm:stratagem:6",
+      "id": "detachment-assimilation-swarm:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-assimilation-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede",
+      "id": "detachment-crusher-stampede",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:rule",
+      "id": "detachment-crusher-stampede:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:enhancement:1",
+      "id": "detachment-crusher-stampede:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:enhancement:2",
+      "id": "detachment-crusher-stampede:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:enhancement:3",
+      "id": "detachment-crusher-stampede:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:enhancement:4",
+      "id": "detachment-crusher-stampede:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:1",
+      "id": "detachment-crusher-stampede:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:2",
+      "id": "detachment-crusher-stampede:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:3",
+      "id": "detachment-crusher-stampede:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:4",
+      "id": "detachment-crusher-stampede:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:5",
+      "id": "detachment-crusher-stampede:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-crusher-stampede:stratagem:6",
+      "id": "detachment-crusher-stampede:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-crusher-stampede"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught",
+      "id": "detachment-vanguard-onslaught",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:rule",
+      "id": "detachment-vanguard-onslaught:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:rule:vanguard-prime",
+      "id": "detachment-vanguard-onslaught:rule:vanguard-prime",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:enhancement:1",
+      "id": "detachment-vanguard-onslaught:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:enhancement:2",
+      "id": "detachment-vanguard-onslaught:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:enhancement:3",
+      "id": "detachment-vanguard-onslaught:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:enhancement:4",
+      "id": "detachment-vanguard-onslaught:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:1",
+      "id": "detachment-vanguard-onslaught:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:2",
+      "id": "detachment-vanguard-onslaught:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:3",
+      "id": "detachment-vanguard-onslaught:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:4",
+      "id": "detachment-vanguard-onslaught:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:5",
+      "id": "detachment-vanguard-onslaught:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-vanguard-onslaught:stratagem:6",
+      "id": "detachment-vanguard-onslaught:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-vanguard-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm",
+      "id": "detachment-unending-swarm",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:rule",
+      "id": "detachment-unending-swarm:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:enhancement:1",
+      "id": "detachment-unending-swarm:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:enhancement:2",
+      "id": "detachment-unending-swarm:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:enhancement:3",
+      "id": "detachment-unending-swarm:enhancement:3",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:enhancement:4",
+      "id": "detachment-unending-swarm:enhancement:4",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:1",
+      "id": "detachment-unending-swarm:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:2",
+      "id": "detachment-unending-swarm:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:3",
+      "id": "detachment-unending-swarm:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:4",
+      "id": "detachment-unending-swarm:stratagem:4",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:5",
+      "id": "detachment-unending-swarm:stratagem:5",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-unending-swarm:stratagem:6",
+      "id": "detachment-unending-swarm:stratagem:6",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-unending-swarm"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators",
+      "id": "detachment-ambush-predators",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:rule",
+      "id": "detachment-ambush-predators:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:enhancement:1",
+      "id": "detachment-ambush-predators:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:enhancement:2",
+      "id": "detachment-ambush-predators:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:stratagem:1",
+      "id": "detachment-ambush-predators:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:stratagem:2",
+      "id": "detachment-ambush-predators:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-ambush-predators:stratagem:3",
+      "id": "detachment-ambush-predators:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-ambush-predators"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen",
+      "id": "detachment-talons-of-the-norn-queen",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:rule",
+      "id": "detachment-talons-of-the-norn-queen:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:1",
+      "id": "detachment-talons-of-the-norn-queen:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:2",
+      "id": "detachment-talons-of-the-norn-queen:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:1",
+      "id": "detachment-talons-of-the-norn-queen:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:2",
+      "id": "detachment-talons-of-the-norn-queen:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:3",
+      "id": "detachment-talons-of-the-norn-queen:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught",
+      "id": "detachment-warrior-bioform-onslaught",
+      "kind": "DETACHMENT",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
+      "id": "detachment-warrior-bioform-onslaught:rule",
+      "kind": "DETACHMENT_RULE",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:1",
+      "id": "detachment-warrior-bioform-onslaught:enhancement:1",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:2",
+      "id": "detachment-warrior-bioform-onslaught:enhancement:2",
+      "kind": "ENHANCEMENT",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:1",
+      "id": "detachment-warrior-bioform-onslaught:stratagem:1",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:2",
+      "id": "detachment-warrior-bioform-onslaught:stratagem:2",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:3",
+      "id": "detachment-warrior-bioform-onslaught:stratagem:3",
+      "kind": "STRATAGEM",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts",
+      "id": "unit-barbgaunts",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:profile:1",
+      "id": "datasheet-barbgaunts:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:weapon:1",
+      "id": "datasheet-barbgaunts:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:weapon:2",
+      "id": "datasheet-barbgaunts:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:section:1",
+      "id": "datasheet-barbgaunts:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:section:2",
+      "id": "datasheet-barbgaunts:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:rule-reference:1",
+      "id": "datasheet-barbgaunts:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-barbgaunts:section:2:member:1",
+      "id": "datasheet-barbgaunts:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-barbgaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores",
+      "id": "unit-biovores",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:profile:1",
+      "id": "datasheet-biovores:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:weapon:1",
+      "id": "datasheet-biovores:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:weapon:2",
+      "id": "datasheet-biovores:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:section:1",
+      "id": "datasheet-biovores:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:section:2",
+      "id": "datasheet-biovores:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:rule-reference:1",
+      "id": "datasheet-biovores:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:rule-reference:2",
+      "id": "datasheet-biovores:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-biovores:section:2:member:1",
+      "id": "datasheet-biovores:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-biovores"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord",
+      "id": "unit-broodlord",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:profile:1",
+      "id": "datasheet-broodlord:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:weapon:1",
+      "id": "datasheet-broodlord:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:section:1",
+      "id": "datasheet-broodlord:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:section:2",
+      "id": "datasheet-broodlord:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:section:3",
+      "id": "datasheet-broodlord:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:rule-reference:1",
+      "id": "datasheet-broodlord:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:rule-reference:2",
+      "id": "datasheet-broodlord:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:rule-reference:3",
+      "id": "datasheet-broodlord:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:rule-reference:4",
+      "id": "datasheet-broodlord:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-broodlord:section:2:member:1",
+      "id": "datasheet-broodlord:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-broodlord"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes",
+      "id": "unit-carnifexes",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:profile:1",
+      "id": "datasheet-carnifexes:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:1",
+      "id": "datasheet-carnifexes:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:2",
+      "id": "datasheet-carnifexes:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:3",
+      "id": "datasheet-carnifexes:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:4",
+      "id": "datasheet-carnifexes:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:5",
+      "id": "datasheet-carnifexes:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:6",
+      "id": "datasheet-carnifexes:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:7",
+      "id": "datasheet-carnifexes:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:8",
+      "id": "datasheet-carnifexes:weapon:8",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:9",
+      "id": "datasheet-carnifexes:weapon:9",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:weapon:10",
+      "id": "datasheet-carnifexes:weapon:10",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:wargear:1",
+      "id": "datasheet-carnifexes:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:wargear:2",
+      "id": "datasheet-carnifexes:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:wargear:3",
+      "id": "datasheet-carnifexes:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:wargear:4",
+      "id": "datasheet-carnifexes:wargear:4",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:section:1",
+      "id": "datasheet-carnifexes:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:section:2",
+      "id": "datasheet-carnifexes:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:rule-reference:1",
+      "id": "datasheet-carnifexes:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:rule-reference:2",
+      "id": "datasheet-carnifexes:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-carnifexes:section:2:member:1",
+      "id": "datasheet-carnifexes:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-carnifexes"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper",
+      "id": "unit-deathleaper",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:profile:1",
+      "id": "datasheet-deathleaper:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:weapon:1",
+      "id": "datasheet-deathleaper:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:section:1",
+      "id": "datasheet-deathleaper:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:section:2",
+      "id": "datasheet-deathleaper:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:section:3",
+      "id": "datasheet-deathleaper:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:rule-reference:1",
+      "id": "datasheet-deathleaper:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:rule-reference:2",
+      "id": "datasheet-deathleaper:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:rule-reference:3",
+      "id": "datasheet-deathleaper:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:rule-reference:4",
+      "id": "datasheet-deathleaper:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:rule-reference:5",
+      "id": "datasheet-deathleaper:rule-reference:5",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-deathleaper:section:2:member:1",
+      "id": "datasheet-deathleaper:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-deathleaper"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine",
+      "id": "unit-exocrine",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:profile:1",
+      "id": "datasheet-exocrine:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:weapon:1",
+      "id": "datasheet-exocrine:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:weapon:2",
+      "id": "datasheet-exocrine:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:section:1",
+      "id": "datasheet-exocrine:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:section:2",
+      "id": "datasheet-exocrine:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:section:3",
+      "id": "datasheet-exocrine:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:rule-reference:1",
+      "id": "datasheet-exocrine:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:rule-reference:2",
+      "id": "datasheet-exocrine:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-exocrine:section:2:member:1",
+      "id": "datasheet-exocrine:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-exocrine"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles",
+      "id": "unit-gargoyles",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:profile:1",
+      "id": "datasheet-gargoyles:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:weapon:1",
+      "id": "datasheet-gargoyles:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:weapon:2",
+      "id": "datasheet-gargoyles:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:section:1",
+      "id": "datasheet-gargoyles:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:section:2",
+      "id": "datasheet-gargoyles:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:rule-reference:1",
+      "id": "datasheet-gargoyles:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:rule-reference:2",
+      "id": "datasheet-gargoyles:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-gargoyles:section:2:member:1",
+      "id": "datasheet-gargoyles:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-gargoyles"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers",
+      "id": "unit-genestealers",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:profile:1",
+      "id": "datasheet-genestealers:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:weapon:1",
+      "id": "datasheet-genestealers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:section:1",
+      "id": "datasheet-genestealers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:section:2",
+      "id": "datasheet-genestealers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:rule-reference:1",
+      "id": "datasheet-genestealers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:rule-reference:2",
+      "id": "datasheet-genestealers:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-genestealers:section:2:member:1",
+      "id": "datasheet-genestealers:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-genestealers"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy",
+      "id": "unit-harpy",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:profile:1",
+      "id": "datasheet-harpy:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:weapon:1",
+      "id": "datasheet-harpy:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:weapon:2",
+      "id": "datasheet-harpy:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:weapon:3",
+      "id": "datasheet-harpy:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:weapon:4",
+      "id": "datasheet-harpy:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:wargear:1",
+      "id": "datasheet-harpy:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:section:1",
+      "id": "datasheet-harpy:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:section:2",
+      "id": "datasheet-harpy:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:section:3",
+      "id": "datasheet-harpy:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:rule-reference:1",
+      "id": "datasheet-harpy:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:rule-reference:2",
+      "id": "datasheet-harpy:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:rule-reference:3",
+      "id": "datasheet-harpy:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harpy:section:2:member:1",
+      "id": "datasheet-harpy:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-harpy"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan",
+      "id": "unit-harridan",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:profile:1",
+      "id": "datasheet-harridan:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:weapon:1",
+      "id": "datasheet-harridan:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:weapon:2",
+      "id": "datasheet-harridan:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:wargear:1",
+      "id": "datasheet-harridan:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:section:1",
+      "id": "datasheet-harridan:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:section:2",
+      "id": "datasheet-harridan:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:section:3",
+      "id": "datasheet-harridan:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:section:4",
+      "id": "datasheet-harridan:section:4",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:rule-reference:1",
+      "id": "datasheet-harridan:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:rule-reference:2",
+      "id": "datasheet-harridan:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:rule-reference:3",
+      "id": "datasheet-harridan:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-harridan:section:3:member:1",
+      "id": "datasheet-harridan:section:3:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-harridan"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex",
+      "id": "unit-haruspex",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:profile:1",
+      "id": "datasheet-haruspex:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:weapon:1",
+      "id": "datasheet-haruspex:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:weapon:2",
+      "id": "datasheet-haruspex:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:weapon:3",
+      "id": "datasheet-haruspex:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:section:1",
+      "id": "datasheet-haruspex:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:section:2",
+      "id": "datasheet-haruspex:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:section:3",
+      "id": "datasheet-haruspex:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:rule-reference:1",
+      "id": "datasheet-haruspex:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:rule-reference:2",
+      "id": "datasheet-haruspex:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-haruspex:section:2:member:1",
+      "id": "datasheet-haruspex:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-haruspex"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant",
+      "id": "unit-hierophant",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:profile:1",
+      "id": "datasheet-hierophant:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:weapon:1",
+      "id": "datasheet-hierophant:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:weapon:2",
+      "id": "datasheet-hierophant:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:weapon:3",
+      "id": "datasheet-hierophant:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:weapon:4",
+      "id": "datasheet-hierophant:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:wargear:1",
+      "id": "datasheet-hierophant:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:section:1",
+      "id": "datasheet-hierophant:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:section:2",
+      "id": "datasheet-hierophant:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:section:3",
+      "id": "datasheet-hierophant:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:section:4",
+      "id": "datasheet-hierophant:section:4",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:rule-reference:1",
+      "id": "datasheet-hierophant:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:rule-reference:2",
+      "id": "datasheet-hierophant:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hierophant:section:3:member:1",
+      "id": "datasheet-hierophant:section:3:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hierophant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone",
+      "id": "unit-hive-crone",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:profile:1",
+      "id": "datasheet-hive-crone:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:weapon:1",
+      "id": "datasheet-hive-crone:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:weapon:2",
+      "id": "datasheet-hive-crone:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:weapon:3",
+      "id": "datasheet-hive-crone:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:weapon:4",
+      "id": "datasheet-hive-crone:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:weapon:5",
+      "id": "datasheet-hive-crone:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:section:1",
+      "id": "datasheet-hive-crone:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:section:2",
+      "id": "datasheet-hive-crone:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:section:3",
+      "id": "datasheet-hive-crone:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:rule-reference:1",
+      "id": "datasheet-hive-crone:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:rule-reference:2",
+      "id": "datasheet-hive-crone:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-crone:section:2:member:1",
+      "id": "datasheet-hive-crone:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hive-crone"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard",
+      "id": "unit-hive-guard",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:profile:1",
+      "id": "datasheet-hive-guard:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:weapon:1",
+      "id": "datasheet-hive-guard:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:weapon:2",
+      "id": "datasheet-hive-guard:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:weapon:3",
+      "id": "datasheet-hive-guard:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:wargear:1",
+      "id": "datasheet-hive-guard:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:section:1",
+      "id": "datasheet-hive-guard:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:section:2",
+      "id": "datasheet-hive-guard:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:rule-reference:1",
+      "id": "datasheet-hive-guard:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-guard:section:2:member:1",
+      "id": "datasheet-hive-guard:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hive-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant",
+      "id": "unit-hive-tyrant",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:profile:1",
+      "id": "datasheet-hive-tyrant:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:weapon:1",
+      "id": "datasheet-hive-tyrant:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:weapon:2",
+      "id": "datasheet-hive-tyrant:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:weapon:3",
+      "id": "datasheet-hive-tyrant:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:weapon:4",
+      "id": "datasheet-hive-tyrant:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:wargear:1",
+      "id": "datasheet-hive-tyrant:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:wargear:2",
+      "id": "datasheet-hive-tyrant:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:wargear:3",
+      "id": "datasheet-hive-tyrant:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:section:1",
+      "id": "datasheet-hive-tyrant:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:section:2",
+      "id": "datasheet-hive-tyrant:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:section:3",
+      "id": "datasheet-hive-tyrant:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:rule-reference:1",
+      "id": "datasheet-hive-tyrant:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:rule-reference:2",
+      "id": "datasheet-hive-tyrant:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:rule-reference:3",
+      "id": "datasheet-hive-tyrant:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:rule-reference:4",
+      "id": "datasheet-hive-tyrant:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hive-tyrant:section:2:member:1",
+      "id": "datasheet-hive-tyrant:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts",
+      "id": "unit-hormagaunts",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:profile:1",
+      "id": "datasheet-hormagaunts:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:weapon:1",
+      "id": "datasheet-hormagaunts:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:section:1",
+      "id": "datasheet-hormagaunts:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:section:2",
+      "id": "datasheet-hormagaunts:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:rule-reference:1",
+      "id": "datasheet-hormagaunts:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hormagaunts:section:2:member:1",
+      "id": "datasheet-hormagaunts:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hormagaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners",
+      "id": "unit-hyperadapted-raveners",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:profile:1",
+      "id": "datasheet-hyperadapted-raveners:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:profile:2",
+      "id": "datasheet-hyperadapted-raveners:profile:2",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:weapon:1",
+      "id": "datasheet-hyperadapted-raveners:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:weapon:2",
+      "id": "datasheet-hyperadapted-raveners:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:weapon:3",
+      "id": "datasheet-hyperadapted-raveners:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:section:1",
+      "id": "datasheet-hyperadapted-raveners:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:section:2",
+      "id": "datasheet-hyperadapted-raveners:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:section:3",
+      "id": "datasheet-hyperadapted-raveners:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:rule-reference:1",
+      "id": "datasheet-hyperadapted-raveners:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:rule-reference:2",
+      "id": "datasheet-hyperadapted-raveners:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:rule-reference:3",
+      "id": "datasheet-hyperadapted-raveners:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:rule-reference:4",
+      "id": "datasheet-hyperadapted-raveners:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:section:2:member:1",
+      "id": "datasheet-hyperadapted-raveners:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-hyperadapted-raveners:section:2:member:2",
+      "id": "datasheet-hyperadapted-raveners:section:2:member:2",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-hyperadapted-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor",
+      "id": "unit-lictor",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:profile:1",
+      "id": "datasheet-lictor:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:weapon:1",
+      "id": "datasheet-lictor:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:section:1",
+      "id": "datasheet-lictor:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:section:2",
+      "id": "datasheet-lictor:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:rule-reference:1",
+      "id": "datasheet-lictor:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:rule-reference:2",
+      "id": "datasheet-lictor:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:rule-reference:3",
+      "id": "datasheet-lictor:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:rule-reference:4",
+      "id": "datasheet-lictor:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:rule-reference:5",
+      "id": "datasheet-lictor:rule-reference:5",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-lictor:section:2:member:1",
+      "id": "datasheet-lictor:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-lictor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor",
+      "id": "unit-maleceptor",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:profile:1",
+      "id": "datasheet-maleceptor:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:weapon:1",
+      "id": "datasheet-maleceptor:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:weapon:2",
+      "id": "datasheet-maleceptor:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:weapon:3",
+      "id": "datasheet-maleceptor:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:section:1",
+      "id": "datasheet-maleceptor:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:section:2",
+      "id": "datasheet-maleceptor:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:section:3",
+      "id": "datasheet-maleceptor:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:rule-reference:1",
+      "id": "datasheet-maleceptor:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:rule-reference:2",
+      "id": "datasheet-maleceptor:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:rule-reference:3",
+      "id": "datasheet-maleceptor:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-maleceptor:section:2:member:1",
+      "id": "datasheet-maleceptor:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-maleceptor"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc",
+      "id": "unit-mawloc",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:profile:1",
+      "id": "datasheet-mawloc:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:weapon:1",
+      "id": "datasheet-mawloc:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:weapon:2",
+      "id": "datasheet-mawloc:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:section:1",
+      "id": "datasheet-mawloc:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:section:2",
+      "id": "datasheet-mawloc:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:section:3",
+      "id": "datasheet-mawloc:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:rule-reference:1",
+      "id": "datasheet-mawloc:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:rule-reference:2",
+      "id": "datasheet-mawloc:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mawloc:section:2:member:1",
+      "id": "datasheet-mawloc:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-mawloc"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores",
+      "id": "unit-mucolid-spores",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:profile:1",
+      "id": "datasheet-mucolid-spores:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:section:1",
+      "id": "datasheet-mucolid-spores:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:section:2",
+      "id": "datasheet-mucolid-spores:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:rule-reference:1",
+      "id": "datasheet-mucolid-spores:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:rule-reference:2",
+      "id": "datasheet-mucolid-spores:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-mucolid-spores:section:2:member:1",
+      "id": "datasheet-mucolid-spores:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-mucolid-spores"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts",
+      "id": "unit-neurogaunts",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:profile:1",
+      "id": "datasheet-neurogaunts:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:weapon:1",
+      "id": "datasheet-neurogaunts:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:section:1",
+      "id": "datasheet-neurogaunts:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:section:2",
+      "id": "datasheet-neurogaunts:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:rule-reference:1",
+      "id": "datasheet-neurogaunts:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:section:2:member:1",
+      "id": "datasheet-neurogaunts:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurogaunts:section:2:member:2",
+      "id": "datasheet-neurogaunts:section:2:member:2",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-neurogaunts"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor",
+      "id": "unit-neurolictor",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:profile:1",
+      "id": "datasheet-neurolictor:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:weapon:1",
+      "id": "datasheet-neurolictor:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:section:1",
+      "id": "datasheet-neurolictor:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:section:2",
+      "id": "datasheet-neurolictor:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:rule-reference:1",
+      "id": "datasheet-neurolictor:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:rule-reference:2",
+      "id": "datasheet-neurolictor:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:rule-reference:3",
+      "id": "datasheet-neurolictor:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:rule-reference:4",
+      "id": "datasheet-neurolictor:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:rule-reference:5",
+      "id": "datasheet-neurolictor:rule-reference:5",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurolictor:section:2:member:1",
+      "id": "datasheet-neurolictor:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-neurolictor"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant",
+      "id": "unit-neurotyrant",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:profile:1",
+      "id": "datasheet-neurotyrant:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:weapon:1",
+      "id": "datasheet-neurotyrant:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:weapon:2",
+      "id": "datasheet-neurotyrant:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:wargear:1",
+      "id": "datasheet-neurotyrant:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:section:1",
+      "id": "datasheet-neurotyrant:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:section:2",
+      "id": "datasheet-neurotyrant:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:section:3",
+      "id": "datasheet-neurotyrant:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:rule-reference:1",
+      "id": "datasheet-neurotyrant:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:rule-reference:2",
+      "id": "datasheet-neurotyrant:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:rule-reference:3",
+      "id": "datasheet-neurotyrant:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-neurotyrant:section:2:member:1",
+      "id": "datasheet-neurotyrant:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-neurotyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator",
+      "id": "unit-norn-assimilator",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:profile:1",
+      "id": "datasheet-norn-assimilator:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:weapon:1",
+      "id": "datasheet-norn-assimilator:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:weapon:2",
+      "id": "datasheet-norn-assimilator:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:weapon:3",
+      "id": "datasheet-norn-assimilator:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:section:1",
+      "id": "datasheet-norn-assimilator:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:section:2",
+      "id": "datasheet-norn-assimilator:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:section:3",
+      "id": "datasheet-norn-assimilator:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:rule-reference:1",
+      "id": "datasheet-norn-assimilator:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:rule-reference:2",
+      "id": "datasheet-norn-assimilator:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:rule-reference:3",
+      "id": "datasheet-norn-assimilator:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:section:2:member:1",
+      "id": "datasheet-norn-assimilator:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-norn-assimilator"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary",
+      "id": "unit-norn-emissary",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:profile:1",
+      "id": "datasheet-norn-emissary:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:weapon:1",
+      "id": "datasheet-norn-emissary:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:weapon:2",
+      "id": "datasheet-norn-emissary:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:weapon:3",
+      "id": "datasheet-norn-emissary:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:weapon:4",
+      "id": "datasheet-norn-emissary:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:weapon:5",
+      "id": "datasheet-norn-emissary:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:section:1",
+      "id": "datasheet-norn-emissary:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:section:2",
+      "id": "datasheet-norn-emissary:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:section:3",
+      "id": "datasheet-norn-emissary:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:rule-reference:1",
+      "id": "datasheet-norn-emissary:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:rule-reference:2",
+      "id": "datasheet-norn-emissary:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:rule-reference:3",
+      "id": "datasheet-norn-emissary:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-norn-emissary:section:2:member:1",
+      "id": "datasheet-norn-emissary:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-norn-emissary"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye",
+      "id": "unit-old-one-eye",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:profile:1",
+      "id": "datasheet-old-one-eye:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:weapon:1",
+      "id": "datasheet-old-one-eye:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:weapon:2",
+      "id": "datasheet-old-one-eye:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:section:1",
+      "id": "datasheet-old-one-eye:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:section:2",
+      "id": "datasheet-old-one-eye:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:section:3",
+      "id": "datasheet-old-one-eye:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:rule-reference:1",
+      "id": "datasheet-old-one-eye:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:rule-reference:2",
+      "id": "datasheet-old-one-eye:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:rule-reference:3",
+      "id": "datasheet-old-one-eye:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-old-one-eye:section:2:member:1",
+      "id": "datasheet-old-one-eye:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-old-one-eye"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex",
+      "id": "unit-parasite-of-mortrex",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:profile:1",
+      "id": "datasheet-parasite-of-mortrex:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:weapon:1",
+      "id": "datasheet-parasite-of-mortrex:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:weapon:2",
+      "id": "datasheet-parasite-of-mortrex:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:section:1",
+      "id": "datasheet-parasite-of-mortrex:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:section:2",
+      "id": "datasheet-parasite-of-mortrex:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:1",
+      "id": "datasheet-parasite-of-mortrex:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:2",
+      "id": "datasheet-parasite-of-mortrex:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:3",
+      "id": "datasheet-parasite-of-mortrex:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:4",
+      "id": "datasheet-parasite-of-mortrex:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:section:2:member:1",
+      "id": "datasheet-parasite-of-mortrex:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage",
+      "id": "unit-psychophage",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:profile:1",
+      "id": "datasheet-psychophage:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:weapon:1",
+      "id": "datasheet-psychophage:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:weapon:2",
+      "id": "datasheet-psychophage:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:section:1",
+      "id": "datasheet-psychophage:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:section:2",
+      "id": "datasheet-psychophage:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:rule-reference:1",
+      "id": "datasheet-psychophage:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:rule-reference:2",
+      "id": "datasheet-psychophage:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:rule-reference:3",
+      "id": "datasheet-psychophage:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-psychophage:section:2:member:1",
+      "id": "datasheet-psychophage:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-psychophage"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores",
+      "id": "unit-pyrovores",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:profile:1",
+      "id": "datasheet-pyrovores:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:weapon:1",
+      "id": "datasheet-pyrovores:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:weapon:2",
+      "id": "datasheet-pyrovores:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:section:1",
+      "id": "datasheet-pyrovores:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:section:2",
+      "id": "datasheet-pyrovores:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:rule-reference:1",
+      "id": "datasheet-pyrovores:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:rule-reference:2",
+      "id": "datasheet-pyrovores:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-pyrovores:section:2:member:1",
+      "id": "datasheet-pyrovores:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-pyrovores"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners",
+      "id": "unit-raveners",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:profile:1",
+      "id": "datasheet-raveners:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:weapon:1",
+      "id": "datasheet-raveners:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:wargear:1",
+      "id": "datasheet-raveners:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:section:1",
+      "id": "datasheet-raveners:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:section:2",
+      "id": "datasheet-raveners:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:rule-reference:1",
+      "id": "datasheet-raveners:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:rule-reference:2",
+      "id": "datasheet-raveners:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-raveners:section:2:member:1",
+      "id": "datasheet-raveners:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-raveners"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms",
+      "id": "unit-ripper-swarms",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:profile:1",
+      "id": "datasheet-ripper-swarms:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:weapon:1",
+      "id": "datasheet-ripper-swarms:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:weapon:2",
+      "id": "datasheet-ripper-swarms:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:wargear:1",
+      "id": "datasheet-ripper-swarms:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:section:1",
+      "id": "datasheet-ripper-swarms:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:section:2",
+      "id": "datasheet-ripper-swarms:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:rule-reference:1",
+      "id": "datasheet-ripper-swarms:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:rule-reference:2",
+      "id": "datasheet-ripper-swarms:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-ripper-swarms:section:2:member:1",
+      "id": "datasheet-ripper-swarms:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-ripper-swarms"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer",
+      "id": "unit-screamer-killer",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:profile:1",
+      "id": "datasheet-screamer-killer:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:weapon:1",
+      "id": "datasheet-screamer-killer:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:weapon:2",
+      "id": "datasheet-screamer-killer:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:section:1",
+      "id": "datasheet-screamer-killer:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:section:2",
+      "id": "datasheet-screamer-killer:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:rule-reference:1",
+      "id": "datasheet-screamer-killer:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:rule-reference:2",
+      "id": "datasheet-screamer-killer:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-screamer-killer:section:2:member:1",
+      "id": "datasheet-screamer-killer:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-screamer-killer"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines",
+      "id": "unit-spore-mines",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:profile:1",
+      "id": "datasheet-spore-mines:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:section:1",
+      "id": "datasheet-spore-mines:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:section:2",
+      "id": "datasheet-spore-mines:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:rule-reference:1",
+      "id": "datasheet-spore-mines:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:rule-reference:2",
+      "id": "datasheet-spore-mines:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-spore-mines:section:2:member:1",
+      "id": "datasheet-spore-mines:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-spore-mines"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst",
+      "id": "unit-sporocyst",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:profile:1",
+      "id": "datasheet-sporocyst:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:weapon:1",
+      "id": "datasheet-sporocyst:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:weapon:2",
+      "id": "datasheet-sporocyst:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:section:1",
+      "id": "datasheet-sporocyst:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:section:2",
+      "id": "datasheet-sporocyst:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:rule-reference:1",
+      "id": "datasheet-sporocyst:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:rule-reference:2",
+      "id": "datasheet-sporocyst:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-sporocyst:section:2:member:1",
+      "id": "datasheet-sporocyst:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-sporocyst"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants",
+      "id": "unit-termagants",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:profile:1",
+      "id": "datasheet-termagants:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:1",
+      "id": "datasheet-termagants:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:2",
+      "id": "datasheet-termagants:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:3",
+      "id": "datasheet-termagants:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:4",
+      "id": "datasheet-termagants:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:5",
+      "id": "datasheet-termagants:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:6",
+      "id": "datasheet-termagants:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:weapon:7",
+      "id": "datasheet-termagants:weapon:7",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:wargear:1",
+      "id": "datasheet-termagants:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:wargear:2",
+      "id": "datasheet-termagants:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:wargear:3",
+      "id": "datasheet-termagants:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:wargear:4",
+      "id": "datasheet-termagants:wargear:4",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:wargear:5",
+      "id": "datasheet-termagants:wargear:5",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:section:1",
+      "id": "datasheet-termagants:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:section:2",
+      "id": "datasheet-termagants:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:rule-reference:1",
+      "id": "datasheet-termagants:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-termagants:section:2:member:1",
+      "id": "datasheet-termagants:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-termagants"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon",
+      "id": "unit-tervigon",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:profile:1",
+      "id": "datasheet-tervigon:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:weapon:1",
+      "id": "datasheet-tervigon:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:weapon:2",
+      "id": "datasheet-tervigon:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:weapon:3",
+      "id": "datasheet-tervigon:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:weapon:4",
+      "id": "datasheet-tervigon:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:wargear:1",
+      "id": "datasheet-tervigon:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:section:1",
+      "id": "datasheet-tervigon:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:section:2",
+      "id": "datasheet-tervigon:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:section:3",
+      "id": "datasheet-tervigon:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:rule-reference:1",
+      "id": "datasheet-tervigon:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:rule-reference:2",
+      "id": "datasheet-tervigon:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:rule-reference:3",
+      "id": "datasheet-tervigon:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-tervigon:section:2:member:1",
+      "id": "datasheet-tervigon:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tervigon"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror",
+      "id": "unit-the-red-terror",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:profile:1",
+      "id": "datasheet-the-red-terror:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:weapon:1",
+      "id": "datasheet-the-red-terror:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:weapon:2",
+      "id": "datasheet-the-red-terror:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:wargear:1",
+      "id": "datasheet-the-red-terror:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:section:1",
+      "id": "datasheet-the-red-terror:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:section:2",
+      "id": "datasheet-the-red-terror:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:rule-reference:1",
+      "id": "datasheet-the-red-terror:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:rule-reference:2",
+      "id": "datasheet-the-red-terror:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-red-terror:section:2:member:1",
+      "id": "datasheet-the-red-terror:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-the-red-terror"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord",
+      "id": "unit-the-swarmlord",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:profile:1",
+      "id": "datasheet-the-swarmlord:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:weapon:1",
+      "id": "datasheet-the-swarmlord:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:weapon:2",
+      "id": "datasheet-the-swarmlord:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:section:1",
+      "id": "datasheet-the-swarmlord:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:section:2",
+      "id": "datasheet-the-swarmlord:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:section:3",
+      "id": "datasheet-the-swarmlord:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:rule-reference:1",
+      "id": "datasheet-the-swarmlord:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:rule-reference:2",
+      "id": "datasheet-the-swarmlord:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:rule-reference:3",
+      "id": "datasheet-the-swarmlord:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:rule-reference:4",
+      "id": "datasheet-the-swarmlord:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-the-swarmlord:section:2:member:1",
+      "id": "datasheet-the-swarmlord:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-the-swarmlord"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene",
+      "id": "unit-toxicrene",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:profile:1",
+      "id": "datasheet-toxicrene:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:weapon:1",
+      "id": "datasheet-toxicrene:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:weapon:2",
+      "id": "datasheet-toxicrene:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:section:1",
+      "id": "datasheet-toxicrene:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:section:2",
+      "id": "datasheet-toxicrene:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:rule-reference:1",
+      "id": "datasheet-toxicrene:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:rule-reference:2",
+      "id": "datasheet-toxicrene:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-toxicrene:section:2:member:1",
+      "id": "datasheet-toxicrene:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-toxicrene"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon",
+      "id": "unit-trygon",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:profile:1",
+      "id": "datasheet-trygon:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:weapon:1",
+      "id": "datasheet-trygon:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:weapon:2",
+      "id": "datasheet-trygon:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:section:1",
+      "id": "datasheet-trygon:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:section:2",
+      "id": "datasheet-trygon:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:section:3",
+      "id": "datasheet-trygon:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:rule-reference:1",
+      "id": "datasheet-trygon:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:rule-reference:2",
+      "id": "datasheet-trygon:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-trygon:section:2:member:1",
+      "id": "datasheet-trygon:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-trygon"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip",
+      "id": "unit-tyranid-prime-with-lash-whip",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:profile:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:weapon:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:weapon:2",
+      "id": "datasheet-tyranid-prime-with-lash-whip:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:weapon:3",
+      "id": "datasheet-tyranid-prime-with-lash-whip:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:wargear:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:2",
+      "id": "datasheet-tyranid-prime-with-lash-whip:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:3",
+      "id": "datasheet-tyranid-prime-with-lash-whip:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:rule-reference:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:rule-reference:2",
+      "id": "datasheet-tyranid-prime-with-lash-whip:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:rule-reference:3",
+      "id": "datasheet-tyranid-prime-with-lash-whip:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:2:member:1",
+      "id": "datasheet-tyranid-prime-with-lash-whip:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyranid-prime-with-lash-whip"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons",
+      "id": "unit-tyranid-warriors-with-melee-bio-weapons",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:weapon:1",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:rule-reference:1",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:rule-reference:2",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:1",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:2",
+      "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:2",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons",
+      "id": "unit-tyranid-warriors-with-ranged-bio-weapons",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:2",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:3",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:4",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:5",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:6",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:weapon:6",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:2",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:2",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:3",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:wargear:3",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:rule-reference:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:rule-reference:2",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:1",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:2",
+      "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:2",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte",
+      "id": "unit-tyrannocyte",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:profile:1",
+      "id": "datasheet-tyrannocyte:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:weapon:1",
+      "id": "datasheet-tyrannocyte:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:weapon:2",
+      "id": "datasheet-tyrannocyte:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:section:1",
+      "id": "datasheet-tyrannocyte:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:section:2",
+      "id": "datasheet-tyrannocyte:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:section:3",
+      "id": "datasheet-tyrannocyte:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:rule-reference:1",
+      "id": "datasheet-tyrannocyte:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:rule-reference:2",
+      "id": "datasheet-tyrannocyte:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:rule-reference:3",
+      "id": "datasheet-tyrannocyte:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannocyte:section:3:member:1",
+      "id": "datasheet-tyrannocyte:section:3:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyrannocyte"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex",
+      "id": "unit-tyrannofex",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:profile:1",
+      "id": "datasheet-tyrannofex:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:weapon:1",
+      "id": "datasheet-tyrannofex:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:weapon:2",
+      "id": "datasheet-tyrannofex:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:weapon:3",
+      "id": "datasheet-tyrannofex:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:weapon:4",
+      "id": "datasheet-tyrannofex:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:weapon:5",
+      "id": "datasheet-tyrannofex:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:wargear:1",
+      "id": "datasheet-tyrannofex:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:section:1",
+      "id": "datasheet-tyrannofex:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:section:2",
+      "id": "datasheet-tyrannofex:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:section:3",
+      "id": "datasheet-tyrannofex:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:rule-reference:1",
+      "id": "datasheet-tyrannofex:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:rule-reference:2",
+      "id": "datasheet-tyrannofex:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrannofex:section:2:member:1",
+      "id": "datasheet-tyrannofex:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyrannofex"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard",
+      "id": "unit-tyrant-guard",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:profile:1",
+      "id": "datasheet-tyrant-guard:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:weapon:1",
+      "id": "datasheet-tyrant-guard:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:weapon:2",
+      "id": "datasheet-tyrant-guard:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:weapon:3",
+      "id": "datasheet-tyrant-guard:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:wargear:1",
+      "id": "datasheet-tyrant-guard:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:section:1",
+      "id": "datasheet-tyrant-guard:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:section:2",
+      "id": "datasheet-tyrant-guard:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:rule-reference:1",
+      "id": "datasheet-tyrant-guard:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-tyrant-guard:section:2:member:1",
+      "id": "datasheet-tyrant-guard:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-tyrant-guard"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes",
+      "id": "unit-venomthropes",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:profile:1",
+      "id": "datasheet-venomthropes:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:weapon:1",
+      "id": "datasheet-venomthropes:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:section:1",
+      "id": "datasheet-venomthropes:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:section:2",
+      "id": "datasheet-venomthropes:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:rule-reference:1",
+      "id": "datasheet-venomthropes:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:rule-reference:2",
+      "id": "datasheet-venomthropes:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-venomthropes:section:2:member:1",
+      "id": "datasheet-venomthropes:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-venomthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers",
+      "id": "unit-von-ryans-leapers",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:profile:1",
+      "id": "datasheet-von-ryans-leapers:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:weapon:1",
+      "id": "datasheet-von-ryans-leapers:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:section:1",
+      "id": "datasheet-von-ryans-leapers:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:section:2",
+      "id": "datasheet-von-ryans-leapers:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:rule-reference:1",
+      "id": "datasheet-von-ryans-leapers:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:rule-reference:2",
+      "id": "datasheet-von-ryans-leapers:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:rule-reference:3",
+      "id": "datasheet-von-ryans-leapers:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:rule-reference:4",
+      "id": "datasheet-von-ryans-leapers:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-von-ryans-leapers:section:2:member:1",
+      "id": "datasheet-von-ryans-leapers:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-von-ryans-leapers"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant",
+      "id": "unit-winged-hive-tyrant",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:profile:1",
+      "id": "datasheet-winged-hive-tyrant:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:weapon:1",
+      "id": "datasheet-winged-hive-tyrant:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:weapon:2",
+      "id": "datasheet-winged-hive-tyrant:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:weapon:3",
+      "id": "datasheet-winged-hive-tyrant:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:weapon:4",
+      "id": "datasheet-winged-hive-tyrant:weapon:4",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:weapon:5",
+      "id": "datasheet-winged-hive-tyrant:weapon:5",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:wargear:1",
+      "id": "datasheet-winged-hive-tyrant:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:section:1",
+      "id": "datasheet-winged-hive-tyrant:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:section:2",
+      "id": "datasheet-winged-hive-tyrant:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:rule-reference:1",
+      "id": "datasheet-winged-hive-tyrant:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:rule-reference:2",
+      "id": "datasheet-winged-hive-tyrant:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:rule-reference:3",
+      "id": "datasheet-winged-hive-tyrant:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:rule-reference:4",
+      "id": "datasheet-winged-hive-tyrant:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-hive-tyrant:section:2:member:1",
+      "id": "datasheet-winged-hive-tyrant:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-winged-hive-tyrant"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime",
+      "id": "unit-winged-tyranid-prime",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:profile:1",
+      "id": "datasheet-winged-tyranid-prime:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:weapon:1",
+      "id": "datasheet-winged-tyranid-prime:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:wargear:1",
+      "id": "datasheet-winged-tyranid-prime:wargear:1",
+      "kind": "WARGEAR_OPTION",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:section:1",
+      "id": "datasheet-winged-tyranid-prime:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:section:2",
+      "id": "datasheet-winged-tyranid-prime:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:section:3",
+      "id": "datasheet-winged-tyranid-prime:section:3",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:rule-reference:1",
+      "id": "datasheet-winged-tyranid-prime:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:rule-reference:2",
+      "id": "datasheet-winged-tyranid-prime:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:rule-reference:3",
+      "id": "datasheet-winged-tyranid-prime:rule-reference:3",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:rule-reference:4",
+      "id": "datasheet-winged-tyranid-prime:rule-reference:4",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-winged-tyranid-prime:section:2:member:1",
+      "id": "datasheet-winged-tyranid-prime:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-winged-tyranid-prime"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes",
+      "id": "unit-zoanthropes",
+      "kind": "DATASHEET",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:profile:1",
+      "id": "datasheet-zoanthropes:profile:1",
+      "kind": "MODEL_PROFILE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:weapon:1",
+      "id": "datasheet-zoanthropes:weapon:1",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:weapon:2",
+      "id": "datasheet-zoanthropes:weapon:2",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:weapon:3",
+      "id": "datasheet-zoanthropes:weapon:3",
+      "kind": "WEAPON_PROFILE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:section:1",
+      "id": "datasheet-zoanthropes:section:1",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:section:2",
+      "id": "datasheet-zoanthropes:section:2",
+      "kind": "DATASHEET_SECTION",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:rule-reference:1",
+      "id": "datasheet-zoanthropes:rule-reference:1",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:rule-reference:2",
+      "id": "datasheet-zoanthropes:rule-reference:2",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:section:2:member:1",
+      "id": "datasheet-zoanthropes:section:2:member:1",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "datasheet-zoanthropes:section:2:member:2",
+      "id": "datasheet-zoanthropes:section:2:member:2",
+      "kind": "COMPOSITION_MEMBER",
+      "ownerSourceId": "datasheet-zoanthropes"
+    },
+    {
+      "sourceEntityId": "errata-1",
+      "id": "errata-1",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-2",
+      "id": "errata-2",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-3",
+      "id": "errata-3",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-4",
+      "id": "errata-4",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-5",
+      "id": "errata-5",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-6",
+      "id": "errata-6",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-7",
+      "id": "errata-7",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-8",
+      "id": "errata-8",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-9",
+      "id": "errata-9",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-10",
+      "id": "errata-10",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "errata-11",
+      "id": "errata-11",
+      "kind": "ERRATA",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-12",
+      "id": "faq-12",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-13",
+      "id": "faq-13",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-14",
+      "id": "faq-14",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-15",
+      "id": "faq-15",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-16",
+      "id": "faq-16",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-17",
+      "id": "faq-17",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-18",
+      "id": "faq-18",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-19",
+      "id": "faq-19",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-20",
+      "id": "faq-20",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-21",
+      "id": "faq-21",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-22",
+      "id": "faq-22",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-23",
+      "id": "faq-23",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-24",
+      "id": "faq-24",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-25",
+      "id": "faq-25",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-26",
+      "id": "faq-26",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "faq-27",
+      "id": "faq-27",
+      "kind": "FAQ",
+      "ownerSourceId": null
+    },
+    {
+      "sourceEntityId": "datasheet-norn-assimilator:weapon:1:ability:harpooned",
+      "id": "datasheet-norn-assimilator:weapon:1:ability:harpooned",
+      "kind": "WEAPON_ABILITY",
+      "ownerSourceId": "datasheet-norn-assimilator:weapon:1"
+    },
+    {
+      "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official",
+      "id": "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official",
+      "kind": "RULE_REFERENCE",
+      "ownerSourceId": "datasheet-parasite-of-mortrex"
+    },
+    {
+      "sourceEntityId": "faq-biovores-seed-spore-mines-hidden-v1.3",
+      "id": "faq-biovores-seed-spore-mines-hidden-v1.3",
+      "kind": "FAQ",
+      "ownerSourceId": "datasheet-biovores"
+    }
+  ]
+}

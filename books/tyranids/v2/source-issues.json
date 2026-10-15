@@ -1,0 +1,47 @@
+{
+  "schema": "tyranids-v2-source-issues/v1",
+  "unresolved": [
+    {
+      "id": "tyranids-source-conflict-foul-spores",
+      "classification": "UNRESOLVED_OFFICIAL_CONTRADICTION",
+      "ownerSourceId": "datasheet-venomthropes",
+      "sourceOccurrenceIds": [
+        "datasheet-venomthropes:section:1",
+        "faq-20"
+      ],
+      "decision": "Preserve official update and FAQ; no invented MONSTER exclusion or executable aura.",
+      "executable": false
+    },
+    {
+      "id": "regenerating-monstrosity-legacy-assertion",
+      "classification": "UNVERIFIED_LEGACY_OFFICIAL_CORRECTION_ASSERTION",
+      "ownerSourceId": "detachment-assimilation-swarm:enhancement:1",
+      "decision": "Preserve accepted MONSTERS text. Current official PDF does not contain this claimed singular-MONSTER correction.",
+      "executable": false
+    }
+  ],
+  "historicalEnrollmentIssues": [
+    {
+      "classification": "SECONDARY_BSDATA_ENROLLMENT_MISMATCH",
+      "actualSha256": "1B3BD7F1F5DF6C0E6A62D2937C16CF9281050A04216F29B354754334EC0E8907",
+      "enrolledSha256": "41CB0268E17427B12C97C5F4CE2BFAD73BEEBA7CB91804CE41F28BAA14D8421C",
+      "decision": "Excluded from V2 factual authority; historical files unchanged."
+    },
+    {
+      "classification": "LF_CRLF_REPRESENTATION",
+      "decision": "Pin actual LF bytes and separately verify enrolled historical CRLF reconstruction for all53HTML."
+    },
+    {
+      "classification": "HISTORICAL_MANIFEST_URL_DATE_ERRORS",
+      "decision": "Use verified v1.3 URL/effective date; leave historical manifest unchanged."
+    },
+    {
+      "classification": "WRONG_LEGACY_CORRECTION_TARGETS",
+      "correctTargets": [
+        "detachment-assimilation-swarm:enhancement:1",
+        "detachment-unending-swarm:stratagem:1"
+      ],
+      "decision": "Do not consume historical source-defects targets."
+    }
+  ]
+}

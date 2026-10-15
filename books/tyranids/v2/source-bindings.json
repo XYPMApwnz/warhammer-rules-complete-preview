@@ -1,0 +1,1104 @@
+{
+  "schema": "tyranids-v2-source-address-bindings/v1",
+  "authority": "PERSISTENT_REVIEWED_SOURCE_ADDRESSES",
+  "namedRules": [
+    {
+      "sourceId": "detachment-subterranean-assault:rule",
+      "ownerSourceId": "detachment-subterranean-assault",
+      "anchor": "Surprise-Assault"
+    },
+    {
+      "sourceId": "detachment-invasion-fleet:rule",
+      "ownerSourceId": "detachment-invasion-fleet",
+      "anchor": "Hyper-adaptations"
+    },
+    {
+      "sourceId": "detachment-synaptic-nexus:rule",
+      "ownerSourceId": "detachment-synaptic-nexus",
+      "anchor": "Synaptic-Imperatives"
+    },
+    {
+      "sourceId": "detachment-assimilation-swarm:rule",
+      "ownerSourceId": "detachment-assimilation-swarm",
+      "anchor": "Feed-the-Swarm"
+    },
+    {
+      "sourceId": "detachment-crusher-stampede:rule",
+      "ownerSourceId": "detachment-crusher-stampede",
+      "anchor": "Enraged-Behemoths"
+    },
+    {
+      "sourceId": "detachment-vanguard-onslaught:rule",
+      "ownerSourceId": "detachment-vanguard-onslaught",
+      "anchor": "Questing-Tendrils"
+    },
+    {
+      "sourceId": "detachment-vanguard-onslaught:rule:vanguard-prime",
+      "ownerSourceId": "detachment-vanguard-onslaught",
+      "anchor": "Vanguard-Prime"
+    },
+    {
+      "sourceId": "detachment-unending-swarm:rule",
+      "ownerSourceId": "detachment-unending-swarm",
+      "anchor": "Insurmountable-Odds"
+    },
+    {
+      "sourceId": "detachment-ambush-predators:rule",
+      "ownerSourceId": "detachment-ambush-predators",
+      "anchor": "Mindhunger"
+    },
+    {
+      "sourceId": "detachment-talons-of-the-norn-queen:rule",
+      "ownerSourceId": "detachment-talons-of-the-norn-queen",
+      "anchor": "Higher-Imperatives"
+    },
+    {
+      "sourceId": "detachment-warrior-bioform-onslaught:rule",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught",
+      "anchor": "Leader-beasts"
+    }
+  ],
+  "modelUnits": [
+    {
+      "sourceId": "datasheet-barbgaunts",
+      "members": [
+        {
+          "sourceId": "datasheet-barbgaunts:section:2:member:1",
+          "sourceLine": "- 5-10 Barbgaunts",
+          "name": "Barbgaunts",
+          "quantity": {
+            "min": 5,
+            "max": 10
+          },
+          "modelProfileSourceId": "datasheet-barbgaunts:profile:1",
+          "sourcePointer": "/datasheets/0/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-biovores",
+      "members": [
+        {
+          "sourceId": "datasheet-biovores:section:2:member:1",
+          "sourceLine": "- 1-3 Biovores",
+          "name": "Biovores",
+          "quantity": {
+            "min": 1,
+            "max": 3
+          },
+          "modelProfileSourceId": "datasheet-biovores:profile:1",
+          "sourcePointer": "/datasheets/1/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-broodlord",
+      "members": [
+        {
+          "sourceId": "datasheet-broodlord:section:2:member:1",
+          "sourceLine": "- 1 Broodlord",
+          "name": "Broodlord",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-broodlord:profile:1",
+          "sourcePointer": "/datasheets/2/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-carnifexes",
+      "members": [
+        {
+          "sourceId": "datasheet-carnifexes:section:2:member:1",
+          "sourceLine": "- 1-2 Carnifexes",
+          "name": "Carnifexes",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "modelProfileSourceId": "datasheet-carnifexes:profile:1",
+          "sourcePointer": "/datasheets/3/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-deathleaper",
+      "members": [
+        {
+          "sourceId": "datasheet-deathleaper:section:2:member:1",
+          "sourceLine": "- 1 Deathleaper – EPIC HERO",
+          "name": "Deathleaper",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-deathleaper:profile:1",
+          "sourcePointer": "/datasheets/4/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-exocrine",
+      "members": [
+        {
+          "sourceId": "datasheet-exocrine:section:2:member:1",
+          "sourceLine": "- 1 Exocrine",
+          "name": "Exocrine",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-exocrine:profile:1",
+          "sourcePointer": "/datasheets/5/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-gargoyles",
+      "members": [
+        {
+          "sourceId": "datasheet-gargoyles:section:2:member:1",
+          "sourceLine": "- 10-20 Gargoyles",
+          "name": "Gargoyles",
+          "quantity": {
+            "min": 10,
+            "max": 20
+          },
+          "modelProfileSourceId": "datasheet-gargoyles:profile:1",
+          "sourcePointer": "/datasheets/6/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-genestealers",
+      "members": [
+        {
+          "sourceId": "datasheet-genestealers:section:2:member:1",
+          "sourceLine": "- 5-10 Genestealers",
+          "name": "Genestealers",
+          "quantity": {
+            "min": 5,
+            "max": 10
+          },
+          "modelProfileSourceId": "datasheet-genestealers:profile:1",
+          "sourcePointer": "/datasheets/7/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-harpy",
+      "members": [
+        {
+          "sourceId": "datasheet-harpy:section:2:member:1",
+          "sourceLine": "- 1 Harpy",
+          "name": "Harpy",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-harpy:profile:1",
+          "sourcePointer": "/datasheets/8/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-harridan",
+      "members": [
+        {
+          "sourceId": "datasheet-harridan:section:3:member:1",
+          "sourceLine": "- 1 Harridan",
+          "name": "Harridan",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-harridan:profile:1",
+          "sourcePointer": "/datasheets/9/sections/2/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-haruspex",
+      "members": [
+        {
+          "sourceId": "datasheet-haruspex:section:2:member:1",
+          "sourceLine": "- 1 Haruspex",
+          "name": "Haruspex",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-haruspex:profile:1",
+          "sourcePointer": "/datasheets/10/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hierophant",
+      "members": [
+        {
+          "sourceId": "datasheet-hierophant:section:3:member:1",
+          "sourceLine": "- 1 Hierophant",
+          "name": "Hierophant",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-hierophant:profile:1",
+          "sourcePointer": "/datasheets/11/sections/2/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hive-crone",
+      "members": [
+        {
+          "sourceId": "datasheet-hive-crone:section:2:member:1",
+          "sourceLine": "- 1 Hive Crone",
+          "name": "Hive Crone",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-hive-crone:profile:1",
+          "sourcePointer": "/datasheets/12/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hive-guard",
+      "members": [
+        {
+          "sourceId": "datasheet-hive-guard:section:2:member:1",
+          "sourceLine": "- 3-6 Hive Guard",
+          "name": "Hive Guard",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-hive-guard:profile:1",
+          "sourcePointer": "/datasheets/13/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hive-tyrant",
+      "members": [
+        {
+          "sourceId": "datasheet-hive-tyrant:section:2:member:1",
+          "sourceLine": "- 1 Hive Tyrant",
+          "name": "Hive Tyrant",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-hive-tyrant:profile:1",
+          "sourcePointer": "/datasheets/14/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hormagaunts",
+      "members": [
+        {
+          "sourceId": "datasheet-hormagaunts:section:2:member:1",
+          "sourceLine": "- 10-20 Hormagaunts",
+          "name": "Hormagaunts",
+          "quantity": {
+            "min": 10,
+            "max": 20
+          },
+          "modelProfileSourceId": "datasheet-hormagaunts:profile:1",
+          "sourcePointer": "/datasheets/15/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-hyperadapted-raveners",
+      "members": [
+        {
+          "sourceId": "datasheet-hyperadapted-raveners:section:2:member:1",
+          "sourceLine": "- 1 Ravener Prime",
+          "name": "Ravener Prime",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-hyperadapted-raveners:profile:1",
+          "sourcePointer": "/datasheets/16/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        },
+        {
+          "sourceId": "datasheet-hyperadapted-raveners:section:2:member:2",
+          "sourceLine": "- 4 Raveners",
+          "name": "Raveners",
+          "quantity": {
+            "min": 4,
+            "max": 4
+          },
+          "modelProfileSourceId": "datasheet-hyperadapted-raveners:profile:2",
+          "sourcePointer": "/datasheets/16/sections/1/blocks/0/text",
+          "sourceLineIndex": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-lictor",
+      "members": [
+        {
+          "sourceId": "datasheet-lictor:section:2:member:1",
+          "sourceLine": "- 1 Lictor",
+          "name": "Lictor",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-lictor:profile:1",
+          "sourcePointer": "/datasheets/17/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-maleceptor",
+      "members": [
+        {
+          "sourceId": "datasheet-maleceptor:section:2:member:1",
+          "sourceLine": "- 1 Maleceptor",
+          "name": "Maleceptor",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-maleceptor:profile:1",
+          "sourcePointer": "/datasheets/18/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-mawloc",
+      "members": [
+        {
+          "sourceId": "datasheet-mawloc:section:2:member:1",
+          "sourceLine": "- 1 Mawloc",
+          "name": "Mawloc",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-mawloc:profile:1",
+          "sourcePointer": "/datasheets/19/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-mucolid-spores",
+      "members": [
+        {
+          "sourceId": "datasheet-mucolid-spores:section:2:member:1",
+          "sourceLine": "- 1-2 Mucolid Spores",
+          "name": "Mucolid Spores",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "modelProfileSourceId": "datasheet-mucolid-spores:profile:1",
+          "sourcePointer": "/datasheets/20/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-neurogaunts",
+      "members": [
+        {
+          "sourceId": "datasheet-neurogaunts:section:2:member:1",
+          "sourceLine": "- 1-2 Neurogaunt Nodebeasts*",
+          "name": "Neurogaunt Nodebeasts",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "modelProfileSourceId": "datasheet-neurogaunts:profile:1",
+          "sourcePointer": "/datasheets/21/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        },
+        {
+          "sourceId": "datasheet-neurogaunts:section:2:member:2",
+          "sourceLine": "- 10-20 Neurogaunts",
+          "name": "Neurogaunts",
+          "quantity": {
+            "min": 10,
+            "max": 20
+          },
+          "modelProfileSourceId": "datasheet-neurogaunts:profile:1",
+          "sourcePointer": "/datasheets/21/sections/1/blocks/0/text",
+          "sourceLineIndex": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-neurolictor",
+      "members": [
+        {
+          "sourceId": "datasheet-neurolictor:section:2:member:1",
+          "sourceLine": "- 1 Neurolictor",
+          "name": "Neurolictor",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-neurolictor:profile:1",
+          "sourcePointer": "/datasheets/22/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-neurotyrant",
+      "members": [
+        {
+          "sourceId": "datasheet-neurotyrant:section:2:member:1",
+          "sourceLine": "- 1 Neurotyrant",
+          "name": "Neurotyrant",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-neurotyrant:profile:1",
+          "sourcePointer": "/datasheets/23/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-norn-assimilator",
+      "members": [
+        {
+          "sourceId": "datasheet-norn-assimilator:section:2:member:1",
+          "sourceLine": "- 1 Norn Assimilator",
+          "name": "Norn Assimilator",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-norn-assimilator:profile:1",
+          "sourcePointer": "/datasheets/24/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-norn-emissary",
+      "members": [
+        {
+          "sourceId": "datasheet-norn-emissary:section:2:member:1",
+          "sourceLine": "- 1 Norn Emissary",
+          "name": "Norn Emissary",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-norn-emissary:profile:1",
+          "sourcePointer": "/datasheets/25/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-old-one-eye",
+      "members": [
+        {
+          "sourceId": "datasheet-old-one-eye:section:2:member:1",
+          "sourceLine": "- 1 Old One Eye – EPIC HERO",
+          "name": "Old One Eye",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-old-one-eye:profile:1",
+          "sourcePointer": "/datasheets/26/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-parasite-of-mortrex",
+      "members": [
+        {
+          "sourceId": "datasheet-parasite-of-mortrex:section:2:member:1",
+          "sourceLine": "- 1 Parasite of Mortrex",
+          "name": "Parasite of Mortrex",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-parasite-of-mortrex:profile:1",
+          "sourcePointer": "/datasheets/27/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-psychophage",
+      "members": [
+        {
+          "sourceId": "datasheet-psychophage:section:2:member:1",
+          "sourceLine": "- 1 Psychophage",
+          "name": "Psychophage",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-psychophage:profile:1",
+          "sourcePointer": "/datasheets/28/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-pyrovores",
+      "members": [
+        {
+          "sourceId": "datasheet-pyrovores:section:2:member:1",
+          "sourceLine": "- 1-3 Pyrovores",
+          "name": "Pyrovores",
+          "quantity": {
+            "min": 1,
+            "max": 3
+          },
+          "modelProfileSourceId": "datasheet-pyrovores:profile:1",
+          "sourcePointer": "/datasheets/29/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-raveners",
+      "members": [
+        {
+          "sourceId": "datasheet-raveners:section:2:member:1",
+          "sourceLine": "- 5 Raveners",
+          "name": "Raveners",
+          "quantity": {
+            "min": 5,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-raveners:profile:1",
+          "sourcePointer": "/datasheets/30/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-ripper-swarms",
+      "members": [
+        {
+          "sourceId": "datasheet-ripper-swarms:section:2:member:1",
+          "sourceLine": "- 1-3 Ripper Swarms",
+          "name": "Ripper Swarms",
+          "quantity": {
+            "min": 1,
+            "max": 3
+          },
+          "modelProfileSourceId": "datasheet-ripper-swarms:profile:1",
+          "sourcePointer": "/datasheets/31/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-screamer-killer",
+      "members": [
+        {
+          "sourceId": "datasheet-screamer-killer:section:2:member:1",
+          "sourceLine": "- 1 Screamer-Killer",
+          "name": "Screamer-Killer",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-screamer-killer:profile:1",
+          "sourcePointer": "/datasheets/32/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-spore-mines",
+      "members": [
+        {
+          "sourceId": "datasheet-spore-mines:section:2:member:1",
+          "sourceLine": "- 3-6 Spore Mines",
+          "name": "Spore Mines",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-spore-mines:profile:1",
+          "sourcePointer": "/datasheets/33/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-sporocyst",
+      "members": [
+        {
+          "sourceId": "datasheet-sporocyst:section:2:member:1",
+          "sourceLine": "- 1 Sporocyst",
+          "name": "Sporocyst",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-sporocyst:profile:1",
+          "sourcePointer": "/datasheets/34/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-termagants",
+      "members": [
+        {
+          "sourceId": "datasheet-termagants:section:2:member:1",
+          "sourceLine": "- 10-20 Termagants",
+          "name": "Termagants",
+          "quantity": {
+            "min": 10,
+            "max": 20
+          },
+          "modelProfileSourceId": "datasheet-termagants:profile:1",
+          "sourcePointer": "/datasheets/35/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tervigon",
+      "members": [
+        {
+          "sourceId": "datasheet-tervigon:section:2:member:1",
+          "sourceLine": "- 1 Tervigon",
+          "name": "Tervigon",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tervigon:profile:1",
+          "sourcePointer": "/datasheets/36/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-the-red-terror",
+      "members": [
+        {
+          "sourceId": "datasheet-the-red-terror:section:2:member:1",
+          "sourceLine": "- 1 The Red Terror – EPIC HERO",
+          "name": "The Red Terror",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-the-red-terror:profile:1",
+          "sourcePointer": "/datasheets/37/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-the-swarmlord",
+      "members": [
+        {
+          "sourceId": "datasheet-the-swarmlord:section:2:member:1",
+          "sourceLine": "- 1 Swarmlord – EPIC HERO",
+          "name": "Swarmlord",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-the-swarmlord:profile:1",
+          "sourcePointer": "/datasheets/38/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-toxicrene",
+      "members": [
+        {
+          "sourceId": "datasheet-toxicrene:section:2:member:1",
+          "sourceLine": "- 1 Toxicrene",
+          "name": "Toxicrene",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-toxicrene:profile:1",
+          "sourcePointer": "/datasheets/39/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-trygon",
+      "members": [
+        {
+          "sourceId": "datasheet-trygon:section:2:member:1",
+          "sourceLine": "- 1 Trygon",
+          "name": "Trygon",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-trygon:profile:1",
+          "sourcePointer": "/datasheets/40/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyranid-prime-with-lash-whip",
+      "members": [
+        {
+          "sourceId": "datasheet-tyranid-prime-with-lash-whip:section:2:member:1",
+          "sourceLine": "- 1 Tyranid Prime with Lash Whip",
+          "name": "Tyranid Prime with Lash Whip",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tyranid-prime-with-lash-whip:profile:1",
+          "sourcePointer": "/datasheets/41/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons",
+      "members": [
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:1",
+          "sourceLine": "- 1 Tyranid Prime",
+          "name": "Tyranid Prime",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1",
+          "sourcePointer": "/datasheets/42/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        },
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2:member:2",
+          "sourceLine": "- 2-5 Tyranid Warriors",
+          "name": "Tyranid Warriors",
+          "quantity": {
+            "min": 2,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1",
+          "sourcePointer": "/datasheets/42/sections/1/blocks/0/text",
+          "sourceLineIndex": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons",
+      "members": [
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:1",
+          "sourceLine": "- 1 Tyranid Prime",
+          "name": "Tyranid Prime",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1",
+          "sourcePointer": "/datasheets/43/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        },
+        {
+          "sourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2:member:2",
+          "sourceLine": "- 2-5 Tyranid Warriors",
+          "name": "Tyranid Warriors",
+          "quantity": {
+            "min": 2,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1",
+          "sourcePointer": "/datasheets/43/sections/1/blocks/0/text",
+          "sourceLineIndex": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyrannocyte",
+      "members": [
+        {
+          "sourceId": "datasheet-tyrannocyte:section:3:member:1",
+          "sourceLine": "- 1 Tyrannocyte",
+          "name": "Tyrannocyte",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tyrannocyte:profile:1",
+          "sourcePointer": "/datasheets/44/sections/2/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyrannofex",
+      "members": [
+        {
+          "sourceId": "datasheet-tyrannofex:section:2:member:1",
+          "sourceLine": "- 1 Tyrannofex",
+          "name": "Tyrannofex",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-tyrannofex:profile:1",
+          "sourcePointer": "/datasheets/45/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-tyrant-guard",
+      "members": [
+        {
+          "sourceId": "datasheet-tyrant-guard:section:2:member:1",
+          "sourceLine": "- 3-6 Tyrant Guard",
+          "name": "Tyrant Guard",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-tyrant-guard:profile:1",
+          "sourcePointer": "/datasheets/46/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-venomthropes",
+      "members": [
+        {
+          "sourceId": "datasheet-venomthropes:section:2:member:1",
+          "sourceLine": "- 3-6 Venomthropes",
+          "name": "Venomthropes",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-venomthropes:profile:1",
+          "sourcePointer": "/datasheets/47/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-von-ryans-leapers",
+      "members": [
+        {
+          "sourceId": "datasheet-von-ryans-leapers:section:2:member:1",
+          "sourceLine": "- 3-6 Von Ryan’s Leapers",
+          "name": "Von Ryan’s Leapers",
+          "quantity": {
+            "min": 3,
+            "max": 6
+          },
+          "modelProfileSourceId": "datasheet-von-ryans-leapers:profile:1",
+          "sourcePointer": "/datasheets/48/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-winged-hive-tyrant",
+      "members": [
+        {
+          "sourceId": "datasheet-winged-hive-tyrant:section:2:member:1",
+          "sourceLine": "- 1 Winged Hive Tyrant",
+          "name": "Winged Hive Tyrant",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-winged-hive-tyrant:profile:1",
+          "sourcePointer": "/datasheets/49/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-winged-tyranid-prime",
+      "members": [
+        {
+          "sourceId": "datasheet-winged-tyranid-prime:section:2:member:1",
+          "sourceLine": "- 1 Winged Tyranid Prime",
+          "name": "Winged Tyranid Prime",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-winged-tyranid-prime:profile:1",
+          "sourcePointer": "/datasheets/50/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        }
+      ]
+    },
+    {
+      "sourceId": "datasheet-zoanthropes",
+      "members": [
+        {
+          "sourceId": "datasheet-zoanthropes:section:2:member:1",
+          "sourceLine": "- 1 Neurothrope",
+          "name": "Neurothrope",
+          "quantity": {
+            "min": 1,
+            "max": 1
+          },
+          "modelProfileSourceId": "datasheet-zoanthropes:profile:1",
+          "sourcePointer": "/datasheets/51/sections/1/blocks/0/text",
+          "sourceLineIndex": 0
+        },
+        {
+          "sourceId": "datasheet-zoanthropes:section:2:member:2",
+          "sourceLine": "- 2-5 Zoanthropes",
+          "name": "Zoanthropes",
+          "quantity": {
+            "min": 2,
+            "max": 5
+          },
+          "modelProfileSourceId": "datasheet-zoanthropes:profile:1",
+          "sourcePointer": "/datasheets/51/sections/1/blocks/0/text",
+          "sourceLineIndex": 1
+        }
+      ]
+    }
+  ],
+  "enhancementScopes": {
+    "detachment-subterranean-assault:enhancement:1": "MODEL",
+    "detachment-subterranean-assault:enhancement:2": "MODEL",
+    "detachment-subterranean-assault:enhancement:3": "MODEL",
+    "detachment-subterranean-assault:enhancement:4": "MODEL",
+    "detachment-invasion-fleet:enhancement:1": "MODEL",
+    "detachment-invasion-fleet:enhancement:2": "MODEL",
+    "detachment-invasion-fleet:enhancement:3": "MODEL",
+    "detachment-invasion-fleet:enhancement:4": "MODEL",
+    "detachment-synaptic-nexus:enhancement:1": "MODEL",
+    "detachment-synaptic-nexus:enhancement:2": "MODEL",
+    "detachment-synaptic-nexus:enhancement:3": "MODEL",
+    "detachment-synaptic-nexus:enhancement:4": "MODEL",
+    "detachment-assimilation-swarm:enhancement:1": "MODEL",
+    "detachment-assimilation-swarm:enhancement:2": "MODEL",
+    "detachment-assimilation-swarm:enhancement:3": "MODEL",
+    "detachment-assimilation-swarm:enhancement:4": "MODEL",
+    "detachment-crusher-stampede:enhancement:1": "MODEL",
+    "detachment-crusher-stampede:enhancement:2": "MODEL",
+    "detachment-crusher-stampede:enhancement:3": "MODEL",
+    "detachment-crusher-stampede:enhancement:4": "MODEL",
+    "detachment-vanguard-onslaught:enhancement:1": "MODEL",
+    "detachment-vanguard-onslaught:enhancement:2": "MODEL",
+    "detachment-vanguard-onslaught:enhancement:3": "MODEL",
+    "detachment-vanguard-onslaught:enhancement:4": "MODEL",
+    "detachment-unending-swarm:enhancement:1": "MODEL",
+    "detachment-unending-swarm:enhancement:2": "MODEL",
+    "detachment-unending-swarm:enhancement:3": "MODEL",
+    "detachment-unending-swarm:enhancement:4": "MODEL",
+    "detachment-ambush-predators:enhancement:1": "UNIT",
+    "detachment-ambush-predators:enhancement:2": "UNIT",
+    "detachment-talons-of-the-norn-queen:enhancement:1": "UNIT",
+    "detachment-talons-of-the-norn-queen:enhancement:2": "UNIT",
+    "detachment-warrior-bioform-onslaught:enhancement:1": "MODEL",
+    "detachment-warrior-bioform-onslaught:enhancement:2": "MODEL"
+  },
+  "rawSupplements": [
+    {
+      "sourceId": "datasheet-norn-assimilator:weapon:1:ability:harpooned",
+      "kind": "WEAPON_ABILITY",
+      "ownerSourceId": "datasheet-norn-assimilator:weapon:1",
+      "title": "Harpooned",
+      "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Norn-Assimilator.html",
+      "xpath": "//div[contains(concat(\" \",normalize-space(@class),\" \"),\" dsAbility \") and starts-with(normalize-space(.),\"Harpooned:\")]",
+      "textSha256": "AEC575848A9C83F982CE2390F07FF6FEAFF888A6C5958A57FAE28699F0855FBD"
+    }
+  ],
+  "transports": {
+    "datasheet-tyrannocyte:section:2": {
+      "scope": "MODEL",
+      "capacityAlternatives": [
+        {
+          "models": 20,
+          "faction": "TYRANIDS",
+          "keyword": "INFANTRY"
+        },
+        {
+          "models": 1,
+          "faction": "TYRANIDS",
+          "keyword": "MONSTER",
+          "maximumWounds": 12
+        }
+      ],
+      "infantryWoundsAbove1Slots": 3,
+      "conditionalOnly": true,
+      "sourceTextSha256": "470CF12F4B2C427D9E641DA5527CCFD47F0B12A62EB9442BCA05BEB6DB83EAD4"
+    },
+    "datasheet-harridan:section:2": {
+      "scope": "MODEL",
+      "capacityGroups": [
+        {
+          "models": 20,
+          "unitSourceId": "datasheet-gargoyles"
+        },
+        {
+          "models": 1,
+          "unitSourceId": "datasheet-winged-tyranid-prime"
+        }
+      ],
+      "conditionalOnly": true,
+      "sourceTextSha256": "BFA0B2898A6ABE4DBBDB742DAA1BB350A65C50E996615862707CDC592010F37E"
+    },
+    "datasheet-hierophant:section:2": {
+      "scope": "MODEL",
+      "capacityGroups": [
+        {
+          "models": 20,
+          "faction": "TYRANIDS",
+          "keyword": "INFANTRY"
+        }
+      ],
+      "infantryWoundsAbove1Slots": 3,
+      "excludedCapability": "FLY",
+      "conditionalOnly": true,
+      "sourceTextSha256": "390BDE3081103DBF11EB89BC3F19074DE04284A59E41E9C303B266A88BCB5CDC"
+    }
+  }
+}
