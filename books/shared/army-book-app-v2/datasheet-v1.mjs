@@ -322,6 +322,27 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const nav=el('div','local-nav');nav.setAttribute('role','navigation');nav.setAttribute('aria-label','Datasheet sections');root.append(nav);
     const part=(role,label)=>{const section=el('section','unit-part');section.dataset.datasheetSection=role;section.id='ds-'+domKey(JSON.stringify([card.id,instanceId,role]));section.append(el('h4','',label));return section;};
     const profile=part('profile','Profile & Weapons'),abilities=part('abilities','Abilities'),baseMetadata=[];
+    const unitModifiers=(card.rosterUnitMetrics||[]).length?part('unit-modifiers','Unit modifiers'):null;
+    for(const metric of card.rosterUnitMetrics||[]){
+      const node=el('div','ds-effective-unit-metric');node.dataset.unitMetric=metric.key;
+      node.dataset.unitScope=metric.unitScope;node.dataset.recipientSubject='UNIT';
+      node.dataset.recipientInstanceIds=JSON.stringify(metric.recipientInstanceIds);
+      node.dataset.metricModifier=String(metric.value.modifier);
+      node.dataset.ruleIds=JSON.stringify([...new Set(metric.sources.map(source=>source.ruleId))]);
+      node.dataset.metricSources=JSON.stringify(metric.sources);
+      if(metric.formedUnitId)node.dataset.formedUnitId=metric.formedUnitId;
+      const scope=metric.unitScope==='FORMED'&&metric.recipientInstanceIds.length>1?'Attached unit':
+        metric.formedUnitId?'Physical unit':'Unit';
+      node.append(el('p','ds-effective-metric',`${metric.label}: ${metric.displayValue}`),el('small','',scope+' · '));
+      const sources=new Map(metric.sources.map(source=>[JSON.stringify([source.ruleId,source.sourceInstanceId]),source]));
+      for(const [index,source]of [...sources.values()].entries()){
+        if(index)node.append(document.createTextNode(' · '));
+        const link=anchor(source.label||cards.get(source.ruleId)?.title||source.ruleId,source.ruleId,true);
+        link.dataset.metricSourceInstanceId=source.sourceInstanceId||'';node.append(link);
+      }
+      unitModifiers.append(node);
+    }
+    if(unitModifiers)root.append(unitModifiers);
     const profileStatFields=member=>[...member.fields,...(member.profileFieldIds||[]).map(id=>boundFields.get(id))]
       .filter(field=>['M','T','SV','W','LD','OC','INSV'].includes(pointerKey(field)));
     const modelCards=children.filter(c=>c.kind==='PROFILE');

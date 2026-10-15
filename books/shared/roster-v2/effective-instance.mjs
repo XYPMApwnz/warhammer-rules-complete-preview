@@ -8,9 +8,22 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   if (!unit) throw new TypeError('Unresolved physical instance');
   const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
   const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
+  // UNIT roll modifiers stay on the UNIT. Preserve the executor's final value
+  // and resolve its exact typed source; presentation must not recalculate it.
+  const unitMetrics=unit.metrics?.chargeRoll?{chargeRoll:clone(unit.metrics.chargeRoll)}:{};
+  const unitMetricSources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC'&&row.field==='chargeRoll').map(row=>{
+    const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(clause=>clause.id===row.clauseId);
+    const effect=clause?.rosterEffects.find(effect=>effect.id===row.effectId);
+    if(!effect||effect.operation!=='MODIFY_RULE_METRIC'||effect.field!=='chargeRoll'||effect.targetSubject!=='UNIT'||
+        !['PHYSICAL','FORMED'].includes(effect.unitScope)||row.targetInstanceId!==instanceId||row.targetModelInstanceId)
+      throw new TypeError('Unresolved typed UNIT metric provenance');
+    return {...clone(row),unitScope:effect.unitScope,label:name(row.ruleId),provenance:clone(rule.provenance||{})};
+  });
+  if(unitMetrics.chargeRoll&&!unitMetricSources.length)throw new TypeError('Missing computed UNIT metric provenance');
   const rangedAbilities=new Set(unit.profiles.flatMap(model=>model.abilities.filter(ability=>ability.rangePresentation).map(ability=>ability.canonicalId)));
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
+    ...(unitMetrics.chargeRoll?{unitMetrics,unitMetricSources}:{}),
     formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
     profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
       fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities),

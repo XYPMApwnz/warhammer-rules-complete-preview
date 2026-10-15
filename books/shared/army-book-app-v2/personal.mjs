@@ -37,6 +37,28 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
     const variants=projectInstanceCards(cards,unit,current);
     return {unit,variants,card:variants.get(unit.canonicalUnitId)[0]};
   });
+  // A formed UNIT modifier is shown once only when every physical component
+  // has the same final value and exact source contributions. Equal numbers
+  // alone cannot merge independently owned PHYSICAL effects.
+  if(group&&components.length>1)for(const key of new Set(components.flatMap(component=>(component.card.rosterUnitMetrics||[]).map(metric=>metric.key)))){
+    const metric=components[0].card.rosterUnitMetrics?.find(metric=>metric.key===key);
+    const identity=value=>JSON.stringify([value.key,value.value,value.recipientInstanceIds,value.sources.map(source=>[
+      source.ruleId,source.clauseId,source.effectId,source.sourceInstanceId,source.sourceProfileId,
+      source.sourceCompositionId,source.sourceModelInstanceId,source.sourceFields,source.lifetime,source.unitScope])]);
+    const expected=metric&&identity(metric);
+    if(!metric||metric.unitScope!=='FORMED'||!components.every(component=>(component.card.rosterUnitMetrics||[]).filter(value=>
+      value.unitScope==='FORMED'&&identity(value)===expected).length===1)){
+      // Mixed PHYSICAL/FORMED contributions can produce different final
+      // totals. Keep each executor total on its component; never display a
+      // partial group value as if it were every member's complete result.
+      for(const component of components)for(const value of component.card.rosterUnitMetrics||[])if(value.key===key){
+        value.unitScope='PHYSICAL';value.recipientInstanceIds=[component.unit.instanceId];
+      }
+      continue;
+    }
+    for(const component of components.slice(1))component.card.rosterUnitMetrics=component.card.rosterUnitMetrics.filter(value=>
+      value.unitScope!=='FORMED'||identity(value)!==expected);
+  }
   return {formedUnitId:group?.formedUnitId||null,components};
 }
 export function projectPersonalBook(payload, state) {
@@ -270,6 +292,17 @@ export function projectInstanceCards(cards, unit, effective) {
     root.keywordGroups=groups;
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);
+  root.rosterUnitMetrics=Object.entries(effective.unitMetrics||{}).map(([key,value])=>{
+    assert(key==='chargeRoll'&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');
+    const sources=(effective.unitMetricSources||[]).filter(source=>source.field===key);
+    assert(sources.length&&sources.every(source=>source.operation==='MODIFY_RULE_METRIC'&&
+      source.targetInstanceId===unit.instanceId&&!source.targetModelInstanceId&&['PHYSICAL','FORMED'].includes(source.unitScope)),
+      'Unresolved effective UNIT metric sources');
+    const unitScope=sources.every(source=>source.unitScope==='FORMED')?'FORMED':'PHYSICAL';
+    return {key,label:'Charge-roll modifier',value:clone(value),displayValue:`${value.modifier>=0?'+':''}${value.modifier}`,
+      unitScope,recipientInstanceIds:unitScope==='FORMED'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit.instanceId],
+      formedUnitId:effective.formedUnit?.formedUnitId||null,sources:clone(sources)};
+  });
   variants.set(root.id,[annotate(root)]);
   return variants;
 }
