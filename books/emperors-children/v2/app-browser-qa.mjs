@@ -76,6 +76,44 @@ async function guide(page){await page.getByRole('button',{name:'Personal guide',
 async function guideUnit(page,id){await page.locator(`main [data-roster-nav-instance-id="${id}"]`).first().click();await page.locator('main .unit-card').first().waitFor();await geometry(page);}
 async function units(page){return page.locator('main .unit-card').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.rosterInstanceId,text:n.innerText})));}
 async function snapshot(page){return page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());}
+async function nativeFnp(page,device){
+ // Real production imports and controls only. Numeric override/suppression has
+ // no EC UI control and is covered separately by native-fnp-qa's executor tests.
+ for(const unit of ['lucius-the-eternal','chaos-spawn']){
+  await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);
+  await page.locator('[data-v2-book="emperors-children"]').click();await ready(page);
+  await page.locator(`main a.v2-library-card[data-target-id="unit-${unit}"]`).click();
+  const refs=page.locator('main .unit-card .shared-abilities [data-target-id="core-feel-no-pain"]');
+  assert.equal(await refs.count(),1,'Normal Army Book FNP source occurrence');assert.equal((await refs.innerText()).trim(),'Feel No Pain 5+');
+ }
+ await imported(page,fixture('native-fnp-physical-instances'),5);const raw=await snapshot(page);
+ const check=async ids=>{
+  assert.deepEqual((await units(page)).map(u=>u.id).sort(),[...ids].sort());
+  for(const id of ids){
+   const refs=page.locator(`main .unit-card[data-roster-instance-id="${id}"] .shared-abilities [data-target-id="core-feel-no-pain"]`);
+   const expected=['parsed-unit-1','parsed-unit-2','parsed-unit-3'].includes(id)?1:0;
+   assert.equal(await refs.count(),expected,'FNP MODEL owner/duplicate: '+id);
+   if(expected)assert.equal((await refs.innerText()).trim(),'Feel No Pain 5+');
+  }
+ };
+ for(const id of ['parsed-unit-1','parsed-unit-2','parsed-unit-3','parsed-unit-5']){
+  await roster(page);await effective(page,id);await check([id]);await guide(page);await guideUnit(page,id);await check([id]);
+ }
+ await roster(page);await attach(page,'parsed-unit-1','parsed-unit-4');await effective(page,'parsed-unit-4');
+ await check(['parsed-unit-1','parsed-unit-4']);await guide(page);await guideUnit(page,'parsed-unit-4');await check(['parsed-unit-1','parsed-unit-4']);
+ await page.reload();await ready(page);await check(['parsed-unit-1','parsed-unit-4']);
+ await page.screenshot({path:path.join(out,device+'-native-fnp-guide.png'),fullPage:true});
+ await roster(page);await page.locator('[data-roster-action="detach"][data-leader-instance-id="parsed-unit-1"]').click();
+ await page.waitForFunction(()=>window.ArmyBookAppV2.roster.state.attachments.length===0);
+ await effective(page,'parsed-unit-4');await check(['parsed-unit-4']);
+ await roster(page);await effective(page,'parsed-unit-1');await check(['parsed-unit-1']);
+ await roster(page);await attach(page,'parsed-unit-1','parsed-unit-4');await effective(page,'parsed-unit-4');await check(['parsed-unit-1','parsed-unit-4']);
+ await roster(page);await effective(page,'parsed-unit-2');await check(['parsed-unit-2']);
+ const direct=page.url();await page.reload();await ready(page);await check(['parsed-unit-2']);
+ await guide(page);await guideUnit(page,'parsed-unit-3');await check(['parsed-unit-3']);
+ await page.goto(direct);await ready(page);await check(['parsed-unit-2']);
+ assert.deepEqual((await snapshot(page)).units,raw.units,'FNP presentation changed physical import');
+}
 async function unifiedReferences(page,device){
  const home=async()=>{await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await ready(page);};
  const openBook=async id=>{await home();await page.locator(`[data-v2-book="${id}"]`).click();await ready(page);};
@@ -136,6 +174,7 @@ try{
    await page.locator('dialog[open]').waitFor();assert.match(await page.locator('dialog[open]').innerText(),/pistol|spear|weapon/i);
    await page.goBack();await page.locator('dialog[open]').waitFor({state:'hidden'});
    await page.goForward();await page.locator('dialog[open]').waitFor();await page.goBack();
+   await nativeFnp(page,device);
    await imported(page,fixture('character-bodyguard'),2);const rawBefore=await snapshot(page);
    await attach(page);await effective(page,'parsed-unit-2');
    let visible=await units(page);assert.deepEqual(visible.map(v=>v.id).sort(),['parsed-unit-1','parsed-unit-2']);
@@ -196,7 +235,7 @@ try{
    await guide(page);await page.goBack();await page.locator('main .unit-card').first().waitFor();await page.goForward();await ready(page);
    await page.goto(direct);await ready(page);await geometry(page);
    if(unified)await unifiedReferences(page,device);
-   results.push({device,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,unifiedGlossaryParity:unified,returnToExistingBooks:unified,overflow:false});
+   results.push({device,nativeFnp:true,armyBookReference:true,import:true,attachments:true,formedComponents:true,legionsEquipment:true,selectedUnselected:true,cacophonicScopes:true,lordOfTheHostTiming:true,battleConditionsVisible:true,unitUpgrades:true,possessedBladeExplicitChoice:true,guide:true,reload:true,history:true,unifiedGlossaryParity:unified,returnToExistingBooks:unified,overflow:false});
   };
   try{await Promise.race([scenario(),pageFailure]);}catch(error){
    await page.screenshot({path:path.join(out,device+'-failure.png'),fullPage:true});

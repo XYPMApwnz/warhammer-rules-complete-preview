@@ -46,6 +46,21 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   book.rosterAbilityReferences={'core-fights-first':{id:fightsFirst.id,title:fightsFirst.title,parameters:{},
     provenance:clone(fightsFirst.provenance)}};
   book.rosterReferenceSemantics={};
+  // Native numeric abilities enter the same MODEL bag as runtime overrides.
+  // Bind reviewed source occurrences, never an ability heading or a name alias.
+  for(const [referenceId,ownerId] of [
+    ['datasheet-lucius-the-eternal:rule-reference:1','unit-lucius-the-eternal'],
+    ['datasheet-chaos-spawn:rule-reference:1','unit-chaos-spawn']
+  ]) {
+    const reference=index.get(referenceId),owner=index.get(ownerId);
+    assert.equal(reference?.kind,'RULE_REFERENCE','Missing native FNP source occurrence');
+    assert.equal(reference.parentId,ownerId,'Foreign native FNP owner');
+    assert.ok(owner?.data.ruleReferenceIds.includes(referenceId),'Unbound native FNP occurrence');
+    assert.equal(reference.data.label,'Feel No Pain 5+','Reviewed native FNP value changed');
+    assert.ok(reference.provenance?.sourceId,'Native FNP lacks source provenance');
+    book.rosterReferenceSemantics[referenceId]={abilities:[{name:'Feel No Pain',value:5}],
+      sourceFields:[['label']],sourceId:reference.provenance.sourceId};
+  }
   const attachments=buildECAttachmentBindings(book,mfm);
   book.rosterAttachmentPolicies=attachments.policies;
   book.rosterAttachmentAdjudications=attachments.adjudications;
