@@ -93,6 +93,8 @@ def raw_named_rules(corpus, bindings):
 
 def collect(corpus, source_bindings):
     rows = []
+    raw_enhancements = unique(source_bindings['rawEnhancementText'], 'sourceId')
+    raw_tree = html.fromstring((ROOT/HUB).read_text(encoding='utf-8'))
     def add(item, kind, parent, pointer, document, data=None):
         rows.append({'sourceId': item['sourceId'], 'kind': kind, 'ownerSourceId': parent,
                      'pointer': pointer, 'document': document, 'data': copy.deepcopy(item if data is None else data)})
@@ -115,6 +117,25 @@ def collect(corpus, source_bindings):
         for field, kind in [('enhancements', 'ENHANCEMENT'), ('stratagems', 'STRATAGEM')]:
             for j, item in enumerate(det[field]):
                 add(item, kind, det['sourceId'], f'/detachments/{i}/{field}/{j}', HUB)
+                if item['sourceId'] in raw_enhancements:
+                    binding = raw_enhancements.pop(item['sourceId'])
+                    if kind != 'ENHANCEMENT' or binding['ownerSourceId'] != det['sourceId'] or binding['title'] != item['title']:
+                        raise ValueError('Wrong raw Enhancement identity/owner')
+                    nodes = raw_tree.xpath(binding['xpath'])
+                    if len(nodes) != 1:
+                        raise ValueError('Missing/ambiguous raw Enhancement')
+                    node = copy.deepcopy(nodes[0])
+                    heading, = node.xpath('./ul[@class="EnhancementsPts"]')
+                    heading.drop_tree()
+                    # HTML parsing closes <p> before <ul>; read the whole rule
+                    # cell so sibling effect bullets survive normalization.
+                    complete_text = body(node)
+                    if sha(complete_text.encode()) != binding['textSha256']:
+                        raise ValueError('Raw Enhancement wording changed')
+                    rows[-1]['data']['text'] = complete_text
+                    rows[-1]['pointer'] = binding['xpath']
+    if raw_enhancements:
+        raise ValueError('Unmatched raw Enhancement source binding')
     models = unique(source_bindings['modelUnits'], 'sourceId')
     for i, unit in enumerate(corpus['datasheets']):
         page, = [p for p in corpus['pages'] if p['url'] == unit['url']]

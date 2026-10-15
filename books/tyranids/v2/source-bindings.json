@@ -1,6 +1,15 @@
 {
   "schema": "tyranids-v2-source-address-bindings/v1",
   "authority": "PERSISTENT_REVIEWED_SOURCE_ADDRESSES",
+  "rawEnhancementText": [
+    {
+      "sourceId": "detachment-warrior-bioform-onslaught:enhancement:1",
+      "ownerSourceId": "detachment-warrior-bioform-onslaught",
+      "title": "Elevated Might",
+      "xpath": "//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]",
+      "textSha256": "8397577BECD60D2AFA8C725D919F7B09C9C85A7EC1B07DC6AE8C216045CD60E3"
+    }
+  ],
   "namedRules": [
     {
       "sourceId": "detachment-subterranean-assault:rule",
