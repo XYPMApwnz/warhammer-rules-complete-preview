@@ -1,0 +1,4151 @@
+{
+  "schema": "tyranids-v2-rule-contracts/v1",
+  "authority": "BOOK_OWNED_DERIVED_OVERLAY",
+  "factualFingerprint": "8B4FB60B0BBFAB0E3F98299ED47D1FEC97FE1F08F03A6BF220FE60D48CFEFCED",
+  "importFingerprint": "6C28B8568229EE7600727FC20C2CF6AD96839C71B5A32F4C6BC958C9039F05E1",
+  "declarationFingerprint": "228996330CF9CA3D99863CDE2CF6FAD5905BA3636244EFCC52E4763AD3F730EC",
+  "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+  "contracts": [
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-broodlord:section:1",
+      "ownerId": "unit-broodlord",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-broodlord:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-broodlord:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "leading a unit"
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+          },
+          "sourceText": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-broodlord:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "DEVASTATING WOUNDS",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_LEADING",
+              "provenance": {
+                "canonicalRuleId": "datasheet-broodlord:section:1",
+                "canonicalOwnerId": "unit-broodlord",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Broodlord.html",
+                  "sha256": "13ABF21F7C27FC1FFAA45D86688B80D16C13118143E49AF0DCE3A9BCAC03F3C5",
+                  "sourceEntityId": "datasheet-broodlord:section:1",
+                  "pointer": "/datasheets/2/sections/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "conditional-block-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-broodlord:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Hypnotic Gaze (Psychic): At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Hypnotic Gaze (Psychic): At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          },
+          "sourceText": "Hypnotic Gaze (Psychic): At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Preserved sibling ability requires battle timing, distance or player action."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Broodlord.html",
+          "sha256": "13ABF21F7C27FC1FFAA45D86688B80D16C13118143E49AF0DCE3A9BCAC03F3C5",
+          "sourceEntityId": "datasheet-broodlord:section:1",
+          "pointer": "/datasheets/2/sections/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-winged-tyranid-prime:section:1",
+      "ownerId": "unit-winged-tyranid-prime",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-winged-tyranid-prime:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-winged-tyranid-prime:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "LEADING",
+              "subject": "MODEL",
+              "contextLevel": "ROSTER",
+              "arguments": {
+                "value": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "leading a unit"
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+          },
+          "sourceText": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-winged-tyranid-prime:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "SUSTAINED HITS 1",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "LEADING",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "value": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "leading a unit"
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_LEADING",
+              "provenance": {
+                "canonicalRuleId": "datasheet-winged-tyranid-prime:section:1",
+                "canonicalOwnerId": "unit-winged-tyranid-prime",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Tyranid-Prime.html",
+                  "sha256": "C2EF18BD580219B4CF287F2FC525CD7CF76FF710219C8C982AAAF8602B337302",
+                  "sourceEntityId": "datasheet-winged-tyranid-prime:section:1",
+                  "pointer": "/datasheets/50/sections/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "conditional-block-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-winged-tyranid-prime:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+          },
+          "sourceText": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Preserved sibling ability requires battle timing, distance or player action."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Tyranid-Prime.html",
+          "sha256": "C2EF18BD580219B4CF287F2FC525CD7CF76FF710219C8C982AAAF8602B337302",
+          "sourceEntityId": "datasheet-winged-tyranid-prime:section:1",
+          "pointer": "/datasheets/50/sections/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+      "ownerId": "unit-tyranid-prime-with-lash-whip",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "MODEL_ID",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+          },
+          "sourceText": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-tyranid-prime-with-lash-whip:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "SUSTAINED HITS 1",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+              "provenance": {
+                "canonicalRuleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+                "canonicalOwnerId": "unit-tyranid-prime-with-lash-whip",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Prime-with-Lash-Whip.html",
+                  "sha256": "F3EB275FB9251AB2785C758E0DAF8BF4DB4D2AC23AE7F9C74291FBE5434120D9",
+                  "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+                  "pointer": "/datasheets/41/sections/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "conditional-block-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+          },
+          "sourceText": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Preserved sibling ability requires battle timing, distance or player action."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Prime-with-Lash-Whip.html",
+          "sha256": "F3EB275FB9251AB2785C758E0DAF8BF4DB4D2AC23AE7F9C74291FBE5434120D9",
+          "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+          "pointer": "/datasheets/41/sections/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "datasheet-hyperadapted-raveners:section:1",
+      "ownerId": "unit-hyperadapted-raveners",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "DATASHEET_ABILITY",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "blocks",
+          0,
+          "text"
+        ],
+        [
+          "blocks",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-hyperadapted-raveners"
+            },
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-hyperadapted-raveners"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+          },
+          "sourceText": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "datasheet-hyperadapted-raveners:section:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "SUSTAINED HITS 1",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+              },
+              "sourceFields": [
+                [
+                  "blocks",
+                  0,
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+              "provenance": {
+                "canonicalRuleId": "datasheet-hyperadapted-raveners:section:1",
+                "canonicalOwnerId": "unit-hyperadapted-raveners",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hyperadapted-Raveners.html",
+                  "sha256": "210E59BD33700D849DF1D04E09CAD56381D049F43D88DF7FF3A29C7E2B5D0E2D",
+                  "sourceEntityId": "datasheet-hyperadapted-raveners:section:1",
+                  "pointer": "/datasheets/16/sections/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "conditional-block-1",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-hyperadapted-raveners"
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Hypersensory Array: Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "blocks",
+              1,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              1,
+              "text"
+            ],
+            "quote": "Hypersensory Array: Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+          },
+          "sourceText": "Hypersensory Array: Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Preserved sibling ability requires battle timing, distance or player action."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hyperadapted-Raveners.html",
+          "sha256": "210E59BD33700D849DF1D04E09CAD56381D049F43D88DF7FF3A29C7E2B5D0E2D",
+          "sourceEntityId": "datasheet-hyperadapted-raveners:section:1",
+          "pointer": "/datasheets/16/sections/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:enhancement:4",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TRYGON"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TRYGON"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+          },
+          "sourceText": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-subterranean-assault:enhancement:4::roster-known/effect-1",
+              "operation": "GRANT_MODEL_KEYWORD",
+              "keyword": "SYNAPSE",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
+                "canonicalOwnerId": "detachment-subterranean-assault",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
+                  "pointer": "/detachments/0/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            },
+            {
+              "id": "detachment-subterranean-assault:enhancement:4::roster-known/effect-2",
+              "operation": "MODIFY_STAT",
+              "field": "strength",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
+                "canonicalOwnerId": "detachment-subterranean-assault",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
+                  "pointer": "/detachments/0/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            },
+            {
+              "id": "detachment-subterranean-assault:enhancement:4::roster-known/effect-3",
+              "operation": "MODIFY_STAT",
+              "field": "WS",
+              "mode": "ADD",
+              "value": -1,
+              "weaponMode": "melee",
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
+                "canonicalOwnerId": "detachment-subterranean-assault",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
+                  "pointer": "/detachments/0/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-subterranean-assault",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TRYGON"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1."
+              }
+            }
+          ]
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-9a68ea9bc16d40a0",
+        "detachmentId": "mfm-detachment-9c631e715294b06e",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "SUBTERRANEAN ASSAULT",
+            "sourceTitle": "Trygon Prime"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
+          "pointer": "/detachments/0/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:enhancement:4",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The bearer has the Feel No Pain 5+ ability."
+          },
+          "sourceText": "The bearer has the Feel No Pain 5+ ability.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-invasion-fleet:enhancement:4::roster-known/effect-1",
+              "operation": "GRANT_MODEL_ABILITY",
+              "ability": {
+                "name": "Feel No Pain",
+                "value": 5
+              },
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The bearer has the Feel No Pain 5+ ability."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-invasion-fleet:enhancement:4",
+                "canonicalOwnerId": "detachment-invasion-fleet",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-invasion-fleet:enhancement:4",
+                  "pointer": "/detachments/1/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "battle-dependent",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+          },
+          "sourceText": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Requires battle timing/state; no automatic activation."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-invasion-fleet",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TYRANIDS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+              }
+            }
+          ]
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-c2e9ac508fcfe8bf",
+        "detachmentId": "mfm-detachment-9e48327b304dba7e",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "INVASION FLEET",
+            "sourceTitle": "Adaptive Biology"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:enhancement:4",
+          "pointer": "/detachments/1/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:enhancement:4",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "BATTLE",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit."
+          },
+          "sourceText": "Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-assimilation-swarm:enhancement:4::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "strength",
+              "mode": "ADD",
+              "value": 1,
+              "weaponMode": "melee",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-assimilation-swarm:enhancement:4",
+                "canonicalOwnerId": "detachment-assimilation-swarm",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-assimilation-swarm:enhancement:4",
+                  "pointer": "/detachments/3/enhancements/3",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "battle-dependent",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+              }
+            }
+          ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+          },
+          "sourceText": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit.",
+          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassificationNote": {
+            "reason": "Requires battle timing/state; no automatic activation."
+          },
+          "rosterEffects": []
+        }
+      ],
+      "detachmentId": "detachment-assimilation-swarm",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TYRANIDS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+              }
+            }
+          ]
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-caa10c57ea9054f2",
+        "detachmentId": "mfm-detachment-3fc01675a2e1861a",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "ASSIMILATION SWARM",
+            "sourceTitle": "Parasitic Biomorphology"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:enhancement:4",
+          "pointer": "/detachments/3/enhancements/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:enhancement:1",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_MODEL",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "MONSTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+          },
+          "sourceText": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-crusher-stampede:enhancement:1::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "OC",
+              "mode": "ADD",
+              "value": 3,
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_MODEL",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-crusher-stampede:enhancement:1",
+                "canonicalOwnerId": "detachment-crusher-stampede",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-crusher-stampede:enhancement:1",
+                  "pointer": "/detachments/4/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-crusher-stampede",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TYRANIDS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+              }
+            },
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "MONSTER"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic."
+              }
+            }
+          ]
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-1248f6cfd2d3969c",
+        "detachmentId": "mfm-detachment-631799715e9b611c",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "CRUSHER STAMPEDE",
+            "sourceTitle": "Ominous Presence"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:enhancement:1",
+          "pointer": "/detachments/4/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:enhancement:1",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "MODEL",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+                }
+              }
+            ]
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "MODEL",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+                    }
+                  }
+                ]
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+          },
+          "sourceText": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-unending-swarm:enhancement:1::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "M",
+              "mode": "ADD",
+              "value": 2,
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": false
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-unending-swarm:enhancement:1",
+                "canonicalOwnerId": "detachment-unending-swarm",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-unending-swarm:enhancement:1",
+                  "pointer": "/detachments/6/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            },
+            {
+              "id": "detachment-unending-swarm:enhancement:1::roster-known/effect-1/formed",
+              "operation": "MODIFY_STAT",
+              "field": "M",
+              "mode": "ADD",
+              "value": 2,
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_FORMED_MODELS",
+              "conditions": [
+                {
+                  "binding": "SOURCE",
+                  "predicate": {
+                    "predicate": "FIELD",
+                    "subject": "MODEL",
+                    "contextLevel": "ROSTER",
+                    "arguments": {
+                      "key": "attached",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+                    }
+                  }
+                }
+              ],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-unending-swarm:enhancement:1",
+                "canonicalOwnerId": "detachment-unending-swarm",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-unending-swarm:enhancement:1",
+                  "pointer": "/detachments/6/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-unending-swarm",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "op": "ALL",
+          "args": [
+            {
+              "predicate": "MODEL_KEYWORD",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TYRANIDS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit."
+              }
+            }
+          ]
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-c2a6b0857c4e0c1b",
+        "detachmentId": "mfm-detachment-f8188b1403ca9370",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "UNENDING SWARM",
+            "sourceTitle": "Relentless Hunger"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:enhancement:1",
+          "pointer": "/detachments/6/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-ambush-predators:enhancement:2",
+      "ownerId": "detachment-ambush-predators",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-von-ryans-leapers"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-von-ryans-leapers"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+          },
+          "sourceText": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-ambush-predators:enhancement:2::roster-known/effect-1",
+              "operation": "MODIFY_RULE_METRIC",
+              "field": "detectionRange",
+              "mode": "ADD",
+              "value": -3,
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-ambush-predators:enhancement:2",
+                "canonicalOwnerId": "detachment-ambush-predators",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-ambush-predators:enhancement:2",
+                  "pointer": "/detachments/7/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-ambush-predators",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-von-ryans-leapers"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+        "classification": "UNIT_UPGRADE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-c0fc40c99132a777",
+        "detachmentId": "mfm-detachment-b3975b6c6d229449",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "AMBUSH PREDATORS",
+            "sourceTitle": "Cryptophotaic Camouflage (Upgrade)"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-ambush-predators:enhancement:2",
+          "pointer": "/detachments/7/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-talons-of-the-norn-queen:enhancement:1",
+      "ownerId": "detachment-talons-of-the-norn-queen",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-norn-emissary"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "UNIT",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-norn-emissary"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "UNIT",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+          },
+          "sourceText": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+].",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-talons-of-the-norn-queen:enhancement:1::roster-known/effect-1",
+              "operation": "GRANT_WEAPON_ABILITY",
+              "ability": "ANTI-CHARACTER 2+",
+              "weaponMode": "ranged",
+              "targetSubject": "UNIT",
+              "targetBinding": "SOURCE_UNIT",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-talons-of-the-norn-queen:enhancement:1",
+                "canonicalOwnerId": "detachment-talons-of-the-norn-queen",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:1",
+                  "pointer": "/detachments/8/enhancements/0",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-talons-of-the-norn-queen",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-norn-emissary"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+]."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+        "classification": "UNIT_UPGRADE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-3049adc48fce11c5",
+        "detachmentId": "mfm-detachment-d88527bfa05bf302",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "TALONS OF THE NORN QUEEN",
+            "sourceTitle": "Destabilising Predation (Upgrade)"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:1",
+          "pointer": "/detachments/8/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-talons-of-the-norn-queen:enhancement:2",
+      "ownerId": "detachment-talons-of-the-norn-queen",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "ENHANCEMENT",
+      "executionMode": "DECLARATIVE_APPLICABILITY",
+      "contextLevel": "ROSTER",
+      "sourceFields": [
+        [
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "subject": "UNIT",
+          "purpose": "OWNER",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-norn-assimilator"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+            }
+          },
+          "conditions": []
+        },
+        {
+          "id": "recipient",
+          "subject": "MODEL",
+          "purpose": "RECIPIENT",
+          "allegiance": "FRIENDLY",
+          "binding": "SOURCE_UNIT_MODELS",
+          "selector": {
+            "predicate": "ALWAYS",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {},
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+            }
+          },
+          "conditions": []
+        }
+      ],
+      "conditions": [],
+      "clauses": [
+        {
+          "id": "roster-known",
+          "roles": [
+            {
+              "id": "owner",
+              "subject": "UNIT",
+              "purpose": "OWNER",
+              "allegiance": "FRIENDLY",
+              "selector": {
+                "predicate": "UNIT_ID",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "unit-norn-assimilator"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+                }
+              },
+              "conditions": []
+            },
+            {
+              "id": "recipient",
+              "subject": "MODEL",
+              "purpose": "RECIPIENT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+                }
+              },
+              "conditions": []
+            }
+          ],
+          "conditions": [],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+          },
+          "sourceText": "NORN ASSIMILATOR unit only. This unit has 4+ InSv.",
+          "rosterClassification": "ROSTER_EXECUTABLE",
+          "rosterClassificationNote": {
+            "reason": "Exact physical source assignment/formation is known from the roster."
+          },
+          "rosterEffects": [
+            {
+              "id": "detachment-talons-of-the-norn-queen:enhancement:2::roster-known/effect-1",
+              "operation": "MODIFY_STAT",
+              "field": "INSV",
+              "mode": "SET",
+              "value": 4,
+              "targetSubject": "MODEL",
+              "targetBinding": "SOURCE_UNIT_MODELS",
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+              },
+              "sourceFields": [
+                [
+                  "text"
+                ]
+              ],
+              "lifetime": "WHILE_ASSIGNED",
+              "provenance": {
+                "canonicalRuleId": "detachment-talons-of-the-norn-queen:enhancement:2",
+                "canonicalOwnerId": "detachment-talons-of-the-norn-queen",
+                "canonicalClauseId": "roster-known",
+                "sourceEvidence": {
+                  "sourceId": "tyranids-waha-11e-2026-09-27",
+                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                  "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:2",
+                  "pointer": "/detachments/8/enhancements/1",
+                  "authority": "ACCEPTED_SECONDARY",
+                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "detachmentId": "detachment-talons-of-the-norn-queen",
+      "assignment": {
+        "ownerRoleId": "owner",
+        "selector": {
+          "predicate": "UNIT_ID",
+          "subject": "UNIT",
+          "contextLevel": "STATIC",
+          "arguments": {
+            "id": "unit-norn-assimilator"
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv."
+          }
+        },
+        "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+        "classification": "UNIT_UPGRADE"
+      },
+      "mfmReferences": {
+        "enhancementId": "mfm-enhancement-adc6c3810004b913",
+        "detachmentId": "mfm-detachment-d88527bfa05bf302",
+        "qualifierIds": [],
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "tyranids-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements",
+            "factionId": "tyranids",
+            "detachmentSourceTitle": "TALONS OF THE NORN QUEEN",
+            "sourceTitle": "Synaptoprescience (Upgrade)"
+          }
+        }
+      },
+      "currentness": {
+        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:2",
+          "pointer": "/detachments/8/enhancements/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        },
+        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+      }
+    }
+  ],
+  "deferred": [
+    {
+      "id": "datasheet-old-one-eye:section:1",
+      "reason": "BATTLE_DEPENDENT",
+      "note": "Alpha Leader preserves a conditional Hit-roll reroll permission, without making or rerolling attacks. Regeneration requires a Command phase and lost wounds.",
+      "ownerId": "unit-old-one-eye",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "datasheet-old-one-eye:section:1"
+      },
+      "sourceText": "Alpha Leader: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll.\nUnstoppable Monster: At the start of each player’s Command phase, this model regains up to D3 lost wounds.",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Old-One-Eye.html",
+        "sha256": "52DAE0B473118569CE5D4E594F6B5A35FA394491A35C176BE95B89FD695C3427",
+        "sourceEntityId": "datasheet-old-one-eye:section:1",
+        "pointer": "/datasheets/26/sections/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "datasheet-neurotyrant:section:1",
+      "reason": "CAPABILITY_MISSING",
+      "note": "Node Lash modifies Hit/Wound rolls, not BS/WS or Strength; Battle-shocked target and other blocks require battle state.",
+      "ownerId": "unit-neurotyrant",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "datasheet-neurotyrant:section:1"
+      },
+      "sourceText": "Node Lash (Psychic): While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Hit roll. If the target is Battle-shocked, add 1 to the Wound roll as well.\nPsychic Terror (Psychic): If one or more models from your army with this ability are on the battlefield when you unleash the Shadow in the Warp, subtract 1 from the Battle-shock test each enemy unit on the battlefield must take as a result.\nNeuroloids: In your Command phase, you can select up to two friendly TYRANIDS units within 18\" of this model’s unit. Until the start of your next Command phase, the selected units are always considered to be within Synapse Range of your army.\nDesigner’s Note: Place a Neuroloid token next to each selected unit to remind you.",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Neurotyrant.html",
+        "sha256": "719796D1EF82BBED9291C5C511899FF9323F2A2A635A42E85438E7CF04AE2C55",
+        "sourceEntityId": "datasheet-neurotyrant:section:1",
+        "pointer": "/datasheets/23/sections/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "datasheet-hive-tyrant:section:1",
+      "reason": "BATTLE_DEPENDENT",
+      "note": "Onslaught requires actual 6-inch proximity; Will of the Hive Mind requires a Stratagem use. Attachment proves neither.",
+      "ownerId": "unit-hive-tyrant",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "datasheet-hive-tyrant:section:1"
+      },
+      "sourceText": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.\nOnslaught (Aura, Psychic): While a friendly TYRANIDS unit is within 6\" of this model, ranged weapons equipped by models in that unit have the [ASSAULT] and [LETHAL HITS] abilities.",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hive-Tyrant.html",
+        "sha256": "E0E77C9E44C31B95CB3C6539C5A0B7BEE54C772C85E0ADAA35FE8227D2FC215E",
+        "sourceEntityId": "datasheet-hive-tyrant:section:1",
+        "pointer": "/datasheets/14/sections/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "detachment-ambush-predators:enhancement:1",
+      "reason": "BATTLE_DEPENDENT",
+      "note": "Encircling Horrors requires opponent Movement phase, an enemy ending a move within 8 inches and an optional D3+3 move.",
+      "ownerId": "detachment-ambush-predators",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "detachment-ambush-predators:enhancement:1"
+      },
+      "sourceText": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only. In your opponent’s Movement phase, when an enemy unit ends a move within 8\" of this unit, this unit can make a normal move of up to D3+3\".",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "detachment-ambush-predators:enhancement:1",
+        "pointer": "/detachments/7/enhancements/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false,
+      "scope": "UNIT",
+      "itemKind": "UPGRADE"
+    },
+    {
+      "id": "army-rule-synapse",
+      "reason": "BATTLE_DEPENDENT",
+      "note": "Synapse proximity/roll clauses are not roster facts.",
+      "ownerId": "tyranids",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "army-rule-synapse"
+      },
+      "sourceText": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army:\n- Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6.\n- Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
+      "sourceComponents": [
+        {
+          "sourceReference": {
+            "bookId": "tyranids",
+            "entityId": "army-rule-synapse:definition",
+            "path": "/text"
+          },
+          "sourceText": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army:\n- Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6.\n- Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
+          "provenance": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "army-rule-synapse:definition",
+            "pointer": "/armyRules/0/components/0",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          }
+        }
+      ],
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "army-rule-synapse",
+        "pointer": "/armyRules/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "army-rule-shadow-in-the-warp",
+      "reason": "BATTLE_DEPENDENT",
+      "note": "Activation and Battle-shock are player/battle events; references retain physical recipients.",
+      "ownerId": "tyranids",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "army-rule-shadow-in-the-warp"
+      },
+      "sourceText": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
+      "sourceComponents": [
+        {
+          "sourceReference": {
+            "bookId": "tyranids",
+            "entityId": "army-rule-shadow-in-the-warp:definition",
+            "path": "/text"
+          },
+          "sourceText": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
+          "provenance": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "army-rule-shadow-in-the-warp:definition",
+            "pointer": "/armyRules/1/components/0",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          }
+        }
+      ],
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "army-rule-shadow-in-the-warp",
+        "pointer": "/armyRules/1",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "datasheet-venomthropes:section:1",
+      "reason": "SOURCE_AMBIGUOUS",
+      "note": "Foul Spores official update/FAQ contradiction remains unresolved; no aura grant.",
+      "ownerId": "unit-venomthropes",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "datasheet-venomthropes:section:1"
+      },
+      "sourceText": "Foul Spores (Aura): Friendly TYRANIDS units within 6\" of this unit have Stealth.",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Venomthropes.html",
+        "sha256": "6E38BD27149968C68E2FC58687CBC8CC16A8F1423FB3F9EB7CD4E5BCCB596C94",
+        "sourceEntityId": "datasheet-venomthropes:section:1",
+        "pointer": "/datasheets/47/sections/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false
+    },
+    {
+      "id": "detachment-assimilation-swarm:enhancement:1",
+      "reason": "SOURCE_AMBIGUOUS",
+      "note": "Regenerating Monstrosity historical spelling correction is unverified; regeneration is also battle-dependent.",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceReference": {
+        "bookId": "tyranids",
+        "entityId": "detachment-assimilation-swarm:enhancement:1"
+      },
+      "sourceText": "TYRANIDS model only (excluding MONSTERS models). The bearer’s unit can be regenerated up to twice per phase, instead of once.",
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "detachment-assimilation-swarm:enhancement:1",
+        "pointer": "/detachments/3/enhancements/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
+      "executable": false,
+      "scope": "MODEL",
+      "itemKind": "ENHANCEMENT"
+    }
+  ],
+  "nativeReferenceSemantics": {
+    "datasheet-old-one-eye:rule-reference:1": {
+      "abilities": [
+        {
+          "name": "Feel No Pain",
+          "value": 5
+        }
+      ],
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-old-one-eye:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-old-one-eye:section:2:member:1"
+      ],
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Old-One-Eye.html",
+        "sha256": "52DAE0B473118569CE5D4E594F6B5A35FA394491A35C176BE95B89FD695C3427",
+        "sourceEntityId": "datasheet-old-one-eye:rule-reference:1",
+        "pointer": "/datasheets/26/ruleReferences/0",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      }
+    },
+    "datasheet-psychophage:rule-reference:2": {
+      "abilities": [
+        {
+          "name": "Feel No Pain",
+          "value": 5
+        }
+      ],
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-psychophage:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-psychophage:section:2:member:1"
+      ],
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Psychophage.html",
+        "sha256": "577FDAE9B63CCA2F4EECB85DE783DB5EE111A14F6C5CE9E3BE6D003BC08AF4C9",
+        "sourceEntityId": "datasheet-psychophage:rule-reference:2",
+        "pointer": "/datasheets/28/ruleReferences/1",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      }
+    }
+  },
+  "attachmentPolicies": [
+    {
+      "sourceId": "unit-hive-tyrant",
+      "targetId": "unit-tyrant-guard",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-hive-tyrant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-09dc1ca86e5cd838"
+    },
+    {
+      "sourceId": "unit-tyranid-prime-with-lash-whip",
+      "targetId": "unit-hormagaunts",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-tyranid-prime-with-lash-whip:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-0e3fb009fefcb285"
+    },
+    {
+      "sourceId": "unit-tyranid-prime-with-lash-whip",
+      "targetId": "unit-termagants",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-tyranid-prime-with-lash-whip:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-0e3fb009fefcb285"
+    },
+    {
+      "sourceId": "unit-tyranid-prime-with-lash-whip",
+      "targetId": "unit-tyranid-warriors-with-melee-bio-weapons",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-tyranid-prime-with-lash-whip:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-0e3fb009fefcb285"
+    },
+    {
+      "sourceId": "unit-tyranid-prime-with-lash-whip",
+      "targetId": "unit-tyranid-warriors-with-ranged-bio-weapons",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-tyranid-prime-with-lash-whip:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-0e3fb009fefcb285"
+    },
+    {
+      "sourceId": "unit-neurotyrant",
+      "targetId": "unit-neurogaunts",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-neurotyrant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-10f1f7e586bef6e0"
+    },
+    {
+      "sourceId": "unit-neurotyrant",
+      "targetId": "unit-tyrant-guard",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-neurotyrant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-10f1f7e586bef6e0"
+    },
+    {
+      "sourceId": "unit-neurotyrant",
+      "targetId": "unit-zoanthropes",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-neurotyrant:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-10f1f7e586bef6e0"
+    },
+    {
+      "sourceId": "unit-broodlord",
+      "targetId": "unit-genestealers",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-broodlord:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-7d81e58a66c910d5"
+    },
+    {
+      "sourceId": "unit-the-swarmlord",
+      "targetId": "unit-tyrant-guard",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-the-swarmlord:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-cca02150b2448e6a"
+    },
+    {
+      "sourceId": "unit-hyperadapted-raveners",
+      "targetId": "unit-raveners",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-hyperadapted-raveners:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-cf5b940f3384c655"
+    },
+    {
+      "sourceId": "unit-winged-tyranid-prime",
+      "targetId": "unit-gargoyles",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-winged-tyranid-prime:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-f07008fd4d6c1e34"
+    },
+    {
+      "sourceId": "unit-winged-tyranid-prime",
+      "targetId": "unit-tyranid-warriors-with-melee-bio-weapons",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-winged-tyranid-prime:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-f07008fd4d6c1e34"
+    },
+    {
+      "sourceId": "unit-winged-tyranid-prime",
+      "targetId": "unit-tyranid-warriors-with-ranged-bio-weapons",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-winged-tyranid-prime:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-f07008fd4d6c1e34"
+    },
+    {
+      "sourceId": "unit-old-one-eye",
+      "targetId": "unit-carnifexes",
+      "role": "LEADER",
+      "additionalLeaders": 0,
+      "sourceIds": [
+        "datasheet-old-one-eye:section:3"
+      ],
+      "mfmReferenceId": "mfm-leader-eligibility-f25c185f731512de"
+    }
+  ],
+  "compatibilityFeasibility": {
+    "schema": "roster-v2/static-feasibility",
+    "authority": "DISPOSABLE_PROJECTION",
+    "units": [
+      {
+        "unitId": "unit-barbgaunts",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-biovores",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-broodlord",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-genestealers"
+        ]
+      },
+      {
+        "unitId": "unit-carnifexes",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-deathleaper",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-exocrine",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-gargoyles",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-genestealers",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-harpy",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-harridan",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-haruspex",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-hierophant",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-hive-crone",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-hive-guard",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-hive-tyrant",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-tyrant-guard"
+        ]
+      },
+      {
+        "unitId": "unit-hormagaunts",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-hyperadapted-raveners",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-raveners"
+        ]
+      },
+      {
+        "unitId": "unit-lictor",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-maleceptor",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-mawloc",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-mucolid-spores",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-neurogaunts",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-neurolictor",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-neurotyrant",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-neurogaunts",
+          "unit-tyrant-guard",
+          "unit-zoanthropes"
+        ]
+      },
+      {
+        "unitId": "unit-norn-assimilator",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-norn-emissary",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-old-one-eye",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-carnifexes"
+        ]
+      },
+      {
+        "unitId": "unit-parasite-of-mortrex",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-psychophage",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-pyrovores",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-raveners",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-ripper-swarms",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-screamer-killer",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-spore-mines",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-sporocyst",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-termagants",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tervigon",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-the-red-terror",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-the-swarmlord",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-tyrant-guard"
+        ]
+      },
+      {
+        "unitId": "unit-toxicrene",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-trygon",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tyranid-prime-with-lash-whip",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-hormagaunts",
+          "unit-termagants",
+          "unit-tyranid-warriors-with-melee-bio-weapons",
+          "unit-tyranid-warriors-with-ranged-bio-weapons"
+        ]
+      },
+      {
+        "unitId": "unit-tyranid-warriors-with-melee-bio-weapons",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tyranid-warriors-with-ranged-bio-weapons",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tyrannocyte",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tyrannofex",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-tyrant-guard",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-venomthropes",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-von-ryans-leapers",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 0,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-winged-hive-tyrant",
+        "canBeAttached": false,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      },
+      {
+        "unitId": "unit-winged-tyranid-prime",
+        "canBeAttached": true,
+        "canBeBodyguard": false,
+        "intrinsicCharacterModelsMax": 1,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": [
+          "unit-gargoyles",
+          "unit-tyranid-warriors-with-melee-bio-weapons",
+          "unit-tyranid-warriors-with-ranged-bio-weapons"
+        ]
+      },
+      {
+        "unitId": "unit-zoanthropes",
+        "canBeAttached": true,
+        "canBeBodyguard": true,
+        "intrinsicCharacterModelsMax": 0,
+        "maxCharacterModels": 1,
+        "leaderTargetIds": []
+      }
+    ]
+  }
+}
