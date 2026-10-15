@@ -1,9 +1,9 @@
 /** EC input binding only. All predicates, grants and recompute remain in shared
  * V2. No current attachment is inferred to have occurred at a historical step. */
-import assert from 'node:assert/strict';
+const assert=(ok,message)=>{if(!ok)throw new TypeError(message);};
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {weaponChoiceContext} from './rule-contract-choice-context.mjs';
-import {validateInstrumentSelections} from './rule-contract-instrument-bindings.mjs';
+import {validateInstrumentSelections} from './roster-equipment-context.mjs';
 
 export function createFormationContext(book,state,schema) {
   validateInstrumentSelections(book,state);
@@ -12,13 +12,13 @@ export function createFormationContext(book,state,schema) {
   const bindChoice=weaponChoiceContext(book,state,schema);
   let initial;
   if(state.initialAttachmentStep!==undefined) {
-    assert.equal(state.initialAttachmentStep,binding?.step,'Unconfirmed initial attachment timing');
-    assert.ok(Array.isArray(state.initialAttachments),'Missing Declare Battle Formations snapshot');
+    assert(state.initialAttachmentStep===binding?.step,'Unconfirmed initial attachment timing');
+    assert(Array.isArray(state.initialAttachments),'Missing Declare Battle Formations snapshot');
     // Same source-owned attachment policies validate historical evidence. It
     // is independent of the current formation; no invented expiry on detach.
     initial=validateRoster(book,{...state,attachments:structuredClone(state.initialAttachments)},book.rosterAttachmentPolicies).attachments;
   } else if(state.initialAttachments!==undefined) {
-    assert.ok(Array.isArray(state.initialAttachments),'Malformed initial snapshot');
+    assert(Array.isArray(state.initialAttachments),'Malformed initial snapshot');
     // An undated snapshot does not establish the named source timing.
   }
   const bind=context=>{

@@ -1,0 +1,34 @@
+/* EC colour configuration; shared V2 components own layout and lifecycle. */
+:root {
+  color-scheme: dark;
+  --book-register-label: "EMPEROR’S CHILDREN";
+  --book-bg: #151017;
+  --book-canvas: #1b1420;
+  --book-panel: #261d2b;
+  --book-panel-raised: #35283c;
+  --book-ink: #eee0ef;
+  --book-ink-bright: #fff1ff;
+  --book-muted: #b7a3bb;
+  --book-muted-readable: #cdb8d2;
+  --book-accent: #d79fe2;
+  --book-accent-deep: #a96cba;
+  --book-link: #e7b7ef;
+  --book-signal: #ef8b9b;
+  --book-signal-deep: #7f344b;
+  --book-metal: #ac98a8;
+  --book-metal-bright: #dec2d4;
+  --book-control-line: #82618c;
+  --book-hover: #48334f;
+  --book-ring: rgba(215, 159, 226, .21);
+  --book-ring-soft: rgba(215, 159, 226, .047);
+  --book-ring-faint: rgba(215, 159, 226, .031);
+  --book-bg-rgb: 21, 16, 23;
+  --book-void-rgb: 9, 7, 11;
+  --book-panel-rgb: 38, 29, 43;
+  --book-ink-rgb: 238, 224, 239;
+  --book-accent-rgb: 215, 159, 226;
+  --book-accent-deep-rgb: 169, 108, 186;
+  --book-signal-rgb: 239, 139, 155;
+  --book-metal-rgb: 172, 152, 168;
+  --book-metal-bright-rgb: 222, 194, 212;
+}

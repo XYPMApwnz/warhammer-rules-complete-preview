@@ -2,10 +2,8 @@
 import assert from 'node:assert/strict';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
-export const bladeId='detachment-carnival-of-excess:enhancement:3';
-export const bladeField='selectedUpgrade:'+bladeId;
-export const finalStateFields={[bladeField]:{contextLevel:'ROSTER',valueType:'string'},
-  possessedBladeFightUse:{contextLevel:'BATTLE',valueType:'boolean'},snapShootingAttack:{contextLevel:'BATTLE',valueType:'boolean'}};
+import {bladeId,bladeField} from './rule-contract-schema.mjs';
+export {bladeId,bladeField,finalStateFields} from './rule-contract-schema.mjs';
 const clone=structuredClone;
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
 export const finalBindings=[

@@ -4,9 +4,7 @@ import assert from 'node:assert/strict';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 const clone=structuredClone;
-export const formationStateFields={attached:{contextLevel:'ROSTER',valueType:'boolean'},
-  equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
-  lordOfHostDeclaredBattleline:{contextLevel:'ROSTER',valueType:'boolean'}};
+export {formationStateFields} from './rule-contract-schema.mjs';
 export const formationBindings=[
   {id:'detachment-elegant-brutes:enhancement:1',family:'Cacophonic Accompaniment',owner:'detachment-elegant-brutes',
     subject:'MODEL',keyword:'LORD KAKOPHONIST',field:['text'],

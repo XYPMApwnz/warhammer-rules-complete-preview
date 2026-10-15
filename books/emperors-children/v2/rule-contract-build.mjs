@@ -5,7 +5,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createECRuleSchema} from './rule-contract-schema.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
@@ -36,7 +36,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   assert.equal(new Set([...inputs,...permissionInputs].map(input=>input.ruleId)).size,10+permissionInputs.length,'Duplicate semantic owner');
   book.ruleContractsStarted=true;
   const mfm=consumeMfm(facts.entities);
-  const schema=createRuleContractSchema({stateFields:{meleeAttackTargetsCharacter:{contextLevel:'BATTLE',valueType:'boolean'},...permissionStateFields,...formationStateFields,...finalStateFields}});
+  const schema=createECRuleSchema();
   // Identity and factual data remain unchanged; PROFILE is the existing shared
   // engine interface for this disposable MODEL_PROFILE view, not a new owner.
   for(const entity of book.entities.filter(e=>e.kind==='MODEL_PROFILE'))entity.kind='PROFILE';

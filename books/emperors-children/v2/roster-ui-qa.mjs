@@ -1,0 +1,57 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {buildECRosterAttachmentBook} from './roster-attachment-build.mjs';
+import {createECBrowserRoster,createBrowserRoster} from './roster-boot.mjs';
+import {buildApp} from './app-build.mjs';
+import {projectFormedUnitCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
+import {bladeId} from './rule-contract-schema.mjs';
+const {book}=buildECRosterAttachmentBook(),before=structuredClone(book),payload=buildApp();
+const cards=new Map(payload.cards.map(c=>[c.id,c]));
+const fixtures=JSON.parse(fs.readFileSync(new URL('./roster-import-fixtures.json',import.meta.url))).fixtures;
+const text=id=>fixtures.find(f=>f.id===id).text,make=()=>createECBrowserRoster(book);
+let checks=0,negative=0;
+const check=fn=>{fn();checks++;};
+check(()=>{
+  const s=make(),r=s.import(text('character-bodyguard'));assert.equal(r.status,'READY');s.attach('parsed-unit-1','parsed-unit-2');
+  const formed=projectFormedUnitCards(cards,s,'parsed-unit-1');assert.equal(formed.components.length,2);
+  const profile=formed.components.find(c=>c.unit.instanceId==='parsed-unit-1').variants.get('datasheet-lord-exultant:profile:1')[0];
+  assert.equal(profile.fields.find(f=>f.source.path==='/stats/M').value,'8"','Effective values overlay canonical stat addresses');
+  const saved=s.snapshot(),projection=s.projection;s.load(saved);assert.deepEqual(s.projection,projection);
+  const guide=projectPersonalBook(payload,s.state);assert.ok(guide.allowedIds.has('detachment-court-of-the-phoenician:enhancement:2'));
+  const related=s.related('parsed-unit-1');assert.ok(related.some(r=>r.kind==='STRATAGEM'&&r.applicability==='CONDITIONAL'));
+  assert.ok(!related.some(r=>r.kind==='STRATAGEM'&&r.applicability==='MATCH'),'No inferred battle applicability');
+  assert.throws(()=>s.reattach('parsed-unit-1','parsed-unit-1'));assert.deepEqual(s.snapshot(),saved);negative++;
+  assert.equal(s.projection.units[0].profiles[0].abilities.some(a=>a.canonicalId==='core-scouts'),false);
+});
+check(()=>{
+  const s=make();assert.equal(s.import(text('legions-physical-equipment')).status,'READY');
+  const view=s.effective('parsed-unit-1');assert.equal(view.profiles[0].fields.find(f=>f.label==='stats').value.SV,'3+');
+  assert.equal(view.profiles[0].fields.find(f=>f.label==='stats').value.INSV,'4+');
+  const variants=projectFormedUnitCards(cards,s,'parsed-unit-1').components[0].variants;
+  assert.equal(variants.get('datasheet-keeper-of-secrets:profile:1')[0].fields.find(f=>f.source.path==='/stats/SV').value,'3+');
+  assert.equal(s.projection.units[1].metrics.chargeRoll.modifier,1);assert.equal(s.projection.units[1].profiles[0].profile.stats.M,'9"');
+  assert.deepEqual(s.projection.units[1].intrinsicKeywords.filter(k=>k==='LEGIONS OF EXCESS'),['LEGIONS OF EXCESS']);
+});
+check(()=>{
+  const s=make(),missing=s.import(text('possessed-blade-missing-decision'));
+  assert.equal(missing.status,'NEEDS_BINDINGS');assert.equal(s.state,null);
+  const need=missing.needsBindings.find(n=>n.key==='ec-weapon-choice/parsed-unit-1');assert.equal(need.kind,'PROFILE');
+  assert.ok(need.candidateIds.includes(bladeId+'::choice::datasheet-lord-exultant:weapon:7'));
+  assert.ok(!need.candidateIds.includes(bladeId+'::choice::datasheet-lord-exultant:weapon:8'),'Unequipped weapon is not a UI candidate');
+  const selected=s.import(text('possessed-blade-missing-decision'),{profiles:{[need.key]:bladeId+'::choice::datasheet-lord-exultant:weapon:7'}});
+  assert.equal(selected.status,'READY');assert.deepEqual(s.state.units[0].selectedUpgradeIds,[bladeId+'::choice::datasheet-lord-exultant:weapon:7']);
+  const before=s.snapshot();assert.equal(s.import(text('possessed-blade-missing-decision'),{profiles:{[need.key]:'foreign'}}).status,'INVALID');
+  assert.deepEqual(s.snapshot(),before);negative++;
+});
+check(()=>{
+  const raw="+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n5x Infractors (95 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 1x Infractor: Bolt pistol, Duelling sabre\n• 3x Infractor: Bolt pistol, Duelling sabre\nEnhancement: Possessed Blade";
+  const s=make(),result=s.import(raw),owner=result.needsBindings.find(n=>n.kind==='ENHANCEMENT_BEARER');
+  assert.equal(result.status,'NEEDS_BINDINGS');assert.ok(owner.candidates.length===2);
+  const chosen=owner.candidates.find(c=>c.id.includes('model-row/2/'));
+  const r=s.import(raw,{enhancementBearers:{[owner.key]:chosen.id},profiles:{'ec-weapon-choice/parsed-unit-1':bladeId+'::choice::datasheet-infractors:weapon:4'}});
+  assert.equal(r.status,'READY');assert.equal(s.state.units[0].enhancementAssignments[0].modelScopeId,chosen.id);
+});
+assert.deepEqual(book,before,'UI adapter changed its owner');
+const loaded=await createBrowserRoster({fetch:async()=>({ok:true,json:async()=>structuredClone(book)})});
+assert.equal(loaded.import(text('character-bodyguard')).status,'READY');
+console.log(JSON.stringify({status:'PASS',checks,negative,sharedRenderer:true,battleSimulation:false,armyLegality:'NOT_ASSESSED'}));
