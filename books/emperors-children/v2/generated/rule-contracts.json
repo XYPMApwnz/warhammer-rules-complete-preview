@@ -14,7 +14,7 @@
     "remainingLegacyContracts": "NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD"
   },
   "sourceFingerprint": "B9D7A1C2D7DF7A5B8E27C6F9307C0B230E9A8DFB75338B7A457CFA0B415D2F7C",
-  "declarationFingerprint": "58194693F1984FC535B50DA8D153670A6CF8E805673BA764B6FEDA5A4C6723C0",
+  "declarationFingerprint": "E913D0778D3A0E79542E7BE3AF8C52FEC3466AA23EA5CA433378BDB615279E39",
   "permissionDeclarationFingerprint": "15606F87E278ADAE304540C6E9BC30A3D2E5C52FA0E29668E42CFD797FC226FF",
   "formationBindingFingerprint": "FF55AEF6168F9EEEBC32DE67DC5C4500102541E5A7BAFE38A10F50A84A30FAFA",
   "finalBindingFingerprint": "C98CCEE572AA66849390F92BC35E0DA9450AD987D2CBC523CB93E6DF7594D939",
@@ -12700,20 +12700,82 @@
         "datasheet-sorcerer:section:3"
       ],
       "mfmReferenceId": "mfm-leader-eligibility-fa18ef72513dc34f"
-    },
+    }
+  ],
+  "attachmentAdjudications": [
     {
-      "sourceId": "unit-lord-exultant",
-      "targetId": "unit-flawless-blades",
-      "role": "LEADER",
-      "additionalLeaders": 0,
-      "sourceIds": [
-        "detachment-court-of-the-phoenician:enhancement:2"
-      ],
-      "mfmReferenceId": "mfm-qualifier-2c135ed536a65870",
-      "availability": [
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:2",
+      "classification": "D_UNDERDETERMINED",
+      "status": "UNRESOLVED",
+      "proposedSourceId": "unit-lord-exultant",
+      "proposedTargetId": "unit-flawless-blades",
+      "applied": false,
+      "decision": "LEADER: FLAWLESS BLADES does not establish whether the tag grants attachment or restricts eligibility. No extra relation is enrolled. The explicit MODEL Move +1 rule is unchanged; army legality is not assessed.",
+      "qualifier": {
+        "mfmReferenceId": "mfm-qualifier-2c135ed536a65870",
+        "label": "LEADER: FLAWLESS BLADES",
+        "provenance": {
+          "observedAt": "2026-10-14",
+          "verifiedAt": "2026-10-14",
+          "effectiveDate": null,
+          "sourceId": "emperors-children-mfm-v1.6",
+          "sourceVersion": "v1.6",
+          "currentness": "CURRENT",
+          "currentnessCutoff": "2026-10-14",
+          "sourceCaptureSha256": "D670D0A996B7E9BDCBD7640C799E5B4FA9C6B07062C843CA45A6C15A076675DD",
+          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+          "sourceLocator": {
+            "partition": "detachments.enhancements.qualifiers",
+            "factionId": "emperors-children",
+            "detachmentSourceTitle": "COURT OF THE PHOENICIAN",
+            "sourceTitle": "Exalted Patron",
+            "kind": "LEADER",
+            "values": [
+              "FLAWLESS BLADES"
+            ]
+          }
+        }
+      },
+      "evidence": [
         {
-          "detachmentId": "detachment-court-of-the-phoenician",
-          "enhancementId": "detachment-court-of-the-phoenician:enhancement:2"
+          "entityId": "detachment-court-of-the-phoenician:enhancement:2",
+          "field": [
+            "text"
+          ],
+          "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer.",
+          "provenance": {
+            "sourceId": "ec-waha-11e-2026-09-28",
+            "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+            "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+            "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+            "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+            "pointer": "/detachments/4/enhancements/1",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        },
+        {
+          "entityId": "datasheet-lord-exultant:section:3",
+          "provenance": {
+            "sourceId": "ec-waha-11e-2026-09-28",
+            "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/Lord-Exultant.html",
+            "sha256": "409015D879DDF536CF0C08EE8CCAE95B361F1D9BDE31BDFF27FFB68C80328F06",
+            "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+            "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+            "pointer": "/datasheets/9/sections/2",
+            "authority": "ACCEPTED_SECONDARY"
+          }
+        },
+        {
+          "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+          "page": 5,
+          "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+          "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+        },
+        {
+          "document": "mfm/sources/v1.6/emperors-children.html",
+          "line": 269,
+          "sha256": "C00C12EAF3A065958DCF1298B21B46E26BC6DF0868A1F084919712BD98DD2EBD",
+          "quote": "LEADER: FLAWLESS BLADES"
         }
       ]
     }

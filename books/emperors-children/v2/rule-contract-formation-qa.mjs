@@ -173,10 +173,15 @@ check(()=>{
 check(()=>{
   let input=confirm(hostState()),r=change(evaluate(input),'ATTACH','l','a');
   assert.equal(hasModel(r,'l','core-scouts'),false,'Later attachment cannot retroactively qualify');
-  input=hostState();input.units[0].enhancementIds=['detachment-court-of-the-phoenician:enhancement:2'];
-  r=change(evaluate(input),'ATTACH','l','f');r=evaluate(confirm(structuredClone(r.state)));
-  assert.equal(hasModel(r,'l','core-scouts'),false,'Actual legal non-BATTLELINE bodyguard');
-  r=change(r,'REATTACH','l','a');assert.equal(hasModel(r,'l','core-scouts'),false,'Original non-BATTLELINE cannot be changed after timing');
+  // No accepted Exultant -> non-BATTLELINE edge exists. An invented initial
+  // relation must fail validation rather than supply timing evidence.
+  input=confirm(hostState());input.initialAttachments=[{leaderInstanceId:'l',bodyguardInstanceId:'f',role:'LEADER'}];
+  assert.throws(()=>evaluate(input),/No canonical attachment relation/);
+  // Isolated keyword mutation tests the condition without adding a new edge.
+  const nonBattleline=structuredClone(book);nonBattleline.entities.find(e=>e.id==='unit-infractors').data.keywords=
+    nonBattleline.entities.find(e=>e.id==='unit-infractors').data.keywords.filter(k=>k!=='BATTLELINE');
+  input=hostState();input.attachments=[{leaderInstanceId:'l',bodyguardInstanceId:'a',role:'LEADER'}];
+  r=evaluate(confirm(input),nonBattleline);assert.equal(hasModel(r,'l','core-scouts'),false,'Non-BATTLELINE recipient does not qualify');
 });
 check(()=>{
   let r=change(evaluate(hostState()),'ATTACH','l','a'),input=structuredClone(r.state);

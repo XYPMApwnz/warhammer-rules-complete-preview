@@ -98,7 +98,7 @@ const selections=(ids,quantity)=>ids.map(id=>({selectionKey:id,physicalQuantity:
   canonicalProfileIds:[id],canonicalEquipmentIds:[]}));
 const loadouts={
   'lord-exultant':[1,6], 'lord-kakophonist':[1,3],infractors:[1,4],tormentors:[2,8],
-  'noise-marines':[4,5],'flawless-blades':[1,2],'daemon-prince-of-slaanesh':[1,2,3],
+  'noise-marines':[4,5],'flawless-blades':[1,2],'lucius-the-eternal':[1],'daemon-prince-of-slaanesh':[1,2,3],
   'daemon-prince-of-slaanesh-with-wings':[1,2,3],sorcerer:[3,4],daemonettes:[1]
 };
 function unit(instanceId,name,quantity=1,enhancementIds=[]) {
@@ -143,17 +143,15 @@ check(()=>{
     unit('l2','lord-exultant'),unit('f','flawless-blades',3),unit('f2','flawless-blades',3)]));
   assert.deepEqual(statValue(s,'l','M'),['8"']);assert.deepEqual(statValue(s,'l2','M'),['7"']);
   assert.ok(!s.candidates('l2').some(c=>c.instanceId==='f'));
-  s.attach('l','f');assert.deepEqual(statValue(s,'f','M'),['8"']);
-  s.detach('l');assert.deepEqual(statValue(s,'l','M'),['8"']);s.reattach('l','f2');
+  const before=s.snapshot();assert.throws(()=>s.attach('l','f'),/No canonical attachment relation/);
+  assert.deepEqual(s.snapshot(),before,'Unresolved relation must not alter the roster');
   noEffect(s,'f',exalted);noEffect(s,'f2',exalted);
-  const backup=s.snapshot();backup.units.find(u=>u.instanceId==='l').enhancementIds=[];
-  assert.throws(()=>s.load(backup),/prerequisite/,'Cannot retain Enhancement-only attachment after unassignment');
-  s.detach('l');const unassigned=s.snapshot();unassigned.units.find(u=>u.instanceId==='l').enhancementIds=[];s.load(unassigned);
-  assert.deepEqual(statValue(s,'l','M'),['7"']);assert.throws(()=>s.attach('l','f'),/prerequisite/);
+  const unassigned=s.snapshot();unassigned.units.find(u=>u.instanceId==='l').enhancementIds=[];s.load(unassigned);
+  assert.deepEqual(statValue(s,'l','M'),['7"']);assert.throws(()=>s.attach('l','f'),/No canonical attachment relation/);
 });
 check(()=>{
   const s=service(),rule=expected[2][0];s.load(state(['spectacle-of-slaughter','court-of-the-phoenician'],[
-    unit('l','lord-exultant',1,[exalted]),unit('f','flawless-blades',3),unit('f2','flawless-blades',3),unit('x','infractors',10)]));
+    unit('l','lucius-the-eternal'),unit('f','flawless-blades',3),unit('f2','flawless-blades',3),unit('x','infractors',10)]));
   for(const id of ['f','f2'])assert.equal(physical(s,id).abilities[0].canonicalId,'core-fights-first');
   noEffect(s,'l',rule);noEffect(s,'x',rule);
   s.attach('l','f');assert.equal(physical(s,'l').abilities[0].canonicalId,'core-fights-first');
@@ -254,9 +252,10 @@ poison(facts,x=>x.entities.find(e=>e.id===exalted).parentId='detachment-peerless
 poison(facts,x=>x.entities.find(e=>e.id==='datasheet-lord-exultant:profile:1').data.stats.T='4',x=>{
   assert.deepEqual(buildECContracts({facts:x}).artifact,built.artifact,'Stale factual dependency must invalidate the saved overlay');
 });
-poison(book,x=>delete x.rosterAttachmentPolicies.find(p=>p.mfmReferenceId==='mfm-qualifier-2c135ed536a65870').availability,x=>{
-  const s=createRosterRuntime(x,schema);s.load(state(['court-of-the-phoenician'],[unit('l','lord-exultant'),unit('f','flawless-blades',3)]));
-  assert.equal(s.candidates('l').length,0,'Lost Enhancement prerequisite');
+poison(book,x=>x.rosterAttachmentPolicies.push({sourceId:'unit-lord-exultant',targetId:'unit-flawless-blades',role:'LEADER',additionalLeaders:0,
+  sourceIds:[exalted]}),x=>{
+  const s=createRosterRuntime(x,schema);s.load(state(['court-of-the-phoenician'],[unit('l','lord-exultant',1,[exalted]),unit('f','flawless-blades',3)]));
+  assert.equal(s.candidates('l').length,0,'Unresolved qualifier cannot manufacture an attachment relation');
 });
 check(()=>{
   assert.equal(book.ruleContractsStarted,true);assert.equal(book.rosterRuntimeStarted,false,'No EC service wiring');

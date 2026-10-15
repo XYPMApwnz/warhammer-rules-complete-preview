@@ -12,6 +12,7 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
 import {declarations} from './rule-contract-declarations.mjs';
+import {buildECAttachmentBindings} from './roster-attachment-bindings.mjs';
 import {permissionDeclarations,permissionStateFields} from './rule-contract-permission-declarations.mjs';
 import {formationBindings,formationStateFields,bindFormationContracts} from './rule-contract-formation-bindings.mjs';
 import {finalBindings,finalStateFields,bindFinalContracts} from './rule-contract-final-bindings.mjs';
@@ -45,9 +46,9 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   book.rosterAbilityReferences={'core-fights-first':{id:fightsFirst.id,title:fightsFirst.title,parameters:{},
     provenance:clone(fightsFirst.provenance)}};
   book.rosterReferenceSemantics={};
-  book.rosterAttachmentPolicies=mfm.leaderEligibilityBindings.flatMap(binding=>binding.targetUnitIds.map(targetId=>({
-    sourceId:binding.sourceUnitId,targetId,role:'LEADER',additionalLeaders:0,sourceIds:[binding.sourceEntityId],
-    mfmReferenceId:binding.mfmRecordId})));
+  const attachments=buildECAttachmentBindings(book,mfm);
+  book.rosterAttachmentPolicies=attachments.policies;
+  book.rosterAttachmentAdjudications=attachments.adjudications;
   const contracts=[];
   for(const input of inputs) {
     const entity=index.get(input.ruleId);
@@ -95,19 +96,10 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
       assert.deepEqual(qualifiers.map(binding=>binding.mfmRecordId),record.qualifierIds,'Unconsumed MFM qualifiers');
       declaration.mfmReferences={enhancementId:record.id,detachmentId:record.detachmentId,qualifierIds:clone(record.qualifierIds),
         provenance:clone(record.provenance)};
-      if(input.leaderPermission) {
-        const permission=input.leaderPermission,qualifier=resolveOwnedFact(permission.qualifierId);
-        assert.deepEqual(record.qualifierIds,[permission.qualifierId]);
-        assert.equal(qualifier.ownerId,record.id);assert.equal(qualifier.kind,permission.kind);
-        assert.deepEqual(qualifier.values,permission.values,'MFM Leader eligibility changed');
-        assert.ok(index.get(permission.targetUnitId)?.data.keywords.includes(permission.values[0]));
-        assert.ok(index.get(permission.sourceUnitId)?.data.profileIds.some(id=>schema.evaluatePredicate(selector,
-          {subject:'MODEL',modelId:id,keywords:new Set([...index.get(permission.sourceUnitId).data.keywords,
-            ...index.get(permission.sourceUnitId).data.factionKeywords]),roster:{},battle:{}})==='TRUE'));
-        book.rosterAttachmentPolicies.push({sourceId:permission.sourceUnitId,targetId:permission.targetUnitId,
-          role:'LEADER',additionalLeaders:0,sourceIds:[entity.id],mfmReferenceId:qualifier.id,
-          availability:[{detachmentId:entity.parentId,enhancementId:entity.id}]});
-      } else assert.equal(qualifiers.length,0,'Missing qualifier lowering');
+      // Preserve the unresolved central qualifier as evidence, not permission
+      // or an invented eligibility predicate. Explicit effects stay unchanged.
+      for(const qualifier of qualifiers)assert.ok(attachments.adjudications.some(a=>
+        a.ruleId===entity.id&&a.qualifier.mfmReferenceId===qualifier.mfmRecordId&&!a.applied),'Unreviewed MFM qualifier');
     }
     if(input.battleQuote)declaration.clauses.push({id:'character-attack',roles:[clone(owner)],
       conditions:[predicate('FIELD','MODEL',{key:'meleeAttackTargetsCharacter',equals:true},input.battleQuote,'BATTLE')],
@@ -205,7 +197,8 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
       equipmentRestrictions:book.rosterEquipmentRestrictions,
       selectionOptions:book.rosterSelectionOptions||[],
       contextBindings:book.rosterContextBindings||{},
-      contracts,abilityReferences:book.rosterAbilityReferences,attachmentPolicies:book.rosterAttachmentPolicies}};
+      contracts,abilityReferences:book.rosterAbilityReferences,attachmentPolicies:book.rosterAttachmentPolicies,
+      attachmentAdjudications:book.rosterAttachmentAdjudications}};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href) {
