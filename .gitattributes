@@ -10,3 +10,7 @@
 books/*/sources/official-mfm-v1.4*.html -diff
 books/shared/sources/mfm-v1.4/*.html -diff
 mfm/sources/v1.6/*.html -diff
+
+# Byte-pinned enrollment artifacts: preserve reviewed CRLF bytes without Git conversion.
+books/chaos-space-marines/v2/sources/enrollment.json -text -eol whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+books/emperors-children/v2/sources/enrollment.json -text -eol whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
