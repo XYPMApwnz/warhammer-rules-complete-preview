@@ -24,10 +24,15 @@ const expected=[
  ['detachment-talons-of-the-norn-queen:enhancement:2','SOURCE_UNIT_MODELS','MODEL',[['MODIFY_STAT','INSV','SET',4]]]
 ];
 let checks=0,negative=0,mutations=0;
+// The original twelve effects remain a separately checked regression inventory.
+// The seven new source clauses are independently reconciled by seven-effects-qa.
+const additionalOwners=['datasheet-tyrant-guard:section:1','detachment-warrior-bioform-onslaught:enhancement:1',
+ 'detachment-synaptic-nexus:enhancement:1','detachment-vanguard-onslaught:enhancement:2',
+ 'detachment-ambush-predators:rule','detachment-warrior-bioform-onslaught:rule'];
 const check=fn=>{fn();checks++;};
 const signature=e=>[e.operation,e.field??null,e.mode??null,e.value??null,e.ability??null,e.keyword??null,e.weaponMode??null];
 function inventory(b){
- const actual=b.entities.filter(e=>e.ruleContract);assert.deepEqual(actual.map(e=>e.id).sort(),expected.map(e=>e[0]).sort());
+ const actual=b.entities.filter(e=>e.ruleContract);assert.deepEqual(actual.map(e=>e.id).sort(),[...expected.map(e=>e[0]),...additionalOwners].sort());
  for(const [id,binding,subject,operations]of expected){const entity=actual.find(e=>e.id===id),effects=entity.ruleContract.clauses[0].rosterEffects;
   assert.deepEqual(effects.filter(e=>!e.id.endsWith('/formed')).map(signature),operations.map(row=>Array.from({length:7},(_,i)=>row[i]??null)),id);
   assert.ok(effects.every(e=>e.targetSubject===subject));assert.ok(effects.filter(e=>!e.id.endsWith('/formed')).every(e=>e.targetBinding===binding));
@@ -68,7 +73,7 @@ const hasAbility=(w,name)=>w.data.abilities.some(a=>a.toUpperCase()===name.toUpp
 const noRule=(id)=>{const b=clone(book);delete b.entities.find(e=>e.id===id).ruleContract;return b;};
 const stats=p=>({...p.profile,...p.profile.stats});
 const add=(before,value)=>String(Number.parseFloat(before)+value)+(String(before).endsWith('"')?'"':String(before).endsWith('+')?'+':'');
-check(()=>{inventory(book);assert.equal(contracts.length,12);assert.equal(book.rosterAttachmentPolicies.length,15);assert.equal(book.mfmImportReferences.sourceVersion,'v1.6');});
+check(()=>{inventory(book);assert.equal(contracts.length,18);assert.equal(book.rosterAttachmentPolicies.length,15);assert.equal(book.mfmImportReferences.sourceVersion,'v1.6');});
 
 // Leading-only effects: exact formed members, physical duplicates, detach and removal.
 for(const [leader,bodyguard,rule,ability]of [
@@ -168,7 +173,14 @@ for(const [id,owner,bodyguard]of enhancementCases)check(()=>{
 for(const [leader,bodyguard]of [['unit-old-one-eye','unit-carnifexes'],['unit-neurotyrant','unit-zoanthropes'],['unit-neurotyrant','unit-neurogaunts'],['unit-hive-tyrant','unit-tyrant-guard']])check(()=>{
  const state=importState([leader,bodyguard,leader,bodyguard]),r=runtime(state),base=r.projection;
  r.attach('parsed-unit-1','parsed-unit-2');const attached=r.projection;
- for(const n of [1,2]){assert.deepEqual(unit(attached,n).profiles,unit(base,n).profiles);assert.deepEqual(weapons(unit(attached,n)),weapons(unit(base,n)));assert.deepEqual(unit(attached,n).applied,[]);}
+ for(const n of [1,2]){
+  if(leader==='unit-hive-tyrant'&&n===1){
+   assert.deepEqual(unit(attached,n).profiles.map(p=>p.abilities),[[{name:'Feel No Pain',value:5}]]);
+   assert.deepEqual(unit(attached,n).profiles.map(({abilities,...profile})=>profile),unit(base,n).profiles.map(({abilities,...profile})=>profile));
+   assert.ok(unit(attached,n).applied.length&&unit(attached,n).applied.every(row=>row.ruleId==='datasheet-tyrant-guard:section:1'));
+  }else{assert.deepEqual(unit(attached,n).profiles,unit(base,n).profiles);assert.deepEqual(unit(attached,n).applied,[]);}
+  assert.deepEqual(weapons(unit(attached,n)),weapons(unit(base,n)));
+ }
  if(leader==='unit-old-one-eye'){assert.deepEqual(unit(attached,1).profiles[0].abilities,[{name:'Feel No Pain',value:5}]);assert.ok(unit(attached,2).profiles.every(p=>!p.abilities.some(a=>a.name==='Feel No Pain')));}
  r.detach('parsed-unit-1');assert.deepEqual(r.projection,base);r.reattach('parsed-unit-1','parsed-unit-2');assert.deepEqual(r.projection,attached);
 });
@@ -216,5 +228,5 @@ for(const fact of facts.entities){const derived=book.entities.find(e=>e.id===fac
  assert.deepEqual(derived.data,fact.data,'Contract lowering changed factual content');
  assert.deepEqual(derived.provenance,fact.provenance);assert.equal(derived.parentId,fact.parentId);
 }
-console.log(JSON.stringify({status:'PASS',executableContracts:12,unitUpgrades:4,leaderRelations:15,checks,negative,mutations,
+console.log(JSON.stringify({status:'PASS',previousContracts:12,executableContracts:18,unitUpgrades:4,leaderRelations:15,checks,negative,mutations,
  REAL_NEW_RECRUIT_EXPORT_TESTED:'NO',browserTested:false,sharedChanges:false,battleSimulation:false}));

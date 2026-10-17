@@ -13,7 +13,7 @@ const cards=new Map(payload.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical card');
 for(const [kind,count]of [['DATASHEET',52],['DETACHMENT',10],['DETACHMENT_RULE',11],['ARMY_RULE',2],['ENHANCEMENT',34],['STRATAGEM',51],['WEAPON_PROFILE',133]])
   assert.equal(payload.cards.filter(card=>card.kind===kind).length,count,kind+' inventory');
-assert.equal(payload.ruleContractIds.length,12);assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.ruleContractIds.length,18);assert.equal(payload.book.mfmVersion,'v1.6');
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();
@@ -67,7 +67,10 @@ assert.deepEqual(payload.bookPresentation.records['detachment-vanguard-onslaught
   ['detachment-vanguard-onslaught:rule','detachment-vanguard-onslaught:rule:vanguard-prime']);
 const elevated='detachment-warrior-bioform-onslaught:enhancement:1';
 assert.equal(cards.get(elevated).fields.find(f=>f.source.path==='/text').value,index.get(elevated).data.text);
-assert.ok(!payload.ruleContractIds.includes(elevated),'Unimplemented rule claimed as executable');
+assert.ok(payload.ruleContractIds.includes(elevated),'Missing reviewed Elevated Might AP contract');
+const elevatedContract=built.contracts.find(contract=>contract.ruleId===elevated);
+assert.ok(elevatedContract.clauses.some(clause=>clause.rosterEffects.some(effect=>effect.operation==='MODIFY_STAT'&&effect.field==='ap'&&effect.value===-1&&effect.weaponMode==='melee')));
+assert.ok(elevatedContract.clauses.some(clause=>clause.rosterClassification==='BATTLE_ONLY'&&clause.rosterEffects.length===0&&clause.sourceText.includes('re-roll wound rolls')),'Wound reroll remains declarative');
 assert.ok(!cards.get('unit-harpy').children.some(id=>cards.get(id)?.fields.some(f=>f.source.path==='/label'&&f.value==='Hover')));
 for(const id of ['faq-biovores-seed-spore-mines-hidden-v1.3','tyranids-source-conflict-foul-spores','datasheet-norn-assimilator:weapon:1:ability:harpooned']){
  const card=cards.get(id);assert.equal(card.kind,'DATASHEET_SECTION');
@@ -87,5 +90,5 @@ assert.throws(()=>assertPresentationParity(missing),/Missing source block/);muta
 const duplicate=buildTyranidsContracts();duplicate.book.entities.push(structuredClone(duplicate.book.entities[0]));assert.throws(()=>buildApp(duplicate),/Duplicate canonical entity/);mutations++;
 const foreign=structuredClone(payload);foreign.cards.find(card=>card.id===elevated).parentId='detachment-invasion-fleet';
 assert.throws(()=>assertPresentationParity(foreign),/Changed canonical owner/);mutations++;
-console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:12,
+console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:18,
   compositionMembers:57,mutations,canonicalFactsUnchanged:true,registrationId:registration.id}));

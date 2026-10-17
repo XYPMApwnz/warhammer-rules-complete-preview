@@ -1,0 +1,44 @@
+{
+  "schema": "source-effect-expectations/v1",
+  "authority": "Accepted raw Tyranids 11E, reviewed independently of executable declarations; official v1.3 precedence retained by the factual owner.",
+  "cases": [
+    {
+      "id": "tyr-guardian", "auditRowId": "tyranids:201", "bookId": "tyranids", "fixture": "guardian",
+      "source": {"canonicalId": "datasheet-tyrant-guard:section:1", "ownerId": "unit-tyrant-guard", "field": ["blocks",0,"text"], "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability.", "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html", "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E"},
+      "expectedOperations": [{"operation":"GRANT_MODEL_ABILITY","targetBinding":"LEADERS_OF_SOURCE","targetSubject":"MODEL","ability":{"name":"Feel No Pain","value":5}}],
+      "recipientUnitIds": ["unit-hive-tyrant","unit-the-swarmlord","unit-neurotyrant"], "abilityId": "core-feel-no-pain", "value": 5
+    },
+    {
+      "id": "tyr-elevated", "auditRowId": "tyranids:259", "bookId": "tyranids", "fixture": "elevated",
+      "source": {"canonicalId": "detachment-warrior-bioform-onslaught:enhancement:1", "ownerId": "detachment-warrior-bioform-onslaught", "field": ["text"], "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP.", "rawClauses": ["WINGED TYRANID PRIME / TYRANID PRIME WITH LASH WHIP model only.","This model’s melee attacks :","Can re-roll wound rolls .","Have +1 AP ."], "document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations": [{"operation":"MODIFY_STAT","targetBinding":"SOURCE_MODEL","targetSubject":"MODEL","field":"ap","mode":"ADD","value":-1,"weaponMode":"melee"}],
+      "ownerProfileIds": ["datasheet-winged-tyranid-prime:profile:1","datasheet-tyranid-prime-with-lash-whip:profile:1"], "declarativeClause": "Can re-roll wound rolls.", "apDelta": -1
+    },
+    {
+      "id":"tyr-power","auditRowId":"tyranids:235","bookId":"tyranids","fixture":"power",
+      "source":{"canonicalId":"detachment-synaptic-nexus:enhancement:1","ownerId":"detachment-synaptic-nexus","field":["text"],"quote":"TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.","document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations":[{"operation":"MODIFY_STAT","targetBinding":"SOURCE_MODEL","targetSubject":"MODEL","field":"strength","mode":"ADD","value":1},{"operation":"MODIFY_STAT","targetBinding":"SOURCE_MODEL","targetSubject":"MODEL","field":"ap","mode":"ADD","value":-1}],
+      "psychicProfileId":"datasheet-neurotyrant:weapon:1","nonPsychicProfileId":"datasheet-neurotyrant:weapon:2","strengthDelta":1,"apDelta":-1
+    },
+    {
+      "id":"tyr-chameleonic","auditRowId":"tyranids:248","bookId":"tyranids","fixture":"chameleonic",
+      "source":{"canonicalId":"detachment-vanguard-onslaught:enhancement:2","ownerId":"detachment-vanguard-onslaught","field":["text"],"quote":"VANGUARD INVADER model only. This unit has Stealth.","document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations":[{"operation":"GRANT_ABILITY","targetBinding":"SOURCE_UNIT","targetSubject":"UNIT","unitScope":"FORMED","ability":{"canonicalId":"core-stealth","parameters":{}}}],"abilityId":"core-stealth"
+    },
+    {
+      "id":"tyr-mindhunger","auditRowId":"tyranids:271","bookId":"tyranids","fixture":"mindhunger",
+      "source":{"canonicalId":"detachment-ambush-predators:rule","ownerId":"detachment-ambush-predators","field":["text"],"quote":"- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1.","rawClauses":["Friendly DEATHLEAPER / LICTOR / NEUROLICTOR units have Deep Strike .","Friendly LICTOR / NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."],"document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations":[{"operation":"GRANT_ABILITY","targetBinding":"ROSTER_UNITS","targetSubject":"UNIT","unitScope":"PHYSICAL","ability":{"canonicalId":"core-deep-strike","parameters":{}}}],"abilityId":"core-deep-strike","recipientUnitIds":["unit-deathleaper","unit-lictor","unit-neurolictor"]
+    },
+    {
+      "id":"tyr-leader-keywords","auditRowId":"tyranids:273","bookId":"tyranids","fixture":"leaderBeasts",
+      "source":{"canonicalId":"detachment-warrior-bioform-onslaught:rule","ownerId":"detachment-warrior-bioform-onslaught","field":["text"],"quote":"- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv.","rawClauses":["Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS / TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:","TYRANID WARRIORS .","BATTLELINE .","TYRANID WARRIORS / TYRANID PRIME WITH LASH WHIP / WINGED TYRANID PRIME models from your army have 5+ InSv ."],"document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations":[{"operation":"GRANT_UNIT_KEYWORD","targetBinding":"ROSTER_UNITS","targetSubject":"UNIT","unitScope":"PHYSICAL","keyword":"TYRANID WARRIORS"},{"operation":"GRANT_UNIT_KEYWORD","targetBinding":"ROSTER_UNITS","targetSubject":"UNIT","unitScope":"PHYSICAL","keyword":"BATTLELINE"}],"recipientUnitIds":["unit-tyranid-warriors-with-ranged-bio-weapons","unit-tyranid-warriors-with-melee-bio-weapons"],"keywords":["TYRANID WARRIORS","BATTLELINE"]
+    },
+    {
+      "id":"tyr-leader-invulnerable","auditRowId":"tyranids:275","bookId":"tyranids","fixture":"leaderBeasts",
+      "source":{"canonicalId":"detachment-warrior-bioform-onslaught:rule","ownerId":"detachment-warrior-bioform-onslaught","field":["text"],"quote":"- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv.","rawClauses":["TYRANID WARRIORS / TYRANID PRIME WITH LASH WHIP / WINGED TYRANID PRIME models from your army have 5+ InSv ."],"document":"books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html","sha256":"1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD"},
+      "expectedOperations":[{"operation":"MODIFY_STAT","targetBinding":"ROSTER_MODELS","targetSubject":"MODEL","field":"INSV","mode":"SET","value":5,"containingUnitScope":"PHYSICAL"}],"recipientProfileIds":["datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1","datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1","datasheet-tyranid-prime-with-lash-whip:profile:1","datasheet-winged-tyranid-prime:profile:1"],"value":"5+"
+    }
+  ]
+}

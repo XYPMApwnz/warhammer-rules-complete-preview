@@ -91,6 +91,8 @@
     "qa:shared:v2:source-effects": "node v2/source-effect-regression-qa.mjs",
     "qa:am:v2:native-fnp": "node books/adeptus-mechanicus/v2/native-fnp-qa.mjs",
     "qa:am:v2:native-fnp:browser": "node v2/admech-fnp-browser-qa.mjs",
+    "qa:tyr:v2:seven-effects": "node books/tyranids/v2/seven-effects-qa.mjs",
+    "qa:tyr:v2:seven-effects:browser": "node v2/tyranids-seven-effects-browser-qa.mjs",
     "qa:shared:v2:binders": "node books/shared/rule-contract-v2/bindings-qa.mjs",
     "qa:shared:v2:compatibility": "node books/shared/rule-contract-v2/compatibility-qa.mjs && node books/shared/roster-v2/required-recipients-qa.mjs && node books/shared/roster-v2/dependent-roles-qa.mjs",
     "qa:dg:v2:glossary": "node books/death-guard/v2/glossary-build.mjs --check && node books/death-guard/v2/app-build.mjs --check && node books/death-guard/v2/glossary-qa.mjs",

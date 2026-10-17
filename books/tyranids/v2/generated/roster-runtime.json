@@ -1642,7 +1642,338 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "detachment-synaptic-nexus"
+      "parentId": "detachment-synaptic-nexus",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "detachment-synaptic-nexus:enhancement:1",
+        "ownerId": "detachment-synaptic-nexus",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "ENHANCEMENT",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "MODEL",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                  }
+                },
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PSYKER"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "MODEL",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "SOURCE_MODEL",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TYRANIDS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "PSYKER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "MODEL",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+            },
+            "sourceText": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-synaptic-nexus:enhancement:1::roster-known/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponIds": [
+                  "datasheet-maleceptor:weapon:1",
+                  "datasheet-neurotyrant:weapon:1",
+                  "datasheet-norn-emissary:weapon:1",
+                  "datasheet-norn-emissary:weapon:2",
+                  "datasheet-norn-emissary:weapon:3",
+                  "datasheet-the-swarmlord:weapon:1",
+                  "datasheet-zoanthropes:weapon:1",
+                  "datasheet-zoanthropes:weapon:2"
+                ],
+                "targetSubject": "MODEL",
+                "targetBinding": "SOURCE_MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-synaptic-nexus:enhancement:1",
+                  "canonicalOwnerId": "detachment-synaptic-nexus",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
+                    "pointer": "/detachments/2/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              },
+              {
+                "id": "detachment-synaptic-nexus:enhancement:1::roster-known/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponIds": [
+                  "datasheet-maleceptor:weapon:1",
+                  "datasheet-neurotyrant:weapon:1",
+                  "datasheet-norn-emissary:weapon:1",
+                  "datasheet-norn-emissary:weapon:2",
+                  "datasheet-norn-emissary:weapon:3",
+                  "datasheet-the-swarmlord:weapon:1",
+                  "datasheet-zoanthropes:weapon:1",
+                  "datasheet-zoanthropes:weapon:2"
+                ],
+                "targetSubject": "MODEL",
+                "targetBinding": "SOURCE_MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-synaptic-nexus:enhancement:1",
+                  "canonicalOwnerId": "detachment-synaptic-nexus",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
+                    "pointer": "/detachments/2/enhancements/0",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "detachmentId": "detachment-synaptic-nexus",
+        "assignment": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "PSYKER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1."
+                }
+              }
+            ]
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+        },
+        "mfmReferences": {
+          "enhancementId": "mfm-enhancement-22a08f8fd174d51e",
+          "detachmentId": "mfm-detachment-7a3e42d67ed28570",
+          "qualifierIds": [],
+          "provenance": {
+            "observedAt": "2026-10-14",
+            "verifiedAt": "2026-10-14",
+            "effectiveDate": null,
+            "sourceId": "tyranids-mfm-v1.6",
+            "sourceVersion": "v1.6",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-10-14",
+            "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements",
+              "factionId": "tyranids",
+              "detachmentSourceTitle": "SYNAPTIC NEXUS",
+              "sourceTitle": "Power of the Hive Mind"
+            }
+          }
+        },
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
+            "pointer": "/detachments/2/enhancements/0",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "detachment-synaptic-nexus:enhancement:2",
@@ -3455,7 +3786,241 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "detachment-vanguard-onslaught"
+      "parentId": "detachment-vanguard-onslaught",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "detachment-vanguard-onslaught:enhancement:2",
+        "ownerId": "detachment-vanguard-onslaught",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "ENHANCEMENT",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "MODEL",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VANGUARD INVADER"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "VANGUARD INVADER model only. This unit has Stealth."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "UNIT",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "SOURCE_UNIT",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "VANGUARD INVADER model only. This unit has Stealth."
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VANGUARD INVADER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "VANGUARD INVADER model only. This unit has Stealth."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "UNIT",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "VANGUARD INVADER model only. This unit has Stealth."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "VANGUARD INVADER model only. This unit has Stealth."
+            },
+            "sourceText": "VANGUARD INVADER model only. This unit has Stealth.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-vanguard-onslaught:enhancement:2::roster-known/effect-1",
+                "operation": "GRANT_ABILITY",
+                "ability": {
+                  "canonicalId": "core-stealth",
+                  "parameters": {}
+                },
+                "unitScope": "FORMED",
+                "targetSubject": "UNIT",
+                "targetBinding": "SOURCE_UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "VANGUARD INVADER model only. This unit has Stealth."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-vanguard-onslaught:enhancement:2",
+                  "canonicalOwnerId": "detachment-vanguard-onslaught",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-vanguard-onslaught:enhancement:2",
+                    "pointer": "/detachments/5/enhancements/1",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "detachmentId": "detachment-vanguard-onslaught",
+        "assignment": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VANGUARD INVADER"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "VANGUARD INVADER model only. This unit has Stealth."
+                }
+              }
+            ]
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+        },
+        "mfmReferences": {
+          "enhancementId": "mfm-enhancement-c9482c48c415f783",
+          "detachmentId": "mfm-detachment-fc0063b26987572c",
+          "qualifierIds": [],
+          "provenance": {
+            "observedAt": "2026-10-14",
+            "verifiedAt": "2026-10-14",
+            "effectiveDate": null,
+            "sourceId": "tyranids-mfm-v1.6",
+            "sourceVersion": "v1.6",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-10-14",
+            "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements",
+              "factionId": "tyranids",
+              "detachmentSourceTitle": "VANGUARD ONSLAUGHT",
+              "sourceTitle": "Chameleonic"
+            }
+          }
+        },
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "detachment-vanguard-onslaught:enhancement:2",
+            "pointer": "/detachments/5/enhancements/1",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "detachment-vanguard-onslaught:enhancement:3",
@@ -4528,7 +5093,361 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "detachment-ambush-predators"
+      "parentId": "detachment-ambush-predators",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "detachment-ambush-predators:rule",
+        "ownerId": "detachment-ambush-predators",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "DETACHMENT_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "BATTLE",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+              }
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "UNIT",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "ROSTER_UNITS",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-deathleaper"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                  }
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-lictor"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                  }
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-neurolictor"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                  }
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "UNIT",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-deathleaper"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-lictor"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-neurolictor"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike."
+            },
+            "sourceText": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-ambush-predators:rule::roster-known/effect-1",
+                "operation": "GRANT_ABILITY",
+                "ability": {
+                  "canonicalId": "core-deep-strike",
+                  "parameters": {}
+                },
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-deathleaper"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-lictor"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-neurolictor"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_DETACHMENT_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-ambush-predators:rule",
+                  "canonicalOwnerId": "detachment-ambush-predators",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-ambush-predators:rule",
+                    "pointer": "#Mindhunger",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "battle-dependent",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                }
+              }
+            ],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+            },
+            "sourceText": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1.",
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires battle timing/state; no automatic activation."
+            },
+            "rosterEffects": []
+          }
+        ],
+        "detachmentId": "detachment-ambush-predators",
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "detachment-ambush-predators:rule",
+            "pointer": "#Mindhunger",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "detachment-ambush-predators:enhancement:1",
@@ -5627,7 +6546,605 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "detachment-warrior-bioform-onslaught"
+      "parentId": "detachment-warrior-bioform-onslaught",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "detachment-warrior-bioform-onslaught:rule",
+        "ownerId": "detachment-warrior-bioform-onslaught",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "DETACHMENT_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+              }
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "UNIT",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "ROSTER_UNITS",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-tyranid-warriors-with-ranged-bio-weapons"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                  }
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-tyranid-warriors-with-melee-bio-weapons"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                  }
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "UNIT",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-tyranid-warriors-with-ranged-bio-weapons"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-tyranid-warriors-with-melee-bio-weapons"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE."
+            },
+            "sourceText": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-warrior-bioform-onslaught:rule::roster-known/effect-1",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "TYRANID WARRIORS",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-tyranid-warriors-with-ranged-bio-weapons"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-tyranid-warriors-with-melee-bio-weapons"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_DETACHMENT_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
+                  "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
+                    "pointer": "#Leader-beasts",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              },
+              {
+                "id": "detachment-warrior-bioform-onslaught:rule::roster-known/effect-2",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "BATTLELINE",
+                "unitScope": "PHYSICAL",
+                "targetSubject": "UNIT",
+                "targetBinding": "ROSTER_UNITS",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-tyranid-warriors-with-ranged-bio-weapons"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_ID",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "unit-tyranid-warriors-with-melee-bio-weapons"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_DETACHMENT_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
+                  "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
+                    "pointer": "#Leader-beasts",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "invulnerable-save",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                  }
+                },
+                "conditions": []
+              },
+              {
+                "id": "model-recipient",
+                "subject": "MODEL",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-winged-tyranid-prime:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+            },
+            "sourceText": "- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact source-defined physical MODEL profiles within explicit physical UNIT owners."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-warrior-bioform-onslaught:rule::invulnerable-save/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "INSV",
+                "mode": "SET",
+                "value": 5,
+                "targetSubject": "MODEL",
+                "targetBinding": "ROSTER_MODELS",
+                "recipientSelectors": {
+                  "unit": {
+                    "op": "ANY",
+                    "args": [
+                      {
+                        "predicate": "UNIT_ID",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "unit-tyranid-warriors-with-ranged-bio-weapons"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "UNIT_ID",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "unit-tyranid-warriors-with-melee-bio-weapons"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "UNIT_ID",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "unit-tyranid-prime-with-lash-whip"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "UNIT_ID",
+                        "subject": "UNIT",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "unit-winged-tyranid-prime"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      }
+                    ]
+                  },
+                  "model": {
+                    "op": "ANY",
+                    "args": [
+                      {
+                        "predicate": "MODEL_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "datasheet-tyranid-warriors-with-ranged-bio-weapons:profile:1"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "MODEL_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:profile:1"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "MODEL_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      },
+                      {
+                        "predicate": "MODEL_ID",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "id": "datasheet-winged-tyranid-prime:profile:1"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                        }
+                      }
+                    ]
+                  }
+                },
+                "containingUnitScope": "PHYSICAL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_DETACHMENT_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
+                  "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
+                  "canonicalClauseId": "invulnerable-save",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
+                    "pointer": "#Leader-beasts",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "detachmentId": "detachment-warrior-bioform-onslaught",
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
+            "pointer": "#Leader-beasts",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "detachment-warrior-bioform-onslaught:enhancement:1",
@@ -5653,7 +7170,361 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "detachment-warrior-bioform-onslaught"
+      "parentId": "detachment-warrior-bioform-onslaught",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "detachment-warrior-bioform-onslaught:enhancement:1",
+        "ownerId": "detachment-warrior-bioform-onslaught",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "ENHANCEMENT",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "BATTLE",
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "MODEL",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-winged-tyranid-prime:profile:1"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                  }
+                },
+                {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "MODEL",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "SOURCE_MODEL",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "MODEL",
+              "contextLevel": "STATIC",
+              "arguments": {},
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-winged-tyranid-prime:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "MODEL",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "- Have +1 AP."
+            },
+            "sourceText": "- Have +1 AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-warrior-bioform-onslaught:enhancement:1::roster-known/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetSubject": "MODEL",
+                "targetBinding": "SOURCE_MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Have +1 AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-warrior-bioform-onslaught:enhancement:1",
+                  "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+                    "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+                    "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:1",
+                    "pointer": "//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "battle-dependent",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-winged-tyranid-prime:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_ID",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+                }
+              }
+            ],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+            },
+            "sourceText": "This model’s melee attacks:\n- Can re-roll wound rolls.",
+            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires battle timing/state; no automatic activation."
+            },
+            "rosterEffects": []
+          }
+        ],
+        "detachmentId": "detachment-warrior-bioform-onslaught",
+        "assignment": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-winged-tyranid-prime:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-tyranid-prime-with-lash-whip:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP."
+                }
+              }
+            ]
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_MODEL_PROFILE"
+        },
+        "mfmReferences": {
+          "enhancementId": "mfm-enhancement-42c3c463d3b8603e",
+          "detachmentId": "mfm-detachment-e5a448802d1107e5",
+          "qualifierIds": [],
+          "provenance": {
+            "observedAt": "2026-10-14",
+            "verifiedAt": "2026-10-14",
+            "effectiveDate": null,
+            "sourceId": "tyranids-mfm-v1.6",
+            "sourceVersion": "v1.6",
+            "currentness": "CURRENT",
+            "currentnessCutoff": "2026-10-14",
+            "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
+            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+            "sourceLocator": {
+              "partition": "detachments.enhancements",
+              "factionId": "tyranids",
+              "detachmentSourceTitle": "WARRIOR BIOFORM ONSLAUGHT",
+              "sourceTitle": "Elevated Might"
+            }
+          }
+        },
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+            "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:1",
+            "pointer": "//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "detachment-warrior-bioform-onslaught:enhancement:2",
@@ -24302,7 +26173,241 @@
         "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
         "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
       },
-      "parentId": "unit-tyrant-guard"
+      "parentId": "unit-tyrant-guard",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-tyrant-guard:section:1",
+        "ownerId": "unit-tyrant-guard",
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "kind": "DATASHEET_ABILITY",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "sourceFields": [
+          [
+            "blocks",
+            0,
+            "text"
+          ]
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_ID",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "unit-tyrant-guard"
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+              }
+            },
+            "conditions": []
+          },
+          {
+            "id": "recipient",
+            "subject": "MODEL",
+            "purpose": "RECIPIENT",
+            "allegiance": "FRIENDLY",
+            "binding": "LEADERS_OF_SOURCE",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+                  }
+                }
+              ]
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "clauses": [
+          {
+            "id": "roster-known",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-tyrant-guard"
+                  },
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+                  }
+                },
+                "conditions": []
+              },
+              {
+                "id": "recipient",
+                "subject": "MODEL",
+                "purpose": "RECIPIENT",
+                "allegiance": "FRIENDLY",
+                "binding": "LEADERS_OF_SOURCE",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "CHARACTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "blocks",
+                0,
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "blocks",
+                0,
+                "text"
+              ],
+              "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+            },
+            "sourceText": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact physical source assignment/formation is known from the roster."
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-tyrant-guard:section:1::roster-known/effect-1",
+                "operation": "GRANT_MODEL_ABILITY",
+                "ability": {
+                  "name": "Feel No Pain",
+                  "value": 5
+                },
+                "targetSubject": "MODEL",
+                "targetBinding": "LEADERS_OF_SOURCE",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ALL",
+                      "args": [
+                        {
+                          "predicate": "MODEL_KEYWORD",
+                          "subject": "MODEL",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "CHARACTER"
+                          },
+                          "evidence": {
+                            "field": [
+                              "blocks",
+                              0,
+                              "text"
+                            ],
+                            "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability."
+                },
+                "sourceFields": [
+                  [
+                    "blocks",
+                    0,
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ATTACHED",
+                "provenance": {
+                  "canonicalRuleId": "datasheet-tyrant-guard:section:1",
+                  "canonicalOwnerId": "unit-tyrant-guard",
+                  "canonicalClauseId": "roster-known",
+                  "sourceEvidence": {
+                    "sourceId": "tyranids-waha-11e-2026-09-27",
+                    "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html",
+                    "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E",
+                    "sourceEntityId": "datasheet-tyrant-guard:section:1",
+                    "pointer": "/datasheets/46/sections/0",
+                    "authority": "ACCEPTED_SECONDARY",
+                    "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+                    "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "currentness": {
+          "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
+          "factualOwner": {
+            "sourceId": "tyranids-waha-11e-2026-09-27",
+            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html",
+            "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E",
+            "sourceEntityId": "datasheet-tyrant-guard:section:1",
+            "pointer": "/datasheets/46/sections/0",
+            "authority": "ACCEPTED_SECONDARY",
+            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+          },
+          "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
+        }
+      }
     },
     {
       "id": "datasheet-tyrant-guard:section:2",
@@ -52549,6 +54654,38 @@
     }
   ],
   "importOnly": true,
+  "rosterAbilityReferences": {
+    "core-stealth": {
+      "id": "core-stealth",
+      "title": "STEALTH",
+      "parameters": {},
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    },
+    "core-deep-strike": {
+      "id": "core-deep-strike",
+      "title": "DEEP STRIKE",
+      "parameters": {},
+      "provenance": {
+        "base": {
+          "sourceId": "waha-core-corpus-2026-09-25",
+          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+          "sourceDate": "2026-09-25",
+          "sourceScope": "GLOBAL_CORE",
+          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+        }
+      }
+    }
+  },
   "compatibilityFeasibility": {
     "schema": "roster-v2/static-feasibility",
     "authority": "DISPOSABLE_PROJECTION",

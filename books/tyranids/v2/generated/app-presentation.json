@@ -168259,6 +168259,19 @@
         ]
       },
       {
+        "targetId": "datasheet-tyrant-guard:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrant Guard",
+        "aliases": [
+          {
+            "label": "Guardian Organism",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
         "targetId": "datasheet-winged-tyranid-prime:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -168287,6 +168300,13 @@
         "targetId": "detachment-ambush-predators:enhancement:2",
         "label": "Cryptophotaic Camouflage",
         "category": "ENHANCEMENT",
+        "contextLabel": "Ambush Predators",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-ambush-predators:rule",
+        "label": "Mindhunger",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Ambush Predators",
         "aliases": []
       },
@@ -168354,6 +168374,13 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-synaptic-nexus:enhancement:1",
+        "label": "Power of the Hive Mind",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Synaptic Nexus",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-talons-of-the-norn-queen",
         "label": "Talons of the Norn Queen",
         "category": "DETACHMENT",
@@ -168396,10 +168423,31 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-vanguard-onslaught:enhancement:2",
+        "label": "Chameleonic",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-warrior-bioform-onslaught",
         "label": "Warrior Bioform Onslaught",
         "category": "DETACHMENT",
         "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-warrior-bioform-onslaught:enhancement:1",
+        "label": "Elevated Might",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Warrior Bioform Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-warrior-bioform-onslaught:rule",
+        "label": "Leader-beasts",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Warrior Bioform Onslaught",
         "aliases": []
       },
       {
@@ -172641,15 +172689,21 @@
   "ruleContractIds": [
     "detachment-subterranean-assault:enhancement:4",
     "detachment-invasion-fleet:enhancement:4",
+    "detachment-synaptic-nexus:enhancement:1",
     "detachment-assimilation-swarm:enhancement:4",
     "detachment-crusher-stampede:enhancement:1",
+    "detachment-vanguard-onslaught:enhancement:2",
     "detachment-unending-swarm:enhancement:1",
+    "detachment-ambush-predators:rule",
     "detachment-ambush-predators:enhancement:2",
     "detachment-talons-of-the-norn-queen:enhancement:1",
     "detachment-talons-of-the-norn-queen:enhancement:2",
+    "detachment-warrior-bioform-onslaught:rule",
+    "detachment-warrior-bioform-onslaught:enhancement:1",
     "datasheet-broodlord:section:1",
     "datasheet-hyperadapted-raveners:section:1",
     "datasheet-tyranid-prime-with-lash-whip:section:1",
+    "datasheet-tyrant-guard:section:1",
     "datasheet-winged-tyranid-prime:section:1"
   ],
   "relatedRules": {

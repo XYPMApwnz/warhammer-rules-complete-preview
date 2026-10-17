@@ -106,7 +106,13 @@ def source_oracle(enrollment, corpus):
 def compare(artifact, facts, oracle):
     errors = []
     contracts = artifact.get("contracts", [])
-    if sorted(c.get("ruleId", "") for c in contracts) != sorted(r[0] for r in ROWS):
+    # Preserve this independent raw-source oracle's original twelve-case scope.
+    # The added seven effects are verified by their separate source-backed guard;
+    # they remain explicit identities here so an extra/duplicate never escapes.
+    additions = ["datasheet-tyrant-guard:section:1", "detachment-warrior-bioform-onslaught:enhancement:1",
+                 "detachment-synaptic-nexus:enhancement:1", "detachment-vanguard-onslaught:enhancement:2",
+                 "detachment-ambush-predators:rule", "detachment-warrior-bioform-onslaught:rule"]
+    if sorted(c.get("ruleId", "") for c in contracts) != sorted([r[0] for r in ROWS] + additions):
         errors.append("missing/extra/duplicate contract identity")
     entities = {e["id"]: e for e in facts["entities"]}
     for identity, owner, name, pointer, subject, target, specs in ROWS:

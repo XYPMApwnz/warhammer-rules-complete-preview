@@ -50,7 +50,7 @@ for(const action of [()=>service.detach('parsed-unit-1'),()=>service.reattach('p
 
 function control(operation,value,ownerId){
   const b=clone(book),id='qa-only:fnp',quote='QA-only numeric/suppression executor control';
-  b.rosterAbilityReferences={'core-feel-no-pain':{id:'core-feel-no-pain',title:'Feel No Pain',parameters:{value:{type:'number'}}}};
+  b.rosterAbilityReferences={...b.rosterAbilityReferences,'core-feel-no-pain':{id:'core-feel-no-pain',title:'Feel No Pain',parameters:{value:{type:'number'}}}};
   const selector={predicate:'MODEL_ID',subject:'MODEL',contextLevel:'STATIC',arguments:{id:`datasheet-${ownerId}:profile:1`},
     evidence:{field:['text'],quote}};
   const owner={id:'owner',subject:'MODEL',purpose:'OWNER',allegiance:'FRIENDLY',selector,conditions:[]};
@@ -96,4 +96,4 @@ for(const mutate of [p=>p.units[0].profiles[0].abilities=[],p=>p.units[0].profil
 }
 assert.deepEqual(service.snapshot(),state);
 console.log(JSON.stringify({status:'PASS',nativeOwners:2,physicalInstances:4,numericOverrides:[4,5],suppressionPresentation:true,
-  saveUnchanged:true,recompute:true,controls,mutations,browser:'NOT_RUN_NO_TYRANIDS_UI'}));
+  saveUnchanged:true,recompute:true,controls,mutations,browser:'NOT_RUN_BY_THIS_NODE_QA'}));
