@@ -45,7 +45,7 @@ export function assertEnhancementPredicateContexts(model) {
   for (const row of source.records) {
     const entity=entities.find(entity=>entity.id===row.id),contract=entity.ruleContract;
     assert.equal(entity.parentId,row.parentId,'Source Detachment identity');
-    assert.equal(entity.data.text,row.sourceProof.text,'Accepted current Enhancement text');
+    assert.equal(entity.data.text,row.officialProof?.currentText||row.sourceProof.text,'Accepted current Enhancement text');
     const actual=contractShape(contract),expected=semantics(row.expected);
     assert.deepEqual(actual,expected,`${row.id}: wrong predicate subject/context/role or invented/dropped attachment prerequisite`);
     assert.equal(contract.assignment.ownerRoleId,expected.roles[0].id,'Assignment owner role identity');

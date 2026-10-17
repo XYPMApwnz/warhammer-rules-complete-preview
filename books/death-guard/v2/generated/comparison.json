@@ -28213,10 +28213,20 @@
         "text"
       ],
       "sourcePointer": "/detachments/0/rule",
-      "v2": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "v2": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
       "v1": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
-      "status": "EXACT",
-      "classification": "UNCHANGED"
+      "status": "DIFFERENT",
+      "classification": "EXPECTED_CURRENT_GW_UPDATE",
+      "proof": {
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:047",
+        "provenance": {
+          "page": 7,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-virulent-vectorium:rule"
+        },
+        "reason": "The complete V1 difference is accounted for by the accepted before/after field values; unrelated fields cannot inherit this classification"
+      }
     },
     {
       "entityId": "detachment-virulent-vectorium:enhancement:1",
@@ -32590,14 +32600,19 @@
         "text"
       ],
       "sourcePointer": "/detachments/6/enhancements/1",
-      "v2": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
+      "v2": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
       "v1": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
       "status": "DIFFERENT",
-      "classification": "REPRESENTATION_ONLY",
+      "classification": "EXPECTED_CURRENT_GW_UPDATE",
       "proof": {
-        "sourceId": "dg-waha-2026-09-25",
-        "sourcePointer": "/detachments/6/enhancements/1",
-        "reason": "Plague/Plagues is a grammatical difference. Both select one plague from Nurgles Gift, once per battle per army, with the same timing and recipients."
+        "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:093",
+        "provenance": {
+          "page": 4,
+          "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+          "sourceLocator": "detachment-paragons-of-putrescence:enhancement:2"
+        },
+        "reason": "The complete V1 difference is accounted for by the accepted before/after field values; unrelated fields cannot inherit this classification"
       }
     },
     {
@@ -36100,18 +36115,18 @@
     }
   ],
   "counters": {
-    "EXACT": 2183,
+    "EXACT": 2182,
     "NORMALIZED_EQUAL": 19,
-    "DIFFERENT": 122,
+    "DIFFERENT": 123,
     "MISSING_V1": 0,
     "SOURCE_EVIDENCE_ONLY": 1
   },
   "summary": {
-    "UNCHANGED": 2183,
-    "EXPECTED_CURRENT_GW_UPDATE": 42,
+    "UNCHANGED": 2182,
+    "EXPECTED_CURRENT_GW_UPDATE": 44,
     "V1_DEFECT": 0,
     "V2_DEFECT": 0,
-    "REPRESENTATION_ONLY": 99,
+    "REPRESENTATION_ONLY": 98,
     "UNRESOLVED_SOURCE_CONFLICT": 0
   },
   "inventory": [
@@ -39663,21 +39678,6 @@
           ],
           "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
           "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:092",
-          "status": "PASS",
-          "semantics": {
-            "verifiedFields": [
-              "text"
-            ],
-            "qualificationId": "official-current-confirmation"
-          }
-        },
-        {
-          "targetId": "detachment-paragons-of-putrescence:enhancement:2",
-          "field": [
-            "text"
-          ],
-          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
-          "operationId": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:093",
           "status": "PASS",
           "semantics": {
             "verifiedFields": [

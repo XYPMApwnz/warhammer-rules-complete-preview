@@ -56,6 +56,32 @@ function verifySeptemberWeaponFacts(model) {
   assert.equal(fields,evidence.newSeptemberWeaponTable.fieldChanges);
 }
 verifySeptemberWeaponFacts(effective);
+
+// Independently transcribed from the accepted v1.3 PDF, visually reviewed
+// p7 Worldblight and p4 Host of the Hybridised Pox. These full-text oracles
+// deliberately do not come from the producer's official overlay declarations.
+const officialCitationTexts = [
+  {id:'detachment-virulent-vectorium:rule',owner:'detachment-virulent-vectorium',page:7,
+    text:'At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).'},
+  {id:'detachment-paragons-of-putrescence:enhancement:2',owner:'detachment-paragons-of-putrescence',page:4,
+    text:'DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.'}
+];
+function verifyOfficialCitationTexts(model) {
+  const entities = new Map(model.entities.map(entity => [entity.id,entity]));
+  for (const expected of officialCitationTexts) {
+    const entity = entities.get(expected.id);
+    assert.equal(entity?.parentId,expected.owner,'Official citation canonical owner');
+    assert.equal(entity.data.text,expected.text,'Complete official citation text: '+expected.id);
+    assert.equal(entity.fieldProvenance.text.sourceId,'gw-death-guard-faction-pack-v1.3-2026-09-30');
+    assert.equal(entity.fieldProvenance.text.page,expected.page,'Exact official source page');
+  }
+}
+verifyOfficialCitationTexts(effective);
+for (const expected of officialCitationTexts) {
+  const mutant = structuredClone(effective);
+  mutant.entities.find(entity => entity.id === expected.id).data.text = baseById.get(expected.id).data.text;
+  assert.throws(() => verifyOfficialCitationTexts(mutant),/Complete official citation text/,'Unapplied official text must fail');
+}
 for (const binding of [...effective.mfm.unitBindings,...effective.mfm.detachmentBindings,...effective.mfm.enhancementBindings,...effective.mfm.paidUpgradeBindings]) {
   assert.equal(binding.owner,'CENTRALIZED_MFM');assert.equal(resolveOwnedFact(binding.mfmRecordId).id,binding.mfmRecordId);
 }

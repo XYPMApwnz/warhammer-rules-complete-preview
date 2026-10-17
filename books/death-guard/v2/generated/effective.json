@@ -11614,7 +11614,7 @@
       "parentId": "detachment-virulent-vectorium",
       "data": {
         "title": "Worldblight",
-        "text": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+        "text": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
         "tables": []
       },
       "provenance": {
@@ -13683,7 +13683,7 @@
       "data": {
         "order": 2,
         "title": "Host of the Hybridised Pox",
-        "text": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
+        "text": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
       },
       "provenance": {
         "sourceId": "dg-waha-2026-09-25",
@@ -13691,25 +13691,6 @@
         "sourcePath": "books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json",
         "pointer": "/detachments/6/enhancements/1"
       },
-      "qualifications": [
-        {
-          "field": [
-            "text"
-          ],
-          "value": {
-            "verifiedFields": [
-              "text"
-            ],
-            "qualificationId": "official-current-confirmation"
-          },
-          "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
-          "provenance": {
-            "page": 4,
-            "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
-            "sourceLocator": "detachment-paragons-of-putrescence:enhancement:2"
-          }
-        }
-      ],
       "fieldProvenance": {
         "text": {
           "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
@@ -18428,7 +18409,7 @@
       ],
       "operation": "REPLACE",
       "baseValue": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
-      "effectiveValue": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "effectiveValue": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
       "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
       "provenance": {
         "page": 7,
@@ -19667,15 +19648,9 @@
       "field": [
         "text"
       ],
-      "operation": "QUALIFY",
+      "operation": "REPLACE",
       "baseValue": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
-      "effectiveValue": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
-      "qualificationValue": {
-        "verifiedFields": [
-          "text"
-        ],
-        "qualificationId": "official-current-confirmation"
-      },
+      "effectiveValue": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
       "sourceId": "gw-death-guard-faction-pack-v1.3-2026-09-30",
       "provenance": {
         "page": 4,

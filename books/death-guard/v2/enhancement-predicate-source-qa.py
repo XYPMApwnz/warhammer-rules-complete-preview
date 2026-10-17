@@ -171,6 +171,9 @@ def source_census():
                 official_text = norm(page.crop((0, 0, page.width / 2, page.height)).extract_text())
                 for fragment in official['fragments']:
                     assert norm(fragment) in official_text, ('Official current scope evidence changed', row['id'], fragment)
+                current_body = norm(official.get('currentText', body))
+                if 'currentText' in official:
+                    assert current_body in official_text, ('Reviewed official current text changed', row['id'])
                 operations = overlay_by_target.get(row['id'], [])
                 assert operations and all(item['sourceId'] == official['sourceId'] for item in operations), ('Unbound official Enhancement source', row['id'])
                 for operation in operations:
@@ -187,7 +190,7 @@ def source_census():
                         continue
                     assert operation['field'] == ['text'], row['id']
                     if operation['operation'] == 'REPLACE':
-                        assert norm(operation['value']) == body, ('Unreviewed current replacement', row['id'])
+                        assert norm(operation['value']) == current_body, ('Unreviewed current replacement', row['id'])
                     else:
                         assert operation['operation'] == 'QUALIFY' and operation['value']['verifiedFields'] == ['text'], row['id']
                 official_rows.add(row['id'])
@@ -225,7 +228,8 @@ def assert_model(model, evidence):
     for row in evidence['records']:
         entity = by_id[row['id']]
         assert entity['parentId'] == row['parentId'], ('Wrong canonical Enhancement parent', row['id'])
-        assert norm(entity['data']['text']) == norm(row['sourceProof']['text']), ('Current factual text differs from accepted source', row['id'])
+        current_text = row.get('officialProof', {}).get('currentText', row['sourceProof']['text'])
+        assert norm(entity['data']['text']) == norm(current_text), ('Current factual text differs from accepted source', row['id'])
         contract = entity['ruleContract']
         actual = {key: contract[key] for key in ('roles', 'conditions', 'clauses')}
         assert semantic(actual) == semantic(row['expected']), ('Source predicate/participant subject, context or binding differs', row['id'])

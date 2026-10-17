@@ -9,6 +9,8 @@ import {execFileSync} from 'node:child_process';
 import {loadGlossaryV2Inputs,createGlossaryV2Index,assertGlossaryV2Parity} from '../content/glossary-v2-index.mjs';
 import {assertV2ArmyBookParity,V2_ARMY_BOOK_IDS} from '../content/army-v2-projection.mjs';
 import {createGlobalGlossaryContent} from '../../../books/shared/army-book-app-v2/global-glossary-content.mjs';
+import {adaptGlobalGlossary} from '../../../books/shared/army-book-app-v2/global-glossary.mjs';
+import {createReferenceContract} from '../../../books/shared/army-book-app-v2/reference-contract.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
@@ -39,6 +41,54 @@ for(const model of inputs.armyModels)for(const entity of model.entities){
 }
 assert.deepEqual(new Set(army.keys()),expectedArmyKeys,'Missing/extra canonical Army inventory');
 const entry=(book,id)=>{const result=army.get(ownerKey(book,id));assert.ok(result,book+'/'+id);return result;};
+
+// These compare source-owned annotations, not a freshly regenerated projection
+// against itself. A builder that drops metadata and regenerates must still fail.
+function verifySourceAnnotations(publication){
+  const articles=new Map(publication.entries.filter(record=>record.domain==='ARMY').map(record=>[ownerKey(record.sourceOwner.bookId,record.sourceOwner.canonicalId),record]));
+  let dgFieldSources=0;
+  for(const model of inputs.armyModels)for(const entity of model.entities){
+    const article=articles.get(ownerKey(model.book.id,entity.id));if(!article)continue;
+    assert.deepEqual(article.fieldProvenance,entity.fieldProvenance,'Field-level official provenance lost '+model.book.id+'/'+entity.id);
+    assert.deepEqual(article.facts.qualifications,entity.qualifications,'Canonical qualification lost '+model.book.id+'/'+entity.id);
+    if(model.book.id==='death-guard'&&entity.fieldProvenance)dgFieldSources++;
+  }
+  return dgFieldSources;
+}
+assert.equal(verifySourceAnnotations(published),75,'All 75 reviewed DG field-provenance findings');
+
+// Exact question/answer independently read from accepted raw Waha and official
+// Faction Pack v1.3 p8; it is not an expectation extracted from an effect contract.
+const pbcFAQ='Q: Does the Plagueburst Crawler’s Spore-laced Shock Waves ability inflict mortal wounds every turn to units affected by the ability?\nA: No.';
+const officialDG='books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf';
+assert.equal(createHash('sha256').update(fs.readFileSync(path.join(repo,officialDG))).digest('hex'),'ebf3f985bad14fe61b0224fc0ba35bab952d4306ab5691629b599114086cb2dd');
+const rawPBC=fs.readFileSync(path.join(repo,'books/death-guard/v2/sources/accepted-waha-pages/Plagueburst-Crawler.html'),'utf8').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');
+assert.ok(rawPBC.includes(pbcFAQ.replace(/\s+/g,' ')),'Accepted raw FAQ source changed; explicit source review required');
+const pbcSource=inputs.armyModels.find(model=>model.book.id==='death-guard').entities.find(entity=>entity.id==='datasheet-plagueburst-crawler:section:1');
+assert.equal(pbcSource.qualifications[0].value.sourceText,pbcFAQ);
+assert.equal(pbcSource.qualifications[0].sourceId,'gw-death-guard-faction-pack-v1.3-2026-09-30');
+assert.equal(pbcSource.qualifications[0].provenance.page,8);
+const pbcId=entry('death-guard',pbcSource.id).id;
+function verifyFAQPresentation(publication){
+  const pbc=publication.entries.find(record=>record.id===pbcId);
+  assert.equal(pbc.parent.canonicalId,'unit-plagueburst-crawler');
+  assert.equal(publication.entries.filter(record=>record.sourceOwner.bookId==='death-guard'&&record.sourceOwner.canonicalId===pbcSource.id).length,1,'FAQ acquired a duplicate factual owner');
+  const content=createGlobalGlossaryContent(publication);
+  for(const article of [pbc,publication.entries.find(record=>record.sourceOwner.bookId==='death-guard'&&record.sourceOwner.canonicalId==='unit-plagueburst-crawler')]){
+    const definition=content.project(article).definition;
+    assert.equal(definition.split(pbcFAQ).length-1,1,'Full FAQ must appear once in owner/Unit article');
+  }
+  assert.ok(pbc.searchableContent.includes(pbcFAQ),'FAQ question/answer missing from search');
+  const projected=adaptGlobalGlossary(publication),cards=new Map(projected.cards.map(card=>[card.id,card]));
+  const contract=createReferenceContract({cards,index:projected.index});
+  const fieldId=pbcId+'::/blocks/0/text',resolved=contract.resolve(fieldId);
+  const faqField=resolved.sections.flatMap(section=>section.fields).filter(field=>field.value===pbcFAQ);
+  assert.equal(faqField.length,1,'Named ability popup loses or duplicates its FAQ');
+  assert.deepEqual(faqField[0].source,{entityId:pbcSource.id,path:'/qualifications/0/value/sourceText'});
+  assert.deepEqual(faqField[0].provenance,{sourceId:pbcSource.qualifications[0].sourceId,...pbcSource.qualifications[0].provenance});
+  assert.deepEqual(cards.get(pbcId).fieldProvenance,pbcSource.fieldProvenance);
+}
+verifyFAQPresentation(published);
 const display=createGlobalGlossaryContent(index);
 for(const article of armyEntries)assert.ok(display.project(article).definition,'Empty canonical Army article '+article.id);
 for(const model of inputs.armyModels)for(const unit of model.entities.filter(entity=>entity.kind==='DATASHEET')){
@@ -166,6 +216,14 @@ assert.deepEqual(new Set(index.entries.filter(record=>record.domain==='MISSIONS'
 let mutations=0;
 function rejected(action,label){let error;try{action();}catch(cause){error=cause;}assert.ok(error&&error.code==='ERR_ASSERTION','Comparator failed to detect '+label);mutations++;}
 function publicationMutation(label,mutate){const changed=structuredClone(index);mutate(changed);rejected(()=>assertGlossaryV2Parity(changed,inputs),label);}
+function annotationMutation(label,mutate,verify=verifySourceAnnotations){const changed=structuredClone(index);mutate(changed);rejected(()=>verify(changed),label);}
+const pbcArticle=publication=>publication.entries.find(record=>record.id===pbcId);
+annotationMutation('removed field-level provenance after rebuild',publication=>{delete pbcArticle(publication).fieldProvenance;});
+annotationMutation('wrong exact official page',publication=>{pbcArticle(publication).fieldProvenance['blocks/0/text'].page=7;});
+annotationMutation('removed canonical FAQ qualification',publication=>{delete pbcArticle(publication).facts.qualifications;});
+annotationMutation('FAQ data present but owner presentation loses it',publication=>{delete pbcArticle(publication).facts.semanticContent;},verifyFAQPresentation);
+annotationMutation('FAQ not searchable',publication=>{pbcArticle(publication).searchableContent=pbcArticle(publication).label;},verifyFAQPresentation);
+annotationMutation('wrong FAQ owner',publication=>{pbcArticle(publication).parent.canonicalId='unit-chaos-rhino';},verifyFAQPresentation);
 const legionaryId=entry('chaos-space-marines','datasheet-legionaries:profile:1').id;
 const profile=publication=>publication.entries.find(record=>record.id===legionaryId);
 publicationMutation('stale numerical value',publication=>{profile(publication).facts.canonicalData.stats.T='4';});
@@ -216,4 +274,4 @@ try{
   fs.rmSync(temporary,{recursive:true,force:true});
 }
 assert.deepEqual(artifacts.map(digest),beforeHashes,'Scoped --check modified generated publications');
-console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,csmOfficialProfiles:Object.keys(csmExpected).length,ecOfficialModels:Object.keys(ecModels).length,ecOfficialWeapons:Object.keys(ecWeapons).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));
+console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,dgFieldProvenance:75,pbcFAQOwnerAndNamedPopup:true,csmOfficialProfiles:Object.keys(csmExpected).length,ecOfficialModels:Object.keys(ecModels).length,ecOfficialWeapons:Object.keys(ecWeapons).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));

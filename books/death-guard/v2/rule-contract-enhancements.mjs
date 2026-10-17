@@ -121,7 +121,7 @@ enhancement('detachment-champions-of-contagion:enhancement:4',named('LORD OF POX
 enhancement('detachment-paragons-of-putrescence:enhancement:1',infantry(true),'UNIT_DEFENSIVE_ATTACK_CONDITION',[],
  [clause('wound-roll-modifier',[selfUnit('Attacks that target this unit')],[roleState('affected-unit','attackStrengthExceedsUnitToughness','with a S greater than this unit’s T')])]);
 enhancement('detachment-paragons-of-putrescence:enhancement:2',infantry(false),'PER_ARMY_SELECTED_PLAGUE_AURA',
- [state('oncePerBattlePerArmyAvailable','Once per battle, per army'),state('ownCommandPhase','In your Command phase'),state('optionalAbilityActivated','you can use this ability'),state('additionalPlagueSelected','select one of the Plague listed in Nurgle’s Gift')],
+ [state('oncePerBattlePerArmyAvailable','Once per battle, per army'),state('ownCommandPhase','In your Command phase'),state('optionalAbilityActivated','you can use this ability'),state('additionalPlagueSelected','select one of the Plagues listed in Nurgle’s Gift')],
  [clause('additional-plague',[enemy('Enemy units')],[roleState('affected-enemy','withinBearerUnitContagionRange','within Contagion Range of this unit')])]);
 
 enhancement('detachment-contagion-engines:enhancement:1',unitKeyword('CONTAGION ENGINE'),'UNIT_MODEL_HEALING',[],

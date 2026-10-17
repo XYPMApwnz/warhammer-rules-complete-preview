@@ -30,7 +30,7 @@ export function adaptGlobalGlossary(corpus,{bookId='',registryLabels={}}={}) {
     const links=(entry.canonicalReferences||[]).filter(reference=>byId.has(reference.id)).map(reference=>({targetId:reference.id,label:reference.relationType==='faqIds'?'FAQ':human(reference.relationType),...(reference.relationType==='sourceRuleId'?{relation:'sourceRuleId'}:{})}));
     for(const id of content.structured?.terrainLayoutReference?.memberIds||[])if(byId.has(id)&&!links.some(link=>link.targetId===id))links.push({targetId:id,label:'Force Disposition'});
     cards.push({id:entry.id,identity,kind:entry.recordType,domain:entry.domain,title:entry.label,fields,links,children:[],
-      provenance:entry.provenance,sourceParentId:entry.parent?.canonicalId||null,
+      provenance:entry.provenance,...(entry.fieldProvenance?{fieldProvenance:entry.fieldProvenance}:{}),sourceParentId:entry.parent?.canonicalId||null,
       contextRegistryIds:(entry.contexts||[]).map(context=>context.effectiveBookId),
       contextParentIds:(entry.contexts||[]).map(context=>context.parentUnitId).filter(Boolean),referenceVisuals:content.structured});
     const aliases=[...(entry.aliases||[])].filter(Boolean).map(label=>({label,presentationOnly:true,match:'EXACT'}));
@@ -52,9 +52,16 @@ export function adaptGlobalGlossary(corpus,{bookId='',registryLabels={}}={}) {
         descriptor.category!==expectedCategory||descriptor.label!==block.text.slice(0,block.text.indexOf(': '))||
         entry.facts.blocks?.[Number(match[1])]?.text!==block.text)throw new TypeError('Invalid canonical ability field '+entry.id);
       seen.add(descriptor.path);
+      const qualificationFields=(entry.facts.qualifications||[]).flatMap((qualification,index)=>{
+        if('/'+qualification.field.join('/')!==descriptor.path||!qualification.value?.faqId||typeof qualification.value.sourceText!=='string')return [];
+        const path=`/qualifications/${index}/value/sourceText`;
+        return [{id:owner.canonicalId+'::'+path,label:'FAQ',type:'text',value:qualification.value.sourceText,
+          source:{entityId:owner.canonicalId,path},presentationPath:'/semanticContent',
+          provenance:{sourceId:qualification.sourceId,...qualification.provenance}}];
+      });
       const id=entry.id+'::'+descriptor.path,parent=entries.find(candidate=>candidate.sourceOwner.bookId===owner.bookId&&candidate.sourceOwner.canonicalId===entry.parent?.canonicalId);
       cards.push({id,identity:{registryId,canonicalId:owner.canonicalId,fieldPath:descriptor.path},kind:descriptor.category,domain:entry.domain,title:descriptor.label,
-        fields:[{id:descriptor.factId,label:'Rule',type:'text',value:block.text,source:{entityId:owner.canonicalId,path:descriptor.path},presentationPath:'/semanticContent'}],
+        fields:[{id:descriptor.factId,label:'Rule',type:'text',value:block.text,source:{entityId:owner.canonicalId,path:descriptor.path},presentationPath:'/semanticContent'},...qualificationFields],
         links:[...links,{targetId:entry.id,label:entry.label}],children:[],provenance:descriptor.provenance,
         sourceParentId:entry.parent?.canonicalId||null,contextRegistryIds:(entry.contexts||[]).map(context=>context.effectiveBookId),
         contextParentIds:(entry.contexts||[]).map(context=>context.parentUnitId).filter(Boolean)});

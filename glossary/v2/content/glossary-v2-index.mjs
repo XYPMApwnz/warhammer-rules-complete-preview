@@ -20,6 +20,8 @@ const MISSION_PARTITIONS=Object.freeze(['forceDispositions','primaryMissions','s
 const CORE_ALIAS_ONLY_ERRATA=new Set(['core-errata-15-05','core-errata-15-06']);
 
 const clone=value=>structuredClone(value);
+// A qualification annotates an existing fact; it never creates a second rule owner.
+const faqQualifications=entity=>(entity.qualifications||[]).filter(item=>item.value?.faqId&&typeof item.value.sourceText==='string');
 const readJson=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sortStrings=values=>[...new Set(values.filter(Boolean))].sort((left,right)=>left.localeCompare(right));
 const entryId=(domain,...ids)=>[domain,...ids].join('::');
@@ -45,7 +47,7 @@ function factsWithoutPresentation(record){
 }
 
 function createEntry({id,domain,recordType,label,aliases=[],canonicalId,parent=null,references=[],provenance=null,currentness=null,sourceOwner,facts,contexts=[]}){
-  return {id,domain,recordType,label,aliases:sortStrings(aliases),searchableContent:semanticText(facts,{skip:new Set(['id','sourceId','sourceBookId','recordType','sourceArtifact','sourceCaptureSha256','contentHash','canonicalData'])}),parent,canonicalReferences:references,currentness,provenance,sourceOwner,facts,contexts,presentation:{}};
+  return {id,domain,recordType,label,aliases:sortStrings(aliases),searchableContent:semanticText(facts,{skip:new Set(['id','sourceId','sourceBookId','recordType','sourceArtifact','sourceCaptureSha256','contentHash','canonicalData','qualifications'])}),parent,canonicalReferences:references,currentness,provenance,sourceOwner,facts,contexts,presentation:{}};
 }
 
 function upsertEntry(entries,entry,context){
@@ -147,8 +149,11 @@ function addArmyEntries(entries,models){
     const blockText=(e,seen=new Set())=>{
       if(!e||seen.has(e.id))return'';seen=new Set([...seen,e.id]);
       const data=e.data,parts=data.blocks||data.clauses||data.equipmentAndRules||[];
-      return data.text||data.sourceText||parts.map(b=>b.text||b.rows?.map(r=>r.join(' | ')).join('\n')).filter(Boolean).join('\n')||
+      const body=data.text||data.sourceText||parts.map(b=>b.text||b.rows?.map(r=>r.join(' | ')).join('\n')).filter(Boolean).join('\n')||
         (data.componentIds||[]).map(id=>blockText(records.get(id),seen)).filter(Boolean).join('\n');
+      const normalized=value=>value.replace(/\s+/g,' ').trim();
+      const additions=faqQualifications(e).map(item=>item.value.sourceText).filter(value=>!normalized(body).includes(normalized(value)));
+      return [body,...new Set(additions)].filter(Boolean).join('\n\n');
     };
     const profileStats=e=>{
       const stats=clone(e.data.stats||e.data.statline||Object.fromEntries(Object.entries(e.data).filter(([k])=>['M','T','SV','W','LD','OC','INSV'].includes(k))));
@@ -158,6 +163,8 @@ function addArmyEntries(entries,models){
     for(const entity of sourceRows){
       const type=types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
       const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
+      if(entity.qualifications)facts.qualifications=clone(entity.qualifications);
+      if(faqQualifications(entity).length)facts.semanticContent=blockText(entity);
       if(type==='SOURCE_PRESENTATION_NOTE'&&data.semanticTableIds){
         assert.equal(data.classification,'LAYOUT_WRAPPER_REFERENCE','Unreviewed source presentation note');
         for(const targetId of data.semanticTableIds)assert.equal(records.get(targetId)?.kind,'STRUCTURED_RULE_TABLE','Missing semantic table owner');
@@ -192,6 +199,7 @@ function addArmyEntries(entries,models){
       if(type==='DETACHMENT')facts.detachmentRules=children(entity).filter(e=>e.kind==='DETACHMENT_RULE').map(e=>({id:e.id,title:label(e),...clone(e.data)}));
       const id=entryId('army',book,type.toLowerCase(),...(parentId?[parentId]:[]),entity.id);
       const entry=createEntry({id,domain:'ARMY',recordType:type,label:label(entity),canonicalId:entity.id,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,provenance:clone(entity.provenance),currentness:{publicationState:'CURRENT'},sourceOwner:{domain:'ARMY',bookId:book,canonicalId:entity.id,interface:model.factualInterface},facts});
+      if(entity.fieldProvenance)entry.fieldProvenance=clone(entity.fieldProvenance);
       Object.assign(entry.presentation,abilityPresentation(entity,model));
       entry.contexts=[{effectiveBookId:book,sourceBookId:book,...(parentId?{parentUnitId:parentId}:{})}];
       upsertEntry(entries,entry);entryByCanonical.set(entity.id,entry);

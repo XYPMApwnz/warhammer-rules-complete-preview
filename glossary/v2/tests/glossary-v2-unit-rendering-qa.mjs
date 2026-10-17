@@ -22,7 +22,11 @@ const statsOf=(entity,byId)=>{
   return stats;
 };
 const statsLabels={M:'M',T:'T',SV:'Sv',W:'W',LD:'Ld',OC:'OC',INSV:'Invulnerable Save'};
-const sourceText=entity=>entity.data.text||entity.data.blocks?.map(block=>block.text||'').filter(Boolean).join('\n')||'';
+const sourceText=entity=>{
+  const body=entity.data.text||entity.data.blocks?.map(block=>block.text||'').filter(Boolean).join('\n')||'';
+  const faq=(entity.qualifications||[]).filter(item=>item.value?.faqId&&typeof item.value.sourceText==='string').map(item=>item.value.sourceText);
+  return [body,...new Set(faq.filter(value=>!body.replace(/\s+/g,' ').includes(value.replace(/\s+/g,' '))))].filter(Boolean).join('\n\n');
+};
 
 // Expectations use Army Book V2 owners, never the old viewer or legacy book model.
 function verify(candidate){

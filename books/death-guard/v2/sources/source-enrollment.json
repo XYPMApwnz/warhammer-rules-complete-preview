@@ -975,7 +975,7 @@
         "text"
       ],
       "operation": "REPLACE",
-      "value": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "value": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
       "effectiveFrom": "2026-09-30",
       "provenance": {
         "page": 7,
@@ -1993,19 +1993,15 @@
       "field": [
         "text"
       ],
-      "operation": "QUALIFY",
-      "value": {
-        "verifiedFields": [
-          "text"
-        ],
-        "qualificationId": "official-current-confirmation"
-      },
+      "operation": "REPLACE",
+      "value": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
       "effectiveFrom": "2026-09-30",
       "provenance": {
         "page": 4,
         "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
         "sourceLocator": "detachment-paragons-of-putrescence:enhancement:2"
-      }
+      },
+      "expectedBefore": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
     },
     {
       "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:094",
