@@ -100,7 +100,49 @@ for(const entityId of [id,optionId]){
   const damaged=structuredClone(book);delete damaged.entities.find(e=>e.id===entityId).provenance.sourceId;
   assert.throws(()=>withEquipmentCaptionBindings(damaged),/canonical omnispex caption owner/);rejected++;
 }
+// Independent input quantities and canonical source addresses for both items.
+// Equipment stays UNIT-owned when New Recruit does not identify its MODEL.
+let captionCases=0;
+for(const [slug,title,weapon] of [
+  ['skitarii-rangers','Skitarii Rangers','Galvanic rifle'],
+  ['skitarii-vanguard','Skitarii Vanguard','Radium carbine']
+]) for(const [label,index] of [['Omnispex',2],['Enhanced data-tether',1]]) {
+  const sourceId=`datasheet-${slug}:section:1`,sourcePath=`/blocks/${index}/text`;
+  const option=`datasheet-${slug}:wargear:6`,caption=label.toLowerCase();
+  const raw=fs.readFileSync(new URL(`../sources/waha-11e-current-2026-09-25/${title.replaceAll(' ','-')}.html`,import.meta.url),'utf8')
+    .replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+  assert.ok(raw.toLowerCase().includes(caption),'Accepted raw equipment heading');
+  const text=header+`10x ${title} (85 pts): 10x ${weapon}, 10x Close combat weapon, 1x ${label}\n`+
+    `10x ${title} (85 pts): 10x ${weapon}, 10x Close combat weapon`;
+  const service=make();assert.equal(service.import(text).status,'READY');
+  const unit=service.state.units[0],selection=unit.selections.find(s=>s.canonicalFieldPaths[sourceId]?.includes(sourcePath));
+  function verifyCaption(value) {
+    assert.equal(value.physicalQuantity,1);
+    assert.equal(value.perModelQuantity,null);
+    const ref=value.sourceReferences.find(ref=>ref.caption);
+    assert.ok(ref,'Equipment lost its named caption');
+    assert.equal(ref.entityId,option);assert.equal(ref.path,'/text');
+    assert.equal(records.get(option).data.text.slice(ref.caption.start,ref.caption.end),caption);
+  }
+  verifyCaption(selection);
+  const missing=structuredClone(selection);missing.sourceReferences=missing.sourceReferences.filter(ref=>!ref.caption);
+  assert.throws(()=>verifyCaption(missing),/named caption/);rejected++;
+  const wrong=structuredClone(selection);wrong.sourceReferences.find(ref=>ref.caption).caption.start++;
+  assert.throws(()=>verifyCaption(wrong),assert.AssertionError);rejected++;
+  assert.ok(unit.modelRows.every(row=>row.selections.length===0),'No fictional equipment MODEL');
+  assert.equal(selections(service.state.units[1]).filter(s=>s.canonicalEquipmentIds.length).length,0);
+  const first=service.snapshot();service.load(first);assert.deepEqual(service.snapshot(),first);
+  const legacy=structuredClone(first);
+  for(const selected of selections(legacy.units[0]))if(selected.sourceReferences)
+    selected.sourceReferences=selected.sourceReferences.filter(ref=>!ref.caption);
+  const preserved=structuredClone(legacy),restored=make();restored.load(legacy);
+  verifyCaption(restored.state.units[0].selections.find(s=>s.canonicalFieldPaths[sourceId]?.includes(sourcePath)));
+  assert.deepEqual(legacy,preserved,'Loading a saved roster must not mutate its input');
+  assert.equal(service.import(text).status,'READY');assert.deepEqual(service.snapshot(),first);
+  captionCases++;
+}
+assert.equal(captionCases,4);
 assert.deepEqual(book,before,'No canonical identity, rule, effect, source or provenance changes');
 console.log(JSON.stringify({status:'PASS',exactCaption:'omnispex',selectedUnselected:true,unitAndModelOwnership:true,
   instanceIsolation:true,attachDetachReattach:true,reload:true,standaloneAttachmentAPI:true,
-  semanticBaselineEquality:true,rejectedReferences:rejected,canonicalImmutable:true}));
+  semanticBaselineEquality:true,captionCases,rejectedReferences:rejected,canonicalImmutable:true}));
