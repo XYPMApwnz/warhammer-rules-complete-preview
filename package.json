@@ -106,11 +106,11 @@
     "qa:publication": "node tests/publication-inventory-qa.mjs && node tests/offline-mobile-routes-qa.mjs && node tests/rendered-output-qa.mjs",
     "qa:sources": "npm run source:check",
     "qa:architecture": "npm run wiring:check",
-    "qa:integration": "node tests/integration-qa.mjs",
+    "qa:integration": "node v2/source-completeness-check.mjs && node tests/integration-qa.mjs",
     "qa:workflow": "node tests/codex-workflow-qa.mjs",
     "qa:dg:v2:foundation": "node books/death-guard/v2/factual-foundation-qa.mjs",
     "qa:help": "node tools/qa-help.mjs",
-    "qa:release": "npm run qa:sm && npm run qa:da && npm run qa:ba && npm run qa:dg && npm run qa:am && npm run qa:tyranids && npm run qa:tau && npm run qa:ec && npm run qa:csm && npm run qa:effects && npm run qa:points && npm run qa:roster && npm run qa:glossary && npm run qa:architecture && npm run qa:integration && npm run publication:check && npm run army-books:sources:check",
+    "qa:release": "npm run qa:unified:v2:ready && npm run qa:sm && npm run qa:da && npm run qa:ba && npm run qa:dg && npm run qa:am && npm run qa:tyranids && npm run qa:tau && npm run qa:ec && npm run qa:csm && npm run qa:effects && npm run qa:points && npm run qa:roster && npm run qa:glossary && npm run qa:architecture && npm run qa:integration && npm run publication:check && npm run army-books:sources:check",
     "qa:am:v2:required-recipients": "node books/adeptus-mechanicus/v2/required-recipients-qa.mjs",
     "qa:am:v2:required-recipients:browser": "node books/adeptus-mechanicus/v2/required-recipients-browser-qa.mjs",
     "qa:am:v2:dependent-roles": "node books/adeptus-mechanicus/v2/dependent-roles-qa.mjs",
@@ -136,6 +136,8 @@
     "qa:csm:v2:attachments": "node books/shared/roster-v2/attachment-service-qa.mjs && node books/shared/roster-v2/attachment-conditions-qa.mjs && node books/chaos-space-marines/v2/roster-attachment-qa.mjs",
     "qa:csm:v2:attachments:browser": "node books/chaos-space-marines/v2/roster-attachment-browser-qa.mjs",
     "qa:csm:v2:roster-effects": "node books/chaos-space-marines/v2/roster-runtime-build.mjs --check && node books/chaos-space-marines/v2/roster-classification-qa.mjs && node books/chaos-space-marines/v2/roster-runtime-qa.mjs && node books/chaos-space-marines/v2/roster-runtime-edge-qa.mjs",
-    "qa:csm:v2:roster-effects:browser": "node books/chaos-space-marines/v2/roster-runtime-browser-qa.mjs"
+    "qa:csm:v2:roster-effects:browser": "node books/chaos-space-marines/v2/roster-runtime-browser-qa.mjs",
+    "qa:unified:v2:ready": "node v2/source-completeness-check.mjs --fresh && node v2/source-completeness-qa.mjs",
+    "qa:shared:v2:source-completeness": "node v2/source-completeness-qa.mjs"
   }
 }

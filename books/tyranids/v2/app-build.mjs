@@ -1,4 +1,5 @@
 /** Disposable Tyranids presentation. Existing effective facts and central MFM own all values. */
+import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -156,7 +157,9 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   return payload;
 }
 export function writeApp({check=false}={}) {
-  const built=buildTyranidsContracts(),payload=buildApp(built);
+  const built=buildTyranidsContracts();
+  assertBookSourceReview('tyranids',{executionBook:built.book});
+  const payload=buildApp(built);
   for(const [name,value]of [['app-presentation',payload],['roster-runtime',built.book]]){
     const bytes=JSON.stringify(value,null,2)+'\n',file=new URL('./generated/'+name+'.json',import.meta.url);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale Tyranids '+name);else fs.writeFileSync(file,bytes);

@@ -1,4 +1,6 @@
 /** Disposable normal-book projection. The canonical catalog remains the sole factual owner. */
+import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
+import {buildCSMRosterEffectBook} from './roster-effect-build.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
@@ -220,6 +222,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   return payload;
 }
 export function writeApp({check=false}={}){
+  assertBookSourceReview('chaos-space-marines',{executionBook:buildCSMRosterEffectBook()});
   const payload=buildApp();
   for(const [name,value]of [['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',renderCompatibilityEntry({title:'Chaos Space Marines',bookId:'chaos-space-marines'})]]){
     const file=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(file,'utf8'),value,'Stale CSM presentation');else{fs.mkdirSync(new URL('./generated/',import.meta.url),{recursive:true});fs.writeFileSync(file,value);}

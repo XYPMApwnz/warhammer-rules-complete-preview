@@ -1,4 +1,5 @@
 import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
+import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -11,7 +12,7 @@ import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-pro
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 import {summarizeCompatibility} from '../../shared/rule-contract-v2/compatibility.mjs';
 import {buildPresentationReferences} from './presentation-reference-build.mjs';
-import {writeRosterRuntime} from './roster-build.mjs';
+import {buildRosterRuntimeBook,writeRosterRuntime} from './roster-build.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function readAppInputs() {
@@ -99,6 +100,7 @@ export function buildApp(inputs=readAppInputs()) {
   return payload;
 }
 export function writeApp({check=false}={}) {
+  assertBookSourceReview('adeptus-mechanicus',{executionBook:buildRosterRuntimeBook()});
   writeRosterRuntime({check});
   const payload=buildApp(),outputs=new Map([
     ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],

@@ -1,4 +1,6 @@
 /** Disposable EC presentation. Existing effective facts and central MFM own all values. */
+import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
+import {buildECRosterAttachmentBook} from './roster-attachment-build.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -142,6 +144,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
   return payload;
 }
 export function writeApp({check=false}={}) {
+  assertBookSourceReview('emperors-children',{executionBook:buildECRosterAttachmentBook().book});
   const payload=buildApp(),bytes=JSON.stringify(payload,null,2)+'\n',file=new URL('./generated/app-presentation.json',import.meta.url);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale EC presentation');else fs.writeFileSync(file,bytes);
   return payload;

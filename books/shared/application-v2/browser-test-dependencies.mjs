@@ -2,6 +2,7 @@
 const dependencies=new Map([
   ['/v2/app.html','text/html'],
   ['/v2/boot.mjs','text/javascript'],
+  ['/v2/army-books.mjs','text/javascript'],
   ...['compatibility','routes','registry','runtime','home','glossary'].map(name=>[
     `/books/shared/application-v2/${name}.mjs`,'text/javascript']),
   ['/books/shared/application-v2/shell.css','text/css'],

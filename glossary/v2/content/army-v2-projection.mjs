@@ -20,6 +20,7 @@ import {buildTyranidsContracts} from '../../../books/tyranids/v2/rule-contract-b
 import {buildApp as buildTyranidsApp} from '../../../books/tyranids/v2/app-build.mjs';
 import {consumeMfm as consumeTyranidsMfm} from '../../../books/tyranids/v2/mfm-boundary.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {assertSourceCompletenessGate,loadSourceCompletenessInputs} from '../../../books/shared/roster-v2/source-completeness.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
@@ -143,6 +144,7 @@ function mfmIdentityBindings(model,{factualModel}={}) {
 }
 
 export function loadV2ArmyModels(options={}) {
+  assertSourceCompletenessGate(loadSourceCompletenessInputs());
   const dg=assertV2ArmyFactualFreshness(options);
   const dgContract=buildRuleContractV2();
   sameProjection(read('books/death-guard/v2/generated/rule-contract-effective.json'),dgContract,'Stale Death Guard contract projection');
