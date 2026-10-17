@@ -6,6 +6,7 @@ import {buildECContracts} from './rule-contract-build.mjs';
 import {createFormationContext} from './rule-contract-formation-context.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instance.mjs';
 import {resolveOwnedFact,assertNoMfmValues} from './mfm-boundary.mjs';
 const clone=structuredClone,book=buildECImportBook(),original=clone(book),index=new Map(book.entities.map(e=>[e.id,e]));
 const facts=JSON.parse(fs.readFileSync(new URL('./generated/effective.json',import.meta.url)));
@@ -130,7 +131,34 @@ check(()=>{
   }
 });
 check(()=>{
-  for(const [text,status]of [[fixture('aggregate-equipment-unresolved'),'NEEDS_BINDINGS'],
+  // Independent source text establishes UNIT recipients; the export does not
+  // name the MODEL carrying either item, and none may be invented.
+  const text=fixture('aggregate-equipment-unresolved'),plain=text.replace(': 1x Instrument of Chaos, 1x Daemonic icon','');
+  const s=make(),state=ready(text+plain,{},s).roster,owner=state.units[0],other=state.units[1];
+  const id='datasheet-daemonettes:section:1',source=index.get(id).data.blocks;
+  assert.ok(source.some(b=>b.text==='Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.'));
+  assert.ok(source.some(b=>b.text.includes('Models in the bearer’s unit have a Leadership characteristic of 6+')));
+  for(const id of ['datasheet-daemonettes:wargear:1','datasheet-daemonettes:wargear:2']){
+    const selected=owner.selections.filter(x=>x.canonicalEquipmentIds.includes(id));
+    assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,1);
+    assert.equal(selected[0].perModelQuantity,null);assert.equal(selected[0].quantityEvidence.scope,'UNIT');
+  }
+  assert.ok(owner.modelRows.every(row=>row.selections.every(x=>x.canonicalEquipmentIds.length===0)));
+  assert.ok(selections(other).every(x=>x.canonicalEquipmentIds.length===0));
+  const native=nativeContracts(),run=roster=>executeRosterEffects(native.book,roster,createFormationContext(native.book,roster,native.schema));
+  const projection=run(state),effective=projectEffectiveInstance(native.book,projection,owner.instanceId);
+  assert.equal(effective.unitMetrics.chargeRoll.modifier,1);
+  assert.ok(effective.profiles.every(p=>p.fields.find(f=>f.label==='stats').value.LD==='6+'));
+  const negative=projectEffectiveInstance(native.book,projection,other.instanceId);
+  assert.equal(negative.unitMetrics?.chargeRoll,undefined);
+  assert.deepEqual(projection.units[1].profiles.map(p=>p.profile.stats.LD),formRoster(native.book,state).units[1].profiles.map(p=>p.profile.stats.LD));
+  assert.deepEqual(s.load(state),state);assert.deepEqual(run(s.snapshot()),projection);
+  const removed=ready(plain+plain,{},s).roster;
+  assert.equal(projectEffectiveInstance(native.book,run(removed),owner.instanceId).unitMetrics?.chargeRoll,undefined);
+  assert.deepEqual(ready(text+plain,{},s).roster,state);
+});
+check(()=>{
+  for(const [text,status]of [
     [fixture('legions-physical-equipment').replace('• 1x Daemonette: Slashing claws, Instrument of Chaos','• 1x Daemonette: Slashing claws').replace('• 1x Alluress: Slashing claws','• 1x Alluress: Slashing claws, Instrument of Chaos'),'INVALID'],
     [header('Carnival of Excess')+'1x Keeper of Secrets (265 pts): Shining aegis, Living whip','INVALID'],
     [fixture('character-bodyguard').replaceAll('Lord Exultant','Lord Exultantt'),'NEEDS_BINDINGS'],

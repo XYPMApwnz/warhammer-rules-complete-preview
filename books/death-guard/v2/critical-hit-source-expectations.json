@@ -1,0 +1,51 @@
+{
+  "cases": [
+    {
+      "id": "dg-foul-infusion-threshold",
+      "auditRowId": "death-guard:140",
+      "bookId": "death-guard",
+      "source": {
+        "canonicalId": "datasheet-biologus-putrifier:section:1",
+        "ownerId": "unit-biologus-putrifier",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "quote": "Foul Infusion: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
+      },
+      "expectedClauseId": "source-clause-1",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "field": "criticalHitThreshold",
+        "mode": "SET",
+        "value": 5,
+        "targetBinding": "SOURCE_FORMED_MODELS",
+        "targetSubject": "MODEL"
+      }
+    },
+    {
+      "id": "dg-daemon-weapon-threshold",
+      "auditRowId": "death-guard:090",
+      "bookId": "death-guard",
+      "source": {
+        "canonicalId": "detachment-virulent-vectorium:enhancement:1",
+        "ownerId": "detachment-virulent-vectorium",
+        "field": [
+          "text"
+        ],
+        "quote": "DEATH GUARD model only. Each time the bearer makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "expectedClauseId": "critical-hit",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "field": "criticalHitThreshold",
+        "mode": "SET",
+        "value": 5,
+        "targetBinding": "SOURCE_MODEL",
+        "targetSubject": "MODEL",
+        "weaponMode": "melee"
+      }
+    }
+  ]
+}

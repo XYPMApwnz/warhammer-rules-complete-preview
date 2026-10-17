@@ -14,7 +14,8 @@ export function weaponDisplayKey(card) {
   const abilities=card.fields.filter(field=>/^\/abilities(?:\/|$)/.test(path(field)||''))
     .flatMap(field=>Array.isArray(value(field))?value(field):[value(field)]).map(stable);
   return key([card.id,at('name')??card.title,at('mode')??card.weaponMode,
-    ...['range','attacks','skill','strength','ap','damage'].map(at),abilities.sort((a,b)=>key(a).localeCompare(key(b)))]);
+    ...['range','attacks','skill','strength','ap','damage'].map(at),abilities.sort((a,b)=>key(a).localeCompare(key(b))),
+    card.criticalHitThreshold??null,(card.criticalHitSources||[]).map(s=>[s.ruleId,s.sourceInstanceId,s.sourceCompositionId??null]).sort((a,b)=>key(a).localeCompare(key(b)))]);
 }
 export function groupDisplayRecords(records,identity) {
   const groups=new Map();

@@ -102,7 +102,14 @@ export function createECRosterImport(book) {
         const scopes=physical.profiles.filter(p=>p.quantity===1&&p.selections.some(s=>s.selectionKey===selection.selectionKey));
         const owner=scopes.length===1?scopes[0]:unit.startingStrength===1?physical.profiles[0]:null;
         if(selection.physicalQuantity!==1)error('EQUIPMENT_QUANTITY',selection.selectionKey,'Optional equipment selects exactly one physical model');
-        if(!owner){need('EQUIPMENT_MODEL_OWNER',selection.selectionKey,equipment.label);continue;}
+        if(!owner){
+          // These source-bound items affect the known physical UNIT. An
+          // aggregate export preserves their quantities without naming a MODEL.
+          const unitItem=(book.rosterEquipmentRestrictions||[]).some(binding=>binding.ownerId===unit.canonicalUnitId&&
+            [binding.instrumentId,binding.iconId].includes(id));
+          if(!unitItem)need('EQUIPMENT_MODEL_OWNER',selection.selectionKey,equipment.label);
+          continue;
+        }
         const row=unit.modelRows.find(r=>owner.scopeId.startsWith(unit.instanceId+'/'+r.rowId+'/'));
         if(equipment.eligibleMemberId&&row?.compositionMemberId!==equipment.eligibleMemberId)error('WRONG_EQUIPMENT_MODEL',selection.selectionKey,'Item cannot belong to this composition member');
         if(equipmentOwners.has(id))error('DUPLICATE_EQUIPMENT',selection.selectionKey,'Duplicate selected equipment');

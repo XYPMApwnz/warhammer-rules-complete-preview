@@ -146,6 +146,13 @@ export function projectInstanceCards(cards, unit, effective) {
       card.fields.push({id:`${base.id}::/mode`,label:'mode',type:'text',value:values.get('mode'),
         contextId:base.contextId,source:{entityId:base.id,path:'/mode'},runtimeDerived:true});
     }
+    if(source==='WEAPON_PROFILE' && values.has('criticalHitThreshold')) {
+      const threshold=values.get('criticalHitThreshold'),sources=record.criticalHitSources;
+      assert(Number.isSafeInteger(threshold)&&threshold>=2&&threshold<=6&&sources?.length&&
+        sources.every(row=>row.targetInstanceId===unit.instanceId&&row.targetWeaponProfileId===record.id&&
+          (row.targetCompositionId||null)===(record.scopeId||null)), 'Unresolved Critical Hit presentation recipient');
+      card.criticalHitThreshold=threshold;card.criticalHitSources=clone(sources);
+    }
     for (const [key,value] of values) if (Array.isArray(value)) {
       const template=base.fields.find(field=>field.source?.path.startsWith('/'+key+'/'));
       if (!value.length) card.fields.push({...(base.fields.find(field=>field.source?.path==='/'+key) || {label:key,type:'text'}),

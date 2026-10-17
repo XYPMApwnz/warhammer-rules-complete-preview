@@ -115,7 +115,7 @@ export async function runPersonalGuideQA() {
     classCounts[clause.rosterClassification]=(classCounts[clause.rosterClassification]||0)+1;
     if(clause.rosterClassification!=='ROSTER_EXECUTABLE')assert.deepEqual(clause.rosterEffects,[],'Non-executing clause payload');
   }
-  assert.deepEqual(classCounts,{BATTLE_ONLY:302,DISPLAY_ONLY:31,ROSTER_EXECUTABLE:60,NOT_AN_EFFECT:17});
+  assert.deepEqual(classCounts,{BATTLE_ONLY:301,DISPLAY_ONLY:31,ROSTER_EXECUTABLE:61,NOT_AN_EFFECT:17});
   // Army Rules preserve their canonical conditional reference path; they are
   // not dispatched as global roster effects or fabricated Related dialog rows.
   const built=buildCSMContracts(),compiler=createCSMCompatibilityCompiler(built,built.schema.evaluator);
@@ -217,12 +217,12 @@ export async function runPersonalGuideQA() {
   }
   assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),allowed,'Exactly all executable clauses');
   assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
-  assert.equal(matrix.length,60);assert.ok(checks.conditionalRows>0);
+  assert.equal(matrix.length,61);assert.ok(checks.conditionalRows>0);
   assert.ok(conditionalKinds.has('ENHANCEMENT')&&conditionalKinds.has('DETACHMENT_RULE'),'Representative Enhancement and Detachment battle-only text remains conditional');
   assert.equal(JSON.stringify(payload.cards),normalBefore,'Normal book cards unchanged');
   assert.equal(JSON.stringify(book),bookBefore,'Canonical/effect book unchanged');assert.equal(JSON.stringify(importBook),importBefore,'Import facts unchanged');
   const artifact={schema:'csm-v2/shared-personal-guide-audit/v1',baseHead:'14916f21f04037cbc1663312354968fbf1138f08',
-    status:'PASS',executableClauses:60,deferred:[deferredClause],classification:classCounts,darkPactsConditional:pacts.applicability,
+    status:'PASS',executableClauses:61,deferred:[deferredClause],classification:classCounts,darkPactsConditional:pacts.applicability,
     battleConditionalKinds:[...conditionalKinds].sort(),checks,matrix};
   const directory=process.env.CSM_PERSONAL_QA_ARTIFACTS||'E:/Warhammer/qa-artifacts/csm-personal-guide-14916f21';
   fs.mkdirSync(directory,{recursive:true});fs.writeFileSync(path.join(directory,'personal-guide-execution-matrix.json'),JSON.stringify(artifact,null,2)+'\n');

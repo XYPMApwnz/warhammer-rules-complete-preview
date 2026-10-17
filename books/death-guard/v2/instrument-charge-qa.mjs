@@ -62,7 +62,10 @@ export function runInstrumentChargeQA() {
     same.units[0].modelRows[1].selections.push(same.units[0].modelRows[2].selections.find(s=>s.canonicalEquipmentIds.length));
     same.units[0].modelRows[2].selections=same.units[0].modelRows[2].selections.filter(s=>!s.canonicalEquipmentIds.length);
     assert.throws(()=>runtime.load(same),/cannot share/);
-    assert.equal(make().import(`+ DETACHMENT: Tallyband Summoners\n${c.count}x ${c.name} (100 pts): 1x Instrument of Chaos, 1x Daemonic Icon`).status,'NEEDS_BINDINGS');checks++;
+    const aggregate=make();assert.equal(aggregate.import(`+ DETACHMENT: Tallyband Summoners\n${c.count}x ${c.name} (100 pts): 1x Instrument of Chaos, 1x Daemonic Icon`).status,'READY');
+    assert.equal(bonus(aggregate),1);assert.equal(view(aggregate)[0].displayValue,'+1');
+    assert.equal(aggregate.state.units[0].selections.filter(s=>s.canonicalEquipmentIds.length&&s.physicalQuantity===1).length,2);
+    assert.ok(aggregate.state.units[0].modelRows.every(row=>!row.selections.some(s=>s.canonicalEquipmentIds.length)),'Known UNIT quantity never manufactures MODEL bearers');checks++;
     for(const alter of [clause=>{clause.rosterClassification='BATTLE_ONLY';clause.rosterEffects=[];},clause=>clause.rosterEffects[0].value=2,
       clause=>clause.rosterEffects[0].targetBinding='ROSTER_UNITS']){
       const candidate=structuredClone(book);alter(candidate.entities.find(e=>e.id===id).ruleContract.clauses.find(c=>c.id==='source-clause-3'));

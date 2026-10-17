@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {createTyranidsBrowserRoster,createBrowserRoster} from './roster-boot.mjs';
 import {resolveImportedPoints} from './roster-points.mjs';
+import {prepareRosterPresentationCards,projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
 
 const {book}=buildTyranidsContracts(),before=JSON.stringify(book);
 const text=`+ FACTION KEYWORD: Tyranids
@@ -46,6 +48,24 @@ assert.throws(()=>createTyranidsBrowserRoster({...book,bookId:'foreign'}));
 const loaded=await createBrowserRoster({fetch:async url=>{
   assert.ok(url.pathname.endsWith('/generated/roster-runtime.json'));return {ok:true,json:async()=>book};}});
 assert.equal(loaded.import(text).status,'READY');
+// Production Effective/Guide projection preserves UNIT inventory while leaving
+// unknown MODEL weapon ownership empty, independently for repeated units.
+const aggregate=createTyranidsBrowserRoster(book),aggregateText='+ DETACHMENT: Invasion Fleet\n'+
+  '10x Termagants (60 pts): 10x Fleshborer, 10x Chitinous claws and teeth\n'+
+  '10x Termagants (60 pts): 10x Termagant spinefists, 10x Chitinous claws and teeth\n';
+assert.equal(aggregate.import(aggregateText).status,'READY');
+const payload=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
+const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
+for(const [n,expected]of [[0,['datasheet-termagants:weapon:1','datasheet-termagants:weapon:7']],
+  [1,['datasheet-termagants:weapon:6','datasheet-termagants:weapon:7']]]){
+  const unit=aggregate.state.units[n],view=aggregate.effective(unit.instanceId),presented=projectInstanceCards(cards,unit,view);
+  assert.deepEqual(view.weapons.map(weapon=>weapon.id),expected);
+  assert.ok(view.weapons.every(weapon=>weapon.physicalQuantity===10));
+  for(const id of expected)assert.deepEqual(presented.get(id).map(card=>card.rosterQuantity),[10]);
+  assert.ok(aggregate.projection.units[n].profiles.every(profile=>profile.weapons.length===0));
+}
+const aggregateRestored=createTyranidsBrowserRoster(book);aggregateRestored.load(aggregate.snapshot());
+assert.deepEqual(aggregateRestored.projection,aggregate.projection);
 await assert.rejects(()=>createBrowserRoster({fetch:async()=>({ok:false})}));
 assert.equal(JSON.stringify(book),before,'Presentation adapter must not mutate canonical input');
 console.log(JSON.stringify({status:'PASS',import:'CONSTRUCTED_NEW_RECRUIT_TEXT',realNewRecruitExportTested:false,

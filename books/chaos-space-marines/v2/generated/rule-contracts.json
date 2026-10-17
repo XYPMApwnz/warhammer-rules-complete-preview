@@ -42411,7 +42411,7 @@
       "sourceId": "detachment-cult-of-the-arkifane:enhancement:3",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
-      "contextLevel": "BATTLE",
+      "contextLevel": "ROSTER",
       "detachmentId": "detachment-cult-of-the-arkifane",
       "sourceFields": [
         [
@@ -42498,21 +42498,6 @@
             "quote": "detachment-cult-of-the-arkifane:enhancement:3",
             "otherEntityId": "detachment-cult-of-the-arkifane"
           }
-        },
-        {
-          "predicate": "FIELD",
-          "subject": "MODEL",
-          "contextLevel": "BATTLE",
-          "arguments": {
-            "key": "ruleActive:detachment-cult-of-the-arkifane:enhancement:3",
-            "equals": true
-          },
-          "evidence": {
-            "field": [
-              "text"
-            ],
-            "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
-          }
         }
       ],
       "compatibilityRoleIds": [
@@ -42597,30 +42582,20 @@
               "binding": "SOURCE_MODEL"
             }
           ],
-          "conditions": [
-            {
-              "predicate": "FIELD",
-              "subject": "MODEL",
-              "contextLevel": "BATTLE",
-              "arguments": {
-                "key": "ruleActive:detachment-cult-of-the-arkifane:enhancement:3:battle-clause-1",
-                "equals": true
-              },
-              "evidence": {
-                "field": [
-                  "text"
-                ],
-                "quote": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
-              },
-              "roleId": "owner"
-            }
-          ],
-          "productClassification": "BATTLE_ONLY",
+          "conditions": [],
+          "productClassification": "ROSTER_KNOWN",
           "effect": {
             "sourceClause": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
-            "recipientRoleId": "owner"
+            "recipientRoleId": "owner",
+            "parameters": {
+              "field": "criticalHitThreshold",
+              "mode": "SET",
+              "value": 5
+            }
           },
-          "executionImplemented": false
+          "executionImplemented": true,
+          "operation": "MODIFY_RULE_METRIC",
+          "effectSummary": "The exact bearer’s equipped weapons score Critical Hits on unmodified Hit rolls of 5+; no Hit roll is resolved and no BS/WS characteristic is changed."
         }
       ],
       "assignment": {
@@ -99468,14 +99443,6 @@
       },
       "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:3": {
         "contextLevel": "ROSTER",
-        "valueType": "boolean"
-      },
-      "ruleActive:detachment-cult-of-the-arkifane:enhancement:3": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
-      "ruleActive:detachment-cult-of-the-arkifane:enhancement:3:battle-clause-1": {
-        "contextLevel": "BATTLE",
         "valueType": "boolean"
       },
       "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4": {

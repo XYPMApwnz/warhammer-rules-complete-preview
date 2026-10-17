@@ -22,9 +22,12 @@ const b=index=>['blocks',index,'text'];
 const text=['text'];
 
 declare('datasheet-biologus-putrifier:section:1','source-clause-1',b(0),
-  'While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability.',
-  [formedModels('GRANT_WEAPON_ABILITY',{ability:'LETHAL HITS',conditions:[leading(b(0))],lifetime:'WHILE_LEADING'})],
-  {deferredBattleEffects:['A Critical Hit is scored on an unmodified Hit roll of 5+; no Hit roll is resolved by the roster runtime.']});
+  'While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6.',
+  [formedModels('GRANT_WEAPON_ABILITY',{ability:'LETHAL HITS',conditions:[leading(b(0))],lifetime:'WHILE_LEADING'}),
+    formedModels('MODIFY_RULE_METRIC',{field:'criticalHitThreshold',mode:'SET',value:5,label:'Foul Infusion',conditions:[leading(b(0))],lifetime:'WHILE_LEADING'})]);
+declare('detachment-virulent-vectorium:enhancement:1','critical-hit',text,
+  'an unmodified Hit roll of 5+',
+  [melee('MODIFY_RULE_METRIC',{field:'criticalHitThreshold',mode:'SET',value:5})]);
 declare('datasheet-deathshroud-terminators:section:1','source-clause-1',b(0),
   'While a CHARACTER model is leading this unit, that CHARACTER model has the Feel No Pain 4+ ability.',
   [{operation:'GRANT_MODEL_ABILITY',targetBinding:'LEADERS_OF_SOURCE',targetSubject:MODEL,ability:{name:'Feel No Pain',value:4},

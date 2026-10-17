@@ -48,10 +48,10 @@ assertBattlePreserved(built.book,book);
 assert.equal(restored.length,110);
 const counts=runtimeRows.reduce((out,{clause})=>{out[clause.rosterClassification]=(out[clause.rosterClassification]||0)+1;return out;},{});
 assert.equal(runtimeRows.length,410);
-assert.deepEqual(counts,{DISPLAY_ONLY:31,BATTLE_ONLY:302,NOT_AN_EFFECT:17,ROSTER_EXECUTABLE:60});
+assert.deepEqual(counts,{DISPLAY_ONLY:31,BATTLE_ONLY:301,NOT_AN_EFFECT:17,ROSTER_EXECUTABLE:61});
 const executable=new Set(executableClauses(built).map(({rule,clause})=>`${rule.id}::${clause.id}`));
 assert.deepEqual(new Set(runtimeRows.filter(row=>row.clause.rosterEffects.length).map(row=>row.id)),executable);
-assert.equal(executable.size,60);
+assert.equal(executable.size,61);
 for(const row of runtimeRows)if(!executable.has(row.id))assert.deepEqual(row.clause.rosterEffects,[]);
 for(const row of restored) {
   const result=runtimeIndex.get(row.id).clause;

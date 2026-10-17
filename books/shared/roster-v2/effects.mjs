@@ -72,7 +72,13 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
             Object.keys(origin).some(key=>!['ruleId','clauseId'].includes(key)))
           throw new TypeError('Unresolved canonical effect contribution');
       }
-      if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
+      if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field==='criticalHitThreshold') {
+        if (effect.mode!=='SET' || !Number.isSafeInteger(effect.value) || effect.value<2 || effect.value>6 ||
+            effect.max!==undefined || effect.weaponMode!==undefined && !['melee','ranged'].includes(effect.weaponMode) ||
+            effect.targetSubject==='MODEL' && effect.unitScope!==undefined ||
+            effect.targetSubject==='UNIT' && !['PHYSICAL','FORMED'].includes(effect.unitScope))
+          throw new TypeError('Invalid typed Critical Hit threshold');
+      } else if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
       if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field==='chargeRoll' &&
           (effect.targetSubject!=='UNIT' || !['PHYSICAL','FORMED'].includes(effect.unitScope) ||
            !Number.isSafeInteger(effect.value) || effect.max!==undefined || effect.weaponMode!==undefined || effect.weaponIds!==undefined))
@@ -337,7 +343,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       return row;
     };
     const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD' ||
-      effect.operation==='MODIFY_RULE_METRIC' && effect.field==='chargeRoll') && effect.unitScope==='PHYSICAL';
+      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','criticalHitThreshold'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
@@ -414,7 +420,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       const existing = target.model.abilities.find(a=>a.name === effect.ability.name), next = clone(target.model.abilities.filter(a=>a.name !== effect.ability.name));
       next.push({name:effect.ability.name,value:Math.min(existing?.value ?? Infinity,effect.ability.value)});
       mutate(target.model,'abilities',next,target.model.modelInstanceId);
-    } else if (effect.operation === 'MODIFY_RULE_METRIC') {
+    } else if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field!=='criticalHitThreshold') {
       if (group) { const metric=group.metrics[effect.field] || {modifier:0};group.metrics[effect.field]={modifier:metric.modifier+effect.value,...(effect.max?{max:Math.min(metric.max??Infinity,effect.max)}:{})}; }
       for (const unit of unitRecipients) {
         const object = target.model ? target.model.metrics : unit.metrics, before = object[effect.field] || {modifier:0};
@@ -453,7 +459,13 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         const weaponMarker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.unit.instanceId}/${target.unit.weapons.includes(weapon) ? 'unit' : weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`;
         if (processed.has(weaponMarker)) continue; processed.add(weaponMarker);
         if(contributionUsed(`${unit.weapons.includes(weapon)?'unit':weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`))continue;
-        if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
+        if (effect.operation==='MODIFY_RULE_METRIC' && effect.field==='criticalHitThreshold') {
+          // A passive attack threshold is neither BS/WS nor a MODEL metric.
+          // Keep each source contribution even when another grant is stronger.
+          mutate(weapon.data,'criticalHitThreshold',Math.min(weapon.data.criticalHitThreshold??6,effect.value),weapon.modelInstanceId,weapon.canonicalProfileId,
+            target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId),true);
+        }
+        else if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
         else modifyCharacteristic(weapon.data,numericDomain[effect.field]?.field || effect.field,weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
       }
       target.unit=original;

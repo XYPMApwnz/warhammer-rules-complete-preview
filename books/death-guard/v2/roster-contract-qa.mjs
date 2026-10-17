@@ -21,7 +21,8 @@ const text=index=>['blocks',index,'text'];
 // Each signature below follows the quoted accepted clause, including its exact recipient.
 const expected=[
  ['datasheet-biologus-putrifier:section:1','source-clause-1',text(0),'weapons equipped by models in that unit have the [LETHAL HITS] ability',[
-   ['GRANT_WEAPON_ABILITY','SOURCE_FORMED_MODELS','MODEL',null,null,null,'LETHAL HITS']]],
+   ['GRANT_WEAPON_ABILITY','SOURCE_FORMED_MODELS','MODEL',null,null,null,'LETHAL HITS'],
+   ['MODIFY_RULE_METRIC','SOURCE_FORMED_MODELS','MODEL','criticalHitThreshold','SET',5]]],
  ['datasheet-deathshroud-terminators:section:1','source-clause-1',text(0),'that CHARACTER model has the Feel No Pain 4+ ability',[
    ['GRANT_MODEL_ABILITY','LEADERS_OF_SOURCE','MODEL',null,null,null,{name:'Feel No Pain',value:4}]]],
  ['datasheet-helbrute:section:1','source-clause-2',text(1),'add 2 to the Attacks characteristic of those two weapons',[
@@ -72,6 +73,7 @@ const expected=[
  ['detachment-contagion-engines:rule','ranged-assault',['text'],'Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]',[
    ['GRANT_WEAPON_ABILITY','ROSTER_UNITS','UNIT',null,null,null,'ASSAULT','ranged']]]
 ];
+expected.push(['detachment-virulent-vectorium:enhancement:1','critical-hit',['text'],'an unmodified Hit roll of 5+',[['MODIFY_RULE_METRIC','SOURCE_MODEL','MODEL','criticalHitThreshold','SET',5,null,'melee']]]);
 const expectedKeys=new Set(expected.map(row=>row[0]+'\0'+row[1]));
 const atomShape=(predicate,subject,contextLevel,arguments_)=>({predicate,subject,contextLevel,arguments:arguments_});
 const condShape=(binding,predicate)=>({binding,predicate});
@@ -166,7 +168,8 @@ export function verifyRosterContracts(model) {
   }
   for(const [id,cid] of [['datasheet-lord-of-poxes:section:1','source-clause-1'],['detachment-paragons-of-putrescence:rule','contagion-range']])assert.equal(effects(id,cid)[0].max,12,'Source Contagion Range cap');
   const cap=effects('datasheet-lord-of-poxes:section:1','source-clause-1')[0].maxEvidence;assert.deepEqual(cap,{otherEntityId:'army-rule-nurgles-gift:contagion-range',field:['text'],quote:'Contagion Range cannot be greater than 12" after modifiers.'});assert.ok(get(index.get(cap.otherEntityId),cap.field).includes(cap.quote));
-  for(const id of ['datasheet-biologus-putrifier:section:1','datasheet-noxious-blightbringer:section:1'])assert.ok(clauseFor(index,id,'source-clause-1').rosterClassificationNote.deferredBattleEffects?.length,'Compound source battle branch accounted');
+  assert.equal(effects('datasheet-biologus-putrifier:section:1','source-clause-1').find(effect=>effect.field==='criticalHitThreshold').value,5,'Critical Hit clause is computed without resolving dice');
+  for(const id of ['datasheet-noxious-blightbringer:section:1'])assert.ok(clauseFor(index,id,'source-clause-1').rosterClassificationNote.deferredBattleEffects?.length,'Compound source battle branch accounted');
   return {clauses:rows.length,rosterClauses:expectedKeys.size,rosterEffects:expected.reduce((sum,row)=>sum+row[4].length,0)};
 }
 function rawSourceQA(model) {

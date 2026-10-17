@@ -1,7 +1,7 @@
 import {selections} from '../../shared/roster-v2/context.mjs';
 const assert=(ok,message)=>{if(!ok)throw new TypeError(message);};
-/** Existing physical rows/loadouts establish distinct bearers. Aggregate
- * equipment cannot prove two mutually exclusive items belong to different models. */
+/** Preserve known UNIT equipment without manufacturing unknown MODEL bearers.
+ * Explicit physical rows retain their existing source-bound checks. */
 export function validateInstrumentSelections(book,state) {
   const selected=(unit,id)=>selections(unit).filter(s=>s.physicalQuantity>0&&s.canonicalEquipmentIds.includes(id)&&s.canonicalFieldPaths?.[id]?.includes('/text'));
   const active=(unit,selection)=>unit.selections?.includes(selection)||unit.modelRows.some(row=>
@@ -23,7 +23,7 @@ export function validateInstrumentSelections(book,state) {
     const icons=selected(unit,binding.iconId);if(!icons.length)continue;
     assert(icons.length===1&&icons[0].physicalQuantity===1,'Only one Daemonic Icon per physical UNIT may be selected');
     const left=bearer(unit,instruments[0]),right=bearer(unit,icons[0]);
-    assert(left&&right,'Instrument and Icon require distinct explicit physical MODEL bearers');
+    if(!left||!right)continue;
     assert(left!==right,'Instrument and Icon cannot share a physical MODEL bearer');
   }
 }

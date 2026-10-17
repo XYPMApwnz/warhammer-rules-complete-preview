@@ -54772,7 +54772,7 @@
         "sourceId": "detachment-cult-of-the-arkifane:enhancement:3",
         "kind": "ENHANCEMENT",
         "executionMode": "DECLARATIVE_APPLICABILITY",
-        "contextLevel": "BATTLE",
+        "contextLevel": "ROSTER",
         "detachmentId": "detachment-cult-of-the-arkifane",
         "sourceFields": [
           [
@@ -54859,21 +54859,6 @@
               "quote": "detachment-cult-of-the-arkifane:enhancement:3",
               "otherEntityId": "detachment-cult-of-the-arkifane"
             }
-          },
-          {
-            "predicate": "FIELD",
-            "subject": "MODEL",
-            "contextLevel": "BATTLE",
-            "arguments": {
-              "key": "ruleActive:detachment-cult-of-the-arkifane:enhancement:3",
-              "equals": true
-            },
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
-            }
           }
         ],
         "compatibilityRoleIds": [
@@ -54958,34 +54943,163 @@
                 "binding": "SOURCE_MODEL"
               }
             ],
-            "conditions": [
+            "conditions": [],
+            "productClassification": "ROSTER_KNOWN",
+            "effect": {
+              "sourceClause": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+              "recipientRoleId": "owner",
+              "parameters": {
+                "field": "criticalHitThreshold",
+                "mode": "SET",
+                "value": 5
+              }
+            },
+            "executionImplemented": true,
+            "operation": "MODIFY_RULE_METRIC",
+            "effectSummary": "The exact bearer’s equipped weapons score Critical Hits on unmodified Hit rolls of 5+; no Hit roll is resolved and no BS/WS characteristic is changed.",
+            "rosterEffects": [
               {
-                "predicate": "FIELD",
-                "subject": "MODEL",
-                "contextLevel": "BATTLE",
-                "arguments": {
-                  "key": "ruleActive:detachment-cult-of-the-arkifane:enhancement:3:battle-clause-1",
-                  "equals": true
-                },
+                "id": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "targetSubject": "MODEL",
+                "targetBinding": "SOURCE_MODEL",
+                "field": "criticalHitThreshold",
+                "mode": "SET",
+                "value": 5,
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:3",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                      },
+                      "roleId": "owner"
+                    }
+                  }
+                ],
                 "evidence": {
                   "field": [
                     "text"
                   ],
                   "quote": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
                 },
-                "roleId": "owner"
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-cult-of-the-arkifane:enhancement:3",
+                  "canonicalOwnerId": "detachment-cult-of-the-arkifane",
+                  "canonicalClauseId": "battle-clause-1",
+                  "sourceEvidence": [
+                    {
+                      "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:3",
+                      "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+                      "location": "enhancements under Cult of the Arkifane",
+                      "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  ],
+                  "semanticEvidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                  },
+                  "sourceSelector": {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "HERETIC ASTARTES"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_KEYWORD",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "DAMNED"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "recipientSelector": {
+                    "op": "ALL",
+                    "args": [
+                      {
+                        "predicate": "MODEL_KEYWORD",
+                        "subject": "MODEL",
+                        "contextLevel": "STATIC",
+                        "arguments": {
+                          "keyword": "HERETIC ASTARTES"
+                        },
+                        "evidence": {
+                          "field": [
+                            "text"
+                          ],
+                          "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                        }
+                      },
+                      {
+                        "op": "NOT",
+                        "args": [
+                          {
+                            "predicate": "MODEL_KEYWORD",
+                            "subject": "MODEL",
+                            "contextLevel": "STATIC",
+                            "arguments": {
+                              "keyword": "DAMNED"
+                            },
+                            "evidence": {
+                              "field": [
+                                "text"
+                              ],
+                              "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
               }
             ],
-            "productClassification": "BATTLE_ONLY",
-            "effect": {
-              "sourceClause": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
-              "recipientRoleId": "owner"
-            },
-            "executionImplemented": false,
-            "rosterEffects": [],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "BATTLE_ONLY"
+              "reason": "DISPLAY_ONLY"
             }
           }
         ],
@@ -203692,14 +203806,6 @@
         "contextLevel": "ROSTER",
         "valueType": "boolean"
       },
-      "ruleActive:detachment-cult-of-the-arkifane:enhancement:3": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
-      "ruleActive:detachment-cult-of-the-arkifane:enhancement:3:battle-clause-1": {
-        "contextLevel": "BATTLE",
-        "valueType": "boolean"
-      },
       "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:4": {
         "contextLevel": "ROSTER",
         "valueType": "boolean"
@@ -204489,6 +204595,7 @@
       "detachment-cult-of-the-arkifane:rule::roster-clause-2",
       "detachment-cult-of-the-arkifane:rule::roster-clause-3",
       "detachment-cult-of-the-arkifane:enhancement:2::roster-clause-1",
+      "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1",
       "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-1",
       "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-2",
       "detachment-cult-of-the-arkifane:enhancement:4::roster-clause-3",

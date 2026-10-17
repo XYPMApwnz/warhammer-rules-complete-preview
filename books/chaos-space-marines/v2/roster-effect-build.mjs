@@ -231,7 +231,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
   evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
   assert.equal(JSON.stringify(built),before,'Lowering mutated canonical facts/contracts');
   const clauses=book.entities.flatMap(r=>(r.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>`${r.id}::${c.id}`));
-  assert.equal(clauses.length,60);assert.ok(!clauses.includes(deferredClause));
+  assert.equal(clauses.length,61);assert.ok(!clauses.includes(deferredClause));
   book.rosterEffectCensus={executable:61,lowered:clauses,deferred:[deferredClause]};
   return book;
 }

@@ -139,10 +139,8 @@ export function createTyranidsRosterImport(input){
         if(count(constraint.memberId)===constraint.selectedQuantity&&count(constraint.requiresMemberId)!==constraint.requiredQuantity)
           error('SOURCE_COMPOSITION_CONDITION',unit.instanceId,constraint.sourceText);
       }
-      // Aggregate selected weapons cannot be assigned to an arbitrary physical
-      // model. Preserve the import and request a more precise source binding.
-      if(unit.startingStrength>1&&unit.selections.some(s=>s.physicalQuantity>0))
-        need('WEAPON_MODEL_OWNER',unit.instanceId,'Selected aggregate equipment has no exact physical owner');
+      // Preserve exact UNIT quantities without allocating weapons to invented
+      // MODEL rows. Specific source-bound decisions still require ownership.
       const unitBridge=book.mfmImportReferences.partitions.unitBindings.find(row=>row.entityId===unit.canonicalUnitId);
       requireValue(unitBridge,'Missing central MFM unit bridge');
       assignChecked(unit,'mfmUnitRecordId',unitBridge.mfmRecordId);
@@ -161,6 +159,8 @@ export function createTyranidsRosterImport(input){
           error('CONFLICTING_MAIN_WEAPON',unit.instanceId,'Export selects mutually exclusive Tyrannofex replacements');
       }
       if(unit.canonicalUnitId==='unit-hyperadapted-raveners'){
+        for(const selection of unit.selections)if(selection.physicalQuantity>0&&selection.canonicalProfileIds.includes('datasheet-hyperadapted-raveners:weapon:1'))
+          need('VENOM_BOLT_MODEL_OWNER',selection.selectionKey,'Venom bolt requires one explicitly identified Ravener');
         for(const row of unit.modelRows){
           const allocated=row.loadouts.reduce((sum,l)=>sum+l.quantity,0);
           const groups=[...row.loadouts.map(l=>({count:l.quantity,selections:[...row.selections,...l.selections]})),

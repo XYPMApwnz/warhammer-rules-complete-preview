@@ -81,7 +81,10 @@ export function checkEffects(projection,fixture,state) {
     if(['GRANT_MODEL_KEYWORD','GRANT_UNIT_KEYWORD'].includes(row.operation))assert.ok(row.after.includes(effect.keyword),'Wrong keyword');
     if(row.operation==='REMOVE_ABILITY')assert.ok(!row.after.some(ability=>ability.canonicalId===effect.ability.canonicalId),'Target ability still present');
     if(row.operation==='MODIFY_ABILITY_RANGE')assert.equal(row.after,row.before+effect.value,'Wrong specific canonical range');
-    if(row.operation==='MODIFY_RULE_METRIC')assert.deepEqual(row.after,{modifier:(row.before?.modifier||0)+effect.value},'Wrong typed UNIT metric');
+    if(row.operation==='MODIFY_RULE_METRIC') {
+      if(effect.field==='criticalHitThreshold')assert.equal(row.after,effect.value,'Wrong typed weapon Critical Hit threshold');
+      else assert.deepEqual(row.after,{modifier:(row.before?.modifier||0)+effect.value},'Wrong typed UNIT metric');
+    }
     assert.ok(row.sourceFields.length&&row.lifetime,'Missing execution provenance');
   }
   // Each source operation family must execute, while mutually exclusive
@@ -166,7 +169,7 @@ export async function run() {
           profileIds:rule.kind==='ENHANCEMENT'?[fixture.bearerProfileId]:source.modelRows.map(row=>row.canonicalProfileId)}:{})})),
       EXPECTED_EFFECT:fixture.expectedOperations,ACTUAL_EFFECT:applied,RESULT:'PASS'});
   }
-  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,60);
+  assert.deepEqual(new Set(matrix.map(row=>row.CLAUSE_ID)),valid);assert.equal(matrix.length,61);
   assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
   for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])
     if(!valid.has(`${rule.id}::${clause.id}`))assert.deepEqual(clause.rosterEffects,[],'Non-executable payload');

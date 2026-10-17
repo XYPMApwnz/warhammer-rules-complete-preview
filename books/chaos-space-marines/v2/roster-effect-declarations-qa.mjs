@@ -33,6 +33,7 @@ for(const {rule:canonical,clause:typed} of executableClauses(built)) {
     if(effect.operation==='GRANT_MODEL_KEYWORD'||effect.operation==='GRANT_UNIT_KEYWORD')assert.ok(row.after.includes(effect.keyword));
     if(effect.operation==='REMOVE_ABILITY')assert.ok(!row.after.some(a=>a.canonicalId===effect.ability.canonicalId));
     if(effect.operation==='MODIFY_ABILITY_RANGE')assert.equal(row.after,row.before+effect.value);
+    if(effect.operation==='MODIFY_RULE_METRIC'&&effect.field==='criticalHitThreshold')assert.equal(row.after,effect.value,'Typed weapon Critical Hit threshold');
   }
   if(['ENHANCEMENT','UPGRADE_OPTION'].includes(rule.kind))assert.ok(!applied.some(r=>['b','unrelated'].includes(r.targetInstanceId)),'Unrelated physical instance changed');
   const again=evaluateCSMRosterDeclarations(book,clone(state));assert.deepEqual(again,result,'Rebuild is not deterministic');
@@ -71,7 +72,7 @@ for(const {rule:canonical,clause:typed} of executableClauses(built)) {
   }
   seen.add(`${rule.id}::${clause.id}`);results.push({id:`${rule.id}::${clause.id}`,operationsApplied:applied.length});
 }
-assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,60);
+assert.deepEqual(seen,new Set(book.rosterEffectCensus.lowered));assert.equal(seen.size,61);
 assert.deepEqual(book.rosterEffectCensus.deferred,[deferredClause]);
 assert.equal(book.entities.find(r=>r.id==='army-rule-cult-of-the-dark-gods').ruleContract.clauses.flatMap(c=>c.rosterEffects).length,0);
 assert.equal(book.entities.find(r=>r.id==='detachment-huron-s-marauders:enhancement:1').ruleContract.clauses[0].rosterClassification,'DISPLAY_ONLY');

@@ -1,19 +1,19 @@
 {
   "schema": "roster-v2/source-execution-audit",
   "sourceHead": "9439c9cc93da26ad916f9ce6941905e0619c5adc",
-  "executable": 60,
+  "executable": 61,
   "deferred": [
     "army-rule-cult-of-the-dark-gods::source-clause"
   ],
   "battleBoundary": {
     "contractClauses": 410,
-    "runtimeBattleOnlyClauses": 302,
+    "runtimeBattleOnlyClauses": 301,
     "note": "Explicit battle-only classifications are preserved from canonical declarations. Every non-executable contract clause has an empty effect payload."
   },
   "checks": {
-    "removeRestore": 45,
-    "detachment": 38,
-    "attachments": 37
+    "removeRestore": 46,
+    "detachment": 39,
+    "attachments": 38
   },
   "matrix": [
     {
@@ -13848,6 +13848,562 @@
             "INFANTRY",
             "SOUL FORGE"
           ],
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "lifetime": "WHILE_ASSIGNED"
+        }
+      ],
+      "RESULT": "PASS"
+    },
+    {
+      "CLAUSE_ID": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1",
+      "OWNER": "detachment-cult-of-the-arkifane:enhancement:3",
+      "SOURCE_EVIDENCE": [
+        {
+          "sourceEntityId": "detachment-cult-of-the-arkifane:enhancement:3",
+          "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+          "location": "enhancements under Cult of the Arkifane",
+          "sha256": "54E028296C063629F43E82A9ABA26943568DEE3AE819E36620F72DEC47529C4E",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      ],
+      "SOURCE_CLAUSE": {
+        "field": [
+          "text"
+        ],
+        "quote": "Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "NEW_RECRUIT_TEXT": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Cult of the Arkifane\n\n3x Dark Apostle (70 pts)\nEnhancement: Mark of the Soul Forges\n• 1x Dark Apostle: Bolt pistol, Accursed crozius\n• 2x Dark Disciples: Close combat weapon\n\n3x Dark Apostle (70 pts)\n• 1x Dark Apostle: Bolt pistol, Accursed crozius\n• 2x Dark Disciples: Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\nCreated with newrecruit.eu\n",
+      "ROSTER_PREREQUISITES": {
+        "detachments": [
+          {
+            "instanceId": "detachment/1",
+            "canonicalDetachmentId": "detachment-cult-of-the-arkifane"
+          }
+        ],
+        "attachments": [],
+        "importedChoices": [
+          {
+            "instanceId": "parsed-unit-1",
+            "canonicalUnitId": "unit-dark-apostle",
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-1/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Dark Apostle",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-1/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:2",
+                "quantity": 2,
+                "presentationLabel": "Dark Disciples",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-1/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 2,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 2,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "selections": [],
+            "enhancementIds": [
+              "detachment-cult-of-the-arkifane:enhancement:3"
+            ],
+            "enhancementAssignments": [
+              {
+                "enhancementId": "detachment-cult-of-the-arkifane:enhancement:3",
+                "modelScopeId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1"
+              }
+            ]
+          },
+          {
+            "instanceId": "parsed-unit-2",
+            "canonicalUnitId": "unit-dark-apostle",
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-2/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Dark Apostle",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:1"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-2/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-dark-apostle:section:2:member:2",
+                "quantity": 2,
+                "presentationLabel": "Dark Disciples",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-2/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-dark-apostle:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 2,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 2,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "selections": [],
+            "enhancementIds": []
+          },
+          {
+            "instanceId": "parsed-unit-3",
+            "canonicalUnitId": "unit-legionaries",
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-3/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-legionaries:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Aspiring Champion",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/1/selection/3",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:18"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-3/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-legionaries:section:2:member:2",
+                "quantity": 4,
+                "presentationLabel": "Legionaries",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-3/model-row/2/selection/3",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:18"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "selections": [],
+            "enhancementIds": []
+          },
+          {
+            "instanceId": "parsed-unit-4",
+            "canonicalUnitId": "unit-legionaries",
+            "modelRows": [
+              {
+                "rowId": "parsed-unit-4/model-row/1",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-legionaries:section:2:member:1",
+                "quantity": 1,
+                "presentationLabel": "Aspiring Champion",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/1/selection/3",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:18"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 1,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 1,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              },
+              {
+                "rowId": "parsed-unit-4/model-row/2",
+                "compositionScope": "MODEL_ROW",
+                "canonicalProfileId": "datasheet-legionaries:section:2:member:2",
+                "quantity": 4,
+                "presentationLabel": "Legionaries",
+                "selections": [
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/1",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:2"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/2",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:3"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  },
+                  {
+                    "selectionKey": "parsed-unit-4/model-row/2/selection/3",
+                    "canonicalProfileIds": [
+                      "datasheet-legionaries:weapon:18"
+                    ],
+                    "canonicalEquipmentIds": [],
+                    "canonicalFieldPaths": {},
+                    "physicalQuantity": 4,
+                    "perModelQuantity": 1,
+                    "quantityEvidence": {
+                      "scope": "MODEL_ROW",
+                      "modelQuantity": 4,
+                      "selectedQuantity": 1,
+                      "explicitSelectedQuantity": false
+                    }
+                  }
+                ],
+                "loadouts": []
+              }
+            ],
+            "selections": [],
+            "enhancementIds": []
+          }
+        ]
+      },
+      "PHYSICAL_SOURCE_INSTANCE": "parsed-unit-1",
+      "EXPECTED_RECIPIENT": [
+        {
+          "binding": "SOURCE_MODEL",
+          "subject": "MODEL",
+          "candidatePhysicalInstances": [
+            "parsed-unit-1"
+          ],
+          "sourceBackedConditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:3",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                },
+                "roleId": "owner"
+              }
+            }
+          ],
+          "instanceId": "parsed-unit-1",
+          "profileIds": [
+            "datasheet-dark-apostle:section:2:member:1"
+          ]
+        }
+      ],
+      "EXPECTED_EFFECT": [
+        {
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "conditions": [
+            {
+              "binding": "TARGET",
+              "predicate": {
+                "predicate": "FIELD",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "key": "enhancementAssigned:detachment-cult-of-the-arkifane:enhancement:3",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+                },
+                "roleId": "owner"
+              }
+            }
+          ],
+          "field": "criticalHitThreshold",
+          "mode": "SET",
+          "value": 5
+        }
+      ],
+      "ACTUAL_EFFECT": [
+        {
+          "ruleId": "detachment-cult-of-the-arkifane:enhancement:3",
+          "clauseId": "battle-clause-1",
+          "effectId": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1/effect-1",
+          "sourceInstanceId": "parsed-unit-1",
+          "targetInstanceId": "parsed-unit-1",
+          "sourceProfileId": "datasheet-dark-apostle:section:2:member:1",
+          "sourceCompositionId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1",
+          "sourceModelInstanceId": "import-608fdeb16819c0b0/parsed-unit-1/parsed-unit-1/model-row/1",
+          "targetModelInstanceId": "import-608fdeb16819c0b0/parsed-unit-1/parsed-unit-1/model-row/1",
+          "targetProfileId": "datasheet-dark-apostle:section:2:member:1",
+          "targetCompositionId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1",
+          "targetWeaponProfileId": "datasheet-dark-apostle:weapon:1",
+          "operation": "MODIFY_RULE_METRIC",
+          "field": "criticalHitThreshold",
+          "before": null,
+          "after": 5,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "lifetime": "WHILE_ASSIGNED"
+        },
+        {
+          "ruleId": "detachment-cult-of-the-arkifane:enhancement:3",
+          "clauseId": "battle-clause-1",
+          "effectId": "detachment-cult-of-the-arkifane:enhancement:3::battle-clause-1/effect-1",
+          "sourceInstanceId": "parsed-unit-1",
+          "targetInstanceId": "parsed-unit-1",
+          "sourceProfileId": "datasheet-dark-apostle:section:2:member:1",
+          "sourceCompositionId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1",
+          "sourceModelInstanceId": "import-608fdeb16819c0b0/parsed-unit-1/parsed-unit-1/model-row/1",
+          "targetModelInstanceId": "import-608fdeb16819c0b0/parsed-unit-1/parsed-unit-1/model-row/1",
+          "targetProfileId": "datasheet-dark-apostle:section:2:member:1",
+          "targetCompositionId": "parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1",
+          "targetWeaponProfileId": "datasheet-dark-apostle:weapon:2",
+          "operation": "MODIFY_RULE_METRIC",
+          "field": "criticalHitThreshold",
+          "before": null,
+          "after": 5,
           "sourceFields": [
             [
               "text"

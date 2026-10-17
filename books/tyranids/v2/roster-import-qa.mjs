@@ -82,6 +82,26 @@ check(()=>{
   const clone=s.snapshot();clone.units[0].modelRows[0].quantity=9;assert.deepEqual(s.state,a);
 });
 
+// Exact aggregate quantities survive for homogeneous units; no MODEL owns
+// the weapons until the input identifies one. Different instances stay apart.
+check(()=>{
+  const selected='10x Termagants (60 pts): 10x Fleshborer, 10x Chitinous claws and teeth\n';
+  const other='10x Termagants (60 pts): 10x Termagant spinefists, 10x Chitinous claws and teeth\n';
+  const s=service(),state=ready(header('Invasion Fleet')+selected+other,{},s).roster;
+  for(const [n,expected]of [[0,['Fleshborer','Chitinous claws and teeth']],[1,['Termagant spinefists','Chitinous claws and teeth']]]){
+    const unit=state.units[n];assert.equal(unit.startingStrength,10);
+    assert.deepEqual(unit.selections.map(x=>records.get(x.canonicalProfileIds[0]).data.name),expected);
+    assert.ok(unit.selections.every(x=>x.physicalQuantity===10&&x.perModelQuantity===null&&x.quantityEvidence.scope==='UNIT'));
+    assert.ok(unit.modelRows.every(row=>row.selections.length===0&&row.loadouts.length===0));
+  }
+  const projected=formRoster(book,state);
+  assert.ok(projected.units.every(u=>u.profiles.every(p=>p.weapons.length===0)),'Aggregate weapons do not invent MODEL ownership');
+  assert.deepEqual(projected.units.map(u=>u.weapons.map(w=>w.physicalQuantity)),[[10,10],[10,10]]);
+  assert.deepEqual(s.load(state),state);assert.deepEqual(ready(header('Invasion Fleet')+selected+other,{},s).roster,state);
+  const removed=ready(header('Invasion Fleet')+other+other,{},s).roster;
+  assert.ok(!removed.units[0].selections.some(x=>x.canonicalProfileIds.includes('datasheet-termagants:weapon:1')));
+});
+
 // T04/T05: exact mixed statlines and three distinct physical loadout groups.
 const hyperBlock=`5x Hyperadapted Raveners (165 pts)\n`+
   `• 1x Ravener Prime: Prime claws and talons\n`+
@@ -105,6 +125,9 @@ check(()=>{
   assert.deepEqual(variants.units[0].modelRows.map(r=>r.compositionMemberId),u.modelRows.map(r=>r.compositionMemberId));
   rejected(text.replace('• 1x Ravener Prime: Prime claws and talons','• 1x Ravener Prime: Venom bolt'));
   rejected(text.replace('• 3x Raveners: Ravener heavy claws and talons','• 3x Raveners: Prime claws and talons'));
+  const aggregate=service().import(header('Invasion Fleet')+hyperBlock.replace('(165 pts)','(165 pts): 1x Venom bolt')
+    .replace('• 1x Raveners: Venom bolt,','• 1x Raveners:'));
+  assert.equal(aggregate.status,'NEEDS_BINDINGS');assert.ok(aggregate.needsBindings.some(n=>n.kind==='VENOM_BOLT_MODEL_OWNER'));negative++;
 });
 
 check(()=>{

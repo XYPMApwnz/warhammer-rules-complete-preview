@@ -28,7 +28,19 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
       fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities),
       ...(m.suppressedAbilityIds?{suppressedAbilityIds:[...m.suppressedAbilityIds]}:{})})),
-    weapons:[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>({id:w.canonicalProfileId,title:w.data.name,ownerInstanceId:instanceId,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,scopeId:w.scopeId || null,selectionKey:w.selectionKey,fields:fields(w.data)})),
+    weapons:[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>{
+      const sources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC' && row.field==='criticalHitThreshold' &&
+        row.targetWeaponProfileId===w.canonicalProfileId && (row.targetCompositionId||null)===(w.scopeId||null)).map(row=>{
+        const rule=records.get(row.ruleId),effect=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId)?.rosterEffects.find(e=>e.id===row.effectId);
+        if(effect?.operation!=='MODIFY_RULE_METRIC'||effect.field!=='criticalHitThreshold'||effect.mode!=='SET'||row.targetInstanceId!==instanceId)
+          throw new TypeError('Unresolved Critical Hit threshold provenance');
+        return {...clone(row),value:effect.value,label:effect.label||rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
+      });
+      if(w.data.criticalHitThreshold!==undefined && (!sources.length||Math.min(6,...sources.map(s=>s.value))!==w.data.criticalHitThreshold))
+        throw new TypeError('Missing or inconsistent Critical Hit threshold sources');
+      return {id:w.canonicalProfileId,title:w.data.name,ownerInstanceId:instanceId,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,scopeId:w.scopeId || null,selectionKey:w.selectionKey,fields:fields(w.data),
+        ...(sources.length?{criticalHitSources:sources}:{})};
+    }),
     abilities:[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),
       ...book.entities.filter(e=>e.parentId===canonical.id&&['SUPPLEMENTAL_DATASHEET_RULE','WEAPON_PROFILE_SELECTION','WARGEAR_FOOTNOTE'].includes(e.kind)).map(e=>e.id)])].filter(id=>{
         const abilityIds=[...(book.rosterReferenceSemantics?.[id]?.abilities||[]).flatMap(ability=>ability.canonicalId?[ability.canonicalId]:[]),

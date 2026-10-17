@@ -2,8 +2,8 @@
   "schema": "csm-rule-contract-census/v2",
   "ruleOwners": 554,
   "counts": {
-    "BUILT": 68,
-    "BATTLE_ONLY_NO_RUNTIME_NEEDED": 247,
+    "BUILT": 69,
+    "BATTLE_ONLY_NO_RUNTIME_NEEDED": 246,
     "BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY": 0,
     "NOT_EFFECT_OR_PRESENTATION_ONLY": 239
   },
@@ -13291,8 +13291,8 @@
     },
     {
       "ruleId": "detachment-cult-of-the-arkifane:enhancement:3",
-      "status": "BATTLE_ONLY_NO_RUNTIME_NEEDED",
-      "reason": "Reviewed typed source applicability; exact physical Enhancement owner and Detachment scope are explicit. Battle clauses remain conditional and non-executing.",
+      "status": "BUILT",
+      "reason": "Source-backed passive Critical Hit threshold applies to the exact Enhancement bearer; attack resolution remains outside the roster runtime.",
       "evidence": [
         {
           "field": [

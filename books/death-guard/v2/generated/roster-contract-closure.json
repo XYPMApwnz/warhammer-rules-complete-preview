@@ -4,12 +4,12 @@
   "ruleOwners": 239,
   "clauses": 306,
   "classifications": {
-    "BATTLE_ONLY": 159,
+    "BATTLE_ONLY": 158,
     "NOT_AN_EFFECT": 112,
-    "ROSTER_EXECUTABLE": 24,
+    "ROSTER_EXECUTABLE": 25,
     "DISPLAY_ONLY": 11
   },
-  "rosterEffects": 27,
+  "rosterEffects": 29,
   "battleExecution": false,
   "rows": [
     {
@@ -46,9 +46,6 @@
       "kind": "DATASHEET_ABILITY",
       "classification": "ROSTER_EXECUTABLE",
       "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
-      "deferredBattleEffects": [
-        "A Critical Hit is scored on an unmodified Hit roll of 5+; no Hit roll is resolved by the roster runtime."
-      ],
       "sourceFields": [
         [
           "blocks",
@@ -97,7 +94,54 @@
               0,
               "text"
             ],
-            "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+            "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
+          }
+        },
+        {
+          "id": "source-clause-1:roster-effect:2",
+          "conditions": [
+            {
+              "binding": "SOURCE",
+              "predicate": {
+                "predicate": "LEADING",
+                "subject": "MODEL",
+                "contextLevel": "ROSTER",
+                "arguments": {
+                  "value": true
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "leading a unit"
+                }
+              }
+            }
+          ],
+          "lifetime": "WHILE_LEADING",
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "SOURCE_FORMED_MODELS",
+          "targetSubject": "MODEL",
+          "field": "criticalHitThreshold",
+          "mode": "SET",
+          "value": 5,
+          "label": "Foul Infusion",
+          "sourceFields": [
+            [
+              "blocks",
+              0,
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
           }
         }
       ]
@@ -3090,14 +3134,38 @@
       "ruleId": "detachment-virulent-vectorium:enhancement:1",
       "clauseId": "critical-hit",
       "kind": "ENHANCEMENT",
-      "classification": "BATTLE_ONLY",
-      "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event.",
+      "classification": "ROSTER_EXECUTABLE",
+      "reason": "Source recipient and activation are computable from the selected Detachment, assignment, attachment, and explicitly selected equipment.",
       "sourceFields": [
         [
           "text"
         ]
       ],
-      "effects": []
+      "effects": [
+        {
+          "id": "critical-hit:roster-effect:1",
+          "conditions": [],
+          "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
+          "operation": "MODIFY_RULE_METRIC",
+          "targetBinding": "SOURCE_MODEL",
+          "targetSubject": "MODEL",
+          "weaponMode": "melee",
+          "field": "criticalHitThreshold",
+          "mode": "SET",
+          "value": 5,
+          "sourceFields": [
+            [
+              "text"
+            ]
+          ],
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "an unmodified Hit roll of 5+"
+          }
+        }
+      ]
     },
     {
       "ruleId": "detachment-virulent-vectorium:enhancement:2",

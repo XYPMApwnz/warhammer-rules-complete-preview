@@ -106,8 +106,11 @@ check(()=>{
 });
 check(()=>{
   const {s}=imported(fixture('character-bodyguard'));const original=s.snapshot();
-  for(const text of [fixture('aggregate-equipment-unresolved'),fixture('possessed-blade-missing-decision')]){
+  for(const text of [fixture('possessed-blade-missing-decision')]){
     assert.equal(s.import(text).status,'NEEDS_BINDINGS');assert.deepEqual(s.snapshot(),original);negative++;}
+  const result=s.import(fixture('aggregate-equipment-unresolved'));assert.equal(result.status,'READY');
+  assert.equal(s.effective('parsed-unit-1').unitMetrics.chargeRoll.modifier,1);
+  assert.ok(s.state.units[0].modelRows.every(row=>row.selections.every(selection=>selection.canonicalEquipmentIds.length===0)));
   assert.equal(contracts.length,26);assert.deepEqual(book,before);
 });
 for(const mutate of [p=>p.pop(),p=>p.push(clone(p[0])),p=>p[0].targetId='unit-keeper-of-secrets',

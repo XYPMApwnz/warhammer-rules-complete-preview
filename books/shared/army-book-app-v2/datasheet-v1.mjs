@@ -141,6 +141,18 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       chip.classList.add('tag','weapon-tag');chip.append(factValue('span',field));tags.append(chip);used.add(field.id);
     }
     nameCell.append(tags);
+    if(card.criticalHitThreshold!==undefined) {
+      const note=el('small','ds-critical-hit-threshold',`Critical hits: ${card.criticalHitThreshold}+ · `);
+      note.dataset.criticalHitThreshold=String(card.criticalHitThreshold);
+      note.dataset.recipientInstanceId=instanceId;note.dataset.recipientScope=card.scopeId||'';
+      const sources=new Map(card.criticalHitSources.map(source=>[JSON.stringify([source.ruleId,source.sourceInstanceId,source.sourceCompositionId]),source]));
+      for(const [index,source]of [...sources.values()].entries()) {
+        if(index)note.append(document.createTextNode(' · '));
+        const link=anchor(source.label,source.ruleId,true);link.dataset.criticalHitSourceInstanceId=source.sourceInstanceId||'';
+        note.append(link);
+      }
+      nameCell.append(note);
+    }
     if(card.rosterQuantity!==undefined)nameLine.append(el('small','ds-weapon-quantity',` ×${card.rosterQuantity}`));
     if(popup) {const h=el('h3');h.append(nameCell);row.append(h);}else row.append(nameCell);
     const fieldLabels={range:'Range',attacks:'A',skill:(mode?.value??card.weaponMode)==='melee'?'WS':'BS',strength:'S',ap:'AP',damage:'D'};
@@ -402,6 +414,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId});
         if(instanceId&&displayGroup.members.length>1){
           row.dataset.weaponScopes=JSON.stringify(displayGroup.members.map(member=>[member.id,member.scopeId||null]));
+          const threshold=row.querySelector('[data-critical-hit-threshold]');
+          if(threshold)threshold.dataset.recipientScopes=JSON.stringify(displayGroup.members.map(member=>member.scopeId||null));
           row.querySelector('.ds-composition-scope')?.remove();
           const quantity=row.querySelector('.ds-weapon-quantity');if(quantity)quantity.textContent=` ×${displayGroup.quantity}`;
           for(const cell of row.querySelectorAll('[data-label]')){

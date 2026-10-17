@@ -88,7 +88,8 @@ for(const name of names)check(()=>{
   const both=input(name,'both');both.units[0].modelRows[0].selections.push(both.units[0].modelRows[1].selections.pop());
   assert.throws(()=>evaluate(both),/cannot share a physical MODEL/);
   const ambiguous=input(name,'both');ambiguous.units[0].selections=ambiguous.units[0].modelRows.flatMap(r=>r.selections);
-  ambiguous.units[0].modelRows.forEach(r=>r.selections=[]);assert.throws(()=>evaluate(ambiguous),/distinct explicit physical MODEL/);
+  ambiguous.units[0].modelRows.forEach(r=>r.selections=[]);parity(evaluate(ambiguous),{icon:true});
+  assert.ok(ambiguous.units[0].modelRows.every(r=>r.selections.length===0),'Known UNIT effects never invent a MODEL bearer');
   const tooMany=input(name);tooMany.units[0].modelRows[0].selections[0].physicalQuantity=2;assert.throws(()=>evaluate(tooMany),/Only one Instrument/);
   const duplicate=input(name);duplicate.units[0].modelRows[2].selections=[selected(name)];assert.throws(()=>evaluate(duplicate),/Only one Instrument/);
   const inactive=input(name);inactive.units[0].modelRows[0].selections=[];

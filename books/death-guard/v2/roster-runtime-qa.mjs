@@ -59,8 +59,11 @@ for (const [id, clauseId, file, quote] of sourceCases) {
 const expectedPaths = new Set(sourceCases.map(([id, clause]) => `${id}/${clause}`));
 // Operation semantics independently transcribed from the same source passages.
 // Ordinal correspondence is sourceCases order, never generated effect order.
+sourceCases.push(['detachment-virulent-vectorium:enhancement:1','critical-hit','death-guard.html','an unmodified Hit roll of 5+']);
+expectedPaths.add('detachment-virulent-vectorium:enhancement:1/critical-hit');
+assert(sourceText('death-guard.html').includes(normalized('an unmodified Hit roll of 5+')));
 const sourceOperations = [
-  ['GRANT_WEAPON_ABILITY|SOURCE_FORMED_MODELS|LETHAL HITS'],
+  ['GRANT_WEAPON_ABILITY|SOURCE_FORMED_MODELS|LETHAL HITS','MODIFY_RULE_METRIC|SOURCE_FORMED_MODELS|criticalHitThreshold:SET:5'],
   ['GRANT_MODEL_ABILITY|LEADERS_OF_SOURCE|Feel No Pain:4'],
   ['MODIFY_STAT|SOURCE_MODEL|attacks:ADD:2'],
   ['MODIFY_STAT|SOURCE_FORMED_MODELS|OC:ADD:1'],
@@ -83,7 +86,8 @@ const sourceOperations = [
   ['GRANT_UNIT_KEYWORD|ROSTER_UNITS|BATTLELINE'],
   ['MODIFY_RULE_METRIC|ROSTER_UNITS|contagionRange:ADD:3:12'],
   ['GRANT_UNIT_KEYWORD|ROSTER_UNITS|CONTAGION ENGINE'],
-  ['GRANT_WEAPON_ABILITY|ROSTER_UNITS|ASSAULT']
+  ['GRANT_WEAPON_ABILITY|ROSTER_UNITS|ASSAULT'],
+  ['MODIFY_RULE_METRIC|SOURCE_MODEL|criticalHitThreshold:SET:5']
 ];
 const operationSignature = effect => [effect.operation,effect.targetBinding,
   effect.field ? [effect.field,effect.mode,effect.value,...(effect.max === undefined ? [] : [effect.max])].join(':') :
@@ -296,6 +300,7 @@ for(const [slug,quantity]of [['plague-drones',3],['plaguebearers',10]])scenario(
   assert.equal(projected(service,'parsed-unit-1').metrics.chargeRoll.modifier,1);
   assert.equal(projected(service,'parsed-unit-2').metrics.chargeRoll,undefined);capture(service);
 });
+scenario(()=>{const service=make();service.load(state([unit('daemon-owner','unit-lord-of-contagion',1,{weapons:['datasheet-lord-of-contagion:weapon:1'],enhancements:['detachment-virulent-vectorium:enhancement:1']})]));assert.equal(weapon(service,'daemon-owner','datasheet-lord-of-contagion:weapon:1').data.criticalHitThreshold,5);capture(service);});
 assert.deepEqual(covered, expectedPaths, 'Every independently enumerated source clause has a positive runtime control');
 const expectedEffects = new Set(book.entities.flatMap(entity => (entity.ruleContract?.clauses || []).flatMap(clause => clause.rosterEffects.map(effect => `${entity.id}/${effect.id}`))));
 assert.deepEqual(coveredEffects, expectedEffects, 'All operations within the source-backed clause controls executed');

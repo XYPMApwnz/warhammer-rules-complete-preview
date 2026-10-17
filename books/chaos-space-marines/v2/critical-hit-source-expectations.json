@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "id": "csm-soul-forges-threshold",
+      "auditRowId": "chaos-space-marines:131",
+      "bookId": "chaos-space-marines",
+      "source": {
+        "canonicalId": "detachment-cult-of-the-arkifane:enhancement:3",
+        "ownerId": "detachment-cult-of-the-arkifane",
+        "field": ["text"],
+        "quote": "HERETIC ASTARTES model only (excluding DAMNED models). Each time the bearer makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit."
+      },
+      "expectedClauseId": "battle-clause-1",
+      "expectedOperation": {
+        "operation": "MODIFY_RULE_METRIC",
+        "field": "criticalHitThreshold",
+        "mode": "SET",
+        "value": 5,
+        "targetBinding": "SOURCE_MODEL",
+        "targetSubject": "MODEL"
+      }
+    }
+  ]
+}
