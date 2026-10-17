@@ -40,7 +40,10 @@ export function inspectInstrumentSelections(book,state) {
       const icons=selected(unit,input.iconId);if(!icons.length)continue;
       if(icons.length!==1||icons[0].physicalQuantity!==1){fail('EQUIPMENT_QUANTITY','Only one Daemonic Icon may be selected per physical UNIT');continue;}
       const other=location(unit,icons[0]);
-      if(!instrument.bearer||!other.bearer){fail('UNRESOLVED_EQUIPMENT_BEARERS','Instrument and Icon require distinct explicit physical MODEL bearers',true);continue;}
+      // UNIT-level export quantities do not identify a MODEL bearer. Keep that
+      // ownership unknown: both effects target the known physical UNIT, and
+      // validating the exported equipment combination belongs to New Recruit.
+      if(!instrument.bearer||!other.bearer)continue;
       if(instrument.bearer===other.bearer)fail('EXCLUSIVE_MODEL_EQUIPMENT','Instrument and Icon cannot share a physical MODEL bearer');
     }
   }

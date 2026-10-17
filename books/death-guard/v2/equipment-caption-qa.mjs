@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './aggregate-equipment-import-qa.mjs';
 import fs from 'node:fs';
 import {createDGRosterRuntime} from './roster-boot.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
