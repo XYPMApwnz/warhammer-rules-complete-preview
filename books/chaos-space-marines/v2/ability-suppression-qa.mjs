@@ -1,12 +1,17 @@
 /** Current canonical source -> typed target declaration -> existing runtime.
  * This capability probe does not wire CSM roster import, UI or other effects. */
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {buildCSMContracts} from './rule-contract-build.mjs';
+import {buildCSMImportBook} from './roster-import-build.mjs';
+import {buildCSMAttachmentInputs} from './roster-attachment-build.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
 const ruleId='detachment-renegade-warband:rule',detachmentId='detachment-renegade-warband';
 const abilityId='army-rule-dark-pacts',clone=value=>structuredClone(value),built=buildCSMContracts();
+const productionPolicies=buildCSMAttachmentInputs(buildCSMImportBook(built.facts),
+  JSON.parse(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'))).policies;
 const source=built.facts.entities.find(entity=>entity.id===ruleId);
 const exact='HERETIC ASTARTES models from your army lose the Dark Pacts ability.';
 assert.ok(source.data.content[0].text.startsWith(exact));assert.ok(source.provenance);
@@ -22,6 +27,16 @@ assert.equal([...built.classifications.values()].filter(row=>row.blockers).lengt
 
 function verify(removedId=abilityId) {
   const book=clone(built.book);book.rosterProfileBindings=clone(built.profileBindings);
+  // Supply production-backed provenance without changing this probe's policies.
+  for(const edge of book.rosterAttachmentPolicies){
+    const matches=productionPolicies.filter(policy=>policy.sourceId===edge.sourceId&&policy.targetId===edge.targetId&&policy.role===edge.role.toUpperCase());
+    assert.equal(matches.length,1,'Unresolved production attachment policy');
+    const sourceIds=matches[0].sourceIds;
+    assert.ok(Array.isArray(sourceIds)&&sourceIds.length>0,'Missing production attachment provenance');
+    assert.ok(sourceIds.includes(edge.sourceEntityId),'Original attachment source evidence lost');
+    assert.ok(sourceIds.every(id=>book.entities.some(entity=>entity.id===id&&entity.provenance)),'Unbound canonical attachment provenance');
+    edge.sourceIds=clone(sourceIds);
+  }
   for(const entity of book.entities)if(entity.id!==ruleId)delete entity.ruleContract;
   const rule=book.entities.find(entity=>entity.id===ruleId),contract=rule.ruleContract;
   // Canonical membership owns the link; its display label is never an identity.

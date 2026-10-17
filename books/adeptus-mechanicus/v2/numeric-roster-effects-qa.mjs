@@ -3,6 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {buildAdMechContracts,readJson,directory} from './rule-contract-build.mjs';
 import {compilerInputs} from './rule-contract-context.mjs';
+import {buildRosterAttachmentInputs} from './roster-attachment-build.mjs';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
@@ -20,6 +21,18 @@ const expected=[['BS|ADD|-1|ranged|UNIT|SOURCE_UNIT','HEAVY|||ranged|UNIT|SOURCE
   ['range|ADD|6|ranged|UNIT|SOURCE_UNIT','strength|ADD|1|ranged|UNIT|SOURCE_UNIT'],
   ['attacks|ADD|2|melee|MODEL|SOURCE_MODEL','ap|ADD|-1|melee|MODEL|SOURCE_MODEL','damage|ADD|1|melee|MODEL|SOURCE_MODEL']];
 const built=buildAdMechContracts(),book=structuredClone(compilerInputs(built.book).book);
+// Compatibility policies retain the probe's original fields; runtime attachment
+// validation also requires provenance from the production-owned exact pair.
+const productionPolicies=buildRosterAttachmentInputs(built.book,readJson('roster-attachment-bindings.json')).policies;
+for(const edge of book.rosterAttachmentPolicies){
+  const matches=productionPolicies.filter(policy=>policy.sourceId===edge.sourceId&&policy.targetId===edge.targetId&&policy.role===edge.role);
+  assert.equal(matches.length,1,'Unresolved production attachment policy');
+  const sourceIds=matches[0].sourceIds;
+  assert.ok(Array.isArray(sourceIds)&&sourceIds.length>0,'Missing production attachment provenance');
+  assert.ok(sourceIds.includes(edge.sourceEntityId),'Original attachment source evidence lost');
+  assert.ok(sourceIds.every(id=>book.entities.some(entity=>entity.id===id&&entity.provenance)),'Unbound canonical attachment provenance');
+  edge.sourceIds=structuredClone(sourceIds);
+}
 for(const entity of book.entities)if(!ids.includes(entity.id)&&!['army-rule-doctrina-imperatives:protector-imperative','army-rule-doctrina-imperatives:conqueror-imperative'].includes(entity.id))delete entity.ruleContract;
 const index=new Map(book.entities.map(e=>[e.id,e])),evaluator=withRosterDetachments(built.schema.evaluator),beforeBook=structuredClone(book);
 assert.equal(built.blockedIds.size,0);

@@ -1,12 +1,17 @@
 /** Current canonical source -> typed range declarations -> shared runtime.
  * This capability probe does not wire CSM import, presentation UI or unrelated effects. */
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {buildCSMContracts} from './rule-contract-build.mjs';
+import {buildCSMImportBook} from './roster-import-build.mjs';
+import {buildCSMAttachmentInputs} from './roster-attachment-build.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
 const ruleId='detachment-cult-of-the-arkifane:enhancement:4',detachmentId='detachment-cult-of-the-arkifane';
 const built=buildCSMContracts(),clone=value=>structuredClone(value);
+const productionPolicies=buildCSMAttachmentInputs(buildCSMImportBook(built.facts),
+  JSON.parse(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'))).policies;
 const abilityIds=[0,1,2].map(index=>`datasheet-warpsmith:section:1:block:${index}:text`),baseRanges=[3,3,12];
 const expectedSource='WARPSMITH model only. Add 3" to the range of the bearer’s Warpsmith, Master of Mechanisms and Enrage Machine Spirits abilities.';
 const source=built.facts.entities.find(entity=>entity.id===ruleId),factsById=new Map(built.facts.entities.map(entity=>[entity.id,entity]));
@@ -33,6 +38,17 @@ for(const [index,clause] of declaration.clauses.entries()) {
 
 function verify({value=3,targetId=abilityIds[0]}={}) {
   const book=clone(built.book);book.rosterProfileBindings=clone(built.profileBindings);
+  // Keep this capability fixture intact; bind its missing runtime provenance
+  // to the same exact source/target/role used by the production adapter.
+  for(const edge of book.rosterAttachmentPolicies){
+    const matches=productionPolicies.filter(policy=>policy.sourceId===edge.sourceId&&policy.targetId===edge.targetId&&policy.role===edge.role.toUpperCase());
+    assert.equal(matches.length,1,'Unresolved production attachment policy');
+    const sourceIds=matches[0].sourceIds;
+    assert.ok(Array.isArray(sourceIds)&&sourceIds.length>0,'Missing production attachment provenance');
+    assert.ok(sourceIds.includes(edge.sourceEntityId),'Original attachment source evidence lost');
+    assert.ok(sourceIds.every(id=>book.entities.some(entity=>entity.id===id&&entity.provenance)),'Unbound canonical attachment provenance');
+    edge.sourceIds=clone(sourceIds);
+  }
   for(const entity of book.entities)if(entity.id!==ruleId)delete entity.ruleContract;
   const rule=book.entities.find(entity=>entity.id===ruleId),contract=rule.ruleContract;
   contract.assignment.selector=clone(role.selector);
