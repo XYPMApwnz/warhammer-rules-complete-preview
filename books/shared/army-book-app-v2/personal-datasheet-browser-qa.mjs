@@ -13,6 +13,7 @@ import {effectiveIntegrationFixture} from '../../adeptus-mechanicus/v2/roster-ef
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const baselineHead=process.env.PERSONAL_DATASHEET_BASELINE_HEAD||'d087cfbadab574f55a7e525c03303a18adb7ef6b';
 const syntheticOnly=process.argv.includes('--synthetic-only');
+const equipmentCaptionsOnly=process.argv.includes('--equipment-captions-only');
 const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/effective-datasheet-presentation-d087';
 fs.mkdirSync(out,{recursive:true});
 const read=file=>JSON.parse(fs.readFileSync(path.join(repo,file),'utf8'));
@@ -23,11 +24,12 @@ const baseline=new Map(['datasheet-v1.mjs','datasheet-v1.css','datasheet-v1-layo
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((request,response)=>{
   const requested=decodeURIComponent(new URL(request.url,'http://localhost').pathname),old=requested.startsWith('/baseline/');
+  if(requested==='/favicon.ico'){response.writeHead(204);response.end();return;}
   const address=old?requested.slice('/baseline'.length):requested,file=path.resolve(repo,'.'+address);
   if(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||fs.statSync(file).isDirectory()) {response.writeHead(404);response.end();return;}
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});
   const army=[...payloads.keys()].find(name=>address===`/books/${name}/v2/generated/app-presentation.json`);
-  response.end(army?JSON.stringify(payloads.get(army)):old&&baseline.has(address)?baseline.get(address):fs.readFileSync(file));
+  response.end(army&&!equipmentCaptionsOnly?JSON.stringify(payloads.get(army)):old&&baseline.has(address)?baseline.get(address):fs.readFileSync(file));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
@@ -309,8 +311,162 @@ async function verifyState(page,army,device,state,label,{load=true,screenshots=f
   }
   personalResults.push({army,device,fixture:label,instances:state.units.length,profiles,weapons,staticSections,compositionRows,popupChecks});
 }
+// Equipment captions are a display of a selected canonical source address, not
+// a second equipment resolver. Real-book cases below use normal import/UI actions;
+// malformed references are exercised only in disconnected diagnostic fixtures.
+async function equipmentCaptionControls() {
+  const {aggregateInventoryCases,aggregateInventoryFixture}=await import('../../../v2/aggregate-physical-inventory-qa.mjs');
+  const cases=aggregateInventoryCases.map(value=>({...value,name:value.book,text:aggregateInventoryFixture(value)}));
+  const drones=cases.find(value=>value.book==='death-guard');
+  cases.push({...drones,name:'death-guard-physical-model-equipment',ownerKind:'MODEL',
+    text:'+ DETACHMENT: Tallyband Summoners\n3x Plague Drones (100 pts)\n'+
+      '• 1x Plaguebringer: Death’s heads, Foul mouthparts, Plaguesword\n'+
+      '• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Instrument of Chaos\n'+
+      '• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Daemonic Icon\n'+drones.plain+'\n'});
+  const skitarii=cases.find(value=>value.book==='adeptus-mechanicus');
+  // Separate valid selections, plus a different physical instance without gear.
+  skitarii.extra=', 1x Omnispex';skitarii.equipment=skitarii.equipment.filter(item=>item.name==='Omnispex');
+  skitarii.text=aggregateInventoryFixture(skitarii);
+  for(const [slug,title,weapon,label,index]of [
+    ['skitarii-rangers','Skitarii Rangers','Galvanic rifle','Enhanced data-tether',1],
+    ['skitarii-vanguard','Skitarii Vanguard','Radium carbine','Omnispex',2],
+    ['skitarii-vanguard','Skitarii Vanguard','Radium carbine','Enhanced data-tether',1]
+  ]) {
+    const plain=`10x ${title} (85 pts): 10x ${weapon}, 10x Close combat weapon`;
+    cases.push({book:'adeptus-mechanicus',name:slug+'-'+index,unit:'unit-'+slug,
+      source:`books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/${title.replaceAll(' ','-')}.html`,
+      text:`+ DETACHMENT: Haloscreed Battle Clade\n${plain}, 1x ${label}\n${plain}\n`,
+      equipment:[{id:`datasheet-${slug}:section:1`,name:label,quantity:1}]});
+  }
+  for(const [slug,title,weapons,label,path,points]of [
+    ['archaeopter-fusilave','Archaeopter Fusilave','Cognis heavy stubber array, Armoured hull','Chaff Launcher','/blocks/1/text',160],
+    ['archaeopter-stratoraptor','Archaeopter Stratoraptor','2x Cognis heavy stubber, 2x Heavy phosphor blaster, Twin cognis lascannon, Armoured hull','Command Uplink','/blocks/2/text',185],
+    ['archaeopter-transvector','Archaeopter Transvector','Cognis heavy stubber array, Armoured hull','Command Uplink','/blocks/2/text',145]
+  ])cases.push({book:'adeptus-mechanicus',name:slug,unit:'unit-'+slug,
+    source:`books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/${title.replaceAll(' ','-')}.html`,
+    text:`+ DETACHMENT: Cohort Cybernetica\n1x ${title} (${points} pts): ${weapons}, ${label}\n1x ${title} (${points} pts): ${weapons}\n`,
+    equipment:[{id:`datasheet-${slug}:section:1`,name:label,quantity:1,path}]});
+  for(const c of cases) {
+    const raw=fs.readFileSync(path.join(repo,c.source),'utf8').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+    for(const expected of c.equipment){assert.ok(raw.toLowerCase().includes(expected.name.toLowerCase()),c.name+' accepted source equipment caption');
+      if(expected.path)assert.ok(raw.includes(expected.name+':'),c.name+' exact accepted named equipment heading');}
+  }
+  for(const [device,viewport]of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]) {
+    const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();
+    page.on('pageerror',error=>errors.push(error.message));
+    page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
+    const ready=async()=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));
+      await page.evaluate(async()=>{await ArmyBookAppV2.ready;await ArmyBookAppV2.rosterPanel.ready;await document.fonts.ready;});};
+    const roster=async()=>{await page.getByRole('link',{name:'Roster',exact:true}).click();await ready();};
+    for(const c of cases) {
+      await page.goto(origin+'/v2/app.html');await page.getByRole('link',{name:'Roster',exact:true}).click();
+      await page.locator(`main a[data-v2-book="${c.book}"]`).click();await ready();
+      await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(c.text);
+      await page.getByRole('button',{name:'Import roster',exact:true}).click();
+      await page.waitForFunction(()=>ArmyBookAppV2.roster.state?.units.length===2);await ready();
+      const before=await page.evaluate(()=>ArmyBookAppV2.roster.snapshot());
+      assert.deepEqual(before.units.map(unit=>unit.canonicalUnitId),[c.unit,c.unit]);
+      for(const [ordinal,unit]of before.units.entries())for(const view of ['effective','guide']) {
+        await roster();
+        if(view==='effective')await page.locator(`[data-roster-instance-id="${unit.instanceId}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
+        else {await page.getByRole('button',{name:'Open personal guide',exact:true}).click();
+          await page.locator(`main a[data-target-id="roster-unit/${unit.instanceId}"]`).click();}
+        await ready();
+        const report=await page.locator(`main .unit-card[data-roster-instance-id="${unit.instanceId}"]`).evaluate(root=>({
+          items:[...root.querySelectorAll('[data-selected-canonical-ids]')].map(line=>({ids:JSON.parse(line.dataset.selectedCanonicalIds),
+            text:line.textContent.replace(/\s+/g,' ').trim(),facts:[...line.querySelectorAll('[data-fact-id]')].map(node=>node.dataset.factId)})),
+          overflow:document.documentElement.scrollWidth>innerWidth+1}));
+        assert.equal(report.overflow,false,`${c.name}/${device}/${view}: page overflow`);
+        const expected=ordinal?[]:c.equipment;
+        const actual=report.items.filter(item=>item.ids.some(id=>id.includes(':section:')||id.includes(':wargear:')));
+        assert.equal(actual.length,expected.length,c.name+'/'+view+' equipment rows; no duplicates or foreign instance gear');
+        for(const equipment of expected) {
+          const item=actual.find(item=>item.ids.includes(equipment.id)&&item.text.toLowerCase()===`${equipment.quantity} × ${equipment.name}`.toLowerCase());
+          assert.ok(item,`${c.name}/${device}/${view}: missing exact ${equipment.name}; actual=${JSON.stringify(actual)}`);
+          assert.ok(item.facts.length,'Equipment caption must retain canonical fact provenance');
+          if(equipment.path){assert.equal(item.text,`${equipment.quantity} × ${equipment.name}`);
+            assert.deepEqual(item.facts,[equipment.id+'::'+equipment.path],'Specific bound source block supplies caption and provenance');}
+        }
+        if(c.book==='tyranids')for(const weapon of c.weapons)assert.ok(report.items.some(item=>item.ids.includes(weapon.id)&&
+          item.text===`${weapon.quantity} × ${weapon.name}`),'Weapon-only book keeps exact source weapon captions and quantities');
+        if(!ordinal&&c.name.startsWith('archaeopter-'))await page.screenshot({path:path.join(out,`${device}-${c.name}-${view}.png`),fullPage:true});
+        assert.deepEqual(await page.evaluate(()=>ArmyBookAppV2.roster.snapshot()),before,'Display must preserve identity, quantity and ownership');
+        personalResults.push({device,book:c.book,fixture:c.name,instanceId:unit.instanceId,view,equipment:actual,status:'PASS'});
+      }
+      const selected=before.units[0];
+      const selections=[...selected.selections,...selected.modelRows.flatMap(row=>[...row.selections,...row.loadouts.flatMap(loadout=>loadout.selections)])].filter(item=>item.canonicalEquipmentIds.length);
+      if(c.ownerKind==='MODEL') {
+        assert.ok(selected.selections.every(item=>!item.canonicalEquipmentIds.length),'Physical equipment must not migrate to UNIT inventory');
+        assert.deepEqual(selected.modelRows.map(row=>row.selections.filter(item=>item.canonicalEquipmentIds.length).length),[0,1,1],
+          'Instrument and Icon retain their distinct declared MODEL bearers');
+        for(const item of selections)assert.equal(item.perModelQuantity,1);
+      }else{
+        for(const item of selections)assert.equal(item.perModelQuantity,null,'Aggregate equipment quantities must not invent MODEL bearer');
+        assert.ok(selected.modelRows.every(row=>row.selections.every(item=>!item.canonicalEquipmentIds.length)),'Unknown equipment owner remains UNIT-only');
+      }
+      await page.reload();await ready();assert.deepEqual(await page.evaluate(()=>ArmyBookAppV2.roster.snapshot()),before,'Reload preserves quantities and unknown ownership');
+    }
+    // This isolated synthetic document never replaces real application DOM,
+    // roster state, outputs or assertions in the real-book acceptance above.
+    const diagnostic=await page.evaluate(async()=>{
+      const {createSyntheticPersonalFixture}=await import('/books/shared/army-book-app-v2/personal-datasheet-qa.mjs');
+      const {createDatasheetPresenter}=await import('/books/shared/army-book-app-v2/datasheet-v1.mjs');
+      const {projectInstanceCards}=await import('/books/shared/army-book-app-v2/personal.mjs');
+      const results=[];
+      for(const variant of ['bound-heading','selected-field-heading','unrelated-headed-reference','explicit-reference','missing-reference','wrong-reference-path','negative-span','empty-span','outside-span','duplicate-reference','absent-caption','same-caption-distinct-identities','mixed-profile-equipment']) {
+        const f=createSyntheticPersonalFixture('caption-diagnostic-'+variant),doc=document.implementation.createHTMLDocument('caption diagnostics');
+        const target=f.cards.get(f.id('equipment')),base=target.fields[0];target.title='ABILITIES';target.kind='DATASHEET_SECTION';
+        target.fields=[{...base,id:target.id+'::/title',value:'ABILITIES',presentation:'heading',label:'title',source:{entityId:target.id,path:'/title'}},
+          {...base,id:target.id+'::/blocks/0/text',value:'Diagnostic Lens: An independent source-backed description.',source:{entityId:target.id,path:'/blocks/0/text'}}];
+        const selection=f.unit.selections[0];selection.canonicalFieldPaths={[target.id]:['/blocks/0/text']};selection.sourceReferences=[{entityId:target.id,path:'/blocks/0/text'}];
+        if(variant==='selected-field-heading')selection.sourceReferences=[];
+        if(variant==='unrelated-headed-reference'){
+          f.cards.get(f.id('instruction')).fields.find(field=>field.source.path==='/text').value='Unrelated heading: evidence cannot override the selected block';
+          selection.sourceReferences.unshift({entityId:f.id('instruction'),path:'/text'});
+        }
+        if(variant==='mixed-profile-equipment')selection.canonicalProfileIds=[f.id('selected-weapon')];
+        if(variant==='absent-caption'){target.fields=target.fields.slice(0,1);selection.sourceReferences=[];selection.canonicalFieldPaths={};}
+        if(['explicit-reference','negative-span','empty-span','outside-span'].includes(variant)){
+          const field=f.cards.get(f.id('instruction')).fields.find(field=>field.source.path==='/text');field.value='One calibrated lens.';
+          selection.sourceReferences.push({entityId:f.id('instruction'),path:'/text',caption:{start:4,end:19}});
+          const caption=selection.sourceReferences[1].caption;
+          if(variant==='negative-span')caption.start=-1;if(variant==='empty-span')caption.end=caption.start;
+          if(variant==='outside-span')caption.end=9999;
+        }
+        if(variant==='missing-reference')selection.sourceReferences.unshift({entityId:'absent',path:'/text',caption:{start:0,end:4}});
+        if(variant==='wrong-reference-path')selection.sourceReferences.unshift({entityId:target.id,path:'/missing',caption:{start:0,end:4}});
+        if(variant==='duplicate-reference')selection.sourceReferences.push(structuredClone(selection.sourceReferences[0]));
+        if(variant==='same-caption-distinct-identities'){
+          const other=structuredClone(target);other.id=f.id('other-equipment');other.fields.forEach(field=>{field.id=field.id.replace(target.id,other.id);field.source.entityId=other.id;});
+          f.cards.set(other.id,other);const otherSelection=structuredClone(selection);otherSelection.canonicalEquipmentIds=[other.id];
+          otherSelection.canonicalFieldPaths={[other.id]:['/blocks/0/text']};otherSelection.sourceReferences=[{entityId:other.id,path:'/blocks/0/text'}];f.unit.selections.push(otherSelection);
+        }
+        const saved=JSON.stringify({cards:[...f.cards],unit:f.unit,effective:f.effective});
+        const el=(tag,classes='',text)=>{const node=doc.createElement(tag);if(classes)node.className=classes;if(text!==undefined)node.textContent=text;return node;};
+        const factValue=(tag,field)=>{const node=el(tag,'',String(field.displayValue??field.value));node.dataset.factId=field.id;return node;};
+        const anchor=(label,id)=>{const node=el('a','',label);node.dataset.targetId=id;return node;};
+        const roster={state:{units:[f.unit],attachments:[]},effective:()=>f.effective};
+        const presenter=createDatasheetPresenter({document:doc,payload:f.payload,cards:f.cards,el,factValue,anchor,related:()=>el('div'),roster});
+        const variants=projectInstanceCards(f.cards,f.unit,f.effective),root=presenter.renderDatasheet(variants.get(f.unit.canonicalUnitId)[0],{variants,instanceId:f.unit.instanceId});
+        results.push({variant,items:[...root.querySelectorAll('[data-selected-canonical-ids]')].map(line=>({text:line.textContent,ids:JSON.parse(line.dataset.selectedCanonicalIds),
+          factId:line.querySelector('[data-fact-id]')?.dataset.factId})),unchanged:saved===JSON.stringify({cards:[...f.cards],unit:f.unit,effective:f.effective})});
+      }return results;
+    });
+    for(const result of diagnostic){assert.equal(result.unchanged,true);assert.equal(result.items.length,result.variant==='same-caption-distinct-identities'?2:1);
+      assert.ok(result.items.every(item=>/^1 × \S/.test(item.text)),'Missing/invalid captions must never render blank');
+      assert.ok(result.items.every(item=>item.factId),'Fallback captions retain available canonical source provenance');
+      if(result.variant==='mixed-profile-equipment')assert.equal(result.items[0].text,'1 × Shared display weapon / Diagnostic Lens','Equipment caption must not replace a selected weapon name');
+      else if(result.variant!=='absent-caption')assert.ok(result.items.every(item=>item.text==='1 × '+(result.variant==='explicit-reference'?'calibrated lens':'Diagnostic Lens')),JSON.stringify(result));
+      if(result.variant==='bound-heading')assert.ok(result.items[0].factId.endsWith('::/blocks/0/text'));
+      if(result.variant==='explicit-reference')assert.ok(result.items[0].factId.endsWith('instruction::/text'));
+      if(result.variant==='same-caption-distinct-identities')assert.notDeepEqual(result.items[0].ids,result.items[1].ids);
+    }
+    syntheticResults.push({device,equipmentCaptionControls:diagnostic,status:'PASS'});await context.close();
+  }
+}
 try{
-  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]])for(const [army,payload]of payloads){
+  await equipmentCaptionControls();
+  if(!equipmentCaptionsOnly)for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]])for(const [army,payload]of payloads){
     console.log(JSON.stringify({phase:'START',army,device}));
     const context=await browser.newContext({viewport,reducedMotion:'reduce'}),page=await openPage(context,army);
     await syntheticDom(page,army,device);
@@ -343,5 +499,5 @@ try{
   }
   assert.deepEqual(errors,[],'Uncaught browser errors');
   const report={status:'PASS',baselineHead,normalComparisons,personalResults,syntheticResults,pageErrors:errors,screenshots:out};
-  fs.writeFileSync(path.join(out,syntheticOnly?'personal-datasheet-synthetic-browser-report.json':'personal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+  fs.writeFileSync(path.join(out,equipmentCaptionsOnly?'equipment-caption-browser-report.json':syntheticOnly?'personal-datasheet-synthetic-browser-report.json':'personal-datasheet-browser-report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

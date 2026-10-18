@@ -594,17 +594,28 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
               // An already-bound equipment ability supplies its source heading
               // as a caption, just as renderSection formats a bound heading.
               // This never resolves an item by text or establishes ownership.
-              const captionReference=selection.canonicalEquipmentIds?.length===1&&selection.canonicalEquipmentIds[0]===id&&
+              const equipment=selection.canonicalEquipmentIds?.length===1&&selection.canonicalEquipmentIds[0]===id;
+              const captionReference=equipment&&
                 selection.sourceReferences?.find(reference=>reference.caption);
-              const captionSource=captionReference&&cards.get(captionReference.entityId)?.fields.find(field=>field.source?.path===captionReference.path);
-              const captionField=selection.canonicalEquipmentIds?.length===1&&selection.sourceReferences?.map(reference=>
-                cards.get(reference.entityId)?.fields.find(field=>field.source?.path===reference.path)).find(field=>typeof field?.value==='string'&&field.value.indexOf(':')>0);
-              const field=captionSource||name||captionField||selectedField;
+              const referencedCaption=captionReference&&cards.get(captionReference.entityId)?.fields.find(field=>field.source?.path===captionReference.path);
+              const span=captionReference?.caption;
+              const captionSource=typeof referencedCaption?.value==='string'&&Number.isInteger(span?.start)&&Number.isInteger(span?.end)&&
+                span.start>=0&&span.end>span.start&&span.end<=referencedCaption.value.length&&
+                referencedCaption.value.slice(span.start,span.end).trim()?referencedCaption:null;
+              const headed=field=>typeof field?.value==='string'&&field.value.indexOf(':')>0;
+              const captionField=equipment&&(
+                (paths.length===1&&/^\/blocks\/\d+\/text$/.test(paths[0])&&selectedField?.source?.path===paths[0]&&headed(selectedField)?selectedField:null)||
+                selection.sourceReferences?.map(reference=>
+                  cards.get(reference.entityId)?.fields.find(field=>field.source?.path===reference.path)).find(headed));
+              // A selected item's bound source heading outranks a section title.
+              // Explicit source spans retain priority; identity and ownership
+              // still come exclusively from the imported canonical selection.
+              const field=captionSource||captionField||name||selectedField;
               const effectiveTarget=target.kind==='WEAPON_PROFILE'?variants?.get(id)?.find(candidate=>(item.scopeIds||[null]).includes(candidate.scopeId||null)):null;
               const link=effectiveTarget?scopedAnchor('',effectiveTarget,instanceId):anchor('',id,true);
               if(field){const caption=factValue('span',field);
                 if(captionSource)caption.textContent=captionSource.value.slice(captionReference.caption.start,captionReference.caption.end);
-                else if(!name&&field.value?.indexOf?.(':')>0)caption.textContent=field.value.slice(0,field.value.indexOf(':'));
+                else if((field===captionField||!name)&&field.value?.indexOf?.(':')>0)caption.textContent=field.value.slice(0,field.value.indexOf(':'));
                 link.append(caption);
               }else link.textContent=target.title;
               line.append(link);

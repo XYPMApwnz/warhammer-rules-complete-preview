@@ -48,6 +48,11 @@ legality assessor, wargear-legality validator, battle simulator or new effect en
 
 ### Physical owner and recipients
 
+- Selected equipment uses its specific bound source caption before a generic
+  section title such as `ABILITIES`. A valid explicit caption reference takes
+  precedence over the selected source block's heading. Caption rendering must
+  preserve canonical identity, quantity, provenance and physical ownership; an
+  unknown MODEL bearer remains unknown and must not hide a known UNIT quantity.
 - A canonical UNIT/Datasheet type is distinct from each physical UNIT instance.
   A physical MODEL is distinct from its UNIT and from other models sharing a profile.
 - A formed UNIT contains its current attached components. CHARACTER is a source
