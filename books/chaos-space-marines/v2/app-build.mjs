@@ -185,7 +185,8 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   const layoutModel={...model,entities:model.entities.map(e=>e.kind==='DATASHEET_SECTION'?{...e,data:{...e.data,title:e.displayName}}:e)};
   payload.datasheetPresentation=buildDatasheetPresentation(layoutModel,{units:{}},{bindings:{profileSelections,optionCosts,boundAbilities},records});
   Object.assign(payload.datasheetPresentation,{sectionRoles:roles,rosterEffectSummary:false,rosterKeywordLabel:'Keywords',basePlacement:'composition',compactPointsLabels:true});
-  const reference=buildPresentationReferences({model,cards:payload.cards,coreCatalog:createEffectiveCoreCatalog()});
+  const reference=buildPresentationReferences({model,cards:payload.cards,coreCatalog:createEffectiveCoreCatalog(),
+    runtimeBook:buildCSMRosterEffectBook(built)});
   payload.cards.push(...reference.coreCards);payload.glossary=reference.glossaryIndex;payload.datasheetPresentation.referenceBindings=reference.referenceBindings;
   payload.bookPresentation={schema:'army-book-app-v2/book-v1-presentation',coverImage:'../assets/chaos-space-marines-cover-800.webp',records:{}};
   for(const entity of model.entities){

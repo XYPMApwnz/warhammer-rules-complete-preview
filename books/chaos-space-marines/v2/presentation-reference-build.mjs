@@ -1,5 +1,7 @@
 import fs from 'node:fs';
+import {isDeepStrictEqual} from 'node:util';
 import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
+import {abilityParameters} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 
 export const REFERENCE_SCHEMA='army-book-app-v2/datasheet-reference-bindings/v1';
 const bindings=JSON.parse(fs.readFileSync(new URL('./presentation-reference-bindings.json',import.meta.url),'utf8'));
@@ -20,8 +22,10 @@ export function referenceDeclaration(reference) {
   return {...target,parameters:structuredClone(occurrence.parameters||{})};
 }
 
-export function buildPresentationReferences({model,cards,coreCatalog}) {
+export function buildPresentationReferences({model,cards,coreCatalog,runtimeBook}) {
   if(!Array.isArray(model?.entities)||!Array.isArray(cards))throw new TypeError('Missing canonical presentation inputs');
+  if(!runtimeBook?.rosterReferenceSemantics||!runtimeBook.rosterAbilityReferences)
+    throw new TypeError('Missing registered native reference semantics');
   const {coreCards,coreFactManifest,index}=buildGlossary({model,coreCatalog});
   const targets=new Map([...cards,...coreCards].map(card=>[card.id,card]));
   if(targets.size!==cards.length+coreCards.length)throw new Error('Duplicate canonical presentation identity');
@@ -37,8 +41,17 @@ export function buildPresentationReferences({model,cards,coreCatalog}) {
       (item.source.path==='/label'||item.source.path==='/groups/0/entries/0/label'));
     if(!field || field.value!==bindings.occurrences[reference.id].sourceLabel || !field.value.length)
       throw new Error(`Reference label projection mismatch: ${reference.id}`);
+    const native=runtimeBook.rosterReferenceSemantics[reference.id]?.abilities||[];
+    const registered=native.some(ability=>ability.canonicalId===declaration.targetId&&
+      isDeepStrictEqual(abilityParameters(ability),abilityParameters({parameters:declaration.parameters})));
+    if(native.length&&!registered)throw new Error(`Native reference representation drift: ${reference.id}`);
+    // Runtime-managed abilities must retain their native occurrence so an
+    // override or suppression cannot resurrect the canonical baseline. Other
+    // canonical references use the existing static MODEL presentation path.
+    if(!registered&&runtimeBook.rosterAbilityReferences[declaration.targetId])
+      throw new Error(`Missing runtime-managed native occurrence: ${reference.id}`);
     fields[field.id]=[{start:0,end:field.value.length,targetId:declaration.targetId,group:declaration.group,
-      runtimeEntryId:reference.id,parameters:declaration.parameters}];
+      ...(registered?{runtimeEntryId:reference.id}:{}),parameters:declaration.parameters}];
     entries[reference.id]={fieldId:field.id,targetId:declaration.targetId};
   }
   if(seen.size!==Object.keys(bindings.occurrences).length)throw new Error('Unenrolled source reference bindings');
