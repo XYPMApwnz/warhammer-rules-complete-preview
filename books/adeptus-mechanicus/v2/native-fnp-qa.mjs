@@ -129,6 +129,12 @@ function synthetic(operation,value=4){
       detachmentId:'detachment-haloscreed-battle-clade',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',
       roles:[{id:'owner',subject:'UNIT',purpose:'OWNER',allegiance:'FRIENDLY',selector,conditions:[]}],assignment:{ownerRoleId:'owner',selector:clone(selector)},
       conditions:[],sourceFields:[['text']],clauses:[{id:'qa-only',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]}});
+  // The production presenter now resolves selected rules, including this
+  // explicitly synthetic executor input. Supply its matching canonical card;
+  // do not remove the selection or bypass the presenter to test FNP.
+  cards.set(ruleId,{id:ruleId,kind:'ENHANCEMENT',parentId:'detachment-haloscreed-battle-clade',
+    title:quote,children:[],links:[],fields:[{id:ruleId+'::/text',value:quote,
+      source:{entityId:ruleId,path:'/text'}}]});
   const s=make(b),state=s.snapshot();state.units.find(u=>u.instanceId===fixture.fulgurite).enhancementIds.push(ruleId);s.load(state);return s;
 }
 for(const value of [4,5]){

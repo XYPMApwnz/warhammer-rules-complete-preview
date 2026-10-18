@@ -87,7 +87,10 @@ export function runFormedUnitGuards() {
       assert.equal(new Set(view.components.map(c=>c.unit.instanceId)).size,expected.length,id+' no repeated component');
       for(const {unit,variants,card} of view.components) {
         const effective=service.effective(unit.instanceId);
-        assert.deepEqual(effective,oldEffective(book,service.projection,unit.instanceId),id+' extraction preserves old effective data');
+        const {enhancements,...existingEffective}=effective;
+        assert.deepEqual(existingEffective,oldEffective(book,service.projection,unit.instanceId),id+' extraction preserves every old effective field');
+        assert.deepEqual(enhancements.map(item=>item.canonicalId),unit.enhancementIds,id+' new selected rule references preserve exact input');
+        assert.ok(enhancements.every(item=>item.ownerInstanceId===unit.instanceId),id+' new rule metadata preserves physical owner');
         if(fixture.army==='chaos-space-marines') {
           const saved=structuredClone(effective),bound=bindFixtureAbilityPresentation(effective,payload);
           assert.deepEqual(effective,saved,id+' fixture categories do not mutate effective state');

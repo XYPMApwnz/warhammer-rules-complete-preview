@@ -138,6 +138,13 @@ because text-only behavior is product-acceptable. This document does not add typ
 operations, certify all historical requirements or prove semantic completeness.
 See [V2_SOURCE_REVIEW](V2_SOURCE_REVIEW.md) and [QA_MATRIX](QA_MATRIX.md).
 
+Selected-rule regressions run through `qa:shared:v2:enhancement-presentation` and
+`qa:shared:v2:enhancement-presentation:browser`. The latter uses actual main-app
+bytes and seven source-backed constructed rosters across all five books on both
+viewports. It requires full inline canonical text, exact physical ownership,
+current formed recipients, granted reference text, detach/remove/reimport and
+reload behavior. It does not turn declarative rules into computed modifiers.
+
 Existing Charge frontend evidence is a scoped baseline at
 `E:/Warhammer/qa-artifacts/recovery-charge-frontend-review-20261018/`, not a new PASS
 for all 15 rules. New observations for this contract belong outside the repository

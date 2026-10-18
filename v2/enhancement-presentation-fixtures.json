@@ -1,0 +1,175 @@
+{
+  "captureStatus": "Constructed source-backed New Recruit-compatible fixtures, not real exports.",
+  "cases": [
+    {
+      "n": 2,
+      "book": "death-guard",
+      "ruleId": "detachment-shamblerot-vectorium:enhancement:1",
+      "name": "Witherbone Pipes / tests",
+      "sourceQuote": "NOXIOUS BLIGHTBRINGER only. While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit, and each time that unit takes a Battle-shock or Leadership test, add 1 to that test.",
+      "sourceEvidence": "books/death-guard/v2/sources/accepted-waha-pages/death-guard.html#/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Shamblerot Vectorium\n1x Noxious Blightbringer (0 pts)\nEnhancement: Witherbone Pipes\n1x Noxious Blightbringer (0 pts)\n10x Poxwalkers (0 pts)\n10x Poxwalkers (0 pts)",
+      "disabledText": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Shamblerot Vectorium\n1x Noxious Blightbringer (0 pts)\n1x Noxious Blightbringer (0 pts)\n10x Poxwalkers (0 pts)\n10x Poxwalkers (0 pts)",
+      "ownerCanonicalId": "unit-noxious-blightbringer",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4"
+    },
+    {
+      "n": 6,
+      "book": "chaos-space-marines",
+      "ruleId": "detachment-renegade-warband:enhancement:4",
+      "name": "Empyric Symbiote",
+      "sourceQuote": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+      "sourceEvidence": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e",
+        "raw_occurrence": "detachment-renegade-warband:enhancement:4",
+        "text": "HERETIC ASTARTES model only. Add 1 to Advance and Charge rolls made for the bearer’s unit.",
+        "official_overlays": []
+      },
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Renegade Warband\n\n1x Chaos Lord (95 pts)\nEnhancement: Empyric Symbiote\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\nCreated with newrecruit.eu",
+      "disabledText": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Renegade Warband\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\nCreated with newrecruit.eu",
+      "ownerCanonicalId": "unit-chaos-lord",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-2"
+    },
+    {
+      "n": 9,
+      "book": "chaos-space-marines",
+      "ruleId": "detachment-huron-s-marauders:enhancement:1",
+      "name": "Voice of the Tyrant",
+      "sourceQuote": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
+      "sourceEvidence": {
+        "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+        "sha256": "54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e",
+        "raw_occurrence": "detachment-huron-s-marauders:enhancement:1",
+        "text": "HERETIC ASTARTES model only (excluding DAMNED models). The bearer’s unit has both abilities from the Tyrannical Motivation Detachment rule.",
+        "official_overlays": [],
+        "additional_source": "source-oracle.json: Tyrannical Motivation, Huron’s Elite"
+      },
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Huron’s Marauders\n1x Chaos Lord (0 pts)\nEnhancement: Voice of the Tyrant\n• 1x Chaos Lord\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries",
+      "disabledText": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Huron’s Marauders\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries",
+      "ownerCanonicalId": "unit-chaos-lord",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4",
+      "grantedRules": [
+        {
+          "canonicalId": "detachment-huron-s-marauders:rule:table:1",
+          "sourceEvidence": {
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+            "location": "Tyrannical Motivation, Huron’s Elite"
+          },
+          "segments": [
+            "Huron’s Elite",
+            "Hand-picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms.",
+            "Each time a model in this unit makes an attack, add 1 to the Hit roll."
+          ]
+        },
+        {
+          "canonicalId": "detachment-huron-s-marauders:rule:table:2",
+          "sourceEvidence": {
+            "document": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/chaos-space-marines.html",
+            "location": "Tyrannical Motivation, Mobile Marauders"
+          },
+          "segments": [
+            "Mobile Marauders",
+            "The Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression.",
+            "This unit is eligible to shoot and declare a charge in a turn in which it Fell Back.",
+            "Designer’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase."
+          ]
+        }
+      ]
+    },
+    {
+      "n": 14,
+      "book": "tyranids",
+      "ruleId": "detachment-synaptic-nexus:enhancement:3",
+      "name": "Synaptic Control",
+      "sourceQuote": "TYRANIDS SYNAPSE model only. Each time an attack is allocated to the bearer, subtract 1 from the Damage characteristic of that attack.",
+      "sourceEvidence": "E:\\Warhammer\\warhammer-v2-current\\books\\tyranids\\sources\\waha-11e-current-2026-09-27\\tyranids.html",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Synaptic Nexus\n1x Neurotyrant (0 pts)\nEnhancement: Synaptic Control\n• 1x Neurotyrant\n1x Neurotyrant (0 pts)\n• 1x Neurotyrant\n3x Zoanthropes (0 pts)\n• 1x Neurothrope\n• 2x Zoanthropes\n3x Zoanthropes (0 pts)\n• 1x Neurothrope\n• 2x Zoanthropes",
+      "disabledText": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Synaptic Nexus\n1x Neurotyrant (0 pts)\n• 1x Neurotyrant\n1x Neurotyrant (0 pts)\n• 1x Neurotyrant\n3x Zoanthropes (0 pts)\n• 1x Neurothrope\n• 2x Zoanthropes\n3x Zoanthropes (0 pts)\n• 1x Neurothrope\n• 2x Zoanthropes",
+      "ownerCanonicalId": "unit-neurotyrant",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4"
+    },
+    {
+      "n": 15,
+      "book": "tyranids",
+      "ruleId": "detachment-warrior-bioform-onslaught:enhancement:2",
+      "name": "Ocular Adaptation",
+      "sourceQuote": "WINGED TYRANID PRIME / TYRANID PRIME WITH LASH WHIP model only. This unit’s melee attacks have +1 to hit rolls .",
+      "sourceEvidence": "E:\\Warhammer\\warhammer-v2-current\\books\\tyranids\\sources\\waha-11e-current-2026-09-27\\tyranids.html",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Warrior Bioform Onslaught\n1x Winged Tyranid Prime (0 pts)\nEnhancement: Ocular Adaptation\n• 1x Winged Tyranid Prime\n1x Winged Tyranid Prime (0 pts)\n• 1x Winged Tyranid Prime\n3x Tyranid Warriors with Melee Bio-weapons (0 pts)\n• 1x Tyranid Prime\n• 2x Tyranid Warriors\n3x Tyranid Warriors with Melee Bio-weapons (0 pts)\n• 1x Tyranid Prime\n• 2x Tyranid Warriors",
+      "disabledText": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Warrior Bioform Onslaught\n1x Winged Tyranid Prime (0 pts)\n• 1x Winged Tyranid Prime\n1x Winged Tyranid Prime (0 pts)\n• 1x Winged Tyranid Prime\n3x Tyranid Warriors with Melee Bio-weapons (0 pts)\n• 1x Tyranid Prime\n• 2x Tyranid Warriors\n3x Tyranid Warriors with Melee Bio-weapons (0 pts)\n• 1x Tyranid Prime\n• 2x Tyranid Warriors",
+      "ownerCanonicalId": "unit-winged-tyranid-prime",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4"
+    },
+    {
+      "n": 16,
+      "book": "adeptus-mechanicus",
+      "ruleId": "detachment-haloscreed-battle-clade:enhancement:2",
+      "name": "Cognitive Reinforcement",
+      "sourceQuote": "ADEPTUS MECHANICUS model only (excluding CYBERNETICA DATASMITH models). The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit.",
+      "sourceEvidence": "books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json#/detachments/0/enhancements/1",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nEnhancement: Cognitive Reinforcement\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n",
+      "disabledText": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n",
+      "ownerCanonicalId": "unit-tech-priest-dominus",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4"
+    },
+    {
+      "n": 17,
+      "book": "emperors-children",
+      "ruleId": "detachment-elegant-brutes:enhancement:1",
+      "name": "Cacophonic Accompaniment",
+      "sourceQuote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER].",
+      "sourceEvidence": {
+        "sourceId": "gw-ec-faction-pack-v1.3-2026-09-30",
+        "document": "books/emperors-children/v2/sources/emperors-children-faction-pack-v1.3.pdf",
+        "sha256": "18A192A36C22468368D957AAC3EB230A40C8F7BBFAEFA46372D8918422B0B49A",
+        "page": 2,
+        "bbox": [
+          53,
+          433,
+          296,
+          469
+        ],
+        "textSha256": "7934D358C71C2DF69A526CFFC6D6E170B0EDDC88D3203498E371628E7D0FA866",
+        "effectiveFrom": "2026-09-30",
+        "authority": "AUTHORITATIVE_CURRENT",
+        "correctionId": "ec-official-v1.3:native-cacophonic-accompaniment",
+        "sourcePointer": "/detachments/9/enhancements/0/text",
+        "supersedes": {
+          "sourceId": "ec-waha-11e-2026-09-28",
+          "document": "books/emperors-children/sources/waha-11e-current-2026-09-28/emperor-s-children.html",
+          "sha256": "C668A60432C38E89FD30F8D6C48ECE3199D21355D5DF92272125D2FF62C98239",
+          "corpusDocument": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json",
+          "corpusSha256": "ED0C7577998AEA4B0DFA6F39EF6CDE523BB8B4AEE6CF36A9C69E04CEAA14131E",
+          "pointer": "/detachments/9/enhancements/0",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Elegant Brutes\nChar1: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\nEnhancement: Cacophonic Accompaniment\nChar2: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n",
+      "disabledText": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Elegant Brutes\nChar1: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\nChar2: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n",
+      "ownerCanonicalId": "unit-lord-kakophonist",
+      "ownerInstance": "parsed-unit-1",
+      "leaderInstance": "parsed-unit-1",
+      "bodyguardInstance": "parsed-unit-3",
+      "controlInstance": "parsed-unit-4"
+    }
+  ]
+}

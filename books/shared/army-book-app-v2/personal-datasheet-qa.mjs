@@ -1,6 +1,6 @@
 /** Standalone Personal Guide presentation guards; synthetic canonical inputs only. */
 import {projectArmyBook} from './project.mjs';
-import {projectInstanceCards} from './personal.mjs';
+import {projectInstanceCards,projectFormedUnitCards} from './personal.mjs';
 import {buildNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {buildDatasheetPresentation} from './datasheet-v1.mjs';
 
@@ -172,6 +172,100 @@ export async function runPersonalDatasheetGuards() {
     assert.deepEqual(root.rosterComposition,[{rowId:'aggregate-workers',profileId:f.id('workers'),quantity:6,label:'Combat and Gun models'}]);
     assert.ok(root.rosterComposition.every(row=>!Object.hasOwn(row,'modelInstanceId')));
     checks.push('aggregate-loadouts-repeat-profile-unique-keyword-captions');
+  }
+  // The selected Enhancement is a reference to its complete canonical card,
+  // owned by one physical component even when a formed view contains both.
+  {
+    const f=createSyntheticPersonalFixture('synthetic-enhancement');
+    const enhancementId=f.id('enhancement'),otherId=f.id('other-enhancement');
+    f.model.entities.push(
+      {id:f.id('detachment'),kind:'DETACHMENT',data:{name:'Synthetic detachment'}},
+      {id:enhancementId,kind:'ENHANCEMENT',parentId:f.id('detachment'),data:{name:'Selected canonical Enhancement',
+        text:'SYNTHETIC MODEL only. The bearer keeps this personal rule. While leading a unit, its unit has the following conditional benefit.',
+        clauses:[{text:'When the stated battle event occurs, apply the source-defined benefit.'},
+          {text:'Do not apply the benefit outside that condition.'}]}},
+      {id:otherId,kind:'ENHANCEMENT',parentId:f.id('detachment'),data:{name:'Unselected canonical Enhancement',
+        text:'An independent rule, never selected by matching its display title.'}},
+      {id:f.id('granted-rule'),kind:'DETACHMENT_RULE',parentId:f.id('detachment'),data:{name:'Canonical granted rule',
+        text:'When the stated condition is met, the source bearer’s unit receives this rule.'}});
+    const payload=projectArmyBook(f.model,f.records,{title:'Synthetic selected Enhancement'});
+    f.cards=new Map(payload.cards.map(card=>[card.id,card]));
+    f.unit.enhancementIds=[enhancementId];
+    f.effective.enhancements=[{canonicalId:enhancementId,ownerInstanceId:f.unit.instanceId,subject:'MODEL',
+      modelScopeId:f.effective.profiles[0].scopeId,grantedRules:[{canonicalId:f.id('granted-rule'),sourceRuleId:enhancementId,
+        clauseId:'synthetic-grant-clause',sourceInstanceId:f.unit.instanceId,sourceModelScopeId:f.effective.profiles[0].scopeId,
+        subject:'UNIT',recipientInstanceIds:[f.unit.instanceId]}]}];
+    const before=structuredClone({cards:f.cards,unit:f.unit,effective:f.effective,duplicate:f.duplicate});
+    const rootOf=(unit,effective)=>projectInstanceCards(f.cards,unit,effective).get(unit.canonicalUnitId)[0];
+    const root=rootOf(f.unit,f.effective);
+    assert.deepEqual(root.rosterEnhancementIds,[enhancementId],'Selected Enhancement identity must reach the physical datasheet');
+    assert.deepEqual(root.rosterEnhancements,f.effective.enhancements,
+      'Declared granted-rule references retain physical source, model scope, recipients and canonical identities');
+    assert.ok(!root.rosterEnhancementIds.includes(otherId),'Unselected canonical Enhancements must remain absent');
+    assert.deepEqual(rootOf(f.duplicate.unit,f.duplicate.effective).rosterEnhancementIds,[],
+      'A second instance of the same Datasheet must not inherit the bearer Enhancement');
+    const legacyUnit=structuredClone(f.duplicate.unit);delete legacyUnit.enhancementIds;
+    assert.deepEqual(rootOf(legacyUnit,f.duplicate.effective).rosterEnhancementIds,[],
+      'A fixture without the optional selection list must not gain or invent Enhancements');
+    const canonical=f.cards.get(enhancementId);
+    assert.equal(canonical.kind,'ENHANCEMENT');
+    assert.equal(canonical.parentId,f.id('detachment'),'The factual owner remains its canonical Detachment');
+    const texts=canonical.fields.filter(field=>field.source.path==='/text'||/^\/clauses\/\d+\/text$/.test(field.source.path));
+    assert.deepEqual(texts.map(field=>field.value),[
+      'SYNTHETIC MODEL only. The bearer keeps this personal rule. While leading a unit, its unit has the following conditional benefit.',
+      'When the stated battle event occurs, apply the source-defined benefit.',
+      'Do not apply the benefit outside that condition.'
+    ],'The referenced card retains eligibility, personal scope, leading condition and every conditional clause');
+    assert.ok(texts.every(field=>field.source.entityId===enhancementId&&field.id===enhancementId+'::'+field.source.path),
+      'Full text retains exact canonical field identities and provenance');
+    const enhancement=projectInstanceCards(f.cards,f.unit,f.effective).get(enhancementId)?.[0];
+    assert.ok(enhancement,'Selected Enhancement needs its complete presentation card, not only a name');
+    assert.equal(enhancement.id,enhancementId);
+    assert.equal(enhancement.instanceId,f.unit.instanceId,'The disposable Enhancement view identifies its physical bearer');
+    assert.equal(enhancement.parentId,canonical.parentId,'The physical annotation must not reparent the canonical fact');
+    assert.deepEqual(enhancement.fields,canonical.fields,'Every canonical field must reach the selected Enhancement view unchanged');
+    const group={formedUnitId:'synthetic-enhancement-formed',bodyguardInstanceId:f.duplicate.unit.instanceId,
+      memberInstanceIds:[f.duplicate.unit.instanceId,f.unit.instanceId]};
+    const state={units:[f.unit,f.duplicate.unit]};
+    const formed={state,effective:instanceId=>{
+      const current=structuredClone(instanceId===f.unit.instanceId?f.effective:f.duplicate.effective);
+      current.formedUnit=structuredClone(group);
+      for(const enhancement of current.enhancements||[])for(const reference of enhancement.grantedRules)
+        reference.recipientInstanceIds=[...group.memberInstanceIds];
+      return current;
+    }};
+    for(const requested of group.memberInstanceIds){
+      const view=projectFormedUnitCards(f.cards,formed,requested);
+      assert.deepEqual(view.components.map(component=>[component.unit.instanceId,component.card.rosterEnhancementIds]),[
+        [f.duplicate.unit.instanceId,[]],[f.unit.instanceId,[enhancementId]]
+      ],'A formed view keeps the Enhancement on the exact physical bearer component');
+      assert.deepEqual(view.components[1].card.rosterEnhancements[0].grantedRules[0].recipientInstanceIds,group.memberInstanceIds,
+        'The source component retains the actual formed UNIT recipient reference without changing Enhancement ownership');
+    }
+    const detached={state,effective:instanceId=>structuredClone(instanceId===f.unit.instanceId?f.effective:f.duplicate.effective)};
+    assert.deepEqual(projectFormedUnitCards(f.cards,detached,f.duplicate.unit.instanceId).components.map(component=>component.card.rosterEnhancementIds),[[]],
+      'After detach, the former Bodyguard no longer displays the Character Enhancement');
+    assert.deepEqual(projectFormedUnitCards(f.cards,detached,f.unit.instanceId).components.map(component=>component.card.rosterEnhancementIds),[[enhancementId]],
+      'Detach preserves the selected Enhancement on its bearer');
+    const removed=structuredClone(f.unit),removedEffective=structuredClone(f.effective);
+    removed.enhancementIds=[];removedEffective.enhancements=[];
+    assert.deepEqual(rootOf(removed,removedEffective).rosterEnhancementIds,[],'Removing the selection removes its presentation reference');
+    assert.deepEqual(rootOf(removed,removedEffective).rosterEnhancements,[],'Removal also removes dependent canonical granted-rule references');
+    assert.deepEqual(rootOf(f.unit,f.effective).rosterEnhancementIds,[enhancementId],'Reselect/recompute must not accumulate or lose references');
+    assert.deepEqual({cards:f.cards,unit:f.unit,effective:f.effective,duplicate:f.duplicate},before,
+      'Enhancement projection and attachment transitions must not mutate canonical facts or physical inputs');
+    for(const [label,mutate] of [
+      ['Enhancement wrong physical owner',item=>{item.ownerInstanceId=f.duplicate.unit.instanceId;}],
+      ['Enhancement unselected canonical source',item=>{item.canonicalId=otherId;}],
+      ['granted rule foreign source rule',item=>{item.grantedRules[0].sourceRuleId=otherId;}],
+      ['granted rule foreign physical source',item=>{item.grantedRules[0].sourceInstanceId=f.duplicate.unit.instanceId;}],
+      ['granted rule missing physical recipient',item=>{item.grantedRules[0].recipientInstanceIds=[f.duplicate.unit.instanceId];}],
+      ['granted rule unresolved canonical target',item=>{item.grantedRules[0].canonicalId=f.id('missing-granted-rule');}]
+    ]){
+      const changed=structuredClone(f.effective);mutate(changed.enhancements[0]);
+      assert.throws(()=>rootOf(f.unit,changed),TypeError,label);negativeControls.push(label);
+    }
+    checks.push('enhancement-full-canonical-reference-physical-owner-formed-detach-remove-immutable');
   }
   const invalid=[
     ['note absent',f=>{f.bindings.constructionNotes[0].noteId=f.id('missing-note');}],

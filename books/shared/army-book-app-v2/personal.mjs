@@ -93,6 +93,22 @@ export function projectInstanceCards(cards, unit, effective) {
   assert(effective.instanceId===unit.instanceId && effective.canonicalUnitId===unit.canonicalUnitId,'Wrong physical projection');
   const variants=new Map(), root=clone(cards.get(unit.canonicalUnitId));
   assert(root?.kind==='DATASHEET','Unresolved canonical datasheet');
+  root.rosterEnhancementIds=[...(unit.enhancementIds||[])];
+  root.rosterEnhancements=clone(effective.enhancements||[]);
+  for(const id of root.rosterEnhancementIds){
+    const enhancement=cards.get(id);
+    assert(enhancement?.kind==='ENHANCEMENT','Unresolved canonical selected Enhancement');
+    variants.set(id,[{...clone(enhancement),instanceId:unit.instanceId}]);
+  }
+  for(const enhancement of root.rosterEnhancements){
+    assert(root.rosterEnhancementIds.includes(enhancement.canonicalId)&&enhancement.ownerInstanceId===unit.instanceId,
+      'Wrong physical Enhancement presentation owner');
+    for(const reference of enhancement.grantedRules){
+      assert(cards.has(reference.canonicalId)&&reference.sourceRuleId===enhancement.canonicalId&&
+        reference.sourceInstanceId===unit.instanceId&&reference.recipientInstanceIds.includes(unit.instanceId),
+        'Wrong granted canonical rule presentation');
+    }
+  }
   const scopeCaptions=new Map();
   const profileName=id=>{
     const profile=cards.get(id);

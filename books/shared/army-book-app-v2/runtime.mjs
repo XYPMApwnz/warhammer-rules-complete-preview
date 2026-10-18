@@ -177,6 +177,8 @@ export function mount(document, payload, options = {}) {
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
+    renderCanonicalRule:card=>bookPresenter.accepts(card)||card.kind==='STRUCTURED_RULE_TABLE'
+      ?bookPresenter.render(card,{inline:true}):renderCard(card,{depth:1}),
     related:renderRelatedRules,roster:options.roster,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});

@@ -21,7 +21,33 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   });
   if(unitMetrics.chargeRoll&&!unitMetricSources.length)throw new TypeError('Missing computed UNIT metric provenance');
   const rangedAbilities=new Set(unit.profiles.flatMap(model=>model.abilities.filter(ability=>ability.rangePresentation).map(ability=>ability.canonicalId)));
+  // Selected rules remain canonical references, not new abilities or computed
+  // battle effects. Resolve their physical presentation scope on every projection.
+  const enhancements=(unit.enhancementIds||[]).map(id=>{
+    const rule=records.get(id);
+    if(rule?.kind!=='ENHANCEMENT')throw new TypeError('Unresolved selected Enhancement');
+    const assignment=unit.enhancementAssignments?.find(item=>item.enhancementId===id);
+    const subject=rule.ruleContract?.roles.find(role=>role.id===rule.ruleContract.assignment?.ownerRoleId)?.subject;
+    const model=assignment?unit.profiles.find(profile=>profile.scopeId===assignment.modelScopeId):
+      subject==='MODEL'&&unit.profiles.length===1&&unit.profiles[0].quantity===1?unit.profiles[0]:null;
+    const grantedRules=(rule.ruleContract?.clauses||[]).flatMap(clause=>{
+      const binding=clause.rosterReferenceBinding;if(!binding)return [];
+      if(binding.sourceBinding!=='SOURCE_MODEL'||binding.subject!=='UNIT'||
+          binding.standaloneBinding!=='SOURCE_UNIT'||binding.attachedBinding!=='SOURCE_FORMED_MODELS')
+        throw new TypeError('Unsupported declarative reference scope');
+      if(!model)return []; // An unresolved physical bearer cannot grant a rule.
+      return binding.canonicalRuleReferences.map(canonicalId=>{
+        if(!records.has(canonicalId))throw new TypeError('Unresolved granted canonical rule');
+        return {canonicalId,sourceRuleId:id,clauseId:clause.id,sourceInstanceId:instanceId,
+          sourceModelScopeId:model.scopeId,subject:binding.subject,
+          recipientInstanceIds:group?[...group.memberInstanceIds]:[instanceId]};
+      });
+    });
+    return {canonicalId:id,ownerInstanceId:instanceId,subject:subject||null,
+      modelScopeId:model?.scopeId||null,grantedRules};
+  });
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+    enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
     ...(unitMetrics.chargeRoll?{unitMetrics,unitMetricSources}:{}),
     formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],

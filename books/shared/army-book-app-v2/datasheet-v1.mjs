@@ -46,7 +46,7 @@ const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
-export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection}) {
+export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule}) {
   const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const config=payload.datasheetPresentation;
   const boundFields=new Map([...cards.values()].flatMap(card=>card.fields.map(field=>[field.id,field])));
@@ -509,6 +509,29 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       rendered.add(child.id);
     }
     root.append(profile,abilities);
+    if(instanceId&&card.rosterEnhancementIds?.length){
+      if(!renderCanonicalRule)throw new TypeError('Missing canonical selected rule presenter');
+      const section=part('enhancements','Selected Enhancements');
+      for(const id of card.rosterEnhancementIds){
+        const selected=variants?.get(id)?.[0]||cards.get(id);
+        if(selected?.kind!=='ENHANCEMENT')throw new TypeError('Unresolved selected rule card');
+        const binding=card.rosterEnhancements?.find(item=>item.canonicalId===id);
+        const article=renderCanonicalRule(selected);article.dataset.rosterInstanceId=instanceId;
+        article.dataset.enhancementOwnerInstanceId=instanceId;
+        if(binding?.modelScopeId)article.dataset.enhancementOwnerScopeId=binding.modelScopeId;
+        const scope=binding?.subject==='MODEL'?'MODEL bearer':binding?.subject==='UNIT'?'UNIT owner':'Physical owner';
+        article.prepend(el('small','ds-composition-scope',`${scope}: ${card.title}`));
+        for(const reference of binding?.grantedRules||[]){
+          const granted=renderCanonicalRule(cards.get(reference.canonicalId));
+          granted.dataset.grantedByRuleId=id;granted.dataset.recipientSubject=reference.subject;
+          granted.dataset.recipientInstanceIds=JSON.stringify(reference.recipientInstanceIds);
+          granted.prepend(el('small','ds-composition-scope','Granted rule · '+reference.subject));
+          article.append(granted);
+        }
+        section.append(article);
+      }
+      root.append(section);
+    }
     // Equipment rules whose canonical item is not a weapon row still belong
     // beside a named selected item; construction alternatives remain hidden.
     if(instanceId)for(const itemId of new Set(availableBoundAbilities.filter(binding=>cards.get(binding.itemId)?.kind==='WARGEAR_OPTION').map(binding=>binding.itemId))){
@@ -635,7 +658,6 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};
       context.dataset.rosterContextInstanceId=instanceId;
       if(u.warlord)context.append(el('span','ds-roster-badge','Warlord'));
-      u.enhancementIds.forEach(id=>context.append(anchor(cards.get(id).title,id,true)));
       (card.rosterOptionIds||[]).forEach(id=>{const option=cards.get(id);if(!option)throw new TypeError('Unresolved selected canonical option');
         const link=anchor(option.title,id,true);link.dataset.selectedOptionId=id;context.append(link);});
       if(assigned)context.append(el('p','',`Leading: ${name(assigned.bodyguardInstanceId)}`));

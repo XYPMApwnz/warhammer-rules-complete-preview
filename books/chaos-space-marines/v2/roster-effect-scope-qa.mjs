@@ -5,6 +5,8 @@ import {buildCSMRosterEffectBook} from './roster-effect-build.mjs';
 import {evaluateCSMRosterDeclarations} from './roster-effect-context.mjs';
 import {physical,fixtureState,assignBearer,clauseFixture} from './roster-effect-fixture.mjs';
 import {changeAttachment,formRoster} from '../../shared/roster-v2/context.mjs';
+import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instance.mjs';
+import {normalizeCSMEffectiveBook} from './roster-presentation.mjs';
 
 const book=buildCSMRosterEffectBook(),snapshot=JSON.stringify(book),clone=structuredClone,checks=[];
 const project=(state,input=book)=>evaluateCSMRosterDeclarations(input,state);
@@ -53,13 +55,74 @@ for(const id of bearerUnitIds)test('Current bearer UNIT scope: '+id,()=>{
   assert.deepEqual(project(reattached),result);
 });
 
-test('Huron ninth scope binding is display-only, without executing battle permissions',()=>{
-  const rule=book.entities.find(e=>e.id==='detachment-huron-s-marauders:enhancement:1'),clause=rule.ruleContract.clauses[0];
+// Independently accepted Huron's Marauders raw block (chaos-space-marines.html,
+// Tyrannical-Motivation / Voice-of-the-Tyrant). Expected references and complete
+// source table text are not read from production reference declarations.
+const voiceId='detachment-huron-s-marauders:enhancement:1';
+const voiceExpected=[
+  {id:'detachment-huron-s-marauders:rule:table:1',text:'Huron’s EliteHand-picked by Huron Blackheart himself, these warriors strive to retain his favour with feats of arms.Each time a model in this unit makes an attack, add 1 to the Hit roll.'},
+  {id:'detachment-huron-s-marauders:rule:table:2',text:'Mobile MaraudersThe Red Corsairs utilise a highly mobile form of warfare and, under Huron’s watch, are relentless in their aggression.This unit is eligible to shoot and declare a charge in a turn in which it Fell Back.Designer’s Note: If a unit is gaining eligibility to shoot and declare a charge in a turn in which it Fell Back as a result of being visible to Huron Blackheart, but after making a Fall Back move it is no longer visible to Huron Blackheart, that unit will not be eligible to shoot in your Shooting phase or to declare a charge in your Charge phase unless it is visible again at the start of the respective phase.'}
+];
+function voiceOracle(input,state,recipientIds=['a']){
+  const result=project(state,input),viewBook=normalizeCSMEffectiveBook(input);
+  const effective=projectEffectiveInstance(viewBook,result,'a'),enhancement=effective.enhancements.find(row=>row.canonicalId===voiceId);
+  assert.ok(enhancement,'Selected source Enhancement must reach the production effective projection');
+  assert.equal(enhancement.ownerInstanceId,'a');assert.equal(enhancement.subject,'MODEL');
+  const ownerScope=state.units.find(row=>row.instanceId==='a').enhancementAssignments.find(row=>row.enhancementId===voiceId).modelScopeId;
+  assert.equal(enhancement.modelScopeId,ownerScope);
+  assert.deepEqual(enhancement.grantedRules.map(row=>row.canonicalId),voiceExpected.map(row=>row.id));
+  for(const grant of enhancement.grantedRules){
+    assert.equal(grant.sourceRuleId,voiceId);assert.equal(grant.sourceInstanceId,'a');
+    assert.equal(grant.sourceModelScopeId,ownerScope);assert.equal(grant.subject,'UNIT');
+    assert.deepEqual(new Set(grant.recipientInstanceIds),new Set(recipientIds));
+    const canonical=input.entities.find(row=>row.id===grant.canonicalId);
+    assert.equal(canonical.parentId,'detachment-huron-s-marauders:rule');
+    assert.deepEqual(canonical.data.rows,[[voiceExpected.find(row=>row.id===grant.canonicalId).text]]);
+    assert.ok(canonical.provenance.sourceEvidence.some(source=>source.document.endsWith('/chaos-space-marines.html')&&source.sha256));
+  }
+  const base=formRoster(input,state);
+  for(const current of result.units){
+    // A reference grants full conditional text, never a hidden BS/WS/Hit-roll
+    // change or an automatically executed Fall Back permission.
+    assert.deepEqual(current.profiles.map(model=>[model.profile,model.weapons]),unit(base,current.instanceId).profiles.map(model=>[model.profile,model.weapons]));
+    assert.ok(!current.applied.some(row=>row.ruleId===voiceId));
+    assert.ok(current.profiles.every(model=>!model.abilities.some(ability=>voiceExpected.some(expected=>expected.id===ability.canonicalId))));
+    if(current.instanceId!=='a')assert.ok(!projectEffectiveInstance(viewBook,result,current.instanceId).enhancements.some(row=>row.canonicalId===voiceId));
+  }
+  return effective;
+}
+test('Huron declarative grant reaches the effective projection with both full canonical references',()=>{
+  const rule=book.entities.find(e=>e.id===voiceId),clause=rule.ruleContract.clauses[0];
   assert.equal(clause.rosterClassification,'DISPLAY_ONLY');assert.deepEqual(clause.rosterEffects,[]);
   assert.equal(clause.rosterReferenceBinding.standaloneBinding,'SOURCE_UNIT');
   assert.equal(clause.rosterReferenceBinding.attachedBinding,'SOURCE_FORMED_MODELS');
-  assert.deepEqual(clause.rosterReferenceBinding.canonicalRuleReferences,clause.effect.parameters.canonicalRuleReferences);
+  assert.deepEqual(clause.rosterReferenceBinding.canonicalRuleReferences,voiceExpected.map(row=>row.id));
+  const {state}=clauseFixture(book,voiceId,'roster-clause-1');
+  const standalone=voiceOracle(book,state);
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','a','bodyguard');
+  const formed=voiceOracle(book,attached,['a','bodyguard']);
+  const detached=changeAttachment(book,attached,book.rosterAttachmentPolicies,'DETACH','a');
+  assert.deepEqual(voiceOracle(book,detached).enhancements,standalone.enhancements);
+  const reattached=changeAttachment(book,detached,book.rosterAttachmentPolicies,'REATTACH','a','bodyguard');
+  assert.deepEqual(voiceOracle(book,reattached,['a','bodyguard']),formed);
+  assert.deepEqual(voiceOracle(book,attached,['a','bodyguard']),formed,'Repeated projection must not duplicate references');
+  const removed=clone(attached),owner=removed.units.find(row=>row.instanceId==='a');
+  owner.enhancementIds=[];owner.enhancementAssignments=[];
+  assert.deepEqual(projectEffectiveInstance(normalizeCSMEffectiveBook(book),project(removed),'a').enhancements,[]);
 });
+const voiceState=clauseFixture(book,voiceId,'roster-clause-1').state;
+mutation('Missing declarative grant binding is detected',input=>{
+  delete input.entities.find(row=>row.id===voiceId).ruleContract.clauses[0].rosterReferenceBinding;
+},input=>voiceOracle(input,voiceState));
+mutation('Wrong granted canonical reference is detected',input=>{
+  input.entities.find(row=>row.id===voiceId).ruleContract.clauses[0].rosterReferenceBinding.canonicalRuleReferences[0]='army-rule-dark-pacts';
+},input=>voiceOracle(input,voiceState));
+mutation('Wrong declarative recipient scope is detected',input=>{
+  input.entities.find(row=>row.id===voiceId).ruleContract.clauses[0].rosterReferenceBinding.subject='MODEL';
+},input=>voiceOracle(input,voiceState));
+mutation('Wrong Enhancement physical owner role is detected',input=>{
+  input.entities.find(row=>row.id===voiceId).ruleContract.assignment.ownerRoleId='unresolved-owner';
+},input=>voiceOracle(input,voiceState));
 
 test('Independent physical roster order does not change global or bearer-unit results',()=>{
   for(const id of ['detachment-cult-of-the-arkifane:rule','detachment-renegade-raiders:enhancement:3']){

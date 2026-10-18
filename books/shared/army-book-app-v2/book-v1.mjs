@@ -93,13 +93,17 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     const sourceType=fieldAt(card,'/sourceTypeLabel');
     if(sourceType){const label=factValue('div',sourceType);label.classList.add('eyebrow');node.append(label);}else node.append(el('div','eyebrow','Enhancement'));
     const title=heading(card,'h4','',options);cost(record,title);node.append(title);
-    const text=fieldAt(card,'/text');if(text)node.append(factValue('p',text));
-    for(const id of card.children.filter(id=>cards.get(id)?.kind==='WEAPON_PROFILE'))node.append(renderWeapon(cards.get(id),{popup:true}));
-    if(options.popup)sourceFooter(card,node);return node;
+    appendText(node,card);
+    // Effective inventory already renders contributed weapons with their final
+    // values and quantities. Inline rules must not repeat base weapon profiles.
+    if(!options.inline)for(const id of card.children.filter(id=>cards.get(id)?.kind==='WEAPON_PROFILE'))node.append(renderWeapon(cards.get(id),{popup:true}));
+    if(options.popup||options.inline)sourceFooter(card,node);return node;
   };
   const renderRule=(card,options)=>{
     const ability=card.kind==='DETACHMENT_RULE';
-    const node=identity(el('article',ability?'ability':'rule-card surface'),card);node.append(heading(card,ability?'h5':'h3','',options));
+    const node=identity(el('article',ability?'ability':'rule-card surface'),card);
+    // Named rule tables already contain their source heading in a bound cell.
+    if(card.kind!=='STRUCTURED_RULE_TABLE')node.append(heading(card,ability?'h5':'h3','',options));
     if(ability){const text=fieldAt(card,'/text');if(text)node.append(factValue('p',textPresentation(card,text)));appendText(node,{...card,fields:card.fields.filter(field=>field.source?.path!=='/text')});}
     else appendText(node,card);
     if(card.kind==='SOURCE_UPDATE_REFERENCE'){
@@ -108,7 +112,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
       for(const field of card.fields.filter(field=>/^\/targetIds\/\d+$/.test(field.source?.path||''))){const link=anchor('',field.targetIds[0],true);link.append(factValue('span',field));targets.append(link,document.createTextNode(' '));}node.append(targets);
     }
     if(card.links?.length){const links=el('p','book-rule-references');for(const link of card.links.filter(link=>visible(link.targetId))){links.append(anchor(link.label||cards.get(link.targetId).title,link.targetId,true),document.createTextNode(' '));}node.append(links);}
-    if(options.popup||card.kind==='SOURCE_ERRATUM')sourceFooter(card,node);return node;
+    if(options.popup||options.inline||card.kind==='SOURCE_ERRATUM')sourceFooter(card,node);return node;
   };
   const part=(card,kind,title,ids,options)=>{
     const section=el('section','detachment-part');
@@ -143,9 +147,9 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     for(const id of records[card.id]?.componentIds||card.children.filter(id=>cards.get(id)?.kind==='ARMY_RULE_COMPONENT'))if(visible(id))node.append(renderRule(cards.get(id),options));
     sourceFooter(card,node);return node;
   };
-  const render=(card,{inDialog=false,primaryDetail=true}={})=>{
-    if(!accepts(card))throw new TypeError('Unsupported book presentation kind '+card.kind);
-    const options={popup:inDialog};let node;
+  const render=(card,{inDialog=false,primaryDetail=true,inline=false}={})=>{
+    if(!accepts(card)&&!(inline&&card.kind==='STRUCTURED_RULE_TABLE'))throw new TypeError('Unsupported book presentation kind '+card.kind);
+    const options={popup:inDialog,inline};let node;
     if(card.kind==='STRATAGEM')node=renderStratagem(card,options);
     else if(card.kind==='ENHANCEMENT')node=renderEnhancement(card,options);
     else if(card.kind==='DETACHMENT')node=renderDetachment(card,options);
