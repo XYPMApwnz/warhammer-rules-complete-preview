@@ -39,18 +39,39 @@ const expected=[
  rule('detachment-shamblerot-vectorium:rule','battleline','death-guard.html','POXWALKERS units from your army gain the BATTLELINE keyword'),
  rule('detachment-paragons-of-putrescence:rule','contagion-range','death-guard.html','Friendly DEATH GUARD CHARACTER units have +3" to their Contagion Range'),
  rule('detachment-contagion-engines:rule','grant-contagion-engine','death-guard.html','units have CONTAGION ENGINE'),
- rule('detachment-contagion-engines:rule','ranged-assault','death-guard.html','Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]')
+ rule('detachment-contagion-engines:rule','ranged-assault','death-guard.html','Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]'),
+ rule('datasheet-plague-drones:section:1','source-clause-3','Plague-Drones.html','Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.'),
+ rule('datasheet-plaguebearers:section:1','source-clause-3','Plaguebearers.html','Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.'),
+ rule('detachment-virulent-vectorium:enhancement:1','critical-hit','death-guard.html','DEATH GUARD model only. Each time the bearer makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.')
 ];
 const sourceSnapshots=new Map(['generated/rule-contract-effective.json','generated/app-presentation.json','sources/gw-death-guard-faction-pack-2026-09-30.txt',
  ...new Set(expected.map(row=>'sources/accepted-waha-pages/'+row.file))].map(file=>[file,fs.readFileSync(path.join(directory,file))]));
 const identity=row=>`${row.id}/${row.clause}`;
 const denominator=new Set(expected.map(identity));
-const categories=['WEAPON_ABILITY','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','WEAPON_ABILITY','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','WEAPON_ABILITY'];
+const categories=['WEAPON_ABILITY','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','WEAPON_ABILITY','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','OTHER_PLAYER_VISIBLE','WEAPON_CHARACTERISTIC','PROFILE_DEFENSE','WEAPON_CHARACTERISTIC','OTHER_PLAYER_VISIBLE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','DETACHMENT_DERIVED_STATE','UNIT_KEYWORD','WEAPON_ABILITY','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE','OTHER_PLAYER_VISIBLE'];
 assert.equal(categories.length,expected.length);
 const classifications=expected.map((row,index)=>({ruleId:row.id,clauseId:row.clause,category:categories[index]}));
-assert.equal(denominator.size,22);
+assert.equal(expected.length,25);
+assert.equal(denominator.size,25,'Independent source inventory has duplicate clause identities');
 for(const row of expected)assert(source(row.file).includes(normalize(row.quote))||official.includes(normalize(row.quote)),`Accepted source expectation missing: ${identity(row)}`);
-assert.deepEqual(new Set(book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.rosterClassification==='ROSTER_EXECUTABLE').map(clause=>`${entity.id}/${clause.id}`))),denominator,'Executable source census changed');
+const executableIdentities=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.rosterClassification==='ROSTER_EXECUTABLE').map(clause=>`${entity.id}/${clause.id}`));
+function assertExecutableCensus(actual){
+ assert.equal(actual.length,25,'Executable source census changed');
+ assert.equal(new Set(actual).size,actual.length,'Duplicate executable source clause identity');
+ assert.deepEqual(new Set(actual),denominator,'Executable source identities changed');
+}
+assertExecutableCensus(executableIdentities);
+let censusMutations=0;
+for(const row of expected.slice(22)){
+ const id=identity(row),index=executableIdentities.indexOf(id);
+ for(const kind of ['missing','duplicate','wrong-identity']){
+  const changed=[...executableIdentities];
+  if(kind==='missing')changed.splice(index,1);
+  if(kind==='duplicate')changed[(index+1)%changed.length]=id;
+  if(kind==='wrong-identity')changed[index]=id+'/wrong-identity';
+  assert.throws(()=>assertExecutableCensus(changed),assert.AssertionError,`${kind} ${id} mutation escaped`);censusMutations++;
+ }
+}
 
 const unit=(instanceId,canonicalUnitId,count=1,{weapons=[],enhancements=[],selections=[]}={})=>({instanceId,canonicalUnitId,startingStrength:count,warlord:false,enhancementIds:enhancements,selections,
  modelRows:[{rowId:`${instanceId}/composition`,quantity:count,canonicalProfileId:records.get(canonicalUnitId).data.profileIds[0],loadouts:[],selections:weapons.map((id,index)=>({selectionKey:`${instanceId}/weapon/${index}`,canonicalProfileIds:[id],canonicalEquipmentIds:[],canonicalFieldPaths:{},physicalQuantity:count,perModelQuantity:1}))}]});
@@ -65,6 +86,9 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const app='/books/death-guard/v2/app.html';
 const allowed=new Map([[app,'text/html'],['/books/death-guard/v2/generated/app-presentation.json','application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
+// Exact current production imports, not a wildcard bypass of the QA dependency boundary.
+for(const file of ['books/shared/army-book-app-v2/formed-unit-presentation.mjs','books/shared/army-book-app-v2/effective-datasheet-presentation.mjs',
+ 'books/shared/roster-v2/effective-instance.mjs','books/shared/roster-v2/related.mjs'])allowed.set('/'+file,'text/javascript');
 const forbiddenRequests=[];
 let runtimePoison=null;
 const server=http.createServer((req,res)=>{const address=new URL(req.url,'http://localhost').pathname;if(!allowed.has(address)){if(address!=='/favicon.ico')forbiddenRequests.push(address);res.writeHead(404);res.end();return;}res.writeHead(200,{'Content-Type':allowed.get(address),'Cache-Control':'no-store'});let content=fs.readFileSync(path.join(repo,address.slice(1)));if(address==='/books/shared/army-book-app-v2/runtime.mjs'&&runtimePoison){const original=content.toString();const needle=runtimePoison==='STANDALONE'?'const {variants,selected}=effectiveReference(id,context);':'dialogContent.replaceChildren(...(effectiveCards?.length';assert(original.includes(needle),'Mutation target no longer resolves');content=original.replace(needle,runtimePoison==='STANDALONE'?'const variants=null,selected=[cards.get(id)];':'dialogContent.replaceChildren(...(false');}res.end(content);});
@@ -79,11 +103,19 @@ try{
   await page.goto(`http://127.0.0.1:${server.address().port}${app}`);
   await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
   const api=async(fn,arg)=>page.evaluate(fn,arg);
-  const open=async id=>{await api(id=>{window.ArmyBookAppV2.openPersonalGuide();window.ArmyBookAppV2.openInstance(id);},id);await page.waitForFunction(id=>document.querySelector('main .v2-current-card')?.dataset.rosterInstanceId===id,id);};
+  let currentInstanceId=null;
+  const open=async id=>{await api(id=>{window.ArmyBookAppV2.openPersonalGuide();window.ArmyBookAppV2.openInstance(id);},id);await page.waitForFunction(id=>[...document.querySelectorAll('main [data-roster-context-instance-id]')].some(node=>node.dataset.rosterContextInstanceId===id&&!!node.getClientRects().length),id);currentInstanceId=id;};
   const load=async snapshot=>api(snapshot=>window.ArmyBookAppV2.roster.load(snapshot),snapshot);
   const attach=async(source,target)=>api(([source,target])=>window.ArmyBookAppV2.roster.attach(source,target),[source,target]);
   const detach=async source=>api(source=>window.ArmyBookAppV2.roster.detach(source),source);
-  const card=async(id,{detail=false}={})=>page.locator(`${detail?'.v2-dialog-content':'main'} [data-card-id="${id}"]`).evaluateAll(nodes=>nodes.filter(node=>!!node.getClientRects().length).map(node=>({text:node.innerText,extras:[...node.children].filter(child=>child.classList.contains('v2-compatible-help')).map(child=>child.textContent),fields:[...node.querySelectorAll('[data-fact-id]')].filter(f=>f.closest('[data-card-id]')===node&&!!f.getClientRects().length).map(f=>({path:f.dataset.factId.slice(f.dataset.factId.indexOf('::')+2),value:JSON.parse(f.dataset.factValue),text:f.textContent}))})));
+  const card=async(id,{detail=false}={})=>page.locator(`${detail?'.v2-dialog-content':'main'} [data-card-id], ${detail?'.v2-dialog-content':'main'} [data-profile-scopes]`).evaluateAll((nodes,id)=>nodes.filter(node=>!!node.getClientRects().length&&
+    (node.dataset.cardId===id||JSON.parse(node.dataset.profileScopes||'[]').some(([profileId])=>profileId===id))).map(node=>({
+      text:node.innerText,weaponQuantity:node.querySelector('.ds-weapon-quantity')?.textContent||null,displayScopes:JSON.parse(node.dataset.weaponScopes||node.dataset.profileScopes||'null'),
+      criticalHits:[...node.querySelectorAll('[data-critical-hit-threshold]')].filter(note=>note.closest('[data-card-id]')===node).map(note=>({value:note.dataset.criticalHitThreshold,recipient:note.dataset.recipientInstanceId,text:note.innerText,sourceIds:[...note.querySelectorAll('a[data-target-id]')].map(link=>link.dataset.targetId)})),
+      extras:[...node.children].filter(child=>child.classList.contains('v2-compatible-help')).map(child=>child.textContent),
+      fields:[...node.querySelectorAll('[data-fact-id]')].filter(f=>!!f.getClientRects().length&&(f.closest('[data-card-id]')===node||
+        node.dataset.profileScopes&&f.closest('[data-profile-scopes]')===node&&!node.contains(f.closest('[data-card-id]')))).map(f=>({path:f.dataset.factId.slice(f.dataset.factId.indexOf('::')+2),value:JSON.parse(f.dataset.factValue),text:f.textContent}))
+    })),id);
   const values=(cards,path)=>cards.flatMap(card=>card.fields.filter(field=>field.path===path||field.path.startsWith(path+'/')).map(field=>field.value));
   const surfaces=async(id,options={})=>{const main=await card(id,options);if(options.detail)return [main];await api(id=>window.ArmyBookAppV2.showDetail(id),id);await page.waitForFunction(()=>document.querySelector('.v2-detail-dialog')?.open);const detail=await card(id,{detail:true});await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);return [main,detail];};
   const weaponAbility=async(id,ability,wanted=true,options={})=>{for(const actual of await surfaces(id,options)){assert(actual.length,`${device}: missing visible weapon ${id}`);for(const record of actual)assert.equal(values([record],'/abilities').some(value=>normalize(value)===normalize(ability)),wanted,`${device}: visible weapon ${id} ${ability} in every composition scope`);controls++;}};
@@ -96,8 +128,19 @@ try{
     const pattern=new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*(?::\\s*)?'+value+'\\+','i');
     for(const record of actual){assert.equal(record.fields.some(field=>field.path.startsWith('/rosterAbilities/')&&field.value.name===name&&field.value.value===value&&field.text===value+'+'),wanted,`${device}: popup defensive value ${name} ${value}+ on ${id}`);assert.equal(pattern.test(record.text),wanted);}controls++;
   };
-  const keyword=async(id,name,wanted=true)=>{const root=await page.locator('main .v2-current-card').evaluate(node=>({id:node.dataset.cardId,fields:[...node.querySelectorAll('[data-fact-id]')].filter(f=>f.closest('[data-card-id]')===node).map(f=>({path:f.dataset.factId.slice(f.dataset.factId.indexOf('::')+2),value:JSON.parse(f.dataset.factValue)}))}));assert.equal(root.id,id);assert.equal(root.fields.some(f=>f.path.startsWith('/keywords/')&&f.value===name),wanted,`${device}: effective UNIT keyword ${name}`);controls++;};
+  const keyword=async(id,name,wanted=true)=>{const root=await page.locator(`main [data-card-id="${id}"][data-roster-instance-id="${currentInstanceId}"]`).evaluate(node=>({id:node.dataset.cardId,fields:[...node.querySelectorAll('[data-fact-id]')].filter(f=>f.closest('[data-card-id]')===node).map(f=>({path:f.dataset.factId.slice(f.dataset.factId.indexOf('::')+2),value:JSON.parse(f.dataset.factValue)}))}));assert.equal(root.id,id);assert.equal(root.fields.some(f=>f.path.startsWith('/keywords/')&&f.value===name),wanted,`${device}: effective UNIT keyword ${name}`);controls++;};
   const metric=async(id,name,modifier,max)=>{for(const actual of await surfaces(id)){assert(actual.length);for(const record of actual){const metrics=record.fields.filter(field=>field.path==='/rosterMetrics/'+name);assert.equal(metrics.length,1,`${device}: missing or duplicate natural profile metric ${name}`);assert.deepEqual(metrics[0].value,{modifier,...(max===undefined?{}:{max})},`${device}: wrong visible metric ${name}`);assert.equal(metrics[0].text,`${modifier>=0?'+':''}${modifier}"${max===undefined?'':` (maximum ${max}")`}`,`${device}: metric exposed as internal JSON`);controls++;}}};
+  const charge=async(instanceId,ruleId,wanted=true)=>{
+    const actual=await page.locator('main [data-unit-metric="chargeRoll"]').evaluateAll(nodes=>nodes.filter(node=>!!node.getClientRects().length).map(node=>({modifier:node.dataset.metricModifier,scope:node.dataset.unitScope,recipients:JSON.parse(node.dataset.recipientInstanceIds),ruleIds:JSON.parse(node.dataset.ruleIds),text:node.innerText})));
+    assert.equal(actual.length,wanted?1:0,`${device}: missing, duplicate or leaked visible Charge modifier`);
+    if(wanted){assert.equal(actual[0].modifier,'1');assert.equal(actual[0].scope,'FORMED');assert.deepEqual(actual[0].recipients,[instanceId]);assert(actual[0].ruleIds.includes(ruleId));assert.match(actual[0].text,/Charge-roll modifier:\s*\+1/);}controls++;
+  };
+  const critical=async(id,instanceId,wanted=true)=>{
+    for(const actual of await surfaces(id)){assert(actual.length,`${device}: missing visible weapon ${id}`);for(const record of actual){
+      assert.equal(record.criticalHits.length,wanted?1:0,`${device}: missing, duplicate or leaked Critical Hit threshold`);
+      if(wanted){const note=record.criticalHits[0];assert.equal(note.value,'5');assert.equal(note.recipient,instanceId);assert.match(note.text,/Critical hits:\s*5\+/);assert(note.sourceIds.includes('detachment-virulent-vectorium:enhancement:1'));}controls++;
+    }}
+  };
   const mark=async(...indices)=>{const applied=await api(()=>window.ArmyBookAppV2.roster.projection.units.flatMap(unit=>unit.applied));for(const index of indices){const row=expected[index];assert(applied.some(effect=>effect.ruleId===row.id&&effect.clauseId===row.clause),`${device}: source clause not executed: ${identity(row)}`);covered.add(identity(row));}};
   const baseline=await api(()=>{window.ArmyBookAppV2.open('unit-lord-of-contagion');return [...document.querySelectorAll('main [data-fact-id]')].map(f=>[f.dataset.factId,f.dataset.factValue]);});
 
@@ -172,7 +215,7 @@ Created with newrecruit.eu v36.31`;
   await attach('parsed-unit-1','parsed-unit-2');await open('parsed-unit-1');await modelAbility(profileId(LOC),'Feel No Pain',4);
   for(const id of lordWeapons)for(const ability of ['LETHAL HITS','SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability);
   await open('parsed-unit-2');
-  for(const id of dsWeapons){const scopes=await card(id);assert.equal(scopes.length,2,`${device}: grouped Champion/Terminators lost separate effective weapon scopes`);for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability);}
+  for(const id of dsWeapons){const scopes=await card(id),represented=scopes.flatMap(record=>record.displayScopes||[]).filter(([weaponId])=>weaponId===id);assert.equal(represented.length,2,`${device}: grouped Champion/Terminators lost separate effective weapon scopes`);assert.equal(new Set(represented.map(scope=>JSON.stringify(scope))).size,2,`${device}: duplicate physical weapon scope in visible group`);assert.equal(scopes.reduce((total,record)=>{assert.match(record.weaponQuantity,/^ ×[0-9]+$/);return total+Number(record.weaponQuantity.slice(2));},0),3,`${device}: grouped weapon quantity differs from three imported models`);for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability);}
   await detach('parsed-unit-1');await open('parsed-unit-1');await modelAbility(profileId(LOC),'Feel No Pain',4,false);for(const id of lordWeapons)for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability,false);
   await open('parsed-unit-2');for(const id of dsWeapons)for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability,false);
   await attach('parsed-unit-1','parsed-unit-2');await open('parsed-unit-1');await modelAbility(profileId(LOC),'Feel No Pain',4);for(const id of lordWeapons)for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(id,ability);
@@ -201,7 +244,7 @@ Created with newrecruit.eu v36.31`;
   for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability,true,{detail:true});
   await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);
   for(const ability of ['SUSTAINED HITS 1','LANCE'])await weaponAbility(lordWeapons[0],ability);
-  assert.equal(await page.locator('main .v2-current-card').getAttribute('data-roster-instance-id'),'parsed-unit-1');assert.match(await page.locator('main [data-canonical-ability-id="core-feel-no-pain"]').innerText(),/Feel No Pain\s*:?\s*4\+/i,`${device}: Back lost effective MODEL ability`);
+  assert.equal(new URL(page.url()).searchParams.get('instance'),'parsed-unit-1');assert.equal(await page.locator(`main [data-card-id="${LOC}"][data-roster-instance-id="parsed-unit-1"]`).count(),1,'Back lost exact physical Character component');assert.match(await page.locator('main [data-canonical-ability-id="core-feel-no-pain"]').innerText(),/Feel No Pain\s*:?\s*4\+/i,`${device}: Back lost effective MODEL ability`);
   await page.goForward();await page.waitForSelector('dialog.v2-detail-dialog[open]');await weaponAbility(lordWeapons[0],'LANCE',true,{detail:true});await page.getByRole('button',{name:'Close rule reference',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.v2-detail-dialog')?.open);
   await open('parsed-unit-1');await api(id=>window.ArmyBookAppV2.showDetail(id),lordWeapons[0]);
   await page.waitForFunction(()=>document.querySelector('.v2-detail-dialog')?.open);
@@ -235,7 +278,21 @@ Created with newrecruit.eu v36.31`;
   await load(state([unit('vile',LOC,1,{enhancements:['detachment-death-lords-chosen:enhancement:2']}),unit('ds',DS,3)],'detachment-death-lords-chosen'));await attach('vile','ds');await open('ds');await stat(profileId(DS),'M','6"');await mark(15);
   await load(state([unit('h','unit-helbrute',1,{weapons:['datasheet-helbrute:weapon:9'],enhancements:['detachment-contagion-engines:enhancement:2']}),unit('h2','unit-helbrute',1,{weapons:['datasheet-helbrute:weapon:9']}),unit('pm',PM,5,{weapons:['datasheet-plague-marines:weapon:2']})],'detachment-contagion-engines'));await open('h');await keyword('unit-helbrute','MOBILE');await keyword('unit-helbrute','CONTAGION ENGINE');await weaponAbility('datasheet-helbrute:weapon:9','ASSAULT');await mark(16,20,21);await open('h2');await keyword('unit-helbrute','MOBILE',false);await weaponAbility('datasheet-helbrute:weapon:9','ASSAULT');await open('pm');await keyword(PM,'CONTAGION ENGINE',false);await weaponAbility('datasheet-plague-marines:weapon:2','ASSAULT',false);
   await load(state([unit('veiled',PM,5,{enhancements:['detachment-flyblown-host:enhancement:2']}),unit('ordinary',PM,5)],'detachment-flyblown-host'));await open('veiled');await metric(profileId(PM),'detectionRange',-3);await mark(17);
-  assert.deepEqual(covered,denominator,`${device}: complete22 source clauses through player-visible Reader`);
+  // These three independently sourced clauses were added after the old 22-clause census.
+  for(const [slug,count,index] of [['plague-drones',3,22],['plaguebearers',10,23]]){
+    const equipment=`datasheet-${slug}:wargear:1`,ruleId=`datasheet-${slug}:section:1`;
+    const enabled=state([unit('instrument',`unit-${slug}`,count,{selections:[{selectionKey:'instrument',canonicalProfileIds:[],canonicalEquipmentIds:[equipment],canonicalFieldPaths:{[equipment]:['/text']},physicalQuantity:1}]}),unit('ordinary',`unit-${slug}`,count)]);
+    await load(enabled);await open('instrument');await charge('instrument',ruleId);await mark(index);
+    await open('ordinary');await charge('ordinary',ruleId,false);
+    const removed=structuredClone(enabled);removed.units[0].selections=[];await load(removed);await open('instrument');await charge('instrument',ruleId,false);
+    await load(enabled);await load(enabled);await open('instrument');await charge('instrument',ruleId);
+  }
+  const criticalEnabled=state([unit('critical',LOC,1,{weapons:lordWeapons,enhancements:['detachment-virulent-vectorium:enhancement:1']}),unit('ordinary',LOC,1,{weapons:lordWeapons})]);
+  await load(criticalEnabled);await open('critical');for(const id of lordWeapons)await critical(id,'critical');await mark(24);
+  await open('ordinary');for(const id of lordWeapons)await critical(id,'ordinary',false);
+  const criticalRemoved=structuredClone(criticalEnabled);criticalRemoved.units[0].enhancementIds=[];await load(criticalRemoved);await open('critical');for(const id of lordWeapons)await critical(id,'critical',false);
+  await load(criticalEnabled);await load(criticalEnabled);await open('critical');for(const id of lordWeapons)await critical(id,'critical');
+  assert.deepEqual(covered,denominator,`${device}: complete25 source clauses through player-visible Reader`);
   // Independently remove each consumer's physical projection in HTTP memory.
   // Canonical fallback is the original defect, so source-backed assertions
   // must reject it even while the same runtime/applied debug rows are correct.
@@ -257,5 +314,5 @@ Created with newrecruit.eu v36.31`;
  }
  assert.deepEqual(forbiddenRequests,[],'Undeclared/legacy factual dependency');
  for(const [file,snapshot]of sourceSnapshots)assert.deepEqual(fs.readFileSync(path.join(directory,file)),snapshot,`Source/contract/factual projection changed during QA: ${file}`);
- console.log(JSON.stringify({status:'PASS',rosterExecutable:denominator.size,visibleEffectsCorrect:'22/22',missingVisibleEffects:0,wrongVisibleEffects:0,instanceLeakage:0,classifications,megaCase:'PASS',detachReattach:'PASS',results}));
+ console.log(JSON.stringify({status:'PASS',rosterExecutable:denominator.size,visibleEffectsCorrect:'25/25',censusMutationsDetected:censusMutations,missingVisibleEffects:0,wrongVisibleEffects:0,instanceLeakage:0,classifications,megaCase:'PASS',detachReattach:'PASS',results}));
 }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
