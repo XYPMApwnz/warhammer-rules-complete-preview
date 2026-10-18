@@ -3,6 +3,8 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {buildAdMechContracts,readJson,directory} from './rule-contract-build.mjs';
 import {compilerInputs} from './rule-contract-context.mjs';
+import {buildRosterAttachmentInputs} from './roster-attachment-build.mjs';
+import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 
@@ -13,6 +15,36 @@ const ids=[...['archaeopter-fusilave','archaeopter-stratoraptor','archaeopter-tr
   'detachment-haloscreed-battle-clade:enhancement:1','detachment-eradication-cohort:enhancement:2'];
 const selected=new Set(ids),built=buildAdMechContracts(),full=compilerInputs(built.book).book;
 const book=structuredClone(full),index=new Map(book.entities.map(e=>[e.id,e]));
+// Compatibility policies are not runtime attachment inputs. Exercise the
+// production producer, with exact expected provenance from canonical fixtures.
+book.rosterAttachmentPolicies=buildRosterAttachmentInputs(built.book,readJson('roster-attachment-bindings.json')).policies;
+const expectedAttachmentSources=[
+  ['unit-cybernetica-datasmith','unit-kastelan-robots',[
+    'datasheet-cybernetica-datasmith:section:3:attachment-declaration','datasheet-cybernetica-datasmith:section:3']],
+  ['unit-tech-priest-dominus','unit-servitor-battleclade',[
+    'datasheet-tech-priest-dominus:section:3:attachment-declaration','datasheet-tech-priest-dominus:section:3',
+    'datasheet-servitor-battleclade:section:3:attachment-declaration','datasheet-servitor-battleclade:section:3']]
+];
+function attachmentSourceParity(policies){for(const [sourceId,targetId,sourceIds]of expectedAttachmentSources){
+  const actual=policies.filter(p=>p.sourceId===sourceId&&p.targetId===targetId);
+  assert.equal(actual.length,1);assert.deepEqual(actual[0].sourceIds,sourceIds,'Attachment fixture source provenance');
+  assert.equal(actual[0].role,sourceId==='unit-cybernetica-datasmith'?'SUPPORT':'LEADER');
+  for(let i=0;i<sourceIds.length;i+=2){const declaration=index.get(sourceIds[i]),section=index.get(sourceIds[i+1]);
+    assert.equal(declaration?.kind,'ATTACHMENT_DECLARATION');assert.equal(section?.kind,'DATASHEET_SECTION');
+    assert.equal(declaration.parentId,i===0?sourceId:targetId);assert.equal(section.parentId,declaration.parentId);
+    assert.equal(declaration.data.roleHeading,i===0?actual[0].role:'ATTACHED UNIT');
+    assert.equal(declaration.data.sourceSectionId,section.id);assert.equal(declaration.provenance.sourceId,'am-waha-11e-2026-09-25');
+    assert.equal(section.provenance.sourceId,declaration.provenance.sourceId);
+  }
+}}
+attachmentSourceParity(book.rosterAttachmentPolicies);
+for(const sourceIds of [undefined,['datasheet-onager-dunecrawler:section:1']]){
+  const changed=structuredClone(book.rosterAttachmentPolicies);
+  changed.find(p=>p.sourceId==='unit-cybernetica-datasmith'&&p.targetId==='unit-kastelan-robots').sourceIds=sourceIds;
+  assert.throws(()=>attachmentSourceParity(changed),/Attachment fixture source provenance/);
+}
+const missingSources=structuredClone(book.rosterAttachmentPolicies);delete missingSources[0].sourceIds;
+assert.throws(()=>createRosterAttachmentService(book,{policies:missingSources}),/Invalid canonical attachment policy/);
 for(const entity of book.entities)if(!selected.has(entity.id))delete entity.ruleContract;
 const evaluator=withRosterDetachments(built.schema.evaluator);
 assert.equal(built.blockedIds.size,0);
@@ -159,4 +191,4 @@ for(const entity of readJson('generated/effective.json').entities){
   assert.deepEqual(facts,entity,'Book-owned lowering changed factual snapshot');
 }
 console.log(JSON.stringify({status:'PASS',sourceOwners:7,sourceEffects:wanted.size,blockedOwners:built.blockedIds.size,
-  actualSharedExecution:true,profileIsolation:true,repeatAttachDetach:true,battleActionsExecuted:false,legacyReads:0}));
+  actualSharedExecution:true,profileIsolation:true,repeatAttachDetach:true,battleActionsExecuted:false,legacyReads:0,attachmentSourceMutations:3}));

@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import {buildAdMechContracts,directory} from './rule-contract-build.mjs';
+import {buildAdMechContracts,directory,readJson} from './rule-contract-build.mjs';
 import {compilerInputs} from './rule-contract-context.mjs';
+import {buildRosterAttachmentInputs} from './roster-attachment-build.mjs';
+import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
@@ -10,6 +12,36 @@ import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2
 // not an AdMech roster implementation and does not use legacy rule contracts.
 const cyber='detachment-cohort-cybernetica:rule',forge='detachment-lords-of-the-forge:rule',ids=[cyber,forge];
 const built=buildAdMechContracts(),book=compilerInputs(built.book).book,index=new Map(book.entities.map(e=>[e.id,e]));
+// Compatibility policies omit runtime provenance. The producer is the subject;
+// independently enumerated canonical fixture identities remain the oracle.
+book.rosterAttachmentPolicies=buildRosterAttachmentInputs(built.book,readJson('roster-attachment-bindings.json')).policies;
+const expectedAttachmentSources=[
+  ['unit-cybernetica-datasmith','unit-kastelan-robots',[
+    'datasheet-cybernetica-datasmith:section:3:attachment-declaration','datasheet-cybernetica-datasmith:section:3']],
+  ['unit-tech-priest-dominus','unit-servitor-battleclade',[
+    'datasheet-tech-priest-dominus:section:3:attachment-declaration','datasheet-tech-priest-dominus:section:3',
+    'datasheet-servitor-battleclade:section:3:attachment-declaration','datasheet-servitor-battleclade:section:3']]
+];
+function attachmentSourceParity(policies){for(const [sourceId,targetId,sourceIds]of expectedAttachmentSources){
+  const actual=policies.filter(p=>p.sourceId===sourceId&&p.targetId===targetId);
+  assert.equal(actual.length,1);assert.deepEqual(actual[0].sourceIds,sourceIds,'Attachment fixture source provenance');
+  assert.equal(actual[0].role,sourceId==='unit-cybernetica-datasmith'?'SUPPORT':'LEADER');
+  for(let i=0;i<sourceIds.length;i+=2){const declaration=index.get(sourceIds[i]),section=index.get(sourceIds[i+1]);
+    assert.equal(declaration?.kind,'ATTACHMENT_DECLARATION');assert.equal(section?.kind,'DATASHEET_SECTION');
+    assert.equal(declaration.parentId,i===0?sourceId:targetId);assert.equal(section.parentId,declaration.parentId);
+    assert.equal(declaration.data.roleHeading,i===0?actual[0].role:'ATTACHED UNIT');
+    assert.equal(declaration.data.sourceSectionId,section.id);assert.equal(declaration.provenance.sourceId,'am-waha-11e-2026-09-25');
+    assert.equal(section.provenance.sourceId,declaration.provenance.sourceId);
+  }
+}}
+attachmentSourceParity(book.rosterAttachmentPolicies);
+for(const sourceIds of [undefined,['datasheet-onager-dunecrawler:section:1']]){
+  const changed=structuredClone(book.rosterAttachmentPolicies);
+  changed.find(p=>p.sourceId==='unit-cybernetica-datasmith'&&p.targetId==='unit-kastelan-robots').sourceIds=sourceIds;
+  assert.throws(()=>attachmentSourceParity(changed),/Attachment fixture source provenance/);
+}
+const missingSources=structuredClone(book.rosterAttachmentPolicies);delete missingSources[0].sourceIds;
+assert.throws(()=>createRosterAttachmentService(book,{policies:missingSources}),/Invalid canonical attachment policy/);
 for(const e of book.entities)if(!ids.includes(e.id))delete e.ruleContract;
 const initial=structuredClone(book),api=withRosterDetachments(built.schema.evaluator);
 assert.deepEqual([...built.blockedIds],[]);
@@ -98,4 +130,4 @@ for(const dets of [["detachment-rad-zone-corps"],[cyberDet],[forgeDet],[cyberDet
   assert.deepEqual(alone.units.find(u=>u.instanceId==='robots-b'),attached.units.find(u=>u.instanceId==='robots-b'));
 }
 assert.deepEqual(touched,new Set([cyber+'/model-move',forge+'/model-invulnerable',forge+'/model-fnp']));
-console.log(JSON.stringify({status:'PASS',sourceOwners:2,sourceEffects:3,blockedOwners:built.blockedIds.size,runtimeCases:cases,appliedProvenanceChecks:applied,mutations,mixedUnderseerServitor:'PASS',canonicalFactsImmutable:'PASS'}));
+console.log(JSON.stringify({status:'PASS',sourceOwners:2,sourceEffects:3,blockedOwners:built.blockedIds.size,runtimeCases:cases,appliedProvenanceChecks:applied,mutations,attachmentSourceMutations:3,mixedUnderseerServitor:'PASS',canonicalFactsImmutable:'PASS'}));

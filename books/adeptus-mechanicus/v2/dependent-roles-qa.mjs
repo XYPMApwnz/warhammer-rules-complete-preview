@@ -7,6 +7,7 @@ import {buildRosterRuntimeBook} from './roster-build.mjs';
 import {buildAdMechContracts,readJson} from './rule-contract-build.mjs';
 import {createAdMechCompatibilityCompiler} from './rule-contract-context.mjs';
 import {evaluateCompatibilityRole,requiredRecipientRoles} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {assertReviewedContractUpdate} from './required-recipients-qa.mjs';
 
 const onager='1x Onager Dunecrawler (120 pts): Neutron laser, Cognis heavy stubber, Dunecrawler legs';
 const rangers='10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon';
@@ -57,6 +58,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
       equipmentId:'datasheet-onager-dunecrawler:wargear:3',sourceFieldPath:['text']};
   for(const entity of built.book.entities.filter(e=>e.ruleContract)) {
     const current=structuredClone(entity.ruleContract),previous=base.contracts[entity.id];
+    if(assertReviewedContractUpdate(entity,previous))continue;
     if(cases.some(test=>test.ruleId===entity.id))for(const role of [current.roles,...current.clauses.map(c=>c.roles)].flat())
       if(role.id==='optionalSupport'){delete role.optional;delete role.prerequisites;}
     assert.deepEqual(current,previous,'Unrelated contract delta: '+entity.id);

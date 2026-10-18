@@ -2,8 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {buildAdMechContracts,directory} from './rule-contract-build.mjs';
+import {buildAdMechContracts,directory,readJson} from './rule-contract-build.mjs';
 import {compilerInputs} from './rule-contract-context.mjs';
+import {buildRosterAttachmentInputs} from './roster-attachment-build.mjs';
+import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
 import {validateRoster,withRosterDetachments} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
@@ -11,6 +13,33 @@ import {executeRosterEffects,validateRosterEffects} from '../../shared/roster-v2
 // by this declaration and no legacy AdMech answers participate.
 const id='detachment-lords-of-the-forge:enhancement:2',weaponId=id+':weapon:1',detachmentId='detachment-lords-of-the-forge';
 const built=buildAdMechContracts(),book=compilerInputs(built.book).book,index=new Map(book.entities.map(e=>[e.id,e]));
+// Use runtime attachment inputs, retaining an independent exact source oracle
+// for the Dominus/Battleclade fixture and its accepted redirect evidence.
+book.rosterAttachmentPolicies=buildRosterAttachmentInputs(built.book,readJson('roster-attachment-bindings.json')).policies;
+const expectedAttachmentSources=[
+  'datasheet-tech-priest-dominus:section:3:attachment-declaration','datasheet-tech-priest-dominus:section:3',
+  'datasheet-servitor-battleclade:section:3:attachment-declaration','datasheet-servitor-battleclade:section:3'
+];
+function attachmentSourceParity(policies){
+  const actual=policies.filter(p=>p.sourceId==='unit-tech-priest-dominus'&&p.targetId==='unit-servitor-battleclade');
+  assert.equal(actual.length,1);assert.deepEqual(actual[0].sourceIds,expectedAttachmentSources,'Attachment fixture source provenance');
+  assert.equal(actual[0].role,'LEADER');
+  for(let i=0;i<expectedAttachmentSources.length;i+=2){const declaration=index.get(expectedAttachmentSources[i]),section=index.get(expectedAttachmentSources[i+1]);
+    assert.equal(declaration?.kind,'ATTACHMENT_DECLARATION');assert.equal(section?.kind,'DATASHEET_SECTION');
+    assert.equal(declaration.parentId,i===0?'unit-tech-priest-dominus':'unit-servitor-battleclade');assert.equal(section.parentId,declaration.parentId);
+    assert.equal(declaration.data.roleHeading,i===0?'LEADER':'ATTACHED UNIT');
+    assert.equal(declaration.data.sourceSectionId,section.id);assert.equal(declaration.provenance.sourceId,'am-waha-11e-2026-09-25');
+    assert.equal(section.provenance.sourceId,declaration.provenance.sourceId);
+  }
+}
+attachmentSourceParity(book.rosterAttachmentPolicies);
+for(const sourceIds of [undefined,['datasheet-onager-dunecrawler:section:1']]){
+  const changed=structuredClone(book.rosterAttachmentPolicies);
+  changed.find(p=>p.sourceId==='unit-tech-priest-dominus'&&p.targetId==='unit-servitor-battleclade').sourceIds=sourceIds;
+  assert.throws(()=>attachmentSourceParity(changed),/Attachment fixture source provenance/);
+}
+const missingSources=structuredClone(book.rosterAttachmentPolicies);delete missingSources[0].sourceIds;
+assert.throws(()=>createRosterAttachmentService(book,{policies:missingSources}),/Invalid canonical attachment policy/);
 for(const e of book.entities)if(e.id!==id)delete e.ruleContract;
 const canonicalBefore=structuredClone(book),owner=index.get(id),weapon=index.get(weaponId),api=withRosterDetachments(built.schema.evaluator);
 assert.equal(built.blockedIds.size,0);assert.equal(weapon.kind,'WEAPON_PROFILE');assert.equal(weapon.parentId,id);
@@ -100,4 +129,4 @@ for(const name of ['cybernetica-datasmith','tech-priest-enginseer','tech-priest-
 }
 assert.equal(built.schema.evaluator.validateContracts(built.book).rules,205);
 console.log(JSON.stringify({status:'PASS',sourceOwners:1,existingCanonicalWeaponProfiles:1,runtimeCases:cases,provenanceChecks,mutations,
-  exactOwner:true,referenceIdentity:true,baseFactsImmutable:true,blockedOwners:0,legacyContractReads:0}));
+  attachmentSourceMutations:3,exactOwner:true,referenceIdentity:true,baseFactsImmutable:true,blockedOwners:0,legacyContractReads:0}));
