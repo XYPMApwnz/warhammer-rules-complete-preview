@@ -1,5 +1,17 @@
 # Current handoff
 
+## Unified V2 Recovery product note — 2026-10-18
+
+For `E:\Warhammer\warhammer-v2-recovery` on `recovery/v2-minimal`, the rule
+presentation decisions are recorded in
+[V2_RULE_PRESENTATION_CONTRACT.md](codex/V2_RULE_PRESENTATION_CONTRACT.md).
+Its decision baseline is `40eefc6b24e76587b38c0d19485ef68897a9af1e`; verify the actual
+HEAD and tree before work. The contract requires full rules at the correct physical
+owners/recipients, preserves existing computed effects, and permits text-only roll
+modifiers without inventing calculations. It adds no gameplay implementation or
+UI PASS claim and does not reclassify the 15 documented capability gaps. The
+milestone below remains historical and is not the Recovery acceptance result.
+
 This is the first document for a new ChatGPT, Codex or Astra conversation. It records the certified **local** milestone at `8fc01265a18e6c367451d18a7b86bf522edf63e8` on `working/army-books-clean`. Verify the actual HEAD and require a clean tree before work. Do not reset a newer legitimate checkout merely to match this file.
 
 For new independent unified V2 certification, follow the [authoritative certification requirements](PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements). The results and counts below remain evidence for the milestone named above; they do not assign new `CONTENT_CERTIFIED` or `USER_PATH_CERTIFIED` results to a different checkout.
