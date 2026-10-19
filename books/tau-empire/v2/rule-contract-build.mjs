@@ -5,7 +5,8 @@ import {fileURLToPath} from 'node:url';
 import {declarations,enhancementEligibility,pendingPhysicalBindings} from './rule-contract-declarations.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createTauRuleSchema} from './rule-contract-schema.mjs';
+export {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
@@ -13,20 +14,6 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,at=(value,path)=>path.reduce((v,key)=>v?.[key],value);
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
-export function createTauRuleSchema({bindContext=context=>context}={}){
-  const schema=createRuleContractSchema({stateFields:{
-    attached:{contextLevel:'ROSTER',valueType:'boolean'},
-    equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
-    battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
-    tauStudentRecipient:{contextLevel:'ROSTER',valueType:'boolean'},
-    tauPhysicalUnitInstanceId:{contextLevel:'ROSTER',valueType:'string'},
-    tauPhysicalModelScopeId:{contextLevel:'ROSTER',valueType:'string'},
-    tauMarkerSelected:{contextLevel:'ROSTER',valueType:'boolean'}
-  }});
-  return {...schema,evaluatePredicate:(predicate,context)=>schema.evaluatePredicate(predicate,bindContext(context)),
-    evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bindContext(context))};
-}
-
 /** Disposable contract view, like EC/Tyranids. No parser, importer or execution code. */
 export function buildTauContracts({facts=read('./generated/effective.json'),inputs=declarations,
   review=read('./rule-clause-review.json'),pendingInputs=pendingPhysicalBindings}={}){

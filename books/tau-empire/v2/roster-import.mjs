@@ -2,7 +2,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
-import {createTauRuleSchema} from './rule-contract-build.mjs';
+import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
   tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs,bindTauShieldModels} from './roster-source-choices.mjs';
 import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from './roster-weapon-choices.mjs';
@@ -159,7 +159,7 @@ export function createTauRosterImport(input){
 export function createTauRosterRuntime(book){
   let runtime=createRosterRuntime(book,createTauRuleSchema());
   const imports=createTauRosterImport(book);
-  const service={get state(){return runtime.state;},get projection(){return runtime.projection;},
+  const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
       const candidate=imports.load(value),boundBook=bindTauShieldModels(bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate),candidate);
