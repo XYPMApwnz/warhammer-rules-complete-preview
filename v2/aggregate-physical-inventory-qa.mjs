@@ -8,6 +8,7 @@ import {createAdMechRosterRuntime} from '../books/adeptus-mechanicus/v2/roster-r
 import {createCSMBrowserRoster} from '../books/chaos-space-marines/v2/roster-boot.mjs';
 import {createECBrowserRoster} from '../books/emperors-children/v2/roster-boot.mjs';
 import {createTyranidsBrowserRoster} from '../books/tyranids/v2/roster-boot.mjs';
+import {createTauBrowserRoster} from '../books/tau-empire/v2/roster-boot.mjs';
 import {prepareRosterPresentationCards,projectInstanceCards} from '../books/shared/army-book-app-v2/personal.mjs';
 import {projectSelectedComposition} from '../books/shared/army-book-app-v2/effective-datasheet-presentation.mjs';
 import {selections,predicateContext} from '../books/shared/roster-v2/context.mjs';
@@ -132,7 +133,38 @@ export function runAggregateInventoryGuard(){
   }
   r.load(state);assert.ok(!r.projection.units[0].conditional.some(row=>row.ruleId===id));
   assert.ok(r.projection.units[1].conditional.some(row=>row.ruleId===id));assert.ok(r.projection.units.every(unit=>!unit.applied.some(row=>row.ruleId===id)));
-  return {status:'PASS',books:5,aggregatePhysicalUnits:10,mixedCompositionUnits:1,assignmentUnits:2,results,
+  // A single accepted equipment option names distinct drone types. Expected
+  // identities/counts come from the source-backed input, never the grouping.
+  const droneSource=sourceText('books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html');
+  const coldstarSource=sourceText('books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html');
+  assert.ok(droneSource.includes('shield drone')&&droneSource.includes('marker drone'));
+  assert.ok(coldstarSource.includes('shield drone')&&coldstarSource.includes('marker drone'));
+  const tau=createTauBrowserRoster(read('books/tau-empire/v2/generated/roster-import.json'));
+  const tauInput='+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont’ka\n'+
+    '1x Commander In Coldstar Battlesuit (70 pts)\n• 1x Commander In Coldstar Battlesuit: 1x High-output burst cannon, 1x Battlesuit fists, 1x Shield drone, 1x Marker drone\n'+
+    '1x Commander In Coldstar Battlesuit (70 pts)\n• 1x Commander In Coldstar Battlesuit: 1x High-output burst cannon, 1x Battlesuit fists, 2x Shield drone, 1x Marker drone\n'+
+    '1x Commander In Coldstar Battlesuit (70 pts)\n• 1x Commander In Coldstar Battlesuit: 1x High-output burst cannon, 1x Battlesuit fists\n';
+  assert.equal(tau.import(tauInput).status,'READY');
+  const tauBefore=tau.snapshot(),tauProjection=structuredClone(tau.projection);
+  const tauPayload=read('books/tau-empire/v2/generated/app-presentation.json'),tauCards=new Map(tauPayload.cards.map(card=>[card.id,card]));
+  for(const [index,unit]of tau.state.units.entries()){
+    const actualSelections=selections(unit).filter(selection=>selection.canonicalEquipmentIds.length);
+    const expected=index===2?[]:[['drone-marker-drone',1],['drone-shield-drone',index+1]];
+    assert.deepEqual(actualSelections.map(selection=>[selection.sourceEquipmentIdentity,selection.physicalQuantity]).sort(),expected);
+    const root=projectInstanceCards(tauCards,unit,tau.effective(unit.instanceId)).get(unit.canonicalUnitId)[0];
+    const composition=projectSelectedComposition(unit,root.rosterComposition),items=composition.groups.flatMap(group=>group.equipment)
+      .filter(item=>item.selections[0].canonicalEquipmentIds.length);
+    assert.deepEqual(items.map(item=>[item.selections[0].sourceEquipmentIdentity,item.total]).sort(),expected,'Different drones must not merge behind their shared option ID');
+    assert.ok(items.every(item=>new Set(item.selections.map(selection=>selection.sourceEquipmentIdentity)).size===1));
+    assert.ok(items.every(item=>item.selections[0].canonicalEquipmentIds[0]==='datasheet-commander-in-coldstar-battlesuit:wargear:2'));
+    const sourceAddresses=items=>items.map(selection=>JSON.stringify([selection.selectionKey,selection.sourceReferences])).sort();
+    assert.deepEqual(sourceAddresses(items.flatMap(item=>item.selections)),sourceAddresses(actualSelections),'Source caption references survive grouping');
+    assert.equal(composition.inventory.length,0,'Known MODEL selections do not become duplicate UNIT inventory');
+    assert.deepEqual(composition.groups.flatMap(group=>group.rowIds),unit.modelRows.map(row=>row.rowId));
+  }
+  assert.deepEqual(tau.snapshot(),tauBefore);assert.deepEqual(tau.projection,tauProjection,'Display grouping must not recalculate or mutate gameplay');
+  return {status:'PASS',books:6,aggregatePhysicalUnits:10,mixedCompositionUnits:1,assignmentUnits:2,results,
+    modelOwnedEquipment:{book:'tau-empire',physicalUnits:3,sharedOptionDifferentItems:'PASS',quantities:'PASS',sourceReferences:'PASS',independentInstances:'PASS'},
     modelEnhancementAssignment:{explicitChampion:'SOURCE_INELIGIBLE_NO_EFFECT',explicitCharacter:'CONDITIONAL_NO_BATTLE_SIMULATION'},realNewRecruitExportTested:false};
 }
 export const aggregateInventoryGuardResult=runAggregateInventoryGuard();

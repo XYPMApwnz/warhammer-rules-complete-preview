@@ -49,8 +49,18 @@ export function uniformProfileAnnotations(members,applied=[]) {
     return matches.every(items=>items.length===1)?[{identity:annotation.identity,field:annotation.field,members:matches.flat()}]:[];
   });
 }
+// Imported equipment identities/references have already been validated. One
+// option can name several items; its canonical ID alone is not an item ID.
+// Legacy selections retain their exact source addresses, including caption
+// spans, without using display text or a unique physical selection key.
+const equipmentIdentity=selection=>typeof selection.sourceEquipmentIdentity==='string'&&selection.sourceEquipmentIdentity.length
+  ?['SOURCE_EQUIPMENT',selection.sourceEquipmentIdentity]
+  :['SOURCE_REFERENCES',(selection.sourceReferences||[]).map(reference=>[
+    reference.bookId??null,reference.entityId,reference.path,
+    reference.caption?[reference.caption.start,reference.caption.end]:null
+  ]).sort((a,b)=>key(a).localeCompare(key(b)))];
 const selectionIdentity=selection=>key([...(selection.canonicalProfileIds||[]).map(id=>['WEAPON',id]),
-  ...(selection.canonicalEquipmentIds||[]).map(id=>['EQUIPMENT',id,selection.canonicalFieldPaths?.[id]||[]])].sort((a,b)=>key(a).localeCompare(key(b))));
+  ...(selection.canonicalEquipmentIds||[]).map(id=>['EQUIPMENT',id,selection.canonicalFieldPaths?.[id]||[],equipmentIdentity(selection)])].sort((a,b)=>key(a).localeCompare(key(b))));
 // Roster options (for example a selected UNIT keyword) are not physical items.
 // Keep their state/presentation elsewhere; inventory requires an actual item ID.
 const physicalSelection=selection=>selection.physicalQuantity>0&&

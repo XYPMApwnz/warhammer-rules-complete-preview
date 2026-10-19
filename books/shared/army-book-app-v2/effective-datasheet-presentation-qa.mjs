@@ -40,6 +40,92 @@ export function createEffectivePresentationFixtures(){
   add('missing-annotation-provenance',f=>{metrics(f);f.effective.applied=[];},1,1);
   return cases;
 }
+/** Item identity is independent of physical selection keys and display prose. */
+export async function runEquipmentGroupingGuards(project=projectSelectedComposition){
+  const {default:assert}=await import('node:assert/strict');
+  const checks=[],ref=(start=0,end=5,path='/text')=>({bookId:'synthetic',entityId:'option',path,caption:{start,end}});
+  const gear=(selectionKey,identity,references=[ref()],quantity=1)=>({selectionKey,
+    canonicalProfileIds:[],canonicalEquipmentIds:['option'],canonicalFieldPaths:{option:['/text']},
+    physicalQuantity:quantity,perModelQuantity:quantity,sourceReferences:references,
+    ...(identity?{sourceEquipmentIdentity:identity}:{})});
+  const make=items=>({instanceId:'physical-unit-a',startingStrength:1,selections:[],modelRows:[{
+    rowId:'model-a',canonicalProfileId:'profile',quantity:1,selections:items,loadouts:[]}]});
+  const display=unit=>{const before=structuredClone(unit),result=project(unit,unit.modelRows.map(row=>({rowId:row.rowId,label:'Models'})));
+    assert.deepEqual(unit,before,'Presentation must preserve every imported quantity, owner and provenance reference');return result;};
+  const separate=make([gear('first','item-a'),gear('second','item-b')]);
+  let result=display(separate),items=result.groups[0].equipment;
+  assert.equal(items.length,2,'Different confirmed equipment identities sharing one option stay separate');
+  assert.deepEqual(items.map(item=>[item.selections[0].sourceEquipmentIdentity,item.perModel,item.total]).sort(),[['item-a',1,1],['item-b',1,1]]);
+  checks.push('different-confirmed-equipment-identities');
+
+  const same=make([gear('first','item-a'),gear('another-physical-key','item-a',[ref(6,11)],2)]);
+  result=display(same);assert.equal(result.groups[0].equipment.length,1,'Confirmed same item must not split by selection key or evidence location');
+  const combined=result.groups[0].equipment[0];assert.equal(combined.perModel,3);assert.equal(combined.total,3);
+  assert.deepEqual(combined.selections,same.modelRows[0].selections,'All source selections/provenance survive same-item merging');
+  checks.push('same-equipment-different-selection-keys-merged');
+
+  const spans=make([gear('first',null,[ref()]),gear('second',null,[ref(6,11)])]);
+  assert.equal(display(spans).groups[0].equipment.length,2,'Legacy equipment source caption spans distinguish items within one paragraph');
+  checks.push('legacy-reference-caption-identity');
+  const fields=make([gear('first',null,[{entityId:'ability',path:'/blocks/0/text'}]),
+    gear('second',null,[{entityId:'ability',path:'/blocks/1/text'}])]);
+  assert.equal(display(fields).groups[0].equipment.length,2,'Legacy source FIELD addresses must not collapse');
+  checks.push('legacy-reference-field-identity');
+  const orderedRefs=[ref(),{entityId:'ability',path:'/blocks/0/text'}];
+  const equivalent=make([gear('first',null,orderedRefs),gear('second',null,[...orderedRefs].reverse(),2)]);
+  result=display(equivalent);assert.equal(result.groups[0].equipment.length,1,'Reference ordering is not a distinct item');
+  assert.equal(result.groups[0].equipment[0].total,3);
+  checks.push('legacy-equivalent-references-merged');
+  const canonical=make([gear('first',null,[]),gear('second',null,[])]);
+  assert.equal(display(canonical).groups[0].equipment[0].total,2,'Canonical-only legacy selections retain same-item grouping');
+  canonical.modelRows[0].selections[1].canonicalEquipmentIds=['other-option'];
+  canonical.modelRows[0].selections[1].canonicalFieldPaths={'other-option':['/text']};
+  assert.equal(display(canonical).groups[0].equipment.length,2,'Different canonical equipment remains distinct without sourceEquipmentIdentity');
+  checks.push('legacy-canonical-only-compatibility');
+
+  const models=make([gear('first','item-a')]);models.startingStrength=2;
+  models.modelRows.push({...structuredClone(models.modelRows[0]),rowId:'model-b',selections:[gear('second','item-a')]});
+  result=display(models);assert.equal(result.groups.length,1);assert.equal(result.groups[0].quantity,2);
+  assert.equal(result.groups[0].equipment[0].perModel,1);assert.equal(result.groups[0].equipment[0].total,2);
+  assert.deepEqual(result.groups[0].rowIds,['model-a','model-b']);assert.equal(new Set(result.groups[0].scopeIds).size,2);
+  const independent=structuredClone(models);independent.instanceId='physical-unit-b';independent.modelRows[0].selections=[gear('other','item-b')];
+  assert.equal(display(independent).groups.length,2,'Independent MODEL loadouts stay partitioned');
+  assert.deepEqual(display(models),result,'Another physical UNIT must not affect existing display');
+  checks.push('same-items-across-models-owners-and-units-preserved');
+
+  const unknown=make([]);unknown.selections=[{...gear('unit-only','item-a',undefined,2),perModelQuantity:null}];
+  result=display(unknown);assert.equal(result.inventory.length,1);assert.equal(result.inventory[0].total,2);
+  assert.deepEqual(result.inventory[0].selection,unknown.selections[0]);assert.equal(result.groups[0].equipment.length,0,'Known UNIT quantity does not invent a MODEL bearer');
+  unknown.modelRows[0].selections=[gear('model-owned','item-a')];result=display(unknown);
+  assert.equal(result.inventory[0].total,2);assert.equal(result.groups[0].equipment[0].total,1,'Known MODEL and unknown UNIT ownership must not be merged');
+  checks.push('unknown-unit-owner-not-distributed-to-models');
+
+  const loadouts=make([]);loadouts.modelRows[0].quantity=2;loadouts.startingStrength=2;
+  loadouts.modelRows[0].loadouts=[{loadoutId:'loadout-a',quantity:1,selections:[gear('first','item-a')]},
+    {loadoutId:'loadout-b',quantity:1,selections:[gear('second','item-b')]}];
+  result=display(loadouts);assert.equal(result.groups.length,2);assert.equal(result.groups.reduce((sum,group)=>sum+group.quantity,0),2);
+  assert.equal(new Set(result.groups.flatMap(group=>group.scopeIds)).size,2);
+  checks.push('different-physical-loadout-equipment-identities');
+  return checks;
+}
+async function equipmentGroupingMutations(){
+  const {default:assert}=await import('node:assert/strict'),{readFile}=await import('node:fs/promises');
+  const source=await readFile(new URL('./effective-datasheet-presentation.mjs',import.meta.url),'utf8');
+  const changes=[
+    ['equipment-identity-omitted',',equipmentIdentity(selection)', ''],
+    ['different-confirmed-identities-collapsed',"['SOURCE_EQUIPMENT',selection.sourceEquipmentIdentity]","['SOURCE_EQUIPMENT',null]"],
+    ['unique-selection-key-splits-same-item',"['SOURCE_EQUIPMENT',selection.sourceEquipmentIdentity]","['SOURCE_EQUIPMENT',selection.selectionKey]"],
+    ['legacy-caption-span-lost','reference.caption?[reference.caption.start,reference.caption.end]:null','null'],
+    ['legacy-source-field-lost','reference.entityId,reference.path','reference.entityId,null'],
+    ['legacy-canonical-equipment-lost',"['EQUIPMENT',id,selection.canonicalFieldPaths?.[id]||[],equipmentIdentity(selection)]","['EQUIPMENT',equipmentIdentity(selection)]"]
+  ];
+  for(const [name,from,to]of changes){
+    assert.ok(source.includes(from),'Mutation must exercise the current production grouping: '+name);
+    const altered=source.replace(from,to),module=await import('data:text/javascript;base64,'+Buffer.from(altered).toString('base64'));
+    await assert.rejects(()=>runEquipmentGroupingGuards(module.projectSelectedComposition),{name:'AssertionError'},name+' must fail the independent grouping oracle');
+  }
+  return changes.map(([name])=>name);
+}
 export async function runEffectivePresentationGuards(){
   const {default:assert}=await import('node:assert/strict');
   const checks=[];
@@ -120,7 +206,8 @@ export async function runEffectivePresentationGuards(){
   assert.deepEqual(projectSelectedComposition(physicalWithOption,[]).inventory[0].selection,physicalWithOption.selections[0],
     'An option annotation must not hide a real selected item');
   checks.push('option-only-unit-row-loadout-excluded','option-state-immutable','physical-items-with-options-preserved');
-  return {status:'PASS',checks,armyFactualReads:0};
+  const equipmentChecks=await runEquipmentGroupingGuards(),equipmentMutations=await equipmentGroupingMutations();
+  return {status:'PASS',checks,equipmentChecks,equipmentMutations,armyFactualReads:0};
 }
 if(typeof process!=='undefined'&&process.argv?.[1]){const {pathToFileURL}=await import('node:url');
   if(import.meta.url===pathToFileURL(process.argv[1]).href)console.log(JSON.stringify(await runEffectivePresentationGuards()));}
