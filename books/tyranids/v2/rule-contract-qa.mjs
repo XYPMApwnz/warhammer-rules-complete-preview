@@ -28,7 +28,7 @@ let checks=0,negative=0,mutations=0;
 // The seven new source clauses are independently reconciled by seven-effects-qa.
 const additionalOwners=['datasheet-tyrant-guard:section:1','detachment-warrior-bioform-onslaught:enhancement:1',
  'detachment-synaptic-nexus:enhancement:1','detachment-vanguard-onslaught:enhancement:2',
- 'detachment-ambush-predators:rule','detachment-warrior-bioform-onslaught:rule'];
+ 'detachment-ambush-predators:rule','detachment-warrior-bioform-onslaught:rule','detachment-subterranean-assault:rule'];
 const check=fn=>{fn();checks++;};
 const signature=e=>[e.operation,e.field??null,e.mode??null,e.value??null,e.ability??null,e.keyword??null,e.weaponMode??null];
 function inventory(b){
@@ -73,7 +73,7 @@ const hasAbility=(w,name)=>w.data.abilities.some(a=>a.toUpperCase()===name.toUpp
 const noRule=(id)=>{const b=clone(book);delete b.entities.find(e=>e.id===id).ruleContract;return b;};
 const stats=p=>({...p.profile,...p.profile.stats});
 const add=(before,value)=>String(Number.parseFloat(before)+value)+(String(before).endsWith('"')?'"':String(before).endsWith('+')?'+':'');
-check(()=>{inventory(book);assert.equal(contracts.length,18);assert.equal(book.rosterAttachmentPolicies.length,15);assert.equal(book.mfmImportReferences.sourceVersion,'v1.6');});
+check(()=>{inventory(book);assert.equal(contracts.length,19);assert.equal(book.rosterAttachmentPolicies.length,15);assert.equal(book.mfmImportReferences.sourceVersion,'v1.6');});
 
 // Leading-only effects: exact formed members, physical duplicates, detach and removal.
 for(const [leader,bodyguard,rule,ability]of [
@@ -228,5 +228,5 @@ for(const fact of facts.entities){const derived=book.entities.find(e=>e.id===fac
  assert.deepEqual(derived.data,fact.data,'Contract lowering changed factual content');
  assert.deepEqual(derived.provenance,fact.provenance);assert.equal(derived.parentId,fact.parentId);
 }
-console.log(JSON.stringify({status:'PASS',previousContracts:12,executableContracts:18,unitUpgrades:4,leaderRelations:15,checks,negative,mutations,
+console.log(JSON.stringify({status:'PASS',previousContracts:12,executableContracts:19,unitUpgrades:4,leaderRelations:15,checks,negative,mutations,
  REAL_NEW_RECRUIT_EXPORT_TESTED:'NO',browserTested:false,sharedChanges:false,battleSimulation:false}));

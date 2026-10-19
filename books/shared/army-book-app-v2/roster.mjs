@@ -482,6 +482,39 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     }
     return gear;
   }
+  function sourceSelections(unit, displayName, readOnly = false) {
+    if (typeof service.sourceChoices !== 'function') return null;
+    const choices = service.sourceChoices(unit.instanceId);
+    if (!choices?.length) return null;
+    const selectionSection = el('section');
+    selectionSection.dataset.rosterSourceChoicesFor = unit.instanceId;
+    selectionSection.append(el('h3', '', 'Source selections'));
+    for (const choice of choices) {
+      const field = el('div', 'v2-roster-field');
+      field.dataset.sourceChoiceId = choice.id;
+      field.append(reference(choice.id, choice.title));
+      if (readOnly) {
+        field.append(el('p', '', choice.options.find(option => option.id === choice.value)?.title || 'Not selected'));
+      } else {
+        const label = el('label', 'v2-roster-field', choice.title);
+        const select = selectRecords(choice.options, {value: choice.value || '', label: `Source selection for ${choice.title} on ${displayName}`});
+        select.options[0].textContent = 'Not selected';
+        select.dataset.sourceChoiceId = choice.id;
+        label.append(select);
+        const apply = button('Apply source selection', async () => {
+          if (typeof service.setSourceChoice !== 'function') throw actionError('This source selection cannot be changed here.');
+          checkResult(await service.setSourceChoice(unit.instanceId, choice.id, select.value || null));
+          if (!lifecycle.active) return;
+          renderRoster();
+          saveAndReport('Source selection saved.');
+        }, 'set-source-choice');
+        apply.dataset.sourceChoiceId = choice.id;
+        field.append(label, apply);
+      }
+      selectionSection.append(field);
+    }
+    return selectionSection;
+  }
   function renderInstanceContext(instanceId) {
     const state = service.state;
     const unit = state?.units?.find(unit => unit.instanceId === instanceId);
@@ -490,6 +523,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const context = el('section', 'v2-roster');
     context.dataset.rosterContextInstanceId = instanceId;
     context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
+    const selections = sourceSelections(unit, names.get(instanceId), true);
+    if (selections) context.append(selections);
     const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === instanceId);
     const assignment = (state.attachments || []).find(record => record.leaderInstanceId === instanceId);
     if (members.length || assignment) {
@@ -506,6 +541,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const previousScrollY = window.scrollY;
     const activeOwner = document.activeElement?.closest('[data-roster-instance-id]')?.dataset.rosterInstanceId;
     const activeAction = document.activeElement?.dataset.rosterAction;
+    const activeSourceChoice = document.activeElement?.closest('[data-source-choice-id]')?.dataset.sourceChoiceId;
     rosterArea.replaceChildren();
     const state = service.state;
     if (!state?.units?.length) return;
@@ -551,6 +587,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         return showInstance(unit.instanceId);
       }, 'show-instance'));
       const body = el('div', 'v2-roster-body');
+      const selections = sourceSelections(unit, names.get(unit.instanceId));
+      if (selections) body.append(selections);
       const assignment = (state.attachments || []).find(record => record.leaderInstanceId === unit.instanceId);
       if (assignment) body.append(el('p', 'v2-roster-hint', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
       const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === unit.instanceId);
@@ -588,7 +626,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (activeOwner) {
       const article = [...rosterArea.querySelectorAll('[data-roster-instance-id]')].find(node => node.dataset.rosterInstanceId === activeOwner);
       const preferredAction = activeAction === 'attach' ? 'detach' : activeAction === 'detach' ? 'attach' : activeAction;
-      (article?.querySelector(`[data-roster-action="${preferredAction}"]`) || article?.querySelector('button'))?.focus({preventScroll: true});
+      const sourceAction = activeSourceChoice && [...(article?.querySelectorAll('[data-roster-action="set-source-choice"]') || [])]
+        .find(node => node.dataset.sourceChoiceId === activeSourceChoice);
+      (sourceAction || article?.querySelector(`[data-roster-action="${preferredAction}"]`) || article?.querySelector('button'))?.focus({preventScroll: true});
       window.scrollTo({top: previousScrollY, behavior: 'instant'});
     }
   }

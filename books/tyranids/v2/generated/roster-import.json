@@ -24072,6 +24072,31 @@
           "authority": "AUTHORITATIVE_CURRENT"
         }
       ]
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "kind": "UPGRADE_OPTION",
+      "parentId": "detachment-subterranean-assault:rule",
+      "authority": "SOURCE_BACKED_SELECTION_BINDING",
+      "data": {
+        "selectionRuleId": "detachment-subterranean-assault:rule",
+        "unitId": "unit-trygon",
+        "modelProfileIds": [
+          "datasheet-trygon:profile:1"
+        ],
+        "text": "CHARACTER",
+        "timing": "MUSTER_ARMIES"
+      },
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "detachment-subterranean-assault:rule",
+        "pointer": "#Surprise-Assault",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      }
     }
   ],
   "sourceAccounting": [
@@ -49278,5 +49303,32 @@
       "mfmReferenceId": "mfm-leader-eligibility-f25c185f731512de"
     }
   ],
-  "importOnly": true
+  "importOnly": true,
+  "rosterSelectionOptions": [
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "kind": "UPGRADE_OPTION",
+      "parentId": "detachment-subterranean-assault:rule",
+      "authority": "SOURCE_BACKED_SELECTION_BINDING",
+      "data": {
+        "selectionRuleId": "detachment-subterranean-assault:rule",
+        "unitId": "unit-trygon",
+        "modelProfileIds": [
+          "datasheet-trygon:profile:1"
+        ],
+        "text": "CHARACTER",
+        "timing": "MUSTER_ARMIES"
+      },
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "detachment-subterranean-assault:rule",
+        "pointer": "#Surprise-Assault",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      }
+    }
+  ]
 }

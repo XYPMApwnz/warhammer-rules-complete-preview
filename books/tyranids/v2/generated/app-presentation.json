@@ -356,7 +356,9 @@
       "source": {
         "entityId": "detachment-subterranean-assault:rule"
       },
-      "children": [],
+      "children": [
+        "detachment-subterranean-assault:rule::choice::trygon-character"
+      ],
       "fields": [
         {
           "id": "detachment-subterranean-assault:rule::/title",
@@ -58278,6 +58280,42 @@
           "authority": "AUTHORITATIVE_CURRENT"
         }
       ],
+      "fieldProvenance": {}
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "kind": "UPGRADE_OPTION",
+      "title": "UPGRADE OPTION",
+      "parentId": "detachment-subterranean-assault:rule",
+      "contextId": "detachment-subterranean-assault:rule",
+      "source": {
+        "entityId": "detachment-subterranean-assault:rule::choice::trygon-character"
+      },
+      "children": [],
+      "fields": [
+        {
+          "id": "detachment-subterranean-assault:rule::choice::trygon-character::/text",
+          "label": "Rule",
+          "value": "CHARACTER",
+          "type": "text",
+          "contextId": "detachment-subterranean-assault:rule",
+          "source": {
+            "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+            "path": "/text"
+          }
+        }
+      ],
+      "links": [],
+      "provenance": {
+        "sourceId": "tyranids-waha-11e-2026-09-27",
+        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+        "sourceEntityId": "detachment-subterranean-assault:rule",
+        "pointer": "#Surprise-Assault",
+        "authority": "ACCEPTED_SECONDARY",
+        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+      },
       "fieldProvenance": {}
     },
     {
@@ -153068,6 +153106,62 @@
       "ownerType": "CANONICAL_V2"
     },
     {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character::/selectionRuleId",
+      "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "path": [
+        "selectionRuleId"
+      ],
+      "value": "detachment-subterranean-assault:rule",
+      "cardId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "contextId": "detachment-subterranean-assault:rule",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character::/unitId",
+      "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "path": [
+        "unitId"
+      ],
+      "value": "unit-trygon",
+      "cardId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "contextId": "detachment-subterranean-assault:rule",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character::/modelProfileIds/0",
+      "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "path": [
+        "modelProfileIds",
+        0
+      ],
+      "value": "datasheet-trygon:profile:1",
+      "cardId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "contextId": "detachment-subterranean-assault:rule",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character::/text",
+      "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "path": [
+        "text"
+      ],
+      "value": "CHARACTER",
+      "cardId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "contextId": "detachment-subterranean-assault:rule",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
+      "id": "detachment-subterranean-assault:rule::choice::trygon-character::/timing",
+      "entityId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "path": [
+        "timing"
+      ],
+      "value": "MUSTER_ARMIES",
+      "cardId": "detachment-subterranean-assault:rule::choice::trygon-character",
+      "contextId": "detachment-subterranean-assault:rule",
+      "ownerType": "CANONICAL_V2"
+    },
+    {
       "id": "mfm-unit-points-0170d0e81013dea3::/label",
       "entityId": "mfm-unit-points-0170d0e81013dea3",
       "path": [
@@ -168367,6 +168461,13 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-subterranean-assault:rule",
+        "label": "Surprise Assault",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Subterranean Assault",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-synaptic-nexus",
         "label": "Synaptic Nexus",
         "category": "DETACHMENT",
@@ -172687,6 +172788,7 @@
     }
   },
   "ruleContractIds": [
+    "detachment-subterranean-assault:rule",
     "detachment-subterranean-assault:enhancement:4",
     "detachment-invasion-fleet:enhancement:4",
     "detachment-synaptic-nexus:enhancement:1",

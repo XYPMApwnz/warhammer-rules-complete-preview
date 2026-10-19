@@ -5,7 +5,8 @@ import {fileURLToPath} from 'node:url';
 import {buildTyranidsImportBook} from './roster-import-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {declarations,conditionalCandidates} from './rule-contract-declarations.mjs';
-import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
+export {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
@@ -13,14 +14,12 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 
 const clone=structuredClone,sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
-export const createTyranidsRuleSchema=()=>createRuleContractSchema({stateFields:{attached:{contextLevel:'ROSTER',valueType:'boolean'},
-  battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'}}});
 
 /** Book-owned lowering over the existing import/factual owner. No new facts. */
 export function buildTyranidsContracts({facts=read('./generated/effective.json'),inputs=declarations}={}){
   const before=JSON.stringify(facts),book=buildTyranidsImportBook(facts),index=new Map(book.entities.map(e=>[e.id,e]));
-  assert.equal(inputs.length,18,'Bounded reviewed executable inventory: original twelve plus six source owners');
-  assert.equal(new Set(inputs.map(d=>d.id)).size,18,'Duplicate semantic owner');
+  assert.equal(inputs.length,19,'Bounded reviewed executable inventory: eighteen owners plus explicit Surprise Assault choice');
+  assert.equal(new Set(inputs.map(d=>d.id)).size,19,'Duplicate semantic owner');
   const core=createEffectiveCoreCatalog();
   book.rosterAbilityReferences=Object.fromEntries(['core-stealth','core-deep-strike'].map(id=>{
     const record=core.getById(id);
@@ -75,8 +74,10 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
     })});
     const selector=input.profileId?atom('MODEL_ID','MODEL',{id:input.profileId}):input.profileIds?anyIds('MODEL',input.profileIds):input.unitId?
       atom('UNIT_ID','UNIT',{id:input.unitId}):detachmentRule?atom('ALWAYS','UNIT',{}):{op:'ALL',args:input.keywords.map(keyword=>atom('MODEL_KEYWORD','MODEL',{keyword}))};
-    const targetSelector=input.targetUnitIds?anyIds('UNIT',input.targetUnitIds):input.targetKeywords?
+    let targetSelector=input.targetUnitIds?anyIds('UNIT',input.targetUnitIds):input.targetKeywords?
       {op:'ALL',args:input.targetKeywords.map(keyword=>atom(input.targetSubject+'_KEYWORD',input.targetSubject,{keyword}))}:null;
+    if(input.selectedOptionId)targetSelector={op:'ALL',args:[atom('UNIT_ID','UNIT',{id:input.targetUnitIds[0]}),
+      atom('FIELD','UNIT',{key:'selectedSurpriseAssaultChoice',equals:input.selectedOptionId},input.executableQuote,'ROSTER')]};
     const owner={id:'owner',subject:input.subject,purpose:'OWNER',allegiance:'FRIENDLY',selector,conditions:[]};
     const recipient={id:'recipient',subject:input.targetSubject,purpose:'RECIPIENT',allegiance:'FRIENDLY',
       binding:input.targetBinding,selector:targetSelector||atom('ALWAYS',input.targetSubject,{}),conditions:[]};

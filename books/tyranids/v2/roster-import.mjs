@@ -3,6 +3,7 @@ import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
 import {parse as parseNewRecruit} from '../../shared/roster-v2/parser.mjs';
+import {validateTyranidsSourceChoices} from './roster-source-choices.mjs';
 
 const copy=structuredClone;
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
@@ -213,7 +214,7 @@ export function createTyranidsRosterImport(input){
         error('FOREIGN_ENHANCEMENT_ASSIGNMENT',unit.instanceId,'Stored bearer does not own a selected MODEL Enhancement');
     }
     assignChecked(state,'mfmDetachmentRecordIds',state.detachmentIds.map(id=>book.mfmImportReferences.partitions.detachmentBindings.find(row=>row.entityId===id)?.mfmRecordId));
-    if(!needs.length&&!errors.length){try{validateRoster(book,state,[]);}catch(e){error('INVALID_CANONICAL_STATE','roster',e.message);}}
+    if(!needs.length&&!errors.length){try{validateRoster(book,state,[]);validateTyranidsSourceChoices(book,state);}catch(e){error('INVALID_CANONICAL_STATE','roster',e.message);}}
     return {state,needs,errors};
   }
     const service={get state(){return saved?copy(saved):null;},draft:text=>shared(text).draft(text),

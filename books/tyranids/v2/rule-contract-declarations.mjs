@@ -2,7 +2,14 @@
 const block=['blocks',0,'text'],text=['text'];
 const stat=(field,value,extra={})=>({operation:'MODIFY_STAT',field,mode:'ADD',value,...extra});
 const weapon=ability=>({operation:'GRANT_WEAPON_ABILITY',ability});
+import {surpriseRuleId,trygonCharacterOptionId,trygonChoiceQuote} from './roster-source-choices.mjs';
 export const declarations=[
+  {id:surpriseRuleId,owner:'detachment-subterranean-assault',name:'Surprise Assault',field:text,
+    subject:'UNIT',targetUnitIds:['unit-trygon'],selectedOptionId:trygonCharacterOptionId,
+    quote:'Each time a TYRANIDS model from your army makes an attack, re-roll a Hit roll of 1.\nEach time a BURROWER unit from your army is set up on the battlefield from Reserves, place a circular 40mm Tunnel Marker anywhere on the battlefield within 1" of that unit and more than 3" horizontally away from all enemy units.\nIn the Reinforcements step of your Movement phase, when you set up a unit on the battlefield from Reserves, you can set that unit up wholly within 9" of one of your Tunnel Markers and more than 6" horizontally away from any enemy units.\nIf an enemy model (excluding AIRCRAFT) ends any kind of move within 3" of one of your Tunnel Markers, that Tunnel Marker is removed from the battlefield.\nKEYWORDS\nMAWLOC and TRYGON units from your army have the BURROWER keyword.\nIn the Muster Armies step, you can select up to 2 TRYGON models from your army. The selected units gain the CHARACTER keyword.\nDesigner’s Note: This means that the selected models can be given Enhancements and one of them can be selected as your WARLORD.',
+    executableQuote:trygonChoiceQuote,
+    battleQuote:'Each time a BURROWER unit from your army is set up on the battlefield from Reserves, place a circular 40mm Tunnel Marker anywhere on the battlefield within 1" of that unit and more than 3" horizontally away from all enemy units.',
+    targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',effects:[{operation:'GRANT_UNIT_KEYWORD',keyword:'CHARACTER',unitScope:'PHYSICAL'}]},
   {id:'datasheet-broodlord:section:1',owner:'unit-broodlord',name:'Vicious Insight',field:block,
     subject:'MODEL',profileId:'datasheet-broodlord:profile:1',leading:true,
     quote:'Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.',

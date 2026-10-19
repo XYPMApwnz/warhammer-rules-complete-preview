@@ -13,7 +13,7 @@ const cards=new Map(payload.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical card');
 for(const [kind,count]of [['DATASHEET',52],['DETACHMENT',10],['DETACHMENT_RULE',11],['ARMY_RULE',2],['ENHANCEMENT',34],['STRATAGEM',51],['WEAPON_PROFILE',133]])
   assert.equal(payload.cards.filter(card=>card.kind===kind).length,count,kind+' inventory');
-assert.equal(payload.ruleContractIds.length,18);assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.ruleContractIds.length,19);assert.equal(payload.book.mfmVersion,'v1.6');
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();
@@ -90,5 +90,5 @@ assert.throws(()=>assertPresentationParity(missing),/Missing source block/);muta
 const duplicate=buildTyranidsContracts();duplicate.book.entities.push(structuredClone(duplicate.book.entities[0]));assert.throws(()=>buildApp(duplicate),/Duplicate canonical entity/);mutations++;
 const foreign=structuredClone(payload);foreign.cards.find(card=>card.id===elevated).parentId='detachment-invasion-fleet';
 assert.throws(()=>assertPresentationParity(foreign),/Changed canonical owner/);mutations++;
-console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:18,
+console.log(JSON.stringify({status:'PASS',datasheets:52,detachments:10,namedRules:11,enhancements:34,stratagems:51,contracts:19,
   compositionMembers:57,mutations,canonicalFactsUnchanged:true,registrationId:registration.id}));

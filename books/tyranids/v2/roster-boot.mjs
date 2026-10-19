@@ -1,14 +1,15 @@
 import {createTyranidsRosterImport} from './roster-import.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
-import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
+import {createTyranidsRuleSchema,tyranidsSourceChoiceContext,preserveTyranidsSourceChoices,
+  setTyranidsSourceChoice,surpriseRuleId,trygonCharacterOptionId} from './roster-source-choices.mjs';
 
 /** Browser adapter for the existing Tyranids import and shared effect owners.
  * The generated input is the same contract-bearing book used by focused QA. */
 export function createTyranidsBrowserRoster(book) {
   if(book.bookId!=='tyranids')throw new TypeError('Foreign Tyranids roster input');
-  const schema=createRuleContractSchema({stateFields:{attached:{contextLevel:'ROSTER',valueType:'boolean'},
-    battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'}}});
+  let choiceContext=context=>context;
+  const schema=createTyranidsRuleSchema({bindContext:context=>choiceContext(context)});
   const runtime=createRosterRuntime(book,schema),importer=createTyranidsRosterImport(book);
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const service={
@@ -24,7 +25,10 @@ export function createTyranidsBrowserRoster(book) {
       }
       delete bindings.enhancementBearers;
       const result=importer.import(text,bindings);
-      if(result.status==='READY'){runtime.load(result.roster);return {...result,roster:runtime.state};}
+      if(result.status==='READY'){
+        service.load(preserveTyranidsSourceChoices(book,result.roster,runtime.state));
+        return {...result,roster:runtime.state};
+      }
       if(!result.candidateRoster)return result;
       const physical=formRoster(book,result.candidateRoster);
       return {...result,needsBindings:result.needsBindings.map(need=>{
@@ -42,9 +46,21 @@ export function createTyranidsBrowserRoster(book) {
       const imported=structuredClone(snapshot),attachments=imported.attachments;
       imported.attachments=[];
       const verified=importer.load(imported);verified.attachments=attachments;
-      return runtime.load(verified);
+      const previousContext=choiceContext;
+      choiceContext=tyranidsSourceChoiceContext(book,verified);
+      try{return runtime.load(verified);}catch(error){choiceContext=previousContext;throw error;}
     },
-    snapshot:runtime.snapshot,context:runtime.context,
+    snapshot:runtime.snapshot,context:(...args)=>choiceContext(runtime.context(...args)),
+    sourceChoices(instanceId){
+      const unit=runtime.state?.units.find(u=>u.instanceId===instanceId);
+      if(unit?.canonicalUnitId!=='unit-trygon'||!runtime.state.detachmentIds.includes(records.get(surpriseRuleId).parentId))return [];
+      return [{id:surpriseRuleId,title:records.get(surpriseRuleId).data.title,
+        options:[{id:trygonCharacterOptionId,title:'CHARACTER — selected during Muster Armies'}],
+        value:unit.selectedSourceChoiceIds?.[0]||null}];
+    },
+    setSourceChoice(instanceId,ruleId,optionId){
+      return service.load(setTyranidsSourceChoice(book,runtime.snapshot(),instanceId,ruleId,optionId));
+    },
     modelScopes(instanceId){
       const unit=runtime.projection?.units.find(unit=>unit.instanceId===instanceId);
       if(!unit)throw new TypeError('Unresolved physical instance');

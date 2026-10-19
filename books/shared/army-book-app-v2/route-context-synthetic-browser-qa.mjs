@@ -19,6 +19,10 @@ f.payload.glossary={schema:'army-book-glossary/v2',authority:'DISPOSABLE_PROJECT
   const card=f.cards.get(id);return {targetId:id,label:card.title,category:card.kind,contextLabel:'Synthetic Book',aliases:[]};
 })};
 const a=f.unit,b=f.duplicate.unit;
+const sourceChoiceId=f.id('source-choice-rule'),secondSourceChoiceId=f.id('second-source-choice-rule');
+for(const [id,title]of [[sourceChoiceId,'Synthetic source choice'],[secondSourceChoiceId,'Independent source choice']])
+  f.payload.cards.push({id,kind:'DATASHEET_ABILITY',title,parentId:a.canonicalUnitId,contextId:a.canonicalUnitId,
+    source:{entityId:id},fields:[],children:[],links:[]});
 const effectiveA={...f.effective,abilities:[]},effectiveB=structuredClone(effectiveA);
 effectiveB.instanceId=b.instanceId;
 for(const record of [...effectiveB.profiles,...effectiveB.weapons]){
@@ -45,7 +49,8 @@ const foreignEffective={instanceId:foreign.instanceId,canonicalUnitId:foreign.ca
   keywords:['INFANTRY'],profiles:[],weapons:[],abilities:[],unitAbilities:[],applied:[],conditional:[]};
 const state={bookId,rosterId:'synthetic-route-roster',units:[a,b,foreign],attachments:[],detachmentIds:[detachmentId],
   detachments:[{instanceId:'detachment-instance',canonicalDetachmentId:detachmentId}]};
-const data={payload:f.payload,state,effective:{[a.instanceId]:effectiveA,[b.instanceId]:effectiveB,[foreign.instanceId]:foreignEffective}};
+const data={payload:f.payload,state,effective:{[a.instanceId]:effectiveA,[b.instanceId]:effectiveB,[foreign.instanceId]:foreignEffective},
+  sourceChoiceIds:[sourceChoiceId,secondSourceChoiceId],sourceChoiceOwnerIds:[a.instanceId,b.instanceId]};
 function assertEffectiveFixtures(snapshot) {
   for(const unit of snapshot.state.units){
     const effective=snapshot.effective[unit.instanceId];
@@ -76,6 +81,22 @@ const data=await (await fetch('/fixture.json')).json();
 const service={state:data.state,catalog:data.payload.cards.map(card=>({id:card.id,title:card.title,kind:card.kind})),
  draft:()=>({}),import:()=>({}),load(value){this.state=value;return {valid:true};},snapshot(){return structuredClone(this.state);},
  effective(id){return data.effective[id];},related:()=>[],candidates:()=>[],attach:()=>({valid:true}),detach:()=>({valid:true})};
+if(new URLSearchParams(location.search).get('sourceChoices')!=='off')Object.assign(service,{
+ sourceChoices(instanceId){
+  if(!data.sourceChoiceOwnerIds.includes(instanceId))return [];
+  const owner=this.state.units.find(unit=>unit.instanceId===instanceId);
+  return data.sourceChoiceIds.map((id,index)=>({id,title:index?'Independent source choice':'Synthetic source choice',
+   options:[{id:'selected',title:'Selected option'},{id:'rejected',title:'Rejected diagnostic option'}],
+   value:owner.sourceChoices?.[id]||null}));
+ },
+ setSourceChoice(instanceId,choiceId,value){
+  if(!data.sourceChoiceOwnerIds.includes(instanceId)||!data.sourceChoiceIds.includes(choiceId)||
+     ![null,'selected'].includes(value))return {status:'INVALID',errors:[{code:'INVALID_SOURCE_CHOICE'}]};
+  this.state={...this.state,units:this.state.units.map(unit=>unit.instanceId===instanceId?
+   {...unit,sourceChoices:{...unit.sourceChoices,[choiceId]:value}}:unit)};
+  return {status:'READY'};
+ }
+});
 window.syntheticService=service;
 mount(document,data.payload,{roster:service});
 </script></body></html>`;
@@ -103,6 +124,12 @@ const errors=[],results=[];
 const browserFailure=Promise.withResolvers();
 const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
+async function openRosterUI(page){
+  const control=page.locator('.toc-shortcuts button').filter({hasText:/^(Attachment Setup|Roster)$/}).first();
+  if(!await control.isVisible())await page.getByRole('button',{name:'Open navigation',exact:true}).click();
+  await control.click();
+  await page.locator('[data-roster-instances]').waitFor();
+}
 const physicalURL=instanceId=>encodeRoute(base,{destination:'UNIT_INSTANCE',bookId,registryId:bookId,rosterId:state.rosterId,instanceId});
 const referenceURL=(instanceId,scopeId,profileId,canonicalId=weaponId)=>encodeRoute(base,{destination:'REFERENCE',bookId,registryId:bookId,
   rosterId:state.rosterId,instanceId,scopeId,profileId,canonicalId});
@@ -124,6 +151,54 @@ try{
     context.on('page',page=>{page.on('pageerror',failBrowser);page.setDefaultTimeout(12000);
       page.on('console',message=>{if(message.type()==='error')failBrowser(new Error(message.text()));});});
     const page=await context.newPage();await page.goto(physicalURL(a.instanceId));await ready(page);
+    // Generic optional source choices: real controls delegate to the service only
+    // after Apply, persist one physical owner, and retain exact source identity.
+    await openRosterUI(page);
+    const owner=page.locator(`[data-roster-instances] > [data-roster-instance-id="${a.instanceId}"]`);
+    const otherOwner=page.locator(`[data-roster-instances] > [data-roster-instance-id="${b.instanceId}"]`);
+    const sourceField=owner.locator(`[data-source-choice-id="${secondSourceChoiceId}"]`).filter({has:page.locator('select')});
+    const sourceSelect=sourceField.locator('select');
+    assert.equal(await owner.locator('[data-roster-source-choices-for]').count(),1);
+    assert.equal(await sourceSelect.locator('option').first().innerText(),'Not selected');
+    assert.match(await sourceSelect.getAttribute('aria-label'),/^Source selection for Independent source choice on /);
+    assert.equal(await sourceField.locator(`a[data-target-id="${secondSourceChoiceId}"]`).count(),1,'Canonical source reference absent');
+    await sourceSelect.selectOption('selected');
+    assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
+      {owner:a.instanceId,id:secondSourceChoiceId}),null,'Changing a select must not apply the source choice');
+    await sourceField.locator('[data-roster-action="set-source-choice"]').click();
+    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    assert.equal(await sourceSelect.inputValue(),'selected');
+    assert.equal(await otherOwner.locator(`select[data-source-choice-id="${secondSourceChoiceId}"]`).inputValue(),'','Independent physical owner changed');
+    assert.equal(await owner.locator(`select[data-source-choice-id="${sourceChoiceId}"]`).inputValue(),'','Independent source choice changed');
+    assert.deepEqual(await page.evaluate(()=>({action:document.activeElement.dataset.rosterAction,choice:document.activeElement.dataset.sourceChoiceId})),
+      {action:'set-source-choice',choice:secondSourceChoiceId},'Rerender lost source-specific Apply focus');
+    const selectedSnapshot=await page.evaluate(()=>JSON.stringify(window.syntheticService.snapshot()));
+    const selectedStorage=await page.evaluate(()=>localStorage.getItem(window.ArmyBookAppV2.rosterPanel.storageKey));
+    assert.equal(selectedStorage,selectedSnapshot,'Applied source choice was not saved');
+    await sourceSelect.selectOption('rejected');
+    await sourceField.locator('[data-roster-action="set-source-choice"]').click();
+    await page.locator('.v2-roster-error').waitFor();
+    assert.equal(await page.evaluate(()=>JSON.stringify(window.syntheticService.snapshot())),selectedSnapshot,'Rejected service result changed roster');
+    assert.equal(await page.evaluate(()=>localStorage.getItem(window.ArmyBookAppV2.rosterPanel.storageKey)),selectedStorage,'Rejected result overwrote saved roster');
+    await page.reload();await ready(page);
+    await openRosterUI(page);
+    assert.equal(await sourceSelect.inputValue(),'selected','Saved source choice lost on reload');
+    const readOnly=await page.evaluate(({instanceId,sourceId})=>{
+      const context=window.ArmyBookAppV2.rosterPanel.renderInstanceContext(instanceId);
+      const section=context.querySelector('[data-roster-source-choices-for]');
+      return {controls:section.querySelectorAll('select').length,text:section.textContent,
+        references:[...section.querySelectorAll('[data-target-id]')].filter(node=>node.dataset.targetId===sourceId).length};
+    },{instanceId:a.instanceId,sourceId:secondSourceChoiceId});
+    assert.equal(readOnly.controls,0,'Instance context unexpectedly edits source selections');
+    assert.ok(readOnly.text.includes('Selected option'),'Instance context lost chosen source label');
+    assert.equal(readOnly.references,1);
+    await sourceSelect.selectOption('');
+    await sourceField.locator('[data-roster-action="set-source-choice"]').click();
+    await page.locator('.v2-roster-status').filter({hasText:'Source selection saved.'}).waitFor();
+    assert.equal(await sourceSelect.inputValue(),'','Not selected did not remove source choice');
+    assert.equal(await page.evaluate(({owner,id})=>window.syntheticService.sourceChoices(owner).find(c=>c.id===id).value,
+      {owner:a.instanceId,id:secondSourceChoiceId}),null);
+    await page.goto(physicalURL(a.instanceId));await ready(page);
     const first=page.locator('main .weapon-row[data-card-id="'+weaponId+'"] a[data-target-id="'+weaponId+'"]').first();
     const href=await first.getAttribute('href'),expectedScope=effectiveA.weapons[0].scopeId;
     const identity=new URL(href);
@@ -161,7 +236,14 @@ try{
       referenceURL(a.instanceId,expectedScope,effectiveA.profiles[0].id,f.id('unselected-weapon'))])await blocked(direct,url);
     assert.deepEqual(errors,[],'Shared app emitted runtime errors');
     results.push({device,normalClick:'PASS',nativeNewTab:'PASS',directURL:'PASS',reload:'PASS',backForward:'PASS',
-      duplicateInstances:2,mixedScopes:3,profileValues:'PASS',invalidContexts:6,staleHistory:'PASS'});
+      duplicateInstances:2,mixedScopes:3,profileValues:'PASS',invalidContexts:6,staleHistory:'PASS',
+      sourceChoices:{explicitApply:true,physicalOwnerIsolation:true,sourceReference:true,independentChoices:true,
+        focusRestored:true,invalidResultPreservesState:true,persistReload:true,remove:true,readOnlyContext:true}});
+    const withoutSourceChoices=new URL(physicalURL(a.instanceId));withoutSourceChoices.searchParams.set('sourceChoices','off');
+    await direct.goto(withoutSourceChoices.href);await ready(direct);
+    await openRosterUI(direct);
+    assert.equal(await direct.locator('[data-roster-source-choices-for]').count(),0,'Optional service absence must preserve existing roster UI');
+    assert.equal(await direct.locator('[data-roster-action="show-instance"]').count(),3);
     await context.close();
   }
   assert.equal(JSON.stringify(data),immutable,'Browser harness mutated immutable fixture');

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
+import {addTyranidsSourceChoices} from './roster-source-choices.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const copy=structuredClone;
@@ -117,6 +118,7 @@ export function buildTyranidsImportBook(facts=read('./generated/effective.json')
   book.rosterAttachmentPolicies=book.mfmImportReferences.leaderRelations.map(row=>({sourceId:row.sourceId,targetId:row.targetId,
     role:'LEADER',additionalLeaders:0,sourceIds:[row.declarationId],mfmReferenceId:row.mfmRecordId}));
   book.importOnly=true;
+  addTyranidsSourceChoices(book);
   assert.equal(JSON.stringify(facts),original);assert.ok(book.entities.every(e=>!e.ruleContract));
   return book;
 }
