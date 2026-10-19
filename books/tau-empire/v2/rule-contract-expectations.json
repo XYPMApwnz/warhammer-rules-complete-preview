@@ -1,0 +1,2927 @@
+{
+  "schema": "tau-empire-v2-independent-rule-expectations/v1",
+  "authority": "MANUAL_SEMANTIC_EXPECTATIONS_FROM_ACCEPTED_RAW_NOT_PRODUCTION_CONTRACTS",
+  "sourceIdentity": "tau-empire-waha-11e-2026-09-28",
+  "cases": [
+    {
+      "id": "volley-fire",
+      "name": "Volley Fire",
+      "canonicalId": "datasheet-cadre-fireblade:section:1",
+      "canonicalOwnerId": "unit-cadre-fireblade",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+        "sha256": "B56769DCF46869C51BED2253AA7A8F467374A86F1AA7EC1317D4489FD5579987",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]",
+        "quote": "While this model is leading a unit, add 1 to the Attacks characteristic of ranged weapons equipped by models in that unit.",
+        "quoteSha256": "6A172B293B70AFDE87905CFFEE5BE97D577B80BC392F3667838F9A7AEE882FD2"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "attacks",
+          "mode": "ADD",
+          "value": 1,
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_WEAPONS",
+      "activation": "LEADING",
+      "leader": "unit-cadre-fireblade",
+      "bodyguard": "unit-breacher-team",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "coldstar-commander",
+      "name": "Coldstar Commander",
+      "canonicalId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "canonicalOwnerId": "unit-commander-in-coldstar-battlesuit",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+        "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]",
+        "quote": "While this model is leading a unit, models in that unit have a Move characteristic of 12\" and ranged weapons equipped by models in that unit have the [ASSAULT] ability.",
+        "quoteSha256": "ACA2B1E661577C3A646153DCAA65EE5352AB5738E3F23E3A0FA3EF5DB7B0CC1B"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "M",
+          "mode": "SET",
+          "value": 12
+        },
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "ASSAULT",
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_MODELS_AND_RANGED_WEAPONS",
+      "activation": "LEADING",
+      "leader": "unit-commander-in-coldstar-battlesuit",
+      "bodyguard": "unit-crisis-starscythe-battlesuits",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "failure-is-not-an-option",
+      "name": "Failure Is Not an Option",
+      "canonicalId": "datasheet-ethereal:section:1",
+      "canonicalOwnerId": "unit-ethereal",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+        "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]",
+        "quote": "While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability.",
+        "quoteSha256": "844FD662EF4551C0A95DA90B92B64DDDF6AE2237B957DB7BE0AEC3C4F2D7AB35"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_MODEL_ABILITY",
+          "ability": {
+            "name": "Feel No Pain",
+            "value": 5
+          }
+        }
+      ],
+      "recipient": "FORMED_UNIT_MODELS",
+      "activation": "LEADING",
+      "leader": "unit-ethereal",
+      "bodyguard": "unit-strike-team",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "ritual-butchery",
+      "name": "Ritual Butchery",
+      "canonicalId": "datasheet-kroot-flesh-shaper:section:1",
+      "canonicalOwnerId": "unit-kroot-flesh-shaper",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]",
+        "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+        "quoteSha256": "76FD91737FBA0C8E5BAEE208291F440C31832DA925A8A3916ECBDACC8DB2F1B3"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "SUSTAINED HITS 1",
+          "weaponMode": "melee"
+        }
+      ],
+      "recipient": "FORMED_UNIT_MELEE_WEAPONS",
+      "activation": "LEADING",
+      "leader": "unit-kroot-flesh-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "rites-of-feasting",
+      "name": "Rites of Feasting",
+      "canonicalId": "datasheet-kroot-flesh-shaper:section:1",
+      "canonicalOwnerId": "unit-kroot-flesh-shaper",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[3]",
+        "quote": "While this model is leading a unit, models in that unit have the Feel No Pain 6+ ability.",
+        "quoteSha256": "85573FFE16173220C0CB85CC98AD59B76B17D83865EA3FB6C23FA25C895C712E"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_MODEL_ABILITY",
+          "ability": {
+            "name": "Feel No Pain",
+            "value": 6
+          }
+        }
+      ],
+      "recipient": "FORMED_UNIT_MODELS",
+      "activation": "LEADING",
+      "leader": "unit-kroot-flesh-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "conditionalRemainder": "If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead.",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "internal-grenade-racks",
+      "name": "Internal Grenade Racks",
+      "canonicalId": "detachment-retaliation-cadre:enhancement:1",
+      "canonicalOwnerId": "detachment-retaliation-cadre",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "quote": "T’AU EMPIRE BATTLESUIT model only. The bearer has the GRENADES keyword",
+        "quoteSha256": "24DF79361AC69C43FA1C90F3112491AE622FC8C03FA5CDD57B93B4D5F8586645"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_MODEL_KEYWORD",
+          "keyword": "GRENADES"
+        }
+      ],
+      "recipient": "BEARER_MODEL",
+      "activation": "ASSIGNED_ENHANCEMENT",
+      "unit": "unit-commander-in-enforcer-battlesuit",
+      "detachment": "detachment-retaliation-cadre",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "kroot-battleline",
+      "name": "Kroot Battleline",
+      "canonicalId": "detachment-kroot-hunting-pack:keywords",
+      "canonicalOwnerId": "detachment-kroot-hunting-pack",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[4]/div[1]/div",
+        "quote": "If you select this Detachment, KROOT CARNIVORE units from your army have the Battleline keyword.",
+        "quoteSha256": "0E2889EA58F1A70F4CCCDBA2AC009847C7C0A9EDA87FEADB3E47F8A0365285E5"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_UNIT_KEYWORD",
+          "keyword": "BATTLELINE"
+        }
+      ],
+      "recipient": "PHYSICAL_KROOT_CARNIVORES_UNIT",
+      "activation": "SELECTED_DETACHMENT",
+      "unit": "unit-kroot-carnivores",
+      "detachment": "detachment-kroot-hunting-pack",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "borthrod-gland",
+      "name": "Borthrod Gland",
+      "canonicalId": "detachment-kroot-hunting-pack:enhancement:1",
+      "canonicalOwnerId": "detachment-kroot-hunting-pack",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[1]/table/tbody[2]/tr/td",
+        "quote": "While the bearer is leading a unit, each time a model in that unit makes a melee attack, an unmodified Hit roll of 5+ scores a Critical Hit.",
+        "quoteSha256": "C66272A0CFBA189EC9AD753BE867445CEB93AF408DB60400CEFA37A082F243DE"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_RULE_METRIC",
+          "field": "criticalHitThreshold",
+          "mode": "SET",
+          "value": 5,
+          "weaponMode": "melee"
+        }
+      ],
+      "recipient": "FORMED_UNIT_MELEE_WEAPONS",
+      "activation": "ASSIGNED_ENHANCEMENT_AND_LEADING",
+      "leader": "unit-kroot-flesh-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "detachment": "detachment-kroot-hunting-pack",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "kroothawk-flock",
+      "name": "Kroothawk Flock",
+      "canonicalId": "detachment-kroot-hunting-pack:enhancement:2",
+      "canonicalOwnerId": "detachment-kroot-hunting-pack",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[2]/table/tbody[2]/tr/td",
+        "quote": "Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability",
+        "quoteSha256": "5A90BD0392FA071FFBF0363F5A8F7EF02AE99E577474EE350C4A3632F51B4A72"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "IGNORES COVER",
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_RANGED_WEAPONS",
+      "activation": "ASSIGNED_ENHANCEMENT",
+      "leader": "unit-kroot-war-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "detachment": "detachment-kroot-hunting-pack",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "nomadic-hunter",
+      "name": "Nomadic Hunter",
+      "canonicalId": "detachment-kroot-hunting-pack:enhancement:3",
+      "canonicalOwnerId": "detachment-kroot-hunting-pack",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[3]/table/tbody[2]/tr/td",
+        "quote": "While the bearer is leading a unit, add 3\" to the Move characteristic of models in that unit and ranged weapons equipped by models in that unit have the [ASSAULT] ability.",
+        "quoteSha256": "0E677CD767F9E4616E3D490AC55EDDAAB34A73EECF5E10772D312A1ACA08210D"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "M",
+          "mode": "ADD",
+          "value": 3
+        },
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "ASSAULT",
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_MODELS_AND_RANGED_WEAPONS",
+      "activation": "ASSIGNED_ENHANCEMENT_AND_LEADING",
+      "leader": "unit-kroot-trail-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "detachment": "detachment-kroot-hunting-pack",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "root-carved-weapons",
+      "name": "Root-carved Weapons",
+      "canonicalId": "detachment-kroot-hunting-pack:enhancement:4",
+      "canonicalOwnerId": "detachment-kroot-hunting-pack",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[4]/table/tbody[2]/tr/td",
+        "quote": "All weapons equipped by the bearer have the [PRECISION] and [DEVASTATING WOUNDS] abilities.",
+        "quoteSha256": "71F74391C008F707DEDA4859D41A79DCC898B2B779E1BA3306CD17AE36B3E38D"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "PRECISION"
+        },
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "DEVASTATING WOUNDS"
+        }
+      ],
+      "recipient": "BEARER_MODEL_WEAPONS",
+      "activation": "ASSIGNED_ENHANCEMENT",
+      "leader": "unit-kroot-war-shaper",
+      "bodyguard": "unit-kroot-carnivores",
+      "detachment": "detachment-kroot-hunting-pack",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "superior-craftsmanship",
+      "name": "Superior Craftsmanship",
+      "canonicalId": "detachment-experimental-prototype-cadre:rule",
+      "canonicalOwnerId": "detachment-experimental-prototype-cadre",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[2]",
+        "quote": "Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R.",
+        "quoteSha256": "E0355E4DF7374F55A7708DA5F45695C093E1DD856C375867380D85FBDE21753F"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "range",
+          "mode": "ADD",
+          "value": 6,
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "BATTLESUIT_CHARACTER_UNIT_RANGED_WEAPONS",
+      "activation": "SELECTED_DETACHMENT",
+      "unit": "unit-commander-in-coldstar-battlesuit",
+      "detachment": "detachment-experimental-prototype-cadre",
+      "bodyguard": "unit-crisis-starscythe-battlesuits",
+      "formedRecipientBasis": "BATTLESUIT CHARACTER is a UNIT selector; an attached Commander makes the formed Crisis unit CHARACTER, without making its Bodyguard models CHARACTER.",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "negation-emitters",
+      "name": "Negation Emitters",
+      "canonicalId": "detachment-advanced-acquisition-cadre:enhancement:1",
+      "canonicalOwnerId": "detachment-advanced-acquisition-cadre",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "quote": "STEALTH BATTLESUITS unit only. This unit has -3\" detection range.",
+        "quoteSha256": "61EC59A93452CE84F45AAB5E1A2FAD2BE52EC40EFF56E4D0088D052B521C027B"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_RULE_METRIC",
+          "field": "detectionRange",
+          "mode": "ADD",
+          "value": -3
+        }
+      ],
+      "recipient": "PHYSICAL_STEALTH_BATTLESUITS_UNIT",
+      "activation": "ASSIGNED_UNIT_UPGRADE",
+      "unit": "unit-stealth-battlesuits",
+      "detachment": "detachment-advanced-acquisition-cadre",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "coldstar-shield-generator",
+      "name": "Coldstar Shield Generator",
+      "canonicalId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+      "canonicalOwnerId": "unit-commander-in-coldstar-battlesuit",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+        "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[4]",
+        "quote": "Shield Generator: The bearer has a 4+ invulnerable save.",
+        "quoteSha256": "7B871695F34C5157C0CCD333CEA9BB8695B87452BFB5610BB427EA32D165F569"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "INSV",
+          "mode": "SET",
+          "value": 4
+        }
+      ],
+      "recipient": "EQUIPPED_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-commander-in-coldstar-battlesuit",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "enforcer-shield-generator",
+      "name": "Enforcer Shield Generator",
+      "canonicalId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+      "canonicalOwnerId": "unit-commander-in-enforcer-battlesuit",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+        "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[4]",
+        "quote": "Shield Generator: The bearer has a 4+ invulnerable save.",
+        "quoteSha256": "7B871695F34C5157C0CCD333CEA9BB8695B87452BFB5610BB427EA32D165F569"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "INSV",
+          "mode": "SET",
+          "value": 4
+        }
+      ],
+      "recipient": "EQUIPPED_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-commander-in-enforcer-battlesuit",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "hover-drone",
+      "name": "Hover Drone",
+      "canonicalId": "datasheet-ethereal:section:1",
+      "canonicalOwnerId": "unit-ethereal",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+        "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[4]",
+        "quote": "Hover Drone: The bearer can FLY and has a Move characteristic of 10\".",
+        "quoteSha256": "1230F6F63423C4E1967EA3EF2A4A2326E22B3AC4A26FE50F3DC710A4B5DA1E03"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_MODEL_KEYWORD",
+          "keyword": "FLY"
+        },
+        {
+          "operation": "MODIFY_STAT",
+          "field": "M",
+          "mode": "SET",
+          "value": 10
+        }
+      ],
+      "recipient": "EQUIPPED_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-ethereal",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "pech’ra",
+      "name": "Pech’ra",
+      "canonicalId": "datasheet-kroot-farstalkers:section:1",
+      "canonicalOwnerId": "unit-kroot-farstalkers",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Farstalkers.html",
+        "sha256": "5D686E2B851540F76FE7B42A3229D6D157481C17A9E708649AD61CF3A36F3406",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[3]",
+        "quote": "Pech’ra: Ranged weapons equipped by the bearer’s unit have the [IGNORES COVER] ability.",
+        "quoteSha256": "6D5A42FFD45A68DD4414BBB69E25DB5B75F3875141E57F8B1A0A985A91FCE09F"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_WEAPON_ABILITY",
+          "ability": "IGNORES COVER",
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_RANGED_WEAPONS",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-kroot-farstalkers",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "pulse-accelerator-drone",
+      "name": "Pulse Accelerator Drone",
+      "canonicalId": "datasheet-pathfinder-team:section:1",
+      "canonicalOwnerId": "unit-pathfinder-team",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+        "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[4]",
+        "quote": "Pulse Accelerator Drone: Add 6\" to the Range characteristic of pulse carbines equipped by models in the bearer’s unit.",
+        "quoteSha256": "EAA699CFC411C497ACF3D832EC0AC24F91769AB87E02CBC52402889DD2DE8C22"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "range",
+          "mode": "ADD",
+          "value": 6,
+          "weaponMode": "ranged"
+        }
+      ],
+      "recipient": "FORMED_UNIT_PULSE_CARBINES_ONLY",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-pathfinder-team",
+      "weaponRestriction": "pulse carbine source identities; exclude pulse pistol/rail/ion rifles",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "recon-drone",
+      "name": "Recon Drone",
+      "canonicalId": "datasheet-pathfinder-team:section:1",
+      "canonicalOwnerId": "unit-pathfinder-team",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+        "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[5]",
+        "quote": "Recon Drone: The bearer is equipped with 1 drone burst cannon and the bearer’s unit has the Infiltrators ability.",
+        "quoteSha256": "8E0C7479CAA00F6A82479ED801043789B360FC263C738FED636BF827845FA268"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_ABILITY",
+          "ability": {
+            "canonicalId": "core-infiltrators",
+            "parameters": {}
+          }
+        }
+      ],
+      "recipient": "EQUIPPED_UNIT",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-pathfinder-team",
+      "physicalWeaponDependency": "drone burst cannon profile must remain selected/loadout-owned; do not create duplicate weapon",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "tidewall-defence-platform",
+      "name": "Tidewall Defence Platform",
+      "canonicalId": "datasheet-tidewall-shieldline:section:1",
+      "canonicalOwnerId": "unit-tidewall-shieldline",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Shieldline.html",
+        "sha256": "1616682613FA7B1982C319E1039884CF97050FF8B8D5FA30DCB1FE586FCE7801",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[4]",
+        "quote": "Tidewall Defence Platform: If equipped with a Tidewall defence platform, this FORTIFICATION has a Wounds characteristic of 15.",
+        "quoteSha256": "D27820E2566E04386BFAA6138E08D19B1DA0B16DABB20875CC2A5CBF9C43DC4F"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "W",
+          "mode": "SET",
+          "value": 15
+        }
+      ],
+      "recipient": "EQUIPPED_FORTIFICATION_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-tidewall-shieldline",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "marker-drone",
+      "name": "Marker Drone",
+      "canonicalId": "drone-marker-drone",
+      "canonicalOwnerId": null,
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+        "quote": "The bearer’s unit has the MARKERLIGHT keyword",
+        "quoteSha256": "A35AECEEDFAF790C778BA683604638D942B6B7256A04B7EA702CB67C4629BCAB"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_UNIT_KEYWORD",
+          "keyword": "MARKERLIGHT"
+        }
+      ],
+      "recipient": "BEARER_UNIT",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-commander-in-coldstar-battlesuit",
+      "stage4Dependency": "unit-local selected equipment occurrence must resolve canonical drone reference without fabricated MODEL bearer; no army-wide grant",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "shield-drone",
+      "name": "Shield Drone",
+      "canonicalId": "drone-shield-drone",
+      "canonicalOwnerId": null,
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+        "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+        "xpath": "/html/body/div/div[1]/div[3]/div[18]/div/div[5]/table/tbody[2]/tr/td",
+        "quote": "Add 1 to the bearer’s Wounds characteristic.",
+        "quoteSha256": "79028C999004901E1F3962D92A36493373DD4C9BE329863D58B89031BCF2C41E"
+      },
+      "expectedOperations": [
+        {
+          "operation": "MODIFY_STAT",
+          "field": "W",
+          "mode": "ADD",
+          "value": 1
+        }
+      ],
+      "recipient": "ONE_CONFIRMED_BEARER_MODEL",
+      "activation": "COUNTED_SELECTED_EQUIPMENT",
+      "stage4Dependency": "Mixed/duplicate Shield Drone per physical MODEL quantity and owner unproven; no fabricated bearer, no blanket UNIT wounds",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "ghostkeel-support-system",
+      "name": "Ghostkeel Support System",
+      "canonicalId": "datasheet-ghostkeel-battlesuit:section:1",
+      "canonicalOwnerId": "unit-ghostkeel-battlesuit",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[3]",
+        "quote": "Battlesuit Support System: The bearer is eligible to shoot in a turn in which it Fell Back but it loses the SMOKE keyword.",
+        "quoteSha256": "7B766FAA09EB44D3619317DA1AB6D77A0DEFFF57EE5813151B6BAAD03F14E543"
+      },
+      "expectedOperations": [
+        {
+          "operation": "REMOVE_KEYWORD",
+          "keyword": "SMOKE"
+        }
+      ],
+      "recipient": "EQUIPPED_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-ghostkeel-battlesuit",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    },
+    {
+      "id": "tiger-shark-transport-bay",
+      "name": "Tiger Shark Transport Bay",
+      "canonicalId": "datasheet-tiger-shark:section:1",
+      "canonicalOwnerId": "unit-tiger-shark",
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tiger-Shark.html",
+        "sha256": "31B30C9561FEBDF349E1235DFD3B0157DD3069379D6ACA03ABA1A9C15E5F99B3",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[3]",
+        "quote": "Transport Bay: The bearer has the TRANSPORT keyword and has a transport capacity of 12 TACTICAL DRONES models.",
+        "quoteSha256": "281109EF0985E29A15FF7FADDABB2A1490927F8BD0C4836330E325C77D64B4D4"
+      },
+      "expectedOperations": [
+        {
+          "operation": "GRANT_MODEL_KEYWORD",
+          "keyword": "TRANSPORT"
+        }
+      ],
+      "recipient": "EQUIPPED_MODEL",
+      "activation": "SELECTED_EQUIPMENT",
+      "unit": "unit-tiger-shark",
+      "conditionalRemainder": "Transport capacity is factual permission, not transported unit simulation.",
+      "ownerExpectationBasis": "Accepted raw Datasheet document / Detachment source block identity, using the existing persistent source-to-canonical identity convention; not executable declarations."
+    }
+  ],
+  "nativeExpectations": [
+    {
+      "canonicalId": "datasheet-breacher-team:rule-reference:1",
+      "ownerId": "unit-breacher-team",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-breacher-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-breacher-team:composition:1",
+        "datasheet-breacher-team:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Breacher-Team.html",
+        "sha256": "C4EDF5D645091B7C481B60F5233492CD360747780C69FF7B343CB0EFB410953C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-strike-team:rule-reference:1",
+      "ownerId": "unit-strike-team",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-strike-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-strike-team:composition:1",
+        "datasheet-strike-team:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Strike-Team.html",
+        "sha256": "8DAB7916225CEF3A3AA8ADC1D7AA8078B9FD2BA73583F7B6C0A49AF4B30DE10E",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-cadre-fireblade:rule-reference:1",
+      "ownerId": "unit-cadre-fireblade",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-cadre-fireblade:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-cadre-fireblade:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+        "sha256": "B56769DCF46869C51BED2253AA7A8F467374A86F1AA7EC1317D4489FD5579987",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-cadre-fireblade:rule-reference:2",
+      "ownerId": "unit-cadre-fireblade",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-cadre-fireblade:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-cadre-fireblade:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+        "sha256": "B56769DCF46869C51BED2253AA7A8F467374A86F1AA7EC1317D4489FD5579987",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-coldstar-battlesuit:rule-reference:1",
+      "ownerId": "unit-commander-in-coldstar-battlesuit",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-coldstar-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-coldstar-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+        "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-coldstar-battlesuit:rule-reference:2",
+      "ownerId": "unit-commander-in-coldstar-battlesuit",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-coldstar-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-coldstar-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+        "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-coldstar-battlesuit:rule-reference:3",
+      "ownerId": "unit-commander-in-coldstar-battlesuit",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-coldstar-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-coldstar-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+        "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-enforcer-battlesuit:rule-reference:1",
+      "ownerId": "unit-commander-in-enforcer-battlesuit",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-enforcer-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-enforcer-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+        "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-enforcer-battlesuit:rule-reference:2",
+      "ownerId": "unit-commander-in-enforcer-battlesuit",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-enforcer-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-enforcer-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+        "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-in-enforcer-battlesuit:rule-reference:3",
+      "ownerId": "unit-commander-in-enforcer-battlesuit",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-in-enforcer-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-in-enforcer-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+        "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ethereal:rule-reference:1",
+      "ownerId": "unit-ethereal",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ethereal:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ethereal:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+        "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ethereal:rule-reference:2",
+      "ownerId": "unit-ethereal",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ethereal:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ethereal:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+        "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-firesight-team:rule-reference:1",
+      "ownerId": "unit-firesight-team",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-firesight-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-firesight-team:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+        "sha256": "81E8053DB1496858D94AA88214A2889AC727F61862CCFA731B70BFC5A343F938",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-firesight-team:rule-reference:2",
+      "ownerId": "unit-firesight-team",
+      "label": "Lone Operative",
+      "targetId": "core-lone-operative",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-firesight-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-firesight-team:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+        "sha256": "81E8053DB1496858D94AA88214A2889AC727F61862CCFA731B70BFC5A343F938",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-firesight-team:rule-reference:3",
+      "ownerId": "unit-firesight-team",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-firesight-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-firesight-team:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+        "sha256": "81E8053DB1496858D94AA88214A2889AC727F61862CCFA731B70BFC5A343F938",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-firesight-team:rule-reference:4",
+      "ownerId": "unit-firesight-team",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-firesight-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-firesight-team:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+        "sha256": "81E8053DB1496858D94AA88214A2889AC727F61862CCFA731B70BFC5A343F938",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-flesh-shaper:rule-reference:1",
+      "ownerId": "unit-kroot-flesh-shaper",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-flesh-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-flesh-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-flesh-shaper:rule-reference:2",
+      "ownerId": "unit-kroot-flesh-shaper",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-flesh-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-flesh-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-flesh-shaper:rule-reference:3",
+      "ownerId": "unit-kroot-flesh-shaper",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-flesh-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-flesh-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-flesh-shaper:rule-reference:4",
+      "ownerId": "unit-kroot-flesh-shaper",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-flesh-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-flesh-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+        "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-lone-spear:rule-reference:1",
+      "ownerId": "unit-kroot-lone-spear",
+      "label": "Lone Operative",
+      "targetId": "core-lone-operative",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-lone-spear:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-lone-spear:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Lone-Spear.html",
+        "sha256": "A850E6823F18673ED5B869001F2ADCE3C204B41BC590D80755B3AB5F9530C3B7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-lone-spear:rule-reference:2",
+      "ownerId": "unit-kroot-lone-spear",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-lone-spear:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-lone-spear:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Lone-Spear.html",
+        "sha256": "A850E6823F18673ED5B869001F2ADCE3C204B41BC590D80755B3AB5F9530C3B7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-lone-spear:rule-reference:3",
+      "ownerId": "unit-kroot-lone-spear",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-lone-spear:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-lone-spear:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Lone-Spear.html",
+        "sha256": "A850E6823F18673ED5B869001F2ADCE3C204B41BC590D80755B3AB5F9530C3B7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-trail-shaper:rule-reference:1",
+      "ownerId": "unit-kroot-trail-shaper",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-trail-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-trail-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+        "sha256": "79D710F10D890703ACD8F28E0F44E8284BF20C08FCD15D3CB9F2C7EDA9757EF7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-trail-shaper:rule-reference:2",
+      "ownerId": "unit-kroot-trail-shaper",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-trail-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-trail-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+        "sha256": "79D710F10D890703ACD8F28E0F44E8284BF20C08FCD15D3CB9F2C7EDA9757EF7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-trail-shaper:rule-reference:3",
+      "ownerId": "unit-kroot-trail-shaper",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-trail-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-trail-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+        "sha256": "79D710F10D890703ACD8F28E0F44E8284BF20C08FCD15D3CB9F2C7EDA9757EF7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-trail-shaper:rule-reference:4",
+      "ownerId": "unit-kroot-trail-shaper",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-trail-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-trail-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+        "sha256": "79D710F10D890703ACD8F28E0F44E8284BF20C08FCD15D3CB9F2C7EDA9757EF7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-war-shaper:rule-reference:1",
+      "ownerId": "unit-kroot-war-shaper",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-war-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-war-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+        "sha256": "85CBFE1E4307F55F41E7612960783586E73009693D25E8B2AC75DDF2192EC400",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-war-shaper:rule-reference:2",
+      "ownerId": "unit-kroot-war-shaper",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-war-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-war-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+        "sha256": "85CBFE1E4307F55F41E7612960783586E73009693D25E8B2AC75DDF2192EC400",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-war-shaper:rule-reference:3",
+      "ownerId": "unit-kroot-war-shaper",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-war-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-war-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+        "sha256": "85CBFE1E4307F55F41E7612960783586E73009693D25E8B2AC75DDF2192EC400",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-war-shaper:rule-reference:4",
+      "ownerId": "unit-kroot-war-shaper",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-war-shaper:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-war-shaper:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+        "sha256": "85CBFE1E4307F55F41E7612960783586E73009693D25E8B2AC75DDF2192EC400",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-devilfish:rule-reference:1",
+      "ownerId": "unit-devilfish",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-devilfish:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-devilfish:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Devilfish.html",
+        "sha256": "9F78FD1A4E59C7908647532D6B2F438A5EB83D3F0F26A0EE63FDF04854EA9178",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-devilfish:rule-reference:2",
+      "ownerId": "unit-devilfish",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-devilfish:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-devilfish:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Devilfish.html",
+        "sha256": "9F78FD1A4E59C7908647532D6B2F438A5EB83D3F0F26A0EE63FDF04854EA9178",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-farsight:rule-reference:1",
+      "ownerId": "unit-commander-farsight",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-farsight:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-farsight:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Farsight.html",
+        "sha256": "122D5A29FB8B87D131E684F7697ABC6C2738D48F4E1A0EB0E5BF4F90B2521073",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-farsight:rule-reference:2",
+      "ownerId": "unit-commander-farsight",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-farsight:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-farsight:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Farsight.html",
+        "sha256": "122D5A29FB8B87D131E684F7697ABC6C2738D48F4E1A0EB0E5BF4F90B2521073",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-farsight:rule-reference:3",
+      "ownerId": "unit-commander-farsight",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-farsight:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-farsight:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Farsight.html",
+        "sha256": "122D5A29FB8B87D131E684F7697ABC6C2738D48F4E1A0EB0E5BF4F90B2521073",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-shadowsun:rule-reference:1",
+      "ownerId": "unit-commander-shadowsun",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-shadowsun:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-shadowsun:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+        "sha256": "1E8DAB3EB7FDC0D9A856001F380C56308C848CCC73FEF98ED28C1B95E33CABC7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-shadowsun:rule-reference:2",
+      "ownerId": "unit-commander-shadowsun",
+      "label": "Lone Operative",
+      "targetId": "core-lone-operative",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-shadowsun:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-shadowsun:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+        "sha256": "1E8DAB3EB7FDC0D9A856001F380C56308C848CCC73FEF98ED28C1B95E33CABC7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-shadowsun:rule-reference:3",
+      "ownerId": "unit-commander-shadowsun",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-shadowsun:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-shadowsun:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+        "sha256": "1E8DAB3EB7FDC0D9A856001F380C56308C848CCC73FEF98ED28C1B95E33CABC7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-commander-shadowsun:rule-reference:4",
+      "ownerId": "unit-commander-shadowsun",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-commander-shadowsun:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-commander-shadowsun:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+        "sha256": "1E8DAB3EB7FDC0D9A856001F380C56308C848CCC73FEF98ED28C1B95E33CABC7",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-darkstrider:rule-reference:1",
+      "ownerId": "unit-darkstrider",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-darkstrider:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-darkstrider:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+        "sha256": "820771E9F85DC0BC4CDBC3B9446EC2DEBED73DCEEE6D18BB3FD9E9FD1403054C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-darkstrider:rule-reference:2",
+      "ownerId": "unit-darkstrider",
+      "label": "Leader",
+      "targetId": "core-leader",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-darkstrider:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-darkstrider:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+        "sha256": "820771E9F85DC0BC4CDBC3B9446EC2DEBED73DCEEE6D18BB3FD9E9FD1403054C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-darkstrider:rule-reference:3",
+      "ownerId": "unit-darkstrider",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-darkstrider:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-darkstrider:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+        "sha256": "820771E9F85DC0BC4CDBC3B9446EC2DEBED73DCEEE6D18BB3FD9E9FD1403054C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-darkstrider:rule-reference:4",
+      "ownerId": "unit-darkstrider",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-darkstrider:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-darkstrider:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+        "sha256": "820771E9F85DC0BC4CDBC3B9446EC2DEBED73DCEEE6D18BB3FD9E9FD1403054C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-the-twin-lance:rule-reference:1",
+      "ownerId": "unit-the-twin-lance",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-the-twin-lance:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-the-twin-lance:composition:1",
+        "datasheet-the-twin-lance:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/The-Twin-Lance.html",
+        "sha256": "0F278B0DFD55F4137541BABE34E05FC96C71573342F5EBFB9D805515428DCFFF",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-the-twin-lance:rule-reference:2",
+      "ownerId": "unit-the-twin-lance",
+      "label": "Scouts 8\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 8
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-the-twin-lance:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-the-twin-lance:composition:1",
+        "datasheet-the-twin-lance:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/The-Twin-Lance.html",
+        "sha256": "0F278B0DFD55F4137541BABE34E05FC96C71573342F5EBFB9D805515428DCFFF",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-the-twin-lance:rule-reference:3",
+      "ownerId": "unit-the-twin-lance",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-the-twin-lance:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-the-twin-lance:composition:1",
+        "datasheet-the-twin-lance:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/The-Twin-Lance.html",
+        "sha256": "0F278B0DFD55F4137541BABE34E05FC96C71573342F5EBFB9D805515428DCFFF",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-carnivores:rule-reference:1",
+      "ownerId": "unit-kroot-carnivores",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-carnivores:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-carnivores:composition:1",
+        "datasheet-kroot-carnivores:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Carnivores.html",
+        "sha256": "6B5C74104944DC89A421EBB7DE4C3549E8D8D0ED66D0E26CA05DD0AD94191F21",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-carnivores:rule-reference:2",
+      "ownerId": "unit-kroot-carnivores",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-carnivores:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-carnivores:composition:1",
+        "datasheet-kroot-carnivores:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Carnivores.html",
+        "sha256": "6B5C74104944DC89A421EBB7DE4C3549E8D8D0ED66D0E26CA05DD0AD94191F21",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-farstalkers:rule-reference:1",
+      "ownerId": "unit-kroot-farstalkers",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-farstalkers:profile:1",
+        "datasheet-kroot-farstalkers:profile:2"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-farstalkers:composition:1",
+        "datasheet-kroot-farstalkers:composition:2",
+        "datasheet-kroot-farstalkers:composition:3"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Farstalkers.html",
+        "sha256": "5D686E2B851540F76FE7B42A3229D6D157481C17A9E708649AD61CF3A36F3406",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-farstalkers:rule-reference:2",
+      "ownerId": "unit-kroot-farstalkers",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-farstalkers:profile:1",
+        "datasheet-kroot-farstalkers:profile:2"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-farstalkers:composition:1",
+        "datasheet-kroot-farstalkers:composition:2",
+        "datasheet-kroot-farstalkers:composition:3"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Farstalkers.html",
+        "sha256": "5D686E2B851540F76FE7B42A3229D6D157481C17A9E708649AD61CF3A36F3406",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-pathfinder-team:rule-reference:1",
+      "ownerId": "unit-pathfinder-team",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-pathfinder-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-pathfinder-team:composition:1",
+        "datasheet-pathfinder-team:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+        "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-pathfinder-team:rule-reference:2",
+      "ownerId": "unit-pathfinder-team",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-pathfinder-team:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-pathfinder-team:composition:1",
+        "datasheet-pathfinder-team:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+        "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-stealth-battlesuits:rule-reference:1",
+      "ownerId": "unit-stealth-battlesuits",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-stealth-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-stealth-battlesuits:composition:1",
+        "datasheet-stealth-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+        "sha256": "49FAA435568DC59D6DE3DBB91A76748CCC55E638B00CDCC98217DD12B2744BA5",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-stealth-battlesuits:rule-reference:2",
+      "ownerId": "unit-stealth-battlesuits",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-stealth-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-stealth-battlesuits:composition:1",
+        "datasheet-stealth-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+        "sha256": "49FAA435568DC59D6DE3DBB91A76748CCC55E638B00CDCC98217DD12B2744BA5",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-stealth-battlesuits:rule-reference:3",
+      "ownerId": "unit-stealth-battlesuits",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-stealth-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-stealth-battlesuits:composition:1",
+        "datasheet-stealth-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+        "sha256": "49FAA435568DC59D6DE3DBB91A76748CCC55E638B00CDCC98217DD12B2744BA5",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-vespid-stingwings:rule-reference:1",
+      "ownerId": "unit-vespid-stingwings",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-vespid-stingwings:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-vespid-stingwings:composition:1",
+        "datasheet-vespid-stingwings:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Vespid-Stingwings.html",
+        "sha256": "70FB1B27A5974F4C09D18F3A943C7A66BF7AFA822C83BAA251B035134C00CE50",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-broadside-battlesuits:rule-reference:1",
+      "ownerId": "unit-broadside-battlesuits",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-broadside-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-broadside-battlesuits:composition:1",
+        "datasheet-broadside-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Broadside-Battlesuits.html",
+        "sha256": "00966846F496F3FE98B01DF956A092E1018D19C629C3B600518BFD927A397ABD",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-fireknife-battlesuits:rule-reference:1",
+      "ownerId": "unit-crisis-fireknife-battlesuits",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-fireknife-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-fireknife-battlesuits:composition:1",
+        "datasheet-crisis-fireknife-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+        "sha256": "FC567EBD4F9B850252C57CF624EF5FF715E367531D6A5E5C4BA7B2DDA373F11F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-fireknife-battlesuits:rule-reference:2",
+      "ownerId": "unit-crisis-fireknife-battlesuits",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-fireknife-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-fireknife-battlesuits:composition:1",
+        "datasheet-crisis-fireknife-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+        "sha256": "FC567EBD4F9B850252C57CF624EF5FF715E367531D6A5E5C4BA7B2DDA373F11F",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-starscythe-battlesuits:rule-reference:1",
+      "ownerId": "unit-crisis-starscythe-battlesuits",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-starscythe-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-starscythe-battlesuits:composition:1",
+        "datasheet-crisis-starscythe-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+        "sha256": "04D78E9CA3C018BDE71F1CC2763F26FD1FBEB412793B46979D45BAEF919330FA",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-starscythe-battlesuits:rule-reference:2",
+      "ownerId": "unit-crisis-starscythe-battlesuits",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-starscythe-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-starscythe-battlesuits:composition:1",
+        "datasheet-crisis-starscythe-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+        "sha256": "04D78E9CA3C018BDE71F1CC2763F26FD1FBEB412793B46979D45BAEF919330FA",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-sunforge-battlesuits:rule-reference:1",
+      "ownerId": "unit-crisis-sunforge-battlesuits",
+      "label": "Deep Strike",
+      "targetId": "core-deep-strike",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-sunforge-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-sunforge-battlesuits:composition:1",
+        "datasheet-crisis-sunforge-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Sunforge-Battlesuits.html",
+        "sha256": "270299F5C03EECE9EE43E7936C0BB97753B1DBE83BD49C0583699E3AEB39DEAC",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-crisis-sunforge-battlesuits:rule-reference:2",
+      "ownerId": "unit-crisis-sunforge-battlesuits",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-crisis-sunforge-battlesuits:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-crisis-sunforge-battlesuits:composition:1",
+        "datasheet-crisis-sunforge-battlesuits:composition:2"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Sunforge-Battlesuits.html",
+        "sha256": "270299F5C03EECE9EE43E7936C0BB97753B1DBE83BD49C0583699E3AEB39DEAC",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ghostkeel-battlesuit:rule-reference:1",
+      "ownerId": "unit-ghostkeel-battlesuit",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ghostkeel-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ghostkeel-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ghostkeel-battlesuit:rule-reference:2",
+      "ownerId": "unit-ghostkeel-battlesuit",
+      "label": "Infiltrators",
+      "targetId": "core-infiltrators",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ghostkeel-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ghostkeel-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ghostkeel-battlesuit:rule-reference:3",
+      "ownerId": "unit-ghostkeel-battlesuit",
+      "label": "Lone Operative",
+      "targetId": "core-lone-operative",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ghostkeel-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ghostkeel-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ghostkeel-battlesuit:rule-reference:4",
+      "ownerId": "unit-ghostkeel-battlesuit",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ghostkeel-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ghostkeel-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ghostkeel-battlesuit:rule-reference:5",
+      "ownerId": "unit-ghostkeel-battlesuit",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ghostkeel-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ghostkeel-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+        "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-hammerhead-gunship:rule-reference:1",
+      "ownerId": "unit-hammerhead-gunship",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-hammerhead-gunship:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-hammerhead-gunship:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Hammerhead-Gunship.html",
+        "sha256": "6597F3DE6BA9BD6D1178E29A43613E5EF47F0128C9DE8F313258ACE73E078375",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-hammerhead-gunship:rule-reference:2",
+      "ownerId": "unit-hammerhead-gunship",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-hammerhead-gunship:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-hammerhead-gunship:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Hammerhead-Gunship.html",
+        "sha256": "6597F3DE6BA9BD6D1178E29A43613E5EF47F0128C9DE8F313258ACE73E078375",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-hounds:rule-reference:1",
+      "ownerId": "unit-kroot-hounds",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-hounds:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-hounds:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Hounds.html",
+        "sha256": "D9B8F02215BE46767C0B8C231CCE666D85F7559A8FCECE5C066B12D3E9E37BCE",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-kroot-hounds:rule-reference:2",
+      "ownerId": "unit-kroot-hounds",
+      "label": "Stealth",
+      "targetId": "core-stealth",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-kroot-hounds:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-kroot-hounds:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Hounds.html",
+        "sha256": "D9B8F02215BE46767C0B8C231CCE666D85F7559A8FCECE5C066B12D3E9E37BCE",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-krootox-rampagers:rule-reference:1",
+      "ownerId": "unit-krootox-rampagers",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-krootox-rampagers:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-krootox-rampagers:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Rampagers.html",
+        "sha256": "BCBA71D65DB8F4BCAF02F417AB7C949CE0791274EEC63C8AE171D0232DFB5C3D",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-krootox-riders:rule-reference:1",
+      "ownerId": "unit-krootox-riders",
+      "label": "Scouts 7\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 7
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-krootox-riders:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-krootox-riders:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Riders.html",
+        "sha256": "2E99F749C8096AC1B1810C944A1517C371AF483EB4FF055D1CB8878069416CCD",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-piranhas:rule-reference:1",
+      "ownerId": "unit-piranhas",
+      "label": "Deadly Demise 1",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": 1
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-piranhas:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-piranhas:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Piranhas.html",
+        "sha256": "5B12ED9BF24AFCAE00823E8875B29FB7EF50B5AED3A62060427AB904B395B596",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-piranhas:rule-reference:2",
+      "ownerId": "unit-piranhas",
+      "label": "Scouts 9\"",
+      "targetId": "core-scouts",
+      "parameters": {
+        "distance": 9
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-piranhas:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-piranhas:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Piranhas.html",
+        "sha256": "5B12ED9BF24AFCAE00823E8875B29FB7EF50B5AED3A62060427AB904B395B596",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-piranhas:rule-reference:3",
+      "ownerId": "unit-piranhas",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-piranhas:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-piranhas:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Piranhas.html",
+        "sha256": "5B12ED9BF24AFCAE00823E8875B29FB7EF50B5AED3A62060427AB904B395B596",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-razorshark-strike-fighter:rule-reference:1",
+      "ownerId": "unit-razorshark-strike-fighter",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-razorshark-strike-fighter:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-razorshark-strike-fighter:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Razorshark-Strike-Fighter.html",
+        "sha256": "80C9A86D24A2C0173FD454C4CD790F4D9403B8EA83A56507CC6850406C9986D0",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-razorshark-strike-fighter:rule-reference:2",
+      "ownerId": "unit-razorshark-strike-fighter",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-razorshark-strike-fighter:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-razorshark-strike-fighter:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Razorshark-Strike-Fighter.html",
+        "sha256": "80C9A86D24A2C0173FD454C4CD790F4D9403B8EA83A56507CC6850406C9986D0",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-riptide-battlesuit:rule-reference:1",
+      "ownerId": "unit-riptide-battlesuit",
+      "label": "Deadly Demise D6",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D6"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-riptide-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-riptide-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Riptide-Battlesuit.html",
+        "sha256": "6D2BEAE7AD42DE8F15C4E49E73D9D6BE7F82DE8C4962F3DD6CA4CC03BFAC4020",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-riptide-battlesuit:rule-reference:2",
+      "ownerId": "unit-riptide-battlesuit",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-riptide-battlesuit:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-riptide-battlesuit:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Riptide-Battlesuit.html",
+        "sha256": "6D2BEAE7AD42DE8F15C4E49E73D9D6BE7F82DE8C4962F3DD6CA4CC03BFAC4020",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-sky-ray-gunship:rule-reference:1",
+      "ownerId": "unit-sky-ray-gunship",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-sky-ray-gunship:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-sky-ray-gunship:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sky-Ray-Gunship.html",
+        "sha256": "FA5660AA295E35E385D4BBA2A7B060BD59DE9AA4B8F2E60CECD6FE3202DCED5D",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-sky-ray-gunship:rule-reference:2",
+      "ownerId": "unit-sky-ray-gunship",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-sky-ray-gunship:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-sky-ray-gunship:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sky-Ray-Gunship.html",
+        "sha256": "FA5660AA295E35E385D4BBA2A7B060BD59DE9AA4B8F2E60CECD6FE3202DCED5D",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-stormsurge:rule-reference:1",
+      "ownerId": "unit-stormsurge",
+      "label": "Deadly Demise D6+2",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D6+2"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-stormsurge:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-stormsurge:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stormsurge.html",
+        "sha256": "2F199FB571371FE917542AE0AD0D679D28F592AD294600F1D77867B2FF05C852",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-stormsurge:rule-reference:2",
+      "ownerId": "unit-stormsurge",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-stormsurge:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-stormsurge:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stormsurge.html",
+        "sha256": "2F199FB571371FE917542AE0AD0D679D28F592AD294600F1D77867B2FF05C852",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-sun-shark-bomber:rule-reference:1",
+      "ownerId": "unit-sun-shark-bomber",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-sun-shark-bomber:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-sun-shark-bomber:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sun-Shark-Bomber.html",
+        "sha256": "B8239ECF72512083B9346D94B58B0E47CEA79EBAC59ECA5ACC0D2A532D21973D",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-sun-shark-bomber:rule-reference:2",
+      "ownerId": "unit-sun-shark-bomber",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-sun-shark-bomber:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-sun-shark-bomber:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sun-Shark-Bomber.html",
+        "sha256": "B8239ECF72512083B9346D94B58B0E47CEA79EBAC59ECA5ACC0D2A532D21973D",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-droneport:rule-reference:1",
+      "ownerId": "unit-tidewall-droneport",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-droneport:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-droneport:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Droneport.html",
+        "sha256": "FF1F09F84A2E1D663B5BC245891BBD8D47A9EF5B55AE52A562D8F6D20FCC6E1C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-droneport:rule-reference:2",
+      "ownerId": "unit-tidewall-droneport",
+      "label": "Firing Deck 11",
+      "targetId": "core-firing-deck",
+      "parameters": {
+        "value": 11
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-droneport:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-droneport:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Droneport.html",
+        "sha256": "FF1F09F84A2E1D663B5BC245891BBD8D47A9EF5B55AE52A562D8F6D20FCC6E1C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-gunrig:rule-reference:1",
+      "ownerId": "unit-tidewall-gunrig",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-gunrig:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-gunrig:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Gunrig.html",
+        "sha256": "904F88DC6362552B396D9F34D8BBE59B488B93FE5EF61D5DBF0590AF80E3E6A0",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-gunrig:rule-reference:2",
+      "ownerId": "unit-tidewall-gunrig",
+      "label": "Firing Deck 11",
+      "targetId": "core-firing-deck",
+      "parameters": {
+        "value": 11
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-gunrig:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-gunrig:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Gunrig.html",
+        "sha256": "904F88DC6362552B396D9F34D8BBE59B488B93FE5EF61D5DBF0590AF80E3E6A0",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-shieldline:rule-reference:1",
+      "ownerId": "unit-tidewall-shieldline",
+      "label": "Deadly Demise D3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-shieldline:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-shieldline:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Shieldline.html",
+        "sha256": "1616682613FA7B1982C319E1039884CF97050FF8B8D5FA30DCB1FE586FCE7801",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tidewall-shieldline:rule-reference:2",
+      "ownerId": "unit-tidewall-shieldline",
+      "label": "Firing Deck 20",
+      "targetId": "core-firing-deck",
+      "parameters": {
+        "value": 20
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tidewall-shieldline:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tidewall-shieldline:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Shieldline.html",
+        "sha256": "1616682613FA7B1982C319E1039884CF97050FF8B8D5FA30DCB1FE586FCE7801",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ax-1-0-tiger-shark:rule-reference:1",
+      "ownerId": "unit-ax-1-0-tiger-shark",
+      "label": "Deadly Demise D6+2",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D6+2"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ax-1-0-tiger-shark:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ax-1-0-tiger-shark:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/AX-1-0-Tiger-Shark.html",
+        "sha256": "29E8E5C0327126928DF5BB34340F7C7DD5424591497981B66156D7803D9B4F0C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-ax-1-0-tiger-shark:rule-reference:2",
+      "ownerId": "unit-ax-1-0-tiger-shark",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-ax-1-0-tiger-shark:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-ax-1-0-tiger-shark:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/AX-1-0-Tiger-Shark.html",
+        "sha256": "29E8E5C0327126928DF5BB34340F7C7DD5424591497981B66156D7803D9B4F0C",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-manta:rule-reference:1",
+      "ownerId": "unit-manta",
+      "label": "Deadly Demise 3D6",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "3D6"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-manta:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-manta:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Manta.html",
+        "sha256": "DC361CCC3C7743C2676D27316E7F2F378DACE2AB6D731F4F5F7A9222E7D5C9EA",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-manta:rule-reference:2",
+      "ownerId": "unit-manta",
+      "label": "Hover",
+      "targetId": "core-hover",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-manta:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-manta:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Manta.html",
+        "sha256": "DC361CCC3C7743C2676D27316E7F2F378DACE2AB6D731F4F5F7A9222E7D5C9EA",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-manta:rule-reference:3",
+      "ownerId": "unit-manta",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-manta:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-manta:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Manta.html",
+        "sha256": "DC361CCC3C7743C2676D27316E7F2F378DACE2AB6D731F4F5F7A9222E7D5C9EA",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tiger-shark:rule-reference:1",
+      "ownerId": "unit-tiger-shark",
+      "label": "Deadly Demise D6+2",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D6+2"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tiger-shark:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tiger-shark:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tiger-Shark.html",
+        "sha256": "31B30C9561FEBDF349E1235DFD3B0157DD3069379D6ACA03ABA1A9C15E5F99B3",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-tiger-shark:rule-reference:2",
+      "ownerId": "unit-tiger-shark",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-tiger-shark:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-tiger-shark:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tiger-Shark.html",
+        "sha256": "31B30C9561FEBDF349E1235DFD3B0157DD3069379D6ACA03ABA1A9C15E5F99B3",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-taunar-supremacy-armour:rule-reference:1",
+      "ownerId": "unit-taunar-supremacy-armour",
+      "label": "Deadly Demise D6+3",
+      "targetId": "core-deadly-demise",
+      "parameters": {
+        "value": "D6+3"
+      },
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-taunar-supremacy-armour:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-taunar-supremacy-armour:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ta-unar-Supremacy-Armour.html",
+        "sha256": "1D36160B7F7F300446A18FCD0E44B06B299B5A834DA57AF1A8CEBDD59FB8C355",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-taunar-supremacy-armour:rule-reference:2",
+      "ownerId": "unit-taunar-supremacy-armour",
+      "label": "Super-heavy Walker",
+      "targetId": "core-super-heavy-walker",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-taunar-supremacy-armour:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-taunar-supremacy-armour:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ta-unar-Supremacy-Armour.html",
+        "sha256": "1D36160B7F7F300446A18FCD0E44B06B299B5A834DA57AF1A8CEBDD59FB8C355",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[1]"
+      }
+    },
+    {
+      "canonicalId": "datasheet-taunar-supremacy-armour:rule-reference:3",
+      "ownerId": "unit-taunar-supremacy-armour",
+      "label": "For the Greater Good",
+      "targetId": "army-rule-for-the-greater-good:definition",
+      "parameters": {},
+      "scope": "MODEL",
+      "modelProfileIds": [
+        "datasheet-taunar-supremacy-armour:profile:1"
+      ],
+      "compositionMemberIds": [
+        "datasheet-taunar-supremacy-armour:composition:1"
+      ],
+      "source": {
+        "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ta-unar-Supremacy-Armour.html",
+        "sha256": "1D36160B7F7F300446A18FCD0E44B06B299B5A834DA57AF1A8CEBDD59FB8C355",
+        "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/table/tbody/tr[2]"
+      }
+    }
+  ],
+  "expectedDistinctNativeLabels": [
+    "Deadly Demise 1",
+    "Deadly Demise 3D6",
+    "Deadly Demise D3",
+    "Deadly Demise D6",
+    "Deadly Demise D6+2",
+    "Deadly Demise D6+3",
+    "Deep Strike",
+    "Firing Deck 11",
+    "Firing Deck 20",
+    "For the Greater Good",
+    "Hover",
+    "Infiltrators",
+    "Leader",
+    "Lone Operative",
+    "Scouts 7\"",
+    "Scouts 8\"",
+    "Scouts 9\"",
+    "Stealth",
+    "Super-heavy Walker"
+  ],
+  "deferredSelectionExpectations": [
+    {
+      "id": "student-of-kauyon",
+      "canonicalId": "detachment-auxiliary-cadre:enhancement:1",
+      "expectedOperation": "GRANT_ABILITY",
+      "abilityId": "core-deep-strike",
+      "scope": "up to three explicitly selected friendly KROOT CARNIVORES/FARSTALKERS physical UNITs",
+      "missing": "Stage4 physical recipient selection; no army-wide automatic grant",
+      "independentSources": [
+        {
+          "canonicalId": "detachment-auxiliary-cadre:enhancement:1",
+          "ownerId": "detachment-auxiliary-cadre",
+          "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+          "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+          "xpath": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+          "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike.",
+          "quoteSha256": "53E15BA4C32010337000DA9A8AC5C1C916012283B9FD537C97E357D9198D018B"
+        }
+      ]
+    },
+    {
+      "id": "prototype-weapon-choice",
+      "canonicalIds": [
+        "detachment-experimental-prototype-cadre:enhancement:1",
+        "detachment-experimental-prototype-cadre:enhancement:2",
+        "detachment-experimental-prototype-cadre:enhancement:3"
+      ],
+      "expectedDeltas": [
+        {
+          "strength": 2,
+          "ap": -1,
+          "damage": 1
+        },
+        {
+          "strength": 2,
+          "attacks": 1,
+          "ap": -1,
+          "damage": 1
+        },
+        {
+          "strength": 3,
+          "ap": -1,
+          "damage": 1
+        }
+      ],
+      "missing": "One exact physical weapon chosen in Declare Battle Formations, not all duplicates; Stage4",
+      "independentSources": [
+        {
+          "canonicalId": "detachment-experimental-prototype-cadre:enhancement:1",
+          "ownerId": "detachment-experimental-prototype-cadre",
+          "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+          "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+          "xpath": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+          "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have:+2 S+1 AP and D.",
+          "quoteSha256": "47953EC0101291DB27C1279643C5BD821357ECEC20DBED9D743580088B605045"
+        },
+        {
+          "canonicalId": "detachment-experimental-prototype-cadre:enhancement:2",
+          "ownerId": "detachment-experimental-prototype-cadre",
+          "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+          "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+          "xpath": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+          "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have:+2 S+1 A, AP and D.",
+          "quoteSha256": "E6D76488B061413A1B40F16519AA291B0FD1B49012DE787ADC5D1C1AE215BB03"
+        },
+        {
+          "canonicalId": "detachment-experimental-prototype-cadre:enhancement:3",
+          "ownerId": "detachment-experimental-prototype-cadre",
+          "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+          "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+          "xpath": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td",
+          "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have:+3 S+1 AP and D.",
+          "quoteSha256": "A5FA8CCBE9940A64324E529F684E79CED58C56842AA7FBB601B7FFC525380397"
+        }
+      ],
+      "eligibleWeaponIds": [
+        [
+          "datasheet-commander-in-coldstar-battlesuit:weapon:9",
+          "datasheet-commander-in-enforcer-battlesuit:weapon:8",
+          "datasheet-crisis-starscythe-battlesuits:weapon:2"
+        ],
+        [
+          "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+          "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+          "datasheet-crisis-fireknife-battlesuits:weapon:2"
+        ],
+        [
+          "datasheet-commander-in-coldstar-battlesuit:weapon:1",
+          "datasheet-commander-in-enforcer-battlesuit:weapon:1"
+        ]
+      ],
+      "weaponIdentityProofs": [
+        {
+          "canonicalId": "datasheet-commander-in-coldstar-battlesuit:weapon:9",
+          "ownerId": "unit-commander-in-coldstar-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+            "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[10]/tr[2]",
+            "quote": "T’au flamer",
+            "quoteSha256": "12C20B839084164B8DE40C78C328C0CBE7BBB03CD7D0CD4E132C690EEB846480"
+          }
+        },
+        {
+          "canonicalId": "datasheet-commander-in-enforcer-battlesuit:weapon:8",
+          "ownerId": "unit-commander-in-enforcer-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+            "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]",
+            "quote": "T’au flamer",
+            "quoteSha256": "12C20B839084164B8DE40C78C328C0CBE7BBB03CD7D0CD4E132C690EEB846480"
+          }
+        },
+        {
+          "canonicalId": "datasheet-crisis-starscythe-battlesuits:weapon:2",
+          "ownerId": "unit-crisis-starscythe-battlesuits",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+            "sha256": "04D78E9CA3C018BDE71F1CC2763F26FD1FBEB412793B46979D45BAEF919330FA",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+            "quote": "T’au flamer",
+            "quoteSha256": "12C20B839084164B8DE40C78C328C0CBE7BBB03CD7D0CD4E132C690EEB846480"
+          }
+        },
+        {
+          "canonicalId": "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+          "ownerId": "unit-commander-in-coldstar-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+            "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[9]/tr[2]",
+            "quote": "Plasma rifle",
+            "quoteSha256": "D4F425E13094F8569C5698FD9BE17FD28812EFF932E15D9B72B6038E65ECFB80"
+          }
+        },
+        {
+          "canonicalId": "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+          "ownerId": "unit-commander-in-enforcer-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+            "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[8]/tr[2]",
+            "quote": "Plasma rifle",
+            "quoteSha256": "D4F425E13094F8569C5698FD9BE17FD28812EFF932E15D9B72B6038E65ECFB80"
+          }
+        },
+        {
+          "canonicalId": "datasheet-crisis-fireknife-battlesuits:weapon:2",
+          "ownerId": "unit-crisis-fireknife-battlesuits",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+            "sha256": "FC567EBD4F9B850252C57CF624EF5FF715E367531D6A5E5C4BA7B2DDA373F11F",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[4]/tr[2]",
+            "quote": "Plasma rifle",
+            "quoteSha256": "D4F425E13094F8569C5698FD9BE17FD28812EFF932E15D9B72B6038E65ECFB80"
+          }
+        },
+        {
+          "canonicalId": "datasheet-commander-in-coldstar-battlesuit:weapon:1",
+          "ownerId": "unit-commander-in-coldstar-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+            "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]",
+            "quote": "Airbursting fragmentation projector",
+            "quoteSha256": "146773F792D4315289DB59B83F62F7BEB327304DF7680D5913B6D44D24D5291C"
+          }
+        },
+        {
+          "canonicalId": "datasheet-commander-in-enforcer-battlesuit:weapon:1",
+          "ownerId": "unit-commander-in-enforcer-battlesuit",
+          "source": {
+            "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+            "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+            "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/table/tbody[3]/tr[2]",
+            "quote": "Airbursting fragmentation projector",
+            "quoteSha256": "146773F792D4315289DB59B83F62F7BEB327304DF7680D5913B6D44D24D5291C"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kroot-bodyguard20",
+      "canonicalId": "datasheet-kroot-carnivores:section:bodyguard",
+      "missing": "StartingStrength20 allows2different Leaders; Stage4 physical/import attachment integration, preserve split after Bodyguard destroyed",
+      "independentSources": [
+        {
+          "canonicalId": "datasheet-kroot-carnivores:section:bodyguard",
+          "ownerId": "unit-kroot-carnivores",
+          "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Carnivores.html",
+          "sha256": "6B5C74104944DC89A421EBB7DE4C3549E8D8D0ED66D0E26CA05DD0AD94191F21",
+          "xpath": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[7]",
+          "quote": "If this unit has a Starting Strength of 20, you can attach up to two Leader units to it instead of one, provided those Leaders are not duplicates (e.g. you cannot attach two WAR SHAPERS to this unit). If you do, and this unit is destroyed, the Leader units attached to it become separate units with their original Starting Strengths.",
+          "quoteSha256": "63B519F1E7C46E4A5C99C97FC705269A3502F965E26075F2222BD5D56A44D639"
+        }
+      ]
+    }
+  ]
+}
