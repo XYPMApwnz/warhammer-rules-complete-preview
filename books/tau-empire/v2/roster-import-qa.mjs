@@ -9,7 +9,9 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
-import {setTauStudentChoice} from './roster-source-choices.mjs';
+import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext} from './roster-source-choices.mjs';
+import {createTauRuleSchema} from './rule-contract-build.mjs';
+import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
@@ -148,8 +150,9 @@ test('drone-inventory-known-and-unknown-physical-bearers',()=>{
  const baseline=Number(index.get('datasheet-crisis-fireknife-battlesuits:profile:1').data.stats.W);
  assert.ok(derived.units[0].profiles.every(p=>Number(p.profile.stats.W)===baseline),'Unknown MODEL recipient gets no invented Shield W');
  const markerPresent=derived.units[0].keywords.includes('MARKERLIGHT');
+ assert.ok(markerPresent,'Accepted Marker Drone gives its known physical UNIT MARKERLIGHT');
  records.runtimeCases.push({id:'marker-drone-unit-grant',source:'drone-marker-drone',expected:'MARKERLIGHT only selected physical UNIT',
-  actual:markerPresent?'MARKERLIGHT':'NO_GRANT',status:markerPresent?'PASS':'BLOCKED',reason:markerPresent?null:'Generic equipment owner + unit-local selected occurrence dispatch not supported safely by current source mechanism'});
+  actual:markerPresent?'MARKERLIGHT':'NO_GRANT',status:markerPresent?'PASS':'FAIL'});
  assert.ok(!derived.units[1].keywords.includes('MARKERLIGHT'),'Marker Drone never leaks to independent duplicate');
  assert.deepEqual(make().load(service.snapshot()),state);
  const known=header()+gearOnFirstModel(unitId,'Shield Drone',2)+base.text;
@@ -162,6 +165,85 @@ test('drone-inventory-known-and-unknown-physical-bearers',()=>{
  assert.ok(knownDerived.units[1].profiles.every(p=>Number(p.profile.stats.W)===baseline),'Independent instance W unchanged');
  assert.deepEqual(runtime(knownState).projection,knownDerived,'Recompute never stacks Shield W');
  records.fixtures.push({id:'unknown-drone-bearer',text:aggregate,expected:[base.expected,base.expected]});
+});
+
+const markerId='drone-marker-drone';
+const markerOccurrences=units.flatMap(unit=>facts.entities.filter(entity=>entity.kind==='WARGEAR_OPTION'&&entity.parentId===unit.id&&
+ entity.data.text.toLowerCase().includes('marker drone')).map(option=>({unitId:unit.id,optionId:option.id})));
+const markerGrants=unit=>unit.applied.filter(row=>row.operation==='GRANT_UNIT_KEYWORD'&&row.after.includes('MARKERLIGHT'));
+function assertMarkerOnly(projection,expectedId,baseline){
+ for(const unit of projection.units){
+  const expected=unit.instanceId===expectedId||baseline.units.find(previous=>previous.instanceId===unit.instanceId).keywords.includes('MARKERLIGHT');
+  assert.equal(unit.keywords.includes('MARKERLIGHT'),expected,'Physical Marker UNIT isolation: '+unit.instanceId);
+  for(const row of markerGrants(unit)){
+   assert.equal(unit.instanceId,expectedId,'No foreign Marker grant');assert.equal(row.sourceInstanceId,expectedId);assert.equal(row.targetInstanceId,expectedId);
+   assert.ok(row.sourceFields.length,'Source field provenance retained');
+  }
+ }
+}
+test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
+ const source=index.get(markerId);assert.ok(source.data.text.includes('MARKERLIGHT'),'Expected keyword comes from accepted drone fact');
+ assert.equal(markerOccurrences.length,12,'Independent accepted Datasheet options define Marker coverage');
+ const coverage=[];
+ for(const occurrence of markerOccurrences){
+  const local=book.entities.find(entity=>entity.id===occurrence.optionId);
+  const contract=local.ruleContract,effect=contract.clauses.find(clause=>clause.id==='marker-drone-physical-unit').rosterEffects[0];
+  assert.deepEqual(contract.canonicalRuleReferences,[markerId],'Every occurrence references the one generic canonical owner');
+  assert.deepEqual(effect.provenance.sourceEvidence,source.provenance,'Every occurrence retains generic source provenance');
+  assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId,'Every occurrence retains its physical source option identity');
+  assert.deepEqual(effect.provenance.physicalEquipmentReference.provenance,local.provenance,'Every occurrence retains local source provenance');
+  const id=occurrence.unitId,plain=header()+fixture(id).text+fixture(id).text;
+  const baseline=runtime(ready(plain).roster).projection;
+  for(const known of [false,true]){
+   const equipped=known?gearOnFirstModel(id,'Marker Drone',1):fixture(id,{equipment:'1x Marker Drone'}).text;
+   const text=header()+equipped+fixture(id).text,service=make(),state=ready(text,{},service).roster,run=runtime(state);
+   const inventory=selections(state.units[0]).filter(selection=>selection.sourceEquipmentIdentity===markerId);
+   assert.equal(inventory.length,1);assert.equal(inventory[0].physicalQuantity,1);
+   assert.deepEqual(inventory[0].sourceEquipmentProvenance,source.provenance,'One generic source provenance');
+   assert.ok(inventory[0].canonicalEquipmentIds.includes(occurrence.optionId),'Physical equipment uses correct local source occurrence');
+   if(!known)assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown bearer remains unknown');
+   assertMarkerOnly(run.projection,state.units[0].instanceId,baseline);
+   if(!known){
+    // Diagnostic copy only: native MARKERLIGHT otherwise masks a missing
+    // selected-equipment grant on four source owners. Actual source facts and
+    // real projections above remain untouched and are not replaced by this.
+    const probe=clone(book),owner=probe.entities.find(entity=>entity.id===id);
+    owner.data.keywords=owner.data.keywords.filter(keyword=>keyword!=='MARKERLIGHT');
+    for(const profile of probe.rosterProfileBindings.filter(binding=>binding.unitId===id))
+     profile.intrinsicKeywords=profile.intrinsicKeywords.filter(keyword=>keyword!=='MARKERLIGHT');
+    const diagnostic=createRosterRuntime(probe,createTauRuleSchema({bindContext:tauSourceChoiceContext(probe,state)}));diagnostic.load(state);
+    assert.deepEqual(diagnostic.projection.units.map(unit=>unit.keywords.includes('MARKERLIGHT')),[true,false],
+     'Every accepted local Marker binding executes, independently of pre-existing native keyword');
+   }
+   const saved=run.snapshot(),effective=clone(run.projection);
+   assert.deepEqual(runtime(saved).projection,effective,'Marker projection survives snapshot/load');
+   assert.deepEqual(ready(text,{},service).roster,state,'Marker reimport does not duplicate inventory');
+   run.load(saved);assert.deepEqual(run.projection,effective,'Marker recompute idempotent');
+   run.load(ready(plain,{},service).roster);
+   assert.deepEqual(run.projection.units.map(u=>u.keywords),baseline.units.map(u=>u.keywords),'Removing equipment restores baseline keyword bags');
+   run.load(ready(text,{},service).roster);assertMarkerOnly(run.projection,state.units[0].instanceId,baseline);
+   coverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',status:'PASS',nativeMarkerlight:baseline.units[0].keywords.includes('MARKERLIGHT')});
+  }
+ }
+ records.markerSourceCoverage=coverage;
+});
+test('stage4b-marker-shared-option-types-and-formed-physical-scope',()=>{
+ const id='unit-commander-in-coldstar-battlesuit',base=fixture(id);
+ for(const other of ['Shield Drone','Gun Drone']){
+  const text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture(id,{equipment:'1x '+other}).text+base.text;
+  const state=ready(text).roster,projection=runtime(state).projection;
+  assert.deepEqual(projection.units.map(unit=>unit.keywords.includes('MARKERLIGHT')),[true,false,false],'Only exact generic identity grants keyword despite shared local option');
+  assert.deepEqual(state.units.slice(0,2).map(unit=>unit.selections[0].canonicalEquipmentIds),[state.units[0].selections[0].canonicalEquipmentIds,state.units[0].selections[0].canonicalEquipmentIds],'Control items actually share local option identity');
+  assert.equal(markerGrants(projection.units[0]).length,1,'One grant only');
+ }
+ const text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture('unit-crisis-fireknife-battlesuits').text+base.text;
+ const state=ready(text).roster,run=runtime(state);run.attach('parsed-unit-1','parsed-unit-2');
+ assert.deepEqual(run.projection.units.map(unit=>unit.keywords.includes('MARKERLIGHT')),[true,false,false],'Formed UNIT must not overwrite physical keyword recipients');
+ const group=run.projection.formedUnits.find(group=>group.memberInstanceIds.includes('parsed-unit-1'));
+ assert.ok(group.keywords.includes('MARKERLIGHT'),'Formed keyword union reflects its confirmed member');
+ assert.ok(run.projection.units.flatMap(unit=>unit.profiles).every(profile=>!profile.keywords.includes('MARKERLIGHT')),'UNIT keyword does not become every MODEL keyword');
+ const attached=clone(run.projection);run.detach('parsed-unit-1');run.reattach('parsed-unit-1','parsed-unit-2');
+ assert.deepEqual(run.projection,attached,'Attach/detach preserves physical source and recompute');
 });
 
 test('gun-missile-recon-mv15-source-weapons-counted-once',()=>{
@@ -444,22 +526,104 @@ test('student-of-kauyon-exact-three-physical-unit-recipients',()=>{
  records.fixtures.push({id:'student-recipients',text,expected:[{source:'parsed-unit-1',recipientInstanceIds:['parsed-unit-2','parsed-unit-3','parsed-unit-4'],negativeRecipient:'parsed-unit-5'}]});
 });
 
+const studentGrantRows=unit=>unit.applied.filter(row=>row.ruleId==='detachment-auxiliary-cadre:enhancement:1'&&
+ row.operation==='GRANT_ABILITY'&&row.targetAbilityId==='core-deep-strike');
+function assertStudentPairs(projection,pairs){
+ for(const unit of projection.units){
+  const expectedSources=Object.entries(pairs).filter(([,recipients])=>recipients.includes(unit.instanceId)).map(([source])=>source).sort();
+  const grants=studentGrantRows(unit);
+  assert.deepEqual(grants.map(row=>row.sourceInstanceId).sort(),expectedSources,'Exact independent physical source provenance for '+unit.instanceId);
+  assert.equal((unit.abilities||[]).filter(a=>a.canonicalId==='core-deep-strike').length,expectedSources.length?1:0,'One canonical Deep Strike ability irrespective of source count');
+  for(const row of grants){
+   assert.equal(row.targetInstanceId,unit.instanceId);assert.deepEqual(row.sourceFields,[['text']]);
+   const owner=projection.units.find(source=>source.instanceId===row.sourceInstanceId);
+   assert.equal(row.sourceCompositionId,owner.enhancementAssignments[0].modelScopeId,'Grant retains exact Enhancement MODEL source');
+   assert.equal(row.targetModelInstanceId,null,'UNIT ability is not a grant to every MODEL');
+  }
+ }
+}
 test('student-multiple-physical-source-provenance-remains-explicit',()=>{
  const text=header(['Auxiliary Cadre'])+fixture('unit-kroot-trail-shaper',{enhancement:'Student of Kauyon'}).text+
   fixture('unit-kroot-war-shaper',{enhancement:'Student of Kauyon'}).text+fixture('unit-kroot-carnivores').text+fixture('unit-kroot-farstalkers').text;
- const state=ready(text).roster;
+ const service=make(),state=ready(text,{},service).roster,run=runtime(state);
  let inventory=setTauStudentChoice(book,state,'parsed-unit-1',['parsed-unit-3']);
  inventory=setTauStudentChoice(book,inventory,'parsed-unit-2',['parsed-unit-4']);
- assert.deepEqual(make().load(inventory),inventory,'Distinct known source choices can be saved as inventory');
- const run=runtime(state),previous=run.snapshot();
- // A second assigned bearer with an empty set already differs from the first
- // bearer. The target-only gate must not treat the first decision as theirs.
- assert.throws(()=>run.setStudentChoice('parsed-unit-1',['parsed-unit-3']),/CAPABILITY_MISSING/,'Do not claim merged grants as pairwise provenance');
- assert.throws(()=>run.load(inventory),/CAPABILITY_MISSING/,'Two independently chosen sets cannot become a single union grant');
- assert.deepEqual(run.state,previous,'Unsupported source dispatch leaves previous runtime unchanged');
+ assert.deepEqual(make().load(inventory),inventory,'Distinct source decisions save as physical inventory');
+ run.load(inventory);
+ assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']});
+ const saved=run.snapshot(),effective=clone(run.projection);
+ negative('student-source-removed-with-stale-choice',()=>{const bad=clone(saved);bad.units[0].enhancementIds=[];bad.units[0].enhancementAssignments=[];bad.units[0].mfmEnhancementRecordIds=[];assert.throws(()=>run.load(bad),/Student of Kauyon requires/);assert.deepEqual(run.snapshot(),saved,'Stale source edit is rejected atomically');});
+ assert.deepEqual(runtime(saved).projection,effective,'Multiple-source grants survive snapshot/load');
+ run.load(saved);assert.deepEqual(run.projection,effective,'Recompute never accumulates source grants');
+ service.load(saved);assert.deepEqual(ready(text,{},service).roster,saved,'Same-input reimport preserves exact source choices');
+ assert.deepEqual(runtime(service.snapshot()).projection,effective,'Reimport preserves exact computed provenance');
+ run.setStudentChoice('parsed-unit-2',['parsed-unit-3']);
+ assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-3']});
+ run.setStudentChoice('parsed-unit-1',[]);
+ assertStudentPairs(run.projection,{'parsed-unit-2':['parsed-unit-3']});
+ run.setStudentChoice('parsed-unit-2',['parsed-unit-4']);
+ assertStudentPairs(run.projection,{'parsed-unit-2':['parsed-unit-4']});
+ run.setStudentChoice('parsed-unit-1',['parsed-unit-3']);
+ const removal=run.snapshot(),source=removal.units[0];
+ source.enhancementIds=[];source.enhancementAssignments=[];source.mfmEnhancementRecordIds=[];source.selectedTauSourceChoiceIds=[];
+ for(const container of [source,...source.modelRows,...source.modelRows.flatMap(row=>row.loadouts||[])])
+  container.selections=container.selections.filter(selection=>!selection.recipientInstanceIds);
+ run.load(removal);assertStudentPairs(run.projection,{'parsed-unit-2':['parsed-unit-4']});
+ run.load(saved);assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']});
+ const removedPhysicalSource=clone(saved);removedPhysicalSource.units=removedPhysicalSource.units.filter(unit=>unit.instanceId!=='parsed-unit-1');
+ run.load(removedPhysicalSource);assertStudentPairs(run.projection,{'parsed-unit-2':['parsed-unit-4']});
+ run.load(saved);assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']});
+ run.setStudentChoice('parsed-unit-1',[]);run.setStudentChoice('parsed-unit-2',[]);assertStudentPairs(run.projection,{});
  records.runtimeCases.push({id:'student-independent-multiple-source-recipients',source:'detachment-auxiliary-cadre:enhancement:1',
-  expected:{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']},actual:'Inventory and both source decisions saved; runtime explicitly rejects unsupported merged-source dispatch',
-  status:'BLOCKED',reason:'Current shared recipient FIELD context identifies target UNIT, not the active physical source for independent source-to-recipient provenance'});
+  expected:{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']},
+  actual:Object.fromEntries(effective.units.filter(u=>studentGrantRows(u).length).map(u=>[u.instanceId,studentGrantRows(u).map(r=>r.sourceInstanceId)])),status:'PASS'});
+ records.fixtures.push({id:'student-independent-sources',text,expected:[{source:'parsed-unit-1',recipientInstanceIds:['parsed-unit-3']},{source:'parsed-unit-2',recipientInstanceIds:['parsed-unit-4']}]});
+});
+
+test('stage4b-independent-marker-and-student-mutation-controls',()=>{
+ const diagnostic=(domain,state)=>{const service=createRosterRuntime(domain,createTauRuleSchema({bindContext:tauSourceChoiceContext(domain,state)}));service.load(state);return service.projection;};
+ const id='unit-commander-in-coldstar-battlesuit',text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture(id).text;
+ const state=ready(text).roster,baseline=runtime(ready(header()+fixture(id).text+fixture(id).text).roster).projection;
+ const local=markerOccurrences.find(row=>row.unitId===id).optionId;
+ const assertMarkerDomain=domain=>{
+  const rule=domain.entities.find(entity=>entity.id===local),clause=rule.ruleContract.clauses.find(clause=>clause.id==='marker-drone-physical-unit');
+  assert.ok(clause,'Every source-backed occurrence requires its reference clause');
+  assert.equal(rule.ruleContract.clauses.filter(row=>row.id==='marker-drone-physical-unit').length,1,'No duplicated physical equipment reference clause');
+  assert.ok(rule.ruleContract.canonicalRuleReferences.includes(markerId),'One canonical generic factual owner');
+  const effect=clause.rosterEffects[0];
+  assert.equal(effect.referencedRuleId,markerId,'Exact generic Marker identity');
+  assert.equal(effect.sourceRuleEvidence.evidence.otherEntityId,markerId,'Reference resolves the one generic source');
+  assert.equal(effect.sourceRuleEvidence.evidence.quote,'The bearer’s unit has the MARKERLIGHT keyword','Only the static keyword clause is executable');
+  assert.ok(index.get(markerId).data.text.includes(effect.sourceRuleEvidence.evidence.quote));
+  assert.deepEqual(domain.entities.find(entity=>entity.id===markerId).data,index.get(markerId).data,'Full original source including conditional Observer permission remains unchanged');
+  assert.deepEqual(effect.provenance.sourceEvidence,index.get(markerId).provenance,'Reference retains exact source provenance');
+  const projection=diagnostic(domain,state);assertMarkerOnly(projection,'parsed-unit-1',baseline);
+ };
+ assertMarkerDomain(book);
+ for(const [id,mutate]of [
+  ['marker-removed-executable-reference',rule=>rule.ruleContract.clauses=rule.ruleContract.clauses.filter(clause=>clause.id!=='marker-drone-physical-unit')],
+  ['marker-wrong-generic-root',rule=>rule.ruleContract.canonicalRuleReferences=['drone-shield-drone']],
+  ['marker-wrong-root-provenance',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].provenance.sourceEvidence.sourceId='foreign-source'],
+  ['marker-wrong-field-gate',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].conditions[0].predicate.arguments.equals=false],
+  ['marker-wrong-keyword',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].keyword='FLY'],
+  ['marker-duplicate-reference',rule=>rule.ruleContract.clauses.push(clone(rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit')))]
+ ])mutation(id,()=>{const bad=clone(book);mutate(bad.entities.find(entity=>entity.id===local));assert.throws(()=>assertMarkerDomain(bad),'Independent source/recipient oracle must reject mutation');});
+ const studentText=header(['Auxiliary Cadre'])+fixture('unit-kroot-trail-shaper',{enhancement:'Student of Kauyon'}).text+
+  fixture('unit-kroot-war-shaper',{enhancement:'Student of Kauyon'}).text+fixture('unit-kroot-carnivores').text+fixture('unit-kroot-farstalkers').text;
+ let choices=ready(studentText).roster;
+ choices=setTauStudentChoice(book,choices,'parsed-unit-1',['parsed-unit-3']);choices=setTauStudentChoice(book,choices,'parsed-unit-2',['parsed-unit-4']);
+ const paired=bindTauStudentPairs(book,choices),ruleId='detachment-auxiliary-cadre:enhancement:1';
+ const pairEffects=domain=>domain.entities.find(entity=>entity.id===ruleId).ruleContract.clauses.flatMap(clause=>clause.rosterEffects||[]).filter(effect=>effect.operation==='GRANT_ABILITY');
+ const assertPairs=domain=>assertStudentPairs(diagnostic(domain,choices),{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']});
+ assertPairs(paired);assert.equal(pairEffects(paired).length,2,'One derived executable pair per selected source and recipient');
+ for(const [id,mutate]of [
+  ['student-remove-pair-binding',domain=>domain.entities.find(entity=>entity.id===ruleId).ruleContract.clauses=domain.entities.find(entity=>entity.id===ruleId).ruleContract.clauses.filter(clause=>!(clause.rosterEffects||[]).some(effect=>effect.operation==='GRANT_ABILITY'))],
+  ['student-missing-source-gate',domain=>pairEffects(domain).forEach(effect=>effect.conditions=effect.conditions.filter(condition=>condition.binding!=='SOURCE'))],
+  ['student-missing-target-gate',domain=>pairEffects(domain).forEach(effect=>effect.conditions=effect.conditions.filter(condition=>condition.binding!=='TARGET'))],
+  ['student-wrong-source-instance',domain=>pairEffects(domain)[0].conditions.find(condition=>condition.binding==='SOURCE').predicate.arguments.equals='foreign-source'],
+  ['student-wrong-target-instance',domain=>pairEffects(domain)[0].conditions.find(condition=>condition.binding==='TARGET').predicate.arguments.equals='parsed-unit-4'],
+  ['student-wrong-ability',domain=>pairEffects(domain)[0].ability.canonicalId='core-infiltrators']
+ ])mutation(id,()=>{const bad=clone(paired);mutate(bad);assert.throws(()=>assertPairs(bad),'Independent physical source-to-recipient ledger must reject mutation');});
 });
 
 test('native-core-reference-bags-preserved-through-import',()=>{
@@ -495,6 +659,20 @@ test('negative-invalid-import-never-replaces-valid-saved-state',()=>{
   ['missing-native-source',state=>state.units[0].modelRows[0].sourceRuleReferenceIds=[]],
   ['wrong-mfm-source-id',state=>state.units[0].mfmUnitRecordId='foreign-mfm-owner']
  ])mutation(id,()=>{const bad=clone(valid);mutate(bad);assert.throws(()=>service.load(bad));assert.deepEqual(service.state,valid);});
+});
+
+test('stage4-original20-scenario-identities-and-independent-expectations-unchanged',()=>{
+ // Pinned to the original Stage4 reviewed scenario records, not contracts or
+ // a desired Stage4B status distribution. Additional controls stay separate.
+ const expectedFingerprint='6C84C061158673553A34992D6B0F55B8328437C6D191CC3764FC1785803DCB83';
+ assert.equal(records.runtimeCases.length,20);
+ const fingerprint=createHash('sha256').update(JSON.stringify(records.runtimeCases.map(({id,expected})=>({id,expected})))).digest('hex').toUpperCase();
+ assert.equal(fingerprint,expectedFingerprint,'Original ordered scenario IDs and EXPECTED must remain unchanged');
+ const originallyBlocked=new Set(['marker-drone-unit-grant','shield-drone-selected-physical-model-wounds',
+  'prototype-Thermoneutronic Projector','prototype-Plasma Accelerator Rifle','prototype-Supernova Launcher',
+  'student-independent-multiple-source-recipients']);
+ records.originalScenarioComparison=records.runtimeCases.map(row=>({id:row.id,before:originallyBlocked.has(row.id)?'BLOCKED':'PASS',after:row.status}));
+ records.originalScenarioExpectedFingerprint=fingerprint;
 });
 
 assert.deepEqual(book,original,'QA/import/runtime must not mutate canonical source-owned book');

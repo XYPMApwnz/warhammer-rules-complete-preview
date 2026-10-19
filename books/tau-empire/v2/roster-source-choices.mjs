@@ -121,23 +121,47 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
 
 export function tauSourceChoiceContext(book,state) {
   validateTauSourceChoices(book,state);
-  const selected=new Set(state.units.flatMap(unit=>decisionRows(unit).flatMap(decision=>decision.recipientInstanceIds)));
-  return context=>context?{...context,roster:{...context.roster,[tauStudentContextField]:selected.has(context.instanceId)}}:context;
+  // This context is bound only after the import boundary validates equipment
+  // identity, source caption, quantity and provenance. Shared option IDs alone
+  // cannot distinguish different drones selected from the same source field.
+  const markers=new Set(state.units.filter(unit=>selections(unit).some(selection=>
+    selection.sourceEquipmentIdentity==='drone-marker-drone'&&selection.physicalQuantity>0)).map(unit=>unit.instanceId));
+  return context=>context?{...context,roster:{...context.roster,
+    tauPhysicalUnitInstanceId:context.instanceId||'',tauMarkerSelected:markers.has(context.instanceId)}}:context;
 }
 
-/** Runtime capability boundary, not army legality. Inventory and confirmed
- * choices remain importable. A TARGET-only FIELD cannot bind a different set
- * to each executing instance of the same canonical Enhancement. Reject that
- * computation rather than attach every source's provenance to the union. */
-export function validateTauSourceChoiceRuntimeCapabilities(book,state) {
+/** Lower validated decisions to existing SOURCE and TARGET FIELD conditions.
+ * Physical IDs are runtime bindings, never new factual owners. Rebuild from
+ * the canonical display clause on every load, so choices cannot accumulate. */
+export function bindTauStudentPairs(book,state) {
   validateTauSourceChoices(book,state);
-  const rule=indexOf(book).get(tauStudentRuleId);
-  if(!state.detachmentIds.includes(rule.parentId))return state;
-  const sources=state.units.filter(unit=>unit.enhancementIds.includes(rule.id));
-  const recipientSets=sources.map(unit=>[...new Set(decisionRows(unit).flatMap(decision=>decision.recipientInstanceIds))].sort());
-  requireValue(new Set(recipientSets.map(ids=>JSON.stringify(ids))).size<=1,
-    'CAPABILITY_MISSING: Student of Kauyon cannot bind different physical recipient sets to multiple physical sources with the existing TARGET-only FIELD. Inventory and confirmed selections remain importable; computation requires pairwise source/recipient binding.');
-  return state;
+  const result=clone(book),rule=indexOf(result).get(tauStudentRuleId);
+  requireValue(rule.data.text===quote,'Unreviewed Student of Kauyon source');
+  const contract=rule.ruleContract;
+  contract.clauses=contract.clauses.filter(clause=>!clause.physicalSourcePair);
+  const template=contract.clauses.find(clause=>clause.rosterClassificationNote?.sourceChoice===rule.id);
+  requireValue(template?.rosterClassification==='DISPLAY_ONLY'&&template.rosterEffects.length===0,
+    'Student requires the original canonical display clause before physical lowering');
+  if(!state.detachmentIds.includes(rule.parentId))return result;
+  const sources=state.units.filter(unit=>unit.enhancementIds.includes(rule.id)).sort((a,b)=>a.instanceId.localeCompare(b.instanceId));
+  for(const source of sources)for(const decision of decisionRows(source))for(const recipient of [...decision.recipientInstanceIds].sort()){
+    const pair={sourceInstanceId:source.instanceId,recipientInstanceId:recipient,sourceModelScopeId:decision.sourceModelScopeId};
+    const clause=clone(template),proof={field:['text'],quote:rule.data.text};
+    clause.id=rule.id+'::physical-pair/'+JSON.stringify([source.instanceId,recipient]);
+    clause.physicalSourcePair=clone(pair);clause.rosterClassification='ROSTER_EXECUTABLE';
+    clause.rosterClassificationNote={reason:'Confirmed physical source/recipient pair using existing typed FIELD conditions',
+      sourceChoice:rule.id,canonicalClauseId:template.id};
+    clause.rosterEffects=[{id:clause.id+'/deep-strike',operation:'GRANT_ABILITY',
+      ability:{canonicalId:'core-deep-strike',parameters:{}},targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',unitScope:'PHYSICAL',
+      conditions:[['SOURCE',source.instanceId],['TARGET',recipient]].map(([binding,id])=>({binding,
+        predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
+          arguments:{key:'tauPhysicalUnitInstanceId',equals:id},evidence:clone(proof)}})),
+      evidence:clone(proof),sourceFields:[['text']],lifetime:'WHILE_ASSIGNED',
+      provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,
+        sourceEvidence:clone(rule.provenance),physicalSourcePair:clone(pair)}}];
+    contract.clauses.push(clause);
+  }
+  return result;
 }
 
 function physicalInput(state) {

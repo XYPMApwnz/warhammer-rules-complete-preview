@@ -5,9 +5,10 @@ import {fileURLToPath} from 'node:url';
 import {buildTauContracts,createTauRuleSchema} from './rule-contract-build.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
-import {addTauSourceChoices,tauStudentRuleId,tauStudentContextField} from './roster-source-choices.mjs';
+import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const copy=structuredClone;
@@ -56,6 +57,39 @@ export function buildTauImportBook(){
     nativeReferenceBindings:book.entities.filter(e=>e.kind==='RULE_REFERENCE').map(e=>({id:e.id,ownerId:e.parentId,
       label:e.data.label,recipient:copy(e.data.recipient),provenance:copy(e.provenance)})),
     defaults:'OMITTED_LOADOUT_UNKNOWN',legality:'NOT_ASSESSED',exportSource:copy(source.exportSource)};
+  // The local occurrence owns selection/dispatch; the generic rule remains
+  // the sole factual owner. This is the established reference-lowering path.
+  const marker=index.get('drone-marker-drone'),markerQuote='The bearer’s unit has the MARKERLIGHT keyword';
+  assert.ok(marker.data.text.includes(markerQuote)&&marker.provenance.sourceId);
+  const markerBindings=equipmentSelections.filter(row=>row.genericEquipmentId===marker.id);
+  for(const binding of markerBindings){
+    assert.equal(binding.canonicalEquipmentIds.length,1);
+    const local=index.get(binding.canonicalEquipmentIds[0]);
+    assert.equal(local.parentId,binding.ownerId);assert.equal(local.kind,'WARGEAR_OPTION');
+    assert.deepEqual(binding.canonicalFieldPaths[local.id],['/text']);
+    assert.ok(!local.ruleContract,'Duplicate local equipment reference contract');
+    const proof={field:['text'],quote:local.data.text};
+    const owner={id:'owner',subject:'UNIT',purpose:'OWNER',allegiance:'FRIENDLY',
+      selector:{predicate:'ALWAYS',subject:'UNIT',arguments:{},contextLevel:'STATIC',evidence:copy(proof)},conditions:[]};
+    const sourceRuleEvidence={evidence:{otherEntityId:marker.id,field:['text'],quote:markerQuote}};
+    const effect={id:local.id+'::marker-drone-physical-unit',operation:'GRANT_UNIT_KEYWORD',keyword:'MARKERLIGHT',
+      targetBinding:'SOURCE_UNIT',targetSubject:'UNIT',unitScope:'PHYSICAL',lifetime:'WHILE_EQUIPPED',
+      sourceFields:[['text']],evidence:copy(proof),referencedRuleId:marker.id,sourceRuleEvidence,
+      conditions:[{binding:'SOURCE',predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
+        arguments:{key:'tauMarkerSelected',equals:true},evidence:copy(proof)}}],
+      provenance:{canonicalRuleId:marker.id,canonicalOwnerId:marker.parentId||book.bookId,
+        canonicalClauseId:'drone-marker-drone#markerlight',sourceEvidence:copy(marker.provenance),
+        physicalEquipmentReference:{entityId:local.id,field:['text'],provenance:copy(local.provenance)}}};
+    const declaration={kind:'OTHER_RULE',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',
+      canonicalRuleReferences:[marker.id],roles:[owner],conditions:[],sourceFields:[['text']],clauses:[{
+        id:'marker-drone-physical-unit',roles:[copy(owner)],conditions:[],sourceFields:[['text']],evidence:copy(proof),
+        sourceText:markerQuote,rosterClassification:'ROSTER_EXECUTABLE',
+        rosterClassificationNote:{reason:'Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional'},rosterEffects:[]}]};
+    local.ruleContract=bindCanonicalContract({entity:local,bookId:book.bookId,schema:'rule-contract/v2',
+      declaration:bindDeclarationClauses(declaration),index});
+    inspectDeclarationEvidence(sourceRuleEvidence,index,local);
+    local.ruleContract.clauses[0].rosterEffects=[effect];
+  }
   // The platform's selected item is an option, whereas its characteristic
   // declaration is an ordinary ability (not a wargear-ability inventory row).
   // Bind the existing operation to that exact option; keep the rule's owner,
@@ -76,18 +110,14 @@ export function buildTauImportBook(){
   assert.ok(clause&&clause.rosterEffects.length===0);
   const core=createEffectiveCoreCatalog().getById('core-deep-strike');assert.equal(core.state,'FULL_CONTENT');
   book.rosterAbilityReferences[core.id]={id:core.id,title:core.title,parameters:{},provenance:copy(core.provenance)};
-  clause.rosterClassification='ROSTER_EXECUTABLE';clause.conditions=[];
-  clause.rosterClassificationNote={reason:'Physical recipients explicitly selected and validated against source; no battle simulation',
+  clause.rosterClassification='DISPLAY_ONLY';clause.conditions=[];
+  clause.rosterClassificationNote={reason:'Validated physical source/recipient pairs are lowered at the T’au runtime boundary; no battle simulation',
     sourceChoice:tauStudentRuleId};
-  clause.rosterEffects=[{id:tauStudentRuleId+'::selected-recipients',operation:'GRANT_ABILITY',
-    ability:{canonicalId:core.id,parameters:{}},targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',unitScope:'PHYSICAL',
-    conditions:[{binding:'TARGET',predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
-      arguments:{key:tauStudentContextField,equals:true},evidence:{field:['text'],quote:rule.data.text}}}],
-    sourceFields:[['text']],evidence:{field:['text'],quote:rule.data.text},lifetime:'WHILE_ASSIGNED',
-    provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,sourceEvidence:copy(rule.provenance)}}];
+  clause.rosterEffects=[];
   book.importReadiness={stage:4,status:'PARTIAL',frontendVerified:false,realNewRecruitExportTested:false,
-    remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE','COMMON_DRONE_EFFECT_SOURCE_AND_MODEL_BINDINGS','MULTIPLE_STUDENT_SOURCE_RECIPIENT_PAIRS','DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],
-    student:'PHYSICAL_SOURCE_CHOICE',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
+    remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE','SHIELD_DRONE_PHYSICAL_MODEL_BINDING'],
+    unprovenExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],markerOccurrenceCount:markerBindings.length,
+    student:'PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
   const schema=createTauRuleSchema();schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   return book;

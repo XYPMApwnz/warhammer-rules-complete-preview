@@ -17074,68 +17074,12 @@
               "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike."
             },
             "sourceText": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike.",
-            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Physical recipients explicitly selected and validated against source; no battle simulation",
+              "reason": "Validated physical source/recipient pairs are lowered at the T’au runtime boundary; no battle simulation",
               "sourceChoice": "detachment-auxiliary-cadre:enhancement:1"
             },
-            "rosterEffects": [
-              {
-                "id": "detachment-auxiliary-cadre:enhancement:1::selected-recipients",
-                "operation": "GRANT_ABILITY",
-                "ability": {
-                  "canonicalId": "core-deep-strike",
-                  "parameters": {}
-                },
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
-                "unitScope": "PHYSICAL",
-                "conditions": [
-                  {
-                    "binding": "TARGET",
-                    "predicate": {
-                      "predicate": "FIELD",
-                      "subject": "UNIT",
-                      "contextLevel": "ROSTER",
-                      "arguments": {
-                        "key": "tauStudentRecipient",
-                        "equals": true
-                      },
-                      "evidence": {
-                        "field": [
-                          "text"
-                        ],
-                        "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike."
-                      }
-                    }
-                  }
-                ],
-                "sourceFields": [
-                  [
-                    "text"
-                  ]
-                ],
-                "evidence": {
-                  "field": [
-                    "text"
-                  ],
-                  "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike."
-                },
-                "lifetime": "WHILE_ASSIGNED",
-                "provenance": {
-                  "canonicalRuleId": "detachment-auxiliary-cadre:enhancement:1",
-                  "canonicalOwnerId": "detachment-auxiliary-cadre",
-                  "sourceEvidence": {
-                    "sourceId": "tau-empire-waha-11e-2026-09-28",
-                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
-                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
-                    "sourceEntityId": "detachment-auxiliary-cadre:enhancement:1",
-                    "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
-                    "authority": "ACCEPTED_SECONDARY"
-                  }
-                }
-              }
-            ]
+            "rosterEffects": []
           }
         ],
         "detachmentId": "detachment-auxiliary-cadre",
@@ -22236,7 +22180,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-breacher-team"
+      "parentId": "unit-breacher-team",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-breacher-team:wargear:1",
+        "ownerId": "unit-breacher-team",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-breacher-team:wargear:1::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-breacher-team:wargear:1",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Breacher-Team.html",
+                      "sha256": "C4EDF5D645091B7C481B60F5233492CD360747780C69FF7B343CB0EFB410953C",
+                      "sourceEntityId": "datasheet-breacher-team:wargear:1",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-breacher-team:section:1",
@@ -22849,7 +22954,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[1]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-strike-team"
+      "parentId": "unit-strike-team",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-strike-team:wargear:1",
+        "ownerId": "unit-strike-team",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-strike-team:wargear:1::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-strike-team:wargear:1",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Strike-Team.html",
+                      "sha256": "8DAB7916225CEF3A3AA8ADC1D7AA8078B9FD2BA73583F7B6C0A49AF4B30DE10E",
+                      "sourceEntityId": "datasheet-strike-team:wargear:1",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[1]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-strike-team:wargear:2",
@@ -23389,7 +23655,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-cadre-fireblade"
+      "parentId": "unit-cadre-fireblade",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-cadre-fireblade:wargear:1",
+        "ownerId": "unit-cadre-fireblade",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-cadre-fireblade:wargear:1::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-cadre-fireblade:wargear:1",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+                      "sha256": "B56769DCF46869C51BED2253AA7A8F467374A86F1AA7EC1317D4489FD5579987",
+                      "sourceEntityId": "datasheet-cadre-fireblade:wargear:1",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-cadre-fireblade:section:1",
@@ -24331,7 +24758,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-commander-in-coldstar-battlesuit"
+      "parentId": "unit-commander-in-coldstar-battlesuit",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-commander-in-coldstar-battlesuit:wargear:2",
+        "ownerId": "unit-commander-in-coldstar-battlesuit",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-commander-in-coldstar-battlesuit:wargear:2::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-commander-in-coldstar-battlesuit:wargear:2",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+                      "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+                      "sourceEntityId": "datasheet-commander-in-coldstar-battlesuit:wargear:2",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-commander-in-coldstar-battlesuit:wargear:3",
@@ -25597,7 +26185,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-commander-in-enforcer-battlesuit"
+      "parentId": "unit-commander-in-enforcer-battlesuit",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-commander-in-enforcer-battlesuit:wargear:2",
+        "ownerId": "unit-commander-in-enforcer-battlesuit",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-commander-in-enforcer-battlesuit:wargear:2::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-commander-in-enforcer-battlesuit:wargear:2",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+                      "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+                      "sourceEntityId": "datasheet-commander-in-enforcer-battlesuit:wargear:2",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-commander-in-enforcer-battlesuit:wargear:3",
@@ -26541,7 +27290,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-ethereal"
+      "parentId": "unit-ethereal",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-ethereal:wargear:2",
+        "ownerId": "unit-ethereal",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-ethereal:wargear:2::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-ethereal:wargear:2",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+                      "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+                      "sourceEntityId": "datasheet-ethereal:wargear:2",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-ethereal:section:1",
@@ -37026,7 +37936,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-pathfinder-team"
+      "parentId": "unit-pathfinder-team",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-pathfinder-team:wargear:2",
+        "ownerId": "unit-pathfinder-team",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-pathfinder-team:wargear:2::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-pathfinder-team:wargear:2",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+                      "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+                      "sourceEntityId": "datasheet-pathfinder-team:wargear:2",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-pathfinder-team:wargear:3",
@@ -38077,7 +39148,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-stealth-battlesuits"
+      "parentId": "unit-stealth-battlesuits",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-stealth-battlesuits:wargear:2",
+        "ownerId": "unit-stealth-battlesuits",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Stealth Shas’vre can be equipped with 1 marker drone."
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Stealth Shas’vre can be equipped with 1 marker drone."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Stealth Shas’vre can be equipped with 1 marker drone."
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-stealth-battlesuits:wargear:2::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Stealth Shas’vre can be equipped with 1 marker drone."
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "The Stealth Shas’vre can be equipped with 1 marker drone."
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-stealth-battlesuits:wargear:2",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+                      "sha256": "49FAA435568DC59D6DE3DBB91A76748CCC55E638B00CDCC98217DD12B2744BA5",
+                      "sourceEntityId": "datasheet-stealth-battlesuits:wargear:2",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[2]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-stealth-battlesuits:wargear:3",
@@ -39522,7 +40754,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[4]/ul/li[3]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-broadside-battlesuits"
+      "parentId": "unit-broadside-battlesuits",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-broadside-battlesuits:wargear:3",
+        "ownerId": "unit-broadside-battlesuits",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-broadside-battlesuits:wargear:3::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-broadside-battlesuits:wargear:3",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Broadside-Battlesuits.html",
+                      "sha256": "00966846F496F3FE98B01DF956A092E1018D19C629C3B600518BFD927A397ABD",
+                      "sourceEntityId": "datasheet-broadside-battlesuits:wargear:3",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[4]/ul/li[3]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-broadside-battlesuits:wargear:4",
@@ -40131,7 +41524,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[3]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-crisis-fireknife-battlesuits"
+      "parentId": "unit-crisis-fireknife-battlesuits",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+        "ownerId": "unit-crisis-fireknife-battlesuits",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-crisis-fireknife-battlesuits:wargear:3::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+                      "sha256": "FC567EBD4F9B850252C57CF624EF5FF715E367531D6A5E5C4BA7B2DDA373F11F",
+                      "sourceEntityId": "datasheet-crisis-fireknife-battlesuits:wargear:3",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[3]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-crisis-fireknife-battlesuits:section:1",
@@ -40810,7 +42364,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[3]",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-crisis-starscythe-battlesuits"
+      "parentId": "unit-crisis-starscythe-battlesuits",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-crisis-starscythe-battlesuits:wargear:3",
+        "ownerId": "unit-crisis-starscythe-battlesuits",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-crisis-starscythe-battlesuits:wargear:3::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-crisis-starscythe-battlesuits:wargear:3",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+                      "sha256": "04D78E9CA3C018BDE71F1CC2763F26FD1FBEB412793B46979D45BAEF919330FA",
+                      "sourceEntityId": "datasheet-crisis-starscythe-battlesuits:wargear:3",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li[3]",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-crisis-starscythe-battlesuits:section:1",
@@ -41365,7 +43080,168 @@
         "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "parentId": "unit-crisis-sunforge-battlesuits"
+      "parentId": "unit-crisis-sunforge-battlesuits",
+      "ruleContract": {
+        "schema": "rule-contract/v2",
+        "ruleId": "datasheet-crisis-sunforge-battlesuits:wargear:1",
+        "ownerId": "unit-crisis-sunforge-battlesuits",
+        "sourceId": "tau-empire-waha-11e-2026-09-28",
+        "kind": "OTHER_RULE",
+        "executionMode": "DECLARATIVE_APPLICABILITY",
+        "contextLevel": "ROSTER",
+        "canonicalRuleReferences": [
+          "drone-marker-drone"
+        ],
+        "roles": [
+          {
+            "id": "owner",
+            "subject": "UNIT",
+            "purpose": "OWNER",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "ALWAYS",
+              "subject": "UNIT",
+              "arguments": {},
+              "contextLevel": "STATIC",
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+              }
+            },
+            "conditions": []
+          }
+        ],
+        "conditions": [],
+        "sourceFields": [
+          [
+            "text"
+          ]
+        ],
+        "clauses": [
+          {
+            "id": "marker-drone-physical-unit",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "The bearer’s unit has the MARKERLIGHT keyword",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Exact validated generic equipment identity on the physical UNIT; Observer permission remains conditional"
+            },
+            "rosterEffects": [
+              {
+                "id": "datasheet-crisis-sunforge-battlesuits:wargear:1::marker-drone-physical-unit",
+                "operation": "GRANT_UNIT_KEYWORD",
+                "keyword": "MARKERLIGHT",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "unitScope": "PHYSICAL",
+                "lifetime": "WHILE_EQUIPPED",
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                },
+                "referencedRuleId": "drone-marker-drone",
+                "sourceRuleEvidence": {
+                  "evidence": {
+                    "otherEntityId": "drone-marker-drone",
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The bearer’s unit has the MARKERLIGHT keyword"
+                  }
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "tauMarkerSelected",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                      }
+                    }
+                  }
+                ],
+                "provenance": {
+                  "canonicalRuleId": "drone-marker-drone",
+                  "canonicalOwnerId": "tau-empire",
+                  "canonicalClauseId": "drone-marker-drone#markerlight",
+                  "sourceEvidence": {
+                    "sourceId": "tau-empire-waha-11e-2026-09-28",
+                    "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+                    "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+                    "sourceEntityId": "drone-marker-drone",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[18]/div/div[3]/table/tbody[2]/tr/td",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "physicalEquipmentReference": {
+                    "entityId": "datasheet-crisis-sunforge-battlesuits:wargear:1",
+                    "field": [
+                      "text"
+                    ],
+                    "provenance": {
+                      "sourceId": "tau-empire-waha-11e-2026-09-28",
+                      "document": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Sunforge-Battlesuits.html",
+                      "sha256": "270299F5C03EECE9EE43E7936C0BB97753B1DBE83BD49C0583699E3AEB39DEAC",
+                      "sourceEntityId": "datasheet-crisis-sunforge-battlesuits:wargear:1",
+                      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[1]/div[3]/ul/li",
+                      "authority": "ACCEPTED_SECONDARY"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "datasheet-crisis-sunforge-battlesuits:section:1",
@@ -81879,11 +83755,13 @@
     "realNewRecruitExportTested": false,
     "remainingBlockers": [
       "EXACT_DUPLICATE_WEAPON_OCCURRENCE",
-      "COMMON_DRONE_EFFECT_SOURCE_AND_MODEL_BINDINGS",
-      "MULTIPLE_STUDENT_SOURCE_RECIPIENT_PAIRS",
+      "SHIELD_DRONE_PHYSICAL_MODEL_BINDING"
+    ],
+    "unprovenExportFormats": [
       "DIRECT_GENERIC_WEAPON_ONLY_IMPORT"
     ],
-    "student": "PHYSICAL_SOURCE_CHOICE",
+    "markerOccurrenceCount": 12,
+    "student": "PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING",
     "krootBodyguard": "BOOK_BOUNDARY_STARTING_STRENGTH_GATE"
   }
 }

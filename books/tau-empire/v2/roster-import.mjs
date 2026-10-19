@@ -4,7 +4,7 @@ import {validateRoster,formRoster,selections,changeAttachment} from '../../share
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
-  tauSourceChoiceContext,preserveTauSourceChoices,validateTauSourceChoiceRuntimeCapabilities} from './roster-source-choices.mjs';
+  tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs} from './roster-source-choices.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -155,15 +155,16 @@ export function createTauRosterImport(input){
 /** Existing runtime owns execution and projection. This book boundary validates
  * physical source decisions before loading, so a rejected edit is atomic. */
 export function createTauRosterRuntime(book){
-  let bindContext=context=>context;
-  const schema=createTauRuleSchema({bindContext:context=>bindContext(context)});
-  const runtime=createRosterRuntime(book,schema),imports=createTauRosterImport(book);
+  let runtime=createRosterRuntime(book,createTauRuleSchema());
+  const imports=createTauRosterImport(book);
   const service={get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
-      validateTauSourceChoiceRuntimeCapabilities(book,value);
-      const candidate=imports.load(value),previous=bindContext;bindContext=tauSourceChoiceContext(book,candidate);
-      try{return runtime.load(candidate);}catch(error){bindContext=previous;throw error;}
+      const candidate=imports.load(value),boundBook=bindTauStudentPairs(book,candidate);
+      const schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(boundBook,candidate)});
+      schema.validateContracts(boundBook);
+      const next=createRosterRuntime(boundBook,schema);
+      const verified=next.load(candidate);runtime=next;return verified;
     },snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),related:(...args)=>runtime.related(...args),
     context:(...args)=>runtime.context(...args),
     attach:(leader,target)=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'ATTACH',leader,target)),

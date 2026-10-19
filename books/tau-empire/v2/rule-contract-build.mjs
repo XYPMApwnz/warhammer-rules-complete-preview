@@ -18,7 +18,9 @@ export function createTauRuleSchema({bindContext=context=>context}={}){
     attached:{contextLevel:'ROSTER',valueType:'boolean'},
     equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
-    tauStudentRecipient:{contextLevel:'ROSTER',valueType:'boolean'}
+    tauStudentRecipient:{contextLevel:'ROSTER',valueType:'boolean'},
+    tauPhysicalUnitInstanceId:{contextLevel:'ROSTER',valueType:'string'},
+    tauMarkerSelected:{contextLevel:'ROSTER',valueType:'boolean'}
   }});
   return {...schema,evaluatePredicate:(predicate,context)=>schema.evaluatePredicate(predicate,bindContext(context)),
     evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bindContext(context))};
