@@ -7,8 +7,9 @@ import {projectRosterRelated} from './related.mjs';
 const clone = value=>structuredClone(value);
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
-export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection}) {
+export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection,resolveWeaponPartitions}) {
   if(resolveWeaponSelection!==undefined && typeof resolveWeaponSelection!=='function')throw new TypeError('Invalid physical weapon selection resolver');
+  if(resolveWeaponPartitions!==undefined && typeof resolveWeaponPartitions!=='function')throw new TypeError('Invalid projection weapon partition resolver');
   ({evaluatePredicate,evaluateRole}=withRosterDetachments({evaluatePredicate,evaluateRole}));
   book=structuredClone(book);
   validateRosterEffects(book,validatePredicate,evaluatePredicate);
@@ -30,7 +31,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       return result;
     },
     load(snapshot) {
-      const verified=validateRoster(book,snapshot,policies), derived=executeRosterEffects(book,verified,{evaluatePredicate,resolveWeaponSelection});
+      const verified=validateRoster(book,snapshot,policies), derived=executeRosterEffects(book,verified,{evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions});
       state=verified;projection=derived;return service.state;
     },
     snapshot(){ if (!state) throw new TypeError('No roster');return clone(state); },

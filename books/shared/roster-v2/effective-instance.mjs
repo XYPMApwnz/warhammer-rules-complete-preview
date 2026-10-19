@@ -46,6 +46,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     return {canonicalId:id,ownerInstanceId:instanceId,subject:subject||null,
       modelScopeId:model?.scopeId||null,grantedRules};
   });
+  const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
     enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
@@ -54,9 +55,16 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
       fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities),
       ...(m.suppressedAbilityIds?{suppressedAbilityIds:[...m.suppressedAbilityIds]}:{})})),
-    weapons:[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))].map(w=>{
+    weapons:weapons.map(w=>{
+      const unambiguousLegacy=!w.quantityPartition&&weapons.filter(other=>other.canonicalProfileId===w.canonicalProfileId&&
+        (other.scopeId??null)===(w.scopeId??null)).length===1;
       const sources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC' && row.field==='criticalHitThreshold' &&
-        row.targetWeaponProfileId===w.canonicalProfileId && (row.targetCompositionId||null)===(w.scopeId||null)).map(row=>{
+        row.targetInstanceId===instanceId&&row.targetWeaponProfileId===w.canonicalProfileId &&
+        (row.targetCompositionId??null)===(w.scopeId??null)&&
+        (Object.hasOwn(row,'targetWeaponSelectionKey')||Object.hasOwn(row,'targetWeaponScopeId')
+          ? typeof w.selectionKey==='string'&&w.selectionKey.length>0&&row.targetWeaponSelectionKey===w.selectionKey&&
+            Object.hasOwn(row,'targetWeaponScopeId')&&row.targetWeaponScopeId===(w.scopeId??null)
+          : unambiguousLegacy)).map(row=>{
         const rule=records.get(row.ruleId),effect=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId)?.rosterEffects.find(e=>e.id===row.effectId);
         if(effect?.operation!=='MODIFY_RULE_METRIC'||effect.field!=='criticalHitThreshold'||effect.mode!=='SET'||row.targetInstanceId!==instanceId)
           throw new TypeError('Unresolved Critical Hit threshold provenance');

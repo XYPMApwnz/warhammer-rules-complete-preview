@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {projectEffectiveInstance} from './effective-instance.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-numeric:'+name;
 const evidence={field:['text'],quote:'Reviewed synthetic characteristic and recipient evidence.'};
@@ -58,10 +59,10 @@ function rule(book,state,name,{owner='alpha',parent='mixed',targetSubject='MODEL
     clauses:[{id:name+'/clause',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]};
   book.entities.push(entity);unit(state,owner).enhancementIds.push(entity.id);return effect;
 }
-function execute(book,state) {
+function execute(book,state,options={}) {
   const baseBook=clone(book),baseState=clone(state);
   evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),{...evaluator,...options});
   assert.deepEqual(book,baseBook,'Numeric operation mutated canonical facts');assert.deepEqual(state,baseState,'Numeric operation mutated imported state');
   return result;
 }
@@ -83,6 +84,86 @@ function proof(result,name,{source='alpha',target='alpha',profileName='a',weapon
   if(field==='skill')assert.equal(row.characteristic,characteristic,'BS and WS share a display field, not their typed identity');
   assert.deepEqual(row.sourceFields,[['text']]);assert.equal(row.lifetime,'ROSTER');
 }
+
+// Two occurrences deliberately share a canonical profile AND MODEL scope. Their
+// imported keys, never names or modifier values, distinguish their provenance.
+function occurrenceFixture() {
+  const setup=fixture(),entry=unit(setup.state,'leader');
+  entry.modelRows[0].selections=[{...selection('leader-profile-ranged',1),selectionKey:'selected'},
+    {...selection('leader-profile-ranged',1),selectionKey:'remainder'}];
+  for(const entity of setup.book.entities.filter(e=>e.kind==='DATASHEET'))
+    Object.assign(entity.data,{sectionIds:[],wargearOptionIds:[]});
+  return setup;
+}
+function occurrenceRule(book,state,name,{field='strength',value=2,operation='MODIFY_STAT'}={}) {
+  const effect=rule(book,state,name,{owner:'leader',parent:'leader',targetBinding:'SOURCE_MODEL',conditions:[],field,value,mode:operation==='MODIFY_RULE_METRIC'?'SET':'ADD'});
+  effect.operation=operation;
+  const contract=book.entities.find(e=>e.id===id(name)).ruleContract;
+  contract.roles[0].subject='MODEL';contract.roles[0].selector=atom('MODEL_ID','MODEL',{id:id('leader-profile')});
+  contract.assignment.selector=clone(contract.roles[0].selector);
+  return effect;
+}
+const chooseOccurrence=(rule,key,source,ownerModel)=>({unitInstanceId:source.instanceId,scopeId:ownerModel.scopeId,
+  selectionKey:key,canonicalProfileId:id('leader-profile-ranged')});
+function assertOccurrenceTrace(row,weapon,instance='leader') {
+  assert.equal(row.targetInstanceId,instance);assert.equal(row.targetWeaponProfileId,weapon.canonicalProfileId);
+  assert.equal(row.targetWeaponSelectionKey,weapon.selectionKey,'Trace must identify its actual weapon occurrence');
+  assert.equal(row.targetWeaponScopeId,weapon.scopeId??null,'Trace must preserve exact physical scope');
+}
+check('ordinary and selected numeric traces address each occurrence without collapsing independent sources',()=>{
+  const {book,state}=occurrenceFixture();occurrenceRule(book,state,'selected-strength');
+  occurrenceRule(book,state,'range-first',{field:'range',value:6});occurrenceRule(book,state,'range-second',{field:'range',value:6});
+  const result=execute(book,state,{resolveWeaponSelection:({rule,source,ownerModel})=>rule.id===id('selected-strength')?
+    chooseOccurrence(rule,'selected',source,ownerModel):undefined});
+  const weapons=unit(result,'leader').profiles[0].weapons;assert.equal(weapons.length,2);
+  for(const w of weapons){
+    assert.equal(w.data.strength,w.selectionKey==='selected'?'7':'5');assert.equal(w.data.range,'30"');
+    const rows=unit(result,'leader').applied.filter(r=>r.targetWeaponSelectionKey===w.selectionKey);
+    assert.equal(rows.length,w.selectionKey==='selected'?3:2,'Independent +6 range sources cannot be deduplicated');
+    rows.forEach(row=>assertOccurrenceTrace(row,w));
+  }
+  const expected=weapons.flatMap(w=>unit(result,'leader').applied.filter(r=>r.targetWeaponSelectionKey===w.selectionKey));
+  assert.equal(expected.length,5,'Every actually applied numeric trace must have an address');
+  for(const field of ['targetWeaponSelectionKey','targetWeaponScopeId','targetInstanceId','targetWeaponProfileId']){
+    const poisoned=clone(expected[0]);poisoned[field]='foreign';assert.throws(()=>assertOccurrenceTrace(poisoned,weapons[0]),undefined,field+' mutation escaped');
+    delete poisoned[field];assert.throws(()=>assertOccurrenceTrace(poisoned,weapons[0]),undefined,'Missing '+field+' mutation escaped');
+  }
+  assert.equal(unit(result,'other-leader').applied.length,0);assert.deepEqual(execute(book,state,{resolveWeaponSelection:({rule,source,ownerModel})=>
+    rule.id===id('selected-strength')?chooseOccurrence(rule,'selected',source,ownerModel):undefined}),result);
+});
+check('Critical Hit source projection joins physical occurrence and preserves independent sources',()=>{
+  const {book,state}=occurrenceFixture();
+  for(const [name,value] of [['critical-a',5],['critical-b',5],['critical-remainder',4]])
+    occurrenceRule(book,state,name,{field:'criticalHitThreshold',value,operation:'MODIFY_RULE_METRIC'});
+  const result=execute(book,state,{resolveWeaponSelection:({rule,source,ownerModel})=>chooseOccurrence(rule,
+    rule.id===id('critical-remainder')?'remainder':'selected',source,ownerModel)});
+  const projected=projectEffectiveInstance(book,result,'leader');
+  for(const w of projected.weapons){
+    assert.equal(w.fields.find(f=>f.label==='criticalHitThreshold').value,w.selectionKey==='selected'?5:4);
+    assert.deepEqual(w.criticalHitSources.map(s=>s.ruleId).sort(),(w.selectionKey==='selected'?[id('critical-a'),id('critical-b')]:[id('critical-remainder')]).sort());
+    w.criticalHitSources.forEach(row=>assertOccurrenceTrace(row,{...w,canonicalProfileId:w.id}));
+  }
+  for(const field of ['targetWeaponSelectionKey','targetWeaponScopeId','targetCompositionId','targetInstanceId','targetWeaponProfileId']){
+    const poisoned=clone(result);unit(poisoned,'leader').applied.find(r=>r.ruleId===id('critical-remainder'))[field]='foreign';
+    assert.throws(()=>projectEffectiveInstance(book,poisoned,'leader'),undefined,field+' Critical Hit mutation escaped');
+  }
+  const missing=clone(result);for(const row of unit(missing,'leader').applied){delete row.targetWeaponSelectionKey;delete row.targetWeaponScopeId;}
+  assert.throws(()=>projectEffectiveInstance(book,missing,'leader'),undefined,'Ambiguous legacy canonical-only join escaped');
+});
+check('Critical Hit legacy fallback is limited to a singular unaddressed occurrence',()=>{
+  const {book,state}=occurrenceFixture();unit(state,'leader').modelRows[0].selections.pop();
+  occurrenceRule(book,state,'legacy-critical',{field:'criticalHitThreshold',value:5,operation:'MODIFY_RULE_METRIC'});
+  const result=execute(book,state);for(const row of unit(result,'leader').applied){delete row.targetWeaponSelectionKey;delete row.targetWeaponScopeId;}
+  const weapon=projectEffectiveInstance(book,result,'leader').weapons[0];
+  assert.equal(weapon.criticalHitSources.length,1);assert.equal(weapon.criticalHitSources[0].ruleId,id('legacy-critical'));
+  assert.equal(weapon.fields.find(f=>f.label==='criticalHitThreshold').value,5);
+  for(const field of ['targetWeaponSelectionKey','targetWeaponScopeId']){
+    const partial=clone(result);unit(partial,'leader').applied[0][field]=field==='targetWeaponSelectionKey'?'selected':weapon.scopeId;
+    assert.throws(()=>projectEffectiveInstance(book,partial,'leader'),undefined,'Partial occurrence address must not use legacy fallback');
+  }
+  const partitioned=clone(result);unit(partitioned,'leader').profiles[0].weapons[0].quantityPartition={role:'selected'};
+  assert.throws(()=>projectEffectiveInstance(book,partitioned,'leader'),undefined,'Modern partition cannot fall back even when alone');
+});
 
 check('BS improves ranged skill without changing melee skill or another MODEL profile',()=>{
   const {book,state}=fixture();rule(book,state,'bs');const result=execute(book,state);

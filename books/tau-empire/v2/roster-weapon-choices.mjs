@@ -1,6 +1,7 @@
 /** T'au-owned decisions over existing physical selections; no weapon IDs or
  * infantry instances are invented to split aggregate inventory. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
+import {weaponPartitionKey} from '../../shared/roster-v2/effects.mjs';
 import {pendingPhysicalBindings} from './rule-contract-declarations.mjs';
 
 const clone=structuredClone,assert=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -61,10 +62,19 @@ export function validateTauPrototypeChoices(book,state){
       const weapons=[...model.weapons,...(unit.startingStrength===1?projected.weapons:[])];
       const matches=weapons.filter(weapon=>(weapon.scopeId??null)===reference.scopeId&&
         weapon.selectionKey===reference.selectionKey&&weapon.canonicalProfileId===selected);
-      assert(matches.length===1&&matches[0].physicalQuantity===1,'Prototype needs one exact weapon; missing, stale or aggregate choice');
-      validated.push({unitInstanceId:unit.instanceId,ruleId:rule.id,modelScopeId:model.scopeId,reference:clone(reference),spec});
+      assert(matches.length===1&&[1,2].includes(matches[0].physicalQuantity),'Prototype needs one exact weapon or confirmed quantity-two aggregate');
+      const aggregate=matches[0].physicalQuantity===2;
+      const inventory=reference.scopeId===null?projected:model;
+      const input=inventory.selections.find(row=>row.selectionKey===reference.selectionKey);
+      if(aggregate)assert(inventory.weapons.filter(row=>row.selectionKey===reference.selectionKey).length===1&&
+        input?.physicalQuantity===2&&input.canonicalProfileIds.length===1&&input.canonicalProfileIds[0]===selected&&
+        input.quantityEvidence?.selectedQuantity===2&&(reference.scopeId===null||input.perModelQuantity===2),
+        'Unproven Prototype aggregate quantity/owner');
+      validated.push({unitInstanceId:unit.instanceId,ruleId:rule.id,modelScopeId:model.scopeId,reference:clone(reference),spec,aggregate});
     }
   }
+  const aggregates=validated.filter(choice=>choice.aggregate).map(choice=>JSON.stringify(choice.reference));
+  assert(new Set(aggregates).size===aggregates.length,'Conflicting Prototype aggregate choices');
   return validated;
 }
 
@@ -105,7 +115,7 @@ export function bindTauPrototypeChoices(book,state){
     const clause=clone(template),proof={field:['text'],quote:rule.data.text};
     clause.id=rule.id+'::physical-source/'+JSON.stringify(choice.unitInstanceId);clause.rosterClassification='ROSTER_EXECUTABLE';
     clause.physicalWeaponSource=choice.unitInstanceId;
-    clause.rosterClassificationNote={reason:'Validated exact physical weapon choice; aggregate inventory is not split',canonicalClauseId:template.id};
+    clause.rosterClassificationNote={reason:'Validated physical weapon choice; quantity-two partition exists only in the effective projection',canonicalClauseId:template.id};
     clause.rosterEffects=choice.spec.operationSpecs.map((operation,index)=>({id:clause.id+'/effect-'+(index+1),...clone(operation),
       targetBinding:'SOURCE_MODEL',targetSubject:'MODEL',weaponIds:[choice.reference.canonicalProfileId],weaponMode:'ranged',
       conditions:[{binding:'SOURCE',predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
@@ -120,5 +130,14 @@ export function bindTauPrototypeChoices(book,state){
 export function tauWeaponSelectionResolver(book,state){
   const choices=validateTauPrototypeChoices(book,state);
   return ({rule,source})=>pendingPhysicalBindings.some(spec=>spec.ruleId===rule.id)?
-    clone(choices.find(choice=>choice.ruleId===rule.id&&choice.unitInstanceId===source?.instanceId)?.reference??null):undefined;
+    (()=>{const choice=choices.find(choice=>choice.ruleId===rule.id&&choice.unitInstanceId===source?.instanceId);
+      if(!choice)return null;
+      const reference=clone(choice.reference);
+      if(choice.aggregate)reference.selectionKey=weaponPartitionKey({...reference,sourceRuleId:choice.ruleId},'selected');
+      return reference;})():undefined;
+}
+
+export function tauWeaponPartitionResolver(book,state){
+  const choices=validateTauPrototypeChoices(book,state).filter(choice=>choice.aggregate);
+  return ()=>choices.map(choice=>({...clone(choice.reference),sourceRuleId:choice.ruleId}));
 }

@@ -70,9 +70,18 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     ?`${card.presentationScope.label} · ${card.presentationScope.quantity} ${card.presentationScope.quantity===1?'model':'models'}`:null;
   const modifiers=(card,field,instanceId)=>{
     if(!instanceId)return null;
-    const trace=roster.effective(instanceId).applied.filter(change=>change.operation==='MODIFY_STAT'&&change.field===pointerKey(field)&&
+    const effective=roster.effective(instanceId),weapon=card.kind==='WEAPON_PROFILE';
+    const unambiguousLegacy=weapon&&effective.weapons.filter(other=>other.id===card.id&&
+      (other.scopeId??null)===(card.scopeId??null)).length===1;
+    const trace=effective.applied.filter(change=>change.operation==='MODIFY_STAT'&&change.field===pointerKey(field)&&
       (card.kind==='WEAPON_PROFILE'?change.targetWeaponProfileId===card.id:change.targetProfileId===card.id)&&
-      (!card.scopeId || !change.targetCompositionId || change.targetCompositionId===card.scopeId));
+      (weapon ? card.instanceId===instanceId&&change.targetInstanceId===instanceId&&
+        (change.targetCompositionId??null)===(card.scopeId??null)&&
+        (Object.hasOwn(change,'targetWeaponSelectionKey')||Object.hasOwn(change,'targetWeaponScopeId')
+          ? typeof card.selectionKey==='string'&&card.selectionKey.length>0&&change.targetWeaponSelectionKey===card.selectionKey&&
+            Object.hasOwn(change,'targetWeaponScopeId')&&change.targetWeaponScopeId===(card.scopeId??null)
+          : unambiguousLegacy)
+        : !card.scopeId || !change.targetCompositionId || change.targetCompositionId===card.scopeId));
     if(!trace.length)return null;
     // Only format an existing ordered numeric change trace. The final value is
     // always read from the effective record, never calculated here.
@@ -80,9 +89,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(!/^-?\d+(?:["+])?$/.test(String(base)))return null;
     const changes=trace.map(change=>Number.parseInt(change.after,10)-Number.parseInt(change.before,10));
     if(changes.some(Number.isNaN))return null;
-    const text=String(base)+changes.map(value=>value<0?` − ${Math.abs(value)}`:` + ${value}`).join('');
+    const suffix=pointerKey(field)==='range'?'"':'';
+    const text=String(base)+changes.map(value=>value<0?` − ${Math.abs(value)}${suffix}`:` + ${value}${suffix}`).join('');
     const node=el('small','ds-modifier-breakdown',text);node.dataset.rosterBaseValue=String(base);node.dataset.rosterModifier=String(changes.reduce((a,b)=>a+b,0));
-    node.dataset.ruleIds=JSON.stringify(trace.map(change=>change.ruleId));return node;
+    node.dataset.ruleIds=JSON.stringify(trace.map(change=>change.ruleId));
+    node.dataset.modifierSources=JSON.stringify(trace.map(change=>[change.ruleId,change.clauseId,change.effectId,
+      change.sourceInstanceId??null,change.sourceCompositionId??null,change.sourceFields,change.lifetime]));return node;
   };
   const effectiveAbilityNode=ability=>{
     const node=el('span','ds-effective-ability');
@@ -421,7 +433,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           for(const cell of row.querySelectorAll('[data-label]')){
             const statKey={Range:'range',A:'attacks',BS:'skill',WS:'skill',S:'strength',AP:'ap',D:'damage'}[cell.dataset.label];
             const traces=displayGroup.members.map(member=>({member,trace:modifiers(member,single(member,statKey),instanceId)}));
-            if(new Set(traces.map(item=>item.trace?.textContent||null)).size>1){
+            if(new Set(traces.map(item=>JSON.stringify([item.trace?.textContent??null,item.trace?.dataset.modifierSources??null]))).size>1){
               cell.querySelector('.ds-modifier-breakdown')?.remove();
               for(const {member,trace}of traces)if(trace){trace.prepend(document.createTextNode((scopeCaption(member)||cards.get(member.parentId)?.title||'Models')+': '));cell.append(trace);}
             }

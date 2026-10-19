@@ -129,9 +129,13 @@ for(const [i,id]of ids.entries()){
 }
 // Two independent numeric sources compose through the existing operation, with
 // no parallel modifier engine and no dependence on Detachment order.
+export function independentRangeIntegrationFixture(){
+  const owner=unit('owner','tech-priest-dominus',[ids[1],ids[3]]),body=unit('body','servitor-battleclade',[],true);
+  const state=roster([owner,body],['detachment-haloscreed-battle-clade','detachment-eradication-cohort'],[{leaderInstanceId:'owner',bodyguardInstanceId:'body',role:'LEADER'}]);
+  return {book,state,projection:run(state),sourceIds:[ids[1],ids[3]]};
+}
 {
-  const owner=unit('owner','tech-priest-dominus',[ids[1],ids[3]]),body=unit('body','servitor-battleclade',[],true),state=roster([owner,body],['detachment-haloscreed-battle-clade','detachment-eradication-cohort'],[{leaderInstanceId:'owner',bodyguardInstanceId:'body',role:'LEADER'}]);
-  const result=run(state),effects=[ids[1],ids[3]].flatMap(id=>index.get(id).ruleContract.clauses.flatMap(c=>c.rosterEffects));
+  const {state,projection:result}=independentRangeIntegrationFixture(),effects=[ids[1],ids[3]].flatMap(id=>index.get(id).ruleContract.clauses.flatMap(c=>c.rosterEffects));
   assertDelta(result,'owner',effects);assertDelta(result,'body',effects);
   const reversed=structuredClone(state);reversed.detachmentIds.reverse();reversed.detachments.reverse();const next=run(reversed);
   assert.deepEqual(next.units,result.units,'Detachment-order changed effective numeric result');

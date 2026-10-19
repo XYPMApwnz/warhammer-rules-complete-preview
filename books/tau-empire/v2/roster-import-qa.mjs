@@ -10,10 +10,11 @@ import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
 import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,bindTauShieldModels} from './roster-source-choices.mjs';
-import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
+import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
+import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
@@ -611,9 +612,15 @@ test('prototype-exact-physical-weapon-dependencies-stay-explicit',()=>{
   const selected=projectedWeapons(projection.units[0]).filter(w=>w.canonicalProfileId===weaponId);
   assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,2,'Both INPUT copies retained without invented per-gun ownership');
   for(const field of Object.keys(oracle.expectedDeltas[i]))assert.equal(selected[0].data[field],weapon.data[field],'No unresolved one-weapon delta broadcast to duplicates');
+  const run=runtime(state),parent=selected[0],reference={unitInstanceId:state.units[0].instanceId,scopeId:parent.scopeId??null,
+   selectionKey:parent.selectionKey,canonicalProfileId:weaponId};
+  run.setPrototypeChoice(reference.unitInstanceId,id,reference);
+  assertAggregateProjection(run,formRoster(book,state),reference,oracle.expectedDeltas[i],id);
+  const chosen=projectedWeapons(run.projection.units[0]).find(row=>row.quantityPartition?.role==='selected');
   records.runtimeCases.push({id:'prototype-'+source.data.title,source:oracle.independentSources[i],expected:{chosenPhysicalWeapon:1,
-   unchangedPhysicalWeapons:1,deltas:oracle.expectedDeltas[i]},actual:{weaponProfileId:weaponId,physicalQuantity:2,deltasApplied:0},status:'BLOCKED',
-   reason:'This unchanged INPUT has one aggregate selection with quantity=2, not two proven occurrence identities; no splitting or ordinal choice is permitted'});
+   unchangedPhysicalWeapons:1,deltas:oracle.expectedDeltas[i]},actual:{weaponProfileId:weaponId,physicalQuantity:2,
+   portionQuantities:projectedWeapons(run.projection.units[0]).map(row=>row.physicalQuantity),
+   deltasApplied:Object.fromEntries(Object.keys(oracle.expectedDeltas[i]).map(field=>[field,Number(chosen.data[field])-Number(weapon.data[field])]))},status:'PASS'});
   records.fixtures.push({id:'prototype-'+i,text,expected:[{enhancement:id,physicalWeapons:2,oneChosen:true,expectedDeltas:oracle.expectedDeltas[i]}]});
  }
 });
@@ -640,6 +647,42 @@ function assertPrototypeProjection(actual,base,reference,deltas){
  assert.equal(changes.length,reference?1:0,'Exactly one proven weapon occurrence, never an aggregate or another UNIT');
 }
 const sameWeapon=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+
+function assertAggregateProjection(run,base,reference,deltas,ruleId){
+ const actual=run.projection,source=base.units.find(unit=>unit.instanceId===reference.unitInstanceId);
+ const original=projectedWeapons(source).find(row=>row.selectionKey===reference.selectionKey&&row.canonicalProfileId===reference.canonicalProfileId);
+ const unit=actual.units.find(unit=>unit.instanceId===reference.unitInstanceId),parts=projectedWeapons(unit).filter(row=>row.quantityPartition?.sourceSelectionKey===reference.selectionKey);
+ assert.equal(parts.length,2,'Exactly two logical portions');assert.deepEqual(parts.map(row=>row.physicalQuantity),[1,1]);
+ assert.equal(projectedWeapons(unit).length,projectedWeapons(source).length+1,'Parent aggregate is replaced, never retained in addition');
+ assert.equal(projectedWeapons(unit).reduce((sum,row)=>sum+row.physicalQuantity,0),projectedWeapons(source).reduce((sum,row)=>sum+row.physicalQuantity,0));
+ assert.ok(!projectedWeapons(unit).some(row=>row.selectionKey===reference.selectionKey),'No parent third weapon');
+ for(const part of parts){
+  assert.equal(part.scopeId??null,reference.scopeId);assert.equal(part.modelInstanceId,original.modelInstanceId);
+  assert.equal(part.canonicalProfileId,reference.canonicalProfileId);
+  const proof=part.quantityPartition;assert.equal(proof.originalQuantity,2);assert.equal(proof.sourceRuleId,ruleId);
+  assert.deepEqual(proof.sourceProvenance,index.get(ruleId).provenance);
+  assert.equal(proof.sourceSelection.physicalQuantity,2);assert.equal(proof.sourceSelection.quantityEvidence.selectedQuantity,2);
+  assert.equal(part.selectionKey,JSON.stringify(['weapon-quantity-portion',reference.unitInstanceId,reference.scopeId,reference.selectionKey,reference.canonicalProfileId,ruleId,proof.role]));
+  const expected=clone(original.data);
+  // Independent accepted Superior Craftsmanship clause, not production operations.
+  if(base.detachmentIds.includes('detachment-experimental-prototype-cadre')&&['BATTLESUIT','CHARACTER'].every(key=>unit.keywords.includes(key)))
+   expected.range=(Number(expected.range.replace('"',''))+6)+'"';
+  if(proof.role==='selected')for(const [field,value]of Object.entries(deltas))expected[field]=String(Number(expected[field])+value);
+  else assert.equal(proof.role,'remainder');
+  assert.deepEqual(part.data,expected,'S/A/AP/D and all independent profile fields');
+ }
+ const selected=parts.find(row=>row.quantityPartition.role==='selected'),rows=unit.applied.filter(row=>row.ruleId===ruleId);
+ assert.equal(rows.length,Object.keys(deltas).length);
+ for(const row of rows){assert.equal(row.targetWeaponSelectionKey,selected.selectionKey);assert.equal(row.sourceInstanceId,reference.unitInstanceId);
+  assert.equal(row.targetInstanceId,reference.unitInstanceId);assert.equal(row.targetWeaponScopeId,reference.scopeId);}
+ const presented=run.effective(reference.unitInstanceId).weapons.filter(row=>row.id===reference.canonicalProfileId);
+ assert.equal(presented.length,2);assert.deepEqual(presented.map(row=>row.physicalQuantity),[1,1]);
+ for(const row of presented)assert.deepEqual(Object.fromEntries(row.fields.map(field=>[field.label,field.value])),parts.find(part=>part.selectionKey===row.selectionKey).data);
+ for(const other of actual.units.filter(row=>row.instanceId!==reference.unitInstanceId)){
+  assert.ok(!projectedWeapons(other).some(row=>row.quantityPartition),'No foreign UNIT partition');
+  for(const weapon of projectedWeapons(other))assert.ok(!other.applied.some(row=>row.ruleId===ruleId),'No foreign Prototype bonus');
+ }
+}
 test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',()=>{
  records.prototypeExactResults=[];
  for(const [i,ruleId]of prototypeOracle.canonicalIds.entries()){
@@ -697,11 +740,12 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
   assertPrototypeProjection(runtime(changed).projection,formRoster(book,changed),null,{});
   const aggregate=ready(header(['Experimental Prototype Cadre'])+gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,2)+'Enhancement: '+rule.data.title+'\n').roster;
   const aggregateBase=formRoster(book,aggregate),aggregateWeapon=projectedWeapons(aggregateBase.units[0])[0],aggregateRun=runtime(aggregate);
-  assert.throws(()=>aggregateRun.setPrototypeChoice('parsed-unit-1',ruleId,weaponReference(aggregateBase.units[0],aggregateWeapon)),/aggregate/i);
-  assertPrototypeProjection(aggregateRun.projection,aggregateBase,null,{});
+  const aggregateReference=weaponReference(aggregateBase.units[0],aggregateWeapon);
+  aggregateRun.setPrototypeChoice('parsed-unit-1',ruleId,aggregateReference);
+  assertAggregateProjection(aggregateRun,aggregateBase,aggregateReference,prototypeOracle.expectedDeltas[i],ruleId);
   records.prototypeExactResults.push({id:ruleId,status:'PASS',source,expectedDeltas:prototypeOracle.expectedDeltas[i],
    actualStrengthDeltas:projectedWeapons(projection.units[0]).map(row=>Number(row.data.strength)-Number(weapon.data.strength)),
-   aggregate:'BLOCKED_NO_SEPARATE_IDENTITY',persistence:'PASS',recompute:'PASS'});
+   aggregate:'PROJECTION_PARTITION_PASS',persistence:'PASS',recompute:'PASS'});
   if(i===0){
    const paired=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(paired,valid)});
    const resolver=tauWeaponSelectionResolver(paired,valid);
@@ -730,6 +774,89 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
    mutation('stage4c-wrong-numeric-value',()=>assert.throws(()=>{const rt=createRosterRuntime(wrongValue,{...schema,resolveWeaponSelection:resolver});rt.load(valid);
     assertPrototypeProjection(rt.projection,base,first,prototypeOracle.expectedDeltas[i]);}));
   }
+ }
+});
+
+test('stage4g-projection-partition-lifecycle-negative-and-mutation-controls',()=>{
+ records.prototypePartitionResults=[];
+ for(const [i,ruleId]of prototypeOracle.canonicalIds.entries()){
+  const weaponId=prototypeOracle.eligibleWeaponIds[i].find(id=>index.get(id).parentId==='unit-commander-in-coldstar-battlesuit');
+  const weapon=index.get(weaponId),rule=index.get(ruleId),one=gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,2);
+  const text=header(['Experimental Prototype Cadre'])+one+'Enhancement: '+rule.data.title+'\n'+one;
+  const service=make(),input=ready(text,{},service).roster,inputCopy=clone(input),base=formRoster(book,input),run=runtime(input);
+  const source=base.units[0],reference=weaponReference(source,projectedWeapons(source)[0]);
+  run.setPrototypeChoice(source.instanceId,ruleId,reference);
+  const verify=target=>assertAggregateProjection(target,base,reference,prototypeOracle.expectedDeltas[i],ruleId);
+  verify(run);assert.deepEqual(input,inputCopy,'Caller snapshot stays unchanged');
+  const valid=run.snapshot(),projection=run.projection;
+  const inventory=state=>state.units.map(unit=>selections(unit).filter(row=>row.canonicalProfileIds.length));
+  assert.deepEqual(inventory(valid),inventory(input),'Authoritative imported weapon inventory/evidence unchanged');
+  assert.equal(tauPrototypeDecisions(valid.units[0])[0].sourceWeaponReference.selectionKey,reference.selectionKey,'Persist parent address, never logical portion');
+  assert.ok(!JSON.stringify(valid).includes('weapon-quantity-portion'),'Derived portions never enter saved roster');
+  for(let n=0;n<3;n++){run.load(valid);assert.deepEqual(run.projection,projection,'Recompute cannot recursively partition');}
+  const loaded=runtime(JSON.parse(JSON.stringify(valid)));verify(loaded);assert.deepEqual(loaded.projection,projection);
+  service.load(valid);const reimport=ready(text,{},service).roster;assert.deepEqual(reimport,valid);verify(runtime(reimport));
+  run.setPrototypeChoice(source.instanceId,ruleId,null);
+  assertPrototypeProjection(run.projection,base,null,{});
+  assert.equal(projectedWeapons(run.projection.units[0])[0].physicalQuantity,2,'Remove choice restores aggregate');
+  const removed=run.snapshot();removed.units[0].enhancementIds=[];removed.units[0].enhancementAssignments=[];removed.units[0].mfmEnhancementRecordIds=[];
+  run.load(removed);assertPrototypeProjection(run.projection,base,null,{});
+  run.load(valid);verify(run);
+  for(const [name,mutate]of [
+   ['wrong-source',state=>{tauPrototypeDecisions(state.units[0])[0].sourceRuleId='missing-rule';}],
+   ['missing-model-bearer',state=>{state.units[0].enhancementAssignments[0].modelScopeId='missing-model';}],
+   ['foreign-unit',state=>{tauPrototypeDecisions(state.units[0])[0].sourceWeaponReference.unitInstanceId=base.units[1].instanceId;}],
+   ['wrong-profile',state=>{tauPrototypeDecisions(state.units[0])[0].sourceWeaponReference.canonicalProfileId='unknown-weapon';}],
+   ['stale-selection',state=>{tauPrototypeDecisions(state.units[0])[0].sourceWeaponReference.selectionKey='stale';}],
+   ['wrong-original-quantity',state=>{state.units[0].modelRows[0].selections.find(row=>row.selectionKey===reference.selectionKey).physicalQuantity=3;}],
+   ['changed-loadout',state=>{state.units[0].modelRows[0].selections.find(row=>row.selectionKey===reference.selectionKey).canonicalProfileIds=[];}],
+   ['missing-enhancement',state=>{state.units[0].enhancementIds=[];}],
+   ['missing-detachment',state=>{state.detachmentIds=[];}],
+   ['conflicting-decision',state=>{state.units[0].modelRows[0].selections.push(clone(tauPrototypeDecisions(state.units[0])[0]));}]
+  ])negative('stage4g-'+i+'-'+name,()=>{const bad=clone(valid);mutate(bad);assert.throws(()=>run.load(bad));
+    assert.deepEqual(run.snapshot(),valid);assert.deepEqual(run.projection,projection,'Atomic rejected partition edit');});
+  const changed=ready(text.replaceAll('2x '+weapon.data.name,'1x '+weapon.data.name),{},service).roster;
+  assert.equal(tauPrototypeDecisions(changed.units[0]).length,0,'Changed import clears stale parent decision');
+  assertPrototypeProjection(runtime(changed).projection,formRoster(book,changed),null,{});
+  const bound=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(bound,valid)});
+  const resolve=tauWeaponSelectionResolver(bound,valid),partition=tauWeaponPartitionResolver(bound,valid),requests=partition();
+  const diagnostic=(hook=partition,resolver=resolve)=>{
+   const rt=createRosterRuntime(bound,{...schema,resolveWeaponSelection:resolver,resolveWeaponPartitions:hook});rt.load(valid);return rt;
+  };
+  verify(diagnostic());
+  const diagnosticValid=diagnostic(),diagnosticState=diagnosticValid.snapshot();
+  assert.deepEqual(diagnosticState,valid,'Shared load stores original snapshot with choice');
+  for(const [name,alter]of [
+   ['duplicate-partition',list=>list.push(clone(list[0]))],
+   ['wrong-source',list=>{list[0].sourceRuleId='missing';}],
+   ['wrong-owner',list=>{list[0].unitInstanceId=base.units[1].instanceId;}],
+   ['unknown-model',list=>{list[0].scopeId='unknown';}],
+   ['stale-key',list=>{list[0].selectionKey='unknown';}],
+   ['wrong-profile',list=>{list[0].canonicalProfileId='unknown';}],
+   ['invented-quantity-output',list=>{list[0].selectedQuantity=2;}],
+   ['extra-output',list=>list.push({...list[0],selectionKey:'extra-weapon'})]
+  ])mutation('stage4g-'+i+'-'+name,()=>{
+    const corrupt=clone(requests);alter(corrupt);const rt=createRosterRuntime(bound,{...schema,resolveWeaponSelection:resolve,
+      resolveWeaponPartitions:({state})=>state.rosterId===valid.rosterId+'-reject'?corrupt:requests});
+    rt.load(valid);const before=rt.snapshot(),beforeProjection=rt.projection,bad=clone(valid);bad.rosterId+='-reject';
+    assert.throws(()=>rt.load(bad));assert.deepEqual(rt.snapshot(),before);assert.deepEqual(rt.projection,beforeProjection);
+  });
+  for(const [name,hook,resolver]of [
+   ['missing-partition-hook',undefined,resolve],
+   ['missing-physical-resolver',partition,()=>undefined],
+   ['withheld-selected-effect',partition,()=>null],
+   ['remainder-target',partition,context=>{const value=resolve(context);if(value)value.selectionKey=value.selectionKey.replace('"selected"]','"remainder"]');return value;}]
+  ])mutation('stage4g-'+i+'-'+name,()=>assert.throws(()=>{
+    const rt=createRosterRuntime(bound,{...schema,resolveWeaponSelection:resolver,resolveWeaponPartitions:hook});rt.load(valid);verify(rt);
+  }));
+  mutation('stage4g-'+i+'-missing-effective-output',()=>{
+   const rt=diagnostic(),effective=rt.effective.bind(rt);
+   assert.throws(()=>verify({projection:rt.projection,effective:id=>{const view=effective(id);view.weapons.pop();return view;}}));
+  });
+  // A hook gets detached diagnostic inputs: side effects cannot alter state or projection.
+  verify(diagnostic(({state,projection})=>{state.units=[];projection.units=[];return requests;}));
+  records.prototypePartitionResults.push({ruleId,status:'PASS',quantity:[2,1,1],snapshot:'UNCHANGED_INVENTORY',
+   fields:prototypeOracle.expectedDeltas[i],ordinaryRangeBonus:6,persistence:'PASS',recompute:'PASS',reimport:'PASS',source:prototypeOracle.independentSources[i]});
  }
 });
 
@@ -931,6 +1058,133 @@ test('stage4-original20-scenario-identities-and-independent-expectations-unchang
  records.originalScenarioComparison=records.runtimeCases.map(row=>({id:row.id,before:originallyBlocked.has(row.id)?'BLOCKED':'PASS',after:row.status}));
  records.originalScenarioExpectedFingerprint=fingerprint;
 });
+
+// Optional component acceptance uses the real production presenter in Chromium.
+// It is deliberately distinct from application UI, import-browser or Stage 5 QA.
+if(process.argv.includes('--presenter')){
+ try{records.productionPresenter=await prototypePresenterAcceptance();}
+ catch(error){records.checks.push({id:'production-weapon-trace-presenter',status:'FAIL',message:error.message,stack:error.stack});console.error(error.stack);}
+}
+
+async function prototypePresenterAcceptance(){
+ const {createServer}=await import('node:http'),{createRequire}=await import('node:module');
+ const {fileURLToPath}=await import('node:url');
+ const {chromium}=createRequire(import.meta.url)('playwright'),repo=fileURLToPath(new URL('../../../',import.meta.url));
+ const presentation=clone(book);presentation.mfm={source:{label:'Points not under test'},unitBindings:[],detachmentBindings:[],enhancementBindings:[],paidUpgradeBindings:[],relations:[],eligibilityEvidenceBindings:[]};
+ presentation.currentness??={currentness:'CURRENT',lastReconciledSource:'Accepted sources'};
+ const payload=projectArmyBook(presentation,new Map(),{title:'Production weapon trace component QA'});
+ payload.datasheetPresentation={schema:'army-book-app-v2/datasheet-layout',sectionRoles:{}};
+ const cases=[];
+ for(const [i,ruleId]of prototypeOracle.canonicalIds.entries()){
+  const input=records.fixtures.find(row=>row.id==='prototype-'+i),service=make(),state=ready(input.text,{},service).roster;
+  const run=runtime(state),base=formRoster(book,state),unit=base.units[0],weapon=projectedWeapons(unit)[0],reference=weaponReference(unit,weapon);
+  const originalWeapon=clone(index.get(reference.canonicalProfileId).data),scope=reference.scopeId;
+  const add=(name,current,selected,quantity=2)=>{
+   const fields={range:'Range',attacks:'A',skill:'BS',strength:'S',ap:'AP',damage:'D'};
+   const expected=(role,count)=>{
+    const values=clone(originalWeapon),traces={};values.range=(Number(originalWeapon.range.replace('"',''))+6)+'"';
+    traces.Range=originalWeapon.range+' + 6"';
+    if(role==='selected')for(const [field,delta]of Object.entries(prototypeOracle.expectedDeltas[i])){
+     values[field]=String(Number(originalWeapon[field])+delta);
+     traces[fields[field]]=originalWeapon[field]+(delta<0?' − ':' + ')+Math.abs(delta);
+    }
+    return {quantity:count,key:role?JSON.stringify(['weapon-quantity-portion',unit.instanceId,scope,reference.selectionKey,reference.canonicalProfileId,ruleId,role]):reference.selectionKey,
+     values:Object.fromEntries(Object.entries(fields).map(([field,label])=>[label,String(values[field])])),traces};
+   };
+   cases.push({id:ruleId+'/'+name,payload,unit:current.state.units[0],state:current.state,effective:current.effective(unit.instanceId),
+    weaponId:reference.canonicalProfileId,expected:selected?[expected('selected',1),expected('remainder',1)]:[expected(null,quantity)]});
+  };
+  run.setPrototypeChoice(unit.instanceId,ruleId,reference);const saved=run.snapshot();add('selected',run,true);
+  run.load(saved);add('recompute',run,true);add('snapshot-load',runtime(JSON.parse(JSON.stringify(saved))),true);
+  service.load(saved);run.load(ready(input.text,{},service).roster);add('reimport',run,true);
+  run.setPrototypeChoice(unit.instanceId,ruleId,null);add('remove',run,false);
+  run.setPrototypeChoice(unit.instanceId,ruleId,reference);add('reselect',run,true);
+  const weaponName=originalWeapon.name,changed=ready(input.text.replace('2x '+weaponName,'1x '+weaponName),{},service).roster;
+  add('changed-loadout',runtime(changed),false,1);
+ }
+ // Reuse the existing source-backed AdMech fixture: two independent +6" sources,
+ // not fabricated duplicate traces or a second calculator.
+ const {independentRangeIntegrationFixture}=await import('../../adeptus-mechanicus/v2/numeric-roster-effects-qa.mjs');
+ const {projectEffectiveInstance}=await import('../../shared/roster-v2/effective-instance.mjs');
+ const am=independentRangeIntegrationFixture(),amUnit=am.state.units.find(unit=>unit.instanceId==='owner');
+ const amView=projectEffectiveInstance(am.book,am.projection,amUnit.instanceId);
+ const amWeapon=amView.weapons.find(weapon=>weapon.fields.some(field=>field.label==='mode'&&field.value==='ranged'));
+ const amBase=am.book.entities.find(entity=>entity.id===amWeapon.id).data,amPresentation=clone(am.book);
+ amPresentation.mfm=presentation.mfm;amPresentation.currentness??={currentness:'CURRENT',lastReconciledSource:'Accepted AdMech source'};
+ const amPayload=projectArmyBook(amPresentation,new Map(),{title:'Independent sources presentation control'});
+ amPayload.datasheetPresentation=payload.datasheetPresentation;
+ cases.push({id:'admech-independent-range-sources',payload:amPayload,unit:amUnit,state:am.state,effective:amView,weaponId:amWeapon.id,
+  expected:[{quantity:1,key:amWeapon.selectionKey,sourceIds:am.sourceIds,
+   values:{Range:(Number(amBase.range.replace('"',''))+12)+'"',A:amBase.attacks,BS:amBase.skill,S:String(Number(amBase.strength)+1),AP:amBase.ap,D:amBase.damage},
+   traces:{Range:amBase.range+' + 6" + 6"',S:amBase.strength+' + 1'}}]});
+ const server=createServer((request,response)=>{
+  const pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);
+  if(pathname==='/'){response.setHeader('Content-Type','text/html');response.end('<!doctype html><html><body></body></html>');return;}
+  if(pathname==='/cases.json'){response.setHeader('Content-Type','application/json');response.end(JSON.stringify(cases));return;}
+  const file=path.resolve(repo,'.'+pathname);
+  if(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){response.statusCode=404;response.end();return;}
+  response.setHeader('Content-Type',file.endsWith('.mjs')?'text/javascript':'application/octet-stream');response.end(fs.readFileSync(file));
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));let browser;
+ const results=[],errors=[];
+ try{
+  browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+  for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+   const page=await browser.newPage({viewport});page.on('pageerror',error=>errors.push(error.message));
+   page.on('requestfailed',request=>errors.push(request.url()+': '+request.failure()?.errorText));
+   await page.goto('http://127.0.0.1:'+server.address().port+'/');
+   const output=await page.evaluate(async()=>{
+    const cases=await(await fetch('/cases.json')).json(),{projectInstanceCards}=await import('/books/shared/army-book-app-v2/personal.mjs');
+    const {createDatasheetPresenter}=await import('/books/shared/army-book-app-v2/datasheet-v1.mjs');
+    const el=(tag,classes='',text)=>{const node=document.createElement(tag);if(classes)node.className=classes;if(text!==undefined)node.textContent=text;return node;};
+    const factValue=(tag,field)=>el(tag,'',String(field.displayValue??field.value)),anchor=(text,id)=>{const node=el('a','',text);node.dataset.targetId=id;return node;};
+    const same=(actual,expected,message)=>{if(JSON.stringify(actual)!==JSON.stringify(expected))throw Error(message+': '+JSON.stringify({actual,expected}));};
+    function verify(data,mutateCard){
+     const cards=new Map(data.payload.cards.map(card=>[card.id,card])),variants=projectInstanceCards(cards,data.unit,data.effective);
+     const presenter=createDatasheetPresenter({document,payload:data.payload,cards,el,factValue,anchor,showDetail:()=>{},related:()=>el('div'),
+      roster:{state:data.state,effective:()=>data.effective},navigateSection:()=>{}});
+     const weapons=variants.get(data.weaponId);same(weapons.length,data.expected.length,'No missing/duplicated presenter weapon');
+     return weapons.map((card,i)=>{
+      mutateCard?.(card,i);const expected=data.expected[i];same(card.selectionKey,expected.key,'Occurrence key survives personal projection');same(card.rosterQuantity,expected.quantity,'Weapon quantity');
+      const row=presenter.renderWeapon(card,{instanceId:data.unit.instanceId});document.body.append(row);const stats={};
+      for(const cell of row.querySelectorAll('[data-label]')){
+       const label=cell.dataset.label,value=cell.querySelector('.ds-effective-value')?.textContent,trace=cell.querySelector('.ds-modifier-breakdown');
+       same(value,expected.values[label],data.id+'/'+label+' final');same(trace?.textContent??null,expected.traces[label]??null,data.id+'/'+label+' trace');
+       if(label==='Range'&&expected.sourceIds)same(JSON.parse(trace.dataset.ruleIds).sort(),[...expected.sourceIds].sort(),'Both independent source identities survive');
+       stats[label]={value,trace:trace?.textContent??null,ruleIds:trace?.dataset.ruleIds??null};
+      }
+      return {key:card.selectionKey,quantity:card.rosterQuantity,stats};
+     });
+    }
+    const actual=cases.map(data=>({id:data.id,status:'PASS',rows:verify(data)})),mutations=[];
+    const sample=cases[0],changeRows=(data,fn)=>data.effective.applied.filter(row=>row.operation==='MODIFY_STAT').forEach(fn);
+    for(const [name,mutate]of [
+     ['missing-address',data=>changeRows(data,row=>{delete row.targetWeaponSelectionKey;delete row.targetWeaponScopeId;})],
+     ['wrong-scope',data=>changeRows(data,row=>{row.targetWeaponScopeId='foreign-scope';})],
+     ['foreign-unit',data=>changeRows(data,row=>{row.targetInstanceId='foreign-unit';})],
+     ['canonical-only-fallback',data=>changeRows(data,row=>{delete row.targetWeaponSelectionKey;})],
+     ['duplicate-trace',data=>{data.effective.applied.push(structuredClone(data.effective.applied.find(row=>row.field==='strength')));}],
+     ['prototype-to-remainder',data=>changeRows(data,row=>{if(row.field!=='range')row.targetWeaponSelectionKey=data.expected[1].key;})],
+     ['alternative-profile-mix',data=>changeRows(data,row=>{row.targetWeaponProfileId='another-canonical-profile';})],
+     ['lost-ordinary-contribution',data=>{data.effective.applied=data.effective.applied.filter(row=>!(row.field==='range'&&row.targetWeaponSelectionKey===data.expected[1].key));}]
+    ]){
+     const data=structuredClone(sample);mutate(data);let detected=false;try{verify(data);}catch{detected=true;}
+     if(!detected)throw Error('Presenter mutation escaped: '+name);mutations.push({name,result:'DETECTED'});
+    }
+    let detected=false;try{verify(sample,card=>{delete card.selectionKey;});}catch{detected=true;}
+    if(!detected)throw Error('Personal projection key mutation escaped');mutations.push({name:'lost-personal-selection-key',result:'DETECTED'});
+    const independent=structuredClone(cases.find(data=>data.id==='admech-independent-range-sources'));
+    independent.effective.applied=independent.effective.applied.filter(row=>!(row.field==='range'&&row.ruleId===independent.expected[0].sourceIds[0]));
+    detected=false;try{verify(independent);}catch{detected=true;}
+    if(!detected)throw Error('Independent source loss escaped');mutations.push({name:'lost-independent-range-source',result:'DETECTED'});
+    return {cases:actual,mutations};
+   });
+   results.push({viewport,...output});await page.close();
+  }
+  assert.deepEqual(errors,[]);return {status:'PASS',method:'PRODUCTION_PRESENTER_COMPONENT_IN_CHROMIUM',browserVersion:browser.version(),
+   applicationBrowserAcceptance:false,stage5:false,results,errors};
+ }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
+}
 
 assert.deepEqual(book,original,'QA/import/runtime must not mutate canonical source-owned book');
 records.runtimeDenominator={total:records.runtimeCases.length,pass:records.runtimeCases.filter(row=>row.status==='PASS').length,

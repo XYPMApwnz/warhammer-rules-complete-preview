@@ -5,7 +5,7 @@ import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
   tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs,bindTauShieldModels} from './roster-source-choices.mjs';
-import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver} from './roster-weapon-choices.mjs';
+import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from './roster-weapon-choices.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -165,7 +165,8 @@ export function createTauRosterRuntime(book){
       const candidate=imports.load(value),boundBook=bindTauShieldModels(bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate),candidate);
       const schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(boundBook,candidate)});
       schema.validateContracts(boundBook);
-      const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate)});
+      const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate),
+        resolveWeaponPartitions:tauWeaponPartitionResolver(boundBook,candidate)});
       const verified=next.load(candidate);runtime=next;return verified;
     },snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),related:(...args)=>runtime.related(...args),
     context:(...args)=>runtime.context(...args),

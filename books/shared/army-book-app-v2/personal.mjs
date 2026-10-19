@@ -148,6 +148,7 @@ export function projectInstanceCards(cards, unit, effective) {
   const overlay = (record, source) => {
     const base=cards.get(record.id);assert(base,'Unresolved effective profile: '+record.id);
     const card=annotate(base,record.scopeId), values=new Map(record.fields.map(field=>[field.label,field.value]));
+    if(source==='WEAPON_PROFILE'&&record.selectionKey!==undefined)card.selectionKey=record.selectionKey;
     if(scopeCaptions.has(record.scopeId))card.presentationScope=clone(scopeCaptions.get(record.scopeId));
     card.fields=card.fields.flatMap(field=> {
       const path=field.source?.path || '', parts=path.slice(1).split('/');
@@ -166,7 +167,12 @@ export function projectInstanceCards(cards, unit, effective) {
       const threshold=values.get('criticalHitThreshold'),sources=record.criticalHitSources;
       assert(Number.isSafeInteger(threshold)&&threshold>=2&&threshold<=6&&sources?.length&&
         sources.every(row=>row.targetInstanceId===unit.instanceId&&row.targetWeaponProfileId===record.id&&
-          (row.targetCompositionId||null)===(record.scopeId||null)), 'Unresolved Critical Hit presentation recipient');
+          (row.targetCompositionId??null)===(record.scopeId??null)&&
+          (Object.hasOwn(row,'targetWeaponSelectionKey')||Object.hasOwn(row,'targetWeaponScopeId')
+            ? typeof record.selectionKey==='string'&&record.selectionKey.length>0&&row.targetWeaponSelectionKey===record.selectionKey&&
+              Object.hasOwn(row,'targetWeaponScopeId')&&row.targetWeaponScopeId===(record.scopeId??null)
+            : effective.weapons.filter(other=>other.id===record.id&&(other.scopeId??null)===(record.scopeId??null)).length===1)),
+        'Unresolved Critical Hit presentation recipient');
       card.criticalHitThreshold=threshold;card.criticalHitSources=clone(sources);
     }
     for (const [key,value] of values) if (Array.isArray(value)) {

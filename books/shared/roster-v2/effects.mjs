@@ -177,9 +177,53 @@ function changeStat(before, effect) {
   if (dice) { const modifier = Number(dice[2] || 0) + effect.value; return dice[1] + (modifier ? (modifier > 0 ? '+' : '') + modifier : ''); }
   throw new TypeError('Unsupported characteristic expression: ' + raw);
 }
+/** Logical addresses inside one disposable projection, never physical serial IDs. */
+export const weaponPartitionKey=(request,role)=>JSON.stringify(['weapon-quantity-portion',request.unitInstanceId,
+  request.scopeId,request.selectionKey,request.canonicalProfileId,request.sourceRuleId,role]);
+
+/** A book supplies a confirmed decision, not weapon values or replacement rows.
+ * Only the derived inventory changes; the validated imported state stays intact. */
+function partitionWeapons(book,state,projection,resolveWeaponPartitions){
+  if(!resolveWeaponPartitions)return;
+  const requests=resolveWeaponPartitions({state:structuredClone(state),projection:structuredClone(projection)});
+  if(!Array.isArray(requests))throw new TypeError('Invalid projection weapon partitions');
+  const records=new Map(book.entities.map(entity=>[entity.id,entity])),seen=new Set();
+  for(const request of requests){
+    if(!request||Array.isArray(request)||Object.keys(request).length!==5||
+      !['unitInstanceId','scopeId','selectionKey','canonicalProfileId','sourceRuleId'].every(key=>Object.hasOwn(request,key))||
+      !['unitInstanceId','selectionKey','canonicalProfileId','sourceRuleId'].every(key=>typeof request[key]==='string'&&request[key])||
+      request.scopeId!==null&&(typeof request.scopeId!=='string'||!request.scopeId))throw new TypeError('Invalid projection partition reference');
+    const unit=projection.units.find(unit=>unit.instanceId===request.unitInstanceId),rule=records.get(request.sourceRuleId);
+    const assignment=unit?.enhancementAssignments?.find(row=>row.enhancementId===request.sourceRuleId);
+    const model=unit?.profiles.find(row=>row.scopeId===assignment?.modelScopeId);
+    if(rule?.kind!=='ENHANCEMENT'||!rule.provenance?.sourceId||!unit?.enhancementIds.includes(rule.id)||
+      !state.detachmentIds.includes(rule.parentId)||model?.quantity!==1||
+      request.scopeId!==model.scopeId&&!(request.scopeId===null&&unit.startingStrength===1))
+      throw new TypeError('Unconfirmed projection partition source/owner');
+    const container=request.scopeId===null?unit:model;
+    const matches=container.weapons.filter(row=>row.selectionKey===request.selectionKey);
+    const selection=container.selections.find(row=>row.selectionKey===request.selectionKey);
+    const marker=JSON.stringify([unit.instanceId,request.scopeId,request.selectionKey]);
+    if(seen.has(marker)||matches.length!==1||matches[0].canonicalProfileId!==request.canonicalProfileId||
+      matches[0].physicalQuantity!==2||matches[0].quantityPartition||!selection||selection.physicalQuantity!==2||
+      selection.canonicalProfileIds.length!==1||selection.canonicalProfileIds[0]!==request.canonicalProfileId||
+      (request.scopeId!==null&&selection.perModelQuantity!==2)||
+      !selection.quantityEvidence||selection.quantityEvidence.selectedQuantity!==2)
+      throw new TypeError('Unresolved, conflicting or non-conserving projection partition');
+    seen.add(marker);
+    const parent=matches[0],parts=['selected','remainder'].map(role=>({...structuredClone(parent),physicalQuantity:1,
+      selectionKey:weaponPartitionKey(request,role),quantityPartition:{role,originalQuantity:2,sourceSelectionKey:parent.selectionKey,
+        sourceRuleId:rule.id,sourceProvenance:structuredClone(rule.provenance),sourceSelection:structuredClone(selection)}}));
+    if(parts.reduce((sum,row)=>sum+row.physicalQuantity,0)!==parent.physicalQuantity||
+      parts.some(part=>container.weapons.some(row=>row.selectionKey===part.selectionKey)))
+      throw new TypeError('Duplicated or non-conserving projection partition');
+    container.weapons.splice(container.weapons.indexOf(parent),1,...parts);
+  }
+}
 /** Each clause is evaluated independently; no BATTLE action is ever executed. */
-export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection}) {
+export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
+  partitionWeapons(book,state,result,resolveWeaponPartitions);
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
     if (rule.ruleContract.detachmentId && !state.detachmentIds.includes(rule.ruleContract.detachmentId)) continue;
@@ -496,7 +540,9 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
         }
         else if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
         else modifyCharacteristic(weapon.data,numericDomain[effect.field]?.field || effect.field,weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
-        if(chosen)for(const row of unit.applied.slice(appliedStart)){
+        // Address every emitted weapon contribution, including all-matching
+        // modifiers. This records the existing recipient; it never reapplies it.
+        for(const row of unit.applied.slice(appliedStart)){
           row.targetWeaponSelectionKey=weapon.selectionKey;row.targetWeaponScopeId=weapon.scopeId??null;
         }
       }
