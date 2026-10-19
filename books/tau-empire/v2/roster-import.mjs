@@ -5,6 +5,7 @@ import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
   tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs} from './roster-source-choices.mjs';
+import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver} from './roster-weapon-choices.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -127,6 +128,7 @@ export function createTauRosterImport(input){
     checked(state,'mfmDetachmentRecordIds',state.detachmentIds.map(id=>book.mfmImportReferences.partitions.detachmentBindings.find(row=>row.entityId===id)?.mfmRecordId));
     if(!errors.length&&!needs.length)try{
       validateRoster(book,state,book.rosterAttachmentPolicies);validateTauSourceChoices(book,state);validateTauAttachmentSourceConditions(book,state);
+      validateTauPrototypeChoices(book,state);
     }catch(e){error('INVALID_PHYSICAL_STATE','roster',e.message);}
     return {state,needs,errors};
   }
@@ -160,16 +162,17 @@ export function createTauRosterRuntime(book){
   const service={get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
-      const candidate=imports.load(value),boundBook=bindTauStudentPairs(book,candidate);
+      const candidate=imports.load(value),boundBook=bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate);
       const schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(boundBook,candidate)});
       schema.validateContracts(boundBook);
-      const next=createRosterRuntime(boundBook,schema);
+      const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate)});
       const verified=next.load(candidate);runtime=next;return verified;
     },snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),related:(...args)=>runtime.related(...args),
     context:(...args)=>runtime.context(...args),
     attach:(leader,target)=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'ATTACH',leader,target)),
     detach:leader=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'DETACH',leader)),
     reattach:(leader,target)=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'REATTACH',leader,target)),
-    setStudentChoice:(source,recipients)=>service.load(setTauStudentChoice(book,runtime.snapshot(),source,recipients))};
+    setStudentChoice:(source,recipients)=>service.load(setTauStudentChoice(book,runtime.snapshot(),source,recipients)),
+    setPrototypeChoice:(source,rule,reference)=>service.load(setTauPrototypeChoice(book,runtime.snapshot(),source,rule,reference))};
   return service;
 }

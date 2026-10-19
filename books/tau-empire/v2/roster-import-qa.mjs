@@ -10,6 +10,7 @@ import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
 import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext} from './roster-source-choices.mjs';
+import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -484,9 +485,137 @@ test('prototype-exact-physical-weapon-dependencies-stay-explicit',()=>{
   for(const field of Object.keys(oracle.expectedDeltas[i]))assert.equal(selected[0].data[field],weapon.data[field],'No unresolved one-weapon delta broadcast to duplicates');
   records.runtimeCases.push({id:'prototype-'+source.data.title,source:oracle.independentSources[i],expected:{chosenPhysicalWeapon:1,
    unchangedPhysicalWeapons:1,deltas:oracle.expectedDeltas[i]},actual:{weaponProfileId:weaponId,physicalQuantity:2,deltasApplied:0},status:'BLOCKED',
-   reason:'Existing source choice selects a canonical profile, while this source requires one distinct occurrence among two same-profile weapons; no safe physical occurrence target in agreed shared interface'});
+   reason:'This unchanged INPUT has one aggregate selection with quantity=2, not two proven occurrence identities; no splitting or ordinal choice is permitted'});
   records.fixtures.push({id:'prototype-'+i,text,expected:[{enhancement:id,physicalWeapons:2,oneChosen:true,expectedDeltas:oracle.expectedDeltas[i]}]});
  }
+});
+
+const prototypeOracle=read('./rule-contract-expectations.json').deferredSelectionExpectations.find(e=>e.id==='prototype-weapon-choice');
+const weaponReference=(unit,weapon)=>({unitInstanceId:unit.instanceId,scopeId:weapon.scopeId??null,
+ selectionKey:weapon.selectionKey,canonicalProfileId:weapon.canonicalProfileId});
+function assertPrototypeProjection(actual,base,reference,deltas){
+ const changes=[];
+ for(const unit of actual.units)for(const weapon of projectedWeapons(unit)){
+  const original=projectedWeapons(base.units.find(row=>row.instanceId===unit.instanceId)).find(row=>
+   (row.scopeId??null)===(weapon.scopeId??null)&&row.selectionKey===weapon.selectionKey&&row.canonicalProfileId===weapon.canonicalProfileId);
+  assert.ok(original,'Every output weapon retains input physical identity');
+  const chosen=sameWeapon(weaponReference(unit,weapon),reference),expected=clone(original.data);
+  if(base.detachmentIds.includes('detachment-experimental-prototype-cadre')&&
+    ['BATTLESUIT','CHARACTER'].every(keyword=>unit.keywords.includes(keyword))&&weapon.data.mode==='ranged'){
+   assert.ok(index.get('detachment-experimental-prototype-cadre:rule').data.text.includes('Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6" R.'));
+   expected.range=(Number(original.data.range.replace('"',''))+6)+'"';
+  }
+  if(chosen)for(const [field,delta]of Object.entries(deltas))expected[field]=String(Number(original.data[field])+delta);
+  assert.deepEqual(weapon.data,expected,'Exact source-backed delta on selected weapon only: '+weapon.selectionKey);
+  if(chosen)changes.push(weaponReference(unit,weapon));
+ }
+ assert.equal(changes.length,reference?1:0,'Exactly one proven weapon occurrence, never an aggregate or another UNIT');
+}
+const sameWeapon=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',()=>{
+ records.prototypeExactResults=[];
+ for(const [i,ruleId]of prototypeOracle.canonicalIds.entries()){
+  const rule=index.get(ruleId),weaponId=prototypeOracle.eligibleWeaponIds[i].find(id=>index.get(id).parentId==='unit-commander-in-coldstar-battlesuit');
+  const weapon=index.get(weaponId),source=prototypeOracle.independentSources[i];
+  assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../../../'+source.document,import.meta.url))).digest('hex').toUpperCase(),source.sha256);
+  const one=gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,1)
+   .replace('1x '+weapon.data.name,'1x '+weapon.data.name+', 1x '+weapon.data.name);
+  const text=header(['Experimental Prototype Cadre'])+one+'Enhancement: '+rule.data.title+'\n'+one;
+  const service=make(),state=ready(text,{},service).roster,base=formRoster(book,state),run=runtime(state);
+  const physical=base.units[0],weapons=projectedWeapons(physical).filter(row=>row.canonicalProfileId===weaponId);
+  assert.equal(weapons.length,2);assert.deepEqual(weapons.map(row=>row.physicalQuantity),[1,1],'Separate INPUT selections, no synthetic split');
+  const first=weaponReference(physical,weapons[0]),second=weaponReference(physical,weapons[1]);
+  assert.notEqual(first.selectionKey,second.selectionKey,'Only existing distinct selection identities are used');
+  run.setPrototypeChoice(physical.instanceId,ruleId,first);
+  assertPrototypeProjection(run.projection,base,first,prototypeOracle.expectedDeltas[i]);
+  const rows=run.projection.units.flatMap(unit=>unit.applied).filter(row=>row.ruleId===ruleId);
+  assert.equal(rows.length,Object.keys(prototypeOracle.expectedDeltas[i]).length);
+  for(const row of rows){assert.equal(row.sourceInstanceId,physical.instanceId);assert.equal(row.targetInstanceId,physical.instanceId);
+   assert.equal(row.targetWeaponSelectionKey,first.selectionKey);assert.equal(row.targetWeaponScopeId,first.scopeId);
+   assert.deepEqual(row.sourceFields,[['text']]);assert.equal(row.sourceCompositionId,first.scopeId);}
+  const decision=tauPrototypeDecisions(run.snapshot().units[0])[0];assert.deepEqual(decision.sourceProvenance,rule.provenance);
+  const bound=bindTauPrototypeChoices(book,run.snapshot()),effects=bound.entities.find(row=>row.id===ruleId).ruleContract.clauses.flatMap(row=>row.rosterEffects);
+  assert.ok(effects.every(effect=>effect.provenance.canonicalRuleId===ruleId&&effect.provenance.canonicalOwnerId===rule.parentId&&
+   JSON.stringify(effect.provenance.sourceEvidence)===JSON.stringify(rule.provenance)),'Derived effects preserve original factual owner and provenance');
+  const saved=JSON.parse(JSON.stringify(run.snapshot())),projection=clone(run.projection);
+  assert.deepEqual(runtime(saved).projection,projection,'Snapshot JSON/load retains exact weapon selection');
+  run.load(saved);assert.deepEqual(run.projection,projection,'Recompute does not accumulate modifiers');
+  service.load(saved);const reimport=ready(text,{},service).roster;
+  assert.deepEqual(reimport,saved,'Identical input reimport preserves validated exact source decision');
+  assert.deepEqual(runtime(reimport).projection,projection);
+  run.setPrototypeChoice(physical.instanceId,ruleId,second);assertPrototypeProjection(run.projection,base,second,prototypeOracle.expectedDeltas[i]);
+  run.setPrototypeChoice(physical.instanceId,ruleId,null);assertPrototypeProjection(run.projection,base,null,{});
+  run.setPrototypeChoice(physical.instanceId,ruleId,first);
+  const valid=run.snapshot(),validProjection=run.projection;
+  for(const [name,reference]of [
+   ['missing',{}],['foreign-unit',{...first,unitInstanceId:base.units[1].instanceId}],
+   ['wrong-owner',{...first,scopeId:base.units[1].profiles[0].scopeId}],['stale-key',{...first,selectionKey:'missing-weapon'}],
+   ['wrong-canonical-profile',{...first,canonicalProfileId:index.get('unit-commander-in-coldstar-battlesuit').data.weaponIds.find(id=>id!==weaponId)}]
+  ])negative('stage4c-'+i+'-'+name,()=>{assert.throws(()=>run.setPrototypeChoice(physical.instanceId,ruleId,reference));
+   assert.deepEqual(run.snapshot(),valid);assert.deepEqual(run.projection,validProjection,'Rejected weapon decision preserves valid runtime');});
+  const stale=clone(valid);stale.units[0].modelRows[0].selections.find(row=>row.selectionKey===first.selectionKey).selectionKey+='-edited';
+  assert.throws(()=>run.load(stale),/Stale|stale|weapon/i);assert.deepEqual(run.snapshot(),valid);
+  const missingReference=clone(valid);delete tauPrototypeDecisions(missingReference.units[0])[0].sourceWeaponReference;
+  assert.throws(()=>run.load(missingReference));assert.deepEqual(run.snapshot(),valid);
+  const staleSource=clone(valid);staleSource.units[0].enhancementIds=[];staleSource.units[0].enhancementAssignments=[];staleSource.units[0].mfmEnhancementRecordIds=[];
+  assert.throws(()=>run.load(staleSource));assert.deepEqual(run.snapshot(),valid);
+  run.setPrototypeChoice(physical.instanceId,ruleId,null);
+  const removed=run.snapshot();removed.units[0].enhancementIds=[];removed.units[0].enhancementAssignments=[];removed.units[0].mfmEnhancementRecordIds=[];
+  run.load(removed);assertPrototypeProjection(run.projection,base,null,{});
+  run.load(valid);assertPrototypeProjection(run.projection,base,first,prototypeOracle.expectedDeltas[i]);
+  const changedText=text.replace('1x '+weapon.data.name+', 1x '+weapon.data.name,'1x '+weapon.data.name);
+  const changed=ready(changedText,{},service).roster;
+  assert.equal(tauPrototypeDecisions(changed.units[0]).length,0,'Changed input cannot inherit a positional source choice');
+  assertPrototypeProjection(runtime(changed).projection,formRoster(book,changed),null,{});
+  const aggregate=ready(header(['Experimental Prototype Cadre'])+gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,2)+'Enhancement: '+rule.data.title+'\n').roster;
+  const aggregateBase=formRoster(book,aggregate),aggregateWeapon=projectedWeapons(aggregateBase.units[0])[0],aggregateRun=runtime(aggregate);
+  assert.throws(()=>aggregateRun.setPrototypeChoice('parsed-unit-1',ruleId,weaponReference(aggregateBase.units[0],aggregateWeapon)),/aggregate/i);
+  assertPrototypeProjection(aggregateRun.projection,aggregateBase,null,{});
+  records.prototypeExactResults.push({id:ruleId,status:'PASS',source,expectedDeltas:prototypeOracle.expectedDeltas[i],
+   actualStrengthDeltas:projectedWeapons(projection.units[0]).map(row=>Number(row.data.strength)-Number(weapon.data.strength)),
+   aggregate:'BLOCKED_NO_SEPARATE_IDENTITY',persistence:'PASS',recompute:'PASS'});
+  if(i===0){
+   const paired=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(paired,valid)});
+   const resolver=tauWeaponSelectionResolver(paired,valid);
+   const diagnostic=resolve=>{const rt=createRosterRuntime(paired,{...schema,
+    resolveWeaponSelection:context=>context.rule.id===ruleId?resolve(context):undefined});rt.load(valid);return rt.projection;};
+   assertPrototypeProjection(diagnostic(resolver),base,first,prototypeOracle.expectedDeltas[i]);
+   for(const [id,resolve]of [
+    ['missing-physical-filter',()=>undefined],['wrong-selected-key',()=>({...first,selectionKey:second.selectionKey})],
+    ['foreign-runtime-owner',()=>({...first,unitInstanceId:base.units[1].instanceId})],
+    ['wrong-runtime-scope',()=>({...first,scopeId:base.units[1].profiles[0].scopeId})],
+    ['missing-runtime-key',()=>({...first,selectionKey:undefined})]
+   ])mutation('stage4c-'+id,()=>assert.throws(()=>assertPrototypeProjection(diagnostic(resolve),base,first,prototypeOracle.expectedDeltas[i])));
+   assertPrototypeProjection(diagnostic(()=>null),base,null,{});
+   mutation('stage4c-aggregate-physical-quantity',()=>{
+    const aggregateRaw=clone(valid),selection=aggregateRaw.units[0].modelRows[0].selections.find(row=>row.selectionKey===first.selectionKey);
+    selection.physicalQuantity=2;selection.perModelQuantity=2;
+    const rt=createRosterRuntime(paired,{...schema,resolveWeaponSelection:resolver});rt.load(valid);
+    assert.throws(()=>rt.load(aggregateRaw),/aggregate/i);assert.deepEqual(rt.snapshot(),valid,'Shared runtime also rejects aggregate targeting atomically');
+   });
+   mutation('stage4c-canonical-filter-intersection',()=>{
+    const wrongCanonical=clone(paired);wrongCanonical.entities.find(row=>row.id===ruleId).ruleContract.clauses.flatMap(row=>row.rosterEffects)
+     .forEach(effect=>effect.weaponIds=['datasheet-commander-in-coldstar-battlesuit:weapon:8']);
+    const rt=createRosterRuntime(wrongCanonical,{...schema,resolveWeaponSelection:resolver});assert.throws(()=>rt.load(valid),/selection/i);
+   });
+   const wrongValue=clone(paired);wrongValue.entities.find(row=>row.id===ruleId).ruleContract.clauses.flatMap(row=>row.rosterEffects).find(row=>row.field==='strength').value++;
+   mutation('stage4c-wrong-numeric-value',()=>assert.throws(()=>{const rt=createRosterRuntime(wrongValue,{...schema,resolveWeaponSelection:resolver});rt.load(valid);
+    assertPrototypeProjection(rt.projection,base,first,prototypeOracle.expectedDeltas[i]);}));
+  }
+ }
+});
+
+test('stage4c-exact-weapon-other-model-isolation',()=>{
+ const id='unit-crisis-starscythe-battlesuits',ruleId=prototypeOracle.canonicalIds[0],weaponId=prototypeOracle.eligibleWeaponIds[0].find(id=>index.get(id).parentId==='unit-crisis-starscythe-battlesuits');
+ const weapon=index.get(weaponId),rows=members(id).filter(row=>row.data.quantity.min>0);
+ const text=header(['Experimental Prototype Cadre'])+rows.reduce((sum,row)=>sum+row.data.quantity.min,0)+'x '+index.get(id).data.title+' (100 pts)\n'+
+  rows.map(row=>'• '+row.data.quantity.min+'x '+row.data.name+': 1x '+weapon.data.name+'\n').join('')+'Enhancement: '+index.get(ruleId).data.title+'\n';
+ const candidate=make().import(text),scope=formRoster(book,candidate.candidateRoster??candidate.roster).units[0].profiles.find(row=>row.quantity===1).scopeId;
+ const state=ready(text,{modelBearers:{'parsed-unit-1':{[ruleId]:scope}}}).roster,base=formRoster(book,state),run=runtime(state);
+ const bearer=base.units[0].profiles.find(row=>row.scopeId===scope),reference=weaponReference(base.units[0],bearer.weapons[0]);
+ run.setPrototypeChoice('parsed-unit-1',ruleId,reference);assertPrototypeProjection(run.projection,base,reference,prototypeOracle.expectedDeltas[0]);
+ const other=base.units[0].profiles.find(row=>row.scopeId!==scope);
+ assert.throws(()=>run.setPrototypeChoice('parsed-unit-1',ruleId,weaponReference(base.units[0],other.weapons[0])),/owner|evidence|choice/i);
 });
 
 test('student-of-kauyon-exact-three-physical-unit-recipients',()=>{

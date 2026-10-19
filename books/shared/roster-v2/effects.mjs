@@ -178,7 +178,7 @@ function changeStat(before, effect) {
   throw new TypeError('Unsupported characteristic expression: ' + raw);
 }
 /** Each clause is evaluated independently; no BATTLE action is ever executed. */
-export function executeRosterEffects(book, state, {evaluatePredicate}) {
+export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
@@ -454,11 +454,40 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
       // the weapon. Exact bearer effects require a bound MODEL inventory.
       const exactBearerWeapons=ownerModel && effect.targetBinding==='SOURCE_MODEL';
       const weapons = target.model ? [...target.model.weapons,...(unit.profiles.length>1 && (effect.operation==='MODIFY_STAT' || exactBearerWeapons) ? [] : unit.weapons)] : [...unit.weapons,...unit.profiles.flatMap(m=>m.weapons)];
+      // Optional book-owned decisions narrow existing operations, never their
+      // canonical eligibility. Undefined preserves all-matching modifiers;
+      // null explicitly withholds a selected-weapon effect without fallback.
+      const choice=resolveWeaponSelection?.({rule,effect,source,ownerModel});
+      if(choice===null){
+        unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:'Physical weapon selection unavailable'});
+        target.unit=original;continue;
+      }
+      let chosen;
+      if(choice!==undefined){
+        if(!choice || Array.isArray(choice) || Object.keys(choice).length!==4 ||
+            !['unitInstanceId','scopeId','selectionKey','canonicalProfileId'].every(key=>Object.hasOwn(choice,key)) ||
+            !['unitInstanceId','selectionKey','canonicalProfileId'].every(key=>typeof choice[key]==='string'&&choice[key]) ||
+            choice.scopeId!==null && (typeof choice.scopeId!=='string'||!choice.scopeId) ||
+            !exactBearerWeapons || ownerModel.quantity!==1 || source!==unit || target.model!==ownerModel ||
+            choice.unitInstanceId!==source.instanceId ||
+            choice.scopeId!==ownerModel.scopeId && !(choice.scopeId===null&&source.startingStrength===1))
+          throw new TypeError('Invalid physical weapon selection owner/scope');
+        const matches=weapons.filter(weapon=>(weapon.scopeId??null)===choice.scopeId &&
+          weapon.selectionKey===choice.selectionKey && weapon.canonicalProfileId===choice.canonicalProfileId);
+        if(matches.length!==1 || matches[0].physicalQuantity!==1 ||
+            effect.weaponMode && matches[0].data.mode!==effect.weaponMode ||
+            effect.weaponIds && !effect.weaponIds.includes(choice.canonicalProfileId) ||
+            effect.excludeWeaponIds?.includes(choice.canonicalProfileId))
+          throw new TypeError('Unresolved or aggregate physical weapon selection');
+        chosen=matches[0];
+      }
       for (const weapon of weapons) {
+        if(chosen && weapon!==chosen)continue;
         if (effect.weaponMode && weapon.data.mode !== effect.weaponMode || effect.weaponIds && !effect.weaponIds.includes(weapon.canonicalProfileId) || effect.excludeWeaponIds?.includes(weapon.canonicalProfileId)) continue;
         const weaponMarker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.unit.instanceId}/${target.unit.weapons.includes(weapon) ? 'unit' : weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`;
         if (processed.has(weaponMarker)) continue; processed.add(weaponMarker);
         if(contributionUsed(`${unit.weapons.includes(weapon)?'unit':weapon.scopeId}/${weapon.selectionKey}/${weapon.canonicalProfileId}`))continue;
+        const appliedStart=unit.applied.length;
         if (effect.operation==='MODIFY_RULE_METRIC' && effect.field==='criticalHitThreshold') {
           // A passive attack threshold is neither BS/WS nor a MODEL metric.
           // Keep each source contribution even when another grant is stronger.
@@ -467,6 +496,9 @@ export function executeRosterEffects(book, state, {evaluatePredicate}) {
         }
         else if (effect.operation === 'GRANT_WEAPON_ABILITY') mutate(weapon.data,'abilities',weapon.data.abilities.some(ability=>ability.toUpperCase()===effect.ability.toUpperCase())?[...weapon.data.abilities]:[...weapon.data.abilities,effect.ability],weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
         else modifyCharacteristic(weapon.data,numericDomain[effect.field]?.field || effect.field,weapon.modelInstanceId,weapon.canonicalProfileId,target.unit.weapons.includes(weapon)?null:target.model || target.unit.profiles.find(profile=>profile.scopeId===weapon.scopeId));
+        if(chosen)for(const row of unit.applied.slice(appliedStart)){
+          row.targetWeaponSelectionKey=weapon.selectionKey;row.targetWeaponScopeId=weapon.scopeId??null;
+        }
       }
       target.unit=original;
       }

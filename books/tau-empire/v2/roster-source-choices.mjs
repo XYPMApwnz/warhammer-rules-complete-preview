@@ -2,6 +2,7 @@
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {tauPrototypeField,tauPrototypeDecisions,validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
 
 export const tauStudentRuleId='detachment-auxiliary-cadre:enhancement:1';
 export const tauStudentOptionId=tauStudentRuleId+'::choice::physical-recipients';
@@ -166,9 +167,10 @@ export function bindTauStudentPairs(book,state) {
 
 function physicalInput(state) {
   const strip=unit=>{
-    const copy=clone(unit);delete copy[tauStudentField];
+    const copy=clone(unit);delete copy[tauStudentField];delete copy[tauPrototypeField];
     for(const container of [copy,...copy.modelRows,...copy.modelRows.flatMap(row=>row.loadouts||[])])
-      container.selections=(container.selections||[]).filter(selection=>!decisionRows({selections:[selection]}).length);
+      container.selections=(container.selections||[]).filter(selection=>!decisionRows({selections:[selection]}).length&&
+        !tauPrototypeDecisions({selections:[selection]}).length);
     return copy;
   };
   const sort=value=>Array.isArray(value)?value.map(sort):value&&typeof value==='object'?
@@ -179,9 +181,12 @@ function physicalInput(state) {
 export function preserveTauSourceChoices(book,incoming,previous) {
   if(!previous||incoming.rosterId!==previous.rosterId)return incoming;
   validateTauSourceChoices(book,previous);
+  validateTauPrototypeChoices(book,previous);
   if(physicalInput(incoming)!==physicalInput(previous))return incoming;
   let state=clone(incoming);
   for(const unit of previous.units)if(unit[tauStudentField]?.length)
     state=setTauStudentChoice(book,state,unit.instanceId,decisionRows(unit)[0].recipientInstanceIds);
+  for(const unit of previous.units)for(const decision of tauPrototypeDecisions(unit))
+    state=setTauPrototypeChoice(book,state,unit.instanceId,decision.sourceRuleId,decision.sourceWeaponReference);
   return state;
 }

@@ -6,6 +6,7 @@ import {buildTauContracts,createTauRuleSchema} from './rule-contract-build.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs';
+import {addTauPrototypeChoices} from './roster-weapon-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
@@ -104,6 +105,7 @@ export function buildTauImportBook(){
     effect.equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:platformOption.id,sourceFieldPath:['text']};
   }
   addTauSourceChoices(book);
+  addTauPrototypeChoices(book);
   // Lower only the independently validated physical recipient choice. The
   // existing executor performs the grant; the source decision stores no result.
   const rule=index.get(tauStudentRuleId),clause=rule.ruleContract.clauses.find(c=>c.sourceText===rule.data.text);
@@ -117,6 +119,7 @@ export function buildTauImportBook(){
   book.importReadiness={stage:4,status:'PARTIAL',frontendVerified:false,realNewRecruitExportTested:false,
     remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE','SHIELD_DRONE_PHYSICAL_MODEL_BINDING'],
     unprovenExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],markerOccurrenceCount:markerBindings.length,
+    prototypePhysicalWeapon:'EXISTING_SCOPE_AND_SELECTION_QUANTITY_ONE_ONLY',
     student:'PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
   const schema=createTauRuleSchema();schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
