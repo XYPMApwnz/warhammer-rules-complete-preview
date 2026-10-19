@@ -1,0 +1,40 @@
+{
+  "schema": "tau-empire-v2-source-issues/v1",
+  "unresolved": [],
+  "historicalIssues": [
+    {
+      "id": "legacy-corpus-checksum-and-content",
+      "decision": "Excluded as authority; accepted raw read directly with complete reviewed bindings; legacy enrollment untouched."
+    },
+    {
+      "id": "legacy-effect-contract-checksum",
+      "decision": "Excluded as authority; no legacy gameplay declarations consumed."
+    },
+    {
+      "id": "drone-pdf-legends-scope",
+      "decision": "Current drone facts derive from current raw; PDF p61 Legends is not a current override."
+    }
+  ],
+  "remainingRuntimeReadiness": [
+    {
+      "id": "shield-drone-bearer-and-quantity",
+      "status": "NOT_PROVEN",
+      "implemented": false
+    },
+    {
+      "id": "student-of-kauyon-recipient-choice",
+      "status": "NOT_PROVEN",
+      "implemented": false
+    },
+    {
+      "id": "one-physical-weapon-choice",
+      "status": "NOT_PROVEN",
+      "implemented": false
+    },
+    {
+      "id": "kroot-bodyguard-starting-strength",
+      "status": "NOT_PROVEN",
+      "implemented": false
+    }
+  ]
+}

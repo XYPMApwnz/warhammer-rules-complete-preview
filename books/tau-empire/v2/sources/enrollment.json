@@ -1,0 +1,702 @@
+{
+  "schema": "tau-empire-v2-source-enrollment/v1",
+  "edition": "11E",
+  "verifiedAt": "2026-10-19",
+  "acceptedBaseHead": "4fc60194cff94e5963a12d1d09e68470deb73c2c",
+  "precedence": [
+    "CONFIRMED_APPLICABLE_OFFICIAL_CORRECTIONS",
+    "ACCEPTED_WAHAPEDIA_11E_2026_09_28"
+  ],
+  "currentOfficialSource": {
+    "id": "tau-empire-faction-pack-v1.1",
+    "version": "v1.1",
+    "effectiveFrom": "2026-07-22",
+    "url": "https://assets.warhammer-community.com/eng_22-07_warhammer_40%2C000_faction_pack_tau_empire-hdrq4u64wm-xopcvjvqfu.pdf"
+  },
+  "universalSource": {
+    "version": "v1.1",
+    "effectiveFrom": "2026-08-26",
+    "scope": "Only matching generic amendments; no newly inferred battle condition"
+  },
+  "centralMfm": {
+    "sourceId": "tau-empire-mfm-v1.6",
+    "version": "v1.6",
+    "observedAt": "2026-10-14",
+    "effectiveDate": null
+  },
+  "rawPages": [
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Breacher-Team.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Breacher-Team"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Strike-Team.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Strike-Team"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Cadre-Fireblade"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-In-Coldstar-Battlesuit"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-In-Enforcer-Battlesuit"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ethereal"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Firesight-Team"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Flesh-Shaper"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Lone-Spear.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Lone-Spear"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Trail-Shaper"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-War-Shaper"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Devilfish.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Devilfish"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Farsight.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-Farsight"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-Shadowsun"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Darkstrider"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/The-Twin-Lance.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/The-Twin-Lance"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Carnivores.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Carnivores"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Farstalkers.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Farstalkers"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Pathfinder-Team"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Stealth-Battlesuits"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Vespid-Stingwings.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Vespid-Stingwings"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Broadside-Battlesuits.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Broadside-Battlesuits"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Fireknife-Battlesuits"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Starscythe-Battlesuits"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Sunforge-Battlesuits.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Sunforge-Battlesuits"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ghostkeel-Battlesuit"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Hammerhead-Gunship.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Hammerhead-Gunship"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Hounds.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Hounds"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Rampagers.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Krootox-Rampagers"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Riders.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Krootox-Riders"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Piranhas.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Piranhas"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Razorshark-Strike-Fighter.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Razorshark-Strike-Fighter"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Riptide-Battlesuit.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Riptide-Battlesuit"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sky-Ray-Gunship.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Sky-Ray-Gunship"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stormsurge.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Stormsurge"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sun-Shark-Bomber.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Sun-Shark-Bomber"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Droneport.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Droneport"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Gunrig.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Gunrig"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Shieldline.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Shieldline"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/AX-1-0-Tiger-Shark.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/AX-1-0-Tiger-Shark"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Manta.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Manta"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tiger-Shark.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tiger-Shark"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ta-unar-Supremacy-Armour.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ta-unar-Supremacy-Armour"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/tau-empire.html",
+      "sha256": "C98B71C06BA6D63A854B7C1EC15281C378C6AA3E9E707037362FC9211A10D425",
+      "bytes": 668388,
+      "capturedSha256": "6F0C82F5B462B607B372064D06142D1361DDF0ED153104CF6E31D896D96B8954",
+      "capturedBytes": 671031,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Breacher-Team.html",
+      "sha256": "C4EDF5D645091B7C481B60F5233492CD360747780C69FF7B343CB0EFB410953C",
+      "bytes": 331785,
+      "capturedSha256": "92E47887D3336CFE82A37BEF602F88D1BF28402380BAE4E99A01F9FEAB3A4038",
+      "capturedBytes": 334085,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Breacher-Team",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Strike-Team.html",
+      "sha256": "8DAB7916225CEF3A3AA8ADC1D7AA8078B9FD2BA73583F7B6C0A49AF4B30DE10E",
+      "bytes": 333978,
+      "capturedSha256": "BD93AEDC9C2EF3D1AC7BB9B1EB86BCCFE340336767023171D61756488153F1D8",
+      "capturedBytes": 336278,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Strike-Team",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Cadre-Fireblade.html",
+      "sha256": "B56769DCF46869C51BED2253AA7A8F467374A86F1AA7EC1317D4489FD5579987",
+      "bytes": 350814,
+      "capturedSha256": "495D7DEFC2A8E3C594222B03D924707C3889764A2F478036A86ADCC2022EC078",
+      "capturedBytes": 353072,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Cadre-Fireblade",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Coldstar-Battlesuit.html",
+      "sha256": "B1872CC3EFF06B9AE1BC93FCF952FC97B109335F82A8CA8973E7B4DB417169A4",
+      "bytes": 398151,
+      "capturedSha256": "8CF42FC7F598B83F75A3F910101006EF74046D68A3296A1E9C82D83B54EB43AB",
+      "capturedBytes": 400426,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-In-Coldstar-Battlesuit",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-In-Enforcer-Battlesuit.html",
+      "sha256": "165B6E40FB1BD03D4DFE32066807E64DEBDD7A7009A3BDB98CE4766BBD75638F",
+      "bytes": 397958,
+      "capturedSha256": "A0986DA0B810E21BCF1A8AAF66DB405F3925485A408C549EBD18803BECFB6483",
+      "capturedBytes": 400233,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-In-Enforcer-Battlesuit",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ethereal.html",
+      "sha256": "3D361752884CB252024B23BB7AEF5C197E084B7E90D4061574ECBB14E84BB144",
+      "bytes": 341717,
+      "capturedSha256": "3CDBB1224F767C4344E7042F5B579EDBD8406F50987DCE1791DCCBA1D2D41E68",
+      "capturedBytes": 343946,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ethereal",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Firesight-Team.html",
+      "sha256": "81E8053DB1496858D94AA88214A2889AC727F61862CCFA731B70BFC5A343F938",
+      "bytes": 335308,
+      "capturedSha256": "55A7A14F824282D417E3294F340948C06D405BCA1F66BE39C11DA86BD47765C4",
+      "capturedBytes": 337532,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Firesight-Team",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Flesh-Shaper.html",
+      "sha256": "F36FD44FAA39E1704BB9043E7E3A0251D1706206479CE80AC2B18F458735D189",
+      "bytes": 340879,
+      "capturedSha256": "D6A4237FC6A01365398306038A4DF5907FD3C90E9A15F33C6BC640F48F5497AA",
+      "capturedBytes": 343107,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Flesh-Shaper",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Lone-Spear.html",
+      "sha256": "A850E6823F18673ED5B869001F2ADCE3C204B41BC590D80755B3AB5F9530C3B7",
+      "bytes": 300571,
+      "capturedSha256": "BD07AC05C898A705A0AC0E287872F7DA5D3461223D1CA21FF4F8A6B3F0D56028",
+      "capturedBytes": 302713,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Lone-Spear",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Trail-Shaper.html",
+      "sha256": "79D710F10D890703ACD8F28E0F44E8284BF20C08FCD15D3CB9F2C7EDA9757EF7",
+      "bytes": 341585,
+      "capturedSha256": "3EADCC68ABE2E4EA471FE507567EE4A4A373A77F171693BFBCCCAE995B947434",
+      "capturedBytes": 343828,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Trail-Shaper",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-War-Shaper.html",
+      "sha256": "85CBFE1E4307F55F41E7612960783586E73009693D25E8B2AC75DDF2192EC400",
+      "bytes": 347867,
+      "capturedSha256": "AE76F9FF480D8C436A3F8D6B493D68E03EECCDA4C619C760D169955B35C4445E",
+      "capturedBytes": 350110,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-War-Shaper",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Devilfish.html",
+      "sha256": "9F78FD1A4E59C7908647532D6B2F438A5EB83D3F0F26A0EE63FDF04854EA9178",
+      "bytes": 323427,
+      "capturedSha256": "4747C9F348525C728D387405BE4F37D6662D96387F91EDE9D1A7B5FE1D7C44C8",
+      "capturedBytes": 325627,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Devilfish",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Farsight.html",
+      "sha256": "122D5A29FB8B87D131E684F7697ABC6C2738D48F4E1A0EB0E5BF4F90B2521073",
+      "bytes": 345104,
+      "capturedSha256": "27B8C4F9887841B05FF0B3D3DF8FB47EDC6BF8026B087ADC2B9970EE4B5F9895",
+      "capturedBytes": 347305,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-Farsight",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Commander-Shadowsun.html",
+      "sha256": "1E8DAB3EB7FDC0D9A856001F380C56308C848CCC73FEF98ED28C1B95E33CABC7",
+      "bytes": 352806,
+      "capturedSha256": "15ACC8A9328ABDC2B7B40E4B7B246ED8B0F10AF3AA824FE0437751EB6AFCE513",
+      "capturedBytes": 355041,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Commander-Shadowsun",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Darkstrider.html",
+      "sha256": "820771E9F85DC0BC4CDBC3B9446EC2DEBED73DCEEE6D18BB3FD9E9FD1403054C",
+      "bytes": 311468,
+      "capturedSha256": "714FF466427197EF042A2535E7A6B9E4AC1E721CB715D5F970E48840523F4996",
+      "capturedBytes": 313692,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Darkstrider",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/The-Twin-Lance.html",
+      "sha256": "0F278B0DFD55F4137541BABE34E05FC96C71573342F5EBFB9D805515428DCFFF",
+      "bytes": 365680,
+      "capturedSha256": "C22BEE322C2182C27F21D10AAFD399E5BE13A25A57D10D2753E0BF5024C8615A",
+      "capturedBytes": 367935,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/The-Twin-Lance",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Carnivores.html",
+      "sha256": "6B5C74104944DC89A421EBB7DE4C3549E8D8D0ED66D0E26CA05DD0AD94191F21",
+      "bytes": 329109,
+      "capturedSha256": "9962E01C850D97912667387F9A21460E64BF588DE2DBBC5F86FA8CA66ACEF322",
+      "capturedBytes": 331354,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Carnivores",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Farstalkers.html",
+      "sha256": "5D686E2B851540F76FE7B42A3229D6D157481C17A9E708649AD61CF3A36F3406",
+      "bytes": 336949,
+      "capturedSha256": "193F212D1F933B1FB7536A658F0CA95EFEC36F8DFAEE4593851F7468D198BF84",
+      "capturedBytes": 339223,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Farstalkers",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Pathfinder-Team.html",
+      "sha256": "325E275F1BB2E6209DEE8027E09D2CC58C661187211E4F98661856EBEB321A92",
+      "bytes": 352449,
+      "capturedSha256": "DBFBC69A83F4C24EF5562718996ACE9DCEF365876BE8A2321A32F0F971BADD2D",
+      "capturedBytes": 354806,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Pathfinder-Team",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stealth-Battlesuits.html",
+      "sha256": "49FAA435568DC59D6DE3DBB91A76748CCC55E638B00CDCC98217DD12B2744BA5",
+      "bytes": 363745,
+      "capturedSha256": "EE625AE33A289B12DC8C8C67B8405CEE0F2F41D722DAC77E0C71BA8B3657EF52",
+      "capturedBytes": 366021,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Stealth-Battlesuits",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Vespid-Stingwings.html",
+      "sha256": "70FB1B27A5974F4C09D18F3A943C7A66BF7AFA822C83BAA251B035134C00CE50",
+      "bytes": 287517,
+      "capturedSha256": "7FF28B8A201D7C8DE93A547F42A6748D953048A9D338F7F88E01D84F1E465921",
+      "capturedBytes": 289574,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Vespid-Stingwings",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Broadside-Battlesuits.html",
+      "sha256": "00966846F496F3FE98B01DF956A092E1018D19C629C3B600518BFD927A397ABD",
+      "bytes": 316113,
+      "capturedSha256": "37B1129131237F10C0D9E3B289D434D5ABA6366913A2B9D393BD3302477026BC",
+      "capturedBytes": 318280,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Broadside-Battlesuits",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Fireknife-Battlesuits.html",
+      "sha256": "FC567EBD4F9B850252C57CF624EF5FF715E367531D6A5E5C4BA7B2DDA373F11F",
+      "bytes": 335387,
+      "capturedSha256": "B0D6C275F4477F8CA22B9D87FBA408880E5E3E0DCC6B47867921D48DF6A18641",
+      "capturedBytes": 337556,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Fireknife-Battlesuits",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Starscythe-Battlesuits.html",
+      "sha256": "04D78E9CA3C018BDE71F1CC2763F26FD1FBEB412793B46979D45BAEF919330FA",
+      "bytes": 333261,
+      "capturedSha256": "04F07C6294C729598CE2B292A38D2B00899A90EC713DFD18348E1416DDCBC86E",
+      "capturedBytes": 335442,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Starscythe-Battlesuits",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Crisis-Sunforge-Battlesuits.html",
+      "sha256": "270299F5C03EECE9EE43E7936C0BB97753B1DBE83BD49C0583699E3AEB39DEAC",
+      "bytes": 330778,
+      "capturedSha256": "A87D38564DB013DC6E62C786AF1739D8F10A960F84F62EFBFE4F66FB0E7269B7",
+      "capturedBytes": 332947,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Crisis-Sunforge-Battlesuits",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ghostkeel-Battlesuit.html",
+      "sha256": "B9E7EB6DFE3E522AA767D143418A2957E4BD421B1D529D6C86C0E20AD270DF11",
+      "bytes": 345145,
+      "capturedSha256": "CB243F8C5E3F94273574F97D5461550B44F177CC9F6AB4737CC1239DF8633F33",
+      "capturedBytes": 347353,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ghostkeel-Battlesuit",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Hammerhead-Gunship.html",
+      "sha256": "6597F3DE6BA9BD6D1178E29A43613E5EF47F0128C9DE8F313258ACE73E078375",
+      "bytes": 291168,
+      "capturedSha256": "F19BC84CF3E07129A190EBD37A2146F748BCD4301F5C9440A51CEB3E2E04EEAD",
+      "capturedBytes": 293234,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Hammerhead-Gunship",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Kroot-Hounds.html",
+      "sha256": "D9B8F02215BE46767C0B8C231CCE666D85F7559A8FCECE5C066B12D3E9E37BCE",
+      "bytes": 278236,
+      "capturedSha256": "BC5E6BE11A3382B4174545C32AAC0A1C43599997840B93BA5E4FC094E153E59C",
+      "capturedBytes": 280390,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Kroot-Hounds",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Rampagers.html",
+      "sha256": "BCBA71D65DB8F4BCAF02F417AB7C949CE0791274EEC63C8AE171D0232DFB5C3D",
+      "bytes": 286993,
+      "capturedSha256": "3FABFCD870681689FE6012C55AE2AB08326731DBD29610974D8CE61690C63E39",
+      "capturedBytes": 289149,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Krootox-Rampagers",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Krootox-Riders.html",
+      "sha256": "2E99F749C8096AC1B1810C944A1517C371AF483EB4FF055D1CB8878069416CCD",
+      "bytes": 294943,
+      "capturedSha256": "DC28585A2875692AD17A9433284DA6E9CF227B5C752CA0501C3215E86D0F8AF2",
+      "capturedBytes": 297146,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Krootox-Riders",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Piranhas.html",
+      "sha256": "5B12ED9BF24AFCAE00823E8875B29FB7EF50B5AED3A62060427AB904B395B596",
+      "bytes": 285830,
+      "capturedSha256": "880FC1AC8A440CB46FD88EE95FDC3834E35D2846194B55FC9185748D35992253",
+      "capturedBytes": 287891,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Piranhas",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Razorshark-Strike-Fighter.html",
+      "sha256": "80C9A86D24A2C0173FD454C4CD790F4D9403B8EA83A56507CC6850406C9986D0",
+      "bytes": 284553,
+      "capturedSha256": "4D9A8C55D0F072DF28A93B1308BF1C4F5E4A21B27A7A8ACDC87ADD5BF24B1038",
+      "capturedBytes": 286588,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Razorshark-Strike-Fighter",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Riptide-Battlesuit.html",
+      "sha256": "6D2BEAE7AD42DE8F15C4E49E73D9D6BE7F82DE8C4962F3DD6CA4CC03BFAC4020",
+      "bytes": 336291,
+      "capturedSha256": "29CCA6F230ED72CDBAE65DE97CA928A03551ABA0ABED777325BECD3A0D8ACC70",
+      "capturedBytes": 338490,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Riptide-Battlesuit",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sky-Ray-Gunship.html",
+      "sha256": "FA5660AA295E35E385D4BBA2A7B060BD59DE9AA4B8F2E60CECD6FE3202DCED5D",
+      "bytes": 288960,
+      "capturedSha256": "03E5D7F7F390B9376B4019ED1950DA5BA977A40B3C7158154B8549D06DE07C00",
+      "capturedBytes": 291040,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Sky-Ray-Gunship",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Stormsurge.html",
+      "sha256": "2F199FB571371FE917542AE0AD0D679D28F592AD294600F1D77867B2FF05C852",
+      "bytes": 290789,
+      "capturedSha256": "A1A6C0172C335A29BAE61308B788A5F1F7A8272F9CF45F80525F15938B2E0ED2",
+      "capturedBytes": 292867,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Stormsurge",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Sun-Shark-Bomber.html",
+      "sha256": "B8239ECF72512083B9346D94B58B0E47CEA79EBAC59ECA5ACC0D2A532D21973D",
+      "bytes": 286768,
+      "capturedSha256": "99872B04EB638E8F800D72D29FDDFD3A43C34934D68617943DC94086CF30B1E8",
+      "capturedBytes": 288804,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Sun-Shark-Bomber",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Droneport.html",
+      "sha256": "FF1F09F84A2E1D663B5BC245891BBD8D47A9EF5B55AE52A562D8F6D20FCC6E1C",
+      "bytes": 301362,
+      "capturedSha256": "4C2B5C54CCEB9F7EE61A34FDC31566EEC670A9EB70D05E3BA6812BA3D244862A",
+      "capturedBytes": 303438,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Droneport",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Gunrig.html",
+      "sha256": "904F88DC6362552B396D9F34D8BBE59B488B93FE5EF61D5DBF0590AF80E3E6A0",
+      "bytes": 299023,
+      "capturedSha256": "69DE68B862AA77D3FE0F8F58C260642CBB71B019DEB9B779745024246B9600BB",
+      "capturedBytes": 301085,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Gunrig",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tidewall-Shieldline.html",
+      "sha256": "1616682613FA7B1982C319E1039884CF97050FF8B8D5FA30DCB1FE586FCE7801",
+      "bytes": 296731,
+      "capturedSha256": "4088E75E3F85334AB89BB300F0C1BA5C834B2F02A396D968540FFFAB2A25E289",
+      "capturedBytes": 298794,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tidewall-Shieldline",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/AX-1-0-Tiger-Shark.html",
+      "sha256": "29E8E5C0327126928DF5BB34340F7C7DD5424591497981B66156D7803D9B4F0C",
+      "bytes": 278092,
+      "capturedSha256": "A8DD818D0C9B9385DBC5582191B529012EDF33BF0047E6B1D8BF4FC1EBAAF30F",
+      "capturedBytes": 280122,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/AX-1-0-Tiger-Shark",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Manta.html",
+      "sha256": "DC361CCC3C7743C2676D27316E7F2F378DACE2AB6D731F4F5F7A9222E7D5C9EA",
+      "bytes": 320560,
+      "capturedSha256": "3A3354DE54342044469CBDB06983B8AE51AF11256055153ABB03BA1D79074CEA",
+      "capturedBytes": 322692,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Manta",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Tiger-Shark.html",
+      "sha256": "31B30C9561FEBDF349E1235DFD3B0157DD3069379D6ACA03ABA1A9C15E5F99B3",
+      "bytes": 282701,
+      "capturedSha256": "CF3BBA04BFF3C835859AE4457A238D649E228C43231AA0424E083D3AA94D08D2",
+      "capturedBytes": 284733,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Tiger-Shark",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/waha-11e-current-2026-09-28/Ta-unar-Supremacy-Armour.html",
+      "sha256": "1D36160B7F7F300446A18FCD0E44B06B299B5A834DA57AF1A8CEBDD59FB8C355",
+      "bytes": 301233,
+      "capturedSha256": "0EDAD59CBECC6953BB36AAB35F327D59516BE007D7E81095BEFB88A9C3D4BF16",
+      "capturedBytes": 303323,
+      "representation": "GIT_LF_CAPTURE_CRLF",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/t-au-empire/Ta-unar-Supremacy-Armour",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+      "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+      "bytes": 11430746,
+      "authority": "ACCEPTED_OFFICIAL"
+    },
+    {
+      "path": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+      "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+      "bytes": 935104,
+      "authority": "ACCEPTED_OFFICIAL"
+    },
+    {
+      "path": "mfm/sources/v1.6/tau-empire.json",
+      "sha256": "6D04432798A1CDA5BD06B0FEB471B5CD4AEAD4C52036622E71182ECDF781E007",
+      "bytes": 42434,
+      "authority": "ACCEPTED_OFFICIAL"
+    },
+    {
+      "path": "mfm/sources/v1.6/tau-empire.html",
+      "sha256": "EC11CA97154E77F4A9303098FFDA500E79D6F4F2346BF50510D64AE829FE14B9",
+      "bytes": 357590,
+      "authority": "ACCEPTED_OFFICIAL"
+    },
+    {
+      "path": "mfm/sources/v1.6/tau-empire-legends.html",
+      "sha256": "BE33AB46A5444BC58BF2BCF9B27C8241939CE02C5E23DBB4ED875A9B13369F53",
+      "bytes": 366688,
+      "authority": "ACCEPTED_OFFICIAL"
+    }
+  ],
+  "producerDependencies": [
+    {
+      "path": "books/tau-empire/tools/import-waha-current-corpus.py",
+      "sha256": "95AF4D47972578273A9B7D01B2A37CD7CA7B6F40EC4B7B3C7C08132698DBD385",
+      "role": "EXISTING_PURE_RAW_TRANSCRIPTION_HELPER_NOT_FACTUAL_OWNER"
+    },
+    {
+      "path": "books/adeptus-mechanicus/tools/import-waha-current-corpus.py",
+      "sha256": "80046CBD88EF94210430D94D068191C870F0535C0326AB57EFAD2A45B2DEDB8A",
+      "role": "EXISTING_PURE_RAW_TRANSCRIPTION_HELPER_NOT_FACTUAL_OWNER"
+    },
+    {
+      "path": "books/death-guard/tools/import-waha-current-corpus.py",
+      "sha256": "58F5038CAA0D16356066157D0084B386509A5C1430AEDC106D64A8B01D05C7C6",
+      "role": "EXISTING_PURE_RAW_TRANSCRIPTION_HELPER_NOT_FACTUAL_OWNER"
+    }
+  ],
+  "excludedAsAuthority": [
+    "legacy normalized corpus with stale enrolled checksum",
+    "legacy effect-contract JSON with stale enrolled checksum",
+    "generated publication",
+    "historical BSData gameplay transcription",
+    "Legends and Boarding Actions facts outside current scope"
+  ],
+  "currentness": "Frozen project sources only; no upstream refresh performed."
+}
