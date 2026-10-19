@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
-import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
+import {changeAttachment,validateRoster,withRosterDetachments,formRoster,predicateContext} from './context.mjs';
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-wounds:'+name;
@@ -49,6 +49,34 @@ export function runWounds(book,state,api=evaluator) {
   return result;
 }
 const model=(result,instance,profile)=>result.units.find(unit=>unit.instanceId===instance).profiles.find(row=>row.canonicalProfileId===id(profile));
+function verifyPhysicalContextIdentity() {
+  const {book,state}=woundsFixture();
+  // Two existing physical rows may share one canonical statline. A row scope
+  // remains distinct without inventing an individual MODEL instance identity.
+  state.units[0].modelRows[1].canonicalProfileId=id('bearer');
+  const projection=formRoster(book,state),before=clone({state,projection});
+  const profiles=projection.units.find(unit=>unit.instanceId==='a').profiles;
+  const contexts=profiles.map(profile=>predicateContext(state,projection,'a','MODEL',profile.scopeId));
+  assert.equal(contexts.length,2);
+  assert.deepEqual(contexts.map(context=>context.modelId),[id('bearer'),id('bearer')]);
+  assert.deepEqual(contexts.map(context=>context.modelScopeId),profiles.map(profile=>profile.scopeId));
+  assert.notEqual(contexts[0].modelScopeId,contexts[1].modelScopeId,'Canonical identity must not merge physical row scopes');
+  assert.deepEqual(contexts.map(context=>context.modelInstanceId),[null,null],'A scope does not invent individual MODEL identity');
+  assert.equal(predicateContext(state,projection,'a','MODEL','missing-physical-scope'),null);
+  assert.equal(predicateContext(state,projection,'a','MODEL'),null,'Mixed physical scopes require an explicit context');
+  const noPhysicalModelFields=context=>{
+    assert.ok(context);
+    for(const key of ['modelScopeId','modelInstanceId'])assert.equal(Object.hasOwn(context,key),false,'MODEL identity leaked to another subject');
+  };
+  noPhysicalModelFields(predicateContext(state,projection,'a','UNIT'));
+  noPhysicalModelFields(predicateContext(state,projection,null,'ROSTER'));
+  assert.deepEqual({state,projection},before,'Context lookup mutated imported or projected physical data');
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','a','bodyguard');
+  const formed=formRoster(book,attached),formedBefore=clone({state:attached,projection:formed});
+  noPhysicalModelFields(predicateContext(attached,formed,'a','FORMED_ATTACHED_UNIT'));
+  noPhysicalModelFields(predicateContext(attached,formed,'a','UNIT'));
+  assert.deepEqual({state:attached,projection:formed},formedBefore,'Formed context lookup mutated its inputs');
+}
 export function verifyWounds(parameters={field:'W',mode:'ADD',value:1}) {
   const {book,state,effect}=woundsFixture(parameters),result=runWounds(book,state);
   assert.equal(model(result,'a','bearer').profile.stats.W,'6','Expected source-proven +1 W');
@@ -97,7 +125,8 @@ export function verifyWounds(parameters={field:'W',mode:'ADD',value:1}) {
   return {status:'PASS',mixedProfileScope:true,physicalInstanceIsolation:true,removeRestore:true,attachDetach:true,immutableFacts:true,composition:true};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
+  verifyPhysicalContextIdentity();
   const result=verifyWounds();
   assert.throws(()=>verifyWounds({field:'W',mode:'ADD',value:2}),/Expected source-proven/,'Wrong W modifier escaped focused QA');
-  console.log(JSON.stringify({...result,wrongModifierMutationRejected:true,armyFactualImports:0}));
+  console.log(JSON.stringify({...result,physicalContextIdentity:true,wrongModifierMutationRejected:true,armyFactualImports:0}));
 }

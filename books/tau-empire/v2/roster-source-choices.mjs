@@ -128,7 +128,59 @@ export function tauSourceChoiceContext(book,state) {
   const markers=new Set(state.units.filter(unit=>selections(unit).some(selection=>
     selection.sourceEquipmentIdentity==='drone-marker-drone'&&selection.physicalQuantity>0)).map(unit=>unit.instanceId));
   return context=>context?{...context,roster:{...context.roster,
-    tauPhysicalUnitInstanceId:context.instanceId||'',tauMarkerSelected:markers.has(context.instanceId)}}:context;
+    tauPhysicalUnitInstanceId:context.instanceId||'',tauMarkerSelected:markers.has(context.instanceId),
+    tauPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context;
+}
+
+/** Bind inventory counts to the existing MODEL scopes, not canonical profile
+ * IDs. The shared operation computes W; this lowering never changes a stat. */
+export function bindTauShieldModels(book,state){
+  const result=clone(book),records=indexOf(result),root=records.get('drone-shield-drone');
+  requireValue(root?.data.text==='SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.',
+    'Unreviewed Shield Drone source');
+  for(const entity of result.entities)if(entity.ruleContract)
+    entity.ruleContract.clauses=entity.ruleContract.clauses.filter(clause=>!clause.physicalShieldSelection);
+  const physical=formRoster(result,state),seen=new Set();
+  for(const unit of physical.units){
+    for(const selection of unit.selections)if(selection.sourceEquipmentIdentity===root.id)
+      requireValue(selection.sourceModelScopeId===undefined,'UNIT-level Shield inventory has no confirmed MODEL scope');
+    for(const model of unit.profiles)for(const selection of model.selections){
+      if(selection.sourceEquipmentIdentity!==root.id||selection.physicalQuantity===0)continue;
+      requireValue((selection.sourceModelScopeId===undefined||selection.sourceModelScopeId===model.scopeId)&&
+        (selection.sourceInstanceId===undefined||selection.sourceInstanceId===unit.instanceId),
+        'Foreign or stale Shield Drone physical MODEL scope');
+      // Per-model quantity is confirmed by the import boundary. An explicit
+      // homogeneous group may retain quantity>1; its characteristic is still
+      // per MODEL. Never divide UNIT inventory to invent a bearer or count.
+      const quantity=selection.perModelQuantity;
+      requireValue(Number.isSafeInteger(quantity)&&quantity>0&&equal(selection.sourceEquipmentProvenance,root.provenance),
+        'Shield Drone requires confirmed per-MODEL quantity and source evidence');
+      requireValue(selection.canonicalEquipmentIds.length===1,'Ambiguous Shield source occurrence');
+      const local=records.get(selection.canonicalEquipmentIds[0]);
+      const template=local?.ruleContract?.clauses.find(clause=>clause.id==='shield-drone-physical-model');
+      requireValue(local?.parentId===unit.canonicalUnitId&&template&&local.ruleContract.canonicalRuleReferences.includes(root.id),
+        'Missing Shield Drone physical source reference');
+      const identity=JSON.stringify([unit.instanceId,model.scopeId,selection.selectionKey]);
+      requireValue(!seen.has(identity),'Duplicate Shield Drone physical equipment selection');seen.add(identity);
+      const clause=clone(template),proof={field:['text'],quote:local.data.text};
+      clause.id=local.id+'::shield-model/'+identity;clause.physicalShieldSelection=identity;
+      clause.rosterClassification='ROSTER_EXECUTABLE';
+      clause.rosterClassificationNote={reason:'Source +1 W per confirmed Shield Drone on this existing physical MODEL scope'};
+      clause.rosterEffects=[{id:clause.id+'/wounds',operation:'MODIFY_STAT',field:'W',mode:'ADD',value:quantity,
+        targetBinding:'SOURCE_UNIT_MODELS',targetSubject:'MODEL',lifetime:'WHILE_EQUIPPED',
+        conditions:[['SOURCE','UNIT','tauPhysicalUnitInstanceId',unit.instanceId],
+          ['TARGET','MODEL','tauPhysicalModelScopeId',model.scopeId]].map(([binding,subject,key,equals])=>({binding,
+          predicate:{predicate:'FIELD',subject,contextLevel:'ROSTER',arguments:{key,equals},evidence:clone(proof)}})),
+        sourceFields:[['text']],evidence:clone(proof),referencedRuleId:root.id,
+        sourceRuleEvidence:{evidence:{otherEntityId:root.id,field:['text'],quote:root.data.text}},
+        provenance:{canonicalRuleId:root.id,canonicalOwnerId:root.parentId||book.bookId,
+          canonicalClauseId:'drone-shield-drone#wounds',sourceEvidence:clone(root.provenance),
+          physicalEquipmentReference:{entityId:local.id,provenance:clone(local.provenance),unitInstanceId:unit.instanceId,
+            modelScopeId:model.scopeId,selectionKey:selection.selectionKey,perModelQuantity:quantity}}}];
+      local.ruleContract.clauses.push(clause);
+    }
+  }
+  return result;
 }
 
 /** Lower validated decisions to existing SOURCE and TARGET FIELD conditions.

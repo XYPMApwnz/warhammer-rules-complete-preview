@@ -20,6 +20,7 @@ export function createTauRuleSchema({bindContext=context=>context}={}){
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
     tauStudentRecipient:{contextLevel:'ROSTER',valueType:'boolean'},
     tauPhysicalUnitInstanceId:{contextLevel:'ROSTER',valueType:'string'},
+    tauPhysicalModelScopeId:{contextLevel:'ROSTER',valueType:'string'},
     tauMarkerSelected:{contextLevel:'ROSTER',valueType:'boolean'}
   }});
   return {...schema,evaluatePredicate:(predicate,context)=>schema.evaluatePredicate(predicate,bindContext(context)),

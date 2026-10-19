@@ -9,11 +9,11 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
-import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext} from './roster-source-choices.mjs';
+import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,bindTauShieldModels} from './roster-source-choices.mjs';
 import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
-import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
+import {formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
@@ -160,8 +160,9 @@ test('drone-inventory-known-and-unknown-physical-bearers',()=>{
  const knownState=ready(known).roster,knownDerived=runtime(knownState).projection;
  assert.equal(knownState.units[0].modelRows[0].selections[0].physicalQuantity,2);
  const actualW=Number(knownDerived.units[0].profiles[0].profile.stats.W);
+ assert.equal(actualW,baseline+2,'Two known Shield Drones increase only their confirmed MODEL scope by two');
  records.runtimeCases.push({id:'shield-drone-selected-physical-model-wounds',source:'drone-shield-drone',expected:baseline+2,actual:actualW,
-  status:actualW===baseline+2?'PASS':'BLOCKED',reason:actualW===baseline+2?null:'Known physical inventory does not yet give shared generic equipment contract a safely scoped numeric dispatcher'});
+  status:actualW===baseline+2?'PASS':'FAIL'});
  assert.ok(knownDerived.units[0].profiles.slice(1).every(p=>Number(p.profile.stats.W)===baseline),'Bodyguard peers keep ordinary W');
  assert.ok(knownDerived.units[1].profiles.every(p=>Number(p.profile.stats.W)===baseline),'Independent instance W unchanged');
  assert.deepEqual(runtime(knownState).projection,knownDerived,'Recompute never stacks Shield W');
@@ -189,7 +190,8 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
  for(const occurrence of markerOccurrences){
   const local=book.entities.find(entity=>entity.id===occurrence.optionId);
   const contract=local.ruleContract,effect=contract.clauses.find(clause=>clause.id==='marker-drone-physical-unit').rosterEffects[0];
-  assert.deepEqual(contract.canonicalRuleReferences,[markerId],'Every occurrence references the one generic canonical owner');
+  const expectedReferences=[markerId,...(index.get(occurrence.optionId).data.text.toLowerCase().includes('shield drone')?['drone-shield-drone']:[])];
+  assert.deepEqual(contract.canonicalRuleReferences,expectedReferences,'Each equipment rule retains its one original generic factual owner');
   assert.deepEqual(effect.provenance.sourceEvidence,source.provenance,'Every occurrence retains generic source provenance');
   assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId,'Every occurrence retains its physical source option identity');
   assert.deepEqual(effect.provenance.physicalEquipmentReference.provenance,local.provenance,'Every occurrence retains local source provenance');
@@ -245,6 +247,132 @@ test('stage4b-marker-shared-option-types-and-formed-physical-scope',()=>{
  assert.ok(run.projection.units.flatMap(unit=>unit.profiles).every(profile=>!profile.keywords.includes('MARKERLIGHT')),'UNIT keyword does not become every MODEL keyword');
  const attached=clone(run.projection);run.detach('parsed-unit-1');run.reattach('parsed-unit-1','parsed-unit-2');
  assert.deepEqual(run.projection,attached,'Attach/detach preserves physical source and recompute');
+});
+
+const shieldId='drone-shield-drone';
+const shieldRows=units.flatMap(unit=>facts.entities.filter(entity=>entity.kind==='WARGEAR_OPTION'&&entity.parentId===unit.id&&
+ entity.data.text.toLowerCase().includes('shield drone')).map(option=>({unitId:unit.id,optionId:option.id})));
+const shieldW=projection=>projection.units.map(unit=>unit.profiles.map(model=>Number(model.profile.stats.W)));
+const shieldCount=unit=>selections(unit).filter(selection=>selection.sourceEquipmentIdentity===shieldId).reduce((n,row)=>n+row.physicalQuantity,0);
+const broadsideInput=(counts,aggregate=0)=>counts.length+'x Broadside Battlesuits (100 pts)'+(aggregate?': '+aggregate+'x Shield Drone':'')+'\n'+
+ counts.map((count,i)=>'• 1x Broadside '+(i===0?'Shas’vre':'Shas’ui')+(count?': '+count+'x Shield Drone':'')+'\n').join('');
+test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
+ const oracle=read('./rule-contract-expectations.json').cases.find(row=>row.id==='shield-drone'),root=index.get(shieldId);
+ assert.equal(oracle.expectedOperations[0].value,1);assert.equal(oracle.recipient,'ONE_CONFIRMED_BEARER_MODEL');
+ const raw=fs.readFileSync(new URL('../../../'+oracle.source.document,import.meta.url));
+ assert.equal(createHash('sha256').update(raw).digest('hex').toUpperCase(),oracle.source.sha256);
+ assert.equal(createHash('sha256').update(oracle.source.quote).digest('hex').toUpperCase(),oracle.source.quoteSha256);
+ const visible=raw.toString('utf8').replace(/<[^>]*>/g,'').replace(/&rsquo;|&#8217;|&#x2019;/g,'’').replace(/&nbsp;|&#160;/g,' ').replace(/\s+/g,'');
+ assert.ok(visible.includes(oracle.source.quote.replace(/\s+/g,'')),'Independent accepted raw Shield +1 W quote');
+ assert.equal(shieldRows.length,11,'Accepted source options define Shield occurrence coverage');
+ records.shieldSourceCoverage=[];
+ for(const occurrence of shieldRows)for(const known of [false,true]){
+  const text=header()+(known?gearOnFirstModel(occurrence.unitId,'Shield Drone',2):fixture(occurrence.unitId,{equipment:'2x Shield Drone'}).text)+fixture(occurrence.unitId).text;
+  const state=ready(text).roster,base=formRoster(book,state),run=runtime(state),expected=shieldW(base);
+  if(known)expected[0][0]+=2;
+  assert.deepEqual(shieldW(run.projection),expected,'Only confirmed first MODEL receives source +1 W per Drone');
+  assert.equal(shieldCount(state.units[0]),2);assert.equal(shieldCount(state.units[1]),0);
+  const local=book.entities.find(entity=>entity.id===occurrence.optionId);
+  assert.equal(local.ruleContract.canonicalRuleReferences.filter(id=>id===shieldId).length,1);
+  for(const selection of selections(state.units[0]).filter(row=>row.sourceEquipmentIdentity===shieldId))
+   assert.deepEqual(selection.sourceEquipmentProvenance,root.provenance);
+  if(!known)assert.ok(state.units[0].modelRows.every(model=>model.selections.length===0),'Unknown bearer is never invented');
+  const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(entity=>entity.ruleContract?.clauses||[])
+   .flatMap(clause=>clause.rosterEffects).filter(effect=>effect.provenance?.canonicalRuleId===shieldId);
+  assert.equal(effects.length,known?1:0);
+  if(known){const effect=effects[0];assert.deepEqual(effect.provenance.sourceEvidence,root.provenance);
+   assert.equal(effect.value,2);assert.equal(effect.targetBinding,'SOURCE_UNIT_MODELS');
+   assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId);}
+  assert.deepEqual(runtime(JSON.parse(JSON.stringify(run.snapshot()))).projection,run.projection,'Shield scope and quantity persist');
+  records.shieldSourceCoverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',quantity:2,status:'PASS'});
+ }
+});
+
+test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
+ const text=header()+broadsideInput([2,1,0])+broadsideInput([0,2,1])+broadsideInput([0,0,0],4);
+ const service=make(),state=ready(text,{},service).roster,run=runtime(state);
+ assert.equal(Number(index.get('datasheet-broadside-battlesuits:profile:1').data.stats.W),8,'Independent source profile base W');
+ assert.deepEqual(shieldW(run.projection),[[10,9,8],[8,10,9],[8,8,8]],'INPUT per-MODEL counts; UNIT-level aggregate not allocated');
+ assert.deepEqual(state.units.map(shieldCount),[3,3,4]);
+ const models=run.projection.units[0].profiles;
+ assert.equal(new Set(models.map(model=>model.canonicalProfileId)).size,1);assert.equal(new Set(models.map(model=>model.scopeId)).size,3);
+ const contexts=models.map(model=>run.context('parsed-unit-1','MODEL',model.scopeId));
+ assert.equal(new Set(contexts.map(context=>context.modelId)).size,1);assert.equal(new Set(contexts.map(context=>context.modelScopeId)).size,3);
+ assert.deepEqual(contexts.map(context=>context.modelInstanceId),models.map(model=>model.modelInstanceId));
+ const same=runtime(ready(header()+broadsideInput([2,2])).roster);
+ assert.deepEqual(shieldW(same.projection),[[10,10]],'Four total Drones give +2 each, never +4 each');
+ const separateInput=header()+broadsideInput([2,0,0]).replace('2x Shield Drone','1x Shield Drone, 1x Shield Drone');
+ const separate=ready(separateInput).roster;
+ assert.equal(shieldCount(separate.units[0]),2);assert.deepEqual(shieldW(runtime(separate).projection),[[10,8,8]],'Two explicit selections contribute once each');
+ const homogeneous=ready(header()+'3x Broadside Battlesuits (100 pts)\n• 1x Broadside Shas’vre\n• 2x Broadside Shas’ui: 2x Shield Drone\n').roster;
+ const grouped=runtime(homogeneous);
+ assert.deepEqual(shieldW(grouped.projection),[[8,10]],'Explicit homogeneous per-model loadout remains per model, not group total');
+ assert.equal(grouped.projection.units[0].profiles[1].quantity,2);assert.equal(shieldCount(homogeneous.units[0]),4);
+ const saved=JSON.parse(JSON.stringify(run.snapshot())),projection=clone(run.projection);
+ run.load(saved);assert.deepEqual(run.projection,projection,'Shield recompute idempotent');
+ service.load(saved);assert.deepEqual(ready(text,{},service).roster,saved,'Same-input reimport exact physical inventory');
+ assert.deepEqual(runtime(service.snapshot()).projection,projection);
+ for(const counts of [[0,0,0],[1,0,2],[2,1,0]]){
+  const next=ready(header()+broadsideInput(counts),{},service).roster;run.load(next);
+  assert.deepEqual(shieldW(run.projection),[counts.map(count=>8+count)],'Remove/reselect/loadout changes recompute from input counts');
+ }
+ const current=run.snapshot(),currentProjection=run.projection;
+ for(const [id,scope]of [['foreign','parsed-unit-999/foreign'],['stale','removed-model-scope'],['empty','']])
+  negative('stage4d-'+id+'-scope',()=>{const bad=clone(current);bad.units[0].modelRows[0].selections[0].sourceModelScopeId=scope;
+   assert.throws(()=>run.load(bad),/scope/i);assert.deepEqual(run.snapshot(),current);assert.deepEqual(run.projection,currentProjection);});
+ negative('stage4d-foreign-source-unit',()=>{const bad=clone(current);bad.units[0].modelRows[0].selections[0].sourceInstanceId='foreign-unit';
+  assert.throws(()=>run.load(bad),/scope/i);assert.deepEqual(run.snapshot(),current);});
+ negative('stage4d-missing-per-model-quantity',()=>{const bad=clone(current);delete bad.units[0].modelRows[0].selections[0].perModelQuantity;
+  assert.throws(()=>run.load(bad));assert.deepEqual(run.snapshot(),current);});
+ negative('stage4d-unit-aggregate-spoofed-model-owner',()=>{const bad=clone(saved);bad.units[2].selections[0].sourceModelScopeId=models[0].scopeId;
+  assert.throws(()=>run.load(bad),/confirmed MODEL/i);assert.deepEqual(run.snapshot(),current);});
+ const leader=gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Shield Drone',1);
+ const bodyguard=gearOnFirstModel('unit-crisis-fireknife-battlesuits','Shield Drone',2);
+ const attached=runtime(ready(header()+leader+bodyguard).roster),before=shieldW(attached.projection);
+ attached.attach('parsed-unit-1','parsed-unit-2');assert.deepEqual(shieldW(attached.projection),before,'No Shield transfer across formed UNIT');
+ attached.detach('parsed-unit-1');assert.deepEqual(shieldW(attached.projection),before);
+ attached.reattach('parsed-unit-1','parsed-unit-2');assert.deepEqual(shieldW(attached.projection),before);
+ const mixedText=header()+gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Shield Drone',2)
+  .replace('2x Shield Drone','2x Shield Drone, 1x Gun Drone, 1x Marker Drone')+
+  gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Marker Drone',1).replace('1x Marker Drone','1x Marker Drone, 1x Gun Drone');
+ const mixed=ready(mixedText).roster,mixedBase=shieldW(formRoster(book,mixed)),mixedProjection=runtime(mixed).projection;
+ mixedBase[0][0]+=2;assert.deepEqual(shieldW(mixedProjection),mixedBase,'Only Shield identity affects W despite shared option ID');
+ assert.ok(mixedProjection.units.every(unit=>unit.keywords.includes('MARKERLIGHT')),'Marker binding retained');
+ records.shieldPhysicalResults={broadsideExpected:[[10,9,8],[8,10,9],[8,8,8]],broadsideActual:shieldW(projection),sameProfileFourDrones:[10,10],
+  groupedPerModelQuantity:'PASS',mixedDroneTypes:'PASS',attachmentIsolation:'PASS',persistence:'PASS',recompute:'PASS'};
+});
+
+test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
+ const state=ready(header()+broadsideInput([2,1,0])+broadsideInput([0,0,0])).roster,bound=bindTauShieldModels(book,state);
+ const enrich=tauSourceChoiceContext(bound,state),expected=[[10,9,8],[8,8,8]];
+ const clauses=domain=>domain.entities.flatMap(entity=>entity.ruleContract?.clauses||[]).filter(clause=>clause.physicalShieldSelection);
+ const execute=(domain,bind=enrich)=>{const service=createRosterRuntime(domain,createTauRuleSchema({bindContext:bind}));service.load(state);return service.projection;};
+ const verify=(domain,bind=enrich)=>{
+  const owned=clauses(domain);assert.equal(owned.length,2);assert.equal(new Set(owned.map(row=>row.id)).size,2);
+  for(const clause of owned)for(const effect of clause.rosterEffects){
+   assert.equal(effect.referencedRuleId,shieldId);assert.deepEqual(effect.provenance.sourceEvidence,index.get(shieldId).provenance);
+   const local=domain.entities.find(entity=>entity.ruleContract?.clauses.includes(clause));assert.ok(local.ruleContract.canonicalRuleReferences.includes(shieldId));
+  }
+  assert.deepEqual(shieldW(execute(domain,bind)),expected,'Independent input oracle catches missing effect, pooling and foreign recipients');
+ };
+ verify(bound);
+ for(const [id,mutate]of [
+  ['missing-binding',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.physicalShieldSelection));local.ruleContract.clauses=local.ruleContract.clauses.filter(row=>!row.physicalShieldSelection);}],
+  ['pooled-unit-quantity',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].value=3)],
+  ['missing-target-scope',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(row=>row.binding!=='TARGET'))],
+  ['wrong-target-scope',domain=>clauses(domain)[0].rosterEffects[0].conditions.find(row=>row.binding==='TARGET').predicate.arguments.equals=formRoster(book,state).units[0].profiles[2].scopeId],
+  ['wrong-physical-source',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions.find(row=>row.binding==='SOURCE').predicate.arguments.equals='parsed-unit-2')],
+  ['wrong-generic-provenance',domain=>clauses(domain)[0].rosterEffects[0].provenance.sourceEvidence.sourceId='foreign'],
+  ['removed-generic-reference',domain=>domain.entities.filter(entity=>entity.ruleContract).forEach(entity=>entity.ruleContract.canonicalRuleReferences=(entity.ruleContract.canonicalRuleReferences||[]).filter(id=>id!==shieldId))],
+  ['duplicate-contribution',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.physicalShieldSelection));local.ruleContract.clauses.push(clone(local.ruleContract.clauses.find(row=>row.physicalShieldSelection)));}]
+ ])mutation('stage4d-'+id,()=>{const bad=clone(bound);mutate(bad);assert.throws(()=>verify(bad));});
+ mutation('stage4d-lost-model-context-scope',()=>assert.throws(()=>verify(bound,context=>enrich(context?.subject==='MODEL'?{...context,modelScopeId:undefined}:context))));
+ mutation('stage4d-canonical-profile-used-as-physical-scope',()=>{
+  const first=formRoster(book,state).units[0].profiles[0].scopeId;
+  assert.throws(()=>verify(bound,context=>enrich(context?.subject==='MODEL'?{...context,modelScopeId:first}:context)));
+ });
+ assert.deepEqual(shieldW(execute(bound,context=>enrich(context?.subject==='MODEL'?{...context,modelScopeId:undefined}:context))),[[8,8,8],[8,8,8]],
+  'Missing physical MODEL scope safely withholds all Shield effects');
 });
 
 test('gun-missile-recon-mv15-source-weapons-counted-once',()=>{

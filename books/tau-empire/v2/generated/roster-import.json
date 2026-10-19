@@ -22190,7 +22190,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -22339,6 +22340,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Breacher Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -22964,7 +23007,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -23113,6 +23157,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Fire Warrior Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 guardian drone (it cannot take duplicates of this piece of wargear)\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -23665,7 +23751,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -23814,6 +23901,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -24768,7 +24897,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -24917,6 +25047,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -26195,7 +26367,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -26344,6 +26517,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -27300,7 +27515,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -27449,6 +27665,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -37946,7 +38204,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -38095,6 +38354,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "The Pathfinder Shas’ui can be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -40764,7 +41065,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -40913,6 +41215,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can each be equipped with up to two of the following, and can take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 missile drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -41534,7 +41878,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -41683,6 +42028,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -42374,7 +42761,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -42523,6 +42911,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -43090,7 +43520,8 @@
         "executionMode": "DECLARATIVE_APPLICABILITY",
         "contextLevel": "ROSTER",
         "canonicalRuleReferences": [
-          "drone-marker-drone"
+          "drone-marker-drone",
+          "drone-shield-drone"
         ],
         "roles": [
           {
@@ -43239,6 +43670,48 @@
                 }
               }
             ]
+          },
+          {
+            "id": "shield-drone-physical-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Any number of models can be equipped with up to two of the following, but cannot take duplicates:\n- 1 gun drone\n- 1 marker drone\n- 1 shield drone"
+            },
+            "sourceText": "SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.",
+            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassificationNote": {
+              "reason": "Requires a proven physical MODEL scope and per-model equipment quantity"
+            },
+            "rosterEffects": []
           }
         ]
       }
@@ -84042,14 +84515,15 @@
     "frontendVerified": false,
     "realNewRecruitExportTested": false,
     "remainingBlockers": [
-      "EXACT_DUPLICATE_WEAPON_OCCURRENCE",
-      "SHIELD_DRONE_PHYSICAL_MODEL_BINDING"
+      "EXACT_DUPLICATE_WEAPON_OCCURRENCE"
     ],
     "unprovenExportFormats": [
       "DIRECT_GENERIC_WEAPON_ONLY_IMPORT"
     ],
     "markerOccurrenceCount": 12,
     "prototypePhysicalWeapon": "EXISTING_SCOPE_AND_SELECTION_QUANTITY_ONE_ONLY",
+    "shieldOccurrenceCount": 11,
+    "shieldPhysicalModel": "CONFIRMED_SCOPE_AND_PER_MODEL_QUANTITY_ONLY",
     "student": "PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING",
     "krootBodyguard": "BOOK_BOUNDARY_STARTING_STRENGTH_GATE"
   }

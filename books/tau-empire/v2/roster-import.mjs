@@ -4,7 +4,7 @@ import {validateRoster,formRoster,selections,changeAttachment} from '../../share
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
-  tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs} from './roster-source-choices.mjs';
+  tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs,bindTauShieldModels} from './roster-source-choices.mjs';
 import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver} from './roster-weapon-choices.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -162,7 +162,7 @@ export function createTauRosterRuntime(book){
   const service={get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
-      const candidate=imports.load(value),boundBook=bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate);
+      const candidate=imports.load(value),boundBook=bindTauShieldModels(bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate),candidate);
       const schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(boundBook,candidate)});
       schema.validateContracts(boundBook);
       const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate)});

@@ -91,6 +91,23 @@ export function buildTauImportBook(){
     inspectDeclarationEvidence(sourceRuleEvidence,index,local);
     local.ruleContract.clauses[0].rosterEffects=[effect];
   }
+  // Reuse the same local equipment-reference contract. Runtime lowering adds
+  // executable clauses only for proven MODEL scopes and per-model quantities.
+  const shield=index.get('drone-shield-drone'),shieldQuote='SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.';
+  assert.equal(shield.data.text,shieldQuote);
+  const shieldBindings=equipmentSelections.filter(row=>row.genericEquipmentId===shield.id);
+  for(const binding of shieldBindings){
+    assert.equal(binding.canonicalEquipmentIds.length,1);
+    const local=index.get(binding.canonicalEquipmentIds[0]),contract=local.ruleContract;
+    assert.equal(local.parentId,binding.ownerId);assert.equal(local.kind,'WARGEAR_OPTION');
+    assert.ok(contract&&!contract.canonicalRuleReferences.includes(shield.id),'Missing/duplicate equipment reference owner');
+    const sourceRuleEvidence={evidence:{otherEntityId:shield.id,field:['text'],quote:shieldQuote}};
+    inspectDeclarationEvidence(sourceRuleEvidence,index,local);
+    contract.canonicalRuleReferences.push(shield.id);
+    contract.clauses.push({id:'shield-drone-physical-model',roles:copy(contract.clauses[0].roles),conditions:[],
+      sourceFields:[['text']],evidence:{field:['text'],quote:local.data.text},sourceText:shieldQuote,
+      rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:'Requires a proven physical MODEL scope and per-model equipment quantity'},rosterEffects:[]});
+  }
   // The platform's selected item is an option, whereas its characteristic
   // declaration is an ordinary ability (not a wargear-ability inventory row).
   // Bind the existing operation to that exact option; keep the rule's owner,
@@ -117,9 +134,10 @@ export function buildTauImportBook(){
     sourceChoice:tauStudentRuleId};
   clause.rosterEffects=[];
   book.importReadiness={stage:4,status:'PARTIAL',frontendVerified:false,realNewRecruitExportTested:false,
-    remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE','SHIELD_DRONE_PHYSICAL_MODEL_BINDING'],
+    remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE'],
     unprovenExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],markerOccurrenceCount:markerBindings.length,
     prototypePhysicalWeapon:'EXISTING_SCOPE_AND_SELECTION_QUANTITY_ONE_ONLY',
+    shieldOccurrenceCount:shieldBindings.length,shieldPhysicalModel:'CONFIRMED_SCOPE_AND_PER_MODEL_QUANTITY_ONLY',
     student:'PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
   const schema=createTauRuleSchema();schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
