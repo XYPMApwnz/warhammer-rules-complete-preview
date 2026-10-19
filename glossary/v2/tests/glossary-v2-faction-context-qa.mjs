@@ -7,8 +7,8 @@ import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-cata
 import {buildGlossaryV2Index} from '../content/glossary-v2-index.mjs';
 
 const root=new URL('../../../',import.meta.url),read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'];
-const excluded=['tau-empire','space-marines','dark-angels','blood-angels'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
+const excluded=['space-marines','dark-angels','blood-angels'];
 const sources=new Map(books.map(book=>[book,new Map(read(`books/${book}/v2/generated/effective.json`).entities.map(entity=>[entity.id,entity]))]));
 const index=await buildGlossaryV2Index();
 assert.ok(JSON.stringify(index)===JSON.stringify(await buildGlossaryV2Index()),'Connected V2 projection is deterministic');
@@ -19,7 +19,7 @@ function verify(candidate){
   assert.deepEqual(candidate.supportedArmyBooks,books,'Exact connected books and order');
   const armies=candidate.entries.filter(entry=>entry.domain==='ARMY');
   assert.deepEqual([...new Set(armies.map(entry=>entry.sourceOwner.bookId))].sort(),[...books].sort(),'No unsupported standalone factual owners');
-  assert.equal(armies.filter(entry=>entry.recordType==='UNIT').length,199,'Complete connected datasheets');
+  assert.equal(armies.filter(entry=>entry.recordType==='UNIT').length,242,'Complete connected datasheets');
   for(const entry of armies){
     const source=sources.get(entry.sourceOwner.bookId)?.get(entry.sourceOwner.canonicalId);
     assert.ok(source,`${entry.id}: factual owner is a connected canonical V2 entity`);
@@ -63,7 +63,6 @@ for(const entry of shared){
 }
 assert.equal(contract.resolveAlias(sharedCanonical.sourceOwner.canonicalId),null,'Ambiguous unqualified canonical ID fails closed');
 const excludedIds={
-  'tau-empire':'unit-breacher-team',
   'space-marines':'unit-adrax-agatone','dark-angels':'unit-asmodai','blood-angels':'unit-astorath'
 };
 for(const [book,id] of Object.entries(excludedIds)){
@@ -80,4 +79,4 @@ for(const mutate of [
   value=>{value.entries.find(entry=>entry.domain==='MFM').facts.provenance.sourceVersion='v1.5';},
   value=>{value.entries.find(entry=>entry.domain==='MFM').contexts[0].effectiveBookId='tau-empire';}
 ]){const copy=structuredClone(index);mutate(copy);assert.throws(()=>verify(copy),assert.AssertionError,'Comparator must reject changed faction/dependency input');mutations++;}
-console.log(JSON.stringify({status:'PASS',connectedBooks:books,excludedStandaloneBooks:excluded.length,datasheets:199,pointsDependencies:dependencies.length,sharedLocalIdentities:shared.length,mutations}));
+console.log(JSON.stringify({status:'PASS',connectedBooks:books,excludedStandaloneBooks:excluded.length,datasheets:242,pointsDependencies:dependencies.length,sharedLocalIdentities:shared.length,mutations}));

@@ -1,4 +1,4 @@
-/** Stage 5: real isolated application bytes and ordinary visible UI actions.
+/** Stages 5/6: real application bytes and ordinary visible UI actions.
  * evaluate calls inspect state, source payload and rendered DOM only. No state,
  * storage, DOM, CSS or computed-value injection is permitted by this QA. */
 import assert from 'node:assert/strict';
@@ -12,6 +12,8 @@ const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const out=process.env.TAU_V2_BROWSER_EVIDENCE||'E:/Warhammer/qa-artifacts/recovery-tau-v2-stage5-20261019';
 const previous=process.env.TAU_V2_STAGE4G_EVIDENCE||'E:/Warhammer/qa-artifacts/recovery-tau-v2-stage4g-final-20261019';
 const requestedGroups=process.env.TAU_V2_BROWSER_GROUPS?.split(',');
+const mainApplication=process.env.TAU_V2_BROWSER_MAIN==='1';
+const applicationPath=mainApplication?'/v2/app.html':'/books/tau-empire/v2/app.html';
 fs.mkdirSync(out,{recursive:true});
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),records=new Map(facts.entities.map(entity=>[entity.id,entity]));
@@ -22,7 +24,7 @@ const header='+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont\'ka\n';
 const broadside=counts=>counts.length+'x Broadside Battlesuits (100 pts)\n'+counts.map((count,index)=>
   '• 1x Broadside '+(index?'Shas’ui':'Shas’vre')+(count?': '+count+'x Shield Drone':'')+'\n').join('');
 const shieldInput=header+broadside([2,1,0])+broadside([0,0,0]).replace('(100 pts)','(100 pts): 2x Shield Drone');
-const result={schema:'tau-v2-isolated-browser-qa/v1',startedAt:new Date().toISOString(),
+const result={schema:'tau-v2-isolated-browser-qa/v1',mainApplication,applicationPath,startedAt:new Date().toISOString(),
   qaSHA256:createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url))).digest('hex').toUpperCase(),REAL_NEW_RECRUIT_EXPORT_TESTED:'NO',
   assertions:'CONSTRUCTED_INPUT_AND_EXISTING_INDEPENDENT_SOURCE_EXPECTATIONS',results:[],errors:[],missing:[],visited:[],screenshots:[]};
 const server=http.createServer((request,response)=>{
@@ -145,8 +147,63 @@ try{
     async function group(id,fn){if(requestedGroups&&!requestedGroups.includes(id))return;console.log(device+' '+id);try{await fn();result.results.push({device,id,status:'PASS'});}
       catch(error){const evidence=path.join(out,`${device}-${id}-failure.json`);fs.writeFileSync(evidence,JSON.stringify({error:error.stack,url:page.url(),text:await page.locator('body').innerText()},null,2));
         await screenshot(page,`${device}-${id}-failure`);result.results.push({device,id,status:'FAIL',error:error.message,evidence});}}
-    await page.goto(origin+'/books/tau-empire/v2/app.html');await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2)||Boolean(document.querySelector('[data-v2-book="tau-empire"]')));
+    await page.goto(origin+applicationPath);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2)||Boolean(document.querySelector('[data-v2-book="tau-empire"]')));
     if(!await page.evaluate(()=>Boolean(window.ArmyBookAppV2)))await page.locator('[data-v2-book="tau-empire"]').click();await ready(page);
+    if(mainApplication)await group('main-home-six-books',async()=>{
+      const expected=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
+      await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();
+      const books=await page.locator('[data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book));
+      assert.deepEqual(books.sort(),expected.slice().sort(),'Exactly six unique main Home registrations');await geometry(page);await screenshot(page,device+'-main-home-six-books');
+      for(const book of expected){
+        await page.locator(`[data-v2-book="${book}"]`).click();await ready(page);
+        assert.equal(await page.evaluate(()=>window.WarhammerAppV2.activeBookId),book);assert.ok(await page.locator('[data-army-book-v2]').count());
+        assert.equal(new URL(page.url()).pathname,'/v2/app.html','Main shell entry retained');
+        await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();
+      }
+      await page.locator('[data-v2-book="tau-empire"]').click();await ready(page);
+    });
+    if(mainApplication)await group('main-cross-book-roster-persistence',async()=>{
+      const state=await imported(page,fixed('prototype-0'),1),owner=state.units[0].instanceId,ruleId=sourceOracle.canonicalIds[0];
+      const select=page.locator(`[data-roster-instance-id="${owner}"] select[data-source-choice-id="${ruleId}"]`);
+      const option=await select.locator('option').evaluateAll(nodes=>nodes.map(node=>node.value).find(Boolean));assert.ok(option);
+      await sourceChoice(page,owner,ruleId,option);const saved=await snapshot(page);
+      for(const book of ['emperors-children','death-guard','tau-empire']){
+        await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await page.locator(`[data-v2-book="${book}"]`).click();await ready(page);
+        assert.equal(await page.evaluate(()=>window.WarhammerAppV2.activeBookId),book);
+      }
+      assert.deepEqual(await snapshot(page),saved,'Cross-book navigation retains exact T’au roster and physical source choice');
+      await effective(page,owner);await assertPrototype(page,0,true);await page.reload();await ready(page);
+      assert.deepEqual(await snapshot(page),saved,'Main-shell reload retains roster after cross-book navigation');await assertPrototype(page,0,true);
+      await guide(page,owner);await assertPrototype(page,0,true);await screenshot(page,device+'-main-cross-book-persisted-guide');
+    });
+    if(mainApplication)await group('main-mega-glossary-tau',async()=>{
+      const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
+      const tau=corpus.entries.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId==='tau-empire');
+      assert.ok(tau.length,'T’au factual owner registered in actual main glossary corpus');
+      const ids=['army-rule-for-the-greater-good','army-rule-for-the-greater-good:definition','detachment-kroot-hunting-pack:rule:skirmish-fighters',sourceOracle.canonicalIds[0]];
+      for(const id of ids){
+        const entries=tau.filter(entry=>entry.sourceOwner.canonicalId===id);assert.equal(entries.length,1,'One canonical factual owner '+id);
+        const entry=entries[0];assert.ok(entry.provenance.length||Object.keys(entry.provenance).length,'Source provenance '+id);
+        await page.locator('[data-v2-primary-nav] [data-v2-destination="GLOSSARY"]').click();
+        await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(entry.label);
+        const link=page.locator(`.v2-glossary-result[data-target-id="${entry.id}"]`);await link.waitFor();
+        const direct=await link.getAttribute('href');assert.equal(new URL(direct,page.url()).pathname,'/v2/app.html');
+        await link.click();const article=page.locator(`dialog[open] article[data-card-id="${entry.id}"]`);await article.waitFor();
+        const expected=records.get(id);for(const clause of [expected.data.text,...(expected.data.blocks||[]).map(block=>block.text)].filter(Boolean))
+          assert.ok(normalize(await article.innerText()).includes(normalize(clause)),'Complete canonical text '+id);
+        await article.getByRole('link',{name:'Open full entry',exact:true}).click();
+        await page.locator(`main article[data-card-id="${entry.id}"]`).waitFor();await geometry(page);await screenshot(page,device+'-main-glossary-'+id.replace(/[^a-z0-9]+/g,'-'));
+        await page.reload();await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));await page.evaluate(async()=>{await window.WarhammerAppV2.ready;});
+        await page.locator(`main article[data-card-id="${entry.id}"]`).waitFor();
+        const reference=page.locator(`main article[data-card-id="${entry.id}"] .reference-links [data-target-id]`).first();
+        if(await reference.count()){
+          const target=await reference.getAttribute('data-target-id');await reference.click();
+          await page.locator(`dialog[open] article[data-card-id="${target}"]`).waitFor();await page.keyboard.press('Escape');
+          await page.locator('dialog[open]').waitFor({state:'hidden'});
+        }
+      }
+      await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await page.locator('[data-v2-book="tau-empire"]').click();await ready(page);
+    });
     await group('source-content',async()=>{
       const counts=await page.evaluate(()=>Object.fromEntries(['DATASHEET','PROFILE','DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM'].map(kind=>[kind,window.ArmyBookAppV2.payload.cards.filter(card=>card.kind===kind).length])));
       assert.deepEqual(counts,{DATASHEET:43,PROFILE:44,DETACHMENT:7,DETACHMENT_RULE:9,ENHANCEMENT:23,STRATAGEM:31});

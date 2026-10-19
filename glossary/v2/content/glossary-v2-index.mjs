@@ -163,6 +163,7 @@ function addArmyEntries(entries,models){
     for(const entity of sourceRows){
       const type=types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
       const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
+      if(type==='COMPOSITION_MEMBER')facts.sourceText=data.sourceText??data.text;
       if(entity.qualifications)facts.qualifications=clone(entity.qualifications);
       if(faqQualifications(entity).length)facts.semanticContent=blockText(entity);
       if(type==='SOURCE_PRESENTATION_NOTE'&&data.semanticTableIds){

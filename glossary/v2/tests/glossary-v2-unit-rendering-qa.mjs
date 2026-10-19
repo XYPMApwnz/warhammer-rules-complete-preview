@@ -7,10 +7,10 @@ import {createReferenceContract} from '../../../books/shared/army-book-app-v2/re
 const root=new URL('../../../',import.meta.url);
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
 const index=read('glossary/v2/generated/index.en.json');
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
 const sources=new Map(books.map(book=>[book,read(`books/${book}/v2/generated/effective.json`).entities]));
 const units=[...sources].flatMap(([book,entities])=>entities.filter(entity=>entity.kind==='DATASHEET').map(entity=>({book,entity})));
-assert.equal(units.length,199,'All 36 DG, 34 AdMech, 54 CSM, 23 EC and 52 Tyranids canonical datasheets are required');
+assert.equal(units.length,242,'All 36 DG, 34 AdMech, 54 CSM, 23 EC 52 Tyranids and 43 T’au canonical datasheets are required');
 const owner=entity=>entity.parentId||entity.ownerId;
 const statsOf=(entity,byId)=>{
   const stats={...(entity.data.stats||entity.data.statline||Object.fromEntries(Object.entries(entity.data).filter(([key])=>['M','T','SV','W','LD','OC','INSV'].includes(key))))};

@@ -10,7 +10,7 @@ import {encodeRoute,decodeRoute} from '../../../books/shared/army-book-app-v2/ro
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
 const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4','datasheet-fulgrim:section:5']);
 const selectionContexts={
   'datasheet-mortarion:section:1':{canonicalId:'datasheet-mortarion:section:3',path:'/blocks/0/text'},
@@ -105,9 +105,9 @@ function reconcile(corpus){
 }
 const {projection}=reconcile(publication);
 const counts=Object.fromEntries(books.map(book=>[book,{abilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='ABILITY').length,wargearAbilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='WARGEAR_ABILITY').length}]));
-assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7},tyranids:{abilities:79,wargearAbilities:0}},'Reviewed source-block inventory changed');
-assert.equal(aggregates.size,149);
-assert.equal([...expected.values()].filter(entry=>entry.path).length,262);
+assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7},tyranids:{abilities:79,wargearAbilities:0},'tau-empire':{abilities:71,wargearAbilities:19}},'Reviewed source-block inventory changed');
+assert.equal(aggregates.size,192);
+assert.equal([...expected.values()].filter(entry=>entry.path).length,352);
 const firstField=[...expected.values()].find(entry=>entry.path),firstEntryId=firstField.targetId.slice(0,-('::'+firstField.path).length);
 const getEntry=corpus=>corpus.entries.find(entry=>entry.id===firstEntryId);
 let mutations=0;

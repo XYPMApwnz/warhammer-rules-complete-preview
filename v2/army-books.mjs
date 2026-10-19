@@ -4,5 +4,6 @@ import {registration as adeptusMechanicus} from '../books/adeptus-mechanicus/v2/
 import {registration as chaosSpaceMarines} from '../books/chaos-space-marines/v2/registration.mjs';
 import {registration as emperorsChildren} from '../books/emperors-children/v2/registration.mjs';
 import {registration as tyranids} from '../books/tyranids/v2/registration.mjs';
+import {registration as tauEmpire} from '../books/tau-empire/v2/registration.mjs';
 
-export const armyBooks=Object.freeze([deathGuard,adeptusMechanicus,chaosSpaceMarines,emperorsChildren,tyranids]);
+export const armyBooks=Object.freeze([deathGuard,adeptusMechanicus,chaosSpaceMarines,emperorsChildren,tyranids,tauEmpire]);

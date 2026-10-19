@@ -9,10 +9,12 @@ import {sevenEffectsGuardResult} from '../books/tyranids/v2/seven-effects-qa.mjs
 const inputs=loadSourceCompletenessInputs(),clone=structuredClone,mutations=[];
 const verified=sourceEffectRegressionResult.verified;
 assert.ok(Array.isArray(verified),'Runtime guard must expose actual verified case identities');
-assert.equal(verified.length,18);
+const independentlyRequiredIds=inputs.expectations.map(expectation=>expectation.id);
+assert.equal(verified.length,independentlyRequiredIds.length);
+assert.deepEqual(new Set(verified),new Set(independentlyRequiredIds),'Every independent obligation must have current runtime/presentation evidence');
 const baseline=assertSourceCompletenessGate({...inputs,verifiedIds:verified,requireRuntime:true});
 assert.equal(baseline.inventoryStatus,'PROVEN');assert.equal(baseline.semanticCompleteness,'NOT_PROVEN');
-assert.equal(baseline.executableVerified,18);assert.equal(baseline.status,'PARTIAL');
+assert.equal(baseline.executableVerified,independentlyRequiredIds.length);assert.equal(baseline.status,'PARTIAL');
 
 const expectation=id=>inputs.expectations.find(item=>item.id===id);
 const guardian=expectation('tyr-guardian');assert.ok(guardian,'Independent Guardian source expectation missing');

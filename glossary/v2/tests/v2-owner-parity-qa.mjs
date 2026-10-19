@@ -18,7 +18,7 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const excludedBooks=new Set(['tau-empire','space-marines','dark-angels','blood-angels']);
+const excludedBooks=new Set(['space-marines','dark-angels','blood-angels']);
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
@@ -91,6 +91,32 @@ function verifyFAQPresentation(publication){
 verifyFAQPresentation(published);
 const display=createGlobalGlossaryContent(index);
 for(const article of armyEntries)assert.ok(display.project(article).definition,'Empty canonical Army article '+article.id);
+// Sixth-book integration reuses T’au effective facts, never its executable declarations
+// as an independent content oracle. All five predecessor Army articles stay byte-for-byte equal.
+const tau=inputs.armyModels.find(model=>model.book.id==='tau-empire');
+const tauEntries=armyEntries.filter(record=>record.sourceOwner.bookId==='tau-empire');
+for(const [kind,count]of Object.entries({DATASHEET:43,MODEL_PROFILE:44,DETACHMENT:7,DETACHMENT_RULE:9,ENHANCEMENT:23,STRATAGEM:31,EQUIPMENT_RULE:5}))
+  assert.equal(tau.entities.filter(entity=>entity.kind===kind).length,count,'T’au canonical '+kind+' inventory');
+for(const fact of tau.entities.filter(entity=>['ARMY_RULE_COMPONENT','DETACHMENT_RULE','ENHANCEMENT','EQUIPMENT_RULE','ERRATA','FAQ'].includes(entity.kind))){
+  const article=entry('tau-empire',fact.id);
+  if(fact.data.text)assert.ok(display.project(article).definition.includes(fact.data.text),'T’au complete text '+fact.id);
+}
+for(const fact of tau.entities.filter(entity=>entity.kind==='COMPOSITION_MEMBER')){
+  const article=entry('tau-empire',fact.id);
+  assert.equal(article.facts.sourceText,fact.data.sourceText??fact.data.text,'T’au composition presentation must preserve the canonical text');
+  assert.equal(display.project(article).definition,fact.data.sourceText??fact.data.text,'T’au composition popup must display its full canonical text');
+}
+const tauProjection=adaptGlobalGlossary(index),tauReference=createReferenceContract({cards:new Map(tauProjection.cards.map(card=>[card.id,card])),index:tauProjection.index});
+for(const article of tauEntries){
+  const canonicalId=article.sourceOwner.canonicalId;
+  const aliases=tauProjection.cards.filter(card=>card.identity?.registryId==='tau-empire'&&card.identity?.canonicalId===canonicalId);
+  assert.equal(tauReference.resolveAlias(canonicalId,{registryId:'tau-empire'}),aliases.length>1?null:article.id,'T’au canonical alias must resolve uniquely or fail closed for multiple field views '+canonicalId);
+  assert.equal(tauReference.resolve(tauReference.identityFor(article.id))?.targetId,article.id,'T’au direct reference '+canonicalId);
+}
+const predecessor=JSON.parse(execFileSync('git',['show','f5e3ebc5ff5d57674e842f47656a59c39c0c58f0:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
+const fiveBooks=V2_ARMY_BOOK_IDS.filter(book=>book!=='tau-empire'),currentArticles=new Map(index.entries.map(article=>[article.id,article]));
+const previousArmyArticles=predecessor.entries.filter(article=>fiveBooks.includes(article.sourceOwner.bookId));
+for(const article of previousArmyArticles)assert.deepEqual(currentArticles.get(article.id),article,'Prior Army canonical text/provenance/references changed '+article.id);
 for(const model of inputs.armyModels)for(const unit of model.entities.filter(entity=>entity.kind==='DATASHEET')){
   const projected=entry(model.book.id,unit.id),rendered=display.project(projected).definition;
   for(const ability of projected.facts.ruleFacts.abilities)if(ability.text&&ability.title&&ability.title!==ability.id)assert.ok(rendered.includes(ability.title),'Canonical ability heading lost '+ability.id);

@@ -58,7 +58,7 @@ export function loadSourceCompletenessInputs({bookIds=armyBooks.map(book=>book.i
   const review=read(reviewPath),books=bookIds.map(bookId=>{
     requireValue(review.books[bookId],'UNREVIEWED_ARMY_BOOK',bookId);
     const facts=read(`books/${bookId}/v2/generated/effective.json`);
-    const runtimeFile=bookId==='death-guard'?'rule-contract-effective':bookId==='emperors-children'?'roster-attachments':'roster-runtime';
+    const runtimeFile=bookId==='death-guard'?'rule-contract-effective':bookId==='emperors-children'?'roster-attachments':bookId==='tau-empire'?'roster-import':'roster-runtime';
     return {bookId,facts,executionBook:read(`books/${bookId}/v2/generated/${runtimeFile}.json`),sourceReview:captureSourceReview(bookId,facts)};
   });
   return {review,books,expectations:loadIndependentExpectations(review),registeredBookIds:armyBooks.map(book=>book.id)};

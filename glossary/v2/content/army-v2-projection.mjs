@@ -19,19 +19,23 @@ import {consumeMfm as consumeECMfm} from '../../../books/emperors-children/v2/mf
 import {buildTyranidsContracts} from '../../../books/tyranids/v2/rule-contract-build.mjs';
 import {buildApp as buildTyranidsApp} from '../../../books/tyranids/v2/app-build.mjs';
 import {consumeMfm as consumeTyranidsMfm} from '../../../books/tyranids/v2/mfm-boundary.mjs';
+import {buildTauImportBook} from '../../../books/tau-empire/v2/roster-import-build.mjs';
+import {buildApp as buildTauApp,assertTauAppSourceReview} from '../../../books/tau-empire/v2/app-build.mjs';
+import {consumeMfm as consumeTauMfm} from '../../../books/tau-empire/v2/mfm-boundary.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {assertSourceCompletenessGate,loadSourceCompletenessInputs} from '../../../books/shared/roster-v2/source-completeness.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sameProjection=(actual,expected,message)=>assert.ok(JSON.stringify(actual)===JSON.stringify(expected),message);
-export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids']);
+export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire']);
 export const V2_FACTUAL_INTERFACES=Object.freeze({
   'death-guard':'books/death-guard/v2/build.mjs#buildFactualV2().effective',
   'adeptus-mechanicus':'books/adeptus-mechanicus/v2/build.py#build().effective',
   'chaos-space-marines':'books/chaos-space-marines/v2/build.py#build().effective',
   'emperors-children':'books/emperors-children/v2/build.py#build().effective',
-  'tyranids':'books/tyranids/v2/build.py#build().effective'
+  'tyranids':'books/tyranids/v2/build.py#build().effective',
+  'tau-empire':'books/tau-empire/v2/build.py#build().effective'
 });
 
 function pythonRuntime() {
@@ -70,17 +74,36 @@ export function assertV2ArmyBookParity(models,{published=bookId=>read(`books/${b
     const presentationEntities=new Map(derived.map(entity=>[entity.id,entity]));
     assert.equal(presentationEntities.size,derived.length,'Duplicate derived presentation identity');
     if(model.book.id==='emperors-children')assert.deepEqual(derived,read('books/emperors-children/v2/generated/rule-contracts.json').selectionOptions,'EC decision views diverge from their existing source-backed producer');
+    else if(['tyranids','tau-empire'].includes(model.book.id))assert.deepEqual(derived,read(`books/${model.book.id}/v2/generated/roster-import.json`).entities.filter(entity=>!entities.has(entity.id)),'Decision views diverge from their existing source-backed producer');
     else assert.equal(derived.length,0,'Unreviewed derived presentation owner');
     for(const entity of presentationEntities.values()){
-      assert.equal(model.book.id,'emperors-children','Unreviewed presentation-only owner');
-      assert.equal(entity.kind,'UPGRADE_OPTION','Unreviewed EC derived presentation kind');
+      assert.ok(['emperors-children','tyranids','tau-empire'].includes(model.book.id),'Unreviewed presentation-only owner');
+      assert.equal(entity.kind,'UPGRADE_OPTION','Unreviewed derived presentation kind');
       assert.ok(!entities.has(entity.id),'Derived view duplicates a factual owner');
       assert.equal(entity.authority,'SOURCE_BACKED_SELECTION_BINDING','Unreviewed decision authority');
-      assert.equal(entities.get(entity.data.selectionRuleId)?.kind,'ENHANCEMENT','Missing decision source rule');
       assert.equal(entity.parentId,entity.data.selectionRuleId,'Foreign decision rule owner');
-      assert.equal(entities.get(entity.data.weaponProfileId)?.kind,'WEAPON_PROFILE','Missing decision canonical weapon');
-      assert.equal(entities.get(entity.data.weaponProfileId)?.parentId,entity.data.unitId,'Foreign decision weapon owner');
-      assert.ok(entity.data.modelProfileIds.every(id=>entities.get(id)?.kind==='MODEL_PROFILE'&&entities.get(id)?.parentId===entity.data.unitId),'Foreign decision model owner');
+      const source=entities.get(entity.data.selectionRuleId);
+      if(model.book.id==='tyranids'){
+        assert.equal(source?.id,'detachment-subterranean-assault:rule','Unknown Tyranids decision source');
+        assert.equal(source.kind,'DETACHMENT_RULE');
+        assert.deepEqual(entity.provenance,source.provenance,'Decision lost canonical source provenance');
+        assert.equal(entities.get(entity.data.unitId)?.kind,'DATASHEET','Missing decision UNIT owner');
+        assert.ok(entity.data.modelProfileIds.every(id=>entities.get(id)?.kind==='MODEL_PROFILE'&&entities.get(id)?.parentId===entity.data.unitId),'Foreign decision model owner');
+      }else{
+        assert.equal(source?.kind,'ENHANCEMENT','Missing decision source rule');
+        if(model.book.id==='tau-empire'){
+          assert.deepEqual(entity.provenance,source.provenance,'Decision lost canonical source provenance');
+          if(entity.data.weaponProfileId)assert.equal(entities.get(entity.data.weaponProfileId)?.kind,'WEAPON_PROFILE','Missing decision canonical weapon');
+          else{
+            assert.equal(source.id,'detachment-auxiliary-cadre:enhancement:1','Unknown recipient decision source');
+            assert.ok(entity.data.recipientUnitIds.every(id=>entities.get(id)?.kind==='DATASHEET'),'Foreign physical UNIT decision recipient');
+          }
+        }else{
+          assert.equal(entities.get(entity.data.weaponProfileId)?.kind,'WEAPON_PROFILE','Missing decision canonical weapon');
+          assert.equal(entities.get(entity.data.weaponProfileId)?.parentId,entity.data.unitId,'Foreign decision weapon owner');
+          assert.ok(entity.data.modelProfileIds.every(id=>entities.get(id)?.kind==='MODEL_PROFILE'&&entities.get(id)?.parentId===entity.data.unitId),'Foreign decision model owner');
+        }
+      }
     }
     for(const field of model.appPayload.factManifest.filter(field=>field.ownerType==='CANONICAL_V2')) {
       const owner=entities.get(field.entityId)||presentationEntities.get(field.entityId);
@@ -109,7 +132,7 @@ function mfmIdentityBindings(model,{factualModel}={}) {
     const id=reference.armyBinding.armyUnitId;if(!entities.has(id))continue;
     add(reference.id,id);
     for(const points of catalog.unitPointRecords.filter(record=>record.unitReferenceId===reference.id))add(points.id,id);
-    if(!['emperors-children','tyranids'].includes(bookId))for(const paid of catalog.paidUpgradeRecords.filter(record=>record.unitReferenceId===reference.id))add(paid.id,id);
+    if(!['emperors-children','tyranids','tau-empire'].includes(bookId))for(const paid of catalog.paidUpgradeRecords.filter(record=>record.unitReferenceId===reference.id))add(paid.id,id);
   }
   if(bookId==='death-guard') {
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'])for(const binding of factualModel.mfm[key])add(binding.mfmRecordId,binding.entityId);
@@ -121,6 +144,9 @@ function mfmIdentityBindings(model,{factualModel}={}) {
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'])for(const binding of consumed[key])add(binding.mfmRecordId,binding.entityId);
   } else if(bookId==='tyranids') {
     const consumed=consumeTyranidsMfm(model.entities);
+    for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidOptionBindings'])for(const binding of consumed.partitions[key])add(binding.mfmRecordId,binding.entityId);
+  } else if(bookId==='tau-empire') {
+    const consumed=consumeTauMfm(model.entities);
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidOptionBindings'])for(const binding of consumed.partitions[key])add(binding.mfmRecordId,binding.entityId);
   } else {
     const capture=read('books/chaos-space-marines/sources/official-mfm-v1.5.json');
@@ -159,12 +185,16 @@ export function loadV2ArmyModels(options={}) {
   sameProjection(read('books/emperors-children/v2/generated/rule-contracts.json'),ecBuilt.artifact,'Stale EC contract projection');
   const tyr=read('books/tyranids/v2/generated/effective.json'),tyrBuilt=buildTyranidsContracts({facts:tyr});
   sameProjection(read('books/tyranids/v2/generated/rule-contracts.json'),tyrBuilt.artifact,'Stale Tyranids contract projection');
+  const tau=read('books/tau-empire/v2/generated/effective.json'),tauBuilt=buildTauImportBook();
+  sameProjection(read('books/tau-empire/v2/generated/roster-import.json'),tauBuilt,'Stale T’au import projection');
+  const tauApp=buildTauApp(tauBuilt);tauApp.sourceCompleteness=assertTauAppSourceReview(tauBuilt);
   const models=[
     {book:{id:'death-guard'},entities:dg.entities,appPayload:buildDGApp({...dgInputs,model:dgContract,records})},
     {book:{id:'adeptus-mechanicus'},entities:am.entities,appPayload:buildAdMechApp(amInputs)},
     {book:{id:'chaos-space-marines'},entities:csm.entities,appPayload:buildCSMApp(csmBuilt,{relatedRules:read('books/chaos-space-marines/v2/generated/app-presentation.json').relatedRules})},
     {book:{id:'emperors-children'},entities:ec.entities,presentationEntities:ecBuilt.book.entities.filter(entity=>!ec.entities.some(fact=>fact.id===entity.id)),appPayload:buildECApp(ecBuilt)},
-    {book:{id:'tyranids'},entities:tyr.entities,appPayload:buildTyranidsApp(tyrBuilt)}
+    {book:{id:'tyranids'},entities:tyr.entities,presentationEntities:tyrBuilt.book.entities.filter(entity=>!tyr.entities.some(fact=>fact.id===entity.id)),appPayload:buildTyranidsApp(tyrBuilt)},
+    {book:{id:'tau-empire'},entities:tau.entities,presentationEntities:tauBuilt.entities.filter(entity=>!tau.entities.some(fact=>fact.id===entity.id)),appPayload:tauApp}
   ].map(model=>({...model,factualInterface:V2_FACTUAL_INTERFACES[model.book.id],mfmIdentityBindings:mfmIdentityBindings(model,{factualModel:dg})}));
   assertV2ArmyBookParity(models);
   return models;
