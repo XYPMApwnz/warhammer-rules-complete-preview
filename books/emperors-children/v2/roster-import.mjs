@@ -103,11 +103,10 @@ export function createECRosterImport(book) {
         const owner=scopes.length===1?scopes[0]:unit.startingStrength===1?physical.profiles[0]:null;
         if(selection.physicalQuantity!==1)error('EQUIPMENT_QUANTITY',selection.selectionKey,'Optional equipment selects exactly one physical model');
         if(!owner){
-          // These source-bound items affect the known physical UNIT. An
-          // aggregate export preserves their quantities without naming a MODEL.
-          const unitItem=(book.rosterEquipmentRestrictions||[]).some(binding=>binding.ownerId===unit.canonicalUnitId&&
-            [binding.instrumentId,binding.iconId].includes(id));
-          if(!unitItem)need('EQUIPMENT_MODEL_OWNER',selection.selectionKey,equipment.label);
+          // Inventory ownership does not require inventing a MODEL bearer.
+          // Only an explicit source-bound import policy may accept that unknown;
+          // MODEL-dependent items and unreviewed policies still need resolution.
+          if(equipment.requiresModelBearer!==false)need('EQUIPMENT_MODEL_OWNER',selection.selectionKey,equipment.label);
           continue;
         }
         const row=unit.modelRows.find(r=>owner.scopeId.startsWith(unit.instanceId+'/'+r.rowId+'/'));

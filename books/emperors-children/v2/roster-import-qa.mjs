@@ -7,6 +7,8 @@ import {createFormationContext} from './rule-contract-formation-context.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instance.mjs';
+import {projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
+import {buildApp} from './app-build.mjs';
 import {resolveOwnedFact,assertNoMfmValues} from './mfm-boundary.mjs';
 const clone=structuredClone,book=buildECImportBook(),original=clone(book),index=new Map(book.entities.map(e=>[e.id,e]));
 const facts=JSON.parse(fs.readFileSync(new URL('./generated/effective.json',import.meta.url)));
@@ -156,6 +158,82 @@ check(()=>{
   const removed=ready(plain+plain,{},s).roster;
   assert.equal(projectEffectiveInstance(native.book,run(removed),owner.instanceId).unitMetrics?.chargeRoll,undefined);
   assert.deepEqual(ready(text+plain,{},s).roster,state);
+});
+check(()=>{
+  // Accepted raw equipment options independently establish identity and count.
+  // Missing physical bearer is an information gap, not permission to invent one.
+  // Icon of Excess has a phase/destruction/test/CP rule: inventory can be READY
+  // without converting that conditional rule into a permanent numeric effect.
+  const cases=[{name:'tormentors',title:'Tormentors',model:'Tormentor',weapon:'Boltgun, Close combat weapon',n:5},
+    {name:'infractors',title:'Infractors',model:'Infractor',weapon:'Bolt pistol, Duelling sabre',n:3}];
+  const native=nativeContracts(),cards=new Map(buildApp().cards.map(card=>[card.id,card]));
+  const run=state=>executeRosterEffects(native.book,state,createFormationContext(native.book,state,native.schema));
+  for(const c of cases){
+    const id=`datasheet-${c.name}:wargear:${c.n}`,section=`datasheet-${c.name}:section:1`;
+    const raw=fs.readFileSync(new URL(`../sources/waha-11e-current-2026-09-28/${c.title}.html`,import.meta.url),'utf8');
+    assert.ok(raw.includes(`1 ${c.model} can be equipped with 1 icon of excess.`));
+    assert.ok(raw.includes('Icon of Excess:')&&raw.includes('bearer’s unit destroyed one or more enemy units')&&raw.includes('you gain 1CP'));
+    const plain=`5x ${c.title} (100 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x ${c.model}: ${c.weapon}\n`;
+    const aggregate=plain.replace('(100 pts)','(100 pts): 1x Icon of excess');
+    const known=`5x ${c.title} (100 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 1x ${c.model}: ${c.weapon}, Icon of excess\n• 3x ${c.model}: ${c.weapon}\n`;
+    const service=make(),text=header('Carnival of Excess')+aggregate+plain;
+    const state=ready(text,{},service).roster,[owner,other]=state.units;
+    assert.equal(owner.canonicalUnitId,'unit-'+c.name);
+    assert.notEqual(owner.instanceId,other.instanceId);
+    const selected=owner.selections.filter(selection=>selection.canonicalEquipmentIds.includes(id));
+    assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,1);
+    assert.equal(selected[0].perModelQuantity,null);assert.equal(selected[0].quantityEvidence.scope,'UNIT');
+    assert.deepEqual(selected[0].canonicalFieldPaths,{[id]:['/text']});
+    assert.ok(owner.modelRows.every(row=>row.selections.every(selection=>!selection.canonicalEquipmentIds.includes(id))));
+    assert.ok(selections(other).every(selection=>!selection.canonicalEquipmentIds.includes(id)));
+    const caption=selected[0].sourceReferences.find(ref=>ref.entityId===id&&ref.caption);
+    assert.ok(caption);assert.equal(caption.bookId,'emperors-children');assert.equal(caption.path,'/text');
+    assert.equal(index.get(id).parentId,owner.canonicalUnitId);
+    assert.ok(index.get(id).provenance.sourceId);
+    assert.equal(index.get(id).data.text.slice(caption.caption.start,caption.caption.end),'icon of excess');
+    assert.ok(selected[0].sourceReferences.some(ref=>ref.entityId===section&&ref.path==='/blocks/1/text'));
+    const projection=run(state),effective=projectEffectiveInstance(native.book,projection,owner.instanceId);
+    const presented=projectInstanceCards(cards,owner,effective);
+    assert.deepEqual(presented.get(owner.canonicalUnitId)[0].rosterEquipmentIds,[id]);
+    const ability=presented.get(section)[0].fields.find(field=>field.source?.path==='/blocks/1/text');
+    assert.ok(ability.value.includes('destroyed one or more enemy units')&&ability.value.includes('you gain 1CP'));
+    assert.deepEqual(projection.units[0].profiles.map(p=>p.profile.stats),formRoster(native.book,state).units[0].profiles.map(p=>p.profile.stats),
+      'A conditional CP rule never invents permanent model stat changes');
+    assert.deepEqual(run(state),projection,'Recompute does not duplicate selected equipment or effects');
+    assert.deepEqual(ready(text,{},service).roster,state,'Repeated import preserves physical identities and one Icon');
+    assert.deepEqual(service.load(state),state);
+    const identified=ready(header('Carnival of Excess')+known).roster.units[0];
+    assert.equal(identified.selections.filter(s=>s.canonicalEquipmentIds.includes(id)).length,0);
+    assert.equal(identified.modelRows[1].selections.filter(s=>s.canonicalEquipmentIds.includes(id)).length,1);
+    for(const alter of [
+      bad=>bad.units[0].selections[0].canonicalEquipmentIds=['datasheet-daemonettes:wargear:2'],
+      bad=>bad.units[0].selections[0].canonicalEquipmentIds=['not-a-canonical-item'],
+      bad=>bad.units[0].selections[0].sourceReferences.find(ref=>ref.caption).entityId='datasheet-daemonettes:wargear:2'
+    ]){
+      const bad=clone(state);alter(bad);
+      assert.throws(()=>service.load(bad));assert.deepEqual(service.snapshot(),state);negative++;
+    }
+    const foreign=cases.find(other=>other.name!==c.name);
+    const foreignService=make(),foreignState=ready(header('Carnival of Excess')+aggregate+
+      `5x ${foreign.title} (100 pts)\n• 1x Obsessionist: Bolt pistol, Power sword\n• 4x ${foreign.model}: ${foreign.weapon}\n`,{},foreignService).roster;
+    const wrongRecipient=clone(foreignState);
+    wrongRecipient.units[1].selections.push(wrongRecipient.units[0].selections.pop());
+    assert.throws(()=>foreignService.load(wrongRecipient),/Foreign equipment owner/,
+      'Known equipment cannot migrate to another canonical UNIT owner');
+    assert.deepEqual(foreignService.snapshot(),foreignState);negative++;
+    const invalid=service.import(header('Carnival of Excess')+aggregate.replace('Icon of excess','Unrecognised icon'));
+    assert.notEqual(invalid.status,'READY');assert.deepEqual(service.snapshot(),state);negative++;
+    assert.equal(service.import(text.replace("Chaos - Emperor's Children",'Chaos - Chaos Space Marines')).status,'INVALID');
+    assert.deepEqual(service.snapshot(),state,'A genuinely INVALID import preserves the complete prior valid roster');negative++;
+    const removed=ready(header('Carnival of Excess')+plain+plain,{},service).roster;
+    assert.ok(removed.units.every(u=>selections(u).every(s=>s.canonicalEquipmentIds.length===0)));
+    assert.deepEqual(ready(text,{},service).roster,state,'Reselect/reimport restores exactly one known UNIT item');
+    const lostPolicy=clone(book);
+    delete lostPolicy.importBindings.equipmentSelections.find(binding=>binding.canonicalEquipmentIds.includes(id)).requiresModelBearer;
+    const missingPolicy=createECRosterImport(lostPolicy).import(text);
+    assert.equal(missingPolicy.status,'NEEDS_BINDINGS','Unknown policy remains fail-closed');
+    assert.ok(missingPolicy.needsBindings.some(need=>need.kind==='EQUIPMENT_MODEL_OWNER'));mutations++;
+  }
 });
 check(()=>{
   for(const [text,status]of [

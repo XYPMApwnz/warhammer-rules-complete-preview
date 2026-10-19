@@ -36,11 +36,13 @@ export function buildECImportBindings(book,bsdata,contractArtifact) {
   const tongue=book.entities.find(e=>e.parentId==='unit-seekers'&&e.kind==='WEAPON_PROFILE'&&e.data.name==='Lashing tongue');assert.ok(tongue);
   weaponSelections.push({ownerId:'unit-seekers',label:'Lashing tongues',canonicalProfileIds:[tongue.id],evidence:[evidence(tongue.id,'/name')]});
   const equipmentSelections=[];
+  // Resolution policy is independent of selection restrictions: UNIT inventory
+  // may have an unknown bearer; the MODEL-only save from Aegis still needs one.
   for(const name of ['daemonettes','seekers','keeper-of-secrets'])for(const n of name==='keeper-of-secrets'?[0]:[1,2]){
     const aegis=n===0,label=aegis?'shining aegis':n===1?'instrument of Chaos':'daemonic icon',ownerId='unit-'+name;
     const optionId=`datasheet-${name}:wargear:${aegis?1:n}`,id=aegis?`datasheet-${name}:section:1`:optionId,path=aegis?'/blocks/2/text':'/text';
     const text=index.get(optionId).data.text,start=text.indexOf(label);assert.ok(start>=0&&text.indexOf(label,start+label.length)<0);
-    equipmentSelections.push({ownerId,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:[path]},
+    equipmentSelections.push({ownerId,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:[path]},requiresModelBearer:aegis,
       evidence:[evidence(id,path),evidence(optionId,'/text')],sourceReferences:[{entityId:optionId,path:'/text',bookId:book.bookId,caption:{start,end:start+label.length}}],
       ...(aegis?{}:{eligibleMemberId:`datasheet-${name}:section:2:member:2`})});
   }
@@ -49,7 +51,7 @@ export function buildECImportBindings(book,bsdata,contractArtifact) {
     assignmentReference:contractArtifact.contracts.find(c=>c.ruleId===e.id)?.assignment||null}));
   for(const [name,n]of [['tormentors',5],['infractors',3]]){
     const id=`datasheet-${name}:wargear:${n}`,text=index.get(id).data.text,label='icon of excess',start=text.indexOf(label);assert.ok(start>=0);
-    equipmentSelections.push({ownerId:'unit-'+name,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:['/text']},
+    equipmentSelections.push({ownerId:'unit-'+name,label,canonicalEquipmentIds:[id],canonicalFieldPaths:{[id]:['/text']},requiresModelBearer:false,
       evidence:[evidence(id,'/text')],sourceReferences:[{entityId:id,path:'/text',bookId:book.bookId,caption:{start,end:start+label.length}}],
       eligibleMemberId:`datasheet-${name}:section:2:member:2`});
   }
