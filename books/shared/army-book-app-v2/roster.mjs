@@ -44,8 +44,15 @@ export function renderRosterPointsStatus(document,{service,instanceId=null,title
   if(list.childElementCount)warning.append(list);
   return warning;
 }
+/** Presentation-only explanation of an already unresolved import result. This
+ * never supplies a candidate, changes an identity or relaxes validation. */
+export function importLimitationForNeed(need,limitations=[]){
+  if(need?.state!=='UNRESOLVED'||need.candidateIds?.length||need.candidates?.length)return null;
+  return limitations.find(item=>item.ownerId===need.ownerId&&item.bindingKind===need.kind&&item.rawLabel===need.rawLabel)||null;
+}
+
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[]}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -147,6 +154,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   status.setAttribute('role', 'status');
   const importPane = el('section', 'v2-card v2-roster-pane');
   importPane.append(el('h2', '', 'Import roster'));
+  for(const limitation of importLimitations){
+    const notice=el('section','v2-roster-hint');
+    notice.dataset.rosterImportLimitation=limitation.ownerId;notice.setAttribute('role','note');
+    notice.append(el('h3','',limitation.title),el('p','',limitation.message));
+    importPane.append(notice);
+  }
   const rawLabel = el('label', 'v2-roster-field', 'New Recruit text export');
   const raw = el('textarea');
   raw.setAttribute('aria-label', 'New Recruit text export');
@@ -310,7 +323,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     } else {
       renderBindings(importResult.needsBindings || []);
       const errors = (importResult.errors || []).map(playerError).join(' ');
-      setStatus(errors || 'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.', importResult.status === 'INVALID');
+      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>importLimitationForNeed(need,importLimitations)?.message).filter(Boolean))];
+      setStatus(errors || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
+        'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.'), importResult.status === 'INVALID');
     }
   }
   function selectRecords(records, {multiple = false, value = '', label} = {}) {
@@ -343,7 +358,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
       if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
         blocked = true;
-        fieldset.append(el('p', 'v2-roster-hint', 'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
+        const limitation=importLimitationForNeed(need,importLimitations);
+        fieldset.append(el('p', 'v2-roster-hint', limitation?limitation.message+' No roster changes were saved.':
+          'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
         fieldset.append(el('p', 'v2-roster-hint', need.kind==='ENHANCEMENT_BEARER'
           ?'Choose the model that bears this Enhancement. Imported model quantities remain unchanged.'

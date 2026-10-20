@@ -172,7 +172,8 @@ export function mount(document, payload, options = {}) {
   const rosterPanel = options.roster ? createRosterPanel(document, {
     service: options.roster, bookId: payload.book.id, open: id=>id?open(id):openLibrary(), showDetail,
     openPersonalGuide, showInstance: openInstance, routeURL, lifecycle,
-    titleForId: id => cards.get(id)?.title
+    titleForId: id => cards.get(id)?.title,
+    importLimitations: payload.rulePresentationLimitations?.importLimitations || []
   }) : null;
   const personalBook = () => projectPersonalBook(payload, options.roster.state);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;

@@ -32,6 +32,11 @@ export function buildApp(){
     scope:'STAGE_5A_NATIVE_APPLICATION_PREVIEW',frontend:'REQUIRES_REAL_MAIN_APPLICATION_ACCEPTANCE',
     sourceCompleteness:'PARTIAL',semanticCompleteness:'NOT_PROVEN',realNewRecruitExportTested:false,
     unresolvedCompositionMappings:['Dainal Kornelius / Dainal Komelius'],
+    importLimitations:[{
+      ownerId:'unit-sm-c7226873c51d43c0',bindingKind:'PROFILE',rawLabel:'Dainal Kornelius',
+      title:'Wardens of Ultramar: automatic import unavailable',
+      message:'Wardens of Ultramar is not currently supported by automatic import. The accepted source uses Dainal Kornelius in the unit composition and Dainal Komelius in the MODEL profile. Their correspondence has not been confirmed by official data. Other supported units can be imported.'
+    }],
     mfmReferenceOnly:21,unprovenChapterKeywordBindings:26,
     unsupportedAutomaticMechanics:'books/space-marines/v2/static-gameplay-review.json',
     paidOptions:'EXACT_PHYSICAL_SELECTION_REQUIRED_ELSE_UNRESOLVED',
