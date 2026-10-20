@@ -543,7 +543,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (members.length || assignment) {
       const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
       if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
-      members.forEach(member => attachments.append(el('p', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
+      members.forEach(member => attachments.append(el('p', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
       context.append(attachments);
     }
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
@@ -617,7 +617,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
             checkResult(await service.detach(member.leaderInstanceId)); renderRoster(); saveAndReport('Character / Support detached.');
           }, 'detach');
           detach.dataset.leaderInstanceId = member.leaderInstanceId;
-          row.append(el('span', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
+          row.append(el('span', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
           attachments.append(row);
         }
         if (candidates.length) {

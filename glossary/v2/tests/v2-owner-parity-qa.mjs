@@ -18,7 +18,7 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const excludedBooks=new Set(['space-marines','dark-angels','blood-angels']);
+const excludedBooks=new Set(['dark-angels','blood-angels']);
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
@@ -113,6 +113,30 @@ for(const article of tauEntries){
   assert.equal(tauReference.resolveAlias(canonicalId,{registryId:'tau-empire'}),aliases.length>1?null:article.id,'T’au canonical alias must resolve uniquely or fail closed for multiple field views '+canonicalId);
   assert.equal(tauReference.resolve(tauReference.identityFor(article.id))?.targetId,article.id,'T’au direct reference '+canonicalId);
 }
+// Seventh-owner integration preserves the exact prior six factual articles.
+const sm=inputs.armyModels.find(model=>model.book.id==='space-marines');
+const smEntries=armyEntries.filter(record=>record.sourceOwner.bookId==='space-marines');
+assert.equal(smEntries.length,sm.entities.length,'One SM Glossary article per existing source owner');
+for(const [kind,count]of Object.entries({DATASHEET:85,MODEL_PROFILE:117,DETACHMENT:21,DETACHMENT_RULE:24,ENHANCEMENT:56,STRATAGEM:84,WEAPON_PROFILE:386}))
+  assert.equal(sm.entities.filter(entity=>entity.kind===kind).length,count,'Accepted SM '+kind+' inventory');
+for(const fact of sm.entities.filter(entity=>['DATASHEET_ABILITY','ARMY_RULE','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM'].includes(entity.kind)))
+  if(fact.data.text)assert.ok(display.project(entry('space-marines',fact.id)).definition.includes(fact.data.text),'Complete SM source text '+fact.id);
+for(const profile of sm.entities.filter(entity=>entity.kind==='MODEL_PROFILE')){
+  const saves=sm.entities.filter(save=>save.kind==='INVULNERABLE_SAVE'&&save.parentId===profile.parentId&&save.data.sourceProfileIds.includes(profile.id)&&(!save.data.conditionText||save.data.scopeQualification==='EXPLICIT_NAMED_MODEL'));
+  assert.ok(saves.length<=1);
+  assert.equal(entry('space-marines',profile.id).facts.stats.INSV,saves[0]?.data.value,'Native static invulnerable scope '+profile.id);
+}
+const precedingSix=JSON.parse(execFileSync('git',['show','3e0c219f1210284a912faba71d46f3afa9710cea:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
+const currentById=new Map(index.entries.map(article=>[article.id,article]));
+const priorFormatterSource=execFileSync('git',['show','3e0c219f1210284a912faba71d46f3afa9710cea:books/shared/army-book-app-v2/global-glossary-content.mjs'],{cwd:repo,encoding:'utf8'});
+const {createGlobalGlossaryContent:priorFormatter}=await import('data:text/javascript;base64,'+Buffer.from(priorFormatterSource).toString('base64'));
+const priorDisplay=priorFormatter(precedingSix);
+
+for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
+  assert.deepEqual(currentById.get(article.id),article,'Six predecessor Army facts/provenance/references changed '+article.id);
+for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
+  assert.deepEqual(display.project(currentById.get(article.id)).mfm.lines,priorDisplay.project(article).mfm.lines,'Six predecessor MFM display changed '+article.id);
+
 const predecessor=JSON.parse(execFileSync('git',['show','f5e3ebc5ff5d57674e842f47656a59c39c0c58f0:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
 const fiveBooks=V2_ARMY_BOOK_IDS.filter(book=>book!=='tau-empire'),currentArticles=new Map(index.entries.map(article=>[article.id,article]));
 const previousArmyArticles=predecessor.entries.filter(article=>fiveBooks.includes(article.sourceOwner.bookId));
@@ -223,7 +247,7 @@ for(const partition of ['unitPointRecords','paidUpgradeRecords','detachments','e
   if(boundRecordIds.has(record.id))assert.ok(augmented.has(record.id),'Missing connected MFM owner '+record.id);
 }
 for(const partition of ['leaderEligibilityRecords','supportEligibilityRecords','qualifierRecords'])for(const record of catalog[partition]){
-  if(V2_ARMY_BOOK_IDS.includes(record.armyBookId||record.factionId))assert.ok(augmented.has(record.id),'Missing MFM eligibility/qualifier '+record.id);
+  if(V2_ARMY_BOOK_IDS.includes(record.factionId)&&(!record.armyBookId||V2_ARMY_BOOK_IDS.includes(record.armyBookId)))assert.ok(augmented.has(record.id),'Missing MFM eligibility/qualifier '+record.id);
 }
 const dependencyRefs=catalog.unitReferences.filter(record=>V2_ARMY_BOOK_IDS.includes(record.crossFactionDependency?.consumerArmyBookId));
 const dependencyPoints=catalog.unitPointRecords.filter(record=>dependencyRefs.some(reference=>reference.id===record.unitReferenceId));
@@ -243,6 +267,45 @@ let mutations=0;
 function rejected(action,label){let error;try{action();}catch(cause){error=cause;}assert.ok(error&&error.code==='ERR_ASSERTION','Comparator failed to detect '+label);mutations++;}
 function publicationMutation(label,mutate){const changed=structuredClone(index);mutate(changed);rejected(()=>assertGlossaryV2Parity(changed,inputs),label);}
 function annotationMutation(label,mutate,verify=verifySourceAnnotations){const changed=structuredClone(index);mutate(changed);rejected(()=>verify(changed),label);}
+publicationMutation('missing native SM owner',publication=>{publication.entries=publication.entries.filter(record=>record.sourceOwner.canonicalId!==sm.entities.find(entity=>entity.kind==='STRATAGEM').id);});
+publicationMutation('lost native SM complete Stratagem',publication=>{publication.entries.find(record=>record.sourceOwner.bookId==='space-marines'&&record.recordType==='STRATAGEM').facts.lines=[];});
+publicationMutation('wrong native SM equipment category',publication=>{publication.entries.find(record=>record.sourceOwner.bookId==='space-marines'&&record.recordType==='WARGEAR_ABILITY').recordType='ABILITY';});
+
+// The static Glossary discloses both source-backed alternatives. It has no
+// army context and must never choose one role or present both as unconditional.
+const catoCanonical='unit-sm-02d5dee4717544ad',marneusCanonical='unit-sm-1af70808102d4286';
+const catoId=entry('space-marines',catoCanonical).id;
+const centralCatoRelations=[...catalog.leaderEligibilityRecords,...catalog.supportEligibilityRecords]
+  .filter(record=>record.roleConditionProvenance?.armyRule?.ownerUnitId===catoCanonical);
+assert.equal(centralCatoRelations.length,2);
+function verifyConditionalRoles(publication){
+  const cato=publication.entries.find(article=>article.id===catoId);
+  const marneus=publication.entries.find(article=>article.sourceOwner.bookId==='space-marines'&&article.sourceOwner.canonicalId===marneusCanonical);
+  const relations=[...cato.mfm.leaderRelations,...cato.mfm.supportRelations];
+  for(const expected of centralCatoRelations){
+    const actual=relations.find(record=>record.id===expected.id);assert.ok(actual);
+    assert.deepEqual(actual.roleCondition,expected.roleCondition,'Conditional role predicate changed');
+    assert.deepEqual(actual.roleConditionProvenance,expected.roleConditionProvenance,'Conditional role lost exact source proof');
+  }
+  const lines=createGlobalGlossaryContent(publication).project(cato).mfm.lines;
+  assert.ok(lines.includes('Leader (conditional; '+marneus.label+' absent in army): Victrix Honour Guard'));
+  assert.ok(lines.includes('Support (conditional; '+marneus.label+' present in army): Victrix Honour Guard'));
+  assert.ok(lines.includes('Army context not evaluated.'));
+  assert.ok(lines.includes('Condition source: '+centralCatoRelations[0].roleConditionProvenance.armyRule.sourceText));
+  assert.ok(!lines.some(line=>/^Leader:|^Support:/.test(line)),'No unconditional Cato role without army context');
+}
+verifyConditionalRoles(index);
+for(const mutate of [
+  publication=>{delete publication.entries.find(article=>article.id===catoId).mfm.leaderRelations[0].roleConditionProvenance;},
+  publication=>{publication.entries.find(article=>article.id===catoId).mfm.leaderRelations[0].roleCondition.expectedPresent=true;},
+  publication=>{publication.entries.find(article=>article.id===catoId).mfm.supportRelations[0].roleConditionProvenance.armyRule.triggerUnitId=catoCanonical;},
+  publication=>{delete publication.entries.find(article=>article.id===catoId).mfm.supportRelations[0].roleCondition;}
+]){const copy=structuredClone(index);mutate(copy);rejected(()=>verifyConditionalRoles(copy),'lost/misleading conditional role proof');}
+const noConditionProof=structuredClone(index),noProofCato=noConditionProof.entries.find(article=>article.id===catoId);
+delete noProofCato.mfm.leaderRelations[0].roleConditionProvenance;
+const unresolvedRoleLines=createGlobalGlossaryContent(noConditionProof).project(noProofCato).mfm.lines;
+assert.ok(unresolvedRoleLines.includes('Leader (conditional; source condition unresolved): Victrix Honour Guard'));
+assert.ok(!unresolvedRoleLines.some(line=>/^Leader:/.test(line)));
 const pbcArticle=publication=>publication.entries.find(record=>record.id===pbcId);
 annotationMutation('removed field-level provenance after rebuild',publication=>{delete pbcArticle(publication).fieldProvenance;});
 annotationMutation('wrong exact official page',publication=>{pbcArticle(publication).fieldProvenance['blocks/0/text'].page=7;});

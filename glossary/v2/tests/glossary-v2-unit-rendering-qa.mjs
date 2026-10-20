@@ -7,16 +7,19 @@ import {createReferenceContract} from '../../../books/shared/army-book-app-v2/re
 const root=new URL('../../../',import.meta.url);
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
 const index=read('glossary/v2/generated/index.en.json');
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
 const sources=new Map(books.map(book=>[book,read(`books/${book}/v2/generated/effective.json`).entities]));
 const units=[...sources].flatMap(([book,entities])=>entities.filter(entity=>entity.kind==='DATASHEET').map(entity=>({book,entity})));
-assert.equal(units.length,242,'All 36 DG, 34 AdMech, 54 CSM, 23 EC 52 Tyranids and 43 T’au canonical datasheets are required');
+assert.equal(units.length,327,'All six published populations plus the accepted 85 native SM Datasheets are required');
 const owner=entity=>entity.parentId||entity.ownerId;
 const statsOf=(entity,byId)=>{
   const stats={...(entity.data.stats||entity.data.statline||Object.fromEntries(Object.entries(entity.data).filter(([key])=>['M','T','SV','W','LD','OC','INSV'].includes(key))))};
-  if(entity.data.invulnerableSaveId){
-    const save=byId.get(entity.data.invulnerableSaveId);
-    assert.equal(save.kind,'INVULNERABLE_SAVE');assert.ok(save.data.profileIds.includes(entity.id));
+  const sourceSaves=[...byId.values()].filter(save=>save.kind==='INVULNERABLE_SAVE'&&owner(save)===owner(entity)&&save.data.sourceProfileIds?.includes(entity.id)&&(!save.data.conditionText||save.data.scopeQualification==='EXPLICIT_NAMED_MODEL'));
+  assert.ok(sourceSaves.length<=1);
+  const saveId=entity.data.invulnerableSaveId||sourceSaves[0]?.id;
+  if(saveId){
+    const save=byId.get(saveId);
+    assert.equal(save.kind,'INVULNERABLE_SAVE');assert.ok((save.data.profileIds||save.data.sourceProfileIds).includes(entity.id));
     assert.equal(owner(save),owner(entity),'Invulnerable Save remains with the physical profile owner');stats.INSV=save.data.value;
   }
   return stats;
@@ -47,7 +50,7 @@ function verify(candidate){
     assert.deepEqual(entry.facts.canonicalData,entity.data,`${entry.id}: canonical factual data`);
     const ownEntities=sources.get(book),byId=new Map(ownEntities.map(row=>[row.id,row]));
     const children=ownEntities.filter(row=>owner(row)===entity.id);
-    const abilities=children.filter(row=>['DATASHEET_ABILITY','EQUIPMENT_ABILITY','SUPPLEMENTAL_DATASHEET_RULE'].includes(row.kind)||row.kind==='DATASHEET_SECTION'&&row.data.title==='ABILITIES');
+    const abilities=children.filter(row=>['DATASHEET_ABILITY','EQUIPMENT_ABILITY','SUPPLEMENTAL_DATASHEET_RULE'].includes(row.kind)||row.kind==='DATASHEET_SECTION'&&row.data.title==='ABILITIES'&&Array.isArray(row.data.blocks));
     assert.deepEqual(entry.facts.ruleFacts.abilities.map(row=>row.id),abilities.map(row=>row.id),`${entry.id}: complete ability inventory`);
     const scopes=byId.get(entity.data.keywordScopesId)?.data.scopes||[];
     const keywords=entity.data.keywords||[...new Set([...children.filter(row=>row.kind==='KEYWORD_MEMBERSHIP').map(row=>row.data.keyword),...scopes.filter(row=>row.label!=='FACTION KEYWORDS').flatMap(row=>row.keywords||[])])];
@@ -95,6 +98,7 @@ function verify(candidate){
       assert.deepEqual(row.facts.canonicalData,data,`${row.id}: complete weapon data`);
       assert.equal(row.parent.canonicalId,entity.id,`${row.id}: physical weapon owner`);
       const text=display.project(row).definition;
+      assert.ok(text.startsWith((data.mode|| (data.range==='Melee'?'melee':'ranged'))==='ranged'?'Ranged':'Melee'),`${row.id}: source Range retains the correct weapon mode`);
       for(const [label,key] of [['A','attacks'],['S','strength'],['AP','ap'],['D','damage']])
         assert.ok(text.includes(`${label} ${data[key]}`),`${row.id}: rendered ${key}`);
       assert.ok(text.includes(data.range)&&text.includes(data.skill),`${row.id}: range and skill`);
@@ -128,6 +132,7 @@ assert.deepEqual(battleclade.facts.profiles.map(profile=>profile.stats.W),['2','
 
 let mutations=0;
 for(const mutate of [
+  value=>{value.entries.find(row=>row.sourceOwner.bookId==='space-marines'&&row.recordType==='WEAPON_PROFILE'&&row.facts.range!=='Melee').facts.mode='melee';},
   value=>{value.entries=value.entries.filter(row=>row.id!==abaddon.id);},
   value=>{value.entries.push(structuredClone(value.entries.find(row=>row.id===abaddon.id)));},
   value=>{value.entries.find(row=>row.id===abaddon.id).facts.composition='Incorrect composition';},
