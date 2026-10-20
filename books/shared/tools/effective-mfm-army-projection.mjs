@@ -50,7 +50,7 @@ const flattenSchedule=(bookId,unitId,schedules)=>schedules.flatMap(schedule=>(sc
 }));
 
 export function createEffectiveMfmArmyProjection(bookId,{canonicalFacts}={}){
-  const {catalog}=createEffectiveMfmCatalog(canonicalFacts?{canonicalFacts}:{}),sourceMetadata=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.factionId===bookId&&!snapshot.consumerArmyBookId)),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
+  const {catalog}=createEffectiveMfmCatalog(canonicalFacts?{canonicalFacts}:{}),sourceMetadata=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.factionId===bookId&&!snapshot.consumerArmyBookId&&!snapshot.historical)),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
   const factionPoints=catalog.unitPointRecords.filter(item=>item.factionId===bookId),factionPointIds=new Set(factionPoints.map(item=>item.id));
   const paidByPoint=new Map();
   for(const item of catalog.paidUpgradeRecords.filter(item=>item.factionId===bookId)){const values=paidByPoint.get(item.unitPointRecordId)||[];values.push(item);paidByPoint.set(item.unitPointRecordId,values);}
@@ -77,7 +77,7 @@ export function createEffectiveMfmArmyProjection(bookId,{canonicalFacts}={}){
         detachmentPoints:item.detachmentPoints,dp:String(item.detachmentPoints),forceDisposition,disposition:forceDisposition,mfmRecordId:item.id,
         mfmQualifiers:clone(qualifierByOwner.get(`DETACHMENT\0${armyBookId}\0${item.armyDetachmentId}`)||[])
       };
-      return v15Books.has(bookId)?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
+      return v15Books.has(bookId)||sourceMetadata.version==='v1.6'?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
     });
     const enhancements=factionEnhancements.filter(item=>item.armyBookId===armyBookId).map(item=>({
       id:item.armyEnhancementId,canonicalEnhancementId:item.armyEnhancementId,detachmentId:item.armyDetachmentId,canonicalDetachmentId:item.armyDetachmentId,
@@ -94,12 +94,15 @@ export function createEffectiveMfmArmyProjection(bookId,{canonicalFacts}={}){
     const enhancements=current.enhancements.map(item=>clone(item));
     return {schema:1,source:sourceMetadata,units,detachments,enhancements,counts:{units:units.length,detachments:detachments.length,enhancements:enhancements.length,pricedOptions:units.reduce((total,item)=>total+item.paidWargear.length,0)}};
   };
-  const relationEdges=({effectiveUnitIds,armyEdges=[],presentUnitIds})=>{
+  const relationEdges=({effectiveUnitIds,armyEdges=[],presentUnitIds,allowUnresolvedConditions=false})=>{
     const ids=new Set(effectiveUnitIds),base=[];
     for(const [role,records] of [['leader',catalog.leaderEligibilityRecords],['support',catalog.supportEligibilityRecords]])for(const record of records.filter(item=>item.factionId===bookId)){
       const source=unitRefs.get(record.sourceUnitReferenceId)?.armyBinding;if(source?.bindingStatus!=='BOUND'||!ids.has(source.armyUnitId))continue;
       let conditionMetadata={};
       if(record.roleCondition){
+        // A native factual projection can retain conditional declarations while
+        // publishing only proven unconditional edges. The default stays strict.
+        if(presentUnitIds===undefined&&allowUnresolvedConditions===true)continue;
         if(!Array.isArray(presentUnitIds)||presentUnitIds.some(id=>typeof id!=='string'||!id.length))throw new Error(`${bookId}: conditional MFM roles require explicit army presence context`);
         const trigger=unitRefs.get(record.roleCondition.unitReferenceId)?.armyBinding;
         if(trigger?.bindingStatus!=='BOUND')throw new Error(`${record.id}: unresolved conditional role trigger`);
