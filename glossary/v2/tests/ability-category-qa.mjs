@@ -10,7 +10,7 @@ import {encodeRoute,decodeRoute} from '../../../books/shared/army-book-app-v2/ro
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
 const specialGroups=new Set(['datasheet-mortarion:section:1','datasheet-belisarius-cawl:section:4','datasheet-thulia-ghuld:section:4','datasheet-fulgrim:section:5']);
 const selectionContexts={
   'datasheet-mortarion:section:1':{canonicalId:'datasheet-mortarion:section:3',path:'/blocks/0/text'},
@@ -38,7 +38,7 @@ for(const [book,model]of sourceModels){
     const physicalOwner=entity.parentId||entity.ownerId;
     let unitOwner=physicalOwner,ancestor=modelOwners.get(unitOwner);const visited=new Set();
     while(ancestor&&ancestor.kind!=='DATASHEET'){assert.ok(!visited.has(ancestor.id),'Cyclic canonical owner');visited.add(ancestor.id);unitOwner=ancestor.parentId||ancestor.ownerId;ancestor=modelOwners.get(unitOwner);}
-    if(entity.kind==='DATASHEET_SECTION'&&(entity.data.title==='ABILITIES'||specialGroups.has(entity.id))){
+    if(entity.kind==='DATASHEET_SECTION'&&Array.isArray(entity.data.blocks)&&(entity.data.title==='ABILITIES'||specialGroups.has(entity.id))){
       aggregates.set(entry.id,entity);
       entity.data.blocks.forEach((block,index)=>{
         const separator=block.text.indexOf(': ');assert.ok(separator>0,'Expected named source ability block '+entity.id);
@@ -48,7 +48,7 @@ for(const [book,model]of sourceModels){
     }else if(book==='emperors-children'&&entity.id==='datasheet-lord-exultant:section:4'){
       add(entry,'ABILITY',{label:entity.data.title,body:entity.data.blocks[0].text,physicalOwner,unitOwner});
     }else if(entity.kind==='DATASHEET_ABILITY'||entity.kind==='NAMED_RULE_COMPONENT'){
-      add(entry,'ABILITY',{label:entity.displayName||entity.data.title,body:entity.data.text,physicalOwner,unitOwner,context:entity.kind==='NAMED_RULE_COMPONENT'?contextFor({canonicalId:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}):undefined});
+      add(entry,entity.data.wargearAbility===true?'WARGEAR_ABILITY':'ABILITY',{label:entity.displayName||entity.data.title,body:entity.data.text,physicalOwner,unitOwner,context:entity.kind==='NAMED_RULE_COMPONENT'?contextFor({canonicalId:'datasheet-abaddon-the-despoiler:section:1:block:0:text'}):undefined});
     }else if(entity.kind==='EQUIPMENT_ABILITY'||entity.id==='datasheet-great-unclean-one:raw-dsAbility:1'){
       const label=entity.id==='datasheet-great-unclean-one:raw-dsAbility:1'?entity.data.text.slice(0,entity.data.text.indexOf(': ')):entity.displayName||entry.label;
       add(entry,'WARGEAR_ABILITY',{label,body:entity.data.text,physicalOwner,unitOwner});
@@ -105,7 +105,7 @@ function reconcile(corpus){
 }
 const {projection}=reconcile(publication);
 const counts=Object.fromEntries(books.map(book=>[book,{abilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='ABILITY').length,wargearAbilities:[...expected.values()].filter(entry=>entry.book===book&&entry.category==='WARGEAR_ABILITY').length}]));
-assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7},tyranids:{abilities:79,wargearAbilities:0},'tau-empire':{abilities:71,wargearAbilities:19}},'Reviewed source-block inventory changed');
+assert.deepEqual(counts,{'death-guard':{abilities:61,wargearAbilities:7},'adeptus-mechanicus':{abilities:60,wargearAbilities:12},'chaos-space-marines':{abilities:92,wargearAbilities:7},'emperors-children':{abilities:38,wargearAbilities:7},tyranids:{abilities:79,wargearAbilities:0},'tau-empire':{abilities:71,wargearAbilities:19},'space-marines':{abilities:150,wargearAbilities:12}},'Reviewed source-block inventory changed');
 assert.equal(aggregates.size,192);
 assert.equal([...expected.values()].filter(entry=>entry.path).length,352);
 const firstField=[...expected.values()].find(entry=>entry.path),firstEntryId=firstField.targetId.slice(0,-('::'+firstField.path).length);

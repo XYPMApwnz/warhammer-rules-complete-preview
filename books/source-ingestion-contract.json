@@ -2991,6 +2991,35 @@
         }
       ],
       "notes": "Official v1.6 observed 2026-10-14. Effective date not established. Existing DOM extractor reused; semantic equality to historical v1.5 verified before acceptance."
+    },
+    {
+      "book": "space-marines",
+      "sourceId": "space-marines-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "16331cd04bf9a085ab63661c12573fd5d21aeff4eb44c9ae868997c76bb78fa2",
+      "lastChecked": "2026-10-20",
+      "upstreamObservedAt": "2026-10-20",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/space-marines.json",
+          "normalization": "lf",
+          "sha256": "a017fdaf93c01e7db5864679936c505da2fbfb19298ca97c26cd59061785ce12"
+        },
+        {
+          "path": "mfm/sources/v1.6/official-mfm-sm-hydrated.html",
+          "normalization": "bytes",
+          "sha256": "c3632e33c7b74d8854f285794ebf018565dc71208be2c34536acf6f4fb1932d7"
+        }
+      ],
+      "notes": "Targeted existingcapture enrollment, not a newlivecapture. Official Space Marines v1.6 observed/verified2026-10-20; downloadlistupdate2026-10-14 is not publication/effective date. No standalone sixfactionv1.5captureproducer run."
     }
   ],
   "dormantLiveTools": [

@@ -95,7 +95,7 @@ assert.equal(forceDispositions.length,5,'all five Force Disposition identities m
 assert.equal(new Set(forceDispositions.map(entry=>entry.id)).size,5,'Force Disposition identities must remain unique');
 assert.equal(forceDispositions.reduce((count,entry)=>count+entry.facts.missionMatrixRelations.length,0),25,'all 25 directed Primary matrix relations must remain projected');
 assert.equal(forceDispositions.reduce((count,entry)=>count+entry.facts.references.length,0),50,'all 50 Force Disposition Mission references must remain projected');
-const expectedDispositionAssignments=inputs.mfmCatalog.detachments.filter(record=>BOOK_IDS.includes(record.armyBookId)).flatMap(record=>{
+const expectedDispositionAssignments=inputs.mfmCatalog.detachments.filter(record=>BOOK_IDS.includes(record.factionId)&&BOOK_IDS.includes(record.armyBookId)).flatMap(record=>{
   const model=inputs.armyModels.find(model=>model.book.id===record.armyBookId),canonicalId=model.mfmIdentityBindings[record.id];
   assert(canonicalId,'Detachment assignment requires explicit V2 identity binding');
   return record.missionForceDispositionIds.map(id=>id+'|'+record.armyBookId+'|'+canonicalId);
@@ -106,7 +106,7 @@ const actualDispositionAssignments=forceDispositions.flatMap(disposition=>dispos
 })).sort();
 assert.deepEqual(actualDispositionAssignments,expectedDispositionAssignments,'Exact connected Detachment/Force Disposition assignments, including multi-disposition owners');
 assert.equal(new Set(actualDispositionAssignments).size,actualDispositionAssignments.length,'No duplicate assignment within one Force Disposition');
-assert.equal(new Set(forceDispositions.flatMap(entry=>entry.mfm.assignedDetachmentIds)).size,63,'Every connected Detachment assigned');
+assert.equal(new Set(forceDispositions.flatMap(entry=>entry.mfm.assignedDetachmentIds)).size,inputs.armyModels.reduce((sum,model)=>sum+model.entities.filter(entity=>entity.kind==='DETACHMENT').length,0),'Every connected Detachment assigned');
 assert(forceDispositions.every(entry=>entry.facts.physicalMultiplicity===2),'each Force Disposition must retain its physical card multiplicity');
 assert.equal(forceDispositionMatchups.length,15,'all 15 unordered matchup identities must be projected');
 assert.equal(new Set(forceDispositionMatchups.map(entry=>entry.id)).size,15,'matchup identities must remain unique');
@@ -169,19 +169,25 @@ const dependencies=inputs.mfmCatalog.unitReferences.filter(record=>connected.has
 const pointRecords=inputs.mfmCatalog.unitPointRecords.filter(record=>connected.has(record.factionId)||dependencies.some(reference=>reference.id===record.unitReferenceId));
 assert.equal(index.coverage.mfm.standaloneArticles,2,'Only the two source-owned allied points dependencies have separate central articles');
 assert.equal(index.counts.byDomain.MFM,2);
+const boundPoint=record=>{
+  const ref=inputs.mfmCatalog.unitReferences.find(reference=>reference.id===record.unitReferenceId),binding=ref?.armyBinding;
+  return binding?.bindingStatus==='BOUND'&&inputs.armyModels.some(model=>model.book.id===binding.armyBookId&&model.entities.some(entity=>entity.kind==='DATASHEET'&&entity.id===binding.armyUnitId));
+};
+const referenceOnlyPoints=pointRecords.filter(record=>!boundPoint(record));
+const projectedPoints=pointRecords.filter(record=>boundPoint(record)||dependencies.some(reference=>reference.id===record.unitReferenceId));
 const allProjectedPoints=index.entries.flatMap(entry=>[...(entry.mfm?.pointRecords||[]),...(entry.domain==='MFM'?[entry.facts]:[])]);
-assert.deepEqual(allProjectedPoints.map(record=>record.id).sort(),pointRecords.map(record=>record.id).sort(),'Every connected or explicitly dependent central points owner appears exactly once');
-assert.equal(index.coverage.mfm.augmentation.pointRecords,pointRecords.length-dependencies.length);
+assert.deepEqual(allProjectedPoints.map(record=>record.id).sort(),projectedPoints.map(record=>record.id).sort(),'Every connected or explicitly dependent central points owner appears exactly once');
+assert.equal(index.coverage.mfm.augmentation.pointRecords,projectedPoints.length-dependencies.length);
 assert.equal(index.coverage.mfm.augmentation.paidUpgrades,inputs.mfmCatalog.paidUpgradeRecords.filter(record=>pointRecords.some(point=>point.id===record.unitPointRecordId)).length);
-for(const [partition,countKey]of [['detachments','detachments'],['enhancementCosts','enhancementCosts'],['qualifierRecords','qualifiers']])assert.equal(index.coverage.mfm.augmentation[countKey],inputs.mfmCatalog[partition].filter(record=>connected.has(record.armyBookId)).length);
-assert.equal(index.coverage.mfm.augmentation.referenceOnlyPointRecords.length,2);
+for(const [partition,countKey]of [['detachments','detachments'],['enhancementCosts','enhancementCosts'],['qualifierRecords','qualifiers']])assert.equal(index.coverage.mfm.augmentation[countKey],inputs.mfmCatalog[partition].filter(record=>connected.has(record.factionId)&&connected.has(record.armyBookId)).length);
+assert.deepEqual(index.coverage.mfm.augmentation.referenceOnlyPointRecords,referenceOnlyPoints.map(record=>record.id).sort(),'Unbound central points must remain reference-only, not fictional Army owners');
 assert(index.entries.some(entry=>entry.recordType==='UNIT'&&entry.mfm?.pointRecords?.length),'bound MFM points must augment Army units');
 assert(index.entries.some(entry=>entry.recordType==='DETACHMENT'&&entry.mfm?.detachment),'bound MFM DP/Force Disposition facts must augment Army Detachments');
 assert(index.entries.some(entry=>entry.recordType==='ENHANCEMENT'&&entry.mfm?.enhancementCost),'bound MFM cost must augment Army Enhancements');
 
 const detachmentEntries=index.entries.filter(entry=>entry.recordType==='DETACHMENT');
-assert.equal(detachmentEntries.length,63,'All connected V2 Detachments');
-assert.equal(new Set(detachmentEntries.map(entry=>entry.id)).size,63);
+assert.equal(detachmentEntries.length,inputs.armyModels.reduce((sum,model)=>sum+model.entities.filter(entity=>entity.kind==='DETACHMENT').length,0),'All connected V2 Detachments');
+assert.equal(new Set(detachmentEntries.map(entry=>entry.id)).size,detachmentEntries.length);
 for(const entry of detachmentEntries){
   const model=inputs.armyModels.find(model=>model.book.id===entry.sourceOwner.bookId);
   const source=model.entities.find(entity=>entity.id===entry.sourceOwner.canonicalId);
@@ -237,7 +243,7 @@ assert(!index.entries.some(entry=>entry.id==='keyword-death-guard'),'Death Guard
 const transportPreferred=index.entries.filter(entry=>entry.presentation.preferredMatchLabels?.includes('transport'));
 assert.deepEqual(transportPreferred.map(entry=>entry.id),['core::core-rule-18-01-transport-capacity'],'transport preferred match must resolve through the accepted keyword-transport migration binding');
 
-const excluded=['space-marines','dark-angels','blood-angels'];
+const excluded=['dark-angels','blood-angels'];
 assert(!index.entries.some(entry=>entry.domain==='ARMY'&&excluded.includes(entry.sourceOwner.bookId)),'No excluded standalone Army facts');
 assert(!index.entries.some(entry=>entry.sourceOwner.canonicalId==='army-rule-oath-of-moment'),'Unconnected Space Marines rule must not be promoted');
 const coreSupport=index.entries.find(entry=>entry.id==='core::core-support');

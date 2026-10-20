@@ -511,10 +511,31 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     }
     for(const option of mfm.paidUpgrades||[])if(Number.isFinite(option.value))lines.push(option.label+' — +'+option.value+' pts');
     for(const qualifier of mfm.qualifiers||[])if(qualifier.label&&!entry.facts?.tags?.includes(qualifier.label))lines.push(qualifier.label);
+    const conditionSources=new Set();let conditionalRoles=false;
     for(const [field,label]of [['leaderRelations','Leader'],['supportRelations','Support']]) {
-      const targets=[...new Set((mfm[field]||[]).flatMap(relation=>relation.targetEntryIds||[]))].map(id=>byId.get(id)?.label).filter(Boolean);
+      const relations=mfm[field]||[];
+      const targets=[...new Set(relations.filter(relation=>!relation.roleCondition).flatMap(relation=>relation.targetEntryIds||[]))].map(id=>byId.get(id)?.label).filter(Boolean);
       if(targets.length)lines.push(label+': '+targets.join(', '));
+      for(const relation of relations.filter(relation=>relation.roleCondition)){
+        const names=(relation.targetEntryIds||[]).map(id=>byId.get(id)?.label).filter(Boolean);
+        if(!names.length)continue;
+        conditionalRoles=true;
+        const condition=relation.roleCondition,proof=relation.roleConditionProvenance?.armyRule;
+        const trigger=proof&&canonicalArmy.get(proof.armyBookId+'\0'+proof.triggerUnitId);
+        const source=proof&&canonicalArmy.get(proof.armyBookId+'\0'+proof.canonicalRuleId);
+        const sourceText=source?.facts.canonicalData?.conditionText||source?.facts.canonicalData?.rawText;
+        const proven=condition.kind==='ARMY_UNIT_PRESENT'&&typeof condition.expectedPresent==='boolean'&&
+          proof?.armyBookId===entry.sourceOwner.bookId&&proof.ownerUnitId===entry.sourceOwner.canonicalId&&
+          trigger?.recordType==='UNIT'&&source?.parent?.canonicalId===entry.sourceOwner.canonicalId&&
+          text(proof.sourceText)&&sourceText===proof.sourceText;
+        const caption=proven?trigger.label+' '+(condition.expectedPresent?'present':'absent')+' in army':'source condition unresolved';
+        lines.push(label+' (conditional; '+caption+'): '+names.join(', '));
+        if(proven&&!conditionSources.has(proof.canonicalRuleId)){
+          conditionSources.add(proof.canonicalRuleId);lines.push('Condition source: '+proof.sourceText);
+        }
+      }
     }
+    if(conditionalRoles)lines.push('Army context not evaluated.');
     return Object.freeze({lines:Object.freeze(lines)});
   };
   function project(entry,{bookId=defaultBookId}={}) {

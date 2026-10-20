@@ -1,0 +1,317 @@
+{
+  "schema": "space-marines-v2-named-recipient-review/v1",
+  "reviewedAt": "2026-10-20",
+  "sourceBaselineHead": "e3255decc78b324788c333c5e25570028725fde8",
+  "identityPolicy": "EXPLICIT_ACCEPTED_SOURCE_URI_DISPATCH_TO_NATIVE_SOURCE_OWNED_MODEL_PROFILES",
+  "records": [
+    {
+      "id": "sm-stage4c-named-recipient-enhancement-sm-90544ca326d243be",
+      "ruleId": "enhancement-sm-90544ca326d243be",
+      "ownerDetachmentId": "detachment-sm-edbad6d9c5a44991",
+      "status": "SOURCE_CONFIRMED",
+      "sourceEligibilityText": "- Narthecis Gauntlet\nAPOTHECARY BIOLOGIS model only. in your Command phase, this unit heals D3+1 wounds.",
+      "sourceGameplayParagraph": "APOTHECARY BIOLOGIS model only. in your Command phase, this unit heals D3+1 wounds.",
+      "sourceDispatch": {
+        "kind": "EXPLICIT_SOURCE_DATASHEET_LINK",
+        "nativeIntersectionUnitIds": [
+          "unit-sm-63a015916b46446a"
+        ],
+        "linkPointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td/p[2]/a[1]",
+        "href": "/wh40k11ed/factions/space-marines/Apothecary-Biologis",
+        "linkText": "APOTHECARY BIOLOGIS",
+        "linkHtmlSha256": "3769B2E86B440AA6B296E74706A8D7F14E96D62607B2D4305097C44C676981F8"
+      },
+      "unitId": "unit-sm-63a015916b46446a",
+      "modelProfileIds": [
+        "model-sm-303a4d0a13024600"
+      ],
+      "previousSelector": {
+        "subject": "MODEL",
+        "keywords": [
+          "APOTHECARY BIOLOGIS"
+        ]
+      },
+      "reviewedSelector": {
+        "subject": "MODEL",
+        "unitIds": [
+          "unit-sm-63a015916b46446a"
+        ]
+      },
+      "existingMechanism": "rule-contract-build selector unitIds expands source-owned profileIds into MODEL_ID for MODEL subject",
+      "proofs": [
+        {
+          "entityId": "enhancement-sm-90544ca326d243be",
+          "sourceEntityId": "sm-source-3a96d1e93fb1485a",
+          "kind": "ENHANCEMENT",
+          "parentId": "detachment-sm-edbad6d9c5a44991",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+            "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+            "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+            "sourceEntityId": "sm-source-3a96d1e93fb1485a",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "B85CB90071E8D85D09D752094526306BF9E4225DF08A1A5AE084142B329CE938"
+        },
+        {
+          "entityId": "unit-sm-63a015916b46446a",
+          "sourceEntityId": "sm-source-6567bd6bb2d54093",
+          "kind": "DATASHEET",
+          "parentId": null,
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]",
+            "sourceEntityId": "sm-source-6567bd6bb2d54093",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "74BFB0AABFE9EFB6240C00600D3C70914F80909419BDD8015B875DBFFCE036BC"
+        },
+        {
+          "entityId": "model-sm-303a4d0a13024600",
+          "sourceEntityId": "sm-source-c0bb326520a34913",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-63a015916b46446a",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]/div[1]/div[8]",
+            "sourceEntityId": "sm-source-c0bb326520a34913",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "6D3C6BCE37B1E1EA1B881E78E469EAA18BA13952E7871CE3855DFA17295818D0"
+        }
+      ],
+      "sourceFieldsUnchanged": true,
+      "nativeKeywordsAdded": false,
+      "effectLoweringChanged": false
+    },
+    {
+      "id": "sm-stage4c-named-recipient-enhancement-sm-b83286afe07645eb",
+      "ruleId": "enhancement-sm-b83286afe07645eb",
+      "ownerDetachmentId": "detachment-sm-f72202c27ad448ea",
+      "status": "SOURCE_CONFIRMED",
+      "sourceEligibilityText": "- Target Augury Web\nTECHMARINE model only. In your movement phase, at the start or end of this unit’s move, you can select one friendly ADEPTUS ASTARTES VEHICLE model within 3\" of this unit. That VEHICLE model’s attacks have [LETHAL HITS] until the start of your next Command phase",
+      "sourceGameplayParagraph": "TECHMARINE model only. In your movement phase, at the start or end of this unit’s move, you can select one friendly ADEPTUS ASTARTES VEHICLE model within 3\" of this unit. That VEHICLE model’s attacks have [LETHAL HITS] until the start of your next Command phase",
+      "sourceDispatch": {
+        "kind": "SOURCE_KEYWORD_TOOLTIP_LINK",
+        "triggerPointer": "/html/body/div/div[1]/div[3]/div[22]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td/p[2]/span[1]",
+        "triggerText": "TECHMARINE",
+        "tooltipId": "#tooltip_content00087",
+        "tooltipPointer": "/html/body/div/div[1]/div[3]/div[198]/span",
+        "tooltipHtmlSha256": "37599F555A19C542CA89561F4960F34AF050F08E215B319383E5CBDE6F70F387",
+        "allLinkedSourceRecipients": [
+          {
+            "href": "/wh40k11ed/factions/space-marines/Techmarine",
+            "label": "Techmarine",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[2]/div/a"
+          },
+          {
+            "href": "/wh40k11ed/factions/space-marines/Iron-Priest",
+            "label": "Iron Priest",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[4]/a"
+          }
+        ],
+        "outsideNativeCorpus": [
+          {
+            "href": "/wh40k11ed/factions/space-marines/Iron-Priest",
+            "label": "Iron Priest",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[4]/a"
+          }
+        ],
+        "nativeIntersectionUnitIds": [
+          "unit-sm-1d09de3e7281438a"
+        ],
+        "linkPointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[2]/div/a",
+        "href": "/wh40k11ed/factions/space-marines/Techmarine",
+        "linkText": "Techmarine",
+        "linkHtmlSha256": "0BFA1BD99D67291583F88791A727D61E0E729E91766DAC08760EDD9E788AEA69"
+      },
+      "unitId": "unit-sm-1d09de3e7281438a",
+      "modelProfileIds": [
+        "model-sm-26770947c0d14782"
+      ],
+      "previousSelector": {
+        "subject": "MODEL",
+        "keywords": [
+          "TECHMARINE"
+        ]
+      },
+      "reviewedSelector": {
+        "subject": "MODEL",
+        "unitIds": [
+          "unit-sm-1d09de3e7281438a"
+        ]
+      },
+      "existingMechanism": "rule-contract-build selector unitIds expands source-owned profileIds into MODEL_ID for MODEL subject",
+      "proofs": [
+        {
+          "entityId": "enhancement-sm-b83286afe07645eb",
+          "sourceEntityId": "sm-source-b653dca2c8744cf8",
+          "kind": "ENHANCEMENT",
+          "parentId": "detachment-sm-f72202c27ad448ea",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+            "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+            "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+            "sourceEntityId": "sm-source-b653dca2c8744cf8",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "FBB83E56D6930FBF3FA0672660819CC0010E12DE4769ADBB78651AFE4047D385"
+        },
+        {
+          "entityId": "unit-sm-1d09de3e7281438a",
+          "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+          "kind": "DATASHEET",
+          "parentId": null,
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]",
+            "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "2D4143611BD470A3A378A5B9B37AF3B62CDD5F2DBEDC5DAE136EAFFAFED017F5"
+        },
+        {
+          "entityId": "model-sm-26770947c0d14782",
+          "sourceEntityId": "sm-source-8dfa725aa3064c04",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-1d09de3e7281438a",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]/div[1]/div[8]",
+            "sourceEntityId": "sm-source-8dfa725aa3064c04",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "C15A5447047A2B18423795DED2F0EC958D386E0854F4CAF27209BDB66575F713"
+        }
+      ],
+      "sourceFieldsUnchanged": true,
+      "nativeKeywordsAdded": false,
+      "effectLoweringChanged": false
+    },
+    {
+      "id": "sm-stage4c-named-recipient-enhancement-sm-cb0f3a594ea44264",
+      "ruleId": "enhancement-sm-cb0f3a594ea44264",
+      "ownerDetachmentId": "detachment-sm-f72202c27ad448ea",
+      "status": "SOURCE_CONFIRMED",
+      "sourceEligibilityText": "- Adept of the Omnissiah\nTECHMARINE model only. (Once per battle round, per army) When an enemy unit targets a friendly ADEPTUS ASTARTES VEHICLE unit within 6\" of this unit, you can use this ability. If you do, that VEHICLE unit has Feel No Pain 5+ until that enemy unit has attacked.",
+      "sourceGameplayParagraph": "TECHMARINE model only. (Once per battle round, per army) When an enemy unit targets a friendly ADEPTUS ASTARTES VEHICLE unit within 6\" of this unit, you can use this ability. If you do, that VEHICLE unit has Feel No Pain 5+ until that enemy unit has attacked.",
+      "sourceDispatch": {
+        "kind": "SOURCE_KEYWORD_TOOLTIP_LINK",
+        "triggerPointer": "/html/body/div/div[1]/div[3]/div[22]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td/p[2]/span[1]",
+        "triggerText": "TECHMARINE",
+        "tooltipId": "#tooltip_content00087",
+        "tooltipPointer": "/html/body/div/div[1]/div[3]/div[198]/span",
+        "tooltipHtmlSha256": "37599F555A19C542CA89561F4960F34AF050F08E215B319383E5CBDE6F70F387",
+        "allLinkedSourceRecipients": [
+          {
+            "href": "/wh40k11ed/factions/space-marines/Techmarine",
+            "label": "Techmarine",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[2]/div/a"
+          },
+          {
+            "href": "/wh40k11ed/factions/space-marines/Iron-Priest",
+            "label": "Iron Priest",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[4]/a"
+          }
+        ],
+        "outsideNativeCorpus": [
+          {
+            "href": "/wh40k11ed/factions/space-marines/Iron-Priest",
+            "label": "Iron Priest",
+            "pointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[4]/a"
+          }
+        ],
+        "nativeIntersectionUnitIds": [
+          "unit-sm-1d09de3e7281438a"
+        ],
+        "linkPointer": "/html/body/div/div[1]/div[3]/div[198]/span/span/span/div/div[2]/div/a",
+        "href": "/wh40k11ed/factions/space-marines/Techmarine",
+        "linkText": "Techmarine",
+        "linkHtmlSha256": "0BFA1BD99D67291583F88791A727D61E0E729E91766DAC08760EDD9E788AEA69"
+      },
+      "unitId": "unit-sm-1d09de3e7281438a",
+      "modelProfileIds": [
+        "model-sm-26770947c0d14782"
+      ],
+      "previousSelector": {
+        "subject": "MODEL",
+        "keywords": [
+          "TECHMARINE"
+        ]
+      },
+      "reviewedSelector": {
+        "subject": "MODEL",
+        "unitIds": [
+          "unit-sm-1d09de3e7281438a"
+        ]
+      },
+      "existingMechanism": "rule-contract-build selector unitIds expands source-owned profileIds into MODEL_ID for MODEL subject",
+      "proofs": [
+        {
+          "entityId": "enhancement-sm-cb0f3a594ea44264",
+          "sourceEntityId": "sm-source-63e1787e2cfe40c0",
+          "kind": "ENHANCEMENT",
+          "parentId": "detachment-sm-f72202c27ad448ea",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+            "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+            "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+            "sourceEntityId": "sm-source-63e1787e2cfe40c0",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "94EF8CFC039431493CEAFB0FA5613DA2AFE7D3CC1CF04579A96F9120B5B96899"
+        },
+        {
+          "entityId": "unit-sm-1d09de3e7281438a",
+          "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+          "kind": "DATASHEET",
+          "parentId": null,
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]",
+            "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "2D4143611BD470A3A378A5B9B37AF3B62CDD5F2DBEDC5DAE136EAFFAFED017F5"
+        },
+        {
+          "entityId": "model-sm-26770947c0d14782",
+          "sourceEntityId": "sm-source-8dfa725aa3064c04",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-1d09de3e7281438a",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]/div[1]/div[8]",
+            "sourceEntityId": "sm-source-8dfa725aa3064c04",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "rawNodeHtmlSha256": "C15A5447047A2B18423795DED2F0EC958D386E0854F4CAF27209BDB66575F713"
+        }
+      ],
+      "sourceFieldsUnchanged": true,
+      "nativeKeywordsAdded": false,
+      "effectLoweringChanged": false
+    }
+  ],
+  "limits": [
+    "Only the three reproduced named-recipient assignment failures are reviewed.",
+    "TECHMARINE tooltip includes foreign Iron Priest; it remains outside the 85 native SM Datasheets.",
+    "Source names, keywords, gameplay conditions and values remain unchanged.",
+    "MODEL assignment is proven; healing, range, phases, targets and battle conditions are not assumed fulfilled."
+  ]
+}

@@ -1,0 +1,56 @@
+# Prepared locally in Stage 6B.1. This file has NOT been pushed or run.
+# Before a separately authorized release: switch Pages Source to GitHub Actions,
+# promote the reviewed seven-book candidate plus packaging tools to the release
+# branch, and retain the previous deployment artifact for rollback.
+name: Unified V2 runtime Pages
+
+on:
+  push:
+    branches: [unified-v2-release]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/unified-v2-release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Build explicit runtime publication
+        run: node tools/pages-runtime-package.mjs --source . --out "${{ runner.temp }}/dist-pages"
+      - name: Verify package and deterministic boundary tests
+        run: |
+          node tools/pages-runtime-package.mjs --source . --out "${{ runner.temp }}/dist-pages" --check
+          node tools/pages-runtime-package-qa.mjs --source . --published "${{ runner.temp }}/dist-pages" --work "${{ runner.temp }}/pages-package-qa"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/dist-pages
+
+  deploy:
+    if: github.ref == 'refs/heads/unified-v2-release'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: false
+      - name: Deploy reviewed runtime artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

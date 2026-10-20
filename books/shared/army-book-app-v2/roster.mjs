@@ -1,6 +1,58 @@
 import {createLifecycle} from './lifecycle.mjs';
+/** Display the service's existing uncertainty; never calculate or complete costs. */
+export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
+  const points=service?.points;
+  if(points?.status!=='UNRESOLVED')return null;
+  const allIssues=points.unresolved||[],unitPoints=points.units?.find(unit=>unit.unitInstanceId===instanceId);
+  const issues=allIssues.filter(issue=>!instanceId||!issue.unitInstanceId||issue.unitInstanceId===instanceId);
+  if(instanceId&&!issues.length&&unitPoints?.totalPoints!==null&&unitPoints?.totalPoints!==undefined)return null;
+  const node=(tag,text)=>{const value=document.createElement(tag);if(text!==undefined)value.textContent=text;return value;};
+  const warning=node('section');warning.className='v2-roster-points-warning';
+  warning.dataset.rosterPointsStatus='UNRESOLVED';warning.setAttribute('role','status');
+  warning.append(node('h3','Points unresolved'),node('p','Points cannot be calculated reliably. Required roster information is missing or could not be verified.'));
+  const reasons={
+    PAID_SELECTION_UNKNOWN:'The paid equipment selection is unknown.',
+    UNRESOLVED_PHYSICAL_QUANTITY:'The selected equipment quantity is unknown.',
+    DUPLICATE_OR_MISSING_PHYSICAL_SELECTION_ID:'The selected equipment occurrence could not be identified safely.',
+    UNRESOLVED_SELECTION_IDENTITY:'The selected equipment could not be identified safely.',
+    WRONG_PAID_OPTION_UNIT_OWNER:'The paid equipment could not be matched to this unit.',
+    PAID_EQUIPMENT_FIELD_NOT_PROVEN:'The selected equipment source reference could not be verified.',
+    MIXED_WEAPON_SELECTION_PHYSICAL_QUANTITY_NOT_PROVEN:'The paid weapon quantity could not be verified.',
+    ALTERNATIVE_PROFILE_OCCURRENCE_NOT_PROVEN:'Alternative profiles could not be matched to one physical weapon.',
+    MFM_COMPOSITION_TIER_NOT_PROVEN:'The unit size or copy tier could not be matched to a points cost.',
+    MFM_ENHANCEMENT_COST_NOT_PROVEN:'The selected Enhancement cost could not be verified.'
+  };
+  const list=node('ul'),stateUnits=service.state?.units||[];
+  for(const issue of issues){
+    const unit=stateUnits.find(unit=>unit.instanceId===issue.unitInstanceId);
+    const copies=unit?stateUnits.filter(copy=>copy.canonicalUnitId===unit.canonicalUnitId):[];
+    const name=unit?(titleForId(unit.canonicalUnitId)||'Imported unit')+(copies.length>1?` #${copies.findIndex(copy=>copy.instanceId===unit.instanceId)+1}`:''):null;
+    const paid=points.units?.find(row=>row.unitInstanceId===issue.unitInstanceId)?.paid;
+    const options=(paid?.options||[]).filter(option=>issue.costRecordId===option.costRecordId||
+      issue.costRecordIds?.includes(option.costRecordId)||
+      (issue.selectionKey&&option.selections?.some(selection=>selection.selectionKey===issue.selectionKey)));
+    for(const option of options.length?options:[null]){
+      const item=node('li');
+      if(issue.unitInstanceId)item.dataset.rosterPointsUnitId=issue.unitInstanceId;
+      if(option)item.dataset.rosterPointsOptionId=option.costRecordId;
+      if(issue.reason)item.dataset.rosterPointsReason=issue.reason;
+      item.textContent=[name,option?.label&&'Paid option: '+option.label].filter(Boolean).join(' — ');
+      item.append(node('span',(item.textContent?': ':'')+(reasons[issue.reason]||issue.message||'Required points information is unavailable.')));
+      list.append(item);
+    }
+  }
+  if(list.childElementCount)warning.append(list);
+  return warning;
+}
+/** Presentation-only explanation of an already unresolved import result. This
+ * never supplies a candidate, changes an identity or relaxes validation. */
+export function importLimitationForNeed(need,limitations=[]){
+  if(need?.state!=='UNRESOLVED'||need.candidateIds?.length||need.candidates?.length)return null;
+  return limitations.find(item=>item.ownerId===need.ownerId&&item.bindingKind===need.kind&&item.rawLabel===need.rawLabel)||null;
+}
+
 /** Optional roster view. The injected service owns every identity, fact and effect. */
-export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle}) {
+export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle,importLimitations=[]}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
   for (const method of ['draft', 'import', 'load', 'snapshot', 'effective', 'related', 'candidates', 'attach', 'detach']) {
     if (typeof service[method] !== 'function') throw new TypeError(`Roster service requires ${method}().`);
@@ -102,6 +154,12 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   status.setAttribute('role', 'status');
   const importPane = el('section', 'v2-card v2-roster-pane');
   importPane.append(el('h2', '', 'Import roster'));
+  for(const limitation of importLimitations){
+    const notice=el('section','v2-roster-hint');
+    notice.dataset.rosterImportLimitation=limitation.ownerId;notice.setAttribute('role','note');
+    notice.append(el('h3','',limitation.title),el('p','',limitation.message));
+    importPane.append(notice);
+  }
   const rawLabel = el('label', 'v2-roster-field', 'New Recruit text export');
   const raw = el('textarea');
   raw.setAttribute('aria-label', 'New Recruit text export');
@@ -265,7 +323,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     } else {
       renderBindings(importResult.needsBindings || []);
       const errors = (importResult.errors || []).map(playerError).join(' ');
-      setStatus(errors || 'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.', importResult.status === 'INVALID');
+      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>importLimitationForNeed(need,importLimitations)?.message).filter(Boolean))];
+      setStatus(errors || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
+        'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.'), importResult.status === 'INVALID');
     }
   }
   function selectRecords(records, {multiple = false, value = '', label} = {}) {
@@ -298,7 +358,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
         : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
       if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
         blocked = true;
-        fieldset.append(el('p', 'v2-roster-hint', 'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
+        const limitation=importLimitationForNeed(need,importLimitations);
+        fieldset.append(el('p', 'v2-roster-hint', limitation?limitation.message+' No roster changes were saved.':
+          'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
         fieldset.append(el('p', 'v2-roster-hint', need.kind==='ENHANCEMENT_BEARER'
           ?'Choose the model that bears this Enhancement. Imported model quantities remain unchanged.'
@@ -536,6 +598,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const context = el('section', 'v2-roster');
     context.dataset.rosterContextInstanceId = instanceId;
     context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
+    const pointsWarning=renderRosterPointsStatus(document,{service,instanceId,titleForId:named});
+    if(pointsWarning)context.append(pointsWarning);
     const selections = sourceSelections(unit, names.get(instanceId), true);
     if (selections) context.append(selections);
     const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === instanceId);
@@ -543,7 +607,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (members.length || assignment) {
       const attachments = el('section'); attachments.append(el('h3', '', 'Attachments'));
       if (assignment) attachments.append(el('p', '', `Attached to ${names.get(assignment.bodyguardInstanceId)}`));
-      members.forEach(member => attachments.append(el('p', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
+      members.forEach(member => attachments.append(el('p', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`)));
       context.append(attachments);
     }
     context.append(renderEffective(instanceId, service.effective(instanceId)), renderRelated(instanceId));
@@ -560,6 +624,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (!state?.units?.length) return;
     const summary = el('section', 'v2-card v2-roster-pane');
     summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
+    const pointsWarning=renderRosterPointsStatus(document,{service,titleForId:named});
+    if(pointsWarning)summary.append(pointsWarning);
     const detachments = el('ul', 'v2-roster-list');
     detachments.dataset.rosterDetachments = '';
     for (const detachment of state.detachments) {
@@ -617,7 +683,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
             checkResult(await service.detach(member.leaderInstanceId)); renderRoster(); saveAndReport('Character / Support detached.');
           }, 'detach');
           detach.dataset.leaderInstanceId = member.leaderInstanceId;
-          row.append(el('span', '', `${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
+          row.append(el('span', '', `${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${names.get(member.leaderInstanceId)}`), detach);
           attachments.append(row);
         }
         if (candidates.length) {

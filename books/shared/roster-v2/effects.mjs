@@ -83,6 +83,10 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
           (effect.targetSubject!=='UNIT' || !['PHYSICAL','FORMED'].includes(effect.unitScope) ||
            !Number.isSafeInteger(effect.value) || effect.max!==undefined || effect.weaponMode!==undefined || effect.weaponIds!==undefined))
         throw new TypeError('Invalid typed UNIT Charge-roll modifier');
+      if (effect.operation==='MODIFY_RULE_METRIC' && effect.field==='detectionRange' && effect.unitScope!==undefined &&
+          (effect.targetSubject!=='UNIT'||!['PHYSICAL','FORMED'].includes(effect.unitScope)||!Number.isSafeInteger(effect.value)||
+           effect.weaponMode!==undefined||effect.weaponIds!==undefined||effect.max!==undefined))
+        throw new TypeError('Invalid scoped UNIT Detection-range modifier');
       if (effect.operation === 'GRANT_UNIT_KEYWORD' && (effect.targetSubject !== 'UNIT' || typeof effect.keyword !== 'string' || !effect.keyword || (effect.unitScope !== undefined && !['FORMED','PHYSICAL'].includes(effect.unitScope)))) throw new TypeError('Invalid UNIT keyword grant');
       if (effect.operation === 'GRANT_MODEL_KEYWORD' && (effect.targetSubject !== 'MODEL' || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid MODEL keyword grant');
       if (effect.operation === 'REMOVE_KEYWORD' && (!['MODEL','UNIT'].includes(effect.targetSubject) || typeof effect.keyword !== 'string' || !effect.keyword)) throw new TypeError('Invalid scoped keyword removal');
@@ -223,6 +227,9 @@ function partitionWeapons(book,state,projection,resolveWeaponPartitions){
 /** Each clause is evaluated independently; no BATTLE action is ever executed. */
 export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
+  // Explicit UNIT scope opts into UNIT presentation. Legacy unscoped range
+  // contracts retain their existing MODEL mirrors until separately reviewed.
+  const scopedDetectionUnits=new Set();
   partitionWeapons(book,state,result,resolveWeaponPartitions);
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
@@ -335,7 +342,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       const participant = condition.binding === 'SOURCE' ? source : target.unit;
       const ctx = predicateContext(state,result,participant?.instanceId,subject,condition.binding === 'TARGET' ? target.model?.scopeId : ownerModel?.scopeId,condition.binding === 'SOURCE' ? extra : {});
       if (!ctx) return false;
-      if ((effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD') && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
+      if ((effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD'||
+          effect.operation==='MODIFY_RULE_METRIC'&&effect.field==='detectionRange') && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
         ctx.unitId=participant.canonicalUnitId;
         ctx.keywords=new Set(participant.keywords);
       }
@@ -387,7 +395,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       return row;
     };
     const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD' ||
-      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','criticalHitThreshold'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
+      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','criticalHitThreshold','detectionRange'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
@@ -467,9 +475,11 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     } else if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field!=='criticalHitThreshold') {
       if (group) { const metric=group.metrics[effect.field] || {modifier:0};group.metrics[effect.field]={modifier:metric.modifier+effect.value,...(effect.max?{max:Math.min(metric.max??Infinity,effect.max)}:{})}; }
       for (const unit of unitRecipients) {
+        const scopedDetection=effect.field==='detectionRange'&&effect.targetSubject==='UNIT'&&['PHYSICAL','FORMED'].includes(effect.unitScope);
+        if(scopedDetection)scopedDetectionUnits.add(unit);
         const object = target.model ? target.model.metrics : unit.metrics, before = object[effect.field] || {modifier:0};
         const original=target.unit;target.unit=unit;
-        mutate(object,effect.field,{modifier:before.modifier + effect.value,...((effect.max || before.max) ? {max:Math.min(effect.max ?? Infinity,before.max ?? Infinity)} : {})},target.model?.modelInstanceId);
+        mutate(object,effect.field,{modifier:before.modifier + effect.value,...((effect.max || before.max) ? {max:Math.min(effect.max ?? Infinity,before.max ?? Infinity)} : {})},target.model?.modelInstanceId,undefined,undefined,scopedDetection);
         target.unit=original;
       }
     } else if (effect.operation === 'MODIFY_STAT' && ['M','T','SV','W','LD','OC','INSV'].includes(effect.field)) {
@@ -610,7 +620,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
-        if(field==='chargeRoll')continue; // A UNIT roll modifier is never a MODEL characteristic or metric.
+        if(field==='chargeRoll'||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;
         const own = model.metrics[field] || {modifier:0};
         model.metrics[field] = {modifier:own.modifier+metric.modifier,...((own.max||metric.max)?{max:Math.min(own.max??Infinity,metric.max??Infinity)}:{})};
       }

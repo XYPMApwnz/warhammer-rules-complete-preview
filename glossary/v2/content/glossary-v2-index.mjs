@@ -117,6 +117,13 @@ function abilityPresentation(entity,model) {
   if(model.book.id==='emperors-children'&&entity.id==='datasheet-lord-exultant:section:4')return {referenceCategory:'ABILITY',referenceLabel:entity.data.title};
   const result={referenceCategory:'REFERENCE'};
   if(model.appPayload.datasheetPresentation?.sectionRoles?.[entity.id]!=='abilities'&&!namedAbilityGroups.has(entity.id))return result;
+  // Native ability sections retain their complete text as a reference container;
+  // the separately enrolled DATASHEET_ABILITY children own named ability views.
+  if(!Array.isArray(entity.data.blocks)){
+    assert.equal(typeof entity.data.text,'string','Ability container lacks source text');
+    assert.ok(model.entities.some(child=>child.kind==='DATASHEET_ABILITY'&&child.parentId===entity.parentId),'Ability container lacks canonical named owners');
+    return result;
+  }
   result.referenceFields=entity.data.blocks.map((block,index)=>{
     const path=`/blocks/${index}/text`,factId=entity.id+'::'+path;
     const fact=model.appPayload.factManifest.find(field=>field.id===factId);
@@ -157,12 +164,19 @@ function addArmyEntries(entries,models){
     };
     const profileStats=e=>{
       const stats=clone(e.data.stats||e.data.statline||Object.fromEntries(Object.entries(e.data).filter(([k])=>['M','T','SV','W','LD','OC','INSV'].includes(k))));
-      if(e.data.invulnerableSaveId){const save=records.get(e.data.invulnerableSaveId);if(save?.kind!=='INVULNERABLE_SAVE'||!save.data.profileIds.includes(e.id))throw new Error('Unresolved V2 profile save owner '+e.id);stats.INSV=save.data.value;}
+      const sourceSaves=model.entities.filter(save=>save.kind==='INVULNERABLE_SAVE'&&save.parentId===e.parentId&&save.data.sourceProfileIds?.includes(e.id)&&(!save.data.conditionText||save.data.scopeQualification==='EXPLICIT_NAMED_MODEL'));
+      assert.ok(sourceSaves.length<=1,'Overlapping source-profile invulnerable saves '+e.id);
+      const saveId=e.data.invulnerableSaveId||sourceSaves[0]?.id;
+      if(saveId){const save=records.get(saveId);if(save?.kind!=='INVULNERABLE_SAVE'||!(save.data.profileIds||save.data.sourceProfileIds).includes(e.id))throw new Error('Unresolved V2 profile save owner '+e.id);stats.INSV=save.data.value;}
       return stats;
     };
     for(const entity of sourceRows){
-      const type=types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
+      const type=entity.kind==='DATASHEET_ABILITY'&&entity.data.wargearAbility===true?'WARGEAR_ABILITY':types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
       const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
+      // Existing native sources may store the complete Stratagem as one text
+      // field rather than labelled lines. Keep that exact field as presentation.
+      if(typeof data.rawText==='string'&&!data.text)facts.text=data.rawText;
+      if(type==='STRATAGEM'&&typeof data.text==='string'&&!Array.isArray(data.lines))facts.lines=[data.text];
       if(type==='COMPOSITION_MEMBER')facts.sourceText=data.sourceText??data.text;
       if(entity.qualifications)facts.qualifications=clone(entity.qualifications);
       if(faqQualifications(entity).length)facts.semanticContent=blockText(entity);
@@ -178,7 +192,13 @@ function addArmyEntries(entries,models){
         facts.componentIds=[owners[0].id];
       }
       if(type==='SOURCE_CONFLICT')facts.text=[data.classification,data.decision,...(data.officialEvidence||[]).map(evidence=>evidence.text)].filter(Boolean).join('\n');
-      if(type==='WEAPON_PROFILE')Object.assign(facts,{a:data.attacks??data.a,s:data.strength??data.s,d:data.damage??data.d});
+      if(type==='WEAPON_PROFILE'){
+        Object.assign(facts,{a:data.attacks??data.a,s:data.strength??data.s,d:data.damage??data.d});
+        if(!data.mode&&records.get(parent)?.kind==='DATASHEET'&&data.range!=='Melee'){
+          assert.match(data.range,/^\d+"$/,'Unreviewed canonical ranged weapon Range');
+          facts.mode='ranged';
+        }
+      }
       if(type==='PROFILE')facts.stats=profileStats(entity);
       if(type==='UNIT'){
         const profileIds=data.profileIds||data.modelProfileIds||[];
@@ -193,7 +213,7 @@ function addArmyEntries(entries,models){
         const scopes=records.get(data.keywordScopesId)?.data.scopes||[];
         if(!facts.keywords.length)facts.keywords=[...new Set(scopes.filter(v=>v.label!=='FACTION KEYWORDS').flatMap(v=>v.keywords||[]))];
         if(!facts.factionKeywords.length)facts.factionKeywords=[...new Set(scopes.filter(v=>v.label==='FACTION KEYWORDS').flatMap(v=>v.keywords||[]))];
-        const abilities=children(entity).filter(e=>['DATASHEET_ABILITY','EQUIPMENT_ABILITY','SUPPLEMENTAL_DATASHEET_RULE'].includes(e.kind)||e.kind==='DATASHEET_SECTION'&&roles[e.id]==='abilities');
+        const abilities=children(entity).filter(e=>['DATASHEET_ABILITY','EQUIPMENT_ABILITY','SUPPLEMENTAL_DATASHEET_RULE'].includes(e.kind)||e.kind==='DATASHEET_SECTION'&&roles[e.id]==='abilities'&&Array.isArray(e.data.blocks));
         facts.ruleFacts={abilities:abilities.map(e=>({id:e.id,title:label(e),text:blockText(e)}))};
         facts.referenceSections=sections.filter(e=>roles[e.id]!=='composition'&&roles[e.id]!=='abilities').map(e=>({title:label(e),lines:[blockText(e)].filter(Boolean)}));
       }
@@ -253,7 +273,7 @@ function addMissionEntries(entries,missionCatalogs){
 function attachMfm(entries,lookups,mfmCatalog){
   const dependencyRefs=new Set(mfmCatalog.unitReferences.filter(ref=>BOOK_IDS.includes(ref.crossFactionDependency?.consumerArmyBookId)).map(ref=>ref.id));
   const pointIds=new Set(mfmCatalog.unitPointRecords.filter(record=>BOOK_IDS.includes(record.factionId)||dependencyRefs.has(record.unitReferenceId)).map(record=>record.id));
-  mfmCatalog={...mfmCatalog,unitPointRecords:mfmCatalog.unitPointRecords.filter(record=>pointIds.has(record.id)),paidUpgradeRecords:mfmCatalog.paidUpgradeRecords.filter(record=>pointIds.has(record.unitPointRecordId)),leaderEligibilityRecords:mfmCatalog.leaderEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),supportEligibilityRecords:mfmCatalog.supportEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),detachments:mfmCatalog.detachments.filter(record=>BOOK_IDS.includes(record.armyBookId)),enhancementCosts:mfmCatalog.enhancementCosts.filter(record=>BOOK_IDS.includes(record.armyBookId)),qualifierRecords:mfmCatalog.qualifierRecords.filter(record=>BOOK_IDS.includes(record.armyBookId))};
+  mfmCatalog={...mfmCatalog,unitPointRecords:mfmCatalog.unitPointRecords.filter(record=>pointIds.has(record.id)),paidUpgradeRecords:mfmCatalog.paidUpgradeRecords.filter(record=>pointIds.has(record.unitPointRecordId)),leaderEligibilityRecords:mfmCatalog.leaderEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),supportEligibilityRecords:mfmCatalog.supportEligibilityRecords.filter(record=>BOOK_IDS.includes(record.factionId)),detachments:mfmCatalog.detachments.filter(record=>BOOK_IDS.includes(record.factionId)&&BOOK_IDS.includes(record.armyBookId)),enhancementCosts:mfmCatalog.enhancementCosts.filter(record=>BOOK_IDS.includes(record.factionId)&&BOOK_IDS.includes(record.armyBookId)),qualifierRecords:mfmCatalog.qualifierRecords.filter(record=>BOOK_IDS.includes(record.factionId)&&BOOK_IDS.includes(record.armyBookId))};
   for(const record of mfmCatalog.unitPointRecords.filter(record=>dependencyRefs.has(record.unitReferenceId))){
     const ref=mfmCatalog.unitReferences.find(ref=>ref.id===record.unitReferenceId),consumer=ref.crossFactionDependency.consumerArmyBookId;
     const entry=createEntry({id:entryId('mfm',record.id),domain:'MFM',recordType:'MFM_UNIT_POINTS',label:record.label,canonicalId:record.id,provenance:record.provenance,currentness:{sourceVersion:record.provenance.sourceVersion},sourceOwner:{domain:'MFM',canonicalId:record.id,factionId:record.factionId,interface:'createEffectiveMfmCatalog()'},facts:clone(record),contexts:[{effectiveBookId:consumer,dependencyKind:'POINTS_ONLY'}]});

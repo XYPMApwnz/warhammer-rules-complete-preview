@@ -5,7 +5,7 @@ const edgeKey=edge=>`${edge.role}\0${edge.sourceId}\0${edge.targetId}`;
 const v15Books=new Set(['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines']);
 const sourceMetadataFor=snapshot=>{
   if(!snapshot)throw new Error('MFM source snapshot is required for Army projection');
-  return Object.freeze({label:`Official MFM ${snapshot.version}`,version:snapshot.version,currentnessCutoff:snapshot.currentnessCutoff,verifiedAt:snapshot.verifiedAt??snapshot.currentnessCutoff,authority:snapshot.authority,...(snapshot.version==='v1.6'?{observedAt:snapshot.observedAt,effectiveDate:snapshot.effectiveDate}:{})});
+  return Object.freeze({label:`Official MFM ${snapshot.version}`,version:snapshot.version,currentnessCutoff:snapshot.currentnessCutoff,verifiedAt:snapshot.verifiedAt??snapshot.currentnessCutoff,authority:snapshot.authority,...(snapshot.version==='v1.6'?{observedAt:snapshot.observedAt,effectiveDate:snapshot.effectiveDate,...Object.fromEntries(['capturedAt','sourceUpdatedAt','currentnessEvidence'].filter(key=>snapshot[key]!==undefined).map(key=>[key,clone(snapshot[key])]))}:{})});
 };
 
 const armyRelationOverlays=Object.freeze({
@@ -49,16 +49,16 @@ const flattenSchedule=(bookId,unitId,schedules)=>schedules.flatMap(schedule=>(sc
   return {label:`${copyPrefix}${model.label||model.sourceLabel}`,value:model.value,minModels:model.minModels,maxModels:model.maxModels,...(schedule.minCopies!==undefined?{minCopies:schedule.minCopies}:{}),...(schedule.maxCopies!=null?{maxCopies:schedule.maxCopies}:{}),sourceLabel:model.sourceLabel};
 }));
 
-export function createEffectiveMfmArmyProjection(bookId){
-  const {catalog}=createEffectiveMfmCatalog(),sourceMetadata=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.factionId===bookId&&!snapshot.consumerArmyBookId)),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
+export function createEffectiveMfmArmyProjection(bookId,{canonicalFacts}={}){
+  const {catalog}=createEffectiveMfmCatalog(canonicalFacts?{canonicalFacts}:{}),sourceMetadata=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.factionId===bookId&&!snapshot.consumerArmyBookId&&!snapshot.historical)),unitRefs=new Map(catalog.unitReferences.map(item=>[item.id,item])),pointById=new Map(catalog.unitPointRecords.map(item=>[item.id,item])),forceBindings=catalog.crossDomainBindings.forceDispositionBindings;
   const factionPoints=catalog.unitPointRecords.filter(item=>item.factionId===bookId),factionPointIds=new Set(factionPoints.map(item=>item.id));
   const paidByPoint=new Map();
   for(const item of catalog.paidUpgradeRecords.filter(item=>item.factionId===bookId)){const values=paidByPoint.get(item.unitPointRecordId)||[];values.push(item);paidByPoint.set(item.unitPointRecordId,values);}
   const boundUnitRecords=factionPoints.map(point=>({point,reference:unitRefs.get(point.unitReferenceId)})).filter(({reference})=>reference?.armyBinding?.bindingStatus==='BOUND');
   const referenceOnlyUnitRecords=factionPoints.map(point=>({point,reference:unitRefs.get(point.unitReferenceId)})).filter(({reference})=>reference?.armyBinding?.bindingStatus==='REFERENCE_ONLY');
-  const factionDetachments=catalog.detachments.filter(item=>item.factionId===bookId),factionEnhancements=catalog.enhancementCosts.filter(item=>item.factionId===bookId);
+  const factionDetachments=catalog.detachments.filter(item=>item.factionId===bookId&&item.bindingStatus!=='REFERENCE_ONLY'),factionEnhancements=catalog.enhancementCosts.filter(item=>item.factionId===bookId&&item.bindingStatus!=='REFERENCE_ONLY');
   const qualifierByOwner=new Map();
-  for(const item of catalog.qualifierRecords.filter(item=>item.factionId===bookId)){const key=`${item.ownerKind}\0${item.armyBookId}\0${item.armyOwnerId}`,values=qualifierByOwner.get(key)||[];values.push(clone(item));qualifierByOwner.set(key,values);}
+  for(const item of catalog.qualifierRecords.filter(item=>item.factionId===bookId&&item.bindingStatus!=='REFERENCE_ONLY')){const key=`${item.ownerKind}\0${item.armyBookId}\0${item.armyOwnerId}`,values=qualifierByOwner.get(key)||[];values.push(clone(item));qualifierByOwner.set(key,values);}
   const pointsForArmyBook=armyBookId=>{
     const units=boundUnitRecords.filter(({reference})=>reference.armyBinding.armyBookId===armyBookId).map(({point,reference})=>({
       id:reference.armyBinding.armyUnitId,
@@ -77,7 +77,7 @@ export function createEffectiveMfmArmyProjection(bookId){
         detachmentPoints:item.detachmentPoints,dp:String(item.detachmentPoints),forceDisposition,disposition:forceDisposition,mfmRecordId:item.id,
         mfmQualifiers:clone(qualifierByOwner.get(`DETACHMENT\0${armyBookId}\0${item.armyDetachmentId}`)||[])
       };
-      return v15Books.has(bookId)?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
+      return v15Books.has(bookId)||sourceMetadata.version==='v1.6'?{...common,forceDispositions,forceDispositionIds:clone(item.forceDispositionIds),mfmForceDispositionIds:clone(item.mfmForceDispositionIds),missionForceDispositionIds:clone(item.missionForceDispositionIds)}:{...common,mfmForceDispositionId:item.mfmForceDispositionIds[0],missionForceDispositionId:item.missionForceDispositionIds[0],forceDispositionId:item.forceDispositionIds[0]};
     });
     const enhancements=factionEnhancements.filter(item=>item.armyBookId===armyBookId).map(item=>({
       id:item.armyEnhancementId,canonicalEnhancementId:item.armyEnhancementId,detachmentId:item.armyDetachmentId,canonicalDetachmentId:item.armyDetachmentId,
@@ -94,17 +94,29 @@ export function createEffectiveMfmArmyProjection(bookId){
     const enhancements=current.enhancements.map(item=>clone(item));
     return {schema:1,source:sourceMetadata,units,detachments,enhancements,counts:{units:units.length,detachments:detachments.length,enhancements:enhancements.length,pricedOptions:units.reduce((total,item)=>total+item.paidWargear.length,0)}};
   };
-  const relationEdges=({effectiveUnitIds,armyEdges=[]})=>{
+  const relationEdges=({effectiveUnitIds,armyEdges=[],presentUnitIds,allowUnresolvedConditions=false})=>{
     const ids=new Set(effectiveUnitIds),base=[];
     for(const [role,records] of [['leader',catalog.leaderEligibilityRecords],['support',catalog.supportEligibilityRecords]])for(const record of records.filter(item=>item.factionId===bookId)){
       const source=unitRefs.get(record.sourceUnitReferenceId)?.armyBinding;if(source?.bindingStatus!=='BOUND'||!ids.has(source.armyUnitId))continue;
-      for(const targetRefId of record.targetUnitReferenceIds){const target=unitRefs.get(targetRefId)?.armyBinding;if(target?.bindingStatus==='BOUND'&&ids.has(target.armyUnitId))base.push({role,sourceId:source.armyUnitId,targetId:target.armyUnitId,mfmRecordId:record.id});}
+      let conditionMetadata={};
+      if(record.roleCondition){
+        // A native factual projection can retain conditional declarations while
+        // publishing only proven unconditional edges. The default stays strict.
+        if(presentUnitIds===undefined&&allowUnresolvedConditions===true)continue;
+        if(!Array.isArray(presentUnitIds)||presentUnitIds.some(id=>typeof id!=='string'||!id.length))throw new Error(`${bookId}: conditional MFM roles require explicit army presence context`);
+        const trigger=unitRefs.get(record.roleCondition.unitReferenceId)?.armyBinding;
+        if(trigger?.bindingStatus!=='BOUND')throw new Error(`${record.id}: unresolved conditional role trigger`);
+        if(presentUnitIds.includes(trigger.armyUnitId)!==record.roleCondition.expectedPresent)continue;
+        conditionMetadata={roleCondition:{...clone(record.roleCondition),armyUnitId:trigger.armyUnitId},roleConditionProvenance:clone(record.roleConditionProvenance)};
+      }
+      for(const targetRefId of record.targetUnitReferenceIds){const target=unitRefs.get(targetRefId)?.armyBinding;if(target?.bindingStatus==='BOUND'&&ids.has(target.armyUnitId))base.push({role,sourceId:source.armyUnitId,targetId:target.armyUnitId,mfmRecordId:record.id,...conditionMetadata});}
     }
     const result=new Map(base.map(edge=>[edgeKey(edge),edge])),allowed=armyRelationOverlays[bookId]||new Set();
     for(const edge of armyEdges){const key=edgeKey(edge);if(result.has(key))continue;if(allowed.has(key))result.set(key,{...edge,overlaySource:'ARMY_EFFECTIVE_MODEL'});else if(!retiredArmyRelationEdges.has(key))throw new Error(`${bookId}: unclassified Army relation outside effective MFM: ${key.replaceAll('\0',' / ')}`);}
     for(const key of allowed)if(!result.has(key))throw new Error(`${bookId}: required Army-domain relation overlay is absent: ${key.replaceAll('\0',' / ')}`);
     return [...result.values()].sort((a,b)=>edgeKey(a).localeCompare(edgeKey(b)));
   };
+  const referenceOnlyOwnerRecords=clone([...catalog.detachments,...catalog.enhancementCosts,...catalog.qualifierRecords].filter(item=>item.factionId===bookId&&item.bindingStatus==='REFERENCE_ONLY'));
   const qualifierRecordsFor=(ownerKind,armyBookId,ownerId)=>clone(qualifierByOwner.get(`${ownerKind}\0${armyBookId}\0${ownerId}`)||[]);
   const alliedUnitsForArmyBook=(consumerArmyBookId,unitIds)=>unitIds.map(unitId=>{
     const candidates=catalog.unitReferences.filter(reference=>reference.armyBinding?.armyUnitId===unitId||reference.crossFactionDependency?.consumerArmyUnitId===unitId&&reference.crossFactionDependency.consumerArmyBookId===consumerArmyBookId);
@@ -114,5 +126,5 @@ export function createEffectiveMfmArmyProjection(bookId){
     const pointsSource=sourceMetadataFor(catalog.sourceSnapshots.find(snapshot=>snapshot.sourceId===point.provenance.sourceId));
     return{id:unitId,unitId,title:point.label,sourceBookId:reference.factionId,sourceLayer:'centralized-mfm-allied-dependency',publicationState:'Current',points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:(paidByPoint.get(point.id)||[]).map(item=>({name:armyPaidUpgradeLabel(item.label),value:item.value,modifiers:[]})),pointsSource,mfmRecordId:point.id,unitReferenceId:reference.id,publicationRecord:{id:unitId,title:point.label,status:'Current',sourceLayer:point.sourceGroup,points:flattenSchedule(reference.factionId,unitId,point.pointSchedules),paidWargear:[],pointsSource,mfmRecordId:point.id}};
   });
-  return Object.freeze({bookId,sourceMetadata,pointsForArmyBook,alliedUnitsForArmyBook,deathGuardPoints,relationEdges,qualifierRecordsFor,referenceOnlyUnitRecords:clone(referenceOnlyUnitRecords.map(({point,reference})=>({mfmRecordId:point.id,label:point.label,unitReferenceId:reference.id,reason:reference.armyBinding.reason}))),boundUnitCount:boundUnitRecords.length,factionPointCount:factionPointIds.size});
+  return Object.freeze({bookId,sourceMetadata,referenceOnlyOwnerRecords,pointsForArmyBook,alliedUnitsForArmyBook,deathGuardPoints,relationEdges,qualifierRecordsFor,referenceOnlyUnitRecords:clone(referenceOnlyUnitRecords.map(({point,reference})=>({mfmRecordId:point.id,label:point.label,unitReferenceId:reference.id,reason:reference.armyBinding.reason}))),boundUnitCount:boundUnitRecords.length,factionPointCount:factionPointIds.size});
 }

@@ -7,9 +7,9 @@ import {validateGlossary} from '../books/shared/army-book-app-v2/glossary.mjs';
 import {encodeRoute,decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 
 const corpus=JSON.parse(fs.readFileSync(new URL('../glossary/v2/generated/index.en.json',import.meta.url),'utf8'));
-const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
-assert.deepEqual(corpus.supportedArmyBooks,includedBooks,'Exactly six registered V2 factual owners');
-const excludedBooks=['space-marines','dark-angels','blood-angels'];
+const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
+assert.deepEqual(corpus.supportedArmyBooks,includedBooks,'Exactly seven registered V2 factual owners');
+const excludedBooks=['dark-angels','blood-angels'];
 for(const book of excludedBooks)assert.ok(!corpus.entries.some(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId===book&&
   !(entry.contexts||[]).some(context=>includedBooks.includes(context.effectiveBookId))),book+': unexpected standalone book');
 const ec=JSON.parse(fs.readFileSync(new URL('../books/emperors-children/v2/generated/effective.json',import.meta.url),'utf8'));

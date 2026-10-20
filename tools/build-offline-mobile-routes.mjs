@@ -27,8 +27,9 @@ export function collectOfflineMobileRoutes({root=defaultRoot()}={}){
 
 const render=routes=>[startMarker,...routes.map(route=>`  ,${JSON.stringify(route.url)}`),endMarker].join('\n');
 
-export function buildOfflineMobileRoutes({root=defaultRoot(),check=false}={}){
-  const file=path.join(root,'service-worker.js'),routes=collectOfflineMobileRoutes({root});
+export function buildOfflineMobileRoutes({root=defaultRoot(),sourceRoot=root,check=false}={}){
+  // A publication package need not contain build-only configs or mobile producers.
+  const file=path.join(root,'service-worker.js'),routes=collectOfflineMobileRoutes({root:sourceRoot});
   let source=fs.readFileSync(file,'utf8'),expectedBlock=render(routes);
   const markerPattern=new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`);
   if(markerPattern.test(source))source=source.replace(markerPattern,expectedBlock);

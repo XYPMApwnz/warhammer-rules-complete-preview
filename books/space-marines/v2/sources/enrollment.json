@@ -1,0 +1,2739 @@
+{
+  "schema": "space-marines-v2-source-enrollment/v1",
+  "edition": "11E",
+  "verifiedAt": "2026-10-20",
+  "acceptedBaseHead": "7e427ebbed76e19ac3b87bc48d5b7a0d60f1f869",
+  "sourceStatus": "ACCEPTED_FROZEN_SECONDARY_WITH_APPLICABLE_OFFICIAL_FIELDS",
+  "precedence": [
+    "CONFIRMED_APPLICABLE_OFFICIAL_PRINTED_UPDATES_V1_1",
+    "ACCEPTED_WAHAPEDIA_11E_APP_SPACE_MARINES_2_8_1_2026_10_20"
+  ],
+  "artifacts": [
+    {
+      "path": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+      "bytes": 1412322,
+      "normalization": "bytes",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+      "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+      "bytes": 13660919,
+      "normalization": "bytes",
+      "authority": "ACCEPTED_SECONDARY"
+    },
+    {
+      "path": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+      "url": "https://assets.warhammer-community.com/eng_14-10_wh40k_printed_product_updates_space_marines_updates-91hillwcff-wzs8qnozam.pdf",
+      "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+      "bytes": 933727,
+      "normalization": "bytes",
+      "authority": "AUTHORITATIVE_CURRENT"
+    }
+  ],
+  "sourcePublicationVersionReportedByWaha": "App Space Marines11E2.8.1 October2026",
+  "scope": {
+    "currentSMDatasheets": 85,
+    "common": 67,
+    "chapterTagged": 18,
+    "detachments": "15base+6chapterappendices retaining their original sourcePublication",
+    "excluded": [
+      "Legends",
+      "Forge World",
+      "10EBoardingActions",
+      "foreignChapter-ownedDatasheets"
+    ],
+    "separateReferences": [
+      "DeathwatchSupport including4Stratagems",
+      "DeathwatchVeteranRecruits"
+    ]
+  },
+  "officialBindings": "books/space-marines/v2/official-bindings.json",
+  "sourceBindings": "books/space-marines/v2/source-bindings.json",
+  "identityBindings": "books/space-marines/v2/identity-bindings.json",
+  "issues": "books/space-marines/v2/source-issues.json",
+  "mfmIdentityCandidates": "books/space-marines/v2/mfm-identity-candidates.json",
+  "mfmIntegration": "BLOCKED_NOT_CONNECTED",
+  "semanticCompleteness": "NOT_PROVEN",
+  "limits": [
+    "Full current officialCodex/Appbody not independently captured; currentWaha acceptedsecondary",
+    "Whole block source census is not independent certification of every semantic clause",
+    "No gameplay contracts/nativeexecution/roster/UI/globalregistration"
+  ],
+  "sourceScopeAccounting": [
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]",
+      "sourceAnchor": "Adrax-Agatone",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[4]",
+      "sourceAnchor": "Aethon-Shaan",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[4]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[6]",
+      "sourceAnchor": "Caanok-Var",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[6]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[8]",
+      "sourceAnchor": "Captain-Titus",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[8]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[10]",
+      "sourceAnchor": "Cato-Sicarius",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[10]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[12]",
+      "sourceAnchor": "Chief-Librarian-Tigurius",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[12]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[14]",
+      "sourceAnchor": "Darnath-Lysander",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[14]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[16]",
+      "sourceAnchor": "Iron-Father-Feirros",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[16]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[18]",
+      "sourceAnchor": "Kaius-Konorius",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[18]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[20]",
+      "sourceAnchor": "Kayvaan-Shrike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[20]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[22]",
+      "sourceAnchor": "Kor-sarro-Khan",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[22]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]",
+      "sourceAnchor": "Marneus-Calgar",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[26]",
+      "sourceAnchor": "Tor-Garadon",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[26]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[28]",
+      "sourceAnchor": "Victrix-Honour-Guard",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[28]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[30]",
+      "sourceAnchor": "Vulkan-He-stan",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[30]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]",
+      "sourceAnchor": "Wardens-of-Ultramar-1",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[34]",
+      "sourceAnchor": "Chaplain-Grimaldus",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[36]",
+      "sourceAnchor": "High-Marshal-Helbrecht",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]",
+      "sourceAnchor": "Astorath",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]",
+      "sourceAnchor": "Chief-Librarian-Mephiston",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]",
+      "sourceAnchor": "Commander-Dante",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]",
+      "sourceAnchor": "Lemartes",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]",
+      "sourceAnchor": "The-Sanguinor",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[48]",
+      "sourceAnchor": "Asmodai",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[50]",
+      "sourceAnchor": "Azrael",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[52]",
+      "sourceAnchor": "Belial",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[54]",
+      "sourceAnchor": "Ezekiel",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]",
+      "sourceAnchor": "Lazarus",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[58]",
+      "sourceAnchor": "Watch-Captain-Artemis",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[60]",
+      "sourceAnchor": "Arjac-Rockfist",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[62]",
+      "sourceAnchor": "Logan-Grimnar",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[64]",
+      "sourceAnchor": "Njal-Stormcaller",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[66]",
+      "sourceAnchor": "Ragnar-Blackmane",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[68]",
+      "sourceAnchor": "Ulrik-The-Slayer",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[70]",
+      "sourceAnchor": "Kill-Team-Cassius",
+      "sourcePublication": [
+        "Faction Pack. Imperial Agents (Warhammer Legends) (11th edition, version 1.3)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]",
+      "sourceAnchor": "Roboute-Guilliman",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]",
+      "sourceAnchor": "Lion-El-jonson",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[2]",
+      "sourceAnchor": "Suboden-Khan",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[2]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]",
+      "sourceAnchor": "Sammael",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[2]",
+      "sourceAnchor": "Bjorn-The-Fell-handed",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[4]",
+      "sourceAnchor": "Murderfang",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[2]",
+      "sourceAnchor": "Ancient",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[2]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[4]",
+      "sourceAnchor": "Ancient-In-Terminator-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[4]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[6]",
+      "sourceAnchor": "Apothecary",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[6]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]",
+      "sourceAnchor": "Apothecary-Biologis",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[10]",
+      "sourceAnchor": "Bladeguard-Ancient",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[10]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[12]",
+      "sourceAnchor": "Captain",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[12]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[14]",
+      "sourceAnchor": "Captain-In-Gravis-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[14]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[16]",
+      "sourceAnchor": "Captain-In-Phobos-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[16]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[18]",
+      "sourceAnchor": "Captain-In-Terminator-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[18]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[20]",
+      "sourceAnchor": "Captain-With-Jump-Pack",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[20]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[22]",
+      "sourceAnchor": "Chaplain",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[22]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[24]",
+      "sourceAnchor": "Chaplain-In-Terminator-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[24]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[26]",
+      "sourceAnchor": "Chaplain-With-Jump-Pack",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[26]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[28]",
+      "sourceAnchor": "Company-Heroes",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[28]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[30]",
+      "sourceAnchor": "Judiciar",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[30]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[32]",
+      "sourceAnchor": "Librarian",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[32]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[34]",
+      "sourceAnchor": "Librarian-In-Phobos-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[34]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]",
+      "sourceAnchor": "Librarian-In-Terminator-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[38]",
+      "sourceAnchor": "Lieutenant",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[38]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[40]",
+      "sourceAnchor": "Lieutenant-In-Phobos-Armour",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[40]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[42]",
+      "sourceAnchor": "Lieutenant-with-Combi-weapon",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[42]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]",
+      "sourceAnchor": "Techmarine",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[46]",
+      "sourceAnchor": "Castellan",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[48]",
+      "sourceAnchor": "Crusade-Ancient",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[50]",
+      "sourceAnchor": "Emperor-s-Champion",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[52]",
+      "sourceAnchor": "Execrator",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[54]",
+      "sourceAnchor": "Marshal",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]",
+      "sourceAnchor": "Blood-Angels-Captain",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]",
+      "sourceAnchor": "Death-Company-Captain",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+      "sourceAnchor": "Death-Company-Captain-with-Jump-Pack",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]",
+      "sourceAnchor": "Sanguinary-Priest",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[64]",
+      "sourceAnchor": "Watch-Master",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[66]",
+      "sourceAnchor": "Iron-Priest",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[68]",
+      "sourceAnchor": "Wolf-Guard-Battle-Leader",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[70]",
+      "sourceAnchor": "Wolf-Priest",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]",
+      "sourceAnchor": "Captain-on-Bike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[4]",
+      "sourceAnchor": "Chaplain-On-Bike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[4]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]",
+      "sourceAnchor": "Ravenwing-Command-Squad",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[2]",
+      "sourceAnchor": "Assault-Intercessor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[4]",
+      "sourceAnchor": "Heavy-Intercessor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[4]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[6]",
+      "sourceAnchor": "Intercessor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[6]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[8]",
+      "sourceAnchor": "Crusader-Squad",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[10]",
+      "sourceAnchor": "Deathwatch-Veterans",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[12]",
+      "sourceAnchor": "Decimus-Kill-Team",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[14]",
+      "sourceAnchor": "Blood-Claws",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[16]",
+      "sourceAnchor": "Grey-Hunters",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[2]",
+      "sourceAnchor": "Drop-Pod",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[2]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[4]",
+      "sourceAnchor": "Impulsor",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[4]/div[2]/div[2]/div[9]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[6]",
+      "sourceAnchor": "Rhino",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[6]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[8]",
+      "sourceAnchor": "Impulsor-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[10]",
+      "sourceAnchor": "Razorback",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[12]",
+      "sourceAnchor": "Relic-Razorback",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[14]",
+      "sourceAnchor": "Terrax-pattern-Termite",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]",
+      "sourceAnchor": "Nephilim-Jetfighter",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[4]",
+      "sourceAnchor": "Ravenwing-Dark-Talon",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[6]",
+      "sourceAnchor": "Stormhawk-Interceptor",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[8]",
+      "sourceAnchor": "Stormtalon-Gunship",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]",
+      "sourceAnchor": "Firestrike-Servo-turrets",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[4]",
+      "sourceAnchor": "Rapier-Carrier",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[6]",
+      "sourceAnchor": "Tarantula-Sentry-Battery",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]",
+      "sourceAnchor": "Fenrisian-Wolves",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]",
+      "sourceAnchor": "Aggressor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[4]",
+      "sourceAnchor": "Assault-Intercessors-With-Jump-Packs",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[4]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[6]",
+      "sourceAnchor": "Bladeguard-Veteran-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[6]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[8]",
+      "sourceAnchor": "Desolation-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[8]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[10]",
+      "sourceAnchor": "Eliminator-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[10]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[12]",
+      "sourceAnchor": "Eradicator-Squad-with-Heavy-Bolters",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[12]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[14]",
+      "sourceAnchor": "Eradicator-Squad-with-Melta-Rifles",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[14]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[16]",
+      "sourceAnchor": "Hellblaster-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[16]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[18]",
+      "sourceAnchor": "Inceptor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[18]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[20]",
+      "sourceAnchor": "Incursor-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[20]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[22]",
+      "sourceAnchor": "Infernus-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[22]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[24]",
+      "sourceAnchor": "Infiltrator-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[24]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[26]",
+      "sourceAnchor": "Reiver-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[26]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[28]",
+      "sourceAnchor": "Scout-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[28]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[30]",
+      "sourceAnchor": "Sternguard-Veteran-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[30]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[32]",
+      "sourceAnchor": "Terminator-Assault-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[32]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[34]",
+      "sourceAnchor": "Terminator-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[34]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]",
+      "sourceAnchor": "Vanguard-Veteran-Squad-With-Jump-Packs",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[38]",
+      "sourceAnchor": "Sword-Brethren-Squad",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+      "sourceAnchor": "Death-Company-Marines",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]",
+      "sourceAnchor": "Death-Company-Marines-With-Jump-Packs",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]",
+      "sourceAnchor": "Sanguinary-Guard",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]",
+      "sourceAnchor": "Deathwing-Knights",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]",
+      "sourceAnchor": "Deathwing-Terminator-Squad",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[50]",
+      "sourceAnchor": "Inner-Circle-Companions",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[52]",
+      "sourceAnchor": "Deathwatch-Terminator-Squad",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[54]",
+      "sourceAnchor": "Fortis-Kill-Team",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[56]",
+      "sourceAnchor": "Indomitor-Kill-Team",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[58]",
+      "sourceAnchor": "Spectrus-Kill-Team",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[60]",
+      "sourceAnchor": "Talonstrike-Kill-Team",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[62]",
+      "sourceAnchor": "Wolf-Guard-Headtakers",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[64]",
+      "sourceAnchor": "Wolf-Guard-Terminators",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[66]",
+      "sourceAnchor": "Wolf-Scouts-1",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[68]",
+      "sourceAnchor": "Wulfen",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[70]",
+      "sourceAnchor": "Wulfen-with-Storm-Shields",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[72]",
+      "sourceAnchor": "Centurion-Assault-Squad",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[74]",
+      "sourceAnchor": "Centurion-Devastator-Squad",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[76]",
+      "sourceAnchor": "Vanguard-Veteran-Squad",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[2]",
+      "sourceAnchor": "Invader-ATVs",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[4]",
+      "sourceAnchor": "Outrider-Squad",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[4]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[6]",
+      "sourceAnchor": "Ravenwing-Black-Knights",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[8]",
+      "sourceAnchor": "Thunderwolf-Cavalry",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[10]",
+      "sourceAnchor": "Scout-Bike-Squad",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[28]/div[2]",
+      "sourceAnchor": "Astraeus",
+      "sourcePublication": [
+        "App. Space Marines (Forge World) (11th edition)"
+      ],
+      "classification": "EXCLUDED_FORGE_WORLD"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[28]/div[4]",
+      "sourceAnchor": "Thunderhawk-Gunship",
+      "sourcePublication": [
+        "App. Space Marines (Forge World) (11th edition)"
+      ],
+      "classification": "EXCLUDED_FORGE_WORLD"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[28]/div[6]",
+      "sourceAnchor": "Falchion",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[28]/div[8]",
+      "sourceAnchor": "Mastodon",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[2]",
+      "sourceAnchor": "Land-Raider",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[2]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[4]",
+      "sourceAnchor": "Land-Raider-Crusader",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[4]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[6]",
+      "sourceAnchor": "Land-Raider-Redeemer",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[6]/div[2]/div[2]/div[8]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[8]",
+      "sourceAnchor": "Repulsor",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[8]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[10]",
+      "sourceAnchor": "Repulsor-Executioner",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[10]/div[2]/div[2]/div[7]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[12]",
+      "sourceAnchor": "Repulsor-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[14]",
+      "sourceAnchor": "Repulsor-Executioner-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[16]",
+      "sourceAnchor": "Corvus-Blackstar",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[18]",
+      "sourceAnchor": "Land-Raider-Excelsior",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[20]",
+      "sourceAnchor": "Rhino-Primaris",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[22]",
+      "sourceAnchor": "Stormraven-Gunship",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[2]",
+      "sourceAnchor": "Gladiator-Lancer",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[4]",
+      "sourceAnchor": "Gladiator-Reaper",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[4]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[6]",
+      "sourceAnchor": "Gladiator-Valiant",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[6]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[8]",
+      "sourceAnchor": "Land-Speeder",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[8]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[10]",
+      "sourceAnchor": "Storm-Speeder-Hailstrike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[10]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[12]",
+      "sourceAnchor": "Storm-Speeder-Hammerstrike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[12]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[14]",
+      "sourceAnchor": "Storm-Speeder-Thunderstrike",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[14]/div[2]/div[2]/div[6]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[16]",
+      "sourceAnchor": "Gladiator-Lancer-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[18]",
+      "sourceAnchor": "Gladiator-Reaper-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[20]",
+      "sourceAnchor": "Gladiator-Valiant-1",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]",
+      "sourceAnchor": "Baal-Predator",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]",
+      "sourceAnchor": "Land-Speeder-Vengeance",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]",
+      "sourceAnchor": "Ravenwing-Darkshroud",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[28]",
+      "sourceAnchor": "Cerberus",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[30]",
+      "sourceAnchor": "Kratos",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[32]",
+      "sourceAnchor": "Predator-Annihilator",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[34]",
+      "sourceAnchor": "Predator-Destructor",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[36]",
+      "sourceAnchor": "Sicaran",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[38]",
+      "sourceAnchor": "Tarantula-Air-Defence-Battery",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[40]",
+      "sourceAnchor": "Typhon",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[42]",
+      "sourceAnchor": "Vindicator",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[44]",
+      "sourceAnchor": "Whirlwind",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[2]",
+      "sourceAnchor": "Ballistus-Dreadnought",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[2]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[4]",
+      "sourceAnchor": "Brutalis-Dreadnought-UL",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[4]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[6]",
+      "sourceAnchor": "Invictor-Tactical-Warsuit",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[6]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]",
+      "sourceAnchor": "Redemptor-Dreadnought",
+      "sourcePublication": [
+        "App. Space Marines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]/div[2]/div[2]/div[5]",
+      "classification": "CENTRAL_MFM_MIRROR_EXCLUDED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]",
+      "sourceAnchor": "Death-Company-Dreadnought",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[12]",
+      "sourceAnchor": "Venerable-Dreadnought-1",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[14]",
+      "sourceAnchor": "Wulfen-Dreadnought-1",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_OWNER"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[16]",
+      "sourceAnchor": "Dreadnought",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[18]",
+      "sourceAnchor": "Venerable-Dreadnought",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[36]/div[2]",
+      "sourceAnchor": "Hammerfall-Bunker",
+      "sourcePublication": [
+        "App. Space Marines (Warhammer Legends) (11th edition)"
+      ],
+      "classification": "EXCLUDED_LEGENDS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+      "sourceAnchor": "Heirs-of-Sigismund",
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_RULE"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div[1]",
+      "sourceAnchor": "The-Ravenwing",
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_RULE"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[8]/div[1]",
+      "sourceAnchor": "The-Deathwing",
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_RULE"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[10]/div",
+      "sourceAnchor": "Curse-of-the-Wulfen",
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_RULE"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[7]",
+      "sourceAnchor": "Gladius-Task-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[7]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[8]",
+      "sourceAnchor": "Assault-Brethren",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[8]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[9]",
+      "sourceAnchor": "Tactical-Brethren",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[9]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]",
+      "sourceAnchor": "Devastator-Brethren",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[11]",
+      "sourceAnchor": "Terminator-Storm-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[11]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]",
+      "sourceAnchor": "Tacticus-Attack-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[12]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[13]",
+      "sourceAnchor": "Tacticus-Firestorm-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[13]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]",
+      "sourceAnchor": "Phobos-Shadow-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[14]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[15]",
+      "sourceAnchor": "Phobos-Shock-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[15]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]",
+      "sourceAnchor": "Gravis-Linebreaker-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[16]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[17]",
+      "sourceAnchor": "Gravis-Siege-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[17]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]",
+      "sourceAnchor": "Stormlance-Task-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[18]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[19]",
+      "sourceAnchor": "Ironclad-Champions",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[19]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]",
+      "sourceAnchor": "Gauntlet-Task-Force",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[20]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[21]",
+      "sourceAnchor": "Ironstorm-Spearhead",
+      "sourcePublication": [],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[21]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]",
+      "sourceAnchor": "Medusa-s-Wrath",
+      "sourcePublication": [
+        "App. Iron Hands (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]",
+      "sourceAnchor": "Ceramite-Sentinels",
+      "sourcePublication": [
+        "App. Imperial Fists (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]",
+      "sourceAnchor": "Blade-of-Ultramar",
+      "sourcePublication": [
+        "App. Ultramarines (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[25]",
+      "sourceAnchor": "Shadowmark-Talon",
+      "sourcePublication": [
+        "App. Raven Guard (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[25]/div[2]",
+      "classification": "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[25]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]",
+      "sourceAnchor": "Forgefather-s-Seekers",
+      "sourcePublication": [
+        "App. Salamanders (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[26]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[27]",
+      "sourceAnchor": "Spearpoint-Task-Force",
+      "sourcePublication": [
+        "App. White Scars (11th edition)"
+      ],
+      "classification": "INCLUDED_CURRENT_SM_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[27]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[28]",
+      "sourceAnchor": "Fist-of-the-God-Emperor",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[29]",
+      "sourceAnchor": "Marshal-s-Household",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[30]",
+      "sourceAnchor": "Vow-sworn-Crusaders",
+      "sourcePublication": [
+        "App. Black Templars (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[31]",
+      "sourceAnchor": "Angelic-Inheritors",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]",
+      "sourceAnchor": "Encarmine-Speartip",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[33]",
+      "sourceAnchor": "Wrath-of-the-Doomed",
+      "sourcePublication": [
+        "App. Blood Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]",
+      "sourceAnchor": "Darkflight-Pursuit",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[35]",
+      "sourceAnchor": "Inner-Circle-Task-Force",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[36]",
+      "sourceAnchor": "Wrath-of-the-Rock",
+      "sourcePublication": [
+        "App. Dark Angels (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[37]",
+      "sourceAnchor": "Champions-of-Fenris",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[38]",
+      "sourceAnchor": "Saga-of-the-Beastslayer",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[39]",
+      "sourceAnchor": "Saga-of-the-Great-Wolf",
+      "sourcePublication": [
+        "App. Space Wolves (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[40]",
+      "sourceAnchor": "Black-Spear-Task-Force",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "EXCLUDED_FOREIGN_CHAPTER_DETACHMENT"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[41]",
+      "sourceAnchor": "Deathwatch-Support",
+      "sourcePublication": [
+        "App. Deathwatch (11th edition)"
+      ],
+      "classification": "SEPARATE_DEATHWATCH_REFERENCE"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[41]/h2/span",
+      "classification": "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[44]",
+      "sourceAnchor": "Boarding-Strike",
+      "classification": "EXCLUDED_10E_BOARDING_ACTIONS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[45]",
+      "sourceAnchor": "Pilum-Strike-Team",
+      "classification": "EXCLUDED_10E_BOARDING_ACTIONS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[46]",
+      "sourceAnchor": "Terminator-Assault",
+      "classification": "EXCLUDED_10E_BOARDING_ACTIONS"
+    },
+    {
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[47]",
+      "sourceAnchor": "Shield-of-the-Void",
+      "classification": "EXCLUDED_10E_BOARDING_ACTIONS"
+    }
+  ],
+  "producers": [
+    "books/space-marines/v2/build.py",
+    "books/space-marines/v2/official.py"
+  ],
+  "verificationScripts": [
+    "books/space-marines/v2/raw-inventory-qa.py",
+    "books/space-marines/v2/foundation-qa.py",
+    "books/space-marines/v2/official-qa.py"
+  ],
+  "byteStoragePolicy": "books/space-marines/v2/.gitattributes"
+}

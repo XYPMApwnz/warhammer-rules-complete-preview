@@ -2,6 +2,7 @@
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations} from './effective-datasheet-presentation.mjs';
+import {renderRosterPointsStatus} from './roster.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -723,11 +724,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const assigned=roster.state.attachments.find(a=>a.leaderInstanceId===instanceId),members=roster.state.attachments.filter(a=>a.bodyguardInstanceId===instanceId);
       const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};
       context.dataset.rosterContextInstanceId=instanceId;
+      const pointsWarning=renderRosterPointsStatus(document,{service:roster,instanceId,titleForId:id=>cards.get(id)?.title});
+      if(pointsWarning)context.append(pointsWarning);
       if(u.warlord)context.append(el('span','ds-roster-badge','Warlord'));
       (card.rosterOptionIds||[]).forEach(id=>{const option=cards.get(id);if(!option)throw new TypeError('Unresolved selected canonical option');
         const link=anchor(option.title,id,true);link.dataset.selectedOptionId=id;context.append(link);});
-      if(assigned)context.append(el('p','',`Leading: ${name(assigned.bodyguardInstanceId)}`));
-      for(const member of members)context.append(el('p','',`${member.role==='SUPPORT_EXCEPTION'?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
+      if(assigned)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(assigned.role)?'Supporting':'Leading'}: ${name(assigned.bodyguardInstanceId)}`));
+      for(const member of members)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
       head.after(context);
     }
