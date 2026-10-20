@@ -1,0 +1,164 @@
+{
+  "schema": "space-marines-v2-official-source-bindings/v1",
+  "sourceId": "space-marines-printed-product-updates-v1.1",
+  "sourceDocument": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+  "sourceSha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+  "sourcePageCount": 1,
+  "sourcePageNumbering": "physical PDF pages, one-based",
+  "completePageTextSha256": "22FCF80A85FAA1FE7DE7C1F75A5BBC56E89E3864505853DCA666EA66F51E7FB1",
+  "beforeHashContract": "SHA256 UTF-8 JSON with compact separators, unescaped Unicode, uppercase hexadecimal",
+  "reviewedSource": "Complete sole PDF page visually inspected; all five datasheet instructions independently extracted at explicit page/bbox locations. Source capture was not refreshed.",
+  "occurrences": [
+    {
+      "id": "space-marines-official-v1.1:captain-titus-righteous-fury",
+      "sourceBox": {
+        "page": 1,
+        "bbox": [
+          42,
+          250,
+          292,
+          328
+        ],
+        "textSha256": "B159BD9ADB5D9119468BECA57B16F41B86E33AA389A784992B5ADE822B835F46"
+      },
+      "sourceQuote": "Captain Titus, Righteous Fury Ability\nChange to:\n‘In the Fight phase, you can use this ability. If you do, this unit’s melee\nattacks have +1 S, and when this unit has fought:\n▪ This model heals D3 wounds.\n▪ Or: If this model destroyed an enemy model this phase, this model\nheals 2D3 wounds.’",
+      "target": {
+        "kind": "DATASHEET_ABILITY",
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[8]/div[2]/div[2]/div[3]",
+        "sourceAnchor": "Captain-Titus",
+        "expectedTitle": "Righteous Fury (Once per battle, per army)",
+        "sourceDocument": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sourceSha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "id": "ability-sm-c2f9109d902c4546",
+        "sourceEntityId": "sm-source-a756f71ad6f549bd"
+      },
+      "field": "text",
+      "operation": "REPLACE_BODY",
+      "beforeSha256": "4AD6D8944D84946DF01EF824EBDE7E01131961D5F9C5AE6E7BEEA39573CD3084",
+      "replacementBodyNormalized": "In the Fight phase, you can use this ability. If you do, this unit’s melee attacks have +1 S, and when this unit has fought: This model heals D3 wounds. Or: If this model destroyed an enemy model this phase, this model heals 2D3 wounds.",
+      "qualification": "The instruction replaces only the ability body. The accepted source heading retains Once per battle, per army; the printed instruction does not remove that frequency."
+    },
+    {
+      "id": "space-marines-official-v1.1:iron-father-feirros-iron-father",
+      "sourceBox": {
+        "page": 1,
+        "bbox": [
+          42,
+          338,
+          292,
+          382
+        ],
+        "textSha256": "2DDC6FDCB37030C9606196D469064EBF8C12F8426722B27AC5728D9BAD2A1658"
+      },
+      "sourceQuote": "Iron Father Feirros, Iron Father Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’",
+      "target": {
+        "kind": "DATASHEET_ABILITY",
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[16]/div[2]/div[2]/div[4]",
+        "sourceAnchor": "Iron-Father-Feirros",
+        "expectedTitle": "Iron Father",
+        "sourceDocument": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sourceSha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "id": "ability-sm-ebcbb0d456104dcd",
+        "sourceEntityId": "sm-source-972dc321135945da"
+      },
+      "field": "text",
+      "operation": "REPLACE_BODY",
+      "beforeSha256": "AC049BE3EC248ED7F17403B2B571CD67A668BE2C2C64BC9B796287714EE38FE4",
+      "replacementBodyNormalized": "While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative."
+    },
+    {
+      "id": "space-marines-official-v1.1:kayvaan-shrike-keywords",
+      "sourceBox": {
+        "page": 1,
+        "bbox": [
+          42,
+          393,
+          292,
+          417
+        ],
+        "textSha256": "8003576192B2F9C8EFC31ADC1E9FA99A8A3964358F26A2BE63B79185A989B198"
+      },
+      "sourceQuote": "Kayvaan Shrike, Keywords Section\nAdd ‘CHARACTER’ and ‘EPIC HERO’.",
+      "target": {
+        "kind": "DATASHEET",
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[20]",
+        "sourceAnchor": "Kayvaan-Shrike",
+        "expectedTitle": "Kayvaan Shrike",
+        "sourceDocument": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sourceSha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "id": "unit-sm-55f195878fab446f",
+        "sourceEntityId": "sm-source-cddfaaf8743c4c15"
+      },
+      "field": "keywords",
+      "operation": "REQUIRE_KEYWORDS",
+      "beforeSha256": "056C1AEEB602A514FF3D17A44608A37CD1E3448F5BF89603C480C56F34E112D4",
+      "requiredKeywords": [
+        "CHARACTER",
+        "EPIC HERO"
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:librarian-terminator-keywords",
+      "sourceBox": {
+        "page": 1,
+        "bbox": [
+          42,
+          426,
+          292,
+          450
+        ],
+        "textSha256": "9942303B69CC83CB6848EC4782885C067B5020272964AC45E6601B4802F2A62A"
+      },
+      "sourceQuote": "Librarian in Terminator Armour, Keywords Section\nAdd ‘CHARACTER’.",
+      "target": {
+        "kind": "DATASHEET",
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]",
+        "sourceAnchor": "Librarian-In-Terminator-Armour",
+        "expectedTitle": "Librarian In Terminator Armour",
+        "sourceDocument": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sourceSha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "id": "unit-sm-1330b7672f934fd8",
+        "sourceEntityId": "sm-source-fbcd5943ab074e20"
+      },
+      "field": "keywords",
+      "operation": "REQUIRE_KEYWORDS",
+      "beforeSha256": "5491DBC437459D57DC9435981BF94725BB5789220AB028F3C82D6212A109D863",
+      "requiredKeywords": [
+        "CHARACTER"
+      ]
+    },
+    {
+      "id": "space-marines-official-v1.1:techmarine-techmarine",
+      "sourceBox": {
+        "page": 1,
+        "bbox": [
+          42,
+          459,
+          292,
+          503
+        ],
+        "textSha256": "0BBDD37910412D6673FB5EB817802E92C0AE6163E34CD18C62B53FFF00E4552D"
+      },
+      "sourceQuote": "Techmarine, Techmarine Ability\nChange to:\n‘While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE\nunit, this model has Lone Operative.’",
+      "target": {
+        "kind": "DATASHEET_ABILITY",
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]/div[2]/div[2]/div[2]",
+        "sourceAnchor": "Techmarine",
+        "expectedTitle": "Techmarine",
+        "sourceDocument": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sourceSha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "id": "ability-sm-e2f0c3ceeb42424d",
+        "sourceEntityId": "sm-source-c414f82efda749e5"
+      },
+      "field": "text",
+      "operation": "REPLACE_BODY",
+      "beforeSha256": "3E60B6CF1B8783503A0E5E2E983128412683D8DE20CF6672213B1B98101FA348",
+      "replacementBodyNormalized": "While this model is within 3\" of a friendly ADEPTUS ASTARTES VEHICLE unit, this model has Lone Operative."
+    }
+  ]
+}

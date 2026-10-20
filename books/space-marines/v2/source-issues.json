@@ -1,0 +1,399 @@
+{
+  "schema": "space-marines-v2-source-issues/v1",
+  "issues": [
+    {
+      "id": "sm-stage2a-official-body",
+      "status": "NOT_PROVEN",
+      "detail": "Full official currentCodex/Appbody not captured; secondary acceptedraw +fiveofficialfieldinstructions only."
+    },
+    {
+      "id": "sm-stage2a-mfm",
+      "status": "BLOCKED",
+      "detail": "Central SM remainsv1.4. Cato conditionalrole andunresolvedbindings/dates not supporteddata-only. Do not read centralMFM or activate bridges here."
+    },
+    {
+      "id": "sm-profile-binding-sm-source-a55132005d334491",
+      "status": "NOT_PROVEN",
+      "canonicalId": "composition-sm-11f249c8e3af4b85",
+      "sourceCompositionName": "Dainal Kornelius",
+      "sourceProfileCandidates": [
+        {
+          "id": "model-sm-3b16612be262433d",
+          "name": "Gaius Silva",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[8]"
+        },
+        {
+          "id": "model-sm-c8cf0383f7ad4a77",
+          "name": "Aemelia Minervas",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[11]"
+        },
+        {
+          "id": "model-sm-5e6df789f1434020",
+          "name": "Veteran Sergeant Metaurus",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[12]"
+        },
+        {
+          "id": "model-sm-1e6ba64c42ba4d79",
+          "name": "Dainal Komelius",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[15]"
+        },
+        {
+          "id": "model-sm-4d02fb9f504a444d",
+          "name": "Ancient Gadriel",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[16]"
+        },
+        {
+          "id": "model-sm-915fe837347f46fb",
+          "name": "Lucia Vestha",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[17]"
+        }
+      ],
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[5]/ul[3]/li",
+      "detail": "Source labels differ. Both are preserved; no title-similarity/order-derived alias or MODEL recipient invented."
+    },
+    {
+      "id": "sm-profile-binding-sm-source-7488d1d3a1d3446e",
+      "status": "NOT_PROVEN",
+      "canonicalId": "composition-sm-b2e054ed2ab6473c",
+      "sourceCompositionName": "Vanguard Veteran Sergeant with Jump Pack",
+      "sourceProfileCandidates": [
+        {
+          "id": "model-sm-55bf1242f2bb4dae",
+          "name": "Vanguard Veteran Sergeant",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[8]"
+        },
+        {
+          "id": "model-sm-eaba389795c342e3",
+          "name": "Vanguard Veteran",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[9]"
+        }
+      ],
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[5]/ul[1]/li",
+      "detail": "Source labels differ. Both are preserved; no title-similarity/order-derived alias or MODEL recipient invented."
+    },
+    {
+      "id": "sm-profile-binding-sm-source-7e859171eba34455",
+      "status": "NOT_PROVEN",
+      "canonicalId": "composition-sm-dc1b983be26846bf",
+      "sourceCompositionName": "Vanguard Veteran with Jump Pack",
+      "sourceProfileCandidates": [
+        {
+          "id": "model-sm-55bf1242f2bb4dae",
+          "name": "Vanguard Veteran Sergeant",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[8]"
+        },
+        {
+          "id": "model-sm-eaba389795c342e3",
+          "name": "Vanguard Veteran",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[9]"
+        }
+      ],
+      "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[5]/ul[2]/li",
+      "detail": "Source labels differ. Both are preserved; no title-similarity/order-derived alias or MODEL recipient invented."
+    }
+  ],
+  "legacyComparisons": {
+    "status": "EVIDENCE_ONLY_NOT_MIGRATION",
+    "units": [
+      {
+        "legacyCanonicalId": "unit-tactical-squad",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-lieutenant-in-reiver-armour",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-rhino",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html#Rhino",
+        "reason": "Source URL continuity established; no full rule-by-rule semantic equality proof"
+      },
+      {
+        "legacyCanonicalId": "unit-marneus-calgar-in-armour-of-antilochus",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-pedro-kantor",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-uriel-ventris",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-devastator-squad",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-eradicator-squad",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-suppressor-squad",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-invader-atv",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": null,
+        "reason": "Old source URL not found in current aggregate; possible proxy/removal/rename needs explicit review, no title-derived alias"
+      },
+      {
+        "legacyCanonicalId": "unit-land-raider",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html#Land-Raider",
+        "reason": "Source URL continuity established; no full rule-by-rule semantic equality proof"
+      },
+      {
+        "legacyCanonicalId": "unit-land-raider-crusader",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html#Land-Raider-Crusader",
+        "reason": "Source URL continuity established; no full rule-by-rule semantic equality proof"
+      },
+      {
+        "legacyCanonicalId": "unit-land-raider-redeemer",
+        "status": "SOURCE_NOT_PROVEN",
+        "currentLocator": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html#Land-Raider-Redeemer",
+        "reason": "Source URL continuity established; no full rule-by-rule semantic equality proof"
+      }
+    ],
+    "detachments": [
+      {
+        "legacyCanonicalId": "vengeful-hosts",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "fulguris-task-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "librarius-conclave",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "subversion-assets",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "armoured-speartip",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "headhunter-task-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "ceramite-sentinels",
+        "currentSourceAnchor": "Ceramite-Sentinels",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "blade-of-ultramar",
+        "currentSourceAnchor": "Blade-of-Ultramar",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "hammer-of-avernii",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "spearpoint-task-force",
+        "currentSourceAnchor": "Spearpoint-Task-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "forgefather-s-seekers",
+        "currentSourceAnchor": "Forgefather-s-Seekers",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "emperor-s-shield",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "shadowmark-talon",
+        "currentSourceAnchor": "Shadowmark-Talon",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "bastion-task-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "orbital-assault-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "reclamation-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "1st-company-task-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "anvil-siege-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "firestorm-assault-force",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "gladius-task-force",
+        "currentSourceAnchor": "Gladius-Task-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "ironstorm-spearhead",
+        "currentSourceAnchor": "Ironstorm-Spearhead",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "stormlance-task-force",
+        "currentSourceAnchor": "Stormlance-Task-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": "vanguard-spearhead",
+        "currentSourceAnchor": null,
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Phobos-Shadow-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Phobos-Shock-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Ironclad-Champions",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Tactical-Brethren",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Tacticus-Firestorm-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Terminator-Storm-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Devastator-Brethren",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Gauntlet-Task-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Assault-Brethren",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Gravis-Linebreaker-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Gravis-Siege-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Tacticus-Attack-Force",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      },
+      {
+        "legacyCanonicalId": null,
+        "currentSourceAnchor": "Medusa-s-Wrath",
+        "status": "NOT_PROVEN",
+        "reason": "Same-title comparison or absence does not establish canonical continuity; new foundation uses independently enrolled opaque IDs."
+      }
+    ]
+  }
+}
