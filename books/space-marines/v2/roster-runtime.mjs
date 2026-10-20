@@ -2,16 +2,26 @@
  * Source readers and MFM producers remain outside the runtime dependency graph.
  */
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
-import {changeAttachment} from '../../shared/roster-v2/context.mjs';
+import {changeAttachment,formRoster} from '../../shared/roster-v2/context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
+import {bindSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
 const hasEquipment=(selection,id)=>selection.physicalQuantity>0&&selection.canonicalEquipmentIds?.includes(id)&&selection.canonicalFieldPaths?.[id]?.includes('/text');
-function equipmentContext(state){
+function equipmentContext(state,book){
+  const physical=formRoster(book,state),permanentSources=new Set((book.rosterPermanentDoctrineSources||[]).map(row=>row.unitId));
+  const permanentUnits=new Set();
+  for(const unit of physical.units)if(permanentSources.has(unit.canonicalUnitId)){
+    const group=physical.formedUnits.find(group=>group.formedUnitId===unit.formedUnitId);
+    for(const id of group?.memberInstanceIds||[unit.instanceId])permanentUnits.add(id);
+  }
   return (context,predicate)=>{
     if(!context)return context;
+    context={...context,roster:{...context.roster,smPhysicalUnitInstanceId:context.instanceId||'',
+      smPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':'',
+      smPermanentAssaultSource:permanentUnits.has(context.instanceId)}};
     const id=predicate?.evidence?.otherEntityId;
     if(predicate?.predicate!=='FIELD'||predicate.arguments.key!=='smEquipmentBearerSatisfied')return context;
     const unit=state.units.find(row=>row.instanceId===context.instanceId);
@@ -38,7 +48,7 @@ export function createSpaceMarinesRosterRuntime(built){
     get catalog(){return active?.catalog||template.entities.map(entity=>({id:entity.id,kind:entity.kind,parentId:entity.parentId,title:entity.data.title||entity.data.name||entity.id}));},
     load(snapshot){
       requireValue(snapshot?.bookId==='space-marines','Wrong physical book');
-      const nextBook=clone(template),ids=snapshot.units.map(unit=>unit.canonicalUnitId);
+      let nextBook=clone(template);const ids=snapshot.units.map(unit=>unit.canonicalUnitId);
       // Existing MFM ARMY_UNIT_PRESENT declarations are resolved from the whole
       // physical army, independently of attachments. No faction/name heuristic.
       nextBook.rosterAttachmentPolicies=consumed.relationDeclarations.flatMap(declaration=>{
@@ -63,7 +73,8 @@ export function createSpaceMarinesRosterRuntime(built){
         return {...binding,maxModels:confirmed||unitMaximum};
       });
       nextBook.compatibilityFeasibility=buildAttachmentFeasibility(nextBook,composition);
-      const schema=createSpaceMarinesRuleSchema({bindContext:equipmentContext(snapshot)});
+      nextBook=bindSpaceMarinesStaticModels(nextBook,snapshot);
+      const schema=createSpaceMarinesRuleSchema({bindContext:equipmentContext(snapshot,nextBook)});
       const next=createRosterRuntime(nextBook,schema);next.load(snapshot);
       active=next;boundBook=nextBook;return service.state;
     },

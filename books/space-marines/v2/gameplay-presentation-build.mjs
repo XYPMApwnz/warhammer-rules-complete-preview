@@ -26,6 +26,11 @@ export function buildGameplayPresentation(built=buildSpaceMarinesContracts()){
   payload.glossary=glossary.index;
   const cards=new Map(payload.cards.map(card=>[card.id,card])),fields={};
   assert.equal(cards.size,payload.cards.length,'Duplicate canonical presentation identity');
+  for(const correction of built.book.rosterReviewedScopeCorrections||[]){
+    const card=cards.get(correction.entityId||correction.id),field=card.fields.find(field=>field.source?.path==='/scope');
+    assert.equal(field?.value,'MODEL');
+    field.displayValue='UNIT';field.reviewedSourceCorrection=structuredClone(correction);
+  }
   for(const proof of nativeAbilityReview){
     const card=cards.get(proof.id),field=card.fields.find(field=>field.source.path==='/label');
     assert.equal(card.parentId,proof.ownerId);assert.equal(field.value,proof.quote);
@@ -40,10 +45,10 @@ export function buildGameplayPresentation(built=buildSpaceMarinesContracts()){
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
   payload.ruleContractIds=built.artifact.contracts.map(contract=>contract.ruleId);
   payload.rulePresentationLimitations={...payload.rulePresentationLimitations,
-    scope:'STAGE_4B_ISOLATED_NATIVE_GAMEPLAY',runtime:'EXISTING_SHARED_PHYSICAL_RUNTIME',
+    scope:'STAGE_4D_ISOLATED_NATIVE_GAMEPLAY',runtime:'EXISTING_SHARED_PHYSICAL_RUNTIME',
     executableBindings:'PARTIAL_SOURCE_REVIEWED',ruleSemantics:'SEE_LITERAL_CLAUSE_LEDGER',
-    battleState:'NOT_SIMULATED',importer:'NOT_IMPLEMENTED',frontend:'NOT_REGISTERED_OR_BROWSER_VERIFIED',
-    unsupportedUnitMetric:'UNIT_DETECTION_RANGE_NOT_PROJECTED_BY_SHARED_EFFECTIVE_GUIDE',
+    battleState:'NOT_SIMULATED',importer:'BOOK_OWNED_CONSTRUCTED_FIXTURES_VERIFIED_REAL_EXPORT_NOT_TESTED',frontend:'NOT_REGISTERED_OR_BROWSER_VERIFIED',
+    unitDetectionMetric:'EXPLICIT_UNIT_SCOPE_SUPPORTED_BY_SHARED_EFFECTIVE_GUIDE',
     unresolvedEnhancementScopes:built.artifact.pending.map(row=>row.ruleId)};
   assert.equal(JSON.stringify(built.book),before,'Presentation changed execution/source owner');
   return payload;

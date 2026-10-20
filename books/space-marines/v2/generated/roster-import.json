@@ -378,6 +378,83 @@
         ],
         "clauses": [
           {
+            "id": "press-attack-qualified-baseline",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Press the Attack: This unit’s melee attacks have:"
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This unit’s melee attacks have:\n- [Sustained Hits 1: non-Monster/vehicle]."
+            },
+            "sourceText": "This unit’s melee attacks have:\n- [Sustained Hits 1: non-Monster/vehicle].",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "ability-sm-044155170e2840d9::press-attack-qualified-baseline/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "SUSTAINED HITS 1: non-Monster/vehicle",
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit’s melee attacks have:\n- [Sustained Hits 1: non-Monster/vehicle]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-044155170e2840d9",
+                  "canonicalOwnerId": "unit-sm-10396cd2726045a8",
+                  "canonicalClauseId": "press-attack-qualified-baseline",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[8]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-79805c1bc23d4ee4",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "id": "ability-sm-044155170e2840d9#text:0-49",
             "roles": [
               {
@@ -413,49 +490,6 @@
               "quote": "Press the Attack: This unit’s melee attacks have:"
             },
             "sourceText": "Press the Attack: This unit’s melee attacks have:",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "ability-sm-044155170e2840d9#text:50-92",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "UNIT",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "ALWAYS",
-                  "subject": "UNIT",
-                  "arguments": {},
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "text"
-                    ],
-                    "quote": "Press the Attack: This unit’s melee attacks have:"
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- [Sustained Hits 1: non-Monster/vehicle]."
-            },
-            "sourceText": "- [Sustained Hits 1: non-Monster/vehicle].",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
               "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
@@ -891,7 +925,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-05682c2acff24bd1#text:0-102",
+            "id": "codex-adept-devastator-assault",
             "roles": [
               {
                 "id": "owner",
@@ -926,12 +960,63 @@
               "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit."
             },
             "sourceText": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-05682c2acff24bd1::codex-adept-devastator-assault/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "ASSAULT",
+                "weaponMode": "ranged",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-05682c2acff24bd1",
+                  "canonicalOwnerId": "unit-sm-2e0979af1d9040af",
+                  "canonicalClauseId": "codex-adept-devastator-assault",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-023cdfabd7894fdf",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "army-rule-sm-fcdb8cd8bb5f40dd",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "DEVASTATOR DOCTRINE\nThis unit’s ranged attacks have [ASSAULT].",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[1]",
+                        "sourceEntityId": "sm-source-64354804701949cc",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -2251,7 +2336,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-171a2821469d4d0e#text:0-37",
+            "id": "skilled-riders-mobile-models",
             "roles": [
               {
                 "id": "owner",
@@ -2286,12 +2371,188 @@
               "quote": "Skilled Riders: This unit has MOBILE."
             },
             "sourceText": "Skilled Riders: This unit has MOBILE.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-171a2821469d4d0e::skilled-riders-mobile-models/branch-1/effect-1",
+                "operation": "GRANT_MODEL_KEYWORD",
+                "keyword": "MOBILE",
+                "targetBinding": "SOURCE_FORMED_MODELS",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "key": "attached",
+                        "equals": true
+                      },
+                      "contextLevel": "ROSTER",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Skilled Riders: This unit has MOBILE."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Skilled Riders: This unit has MOBILE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-171a2821469d4d0e",
+                  "canonicalOwnerId": "unit-sm-70b477e461b5487a",
+                  "canonicalClauseId": "skilled-riders-mobile-models",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[2]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "sm-source-b2b61d86f0c948f3",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "coreDependencies": [
+                    {
+                      "id": "core-rule-01-02-units-and-models",
+                      "quote": "When an effect or ability applies to a unit, it applies to every model in that unit.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      },
+                      "sourceContentHashes": [
+                        "9A3E26E62A76BA37CA60B63BFCD22CB4DD9343FB89A10DD69A047C3D88CCF421"
+                      ]
+                    },
+                    {
+                      "id": "core-rule-13-06-terrain-and-movement",
+                      "quote": "INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      },
+                      "sourceContentHashes": [
+                        "7C53E78F2CD965F63AC95D234D8DCD2BDD52903F2DC5EB0179657F27D2BC2A2A"
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "ability-sm-171a2821469d4d0e::skilled-riders-mobile-models/branch-2/effect-1",
+                "operation": "GRANT_MODEL_KEYWORD",
+                "keyword": "MOBILE",
+                "targetBinding": "SOURCE_UNIT_MODELS",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "key": "attached",
+                        "equals": false
+                      },
+                      "contextLevel": "ROSTER",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Skilled Riders: This unit has MOBILE."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Skilled Riders: This unit has MOBILE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-171a2821469d4d0e",
+                  "canonicalOwnerId": "unit-sm-70b477e461b5487a",
+                  "canonicalClauseId": "skilled-riders-mobile-models",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[2]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "sm-source-b2b61d86f0c948f3",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "coreDependencies": [
+                    {
+                      "id": "core-rule-01-02-units-and-models",
+                      "quote": "When an effect or ability applies to a unit, it applies to every model in that unit.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      },
+                      "sourceContentHashes": [
+                        "9A3E26E62A76BA37CA60B63BFCD22CB4DD9343FB89A10DD69A047C3D88CCF421"
+                      ]
+                    },
+                    {
+                      "id": "core-rule-13-06-terrain-and-movement",
+                      "quote": "INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      },
+                      "sourceContentHashes": [
+                        "7C53E78F2CD965F63AC95D234D8DCD2BDD52903F2DC5EB0179657F27D2BC2A2A"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -4271,7 +4532,7 @@
             ]
           },
           {
-            "id": "ability-sm-30c57ce03186422e#text:50-72",
+            "id": "trifold-detection",
             "roles": [
               {
                 "id": "owner",
@@ -4303,15 +4564,51 @@
               "field": [
                 "text"
               ],
-              "quote": "- -3\" detection range."
+              "quote": "Trifold Path of Shadow: This unit has:\n- Stealth.\n- -3\" detection range."
             },
-            "sourceText": "- -3\" detection range.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "sourceText": "Trifold Path of Shadow: This unit has:\n- Stealth.\n- -3\" detection range.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-30c57ce03186422e::trifold-detection/branch-1/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "field": "detectionRange",
+                "mode": "ADD",
+                "value": -3,
+                "unitScope": "FORMED",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Trifold Path of Shadow: This unit has:\n- Stealth.\n- -3\" detection range."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-30c57ce03186422e",
+                  "canonicalOwnerId": "unit-sm-55f195878fab446f",
+                  "canonicalClauseId": "trifold-detection",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[20]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-66bec2ee0ff94113",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -11442,7 +11739,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-7a9a925615614019#text:0-80",
+            "id": "qualified-lethal-attacks",
             "roles": [
               {
                 "id": "owner",
@@ -11477,12 +11774,45 @@
               "quote": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE]."
             },
             "sourceText": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-7a9a925615614019::qualified-lethal-attacks/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "LETHAL HITS: non-MONSTER/VEHICLE",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-7a9a925615614019",
+                  "canonicalOwnerId": "unit-sm-4a2efa64a7c34868",
+                  "canonicalClauseId": "qualified-lethal-attacks",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[40]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "sm-source-15d93ba80c444dd3",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -14846,7 +15176,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-a228df25b2964c6c#text:0-55",
+            "id": "chameleoline-detection",
             "roles": [
               {
                 "id": "owner",
@@ -14881,12 +15211,48 @@
               "quote": "Chameleoline Cloaks: This unit has -3\" detection range."
             },
             "sourceText": "Chameleoline Cloaks: This unit has -3\" detection range.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-a228df25b2964c6c::chameleoline-detection/branch-1/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "field": "detectionRange",
+                "mode": "ADD",
+                "value": -3,
+                "unitScope": "FORMED",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chameleoline Cloaks: This unit has -3\" detection range."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-a228df25b2964c6c",
+                  "canonicalOwnerId": "unit-sm-4ff82a9b79db48da",
+                  "canonicalClauseId": "chameleoline-detection",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[10]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-d079a737499a4878",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -15775,7 +16141,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-aad6d2f9552a4377#text:0-80",
+            "id": "qualified-lethal-attacks",
             "roles": [
               {
                 "id": "owner",
@@ -15810,12 +16176,45 @@
               "quote": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE]."
             },
             "sourceText": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-aad6d2f9552a4377::qualified-lethal-attacks/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "LETHAL HITS: non-MONSTER/VEHICLE",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-aad6d2f9552a4377",
+                  "canonicalOwnerId": "unit-sm-4660f547cc3744b0",
+                  "canonicalClauseId": "qualified-lethal-attacks",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[38]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "sm-source-3f6907736a19430b",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -19306,8 +19705,8 @@
             "sourceText": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
+              "reviewClassification": "EXECUTABLE_PROVEN"
             },
             "rosterEffects": []
           }
@@ -19384,7 +19783,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-c442db72a70e4c05#text:0-66",
+            "id": "angels-wrath-charge",
             "roles": [
               {
                 "id": "owner",
@@ -19419,12 +19818,48 @@
               "quote": "Angel’s Wrath: This unit has +1 to advance rolls and charge rolls."
             },
             "sourceText": "Angel’s Wrath: This unit has +1 to advance rolls and charge rolls.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-c442db72a70e4c05::angels-wrath-charge/branch-1/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "field": "chargeRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Angel’s Wrath: This unit has +1 to advance rolls and charge rolls."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-c442db72a70e4c05",
+                  "canonicalOwnerId": "unit-sm-e595c56eab2f493b",
+                  "canonicalClauseId": "angels-wrath-charge",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[20]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "sm-source-670abc4bc40745e8",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -20289,7 +20724,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-cd2e2cf591f64961#text:0-85",
+            "id": "qualified-lethal-attacks",
             "roles": [
               {
                 "id": "owner",
@@ -20324,12 +20759,45 @@
               "quote": "Vivispectral Analysis Targeting: This unit’s attacks have [Lethal Hits: non-Vehicle]."
             },
             "sourceText": "Vivispectral Analysis Targeting: This unit’s attacks have [Lethal Hits: non-Vehicle].",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-cd2e2cf591f64961::qualified-lethal-attacks/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "LETHAL HITS: non-Vehicle",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Vivispectral Analysis Targeting: This unit’s attacks have [Lethal Hits: non-Vehicle]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-cd2e2cf591f64961",
+                  "canonicalOwnerId": "unit-sm-63a015916b46446a",
+                  "canonicalClauseId": "qualified-lethal-attacks",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-00a07496acd643c6",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -24448,7 +24916,7 @@
         ],
         "clauses": [
           {
-            "id": "ability-sm-e65fcbf81ce24b79#text:0-102",
+            "id": "codex-adept-devastator-assault",
             "roles": [
               {
                 "id": "owner",
@@ -24483,12 +24951,63 @@
               "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit."
             },
             "sourceText": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-sm-e65fcbf81ce24b79::codex-adept-devastator-assault/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "ASSAULT",
+                "weaponMode": "ranged",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-sm-e65fcbf81ce24b79",
+                  "canonicalOwnerId": "unit-sm-1af70808102d4286",
+                  "canonicalClauseId": "codex-adept-devastator-assault",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+                    "sourceEntityId": "sm-source-d34af52734dd42b9",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "army-rule-sm-fcdb8cd8bb5f40dd",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "DEVASTATOR DOCTRINE\nThis unit’s ranged attacks have [ASSAULT].",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[1]",
+                        "sourceEntityId": "sm-source-64354804701949cc",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ],
         "currentness": {
@@ -32788,7 +33307,7 @@
             ]
           },
           {
-            "id": "detachment-rule-sm-b0de270f61aa47ac#text:61-120",
+            "id": "shadow-tactics-detection",
             "roles": [
               {
                 "id": "owner",
@@ -32823,12 +33342,85 @@
               "quote": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range."
             },
             "sourceText": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "detachment-rule-sm-b0de270f61aa47ac::shadow-tactics-detection/branch-1/effect-1",
+                "operation": "MODIFY_RULE_METRIC",
+                "field": "detectionRange",
+                "mode": "ADD",
+                "value": -3,
+                "unitScope": "FORMED",
+                "targetBinding": "ROSTER_UNITS",
+                "targetSubject": "UNIT",
+                "conditions": [
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "PHOBOS"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "SCOUT SQUAD"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_DETACHMENT_SELECTED",
+                "provenance": {
+                  "canonicalRuleId": "detachment-rule-sm-b0de270f61aa47ac",
+                  "canonicalOwnerId": "detachment-sm-39d8ec1f10c44b7b",
+                  "canonicalClauseId": "shadow-tactics-detection",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[25]/div[3]/div[2]",
+                    "sourceEntityId": "sm-source-d7f85500b6964429",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
           },
           {
             "id": "detachment-rule-sm-b0de270f61aa47ac#text:121-176",
@@ -36911,15 +37503,17 @@
             "purpose": "OWNER",
             "allegiance": "FRIENDLY",
             "selector": {
-              "predicate": "ALWAYS",
+              "predicate": "UNIT_KEYWORD",
               "subject": "UNIT",
-              "arguments": {},
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
               "contextLevel": "STATIC",
               "evidence": {
                 "field": [
-                  "text"
+                  "eligibilityText"
                 ],
-                "quote": "ADEPTUS ASTARTES unit only."
+                "quote": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
               }
             },
             "conditions": []
@@ -36941,15 +37535,17 @@
                 "purpose": "OWNER",
                 "allegiance": "FRIENDLY",
                 "selector": {
-                  "predicate": "ALWAYS",
+                  "predicate": "UNIT_KEYWORD",
                   "subject": "UNIT",
-                  "arguments": {},
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
                   "contextLevel": "STATIC",
                   "evidence": {
                     "field": [
-                      "text"
+                      "eligibilityText"
                     ],
-                    "quote": "ADEPTUS ASTARTES unit only."
+                    "quote": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
                   }
                 },
                 "conditions": []
@@ -36970,8 +37566,8 @@
             "sourceText": "ADEPTUS ASTARTES unit only.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
-              "reviewClassification": "NOT_PROVEN"
+              "reason": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
+              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": []
           },
@@ -36984,15 +37580,17 @@
                 "purpose": "OWNER",
                 "allegiance": "FRIENDLY",
                 "selector": {
-                  "predicate": "ALWAYS",
+                  "predicate": "UNIT_KEYWORD",
                   "subject": "UNIT",
-                  "arguments": {},
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
                   "contextLevel": "STATIC",
                   "evidence": {
                     "field": [
-                      "text"
+                      "eligibilityText"
                     ],
-                    "quote": "ADEPTUS ASTARTES unit only."
+                    "quote": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
                   }
                 },
                 "conditions": []
@@ -37013,13 +37611,32 @@
             "sourceText": "When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
-              "reviewClassification": "NOT_PROVEN"
+              "reason": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
+              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": []
           }
         ],
         "detachmentId": "detachment-sm-9310c9a221094584",
+        "assignment": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
+            }
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+          "classification": "UNIT_UPGRADE"
+        },
         "currentness": {
           "factualOwner": {
             "sourceId": "space-marines-waha-11e-2026-10-20",
@@ -38251,15 +38868,17 @@
             "purpose": "OWNER",
             "allegiance": "FRIENDLY",
             "selector": {
-              "predicate": "ALWAYS",
+              "predicate": "UNIT_KEYWORD",
               "subject": "UNIT",
-              "arguments": {},
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
               "contextLevel": "STATIC",
               "evidence": {
                 "field": [
-                  "text"
+                  "eligibilityText"
                 ],
-                "quote": "ADEPTUS ASTARTES unit only."
+                "quote": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
               }
             },
             "conditions": []
@@ -38273,6 +38892,85 @@
         ],
         "clauses": [
           {
+            "id": "spy-skull-ranged-cover",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This unit’s ranged weapons have [IGNORES COVER]."
+            },
+            "sourceText": "This unit’s ranged weapons have [IGNORES COVER].",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-32c4e009e6c84003::spy-skull-ranged-cover/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "IGNORES COVER",
+                "weaponMode": "ranged",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit’s ranged weapons have [IGNORES COVER]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-32c4e009e6c84003",
+                  "canonicalOwnerId": "detachment-sm-9310c9a221094584",
+                  "canonicalClauseId": "spy-skull-ranged-cover",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-687c1df4e6e04066",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "id": "enhancement-sm-32c4e009e6c84003#text:22-49",
             "roles": [
               {
@@ -38281,15 +38979,17 @@
                 "purpose": "OWNER",
                 "allegiance": "FRIENDLY",
                 "selector": {
-                  "predicate": "ALWAYS",
+                  "predicate": "UNIT_KEYWORD",
                   "subject": "UNIT",
-                  "arguments": {},
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
                   "contextLevel": "STATIC",
                   "evidence": {
                     "field": [
-                      "text"
+                      "eligibilityText"
                     ],
-                    "quote": "ADEPTUS ASTARTES unit only."
+                    "quote": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
                   }
                 },
                 "conditions": []
@@ -38310,56 +39010,32 @@
             "sourceText": "ADEPTUS ASTARTES unit only.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
-              "reviewClassification": "NOT_PROVEN"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-32c4e009e6c84003#text:50-98",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "UNIT",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "ALWAYS",
-                  "subject": "UNIT",
-                  "arguments": {},
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "text"
-                    ],
-                    "quote": "ADEPTUS ASTARTES unit only."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "This unit’s ranged weapons have [IGNORES COVER]."
-            },
-            "sourceText": "This unit’s ranged weapons have [IGNORES COVER].",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
-              "reviewClassification": "NOT_PROVEN"
+              "reason": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
+              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": []
           }
         ],
         "detachmentId": "detachment-sm-9310c9a221094584",
+        "assignment": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
+            }
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+          "classification": "UNIT_UPGRADE"
+        },
         "currentness": {
           "factualOwner": {
             "sourceId": "space-marines-waha-11e-2026-10-20",
@@ -38919,6 +39595,342 @@
         ],
         "clauses": [
           {
+            "id": "baseline-melee-strength-ap",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Oath of Macragge\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks have:\n- +1 S and AP."
+            },
+            "sourceText": "This model’s melee attacks have:\n- +1 S and AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-35af1f923ecc47a3::baseline-melee-strength-ap/branch-1/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-35af1f923ecc47a3",
+                  "canonicalOwnerId": "detachment-sm-c894db94673d43e8",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-571472eeee734f75",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              },
+              {
+                "id": "enhancement-sm-35af1f923ecc47a3::baseline-melee-strength-ap/branch-1/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-35af1f923ecc47a3",
+                  "canonicalOwnerId": "detachment-sm-c894db94673d43e8",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-571472eeee734f75",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "permanent-assault-replacement-delta",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Oath of Macragge\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+            },
+            "sourceText": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-35af1f923ecc47a3::permanent-assault-replacement-delta/branch-1/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "smPermanentAssaultSource",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "If the assault doctrine is active for this unit, +2 S and AP."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-35af1f923ecc47a3",
+                  "canonicalOwnerId": "detachment-sm-c894db94673d43e8",
+                  "canonicalClauseId": "permanent-assault-replacement-delta",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-571472eeee734f75",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "ability-sm-05682c2acff24bd1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-023cdfabd7894fdf",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    },
+                    {
+                      "entityId": "ability-sm-e65fcbf81ce24b79",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-d34af52734dd42b9",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "enhancement-sm-35af1f923ecc47a3::permanent-assault-replacement-delta/branch-1/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "smPermanentAssaultSource",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "If the assault doctrine is active for this unit, +2 S and AP."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-35af1f923ecc47a3",
+                  "canonicalOwnerId": "detachment-sm-c894db94673d43e8",
+                  "canonicalClauseId": "permanent-assault-replacement-delta",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-571472eeee734f75",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "ability-sm-05682c2acff24bd1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-023cdfabd7894fdf",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    },
+                    {
+                      "entityId": "ability-sm-e65fcbf81ce24b79",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-d34af52734dd42b9",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
             "id": "enhancement-sm-35af1f923ecc47a3#text:19-47",
             "roles": [
               {
@@ -38956,141 +39968,6 @@
               "quote": "ADEPTUS ASTARTES model only."
             },
             "sourceText": "ADEPTUS ASTARTES model only.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-35af1f923ecc47a3#text:48-80",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Oath of Macragge\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "This model’s melee attacks have:"
-            },
-            "sourceText": "This model’s melee attacks have:",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-35af1f923ecc47a3#text:81-95",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Oath of Macragge\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- +1 S and AP."
-            },
-            "sourceText": "- +1 S and AP.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-35af1f923ecc47a3#text:96-163",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Oath of Macragge\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- Or: If the assault doctrine is active for this unit, +2 S and AP."
-            },
-            "sourceText": "- Or: If the assault doctrine is active for this unit, +2 S and AP.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
               "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
@@ -45009,6 +45886,342 @@
         ],
         "clauses": [
           {
+            "id": "baseline-melee-strength-ap",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Laurels of Triumph\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks have:\n- +1 S and AP."
+            },
+            "sourceText": "This model’s melee attacks have:\n- +1 S and AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-96a03924178349b9::baseline-melee-strength-ap/branch-1/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-96a03924178349b9",
+                  "canonicalOwnerId": "detachment-sm-6341f5a9b9584677",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-ad6fa33adffc4919",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              },
+              {
+                "id": "enhancement-sm-96a03924178349b9::baseline-melee-strength-ap/branch-1/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-96a03924178349b9",
+                  "canonicalOwnerId": "detachment-sm-6341f5a9b9584677",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-ad6fa33adffc4919",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "permanent-assault-replacement-delta",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Laurels of Triumph\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+            },
+            "sourceText": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-96a03924178349b9::permanent-assault-replacement-delta/branch-1/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "smPermanentAssaultSource",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "If the assault doctrine is active for this unit, +2 S and AP."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-96a03924178349b9",
+                  "canonicalOwnerId": "detachment-sm-6341f5a9b9584677",
+                  "canonicalClauseId": "permanent-assault-replacement-delta",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-ad6fa33adffc4919",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "ability-sm-05682c2acff24bd1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-023cdfabd7894fdf",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    },
+                    {
+                      "entityId": "ability-sm-e65fcbf81ce24b79",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-d34af52734dd42b9",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "enhancement-sm-96a03924178349b9::permanent-assault-replacement-delta/branch-1/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "smPermanentAssaultSource",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "If the assault doctrine is active for this unit, +2 S and AP."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-96a03924178349b9",
+                  "canonicalOwnerId": "detachment-sm-6341f5a9b9584677",
+                  "canonicalClauseId": "permanent-assault-replacement-delta",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-ad6fa33adffc4919",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "sourceDependencies": [
+                    {
+                      "entityId": "ability-sm-05682c2acff24bd1",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-023cdfabd7894fdf",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    },
+                    {
+                      "entityId": "ability-sm-e65fcbf81ce24b79",
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+                      "provenance": {
+                        "sourceId": "space-marines-waha-11e-2026-10-20",
+                        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+                        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+                        "sourceEntityId": "sm-source-d34af52734dd42b9",
+                        "authority": "ACCEPTED_SECONDARY"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
             "id": "enhancement-sm-96a03924178349b9#text:21-49",
             "roles": [
               {
@@ -45046,141 +46259,6 @@
               "quote": "ADEPTUS ASTARTES model only."
             },
             "sourceText": "ADEPTUS ASTARTES model only.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-96a03924178349b9#text:50-82",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Laurels of Triumph\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "This model’s melee attacks have:"
-            },
-            "sourceText": "This model’s melee attacks have:",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-96a03924178349b9#text:83-97",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Laurels of Triumph\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- +1 S and AP."
-            },
-            "sourceText": "- +1 S and AP.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-96a03924178349b9#text:98-165",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Laurels of Triumph\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- Or: If the assault doctrine is active for this unit, +2 S and AP."
-            },
-            "sourceText": "- Or: If the assault doctrine is active for this unit, +2 S and AP.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
               "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
@@ -45805,6 +46883,104 @@
         ],
         "clauses": [
           {
+            "id": "furious-assault-qualified-melee",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "eligibilityText"
+                        ],
+                        "quote": "- Furious AssaultUPGRADE\nADEPTUS ASTARTES INFANTRY unit only. This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "INFANTRY"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "eligibilityText"
+                        ],
+                        "quote": "- Furious AssaultUPGRADE\nADEPTUS ASTARTES INFANTRY unit only. This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
+            },
+            "sourceText": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle].",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-9d44d0978b974773::furious-assault-qualified-melee/branch-1/effect-1",
+                "operation": "GRANT_WEAPON_ABILITY",
+                "ability": "SUSTAINED HITS 1: non-Monster/Vehicle",
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-9d44d0978b974773",
+                  "canonicalOwnerId": "detachment-sm-c8f2ae568f594e1b",
+                  "canonicalClauseId": "furious-assault-qualified-melee",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-fdd77338782f46d8",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "id": "enhancement-sm-9d44d0978b974773#text:25-61",
             "roles": [
               {
@@ -45861,70 +47037,6 @@
               "quote": "ADEPTUS ASTARTES INFANTRY unit only."
             },
             "sourceText": "ADEPTUS ASTARTES INFANTRY unit only.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-9d44d0978b974773#text:62-133",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "UNIT",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "op": "ALL",
-                  "args": [
-                    {
-                      "predicate": "UNIT_KEYWORD",
-                      "subject": "UNIT",
-                      "arguments": {
-                        "keyword": "ADEPTUS ASTARTES"
-                      },
-                      "contextLevel": "STATIC",
-                      "evidence": {
-                        "field": [
-                          "eligibilityText"
-                        ],
-                        "quote": "- Furious AssaultUPGRADE\nADEPTUS ASTARTES INFANTRY unit only. This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
-                      }
-                    },
-                    {
-                      "predicate": "UNIT_KEYWORD",
-                      "subject": "UNIT",
-                      "arguments": {
-                        "keyword": "INFANTRY"
-                      },
-                      "contextLevel": "STATIC",
-                      "evidence": {
-                        "field": [
-                          "eligibilityText"
-                        ],
-                        "quote": "- Furious AssaultUPGRADE\nADEPTUS ASTARTES INFANTRY unit only. This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
-                      }
-                    }
-                  ]
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle]."
-            },
-            "sourceText": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle].",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
               "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
@@ -47978,6 +49090,123 @@
         ],
         "clauses": [
           {
+            "id": "baseline-melee-strength-ap",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "- Spearpoint Paragon\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If this unit made a charge move this turn, +2 S and AP."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "This model’s melee attacks have:\n- +1 S and AP."
+            },
+            "sourceText": "This model’s melee attacks have:\n- +1 S and AP.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Explicit source-reviewed typed lowering; independently exercised on constructed physical rosters."
+            },
+            "rosterEffects": [
+              {
+                "id": "enhancement-sm-bc9c1fa646c54bb0::baseline-melee-strength-ap/branch-1/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-bc9c1fa646c54bb0",
+                  "canonicalOwnerId": "detachment-sm-93b1ca6a193d41af",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[27]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-5257c8dc23364174",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              },
+              {
+                "id": "enhancement-sm-bc9c1fa646c54bb0::baseline-melee-strength-ap/branch-1/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee",
+                "targetBinding": "SOURCE_MODEL",
+                "targetSubject": "MODEL",
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks have:\n- +1 S and AP."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_ASSIGNED",
+                "provenance": {
+                  "canonicalRuleId": "enhancement-sm-bc9c1fa646c54bb0",
+                  "canonicalOwnerId": "detachment-sm-93b1ca6a193d41af",
+                  "canonicalClauseId": "baseline-melee-strength-ap",
+                  "sourceEvidence": {
+                    "sourceId": "space-marines-waha-11e-2026-10-20",
+                    "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+                    "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[27]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+                    "sourceEntityId": "sm-source-5257c8dc23364174",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "id": "enhancement-sm-bc9c1fa646c54bb0#text:21-49",
             "roles": [
               {
@@ -48015,96 +49244,6 @@
               "quote": "ADEPTUS ASTARTES model only."
             },
             "sourceText": "ADEPTUS ASTARTES model only.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-bc9c1fa646c54bb0#text:50-82",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Spearpoint Paragon\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If this unit made a charge move this turn, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "This model’s melee attacks have:"
-            },
-            "sourceText": "This model’s melee attacks have:",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
-          },
-          {
-            "id": "enhancement-sm-bc9c1fa646c54bb0#text:83-97",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "MODEL",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "MODEL_KEYWORD",
-                  "subject": "MODEL",
-                  "arguments": {
-                    "keyword": "ADEPTUS ASTARTES"
-                  },
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "eligibilityText"
-                    ],
-                    "quote": "- Spearpoint Paragon\nADEPTUS ASTARTES model only. This model’s melee attacks have:\n- +1 S and AP.\n- Or: If this unit made a charge move this turn, +2 S and AP."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- +1 S and AP."
-            },
-            "sourceText": "- +1 S and AP.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
               "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
@@ -130002,6 +131141,94 @@
       }
     ]
   },
+  "rosterReviewedScopeCorrections": [
+    {
+      "entityId": "enhancement-sm-1599eafe5bab4e91",
+      "previousScope": "MODEL",
+      "scope": "UNIT",
+      "evidence": [
+        {
+          "entityId": "enhancement-sm-1599eafe5bab4e91",
+          "path": [
+            "text"
+          ]
+        },
+        {
+          "entityId": "enhancement-sm-1599eafe5bab4e91",
+          "path": [
+            "eligibilityText"
+          ]
+        }
+      ],
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-e784659436db40a7",
+        "authority": "ACCEPTED_SECONDARY",
+        "reviewId": "sm-stage4c-reviewed-enhancement-sm-1599eafe5bab4e91",
+        "reviewType": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE"
+      }
+    },
+    {
+      "entityId": "enhancement-sm-32c4e009e6c84003",
+      "previousScope": "MODEL",
+      "scope": "UNIT",
+      "evidence": [
+        {
+          "entityId": "enhancement-sm-32c4e009e6c84003",
+          "path": [
+            "text"
+          ]
+        },
+        {
+          "entityId": "enhancement-sm-32c4e009e6c84003",
+          "path": [
+            "eligibilityText"
+          ]
+        }
+      ],
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-687c1df4e6e04066",
+        "authority": "ACCEPTED_SECONDARY",
+        "reviewId": "sm-stage4c-reviewed-enhancement-sm-32c4e009e6c84003",
+        "reviewType": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE"
+      }
+    }
+  ],
+  "rosterPermanentDoctrineSources": [
+    {
+      "ruleId": "ability-sm-05682c2acff24bd1",
+      "unitId": "unit-sm-2e0979af1d9040af",
+      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[2]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-023cdfabd7894fdf",
+        "authority": "ACCEPTED_SECONDARY"
+      }
+    },
+    {
+      "ruleId": "ability-sm-e65fcbf81ce24b79",
+      "unitId": "unit-sm-1af70808102d4286",
+      "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[24]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-d34af52734dd42b9",
+        "authority": "ACCEPTED_SECONDARY"
+      }
+    }
+  ],
   "rosterProfileBindings": [
     {
       "unitId": "unit-sm-32e5b655a21342f6",
@@ -160686,7 +161913,25 @@
           },
           "unresolved": false
         },
-        "assignmentReference": null,
+        "assignmentReference": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
+            }
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+          "classification": "UNIT_UPGRADE"
+        },
         "unresolved": false,
         "sourceCorrection": {
           "entityId": "enhancement-sm-1599eafe5bab4e91",
@@ -160971,7 +162216,25 @@
           },
           "unresolved": false
         },
-        "assignmentReference": null,
+        "assignmentReference": {
+          "ownerRoleId": "owner",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "contextLevel": "STATIC",
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
+            }
+          },
+          "identity": "EXACT_PHYSICAL_INSTANCE_UNIT",
+          "classification": "UNIT_UPGRADE"
+        },
         "unresolved": false,
         "sourceCorrection": {
           "entityId": "enhancement-sm-32c4e009e6c84003",

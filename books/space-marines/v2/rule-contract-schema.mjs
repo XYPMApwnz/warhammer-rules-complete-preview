@@ -8,6 +8,7 @@ export function createSpaceMarinesRuleSchema({bindContext=context=>context}={}){
     smEquipmentBearerSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
     smPhysicalUnitInstanceId:{contextLevel:'ROSTER',valueType:'string'},
     smPhysicalModelScopeId:{contextLevel:'ROSTER',valueType:'string'},
+    smPermanentAssaultSource:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'}
   }});
   return {...schema,

@@ -38,10 +38,10 @@ add('ability-sm-30c57ce03186422e','trifold-stealth','unit-sm-55f195878fab446f',
   'Trifold Path of Shadow: This unit has:\n- Stealth.','SOURCE_UNIT','UNIT',[grant('core-stealth')]);
 add('ability-sm-30c57ce03186422e','trifold-detection','unit-sm-55f195878fab446f',
   'Trifold Path of Shadow: This unit has:\n- Stealth.\n- -3" detection range.',
-  'SOURCE_UNIT','UNIT',[{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3}]);
+  'SOURCE_UNIT','UNIT',[{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3,unitScope:'FORMED'}]);
 add('ability-sm-a228df25b2964c6c','chameleoline-detection','unit-sm-4ff82a9b79db48da',
   'Chameleoline Cloaks: This unit has -3" detection range.','SOURCE_UNIT','UNIT',
-  [{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3}]);
+  [{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3,unitScope:'FORMED'}]);
 
 // Equipment grants require a selected, source-backed equipment occurrence.
 // SOURCE_MODEL additionally requires its exact physical MODEL recipient.
@@ -72,7 +72,7 @@ add('detachment-rule-sm-b0de270f61aa47ac','shadow-tactics-stealth','detachment-s
   {targetKeywords:['ADEPTUS ASTARTES']});
 add('detachment-rule-sm-b0de270f61aa47ac','shadow-tactics-detection','detachment-sm-39d8ec1f10c44b7b',
   'Friendly PHOBOS/SCOUT SQUAD units have -3" detection range.','ROSTER_UNITS','UNIT',
-  [{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3}],
+  [{operation:'MODIFY_RULE_METRIC',field:'detectionRange',mode:'ADD',value:-3,unitScope:'FORMED'}],
   {targetAnyKeywords:['PHOBOS','SCOUT SQUAD']});
 
 // Enhancement effects below require the separately reviewed assignment selector.
@@ -154,11 +154,74 @@ add('enhancement-sm-bb65f6f6f8834a96','immolator-torrent-attacks','detachment-sm
   'This unit’s [TORRENT] weapons have +1 A.','SOURCE_UNIT','UNIT',
   [stat('attacks',1,'ADD',{weaponIds:weaponQualifierBindings.immolatorTorrentWeapons})]);
 
-// The shared executor accepts UNIT detection metrics, but the current Effective
-// and Personal presenters only project UNIT chargeRoll. Keep these UNIT rules
-// text-only until that shared presentation capability is separately approved.
-export const unsupportedPresentationClauses=rows.filter(row=>['trifold-detection','chameleoline-detection','shadow-tactics-detection'].includes(row.clauseId));
-export const declarations=rows.filter(row=>!unsupportedPresentationClauses.includes(row));
+// Permanent, qualified weapon properties retain their complete native token.
+// No enemy target is selected or assumed by these grants.
+for(const [id,owner,quote,ability] of [
+  ['ability-sm-7a9a925615614019','unit-sm-4a2efa64a7c34868','Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].','LETHAL HITS: non-MONSTER/VEHICLE'],
+  ['ability-sm-aad6d2f9552a4377','unit-sm-4660f547cc3744b0','Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].','LETHAL HITS: non-MONSTER/VEHICLE'],
+  ['ability-sm-cd2e2cf591f64961','unit-sm-63a015916b46446a','Vivispectral Analysis Targeting: This unit’s attacks have [Lethal Hits: non-Vehicle].','LETHAL HITS: non-Vehicle']
+])add(id,'qualified-lethal-attacks',owner,quote,'SOURCE_UNIT','UNIT',[weapon(ability)]);
+add('enhancement-sm-9d44d0978b974773','furious-assault-qualified-melee','detachment-sm-c8f2ae568f594e1b',
+  'This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle].',
+  'SOURCE_UNIT','UNIT',[weapon('SUSTAINED HITS 1: non-Monster/Vehicle','melee')]);
+add('ability-sm-044155170e2840d9','press-attack-qualified-baseline','unit-sm-10396cd2726045a8',
+  'This unit’s melee attacks have:\n- [Sustained Hits 1: non-Monster/vehicle].',
+  'SOURCE_UNIT','UNIT',[weapon('SUSTAINED HITS 1: non-Monster/vehicle','melee')],
+  {partialSemantics:'Baseline qualified ability only; the Assault-doctrine replacement remains conditional text.'});
+
+// Charge is supported; Advance is not represented by another metric.
+add('ability-sm-c442db72a70e4c05','angels-wrath-charge','unit-sm-e595c56eab2f493b',
+  'Angel’s Wrath: This unit has +1 to advance rolls and charge rolls.',
+  'SOURCE_UNIT','UNIT',[{operation:'MODIFY_RULE_METRIC',field:'chargeRoll',mode:'ADD',value:1,unitScope:'FORMED'}],
+  {partialSemantics:'Only Charge +1 is executable. Advance +1 remains source text and a documented capability gap.'});
+for(const [id,owner] of [
+  ['enhancement-sm-35af1f923ecc47a3','detachment-sm-c894db94673d43e8'],
+  ['enhancement-sm-96a03924178349b9','detachment-sm-6341f5a9b9584677'],
+  ['enhancement-sm-bc9c1fa646c54bb0','detachment-sm-93b1ca6a193d41af']
+])add(id,'baseline-melee-strength-ap',owner,'This model’s melee attacks have:\n- +1 S and AP.',
+  'SOURCE_MODEL','MODEL',[stat('strength',1,'ADD',{weaponMode:'melee'}),stat('ap',-1,'ADD',{weaponMode:'melee'})],
+  {partialSemantics:'Static +1 baseline only. Conditional +2 replaces this baseline; it is not an additional +2 and is not assumed active.'});
+for(const [id,owner] of [
+  ['enhancement-sm-35af1f923ecc47a3','detachment-sm-c894db94673d43e8'],
+  ['enhancement-sm-96a03924178349b9','detachment-sm-6341f5a9b9584677']
+])add(id,'permanent-assault-replacement-delta',owner,
+  'This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP.',
+  'SOURCE_MODEL','MODEL',[stat('strength',1,'ADD',{weaponMode:'melee'}),stat('ap',-1,'ADD',{weaponMode:'melee'})],{
+    partialSemantics:'A proved permanent Assault source in this formation raises the existing +1 baseline to +2 using an incremental +1 only. No battle-selected doctrine is inferred.',
+    conditions:[{binding:'SOURCE',predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
+      arguments:{key:'smPermanentAssaultSource',equals:true},evidence:{field:['text'],quote:'If the assault doctrine is active for this unit, +2 S and AP.'}}}],
+    sourceDependencies:[{entityId:'ability-sm-05682c2acff24bd1',field:['text'],quote:'Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.'},
+      {entityId:'ability-sm-e65fcbf81ce24b79',field:['text'],quote:'Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.'}]
+  });
+
+// These two sources permanently activate all three doctrines. Only the proved
+// Devastator fragment has an existing attack operation; movement permissions
+// are not invented as abilities, keywords or additional weapon statistics.
+for(const [id,owner] of [
+  ['ability-sm-05682c2acff24bd1','unit-sm-2e0979af1d9040af'],
+  ['ability-sm-e65fcbf81ce24b79','unit-sm-1af70808102d4286']
+])add(id,'codex-adept-devastator-assault',owner,
+  'Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.',
+  'SOURCE_UNIT','UNIT',[weapon('ASSAULT','ranged')],{
+    partialSemantics:'Permanent Devastator ranged Assault only; Assault/Tactical movement permissions remain full source text.',
+    sourceDependencies:[{entityId:'army-rule-sm-fcdb8cd8bb5f40dd',field:['text'],quote:'DEVASTATOR DOCTRINE\nThis unit’s ranged attacks have [ASSAULT].'}]
+  });
+add('ability-sm-171a2821469d4d0e','skilled-riders-mobile-models','unit-sm-70b477e461b5487a',
+  'Skilled Riders: This unit has MOBILE.','SOURCE_FORMED_MODELS','MODEL',
+  [{operation:'GRANT_MODEL_KEYWORD',keyword:'MOBILE'}],{formedOrPhysicalModels:true,
+    coreDependencies:[{id:'core-rule-01-02-units-and-models',quote:'When an effect or ability applies to a unit, it applies to every model in that unit.'},
+      {id:'core-rule-13-06-terrain-and-movement',quote:'INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.'}]});
+// Stage 4C independently established its UNIT assignment scope. The permission
+// and equipment facts are unchanged; only the proven ranged grant executes.
+add('enhancement-sm-32c4e009e6c84003','spy-skull-ranged-cover','detachment-sm-9310c9a221094584',
+  'This unit’s ranged weapons have [IGNORES COVER].','SOURCE_UNIT','UNIT',[weapon('IGNORES COVER','ranged')]);
+
+export const unsupportedPresentationClauses=[];
+export const declarations=rows;
+export const permanentDoctrineSources=[
+  {ruleId:'ability-sm-05682c2acff24bd1',unitId:'unit-sm-2e0979af1d9040af'},
+  {ruleId:'ability-sm-e65fcbf81ce24b79',unitId:'unit-sm-1af70808102d4286'}
+];
 export const pendingPhysicalBindings=[
   {ruleId:'enhancement-sm-1599eafe5bab4e91',ownerId:'detachment-sm-9310c9a221094584',
     field:['eligibilityText'],quote:'ADEPTUS ASTARTES unit only.',status:'NOT_PROVEN',

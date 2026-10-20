@@ -123,7 +123,8 @@ function assertExpected(service,state,row){
 const records=[],payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(card=>[card.id,card]));
 let physicalIsolationCases=0,repeatedDatasourceIsolationCases=0,detachmentDeactivationCases=0,ineligibleGlobalRecipientCases=0,unknownBearerCases=0;
 assert.equal(cases.length,40,'Independent source-case census changed');
-assert.deepEqual(cases.map(row=>row.ruleId+'::'+row.clauseId).sort(),built.artifact.executed.map(row=>row.ruleId+'::'+row.clauseId).sort(),'Production executable coverage differs from independent source expectations');
+const staticReview=JSON.parse(fs.readFileSync(new URL('./static-gameplay-review.json',import.meta.url),'utf8'));
+assert.deepEqual([...cases,...staticReview.cases].map(row=>row.ruleId+'::'+row.clauseId).sort(),built.artifact.executed.map(row=>row.ruleId+'::'+row.clauseId).sort(),'Production executable coverage differs from independent source expectations');
 for(const row of cases){
  const fact=sourceIndex.get(row.ruleId);assert.ok(fact.data.text.includes(row.sourceLiteral),'Independent source clause changed '+row.ruleId);
  const enhancement=fact.kind==='ENHANCEMENT',detachmentId=row.detachmentId||(enhancement?fact.parentId:DEFAULT_DET);
@@ -270,9 +271,12 @@ let pendingScopeControls=0;
 for(const id of ['enhancement-sm-1599eafe5bab4e91','enhancement-sm-32c4e009e6c84003']){
  const factual=sourceIndex.get(id),contract=index.get(id).ruleContract;
  assert.equal(factual.data.scope,'MODEL');assert.ok(factual.data.eligibilityText.includes('ADEPTUS ASTARTES unit only.'));
- assert.equal(contract.assignment,undefined,'Unresolved source/factual scope guessed an assignment');assert.ok(contract.clauses.every(c=>!c.rosterEffects.length),'Unresolved source scope executed');
+ assert.ok(built.book.rosterReviewedScopeCorrections.some(row=>(row.entityId||row.id)===id),'UNIT assignment requires the independent Stage 4C source correction');
+ assert.equal(contract.assignment.identity,'EXACT_PHYSICAL_INSTANCE_UNIT');
  const service=createSpaceMarinesRosterRuntime(built);service.load(roster([physicalUnit('source',CAPTAIN,{enhancementIds:[id]})],factual.parentId));
- assert.ok(service.projection.units.every(u=>u.applied.every(t=>t.ruleId!==id)),'Unresolved Enhancement gained effects');pendingScopeControls++;
+ if(id==='enhancement-sm-1599eafe5bab4e91')assert.ok(service.projection.units.every(u=>u.applied.every(t=>t.ruleId!==id)),'Unsupported action permission executed');
+ else assert.ok(service.projection.units[0].applied.some(t=>t.ruleId===id&&t.operation==='GRANT_WEAPON_ABILITY'));
+ pendingScopeControls++;
 }
 
 console.log(JSON.stringify({status:'PASS',sourceAuthoredCases:records.length,sourceExecutables:built.artifact.executed.length,

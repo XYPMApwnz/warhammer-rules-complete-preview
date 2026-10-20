@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {declarations,pendingPhysicalBindings,unsupportedPresentationClauses} from './rule-contract-declarations.mjs';
 import {nativeAbilityReview,nativeInvulnerableReview} from './native-ability-bindings.mjs';
+import {physicalStaticBindings} from './roster-static-model-bindings.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
@@ -55,6 +56,14 @@ export function validateClauseReview(review=read('./rule-clause-review.json'),fa
           assert.ok(binding.quote.includes(row.quote),'Partial effect was presented as a complete executable source clause');
           assert.equal(binding.ownerId,row.ownerId);
         }
+      }else if(proof.kind==='PHYSICAL_TYPED_EFFECT'){
+        const binding=physicalStaticBindings.find(binding=>binding.ruleId===row.canonicalId);
+        assert.ok(binding,'Missing physical typed binding');
+        assert.equal(binding.quote,row.quote);assert.equal(binding.sourceUnitId,row.ownerId);
+        assert.deepEqual(binding.field,row.field);assert.deepEqual(binding.sourceEvidence,row.provenance);
+        assert.equal(binding.operation,'GRANT_MODEL_ABILITY');assert.deepEqual(binding.ability,{name:'Feel No Pain',value:4});
+        assert.equal(binding.recipientKeyword,'CHARACTER');assert.equal(binding.excludeExactSourceModel,true);
+        assert.equal(index.get(binding.sourceProfileId)?.parentId,row.ownerId);
       }else if(proof.kind==='NATIVE_ABILITY'){
         const binding=nativeAbilityBindings.find(binding=>binding.id===row.canonicalId);
         assert.ok(binding&&binding.status==='EXECUTABLE_PROVEN','Reviewed executable native ability binding was removed');
@@ -133,6 +142,11 @@ export function validateClauseReview(review=read('./rule-clause-review.json'),fa
   if(review.coverage.classificationsByCategory)assert.deepEqual(review.coverage.classificationsByCategory,byCategory);
   assert.equal(review.coverage.nativeWeaponProfiles,weapons.length);
   assert.equal(review.coverage.nativeWeaponAbilityOccurrences,weapons.reduce((n,e)=>n+e.data.abilities.length,0));
+  assert.equal(review.coverage.reviewedTypedLowerings,typedBindings.length);
+  assert.equal(review.coverage.reviewedPhysicalLowerings,physicalStaticBindings.length);
+  assert.equal(review.coverage.fullyCoveredTypedSourceClauses,review.records.filter(row=>row.executionEvidence?.kind==='TYPED_EFFECT').length);
+  assert.equal(review.coverage.fullyCoveredPhysicalSourceClauses,review.records.filter(row=>row.executionEvidence?.kind==='PHYSICAL_TYPED_EFFECT').length);
+  assert.equal(review.coverage.partialLoweringSourceClauses,review.records.filter(row=>row.partialLowerings?.length).length);
   // Verify accepted source bytes still match the upstream provenance pins. Full
   // RAW/effective text parity remains the independently established foundation QA.
   const files=new Map(required.map(e=>[e.provenance.document,e.provenance.sha256]));
@@ -158,6 +172,8 @@ export function runClauseReviewQA(){
   fails('native weapon ability removed',r=>r.nativeWeaponInventory.find(a=>a.abilities.length).abilities.pop());
   fails('detachment ownership lost',r=>r.detachmentCoverage[0].enhancementIds=[]);
   fails('factual source changed without review',r=>r.factualFingerprint='unreviewed');
+  fails('stale typed coverage summary',r=>r.coverage.reviewedTypedLowerings--);
+  fails('stale physical coverage summary',r=>r.coverage.reviewedPhysicalLowerings--);
   const typed=review.records.find(row=>row.executionEvidence?.kind==='TYPED_EFFECT');
   const native=review.records.find(row=>row.executionEvidence?.kind==='NATIVE_ABILITY');
   const profile=review.records.find(row=>row.executionEvidence?.kind==='NATIVE_PROFILE');

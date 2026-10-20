@@ -6,9 +6,11 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {buildNativeMfmBook} from './mfm-build.mjs';
-import {declarations,enhancementEligibility,pendingPhysicalBindings,weaponQualifierBindings} from './rule-contract-declarations.mjs';
+import {declarations,enhancementEligibility,pendingPhysicalBindings,weaponQualifierBindings,permanentDoctrineSources} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {bindNativeAbilities,bindNativeBaseProfiles,bindNativeKeywords} from './native-ability-bindings.mjs';
+import {physicalStaticBindings} from './roster-static-model-bindings.mjs';
+import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
@@ -25,6 +27,13 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   const original=JSON.stringify(facts),native=buildNativeMfmBook({facts,base,cross}),book=clone(native.model);
   assert.equal(sha(original),review.factualFingerprint,'Unreviewed factual source');
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const reviewedScopes=new Map(readSpaceMarinesRosterCorrections({facts}).scopeCorrections.map(row=>[row.entityId||row.id,row]));
+  book.rosterReviewedScopeCorrections=[...reviewedScopes.values()].map(row=>clone(row));
+  book.rosterPermanentDoctrineSources=permanentDoctrineSources.map(source=>{
+    const entity=index.get(source.ruleId);assert.equal(entity?.parentId,source.unitId);
+    assert.equal(entity.data.text,'Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.');
+    return {...clone(source),quote:entity.data.text,provenance:clone(entity.provenance)};
+  });
   assert.equal(index.size,book.entities.length);assert.ok(book.entities.every(entity=>!entity.ruleContract));
   const nativeKeywords=bindNativeKeywords(book);
   // Existing shared equipment selections use canonical section/FIELD sources.
@@ -56,6 +65,14 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   for(const input of inputs){
     const fact=index.get(input.ruleId);assert.equal(fact?.parentId,input.ownerId,'Wrong executable owner');
     assert.ok(at(fact.data,input.field).includes(input.quote),'Missing literal executable proof');
+    for(const proof of input.sourceDependencies||[]){
+      const dependency=index.get(proof.entityId);
+      assert.ok(dependency&&at(dependency.data,proof.field)?.includes(proof.quote),'Unproved cross-rule static dependency');
+    }
+    for(const proof of input.coreDependencies||[]){
+      const dependency=core.getById(proof.id);
+      assert.ok(dependency?.state==='FULL_CONTENT'&&dependency.text.includes(proof.quote),'Unproved Core static dependency');
+    }
     assert.ok(input.effects.length);const rows=grouped.get(input.ruleId)||[];
     assert.ok(!rows.some(row=>row.clauseId===input.clauseId),'Duplicate typed clause');rows.push(input);grouped.set(input.ruleId,rows);
   }
@@ -64,7 +81,8 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
     const entity=index.get(ruleId);
     if(['RULE_REFERENCE','INVULNERABLE_SAVE'].includes(entity.kind))continue;
     const enhancement=entity.kind==='ENHANCEMENT',detachment=entity.kind==='DETACHMENT_RULE';
-    const eligible=enhancement?enhancementEligibility[ruleId]:null;
+    const eligible=enhancement?(reviewedScopes.has(ruleId)?{...enhancementEligibility[ruleId],subject:'UNIT',unresolved:false,
+      sourceCorrection:clone(reviewedScopes.get(ruleId))}:enhancementEligibility[ruleId]):null;
     if(enhancement)assert.equal(eligible?.eligibilityEvidence,entity.data.eligibilityText,'Unreviewed Enhancement eligibility');
     const subject=eligible?.unresolved?'UNIT':eligible?.subject||'UNIT';
     const first={field:clone(rows[0].field),quote:rows[0].quote};
@@ -109,7 +127,9 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
         if(choice.attached!==undefined)gated.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'attached',equals:choice.attached},proof,'ROSTER')});
         const effect={id:`${ruleId}::${input.clauseId}/branch-${branch+1}/effect-${i+1}`,...clone(operation),targetBinding:choice.binding,targetSubject:input.targetSubject,
           conditions:gated,evidence:proof,sourceFields:[clone(input.field)],lifetime:enhancement?'WHILE_ASSIGNED':detachment?'WHILE_DETACHMENT_SELECTED':input.equipment?'WHILE_EQUIPPED':'WHILE_SOURCE_UNIT_PRESENT',
-          provenance:{canonicalRuleId:ruleId,canonicalOwnerId:input.ownerId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance)}};
+          provenance:{canonicalRuleId:ruleId,canonicalOwnerId:input.ownerId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance),
+            ...(input.sourceDependencies?.length?{sourceDependencies:input.sourceDependencies.map(proof=>({...clone(proof),provenance:clone(index.get(proof.entityId).provenance)}))}:{}),
+            ...(input.coreDependencies?.length?{coreDependencies:input.coreDependencies.map(proof=>({...clone(proof),provenance:clone(core.getById(proof.id).provenance),sourceContentHashes:clone(core.getById(proof.id).sourceContentHashes)}))}:{})}};
         if(input.equipment)effect.equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:ruleId,sourceFieldPath:clone(input.field)};
         if(input.targetBinding==='ROSTER_MODELS'){
           const nodes=(input.recipientUnitKeywords||[]).map(keyword=>atom('UNIT_KEYWORD','UNIT',{keyword},proof));
@@ -139,9 +159,9 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
   const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');
-  const artifact={factualFingerprint:sha(original),contracts,executed,nativeAbilities:nativeAbilities.bindings,nativeProfiles:nativeProfiles.bindings,
-    pending:clone(pendingPhysicalBindings),nativeKeywords,coverage:clone(review.coverage),reviewFingerprint:sha(JSON.stringify(review)),
-    physicalImportImplemented:false,frontendVerified:false};
+  const artifact={factualFingerprint:sha(original),contracts,executed,physicalBindingTemplates:clone(physicalStaticBindings),nativeAbilities:nativeAbilities.bindings,nativeProfiles:nativeProfiles.bindings,
+    pending:clone(pendingPhysicalBindings.filter(row=>!reviewedScopes.has(row.ruleId))),nativeKeywords,coverage:clone(review.coverage),reviewFingerprint:sha(JSON.stringify(review)),
+    physicalImportImplemented:true,realNewRecruitExportTested:false,frontendVerified:false};
   return {book,schema,artifact,native,consumed:native.consumed};
 }
 export function writeSpaceMarinesContracts({check=false}={}){

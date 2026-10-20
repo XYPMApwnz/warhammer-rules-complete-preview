@@ -4,7 +4,7 @@
   "reviewAuthority": "EXISTING_ACCEPTED_RAW_AND_OFFICIAL_SOURCE_FOUNDATION_NOT_RUNTIME_OR_GENERATED_CONTRACTS",
   "reviewedAt": "2026-10-20",
   "factualFingerprint": "024841EF613FFFEFC101875CEA900EA6D02EF9F4B79765D96B483C35E606866F",
-  "scope": "Stage 4B mechanical source-clause census. Exact literal sentences preserve full block context. No English-text execution, no new source discovery or army-legality validation.",
+  "scope": "Stage 4D targeted static gameplay review over the unchanged Stage 4B source-clause census; original source fields and canonical identities retained.",
   "reviewMethod": "Persistent source owners are Stage 2A identities. Clause addresses are immutable accepted source field ranges guarded by field and quote fingerprints, not new canonical entity identities. Sentence boundaries are transcription locators only, never effect inference. Source layout headings and three nested overlaps are separately accounted. Executable statuses require actual typed binding and runtime evidence before promotion.",
   "sourceEvidence": [
     "books/space-marines/v2/source-review.json",
@@ -33,9 +33,9 @@
       "STRATAGEM": 336
     },
     "classifications": {
-      "EXECUTABLE_PROVEN": 147,
-      "TEXT_ONLY_SOURCE_BACKED": 1082,
-      "NOT_PROVEN": 4
+      "EXECUTABLE_PROVEN": 161,
+      "TEXT_ONLY_SOURCE_BACKED": 1072,
+      "NOT_PROVEN": 0
     },
     "nativeWeaponProfiles": 386,
     "nativeWeaponAbilityOccurrences": 445,
@@ -43,8 +43,8 @@
     "denominatorMeaning": "Literal operative source clauses, including applicability/recipient/timing/limit clauses and native references. This is not a count of independent numeric operations. Embedded Enhancement weapon table is one complete grant; layout introductions, examples and duplicate nested text are not counted.",
     "classificationsByCategory": {
       "DATASHEET_ABILITY": {
-        "EXECUTABLE_PROVEN": 4,
-        "TEXT_ONLY_SOURCE_BACKED": 278,
+        "EXECUTABLE_PROVEN": 12,
+        "TEXT_ONLY_SOURCE_BACKED": 270,
         "NOT_PROVEN": 0
       },
       "WARGEAR_ABILITY": {
@@ -63,19 +63,19 @@
         "NOT_PROVEN": 0
       },
       "DETACHMENT_RULE": {
-        "EXECUTABLE_PROVEN": 3,
-        "TEXT_ONLY_SOURCE_BACKED": 57,
+        "EXECUTABLE_PROVEN": 4,
+        "TEXT_ONLY_SOURCE_BACKED": 56,
         "NOT_PROVEN": 0
       },
       "UNIT_UPGRADE": {
-        "EXECUTABLE_PROVEN": 2,
-        "TEXT_ONLY_SOURCE_BACKED": 19,
+        "EXECUTABLE_PROVEN": 3,
+        "TEXT_ONLY_SOURCE_BACKED": 18,
         "NOT_PROVEN": 0
       },
       "ENHANCEMENT": {
-        "EXECUTABLE_PROVEN": 23,
+        "EXECUTABLE_PROVEN": 27,
         "TEXT_ONLY_SOURCE_BACKED": 103,
-        "NOT_PROVEN": 4
+        "NOT_PROVEN": 0
       },
       "INVULNERABLE_SAVE": {
         "EXECUTABLE_PROVEN": 33,
@@ -113,12 +113,14 @@
         "NOT_PROVEN": 0
       }
     },
-    "reviewedTypedLowerings": 40,
-    "fullyCoveredTypedSourceClauses": 41,
+    "reviewedTypedLowerings": 58,
+    "fullyCoveredTypedSourceClauses": 54,
     "nativeExecutableReferenceClauses": 73,
     "nativeExecutableSaveClauses": 33,
-    "partialLoweringSourceClauses": 9,
-    "runtimeProofScope": "Constructed physical rosters, native executor, Effective Datasheet and Personal Guide projectors. New Recruit import and real frontend/browser acceptance are not claimed."
+    "partialLoweringSourceClauses": 14,
+    "runtimeProofScope": "Stage4B original40 typed cases preserved; Stage4D static typed/physical bindings tested through native runtime, Effective and Guide projectors; Stage4C constructed New Recruit import regression. Real New Recruit exports and frontend/browser acceptance are not claimed.",
+    "reviewedPhysicalLowerings": 1,
+    "fullyCoveredPhysicalSourceClauses": 1
   },
   "records": [
     {
@@ -368,15 +370,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "- [Sustained Hits 1: non-Monster/vehicle].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-044155170e2840d9",
+        "clauseIds": [
+          "press-attack-qualified-baseline"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -564,8 +574,16 @@
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
+      "explanation": "Compound source retained as text; only the explicitly reviewed supported fragment executes. See partialLowerings.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
+      "partialLowerings": [
+        {
+          "clauseId": "codex-adept-devastator-assault",
+          "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+          "source": "books/space-marines/v2/rule-contract-declarations.mjs",
+          "reason": "Permanent Devastator ranged Assault only; Assault/Tactical movement permissions remain full source text."
+        }
+      ]
     },
     {
       "id": "ability-sm-06f3f2b2b22b48a4#text:0-100",
@@ -1124,15 +1142,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Skilled Riders: This unit has MOBILE.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-171a2821469d4d0e",
+        "clauseIds": [
+          "skilled-riders-mobile-models"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -2088,21 +2114,24 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "- -3\" detection range.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unsupportedPresentation": {
-        "clauseId": "trifold-detection",
-        "field": "detectionRange",
-        "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted."
-      }
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-30c57ce03186422e",
+        "clauseIds": [
+          "trifold-detection"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
       "id": "ability-sm-32ef85e542eb4c62#text:0-121",
@@ -5749,15 +5778,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-7a9a925615614019",
+        "clauseIds": [
+          "qualified-lethal-attacks"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -7374,21 +7411,24 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Chameleoline Cloaks: This unit has -3\" detection range.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unsupportedPresentation": {
-        "clauseId": "chameleoline-detection",
-        "field": "detectionRange",
-        "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted."
-      }
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-a228df25b2964c6c",
+        "clauseIds": [
+          "chameleoline-detection"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
       "id": "ability-sm-a41ba26a731241e7#text:0-78",
@@ -7732,15 +7772,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Tactical Precision: This unit’s attacks have [Lethal Hits: non-MONSTER/VEHICLE].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-aad6d2f9552a4377",
+        "clauseIds": [
+          "qualified-lethal-attacks"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -9706,15 +9754,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "PHYSICAL_TYPED_EFFECT",
+        "contractId": "ability-sm-c4061e257e81492f",
+        "clauseIds": [
+          "veteran-bodyguard-other-character"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/roster-static-model-bindings-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -9757,8 +9813,16 @@
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
+      "explanation": "Compound source retained as text; only the explicitly reviewed supported fragment executes. See partialLowerings.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
+      "partialLowerings": [
+        {
+          "clauseId": "angels-wrath-charge",
+          "quote": "Angel’s Wrath: This unit has +1 to advance rolls and charge rolls.",
+          "source": "books/space-marines/v2/rule-contract-declarations.mjs",
+          "reason": "Only Charge +1 is executable. Advance +1 remains source text and a documented capability gap."
+        }
+      ]
     },
     {
       "id": "ability-sm-c475beedbe5748cd#text:0-92",
@@ -10222,15 +10286,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Vivispectral Analysis Targeting: This unit’s attacks have [Lethal Hits: non-Vehicle].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "ability-sm-cd2e2cf591f64961",
+        "clauseIds": [
+          "qualified-lethal-attacks"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -12378,8 +12450,16 @@
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
+      "explanation": "Compound source retained as text; only the explicitly reviewed supported fragment executes. See partialLowerings.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
+      "partialLowerings": [
+        {
+          "clauseId": "codex-adept-devastator-assault",
+          "quote": "Codex Adept: The assault doctrine, devastator doctrine and tactical doctrine are active for this unit.",
+          "source": "books/space-marines/v2/rule-contract-declarations.mjs",
+          "reason": "Permanent Devastator ranged Assault only; Assault/Tactical movement permissions remain full source text."
+        }
+      ]
     },
     {
       "id": "ability-sm-e86e14b9f76343cb#text:0-72",
@@ -15509,21 +15589,24 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "SOURCE_TEXT",
       "recipientScopeText": "Friendly PHOBOS/SCOUT SQUAD units have -3\" detection range.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unsupportedPresentation": {
-        "clauseId": "shadow-tactics-detection",
-        "field": "detectionRange",
-        "reason": "The existing UNIT rule-metric operation does not appear in Effective/Personal recipient presentation. No MODEL metric or different operation is substituted."
-      }
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "detachment-rule-sm-b0de270f61aa47ac",
+        "clauseIds": [
+          "shadow-tactics-detection"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
       "id": "detachment-rule-sm-b0de270f61aa47ac#text:121-176",
@@ -17415,17 +17498,17 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "NOT_PROVEN",
-      "classification": "NOT_PROVEN",
+      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "classification": "TEXT_ONLY_SOURCE_BACKED",
       "recipientScope": "MODEL",
       "recipientScopeText": "ADEPTUS ASTARTES unit only.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
+      "explanation": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unresolvedReason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed."
+      "reviewedSourceCorrection": "books/space-marines/v2/roster-source-corrections.json"
     },
     {
       "id": "enhancement-sm-1599eafe5bab4e91#text:48-171",
@@ -17459,17 +17542,17 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "NOT_PROVEN",
-      "classification": "NOT_PROVEN",
+      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "classification": "TEXT_ONLY_SOURCE_BACKED",
       "recipientScope": "MODEL",
       "recipientScopeText": "When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
+      "explanation": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unresolvedReason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed."
+      "reviewedSourceCorrection": "books/space-marines/v2/roster-source-corrections.json"
     },
     {
       "id": "enhancement-sm-16dc6ab9b09f4bd2#text:16-53",
@@ -18116,17 +18199,17 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "NOT_PROVEN",
-      "classification": "NOT_PROVEN",
+      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "classification": "TEXT_ONLY_SOURCE_BACKED",
       "recipientScope": "MODEL",
       "recipientScopeText": "ADEPTUS ASTARTES unit only.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
       "executionEvidence": null,
-      "explanation": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
+      "explanation": "UNIT assignment resolved by independent Stage4C RAW proof. Applicability text or unsupported movement/action permission remains text-only.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unresolvedReason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed."
+      "reviewedSourceCorrection": "books/space-marines/v2/roster-source-corrections.json"
     },
     {
       "id": "enhancement-sm-32c4e009e6c84003#text:50-98",
@@ -18160,17 +18243,25 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "NOT_PROVEN",
-      "classification": "NOT_PROVEN",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "MODEL",
       "recipientScopeText": "This unit’s ranged weapons have [IGNORES COVER].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed. The source text remains intact; no physical assignment or effect recipient is invented.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "enhancement-sm-32c4e009e6c84003",
+        "clauseIds": [
+          "spy-skull-ranged-cover"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Static UNIT ranged Ignores Cover with reviewed Stage4C UNIT assignment and Stage4D physical positive/negative QA.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
-      "unresolvedReason": "Accepted factual scope is MODEL while the source eligibility is UNIT. No assignment subject is guessed."
+      "reviewedSourceCorrection": "books/space-marines/v2/roster-source-corrections.json"
     },
     {
       "id": "enhancement-sm-33db6f7f8bc04d0c#text:19-47",
@@ -18566,15 +18657,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "MODEL",
       "recipientScopeText": "- +1 S and AP.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "enhancement-sm-35af1f923ecc47a3",
+        "clauseIds": [
+          "baseline-melee-strength-ap"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -18618,7 +18717,15 @@
       "operationCandidates": [],
       "executionEvidence": null,
       "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
+      "partialLowerings": [
+        {
+          "clauseId": "permanent-assault-replacement-delta",
+          "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP.",
+          "source": "books/space-marines/v2/rule-contract-declarations.mjs",
+          "reason": "A proved permanent Assault source in this formation raises the existing +1 baseline to +2 using an incremental +1 only. No battle-selected doctrine is inferred."
+        }
+      ]
     },
     {
       "id": "enhancement-sm-37140db132394ce3#text:36-120",
@@ -21141,15 +21248,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "MODEL",
       "recipientScopeText": "- +1 S and AP.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "enhancement-sm-96a03924178349b9",
+        "clauseIds": [
+          "baseline-melee-strength-ap"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -21193,7 +21308,15 @@
       "operationCandidates": [],
       "executionEvidence": null,
       "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
-      "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
+      "clauseRole": "SOURCE_MECHANICAL_CLAUSE",
+      "partialLowerings": [
+        {
+          "clauseId": "permanent-assault-replacement-delta",
+          "quote": "This model’s melee attacks have:\n- +1 S and AP.\n- Or: If the assault doctrine is active for this unit, +2 S and AP.",
+          "source": "books/space-marines/v2/rule-contract-declarations.mjs",
+          "reason": "A proved permanent Assault source in this formation raises the existing +1 baseline to +2 using an incremental +1 only. No battle-selected doctrine is inferred."
+        }
+      ]
     },
     {
       "id": "enhancement-sm-9b0e68b4f3284c34#text:19-47",
@@ -21571,15 +21694,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "UNIT",
       "recipientScopeText": "This unit’s melee attacks have [Sustained Hits 1: non-Monster/Vehicle].",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "enhancement-sm-9d44d0978b974773",
+        "clauseIds": [
+          "furious-assault-qualified-melee"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {
@@ -22449,15 +22580,23 @@
         "authority": "ACCEPTED_SECONDARY"
       },
       "officialFieldProvenance": {},
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "classification": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "EXECUTABLE_PROVEN",
+      "classification": "EXECUTABLE_PROVEN",
       "recipientScope": "MODEL",
       "recipientScopeText": "- +1 S and AP.",
       "recipientProfileIds": [],
       "activationConditions": "All timing, recipients, ranges, conditions, choice, alternatives, limits and durations in contextQuote remain binding. No battle-state condition is assumed true.",
       "operationCandidates": [],
-      "executionEvidence": null,
-      "explanation": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+      "executionEvidence": {
+        "kind": "TYPED_EFFECT",
+        "contractId": "enhancement-sm-bc9c1fa646c54bb0",
+        "clauseIds": [
+          "baseline-melee-strength-ap"
+        ],
+        "source": "books/space-marines/v2/static-gameplay-review.json",
+        "runtimeQA": "books/space-marines/v2/static-gameplay-qa.mjs"
+      },
+      "explanation": "Source-reviewed static lowering with positive/negative physical runtime and Effective/Guide projection evidence.",
       "clauseRole": "SOURCE_MECHANICAL_CLAUSE"
     },
     {

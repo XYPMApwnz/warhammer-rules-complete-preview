@@ -321,16 +321,21 @@ export function projectInstanceCards(cards, unit, effective) {
     root.keywordGroups=groups;
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);
-  root.rosterUnitMetrics=Object.entries(effective.unitMetrics||{}).map(([key,value])=>{
-    assert(key==='chargeRoll'&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');
+  root.rosterUnitMetrics=Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{
+    assert(['chargeRoll','detectionRange'].includes(key)&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');
     const sources=(effective.unitMetricSources||[]).filter(source=>source.field===key);
     assert(sources.length&&sources.every(source=>source.operation==='MODIFY_RULE_METRIC'&&
-      source.targetInstanceId===unit.instanceId&&!source.targetModelInstanceId&&['PHYSICAL','FORMED'].includes(source.unitScope)),
+      source.targetInstanceId===unit.instanceId&&!source.targetModelInstanceId&&
+      (['PHYSICAL','FORMED'].includes(source.unitScope)||key==='detectionRange'&&source.unitScope===undefined)),
       'Unresolved effective UNIT metric sources');
-    const unitScope=sources.every(source=>source.unitScope==='FORMED')?'FORMED':'PHYSICAL';
-    return {key,label:'Charge-roll modifier',value:clone(value),displayValue:`${value.modifier>=0?'+':''}${value.modifier}`,
+    // Legacy unscoped range contracts keep their existing MODEL presentation.
+    // One explicit UNIT source migrates the recipient's complete UNIT total,
+    // including other legacy UNIT contributions, without repeating them.
+    if(key==='detectionRange'&&!sources.some(source=>['PHYSICAL','FORMED'].includes(source.unitScope)))return [];
+    const unitScope=sources.every(source=>source.unitScope==='FORMED'||source.unitScope===undefined)?'FORMED':'PHYSICAL';
+    return [{key,label:key==='chargeRoll'?'Charge-roll modifier':'Detection Range modifier',value:clone(value),displayValue:`${value.modifier>=0?'+':''}${value.modifier}${key==='detectionRange'?'"':''}`,
       unitScope,recipientInstanceIds:unitScope==='FORMED'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit.instanceId],
-      formedUnitId:effective.formedUnit?.formedUnitId||null,sources:clone(sources)};
+      formedUnitId:effective.formedUnit?.formedUnitId||null,sources:clone(sources)}];
   });
   variants.set(root.id,[annotate(root)]);
   return variants;

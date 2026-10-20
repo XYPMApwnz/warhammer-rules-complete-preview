@@ -28753,6 +28753,36 @@
           "source": {
             "entityId": "enhancement-sm-1599eafe5bab4e91",
             "path": "/scope"
+          },
+          "displayValue": "UNIT",
+          "reviewedSourceCorrection": {
+            "entityId": "enhancement-sm-1599eafe5bab4e91",
+            "previousScope": "MODEL",
+            "scope": "UNIT",
+            "evidence": [
+              {
+                "entityId": "enhancement-sm-1599eafe5bab4e91",
+                "path": [
+                  "text"
+                ]
+              },
+              {
+                "entityId": "enhancement-sm-1599eafe5bab4e91",
+                "path": [
+                  "eligibilityText"
+                ]
+              }
+            ],
+            "provenance": {
+              "sourceId": "space-marines-waha-11e-2026-10-20",
+              "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+              "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+              "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+              "sourceEntityId": "sm-source-e784659436db40a7",
+              "authority": "ACCEPTED_SECONDARY",
+              "reviewId": "sm-stage4c-reviewed-enhancement-sm-1599eafe5bab4e91",
+              "reviewType": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE"
+            }
           }
         },
         {
@@ -29307,6 +29337,36 @@
           "source": {
             "entityId": "enhancement-sm-32c4e009e6c84003",
             "path": "/scope"
+          },
+          "displayValue": "UNIT",
+          "reviewedSourceCorrection": {
+            "entityId": "enhancement-sm-32c4e009e6c84003",
+            "previousScope": "MODEL",
+            "scope": "UNIT",
+            "evidence": [
+              {
+                "entityId": "enhancement-sm-32c4e009e6c84003",
+                "path": [
+                  "text"
+                ]
+              },
+              {
+                "entityId": "enhancement-sm-32c4e009e6c84003",
+                "path": [
+                  "eligibilityText"
+                ]
+              }
+            ],
+            "provenance": {
+              "sourceId": "space-marines-waha-11e-2026-10-20",
+              "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+              "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+              "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+              "sourceEntityId": "sm-source-687c1df4e6e04066",
+              "authority": "ACCEPTED_SECONDARY",
+              "reviewId": "sm-stage4c-reviewed-enhancement-sm-32c4e009e6c84003",
+              "reviewType": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE"
+            }
           }
         },
         {
@@ -444547,7 +444607,7 @@
     "byteStoragePolicy": "books/space-marines/v2/.gitattributes"
   },
   "rulePresentationLimitations": {
-    "scope": "STAGE_4B_ISOLATED_NATIVE_GAMEPLAY",
+    "scope": "STAGE_4D_ISOLATED_NATIVE_GAMEPLAY",
     "points": "CONFIRMED_CENTRAL_MFM_V1_6",
     "relations": "NEEDS_ARMY_CONTEXT",
     "battleState": "NOT_SIMULATED",
@@ -444561,13 +444621,10 @@
     "ruleSemantics": "SEE_LITERAL_CLAUSE_LEDGER",
     "deathwatch": "SEPARATE_REFERENCE_OWNER",
     "paidOptions": "CENTRAL_UNIT_OWNED_PRICES_NOT_PHYSICAL_SELECTION_BINDINGS",
-    "importer": "NOT_IMPLEMENTED",
+    "importer": "BOOK_OWNED_CONSTRUCTED_FIXTURES_VERIFIED_REAL_EXPORT_NOT_TESTED",
     "frontend": "NOT_REGISTERED_OR_BROWSER_VERIFIED",
-    "unsupportedUnitMetric": "UNIT_DETECTION_RANGE_NOT_PROJECTED_BY_SHARED_EFFECTIVE_GUIDE",
-    "unresolvedEnhancementScopes": [
-      "enhancement-sm-1599eafe5bab4e91",
-      "enhancement-sm-32c4e009e6c84003"
-    ]
+    "unitDetectionMetric": "EXPLICIT_UNIT_SCOPE_SUPPORTED_BY_SHARED_EFFECTIVE_GUIDE",
+    "unresolvedEnhancementScopes": []
   },
   "bookPresentation": {
     "schema": "army-book-app-v2/book-v1-presentation",
