@@ -2,6 +2,7 @@
 export const registration=Object.freeze({
   id:'tyranids',title:'Tyranids',assetBaseURL:new URL('./',import.meta.url).href,
   home:Object.freeze({shelf:Object.freeze({id:'xenos',title:'Xenos',subtitle:'Alien armies',order:40}),
+    cover:new URL('../../../assets/tyranids-cover-480.webp',import.meta.url).href,coverAlt:'Tyranids cover',coverFit:'cover',
     accent:'#c9a4e8',label:'Interactive army book',order:10}),
   styles:[new URL('./theme.css',import.meta.url).href],
   routeAliases:[],

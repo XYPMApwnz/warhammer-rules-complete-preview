@@ -2,6 +2,7 @@
 export const registration=Object.freeze({
   id:'tau-empire',title:'T’au Empire',assetBaseURL:new URL('./',import.meta.url).href,
   home:Object.freeze({shelf:Object.freeze({id:'xenos',title:'Xenos',subtitle:'Alien armies',order:40}),
+    cover:new URL('../assets/tau-empire-cover-800.webp',import.meta.url).href,coverAlt:'T’au Empire cover',coverFit:'cover',
     accent:'#77cbd0',label:'Interactive army book',order:20}),
   styles:[new URL('./theme.css',import.meta.url).href],routeAliases:[],
   async loadPayload(){const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));

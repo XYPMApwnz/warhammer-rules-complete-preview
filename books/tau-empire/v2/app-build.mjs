@@ -83,6 +83,7 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
   payload.bookPresentation=projectBookPresentation(model,records);
+  payload.bookPresentation.coverImage='../assets/tau-empire-cover-800.webp';
   payload.ruleContractIds=book.entities.filter(e=>e.ruleContract).map(e=>e.id);
   const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',rows:model.entities.filter(e=>e.kind==='DATASHEET').flatMap(unit=>model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(rule=>({unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,...clone(conditional),selectedDetachment:clone(conditional)})))};

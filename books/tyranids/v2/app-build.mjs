@@ -143,6 +143,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
   payload.bookPresentation=projectBookPresentation(model,records);
+  payload.bookPresentation.coverImage='../../../assets/tyranids-cover-800.webp';
   payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
   // A book view lacks physical assignments and battle context. Unbound rules
   // remain visible as conditional, never as a fabricated compatible result.
