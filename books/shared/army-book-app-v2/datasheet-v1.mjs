@@ -104,6 +104,49 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     node.dataset.recipientSubject=ability.subject;
     node.dataset.recipientScopes=JSON.stringify(ability.recipientScopes);
     node.append(anchor(abilityPresentationLabel({...ability,title:cards.get(ability.canonicalId)?.title}),ability.canonicalId,true));
+    if(ability.sources?.length){
+      node.dataset.abilitySources=JSON.stringify(ability.sources);
+      const sources=new Map();
+      for(const source of ability.sources){
+        const key=JSON.stringify([source.ruleId,source.sourceInstanceId,source.sourceModelInstanceId||null,source.sourceCompositionId||null]);
+        if(!sources.has(key))sources.set(key,{source,traces:[]});
+        sources.get(key).traces.push(source);
+      }
+      const attribution=el('small','ds-ability-sources');
+      attribution.append(document.createTextNode(' · Source: '));
+      for(const [index,{source,traces}]of [...sources.values()].entries()){
+        if(index)attribution.append(document.createTextNode('; '));
+        const link=anchor(cards.get(source.ruleId)?.title||source.ruleId,source.ruleId,true);
+        link.dataset.abilitySourceInstanceId=source.sourceInstanceId||'';
+        link.dataset.abilitySourceModelInstanceId=source.sourceModelInstanceId||'';
+        attribution.append(link);
+        const physical=roster.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
+        if(physical){
+          const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+          const title=cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId;
+          const label=title+(peers.length>1?` #${peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1}`:'');
+          attribution.append(document.createTextNode(' — '),el('span','',label));
+          // Exact MODEL identity is exposed only when the executed trace has it.
+          if(source.sourceModelInstanceId)attribution.append(document.createTextNode(` (${source.sourceModelInstanceId})`));
+        }
+        // A common ability may be native on some MODELs and granted on others.
+        // Its placement at Core must not imply this source granted it to all.
+        if(ability.subject==='MODEL'){
+          const recipients=new Map(traces.map(trace=>[JSON.stringify([
+            trace.targetInstanceId,trace.targetProfileId,trace.targetCompositionId||null]),trace]));
+          if(ability.recipientScopes.some(scope=>!recipients.has(scope))){
+            attribution.append(document.createTextNode(' · Applies to: '));
+            for(const [index,target]of [...recipients.values()].entries()){
+              if(index)attribution.append(document.createTextNode(', '));
+              const profile=cards.get(target.targetProfileId),label=profile?.title||target.targetProfileId;
+              const address=target.targetModelInstanceId||target.targetCompositionId;
+              attribution.append(document.createTextNode(label+(address?` (${address})`:'')));
+            }
+          }
+        }
+      }
+      node.append(attribution);
+    }
     return node;
   };
   const metricNode=field=>{const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));return metric;};

@@ -105,4 +105,48 @@ check('Canonical non-Core category remains on its existing surface',()=>{
   assert.equal(other.core.length,1);assert.equal(other.core[0].canonicalId,'different-rule');
   assert.throws(()=>plan([profile('a',[ability])],{references:[...references,reference('synthetic-army-rule',{}, {group:'CORE ABILITIES'})]}),/Conflicting canonical/);
 });
+const grantTrace=(source,target={})=>({operation:'GRANT_ABILITY',ruleId:'grant-rule',clauseId:'grant',effectId:'grant-effect',
+  sourceInstanceId:source,sourceModelInstanceId:source+'-model',targetInstanceId:'physical-a',
+  targetAbilityId:'ability-a',abilityParameters:{},targetProfileId:null,targetCompositionId:null,...target});
+check('One UNIT ability retains every independent physical granting source',()=>{
+  const applied=[grantTrace('source-a'),grantTrace('source-b')];
+  const result=plan([profile('p',[])],{unitAbilities:[granted('ability-a',undefined)],applied});
+  assert.equal(result.core.length,1);
+  assert.deepEqual(result.core[0].sources,applied);
+  assert.deepEqual(plan([profile('p',[])],{unitAbilities:[granted('ability-a',undefined)],applied:applied.slice(1)}).core[0].sources,applied.slice(1));
+});
+check('Grant attribution cannot cross UNIT, MODEL scope, ability or parameters',()=>{
+  const good=grantTrace('source-a',{targetProfileId:'p',targetCompositionId:'scope-a',abilityParameters:{value:5}});
+  const applied=[good,{...good,targetInstanceId:'physical-b'},{...good,targetCompositionId:'scope-b'},
+    {...good,targetAbilityId:'ability-b'},{...good,abilityParameters:{value:4}}];
+  const result=plan([profile('p',[granted('ability-a',5)],'scope-a'),profile('p',[],'scope-b')],{applied});
+  assert.deepEqual(result.profiles[0].abilities[0].sources,[good]);
+  assert.equal(result.profiles[1].abilities.length,0);
+  assert.equal(plan([profile('p',[])],{unitAbilities:[granted('ability-a',5)],applied}).core[0].sources,undefined);
+});
+check('All-model presentation keeps exact recipient traces and native facts gain no false source',()=>{
+  const applied=['a','b'].map(scope=>grantTrace('same-source',{targetProfileId:'p',targetCompositionId:scope}));
+  const result=plan(['a','b'].map(scope=>profile('p',[{canonicalId:'ability-a',parameters:{}}],scope)),{applied});
+  assert.equal(result.core.length,1);assert.deepEqual(result.core[0].sources,applied);
+  assert.equal(plan([profile('p',[{canonicalId:'ability-a',parameters:{}}])]).core[0].sources,undefined);
+  assert.equal(plan([profile('p',[])],{applied}).core.length,0);
+});
+check('Duplicate UNIT bag entries combine provenance without duplicating the ability',()=>{
+  const trace=grantTrace('source-a');
+  const result=plan([profile('p',[])],{unitAbilities:[{canonicalId:'ability-a'},{canonicalId:'ability-a'}],applied:[trace,structuredClone(trace)]});
+  assert.equal(result.core.length,1);assert.deepEqual(result.core[0].sources,[trace]);
+});
+check('Legacy FNP uses only actual matching MODEL traces; native or weaker no-op sources are not invented',()=>{
+  const trace={...grantTrace('guard',{targetProfileId:'p',targetCompositionId:'scope'}),
+    operation:'GRANT_MODEL_ABILITY',after:[{name:'Legacy caption',value:5}]};
+  const input=[profile('p',[{canonicalId:'core-feel-no-pain',parameters:{value:5}}],'scope')];
+  assert.deepEqual(plan(input,{applied:[trace]}).core[0].sources,[trace]);
+  assert.equal(plan(input,{applied:[{...trace,after:[{value:6}]}]}).core[0].sources,undefined);
+  assert.equal(plan(input).core[0].sources,undefined);
+});
+check('Physical source IDs remain exact strings, independently of numeric parameter normalization',()=>{
+  const applied=[grantTrace('01',{sourceModelInstanceId:'model'}),grantTrace('1',{sourceModelInstanceId:'model'})];
+  const result=plan([profile('p',[])],{unitAbilities:[{canonicalId:'ability-a'}],applied});
+  assert.deepEqual(result.core[0].sources,applied);
+});
 console.log(JSON.stringify({status:'PASS',syntheticCases:cases,armyFactualReads:0}));

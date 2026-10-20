@@ -62,8 +62,31 @@ export function projectAbilityPresentation({instanceId,profiles,unitAbilities=[]
     groups.get(key).recipientScopes.push(scope);
   }
   const model=new Map(scopes.map(scope=>[scope,[]])),core=[];
-  const identify=ability=>({...ability,parameters:abilityParameters(ability),recipientScopes:[...ability.recipientScopes].sort(),
-    identity:JSON.stringify([instanceId,ability.subject,ability.canonicalId,abilityParameters(ability),[...ability.recipientScopes].sort()])});
+  // The effective ability bag is a set, while applied traces retain every
+  // independent grant. Join by the executed canonical/physical address, never
+  // by a display caption; native abilities do not acquire an invented source.
+  const identify=ability=>{
+    const sources=applied.filter(trace=>{
+      if(trace.targetInstanceId!==instanceId)return false;
+      if(trace.operation==='GRANT_ABILITY'){
+        if(trace.targetAbilityId!==ability.canonicalId||
+          factKey({canonicalId:trace.targetAbilityId,parameters:trace.abilityParameters})!==factKey(ability))return false;
+      }else if(trace.operation==='GRANT_MODEL_ABILITY'){
+        const value=abilityParameters(ability).value;
+        if(ability.canonicalId!==legacyOperations.GRANT_MODEL_ABILITY||!Number.isFinite(value)||
+          !Array.isArray(trace.after)||!trace.after.some(ability=>ability.value===value))return false;
+      }else return false;
+      if(ability.subject==='UNIT')return !trace.targetProfileId&&!trace.targetCompositionId&&!trace.targetModelInstanceId;
+      return ability.recipientScopes.some(scope=>{
+        const [,profileId,compositionId]=JSON.parse(scope);
+        return trace.targetProfileId===profileId&&(trace.targetCompositionId||null)===compositionId;
+      });
+    });
+    const unique=[...new Map(sources.map(source=>[JSON.stringify(source),clone(source)])).values()];
+    return {...ability,parameters:abilityParameters(ability),recipientScopes:[...ability.recipientScopes].sort(),
+      ...(unique.length?{sources:unique}:{}),
+      identity:JSON.stringify([instanceId,ability.subject,ability.canonicalId,abilityParameters(ability),[...ability.recipientScopes].sort()])};
+  };
   for(const ability of groups.values()) {
     if(ability.recipientScopes.length===scopes.length&&scopes.length)core.push(identify(ability));
     else for(const scope of ability.recipientScopes)model.get(scope).push(identify({...ability,recipientScopes:[scope]}));
