@@ -1,4 +1,49 @@
 import {createLifecycle} from './lifecycle.mjs';
+/** Display the service's existing uncertainty; never calculate or complete costs. */
+export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
+  const points=service?.points;
+  if(points?.status!=='UNRESOLVED')return null;
+  const allIssues=points.unresolved||[],unitPoints=points.units?.find(unit=>unit.unitInstanceId===instanceId);
+  const issues=allIssues.filter(issue=>!instanceId||!issue.unitInstanceId||issue.unitInstanceId===instanceId);
+  if(instanceId&&!issues.length&&unitPoints?.totalPoints!==null&&unitPoints?.totalPoints!==undefined)return null;
+  const node=(tag,text)=>{const value=document.createElement(tag);if(text!==undefined)value.textContent=text;return value;};
+  const warning=node('section');warning.className='v2-roster-points-warning';
+  warning.dataset.rosterPointsStatus='UNRESOLVED';warning.setAttribute('role','status');
+  warning.append(node('h3','Points unresolved'),node('p','Points cannot be calculated reliably. Required roster information is missing or could not be verified.'));
+  const reasons={
+    PAID_SELECTION_UNKNOWN:'The paid equipment selection is unknown.',
+    UNRESOLVED_PHYSICAL_QUANTITY:'The selected equipment quantity is unknown.',
+    DUPLICATE_OR_MISSING_PHYSICAL_SELECTION_ID:'The selected equipment occurrence could not be identified safely.',
+    UNRESOLVED_SELECTION_IDENTITY:'The selected equipment could not be identified safely.',
+    WRONG_PAID_OPTION_UNIT_OWNER:'The paid equipment could not be matched to this unit.',
+    PAID_EQUIPMENT_FIELD_NOT_PROVEN:'The selected equipment source reference could not be verified.',
+    MIXED_WEAPON_SELECTION_PHYSICAL_QUANTITY_NOT_PROVEN:'The paid weapon quantity could not be verified.',
+    ALTERNATIVE_PROFILE_OCCURRENCE_NOT_PROVEN:'Alternative profiles could not be matched to one physical weapon.',
+    MFM_COMPOSITION_TIER_NOT_PROVEN:'The unit size or copy tier could not be matched to a points cost.',
+    MFM_ENHANCEMENT_COST_NOT_PROVEN:'The selected Enhancement cost could not be verified.'
+  };
+  const list=node('ul'),stateUnits=service.state?.units||[];
+  for(const issue of issues){
+    const unit=stateUnits.find(unit=>unit.instanceId===issue.unitInstanceId);
+    const copies=unit?stateUnits.filter(copy=>copy.canonicalUnitId===unit.canonicalUnitId):[];
+    const name=unit?(titleForId(unit.canonicalUnitId)||'Imported unit')+(copies.length>1?` #${copies.findIndex(copy=>copy.instanceId===unit.instanceId)+1}`:''):null;
+    const paid=points.units?.find(row=>row.unitInstanceId===issue.unitInstanceId)?.paid;
+    const options=(paid?.options||[]).filter(option=>issue.costRecordId===option.costRecordId||
+      issue.costRecordIds?.includes(option.costRecordId)||
+      (issue.selectionKey&&option.selections?.some(selection=>selection.selectionKey===issue.selectionKey)));
+    for(const option of options.length?options:[null]){
+      const item=node('li');
+      if(issue.unitInstanceId)item.dataset.rosterPointsUnitId=issue.unitInstanceId;
+      if(option)item.dataset.rosterPointsOptionId=option.costRecordId;
+      if(issue.reason)item.dataset.rosterPointsReason=issue.reason;
+      item.textContent=[name,option?.label&&'Paid option: '+option.label].filter(Boolean).join(' — ');
+      item.append(node('span',(item.textContent?': ':'')+(reasons[issue.reason]||issue.message||'Required points information is unavailable.')));
+      list.append(item);
+    }
+  }
+  if(list.childElementCount)warning.append(list);
+  return warning;
+}
 /** Optional roster view. The injected service owns every identity, fact and effect. */
 export function createRosterPanel(document, {service, bookId, open, showDetail, titleForId, openPersonalGuide, showInstance,routeURL,lifecycle:parentLifecycle}) {
   if (!service || !Array.isArray(service.catalog)) throw new TypeError('A canonical roster service is required.');
@@ -536,6 +581,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const context = el('section', 'v2-roster');
     context.dataset.rosterContextInstanceId = instanceId;
     context.append(style.cloneNode(true), instanceIdentity(unit), instanceGear(unit));
+    const pointsWarning=renderRosterPointsStatus(document,{service,instanceId,titleForId:named});
+    if(pointsWarning)context.append(pointsWarning);
     const selections = sourceSelections(unit, names.get(instanceId), true);
     if (selections) context.append(selections);
     const members = (state.attachments || []).filter(record => record.bodyguardInstanceId === instanceId);
@@ -560,6 +607,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     if (!state?.units?.length) return;
     const summary = el('section', 'v2-card v2-roster-pane');
     summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
+    const pointsWarning=renderRosterPointsStatus(document,{service,titleForId:named});
+    if(pointsWarning)summary.append(pointsWarning);
     const detachments = el('ul', 'v2-roster-list');
     detachments.dataset.rosterDetachments = '';
     for (const detachment of state.detachments) {
