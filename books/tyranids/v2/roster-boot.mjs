@@ -1,5 +1,5 @@
 import {createTyranidsRosterImport} from './roster-import.mjs';
-import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {createTyranidsRuleSchema,tyranidsSourceChoiceContext,preserveTyranidsSourceChoices,
   setTyranidsSourceChoice,surpriseRuleId,trygonCharacterOptionId} from './roster-source-choices.mjs';
@@ -17,7 +17,7 @@ export function createTyranidsBrowserRoster(book) {
     get state(){return runtime.state;},get projection(){return runtime.projection;},
     get groups(){return runtime.projection?.formedUnits||[];},
     draft:importer.draft,
-    import(text,choices={}) {
+    import(text,choices={},options) {
       const bindings=structuredClone(choices);bindings.modelBearers??={};
       for(const [key,value]of Object.entries(bindings.enhancementBearers||{})) {
         const [unitId,enhancementId]=JSON.parse(key);
@@ -26,8 +26,7 @@ export function createTyranidsBrowserRoster(book) {
       delete bindings.enhancementBearers;
       const result=importer.import(text,bindings);
       if(result.status==='READY'){
-        service.load(preserveTyranidsSourceChoices(book,result.roster,runtime.state));
-        return {...result,roster:runtime.state};
+        return commitRosterImport({...result,roster:preserveTyranidsSourceChoices(book,result.roster,runtime.state)},runtime.state,service.load,options);
       }
       if(!result.candidateRoster)return result;
       const physical=formRoster(book,result.candidateRoster);

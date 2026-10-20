@@ -237,12 +237,25 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     preview.append(list);
     draftArea.append(preview);
   }
-  async function resolveImport() {
-    const result = await service.import(importText, structuredClone(bindings));
+  async function resolveImport(options) {
+    const result = await service.import(importText, structuredClone(bindings), options);
     if(!lifecycle.active)return;
     importResult=result;
     renderDraft(importResult.draft);
-    if (importResult.status === 'READY') {
+    if (importResult.status === 'REPLACEMENT_REQUIRED') {
+      bindingArea.replaceChildren();
+      const confirmation=el('section','v2-card v2-roster-pane');
+      confirmation.append(el('h3','','Replace the current roster?'),
+        el('p','','This import differs from your current roster. Replacing it will clear manual attachments. Your current roster and saved roster stay unchanged until you confirm.'));
+      const actions=el('div','v2-roster-tools');
+      actions.append(button('Replace roster',()=>resolveImport({replaceExisting:true}),'confirm-replace-roster'),
+        button('Keep current roster',()=>{
+          bindingArea.replaceChildren();importResult=null;renderRoster();
+          setStatus('Current roster kept. No changes were saved.');
+        },'cancel-replace-roster'));
+      confirmation.append(actions);bindingArea.append(confirmation);
+      setStatus('Replacement needs your confirmation. The current roster is unchanged.');
+    } else if (importResult.status === 'READY') {
       if (!service.state?.units?.length) checkResult(await service.load(importResult.roster));
       if(!lifecycle.active)return;
       bindingArea.replaceChildren();

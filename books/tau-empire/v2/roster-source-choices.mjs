@@ -236,9 +236,14 @@ export function preserveTauSourceChoices(book,incoming,previous) {
   validateTauPrototypeChoices(book,previous);
   if(physicalInput(incoming)!==physicalInput(previous))return incoming;
   let state=clone(incoming);
-  for(const unit of previous.units)if(unit[tauStudentField]?.length)
-    state=setTauStudentChoice(book,state,unit.instanceId,decisionRows(unit)[0].recipientInstanceIds);
-  for(const unit of previous.units)for(const decision of tauPrototypeDecisions(unit))
-    state=setTauPrototypeChoice(book,state,unit.instanceId,decision.sourceRuleId,decision.sourceWeaponReference);
+  for(const unit of previous.units)if(unit[tauStudentField]!==undefined)
+    state=setTauStudentChoice(book,state,unit.instanceId,decisionRows(unit)[0]?.recipientInstanceIds||[]);
+  for(const unit of previous.units){
+    // A player's cleared decision may retain an explicit empty typed field.
+    // Preserve that validated representation before full snapshot comparison.
+    if(unit[tauPrototypeField]?.length===0)state.units.find(row=>row.instanceId===unit.instanceId)[tauPrototypeField]=[];
+    for(const decision of tauPrototypeDecisions(unit))
+      state=setTauPrototypeChoice(book,state,unit.instanceId,decision.sourceRuleId,decision.sourceWeaponReference);
+  }
   return state;
 }

@@ -15,14 +15,14 @@ export function createECBrowserRoster(book) {
   const service={
     catalog,get state(){return runtime.state;},get projection(){return runtime.projection;},get groups(){return runtime.groups;},
     get adjudications(){return runtime.adjudications;},draft:runtime.draft,load:runtime.load,snapshot:runtime.snapshot,
-    import(text,choices={}) {
+    import(text,choices={},options) {
       const bindings=clone(choices);bindings.weaponChoices??={};bindings.modelBearers??={};
       for(const [key,value]of Object.entries(bindings.profiles||{}))if(key.startsWith('ec-weapon-choice/')){
         bindings.weaponChoices[key.slice('ec-weapon-choice/'.length)]=value;delete bindings.profiles[key];}
       for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){
         const [unitId,enhancementId]=JSON.parse(key);(bindings.modelBearers[unitId]??={})[enhancementId]=value;}
       delete bindings.enhancementBearers;
-      const result=runtime.import(text,bindings),candidate=result.candidateRoster;
+      const result=runtime.import(text,bindings,options),candidate=result.candidateRoster;
       if(result.status!=='NEEDS_BINDINGS'||!candidate)return result;
       const physical=formRoster(book,candidate);
       return {...result,needsBindings:result.needsBindings.map(need=>{

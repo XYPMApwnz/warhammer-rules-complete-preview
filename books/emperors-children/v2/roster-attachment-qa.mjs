@@ -108,7 +108,8 @@ check(()=>{
   const {s}=imported(fixture('character-bodyguard'));const original=s.snapshot();
   for(const text of [fixture('possessed-blade-missing-decision')]){
     assert.equal(s.import(text).status,'NEEDS_BINDINGS');assert.deepEqual(s.snapshot(),original);negative++;}
-  const result=s.import(fixture('aggregate-equipment-unresolved'));assert.equal(result.status,'READY');
+  // This independent fixture intentionally replaces the previous roster.
+  const result=s.import(fixture('aggregate-equipment-unresolved'),{},{replaceExisting:true});assert.equal(result.status,'READY');
   assert.equal(s.effective('parsed-unit-1').unitMetrics.chargeRoll.modifier,1);
   assert.ok(s.state.units[0].modelRows.every(row=>row.selections.every(selection=>selection.canonicalEquipmentIds.length===0)));
   assert.equal(contracts.length,26);assert.deepEqual(book,before);

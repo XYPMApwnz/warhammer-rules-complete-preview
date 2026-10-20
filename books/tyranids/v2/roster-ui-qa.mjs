@@ -129,7 +129,11 @@ choiceReload.setSourceChoice('parsed-unit-1',ruleId,optionId);verifyChoice(choic
 const noEnh=choiceText.replace('Enhancement: Trygon Prime\n',''),withoutEnh=createTyranidsBrowserRoster(book);
 assert.equal(withoutEnh.import(noEnh).status,'READY');withoutEnh.setSourceChoice('parsed-unit-1',ruleId,optionId);
 assert.ok(withoutEnh.projection.units[0].keywords.includes('CHARACTER'));assert.ok(!withoutEnh.projection.units[0].keywords.includes('SYNAPSE'));
-assert.equal(choiceReload.import(choiceText+'\n').status,'READY');
+const beforeNamespaceReplacement=choiceReload.snapshot(),beforeNamespaceProjection=choiceReload.projection;
+assert.equal(choiceReload.import(choiceText+'\n').status,'REPLACEMENT_REQUIRED');
+assert.deepEqual(choiceReload.snapshot(),beforeNamespaceReplacement,'Unconfirmed changed namespace preserves source choices and roster');
+assert.deepEqual(choiceReload.projection,beforeNamespaceProjection,'Unconfirmed changed namespace preserves computed effects');
+assert.equal(choiceReload.import(choiceText+'\n',{},{replaceExisting:true}).status,'READY');
 assert.ok(!choiceReload.projection.units[0].keywords.includes('CHARACTER'),'Changed input namespace requires explicit confirmation');
 const noSource=createTyranidsBrowserRoster(book);assert.equal(noSource.import(choiceText.replace('Subterranean Assault','Invasion Fleet').replace('Enhancement: Trygon Prime\n','')).status,'READY');
 assert.equal(noSource.sourceChoices('parsed-unit-1').length,0);assert.throws(()=>noSource.setSourceChoice('parsed-unit-1',ruleId,optionId));

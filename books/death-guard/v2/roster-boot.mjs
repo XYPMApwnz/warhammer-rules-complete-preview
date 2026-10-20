@@ -1,4 +1,4 @@
-import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {evaluatePredicate,evaluateRole,validatePredicate,publicResult} from './rule-contract-schema.mjs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
 import {importNewRecruit} from '../../shared/roster-v2/import.mjs';
@@ -17,15 +17,14 @@ export function createDGRosterRuntime(book) {
   };
   // The book input boundary supplies canonical caption references and checks
   // source equipment restrictions before the shared runtime executes effects.
-  runtime.import=(text,bindings)=>{
+  runtime.import=(text,bindings,options)=>{
     const result=importNewRecruit(text,{parse,bindings,book,...metadata});
     if(result.status==='READY') {
       const issues=inspectInstrumentSelections(book,result.roster);
       if(issues.length)return {...result,status:issues.some(issue=>!issue.unresolved)?'INVALID':'NEEDS_BINDINGS',
         candidateRoster:result.roster,roster:null,needsBindings:issues.filter(issue=>issue.unresolved),errors:issues.filter(issue=>!issue.unresolved)};
-      runtime.load(result.roster);
     }
-    return result;
+    return commitRosterImport(result,runtime.state,runtime.load,options);
   };
   return runtime;
 }

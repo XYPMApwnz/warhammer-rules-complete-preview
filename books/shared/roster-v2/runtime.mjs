@@ -5,6 +5,26 @@ import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 import {validateCompatibilityFeasibility} from './compatibility-feasibility.mjs';
 import {projectRosterRelated} from './related.mjs';
 const clone = value=>structuredClone(value);
+const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value==='object'
+  ?Object.fromEntries(Object.keys(value).sort().map(key=>[key,ordered(value[key])])):value;
+/** Import-only candidates stay attachment-free. A runtime import may retain
+ * only the CURRENT graph in the same namespace and complete physical state.
+ * The owner's ordinary atomic load revalidates the whole graph and effects.
+ * Explicit snapshot load/detach are never interpreted as reimport. */
+export function commitRosterImport(result,previous,load,{replaceExisting=false}={}) {
+  if(typeof replaceExisting!=='boolean')throw new TypeError('Invalid roster replacement confirmation');
+  if(result.status!=='READY')return result;
+  const candidate=clone(result.roster);
+  if(!Array.isArray(candidate?.attachments)||candidate.attachments.length)
+    throw new TypeError('A fresh imported candidate cannot contain attachments');
+  if(previous){
+    const physical=state=>{const copy=clone(state);delete copy.attachments;return JSON.stringify(ordered(copy));};
+    const identical=candidate.bookId===previous.bookId&&candidate.rosterId===previous.rosterId&&physical(candidate)===physical(previous);
+    if(identical)candidate.attachments=clone(previous.attachments);
+    else if(!replaceExisting)return {...result,status:'REPLACEMENT_REQUIRED',roster:null};
+  }
+  return {...result,roster:load(candidate)};
+}
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
 export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection,resolveWeaponPartitions}) {
@@ -25,10 +45,9 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
     get state(){ return state ? clone(state) : null; },
     get projection(){ return projection ? clone(projection) : null; },
     draft:text=>lexicalDraft(text,parse),
-    import(text,bindings) {
+    import(text,bindings,options) {
       const result=importNewRecruit(text,{parse,bindings,book});
-      if (result.status==='READY') service.load(result.roster);
-      return result;
+      return commitRosterImport(result,state,service.load,options);
     },
     load(snapshot) {
       const verified=validateRoster(book,snapshot,policies), derived=executeRosterEffects(book,verified,{evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions});

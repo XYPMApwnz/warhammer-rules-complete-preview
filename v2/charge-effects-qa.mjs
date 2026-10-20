@@ -94,10 +94,14 @@ for(const expectation of expectations.cases){
   }
   if(fixture.id==='csm-daemonkin'){
     service.load(initial);service.attach('parsed-unit-5',fixture.bodyguard);verify(service,adapter,fixture,expectation,[]);
+    // Reimport now preserves current links. Explicitly undo this negative
+    // attachment before restoring the positive source, rather than losing it
+    // as an incidental side effect of importing the same text again.
+    service.detach('parsed-unit-5');assert.equal(service.state.attachments.length,0);
   }else{
-    assert.equal(service.import(fixture.disabledText).status,'READY');verify(service,adapter,fixture,expectation,[]);
+    assert.equal(service.import(fixture.disabledText,{}, {replaceExisting:true}).status,'READY');verify(service,adapter,fixture,expectation,[]);
   }
-  assert.equal(service.import(fixture.text).status,'READY');if(fixture.bodyguard)service.attach(fixture.source,fixture.bodyguard);
+  assert.equal(service.import(fixture.text,{}, {replaceExisting:true}).status,'READY');if(fixture.bodyguard)service.attach(fixture.source,fixture.bodyguard);
   verify(service,adapter,fixture,expectation,fixture.enabled);
   for(const mutation of ['missing-binding','wrong-value','wrong-recipient']){
     const changed=clone(adapter.book),rule=changed.entities.find(e=>e.id===expectation.source.canonicalId);

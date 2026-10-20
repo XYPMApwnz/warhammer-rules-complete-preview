@@ -96,9 +96,11 @@ export function runAggregateInventoryGuard(){
       if(c.ignoresCover){const ranged=current.weapons.find(w=>w.id==='datasheet-skitarii-rangers:weapon:3');assert.equal(ranged.fields.find(field=>field.label==='abilities').value.some(value=>value.toUpperCase()==='IGNORES COVER'),!ordinal);}
     }
     const reloaded=make();reloaded.load(original);assert.deepEqual(reloaded.projection,r.projection);
-    assert.equal(r.import(aggregateInventoryFixture(c,false)).status,'READY');assert.ok(r.state.units.every(unit=>selections(unit).every(selection=>!selection.canonicalEquipmentIds.length)));
+    // These controls intentionally replace the entire roster; the dedicated
+    // reimport guard checks that an unconfirmed changed input stays pending.
+    assert.equal(r.import(aggregateInventoryFixture(c,false),{},{replaceExisting:true}).status,'READY');assert.ok(r.state.units.every(unit=>selections(unit).every(selection=>!selection.canonicalEquipmentIds.length)));
     if(c.charge)assert.ok(r.state.units.every(unit=>!r.effective(unit.instanceId).unitMetrics?.chargeRoll));
-    assert.equal(r.import(text).status,'READY');assert.deepEqual(r.snapshot(),original);
+    assert.equal(r.import(text,{},{replaceExisting:true}).status,'READY');assert.deepEqual(r.snapshot(),original);
     if(c.book==='tyranids'){
       // A mixed composition still preserves a known UNIT total. This does not
       // assign any of the eleven weapons to its Nodebeast or other models.

@@ -1,4 +1,4 @@
-import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
 import {createAdMechRosterImport,withEquipmentCaptionBindings} from './roster-import.mjs';
@@ -30,10 +30,9 @@ export function createAdMechRosterRuntime(book,metadata,{evaluator=createRuleCon
     return load(restored);
   };
   runtime.draft=text=>importer.draft(text);
-  runtime.import=(text,bindings)=>{
+  runtime.import=(text,bindings,options)=>{
     const result=importer.import(text,bindings);
-    if(result.status==='READY')runtime.load(result.roster);
-    return result;
+    return commitRosterImport(result,runtime.state,runtime.load,options);
   };
   return runtime;
 }

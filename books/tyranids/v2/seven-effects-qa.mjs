@@ -131,7 +131,7 @@ for(const e of sevenEffectsExpectations){
   s.load(off);verify(e,s,{active:false});s.load(selected);verify(e,s);
  }else{
   verify(e,s);if(e.fixture==='leaderBeasts')for(let i=0;i<2;i++){s.attach(f.leaders[i],f.bodyguards[i]);verify(e,s);s.detach(f.leaders[i]);verify(e,s);s.reattach(f.leaders[i],f.bodyguards[i]);verify(e,s);}
-  const on=s.snapshot();assert.equal(s.import(f.text.replace('+ DETACHMENT: '+f.detachment,'+ DETACHMENT: Invasion Fleet')).status,'READY');
+  const on=s.snapshot();assert.equal(s.import(f.text.replace('+ DETACHMENT: '+f.detachment,'+ DETACHMENT: Invasion Fleet'),{},{replaceExisting:true}).status,'READY');
   for(const a of on.attachments)s.attach(a.leaderInstanceId,a.bodyguardInstanceId);verify(e,s,{active:false});s.load(on);verify(e,s);
  }
  const saved=s.snapshot(),projection=clone(s.projection);s.load(JSON.parse(JSON.stringify(saved)));assert.deepEqual(s.projection,projection);verify(e,s);

@@ -3,6 +3,7 @@ import {formRoster,changeAttachment,selections} from '../../shared/roster-v2/con
 import {preserveTauSourceChoices,validateTauAttachmentSourceConditions,tauStudentRuleId,tauStudentOptionId,tauStudentField} from './roster-source-choices.mjs';
 import {tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {pendingPhysicalBindings} from './rule-contract-declarations.mjs';
+import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 
 const clone=structuredClone;
 const reference=(unit,weapon)=>({unitInstanceId:unit.instanceId,scopeId:weapon.scopeId??null,
@@ -17,7 +18,7 @@ export function createTauBrowserRoster(book){
   const service={
     catalog:runtime.catalog,get state(){return runtime.state;},get projection(){return runtime.projection;},
     get groups(){return runtime.projection?.formedUnits||[];},draft:importer.draft,
-    import(text,choices={}){
+    import(text,choices={},options){
       const bindings=clone(choices);bindings.modelBearers??={};
       for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){
         const [unitId,ruleId]=JSON.parse(key);(bindings.modelBearers[unitId]??={})[ruleId]=value;
@@ -25,8 +26,7 @@ export function createTauBrowserRoster(book){
       delete bindings.enhancementBearers;
       const result=importer.import(text,bindings);
       if(result.status==='READY'){
-        service.load(preserveTauSourceChoices(book,result.roster,runtime.state));
-        return {...result,roster:runtime.state};
+        return commitRosterImport({...result,roster:preserveTauSourceChoices(book,result.roster,runtime.state)},runtime.state,service.load,options);
       }
       if(!result.candidateRoster)return result;
       const physical=formRoster(book,result.candidateRoster);

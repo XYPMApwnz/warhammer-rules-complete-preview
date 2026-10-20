@@ -4,6 +4,7 @@ import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instance.mjs';
 import {createECRosterImport} from './roster-import.mjs';
 import {createFormationContext} from './rule-contract-formation-context.mjs';
+import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 const clone=structuredClone;
 const reject=(ok,message)=>{if(!ok)throw new TypeError(message);};
 
@@ -21,10 +22,9 @@ export function createECRosterAttachments(book,schema) {
     get state(){return attachments.state;},get projection(){return projection?clone(projection):null;},
     get groups(){return attachments.groups;},get adjudications(){return clone(book.rosterAttachmentAdjudications);},
     draft:text=>freshImport().draft(text),snapshot:()=>attachments.snapshot(),
-    import(text,bindings={}) {
+    import(text,bindings={},options) {
       const result=freshImport().import(text,bindings);
-      if(result.status==='READY')service.load(result.roster);
-      return {...result,legality:'NOT_ASSESSED',attachmentAdjudications:service.adjudications};
+      return {...commitRosterImport(result,service.state,service.load,options),legality:'NOT_ASSESSED',attachmentAdjudications:service.adjudications};
     },
     load(snapshot) {
       // Revalidate canonical import ownership independently of current edges.

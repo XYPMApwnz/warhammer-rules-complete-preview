@@ -5,6 +5,7 @@ import {evaluateCSMRosterDeclarations} from './roster-effect-context.mjs';
 import {changeAttachment,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 
 /** Compose native import + attachment state with the existing interpreter.
  * All rebuilds start from immutable canonical inputs. No presentation is mounted. */
@@ -19,7 +20,7 @@ export function createCSMRosterRuntime(runtimeBook,importBook,bindings) {
     get projection(){return projection?structuredClone(projection):null;},
     get groups(){return projection?structuredClone(projection.formedUnits):[];},
     draft:text=>importer.draft(text),
-    import(text,choices){const result=importer.import(text,choices);if(result.status==='READY')service.load(result.roster);return result;},
+    import(text,choices,options){return commitRosterImport(importer.import(text,choices),service.state,service.load,options);},
     load(snapshot){
       // Validate imported selection fields through their existing boundary as
       // well as the formed graph. Do not derive absent choices or history.
