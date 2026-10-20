@@ -1,0 +1,390 @@
+{
+  "schema": "space-marines-v2-reviewed-roster-source-corrections/v1",
+  "sourceReview": "SOURCE_REVIEW.json",
+  "corrections": [
+    {
+      "id": "sm-stage4c-reviewed-composition-sm-b2e054ed2ab6473c",
+      "type": "SOURCE_CONTEXTUAL_COMPOSITION_PROFILE_BINDING",
+      "status": "SOURCE_CONFIRMED",
+      "canonicalOwnerId": "unit-sm-74c53544aa694147",
+      "compositionId": "composition-sm-b2e054ed2ab6473c",
+      "modelProfileId": "model-sm-55bf1242f2bb4dae",
+      "sourceRole": "SERGEANT",
+      "old": {
+        "profileBindingStatus": "NOT_PROVEN",
+        "modelProfileId": null
+      },
+      "new": {
+        "profileBindingStatus": "SOURCE_CONFIRMED",
+        "modelProfileId": "model-sm-55bf1242f2bb4dae"
+      },
+      "reviewBasis": "Explicit physical role within one exact source-owned datasheet container. The unit-wide With Jump Packs qualifier belongs to the container; its two intrinsic profiles are the Sergeant and ordinary Veteran roles, while its two composition members carry those same roles. No global alias, name normalization, source-title correction, record-order join or profile-stat equality join is introduced.",
+      "sourceProof": [
+        {
+          "canonicalId": "composition-sm-b2e054ed2ab6473c",
+          "sourceEntityId": "sm-source-7488d1d3a1d3446e",
+          "kind": "COMPOSITION_MEMBER",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[5]/ul[1]/li",
+            "sourceEntityId": "sm-source-7488d1d3a1d3446e",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "1 Vanguard Veteran Sergeant with Jump Pack model",
+          "selectedHtmlSha256": "B3E51BD022805D7CFCB54D11FADF43221EF39F7F5ECF07969B11B581BB4D4339",
+          "selectedTextSha256": "30C7E242EBB82CFACBB2EADEC892BCE5E212E27F298AF06339B90C6EC788E9F3"
+        },
+        {
+          "canonicalId": "model-sm-55bf1242f2bb4dae",
+          "sourceEntityId": "sm-source-da61a516d6fd405b",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[8]",
+            "sourceEntityId": "sm-source-da61a516d6fd405b",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "M 12\" T 5 SV 3+ W 2 LD 6+ OC 1 Vanguard Veteran Sergeant(⌀32mm)",
+          "selectedHtmlSha256": "C11127491F7FBD987BE6CC84317BCD72BF2DF530D226703D2DB45A1F8163F56A",
+          "selectedTextSha256": "91196B42B8DA721C79F008048162F83557C2B71410C560DE2F07895EB388B0D0"
+        },
+        {
+          "canonicalId": "section-sm-d342cadab9a64c24",
+          "sourceEntityId": "sm-source-c315e1627bc749a1",
+          "kind": "DATASHEET_SECTION",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[4]",
+            "sourceEntityId": "sm-source-c315e1627bc749a1",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "UNIT COMPOSITION",
+          "selectedHtmlSha256": "16814179796BD92D1AC8C2A5D74C3D133EF0FFE7844E62245CD8A7580DB90293",
+          "selectedTextSha256": "059302F09D2CB85A3ED576C18B0614284E82113189F974B6D03BD4DF5661AE5F"
+        },
+        {
+          "canonicalId": "section-sm-c6194f07927c474c",
+          "sourceEntityId": "sm-source-490624e27c994ca4",
+          "kind": "DATASHEET_SECTION",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[1]/div[2]",
+            "sourceEntityId": "sm-source-490624e27c994ca4",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "WARGEAR OPTIONS",
+          "selectedHtmlSha256": "BF0A441A512E1705E92AA8491ED3D2D4A5874052C2853C24E9D9A4CA93D47EA5",
+          "selectedTextSha256": "2D2094954117E90CD4468D0CAEF9B6DDDBFE28FD91339E46FF13F86A0F35D767"
+        }
+      ],
+      "context": {
+        "unitSourceId": "sm-source-9b8d7b42e0cd4fc6",
+        "unitPointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]",
+        "unitHeader": "Vanguard Veteran Squad With Jump Packs",
+        "unitHeaderPointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[5]",
+        "unitHeaderHtmlSha256": "C3592EACB17FD927A6DE0FE782823A37F9B45086489A8B5A619198405076AACF",
+        "profileRoleSet": [
+          "SERGEANT",
+          "ORDINARY_VETERAN"
+        ],
+        "profileCount": 2,
+        "compositionMemberIds": [
+          "composition-sm-b2e054ed2ab6473c",
+          "composition-sm-dc1b983be26846bf"
+        ],
+        "allPhysicalModelsSourceKeywords": [
+          "INFANTRY",
+          "FLY",
+          "JUMP PACK"
+        ],
+        "sourceStatsBothProfiles": {
+          "M": "12\"",
+          "T": "5",
+          "SV": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1"
+        },
+        "statsAreCorroborationNotIdentityKey": true
+      },
+      "preserveSourceLabels": true,
+      "globalAliasesAdded": false
+    },
+    {
+      "id": "sm-stage4c-reviewed-composition-sm-dc1b983be26846bf",
+      "type": "SOURCE_CONTEXTUAL_COMPOSITION_PROFILE_BINDING",
+      "status": "SOURCE_CONFIRMED",
+      "canonicalOwnerId": "unit-sm-74c53544aa694147",
+      "compositionId": "composition-sm-dc1b983be26846bf",
+      "modelProfileId": "model-sm-eaba389795c342e3",
+      "sourceRole": "ORDINARY_VETERAN",
+      "old": {
+        "profileBindingStatus": "NOT_PROVEN",
+        "modelProfileId": null
+      },
+      "new": {
+        "profileBindingStatus": "SOURCE_CONFIRMED",
+        "modelProfileId": "model-sm-eaba389795c342e3"
+      },
+      "reviewBasis": "Explicit physical role within one exact source-owned datasheet container. The unit-wide With Jump Packs qualifier belongs to the container; its two intrinsic profiles are the Sergeant and ordinary Veteran roles, while its two composition members carry those same roles. No global alias, name normalization, source-title correction, record-order join or profile-stat equality join is introduced.",
+      "sourceProof": [
+        {
+          "canonicalId": "composition-sm-dc1b983be26846bf",
+          "sourceEntityId": "sm-source-7e859171eba34455",
+          "kind": "COMPOSITION_MEMBER",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[5]/ul[2]/li",
+            "sourceEntityId": "sm-source-7e859171eba34455",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "4-9 Vanguard Veteran with Jump Pack models",
+          "selectedHtmlSha256": "FF841991E04002C54CA6E0BB6B7ED050D001579CAA60A3A85D1BF4936BFB1F4C",
+          "selectedTextSha256": "532E46A4B42AF0DF3A2D9F90098BF6CE955AA5A425E6AF07CACB3C01A51DEE5E"
+        },
+        {
+          "canonicalId": "model-sm-eaba389795c342e3",
+          "sourceEntityId": "sm-source-c89841dd4e8e4822",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[9]",
+            "sourceEntityId": "sm-source-c89841dd4e8e4822",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "12\" 5 3+ 2 6+ 1 Vanguard Veteran(⌀32mm)",
+          "selectedHtmlSha256": "C856CA2A243160F574C57ACE92180C77DD1BA334F6C8F3A94B199FE66357CCF5",
+          "selectedTextSha256": "C4251667B3A6A2C7964F2AD9BED3E59163FA21A1B3E25D35174C2B3BDE39A420"
+        },
+        {
+          "canonicalId": "section-sm-d342cadab9a64c24",
+          "sourceEntityId": "sm-source-c315e1627bc749a1",
+          "kind": "DATASHEET_SECTION",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[2]/div[4]",
+            "sourceEntityId": "sm-source-c315e1627bc749a1",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "UNIT COMPOSITION",
+          "selectedHtmlSha256": "16814179796BD92D1AC8C2A5D74C3D133EF0FFE7844E62245CD8A7580DB90293",
+          "selectedTextSha256": "059302F09D2CB85A3ED576C18B0614284E82113189F974B6D03BD4DF5661AE5F"
+        },
+        {
+          "canonicalId": "section-sm-c6194f07927c474c",
+          "sourceEntityId": "sm-source-490624e27c994ca4",
+          "kind": "DATASHEET_SECTION",
+          "parentId": "unit-sm-74c53544aa694147",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[2]/div[1]/div[2]",
+            "sourceEntityId": "sm-source-490624e27c994ca4",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "WARGEAR OPTIONS",
+          "selectedHtmlSha256": "BF0A441A512E1705E92AA8491ED3D2D4A5874052C2853C24E9D9A4CA93D47EA5",
+          "selectedTextSha256": "2D2094954117E90CD4468D0CAEF9B6DDDBFE28FD91339E46FF13F86A0F35D767"
+        }
+      ],
+      "context": {
+        "unitSourceId": "sm-source-9b8d7b42e0cd4fc6",
+        "unitPointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]",
+        "unitHeader": "Vanguard Veteran Squad With Jump Packs",
+        "unitHeaderPointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[1]/div[5]",
+        "unitHeaderHtmlSha256": "C3592EACB17FD927A6DE0FE782823A37F9B45086489A8B5A619198405076AACF",
+        "profileRoleSet": [
+          "SERGEANT",
+          "ORDINARY_VETERAN"
+        ],
+        "profileCount": 2,
+        "compositionMemberIds": [
+          "composition-sm-b2e054ed2ab6473c",
+          "composition-sm-dc1b983be26846bf"
+        ],
+        "allPhysicalModelsSourceKeywords": [
+          "INFANTRY",
+          "FLY",
+          "JUMP PACK"
+        ],
+        "sourceStatsBothProfiles": {
+          "M": "12\"",
+          "T": "5",
+          "SV": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1"
+        },
+        "statsAreCorroborationNotIdentityKey": true
+      },
+      "preserveSourceLabels": true,
+      "globalAliasesAdded": false
+    },
+    {
+      "id": "sm-stage4c-reviewed-enhancement-sm-1599eafe5bab4e91",
+      "type": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE",
+      "status": "SOURCE_CONFIRMED",
+      "canonicalId": "enhancement-sm-1599eafe5bab4e91",
+      "canonicalOwnerId": "detachment-sm-9310c9a221094584",
+      "old": {
+        "scope": "MODEL"
+      },
+      "new": {
+        "scope": "UNIT"
+      },
+      "unchanged": {
+        "itemKind": "ENHANCEMENT",
+        "canonicalId": "enhancement-sm-1599eafe5bab4e91",
+        "sourceEntityId": "sm-source-e784659436db40a7",
+        "text": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action.",
+        "eligibilityText": "- Castellum Omnivox\nADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action."
+      },
+      "sourceProof": {
+        "canonicalId": "enhancement-sm-1599eafe5bab4e91",
+        "sourceEntityId": "sm-source-e784659436db40a7",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-sm-9310c9a221094584",
+        "source": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+          "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+          "sourceEntityId": "sm-source-e784659436db40a7",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "selectedSourceText": "Castellum Omnivox 10 ptsThis unique vox-and-augur augmetic provides the bearer with unparalleled tactical data vital to coordinating an aggressive defence in battle.ADEPTUS ASTARTES unit only. When this unit makes a advance/fall-back move, that move does not prevent this unit from being eligible to start an action.",
+        "selectedHtmlSha256": "6E05D031BD33D176EEE88FD43F2D42869BB157865F37CB7227E2890DC368BD48",
+        "selectedTextSha256": "B05694D012C0CE09975782F426BF828E9DA86EFB48B43416E1933E6C9DD8BFE0"
+      },
+      "reviewBasis": "The accepted gameplay paragraph explicitly says ADEPTUS ASTARTES unit only and refers to this unit. Its source heading is Enhancements, so scope correction must not recategorize it as an Upgrade. The surrounding fluff uses bearer; fluff does not override the explicit gameplay recipient.",
+      "physicalAssignment": "UNIT without fabricated MODEL bearer",
+      "executableBindingChangeAuthorizedByThisEvidence": false,
+      "globalAliasesAdded": false
+    },
+    {
+      "id": "sm-stage4c-reviewed-enhancement-sm-32c4e009e6c84003",
+      "type": "SOURCE_REVIEWED_PHYSICAL_ASSIGNMENT_SCOPE",
+      "status": "SOURCE_CONFIRMED",
+      "canonicalId": "enhancement-sm-32c4e009e6c84003",
+      "canonicalOwnerId": "detachment-sm-9310c9a221094584",
+      "old": {
+        "scope": "MODEL"
+      },
+      "new": {
+        "scope": "UNIT"
+      },
+      "unchanged": {
+        "itemKind": "ENHANCEMENT",
+        "canonicalId": "enhancement-sm-32c4e009e6c84003",
+        "sourceEntityId": "sm-source-687c1df4e6e04066",
+        "text": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER].",
+        "eligibilityText": "- Spy-skull Data Link\nADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER]."
+      },
+      "sourceProof": {
+        "canonicalId": "enhancement-sm-32c4e009e6c84003",
+        "sourceEntityId": "sm-source-687c1df4e6e04066",
+        "kind": "ENHANCEMENT",
+        "parentId": "detachment-sm-9310c9a221094584",
+        "source": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+          "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+          "sourceEntityId": "sm-source-687c1df4e6e04066",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "selectedSourceText": "Spy-skull Data Link 10 ptsSeveral artificer-crafted and heavily shrouded servo-skulls are tethered to this device, their linked visual feeds making the bearer nigh impossible to evade.ADEPTUS ASTARTES unit only. This unit’s ranged weapons have [IGNORES COVER].",
+        "selectedHtmlSha256": "767E221B08CE7047E996B5B11C225B01F0934989373A09F57985AB036D7BBF6C",
+        "selectedTextSha256": "DCA04194BE4475DDED9495CD668B65597EBC07298BA6F5656515EB3C5C8E19C9"
+      },
+      "reviewBasis": "The accepted gameplay paragraph explicitly says ADEPTUS ASTARTES unit only and refers to this unit. Its source heading is Enhancements, so scope correction must not recategorize it as an Upgrade. The surrounding fluff uses bearer; fluff does not override the explicit gameplay recipient.",
+      "physicalAssignment": "UNIT without fabricated MODEL bearer",
+      "executableBindingChangeAuthorizedByThisEvidence": false,
+      "globalAliasesAdded": false
+    }
+  ],
+  "unresolved": [
+    {
+      "canonicalId": "composition-sm-11f249c8e3af4b85",
+      "status": "NOT_PROVEN",
+      "candidateModelProfileId": "model-sm-1e6ba64c42ba4d79",
+      "sourceProof": [
+        {
+          "canonicalId": "composition-sm-11f249c8e3af4b85",
+          "sourceEntityId": "sm-source-a55132005d334491",
+          "kind": "COMPOSITION_MEMBER",
+          "parentId": "unit-sm-c7226873c51d43c0",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[5]/ul[3]/li",
+            "sourceEntityId": "sm-source-a55132005d334491",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "1 Dainal Kornelius model",
+          "selectedHtmlSha256": "4EC9A4FDE4E72B48AF8D456D118887739DC8F907E9E129BBF4BEEBB0F78838DE",
+          "selectedTextSha256": "D1C255CCF1B4BBEF3D74FBE36553C4C0EF0BB16538E88AA815CD0E557CA2549F"
+        },
+        {
+          "canonicalId": "model-sm-1e6ba64c42ba4d79",
+          "sourceEntityId": "sm-source-0396b6ff99de416b",
+          "kind": "MODEL_PROFILE",
+          "parentId": "unit-sm-c7226873c51d43c0",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[1]/div[15]",
+            "sourceEntityId": "sm-source-0396b6ff99de416b",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "6\" 3 4+ 3 6+ 1 Dainal Komelius(⌀40mm)",
+          "selectedHtmlSha256": "C91FD2BF9F75860B3A4B4EB41F350E9697F690FC47DFD8D11192AC0AB15D0AB7",
+          "selectedTextSha256": "51F7C1042147ED6A664A75C8C4FF9CB0A81D93661D228527C4B9BB2982675BAD"
+        },
+        {
+          "canonicalId": "section-sm-507cbcfad6964570",
+          "sourceEntityId": "sm-source-502063cc64684450",
+          "kind": "DATASHEET_SECTION",
+          "parentId": "unit-sm-c7226873c51d43c0",
+          "source": {
+            "sourceId": "space-marines-waha-11e-2026-10-20",
+            "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+            "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+            "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[4]",
+            "sourceEntityId": "sm-source-502063cc64684450",
+            "authority": "ACCEPTED_SECONDARY"
+          },
+          "selectedSourceText": "UNIT COMPOSITION",
+          "selectedHtmlSha256": "F9D67ED9065A446852326DB8971F36ED25FC1D90A5526014799B027554F112F2",
+          "selectedTextSha256": "059302F09D2CB85A3ED576C18B0614284E82113189F974B6D03BD4DF5661AE5F"
+        }
+      ],
+      "reason": "Accepted composition and loadout text spell Dainal Kornelius; accepted profile and named PSYKER declaration spell Dainal Komelius. One remaining unmatched member/profile and similar spelling do not independently prove a source identity correction. No applicable amendment in accepted official PDF repairs this naming discrepancy.",
+      "safePhysicalBehavior": "Preserve the source composition/member text and quantity. A provided canonical MODEL_PROFILE can be displayed as that profile, but do not infer it from the unresolved composition name, invent a global alias or apply model-specific loadout/keyword effects through the unproved join. Ask for explicit profile binding or leave affected physical import NEEDS_BINDINGS/NOT_PROVEN."
+    }
+  ]
+}

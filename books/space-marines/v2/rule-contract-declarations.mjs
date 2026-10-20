@@ -412,8 +412,8 @@ export const enhancementEligibility={
   },
   "enhancement-sm-90544ca326d243be": {
     "subject": "MODEL",
-    "keywords": [
-      "APOTHECARY BIOLOGIS"
+    "unitIds": [
+      "unit-sm-63a015916b46446a"
     ],
     "eligibilityEvidence": "- Narthecis Gauntlet\nAPOTHECARY BIOLOGIS model only. in your Command phase, this unit heals D3+1 wounds."
   },
@@ -505,8 +505,8 @@ export const enhancementEligibility={
   },
   "enhancement-sm-b83286afe07645eb": {
     "subject": "MODEL",
-    "keywords": [
-      "TECHMARINE"
+    "unitIds": [
+      "unit-sm-1d09de3e7281438a"
     ],
     "eligibilityEvidence": "- Target Augury Web\nTECHMARINE model only. In your movement phase, at the start or end of this unit’s move, you can select one friendly ADEPTUS ASTARTES VEHICLE model within 3\" of this unit. That VEHICLE model’s attacks have [LETHAL HITS] until the start of your next Command phase"
   },
@@ -526,8 +526,8 @@ export const enhancementEligibility={
   },
   "enhancement-sm-cb0f3a594ea44264": {
     "subject": "MODEL",
-    "keywords": [
-      "TECHMARINE"
+    "unitIds": [
+      "unit-sm-1d09de3e7281438a"
     ],
     "eligibilityEvidence": "- Adept of the Omnissiah\nTECHMARINE model only. (Once per battle round, per army) When an enemy unit targets a friendly ADEPTUS ASTARTES VEHICLE unit within 6\" of this unit, you can use this ability. If you do, that VEHICLE unit has Feel No Pain 5+ until that enemy unit has attacked."
   },
