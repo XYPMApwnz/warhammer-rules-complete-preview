@@ -9,6 +9,27 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   if (!unit) throw new TypeError('Unresolved physical instance');
   const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
   const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
+  // Resolve only recorded keyword grants. The final keyword bags remain the
+  // executor's authority; intrinsic/no-op keywords do not invent a source.
+  const keywordSources=(group?projection.units.filter(member=>group.memberInstanceIds.includes(member.instanceId)):[unit])
+    .flatMap(member=>member.applied.filter(row=>['GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD'].includes(row.operation)).flatMap(row=>{
+      const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(item=>item.id===row.clauseId);
+      const effect=clause?.rosterEffects.find(item=>item.id===row.effectId);
+      const model=row.operation==='GRANT_MODEL_KEYWORD'?member.profiles.find(profile=>profile.scopeId===row.targetCompositionId&&profile.canonicalProfileId===row.targetProfileId):null;
+      if(!effect||effect.operation!==row.operation||effect.targetSubject!==(model?'MODEL':'UNIT')||
+          row.targetInstanceId!==member.instanceId||row.field!=='keywords'||!Array.isArray(row.after)||!row.after.includes(effect.keyword)||
+          row.operation==='GRANT_MODEL_KEYWORD'&&!model)
+        throw new TypeError('Unresolved typed keyword grant provenance');
+      if(!(model?.keywords||member.keywords).includes(effect.keyword))return []; // A later removal is not a current grant.
+      const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+      const origin=records.get(canonicalRuleId);
+      if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+        throw new TypeError('Unresolved canonical keyword grant origin');
+      return [{...clone(row),keyword:effect.keyword,subject:effect.targetSubject,
+        unitScope:effect.targetSubject==='UNIT'?(effect.unitScope||'FORMED'):null,
+        canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
+        provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{})}];
+    }));
   // UNIT modifiers stay on the UNIT. Preserve the executor's final value
   // and resolve its exact typed source; presentation must not recalculate it.
   const unitMetrics=Object.fromEntries(['chargeRoll','advanceRoll','detectionRange'].filter(field=>unit.metrics?.[field]).map(field=>[field,clone(unit.metrics[field])]));
@@ -61,6 +82,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   });
   const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+    ...(keywordSources.length?{keywordSources}:{}),
     enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
     ...(Object.keys(unitMetrics).length?{unitMetrics,unitMetricSources}:{}),

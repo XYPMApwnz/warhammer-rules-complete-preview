@@ -151,6 +151,34 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return node;
   };
   const metricNode=field=>{const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));return metric;};
+  const keywordValue=field=>{
+    const value=factValue('span',field);
+    if(!field.keywordSources?.length)return value;
+    const node=el('span','ds-effective-keyword');node.append(value);
+    node.dataset.keywordSources=JSON.stringify(field.keywordSources);
+    const note=el('small','ds-ability-sources');note.append(document.createTextNode(' · Source: '));
+    for(const [index,source]of field.keywordSources.entries()){
+      if(index)note.append(document.createTextNode('; '));
+      const link=anchor(source.label,source.canonicalRuleId,true);
+      link.dataset.keywordSourceRuleId=source.canonicalRuleId;
+      link.dataset.keywordSourceInstanceId=source.sourceInstanceId||'';
+      link.dataset.keywordRecipientInstanceId=source.targetInstanceId;
+      note.append(link);
+      const physicalLabel=id=>{
+        const physical=roster.state.units.find(unit=>unit.instanceId===id);if(!physical)return null;
+        const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+        return (cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+(peers.length>1?` #${peers.findIndex(unit=>unit.instanceId===id)+1}`:'');
+      };
+      const bearer=physicalLabel(source.sourceInstanceId);
+      if(bearer)note.append(document.createTextNode(' — '+bearer));
+      if(source.sourceModelInstanceId||source.sourceCompositionId)note.append(document.createTextNode(` (${source.sourceModelInstanceId||source.sourceCompositionId})`));
+      // A formed keyword union must not suggest every component/MODEL was
+      // granted a physical or MODEL-scoped keyword.
+      const recipient=physicalLabel(source.targetInstanceId);
+      if(recipient)note.append(document.createTextNode(' · Applies to: '+recipient+(source.subject==='MODEL'?` (${source.targetCompositionId})`:'')));
+    }
+    node.append(note);return node;
+  };
   const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation,sharedMetricFields=new Set()}={})=>{
     const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
     const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
@@ -727,10 +755,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const caption=factValue('b',label);
       if(instanceId&&group.labelFieldId===`${card.id}::/rosterKeywordGroups/unit/label`)caption.textContent='Keywords';
       line.append(caption,document.createTextNode(': '));
-      group.fieldIds.forEach((id,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',card.fields.find(field=>field.id===id)));});keywords.append(line);
+      group.fieldIds.forEach((id,index)=>{if(index)line.append(document.createTextNode(', '));line.append(keywordValue(card.fields.find(field=>field.id===id)));});keywords.append(line);
     }}else for(const [path,label] of [['keywords','Keywords'],['factionKeywords','Faction Keywords']]){
       const line=el('p');line.append(el('b','',label+': '));const fields=card.fields.filter(f=>f.source?.path.startsWith('/'+path+'/'));
-      fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(factValue('span',field));});keywords.append(line);
+      fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(keywordValue(field));});keywords.append(line);
     }root.append(keywords);
     const sections=[...root.children].filter(n=>n.classList.contains('unit-part'));
     for(const section of sections){const tab=el('button','local-tab',section.querySelector('h4')?.textContent || 'Section');tab.type='button';tab.dataset.datasheetTarget=section.id;listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}

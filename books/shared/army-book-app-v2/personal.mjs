@@ -74,6 +74,16 @@ export function projectPersonalBook(payload, state) {
     allowedIds.add(id); (card.children || []).forEach(visit); };
   const roots = payload.cards.filter(card=>card.kind==='ARMY_RULE').map(card=>card.id);
   [...roots,...detachments,...units].forEach(visit);
+  // A selected equipment permission can cite a separate canonical rule.
+  // Keep that exact, provenance-confirmed source readable in Personal mode;
+  // this adds a reference, never an equipment selection or an effect.
+  for(const unit of state.units)for(const selection of [...(unit.selections||[]),
+    ...(unit.modelRows||[]).flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]){
+    const origin=cards.get(selection.sourceEquipmentIdentity),proof=selection.sourceEquipmentProvenance;
+    if(selection.physicalQuantity>0&&origin&&proof&&
+        selection.canonicalEquipmentIds?.some(id=>allowedIds.has(id)&&cards.get(id)?.contextId===unit.canonicalUnitId)&&
+        ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===origin.provenance?.[key]))visit(origin.id);
+  }
   for (const id of [...detachments,...enhancements,...units]) assert(allowedIds.has(id),'Unresolved personal book identity: '+id);
   const copies = new Map();
   state.units.forEach(unit=>{const list=copies.get(unit.canonicalUnitId)||[];list.push(unit.instanceId);copies.set(unit.canonicalUnitId,list);});
@@ -289,10 +299,18 @@ export function projectInstanceCards(cards, unit, effective) {
   root.children=root.children.filter(id=>!variants.has(id)||variants.get(id).length)
     .filter(id=>cards.get(id)?.kind!=='WARGEAR_OPTION'||selectedEquipment.has(id));
   const firstKeyword=root.fields.find(field=>field.source?.path.startsWith('/keywords/'));
+  const keywordAttribution=(keyword,profile)=>{
+    const sources=(effective.keywordSources||[]).filter(source=>source.keyword===keyword&&(!profile||
+      source.subject==='MODEL'&&source.targetInstanceId===unit.instanceId&&source.targetCompositionId===profile.scopeId));
+    assert(sources.every(source=>cards.has(source.canonicalRuleId)&&
+      (source.targetInstanceId===unit.instanceId||effective.formedUnit?.memberInstanceIds.includes(source.targetInstanceId))),
+      'Unresolved keyword grant presentation source');
+    return sources.length?{keywordSources:clone(sources)}:{};
+  };
   root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
   effective.keywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
     label:'Keywords',type:'tokens',value:keyword,contextId:root.contextId,
-    source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true}));
+    source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true,...keywordAttribution(keyword)}));
   if(root.keywordGroups) {
     const factionFields=root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/'));
     const faction=new Set(factionFields.map(field=>field.value));
@@ -300,11 +318,11 @@ export function projectInstanceCards(cards, unit, effective) {
     // MODEL scopes retain independent bags; the formed UNIT union is separate.
     root.fields=root.fields.filter(field=>!field.presentationPath?.startsWith('/keywords/'));
     const groups=[];
-    const add=(label,keywords,key)=>{
+    const add=(label,keywords,key,profile)=>{
       const labelId=`${root.id}::/rosterKeywordGroups/${key}/label`,fieldIds=[];
       root.fields.push({id:labelId,label:'',type:'text',value:label,contextId:root.contextId,runtimeDerived:true});
       keywords.forEach((keyword,index)=>{const id=`${root.id}::/rosterKeywordGroups/${key}/${index}`;fieldIds.push(id);
-        root.fields.push({id,label:'',type:'tokens',value:keyword,contextId:root.contextId,runtimeDerived:true});});
+        root.fields.push({id,label:'',type:'tokens',value:keyword,contextId:root.contextId,runtimeDerived:true,...keywordAttribution(keyword,profile)});});
       groups.push({labelFieldId:labelId,fieldIds});
     };
     // Replace, rather than repeat, the temporary flat UNIT keyword overlay.
@@ -314,7 +332,7 @@ export function projectInstanceCards(cards, unit, effective) {
       const canonicalName=profileName(profile.id),scope=scopeCaptions.get(profile.scopeId);
       const name=scope?.canonicalLabelIncluded?scope.label:
         scope?.label && scope.label!==canonicalName ? `${scope.label} (${canonicalName})` : canonicalName;
-      add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`);
+      add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`,profile);
     }
     const factionGroup=root.keywordGroups.find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
     if(factionGroup)groups.push(clone(factionGroup));
