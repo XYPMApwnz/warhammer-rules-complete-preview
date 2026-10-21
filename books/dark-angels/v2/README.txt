@@ -1,5 +1,24 @@
 Dark Angels V2 — native application integration (Stage 4A)
 
+Stage 5.1 focused source adjudication
+Accepted Army RAW and official MFM v1.6 agree on Lazarus's seven Leader
+recipients: Assault Intercessor Squad; Bladeguard Veteran Squad; Company Heroes;
+Infernus Squad; Intercessor Squad; Sternguard Veteran Squad; Inner Circle
+Companions. Hellblaster Squad is not listed by either source. Stage 2B's
+hardcoded contrary claim was a review defect, not a source conflict. Stage 3C
+subsequently quarantined all seven native permissions on that false premise.
+The current source review extracts both pinned occurrences and compares their
+complete recipient sets. Native Army-source hyperlink permissions now contain
+141 edges: 37 DA-owned and 104 inherited SM. Ten central MFM REFERENCE_ONLY
+relations remain inactive; no central reference or factual identity was changed.
+The eight Lazarus declaration spans are TEXT_ONLY_SOURCE_BACKED, like the other
+source relation declarations; this creates no typed effects. Current census:
+252 = 43 EXECUTABLE_PROVEN + 17 CONDITIONAL_TEXT_ONLY + 192 TEXT_ONLY_SOURCE_BACKED.
+Frozen Omega EXPECTED, historical mismatches and external reports are unchanged.
+Source review remains PARTIAL, semantic completeness NOT_PROVEN, and authentic
+New Recruit export coverage NO. The stage descriptions below are historical;
+their Lazarus quarantine/conflict statements are superseded by this correction.
+
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
 Independent source QA: python books/dark-angels/v2/foundation-qa.py

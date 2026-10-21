@@ -368,7 +368,7 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
     counts:{sourceAuthoredTypedScenarios:9,positiveChecks:checks.length,missingEffectMutations:mutations.length,nativeInvulnerableSources:15,nativeAbilitySources:12,
       physicalChapterGrants:0,datasheets:83,armyRules:5,detachments:18,enhancementsAndUpgrades:40,stratagems:60,inheritedGameplayScenarios:2},
     limitations:{fixtures:'CONSTRUCTED_DIAGNOSTICS',attachments:'SCOPE_ONLY_NOT_SOURCE_ELIGIBILITY',browserVerified:false,realNewRecruitExportTested:false,
-      physicalChapterContext:'NOT_PROVEN',qualifiedFnp:'TEXT_ONLY_SOURCE_BACKED',lazarus:'SOURCE_CONFLICT',cyclonePhysicalPricing:'NOT_PROVEN'}};
+      physicalChapterContext:'NOT_PROVEN',qualifiedFnp:'TEXT_ONLY_SOURCE_BACKED',lazarus:'SOURCE_VALID_NATIVE_PERMISSIONS',cyclonePhysicalPricing:'NOT_PROVEN'}};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
   const result=runDarkAngelsGameplayQA();console.log(JSON.stringify({status:result.status,counts:result.counts,checks:result.checks,negativeMutationControls:result.negativeMutationControls},null,2));

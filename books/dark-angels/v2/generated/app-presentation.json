@@ -427474,17 +427474,16 @@
   "rulePresentationLimitations": {
     "runtime": "EXISTING_PHYSICAL_IMPORT_AND_TYPED_EFFECTS",
     "chapterContext": "INTRINSIC_GENERIC_CHAPTER_NOT_PROVEN; ARMY_APPLICABILITY_VALIDATED_SEPARATELY",
-    "relations": "SOURCE_REVIEWED_NATIVE_PERMISSIONS; LAZARUS_SOURCE_CONFLICT_INACTIVE",
+    "relations": "SOURCE_REVIEWED_NATIVE_PERMISSIONS; LAZARUS_SOURCE_CONSENSUS",
     "physicalPaidOptions": "EXACT_PHYSICAL_SELECTION_REQUIRED_ELSE_UNRESOLVED",
     "scope": "STAGE_4A_NATIVE_MIXED_OWNER_APPLICATION",
     "sourceCoverage": {
       "sourceOwners": 131,
       "clauses": 252,
       "classifications": {
-        "TEXT_ONLY_SOURCE_BACKED": 184,
+        "TEXT_ONLY_SOURCE_BACKED": 192,
         "CONDITIONAL_TEXT_ONLY": 17,
-        "EXECUTABLE_PROVEN": 43,
-        "NOT_PROVEN": 8
+        "EXECUTABLE_PROVEN": 43
       },
       "categories": {
         "DATASHEET_ABILITY": 73,
@@ -427521,9 +427520,9 @@
         "message": "A roster containing only general Space Marines units has unconfirmed Dark Angels army context. DEATHWING and RAVENWING grants remain inactive until a source-confirmed Dark Angels unit and validated roster membership establish that context. Opening this book, a Detachment or an attachment does not establish Chapter context."
       },
       {
-        "ownerId": "unit-da-efa93d33ea414d8b8f11",
+        "ownerId": "dark-angels",
         "title": "Source and import limitations",
-        "message": "Lazarus Leader recipients remain a source conflict and the disputed attachments are unavailable. Ten MFM reference-only relations remain inactive. This importer has constructed-input coverage; an authentic Dark Angels New Recruit export has not been verified."
+        "message": "Ten MFM reference-only relations remain inactive. This importer has constructed-input coverage; an authentic Dark Angels New Recruit export has not been verified."
       }
     ]
   },

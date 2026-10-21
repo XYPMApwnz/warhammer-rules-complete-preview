@@ -1,15 +1,14 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "D863F4F05600B9D105339E1A15C5C9307731373CB2EDF0CEE150A0A24B24F0A9",
+  "reviewFingerprint": "25E784CF4921C7289CF5251E8BFEBE40469F0025BB467CA55858A2D96FE3C5D7",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 184,
+      "TEXT_ONLY_SOURCE_BACKED": 192,
       "CONDITIONAL_TEXT_ONLY": 17,
-      "EXECUTABLE_PROVEN": 43,
-      "NOT_PROVEN": 8
+      "EXECUTABLE_PROVEN": 43
     },
     "categories": {
       "DATASHEET_ABILITY": 73,
@@ -1286,7 +1285,7 @@
     "UNKNOWN_BATTLE_EVENTS"
   ],
   "inheritedPhysicalChoiceBindings": "Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.",
-  "relations": "INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT",
+  "relations": "SOURCE_DECLARATIONS; NATIVE_ARMY_PERMISSION_POLICIES_RESOLVED_AT_PHYSICAL_IMPORT",
   "physicalCycloneCharge": false,
   "realNewRecruitExportTested": false
 }

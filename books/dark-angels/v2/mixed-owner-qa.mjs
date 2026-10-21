@@ -284,11 +284,24 @@ export function runMixedOwnerQA({canonicalEntities,book,payload,points,relationR
     const coverage=read('./generated/mfm-coverage.json');assert.equal(coverage.referenceOnlyRelationTargets.length,10);
     assert.equal(boundary.relationsBoundary.runtimeEligibility,false);
     const issue=read('./source-issues.json').issues.find(row=>row.id==='da-lazarus-leader-source-discrepancy');
-    assert.equal(issue.status,'SOURCE_CONFLICT');
+    assert.equal(issue.status,'SOURCE_VALID_CONSENSUS');
+    assert.ok(issue.history.some(row=>row.status==='SUPERSEDED_FALSE_CONFLICT_REVIEW'&&
+      row.originCommit==='43ca3696fe4cf465cf7641e4575aa2789a4ee37e'&&row.detail.includes('HELLBLASTER SQUAD')),
+      'Historical false review must remain documented');
     const lazarus=own.entities.find(row=>row.kind==='DATASHEET'&&row.data.sourceAnchor==='Lazarus');
     const declaration=own.entities.find(row=>row.parentId===lazarus.id&&row.kind==='SOURCE_RELATION');
     assert.ok(declaration,'Original Lazarus Army declaration disappeared');
     assert.deepEqual(records.get(declaration.id),declaration);
+    const proof=read('./mfm-mapping-review.json').reviewedBindings.find(row=>row.entityId===lazarus.id)
+      .corroboratedProperties.find(row=>row.property==='INDEPENDENT_EXACT_LEADER_RECIPIENT_CONSENSUS');
+    assert.ok(proof,'Independent pinned Army/MFM source review is required');
+    const address=href=>new URL(href,'https://wahapedia.ru').href;
+    assert.deepEqual(declaration.data.sourceReferences.map(row=>address(row.href)).sort(),
+      proof.armySourceLinks.map(row=>address(row.href)).sort());
+    assert.equal(declaration.data.sourceReferences.length,7);
+    assert.deepEqual(proof.armySourceLinks.map(row=>row.label).sort(),[...proof.officialLeaderLabels].sort());
+    assert.ok(proof.officialLeaderLabels.includes('COMPANY HEROES'));
+    assert.ok(!proof.officialLeaderLabels.includes('HELLBLASTER SQUAD'));
   });
   if(build){
     reject('unreviewed-cross-chapter-membership-rejected-at-composition',()=>{

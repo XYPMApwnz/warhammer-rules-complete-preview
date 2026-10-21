@@ -29,8 +29,17 @@
     },
     {
       "id": "da-lazarus-leader-source-discrepancy",
-      "status": "SOURCE_CONFLICT",
-      "detail": "Official MFM v1.6 Lazarus LEADER includes COMPANY HEROES and omits HELLBLASTER SQUAD; accepted Army source lists HELLBLASTER SQUAD and omits COMPANY HEROES. Both original source declarations retained. No DA runtime relation eligibility activated in Stage2B."
+      "status": "SOURCE_VALID_CONSENSUS",
+      "detail": "Accepted Army RAW and official MFM v1.6 both permit Assault Intercessor Squad, Bladeguard Veteran Squad, Company Heroes, Infernus Squad, Intercessor Squad, Sternguard Veteran Squad and Inner Circle Companions. Neither lists Hellblaster Squad. Stage5.1 corrects the false hardcoded review and restores native Army-source permissions; canonical facts, accepted captures and ten central MFM reference-only records remain unchanged.",
+      "history": [
+        {
+          "stage": "STAGE_2B_TO_STAGE_4C",
+          "status": "SUPERSEDED_FALSE_CONFLICT_REVIEW",
+          "detail": "Official MFM v1.6 Lazarus LEADER includes COMPANY HEROES and omits HELLBLASTER SQUAD; accepted Army source lists HELLBLASTER SQUAD and omits COMPANY HEROES. Both original source declarations retained. No DA runtime relation eligibility activated in Stage2B.",
+          "originCommit": "43ca3696fe4cf465cf7641e4575aa2789a4ee37e",
+          "quarantineCommit": "bbd311f064bbd1d98b076edc5c11f8154f08f56a"
+        }
+      ]
     }
   ]
 }

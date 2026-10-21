@@ -152,7 +152,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
   unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],
   inheritedPhysicalChoiceBindings:'Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.',
-  relations:'INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT',physicalCycloneCharge:false,realNewRecruitExportTested:false};
+  relations:'SOURCE_DECLARATIONS; NATIVE_ARMY_PERMISSION_POLICIES_RESOLVED_AT_PHYSICAL_IMPORT',physicalCycloneCharge:false,realNewRecruitExportTested:false};
  return {book,schema,artifact,native,sm};
 }
 export function writeDarkAngelsContracts({check=false}={}){

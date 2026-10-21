@@ -165,6 +165,37 @@ check('leader-support-formation-effects-and-identical-reimport',()=>{
  const other=header()+fixture(ID.azrael).text;assert.equal(service.import(other).status,'REPLACEMENT_REQUIRED');assert.deepEqual(service.snapshot(),before);
  ready(service,other,{}, {replaceExisting:true});assert.equal(service.state.attachments.length,0);
 });
+check('lazarus-seven-source-permissions-physical-isolation-and-persistence',()=>{
+ const review=read('./mfm-mapping-review.json').reviewedBindings.find(row=>row.entityId===ID.lazarus);
+ const proof=review.corroboratedProperties.find(row=>row.property==='INDEPENDENT_EXACT_LEADER_RECIPIENT_CONSENSUS');
+ assert.ok(proof);assert.equal(proof.armySourceLinks.length,7);
+ const targets=proof.armySourceLinks.map(link=>{
+  const anchor=decodeURIComponent(new URL(link.href,'https://wahapedia.ru').hash.slice(1));
+  const target=[...sources.values()].find(row=>row.kind==='DATASHEET'&&row.data.sourceAnchor===anchor);
+  assert.ok(target);return target;
+ });
+ for(const target of targets){
+  const service=createDarkAngelsRosterService(book),text=header()+fixture(ID.lazarus).text+fixture(target.id).text+fixture(target.id).text;
+  ready(service,text);const points=service.points;
+  service.attach('parsed-unit-1','parsed-unit-2');assert.equal(service.state.attachments.length,1);
+  assert.ok(!service.state.attachments.some(row=>row.bodyguardInstanceId==='parsed-unit-3'));
+  assert.deepEqual(service.points,points,'Attachment changed physical pricing');
+  const snapshot=service.snapshot(),projection=service.projection;
+  service.recompute();assert.deepEqual(service.projection,projection);
+  const restored=createDarkAngelsRosterService(book);restored.load(JSON.parse(JSON.stringify(snapshot)));
+  assert.deepEqual(restored.projection,projection);
+  ready(service,text);assert.deepEqual(service.snapshot(),snapshot);assert.deepEqual(service.projection,projection);
+  service.detach('parsed-unit-1');ready(service,text);assert.equal(service.state.attachments.length,0,'Explicit detach restored on reimport');
+  service.attach('parsed-unit-1','parsed-unit-2');service.reattach('parsed-unit-1','parsed-unit-3');
+  assert.deepEqual(service.state.attachments,[{leaderInstanceId:'parsed-unit-1',bodyguardInstanceId:'parsed-unit-3',role:'LEADER'}]);
+  const kept=service.snapshot();assert.notEqual(service.import(header()+'1x Invented Unknown Unit (0 pts)\n').status,'READY');
+  assert.deepEqual(service.snapshot(),kept);
+ }
+ const invalid=createDarkAngelsRosterService(book);
+ ready(invalid,header()+fixture(ID.lazarus).text+fixture('unit-sm-3ce46dddf62b45f1').text);
+ const before=invalid.snapshot();assert.throws(()=>invalid.attach('parsed-unit-1','parsed-unit-2'));
+ assert.deepEqual(invalid.snapshot(),before,'Disallowed Hellblaster attachment changed state');
+});
 check('negative-import-and-snapshot-preserve-previous-state',()=>{
  const service=createDarkAngelsRosterService(book);ready(service,header()+fixture(ID.azrael).text);const saved=service.snapshot();
  for(const text of [header()+'1x Marneus Calgar (999 pts)\n',header()+'1x Invented Unknown Unit (999 pts)\n',
@@ -175,8 +206,6 @@ check('negative-import-and-snapshot-preserve-previous-state',()=>{
  assert.throws(()=>service.load(malformed));assert.deepEqual(service.snapshot(),saved);
  const foreign=clone(saved);foreign.units[0].modelRows[0].canonicalProfileId=index.get(ID.command).data.profileIds[0];
  assert.throws(()=>service.load(foreign));assert.deepEqual(service.snapshot(),saved);
- const lazarus=createDarkAngelsRosterService(book);ready(lazarus,header()+fixture(ID.lazarus).text+fixture(ID.ordinary).text);
- assert.throws(()=>lazarus.attach('parsed-unit-1','parsed-unit-2'));assert.equal(lazarus.state.attachments.length,0);
 });
 check('browser-native-runtime-closure-and-source-immutability',()=>{
  const visited=new Set();const visit=url=>{if(visited.has(url.href))return;visited.add(url.href);
@@ -190,4 +219,4 @@ console.log(JSON.stringify({status:'PASS',checks,physical,weaponEvidence,assignm
   weaponProfiles:weaponEvidence.length,detachments:18,enhancementAssignments:assignmentEvidence.filter(row=>row.scope==='MODEL').length,
   upgradeAssignments:assignmentEvidence.filter(row=>row.scope==='UNIT').length,chapterConditions:26,paidOptions:8},
  limitations:{fixtures:'CONSTRUCTED_NEW_RECRUIT_COMPATIBLE',realNewRecruitExportTested:false,browserVerified:false,
-  genericOnlyChapter:'NOT_PROVEN',lazarus:'SOURCE_CONFLICT_INACTIVE',mfmRelationReferences:'10_REFERENCE_ONLY_UNCHANGED'}},null,2));
+  genericOnlyChapter:'NOT_PROVEN',lazarus:'SEVEN_SOURCE_PROVEN_NATIVE_PERMISSIONS',mfmRelationReferences:'10_REFERENCE_ONLY_UNCHANGED'}},null,2));

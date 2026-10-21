@@ -41,7 +41,8 @@ check('limitations-and-source-review-stay-honest',()=>{
  assert.equal(payload.rulePresentationLimitations.mfmReferenceOnly,10);
  assert.ok(payload.rulePresentationLimitations.importLimitations.some(row=>row.ownerId==='dark-angels'&&row.message.includes('unconfirmed Dark Angels army context')));
  assert.equal(cards.get('unit-da-efa93d33ea414d8b8f11').identity.registryId,'dark-angels');
- assert.equal(payload.rulePresentationLimitations.importLimitations[1].ownerId,'unit-da-efa93d33ea414d8b8f11');
+ assert.equal(payload.rulePresentationLimitations.importLimitations[1].ownerId,'dark-angels');
+ assert.ok(!payload.rulePresentationLimitations.importLimitations.some(row=>/Lazarus.*source conflict/i.test(row.message)));
  assert.equal(JSON.stringify([facts,sm]),before);
 });
 console.log(JSON.stringify({status:'PASS',checks,coverage:{datasheets:83,owned:16,inherited:67,armyRules:5,detachments:18,enhancements:30,upgrades:10,stratagems:60},

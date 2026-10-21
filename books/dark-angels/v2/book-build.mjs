@@ -120,7 +120,7 @@ export function buildDarkAngelsMixedBook({daFacts=read('./generated/effective.js
   payload.groups=payload.groups.filter(group=>group.itemIds.length);
   payload.sourceCompleteness={sourceCompleteness:'PARTIAL',semanticCompleteness:'NOT_PROVEN',contentCertified:false};
   payload.rulePresentationLimitations={runtime:'NO_GAMEPLAY_CONTRACTS_ACTIVATED',chapterContext:'NOT_PROVEN_FOR_INHERITED_UNIT',
-    relations:'SOURCE_DECLARATIONS_ONLY; LAZARUS_CONFLICT_AND_REFERENCE_ONLY_TARGETS_INACTIVE',
+    relations:'SOURCE_DECLARATIONS_ONLY; CENTRAL_REFERENCE_ONLY_TARGETS_INACTIVE',
     physicalPaidOptions:'NOT_PROVEN_NO_CHARGE',scope:'STAGE_2C_MIXED_OWNER_PROJECTION_ONLY'};
   const smPoints=createEffectiveMfmArmyProjection('space-marines').pointsForArmyBook('space-marines');
   const points={owner:'CENTRALIZED_MFM',bookId:'dark-angels',

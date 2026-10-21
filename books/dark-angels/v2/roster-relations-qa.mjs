@@ -29,7 +29,7 @@ export function runDarkAngelsRelationQA(){
     .map(unit=>[unit.data.sourceAnchor,unit]));
   const expected=[];
   for(const relation of facts.filter(entity=>membership.has(entity.parentId)&&entity.kind==='SOURCE_RELATION'&&
-    ['LEADER','SUPPORT'].includes(entity.data.role)&&entity.parentId!==lazarus)){
+    ['LEADER','SUPPORT'].includes(entity.data.role))){
     for(const reference of relation.data.sourceReferences){
       const address=new URL(reference.href);
       assert.equal(address.origin+address.pathname,'https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html');
@@ -101,10 +101,23 @@ export function runDarkAngelsRelationQA(){
   repeated=changeAttachment(book,repeated,result.policies,'REATTACH','leader','bodyguard-b');
   assert.deepEqual(repeated.attachments,[{leaderInstanceId:'leader',bodyguardInstanceId:'bodyguard-b',role:'LEADER'}]);
   assert.deepEqual(validateRoster(book,JSON.parse(JSON.stringify(repeated)),result.policies),repeated);
-  assert.ok(!result.policies.some(policy=>policy.sourceId===lazarus));
+  const lazarusPolicies=result.policies.filter(policy=>policy.sourceId===lazarus);
   const lazarusDeclaration=facts.find(entity=>entity.parentId===lazarus&&entity.kind==='SOURCE_RELATION');
   assert.ok(lazarusDeclaration);assert.deepEqual(index.get(lazarusDeclaration.id).data,lazarusDeclaration.data);
-  assert.equal(read('./source-issues.json').issues.find(issue=>issue.id==='da-lazarus-leader-source-discrepancy').status,'SOURCE_CONFLICT');
+  const corroboration=read('./mfm-mapping-review.json').reviewedBindings.find(row=>row.entityId===lazarus)
+    .corroboratedProperties.find(row=>row.property==='INDEPENDENT_EXACT_LEADER_RECIPIENT_CONSENSUS');
+  assert.ok(corroboration,'Lazarus requires independent reviewed RAW/MFM consensus');
+  const sourceTargets=corroboration.armySourceLinks.map(reference=>destinations.get(decodeURIComponent(new URL(reference.href,
+    'https://wahapedia.ru').hash.slice(1))).id);
+  assert.deepEqual(lazarusPolicies.map(row=>row.targetId).sort(),sourceTargets.sort());
+  assert.equal(lazarusPolicies.length,7);
+  assert.ok(!lazarusPolicies.some(row=>row.targetId==='unit-sm-3ce46dddf62b45f1'),'Hellblaster is not a source recipient');
+  assert.equal(attachmentCheck(book,roster([physical('leader',lazarus),physical('bodyguard','unit-sm-59162946fee84360'),
+    physical('other-leader',lazarus)]),result.policies,'leader','bodyguard').valid,true);
+  const full=roster([physical('leader',lazarus),physical('bodyguard','unit-sm-59162946fee84360'),physical('other-leader',lazarus)]);
+  full.attachments=[{leaderInstanceId:'other-leader',bodyguardInstanceId:'bodyguard',role:'LEADER'}];
+  assert.equal(attachmentCheck(book,full,result.policies,'leader','bodyguard').valid,false,'Lazarus cannot exceed Leader capacity');
+  assert.equal(read('./source-issues.json').issues.find(issue=>issue.id==='da-lazarus-leader-source-discrepancy').status,'SOURCE_VALID_CONSENSUS');
   const central=createEffectiveMfmCatalog().catalog;
   const unresolved=central.unitReferences.filter(reference=>reference.factionId==='dark-angels'&&
     reference.armyBinding?.bindingStatus==='REFERENCE_ONLY');
@@ -118,7 +131,7 @@ export function runDarkAngelsRelationQA(){
     capacityControls:3,repeatedBodyguardsDetachReattach:'PASS',snapshotReload:'PASS',
     daOwnedEdges:expected.filter(row=>index.get(row.sourceId).bookId==='dark-angels').length,
     inheritedSmEdges:expected.filter(row=>index.get(row.sourceId).bookId==='space-marines').length,
-    lazarus:'SOURCE_CONFLICT_ALL_RELATIONS_INACTIVE',centralMfmReferenceOnly:unresolved.length,
+    lazarus:'SEVEN_SOURCE_PROVEN_NATIVE_PERMISSIONS',centralMfmReferenceOnly:unresolved.length,
     centralMfmReferenceActivation:false,realNewRecruitExportTested:false};
 }
 

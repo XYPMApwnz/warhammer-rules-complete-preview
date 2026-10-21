@@ -40,8 +40,6 @@ export function buildDarkAngelsAttachmentPolicies(book){
     assert.ok(typeof anchor==='string'&&anchor.length&&!anchors.has(anchor),'Ambiguous source datasheet address');
     anchors.set(anchor,unit);
   }
-  const issue=read('./source-issues.json').issues.find(row=>row.id==='da-lazarus-leader-source-discrepancy');
-  assert.equal(issue?.status,'SOURCE_CONFLICT','Lazarus requires separate source adjudication');
   const policies=[],inactive=[],declarations=[];
   for(const relation of book.entities.filter(entity=>entity.kind==='SOURCE_RELATION'&&['LEADER','SUPPORT'].includes(entity.data.role))){
     const native=verifySource(relation),source=index.get(relation.parentId);
@@ -65,11 +63,6 @@ export function buildDarkAngelsAttachmentPolicies(book){
       }
       const bound={targetId:target.id,targetOwner:target.bookId,sourceReference:clone(reference),
         targetSourceEntityId:target.sourceEntityId,targetProvenance:clone(target.provenance)};
-      if(source.id===lazarusId){
-        inactive.push({sourceId:source.id,sourceDeclarationId:relation.id,role:relation.data.role,...bound,
-          reason:'LAZARUS_SOURCE_CONFLICT_RELATIONS_NOT_ACTIVATED'});
-        continue;
-      }
       assert.notEqual(source.id,target.id,'Self attachment');
       row.targets.push(bound);
       policies.push({sourceId:source.id,targetId:target.id,role:relation.data.role,
@@ -79,7 +72,6 @@ export function buildDarkAngelsAttachmentPolicies(book){
   }
   assert.equal(new Set(policies.map(row=>row.sourceId+'\0'+row.targetId)).size,policies.length,
     'Ambiguous canonical attachment role');
-  assert.ok(!policies.some(row=>row.sourceId===lazarusId),'Lazarus conflict activated');
   return {policies,declarations,inactive,
     authority:'ADMITTED_CANONICAL_ARMY_SOURCE_HYPERLINKS',
     centralMfmReferenceActivation:false,

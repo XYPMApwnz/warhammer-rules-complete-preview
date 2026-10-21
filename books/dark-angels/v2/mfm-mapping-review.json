@@ -709,11 +709,59 @@
           "modelProfileIds": [
             "model-da-ca78da319f814633b3b6"
           ]
+        },
+        {
+          "property": "INDEPENDENT_EXACT_LEADER_RECIPIENT_CONSENSUS",
+          "armySourceLinks": [
+            {
+              "label": "ASSAULT INTERCESSOR SQUAD",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Assault-Intercessor-Squad",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[1]/a"
+            },
+            {
+              "label": "BLADEGUARD VETERAN SQUAD",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Bladeguard-Veteran-Squad",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[2]/a"
+            },
+            {
+              "label": "COMPANY HEROES",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Company-Heroes",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[3]/a"
+            },
+            {
+              "label": "INFERNUS SQUAD",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Infernus-Squad",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[4]/a"
+            },
+            {
+              "label": "INTERCESSOR SQUAD",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Intercessor-Squad",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[5]/a"
+            },
+            {
+              "label": "STERNGUARD VETERAN SQUAD",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Sternguard-Veteran-Squad",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[6]/a"
+            },
+            {
+              "label": "INNER CIRCLE COMPANIONS",
+              "href": "/wh40k11ed/factions/space-marines/datasheets.html#Inner-Circle-Companions",
+              "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[2]/div[2]/div[8]/ul/li[7]/a"
+            }
+          ],
+          "officialLeaderLabels": [
+            "ASSAULT INTERCESSOR SQUAD",
+            "BLADEGUARD VETERAN SQUAD",
+            "COMPANY HEROES",
+            "INFERNUS SQUAD",
+            "INNER CIRCLE COMPANIONS",
+            "INTERCESSOR SQUAD",
+            "STERNGUARD VETERAN SQUAD"
+          ],
+          "canonicalIdentityPolicy": "SOURCE_HREF_TARGETS_ONLY; NOT_LABEL_MATCHING"
         }
       ],
-      "limitations": [
-        "RELATION_SOURCE_CONFLICT: official MFM lists COMPANY HEROES; accepted secondary Datasheet lists HELLBLASTER SQUAD. Preserve both source declarations; no relation gameplay activation in Stage 2B."
-      ]
+      "limitations": []
     },
     {
       "entityId": "unit-da-4d0a2295a562420599b3",

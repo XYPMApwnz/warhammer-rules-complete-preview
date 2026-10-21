@@ -110,6 +110,25 @@ def prices_equal(left, right):
     return normalized(left) == normalized(right)
 
 
+def reviewed_lazarus_leaders(native, official):
+    """Compare the two pinned occurrences, not a title-based canonical join."""
+    headings = native.xpath('.//div[contains(@class,"dsHeader") and normalize-space()="LEADER"]')
+    assert len(headings) == 1, 'Ambiguous Lazarus Leader source section'
+    body = headings[0].getnext()
+    links = body.xpath('./ul/li/a')
+    army = [{'label': text(link), 'href': link.get('href'),
+             'pointer': link.getroottree().getpath(link)} for link in links]
+    labels = [row['label'] for row in army]
+    expected = official['relations']['leader']
+    assert len(labels) == len(set(labels)) == 7
+    assert sorted(labels) == sorted(expected), 'RAW/MFM Lazarus Leader permissions disagree'
+    assert 'COMPANY HEROES' in labels and 'HELLBLASTER SQUAD' not in labels
+    assert all(row['href'].startswith('/wh40k11ed/factions/space-marines/datasheets.html#') for row in army)
+    return {'property': 'INDEPENDENT_EXACT_LEADER_RECIPIENT_CONSENSUS',
+            'armySourceLinks': army, 'officialLeaderLabels': expected,
+            'canonicalIdentityPolicy': 'SOURCE_HREF_TARGETS_ONLY; NOT_LABEL_MATCHING'}
+
+
 def make_review():
     dom, own_nodes, shared_nodes, det_nodes = source_oracle()
     assert len(own_nodes) == 16 and len(shared_nodes) == 69
@@ -150,8 +169,8 @@ def make_review():
             ]
             if paid:
                 properties.append({'property': 'PAID_EQUIPMENT_SOURCE_PARITY', 'official': paid, 'secondary': paid})
-            if c['sourceTitle'] == 'LAZARUS':
-                caveats.append('RELATION_SOURCE_CONFLICT: official MFM lists COMPANY HEROES; accepted secondary Datasheet lists HELLBLASTER SQUAD. Preserve both source declarations; no relation gameplay activation in Stage 2B.')
+            if entity['id'] == 'unit-da-efa93d33ea414d8b8f11':
+                properties.append(reviewed_lazarus_leaders(native, source))
         elif c['kind'] == 'DETACHMENT':
             source = mfm_detachment(official)
             dp = native.xpath('.//*[contains(@class,"dpPts")]')[0]
@@ -216,6 +235,32 @@ def make_review():
             'authority': 'OFFICIAL_MFM_WITH_ACCEPTED_SECONDARY_CODEX_STRUCTURAL_CORROBORATION',
             'sourceCompleteness': 'PARTIAL', 'gameplayRuntimeCertified': False,
             'reviewedBindings': rows}
+
+
+def leader_review_mutations():
+    candidate = next(row for row in load(HERE / 'mfm-boundary.json')['identityCandidates']
+                     if row['candidateNativeCanonicalId'] == 'unit-da-efa93d33ea414d8b8f11')
+    address = candidate['candidateNativeSourceAddress']
+    native = tree(ROOT / address['document']).xpath(address['pointer'])[0]
+    official = mfm_unit(tree(RAW).xpath(candidate['sourcePointer'])[0])
+    reviewed_lazarus_leaders(native, official)
+    for mutation in ['missing_company_heroes', 'substituted_hellblaster', 'foreign_href']:
+        changed = copy.deepcopy(native)
+        links = changed.xpath('.//div[contains(@class,"dsHeader") and normalize-space()="LEADER"]')[0].getnext().xpath('./ul/li/a')
+        company = next(link for link in links if text(link) == 'COMPANY HEROES')
+        if mutation == 'missing_company_heroes':
+            company.getparent().remove(company)
+        elif mutation == 'substituted_hellblaster':
+            company.clear()
+            company.text = 'HELLBLASTER SQUAD'
+        else:
+            company.set('href', 'https://invalid.example/#Company-Heroes')
+        try:
+            reviewed_lazarus_leaders(changed, official)
+        except AssertionError:
+            continue
+        raise AssertionError('Lazarus source review mutation survived: ' + mutation)
+    return 3
 
 
 def shared_parity():
@@ -413,7 +458,8 @@ def main():
     assert load(output) == review, 'Source review no longer matches independent pinned RAW evidence'
     shared = shared_parity()
     result = {'reviewedProvenCandidates': len(review['reviewedBindings']), 'sharedSMSourceParity': shared,
-              'titleOnlyMatchingUsed': False, 'mixedOwnerRuntimeCertified': False}
+              'titleOnlyMatchingUsed': False, 'mixedOwnerRuntimeCertified': False,
+              'lazarusSourceConsensus': 7, 'lazarusSourceMutationControls': leader_review_mutations()}
     if not args.source_only:
         result.update(central_and_projection())
         result.update(binding_mutations())
