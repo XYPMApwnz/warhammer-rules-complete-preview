@@ -18,7 +18,20 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const excludedBooks=new Set(['dark-angels','blood-angels']);
+const precedingSeven=JSON.parse(execFileSync('git',['show','c21b5881a8d38be02cf56fe0428ce8841a7cba76:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
+const currentEntries=new Map(index.entries.map(article=>[article.id,article]));
+for(const article of precedingSeven.entries){
+  const current=currentEntries.get(article.id);assert.ok(current,'Predecessor canonical record lost '+article.id);
+  for(const field of ['label','facts','provenance','fieldProvenance','sourceOwner','currentness'])assert.deepEqual(current[field],article[field],'Predecessor canonical fact changed '+article.id+'/'+field);
+  for(const reference of article.canonicalReferences)assert.ok(current.canonicalReferences.some(item=>JSON.stringify(item)===JSON.stringify(reference)),'Predecessor reference lost '+article.id);
+  for(const context of article.contexts)assert.ok(current.contexts.some(item=>JSON.stringify(item)===JSON.stringify(context)),'Predecessor context lost '+article.id);
+  if(article.domain==='ARMY')assert.deepEqual({...current,contexts:article.contexts},article,'Seven predecessor Army facts/references changed '+article.id);
+}
+const daFacts=read('books/dark-angels/v2/generated/effective.json').entities;
+const daEntries=index.entries.filter(article=>article.sourceOwner.bookId==='dark-angels');
+assert.deepEqual(new Set(daEntries.map(article=>article.sourceOwner.canonicalId)),new Set(daFacts.map(entity=>entity.id)),'Only independently owned DA factual records may be added');
+assert.ok(daEntries.every(article=>!article.sourceOwner.canonicalId.includes('-sm-')),'Inherited SM references duplicated as DA owners');
+const excludedBooks=new Set(['blood-angels']);
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
@@ -113,6 +126,21 @@ for(const article of tauEntries){
   assert.equal(tauReference.resolveAlias(canonicalId,{registryId:'tau-empire'}),aliases.length>1?null:article.id,'T’au canonical alias must resolve uniquely or fail closed for multiple field views '+canonicalId);
   assert.equal(tauReference.resolve(tauReference.identityFor(article.id))?.targetId,article.id,'T’au direct reference '+canonicalId);
 }
+// DA membership reuses original SM identities and adds consumer placements only.
+const daModel=inputs.armyModels.find(model=>model.book.id==='dark-angels');
+for(const fact of daModel.entities){
+  const article=entry('dark-angels',fact.id);
+  if(['ARMY_RULE','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','DATASHEET_ABILITY'].includes(fact.kind)&&fact.data.text)assert.ok(display.project(article).definition.includes(fact.data.text),'Complete DA source text '+fact.id);
+  assert.equal(tauReference.resolve(tauReference.identityFor(article.id))?.targetId,article.id,'DA owned direct reference '+fact.id);
+}
+for(const fact of daModel.referenceEntities){
+  const article=entry(fact.bookId,fact.id);
+  assert.ok(article.contexts.some(context=>context.effectiveBookId==='dark-angels'&&context.sourceBookId==='space-marines'),'Inherited consumer context missing '+fact.id);
+  if(fact.kind==='DATASHEET')assert.equal(tauReference.resolveAlias(fact.id,{registryId:'dark-angels'}),article.id,'Inherited UNIT reference must resolve to original SM owner');
+}
+const noMembership=structuredClone(inputs.armyModels);
+noMembership.find(model=>model.book.id==='dark-angels').referenceEntities.push(structuredClone(inputs.armyModels.find(model=>model.book.id==='space-marines').entities.find(entity=>entity.kind==='DATASHEET'&&!daModel.referenceEntities.some(ref=>ref.id===entity.id))));
+assert.throws(()=>assertV2ArmyBookParity(noMembership),assert.AssertionError,'Foreign Chapter reference must fail closed');
 // Seventh-owner integration preserves the exact prior six factual articles.
 const sm=inputs.armyModels.find(model=>model.book.id==='space-marines');
 const smEntries=armyEntries.filter(record=>record.sourceOwner.bookId==='space-marines');
@@ -133,14 +161,14 @@ const {createGlobalGlossaryContent:priorFormatter}=await import('data:text/javas
 const priorDisplay=priorFormatter(precedingSix);
 
 for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
-  assert.deepEqual(currentById.get(article.id),article,'Six predecessor Army facts/provenance/references changed '+article.id);
+  assert.deepEqual({...currentById.get(article.id),contexts:article.contexts},article,'Six predecessor Army facts/provenance/references changed '+article.id);
 for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
   assert.deepEqual(display.project(currentById.get(article.id)).mfm.lines,priorDisplay.project(article).mfm.lines,'Six predecessor MFM display changed '+article.id);
 
 const predecessor=JSON.parse(execFileSync('git',['show','f5e3ebc5ff5d57674e842f47656a59c39c0c58f0:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
 const fiveBooks=V2_ARMY_BOOK_IDS.filter(book=>book!=='tau-empire'),currentArticles=new Map(index.entries.map(article=>[article.id,article]));
 const previousArmyArticles=predecessor.entries.filter(article=>fiveBooks.includes(article.sourceOwner.bookId));
-for(const article of previousArmyArticles)assert.deepEqual(currentArticles.get(article.id),article,'Prior Army canonical text/provenance/references changed '+article.id);
+for(const article of previousArmyArticles)assert.deepEqual({...currentArticles.get(article.id),contexts:article.contexts},article,'Prior Army canonical text/provenance/references changed '+article.id);
 for(const model of inputs.armyModels)for(const unit of model.entities.filter(entity=>entity.kind==='DATASHEET')){
   const projected=entry(model.book.id,unit.id),rendered=display.project(projected).definition;
   for(const ability of projected.facts.ruleFacts.abilities)if(ability.text&&ability.title&&ability.title!==ability.id)assert.ok(rendered.includes(ability.title),'Canonical ability heading lost '+ability.id);

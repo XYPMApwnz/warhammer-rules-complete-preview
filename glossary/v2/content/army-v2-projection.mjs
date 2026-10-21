@@ -24,13 +24,16 @@ import {buildApp as buildTauApp,assertTauAppSourceReview} from '../../../books/t
 import {consumeMfm as consumeTauMfm} from '../../../books/tau-empire/v2/mfm-boundary.mjs';
 import {buildApp as buildSMApp} from '../../../books/space-marines/v2/app-build.mjs';
 import {buildNativeMfmBook as buildSMNativeMfmBook} from '../../../books/space-marines/v2/mfm-build.mjs';
+import {buildApp as buildDAApp} from '../../../books/dark-angels/v2/app-build.mjs';
+import {buildDarkAngelsMixedBook} from '../../../books/dark-angels/v2/book-build.mjs';
+import {consumeMfm as consumeDAMfm} from '../../../books/dark-angels/v2/mfm-boundary.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {assertSourceCompletenessGate,loadSourceCompletenessInputs} from '../../../books/shared/roster-v2/source-completeness.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sameProjection=(actual,expected,message)=>assert.ok(JSON.stringify(actual)===JSON.stringify(expected),message);
-export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines']);
+export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines','dark-angels']);
 export const V2_FACTUAL_INTERFACES=Object.freeze({
   'death-guard':'books/death-guard/v2/build.mjs#buildFactualV2().effective',
   'adeptus-mechanicus':'books/adeptus-mechanicus/v2/build.py#build().effective',
@@ -38,7 +41,8 @@ export const V2_FACTUAL_INTERFACES=Object.freeze({
   'emperors-children':'books/emperors-children/v2/build.py#build().effective',
   'tyranids':'books/tyranids/v2/build.py#build().effective',
   'tau-empire':'books/tau-empire/v2/build.py#build().effective',
-  'space-marines':'books/space-marines/v2/build.py#build().effective'
+  'space-marines':'books/space-marines/v2/build.py#build().effective',
+  'dark-angels':'books/dark-angels/v2/build.py#build().effective'
 });
 
 function pythonRuntime() {
@@ -72,6 +76,14 @@ export function assertV2ArmyBookParity(models,{published=bookId=>read(`books/${b
   assert.deepEqual(models.map(model=>model.book.id),V2_ARMY_BOOK_IDS,'Missing/extra/reordered V2 Army Book owner');
   for(const model of models) {
     const entities=new Map(model.entities.map(entity=>[entity.id,entity]));
+    const referenced=new Map((model.referenceEntities||[]).map(entity=>[entity.id,entity]));
+    if(referenced.size){
+      const membership=buildDarkAngelsMixedBook().canonicalEntities.filter(entity=>entity.bookId!==model.book.id);
+      assert.equal(model.book.id,'dark-angels','Unreviewed mixed-owner consumer');
+      assert.deepEqual([...referenced.values()],membership,'Unreviewed mixed-owner reference admission');
+      const source=models.find(owner=>owner.book.id==='space-marines');
+      for(const entity of referenced.values())assert.deepEqual(entity,source.entities.find(record=>record.id===entity.id),'Inherited canonical owner changed');
+    }
     assert.equal(entities.size,model.entities.length,`${model.book.id}: duplicate canonical factual owner`);
     const derived=model.presentationEntities||[];
     const presentationEntities=new Map(derived.map(entity=>[entity.id,entity]));
@@ -110,15 +122,24 @@ export function assertV2ArmyBookParity(models,{published=bookId=>read(`books/${b
     }
     // Native layout-only addresses are checked against their existing producer,
     // never treated as additions to the canonical factual owner.
-    const nativeLayout=model.book.id==='space-marines'?new Map(buildSMNativeMfmBook().model.entities.map(entity=>[entity.id,entity])):null;
+    const nativeLayout=model.book.id==='space-marines'?new Map(buildSMNativeMfmBook().model.entities.map(entity=>[entity.id,entity])):
+      model.book.id==='dark-angels'?new Map(buildDarkAngelsMixedBook().book.entities.map(entity=>[entity.id,entity])):null;
     for(const field of model.appPayload.factManifest.filter(field=>field.ownerType==='CANONICAL_V2')) {
-      const owner=entities.get(field.entityId)||presentationEntities.get(field.entityId);
+      const owner=entities.get(field.entityId)||referenced.get(field.entityId)||presentationEntities.get(field.entityId);
       assert.ok(owner,`${model.book.id}: Army Book field has no canonical factual owner ${field.entityId}`);
       const physicalOwner=field.path[0]==='displayName'&&owner.ownerId?owner.ownerId:
         owner.parentId||(owner.ownerId!==model.book.id?owner.ownerId:null)||owner.id;
       assert.equal(field.contextId,physicalOwner,`${model.book.id}: Army Book/canonical ownership mismatch ${field.id}`);
       const roots=['displayName','qualifications'].includes(field.path[0])?owner:owner.data;
       let value=field.path.reduce((node,key)=>node?.[key],roots);
+      // The existing mixed-owner projector separates source-written Chapter
+      // eligibility tokens from intrinsic UNIT keywords. This is a layout view;
+      // the original SM factual record remains the sole glossary owner.
+      if(referenced.has(owner.id)&&owner.kind==='DATASHEET'&&field.path[0]==='keywords'){
+        const layout=nativeLayout.get(owner.id);assert.ok(layout,'Missing admitted native keyword layout');
+        assert.deepEqual(layout.provenance,owner.provenance,'Native keywords lost factual provenance');
+        value=field.path.reduce((node,key)=>node?.[key],layout.data);
+      }
       if(value===undefined&&nativeLayout){
         const allowed={MODEL_PROFILE:['invulnerableSaveId'],WEAPON_PROFILE:['mode'],STRATAGEM:['category','cp','lines']};
         assert.ok(allowed[owner.kind]?.includes(field.path[0]),'Unreviewed native layout field '+field.id);
@@ -161,6 +182,9 @@ function mfmIdentityBindings(model,{factualModel}={}) {
   } else if(bookId==='tau-empire') {
     const consumed=consumeTauMfm(model.entities);
     for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidOptionBindings'])for(const binding of consumed.partitions[key])add(binding.mfmRecordId,binding.entityId);
+  } else if(bookId==='dark-angels') {
+    const consumed=consumeDAMfm(model.entities);
+    for(const bindings of Object.values(consumed.partitions))for(const binding of bindings)if(entities.has(binding.entityId))add(binding.mfmRecordId,binding.entityId);
   } else if(bookId==='space-marines') {
     const consumed=buildSMNativeMfmBook().consumed;
     for(const bindings of Object.values(consumed.partitions))for(const binding of bindings)if(entities.has(binding.entityId))add(binding.mfmRecordId,binding.entityId);
@@ -205,6 +229,7 @@ export function loadV2ArmyModels(options={}) {
   sameProjection(read('books/tau-empire/v2/generated/roster-import.json'),tauBuilt,'Stale T’au import projection');
   const tauApp=buildTauApp(tauBuilt);tauApp.sourceCompleteness=assertTauAppSourceReview(tauBuilt);
   const sm=read('books/space-marines/v2/generated/effective.json');
+  const da=read('books/dark-angels/v2/generated/effective.json'),daMixed=buildDarkAngelsMixedBook();
   const models=[
     {book:{id:'death-guard'},entities:dg.entities,appPayload:buildDGApp({...dgInputs,model:dgContract,records})},
     {book:{id:'adeptus-mechanicus'},entities:am.entities,appPayload:buildAdMechApp(amInputs)},
@@ -212,7 +237,8 @@ export function loadV2ArmyModels(options={}) {
     {book:{id:'emperors-children'},entities:ec.entities,presentationEntities:ecBuilt.book.entities.filter(entity=>!ec.entities.some(fact=>fact.id===entity.id)),appPayload:buildECApp(ecBuilt)},
     {book:{id:'tyranids'},entities:tyr.entities,presentationEntities:tyrBuilt.book.entities.filter(entity=>!tyr.entities.some(fact=>fact.id===entity.id)),appPayload:buildTyranidsApp(tyrBuilt)},
     {book:{id:'tau-empire'},entities:tau.entities,presentationEntities:tauBuilt.entities.filter(entity=>!tau.entities.some(fact=>fact.id===entity.id)),appPayload:tauApp},
-    {book:{id:'space-marines'},entities:sm.entities,appPayload:buildSMApp()}
+    {book:{id:'space-marines'},entities:sm.entities,appPayload:buildSMApp()},
+    {book:{id:'dark-angels'},entities:da.entities,referenceEntities:daMixed.canonicalEntities.filter(entity=>entity.bookId!=='dark-angels'),appPayload:buildDAApp()}
   ].map(model=>({...model,factualInterface:V2_FACTUAL_INTERFACES[model.book.id],mfmIdentityBindings:mfmIdentityBindings(model,{factualModel:dg})}));
   assertV2ArmyBookParity(models);
   return models;

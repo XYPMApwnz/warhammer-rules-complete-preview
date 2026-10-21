@@ -243,7 +243,7 @@ assert(!index.entries.some(entry=>entry.id==='keyword-death-guard'),'Death Guard
 const transportPreferred=index.entries.filter(entry=>entry.presentation.preferredMatchLabels?.includes('transport'));
 assert.deepEqual(transportPreferred.map(entry=>entry.id),['core::core-rule-18-01-transport-capacity'],'transport preferred match must resolve through the accepted keyword-transport migration binding');
 
-const excluded=['dark-angels','blood-angels'];
+const excluded=['blood-angels'];
 assert(!index.entries.some(entry=>entry.domain==='ARMY'&&excluded.includes(entry.sourceOwner.bookId)),'No excluded standalone Army facts');
 assert(!index.entries.some(entry=>entry.sourceOwner.canonicalId==='army-rule-oath-of-moment'),'Unconnected Space Marines rule must not be promoted');
 const coreSupport=index.entries.find(entry=>entry.id==='core::core-support');

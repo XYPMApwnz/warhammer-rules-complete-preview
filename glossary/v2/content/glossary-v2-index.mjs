@@ -151,6 +151,14 @@ function addArmyEntries(entries,models){
       return false;
     });
     const entryByCanonical=new Map();
+    const inheritedEntries=new Map((model.referenceEntities||[]).map(entity=>{
+      const entry=[...entries.values()].find(candidate=>candidate.domain==='ARMY'&&candidate.sourceOwner.bookId===entity.bookId&&candidate.sourceOwner.canonicalId===entity.id);
+      assert.ok(entry,'Missing admitted inherited factual owner '+entity.id);
+      assert.deepEqual(entry.facts.canonicalData,entity.data,'Inherited factual identity changed');
+      const context={effectiveBookId:book,sourceBookId:entity.bookId,...(entity.parentId?{parentUnitId:entity.parentId}:{})};
+      if(!entry.contexts.some(existing=>JSON.stringify(existing)===JSON.stringify(context)))entry.contexts.push(context);
+      return [entity.id,entry];
+    }));
     const label=e=>e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||(types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null)||e.id;
     const children=e=>model.entities.filter(child=>ownerOf(child)===e.id);
     const blockText=(e,seen=new Set())=>{
@@ -231,12 +239,12 @@ function addArmyEntries(entries,models){
     }
     for(const entity of sourceRows){
       const entry=entryByCanonical.get(entity.id),refs=[];
-      const visit=(value,path=[])=>{if(typeof value==='string'){const own=entryByCanonical.get(value),core=entries.get(entryId('core',value));if(own&&own!==entry)refs.push({domain:'ARMY',id:own.id,canonicalId:value,relationType:path.join('/')});else if(core)refs.push({domain:'CORE',id:core.id,canonicalId:value,relationType:path.join('/')});}else if(Array.isArray(value))value.forEach((v,i)=>visit(v,[...path,i]));else if(value&&typeof value==='object')Object.entries(value).forEach(([k,v])=>visit(v,[...path,k]));};
+      const visit=(value,path=[])=>{if(typeof value==='string'){const own=entryByCanonical.get(value)||inheritedEntries.get(value),core=entries.get(entryId('core',value));if(own&&own!==entry)refs.push({domain:'ARMY',id:own.id,canonicalId:value,relationType:path.join('/')});else if(core)refs.push({domain:'CORE',id:core.id,canonicalId:value,relationType:path.join('/')});}else if(Array.isArray(value))value.forEach((v,i)=>visit(v,[...path,i]));else if(value&&typeof value==='object')Object.entries(value).forEach(([k,v])=>visit(v,[...path,k]));};
       visit(entity.data);const parent=entryByCanonical.get(ownerOf(entity));if(parent)refs.push({domain:'ARMY',id:parent.id,canonicalId:ownerOf(entity),relationType:'OWNER'});
       for(const [fieldId,bindings]of Object.entries(model.appPayload.datasheetPresentation?.referenceBindings?.fields||{})){
         if(!fieldId.startsWith(entity.id+'::/'))continue;
         for(const binding of bindings){
-          const target=entryByCanonical.get(binding.targetId)||entries.get(entryId('core',binding.targetId))||[...entries.values()].find(candidate=>candidate.domain==='CORE'&&candidate.aliases.includes(binding.targetId));
+          const target=entryByCanonical.get(binding.targetId)||inheritedEntries.get(binding.targetId)||entries.get(entryId('core',binding.targetId))||[...entries.values()].find(candidate=>candidate.domain==='CORE'&&candidate.aliases.includes(binding.targetId));
           if(!target)throw new Error('Unresolved Army Book V2 reference target '+binding.targetId);
           refs.push({domain:target.domain,id:target.id,canonicalId:target.sourceOwner.canonicalId,relationType:binding.group,parameters:clone(binding.parameters||{})});
           if(target.domain==='CORE'){

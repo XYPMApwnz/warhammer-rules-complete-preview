@@ -6,6 +6,8 @@ import {buildDarkAngelsContracts} from './rule-contract-build.mjs';
 import {buildGameplayPresentation as smPresentation} from '../../space-marines/v2/gameplay-presentation-build.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
+import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 const clone=structuredClone;
 export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
  const before=JSON.stringify(built.book),payload=clone(built.native.payload),sm=smPresentation(built.sm);
@@ -20,14 +22,14 @@ export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
    ...(fields.get(field.id)?.presentationPath?{presentationPath:fields.get(field.id).presentationPath}:{}),
    ...(smFields.get(field.id)?.displayValue!==undefined?{displayValue:smFields.get(field.id).displayValue}:{})}));
  }
- // Core definitions are the existing canonical consumer cards, never copied DA facts.
- for(const card of sm.cards.filter(card=>!cards.has(card.id)&&card.identity?.registryId==='core')){
+ // Use the established Core projector's complete canonical closure, including
+ // FAQ/relationship targets whose identities do not start with core-*.
+ const glossary=buildGlossary({model:built.book,coreCatalog:createEffectiveCoreCatalog()});
+ for(const card of glossary.coreCards.filter(card=>!cards.has(card.id))){
   payload.cards.push(clone(card));cards.set(card.id,payload.cards.at(-1));
  }
- // Older native Core cards use their canonical core-* identity without registry metadata.
- for(const card of sm.cards.filter(card=>!cards.has(card.id)&&card.id.startsWith('core-'))){
-  payload.cards.push(clone(card));cards.set(card.id,payload.cards.at(-1));
- }
+ payload.factManifest.push(...glossary.coreFactManifest);
+ payload.glossary=glossary.index;
  const fieldIds=new Set(payload.cards.flatMap(card=>card.fields.map(field=>field.id)));
  const fields=Object.fromEntries(Object.entries(sm.datasheetPresentation.referenceBindings.fields).filter(([id])=>fieldIds.has(id)));
  for(const proof of built.artifact.nativeAbilities){

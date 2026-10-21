@@ -1,4 +1,4 @@
-Dark Angels V2 — static gameplay completion (Stage 3D)
+Dark Angels V2 — native application integration (Stage 4A)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -252,3 +252,34 @@ non-executable source text. The 8 unresolved clauses remain Lazarus source
 relation conflicts. Ten MFM relation-only references remain inactive. Full source
 and semantic completeness, authentic NR export and browser acceptance are not
 claimed. No changes to SM facts, central MFM or shared production are required.
+
+Local application integration (Stage 4A)
+Build/check: node books/dark-angels/v2/app-build.mjs [--check]
+Wiring QA: node books/dark-angels/v2/app-qa.mjs
+
+The standard registration now admits Dark Angels as the eighth local Unified V2
+book. It consumes the existing native gameplay/physical import pipeline. Existing
+480/800 cover assets and book-owned theme variables use the shared reader. The
+Core glossary projector supplies its complete canonical card and FAQ relationship
+closure; prefixes are not used as factual membership proof.
+
+The application contains 83 Datasheets (16 DA-owned and 67 SM-owned),5 Army Rules,
+18 Detachments,30 Enhancements,10 UNIT Upgrades and 60 Stratagems. Original owners,
+canonical IDs, provenance and source texts remain unchanged. Full source blocks
+are structurally enrolled as UNVERIFIED in the existing source-review inventory;
+the independent 252-clause gameplay ledger remains separate and unchanged.
+
+Mega Glossary adds only 320 DA-owned facts to the previous 6958 canonical records.
+Admitted SM records receive DA consumer contexts, not new DA factual identities.
+References resolve to original owners. No inherited facts or prices are duplicated.
+
+The roster's existing import notices explain generic-only unconfirmed Chapter
+context, inactive Lazarus disputed relations,10 MFM reference-only relations and
+the absence of an authentic New Recruit export. Existing points warnings retain
+UNRESOLVED totalPoints=null. The existing UI does not show a resolved aggregate
+roster total; source-confirmed runtime pricing and visible warning/inventory
+checks must not be described as browser text proof of that total.
+
+Earlier sections describe stage-specific producer boundaries. Stage 4A registers
+the local application only; no GitHub Pages publication, V1 migration or full
+semantic certification is implied. Known historical QA failures stay separate.
