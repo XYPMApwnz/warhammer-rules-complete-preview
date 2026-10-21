@@ -415175,17 +415175,17 @@
   },
   "rulePresentationLimitations": {
     "runtime": "EXISTING_SHARED_PHYSICAL_RUNTIME",
-    "chapterContext": "NOT_PROVEN_FOR_INHERITED_UNIT",
+    "chapterContext": "INTRINSIC_GENERIC_CHAPTER_NOT_PROVEN; ARMY_APPLICABILITY_VALIDATED_SEPARATELY",
     "relations": "INACTIVE_SOURCE_DECLARATIONS",
     "physicalPaidOptions": "NOT_PROVEN_NO_CHARGE",
-    "scope": "STAGE_3A_NATIVE_GAMEPLAY",
+    "scope": "STAGE_3B_1_REVIEWED_ARMY_APPLICABILITY",
     "sourceCoverage": {
       "sourceOwners": 131,
       "clauses": 252,
       "classifications": {
         "TEXT_ONLY_SOURCE_BACKED": 203,
-        "EXECUTABLE_PROVEN": 35,
-        "NOT_PROVEN": 14
+        "EXECUTABLE_PROVEN": 41,
+        "NOT_PROVEN": 8
       },
       "categories": {
         "DATASHEET_ABILITY": 73,
@@ -415202,10 +415202,10 @@
       "nativeWeaponProfiles": 68,
       "nativeAbilities": 12,
       "nativeInvulnerablePanels": 15,
-      "fullyCoveredTypedProofs": 8,
+      "fullyCoveredTypedProofs": 14,
       "partialTypedProofs": 1
     },
-    "physicalChapterContext": "16 FIXED_SOURCE_CHAPTERS; 67 INHERITED NOT_PROVEN; 26 KEYWORD GRANTS INACTIVE",
+    "physicalChapterContext": "16 FIXED_SOURCE_CHAPTERS; 26 CONDITIONAL ARMY-MEMBERSHIP GRANTS; GENERIC-ONLY ARMY CONTEXT NOT_PROVEN",
     "conditionalFnp": "FULL_QUALIFIED_SOURCE_TEXT; NO_UNCONDITIONAL_FNP",
     "battleState": "NOT_SIMULATED",
     "importer": "NOT_IMPLEMENTED",

@@ -46,9 +46,12 @@ badLowering[0].effects[0].operation='INCOMING_WOUND_MODIFIER';reject(()=>buildDa
 for(const entity of built.book.entities.filter(entity=>entity.bookId==='dark-angels'))for(const clause of entity.ruleContract?.clauses||[])
  for(const effect of clause.rosterEffects){
   assert.notEqual(effect.operation,'GRANT_MODEL_ABILITY','Qualified DA FNP must not become unqualified numeric FNP');
-  assert.ok(!['DEATHWING','RAVENWING'].includes(effect.keyword));
+  if(['DEATHWING','RAVENWING'].includes(effect.keyword)){
+   assert.equal(entity.kind,'ARMY_RULE');assert.equal(effect.unitScope,'PHYSICAL');
+   assert.ok(effect.conditions.some(condition=>condition.predicate.arguments?.key==='daArmyMembershipProven'));
+  }
  }
-assert.equal(built.artifact.executed.length,9);assert.equal(built.artifact.coverage.clauses,252);
+assert.equal(built.artifact.executed.length,15);assert.equal(built.artifact.coverage.clauses,252);
 console.log(JSON.stringify({status:'PASS',sourceOwners:expected.length,clauses:review.records.length,
  classifications:review.coverage.classifications,completeNonOverlappingSourceCoverage:true,
- checkedRawDocuments:checkedSourceBytes,typedLowerings:9,fullyCovered:8,partialChargeOnly:1,mutationControls:mutations}));
+ checkedRawDocuments:checkedSourceBytes,typedLowerings:15,fullyCovered:14,partialChargeOnly:1,mutationControls:mutations}));

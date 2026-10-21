@@ -1,5 +1,5 @@
 /** Book-owned DA declarations over the existing closed mixed-owner view.
- * No source parser, physical Chapter inference, importer or shared operation. */
+ * Army applicability is derived separately from intrinsic physical Chapter. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -9,7 +9,7 @@ import {buildSpaceMarinesContracts} from '../../space-marines/v2/rule-contract-b
 import {declarations,enhancementEligibility,recipientIdentityProofs} from './rule-contract-declarations.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {bindDarkAngelsNative} from './native-ability-bindings.mjs';
-import {bindDarkAngelsChapterSources} from './chapter-bindings-build.mjs';
+import {bindDarkAngelsChapterSources,chapterGrantDeclarations} from './chapter-bindings-build.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
@@ -19,6 +19,7 @@ const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const any=args=>args.length===1?args[0]:{op:'ANY',args};
 export function buildDarkAngelsContracts({inputs=declarations,review=read('./rule-clause-review.json')}={}){
+ inputs=[...inputs,...chapterGrantDeclarations()];
  const native=buildDarkAngelsMixedBook(),book=clone(native.book),index=new Map(book.entities.map(e=>[e.id,e]));
  const facts=read('./generated/effective.json'),original=JSON.stringify(facts);
  assert.equal(sha(original),review.factualFingerprint,'Unreviewed DA factual fields');
@@ -104,6 +105,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
    const proof={field:['text'],quote:input.quote},conditions=[];
    if(input.equipment)conditions.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'equipmentRequirementSatisfied',equals:true},proof,'ROSTER')});
    if(input.presence)conditions.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:input.presence,equals:true},proof,'ROSTER')});
+   if(input.armyContext)conditions.push({binding:'TARGET',predicate:atom('FIELD','UNIT',{key:'daArmyMembershipProven',equals:true},proof,'ROSTER')});
    if(input.targetKeywords)conditions.push({binding:'TARGET',predicate:all(input.targetKeywords.map(keyword=>atom('UNIT_KEYWORD','UNIT',{keyword},proof)))});
    if(input.targetUnitIds)conditions.push({binding:'TARGET',predicate:any(input.targetUnitIds.map(id=>atom('UNIT_ID','UNIT',{id},proof)))});
    const branches=input.formedOrPhysical?[{binding:'SOURCE_FORMED_MODELS',attached:true},{binding:'SOURCE_UNIT_MODELS',attached:false}]:[{binding:input.targetBinding}];
@@ -111,8 +113,8 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
     const gated=clone(conditions);
     if(branch.attached!==undefined)gated.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'attached',equals:branch.attached},proof,'ROSTER')});
     const effect={id:`${id}::${input.clauseId}/${n+1}/${i+1}`,...clone(operation),targetBinding:branch.binding,targetSubject:input.targetSubject,
-     conditions:gated,evidence:proof,sourceFields:[['text']],lifetime:enhancement?'WHILE_ASSIGNED':detachment?'WHILE_DETACHMENT_SELECTED':input.equipment?'WHILE_EQUIPPED':'WHILE_SOURCE_UNIT_PRESENT',
-     provenance:{canonicalRuleId:id,canonicalOwnerId:entity.parentId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance)}};
+     conditions:gated,evidence:proof,sourceFields:[['text']],lifetime:input.armyContext?'ROSTER':enhancement?'WHILE_ASSIGNED':detachment?'WHILE_DETACHMENT_SELECTED':input.equipment?'WHILE_EQUIPPED':'WHILE_SOURCE_UNIT_PRESENT',
+     provenance:{canonicalRuleId:id,canonicalOwnerId:entity.parentId||book.bookId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance)}};
     if(input.equipment)effect.equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:id,sourceFieldPath:['text']};
     return effect;
    }));
@@ -127,17 +129,17 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   }
   const pending=new Map(declaration.clauses.map(clause=>[clause.id,clause.rosterEffects]));
   for(const clause of declaration.clauses)clause.rosterEffects=[];
-  entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',index,declaration:bindDeclarationClauses(declaration),currentness:{factualOwner:clone(entity.provenance),chapterContext:'NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT'}});
+  entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',index,declaration:bindDeclarationClauses(declaration),currentness:{factualOwner:clone(entity.provenance),chapterContext:'INTRINSIC_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_VALIDATED_SEPARATELY'}});
   for(const clause of entity.ruleContract.clauses)clause.rosterEffects=pending.get(clause.id);
  }
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
- const artifact={scope:'STAGE_3B_NATIVE_PHYSICAL_CHAPTER_CONTEXT',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
+ const artifact={scope:'STAGE_3B_1_SOURCE_REVIEWED_ARMY_APPLICABILITY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
   coverage:clone(review.coverage),executed,...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
-  chapterConditions:26,chapterGrantsActive:0,chapterContext:'16_FIXED_SOURCE_CHAPTERS; 67_INHERITED_NOT_PROVEN',physicalChapterCoverage,
+  chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
   unsupported:['INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','UNKNOWN_BATTLE_EVENTS'],
   inheritedPhysicalChoiceBindings:'Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.',
   relations:'INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT',physicalCycloneCharge:false,realNewRecruitExportTested:false};

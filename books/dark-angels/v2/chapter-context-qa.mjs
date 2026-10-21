@@ -23,14 +23,17 @@ export function runChapterContextQA(built){
   const schema=built.schema||createRuleContractSchema();
   const checks=[],evidence=[];
   const check=(id,run)=>{run();checks.push({id,status:'PASS'});};
-  check('26-source-backed-conditions-remain-inactive',()=>{
+  check('26-source-backed-conditions-require-validated-army-membership',()=>{
     assert.equal(ledger.records.length,26);
     assert.equal(ledger.records.filter(row=>row.grantedKeywords.includes('DEATHWING')).length,18);
     assert.equal(ledger.records.filter(row=>row.grantedKeywords.includes('RAVENWING')).length,8);
-    assert.ok(ledger.records.every(row=>row.runtimeActive===false&&row.physicalContext.chapterConfirmationRequired));
-    for(const entity of book.entities)for(const clause of entity.ruleContract?.clauses||[])
-      for(const effect of clause.rosterEffects||[])assert.ok(!(effect.operation==='GRANT_UNIT_KEYWORD'&&
-        chapterKeywords.includes(effect.keyword)),'Unproven Chapter grant activated: '+entity.id);
+    assert.ok(ledger.records.every(row=>row.runtimeActive===true&&row.physicalContext.armyContextRequired&&
+      row.physicalContext.unitChapterKeywordRequired===false));
+    const grants=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).flatMap(clause=>clause.rosterEffects||[]))
+      .filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&chapterKeywords.includes(effect.keyword));
+    assert.equal(grants.length,6);
+    assert.ok(grants.every(effect=>effect.unitScope==='PHYSICAL'&&effect.conditions.some(condition=>
+      condition.binding==='TARGET'&&condition.predicate.arguments?.key==='daArmyMembershipProven')));
   });
   check('parser-faction-is-army-metadata-not-physical-unit-proof',()=>{
     const draft=lexicalDraft('FACTION KEYWORD: Dark Angels\nDETACHMENT: Inner Circle Task Force\n1x Bladeguard Ancient (60 pts)',parse);
@@ -97,10 +100,10 @@ export function runChapterContextQA(built){
     assert.equal(isolated.evaluatePredicate(predicate,{subject:'UNIT',roster:{diagnosticChapterConfirmed:false},battle:{}}),'FALSE');
     assert.equal(isolated.evaluatePredicate(predicate,{subject:'UNIT',roster:{diagnosticChapterConfirmed:true},battle:{}}),'TRUE');
   });
-  return {status:'PASS',checks,counts:{conditions:26,deathwingInactive:18,ravenwingInactive:8,
+  return {status:'PASS',checks,counts:{conditions:26,deathwingConditional:18,ravenwingConditional:8,
     physicalNegativeCases:evidence.length,repeatedUnitOccurrencesPerCase:2,structuralAttachmentProbes:1},
     evidence,chapterContextSource:'NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT',
-    blocker:'No source-qualified producer validates Chapter evidence for a physical UNIT instance. Book, Detachment, faction header, attachment and arbitrary snapshot properties are insufficient.',
+    blocker:'Generic-only army context remains unproven. Book, Detachment, faction header, attachment and arbitrary snapshot properties are insufficient.',
     existingCapability:'FIELD with book-owned bindContext plus GRANT_UNIT_KEYWORD / PHYSICAL needs no new shared operation.',
     codePaths:['books/shared/roster-v2/parser.mjs:224','books/shared/roster-v2/import.mjs:143',
       'books/shared/roster-v2/import.mjs:353','books/space-marines/v2/roster-import.mjs:46',

@@ -1,14 +1,14 @@
 {
-  "scope": "STAGE_3B_NATIVE_PHYSICAL_CHAPTER_CONTEXT",
+  "scope": "STAGE_3B_1_SOURCE_REVIEWED_ARMY_APPLICABILITY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "8E3F24DF00D991151F88FB6B4476D124F16EE3AB4D2E2B4B8AE8C0D20ED5E232",
+  "reviewFingerprint": "B8E4740E9F4E33068A6AB81B7F920052F79F323F7FFAA82904DFEBED3E804A9E",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
       "TEXT_ONLY_SOURCE_BACKED": 203,
-      "EXECUTABLE_PROVEN": 35,
-      "NOT_PROVEN": 14
+      "EXECUTABLE_PROVEN": 41,
+      "NOT_PROVEN": 8
     },
     "categories": {
       "DATASHEET_ABILITY": 73,
@@ -25,7 +25,7 @@
     "nativeWeaponProfiles": 68,
     "nativeAbilities": 12,
     "nativeInvulnerablePanels": 15,
-    "fullyCoveredTypedProofs": 8,
+    "fullyCoveredTypedProofs": 14,
     "partialTypedProofs": 1
   },
   "executed": [
@@ -83,6 +83,60 @@
       "effectIds": [
         "ability-da-95887a48130640feaf11::lion-helm/1/1",
         "ability-da-95887a48130640feaf11::lion-helm/2/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-2206dbc19df84c22a190",
+      "clauseId": "deathwing-terminators",
+      "partial": false,
+      "quote": "- TERMINATOR units.",
+      "effectIds": [
+        "army-rule-da-2206dbc19df84c22a190::deathwing-terminators/1/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-2206dbc19df84c22a190",
+      "clauseId": "deathwing-veterans",
+      "partial": false,
+      "quote": "- BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.",
+      "effectIds": [
+        "army-rule-da-2206dbc19df84c22a190::deathwing-veterans/1/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-2206dbc19df84c22a190",
+      "clauseId": "deathwing-transports",
+      "partial": false,
+      "quote": "- LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+      "effectIds": [
+        "army-rule-da-2206dbc19df84c22a190::deathwing-transports/1/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-2206dbc19df84c22a190",
+      "clauseId": "deathwing-dreadnoughts",
+      "partial": false,
+      "quote": "- DREADNOUGHT units.",
+      "effectIds": [
+        "army-rule-da-2206dbc19df84c22a190::deathwing-dreadnoughts/1/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-c944806a43ff4c999f9e",
+      "clauseId": "ravenwing-mounted",
+      "partial": false,
+      "quote": "- MOUNTED units.",
+      "effectIds": [
+        "army-rule-da-c944806a43ff4c999f9e::ravenwing-mounted/1/1"
+      ]
+    },
+    {
+      "ruleId": "army-rule-da-c944806a43ff4c999f9e",
+      "clauseId": "ravenwing-fly-vehicles",
+      "partial": false,
+      "quote": "- VEHICLE FLY units.",
+      "effectIds": [
+        "army-rule-da-c944806a43ff4c999f9e::ravenwing-fly-vehicles/1/1"
       ]
     },
     {
@@ -1090,19 +1144,19 @@
   ],
   "inheritedTypedClauses": 35,
   "chapterConditions": 26,
-  "chapterGrantsActive": 0,
-  "chapterContext": "16_FIXED_SOURCE_CHAPTERS; 67_INHERITED_NOT_PROVEN",
+  "chapterGrantsActive": 26,
+  "chapterContext": "16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER",
   "physicalChapterCoverage": {
     "fixedSourceChapters": 16,
     "unresolvedInheritedChapters": 67,
-    "deathwingProofs": 0,
+    "deathwingProofs": 18,
     "deathwingConditions": 18,
-    "ravenwingProofs": 0,
+    "ravenwingProofs": 8,
     "ravenwingConditions": 8,
-    "activeGrants": 0,
-    "basis": "EXPLICIT_SECOND_DATASHEET_FACTION_KEYWORD",
-    "missingEvidence": "NO_REVIEWED_PER_PHYSICAL_UNIT_CHAPTER_DECLARATION_FOR_GENERIC_SM",
-    "sharedChanges": 0,
+    "activeGrants": 26,
+    "basis": "SOURCE_FIXED_DA_MEMBER_AND_VALIDATED_CLOSED_MEMBERSHIP",
+    "missingEvidence": "GENERIC_ONLY_ARMY_HAS_NO_REVIEWED_ARMY_CONTEXT_DECLARATION",
+    "sharedChanges": 1,
     "realNewRecruitExportTested": false
   },
   "unsupported": [

@@ -544,4 +544,57 @@ check('UNIT keyword scope accepts only absent, FORMED or PHYSICAL and rejects ba
   assert.ok(unit(projection,'alpha').conditional.some(row=>row.ruleId===id('battle-reference')&&row.state==='UNKNOWN'));
 });
 
+check('root Army Rule dispatch preserves exact physical recipients and source attribution',()=>{
+  const {book,state}=fixture();
+  rule(book,'root-army',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',targetBinding:'ROSTER_UNITS',
+    unitScope:'PHYSICAL',conditions:[{binding:'TARGET',predicate:keyword('UNIT','UNIT_NATIVE')}]});
+  const root=book.entities.at(-1);delete root.parentId;root.kind='ARMY_RULE';
+  Object.assign(root.ruleContract,{kind:'ARMY_RULE',ownerId:book.bookId});
+  const attached=changeAttachment(book,state,book.rosterAttachmentPolicies,'ATTACH','leader','alpha');
+  const projection=execute(book,attached);
+  for(const instanceId of ['alpha','beta']){
+    assert.ok(unit(projection,instanceId).keywords.includes('BONUS'));
+    assert.ok(unit(projection,instanceId).profiles.every(model=>!model.keywords.includes('BONUS')));
+    const traces=applied(projection,'root-army',instanceId);assert.equal(traces.length,1);
+    assert.equal(traces[0].sourceInstanceId,null);assert.equal(traces[0].targetInstanceId,instanceId);
+    assert.equal(traces[0].clauseId,'root-army/clause');assert.deepEqual(traces[0].sourceFields,[['text']]);
+  }
+  assert.ok(!unit(projection,'leader').keywords.includes('BONUS'));
+  assert.deepEqual(execute(book,attached),projection);
+  for(const targetBinding of ['SOURCE_UNIT','SOURCE_UNIT_MODELS']){
+    const invalid=clone(book);invalid.entities.at(-1).ruleContract.clauses[0].rosterEffects[0].targetBinding=targetBinding;
+    if(targetBinding==='SOURCE_UNIT_MODELS'){
+      const effect=invalid.entities.at(-1).ruleContract.clauses[0].rosterEffects[0];
+      effect.targetSubject='MODEL';effect.operation='GRANT_MODEL_KEYWORD';delete effect.unitScope;
+    }
+    assert.throws(()=>execute(invalid,state),/Root Army Rule requires global targets/);
+  }
+});
+check('root Army Rule TARGET FIELD fails closed for false and unknown',()=>{
+  for(const value of [undefined,false,true]){
+    const {book,state}=fixture();
+    rule(book,'root-field',{operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL',
+      conditions:[{binding:'TARGET',predicate:atom('FIELD','UNIT',{key:'equipmentRequirementSatisfied',equals:true},'ROSTER')}]});
+    const root=book.entities.at(-1);delete root.parentId;root.kind='ARMY_RULE';
+    Object.assign(root.ruleContract,{kind:'ARMY_RULE',ownerId:book.bookId});
+    const schema={...evaluator,evaluatePredicate:(node,context)=>evaluator.evaluatePredicate(node,
+      {...context,roster:{...context.roster,...(value===undefined?{}:{equipmentRequirementSatisfied:value})}})};
+    validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+    const projection=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),schema);
+    assert.ok(projection.units.every(row=>row.keywords.includes('BONUS')===(value===true)));
+  }
+});
+check('non-executable root and parented Army components retain previous dispatch',()=>{
+  for(const parented of [false,true]){
+    const {book,state}=fixture();
+    rule(book,'army-component',{parent:'main',operation:'GRANT_UNIT_KEYWORD',targetSubject:'UNIT',targetBinding:'ROSTER_UNITS',unitScope:'PHYSICAL'});
+    const root=book.entities.at(-1);root.kind='ARMY_RULE';root.ruleContract.kind='ARMY_RULE';
+    delete root.ruleContract.detachmentId;
+    if(!parented){delete root.parentId;root.ruleContract.ownerId=book.bookId;
+      const clause=root.ruleContract.clauses[0];clause.rosterEffects=[];clause.rosterClassification='BATTLE_ONLY';
+      clause.rosterClassificationNote={reason:'Unknown battle action'};}
+    const projection=execute(book,state);
+    assert.ok(projection.units.every(row=>!row.keywords.includes('BONUS')&&row.conditional.length===0));
+  }
+});
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks},null,2));

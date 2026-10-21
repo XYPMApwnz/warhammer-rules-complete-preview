@@ -209,14 +209,15 @@ export function runMixedOwnerQA({canonicalEntities,book,payload,points,relationR
     }
   });
   check('chapter-context-never-inferred-or-keywords-granted',()=>{
-    assert.equal(chapter.records.length,26);assert.equal(chapter.execution,'SOURCE_CONDITIONS_ONLY_NOT_ACTIVE');
+    assert.equal(chapter.records.length,26);assert.equal(chapter.execution,'CONDITIONAL_VALIDATED_DA_ARMY_MEMBERSHIP');
     assert.equal(chapter.records.filter(row=>row.grantedKeywords.includes('DEATHWING')).length,18);
     assert.equal(chapter.records.filter(row=>row.grantedKeywords.includes('RAVENWING')).length,8);
     for(const record of chapter.records){
       const unit=state.units.find(row=>row.canonicalUnitId===record.recipient.canonicalId);assert.ok(unit);
       const context=predicateContext(state,projection,unit.instanceId,'UNIT');
       assert.ok(!context.roster.chapterId&&!context.roster.chapter&&!context.roster.darkAngelsChapterContext);
-      assert.equal(record.runtimeActive,false);assert.equal(record.physicalContext.chapterConfirmationRequired,true);
+      assert.equal(record.runtimeActive,true);assert.equal(record.physicalContext.armyContextRequired,true);
+      assert.equal(record.physicalContext.unitChapterKeywordRequired,false);
       assert.ok(record.conditionalSourceTokens.every(token=>token.conditional===true));
       const effective=projectEffectiveInstance(book,projection,unit.instanceId);
       const personal=projectInstanceCards(cards,unit,effective).get(unit.canonicalUnitId)[0];
@@ -309,7 +310,7 @@ export function runMixedOwnerQA({canonicalEntities,book,payload,points,relationR
   return {status:'PASS',checks,negativeControls:negative,counts:{inheritedReferences:180,datasheets:83,
     inheritedDatasheets:67,daOwnedDatasheets:16,modelProfiles:canonicalModel.entities.filter(row=>row.kind==='MODEL_PROFILE').length,
     weaponProfiles:canonicalModel.entities.filter(row=>row.kind==='WEAPON_PROFILE').length,
-    chapterConditionsInactive:26,pricingBindings:27,sharedSmPricingReferences:69,effectiveAndPersonalPhysicalUnits:83,
+    chapterConditionsNotExecutedInFactualView:26,pricingBindings:27,sharedSmPricingReferences:69,effectiveAndPersonalPhysicalUnits:83,
     qualifiedReferenceSubjects:180+113+397,qualifiedReferenceNegativeControls:4,inactiveMfmRelationDeclarations:relationReferences.length},
     unitEvidence:state.units.map(unit=>{
       const source=originals.get(unit.canonicalUnitId),effective=projectEffectiveInstance(book,projection,unit.instanceId);

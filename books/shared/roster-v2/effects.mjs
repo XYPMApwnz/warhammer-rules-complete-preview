@@ -54,6 +54,13 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
     for (const effect of clause.rosterEffects) {
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
       ids.add(effect.id);
+      // Root Army Rules have no physical source instance. Only actual global
+      // executable clauses opt into dispatch; text/battle-only roots retain
+      // their previous behaviour. Source-bound effects cannot use this path.
+      if (entity.kind==='ARMY_RULE' && !entity.parentId &&
+          (!['ROSTER_UNITS','ROSTER_MODELS'].includes(effect.targetBinding) ||
+           effect.conditions.some(condition=>condition.binding==='SOURCE')))
+        throw new TypeError('Root Army Rule requires global targets without a physical source');
       let proof = entity.data; for (const key of effect.evidence?.field || []) proof = proof?.[key];
       if (!effect.evidence?.quote || typeof proof !== 'string' || !proof.includes(effect.evidence.quote)) throw new TypeError('Unproven roster effect');
       if (effect.operation === 'MODIFY_STAT') {
@@ -234,7 +241,9 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
     if (rule.ruleContract.detachmentId && !state.detachmentIds.includes(rule.ruleContract.detachmentId)) continue;
-    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' ? [null] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
+    const globalArmyRule=rule.kind==='ARMY_RULE' && !rule.parentId && rule.ruleContract.kind==='ARMY_RULE' &&
+      rule.ruleContract.clauses.some(clause=>clause.rosterEffects.length>0);
+    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' || globalArmyRule ? [null] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
     for (const source of sources) {
       let ownerModel = null;
       if (source && rule.kind === 'ENHANCEMENT' && rule.ruleContract.assignment) {

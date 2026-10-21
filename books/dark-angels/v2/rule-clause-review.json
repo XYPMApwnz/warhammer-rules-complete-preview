@@ -10,8 +10,8 @@
     "clauses": 252,
     "classifications": {
       "TEXT_ONLY_SOURCE_BACKED": 203,
-      "EXECUTABLE_PROVEN": 35,
-      "NOT_PROVEN": 14
+      "EXECUTABLE_PROVEN": 41,
+      "NOT_PROVEN": 8
     },
     "categories": {
       "DATASHEET_ABILITY": 73,
@@ -28,7 +28,7 @@
     "nativeWeaponProfiles": 68,
     "nativeAbilities": 12,
     "nativeInvulnerablePanels": 15,
-    "fullyCoveredTypedProofs": 8,
+    "fullyCoveredTypedProofs": 14,
     "partialTypedProofs": 1
   },
   "layoutOnly": [
@@ -2725,9 +2725,11 @@
         "sourceEntityId": "da-source-9e84b00c00ef4232962a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "deathwing-terminators"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/army-rule-da-2206dbc19df84c22a190/text/96:218",
@@ -2753,9 +2755,11 @@
         "sourceEntityId": "da-source-9e84b00c00ef4232962a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "deathwing-veterans"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/army-rule-da-2206dbc19df84c22a190/text/219:318",
@@ -2781,9 +2785,11 @@
         "sourceEntityId": "da-source-9e84b00c00ef4232962a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "deathwing-transports"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/army-rule-da-2206dbc19df84c22a190/text/319:339",
@@ -2809,9 +2815,11 @@
         "sourceEntityId": "da-source-9e84b00c00ef4232962a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "deathwing-dreadnoughts"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/army-rule-da-c944806a43ff4c999f9e/text/76:92",
@@ -2837,9 +2845,11 @@
         "sourceEntityId": "da-source-d912a23534e040689c8a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "ravenwing-mounted"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/army-rule-da-c944806a43ff4c999f9e/text/93:113",
@@ -2865,9 +2875,11 @@
         "sourceEntityId": "da-source-d912a23534e040689c8a",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "NOT_PROVEN",
-      "typedClauseIds": [],
-      "reason": "Source condition proven, but source-qualified Chapter of the inherited physical UNIT has no producer/validator. All 26 keyword grants inactive."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "ravenwing-fly-vehicles"
+      ],
+      "reason": "Source-reviewed Stage3B.1: validated DA army membership gates physical UNIT grant; no per-UNIT second Faction keyword is required. Generic-only context stays unknown."
     },
     {
       "id": "review/detachment-rule-da-40ccb5dde8fa45a89798/text/17:145",

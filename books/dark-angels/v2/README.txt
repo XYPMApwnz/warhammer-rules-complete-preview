@@ -1,4 +1,4 @@
-Dark Angels V2 — native gameplay and physical Chapter evidence (Stage 3B)
+Dark Angels V2 — source-reviewed army applicability (Stage 3B.1)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -30,9 +30,9 @@ physical loadout assignments. Nested abilities retain their source section link.
 Inherited SM data
 inherited-sm-references.json references the existing SM effective owner. It does
 not copy SM stats, texts or weapon profiles or reapply SM official corrections.
-Chapter conditions remain non-executable. Source-proven MFM identities bind pricing only. The existing
-shared context guard is unchanged. Mixed-owner consumer projections are now
-verified independently; physical Chapter context remains unproven.
+Chapter conditions now execute only under verified DA army applicability.
+Source-proven MFM identities bind pricing only. The existing shared context guard
+is unchanged. Intrinsic Chapter and army applicability are separate proofs.
 
 Boundary
 MFM v1.6 now owns DA numeric facts centrally. mfm-bindings.json joins proven
@@ -43,7 +43,7 @@ Generated mfm-presentation.json is a pricing projection, not a registered Army
 Book UI. No numeric MFM values are copied into DA canonical factual entities.
 All 69 shared prices stay SM-owned; inherited pricing references carry IDs only.
 No physical importer, application registration, UI or Mega Glossary is implemented here.
-Chapter keyword grants remain inactive. Mixed-owner source/reference, physical
+Chapter keyword grants are conditional. Mixed-owner source/reference, physical
 Effective and Personal projections are verified; full DA gameplay is deferred.
 Astraeus/Thunderhawk remain MFM-only; Deathwatch Support has a separate owner.
 The Cyclone price is unit-owned source data; no MODEL, selection or physical
@@ -81,7 +81,7 @@ Existing SM keyword normalization is applied only to its disposable view: the
 26 reviewed conditional tokens are not intrinsic grants. No physical Chapter is
 inferred from membership, a Detachment, attachment or caller-supplied extra state.
 The shared context passes caller extras but does not establish source provenance
-for a Chapter assignment; that binding must be reviewed at a later stage.
+for a Chapter assignment. The reviewed army applicability binding strips forged FIELD claims.
 
 83 unit price references use the central owners (16 DA + 67 SM); two additional
 SM MFM-only units remain references without native Datasheets. Shared Detachment
@@ -102,9 +102,9 @@ source records. Complete source context, spans, hashes and provenance are retain
 segmentation is a transcription locator, never a gameplay inference. Layout-only
 headings, duplicate aggregate ability sections and numeric weapon/model facts are
 accounted separately. Five nested Ezekiel/Lion abilities remain separate records.
-35 clauses have a fully covered typed/native binding; 203 remain source-backed
-text and 14 are NOT_PROVEN (physical Chapter condition or Lazarus source conflict).
-Nine typed DA lowerings include one partial clause: Honour or Death executes only
+41 clauses have a fully covered typed/native binding; 203 remain source-backed
+text and 8 are NOT_PROVEN (Lazarus source conflict). Six source-reviewed Army Rule
+clauses join the original nine typed DA lowerings, which include one partial clause: Honour or Death executes only
 Charge +1. Its Advance +1 and CP restriction remain text, not an executed claim.
 15 source InSv panels seed exactly their 20 explicit MODEL recipients; 12 native
 Core ability occurrences retain parameters, including Lone Operative 15 inches.
@@ -125,12 +125,28 @@ including exact MODEL bearer and UNIT Upgrade scope. UNIT keyword grants are not
 copied into MODEL keywords. Attachment permissions remain inactive; diagnostic
 formation tests prove scope only, not source-valid attachment eligibility.
 
-CHAPTER_CONTEXT_SOURCE=NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT. Parser/import only
-has army-level faction metadata. There is no source-qualified declaration proving
-Chapter for a generic inherited physical UNIT; book, Detachment, attachments and arbitrary snapshot
-properties cannot supply that evidence. All 18 DEATHWING and 8 RAVENWING grants
-remain inactive. Existing FIELD and GRANT_UNIT_KEYWORD/PHYSICAL are sufficient once
-a separately proven physical source binding exists; no shared capability was added.
+Army applicability correction (Stage 3B.1)
+The Deathwing/The Ravenwing target friendly ADEPTUS ASTARTES UNIT categories;
+they do not require a second DARK ANGELS Faction keyword on common recipients.
+Space Marine Chapters defines a second Faction keyword if present and prohibits
+mixing Chapters. It does not mandate adding a Chapter keyword to common units.
+
+A source-fixed DA physical UNIT plus the validated closed DA/common membership
+is sufficient evidence of DA army applicability. All 18 DEATHWING and 8 RAVENWING
+conditions now have executable PHYSICAL UNIT grants gated by that proof. This is
+a sufficient technical proof, not a source requirement to include a DA-specific
+Datasheet. A generic-only army may be legal, but its context remains NOT_PROVEN
+without an independently reviewed army declaration. No selector is invented.
+Book, Detachment, attachment, names and unvalidated faction headers alone remain
+insufficient. Removing the final DA member removes grants; no Chapter is assigned
+to generic UNITs or MODELs. The existing FIELD binding is derived on every load.
+
+Shared effects.mjs dispatches genuine root ARMY_RULE contracts only when they
+contain roster-executable effects, once with a roster source. Global targets and
+TARGET-only conditions are required; source-relative bindings fail closed.
+Existing text/battle-only roots and parented components preserve their behaviour.
+No new operation, schema, importer, renderer or faction-specific shared branch.
+QA: node books/dark-angels/v2/chapter-applicability-qa.mjs
 
 Physical Chapter validation
 QA: node books/dark-angels/v2/physical-chapter-qa.mjs
@@ -157,10 +173,10 @@ daChapterContextStatus. Caller extras cannot supply either field. Nothing is
 written into the snapshot or MODEL keywords; MODEL context receives no UNIT Chapter
 field. Invalid load preserves the previous runtime and Chapter contexts.
 
-All 26 reviewed DEATHWING/RAVENWING recipients are generic SM units, so this source
-proof activates zero new grants. Existing source-native DA keywords are preserved.
-Missing evidence: a reviewed per-UNIT Chapter declaration tied to its physical
-identity, or an accepted rule establishing equivalent per-UNIT semantics for a
-validated army Chapter declaration. Neither is available in the accepted inputs.
+Intrinsic Chapter remains proven only for 16 DA-owned types. All 67 common SM
+faction arrays remain unchanged. chapterContext(instanceId).armyApplicability
+separately reports the physical member, source-fixed DA anchor instances and
+source references used for conditional grants. The UNIT FIELD is derived from
+this proof, cannot be supplied by caller extras and is absent from MODEL context.
 Shared import candidate handoff is tested with constructed snapshots only; a
 complete DA importer and genuine New Recruit export remain unverified.

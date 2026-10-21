@@ -55,8 +55,8 @@ def validate(inherited,chapter,mfm):
     for r in records:
         p=r['recipient']; e=smby.get(p['canonicalId']); check(p['canonicalId'] in expected_ds,'Chapter recipient is not common SM UNIT')
         check(e is not None and p['kind']=='DATASHEET' and p['sourceOwner']=='space-marines' and p['provenance']==e['provenance'],'Chapter source/recipient identity changed')
-        check(r['scope']=='UNIT' and r['runtimeActive'] is False,'Chapter condition activated or broadened beyond UNIT')
-        ctx=r['physicalContext'];check(ctx['chapter']=='DARK_ANGELS' and ctx['chapterConfirmationRequired'] is True and ctx['modelKeywordPropagation']=='NOT_PROVEN_DO_NOT_GRANT','Chapter physical context guard changed')
+        check(r['scope']=='UNIT' and r['runtimeActive'] is True,'Chapter condition missing or broadened beyond UNIT')
+        ctx=r['physicalContext'];check(ctx['unitChapterKeywordRequired'] is False and ctx['armyContextRequired'] is True and ctx['modelKeywordPropagation']=='NOT_PROVEN_DO_NOT_GRANT','Chapter army applicability guard changed')
         rule=r['rule'];check(rule['document']==dafile.relative_to(ROOT).as_posix() and rule['sha256'].upper()==sha(dafile),'Chapter rule provenance differs')
         nodes=da.xpath(rule['pointer']);check(len(nodes)==1,'Chapter rule pointer missing')
         if nodes:check(norm(nodes[0].text_content())==norm(rule['text']),'Chapter full source clause lost')
@@ -109,7 +109,7 @@ def main():
     docs=[load(HERE/name)for name in ['inherited-sm-references.json','chapter-conditions.json','mfm-boundary.json']]
     errors=validate(*docs)
     if errors: print(json.dumps({'status':'FAIL','errors':errors},indent=2));return 1
-    mutations=[('foreign owner',lambda d:d[0]['references'][0].update(sourceOwner='dark-angels')),('copied SM fact',lambda d:d[0]['references'][0].update(text='Copied fact')),('dropped inherited reference',lambda d:d[0]['references'].pop()),('changed Chapter recipient',lambda d:d[1]['records'][0]['recipient'].update(canonicalId='unit-not-proven')),('Chapter grant activated',lambda d:d[1]['records'][0].update(runtimeActive=True)),('missing physical Chapter confirmation',lambda d:d[1]['records'][0]['physicalContext'].update(chapterConfirmationRequired=False)),('MFM pricing census corrupted',lambda d:d[2].update(activeBindings=1)),('MFM price copied',lambda d:d[2]['identityCandidates'][0].update(points=80)),('Cyclone charged',lambda d:d[2]['paidOptionCandidates'][0].update(chargeEnabled=True))]
+    mutations=[('foreign owner',lambda d:d[0]['references'][0].update(sourceOwner='dark-angels')),('copied SM fact',lambda d:d[0]['references'][0].update(text='Copied fact')),('dropped inherited reference',lambda d:d[0]['references'].pop()),('changed Chapter recipient',lambda d:d[1]['records'][0]['recipient'].update(canonicalId='unit-not-proven')),('Chapter binding removed',lambda d:d[1]['records'][0].update(runtimeActive=False)),('missing army applicability confirmation',lambda d:d[1]['records'][0]['physicalContext'].update(armyContextRequired=False)),('MFM pricing census corrupted',lambda d:d[2].update(activeBindings=1)),('MFM price copied',lambda d:d[2]['identityCandidates'][0].update(points=80)),('Cyclone charged',lambda d:d[2]['paidOptionCandidates'][0].update(chargeEnabled=True))]
     failed=[]
     for label,mutate in mutations:
         mutated=copy.deepcopy(docs);mutate(mutated)

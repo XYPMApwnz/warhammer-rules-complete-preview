@@ -90,7 +90,7 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
   const policy=source=>({sourceId:source,targetId:ID.intercessors,role:'LEADER',sourceIds:[],additionalLeaders:0});
   const project=(state,model=book,policies=[])=>{
     const verified=validateRoster(model,clone(state),policies);
-    return {state:verified,projection:executeRosterEffects(model,verified,createDarkAngelsRuleSchema({state:verified}))};
+    return {state:verified,projection:executeRosterEffects(model,verified,createDarkAngelsRuleSchema({state:verified,book:{...model,rosterAttachmentPolicies:policies}}))};
   };
   function fixture(row){
     const state=roster([physical('source',row.unit,{enhancement:row.enhancement?row.rule:null,equipment:row.equipment,double:row.enhancement}),
@@ -129,8 +129,9 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
   check('source-independent-nine-lowerings',()=>{
     assert.equal(scenarios.length,9);
     for(const row of scenarios)assert.ok(sources.get(row.rule)?.data.text.includes(row.quote),'Independent accepted source expectation changed '+row.id);
-    const executable=book.entities.filter(e=>e.bookId==='dark-angels').flatMap(e=>(e.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>({rule:e.id,clause:c.id})));
+    const executable=book.entities.filter(e=>e.bookId==='dark-angels'&&e.kind!=='ARMY_RULE').flatMap(e=>(e.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>({rule:e.id,clause:c.id})));
     assert.equal(executable.length,9,'Independent lowering denominator differs');
+    assert.equal(built.artifact.executed.length,15,'Nine original and six separately tested army clauses required');
     assert.deepEqual([...new Set(executable.map(row=>row.rule))].sort(),[...new Set(scenarios.map(row=>row.rule))].sort());
   });
   for(const row of scenarios){
@@ -225,10 +226,12 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
   });
   check('darkflight-ravenwing-without-fly-and-fly-without-ravenwing-negative',()=>{
     const rw=ID.command,fly=records.get('unit-sm-80ac1421ce0f4de3');assert.ok(fly,'Missing inherited source-backed Fly control');
-    const state=roster([physical('source',rw),physical('fly',fly.id)],ID.darkflight),result=project(state);
+    const state=roster([physical('source',rw)],ID.darkflight),result=project(state);
     assert.ok(result.projection.units[0].keywords.includes('RAVENWING'));assert.ok(!result.projection.units[0].keywords.includes('FLY'));
-    assert.ok(result.projection.units[1].keywords.includes('FLY'));assert.ok(!result.projection.units[1].keywords.includes('RAVENWING'));
     assert.ok(result.projection.units.every(unit=>!unit.applied.some(trace=>trace.ruleId==='detachment-rule-da-6a259c00bc9f4bf498ee')));
+    const generic=project(roster([physical('fly',fly.id)],ID.darkflight)).projection.units[0];
+    assert.ok(generic.keywords.includes('FLY'));assert.ok(!generic.keywords.includes('RAVENWING'));
+    assert.ok(!generic.applied.some(trace=>trace.ruleId==='detachment-rule-da-6a259c00bc9f4bf498ee'));
   });
   check('formed-unit-detach-reattach-no-stacking',()=>{
     const row=scenarios.find(row=>row.id==='ezekiel-book'),state=roster([physical('source',ID.ezekiel),physical('bodyguard',ID.intercessors),physical('peer',ID.intercessors)]),policies=[policy(ID.ezekiel)];
@@ -266,7 +269,7 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
       assert.ok(!unit.keywords.includes('DEATHWING')&&!unit.keywords.includes('RAVENWING'),'Unproven imported extras activated Chapter grants');
       for(const model of unit.profiles)assert.ok(!model.keywords.includes('DEATHWING')&&!model.keywords.includes('RAVENWING'));
     }
-    assert.equal(book.entities.flatMap(e=>(e.ruleContract?.clauses||[]).flatMap(c=>c.rosterEffects)).filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&['DEATHWING','RAVENWING'].includes(effect.keyword)).length,0);
+    assert.equal(book.entities.flatMap(e=>(e.ruleContract?.clauses||[]).flatMap(c=>c.rosterEffects)).filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&['DEATHWING','RAVENWING'].includes(effect.keyword)).length,6);
   });
   check('conditional-fnp-incoming-modifiers-and-battle-events-remain-text',()=>{
     const state=roster(facts.entities.filter(e=>e.kind==='DATASHEET').map((unit,n)=>physical('own/'+n,unit.id))),result=project(state);

@@ -201,7 +201,7 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
   assert.equal(commitRosterImport(ready(changed),runtime.snapshot(),load,{replaceExisting:true}).status,'READY');assert.equal(runtime.chapterContext('a').status,UNKNOWN);
   const saved=runtime.snapshot();assert.equal(commitRosterImport({status:'NEEDS_BINDINGS',roster:null},saved,load).status,'NEEDS_BINDINGS');assert.deepEqual(runtime.snapshot(),saved);
  });
- check('darkflight-existing-intrinsic-source-does-not-activate-generic-ravenwing',()=>{
+ check('darkflight-valid-da-army-applies-to-generic-ravenwing-fly',()=>{
   const flyer=conditions.records.find(row=>row.grantedKeywords.includes('RAVENWING')&&index.get(row.recipient.canonicalId).data.keywords.includes('FLY'));assert.ok(flyer);
   const state=roster([physical('fixed',sammael,{weapons:true}),physical('generic',flyer.recipient.canonicalId,{weapons:true})],darkflight);
   Object.assign(state.units[1],{chapter:DA,chapterConfirmed:true,keywords:['RAVENWING','FLY']});
@@ -209,21 +209,26 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
   const weapons=unit=>[...unit.weapons,...unit.profiles.flatMap(model=>model.weapons)].filter(weapon=>weapon.data.mode==='ranged');
   const fixed=runtime.projection.units.find(row=>row.instanceId==='fixed'),generic=runtime.projection.units.find(row=>row.instanceId==='generic');
   assert.ok(weapons(fixed).length);assert.ok(weapons(fixed).every(weapon=>weapon.data.abilities.includes('IGNORES COVER')));
-  assert.ok(!generic.keywords.includes('RAVENWING'));
-  assert.ok(!generic.applied.some(trace=>trace.ruleId==='detachment-rule-da-6a259c00bc9f4bf498ee'));
+  assert.ok(generic.keywords.includes('RAVENWING'));
+  assert.ok(weapons(generic).length);assert.ok(weapons(generic).every(weapon=>weapon.data.abilities.includes('IGNORES COVER')));
+  assert.ok(generic.applied.some(trace=>trace.ruleId==='detachment-rule-da-6a259c00bc9f4bf498ee'));
+  assert.equal(runtime.chapterContext('generic').chapter,null,'Army applicability must not assign a Chapter');
+  assert.equal(runtime.chapterContext('generic').armyApplicability.physicalAnchors[0].instanceId,'fixed');
   runtime.recompute();assert.deepEqual(runtime.projection.units.find(row=>row.instanceId==='fixed').applied,fixed.applied);
  });
- check('source-ledgers-unchanged-no-inherited-chapter-grant-authored',()=>{
+ check('source-facts-unchanged-grants-require-reviewed-army-applicability',()=>{
   assert.equal(JSON.stringify([facts,sm,conditions,membership]),originalFacts);
-  for(const condition of conditions.records){assert.equal(condition.runtimeActive,false);assert.equal(condition.recipient.sourceOwner,'space-marines');
+  for(const condition of conditions.records){assert.equal(condition.runtimeActive,true);assert.equal(condition.recipient.sourceOwner,'space-marines');
    assert.deepEqual(source.get(condition.recipient.canonicalId).provenance,condition.recipient.provenance);}
-  for(const entity of book.entities)for(const clause of entity.ruleContract?.clauses||[])for(const effect of clause.rosterEffects||[])
-   assert.ok(!(effect.operation==='GRANT_UNIT_KEYWORD'&&['DEATHWING','RAVENWING'].includes(effect.keyword)));
+  const grants=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).flatMap(clause=>clause.rosterEffects||[]))
+   .filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&['DEATHWING','RAVENWING'].includes(effect.keyword));
+  assert.equal(grants.length,6);assert.ok(grants.every(effect=>effect.unitScope==='PHYSICAL'&&effect.conditions.some(condition=>
+   condition.predicate.arguments?.key==='daArmyMembershipProven')));
  });
  return {status:'PASS',checks,negativeControls,sourceEvidence,physicalEvidence,
   counts:{checks:checks.length,negativeControls:negativeControls.length,physicalMembership:83,intrinsicChapterProven:16,inheritedChapterNotProven:67,
-   deathwingProven:0,deathwingPending:18,ravenwingProven:0,ravenwingPending:8,activeConditionalChapterGrants:0},
-  chapterGrantDisposition:'BLOCKED_SOURCE_EVIDENCE_FOR_ALL_26_COMMON_RECIPIENTS',
+   deathwingProven:18,ravenwingProven:8,activeConditionalChapterGrants:26},
+  chapterGrantDisposition:'CONDITIONAL_VALIDATED_DA_ARMY_MEMBERSHIP; GENERIC_ONLY_UNKNOWN',
   limitations:{fixtures:'CONSTRUCTED_DIAGNOSTIC_SNAPSHOTS',attachmentPolicies:'DIAGNOSTIC_SCOPE_ONLY_NOT_SOURCE_ELIGIBILITY',
    reimport:'EXISTING_SHARED_CANDIDATE_COMMIT_BOUNDARY_ONLY_NOT_DA_IMPORTER',realNewRecruitExportTested:false,browserVerified:false}};
 }
