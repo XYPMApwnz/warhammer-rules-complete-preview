@@ -1,0 +1,86 @@
+{
+  "schema": "dark-angels-v2-source-enrollment/v1",
+  "bookId": "dark-angels",
+  "edition": "11E",
+  "verifiedAt": "2026-10-21",
+  "acceptedBaseHead": "e5be4d17f20bb59090d9fac7627414156fc103d6",
+  "sourceStatus": "ACCEPTED_FROZEN_SECONDARY; OFFICIAL_PARTIAL_CORROBORATION",
+  "sourcePublicationVersionReportedByWaha": "App. Dark Angels (11th edition), v2.8.1 October 2026",
+  "artifacts": [
+    {
+      "path": "books/dark-angels/v2/sources/raw/da-current-legends-20260930.pdf",
+      "url": "https://assets.warhammer-community.com/eng_30-09_wh40k_faction_pack_dark_angels-grkkeaxdr3-zkavqgpgvq.pdf",
+      "sha256": "BC8BFE4283F4AB7D1DD9A999CF3A9BA0B1F541D980B5282A0BCB4CCC5619E3B4",
+      "bytes": 2563177,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:10:12.898782+00:00",
+      "authority": "OFFICIAL_BOUNDARY_EVIDENCE_ONLY",
+      "usage": "SOURCE_REVIEW_ONLY_NOT_EXECUTABLE_OVERLAY"
+    },
+    {
+      "path": "books/dark-angels/v2/sources/raw/gw-da-update-20260915.html",
+      "url": "https://www.warhammer-community.com/en-gb/articles/voakmnny/space-marines-detachments-blood-angels-and-dark-angels/",
+      "sha256": "B27DC09B2294B8C628B02B9087B0A15FA533D84E1BB0D2D63DFBFCA84F1BD553",
+      "bytes": 367248,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:08:44.598658+00:00",
+      "authority": "OFFICIAL_BOUNDARY_EVIDENCE_ONLY",
+      "usage": "SOURCE_REVIEW_ONLY_NOT_EXECUTABLE_OVERLAY"
+    },
+    {
+      "path": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+      "url": "https://mfm.warhammer-community.com/en/dark-angels",
+      "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+      "bytes": 502805,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:09:51.188Z",
+      "authority": "OFFICIAL_BOUNDARY_EVIDENCE_ONLY",
+      "usage": "SOURCE_REVIEW_ONLY_NOT_EXECUTABLE_OVERLAY"
+    },
+    {
+      "path": "books/dark-angels/v2/sources/raw/mfm-dark-angels.html",
+      "url": "https://mfm.warhammer-community.com/en/dark-angels",
+      "sha256": "F77347212C8341C641CFD1439B0DAE763BD587A347C3ECC58080054675A6AE0E",
+      "bytes": 371663,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:08:45.688669+00:00",
+      "authority": "OFFICIAL_BOUNDARY_EVIDENCE_ONLY",
+      "usage": "SOURCE_REVIEW_ONLY_NOT_EXECUTABLE_OVERLAY"
+    },
+    {
+      "path": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels",
+      "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+      "bytes": 872436,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:09:07.622613+00:00",
+      "authority": "ACCEPTED_SECONDARY",
+      "usage": "FACTUAL_INPUT"
+    },
+    {
+      "path": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+      "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+      "bytes": 13660919,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-21T07:09:07.622613+00:00",
+      "authority": "ACCEPTED_SECONDARY",
+      "usage": "FACTUAL_INPUT"
+    }
+  ],
+  "sourceBindings": "books/dark-angels/v2/source-bindings.json",
+  "identityBindings": "books/dark-angels/v2/identity-bindings.json",
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "officialCorrections": {
+    "currentLegendsPack": "v1.3 / 2026-09-30 / Legends-only; no current DA facts imported",
+    "currentOfficialArticle": "2026-09-15 partial corroboration, not full official App capture",
+    "inheritedSmUpdates": "Owned by existing SM effective foundation, never reapplied"
+  },
+  "limitations": [
+    "Full current official App body not captured; secondary source structural parity is not full semantic certification",
+    "MFM central DA v1.4 not used; v1.6 candidate only",
+    "Inherited SM records remain references, mixed-owner runtime not proven",
+    "No gameplay bindings, importer, UI or global registration"
+  ]
+}

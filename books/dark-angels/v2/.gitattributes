@@ -1,0 +1,6 @@
+*.py text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+.gitattributes text eol=lf
+# Preserve SHA-pinned captures byte for byte, as in SM V2.
+sources/raw/* -text -eol -diff

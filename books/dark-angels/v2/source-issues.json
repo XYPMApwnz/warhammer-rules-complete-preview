@@ -1,0 +1,31 @@
+{
+  "schema": "dark-angels-v2-source-issues/v1",
+  "bookId": "dark-angels",
+  "issues": [
+    {
+      "id": "da-current-official-app",
+      "status": "SOURCE_GAP",
+      "detail": "Full official current DA App v2.8.1 body not captured. Accepted Wahapedia 11E raw is secondary. The current official faction pack v1.3 contains Legends only and is not a current Codex replacement. Structural parity is not full semantic certification."
+    },
+    {
+      "id": "da-mixed-owner-context",
+      "status": "NOT_PROVEN",
+      "detail": "Inherited SM membership is reference-only. Shared context.mjs checks reference.bookId === book.bookId. No guard disabled and no mixed-owner runtime activation or proof performed."
+    },
+    {
+      "id": "da-mfm-enrollment",
+      "status": "BLOCKED",
+      "detail": "Central DA remains v1.4; old points unusable. Official v1.6 captured for candidates only; no active pricing or relation bindings."
+    },
+    {
+      "id": "da-chapter-conditions",
+      "status": "SOURCE_CONDITIONS_REVIEWED_EXECUTION_DEFERRED",
+      "detail": "26 UNIT recipients require confirmed physical Dark Angels context. No automatic MODEL/formed-unit propagation and no keyword grants active."
+    },
+    {
+      "id": "da-real-new-recruit-export",
+      "status": "NOT_PROVEN",
+      "detail": "No verified real DA New Recruit export tested. Stage2A adds no importer."
+    }
+  ]
+}

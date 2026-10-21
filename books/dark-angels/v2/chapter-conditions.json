@@ -1,0 +1,2876 @@
+{
+  "schema": "dark-angels-v2-chapter-conditions/v1",
+  "bookId": "dark-angels",
+  "counts": {
+    "conditions": 26,
+    "DEATHWING": 18,
+    "RAVENWING": 8
+  },
+  "execution": "SOURCE_CONDITIONS_ONLY_NOT_ACTIVE",
+  "records": [
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-0b0b22ecffa74125",
+        "sourceEntityId": "sm-source-db5ef7e41d1048ca",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[10]",
+          "sourceEntityId": "sm-source-db5ef7e41d1048ca",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Bladeguard-Ancient",
+        "sourceReferenceLabel": "BLADEGUARD ANCIENT",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Bladeguard-Ancient",
+        "sourceClause": "BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[10]/div[3]/div[1]/span/span[8]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-0dd92e6d8ad54ee6",
+        "sourceEntityId": "sm-source-370bcca7a77a4f20",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[4]",
+          "sourceEntityId": "sm-source-370bcca7a77a4f20",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "MOUNTED"
+        ],
+        "sourceClause": "MOUNTED units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[4]/div[3]/div[1]/span/span[5]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-1330b7672f934fd8",
+        "sourceEntityId": "sm-source-fbcd5943ab074e20",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]",
+          "sourceEntityId": "sm-source-fbcd5943ab074e20",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-24b4709c45ef4b2d",
+        "sourceEntityId": "sm-source-94e879232fda4b6a",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[30]",
+          "sourceEntityId": "sm-source-94e879232fda4b6a",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Sternguard-Veteran-Squad",
+        "sourceReferenceLabel": "STERNGUARD VETERAN SQUAD",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Sternguard-Veteran-Squad",
+        "sourceClause": "BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[30]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-32e5b655a21342f6",
+        "sourceEntityId": "sm-source-b1226421533742d3",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]",
+          "sourceEntityId": "sm-source-b1226421533742d3",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "DREADNOUGHT"
+        ],
+        "sourceClause": "DREADNOUGHT units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[4]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-46fb0fe9443c4e95",
+        "sourceEntityId": "sm-source-cbd29019463e4ce4",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[4]",
+          "sourceEntityId": "sm-source-cbd29019463e4ce4",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Land-Raider-Crusader",
+        "sourceReferenceLabel": "LAND RAIDER CRUSADER",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider-Crusader",
+        "sourceClause": "LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[3]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[4]/div[3]/div[1]/span/span[8]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-4cd4bf89720c4fa0",
+        "sourceEntityId": "sm-source-67d73a21991b441d",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[4]",
+          "sourceEntityId": "sm-source-67d73a21991b441d",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "MOUNTED"
+        ],
+        "sourceClause": "MOUNTED units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[4]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-4f6baee09b3248a6",
+        "sourceEntityId": "sm-source-acc38a8b470a43ba",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[2]",
+          "sourceEntityId": "sm-source-acc38a8b470a43ba",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "DREADNOUGHT"
+        ],
+        "sourceClause": "DREADNOUGHT units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[4]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[2]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-56eaa095b0ae4fe4",
+        "sourceEntityId": "sm-source-60a8b0f935b24f04",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[2]",
+          "sourceEntityId": "sm-source-60a8b0f935b24f04",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "MOUNTED"
+        ],
+        "sourceClause": "MOUNTED units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[2]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-5ce71f2f4e5e4ebb",
+        "sourceEntityId": "sm-source-1c0e7c579f604bf6",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[32]",
+          "sourceEntityId": "sm-source-1c0e7c579f604bf6",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[32]/div[3]/div[1]/span/span[5]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-65c7cc53e3fc4fc8",
+        "sourceEntityId": "sm-source-119963264a474fe5",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[6]",
+          "sourceEntityId": "sm-source-119963264a474fe5",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Land-Raider-Redeemer",
+        "sourceReferenceLabel": "LAND RAIDER REDEEMER",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider-Redeemer",
+        "sourceClause": "LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[3]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[6]/div[3]/div[1]/span/span[8]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-67f47cb0752e44ad",
+        "sourceEntityId": "sm-source-988e747b1d2a40f9",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[6]",
+          "sourceEntityId": "sm-source-988e747b1d2a40f9",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Bladeguard-Veteran-Squad",
+        "sourceReferenceLabel": "BLADEGUARD VETERAN SQUAD",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Bladeguard-Veteran-Squad",
+        "sourceClause": "BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[6]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-74c53544aa694147",
+        "sourceEntityId": "sm-source-9b8d7b42e0cd4fc6",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]",
+          "sourceEntityId": "sm-source-9b8d7b42e0cd4fc6",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Vanguard-Veteran-Squad-With-Jump-Packs",
+        "sourceReferenceLabel": "VANGUARD VETERAN SQUAD WITH JUMP PACKS",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Vanguard-Veteran-Squad-With-Jump-Packs",
+        "sourceClause": "BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]/div[3]/div[1]/span/span[8]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-80ac1421ce0f4de3",
+        "sourceEntityId": "sm-source-10e85d355cc24643",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[8]",
+          "sourceEntityId": "sm-source-10e85d355cc24643",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "VEHICLE",
+          "FLY"
+        ],
+        "sourceClause": "VEHICLE FLY units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[8]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-9e163be8d4bb42c1",
+        "sourceEntityId": "sm-source-a726ac87cf214e0c",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[34]",
+          "sourceEntityId": "sm-source-a726ac87cf214e0c",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[34]/div[3]/div[1]/span/span[5]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-9f9e7c18b7354927",
+        "sourceEntityId": "sm-source-a47a10afba2d4971",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]",
+          "sourceEntityId": "sm-source-a47a10afba2d4971",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "MOUNTED"
+        ],
+        "sourceClause": "MOUNTED units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-b994e641eaea4060",
+        "sourceEntityId": "sm-source-1a202001e83b4046",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[24]",
+          "sourceEntityId": "sm-source-1a202001e83b4046",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[24]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-bc409233f3fe4dc1",
+        "sourceEntityId": "sm-source-e6c42bd37894420d",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[2]",
+          "sourceEntityId": "sm-source-e6c42bd37894420d",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Land-Raider",
+        "sourceReferenceLabel": "LAND RAIDER",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider",
+        "sourceClause": "LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[3]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[2]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-d0a8c043f5c24b22",
+        "sourceEntityId": "sm-source-86840026ad0e4739",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[10]",
+          "sourceEntityId": "sm-source-86840026ad0e4739",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Repulsor-Executioner",
+        "sourceReferenceLabel": "REPULSOR EXECUTIONER",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Repulsor-Executioner",
+        "sourceClause": "LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[3]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[10]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-d101fa171b7a40c4",
+        "sourceEntityId": "sm-source-7a39dd5b9e3c45ff",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[18]",
+          "sourceEntityId": "sm-source-7a39dd5b9e3c45ff",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[18]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-d44763a8089742c3",
+        "sourceEntityId": "sm-source-84ecf94911fc47f9",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[12]",
+          "sourceEntityId": "sm-source-84ecf94911fc47f9",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "VEHICLE",
+          "FLY"
+        ],
+        "sourceClause": "VEHICLE FLY units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[12]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-db3ce647d7024b24",
+        "sourceEntityId": "sm-source-b89ca74df82b446d",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[4]",
+          "sourceEntityId": "sm-source-b89ca74df82b446d",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "TERMINATOR"
+        ],
+        "sourceClause": "TERMINATOR units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[1]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[4]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-e75d543e81cf49f3",
+        "sourceEntityId": "sm-source-4608c0570b4a46f5",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[8]",
+          "sourceEntityId": "sm-source-4608c0570b4a46f5",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXACT_SOURCE_HREF_REFERENCE",
+        "sourceHref": "/wh40k11ed/factions/space-marines/Repulsor",
+        "sourceReferenceLabel": "REPULSOR",
+        "canonicalSourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Repulsor",
+        "sourceClause": "LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[3]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[8]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-f4717a6371254e73",
+        "sourceEntityId": "sm-source-558a519efeef43de",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[14]",
+          "sourceEntityId": "sm-source-558a519efeef43de",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "VEHICLE",
+          "FLY"
+        ],
+        "sourceClause": "VEHICLE FLY units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[14]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-f92faa31422041f5",
+        "sourceEntityId": "sm-source-c022c262993d44d6",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[10]",
+          "sourceEntityId": "sm-source-c022c262993d44d6",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "RAVENWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Ravenwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Ravenwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]",
+        "text": "The RavenwingThe following friendly ADEPTUS ASTARTES units have RAVENWING:MOUNTED units.VEHICLE FLY units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORDS",
+        "requiredKeywords": [
+          "VEHICLE",
+          "FLY"
+        ],
+        "sourceClause": "VEHICLE FLY units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[6]/div[1]/ul/li[2]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "RAVENWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[10]/div[3]/div[1]/span/span[7]",
+          "tooltip": "#tooltip_contentRavenwing",
+          "classes": [
+            "tooltipRavenwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    },
+    {
+      "recipient": {
+        "canonicalId": "unit-sm-fee1a559233f4cbb",
+        "sourceEntityId": "sm-source-c1f05d424a9f4f10",
+        "sourceOwner": "space-marines",
+        "kind": "DATASHEET",
+        "provenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[4]",
+          "sourceEntityId": "sm-source-c1f05d424a9f4f10",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      },
+      "grantedKeywords": [
+        "DEATHWING"
+      ],
+      "scope": "UNIT",
+      "sourceScope": "friendly ADEPTUS ASTARTES UNIT",
+      "rule": {
+        "title": "The Deathwing",
+        "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/dark-angels#The-Deathwing",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div",
+        "text": "The DeathwingThe following friendly ADEPTUS ASTARTES units have DEATHWING:TERMINATOR units.BLADEGUARD ANCIENT, BLADEGUARD VETERAN SQUAD, STERNGUARD VETERAN SQUAD and VANGUARD VETERAN SQUAD WITH JUMP PACKS units.LAND RAIDER, LAND RAIDER CRUSADER, LAND RAIDER REDEEMER, REPULSOR and REPULSOR EXECUTIONER units.DREADNOUGHT units."
+      },
+      "eligibilityEvidence": {
+        "kind": "EXISTING_CANONICAL_KEYWORD",
+        "requiredKeywords": [
+          "DREADNOUGHT"
+        ],
+        "sourceClause": "DREADNOUGHT units.",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[7]/div/ul/li[4]"
+      },
+      "conditionalSourceTokens": [
+        {
+          "value": "DEATHWING",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[4]/div[3]/div[1]/span/span[6]",
+          "tooltip": "#tooltip_contentDeathwing",
+          "classes": [
+            "tooltipDeathwing",
+            "clFl",
+            "CHDA",
+            "AAAA",
+            "AAGA",
+            "AAAB",
+            "AATB",
+            "AADB",
+            "AATS",
+            "AATC",
+            "AATF",
+            "AAPS",
+            "AAPF",
+            "AAGL",
+            "AAGS",
+            "AAST",
+            "AAIR",
+            "AAGT",
+            "AAIS",
+            "AAFG",
+            "AAMH",
+            "AAVO",
+            "AAAI",
+            "AAEN",
+            "AAWD",
+            "AADP",
+            "AAIC",
+            "AAWR",
+            "AABF",
+            "AADS",
+            "AAMW",
+            "AACS",
+            "AASK",
+            "AAFS",
+            "AACF",
+            "AASS",
+            "AAGW",
+            "AABU",
+            "AASF",
+            "AABS",
+            "AAPI",
+            "AATA",
+            "AASV"
+          ],
+          "conditional": true
+        }
+      ],
+      "physicalContext": {
+        "chapter": "DARK_ANGELS",
+        "chapterConfirmationRequired": true,
+        "unitIdentity": "CONFIRMED_PHYSICAL_UNIT_WITH_RECIPIENT_CANONICAL_ID",
+        "mustNotInferFrom": [
+          "Detachment",
+          "Datasheet display title",
+          "attachment",
+          "another UNIT instance"
+        ],
+        "modelKeywordPropagation": "NOT_PROVEN_DO_NOT_GRANT"
+      },
+      "sourceConditionStatus": "SOURCE_CONDITION_PROVEN_ACCEPTED_SECONDARY",
+      "runtimeActive": false,
+      "runtimeBindingStatus": "NOT_ACTIVE_PHYSICAL_DA_CONTEXT_BINDING_DEFERRED",
+      "negativeControls": [
+        "Grant only in confirmed Dark Angels context",
+        "With absent or non-DA context do not grant",
+        "Changing attachment alone must not invent Chapter context"
+      ]
+    }
+  ]
+}

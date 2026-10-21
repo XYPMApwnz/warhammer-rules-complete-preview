@@ -1,0 +1,3695 @@
+{
+  "schema": "dark-angels-v2-inherited-sm-references/v1",
+  "consumerBookId": "dark-angels",
+  "factualOwner": "space-marines",
+  "membershipStatus": "SOURCE_REVIEWED_ACCEPTED_SECONDARY",
+  "mixedOwnerRuntimeStatus": "NOT_PROVEN",
+  "runtimeActive": false,
+  "factsCopied": false,
+  "counts": {
+    "DATASHEET": 67,
+    "DETACHMENT": 15,
+    "DETACHMENT_RULE": 15,
+    "ENHANCEMENT": 32,
+    "STRATAGEM": 48,
+    "ARMY_RULE": 3,
+    "ORDINARY_ENHANCEMENT": 24,
+    "UNIT_UPGRADE": 8
+  },
+  "references": [
+    {
+      "canonicalId": "army-rule-sm-940f2057cc7c4551",
+      "sourceEntityId": "sm-source-8ebacb1ac3da40d9",
+      "sourceOwner": "space-marines",
+      "kind": "ARMY_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[2]",
+        "sourceEntityId": "sm-source-8ebacb1ac3da40d9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceAnchor": "Transhuman-Strategist",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_ANCHOR; DA_ARMY_RULES_REFERENCE"
+      }
+    },
+    {
+      "canonicalId": "army-rule-sm-a3907d06530b419a",
+      "sourceEntityId": "sm-source-f4b09d0a94e4493d",
+      "sourceOwner": "space-marines",
+      "kind": "ARMY_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[3]/div[1]",
+        "sourceEntityId": "sm-source-f4b09d0a94e4493d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceAnchor": "Librarius",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_ANCHOR; DA_ARMY_RULES_REFERENCE"
+      }
+    },
+    {
+      "canonicalId": "army-rule-sm-fcdb8cd8bb5f40dd",
+      "sourceEntityId": "sm-source-64354804701949cc",
+      "sourceOwner": "space-marines",
+      "kind": "ARMY_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[1]",
+        "sourceEntityId": "sm-source-64354804701949cc",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceAnchor": "Combat-Doctrines",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_ANCHOR; DA_ARMY_RULES_REFERENCE"
+      }
+    },
+    {
+      "canonicalId": "detachment-rule-sm-05b00954e4744b59",
+      "sourceEntityId": "sm-source-308c121a3c7a4e56",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-308c121a3c7a4e56",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-07f085c819ea4835",
+      "sourceEntityId": "sm-source-1eccac829f5f42b8",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-1eccac829f5f42b8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-35102c2d34334220",
+      "sourceEntityId": "sm-source-294d15fbec614fcb",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-294d15fbec614fcb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-3a97ffd48f0f4bf6",
+      "sourceEntityId": "sm-source-6c7a137f5b5a412e",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-6c7a137f5b5a412e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-5d279871994f428e",
+      "sourceEntityId": "sm-source-21b67c991c7c4b9b",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-21b67c991c7c4b9b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-6e133b8acd6b4550",
+      "sourceEntityId": "sm-source-546e8d5fd11c47c8",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-546e8d5fd11c47c8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-8381795466754812",
+      "sourceEntityId": "sm-source-07d257b41ea14e21",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-07d257b41ea14e21",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-8aba3398dfe14b66",
+      "sourceEntityId": "sm-source-a8fb6a5e6726412a",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-a8fb6a5e6726412a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-93a70d72216b4f0c",
+      "sourceEntityId": "sm-source-759822270fc14450",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-759822270fc14450",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-9684d98e8f664479",
+      "sourceEntityId": "sm-source-1cef8c806dc24826",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-1cef8c806dc24826",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-bded7031de204fd4",
+      "sourceEntityId": "sm-source-19bf701eb16b4428",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[2]",
+        "sourceEntityId": "sm-source-19bf701eb16b4428",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-bff921aaeb624b43",
+      "sourceEntityId": "sm-source-04fbdf36f6254c8e",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-04fbdf36f6254c8e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-d1b9f7be1db34a49",
+      "sourceEntityId": "sm-source-1c6f4197afff46fd",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-1c6f4197afff46fd",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-e16b0f9b19fd4c33",
+      "sourceEntityId": "sm-source-37025614f38c4a44",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-37025614f38c4a44",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-rule-sm-f3f6dd9bf1b24f66",
+      "sourceEntityId": "sm-source-0859cf3653344dca",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT_RULE",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[2]",
+        "sourceEntityId": "sm-source-0859cf3653344dca",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "DETACHMENT_RULE"
+    },
+    {
+      "canonicalId": "detachment-sm-0962d488a7b24d3b",
+      "sourceEntityId": "sm-source-fd388c5fb7334af1",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/h2",
+        "sourceEntityId": "sm-source-fd388c5fb7334af1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[9]/h2",
+        "sourceAnchor": "Tactical-Brethren",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "sourceEntityId": "sm-source-c4b21ab241334318",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/h2",
+        "sourceEntityId": "sm-source-c4b21ab241334318",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[11]/h2",
+        "sourceAnchor": "Terminator-Storm-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-519d6649ea174733",
+      "sourceEntityId": "sm-source-f80e5874dfe04ceb",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/h2",
+        "sourceEntityId": "sm-source-f80e5874dfe04ceb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[21]/h2",
+        "sourceAnchor": "Ironstorm-Spearhead",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-53f689af321a4813",
+      "sourceEntityId": "sm-source-bc757981f8a34234",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/h2",
+        "sourceEntityId": "sm-source-bc757981f8a34234",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[18]/h2",
+        "sourceAnchor": "Stormlance-Task-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-624df9cefb95455f",
+      "sourceEntityId": "sm-source-5eeba96c13ee445b",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/h2",
+        "sourceEntityId": "sm-source-5eeba96c13ee445b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[12]/h2",
+        "sourceAnchor": "Tacticus-Attack-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-6341f5a9b9584677",
+      "sourceEntityId": "sm-source-f0b38a1158ad4d4f",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/h2",
+        "sourceEntityId": "sm-source-f0b38a1158ad4d4f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[7]/h2",
+        "sourceAnchor": "Gladius-Task-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-8f297dd604a24b1c",
+      "sourceEntityId": "sm-source-60dca200bda74f98",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/h2",
+        "sourceEntityId": "sm-source-60dca200bda74f98",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[16]/h2",
+        "sourceAnchor": "Gravis-Linebreaker-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-9f9732252c304842",
+      "sourceEntityId": "sm-source-02478028c2e64fc1",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/h2",
+        "sourceEntityId": "sm-source-02478028c2e64fc1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[15]/h2",
+        "sourceAnchor": "Phobos-Shock-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-a4f66339257d47b4",
+      "sourceEntityId": "sm-source-49dc58dee16f42fa",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/h2",
+        "sourceEntityId": "sm-source-49dc58dee16f42fa",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[14]/h2",
+        "sourceAnchor": "Phobos-Shadow-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-bad922ba6ae84f44",
+      "sourceEntityId": "sm-source-fd472abed24342a5",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/h2",
+        "sourceEntityId": "sm-source-fd472abed24342a5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[13]/h2",
+        "sourceAnchor": "Tacticus-Firestorm-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-bd39ee9e152742b9",
+      "sourceEntityId": "sm-source-2a34834c81854e71",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/h2",
+        "sourceEntityId": "sm-source-2a34834c81854e71",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[19]/h2",
+        "sourceAnchor": "Ironclad-Champions",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "sourceEntityId": "sm-source-bb42eb7637094814",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/h2",
+        "sourceEntityId": "sm-source-bb42eb7637094814",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[10]/h2",
+        "sourceAnchor": "Devastator-Brethren",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-bfacdc12c8074440",
+      "sourceEntityId": "sm-source-5be7bad0f5744eea",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/h2",
+        "sourceEntityId": "sm-source-5be7bad0f5744eea",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[20]/h2",
+        "sourceAnchor": "Gauntlet-Task-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "sourceEntityId": "sm-source-d16f789eb02549bb",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/h2",
+        "sourceEntityId": "sm-source-d16f789eb02549bb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[8]/h2",
+        "sourceAnchor": "Assault-Brethren",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "detachment-sm-edbad6d9c5a44991",
+      "sourceEntityId": "sm-source-49113845ee304842",
+      "sourceOwner": "space-marines",
+      "kind": "DETACHMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/h2",
+        "sourceEntityId": "sm-source-49113845ee304842",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sourcePointer": "/html/body/div/div[1]/div[3]/div[17]/h2",
+        "sourceAnchor": "Gravis-Siege-Force",
+        "proof": "EXACT_ACCEPTED_DOCUMENT_HASH_AND_SOURCE_ANCHOR; no display-name matching"
+      }
+    },
+    {
+      "canonicalId": "enhancement-sm-07e95c69297b4d6f",
+      "sourceEntityId": "sm-source-942f8b80001d4619",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-942f8b80001d4619",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-10ccd3b868bf41e2",
+      "sourceEntityId": "sm-source-e8af033d1afc48e1",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-e8af033d1afc48e1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-1ba9914b76954183",
+      "sourceEntityId": "sm-source-2edbfd29cbb74973",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-2edbfd29cbb74973",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-28614fb697744ed6",
+      "sourceEntityId": "sm-source-1d64d495468d43e9",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-1d64d495468d43e9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-2e55051da6594198",
+      "sourceEntityId": "sm-source-a0a60e7db9cb4ea9",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-a0a60e7db9cb4ea9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-33db6f7f8bc04d0c",
+      "sourceEntityId": "sm-source-13f875b9183d4664",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-13f875b9183d4664",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-37140db132394ce3",
+      "sourceEntityId": "sm-source-faefe6959db54a31",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-faefe6959db54a31",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-38b8b31ab2ce47de",
+      "sourceEntityId": "sm-source-d9be17b9290c4e84",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-d9be17b9290c4e84",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-4c07c7ad03a44355",
+      "sourceEntityId": "sm-source-867b805c43e24842",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-867b805c43e24842",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-4fce0dc37bd14c6f",
+      "sourceEntityId": "sm-source-f08bd08f1d5e4b06",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-f08bd08f1d5e4b06",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-60ab5885f6294e78",
+      "sourceEntityId": "sm-source-450c3c921ceb4c5b",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-450c3c921ceb4c5b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-6230db0cdc954fdd",
+      "sourceEntityId": "sm-source-c71520349dc244de",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-c71520349dc244de",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-6d3f4024b9f14a67",
+      "sourceEntityId": "sm-source-85cae0eb3f1d4083",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-85cae0eb3f1d4083",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-7b4f677483594724",
+      "sourceEntityId": "sm-source-2754b6bb32934bd8",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-2754b6bb32934bd8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-7cb5acef68494f69",
+      "sourceEntityId": "sm-source-0726e1e3488e477c",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-0726e1e3488e477c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-89cb52bb94b4419d",
+      "sourceEntityId": "sm-source-3bff4344ca114228",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-3bff4344ca114228",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-90130970a79d4ac0",
+      "sourceEntityId": "sm-source-fb9a3b60d4174549",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-fb9a3b60d4174549",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-90544ca326d243be",
+      "sourceEntityId": "sm-source-3a96d1e93fb1485a",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-3a96d1e93fb1485a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-90b7ccf121e34215",
+      "sourceEntityId": "sm-source-eedcce201fd4463d",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-eedcce201fd4463d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-96a03924178349b9",
+      "sourceEntityId": "sm-source-ad6fa33adffc4919",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-ad6fa33adffc4919",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-9c7f16cb33a54e71",
+      "sourceEntityId": "sm-source-22e51313a46c4f05",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-22e51313a46c4f05",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-9d44d0978b974773",
+      "sourceEntityId": "sm-source-fdd77338782f46d8",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-fdd77338782f46d8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-a6d2243e7dab403e",
+      "sourceEntityId": "sm-source-c976c4aaf05549e4",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-c976c4aaf05549e4",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-a872c96c64354de3",
+      "sourceEntityId": "sm-source-79d48cacedeb456b",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-79d48cacedeb456b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-a9b5f170cd214ef8",
+      "sourceEntityId": "sm-source-e562de98529e4dd9",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-e562de98529e4dd9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-cfb520ff879f4733",
+      "sourceEntityId": "sm-source-d8dfee4de1fe419c",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-d8dfee4de1fe419c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-d79a770177054671",
+      "sourceEntityId": "sm-source-b769309906d34c37",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-b769309906d34c37",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-db9dd5a127854fa2",
+      "sourceEntityId": "sm-source-744d7c79019f4657",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-744d7c79019f4657",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-dcbae3c2b6534ac1",
+      "sourceEntityId": "sm-source-27805b513eb84bfa",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-27805b513eb84bfa",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "UNIT_UPGRADE"
+    },
+    {
+      "canonicalId": "enhancement-sm-e5c04a1c3f6444b7",
+      "sourceEntityId": "sm-source-5bdc568ff7814eb3",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-5bdc568ff7814eb3",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-f2a5e85d052342cd",
+      "sourceEntityId": "sm-source-66859f5ff5a54077",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-66859f5ff5a54077",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "enhancement-sm-f44cee5f5e3049ed",
+      "sourceEntityId": "sm-source-6cef5ff33a254b87",
+      "sourceOwner": "space-marines",
+      "kind": "ENHANCEMENT",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "sm-source-6cef5ff33a254b87",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "ENHANCEMENT"
+    },
+    {
+      "canonicalId": "stratagem-sm-02921fdd8b6242a6",
+      "sourceEntityId": "sm-source-8b67d7c6a670449a",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-8b67d7c6a670449a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-0535aebd698e4323",
+      "sourceEntityId": "sm-source-446855dc58a24348",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-446855dc58a24348",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-079891eda74042ad",
+      "sourceEntityId": "sm-source-8984210a79944d0b",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-8984210a79944d0b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-099e768dfc7b4e2d",
+      "sourceEntityId": "sm-source-a1450a3671654223",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-a1450a3671654223",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-0d0f47368d2944c6",
+      "sourceEntityId": "sm-source-6955fa540e284bae",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-6955fa540e284bae",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-125c803bfe7749c4",
+      "sourceEntityId": "sm-source-69412ab2ed9e4571",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-69412ab2ed9e4571",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-165185d7c1d04840",
+      "sourceEntityId": "sm-source-b517e0f4255340d6",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[3]/div",
+        "sourceEntityId": "sm-source-b517e0f4255340d6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-202d43d3a3a54d18",
+      "sourceEntityId": "sm-source-80b8dbf72bfb4106",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-80b8dbf72bfb4106",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-210e7e9e774c4e7b",
+      "sourceEntityId": "sm-source-3d3ab6c831cf453a",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-3d3ab6c831cf453a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-22d9e6906241422f",
+      "sourceEntityId": "sm-source-b6ba503d8b814ee2",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-b6ba503d8b814ee2",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-27496d381a364a6e",
+      "sourceEntityId": "sm-source-4b47ffddcaa44caa",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-4b47ffddcaa44caa",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-36d57c0fe4e749ff",
+      "sourceEntityId": "sm-source-de79543abcbf4cb7",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-de79543abcbf4cb7",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-3a46ef47dc2f4ed4",
+      "sourceEntityId": "sm-source-29f5077ddad5409a",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[1]/div[1]",
+        "sourceEntityId": "sm-source-29f5077ddad5409a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-3c36cc7d9ade438a",
+      "sourceEntityId": "sm-source-259873c5c90e4697",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-259873c5c90e4697",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-3eb2f068419e4e92",
+      "sourceEntityId": "sm-source-2c8017e5a29643fc",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-2c8017e5a29643fc",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-3fc669c545274dec",
+      "sourceEntityId": "sm-source-6ae794992d454e52",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-6ae794992d454e52",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-40173dcf29124da5",
+      "sourceEntityId": "sm-source-939369a5b6f644df",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[9]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-939369a5b6f644df",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0962d488a7b24d3b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-48bce6a91cfe4938",
+      "sourceEntityId": "sm-source-c5ae984ef18d4a96",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-c5ae984ef18d4a96",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-4e1b0376f6604827",
+      "sourceEntityId": "sm-source-2ae8866ba7824141",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-2ae8866ba7824141",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-5083815fb7e34cbe",
+      "sourceEntityId": "sm-source-bc60fcca93f345a0",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-bc60fcca93f345a0",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-518c2a26e3624920",
+      "sourceEntityId": "sm-source-ff211205d6c5485d",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-ff211205d6c5485d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bad922ba6ae84f44",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-613cddaa26084fb2",
+      "sourceEntityId": "sm-source-e62042bc67724d81",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-e62042bc67724d81",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-61fd86dcc1394918",
+      "sourceEntityId": "sm-source-35a7c32a374946cd",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[8]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-35a7c32a374946cd",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-635962cdf879468f",
+      "sourceEntityId": "sm-source-604681018db84d89",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-604681018db84d89",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-65387435f3a641c4",
+      "sourceEntityId": "sm-source-4310398f33b54f3e",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-4310398f33b54f3e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-624df9cefb95455f",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-67a14d3d77984c23",
+      "sourceEntityId": "sm-source-5a8251094cda47c1",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[6]/div",
+        "sourceEntityId": "sm-source-5a8251094cda47c1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-6fa62f326da54301",
+      "sourceEntityId": "sm-source-c54cf2d6145a4467",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[5]/div",
+        "sourceEntityId": "sm-source-c54cf2d6145a4467",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-7017f3c4832540c6",
+      "sourceEntityId": "sm-source-9b9528e160234233",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[21]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-9b9528e160234233",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-519d6649ea174733",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-7cabf49e71194a9c",
+      "sourceEntityId": "sm-source-412f29bb140140e5",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-412f29bb140140e5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-7d6130f1d89f44d1",
+      "sourceEntityId": "sm-source-8c73ec69e58c4402",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-8c73ec69e58c4402",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-835e21c4a8e34e29",
+      "sourceEntityId": "sm-source-76d5c0aa789e4660",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-76d5c0aa789e4660",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-8509fb96e0844319",
+      "sourceEntityId": "sm-source-795b81e0e39d4e85",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[2]/div",
+        "sourceEntityId": "sm-source-795b81e0e39d4e85",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-8d8390a96e104ea8",
+      "sourceEntityId": "sm-source-7fbc7cc69dcf48a3",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[7]/div[3]/div/div[4]/div",
+        "sourceEntityId": "sm-source-7fbc7cc69dcf48a3",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-6341f5a9b9584677",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-9c1e682899e240d4",
+      "sourceEntityId": "sm-source-33bc4000de8a4672",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-33bc4000de8a4672",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-9f5ed1a884a14306",
+      "sourceEntityId": "sm-source-0476e2fd24924fe8",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-0476e2fd24924fe8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-8f297dd604a24b1c",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-a2ff0b812cf349d0",
+      "sourceEntityId": "sm-source-effd4b3a93114620",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[19]/div[2]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-effd4b3a93114620",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bd39ee9e152742b9",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-a3067cc567994adf",
+      "sourceEntityId": "sm-source-04a179874b2a4f8f",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-04a179874b2a4f8f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-a32818b0436a44dd",
+      "sourceEntityId": "sm-source-b24bb4ff59954415",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[17]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-b24bb4ff59954415",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-edbad6d9c5a44991",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-a7ecc5f3f3e04650",
+      "sourceEntityId": "sm-source-da0eb49f7f8e42da",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-da0eb49f7f8e42da",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-ab92482177a14323",
+      "sourceEntityId": "sm-source-7111829c822e41b8",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-7111829c822e41b8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-ae4a39306eac42f4",
+      "sourceEntityId": "sm-source-80ff61eb37d44dc6",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[15]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-80ff61eb37d44dc6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-9f9732252c304842",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-ba168da7a465485f",
+      "sourceEntityId": "sm-source-ef07dcbf6efb472c",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-ef07dcbf6efb472c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-c7e6ae242a1344d7",
+      "sourceEntityId": "sm-source-bac83008e7cd4320",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[3]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-bac83008e7cd4320",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-a4f66339257d47b4",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-d1c4ac406b484b41",
+      "sourceEntityId": "sm-source-ee01b2a7fe1e41ad",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-ee01b2a7fe1e41ad",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bfacdc12c8074440",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-d642d4d85db04dc9",
+      "sourceEntityId": "sm-source-3ddb1d220c624fb0",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[11]/div[3]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-3ddb1d220c624fb0",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-d73478d582584763",
+      "sourceEntityId": "sm-source-64d6d3ae18d44ddd",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[3]/div",
+        "sourceEntityId": "sm-source-64d6d3ae18d44ddd",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-e25acace6b584a5e",
+      "sourceEntityId": "sm-source-63b8d923f64c4717",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[3]/div[4]/div[2]/div",
+        "sourceEntityId": "sm-source-63b8d923f64c4717",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "stratagem-sm-ee7521323e3742d5",
+      "sourceEntityId": "sm-source-7d318c1f50c44712",
+      "sourceOwner": "space-marines",
+      "kind": "STRATAGEM",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+        "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[4]/div[1]/div",
+        "sourceEntityId": "sm-source-7d318c1f50c44712",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "detachmentCanonicalId": "detachment-sm-53f689af321a4813",
+      "itemClass": "STRATAGEM"
+    },
+    {
+      "canonicalId": "unit-sm-004d28cd5dca4a1e",
+      "sourceEntityId": "sm-source-3b68683ea2ec44dd",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[6]",
+        "sourceEntityId": "sm-source-3b68683ea2ec44dd",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Invictor-Tactical-Warsuit",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-047d5023f1a940ed",
+      "sourceEntityId": "sm-source-8ee093289bd44790",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[20]/div[2]",
+        "sourceEntityId": "sm-source-8ee093289bd44790",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Firestrike-Servo-turrets",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-0b0b22ecffa74125",
+      "sourceEntityId": "sm-source-db5ef7e41d1048ca",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[10]",
+        "sourceEntityId": "sm-source-db5ef7e41d1048ca",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Bladeguard-Ancient",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-0dd92e6d8ad54ee6",
+      "sourceEntityId": "sm-source-370bcca7a77a4f20",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[4]",
+        "sourceEntityId": "sm-source-370bcca7a77a4f20",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Outrider-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-1330b7672f934fd8",
+      "sourceEntityId": "sm-source-fbcd5943ab074e20",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[36]",
+        "sourceEntityId": "sm-source-fbcd5943ab074e20",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Librarian-In-Terminator-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-1d09de3e7281438a",
+      "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[44]",
+        "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Techmarine",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-24b4709c45ef4b2d",
+      "sourceEntityId": "sm-source-94e879232fda4b6a",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[30]",
+        "sourceEntityId": "sm-source-94e879232fda4b6a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Sternguard-Veteran-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-30663bda6074455f",
+      "sourceEntityId": "sm-source-663e55daff904657",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[2]",
+        "sourceEntityId": "sm-source-663e55daff904657",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Drop-Pod",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-32e5b655a21342f6",
+      "sourceEntityId": "sm-source-b1226421533742d3",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]",
+        "sourceEntityId": "sm-source-b1226421533742d3",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Redemptor-Dreadnought",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-3815e40077e44702",
+      "sourceEntityId": "sm-source-a2d7ef41e4a741ba",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[28]",
+        "sourceEntityId": "sm-source-a2d7ef41e4a741ba",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Scout-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fbf",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-3816678809d047d2",
+      "sourceEntityId": "sm-source-e38e7d0dcf39400e",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[18]",
+        "sourceEntityId": "sm-source-e38e7d0dcf39400e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Inceptor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-3ce46dddf62b45f1",
+      "sourceEntityId": "sm-source-888cb4f47846425d",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[16]",
+        "sourceEntityId": "sm-source-888cb4f47846425d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Hellblaster-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4660f547cc3744b0",
+      "sourceEntityId": "sm-source-5b018380e74c4b9b",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[38]",
+        "sourceEntityId": "sm-source-5b018380e74c4b9b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Lieutenant",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-46fb0fe9443c4e95",
+      "sourceEntityId": "sm-source-cbd29019463e4ce4",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[4]",
+        "sourceEntityId": "sm-source-cbd29019463e4ce4",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider-Crusader",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4a2efa64a7c34868",
+      "sourceEntityId": "sm-source-33123d00b9d94434",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[40]",
+        "sourceEntityId": "sm-source-33123d00b9d94434",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Lieutenant-In-Phobos-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4bc3ce61558a4d90",
+      "sourceEntityId": "sm-source-2f4558f5c6ed4d04",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[12]",
+        "sourceEntityId": "sm-source-2f4558f5c6ed4d04",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Eradicator-Squad-with-Heavy-Bolters",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4cd4bf89720c4fa0",
+      "sourceEntityId": "sm-source-67d73a21991b441d",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[4]",
+        "sourceEntityId": "sm-source-67d73a21991b441d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Chaplain-On-Bike",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4f6baee09b3248a6",
+      "sourceEntityId": "sm-source-acc38a8b470a43ba",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[2]",
+        "sourceEntityId": "sm-source-acc38a8b470a43ba",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Ballistus-Dreadnought",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4fce70f042cc4e5d",
+      "sourceEntityId": "sm-source-dfe9dd35d36d474d",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[4]",
+        "sourceEntityId": "sm-source-dfe9dd35d36d474d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Impulsor",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-4ff82a9b79db48da",
+      "sourceEntityId": "sm-source-4230c5a3ead54e62",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[10]",
+        "sourceEntityId": "sm-source-4230c5a3ead54e62",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Eliminator-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-536d38b5ac7645dc",
+      "sourceEntityId": "sm-source-2d777ac9eec24798",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[22]",
+        "sourceEntityId": "sm-source-2d777ac9eec24798",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Chaplain",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-56eaa095b0ae4fe4",
+      "sourceEntityId": "sm-source-60a8b0f935b24f04",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[2]",
+        "sourceEntityId": "sm-source-60a8b0f935b24f04",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Invader-ATVs",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-59162946fee84360",
+      "sourceEntityId": "sm-source-65d0590b7ae94191",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[6]",
+        "sourceEntityId": "sm-source-65d0590b7ae94191",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Intercessor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-5c28c46911224d25",
+      "sourceEntityId": "sm-source-37a18fdf3fba471f",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]",
+        "sourceEntityId": "sm-source-37a18fdf3fba471f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Aggressor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-5ce71f2f4e5e4ebb",
+      "sourceEntityId": "sm-source-1c0e7c579f604bf6",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[32]",
+        "sourceEntityId": "sm-source-1c0e7c579f604bf6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Terminator-Assault-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fffdffffef,CH:3fbf",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-5d6184dd92154615",
+      "sourceEntityId": "sm-source-983a00525a114a72",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[26]",
+        "sourceEntityId": "sm-source-983a00525a114a72",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Reiver-Squad",
+        "sourceFilter": {
+          "data-f": "AA:feffffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-63a015916b46446a",
+      "sourceEntityId": "sm-source-6567bd6bb2d54093",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[8]",
+        "sourceEntityId": "sm-source-6567bd6bb2d54093",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Apothecary-Biologis",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:37ff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-65c7cc53e3fc4fc8",
+      "sourceEntityId": "sm-source-119963264a474fe5",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[6]",
+        "sourceEntityId": "sm-source-119963264a474fe5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider-Redeemer",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-67f47cb0752e44ad",
+      "sourceEntityId": "sm-source-988e747b1d2a40f9",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[6]",
+        "sourceEntityId": "sm-source-988e747b1d2a40f9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Bladeguard-Veteran-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-6da1ff60a2ff4591",
+      "sourceEntityId": "sm-source-e0917fb709b24c50",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[4]",
+        "sourceEntityId": "sm-source-e0917fb709b24c50",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Gladiator-Reaper",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-717dd0d07e764a70",
+      "sourceEntityId": "sm-source-fffbd0a7669e4565",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[2]",
+        "sourceEntityId": "sm-source-fffbd0a7669e4565",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Assault-Intercessor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-74c53544aa694147",
+      "sourceEntityId": "sm-source-9b8d7b42e0cd4fc6",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[36]",
+        "sourceEntityId": "sm-source-9b8d7b42e0cd4fc6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Vanguard-Veteran-Squad-With-Jump-Packs",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-7a3f4debefdb4c95",
+      "sourceEntityId": "sm-source-2958ab8be0fb4f04",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[20]",
+        "sourceEntityId": "sm-source-2958ab8be0fb4f04",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Incursor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:feffffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-7ebc58da33c34c58",
+      "sourceEntityId": "sm-source-e3ea88a9066c4040",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[6]",
+        "sourceEntityId": "sm-source-e3ea88a9066c4040",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Rhino",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-80ac1421ce0f4de3",
+      "sourceEntityId": "sm-source-10e85d355cc24643",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[8]",
+        "sourceEntityId": "sm-source-10e85d355cc24643",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Speeder",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-8ef63e7da6444869",
+      "sourceEntityId": "sm-source-1d6282b1461942c5",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[24]",
+        "sourceEntityId": "sm-source-1d6282b1461942c5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Infiltrator-Squad",
+        "sourceFilter": {
+          "data-f": "AA:feffffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-96f12b073f4649c7",
+      "sourceEntityId": "sm-source-3d8a1ec342a34b65",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[42]",
+        "sourceEntityId": "sm-source-3d8a1ec342a34b65",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Lieutenant-with-Combi-weapon",
+        "sourceFilter": {
+          "data-f": "AA:feffffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-984b95cebb2f47d9",
+      "sourceEntityId": "sm-source-3f43960dc09c4aa1",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[4]",
+        "sourceEntityId": "sm-source-3f43960dc09c4aa1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Heavy-Intercessor-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-99eb03d4f2d448e2",
+      "sourceEntityId": "sm-source-302dded4ba294293",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[12]",
+        "sourceEntityId": "sm-source-302dded4ba294293",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-9e163be8d4bb42c1",
+      "sourceEntityId": "sm-source-a726ac87cf214e0c",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[34]",
+        "sourceEntityId": "sm-source-a726ac87cf214e0c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Terminator-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fffdffffef,CH:3fbf",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-9f9e7c18b7354927",
+      "sourceEntityId": "sm-source-a47a10afba2d4971",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[2]",
+        "sourceEntityId": "sm-source-a47a10afba2d4971",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain-on-Bike",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-a2a8db8a9f124a7f",
+      "sourceEntityId": "sm-source-5df7a8d45fe54349",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[30]",
+        "sourceEntityId": "sm-source-5df7a8d45fe54349",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Judiciar",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-a5c08f428c2648bb",
+      "sourceEntityId": "sm-source-558ec04f88734b1c",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[22]",
+        "sourceEntityId": "sm-source-558ec04f88734b1c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Infernus-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-a8f0770187044cbb",
+      "sourceEntityId": "sm-source-1f7d17a3ecc040a2",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[6]",
+        "sourceEntityId": "sm-source-1f7d17a3ecc040a2",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Gladiator-Valiant",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-b994e641eaea4060",
+      "sourceEntityId": "sm-source-1a202001e83b4046",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[24]",
+        "sourceEntityId": "sm-source-1a202001e83b4046",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Chaplain-In-Terminator-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fffdffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-bc1a331111b142d9",
+      "sourceEntityId": "sm-source-17b7271663884684",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[4]",
+        "sourceEntityId": "sm-source-17b7271663884684",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Assault-Intercessors-With-Jump-Packs",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-bc409233f3fe4dc1",
+      "sourceEntityId": "sm-source-e6c42bd37894420d",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[2]",
+        "sourceEntityId": "sm-source-e6c42bd37894420d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Land-Raider",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-bc4486ac79ec477f",
+      "sourceEntityId": "sm-source-eba02097a0824767",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[34]",
+        "sourceEntityId": "sm-source-eba02097a0824767",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Librarian-In-Phobos-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-bc9aa3cbedb2415c",
+      "sourceEntityId": "sm-source-91c0c9b70ed1413a",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[14]",
+        "sourceEntityId": "sm-source-91c0c9b70ed1413a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain-In-Gravis-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-c50655aacb564e99",
+      "sourceEntityId": "sm-source-d46588321d794c96",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[8]",
+        "sourceEntityId": "sm-source-d46588321d794c96",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Desolation-Squad",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-c60b9f00ff7a42b0",
+      "sourceEntityId": "sm-source-fa51df1d30574278",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[32]",
+        "sourceEntityId": "sm-source-fa51df1d30574278",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Librarian",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-c9c30c70c3394fb6",
+      "sourceEntityId": "sm-source-a4d4154dce4d44df",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[2]",
+        "sourceEntityId": "sm-source-a4d4154dce4d44df",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Gladiator-Lancer",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-d0a8c043f5c24b22",
+      "sourceEntityId": "sm-source-86840026ad0e4739",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[10]",
+        "sourceEntityId": "sm-source-86840026ad0e4739",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Repulsor-Executioner",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-d101fa171b7a40c4",
+      "sourceEntityId": "sm-source-7a39dd5b9e3c45ff",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[18]",
+        "sourceEntityId": "sm-source-7a39dd5b9e3c45ff",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain-In-Terminator-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fffdffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-d44763a8089742c3",
+      "sourceEntityId": "sm-source-84ecf94911fc47f9",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[12]",
+        "sourceEntityId": "sm-source-84ecf94911fc47f9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Storm-Speeder-Hammerstrike",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-db3ce647d7024b24",
+      "sourceEntityId": "sm-source-b89ca74df82b446d",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[4]",
+        "sourceEntityId": "sm-source-b89ca74df82b446d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Ancient-In-Terminator-Armour",
+        "sourceFilter": {
+          "data-f": "AA:fffdffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-ddda2ee77e3342c5",
+      "sourceEntityId": "sm-source-55fb5e29a8a040ad",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[14]",
+        "sourceEntityId": "sm-source-55fb5e29a8a040ad",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Eradicator-Squad-with-Melta-Rifles",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-e43fc0c6d8b14ad8",
+      "sourceEntityId": "sm-source-b9502e980ac14cd7",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[28]",
+        "sourceEntityId": "sm-source-b9502e980ac14cd7",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Company-Heroes",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-e595c56eab2f493b",
+      "sourceEntityId": "sm-source-0f4bd638b31a4429",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[20]",
+        "sourceEntityId": "sm-source-0f4bd638b31a4429",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain-With-Jump-Pack",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-e62a5d7c19b24d57",
+      "sourceEntityId": "sm-source-8468815e2e934c82",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[16]",
+        "sourceEntityId": "sm-source-8468815e2e934c82",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Captain-In-Phobos-Armour",
+        "sourceFilter": {
+          "data-f": "AA:feffffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-e75d543e81cf49f3",
+      "sourceEntityId": "sm-source-4608c0570b4a46f5",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[30]/div[8]",
+        "sourceEntityId": "sm-source-4608c0570b4a46f5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Repulsor",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3ff7",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-eb2d6ede583e4473",
+      "sourceEntityId": "sm-source-83c25125a5374d02",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[2]",
+        "sourceEntityId": "sm-source-83c25125a5374d02",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Ancient",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-f3366b4701174e71",
+      "sourceEntityId": "sm-source-0032aa5631e24e0c",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[6]",
+        "sourceEntityId": "sm-source-0032aa5631e24e0c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Apothecary",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:37ff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-f4717a6371254e73",
+      "sourceEntityId": "sm-source-558a519efeef43de",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[14]",
+        "sourceEntityId": "sm-source-558a519efeef43de",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Storm-Speeder-Thunderstrike",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-f92faa31422041f5",
+      "sourceEntityId": "sm-source-c022c262993d44d6",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[10]",
+        "sourceEntityId": "sm-source-c022c262993d44d6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Storm-Speeder-Hailstrike",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-fee1a559233f4cbb",
+      "sourceEntityId": "sm-source-c1f05d424a9f4f10",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[4]",
+        "sourceEntityId": "sm-source-c1f05d424a9f4f10",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Brutalis-Dreadnought-UL",
+        "sourceFilter": {
+          "data-f": "AA:fe7dffffef,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    },
+    {
+      "canonicalId": "unit-sm-ff2af9c56daa4536",
+      "sourceEntityId": "sm-source-15f5e86147b04ad3",
+      "sourceOwner": "space-marines",
+      "kind": "DATASHEET",
+      "provenance": {
+        "sourceId": "space-marines-waha-11e-2026-10-20",
+        "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[26]",
+        "sourceEntityId": "sm-source-15f5e86147b04ad3",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "membership": {
+        "sourceUrl": "https://wahapedia.ru/wh40k11ed/factions/space-marines/Chaplain-With-Jump-Pack",
+        "sourceFilter": {
+          "data-f": "AA:fefdffffff,CH:3fff",
+          "DA_bit": 5,
+          "includesDA": true
+        },
+        "inDarkAngelsPageHrefs": true,
+        "sourcePartition": "COMMON",
+        "proof": "EXACT_ACCEPTED_SOURCE_DOCUMENT_HASH_AND_SOURCE_POINTER; DA_PAGE_LINK_AND_CHDA_FILTER"
+      }
+    }
+  ],
+  "chapterRestrictionReference": {
+    "canonicalId": "army-rule-sm-0fc8f686c793466d",
+    "sourceEntityId": "sm-source-e934f72a32504f42",
+    "sourceOwner": "space-marines",
+    "kind": "ARMY_RULE",
+    "provenance": {
+      "sourceId": "space-marines-waha-11e-2026-10-20",
+      "document": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+      "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]/div[1]",
+      "sourceEntityId": "sm-source-e934f72a32504f42",
+      "authority": "ACCEPTED_SECONDARY"
+    }
+  },
+  "excludedOtherChapterDatasheets": [
+    {
+      "canonicalId": "unit-sm-02d5dee4717544ad",
+      "sourceEntityId": "sm-source-2b78e14c94524514",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-10396cd2726045a8",
+      "sourceEntityId": "sm-source-b35fa8e548b24552",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-1af70808102d4286",
+      "sourceEntityId": "sm-source-a4f0ecd529c7447e",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-2e0979af1d9040af",
+      "sourceEntityId": "sm-source-c2a6262ae8334fcb",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-3460439c3a774c66",
+      "sourceEntityId": "sm-source-3837826d438d40b9",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-3d29619313c24850",
+      "sourceEntityId": "sm-source-d0463e7555044ff7",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-55f195878fab446f",
+      "sourceEntityId": "sm-source-cddfaaf8743c4c15",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-611995a1ac614acb",
+      "sourceEntityId": "sm-source-822ee781fca34aa4",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-70b477e461b5487a",
+      "sourceEntityId": "sm-source-e4b8da8f23494380",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-7ee313f201ab42cf",
+      "sourceEntityId": "sm-source-e50178d03fd84096",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-9f9c66dce3814cc5",
+      "sourceEntityId": "sm-source-0cf088ec26c2480c",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-ac0e865c5ab94c9b",
+      "sourceEntityId": "sm-source-d8d72f3ec5f44864",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-ad36b4f4c8f14a97",
+      "sourceEntityId": "sm-source-fbd64155b7444981",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-bdf36a7ab1d64d50",
+      "sourceEntityId": "sm-source-aaf0c8f2046c480e",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-c7226873c51d43c0",
+      "sourceEntityId": "sm-source-017f6d0391924344",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-f169827c554c4eee",
+      "sourceEntityId": "sm-source-231a7d2f874041fd",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-f8bea3d5b0fa44a6",
+      "sourceEntityId": "sm-source-ea8c2fabca7b476d",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    },
+    {
+      "canonicalId": "unit-sm-f9d22ec2aff840de",
+      "sourceEntityId": "sm-source-044b2397076b4dfa",
+      "sourceOwner": "space-marines",
+      "reason": "OTHER_CHAPTER_NOT_DA_MEMBERSHIP"
+    }
+  ],
+  "boundary": "References retain SM ownership, identity and accepted provenance; this ledger is not executable mixed-owner integration. Deathwatch-owned records are excluded."
+}
