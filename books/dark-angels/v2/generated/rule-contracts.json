@@ -1,0 +1,1106 @@
+{
+  "scope": "STAGE_3A_NATIVE_DA_GAMEPLAY",
+  "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
+  "reviewFingerprint": "8E3F24DF00D991151F88FB6B4476D124F16EE3AB4D2E2B4B8AE8C0D20ED5E232",
+  "coverage": {
+    "sourceOwners": 131,
+    "clauses": 252,
+    "classifications": {
+      "TEXT_ONLY_SOURCE_BACKED": 203,
+      "EXECUTABLE_PROVEN": 35,
+      "NOT_PROVEN": 14
+    },
+    "categories": {
+      "DATASHEET_ABILITY": 73,
+      "ARMY_RULE": 6,
+      "DETACHMENT_RULE": 10,
+      "UNIT_UPGRADE": 5,
+      "ENHANCEMENT": 12,
+      "INVULNERABLE_SAVE": 15,
+      "RULE_REFERENCE": 43,
+      "SOURCE_RELATION": 44,
+      "DATASHEET_SECTION": 1,
+      "STRATAGEM": 43
+    },
+    "nativeWeaponProfiles": 68,
+    "nativeAbilities": 12,
+    "nativeInvulnerablePanels": 15,
+    "fullyCoveredTypedProofs": 8,
+    "partialTypedProofs": 1
+  },
+  "executed": [
+    {
+      "ruleId": "ability-da-4d1396f4342347baa772",
+      "clauseId": "astartes-banner",
+      "partial": false,
+      "quote": "Astartes Banner: While this unit contains a RAVENWING ANCIENT, this unit has +1 OC.",
+      "effectIds": [
+        "ability-da-4d1396f4342347baa772::astartes-banner/1/1",
+        "ability-da-4d1396f4342347baa772::astartes-banner/2/1"
+      ]
+    },
+    {
+      "ruleId": "ability-da-594a7ae294c948b39173",
+      "clauseId": "book-of-salvation",
+      "partial": false,
+      "quote": "Book of Salvation: This unit’s melee attacks have +1 A.",
+      "effectIds": [
+        "ability-da-594a7ae294c948b39173::book-of-salvation/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-da-61ae3e245d824682a480",
+      "clauseId": "honour-or-death-charge",
+      "partial": true,
+      "quote": "This unit has +1 to advance rolls and charge rolls.",
+      "effectIds": [
+        "ability-da-61ae3e245d824682a480::honour-or-death-charge/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-da-6fefb0cfda4848bf9dd1",
+      "clauseId": "braziers-stealth",
+      "partial": false,
+      "quote": "This unit has Stealth.",
+      "effectIds": [
+        "ability-da-6fefb0cfda4848bf9dd1::braziers-stealth/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-da-7cd58c9465f544f08e8b",
+      "clauseId": "supreme-grand-master",
+      "partial": false,
+      "quote": "Supreme Grand Master: This unit’s attacks have [SUSTAINED HITS 1].",
+      "effectIds": [
+        "ability-da-7cd58c9465f544f08e8b::supreme-grand-master/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-da-95887a48130640feaf11",
+      "clauseId": "lion-helm",
+      "partial": false,
+      "quote": "The Lion Helm: This unit has 4+ InSv.",
+      "effectIds": [
+        "ability-da-95887a48130640feaf11::lion-helm/1/1",
+        "ability-da-95887a48130640feaf11::lion-helm/2/1"
+      ]
+    },
+    {
+      "ruleId": "detachment-rule-da-6a259c00bc9f4bf498ee",
+      "clauseId": "black-winged-cover",
+      "partial": false,
+      "quote": "Friendly RAVENWING FLY units’ ranged attacks have [IGNORES COVER].",
+      "effectIds": [
+        "detachment-rule-da-6a259c00bc9f4bf498ee::black-winged-cover/1/1"
+      ]
+    },
+    {
+      "ruleId": "detachment-rule-da-6a259c00bc9f4bf498ee",
+      "clauseId": "outrider-battleline",
+      "partial": false,
+      "quote": "Friendly OUTRIDER SQUAD units have BATTLELINE.",
+      "effectIds": [
+        "detachment-rule-da-6a259c00bc9f4bf498ee::outrider-battleline/1/1"
+      ]
+    },
+    {
+      "ruleId": "enhancement-da-9dcd451b895a4cfea19f",
+      "clauseId": "ancient-weapons",
+      "partial": false,
+      "quote": "This model’s melee attacks:\n- Have +2 S.\n- Have +1 AP.",
+      "effectIds": [
+        "enhancement-da-9dcd451b895a4cfea19f::ancient-weapons/1/1",
+        "enhancement-da-9dcd451b895a4cfea19f::ancient-weapons/1/2"
+      ]
+    }
+  ],
+  "nativeAbilities": [
+    {
+      "id": "reference-da-151857a0f520499bbd49",
+      "ownerId": "unit-da-9579698010884b4bae95",
+      "sourceEntityId": "da-source-04894b9cfd75418db572",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-354cbfacb8c24fd3bf63"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "da-source-04894b9cfd75418db572",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-5a376726279840518c7a",
+      "ownerId": "unit-da-4d0a2295a562420599b3",
+      "sourceEntityId": "da-source-cddf58fa4c884a549384",
+      "quote": "Fights First",
+      "sourceFieldSha256": "DCAB3EC1A646B28E2CF3ACAC4B4CA3C3AD40225EAB94A4BEC6D2BD83298BEE98",
+      "modelProfileIds": [
+        "model-da-df7d383005cc441cac00"
+      ],
+      "canonicalAbilityId": "core-fights-first",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "da-source-cddf58fa4c884a549384",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-5ed8acad6335425a8271",
+      "ownerId": "unit-da-9579698010884b4bae95",
+      "sourceEntityId": "da-source-3cae03ae33f84ebbb5e1",
+      "quote": "Lone Operative 15\"",
+      "sourceFieldSha256": "A2153DBDE69D4C401D94908C0E489D605141F5E23EF5E3DA1CFF86C52AE0F954",
+      "modelProfileIds": [
+        "model-da-354cbfacb8c24fd3bf63"
+      ],
+      "canonicalAbilityId": "core-lone-operative",
+      "parameters": {
+        "range": 15
+      },
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+        "sourceEntityId": "da-source-3cae03ae33f84ebbb5e1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-6867a07ad4ae4d499684",
+      "ownerId": "unit-da-8bdfb4e3460d4ed9926a",
+      "sourceEntityId": "da-source-958c560960f943209d93",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-da-fdfdd4b8b3c64d64b699"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "da-source-958c560960f943209d93",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-6bc09f8e09c84b9b8b3d",
+      "ownerId": "unit-da-a1d3821fd56946f0951d",
+      "sourceEntityId": "da-source-4c34d057c20c43c68035",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-955979978038412f98d3",
+        "model-da-b87f7079e4184954ad94"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+        "sourceEntityId": "da-source-4c34d057c20c43c68035",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-752dc855182a48148381",
+      "ownerId": "unit-da-9579698010884b4bae95",
+      "sourceEntityId": "da-source-e2d2a5e66c5d4fcf89a2",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-da-354cbfacb8c24fd3bf63"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "da-source-e2d2a5e66c5d4fcf89a2",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-89c39af4ba2840798c44",
+      "ownerId": "unit-da-48fe8c59ed2449e1a36b",
+      "sourceEntityId": "da-source-40edf6de2c194eb39975",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-9ac1a90b56c34cd08c15"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "da-source-40edf6de2c194eb39975",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-9e070858b8ee428da9e8",
+      "ownerId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "sourceEntityId": "da-source-4e060d93eccc439ba0f9",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-18d8e90b69f9453481d3",
+        "model-da-0c67d8cfbdcb476a8c10"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+        "sourceEntityId": "da-source-4e060d93eccc439ba0f9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-9ff9664e4431418e8360",
+      "ownerId": "unit-da-48fe8c59ed2449e1a36b",
+      "sourceEntityId": "da-source-5dafd7a76b1543589fd5",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-da-9ac1a90b56c34cd08c15"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "da-source-5dafd7a76b1543589fd5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-a4107a9d00734885887a",
+      "ownerId": "unit-da-f1f33dda5c5047efb013",
+      "sourceEntityId": "da-source-060f43d248c54d969060",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-9daa0636291f4ea6ad06"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[52]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "da-source-060f43d248c54d969060",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-ae1e22dfdb3341c586f7",
+      "ownerId": "unit-da-4649795c02b646809e13",
+      "sourceEntityId": "da-source-083bdc9f0d064c239a9e",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-da-d6c1814bd87a49f999fd"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[4]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "da-source-083bdc9f0d064c239a9e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-da-d29854c9c2c1408bad1b",
+      "ownerId": "unit-da-4d0a2295a562420599b3",
+      "sourceEntityId": "da-source-3524d2a9f15840149023",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-da-df7d383005cc441cac00"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "da-source-3524d2a9f15840149023",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    }
+  ],
+  "nativeProfiles": [
+    {
+      "id": "invul-da-057246e71cc34742b7e9",
+      "profileId": "model-da-a601a678011d4574b325",
+      "ownerId": "unit-da-1f093db4ae584ac19636",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[6]/div[1]/div[10]",
+        "sourceEntityId": "da-source-4123800ac43d4151b75d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-057246e71cc34742b7e9",
+      "profileId": "model-da-1944b59f84b040de9fc5",
+      "ownerId": "unit-da-1f093db4ae584ac19636",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[6]/div[1]/div[10]",
+        "sourceEntityId": "da-source-4123800ac43d4151b75d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-10eab82c053643779049",
+      "profileId": "model-da-354cbfacb8c24fd3bf63",
+      "ownerId": "unit-da-9579698010884b4bae95",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]/div[1]/div[9]",
+        "sourceEntityId": "da-source-fe6517f32be249d8b71e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-1eecacf4deeb417f8c45",
+      "profileId": "model-da-955979978038412f98d3",
+      "ownerId": "unit-da-a1d3821fd56946f0951d",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]/div[1]/div[10]",
+        "sourceEntityId": "da-source-099186049bde41b7ae52",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-1eecacf4deeb417f8c45",
+      "profileId": "model-da-b87f7079e4184954ad94",
+      "ownerId": "unit-da-a1d3821fd56946f0951d",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]/div[1]/div[10]",
+        "sourceEntityId": "da-source-099186049bde41b7ae52",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-238e30fa01654ae48b70",
+      "profileId": "model-da-df7d383005cc441cac00",
+      "ownerId": "unit-da-4d0a2295a562420599b3",
+      "value": "3+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]/div[1]/div[9]",
+        "sourceEntityId": "da-source-32e3a6df8fe1403b80ac",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-2d3c8a8a9e4d4835aa9c",
+      "profileId": "model-da-9daa0636291f4ea6ad06",
+      "ownerId": "unit-da-f1f33dda5c5047efb013",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[52]/div[1]/div[9]",
+        "sourceEntityId": "da-source-c574940d09544e838d15",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-41b9fbeb30454c599217",
+      "profileId": "model-da-be787901d6134bd49196",
+      "ownerId": "unit-da-d711371794d441bf92a8",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[48]/div[1]/div[9]",
+        "sourceEntityId": "da-source-27e09f8ea49b420da981",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-5324af5824444036ad3c",
+      "profileId": "model-da-ca78da319f814633b3b6",
+      "ownerId": "unit-da-efa93d33ea414d8b8f11",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]/div[1]/div[9]",
+        "sourceEntityId": "da-source-7b9101f9196e4f59bb1a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-6db2430ff33a4b7dbedf",
+      "profileId": "model-da-82aadb844f254e84afab",
+      "ownerId": "unit-da-0e189995095847bf9d47",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]/div[1]/div[9]",
+        "sourceEntityId": "da-source-5dfecd4c122a42c884dc",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-988d7702d02f42f6a5c8",
+      "profileId": "model-da-eac6bd16d5234c598678",
+      "ownerId": "unit-da-f8f0629206e744459a9f",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[50]/div[1]/div[9]",
+        "sourceEntityId": "da-source-1f614eb81e464c70ae7b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-a748add780a04fe08579",
+      "profileId": "model-da-d6c1814bd87a49f999fd",
+      "ownerId": "unit-da-4649795c02b646809e13",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[4]/div[1]/div[9]",
+        "sourceEntityId": "da-source-bee99a0fb1854bfd824b",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-aca8180de28c4cc19503",
+      "profileId": "model-da-18d8e90b69f9453481d3",
+      "ownerId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]/div[1]/div[10]",
+        "sourceEntityId": "da-source-859a14e86dc6400c85ce",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-aca8180de28c4cc19503",
+      "profileId": "model-da-0c67d8cfbdcb476a8c10",
+      "ownerId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]/div[1]/div[10]",
+        "sourceEntityId": "da-source-859a14e86dc6400c85ce",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-ba9b4334a4894e64b54b",
+      "profileId": "model-da-9bdc9ba0422949849ecc",
+      "ownerId": "unit-da-467009b00bb9402dadee",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]/div[1]/div[11]",
+        "sourceEntityId": "da-source-b57b2e56d01143918f2c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-ba9b4334a4894e64b54b",
+      "profileId": "model-da-8eb29eaced8e486caf37",
+      "ownerId": "unit-da-467009b00bb9402dadee",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]/div[1]/div[11]",
+        "sourceEntityId": "da-source-b57b2e56d01143918f2c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-ba9b4334a4894e64b54b",
+      "profileId": "model-da-d9a85659ae224494b0a7",
+      "ownerId": "unit-da-467009b00bb9402dadee",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]/div[1]/div[11]",
+        "sourceEntityId": "da-source-b57b2e56d01143918f2c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-c8acd84372d74ffca07d",
+      "profileId": "model-da-9ac1a90b56c34cd08c15",
+      "ownerId": "unit-da-48fe8c59ed2449e1a36b",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]/div[1]/div[9]",
+        "sourceEntityId": "da-source-cd27a3046934423f9182",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-e8d39c035f1d45708d13",
+      "profileId": "model-da-fdfdd4b8b3c64d64b699",
+      "ownerId": "unit-da-8bdfb4e3460d4ed9926a",
+      "value": "5+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]/div[1]/div[9]",
+        "sourceEntityId": "da-source-a92a159afc6449c8ba44",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-da-eb01d83c36b44d3a9028",
+      "profileId": "model-da-dbd7e930db2441ac9603",
+      "ownerId": "unit-da-955db164dd7144368578",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[54]/div[1]/div[9]",
+        "sourceEntityId": "da-source-04023fcde23a4cada5f8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    }
+  ],
+  "invulnerablePanels": 15,
+  "inheritedContracts": [
+    "ability-sm-022ef427b01e4c7b",
+    "ability-sm-0392756f7c5a4d57",
+    "ability-sm-06f3f2b2b22b48a4",
+    "ability-sm-085c2275cf994ee9",
+    "ability-sm-097567b13c02404d",
+    "ability-sm-0b388f007b4646fe",
+    "ability-sm-0ddc39d588604fde",
+    "ability-sm-0f4892fe36c747b8",
+    "ability-sm-11a0d9920bb0418a",
+    "ability-sm-185c1918b7874488",
+    "ability-sm-19685137f0e6497a",
+    "ability-sm-1bc852ceb33c42c2",
+    "ability-sm-1cf2874d93964927",
+    "ability-sm-2247cd3f894f4825",
+    "ability-sm-2743f7d90c6649fb",
+    "ability-sm-27da44095a1f491e",
+    "ability-sm-2910eaf9f6b14351",
+    "ability-sm-2dac27f33b834777",
+    "ability-sm-32ef85e542eb4c62",
+    "ability-sm-342f87e3b2bc4c74",
+    "ability-sm-34322896f9c94867",
+    "ability-sm-3594f132956b48ad",
+    "ability-sm-3ecdb71b4dc84065",
+    "ability-sm-431f22d15f7545b4",
+    "ability-sm-4dad1a0320cc4a5b",
+    "ability-sm-4fe2016cef894fd3",
+    "ability-sm-50059a5e06f84048",
+    "ability-sm-51d60a67f0f24993",
+    "ability-sm-53a5d8e182284a35",
+    "ability-sm-570683b0864b41f2",
+    "ability-sm-59302e8505a64fb9",
+    "ability-sm-5b1332b320d84c1d",
+    "ability-sm-5bc9f13380dc4437",
+    "ability-sm-5c59e70e49d14df0",
+    "ability-sm-5cd67a433a36466f",
+    "ability-sm-619a9f848d494de6",
+    "ability-sm-61b7b22212e64e8d",
+    "ability-sm-63d4ca967fa64b79",
+    "ability-sm-646ddebc78db43aa",
+    "ability-sm-65002253aef041ec",
+    "ability-sm-672cd084d5ba41f0",
+    "ability-sm-683740758e7c490c",
+    "ability-sm-688ad5dccd464866",
+    "ability-sm-68f84cbf74d9438b",
+    "ability-sm-6ac11fadb7fd4996",
+    "ability-sm-73199edf642245f5",
+    "ability-sm-76dc910fa6014c38",
+    "ability-sm-779fefc8580f4b31",
+    "ability-sm-7a9a925615614019",
+    "ability-sm-7d0c729bd52143f9",
+    "ability-sm-7ed0d69082b34649",
+    "ability-sm-801f058790ba4ed4",
+    "ability-sm-846fc84a9f914844",
+    "ability-sm-898bc0e521c448fd",
+    "ability-sm-8a3aacf1c37a49d0",
+    "ability-sm-8af7e9233ac44749",
+    "ability-sm-8c4891b959d44a52",
+    "ability-sm-8c9e7e37a8494c1d",
+    "ability-sm-937c10c6fda940f7",
+    "ability-sm-998a121477614f78",
+    "ability-sm-9af6e1978ed64988",
+    "ability-sm-9c118e29005d43fd",
+    "ability-sm-9d5ab45e2d8f4669",
+    "ability-sm-9d616a4674ec4997",
+    "ability-sm-9f87df3b6435456f",
+    "ability-sm-a228df25b2964c6c",
+    "ability-sm-a41ba26a731241e7",
+    "ability-sm-a5d5e1d025e7462d",
+    "ability-sm-a6dca5d8dbbd4f80",
+    "ability-sm-a858c0c3201e480a",
+    "ability-sm-aa81f0067a3140de",
+    "ability-sm-aad6d2f9552a4377",
+    "ability-sm-ab71f802f781470f",
+    "ability-sm-ad1debae4779454b",
+    "ability-sm-ad7f3276300c45e2",
+    "ability-sm-b165097313314e4e",
+    "ability-sm-b493244f85db49ad",
+    "ability-sm-b7e21b532c0f4c32",
+    "ability-sm-b8da66f5bd13419b",
+    "ability-sm-b954019b08c44c19",
+    "ability-sm-be499e0ec6b94a98",
+    "ability-sm-bea60cd2a4c4448f",
+    "ability-sm-bee76d4d4aba454d",
+    "ability-sm-c02e12fe43d24413",
+    "ability-sm-c13c2cc4e60d47d7",
+    "ability-sm-c1891ebd7c1c430f",
+    "ability-sm-c442db72a70e4c05",
+    "ability-sm-c4f67b7dd73c4764",
+    "ability-sm-c8d57fe4071d462a",
+    "ability-sm-cc070941c7d245e9",
+    "ability-sm-cced70b1a7a7481b",
+    "ability-sm-cd2e2cf591f64961",
+    "ability-sm-cffaf4f8768c4c99",
+    "ability-sm-d039c5e501d140e6",
+    "ability-sm-d0e46ad8ba424e4c",
+    "ability-sm-d0ec30683ac14df3",
+    "ability-sm-d2243c7cb45a4f6b",
+    "ability-sm-d38d7600e5de4546",
+    "ability-sm-d4eec98d015844a3",
+    "ability-sm-d74f321b15b44943",
+    "ability-sm-daf87042d20348dd",
+    "ability-sm-dd8aeb693b58472c",
+    "ability-sm-ddf866d2fc594e1e",
+    "ability-sm-e19da629a4a04887",
+    "ability-sm-e1dfd21a50374ace",
+    "ability-sm-e24df255d94d4435",
+    "ability-sm-e24f4657d9c34d8b",
+    "ability-sm-e2f0c3ceeb42424d",
+    "ability-sm-e39f83b26ec64787",
+    "ability-sm-e86e14b9f76343cb",
+    "ability-sm-ebba7a64c9a14f94",
+    "ability-sm-ece9a939dcf642bf",
+    "ability-sm-ef122532fb1244f3",
+    "ability-sm-f2faaceb1f904510",
+    "ability-sm-f5605009d22a48ae",
+    "ability-sm-f62ebe4003a44752",
+    "ability-sm-f7557319f2854ccb",
+    "detachment-rule-sm-05b00954e4744b59",
+    "detachment-rule-sm-07f085c819ea4835",
+    "detachment-rule-sm-35102c2d34334220",
+    "detachment-rule-sm-3a97ffd48f0f4bf6",
+    "detachment-rule-sm-5d279871994f428e",
+    "detachment-rule-sm-6e133b8acd6b4550",
+    "detachment-rule-sm-8381795466754812",
+    "detachment-rule-sm-8aba3398dfe14b66",
+    "detachment-rule-sm-93a70d72216b4f0c",
+    "detachment-rule-sm-9684d98e8f664479",
+    "detachment-rule-sm-bded7031de204fd4",
+    "detachment-rule-sm-bff921aaeb624b43",
+    "detachment-rule-sm-d1b9f7be1db34a49",
+    "detachment-rule-sm-e16b0f9b19fd4c33",
+    "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "enhancement-sm-07e95c69297b4d6f",
+    "enhancement-sm-10ccd3b868bf41e2",
+    "enhancement-sm-1ba9914b76954183",
+    "enhancement-sm-28614fb697744ed6",
+    "enhancement-sm-2e55051da6594198",
+    "enhancement-sm-33db6f7f8bc04d0c",
+    "enhancement-sm-37140db132394ce3",
+    "enhancement-sm-38b8b31ab2ce47de",
+    "enhancement-sm-4c07c7ad03a44355",
+    "enhancement-sm-4fce0dc37bd14c6f",
+    "enhancement-sm-60ab5885f6294e78",
+    "enhancement-sm-6230db0cdc954fdd",
+    "enhancement-sm-6d3f4024b9f14a67",
+    "enhancement-sm-7b4f677483594724",
+    "enhancement-sm-7cb5acef68494f69",
+    "enhancement-sm-89cb52bb94b4419d",
+    "enhancement-sm-90130970a79d4ac0",
+    "enhancement-sm-90544ca326d243be",
+    "enhancement-sm-90b7ccf121e34215",
+    "enhancement-sm-96a03924178349b9",
+    "enhancement-sm-9c7f16cb33a54e71",
+    "enhancement-sm-9d44d0978b974773",
+    "enhancement-sm-a6d2243e7dab403e",
+    "enhancement-sm-a872c96c64354de3",
+    "enhancement-sm-a9b5f170cd214ef8",
+    "enhancement-sm-cfb520ff879f4733",
+    "enhancement-sm-d79a770177054671",
+    "enhancement-sm-db9dd5a127854fa2",
+    "enhancement-sm-dcbae3c2b6534ac1",
+    "enhancement-sm-e5c04a1c3f6444b7",
+    "enhancement-sm-f2a5e85d052342cd",
+    "enhancement-sm-f44cee5f5e3049ed",
+    "relation-sm-0d96c1aa752f4fe8",
+    "relation-sm-1a834dffe8c644e5",
+    "relation-sm-2534b1242db14504",
+    "relation-sm-44a8052e5fa249b3",
+    "relation-sm-492bd4612acb4a76",
+    "relation-sm-4be68a014d274e55",
+    "relation-sm-4d43d9a655e44400",
+    "relation-sm-55492ad98c4b494a",
+    "relation-sm-5cd8ec044ab2413f",
+    "relation-sm-5eae00734ac94ec1",
+    "relation-sm-68cda5d6f6c94d6a",
+    "relation-sm-6e2703705bf04f37",
+    "relation-sm-7dde17281f0f49cc",
+    "relation-sm-818ca6921f6d4c8d",
+    "relation-sm-82cf8ef1e1554933",
+    "relation-sm-8e046f77bde345da",
+    "relation-sm-8faff2b62caf4027",
+    "relation-sm-908ca9dfe226499c",
+    "relation-sm-92d26035774a4c13",
+    "relation-sm-9746be67a6a44b56",
+    "relation-sm-9e78ca969a2c4a15",
+    "relation-sm-a8796d5461e24804",
+    "relation-sm-ab65dbfd0eaa4f28",
+    "relation-sm-c1ef7f5073094a34",
+    "relation-sm-d354f0d5937e4ebe",
+    "relation-sm-d92fec612cea452d",
+    "relation-sm-e41b176546e44d05",
+    "relation-sm-e4c42d0de9dd46dc",
+    "relation-sm-eee0941eb781450d",
+    "relation-sm-f86e8d53f0ba4283",
+    "section-sm-0983122635a64ee8",
+    "section-sm-0dd9f71bd1b64aaf",
+    "section-sm-2afa5929503c4859",
+    "section-sm-34e239e216b44574",
+    "section-sm-740cc0c974384de5",
+    "section-sm-786e28b2f8d849d7",
+    "section-sm-8f112eb8c1ea42d7",
+    "section-sm-b8da909cf52b447e",
+    "section-sm-d07e5cf9b51a46da",
+    "section-sm-e36d69c738e74b6c",
+    "section-sm-e4697eb6483447c7",
+    "stratagem-sm-02921fdd8b6242a6",
+    "stratagem-sm-0535aebd698e4323",
+    "stratagem-sm-079891eda74042ad",
+    "stratagem-sm-099e768dfc7b4e2d",
+    "stratagem-sm-0d0f47368d2944c6",
+    "stratagem-sm-125c803bfe7749c4",
+    "stratagem-sm-165185d7c1d04840",
+    "stratagem-sm-202d43d3a3a54d18",
+    "stratagem-sm-210e7e9e774c4e7b",
+    "stratagem-sm-22d9e6906241422f",
+    "stratagem-sm-27496d381a364a6e",
+    "stratagem-sm-36d57c0fe4e749ff",
+    "stratagem-sm-3a46ef47dc2f4ed4",
+    "stratagem-sm-3c36cc7d9ade438a",
+    "stratagem-sm-3eb2f068419e4e92",
+    "stratagem-sm-3fc669c545274dec",
+    "stratagem-sm-40173dcf29124da5",
+    "stratagem-sm-48bce6a91cfe4938",
+    "stratagem-sm-4e1b0376f6604827",
+    "stratagem-sm-5083815fb7e34cbe",
+    "stratagem-sm-518c2a26e3624920",
+    "stratagem-sm-613cddaa26084fb2",
+    "stratagem-sm-61fd86dcc1394918",
+    "stratagem-sm-635962cdf879468f",
+    "stratagem-sm-65387435f3a641c4",
+    "stratagem-sm-67a14d3d77984c23",
+    "stratagem-sm-6fa62f326da54301",
+    "stratagem-sm-7017f3c4832540c6",
+    "stratagem-sm-7cabf49e71194a9c",
+    "stratagem-sm-7d6130f1d89f44d1",
+    "stratagem-sm-835e21c4a8e34e29",
+    "stratagem-sm-8509fb96e0844319",
+    "stratagem-sm-8d8390a96e104ea8",
+    "stratagem-sm-9c1e682899e240d4",
+    "stratagem-sm-9f5ed1a884a14306",
+    "stratagem-sm-a2ff0b812cf349d0",
+    "stratagem-sm-a3067cc567994adf",
+    "stratagem-sm-a32818b0436a44dd",
+    "stratagem-sm-a7ecc5f3f3e04650",
+    "stratagem-sm-ab92482177a14323",
+    "stratagem-sm-ae4a39306eac42f4",
+    "stratagem-sm-ba168da7a465485f",
+    "stratagem-sm-c7e6ae242a1344d7",
+    "stratagem-sm-d1c4ac406b484b41",
+    "stratagem-sm-d642d4d85db04dc9",
+    "stratagem-sm-d73478d582584763",
+    "stratagem-sm-e25acace6b584a5e",
+    "stratagem-sm-ee7521323e3742d5"
+  ],
+  "selectorProjections": [
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-1",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-2",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-3",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-4",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    }
+  ],
+  "recipientIdentityProofs": [
+    {
+      "ruleId": "detachment-rule-da-6a259c00bc9f4bf498ee",
+      "canonicalId": "unit-sm-0dd92e6d8ad54ee6",
+      "sourceEntityId": "sm-source-370bcca7a77a4f20",
+      "sourceAnchor": "Outrider-Squad",
+      "sourceHref": "/wh40k11ed/factions/space-marines/Outrider-Squad",
+      "sourceDocument": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+      "sourceSha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+      "sourcePointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]/a[2]"
+    }
+  ],
+  "inheritedTypedClauses": 35,
+  "chapterConditions": 26,
+  "chapterGrantsActive": 0,
+  "chapterContext": "NOT_PROVEN_NO_PHYSICAL_SOURCE_BINDER",
+  "unsupported": [
+    "INCOMING_WOUND_ROLL",
+    "INCOMING_DAMAGE",
+    "REROLLS",
+    "QUALIFIED_FNP",
+    "UNKNOWN_BATTLE_EVENTS"
+  ],
+  "inheritedPhysicalChoiceBindings": "Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.",
+  "relations": "INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT",
+  "physicalCycloneCharge": false,
+  "realNewRecruitExportTested": false
+}

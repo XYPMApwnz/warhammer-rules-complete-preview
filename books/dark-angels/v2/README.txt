@@ -1,4 +1,4 @@
-Dark Angels V2 — native foundation, pricing and mixed-owner projection (Stage 2C)
+Dark Angels V2 — native foundation, mixed-owner projection and gameplay (Stage 3A)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -42,7 +42,7 @@ uses the existing createEffectiveMfmArmyProjection, without a legacy builder.
 Generated mfm-presentation.json is a pricing projection, not a registered Army
 Book UI. No numeric MFM values are copied into DA canonical factual entities.
 All 69 shared prices stay SM-owned; inherited pricing references carry IDs only.
-No physical importer, executor, registration, UI or Glossary is implemented here.
+No physical importer, application registration, UI or Mega Glossary is implemented here.
 Chapter keyword grants remain inactive. Mixed-owner source/reference, physical
 Effective and Personal projections are verified; full DA gameplay is deferred.
 Astraeus/Thunderhawk remain MFM-only; Deathwatch Support has a separate owner.
@@ -88,4 +88,46 @@ SM MFM-only units remain references without native Datasheets. Shared Detachment
 and item references retain SM ownership. Source Leader/Support declarations are
 addressable, but no attachment policies are activated; Lazarus and all ten
 REFERENCE_ONLY relation targets remain unresolved/inactive. Constructed physical
-snapshots test projections without adding a New Recruit importer or effects.
+Stage 2C snapshots test projections without adding a New Recruit importer or effects.
+
+Native Chapter mechanics and rule presentation
+Build/check: node books/dark-angels/v2/rule-contract-build.mjs [--check]
+Presentation: node books/dark-angels/v2/gameplay-presentation-build.mjs [--check]
+Source coverage/mutations: node books/dark-angels/v2/rule-clause-review-qa.mjs
+Gameplay/physical scope: node books/dark-angels/v2/gameplay-qa.mjs
+Chapter evidence boundary: node books/dark-angels/v2/chapter-context-qa.mjs
+
+rule-clause-review.json addresses 252 literal clauses from 131 DA-owned operative
+source records. Complete source context, spans, hashes and provenance are retained;
+segmentation is a transcription locator, never a gameplay inference. Layout-only
+headings, duplicate aggregate ability sections and numeric weapon/model facts are
+accounted separately. Five nested Ezekiel/Lion abilities remain separate records.
+35 clauses have a fully covered typed/native binding; 203 remain source-backed
+text and 14 are NOT_PROVEN (physical Chapter condition or Lazarus source conflict).
+Nine typed DA lowerings include one partial clause: Honour or Death executes only
+Charge +1. Its Advance +1 and CP restriction remain text, not an executed claim.
+15 source InSv panels seed exactly their 20 explicit MODEL recipients; 12 native
+Core ability occurrences retain parameters, including Lone Operative 15 inches.
+Qualified/activated FNP, incoming Wound/Damage and battle events remain full text.
+
+The closed consumer reuses the existing SM producer: 253 child contracts and 35
+typed clauses preserve SM source ownership. Four foreign-Chapter weapon exclusions
+are intersected with consumer membership; originals remain in the projection log.
+Text-only root SM Army rules are not rebound to the DA owner to bypass validation.
+SM physical-choice FIELD bindings remain conditional without their required proof.
+No SM canonical data or generated factual output is authored under DA.
+
+roster-runtime.mjs is a snapshot adapter to the existing shared runtime, not a new
+executor or importer. load/recompute rebuilds source physical Ancient/Champion
+presence from exact canonical MODEL rows with positive quantity. Invalid load
+preserves the prior runtime. Enhancement eligibility uses the existing selectors,
+including exact MODEL bearer and UNIT Upgrade scope. UNIT keyword grants are not
+copied into MODEL keywords. Attachment permissions remain inactive; diagnostic
+formation tests prove scope only, not source-valid attachment eligibility.
+
+CHAPTER_CONTEXT_SOURCE=NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT. Parser/import only
+has army-level faction metadata. There is no source-qualified producer validating
+Chapter for a physical UNIT; book, Detachment, attachments and arbitrary snapshot
+properties cannot supply that evidence. All 18 DEATHWING and 8 RAVENWING grants
+remain inactive. Existing FIELD and GRANT_UNIT_KEYWORD/PHYSICAL are sufficient once
+a separately proven physical source binding exists; no shared capability was added.
