@@ -1,0 +1,1333 @@
+{
+  "schema": "dark-angels-v2-mfm-boundary/v1",
+  "bookId": "dark-angels",
+  "centralAcceptedVersion": "v1.6",
+  "centralOldPointsUsable": false,
+  "candidateVersion": "v1.6",
+  "enrollmentStatus": "ENROLLED_NATIVE_PRICING_ONLY",
+  "pointsStatus": "SOURCE_PROVEN_DA_OWNED_TIERS",
+  "valuesCopied": false,
+  "activeBindings": 27,
+  "source": {
+    "url": "https://mfm.warhammer-community.com/en/dark-angels",
+    "version": "v1.6",
+    "capturedAt": "2026-10-21",
+    "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+    "captureRole": "PINNED_OFFICIAL_SOURCE_EVIDENCE_ONLY_NO_MFM_VALUES_ENROLLED",
+    "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html"
+  },
+  "sourceCounts": {
+    "daOwnedUnits": 16,
+    "sharedSMUnits": 69,
+    "daOwnDetachments": 3,
+    "sharedSMDetachments": 15,
+    "separateDeathwatchSupportDetachments": 1,
+    "daOwnEnhancements": 6,
+    "daOwnUnitUpgrades": 2,
+    "daOwnPaidEquipmentOptions": 1
+  },
+  "identityCandidates": [
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "ASMODAI",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[1]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-d711371794d441bf92a8",
+      "candidateNativeSourceIdentity": "da-source-772ecf1eb98644c085d1",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[48]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-b010553299a5d448"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "AZRAEL",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[2]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-f8f0629206e744459a9f",
+      "candidateNativeSourceIdentity": "da-source-9f29d1532a1d4d3487c4",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[50]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-2f2d2555c2d9f35d"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "BELIAL",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[3]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-f1f33dda5c5047efb013",
+      "candidateNativeSourceIdentity": "da-source-eefb01eaf9a2460f9209",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[52]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-2da708a0177b998a"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "DEATHWING KNIGHTS",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[4]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-a1d3821fd56946f0951d",
+      "candidateNativeSourceIdentity": "da-source-40b59022f7bf4dae9669",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-51540b62d14a3392"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "DEATHWING TERMINATOR SQUAD",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "candidateNativeSourceIdentity": "da-source-f3642202bbaf4892b355",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-975789bca410800e"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "EZEKIEL",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[6]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-955db164dd7144368578",
+      "candidateNativeSourceIdentity": "da-source-5d296378d15d4b978e74",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[54]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-6fa513252d4119ab"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "INNER CIRCLE COMPANIONS",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[7]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-6b2744f187a748cda0df",
+      "candidateNativeSourceIdentity": "da-source-3db9f377b22d4b23bcac",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[50]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-8555ecd66c9ef1fc"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "LAND SPEEDER VENGEANCE",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[8]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-48fe8c59ed2449e1a36b",
+      "candidateNativeSourceIdentity": "da-source-2bf7b5fc3bde49489b0d",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-8bd2e6e423b98b00"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "LAZARUS",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[9]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-efa93d33ea414d8b8f11",
+      "candidateNativeSourceIdentity": "da-source-9380988c8ec04af78efb",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-7a02c2272ab9aac2"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "LION EL’JONSON",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[10]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-4d0a2295a562420599b3",
+      "candidateNativeSourceIdentity": "da-source-ed2a92e4ca5647c19d85",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-8f75c59bbf14b223"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "NEPHILIM JETFIGHTER",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[11]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-8bdfb4e3460d4ed9926a",
+      "candidateNativeSourceIdentity": "da-source-15ac4783728b48d2a6bb",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-4a5e994614f41005"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "RAVENWING BLACK KNIGHTS",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[12]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-1f093db4ae584ac19636",
+      "candidateNativeSourceIdentity": "da-source-8ce7cbe7032441499c44",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[6]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-ca58376d9859addf"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "RAVENWING COMMAND SQUAD",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[13]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-467009b00bb9402dadee",
+      "candidateNativeSourceIdentity": "da-source-e04d2e4d825c4e9f96e8",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-04555adf0612db53"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "RAVENWING DARKSHROUD",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[14]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-9579698010884b4bae95",
+      "candidateNativeSourceIdentity": "da-source-3f0c61cc9a0046e7ab7a",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-6f990a2e8f5f55d6"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "RAVENWING DARK TALON",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[15]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-4649795c02b646809e13",
+      "candidateNativeSourceIdentity": "da-source-80483ba01a17415390b0",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[4]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-654f13b0aaafc1b9"
+    },
+    {
+      "kind": "UNIT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "SAMMAEL",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[16]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "unit-da-0e189995095847bf9d47",
+      "candidateNativeSourceIdentity": "da-source-93b43f65fea74a0aaf42",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-unit-points-24c474f012ae488a"
+    },
+    {
+      "kind": "DETACHMENT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "DARKFLIGHT PURSUIT",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[2]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "detachment-da-d7c1a2b23f2e443aa22a",
+      "candidateNativeSourceIdentity": "da-source-5110624c0887499f9c8e",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-detachment-4c4fd5a8a9bae2ee"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Nightforged Battery (Upgarde)",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[2]/div[3]/ul/div[1]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-fb83cfb304e74056b819",
+      "candidateNativeSourceIdentity": "da-source-e56989d819cd4a5285d7",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-81c612485e7d0f20"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Thundercowl Turbines (Upgrade)",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[2]/div[3]/ul/div[2]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-3c2c519eaabc48088aa4",
+      "candidateNativeSourceIdentity": "da-source-ee5a1578986d44159585",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-cd25e0d745825447"
+    },
+    {
+      "kind": "DETACHMENT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "INNER CIRCLE TASK FORCE",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[9]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "detachment-da-7e310c5c15914267a0ae",
+      "candidateNativeSourceIdentity": "da-source-9956591f279144598947",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-detachment-9c9d44d7ed925983"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Champion of the Deathwing",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[9]/div[3]/ul/div[1]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-4e1c055c3dfe4754bd0c",
+      "candidateNativeSourceIdentity": "da-source-8b0ba839aafa42f2a7eb",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-7de01ba0fd00ff48"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Singular Will",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[9]/div[3]/ul/div[2]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-aaf27210de7e47a792f7",
+      "candidateNativeSourceIdentity": "da-source-38e6624cfec04df78d05",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-95dd792837bed72b"
+    },
+    {
+      "kind": "DETACHMENT",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "WRATH OF THE ROCK",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "detachment-da-5a438082b8a74f8e8e08",
+      "candidateNativeSourceIdentity": "da-source-d7f12a0669e64286ae28",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-detachment-e26c443b34304d56"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Ancient Weapons",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[1]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-9dcd451b895a4cfea19f",
+      "candidateNativeSourceIdentity": "da-source-9ac7aa40907b42c593eb",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[4]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-b590c9da436958d8"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Deathwing Assault",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[2]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-6504b6d091f844b68c1a",
+      "candidateNativeSourceIdentity": "da-source-6846ebe40e3845ebaf68",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-283158daf4d891ac"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Lord of the Ravenwing",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[3]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-822dfec678424ec293c2",
+      "candidateNativeSourceIdentity": "da-source-1c67aaca7c144c419626",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-d6fed3b1f7c23235"
+    },
+    {
+      "kind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceOwner": "dark-angels",
+      "sourceTitle": "Tempered in Battle (Aura)",
+      "sourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[4]/li",
+      "disposition": "BOUND",
+      "reason": "Reviewed paired source occurrences plus independent structural corroboration; gameplay/physical runtime not activated",
+      "active": true,
+      "candidateNativeCanonicalId": "enhancement-da-468d9a93dc9a47f2a229",
+      "candidateNativeSourceIdentity": "da-source-ec862c60aae64edeadc0",
+      "candidateNativeSourceAddress": {
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td"
+      },
+      "mappingStatus": "SOURCE_PROVEN_NATIVE_PRICING_ONLY",
+      "candidateIdentitySafety": "Source review in mfm-mapping-review.json; canonical identity preserved, no label-derived identity",
+      "mfmRecordId": "mfm-enhancement-be460b1b427dae65"
+    }
+  ],
+  "paidOptionCandidates": [
+    {
+      "sourceOwner": "dark-angels",
+      "unitSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]",
+      "sourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]/div[4]/div[2]/ul/li",
+      "sourceLabel": "per Cyclone Missile Launcher",
+      "disposition": "SOURCE_BACKED_PAID_OPTION_CANDIDATE",
+      "physicalSelectionStatus": "NOT_PROVEN",
+      "chargeEnabled": false,
+      "quantityPolicy": "Do not charge by Datasheet presence; require proven selected physical equipment and quantity",
+      "priceOwner": "CENTRAL_MFM_ONLY",
+      "nativeEquipmentCanonicalId": null,
+      "candidateUnitCanonicalId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "mfmRecordId": "mfm-paid-upgrade-3c211afc5aea6e89"
+    }
+  ],
+  "sharedSMBoundary": {
+    "sourceOwner": "space-marines",
+    "recordsCopied": false,
+    "count": 69,
+    "nativeCommonCount": 67,
+    "nativeReferences": [
+      {
+        "canonicalId": "unit-sm-004d28cd5dca4a1e",
+        "sourceEntityId": "sm-source-3b68683ea2ec44dd",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-81360d6082bc2a31"
+      },
+      {
+        "canonicalId": "unit-sm-047d5023f1a940ed",
+        "sourceEntityId": "sm-source-8ee093289bd44790",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-2f092d8eb71153cc"
+      },
+      {
+        "canonicalId": "unit-sm-0b0b22ecffa74125",
+        "sourceEntityId": "sm-source-db5ef7e41d1048ca",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-9c90eac7271c814d"
+      },
+      {
+        "canonicalId": "unit-sm-0dd92e6d8ad54ee6",
+        "sourceEntityId": "sm-source-370bcca7a77a4f20",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-ee9bd06f8796ac41"
+      },
+      {
+        "canonicalId": "unit-sm-1330b7672f934fd8",
+        "sourceEntityId": "sm-source-fbcd5943ab074e20",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-03ac3139b70a6059"
+      },
+      {
+        "canonicalId": "unit-sm-1d09de3e7281438a",
+        "sourceEntityId": "sm-source-56a10fb8b7c7493e",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-0b9a7356f7b98288"
+      },
+      {
+        "canonicalId": "unit-sm-24b4709c45ef4b2d",
+        "sourceEntityId": "sm-source-94e879232fda4b6a",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3a82090a500c8503"
+      },
+      {
+        "canonicalId": "unit-sm-30663bda6074455f",
+        "sourceEntityId": "sm-source-663e55daff904657",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3b4cc873a843e899"
+      },
+      {
+        "canonicalId": "unit-sm-32e5b655a21342f6",
+        "sourceEntityId": "sm-source-b1226421533742d3",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-e575f9dc6edc7960"
+      },
+      {
+        "canonicalId": "unit-sm-3815e40077e44702",
+        "sourceEntityId": "sm-source-a2d7ef41e4a741ba",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-f61ac43d8d482d82"
+      },
+      {
+        "canonicalId": "unit-sm-3816678809d047d2",
+        "sourceEntityId": "sm-source-e38e7d0dcf39400e",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-62185148a5e46238"
+      },
+      {
+        "canonicalId": "unit-sm-3ce46dddf62b45f1",
+        "sourceEntityId": "sm-source-888cb4f47846425d",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-9fd252ae569c3c24"
+      },
+      {
+        "canonicalId": "unit-sm-4660f547cc3744b0",
+        "sourceEntityId": "sm-source-5b018380e74c4b9b",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-81a012efe0bea069"
+      },
+      {
+        "canonicalId": "unit-sm-46fb0fe9443c4e95",
+        "sourceEntityId": "sm-source-cbd29019463e4ce4",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-ea0656dd58889360"
+      },
+      {
+        "canonicalId": "unit-sm-4a2efa64a7c34868",
+        "sourceEntityId": "sm-source-33123d00b9d94434",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-c8952892bc0d6f5a"
+      },
+      {
+        "canonicalId": "unit-sm-4bc3ce61558a4d90",
+        "sourceEntityId": "sm-source-2f4558f5c6ed4d04",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-551397d1e87b9694"
+      },
+      {
+        "canonicalId": "unit-sm-4cd4bf89720c4fa0",
+        "sourceEntityId": "sm-source-67d73a21991b441d",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-8389a1e110403f26"
+      },
+      {
+        "canonicalId": "unit-sm-4f6baee09b3248a6",
+        "sourceEntityId": "sm-source-acc38a8b470a43ba",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-8215b8ec03bc57c5"
+      },
+      {
+        "canonicalId": "unit-sm-4fce70f042cc4e5d",
+        "sourceEntityId": "sm-source-dfe9dd35d36d474d",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-b4228139f38b2dfb"
+      },
+      {
+        "canonicalId": "unit-sm-4ff82a9b79db48da",
+        "sourceEntityId": "sm-source-4230c5a3ead54e62",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-140c4145169029c0"
+      },
+      {
+        "canonicalId": "unit-sm-536d38b5ac7645dc",
+        "sourceEntityId": "sm-source-2d777ac9eec24798",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-0d11184ae51a3384"
+      },
+      {
+        "canonicalId": "unit-sm-56eaa095b0ae4fe4",
+        "sourceEntityId": "sm-source-60a8b0f935b24f04",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-2786d339fabfc046"
+      },
+      {
+        "canonicalId": "unit-sm-59162946fee84360",
+        "sourceEntityId": "sm-source-65d0590b7ae94191",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-1cc605a15a3c6934"
+      },
+      {
+        "canonicalId": "unit-sm-5c28c46911224d25",
+        "sourceEntityId": "sm-source-37a18fdf3fba471f",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-cc75d6fef08cb874"
+      },
+      {
+        "canonicalId": "unit-sm-5ce71f2f4e5e4ebb",
+        "sourceEntityId": "sm-source-1c0e7c579f604bf6",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3ec0fc05ebe99887"
+      },
+      {
+        "canonicalId": "unit-sm-5d6184dd92154615",
+        "sourceEntityId": "sm-source-983a00525a114a72",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-47a144531ed54937"
+      },
+      {
+        "canonicalId": "unit-sm-63a015916b46446a",
+        "sourceEntityId": "sm-source-6567bd6bb2d54093",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-34354ff47cd5c768"
+      },
+      {
+        "canonicalId": "unit-sm-65c7cc53e3fc4fc8",
+        "sourceEntityId": "sm-source-119963264a474fe5",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-f31e103c62f54abe"
+      },
+      {
+        "canonicalId": "unit-sm-67f47cb0752e44ad",
+        "sourceEntityId": "sm-source-988e747b1d2a40f9",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-f413b92fcf364609"
+      },
+      {
+        "canonicalId": "unit-sm-6da1ff60a2ff4591",
+        "sourceEntityId": "sm-source-e0917fb709b24c50",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3da782a55899b8b2"
+      },
+      {
+        "canonicalId": "unit-sm-717dd0d07e764a70",
+        "sourceEntityId": "sm-source-fffbd0a7669e4565",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-a5136b9fa36b46f7"
+      },
+      {
+        "canonicalId": "unit-sm-74c53544aa694147",
+        "sourceEntityId": "sm-source-9b8d7b42e0cd4fc6",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3d8c6d511a913040"
+      },
+      {
+        "canonicalId": "unit-sm-7a3f4debefdb4c95",
+        "sourceEntityId": "sm-source-2958ab8be0fb4f04",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-6f0fa06576b7584a"
+      },
+      {
+        "canonicalId": "unit-sm-7ebc58da33c34c58",
+        "sourceEntityId": "sm-source-e3ea88a9066c4040",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-dff243aa4d11bf06"
+      },
+      {
+        "canonicalId": "unit-sm-80ac1421ce0f4de3",
+        "sourceEntityId": "sm-source-10e85d355cc24643",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-e479ce1313026f99"
+      },
+      {
+        "canonicalId": "unit-sm-8ef63e7da6444869",
+        "sourceEntityId": "sm-source-1d6282b1461942c5",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-77aae1d1371f8b92"
+      },
+      {
+        "canonicalId": "unit-sm-96f12b073f4649c7",
+        "sourceEntityId": "sm-source-3d8a1ec342a34b65",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-ab386306cd16a402"
+      },
+      {
+        "canonicalId": "unit-sm-984b95cebb2f47d9",
+        "sourceEntityId": "sm-source-3f43960dc09c4aa1",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3417e994d6c94a1e"
+      },
+      {
+        "canonicalId": "unit-sm-99eb03d4f2d448e2",
+        "sourceEntityId": "sm-source-302dded4ba294293",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-c2107ef6e00f30ed"
+      },
+      {
+        "canonicalId": "unit-sm-9e163be8d4bb42c1",
+        "sourceEntityId": "sm-source-a726ac87cf214e0c",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-fb27c34db62007c0"
+      },
+      {
+        "canonicalId": "unit-sm-9f9e7c18b7354927",
+        "sourceEntityId": "sm-source-a47a10afba2d4971",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-deddc20010e14475"
+      },
+      {
+        "canonicalId": "unit-sm-a2a8db8a9f124a7f",
+        "sourceEntityId": "sm-source-5df7a8d45fe54349",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-609da73d25623e6c"
+      },
+      {
+        "canonicalId": "unit-sm-a5c08f428c2648bb",
+        "sourceEntityId": "sm-source-558ec04f88734b1c",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-983868b089dc0f6f"
+      },
+      {
+        "canonicalId": "unit-sm-a8f0770187044cbb",
+        "sourceEntityId": "sm-source-1f7d17a3ecc040a2",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-b634d7468e823442"
+      },
+      {
+        "canonicalId": "unit-sm-b994e641eaea4060",
+        "sourceEntityId": "sm-source-1a202001e83b4046",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-66d304682be9ae0d"
+      },
+      {
+        "canonicalId": "unit-sm-bc1a331111b142d9",
+        "sourceEntityId": "sm-source-17b7271663884684",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-e637f297e98de939"
+      },
+      {
+        "canonicalId": "unit-sm-bc409233f3fe4dc1",
+        "sourceEntityId": "sm-source-e6c42bd37894420d",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-b9b0f197ef393169"
+      },
+      {
+        "canonicalId": "unit-sm-bc4486ac79ec477f",
+        "sourceEntityId": "sm-source-eba02097a0824767",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-4aff26eb68f42573"
+      },
+      {
+        "canonicalId": "unit-sm-bc9aa3cbedb2415c",
+        "sourceEntityId": "sm-source-91c0c9b70ed1413a",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-c2488301c70584cc"
+      },
+      {
+        "canonicalId": "unit-sm-c50655aacb564e99",
+        "sourceEntityId": "sm-source-d46588321d794c96",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-b884e943456c15c5"
+      },
+      {
+        "canonicalId": "unit-sm-c60b9f00ff7a42b0",
+        "sourceEntityId": "sm-source-fa51df1d30574278",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-2b94b6ca9c7cf821"
+      },
+      {
+        "canonicalId": "unit-sm-c9c30c70c3394fb6",
+        "sourceEntityId": "sm-source-a4d4154dce4d44df",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-b6cf4522ceb696a9"
+      },
+      {
+        "canonicalId": "unit-sm-d0a8c043f5c24b22",
+        "sourceEntityId": "sm-source-86840026ad0e4739",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-ea7024a7ab79cf21"
+      },
+      {
+        "canonicalId": "unit-sm-d101fa171b7a40c4",
+        "sourceEntityId": "sm-source-7a39dd5b9e3c45ff",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-7bed31fb59dfa8df"
+      },
+      {
+        "canonicalId": "unit-sm-d44763a8089742c3",
+        "sourceEntityId": "sm-source-84ecf94911fc47f9",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-556607c3d91824d0"
+      },
+      {
+        "canonicalId": "unit-sm-db3ce647d7024b24",
+        "sourceEntityId": "sm-source-b89ca74df82b446d",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-8298fcbe412c90c4"
+      },
+      {
+        "canonicalId": "unit-sm-ddda2ee77e3342c5",
+        "sourceEntityId": "sm-source-55fb5e29a8a040ad",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-000dee1f8a7d750b"
+      },
+      {
+        "canonicalId": "unit-sm-e43fc0c6d8b14ad8",
+        "sourceEntityId": "sm-source-b9502e980ac14cd7",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-80fb887fedf1b848"
+      },
+      {
+        "canonicalId": "unit-sm-e595c56eab2f493b",
+        "sourceEntityId": "sm-source-0f4bd638b31a4429",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-91017292f51fb997"
+      },
+      {
+        "canonicalId": "unit-sm-e62a5d7c19b24d57",
+        "sourceEntityId": "sm-source-8468815e2e934c82",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-374fcb4f1d89fb98"
+      },
+      {
+        "canonicalId": "unit-sm-e75d543e81cf49f3",
+        "sourceEntityId": "sm-source-4608c0570b4a46f5",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-7d1c568714e64684"
+      },
+      {
+        "canonicalId": "unit-sm-eb2d6ede583e4473",
+        "sourceEntityId": "sm-source-83c25125a5374d02",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-44aacdc1c86bbbe3"
+      },
+      {
+        "canonicalId": "unit-sm-f3366b4701174e71",
+        "sourceEntityId": "sm-source-0032aa5631e24e0c",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-02a0dca1dca40118"
+      },
+      {
+        "canonicalId": "unit-sm-f4717a6371254e73",
+        "sourceEntityId": "sm-source-558a519efeef43de",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-7be758f49a4c769f"
+      },
+      {
+        "canonicalId": "unit-sm-f92faa31422041f5",
+        "sourceEntityId": "sm-source-c022c262993d44d6",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-3b1e411443d6c10d"
+      },
+      {
+        "canonicalId": "unit-sm-fee1a559233f4cbb",
+        "sourceEntityId": "sm-source-c1f05d424a9f4f10",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-dc17dd5c6a9f711c"
+      },
+      {
+        "canonicalId": "unit-sm-ff2af9c56daa4536",
+        "sourceEntityId": "sm-source-15f5e86147b04ad3",
+        "sourceOwner": "space-marines",
+        "mfmRecordId": "mfm-unit-points-ce59cc48fe203d60"
+      }
+    ],
+    "mfmOnly": [
+      {
+        "sourceOwner": "space-marines",
+        "sourceTitle": "ASTRAEUS",
+        "nativeDatasheetId": null,
+        "disposition": "MFM_ONLY_NOT_A_NATIVE_DATASHEET",
+        "mfmRecordId": "mfm-unit-points-f2e75922d1e6946c",
+        "mfmUnitReferenceId": "mfm-unit-ref-615b0bac8f8b38db"
+      },
+      {
+        "sourceOwner": "space-marines",
+        "sourceTitle": "THUNDERHAWK GUNSHIP",
+        "nativeDatasheetId": null,
+        "disposition": "MFM_ONLY_NOT_A_NATIVE_DATASHEET",
+        "mfmRecordId": "mfm-unit-points-dc566052ce8bfc5d",
+        "mfmUnitReferenceId": "mfm-unit-ref-548d5755149efe06"
+      }
+    ]
+  },
+  "deathwatchBoundary": {
+    "sourceOwner": "deathwatch",
+    "detachment": "Deathwatch Support",
+    "recordsCopied": false,
+    "active": false
+  },
+  "relationsBoundary": {
+    "sourceLeaderRelations": 35,
+    "sourceSupportRelations": 2,
+    "runtimeEligibility": false,
+    "centralMfmIntegration": false,
+    "reason": "Current v1.6 MFM and Army declarations retained; Stage2B activates pricing only. Runtime relation eligibility and mixed-owner joins are deferred."
+  },
+  "previousCentralVersion": "v1.4",
+  "inheritedPricingReferences": [
+    {
+      "canonicalId": "detachment-sm-0962d488a7b24d3b",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-cb057959552da426",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-0a8e3fa989c9415e",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-cc9d3f1be0dfdc92",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-519d6649ea174733",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-71a74925f0cb1e09",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-53f689af321a4813",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-3b8a3034fff66352",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-624df9cefb95455f",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-156a759bf6eb0d33",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-6341f5a9b9584677",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-9631d8f40d212e38",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-8f297dd604a24b1c",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-9e982dc68851f132",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-9f9732252c304842",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-f8815510c75121c4",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-a4f66339257d47b4",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-9db3c4e64148b224",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-bad922ba6ae84f44",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-813d64066557adbc",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-bd39ee9e152742b9",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-8f91f1f09d0367dc",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-bf8f2dd8d7dc4073",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-9015113f6f4debbb",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-bfacdc12c8074440",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-ebc368b2712533df",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-c8f2ae568f594e1b",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-b2bf24c0f786abeb",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "detachment-sm-edbad6d9c5a44991",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-detachment-be833b11bbf627d9",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-07e95c69297b4d6f",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-8ed6e1a7c8bc2d0d",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-10ccd3b868bf41e2",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-beb93b8b9db5bca6",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-1ba9914b76954183",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-3acf4edfa111c094",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-28614fb697744ed6",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-3d567dba814d9b52",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-2e55051da6594198",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-9d41197c0082a584",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-33db6f7f8bc04d0c",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-e6034fe032b96b7e",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-37140db132394ce3",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-c88f5d68a7d35c4f",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-38b8b31ab2ce47de",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-d1dcb85cd6038b56",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-4c07c7ad03a44355",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-b63951d787eba430",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-4fce0dc37bd14c6f",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-ef34590e4bf23821",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-60ab5885f6294e78",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-401594283722555e",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-6230db0cdc954fdd",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-b5a85a3ede9d0df1",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-6d3f4024b9f14a67",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-66954c227408731f",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-7b4f677483594724",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-724f1c40516bf4ba",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-7cb5acef68494f69",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-ba97128be781141d",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-89cb52bb94b4419d",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-2455cbdef42564aa",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-90130970a79d4ac0",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-10ede884890eeb81",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-90544ca326d243be",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-823523e2975687ed",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-90b7ccf121e34215",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-a06e73d10535a062",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-96a03924178349b9",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-3e3713ebc0e66d00",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-9c7f16cb33a54e71",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-4cd18bae52dcd58b",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-9d44d0978b974773",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-7533cf55b66c453c",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-a6d2243e7dab403e",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-182ae989a6001304",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-a872c96c64354de3",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-87f6461d959859a3",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-a9b5f170cd214ef8",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-45923fb249c679f4",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-cfb520ff879f4733",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-f4d89f59580101ec",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-d79a770177054671",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-17bbbf9e639de6cd",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-db9dd5a127854fa2",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-3487718daed41186",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-dcbae3c2b6534ac1",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-2df77728b2b64d63",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-e5c04a1c3f6444b7",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-aede0e794c29bdd4",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-f2a5e85d052342cd",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-4991018e308360e4",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    },
+    {
+      "canonicalId": "enhancement-sm-f44cee5f5e3049ed",
+      "sourceOwner": "space-marines",
+      "mfmRecordId": "mfm-enhancement-323e39f27dbe841c",
+      "sourceId": "space-marines-mfm-v1.6",
+      "runtimeActive": false
+    }
+  ]
+}

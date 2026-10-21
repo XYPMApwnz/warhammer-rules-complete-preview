@@ -4,12 +4,14 @@ import {adaptGlobalGlossary} from '../../../books/shared/army-book-app-v2/global
 import {createGlobalGlossaryContent} from '../../../books/shared/army-book-app-v2/global-glossary-content.mjs';
 import {createReferenceContract} from '../../../books/shared/army-book-app-v2/reference-contract.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {buildDarkAngelsMixedBook} from '../../../books/dark-angels/v2/book-build.mjs';
 import {buildGlossaryV2Index} from '../content/glossary-v2-index.mjs';
 
 const root=new URL('../../../',import.meta.url),read=file=>JSON.parse(fs.readFileSync(new URL(file,root),'utf8'));
-const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
-const excluded=['dark-angels','blood-angels'];
+const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines','dark-angels'];
+const excluded=['blood-angels'];
 const sources=new Map(books.map(book=>[book,new Map(read(`books/${book}/v2/generated/effective.json`).entities.map(entity=>[entity.id,entity]))]));
+const daMembership=new Set(buildDarkAngelsMixedBook().canonicalEntities.filter(entity=>entity.bookId==='space-marines').map(entity=>entity.id));
 const index=await buildGlossaryV2Index();
 assert.ok(JSON.stringify(index)===JSON.stringify(await buildGlossaryV2Index()),'Connected V2 projection is deterministic');
 assert.ok(JSON.stringify(index)===JSON.stringify(read('glossary/v2/generated/index.en.json')),'Published corpus is the current V2 projection');
@@ -24,7 +26,8 @@ function verify(candidate){
     const source=sources.get(entry.sourceOwner.bookId)?.get(entry.sourceOwner.canonicalId);
     assert.ok(source,`${entry.id}: factual owner is a connected canonical V2 entity`);
     assert.deepEqual(entry.facts.canonicalData,source.data,`${entry.id}: another faction did not overwrite canonical facts`);
-    assert.deepEqual(entry.contexts.map(context=>context.effectiveBookId),[entry.sourceOwner.bookId],`${entry.id}: book membership isolation`);
+    const expectedContexts=[entry.sourceOwner.bookId,...(entry.sourceOwner.bookId==='space-marines'&&daMembership.has(entry.sourceOwner.canonicalId)?['dark-angels']:[])].sort();
+    assert.deepEqual(entry.contexts.map(context=>context.effectiveBookId).sort(),expectedContexts,`${entry.id}: only source-reviewed consumer membership`);
     assert.ok(entry.contexts.every(context=>!context.factOverrides&&!context.omittedFactFields),`${entry.id}: no legacy faction overlays`);
   }
   const points=candidate.entries.filter(entry=>entry.domain==='MFM');

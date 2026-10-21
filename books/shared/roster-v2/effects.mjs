@@ -1,3 +1,4 @@
+import {validateConditionalPolicy,appendConditionalPolicy} from './conditional-policy.mjs';
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
@@ -50,10 +51,18 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
   for (const entity of book.entities.filter(e=>e.ruleContract)) for (const clause of entity.ruleContract.clauses) {
     if (!['ROSTER_EXECUTABLE','BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(clause.rosterClassification)) throw new TypeError('Unclassified roster clause');
     if ((clause.rosterEffects.length > 0) !== (clause.rosterClassification === 'ROSTER_EXECUTABLE')) throw new TypeError('Execution classification mismatch');
+    validateConditionalPolicy(book,entity,clause);
     const ids = new Set();
     for (const effect of clause.rosterEffects) {
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
       ids.add(effect.id);
+      // Root Army Rules have no physical source instance. Only actual global
+      // executable clauses opt into dispatch; text/battle-only roots retain
+      // their previous behaviour. Source-bound effects cannot use this path.
+      if (entity.kind==='ARMY_RULE' && !entity.parentId &&
+          (!['ROSTER_UNITS','ROSTER_MODELS'].includes(effect.targetBinding) ||
+           effect.conditions.some(condition=>condition.binding==='SOURCE')))
+        throw new TypeError('Root Army Rule requires global targets without a physical source');
       let proof = entity.data; for (const key of effect.evidence?.field || []) proof = proof?.[key];
       if (!effect.evidence?.quote || typeof proof !== 'string' || !proof.includes(effect.evidence.quote)) throw new TypeError('Unproven roster effect');
       if (effect.operation === 'MODIFY_STAT') {
@@ -78,11 +87,11 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
             effect.targetSubject==='MODEL' && effect.unitScope!==undefined ||
             effect.targetSubject==='UNIT' && !['PHYSICAL','FORMED'].includes(effect.unitScope))
           throw new TypeError('Invalid typed Critical Hit threshold');
-      } else if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
-      if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field==='chargeRoll' &&
+      } else if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll','advanceRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
+      if (effect.operation === 'MODIFY_RULE_METRIC' && ['chargeRoll','advanceRoll'].includes(effect.field) &&
           (effect.targetSubject!=='UNIT' || !['PHYSICAL','FORMED'].includes(effect.unitScope) ||
            !Number.isSafeInteger(effect.value) || effect.max!==undefined || effect.weaponMode!==undefined || effect.weaponIds!==undefined))
-        throw new TypeError('Invalid typed UNIT Charge-roll modifier');
+        throw new TypeError(`Invalid typed UNIT ${effect.field==='chargeRoll'?'Charge':'Advance'}-roll modifier`);
       if (effect.operation==='MODIFY_RULE_METRIC' && effect.field==='detectionRange' && effect.unitScope!==undefined &&
           (effect.targetSubject!=='UNIT'||!['PHYSICAL','FORMED'].includes(effect.unitScope)||!Number.isSafeInteger(effect.value)||
            effect.weaponMode!==undefined||effect.weaponIds!==undefined||effect.max!==undefined))
@@ -234,7 +243,9 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
     if (rule.ruleContract.detachmentId && !state.detachmentIds.includes(rule.ruleContract.detachmentId)) continue;
-    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' ? [null] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
+    const globalArmyRule=rule.kind==='ARMY_RULE' && !rule.parentId && rule.ruleContract.kind==='ARMY_RULE' &&
+      rule.ruleContract.clauses.some(clause=>clause.rosterEffects.length>0);
+    const sources = rule.kind === 'ENHANCEMENT' ? result.units.filter(u=>u.enhancementIds.includes(rule.id)) : rule.kind === 'DETACHMENT_RULE' || globalArmyRule ? [null] : result.units.filter(u=>u.canonicalUnitId === rule.parentId);
     for (const source of sources) {
       let ownerModel = null;
       if (source && rule.kind === 'ENHANCEMENT' && rule.ruleContract.assignment) {
@@ -260,6 +271,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
         }
       }
       for (const clause of rule.ruleContract.clauses) {
+        appendConditionalPolicy(result,rule,clause,source,ownerModel);
         if (clause.rosterClassification === 'BATTLE_ONLY') {
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
@@ -395,7 +407,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       return row;
     };
     const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD' ||
-      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','criticalHitThreshold','detectionRange'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
+      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','advanceRoll','criticalHitThreshold','detectionRange'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
@@ -617,10 +629,10 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   for(const item of suppressions)for(const target of targets(item))apply(item,target);
   for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
   for (const unit of result.units) {
-    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
+    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason&&Boolean(r.policy)===Boolean(row.policy)&&(!row.policy||r.sourceInstanceId===row.sourceInstanceId&&r.sourceModelScopeId===row.sourceModelScopeId))===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
-        if(field==='chargeRoll'||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;
+        if(['chargeRoll','advanceRoll'].includes(field)||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;
         const own = model.metrics[field] || {modifier:0};
         model.metrics[field] = {modifier:own.modifier+metric.modifier,...((own.max||metric.max)?{max:Math.min(own.max??Infinity,metric.max??Infinity)}:{})};
       }

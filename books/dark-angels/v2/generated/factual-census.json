@@ -1,0 +1,51 @@
+{
+  "bookId": "dark-angels",
+  "sourceRows": 320,
+  "mainEntities": 320,
+  "counts": {
+    "DATASHEET_ABILITY": 40,
+    "ARMY_RULE": 2,
+    "COMPOSITION_MEMBER": 21,
+    "DETACHMENT": 3,
+    "DETACHMENT_RULE": 3,
+    "ENHANCEMENT": 8,
+    "INVULNERABLE_SAVE": 15,
+    "MODEL_PROFILE": 21,
+    "RULE_REFERENCE": 43,
+    "SOURCE_RELATION": 7,
+    "DATASHEET_SECTION": 49,
+    "STRATAGEM": 12,
+    "DATASHEET": 16,
+    "WARGEAR_OPTION": 12,
+    "WEAPON_PROFILE": 68
+  },
+  "datasheets": 16,
+  "mainDatasheetAbilities": 35,
+  "supplementalNamedAbilities": 5,
+  "enhancements": 6,
+  "unitUpgrades": 2,
+  "relationTargetEdges": {
+    "LEADER": 35,
+    "SUPPORT": 2
+  },
+  "sourceScopeClassifications": {
+    "EXCLUDED_FOREIGN_CHAPTER_OWNER": 145,
+    "INCLUDED_CURRENT_DA": 16,
+    "CENTRAL_MFM_MIRROR_EXCLUDED": 16,
+    "EXCLUDED_LEGENDS": 29,
+    "EXCLUDED_FORGE_WORLD": 2,
+    "INHERITED_RULE_REFERENCE_ONLY": 5,
+    "NON_DA_DETACHMENT_REFERENCE_ONLY": 16,
+    "INCLUDED_CURRENT_DA_DETACHMENT": 3,
+    "CENTRAL_MFM_DISPOSITION_REFERENCE_NOT_CONNECTED": 3,
+    "CENTRAL_MFM_QUALIFIER_REFERENCE_NOT_CONNECTED": 1
+  },
+  "unresolvedCompositionProfiles": [],
+  "identityPolicy": "EXPLICIT_ONCE_ENROLLED_OPAQUE_IDS;NO_TITLE_ORDER_DERIVATION",
+  "mfmIntegration": "NATIVE_PRICING_BOUND",
+  "mixedOwnerRuntime": "NOT_PROVEN",
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "contentCertified": false,
+  "runtimeAcceptancePerformed": false
+}

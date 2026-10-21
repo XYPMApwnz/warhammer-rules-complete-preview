@@ -1,0 +1,2246 @@
+{
+  "schema": "dark-angels-v2-persistent-identities/v1",
+  "policy": "Opaque IDs enrolled once against explicit source addresses. Titles, order and text never generate identity.",
+  "bindings": [
+    {
+      "id": "unit-da-d711371794d441bf92a8",
+      "sourceEntityId": "da-source-772ecf1eb98644c085d1",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-be787901d6134bd49196",
+      "sourceEntityId": "da-source-0c96deb3f2154bca9411",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "weapon-da-3d12efb8658a476da095",
+      "sourceEntityId": "da-source-f8b0447337ff46c99103",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "weapon-da-e738bf511ec2445581d9",
+      "sourceEntityId": "da-source-25da17eb1b374095baeb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "weapon-da-3bd8245197c640f5a7fa",
+      "sourceEntityId": "da-source-2e2ff43fb0e044a2bce2",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "section-da-c936d36ea0184754aa7a",
+      "sourceEntityId": "da-source-e8bf8fee67e6412daa53",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "section-da-e2dc0a281f3848f4b565",
+      "sourceEntityId": "da-source-3167a486e4f343eaaf4b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "composition-da-cc0c8c27b4ed4410a2fc",
+      "sourceEntityId": "da-source-aaf61e3059b64a0392b0",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "section-da-11708da714c9411da28f",
+      "sourceEntityId": "da-source-18c00ac159d94d8caeb6",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "relation-da-31affb30649644d3ac87",
+      "sourceEntityId": "da-source-b8011269e3234f1491e3",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "ability-da-4d018955efb84dfc9751",
+      "sourceEntityId": "da-source-a355e9a5c3ee4fd6bb5d",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "ability-da-3d563ca06064460bbff9",
+      "sourceEntityId": "da-source-75de06a6f9db4d35a1f7",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "reference-da-2d0dd725a18f44f8bfcc",
+      "sourceEntityId": "da-source-384359cc306c4e5da151",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "reference-da-76e5b315fca24111ac66",
+      "sourceEntityId": "da-source-9946090c29c24a24bdb1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "reference-da-a2ed1233c31b4d878972",
+      "sourceEntityId": "da-source-f10505c3017f46349dcf",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "invul-da-41b9fbeb30454c599217",
+      "sourceEntityId": "da-source-27e09f8ea49b420da981",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-772ecf1eb98644c085d1"
+    },
+    {
+      "id": "unit-da-f8f0629206e744459a9f",
+      "sourceEntityId": "da-source-9f29d1532a1d4d3487c4",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-eac6bd16d5234c598678",
+      "sourceEntityId": "da-source-dd26edefca7d497d9248",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "weapon-da-ad0eb23429f84338a31d",
+      "sourceEntityId": "da-source-4c958deff8514c40b0c1",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "weapon-da-b5be7b8ee4264764aa22",
+      "sourceEntityId": "da-source-ae13ec3d1333493eb890",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "section-da-17e48ee947614bfca6a8",
+      "sourceEntityId": "da-source-6124338d518547cd8295",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "section-da-38c38728d8f5432c8b53",
+      "sourceEntityId": "da-source-0af7a83aaa0540c399a5",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "composition-da-f59a5095857d41baa8a5",
+      "sourceEntityId": "da-source-ef8d0fa38a254cbf8940",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "section-da-322c31c0255a445e8806",
+      "sourceEntityId": "da-source-3c997bb5be5a4f4b9086",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "relation-da-22d166e7a9dd4e30975c",
+      "sourceEntityId": "da-source-3d7192cebdb74a75bee9",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "ability-da-d6a1f281b0734391a1f9",
+      "sourceEntityId": "da-source-2ea025d0e1c5494eb6ad",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "ability-da-7cd58c9465f544f08e8b",
+      "sourceEntityId": "da-source-da2304d59240448bb131",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "ability-da-0ef218638a454a2d96de",
+      "sourceEntityId": "da-source-6ff440137dbd4e13bca5",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "ability-da-95887a48130640feaf11",
+      "sourceEntityId": "da-source-d92993e6b2e84526b45e",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "reference-da-35f227a2cac54a8eb80c",
+      "sourceEntityId": "da-source-7da6f939490c4e54b826",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "reference-da-96aa95dda6ab4dc8b64b",
+      "sourceEntityId": "da-source-c61c139000f948739f42",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "reference-da-1a9ddb0715b44d218303",
+      "sourceEntityId": "da-source-4f6aa56ac9e24f2c90af",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "invul-da-988d7702d02f42f6a5c8",
+      "sourceEntityId": "da-source-1f614eb81e464c70ae7b",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9f29d1532a1d4d3487c4"
+    },
+    {
+      "id": "unit-da-f1f33dda5c5047efb013",
+      "sourceEntityId": "da-source-eefb01eaf9a2460f9209",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-9daa0636291f4ea6ad06",
+      "sourceEntityId": "da-source-fccc70ae15c04b7d862e",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "weapon-da-d61d083c0d4641a79145",
+      "sourceEntityId": "da-source-ea3784af57b14fff841a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "weapon-da-4c9609d78305441ba31b",
+      "sourceEntityId": "da-source-ae5cf28046ee47959391",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "section-da-e720db0a533043c8bd15",
+      "sourceEntityId": "da-source-c1f3cf4466bb4285bdc3",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "section-da-00f23834e16646c6bcea",
+      "sourceEntityId": "da-source-7a1d97c9518046fa913c",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "composition-da-753574d2d9fe47bb930b",
+      "sourceEntityId": "da-source-6a5f8de85e844da1ae0f",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "section-da-09ed0afc3dfb446eaebf",
+      "sourceEntityId": "da-source-93b2a41ee8384837b899",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "relation-da-a09fc8ca12b54263880a",
+      "sourceEntityId": "da-source-a3f84fe7569848e393fc",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "ability-da-c6ea4b2a27354f50b0c6",
+      "sourceEntityId": "da-source-a4b69491da534620b00c",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "ability-da-59f2ed3bd36749c7b951",
+      "sourceEntityId": "da-source-29c5fca11e3643248f7e",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "reference-da-a4107a9d00734885887a",
+      "sourceEntityId": "da-source-060f43d248c54d969060",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "reference-da-8043eba768964a729ba1",
+      "sourceEntityId": "da-source-17794271f1e649838b76",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "reference-da-6261b24c6eea41409c13",
+      "sourceEntityId": "da-source-5d0c004888ed47dda08f",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "reference-da-954a4153ed7648b59842",
+      "sourceEntityId": "da-source-86712a3ff00f4d0c8af0",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "invul-da-2d3c8a8a9e4d4835aa9c",
+      "sourceEntityId": "da-source-c574940d09544e838d15",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-eefb01eaf9a2460f9209"
+    },
+    {
+      "id": "unit-da-955db164dd7144368578",
+      "sourceEntityId": "da-source-5d296378d15d4b978e74",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-dbd7e930db2441ac9603",
+      "sourceEntityId": "da-source-34e3fa10d35048a89c82",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "weapon-da-6409660ec5624fd88517",
+      "sourceEntityId": "da-source-19e2f436c8c1455a9666",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "weapon-da-c96cb870d0ea4ab891d2",
+      "sourceEntityId": "da-source-eb0d51911d3b4fe18a2a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "weapon-da-b3043e676f144b44b153",
+      "sourceEntityId": "da-source-0087339df49143759baf",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "weapon-da-40ff02cfdf904d39b1cb",
+      "sourceEntityId": "da-source-979b8bec66c143a0b852",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "section-da-9a431726ebed4f2aa18e",
+      "sourceEntityId": "da-source-34f1d11c5edb4072b17c",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "section-da-95bc58e28d9b4d0d92c8",
+      "sourceEntityId": "da-source-72119665886940489e82",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "section-da-2b8da536046d45ef9d38",
+      "sourceEntityId": "da-source-10b14de44f0e4edb9cae",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "composition-da-fc8b318f9286495bbc6b",
+      "sourceEntityId": "da-source-4c58db243a4f45aaba9f",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "section-da-d432c3c4f8514179b5d4",
+      "sourceEntityId": "da-source-81352d6c7e08488b9d78",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "relation-da-b6271bbf4fcf4cf9b6ee",
+      "sourceEntityId": "da-source-f7eaf152ca984d09a2bb",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "ability-da-2817fd8763554077aa05",
+      "sourceEntityId": "da-source-8af4114bc98e4a9c87a5",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "ability-da-71b5b408bc0e4300a85a",
+      "sourceEntityId": "da-source-0e9dc19579d54394a684",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "ability-da-594a7ae294c948b39173",
+      "sourceEntityId": "da-source-abf891abb6a841b4af43",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "ability-da-3d1e61e50fb848f89fe1",
+      "sourceEntityId": "da-source-2ea73f2796df426dad8f",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "ability-da-7a6bf94476794dfcbaa6",
+      "sourceEntityId": "da-source-ec03d89222ed483ca940",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "reference-da-e6b3938683e1438f952f",
+      "sourceEntityId": "da-source-2ad50c475ca34833bfc3",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "reference-da-510f03ffa48f4f1f8ab0",
+      "sourceEntityId": "da-source-daf7770e78c44467935c",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "invul-da-eb01d83c36b44d3a9028",
+      "sourceEntityId": "da-source-04023fcde23a4cada5f8",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5d296378d15d4b978e74"
+    },
+    {
+      "id": "unit-da-efa93d33ea414d8b8f11",
+      "sourceEntityId": "da-source-9380988c8ec04af78efb",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-ca78da319f814633b3b6",
+      "sourceEntityId": "da-source-6f059b864630414f8c65",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "weapon-da-1010480211d249f4b65f",
+      "sourceEntityId": "da-source-5346d6457c654e2b8b91",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "weapon-da-a1658fadd974445aa4e2",
+      "sourceEntityId": "da-source-25ea8a569c5e40b2bf23",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "section-da-c864f8c87881448ba794",
+      "sourceEntityId": "da-source-0e16497cf24742d48f96",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "section-da-511a71d5a84c4e4c981f",
+      "sourceEntityId": "da-source-65cfa694d07543618cc3",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "composition-da-01815233dbaf4acf8b8e",
+      "sourceEntityId": "da-source-183e66b43b384143a9dc",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "section-da-f020c1b7907c473d8926",
+      "sourceEntityId": "da-source-964093718dc04626907f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "relation-da-e6dbbd4bedbd4874bb51",
+      "sourceEntityId": "da-source-575d1d8a5e9744bf904b",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "ability-da-7234b2ae58c149898fd8",
+      "sourceEntityId": "da-source-197d0c50036b44248402",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "ability-da-7dbc5ddbc014411bb290",
+      "sourceEntityId": "da-source-807cf5ece8b1435ba6eb",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "reference-da-dea3e686501143d5be7a",
+      "sourceEntityId": "da-source-c8b074ad0baa4d15ae9b",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "reference-da-676147a9eac3461bba91",
+      "sourceEntityId": "da-source-e87ff36439c24805b497",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "reference-da-1542930365224055b954",
+      "sourceEntityId": "da-source-abe8761f4cf04fae9f02",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "invul-da-5324af5824444036ad3c",
+      "sourceEntityId": "da-source-7b9101f9196e4f59bb1a",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9380988c8ec04af78efb"
+    },
+    {
+      "id": "unit-da-4d0a2295a562420599b3",
+      "sourceEntityId": "da-source-ed2a92e4ca5647c19d85",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-df7d383005cc441cac00",
+      "sourceEntityId": "da-source-f7726413f11f4501bdec",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "weapon-da-ca5962cebaf44ee7847f",
+      "sourceEntityId": "da-source-b8d178c7972242a49927",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "weapon-da-1bfcf4f474dc4808bf38",
+      "sourceEntityId": "da-source-a7134f5ea77142fdb8fc",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "weapon-da-eb068d78d6a848d1b8db",
+      "sourceEntityId": "da-source-743951dfb345442a934b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "weapon-da-fb7fcf3346ef4e9ab1db",
+      "sourceEntityId": "da-source-f2cfea27177846669cab",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "section-da-dcc2d039bb8f4559a5cd",
+      "sourceEntityId": "da-source-dced5f71647d4773bc44",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "section-da-c36cec25932b4675ab25",
+      "sourceEntityId": "da-source-256d64ee3b494c99a26f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "section-da-db937d217c5340dba664",
+      "sourceEntityId": "da-source-682b123c7a354d239b65",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "section-da-9944be96290c41d5b056",
+      "sourceEntityId": "da-source-966b3228b4be48b2b461",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "composition-da-99c6467691234e6a8ff7",
+      "sourceEntityId": "da-source-2b62954e771340879247",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-beeec54af3b547239723",
+      "sourceEntityId": "da-source-f37eb152190d4ac69671",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-531bbeae023c4f4fa766",
+      "sourceEntityId": "da-source-793a1707c9b84273b754",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-8db740d71770467d858e",
+      "sourceEntityId": "da-source-30433c692e034c578557",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-f7e2b4715f384efc8128",
+      "sourceEntityId": "da-source-612705be93274c1e9524",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-490661bbb1ff4d45a4b8",
+      "sourceEntityId": "da-source-d07a3b47ce7d4171b1dc",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-2ed6377b2f794e0ea8af",
+      "sourceEntityId": "da-source-e140f553bb844c79a285",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-57f090f793034b989e2a",
+      "sourceEntityId": "da-source-91f44830bc114ef79482",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "ability-da-3f1bf9214171488fb6c2",
+      "sourceEntityId": "da-source-f1fbea14e57341129051",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "reference-da-d29854c9c2c1408bad1b",
+      "sourceEntityId": "da-source-3524d2a9f15840149023",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "reference-da-5a376726279840518c7a",
+      "sourceEntityId": "da-source-cddf58fa4c884a549384",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "reference-da-7765e244889f4afbaaa6",
+      "sourceEntityId": "da-source-edb2cefa68ff4c50a0a4",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "reference-da-7fb066deac6c49c5a3d1",
+      "sourceEntityId": "da-source-7f2ecb54f942434a93b9",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "invul-da-238e30fa01654ae48b70",
+      "sourceEntityId": "da-source-32e3a6df8fe1403b80ac",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-ed2a92e4ca5647c19d85"
+    },
+    {
+      "id": "unit-da-0e189995095847bf9d47",
+      "sourceEntityId": "da-source-93b43f65fea74a0aaf42",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-82aadb844f254e84afab",
+      "sourceEntityId": "da-source-55d94545327845b6a85c",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "weapon-da-81b212cea00e4cabab54",
+      "sourceEntityId": "da-source-6c7c5ef464ac4ba3bc3c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "weapon-da-14c7fb4d4c144b5e959e",
+      "sourceEntityId": "da-source-504ff354f44b431b8e74",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "weapon-da-38bc744ad2f24397b1e5",
+      "sourceEntityId": "da-source-7e3e68f6d28949f1a368",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "weapon-da-8fcfbb6fda8e48539fd0",
+      "sourceEntityId": "da-source-2d243d3087a742c88223",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "section-da-56c51de9b3ad482e9c26",
+      "sourceEntityId": "da-source-c3e2308cf136407b84ba",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "section-da-2224a2914ebe4f40b4fb",
+      "sourceEntityId": "da-source-976f5e18015c45499950",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "composition-da-28528a7576374fc2b300",
+      "sourceEntityId": "da-source-390ccae385d14b60bee7",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "section-da-93ea5a05ca424c898421",
+      "sourceEntityId": "da-source-3b520d22c2484a609d95",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "relation-da-02cdd01b994747d09896",
+      "sourceEntityId": "da-source-a832005735034d6d95d2",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "ability-da-65465326750b4266a189",
+      "sourceEntityId": "da-source-4128fce1eeb547e8b1fd",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "ability-da-a9d37be88a7a4a5a9efd",
+      "sourceEntityId": "da-source-9153eeea0f2a40a9a830",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "reference-da-6f6d82fc01b749898f89",
+      "sourceEntityId": "da-source-686d5d6518e74f34bbf4",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "reference-da-a00622f3a83f4d1daf17",
+      "sourceEntityId": "da-source-51a503b4aab24d69b95a",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "reference-da-3b82d52cdbf74837a611",
+      "sourceEntityId": "da-source-cd4ad1aeb6f54d53a711",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "invul-da-6db2430ff33a4b7dbedf",
+      "sourceEntityId": "da-source-5dfecd4c122a42c884dc",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-93b43f65fea74a0aaf42"
+    },
+    {
+      "id": "unit-da-467009b00bb9402dadee",
+      "sourceEntityId": "da-source-e04d2e4d825c4e9f96e8",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-9bdc9ba0422949849ecc",
+      "sourceEntityId": "da-source-fe54bb1888b3449ead09",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "model-da-8eb29eaced8e486caf37",
+      "sourceEntityId": "da-source-9122154ab29a4167adc4",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "model-da-d9a85659ae224494b0a7",
+      "sourceEntityId": "da-source-820c5a94789a4020bc6e",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-2b73a290ba974a4daf80",
+      "sourceEntityId": "da-source-36a9ad4b228149f284fc",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-0419acd3ad8148668bef",
+      "sourceEntityId": "da-source-97dfc42638e84321b893",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-68670fb6259044d3bf3e",
+      "sourceEntityId": "da-source-7edc32ea17424072aef5",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-b31c1356e91848a282eb",
+      "sourceEntityId": "da-source-30aea8cb0abc454ea0de",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-d6334db624824ddd8393",
+      "sourceEntityId": "da-source-25401e6556b74ea0a5d1",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-7cc574307828453294f4",
+      "sourceEntityId": "da-source-a4b4b805212d466b813f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "weapon-da-5b3d9d9b25e74bc8b03a",
+      "sourceEntityId": "da-source-e7ab2564162b4de1994f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "wargear-da-930e6ac5222943d0abe0",
+      "sourceEntityId": "da-source-566f283338f140be8467",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "section-da-e890da356c6c4c71b7f7",
+      "sourceEntityId": "da-source-97120e2ebdd24ba88423",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "section-da-8d539b1b754946869a8d",
+      "sourceEntityId": "da-source-9f068909063543d9bc57",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "section-da-7bcd9d0c77c74d709202",
+      "sourceEntityId": "da-source-97aae6c0ce114f459ce1",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "composition-da-8fd8dafbb83e4990b359",
+      "sourceEntityId": "da-source-d445e10617e3434e8039",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "composition-da-6a2c5e128c864e538653",
+      "sourceEntityId": "da-source-72928c5122e64dedad3b",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "composition-da-1141e827896f41c5bcbc",
+      "sourceEntityId": "da-source-d9bb1cf8809349c3aaf3",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "section-da-8aa88e922f2540049a6f",
+      "sourceEntityId": "da-source-1ee9ac5193f1405c9053",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "relation-da-f63afe1752074007974f",
+      "sourceEntityId": "da-source-3058dd913699421dbeee",
+      "kind": "SOURCE_RELATION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "ability-da-4d1396f4342347baa772",
+      "sourceEntityId": "da-source-f35b89c01151444aae93",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "ability-da-61ae3e245d824682a480",
+      "sourceEntityId": "da-source-4c34a150946e4fa5b274",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "ability-da-8be1a0eb6522479d895b",
+      "sourceEntityId": "da-source-cb1f21d783474ddc910e",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "reference-da-ec7e23d763e14e0193c6",
+      "sourceEntityId": "da-source-ca9f30bc91f1487fa8b1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "reference-da-de5d7be9779d4322982c",
+      "sourceEntityId": "da-source-181e299c14194f1b9551",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "invul-da-ba9b4334a4894e64b54b",
+      "sourceEntityId": "da-source-b57b2e56d01143918f2c",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-e04d2e4d825c4e9f96e8"
+    },
+    {
+      "id": "unit-da-8bdfb4e3460d4ed9926a",
+      "sourceEntityId": "da-source-15ac4783728b48d2a6bb",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-fdfdd4b8b3c64d64b699",
+      "sourceEntityId": "da-source-b98f41090fe34bccb073",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "weapon-da-fa17746ce9c9435f9ee2",
+      "sourceEntityId": "da-source-40929e125c934c4482d6",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "weapon-da-554f4b5f501348b7a9ba",
+      "sourceEntityId": "da-source-bc0de921849d4e83b3f2",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "weapon-da-4768768d0c7c42a8b4ad",
+      "sourceEntityId": "da-source-c5fb053ec2854a04ad78",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "weapon-da-84db0039898643e096ef",
+      "sourceEntityId": "da-source-e9fbfe995ba14acd8130",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "weapon-da-91b89c92624c4ee3976d",
+      "sourceEntityId": "da-source-333610f317bc497bab93",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "wargear-da-6e7eb41a3f24428b92fb",
+      "sourceEntityId": "da-source-8e509aaadb854d7584cd",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "section-da-866aca3d81504b5ebadf",
+      "sourceEntityId": "da-source-f07b5694b07d4e7583a8",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "section-da-2afd91c9a69f468f90c6",
+      "sourceEntityId": "da-source-2f94c7bd3fb34368a563",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "section-da-31914c1b9416465ebbce",
+      "sourceEntityId": "da-source-d4482f3b46f240aface1",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "composition-da-2cb8c92bb0194ae48d07",
+      "sourceEntityId": "da-source-f4d71bab9c3d47ac9ab3",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "ability-da-7f665e6bf3f0492b91ee",
+      "sourceEntityId": "da-source-00b9a5143eaf42819d6b",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "reference-da-d1a5a5cfd2b14123804c",
+      "sourceEntityId": "da-source-7dab2b4e11a74e03bb5b",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "reference-da-6867a07ad4ae4d499684",
+      "sourceEntityId": "da-source-958c560960f943209d93",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "reference-da-e515db67248b426b9e8c",
+      "sourceEntityId": "da-source-7b9b6bbada794a189dde",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "invul-da-e8d39c035f1d45708d13",
+      "sourceEntityId": "da-source-a92a159afc6449c8ba44",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-15ac4783728b48d2a6bb"
+    },
+    {
+      "id": "unit-da-4649795c02b646809e13",
+      "sourceEntityId": "da-source-80483ba01a17415390b0",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-d6c1814bd87a49f999fd",
+      "sourceEntityId": "da-source-f48aeeceb8774696a2b4",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "weapon-da-a36678d7766b4e5c8f85",
+      "sourceEntityId": "da-source-ef0cafe9878d462d976d",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "weapon-da-65b563c9a1a349ac838e",
+      "sourceEntityId": "da-source-c97f66859e20496e8e24",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "weapon-da-afbf1c650d974afb90a2",
+      "sourceEntityId": "da-source-abcd62fc2a9c4eafb090",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "section-da-0db3d0b7462e4e4eb63c",
+      "sourceEntityId": "da-source-5cc8f6ec9d4c4a36b755",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "section-da-81a6d4983f424bb0a2ed",
+      "sourceEntityId": "da-source-4398e07629a645339f4b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "composition-da-558d59843502404290f4",
+      "sourceEntityId": "da-source-07c049b1a7d54d61abfe",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "ability-da-f8c4613ca22b427a8f80",
+      "sourceEntityId": "da-source-71859ca29a0449d594fa",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "reference-da-1553246ba193498e9d7e",
+      "sourceEntityId": "da-source-a7c8e324b7224b76b6cd",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "reference-da-ae1e22dfdb3341c586f7",
+      "sourceEntityId": "da-source-083bdc9f0d064c239a9e",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "reference-da-d01d27839083417cacf1",
+      "sourceEntityId": "da-source-0050e4f3ed7b43ccacc5",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "invul-da-a748add780a04fe08579",
+      "sourceEntityId": "da-source-bee99a0fb1854bfd824b",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-80483ba01a17415390b0"
+    },
+    {
+      "id": "unit-da-a1d3821fd56946f0951d",
+      "sourceEntityId": "da-source-40b59022f7bf4dae9669",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-955979978038412f98d3",
+      "sourceEntityId": "da-source-c1145825d107489998ce",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "model-da-b87f7079e4184954ad94",
+      "sourceEntityId": "da-source-9ffce0dfc70a4e159580",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "weapon-da-91d707ed8b6b4b628c04",
+      "sourceEntityId": "da-source-226aeaa3b9d84bc2b20a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "weapon-da-48f71f9cbdc2493c8e40",
+      "sourceEntityId": "da-source-270bc6766e214e64b833",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "weapon-da-49fae51d78394ea4833c",
+      "sourceEntityId": "da-source-565de430781242dca1a1",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "weapon-da-d59640512d2145a798ee",
+      "sourceEntityId": "da-source-23460712cb314ee79069",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "wargear-da-09b9ddd9f251421abd7e",
+      "sourceEntityId": "da-source-660fcbf0886a4d02be36",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "wargear-da-ac766a1505f34299b37a",
+      "sourceEntityId": "da-source-6b9ba71031b8409ebd01",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "wargear-da-20e0373b5d0448cbbbfb",
+      "sourceEntityId": "da-source-aa09625065c84aeaa638",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "section-da-975dc59b09214c918129",
+      "sourceEntityId": "da-source-5826238ddf934235960d",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "section-da-fbfe568ff73c44fe8db6",
+      "sourceEntityId": "da-source-9393ac15cccd416ea5ef",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "section-da-c8963cd1557d4b4892d1",
+      "sourceEntityId": "da-source-0aa77e4d4ecf4d1ab689",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "composition-da-62ae0a4fce554ad8a21b",
+      "sourceEntityId": "da-source-0676ded49d6a494d8a2b",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "composition-da-68c9b13470304ee88055",
+      "sourceEntityId": "da-source-7671241fced24fe1a7b1",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "ability-da-a17359d95b4b4ff4a606",
+      "sourceEntityId": "da-source-a9248865a8bc41bbb093",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "ability-da-2c65c2f4332349019ab7",
+      "sourceEntityId": "da-source-4d701e2940164e839dab",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "ability-da-9bd770df552c413daeca",
+      "sourceEntityId": "da-source-d0c195ee0ce24278b740",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "reference-da-6bc09f8e09c84b9b8b3d",
+      "sourceEntityId": "da-source-4c34d057c20c43c68035",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "reference-da-6ae3b4930d4f4475b99c",
+      "sourceEntityId": "da-source-198ebef596794c26acab",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "invul-da-1eecacf4deeb417f8c45",
+      "sourceEntityId": "da-source-099186049bde41b7ae52",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-40b59022f7bf4dae9669"
+    },
+    {
+      "id": "unit-da-9f8f2ccbdb7d4c72857c",
+      "sourceEntityId": "da-source-f3642202bbaf4892b355",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-18d8e90b69f9453481d3",
+      "sourceEntityId": "da-source-8730c57435e3408d896f",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "model-da-0c67d8cfbdcb476a8c10",
+      "sourceEntityId": "da-source-f9794b456a934aa6a7cb",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-1596045d9b334e2ba0d9",
+      "sourceEntityId": "da-source-6f8fe14a57a34d9fa0d2",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-f42a813127b24522bedd",
+      "sourceEntityId": "da-source-e06b2561a323444e829c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-9dbed74da29b40e0a872",
+      "sourceEntityId": "da-source-3fd2f453660f4284b55a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-917349ec8d3442cdaceb",
+      "sourceEntityId": "da-source-28b8b797e78a403b95c4",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-9e83fc8a7fce4c8e93b1",
+      "sourceEntityId": "da-source-4ae692c04fd14a42b616",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-cb13f4dd150a4f32be8d",
+      "sourceEntityId": "da-source-e0d93b748cf24561ba4f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-9974ece9a9944aa3b950",
+      "sourceEntityId": "da-source-20c157d3f7b549bb846a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-fa3fb841a88d4b59a328",
+      "sourceEntityId": "da-source-eb8cd26d10ca46309a81",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-6a22a3752b8d414190a5",
+      "sourceEntityId": "da-source-39d4dab0ccb042a7b6f9",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-263c5c7fee0843709ea1",
+      "sourceEntityId": "da-source-2d2d55a7737d4806ac31",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "weapon-da-1a6372920620458591e5",
+      "sourceEntityId": "da-source-16a19d3647db4861ad36",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "wargear-da-7facb8b28ac141c981af",
+      "sourceEntityId": "da-source-c32738409501407ca397",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "wargear-da-9b7de23361134b3f91cf",
+      "sourceEntityId": "da-source-724ff75481ea41bb8272",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "wargear-da-a2f8153287e34d32b7c9",
+      "sourceEntityId": "da-source-7400e48fa0d348d3b69b",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "wargear-da-84b413422f4243e79aba",
+      "sourceEntityId": "da-source-893d9c5c93f24b089ac7",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "section-da-eada77f9d26945349e81",
+      "sourceEntityId": "da-source-fec4d28a3780432d9604",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "section-da-a036d9a64c304ef5a807",
+      "sourceEntityId": "da-source-91dff37eb0134434a6a9",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "section-da-0987486443b4441bb703",
+      "sourceEntityId": "da-source-af8d0d33948f45a5a8ec",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "composition-da-15f6abc338064fe2836b",
+      "sourceEntityId": "da-source-002b741952e14d5ab546",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "composition-da-37087e88ab624fe48f67",
+      "sourceEntityId": "da-source-58efb7a8d3fa499f967b",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "ability-da-4c9ca538c02844aa9c2a",
+      "sourceEntityId": "da-source-3fcf125d78534ad399fc",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "ability-da-67e5af94e8b44695865b",
+      "sourceEntityId": "da-source-40b7b7cce36c4ad79287",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "reference-da-9e070858b8ee428da9e8",
+      "sourceEntityId": "da-source-4e060d93eccc439ba0f9",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "reference-da-7bbff65d914346b48bce",
+      "sourceEntityId": "da-source-3c53f8f675d3479f8325",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "invul-da-aca8180de28c4cc19503",
+      "sourceEntityId": "da-source-859a14e86dc6400c85ce",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-f3642202bbaf4892b355"
+    },
+    {
+      "id": "unit-da-6b2744f187a748cda0df",
+      "sourceEntityId": "da-source-3db9f377b22d4b23bcac",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-4acb547ab0c14e1789c7",
+      "sourceEntityId": "da-source-11bdd42107624bc8bf65",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "weapon-da-5191d653e0294ea9beb3",
+      "sourceEntityId": "da-source-bb73525653a54878a28b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "weapon-da-cf4ddc8900b2451e83e5",
+      "sourceEntityId": "da-source-2959bd92b1ce42019adc",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "weapon-da-6603679de9c144c3b112",
+      "sourceEntityId": "da-source-aa1088de6f494c80a027",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "section-da-9c18bc6de9264ca68e72",
+      "sourceEntityId": "da-source-fc50bcc9688f4ccabb05",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "section-da-5fdfd63b3d204e0fbb62",
+      "sourceEntityId": "da-source-d4c51bc359ee4bb08d4c",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "composition-da-170319613c0940ff94ee",
+      "sourceEntityId": "da-source-f8e89e87e8104c148174",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "ability-da-6fefb0cfda4848bf9dd1",
+      "sourceEntityId": "da-source-4a0be620f1f64d509459",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "ability-da-7e831a2020584442bd61",
+      "sourceEntityId": "da-source-9cdc29b5ce534cd4a640",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "reference-da-918027029cf44257b7bb",
+      "sourceEntityId": "da-source-6edd9f801d5c428da8a4",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3db9f377b22d4b23bcac"
+    },
+    {
+      "id": "unit-da-1f093db4ae584ac19636",
+      "sourceEntityId": "da-source-8ce7cbe7032441499c44",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-a601a678011d4574b325",
+      "sourceEntityId": "da-source-594f0477160c46aa8976",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "model-da-1944b59f84b040de9fc5",
+      "sourceEntityId": "da-source-9e5a1083cc5344c9bc3b",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-8eb28014e0074b60af4d",
+      "sourceEntityId": "da-source-fdf3545ee0504214aceb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-fafbf8ff9aa647aa9672",
+      "sourceEntityId": "da-source-23b3285d0c5f43e09e97",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-79dd31ba5b5544ca88ab",
+      "sourceEntityId": "da-source-33880d5e06c54f4a9d8e",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-0610e959f7b341a29791",
+      "sourceEntityId": "da-source-93dd78bd4027419f85e9",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-8f721f0b39b1465b9bb5",
+      "sourceEntityId": "da-source-1c4c68fb628f4faaa61e",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "weapon-da-1e58b7c95c77424a80a6",
+      "sourceEntityId": "da-source-dfe8b94086eb4c839ba7",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "wargear-da-a5914666ab594f1eaf8c",
+      "sourceEntityId": "da-source-045f283b65434beb9c6e",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "section-da-2b95617017c84b9a927f",
+      "sourceEntityId": "da-source-0ebab82613ac40ec9ce8",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "section-da-6150855703194d20b847",
+      "sourceEntityId": "da-source-25439e31c1904b979929",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "section-da-f4452a725028450ab9b7",
+      "sourceEntityId": "da-source-218566a428634ee9812a",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "composition-da-32594c0813b74b31ab00",
+      "sourceEntityId": "da-source-ae0c1a6012504f05a101",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "composition-da-e00e45217da843c78432",
+      "sourceEntityId": "da-source-eab6b52b759146b4a8b7",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "ability-da-23a4a335cfa144edac57",
+      "sourceEntityId": "da-source-3e27c276d8cb400fa503",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "reference-da-74854920ad94493eb4a9",
+      "sourceEntityId": "da-source-fa5e6d9a530a49769a9c",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "invul-da-057246e71cc34742b7e9",
+      "sourceEntityId": "da-source-4123800ac43d4151b75d",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-8ce7cbe7032441499c44"
+    },
+    {
+      "id": "unit-da-48fe8c59ed2449e1a36b",
+      "sourceEntityId": "da-source-2bf7b5fc3bde49489b0d",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-9ac1a90b56c34cd08c15",
+      "sourceEntityId": "da-source-e39790d169bc42eb99dc",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "weapon-da-d4ea962a5dba49969578",
+      "sourceEntityId": "da-source-1f8963e7b0fc4ada8237",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "weapon-da-8d3a063ec63541e2a108",
+      "sourceEntityId": "da-source-07f6b12fe8c8489f98a1",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "weapon-da-21162183d4d74611ba08",
+      "sourceEntityId": "da-source-ea38273bba9b409695a3",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "weapon-da-ac53ca6f4313457bb855",
+      "sourceEntityId": "da-source-2bffd0c970dd46c09c62",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "weapon-da-6a62a2f08da140d4b3f5",
+      "sourceEntityId": "da-source-563a21c5db924745abfc",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "wargear-da-4a55be150d9849088c40",
+      "sourceEntityId": "da-source-3d992078ebae41589816",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "section-da-840dbf18492240d6a155",
+      "sourceEntityId": "da-source-324d0586c21a43c893c6",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "section-da-21be13120dcd46f693d8",
+      "sourceEntityId": "da-source-1dafde560ecc4aa9a648",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "section-da-c4330eb782ea41a8a455",
+      "sourceEntityId": "da-source-d64206fa4e734932a02b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "composition-da-bb04c0ba9c24449985fb",
+      "sourceEntityId": "da-source-46731345f7f74204b11b",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "ability-da-61248611c0ad4a738955",
+      "sourceEntityId": "da-source-884399a4d1074df29a63",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "reference-da-9ff9664e4431418e8360",
+      "sourceEntityId": "da-source-5dafd7a76b1543589fd5",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "reference-da-89c39af4ba2840798c44",
+      "sourceEntityId": "da-source-40edf6de2c194eb39975",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "reference-da-c5b9d8d447904ec9af81",
+      "sourceEntityId": "da-source-f5fda8961b054033865a",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "invul-da-c8acd84372d74ffca07d",
+      "sourceEntityId": "da-source-cd27a3046934423f9182",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-2bf7b5fc3bde49489b0d"
+    },
+    {
+      "id": "unit-da-9579698010884b4bae95",
+      "sourceEntityId": "da-source-3f0c61cc9a0046e7ab7a",
+      "kind": "DATASHEET",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-da-354cbfacb8c24fd3bf63",
+      "sourceEntityId": "da-source-d5e8d463e3874a349582",
+      "kind": "MODEL_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "weapon-da-37f48a5503684a4e9282",
+      "sourceEntityId": "da-source-855ff603412d449e8ebb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "weapon-da-4c6f67d49ec849d4b26a",
+      "sourceEntityId": "da-source-43edb6dea5814d68a0a7",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "weapon-da-2f3d27681be5486abeb8",
+      "sourceEntityId": "da-source-97f996977fe642d0b93b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "wargear-da-f185fdb787cd4f8bb7b5",
+      "sourceEntityId": "da-source-9e9db968753546ada7f1",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "section-da-8c10723eee404b268fc8",
+      "sourceEntityId": "da-source-e10aa51795e041e2a180",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "section-da-2ef5e7ce84764832b882",
+      "sourceEntityId": "da-source-3c2b9ec10f2945ca98a4",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "section-da-53ed9768a6534393b274",
+      "sourceEntityId": "da-source-6dc1cd4b5a9c485a9bcb",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "composition-da-884c7d4782084c07ab14",
+      "sourceEntityId": "da-source-61f26443dc0a40598e5c",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "ability-da-2dcf2635fcfc4fe5a1f3",
+      "sourceEntityId": "da-source-7611e648319e487dbf74",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "reference-da-752dc855182a48148381",
+      "sourceEntityId": "da-source-e2d2a5e66c5d4fcf89a2",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "reference-da-151857a0f520499bbd49",
+      "sourceEntityId": "da-source-04894b9cfd75418db572",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "reference-da-5ed8acad6335425a8271",
+      "sourceEntityId": "da-source-3cae03ae33f84ebbb5e1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "reference-da-473f624bddd44ba6924c",
+      "sourceEntityId": "da-source-a90cb35bfdc84f1d9feb",
+      "kind": "RULE_REFERENCE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "invul-da-10eab82c053643779049",
+      "sourceEntityId": "da-source-fe6517f32be249d8b71e",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-3f0c61cc9a0046e7ab7a"
+    },
+    {
+      "id": "army-rule-da-c944806a43ff4c999f9e",
+      "sourceEntityId": "da-source-d912a23534e040689c8a",
+      "kind": "ARMY_RULE",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "army-rule-da-2206dbc19df84c22a190",
+      "sourceEntityId": "da-source-9e84b00c00ef4232962a",
+      "kind": "ARMY_RULE",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-da-d7c1a2b23f2e443aa22a",
+      "sourceEntityId": "da-source-5110624c0887499f9c8e",
+      "kind": "DETACHMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-da-6a259c00bc9f4bf498ee",
+      "sourceEntityId": "da-source-386c5fae51e14455aaf2",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "enhancement-da-3c2c519eaabc48088aa4",
+      "sourceEntityId": "da-source-ee5a1578986d44159585",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "enhancement-da-fb83cfb304e74056b819",
+      "sourceEntityId": "da-source-e56989d819cd4a5285d7",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "stratagem-da-8b2173f8b1794e4f87f5",
+      "sourceEntityId": "da-source-feae2e355ae443308b90",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "stratagem-da-179b16b4c70c48439873",
+      "sourceEntityId": "da-source-70d97ebcf7654e63adca",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "stratagem-da-4a60667baaa34b918799",
+      "sourceEntityId": "da-source-ab4df881b9d64f779bfe",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-5110624c0887499f9c8e"
+    },
+    {
+      "id": "detachment-da-7e310c5c15914267a0ae",
+      "sourceEntityId": "da-source-9956591f279144598947",
+      "kind": "DETACHMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-da-e82b128e971543ed97fc",
+      "sourceEntityId": "da-source-7495f9c8f27a486f867f",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "enhancement-da-aaf27210de7e47a792f7",
+      "sourceEntityId": "da-source-38e6624cfec04df78d05",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "enhancement-da-4e1c055c3dfe4754bd0c",
+      "sourceEntityId": "da-source-8b0ba839aafa42f2a7eb",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "stratagem-da-e5ebca92065c47b6b3fa",
+      "sourceEntityId": "da-source-3ccf162350d049b4afaa",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "stratagem-da-8c0b5e9a64804c25bc14",
+      "sourceEntityId": "da-source-065dd131853b4f1782f5",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "stratagem-da-a17914173a8545d2bb74",
+      "sourceEntityId": "da-source-caf0399680e54717a4b0",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-9956591f279144598947"
+    },
+    {
+      "id": "detachment-da-5a438082b8a74f8e8e08",
+      "sourceEntityId": "da-source-d7f12a0669e64286ae28",
+      "kind": "DETACHMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-da-40ccb5dde8fa45a89798",
+      "sourceEntityId": "da-source-afe2a0e353624415afe6",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "enhancement-da-468d9a93dc9a47f2a229",
+      "sourceEntityId": "da-source-ec862c60aae64edeadc0",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "enhancement-da-822dfec678424ec293c2",
+      "sourceEntityId": "da-source-1c67aaca7c144c419626",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "enhancement-da-6504b6d091f844b68c1a",
+      "sourceEntityId": "da-source-6846ebe40e3845ebaf68",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "enhancement-da-9dcd451b895a4cfea19f",
+      "sourceEntityId": "da-source-9ac7aa40907b42c593eb",
+      "kind": "ENHANCEMENT",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-8e0ebebec9304a22a165",
+      "sourceEntityId": "da-source-9798c7ab21804074b6ed",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-64050352fef948368a35",
+      "sourceEntityId": "da-source-002c86d3b4e948a9a592",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-1b368c0046154c54ac92",
+      "sourceEntityId": "da-source-6325bd3684b04f2e927f",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-ce5949fdefe44f9d95f5",
+      "sourceEntityId": "da-source-417ec6d587de414596e9",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-472e0838465d430aa004",
+      "sourceEntityId": "da-source-8fa02c482f9e48798599",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    },
+    {
+      "id": "stratagem-da-229bed1fc1b74811ac1c",
+      "sourceEntityId": "da-source-975cab51151e4f7faf1e",
+      "kind": "STRATAGEM",
+      "bookId": "dark-angels",
+      "ownerSourceId": "da-source-d7f12a0669e64286ae28"
+    }
+  ]
+}

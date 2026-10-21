@@ -19,10 +19,10 @@ const currentRegistry=read('mfm/content/mfm-v1.6-scoped.identity-registry.json')
 validateMfmIdentityRegistry(read('mfm/content/mfm-v1.4.identity-registry.json'));
 const old=createCanonicalMfmFacts({identityRegistry:oldRegistry}),current=createCanonicalMfmFacts();
 validateCanonicalMfmFacts(old);validateCanonicalMfmFacts(current);
-assert.equal(current.sourceVersion,'v1.6-scoped-six');assert.equal(current.currentnessCutoff,'2026-10-20');
+assert.equal(current.sourceVersion,'v1.6-scoped-six');assert.equal(current.currentnessCutoff,'2026-10-21');
 assert.equal(createEffectiveMfmCatalog({canonicalFacts:old}).catalog.currentnessCutoff,'2026-09-30');
 const partitions=['pricingGroups','unitReferences','unitPointRecords','paidUpgradeRecords','leaderEligibilityRecords','supportEligibilityRecords','detachments','enhancementCosts','qualifierRecords'];
-const equalGameplay=facts=>{for(const key of partitions)assert.deepEqual(withoutProvenance(facts[key].filter(r=>r.factionId!=='space-marines')),withoutProvenance(old[key].filter(r=>r.factionId!=='space-marines')),key+' changed unrelated faction semantics');};
+const equalGameplay=facts=>{for(const key of partitions)assert.deepEqual(withoutProvenance(facts[key].filter(r=>!['space-marines','dark-angels'].includes(r.factionId))),withoutProvenance(old[key].filter(r=>!['space-marines','dark-angels'].includes(r.factionId))),key+' changed unrelated faction semantics');};
 equalGameplay(current);
 const six=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
 const findings=[];
@@ -46,7 +46,7 @@ for(const binding of currentRegistry.crossFactionUnitDependencies){
   verifyFrozenSource(binding.sourceId);assert.deepEqual(capture.unit,read(previous.sourceCapturePath).unit);
   assert.equal(capture.effectiveDate,null);
 }
-for(const book of ['dark-angels','blood-angels']){
+for(const book of ['blood-angels']){
   assert.deepEqual(currentRegistry.factionBindings.find(f=>f.factionId===book),oldRegistry.factionBindings.find(f=>f.factionId===book));
   assert.equal(createEffectiveMfmArmyProjection(book).sourceMetadata.version,'v1.4');
 }
@@ -169,7 +169,7 @@ assert.equal(createCanonicalMfmFacts({crossDomainBindings:lone}).enhancementCost
 // Publication 14 Oct is independent of actual capture and verification 20 Oct.
 const dateProbe={version:'v1.6',observedAt:'2026-10-20',verifiedAt:'2026-10-20',currentnessCutoff:'2026-10-20',effectiveDate:null,sourceUpdatedAt:null,capturedAt:'2026-10-20T10:01:30.831Z',currentnessEvidence:{downloadsUpdatedAt:'2026-10-14'}};
 validateMfmSourceDates(dateProbe);
-const late=structuredClone(current);late.currentnessCutoff='2026-10-20';
+const late=structuredClone(current);late.currentnessCutoff=current.currentnessCutoff;
 const snapshot=late.sourceSnapshots.find(s=>s.version==='v1.6');Object.assign(snapshot,dateProbe);
 for(const partition of partitions)for(const r of late[partition].filter(r=>r.provenance.sourceId===snapshot.sourceId))Object.assign(r.provenance,{observedAt:snapshot.observedAt,verifiedAt:snapshot.verifiedAt,effectiveDate:null,capturedAt:snapshot.capturedAt,sourceUpdatedAt:null,currentnessEvidence:structuredClone(snapshot.currentnessEvidence),currentnessCutoff:snapshot.currentnessCutoff});
 validateCanonicalMfmFacts(late);createEffectiveMfmCatalog({canonicalFacts:late});
@@ -212,7 +212,7 @@ try{
   assert.throws(buildFixture,/Conditional role source fingerprint drift/);compatibilityMutations++;
   for(const a of [diagnosticCross.relationAdjudications[probeLeaderId],diagnosticCross.relationAdjudications[support.id]])a.provenance.armyRule.sha256=rawArtifact.sha256;
   const tauBinding=diagnosticIds.factionBindings.find(b=>b.factionId==='tau-empire'),tauCapture=JSON.parse(fs.readFileSync(path.join(fixtureRoot,tauBinding.sourceCapturePath)));
-  Object.assign(tauCapture,dateProbe);freezeFixture(tauBinding,tauCapture);diagnosticIds.currentnessCutoff='2026-10-20';diagnosticCross.currentnessCutoff='2026-10-20';
+  Object.assign(tauCapture,dateProbe);freezeFixture(tauBinding,tauCapture);diagnosticIds.currentnessCutoff=current.currentnessCutoff;diagnosticCross.currentnessCutoff=current.currentnessCutoff;
   const laterProduced=buildFixture(),laterProjection=createEffectiveMfmArmyProjection('tau-empire',{canonicalFacts:laterProduced});
   assert.equal(laterProjection.sourceMetadata.observedAt,'2026-10-20');assert.equal(laterProjection.sourceMetadata.verifiedAt,'2026-10-20');assert.equal(laterProjection.sourceMetadata.currentnessEvidence.downloadsUpdatedAt,'2026-10-14');assert.equal(laterProjection.sourceMetadata.effectiveDate,null);
   assert.equal(JSON.stringify(buildFixture()),JSON.stringify(laterProduced));
@@ -234,7 +234,7 @@ assert.equal(smCurrent.length,87);assert.equal(smCurrent.reduce((n,r)=>n+r.point
 assert.equal(smLegend.length,76);assert.equal(current.detachments.filter(r=>r.factionId==='space-marines').length,22);assert.equal(current.enhancementCosts.filter(r=>r.factionId==='space-marines').length,57);
 for(const sourceUnit of smCapture.units){const binding=smByTitle.get(sourceUnit.title),record=current.unitPointRecords.find(r=>r.id===binding.unitPointRecordId);assert.ok(record);assert.deepEqual(record.pointSchedules,sourceUnit.pointSchedules);assert.equal(record.status,'CURRENT');assert.equal(record.provenance.sourceId,smIds.sourceId);for(const role of ['leader','support']){const expected=sourceUnit.relations?.[role]??[],actual=current[role==='leader'?'leaderEligibilityRecords':'supportEligibilityRecords'].find(r=>r.sourceUnitReferenceId===binding.unitReferenceId);assert.equal(Boolean(actual),expected.length>0);if(actual)assert.deepEqual(actual.rawMfmTargetUnitReferenceIds,expected.map(title=>smByTitle.get(title).unitReferenceId));}}
 for(const sourceDetachment of smCapture.detachments){const b=smIds.detachmentBindings.find(r=>r.sourceTitle===sourceDetachment.title),record=current.detachments.find(r=>r.id===b.id);assert.equal(record.detachmentPoints,sourceDetachment.detachmentPoints);for(const enhancement of sourceDetachment.enhancements){const eb=b.enhancementBindings.find(r=>r.sourceTitle===enhancement.title);assert.equal(current.enhancementCosts.find(r=>r.id===eb.id).value,enhancement.value);}}
-const historical=currentRegistry.historicalSourceBindings;assert.equal(historical.length,1);assert.deepEqual(historical[0].acceptedStatuses,['LEGENDS']);assert.equal(historical[0].includeDetachments,false);verifyFrozenSource(historical[0].sourceId);
+const historical=currentRegistry.historicalSourceBindings.filter(b=>b.factionId==='space-marines');assert.equal(historical.length,1);assert.deepEqual(historical[0].acceptedStatuses,['LEGENDS']);assert.equal(historical[0].includeDetachments,false);verifyFrozenSource(historical[0].sourceId);
 for(const record of smLegend){const previous=old.unitPointRecords.find(r=>r.id===record.id);assert.deepEqual(record,previous);assert.equal(record.provenance.sourceVersion,'v1.4');assert.equal(record.provenance.currentnessCutoff,'2026-09-22');}
 const legendPointIds=new Set(smLegend.map(r=>r.id));for(const part of ['paidUpgradeRecords','leaderEligibilityRecords','supportEligibilityRecords'])for(const record of current[part].filter(r=>legendPointIds.has(r.unitPointRecordId??r.sourceUnitPointRecordId)))assert.deepEqual(record,old[part].find(r=>r.id===record.id));
 const currentCatalog=createEffectiveMfmCatalog({canonicalFacts:current}).catalog;assert.equal(currentCatalog.unitPointRecords.some(r=>r.factionId==='space-marines'&&r.status==='LEGENDS'),false);assert.equal(createEffectiveMfmCatalog({canonicalFacts:current,scope:'CURRENT_AND_LEGENDS'}).catalog.unitPointRecords.filter(r=>r.factionId==='space-marines').length,163);
@@ -245,7 +245,7 @@ const laundered=structuredClone(current),historicalSnapshot=laundered.sourceSnap
 const reordered=structuredClone(currentRegistry);reordered.factionBindings.reverse();reordered.historicalSourceBindings.reverse();for(const binding of [...reordered.factionBindings,...reordered.historicalSourceBindings]){binding.groupBindings.reverse();binding.unitBindings.reverse();binding.detachmentBindings.reverse();for(const detachment of binding.detachmentBindings){detachment.enhancementBindings.reverse();detachment.qualifierBindings.reverse();}}
 // Field arrays retain explicit source order; facts use stable canonical identity order.
 assert.deepEqual(createCanonicalMfmFacts({identityRegistry:reordered}).unitPointRecords,current.unitPointRecords);assert.deepEqual(createCanonicalMfmFacts(),current);
-console.log(JSON.stringify({stage4A:'PASS',sourceVersion:'v1.6',observedAt:smCapture.observedAt,currentUnits:87,pointSchedules:123,pointRows:160,detachments:22,enhancementsAndUpgrades:57,paidOptions:smCapture.counts.paidOptions,historicalLegendsPreserved:76,historicalSourceVersion:'v1.4',conditionalRoles:'SOURCE_PROVEN_COMPLEMENTARY',mutations:enrollmentMutations,sourceParity:'PASS',deterministic:true,otherEightFactionGameplayDifferences:0}));
+console.log(JSON.stringify({stage4A:'PASS',sourceVersion:'v1.6',observedAt:smCapture.observedAt,currentUnits:87,pointSchedules:123,pointRows:160,detachments:22,enhancementsAndUpgrades:57,paidOptions:smCapture.counts.paidOptions,historicalLegendsPreserved:76,historicalSourceVersion:'v1.4',conditionalRoles:'SOURCE_PROVEN_COMPLEMENTARY',mutations:enrollmentMutations,sourceParity:'PASS',deterministic:true,otherSevenFactionGameplayDifferences:0}));
 
 // Independent accepted-source comparisons must also detect syntactically valid wrong prices/tiers.
 const assertSmNumericParity=facts=>{

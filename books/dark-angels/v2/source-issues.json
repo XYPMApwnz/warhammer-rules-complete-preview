@@ -1,0 +1,45 @@
+{
+  "schema": "dark-angels-v2-source-issues/v1",
+  "bookId": "dark-angels",
+  "issues": [
+    {
+      "id": "da-current-official-app",
+      "status": "SOURCE_GAP",
+      "detail": "Full official current DA App v2.8.1 body not captured. Accepted Wahapedia 11E raw is secondary. The current official faction pack v1.3 contains Legends only and is not a current Codex replacement. Structural parity is not full semantic certification."
+    },
+    {
+      "id": "da-mixed-owner-context",
+      "status": "NATIVE_PROJECTIONS_VERIFIED_FIXED_CHAPTERS_PROVEN_INHERITED_CHAPTER_NOT_PROVEN",
+      "detail": "180 inherited references and83 Datasheet members resolve with unchanged owner/membership guards. Native physical import is implemented over source-confirmed composition/profile bindings. Generic per-UNIT Chapter remains unassigned; army applicability follows Stage3B.1 source-fixed DA member proof. A generic-only army context remains NOT_PROVEN."
+    },
+    {
+      "id": "da-mfm-enrollment",
+      "status": "NATIVE_PRICING_AND_PHYSICAL_SELECTION_BINDINGS",
+      "detail": "Central MFMv1.6 remains unchanged. Eight physical paid-option bridges (7 inheritedSM andDA Cyclone) charge only confirmed selected quantities; omitted inventory stays UNRESOLVED. Ten central relation-only references remain inactive. Native Army source permissions are distinct reviewed joins, not MFM reference promotion."
+    },
+    {
+      "id": "da-chapter-conditions",
+      "status": "CONDITIONAL_ARMY_APPLICABILITY_IMPLEMENTED",
+      "detail": "All 26 grants are conditionally executable for validated DA army members with a source-fixed DA UNIT present. The source does not require a second DA Faction keyword on common recipients. Generic-only army context remains NOT_PROVEN; intrinsic Chapter, UNIT/MODEL scopes and canonical faction facts are unchanged."
+    },
+    {
+      "id": "da-real-new-recruit-export",
+      "status": "NOT_PROVEN",
+      "detail": "No verified real DA11E New Recruit export in provided evidence. Stage3C tests source-authored New Recruit-compatible constructed inputs; partial-export completeness remains unverified."
+    },
+    {
+      "id": "da-lazarus-leader-source-discrepancy",
+      "status": "SOURCE_VALID_CONSENSUS",
+      "detail": "Accepted Army RAW and official MFM v1.6 both permit Assault Intercessor Squad, Bladeguard Veteran Squad, Company Heroes, Infernus Squad, Intercessor Squad, Sternguard Veteran Squad and Inner Circle Companions. Neither lists Hellblaster Squad. Stage5.1 corrects the false hardcoded review and restores native Army-source permissions; canonical facts, accepted captures and ten central MFM reference-only records remain unchanged.",
+      "history": [
+        {
+          "stage": "STAGE_2B_TO_STAGE_4C",
+          "status": "SUPERSEDED_FALSE_CONFLICT_REVIEW",
+          "detail": "Official MFM v1.6 Lazarus LEADER includes COMPANY HEROES and omits HELLBLASTER SQUAD; accepted Army source lists HELLBLASTER SQUAD and omits COMPANY HEROES. Both original source declarations retained. No DA runtime relation eligibility activated in Stage2B.",
+          "originCommit": "43ca3696fe4cf465cf7641e4575aa2789a4ee37e",
+          "quarantineCommit": "bbd311f064bbd1d98b076edc5c11f8154f08f56a"
+        }
+      ]
+    }
+  ]
+}

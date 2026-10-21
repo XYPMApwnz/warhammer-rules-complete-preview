@@ -6,5 +6,6 @@ import {registration as emperorsChildren} from '../books/emperors-children/v2/re
 import {registration as tyranids} from '../books/tyranids/v2/registration.mjs';
 import {registration as tauEmpire} from '../books/tau-empire/v2/registration.mjs';
 import {registration as spaceMarines} from '../books/space-marines/v2/registration.mjs';
+import {registration as darkAngels} from '../books/dark-angels/v2/registration.mjs';
 
-export const armyBooks=Object.freeze([deathGuard,adeptusMechanicus,chaosSpaceMarines,emperorsChildren,tyranids,tauEmpire,spaceMarines]);
+export const armyBooks=Object.freeze([deathGuard,adeptusMechanicus,chaosSpaceMarines,emperorsChildren,tyranids,tauEmpire,spaceMarines,darkAngels]);

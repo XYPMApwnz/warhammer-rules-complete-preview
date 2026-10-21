@@ -61,7 +61,7 @@ check(()=>{const {book,state,effect}=fixture();effect.unitScope='PHYSICAL';const
   const result=run(book,attached);invariant(result,book);assert.equal(result.formedUnits[0].metrics.chargeRoll,undefined);
 });
 check(()=>{for(const patch of [{targetSubject:'MODEL',targetBinding:'SOURCE_MODEL'},{mode:'SET'},{value:1.5},{value:'1'},
-  {unitScope:undefined},{unitScope:'ROSTER'},{weaponMode:'melee'},{max:2},{field:'advanceRoll'}]){
+  {unitScope:undefined},{unitScope:'ROSTER'},{weaponMode:'melee'},{max:2},{field:'unsupportedRoll'}]){
     const {book,state,effect}=fixture();Object.assign(effect,patch);assert.throws(()=>run(book,state),/Charge|metric|operation/i);
   }
   const {book,state,effect}=fixture();effect.operation='MODIFY_STAT';assert.throws(()=>run(book,state),/characteristic/);
