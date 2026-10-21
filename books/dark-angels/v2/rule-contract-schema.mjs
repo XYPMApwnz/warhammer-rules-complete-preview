@@ -3,7 +3,7 @@
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {physicalPresenceBindings} from './rule-contract-declarations.mjs';
 import {resolvePhysicalChapterContexts} from './physical-chapter.mjs';
-export function createDarkAngelsRuleSchema({state,book}={}){
+export function createDarkAngelsRuleSchema({state,book,bindContext=context=>context}={}){
  const stateFields={};
  for(const key of ['attached','equipmentRequirementSatisfied','smEquipmentBearerSatisfied','smPermanentAssaultSource','daAncientPresent','daChampionPresent','daArmyMembershipProven'])stateFields[key]={contextLevel:'ROSTER',valueType:'boolean'};
  for(const key of ['smPhysicalUnitInstanceId','smPhysicalModelScopeId'])stateFields[key]={contextLevel:'ROSTER',valueType:'string'};
@@ -11,8 +11,9 @@ export function createDarkAngelsRuleSchema({state,book}={}){
  stateFields.battleConditionSatisfied={contextLevel:'BATTLE',valueType:'boolean'};
  const schema=createRuleContractSchema({stateFields,modelAbilities:['Deep Strike']});
  const chapters=book&&state?resolvePhysicalChapterContexts(book,state):[];
- const bind=context=>{
+ const bind=(context,predicate)=>{
   if(!context)return context;
+  context=bindContext(context,predicate);
   const roster={...context.roster};
   // Caller extras cannot substitute for the verified physical source row.
   delete roster.daAncientPresent;delete roster.daChampionPresent;
@@ -31,6 +32,6 @@ export function createDarkAngelsRuleSchema({state,book}={}){
   }
   return {...context,roster};
  };
- return {...schema,bindPhysicalContext:bind,physicalChapterContexts:structuredClone(chapters),evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bind(context)),
+ return {...schema,bindPhysicalContext:bind,physicalChapterContexts:structuredClone(chapters),evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bind(context,node)),
   evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bind(context))};
 }

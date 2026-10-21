@@ -1,4 +1,4 @@
-Dark Angels V2 — source-reviewed army applicability (Stage 3B.1)
+Dark Angels V2 — native physical import (Stage 3C)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -42,7 +42,8 @@ uses the existing createEffectiveMfmArmyProjection, without a legacy builder.
 Generated mfm-presentation.json is a pricing projection, not a registered Army
 Book UI. No numeric MFM values are copied into DA canonical factual entities.
 All 69 shared prices stay SM-owned; inherited pricing references carry IDs only.
-No physical importer, application registration, UI or Mega Glossary is implemented here.
+Native physical import is available through roster-boot.mjs. Application registration,
+UI/browser acceptance and Mega Glossary integration remain deferred.
 Chapter keyword grants are conditional. Mixed-owner source/reference, physical
 Effective and Personal projections are verified; full DA gameplay is deferred.
 Astraeus/Thunderhawk remain MFM-only; Deathwatch Support has a separate owner.
@@ -178,5 +179,50 @@ faction arrays remain unchanged. chapterContext(instanceId).armyApplicability
 separately reports the physical member, source-fixed DA anchor instances and
 source references used for conditional grants. The UNIT FIELD is derived from
 this proof, cannot be supplied by caller extras and is absent from MODEL context.
-Shared import candidate handoff is tested with constructed snapshots only; a
-complete DA importer and genuine New Recruit export remain unverified.
+Native New Recruit-compatible input and the existing shared candidate handoff are
+now tested with constructed input; a genuine DA New Recruit export remains unverified.
+
+Native New Recruit / physical roster (Stage 3C)
+Build/check: node books/dark-angels/v2/roster-import-build.mjs [--check]
+Source/input QA: node books/dark-angels/v2/roster-import-qa.mjs
+Lifecycle/ownership QA: node books/dark-angels/v2/roster-import-lifecycle-qa.mjs
+Paid options: node books/dark-angels/v2/roster-paid-options-qa.mjs
+Native relations: node books/dark-angels/v2/roster-relations-qa.mjs
+
+roster-import-build.mjs consumes the existing DA gameplay projection and admitted
+SM import metadata. It adds 21 DA source-confirmed composition/profile joins,
+retains the 92 common SM joins (including previously reviewed Vanguard mappings),
+and does not author common source facts. All83 members preserve canonical owner,
+ID and provenance. All113 MODEL profiles and397 weapon profiles have constructed
+input coverage. Source-named alternative profiles retain one physical quantity.
+Ravenwing Command Squad has three separate MODEL profiles. Azrael has one MODEL;
+Watcher is an ability/token, not an invented composition member or import alias.
+
+roster-import.mjs uses the existing shared import-only service and atomic runtime
+commit with keep/replace confirmation. Roster load revalidates physical quantities,
+source equipment identities/fields/provenance and exact Enhancement bearers.
+Duplicate physical selection keys are rejected. Invalid import or snapshot does
+not replace the active roster. Identical reimport retains the current graph,
+including an explicit detach. The source-qualified Chapter binding is recomputed
+from the imported physical army; a generic-only army remains explicitly unresolved.
+
+Paid equipment is an established book-owned physical projection over central
+MFMv1.6, not a new pricing engine. Seven applicable SM purchase bridges are reused;
+DA Cyclone is bound to its existing replacement permission and two weapon profiles.
+Only selected physical quantities are charged; alternative profiles are one purchase.
+Unknown omitted inventory remains UNRESOLVED with totalPoints=null and the existing
+points warning. UNIT aggregate equipment never supplies a MODEL bearer; the known
+MODEL equipment effect is applied only in its exact physical composition scope.
+Partial export completeness cannot be certified without authentic export evidence.
+
+Native attachment permissions use exact accepted source hyperlinks and persistent
+membership, independently from central MFM reference-only declarations. There are
+134 active native edges (30 DA +104 inheritedSM). All Lazarus permissions remain
+inactive because SOURCE_CONFLICT is not adjudicated here. Ten central relation-only
+REFERENCE_ONLY records remain unmodified and inactive; native permissions do not
+promote those MFM references. Deathwatch/otherChapter members are not admitted.
+
+Runtime modules are browser-native and exposed through the standard roster boot.
+No production registration, browser acceptance or actual New Recruit export is
+claimed. REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL and
+SEMANTIC_COMPLETENESS=NOT_PROVEN remain. Conditional battle mechanics retain text.
