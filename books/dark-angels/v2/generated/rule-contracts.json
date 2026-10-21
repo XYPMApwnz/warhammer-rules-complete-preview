@@ -1,13 +1,14 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "A4B234ED4FDF33BB2C0A90285DAF59D9B61756CCC66B4B76960955F4711E858B",
+  "reviewFingerprint": "B50EBB8BF442E3BB1F2DED8E3B90857AD5D2E4C0BD48A1B9D642C8AA6EBF83B9",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 201,
+      "TEXT_ONLY_SOURCE_BACKED": 197,
       "EXECUTABLE_PROVEN": 43,
+      "CONDITIONAL_TEXT_ONLY": 4,
       "NOT_PROVEN": 8
     },
     "categories": {
@@ -177,6 +178,32 @@
         "enhancement-da-9dcd451b895a4cfea19f::ancient-weapons/1/1",
         "enhancement-da-9dcd451b895a4cfea19f::ancient-weapons/1/2"
       ]
+    }
+  ],
+  "conditionalPolicies": [
+    {
+      "recordId": "review/ability-da-57f090f793034b989e2a/text/0:86",
+      "kind": "QUALIFIED_FNP",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-7a6bf94476794dfcbaa6/text/0:86",
+      "kind": "QUALIFIED_FNP",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-7dbc5ddbc014411bb290/text/0:95",
+      "kind": "QUALIFIED_FNP",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-8db740d71770467d858e/text/0:162",
+      "kind": "QUALIFIED_FNP",
+      "recipientScope": "AURA_UNRESOLVED",
+      "execution": "CONDITIONAL_TEXT_ONLY"
     }
   ],
   "nativeAbilities": [

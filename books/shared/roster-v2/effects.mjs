@@ -1,3 +1,4 @@
+import {validateConditionalPolicy,appendConditionalPolicy} from './conditional-policy.mjs';
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 const clone = value => structuredClone(value);
@@ -50,6 +51,7 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
   for (const entity of book.entities.filter(e=>e.ruleContract)) for (const clause of entity.ruleContract.clauses) {
     if (!['ROSTER_EXECUTABLE','BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(clause.rosterClassification)) throw new TypeError('Unclassified roster clause');
     if ((clause.rosterEffects.length > 0) !== (clause.rosterClassification === 'ROSTER_EXECUTABLE')) throw new TypeError('Execution classification mismatch');
+    validateConditionalPolicy(book,entity,clause);
     const ids = new Set();
     for (const effect of clause.rosterEffects) {
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
@@ -269,6 +271,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
         }
       }
       for (const clause of rule.ruleContract.clauses) {
+        appendConditionalPolicy(result,rule,clause,source,ownerModel);
         if (clause.rosterClassification === 'BATTLE_ONLY') {
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
@@ -626,7 +629,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   for(const item of suppressions)for(const target of targets(item))apply(item,target);
   for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
   for (const unit of result.units) {
-    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
+    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason&&Boolean(r.policy)===Boolean(row.policy)&&(!row.policy||r.sourceInstanceId===row.sourceInstanceId&&r.sourceModelScopeId===row.sourceModelScopeId))===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
         if(['chargeRoll','advanceRoll'].includes(field)||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;

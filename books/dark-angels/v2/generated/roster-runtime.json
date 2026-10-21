@@ -2399,10 +2399,28 @@
             "sourceText": "The Watchers: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit qualified FNP policy retains psychic/mortal restriction, exact physical source and conditional recipient scope. No incoming wound or roll is automatically resolved; aura recipients remain unassigned until measured range is known.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "QUALIFIED_FNP",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "threshold": 4,
+                "damageKinds": [
+                  "PSYCHIC_ATTACK",
+                  "MORTAL_WOUND"
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Watchers: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds."
+              },
+              "contextQuote": "The Watchers: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds."
+            }
           }
         ],
         "currentness": {
@@ -4225,10 +4243,28 @@
             "sourceText": "Psychic Hood: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit qualified FNP policy retains psychic/mortal restriction, exact physical source and conditional recipient scope. No incoming wound or roll is automatically resolved; aura recipients remain unassigned until measured range is known.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "QUALIFIED_FNP",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "threshold": 4,
+                "damageKinds": [
+                  "PSYCHIC_ATTACK",
+                  "MORTAL_WOUND"
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Psychic Hood: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds."
+              },
+              "contextQuote": "Psychic Hood: This unit has Feel No Pain 4+ against psychic attacks and mortal wounds."
+            }
           }
         ],
         "currentness": {
@@ -4492,10 +4528,28 @@
             "sourceText": "The Spiritshield Helm: This unit has Feel No Pain 3+ against psychic attacks and mortal wounds.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit qualified FNP policy retains psychic/mortal restriction, exact physical source and conditional recipient scope. No incoming wound or roll is automatically resolved; aura recipients remain unassigned until measured range is known.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "QUALIFIED_FNP",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "threshold": 3,
+                "damageKinds": [
+                  "PSYCHIC_ATTACK",
+                  "MORTAL_WOUND"
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Spiritshield Helm: This unit has Feel No Pain 3+ against psychic attacks and mortal wounds."
+              },
+              "contextQuote": "The Spiritshield Helm: This unit has Feel No Pain 3+ against psychic attacks and mortal wounds."
+            }
           }
         ],
         "currentness": {
@@ -4960,10 +5014,34 @@
             "sourceText": "No Hiding from the Watchers: While a friendly DARK ANGELS unit is within 6\" of this unit, that unit has Feel No Pain 5+ against psychic attacks and mortal wounds.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Explicit qualified FNP policy retains psychic/mortal restriction, exact physical source and conditional recipient scope. No incoming wound or roll is automatically resolved; aura recipients remain unassigned until measured range is known.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "QUALIFIED_FNP",
+              "recipientScope": "AURA_UNRESOLVED",
+              "activationReferenceId": "ability-da-2ed6377b2f794e0ea8af",
+              "payload": {
+                "threshold": 5,
+                "damageKinds": [
+                  "PSYCHIC_ATTACK",
+                  "MORTAL_WOUND"
+                ]
+              },
+              "aura": {
+                "range": 6,
+                "allegiance": "FRIENDLY",
+                "unitKeyword": "DARK ANGELS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "No Hiding from the Watchers: While a friendly DARK ANGELS unit is within 6\" of this unit, that unit has Feel No Pain 5+ against psychic attacks and mortal wounds."
+              },
+              "contextQuote": "No Hiding from the Watchers: While a friendly DARK ANGELS unit is within 6\" of this unit, that unit has Feel No Pain 5+ against psychic attacks and mortal wounds."
+            }
           }
         ],
         "currentness": {

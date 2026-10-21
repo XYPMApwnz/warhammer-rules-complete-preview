@@ -320,6 +320,11 @@ export function projectInstanceCards(cards, unit, effective) {
     if(factionGroup)groups.push(clone(factionGroup));
     root.keywordGroups=groups;
   }
+  const policies=(effective.conditional||[]).filter(row=>row.policy);
+  if(policies.length){
+    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.sourceInstanceId&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
+    root.rosterConditionalPolicies=clone(policies);
+  }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);
   root.rosterUnitMetrics=Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{
     assert(['chargeRoll','advanceRoll','detectionRange'].includes(key)&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');

@@ -411,6 +411,20 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       unitModifiers.append(node);
     }
     if(unitModifiers)root.append(unitModifiers);
+    if(card.rosterConditionalPolicies?.length){
+      const section=part('conditional-policies','Conditional mechanics');
+      const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction'};
+      for(const row of card.rosterConditionalPolicies){
+        const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
+        node.dataset.sourceInstanceId=row.sourceInstanceId;node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
+        node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
+        node.append(el('h5','',labels[row.policy.kind]),el('p','','Conditional — Not automatically resolved'));
+        const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
+        node.append(el('p','',row.policy.recipientScope==='AURA_UNRESOLVED'?`Recipient unresolved; requires measured ${row.policy.aura.range} inch range and matching ${row.policy.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
+        if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
+        node.append(el('p','',row.policy.contextQuote));section.append(node);
+      }root.append(section);
+    }
     const profileStatFields=member=>[...member.fields,...(member.profileFieldIds||[]).map(id=>boundFields.get(id))]
       .filter(field=>['M','T','SV','W','LD','OC','INSV'].includes(pointerKey(field)));
     const modelCards=children.filter(c=>c.kind==='PROFILE');

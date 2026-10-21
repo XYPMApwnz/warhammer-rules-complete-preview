@@ -1,3 +1,4 @@
+import {projectConditionalPolicy} from './conditional-policy.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
  * This does not evaluate rules or combine component inventories. */
 const clone=value=>structuredClone(value);
@@ -108,5 +109,5 @@ export function projectEffectiveInstance(book,projection,instanceId) {
             abilityRangeField:'/'+binding.field.join('/'),parameters:clone(ability.parameters),ownerInstanceId:instanceId}];
         });
       }),
-    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...clone(row),label:name(row.ruleId)}))};
+    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...projectConditionalPolicy(book,projection,unit,row),label:name(row.ruleId)}))};
 }

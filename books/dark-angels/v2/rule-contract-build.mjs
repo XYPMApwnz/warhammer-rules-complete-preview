@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {buildDarkAngelsMixedBook} from './book-build.mjs';
 import {buildSpaceMarinesContracts} from '../../space-marines/v2/rule-contract-build.mjs';
+import {conditionalPolicyDeclarations,activeConditionalPolicyKinds} from './conditional-policy-declarations.mjs';
 import {declarations,enhancementEligibility,recipientIdentityProofs} from './rule-contract-declarations.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {bindDarkAngelsNative} from './native-ability-bindings.mjs';
@@ -65,10 +66,12 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   const rows=grouped.get(entity.id)||[];rows.push(row);grouped.set(entity.id,rows);
  }
  assert.deepEqual([...grouped.keys()].sort(),[...review.reviewedSourceIds].sort());
+ const conditionalDeclarations=new Map(conditionalPolicyDeclarations.filter(row=>activeConditionalPolicyKinds.includes(row.kind)).map(row=>[row.recordId,row]));
  const classifications={};
  const nativeIds=new Set([...nativeBindings.nativeAbilities.map(row=>row.id),...nativeBindings.nativeProfiles.map(row=>row.id)]);
  for(const row of review.records){
-  assert.ok(['EXECUTABLE_PROVEN','TEXT_ONLY_SOURCE_BACKED','NOT_PROVEN'].includes(row.status));
+  assert.ok(['EXECUTABLE_PROVEN','TEXT_ONLY_SOURCE_BACKED','CONDITIONAL_TEXT_ONLY','NOT_PROVEN'].includes(row.status));
+  if(row.status==='CONDITIONAL_TEXT_ONLY')assert.ok(conditionalDeclarations.has(row.id),'Unbound conditional review claim');
   classifications[row.status]=(classifications[row.status]||0)+1;
   if(row.status==='EXECUTABLE_PROVEN')assert.ok(nativeIds.has(row.canonicalId)||inputs.some(input=>
    !input.partial&&input.ruleId===row.canonicalId&&input.quote.includes(row.quote)),'Unbound executable review claim');
@@ -130,19 +133,21 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   for(const row of rows){
    if(specs.some(input=>!input.partial&&input.quote.includes(row.quote)))continue;
    declaration.clauses.push({id:row.id,roles:[clone(owner)],conditions:[],sourceFields:[clone(row.field)],evidence:{field:clone(row.field),quote:row.quote},sourceText:row.quote,
-    rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:row.reason,reviewClassification:row.status},rosterEffects:[]});
+    rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:row.reason,reviewClassification:row.status},rosterEffects:[],
+    ...(conditionalDeclarations.has(row.id)?{conditionalPolicy:{...Object.fromEntries(Object.entries(clone(conditionalDeclarations.get(row.id))).filter(([key])=>key!=='recordId')),evidence:{field:clone(row.field),quote:row.quote},contextQuote:row.contextQuote}}:{})});
   }
+  const policies=new Map(declaration.clauses.filter(clause=>clause.conditionalPolicy).map(clause=>[clause.id,clause.conditionalPolicy]));
   const pending=new Map(declaration.clauses.map(clause=>[clause.id,clause.rosterEffects]));
   for(const clause of declaration.clauses)clause.rosterEffects=[];
   entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',index,declaration:bindDeclarationClauses(declaration),currentness:{factualOwner:clone(entity.provenance),chapterContext:'INTRINSIC_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_VALIDATED_SEPARATELY'}});
-  for(const clause of entity.ruleContract.clauses)clause.rosterEffects=pending.get(clause.id);
+  for(const clause of entity.ruleContract.clauses){clause.rosterEffects=pending.get(clause.id);if(policies.has(clause.id))clause.conditionalPolicy=policies.get(clause.id);}
  }
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
-  coverage:clone(review.coverage),executed,...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
+  coverage:clone(review.coverage),executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'CONDITIONAL_TEXT_ONLY'})),...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
   unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],
