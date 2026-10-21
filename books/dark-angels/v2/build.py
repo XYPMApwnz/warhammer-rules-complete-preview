@@ -394,7 +394,7 @@ def build():
           'sourceEnrollment':'books/dark-angels/v2/sources/enrollment.json','sourceAccounting':accounting,
           'inheritedMembership':'books/dark-angels/v2/inherited-sm-references.json',
           'chapterConditions':'books/dark-angels/v2/chapter-conditions.json',
-          'mfmBoundary':{'owner':'CENTRALIZED_MFM','integration':'BLOCKED','valuesCopied':False,'relationsConnected':False},
+          'mfmBoundary':{'owner':'CENTRALIZED_MFM','integration':'NATIVE_PRICING_BOUND','valuesCopied':False,'relationsConnected':False},
           'sourceCompleteness':'PARTIAL','semanticCompleteness':'NOT_PROVEN',
           'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False,
           'mixedOwnerRuntimeStatus':'NOT_PROVEN; reference ledger is not runtime integration'}
@@ -417,7 +417,7 @@ def build():
         'sourceScopeClassifications':dict(Counter(r['classification'] for r in accounting)),
         'unresolvedCompositionProfiles':[r['id'] for r in main if r['kind']=='COMPOSITION_MEMBER' and r['data']['profileBindingStatus']=='NOT_PROVEN'],
         'identityPolicy':'EXPLICIT_ONCE_ENROLLED_OPAQUE_IDS;NO_TITLE_ORDER_DERIVATION',
-        'mfmIntegration':'BLOCKED','mixedOwnerRuntime':'NOT_PROVEN','sourceCompleteness':'PARTIAL','semanticCompleteness':'NOT_PROVEN',
+        'mfmIntegration':'NATIVE_PRICING_BOUND','mixedOwnerRuntime':'NOT_PROVEN','sourceCompleteness':'PARTIAL','semanticCompleteness':'NOT_PROVEN',
         'contentCertified':False,'runtimeAcceptancePerformed':False}
     return {'base':base,'effective':effective,'factual-census':census}
 

@@ -298,7 +298,7 @@ def compare(snapshot, oracle, bindings, addresses):
     need(snapshot.get('bookId') == 'dark-angels' and snapshot.get('edition') == '11E', 'wrong-book-edition')
     need(snapshot.get('sourceCompleteness') == 'PARTIAL' and snapshot.get('semanticCompleteness') == 'NOT_PROVEN',
         'unproven-source-certification')
-    need(snapshot.get('mfmBoundary') == {'owner': 'CENTRALIZED_MFM', 'integration': 'BLOCKED',
+    need(snapshot.get('mfmBoundary') == {'owner': 'CENTRALIZED_MFM', 'integration': 'NATIVE_PRICING_BOUND',
         'valuesCopied': False, 'relationsConnected': False}, 'premature-MFM-activation')
     need({r['sourceEntityId'] for r in records} == set(enrolled) == set(located), 'unused-or-missing-enrollment')
     return errors

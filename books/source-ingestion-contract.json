@@ -3020,6 +3020,35 @@
         }
       ],
       "notes": "Targeted existingcapture enrollment, not a newlivecapture. Official Space Marines v1.6 observed/verified2026-10-20; downloadlistupdate2026-10-14 is not publication/effective date. No standalone sixfactionv1.5captureproducer run."
+    },
+    {
+      "book": "dark-angels",
+      "sourceId": "dark-angels-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "30e6a24094e81f20f9c251b7f8d5b1d6b23f1e5779625bdb90d9009a41738b96",
+      "lastChecked": "2026-10-21",
+      "upstreamObservedAt": "2026-10-21",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/dark-angels.json",
+          "normalization": "lf",
+          "sha256": "cb4d384970d9ae1eb10b8109b68f3df7f0baee729b673c3c48e6c70262c6acb3"
+        },
+        {
+          "path": "mfm/sources/v1.6/official-mfm-da-hydrated.html",
+          "normalization": "bytes",
+          "sha256": "1d62a03eb40a56d0ff68cddf735201453d1e52c2c72e9ddce4482cceb98ca566"
+        }
+      ],
+      "notes": "Targeted Stage2B offline enrollment from pinned2026-10-21 officialhydratedcapture. Extractor identifies existingsemanticDOMpattern; standalone six-factionv1.5capturetool notrun. ScopeDA-ownedonly;sharedSpaceMarinesandDeathwatch facts notduplicated;publication/effectivedate notestablished."
     }
   ],
   "dormantLiveTools": [

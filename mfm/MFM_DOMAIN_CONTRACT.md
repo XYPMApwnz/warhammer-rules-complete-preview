@@ -49,3 +49,26 @@ source metadata. `relationEdges` remains strict without army presence by default
 native factual consumers may explicitly set `allowUnresolvedConditions: true`
 to obtain unconditional edges only while retaining the conditional central
 declarations separately. This option never assumes a conditional role is active.
+
+### Native Dark Angels v1.6 enrollment (21 October 2026)
+
+The active Dark Angels capture selects the official listing's DA-owned partition:
+16 CURRENT units, 22 schedules / 28 rows, three Detachments and eight costs
+(six Enhancements and two UNIT Upgrades). The complete, SHA-pinned official HTML
+is retained alongside the accepted scoped capture. Its 69 shared Space Marines
+prices remain owned by the existing SM snapshot; they are not additional DA
+point records. The same ownership boundary applies to shared Detachments and
+costs, Deathwatch Support and Beacon Angelis. Astraeus and Thunderhawk Gunship
+remain SM MFM-only references, without invented native Datasheets.
+
+All 27 DA pricing bridges use separately reviewed paired source occurrences and
+structural corroboration. The unit-owned Cyclone option price does not prove a
+physical equipment selection or MODEL bearer and causes no inferred charge.
+Three historical DA Legends retain their original v1.4 identities and provenance.
+Ten unpriced relation-target references preserve the DA source's declarations
+without duplicating SM prices or activating mixed-owner eligibility. Lazarus's
+MFM/Army-source recipient difference is retained, not silently reconciled.
+
+`books/dark-angels/v2/mfm-boundary.mjs` consumes central facts through the existing
+V2 Army projection. Native pricing enrollment does not activate the inherited
+Army corpus, Chapter keyword grants, physical importer, gameplay or app registry.

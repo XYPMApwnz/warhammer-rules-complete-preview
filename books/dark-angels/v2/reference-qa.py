@@ -1,4 +1,4 @@
-"""Offline source/reference boundary QA for DA Stage 2A; no runtime execution."""
+"""Offline source/reference boundary QA for DA Stage 2A/2B; no runtime execution."""
 from pathlib import Path
 import copy, hashlib, json, re, sys
 from collections import Counter
@@ -74,12 +74,17 @@ def validate(inherited,chapter,mfm):
             check(token['pointer'].startswith(p['provenance']['pointer']+'/'),'conditional token belongs to a different UNIT')
             ts=sheets.xpath(token['pointer']);check(len(ts)==1 and norm(ts[0].text_content())==norm(token['value']),'conditional keyword source token changed')
         check(r['negativeControls'] and 'attachment' in ' '.join(r['negativeControls']).lower(),'Chapter negative control lost')
-    check(mfm['centralAcceptedVersion']=='v1.4' and mfm['centralOldPointsUsable'] is False and mfm['candidateVersion']=='v1.6','MFM version boundary changed')
-    check(mfm['activeBindings']==0 and mfm['valuesCopied'] is False and mfm['pointsStatus']=='UNRESOLVED','MFM values activated in DA Stage2A')
+    check(mfm['centralAcceptedVersion']=='v1.6' and mfm['previousCentralVersion']=='v1.4' and mfm['centralOldPointsUsable'] is False and mfm['candidateVersion']=='v1.6','MFM version boundary changed')
+    check(mfm['activeBindings']==27 and mfm['valuesCopied'] is False and mfm['pointsStatus']=='SOURCE_PROVEN_DA_OWNED_TIERS','DA pricing enrollment status differs')
+    review={r['entityId']:r for r in load(HERE/'mfm-mapping-review.json')['reviewedBindings']}
+    bindings=load(HERE/'mfm-bindings.json')
+    bound={r['entityId']:r for part in ['unitBindings','detachmentBindings','enhancementBindings'] for r in bindings[part]}
     raw=ROOT/mfm['source']['document'];check(sha(raw)==mfm['source']['sha256'].upper(),'official MFM capture hash changed'); md=source_tree(raw)
     check(len(mfm['identityCandidates'])==27,'MFM source identity candidate census changed')
     for c in mfm['identityCandidates']:
-        check(c['active'] is False and c['disposition']=='REFERENCE_ONLY' and c['mappingStatus'].startswith('NOT_PROVEN'),'MFM candidate silently activated')
+        cid=c['candidateNativeCanonicalId']; proof=review.get(cid,{}); binding=bound.get(cid,{})
+        check(c['active'] is True and c['disposition']=='BOUND' and c['mappingStatus']=='SOURCE_PROVEN_NATIVE_PRICING_ONLY','MFM pricing review disposition differs')
+        check(proof.get('status')=='PROVEN' and len(proof.get('corroboratedProperties',[]))>=2 and binding.get('mfmRecordId')==c.get('mfmRecordId'),'MFM pricing activated without matching reviewed source bridge')
         check(len(md.xpath(c['sourcePointer']))==1,'MFM candidate source pointer missing')
         e=daby.get(c['candidateNativeCanonicalId']); check(e is not None and e['sourceEntityId']==c['candidateNativeSourceIdentity'],'MFM candidate native identity missing')
         if e:check(c['candidateNativeSourceAddress']=={k:e['provenance'][k]for k in ['document','sha256','pointer']},'MFM candidate native source address changed')
@@ -104,11 +109,11 @@ def main():
     docs=[load(HERE/name)for name in ['inherited-sm-references.json','chapter-conditions.json','mfm-boundary.json']]
     errors=validate(*docs)
     if errors: print(json.dumps({'status':'FAIL','errors':errors},indent=2));return 1
-    mutations=[('foreign owner',lambda d:d[0]['references'][0].update(sourceOwner='dark-angels')),('copied SM fact',lambda d:d[0]['references'][0].update(text='Copied fact')),('dropped inherited reference',lambda d:d[0]['references'].pop()),('changed Chapter recipient',lambda d:d[1]['records'][0]['recipient'].update(canonicalId='unit-not-proven')),('Chapter grant activated',lambda d:d[1]['records'][0].update(runtimeActive=True)),('missing physical Chapter confirmation',lambda d:d[1]['records'][0]['physicalContext'].update(chapterConfirmationRequired=False)),('MFM active',lambda d:d[2].update(activeBindings=1)),('MFM price copied',lambda d:d[2]['identityCandidates'][0].update(points=80)),('Cyclone charged',lambda d:d[2]['paidOptionCandidates'][0].update(chargeEnabled=True))]
+    mutations=[('foreign owner',lambda d:d[0]['references'][0].update(sourceOwner='dark-angels')),('copied SM fact',lambda d:d[0]['references'][0].update(text='Copied fact')),('dropped inherited reference',lambda d:d[0]['references'].pop()),('changed Chapter recipient',lambda d:d[1]['records'][0]['recipient'].update(canonicalId='unit-not-proven')),('Chapter grant activated',lambda d:d[1]['records'][0].update(runtimeActive=True)),('missing physical Chapter confirmation',lambda d:d[1]['records'][0]['physicalContext'].update(chapterConfirmationRequired=False)),('MFM pricing census corrupted',lambda d:d[2].update(activeBindings=1)),('MFM price copied',lambda d:d[2]['identityCandidates'][0].update(points=80)),('Cyclone charged',lambda d:d[2]['paidOptionCandidates'][0].update(chargeEnabled=True))]
     failed=[]
     for label,mutate in mutations:
         mutated=copy.deepcopy(docs);mutate(mutated)
         if not validate(*mutated): failed.append(label)
     if failed:print(json.dumps({'status':'FAIL','mutationEscapes':failed}));return 1
-    print(json.dumps({'status':'PASS','inheritedReferences':len(docs[0]['references']),'inheritedDatasheets':67,'inheritedDetachments':15,'inheritedRuleBlocks':15,'inheritedEnhancements':24,'inheritedUpgrades':8,'inheritedStratagems':48,'inheritedArmyRules':3,'chapterConditions':26,'mfmInactiveCandidates':27,'paidOptionCandidates':1,'mutationControls':len(mutations),'mixedOwnerRuntime':'NOT_PROVEN'},indent=2));return 0
+    print(json.dumps({'status':'PASS','inheritedReferences':len(docs[0]['references']),'inheritedDatasheets':67,'inheritedDetachments':15,'inheritedRuleBlocks':15,'inheritedEnhancements':24,'inheritedUpgrades':8,'inheritedStratagems':48,'inheritedArmyRules':3,'chapterConditions':26,'mfmProvenPricingBindings':27,'paidOptionCandidates':1,'mutationControls':len(mutations),'mixedOwnerRuntime':'NOT_PROVEN'},indent=2));return 0
 if __name__=='__main__':sys.exit(main())

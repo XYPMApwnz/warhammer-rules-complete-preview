@@ -1,0 +1,615 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "dark-angels",
+  "factionLabel": "Dark Angels",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-21T07:09:51.188Z",
+  "observedAt": "2026-10-21",
+  "verifiedAt": "2026-10-21",
+  "effectiveDate": null,
+  "currentnessCutoff": "2026-10-21",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/dark-angels",
+  "rawArtifacts": [
+    {
+      "path": "official-mfm-da-hydrated.html",
+      "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+      "bytes": 502805,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS"
+  ],
+  "counts": {
+    "currentUnits": 16,
+    "legendsUnits": 0,
+    "totalPricedUnits": 16,
+    "pointSchedules": 22,
+    "pointRows": 28,
+    "paidOptions": 1,
+    "leaderRecords": 6,
+    "leaderEdges": 35,
+    "supportRecords": 1,
+    "supportEdges": 2,
+    "detachments": 3,
+    "enhancements": 8,
+    "detachmentQualifierRecords": 1,
+    "enhancementQualifierRecords": 0
+  },
+  "units": [
+    {
+      "title": "ASMODAI",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "BLADEGUARD VETERAN SQUAD",
+          "HELLBLASTER SQUAD",
+          "INFERNUS SQUAD",
+          "INNER CIRCLE COMPANIONS",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "AZRAEL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "BLADEGUARD VETERAN SQUAD",
+          "COMPANY HEROES",
+          "HELLBLASTER SQUAD",
+          "INFERNUS SQUAD",
+          "INNER CIRCLE COMPANIONS",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "BELIAL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 100
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "DEATHWING KNIGHTS",
+          "DEATHWING TERMINATOR SQUAD",
+          "TERMINATOR ASSAULT SQUAD",
+          "TERMINATOR SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "DEATHWING KNIGHTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 255
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 275
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "DEATHWING TERMINATOR SQUAD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 190
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 380
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 230
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 420
+            }
+          ],
+          "minCopies": 3
+        }
+      ],
+      "paidOptions": [
+        {
+          "sourceLabel": "per Cyclone Missile Launcher",
+          "value": 10,
+          "title": "Cyclone Missile Launcher",
+          "sourceGroup": "WARGEAR OPTIONS"
+        }
+      ]
+    },
+    {
+      "title": "EZEKIEL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "BLADEGUARD VETERAN SQUAD",
+          "HELLBLASTER SQUAD",
+          "INFERNUS SQUAD",
+          "INNER CIRCLE COMPANIONS",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "INNER CIRCLE COMPANIONS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 90
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 180
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 105
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 195
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "LAND SPEEDER VENGEANCE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 160
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "LAZARUS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "BLADEGUARD VETERAN SQUAD",
+          "COMPANY HEROES",
+          "INFERNUS SQUAD",
+          "INNER CIRCLE COMPANIONS",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "LION EL’JONSON",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 415
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "NEPHILIM JETFIGHTER",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RAVENWING BLACK KNIGHTS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 85
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 170
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 95
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 180
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "RAVENWING COMMAND SQUAD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 115
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 135
+            }
+          ],
+          "minCopies": 3
+        }
+      ],
+      "relations": {
+        "support": [
+          "OUTRIDER SQUAD",
+          "RAVENWING BLACK KNIGHTS"
+        ]
+      }
+    },
+    {
+      "title": "RAVENWING DARKSHROUD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RAVENWING DARK TALON",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SAMMAEL",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 120
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "OUTRIDER SQUAD",
+          "RAVENWING BLACK KNIGHTS"
+        ]
+      }
+    }
+  ],
+  "detachments": [
+    {
+      "title": "DARKFLIGHT PURSUIT",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "RECONNAISSANCE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Nightforged Battery (Upgarde)",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "Thundercowl Turbines (Upgrade)",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "INNER CIRCLE TASK FORCE",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PRIORITY ASSETS"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Champion of the Deathwing",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Singular Will",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "WRATH OF THE ROCK",
+      "detachmentPoints": 2,
+      "forceDispositions": [
+        "TAKE AND HOLD"
+      ],
+      "qualifiers": [
+        {
+          "kind": "UNIQUE",
+          "value": "TERMINATOR"
+        }
+      ],
+      "enhancements": [
+        {
+          "title": "Ancient Weapons",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Deathwing Assault",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Lord of the Ravenwing",
+          "value": 15,
+          "qualifiers": []
+        },
+        {
+          "title": "Tempered in Battle (Aura)",
+          "value": 10,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "sourceId": "dark-angels-mfm-v1.6",
+  "enrollmentScope": {
+    "policy": "DA_OWNED_ONLY_SHARED_SM_AND_DEATHWATCH_REFERENCED_NOT_DUPLICATED",
+    "sharedUnitsOmitted": 69,
+    "sharedDetachmentsOmitted": 15,
+    "deathwatchDetachmentsOmitted": 1,
+    "sharedEnhancementUpgradeEntriesOmitted": 32,
+    "deathwatchEnhancementsOmitted": 1,
+    "note": "Full official HTML retained. Scoped source extraction deliberately enrolls only current DA-owned facts; shared current source facts retain existing central Space Marines ownership."
+  },
+  "captureSha256": "561615E45C4D527731DBA262DC71FFC6FAC2DCEF301D2FEA52455550AB14724A"
+}

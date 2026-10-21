@@ -1,0 +1,1782 @@
+{
+  "schema": "dark-angels-v2-mfm-source-mapping-review/v1",
+  "reviewedAt": "2026-10-21",
+  "authority": "OFFICIAL_MFM_WITH_ACCEPTED_SECONDARY_CODEX_STRUCTURAL_CORROBORATION",
+  "sourceCompleteness": "PARTIAL",
+  "gameplayRuntimeCertified": false,
+  "reviewedBindings": [
+    {
+      "entityId": "unit-da-d711371794d441bf92a8",
+      "sourceEntityId": "da-source-772ecf1eb98644c085d1",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "ASMODAI",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[48]",
+        "sourceEntityId": "da-source-772ecf1eb98644c085d1",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[1]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Asmodai",
+          "modelProfileIds": [
+            "model-da-be787901d6134bd49196"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-f8f0629206e744459a9f",
+      "sourceEntityId": "da-source-9f29d1532a1d4d3487c4",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "AZRAEL",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[50]",
+        "sourceEntityId": "da-source-9f29d1532a1d4d3487c4",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[2]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 150
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 150
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Azrael",
+          "modelProfileIds": [
+            "model-da-eac6bd16d5234c598678"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-f1f33dda5c5047efb013",
+      "sourceEntityId": "da-source-eefb01eaf9a2460f9209",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "BELIAL",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[52]",
+        "sourceEntityId": "da-source-eefb01eaf9a2460f9209",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[3]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 100
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 100
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Belial",
+          "modelProfileIds": [
+            "model-da-9daa0636291f4ea6ad06"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-a1d3821fd56946f0951d",
+      "sourceEntityId": "da-source-40b59022f7bf4dae9669",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "DEATHWING KNIGHTS",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[46]",
+        "sourceEntityId": "da-source-40b59022f7bf4dae9669",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[4]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 275
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 255
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 275
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Deathwing-Knights",
+          "modelProfileIds": [
+            "model-da-955979978038412f98d3",
+            "model-da-b87f7079e4184954ad94"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-9f8f2ccbdb7d4c72857c",
+      "sourceEntityId": "da-source-f3642202bbaf4892b355",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "DEATHWING TERMINATOR SQUAD",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[48]",
+        "sourceEntityId": "da-source-f3642202bbaf4892b355",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 190
+                },
+                {
+                  "sourceLabel": "10 models",
+                  "value": 380
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 230
+                },
+                {
+                  "sourceLabel": "10 models",
+                  "value": 420
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 190
+                },
+                {
+                  "sourceLabel": "10 models",
+                  "value": 380
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "5 models",
+                  "value": 230
+                },
+                {
+                  "sourceLabel": "10 models",
+                  "value": 420
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Deathwing-Terminator-Squad",
+          "modelProfileIds": [
+            "model-da-18d8e90b69f9453481d3",
+            "model-da-0c67d8cfbdcb476a8c10"
+          ]
+        },
+        {
+          "property": "PAID_EQUIPMENT_SOURCE_PARITY",
+          "official": [
+            {
+              "sourceGroup": "WARGEAR OPTIONS",
+              "sourceLabel": "per Cyclone Missile Launcher",
+              "value": 10
+            }
+          ],
+          "secondary": [
+            {
+              "sourceGroup": "WARGEAR OPTIONS",
+              "sourceLabel": "per Cyclone Missile Launcher",
+              "value": 10
+            }
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-955db164dd7144368578",
+      "sourceEntityId": "da-source-5d296378d15d4b978e74",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "EZEKIEL",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[54]",
+        "sourceEntityId": "da-source-5d296378d15d4b978e74",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[6]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 110
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 110
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Ezekiel",
+          "modelProfileIds": [
+            "model-da-dbd7e930db2441ac9603"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-6b2744f187a748cda0df",
+      "sourceEntityId": "da-source-3db9f377b22d4b23bcac",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "INNER CIRCLE COMPANIONS",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[50]",
+        "sourceEntityId": "da-source-3db9f377b22d4b23bcac",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[7]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 90
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 180
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 105
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 195
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 90
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 180
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 105
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 195
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Inner-Circle-Companions",
+          "modelProfileIds": [
+            "model-da-4acb547ab0c14e1789c7"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-48fe8c59ed2449e1a36b",
+      "sourceEntityId": "da-source-2bf7b5fc3bde49489b0d",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "LAND SPEEDER VENGEANCE",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[24]",
+        "sourceEntityId": "da-source-2bf7b5fc3bde49489b0d",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[8]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 150
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 160
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 150
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 160
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Land-Speeder-Vengeance",
+          "modelProfileIds": [
+            "model-da-9ac1a90b56c34cd08c15"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-efa93d33ea414d8b8f11",
+      "sourceEntityId": "da-source-9380988c8ec04af78efb",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "LAZARUS",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[56]",
+        "sourceEntityId": "da-source-9380988c8ec04af78efb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[9]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Lazarus",
+          "modelProfileIds": [
+            "model-da-ca78da319f814633b3b6"
+          ]
+        }
+      ],
+      "limitations": [
+        "RELATION_SOURCE_CONFLICT: official MFM lists COMPANY HEROES; accepted secondary Datasheet lists HELLBLASTER SQUAD. Preserve both source declarations; no relation gameplay activation in Stage 2B."
+      ]
+    },
+    {
+      "entityId": "unit-da-4d0a2295a562420599b3",
+      "sourceEntityId": "da-source-ed2a92e4ca5647c19d85",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "LION EL’JONSON",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[4]/div[4]",
+        "sourceEntityId": "da-source-ed2a92e4ca5647c19d85",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[10]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 415
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 415
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Lion-El-jonson",
+          "modelProfileIds": [
+            "model-da-df7d383005cc441cac00"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-8bdfb4e3460d4ed9926a",
+      "sourceEntityId": "da-source-15ac4783728b48d2a6bb",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "NEPHILIM JETFIGHTER",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[2]",
+        "sourceEntityId": "da-source-15ac4783728b48d2a6bb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[11]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 200
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 200
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Nephilim-Jetfighter",
+          "modelProfileIds": [
+            "model-da-fdfdd4b8b3c64d64b699"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-1f093db4ae584ac19636",
+      "sourceEntityId": "da-source-8ce7cbe7032441499c44",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "RAVENWING BLACK KNIGHTS",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[26]/div[6]",
+        "sourceEntityId": "da-source-8ce7cbe7032441499c44",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[12]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 85
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 170
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 95
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 180
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 85
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 170
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 95
+                },
+                {
+                  "sourceLabel": "6 models",
+                  "value": 180
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Ravenwing-Black-Knights",
+          "modelProfileIds": [
+            "model-da-a601a678011d4574b325",
+            "model-da-1944b59f84b040de9fc5"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-467009b00bb9402dadee",
+      "sourceEntityId": "da-source-e04d2e4d825c4e9f96e8",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "RAVENWING COMMAND SQUAD",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]",
+        "sourceEntityId": "da-source-e04d2e4d825c4e9f96e8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[13]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 115
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD + UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 135
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 115
+                }
+              ]
+            },
+            {
+              "sourceLabel": "YOUR 3RD+ UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "3 models",
+                  "value": 135
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Ravenwing-Command-Squad",
+          "modelProfileIds": [
+            "model-da-9bdc9ba0422949849ecc",
+            "model-da-8eb29eaced8e486caf37",
+            "model-da-d9a85659ae224494b0a7"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-9579698010884b4bae95",
+      "sourceEntityId": "da-source-3f0c61cc9a0046e7ab7a",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "RAVENWING DARKSHROUD",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[26]",
+        "sourceEntityId": "da-source-3f0c61cc9a0046e7ab7a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[14]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Ravenwing-Darkshroud",
+          "modelProfileIds": [
+            "model-da-354cbfacb8c24fd3bf63"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-4649795c02b646809e13",
+      "sourceEntityId": "da-source-80483ba01a17415390b0",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "RAVENWING DARK TALON",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[18]/div[4]",
+        "sourceEntityId": "da-source-80483ba01a17415390b0",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[15]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 190
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 190
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Ravenwing-Dark-Talon",
+          "modelProfileIds": [
+            "model-da-d6c1814bd87a49f999fd"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "unit-da-0e189995095847bf9d47",
+      "sourceEntityId": "da-source-93b43f65fea74a0aaf42",
+      "bookId": "dark-angels",
+      "candidateKind": "UNIT",
+      "sourceTitle": "SAMMAEL",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]",
+        "sourceEntityId": "da-source-93b43f65fea74a0aaf42",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[16]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DA_APP_AND_FACTION_OWNERSHIP",
+          "officialGroup": "UNITS",
+          "nativePublication": "App. Dark Angels (11th edition)",
+          "nativeFaction": "DARK ANGELS"
+        },
+        {
+          "property": "INDEPENDENT_COMPLETE_MODEL_COPY_PRICE_TIERS",
+          "official": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 120
+                }
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "sourceLabel": "YOUR UNIT COSTS",
+              "entries": [
+                {
+                  "sourceLabel": "1 model",
+                  "value": 120
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "property": "EXACT_PAIRED_PERSISTENT_SOURCE_OCCURRENCE",
+          "sourceAnchor": "Sammael",
+          "modelProfileIds": [
+            "model-da-82aadb844f254e84afab"
+          ]
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "detachment-da-d7c1a2b23f2e443aa22a",
+      "sourceEntityId": "da-source-5110624c0887499f9c8e",
+      "bookId": "dark-angels",
+      "candidateKind": "DETACHMENT",
+      "sourceTitle": "DARKFLIGHT PURSUIT",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+        "sourceEntityId": "da-source-5110624c0887499f9c8e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[2]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DETACHMENT_DP_AND_FORCE_DISPOSITION",
+          "officialDP": 1,
+          "secondaryDP": 1,
+          "officialCategory": "RECONNAISSANCE",
+          "secondaryCategory": "Reconnaissance"
+        },
+        {
+          "property": "EXACT_CHILD_COST_AND_ITEM_KIND_SET",
+          "officialPairedChildren": [
+            [
+              "Nightforged Battery",
+              10,
+              "UNIT_UPGRADE"
+            ],
+            [
+              "Thundercowl Turbines",
+              15,
+              "UNIT_UPGRADE"
+            ]
+          ],
+          "secondaryChildren": [
+            [
+              "Nightforged Battery",
+              10,
+              "UNIT_UPGRADE"
+            ],
+            [
+              "Thundercowl Turbines",
+              15,
+              "UNIT_UPGRADE"
+            ]
+          ]
+        },
+        {
+          "property": "DA_APP_OWNERSHIP",
+          "publication": "App. Dark Angels (11th edition)"
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-fb83cfb304e74056b819",
+      "sourceEntityId": "da-source-e56989d819cd4a5285d7",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Nightforged Battery (Upgarde)",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-e56989d819cd4a5285d7",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[2]/div[3]/ul/div[1]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-d7c1a2b23f2e443aa22a",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[2]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "UNIT_UPGRADE",
+          "secondary": "UNIT_UPGRADE"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 10,
+          "secondary": 10
+        }
+      ],
+      "limitations": [
+        "Official MFM source preserves literal Upgarde spelling; no canonical identity rename or alias was created."
+      ]
+    },
+    {
+      "entityId": "enhancement-da-3c2c519eaabc48088aa4",
+      "sourceEntityId": "da-source-ee5a1578986d44159585",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Thundercowl Turbines (Upgrade)",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-ee5a1578986d44159585",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[2]/div[3]/ul/div[2]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-d7c1a2b23f2e443aa22a",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[2]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "UNIT_UPGRADE",
+          "secondary": "UNIT_UPGRADE"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 15,
+          "secondary": 15
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "detachment-da-7e310c5c15914267a0ae",
+      "sourceEntityId": "da-source-9956591f279144598947",
+      "bookId": "dark-angels",
+      "candidateKind": "DETACHMENT",
+      "sourceTitle": "INNER CIRCLE TASK FORCE",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2",
+        "sourceEntityId": "da-source-9956591f279144598947",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[9]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DETACHMENT_DP_AND_FORCE_DISPOSITION",
+          "officialDP": 1,
+          "secondaryDP": 1,
+          "officialCategory": "PRIORITY ASSETS",
+          "secondaryCategory": "Priority Assets"
+        },
+        {
+          "property": "EXACT_CHILD_COST_AND_ITEM_KIND_SET",
+          "officialPairedChildren": [
+            [
+              "Champion of the Deathwing",
+              20,
+              "ENHANCEMENT"
+            ],
+            [
+              "Singular Will",
+              20,
+              "ENHANCEMENT"
+            ]
+          ],
+          "secondaryChildren": [
+            [
+              "Champion of the Deathwing",
+              20,
+              "ENHANCEMENT"
+            ],
+            [
+              "Singular Will",
+              20,
+              "ENHANCEMENT"
+            ]
+          ]
+        },
+        {
+          "property": "DA_APP_OWNERSHIP",
+          "publication": "App. Dark Angels (11th edition)"
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-4e1c055c3dfe4754bd0c",
+      "sourceEntityId": "da-source-8b0ba839aafa42f2a7eb",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Champion of the Deathwing",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-8b0ba839aafa42f2a7eb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[9]/div[3]/ul/div[1]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-7e310c5c15914267a0ae",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[9]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 20,
+          "secondary": 20
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-aaf27210de7e47a792f7",
+      "sourceEntityId": "da-source-38e6624cfec04df78d05",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Singular Will",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-38e6624cfec04df78d05",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[9]/div[3]/ul/div[2]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-7e310c5c15914267a0ae",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[9]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 20,
+          "secondary": 20
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "detachment-da-5a438082b8a74f8e8e08",
+      "sourceEntityId": "da-source-d7f12a0669e64286ae28",
+      "bookId": "dark-angels",
+      "candidateKind": "DETACHMENT",
+      "sourceTitle": "WRATH OF THE ROCK",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2",
+        "sourceEntityId": "da-source-d7f12a0669e64286ae28",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[19]",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "DETACHMENT_DP_AND_FORCE_DISPOSITION",
+          "officialDP": 2,
+          "secondaryDP": 2,
+          "officialCategory": "TAKE AND HOLD",
+          "secondaryCategory": "Take and Hold"
+        },
+        {
+          "property": "EXACT_CHILD_COST_AND_ITEM_KIND_SET",
+          "officialPairedChildren": [
+            [
+              "Ancient Weapons",
+              20,
+              "ENHANCEMENT"
+            ],
+            [
+              "Deathwing Assault",
+              15,
+              "ENHANCEMENT"
+            ],
+            [
+              "Lord of the Ravenwing",
+              15,
+              "ENHANCEMENT"
+            ],
+            [
+              "Tempered in Battle (Aura)",
+              10,
+              "ENHANCEMENT"
+            ]
+          ],
+          "secondaryChildren": [
+            [
+              "Ancient Weapons",
+              20,
+              "ENHANCEMENT"
+            ],
+            [
+              "Deathwing Assault",
+              15,
+              "ENHANCEMENT"
+            ],
+            [
+              "Lord of the Ravenwing",
+              15,
+              "ENHANCEMENT"
+            ],
+            [
+              "Tempered in Battle (Aura)",
+              10,
+              "ENHANCEMENT"
+            ]
+          ]
+        },
+        {
+          "property": "DA_APP_OWNERSHIP",
+          "publication": "App. Dark Angels (11th edition)"
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-9dcd451b895a4cfea19f",
+      "sourceEntityId": "da-source-9ac7aa40907b42c593eb",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Ancient Weapons",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-9ac7aa40907b42c593eb",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[1]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-5a438082b8a74f8e8e08",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[19]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 20,
+          "secondary": 20
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-6504b6d091f844b68c1a",
+      "sourceEntityId": "da-source-6846ebe40e3845ebaf68",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Deathwing Assault",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-6846ebe40e3845ebaf68",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[2]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-5a438082b8a74f8e8e08",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[19]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 15,
+          "secondary": 15
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-822dfec678424ec293c2",
+      "sourceEntityId": "da-source-1c67aaca7c144c419626",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Lord of the Ravenwing",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-1c67aaca7c144c419626",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[3]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-5a438082b8a74f8e8e08",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[19]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 15,
+          "secondary": 15
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "entityId": "enhancement-da-468d9a93dc9a47f2a229",
+      "sourceEntityId": "da-source-ec862c60aae64edeadc0",
+      "bookId": "dark-angels",
+      "candidateKind": "ENHANCEMENT_OR_UPGRADE",
+      "sourceTitle": "Tempered in Battle (Aura)",
+      "status": "PROVEN",
+      "proofPolicy": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+      "native": {
+        "sourceId": "dark-angels-waha-11e-2026-10-21",
+        "document": "books/dark-angels/v2/sources/raw/wahapedia-dark-angels-main.html",
+        "sha256": "67E319B48234DFE7CA854A66E3408146FE637ACB4722AC1DFBC5FC86847DE3DC",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "da-source-ec862c60aae64edeadc0",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "mfm": {
+        "document": "books/dark-angels/v2/sources/raw/mfm-da-hydrated.html",
+        "sha256": "1D62A03EB40A56D0FF68CDDF735201453D1E52C2C72E9DDCE4482CCEB98CA566",
+        "pointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[4]/ul/div[4]/li",
+        "sourceOwner": "dark-angels",
+        "version": "v1.6"
+      },
+      "corroboratedProperties": [
+        {
+          "property": "INDEPENDENT_DETACHMENT_PARENT_MEMBERSHIP",
+          "nativeParentId": "detachment-da-5a438082b8a74f8e8e08",
+          "officialParentPointer": "/html/body/main/div[2]/div[4]/div/div[19]"
+        },
+        {
+          "property": "SOURCE_ITEM_KIND",
+          "official": "ENHANCEMENT",
+          "secondary": "ENHANCEMENT"
+        },
+        {
+          "property": "INDEPENDENT_NUMERIC_COST",
+          "official": 10,
+          "secondary": 10
+        }
+      ],
+      "limitations": []
+    }
+  ]
+}

@@ -1,9 +1,11 @@
-Dark Angels V2 — native factual foundation (Stage 2A)
+Dark Angels V2 — native factual foundation + central pricing (Stage 2B)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
 Independent source QA: python books/dark-angels/v2/foundation-qa.py
-Reference/condition/MFM boundary QA: python books/dark-angels/v2/reference-qa.py
+Reference/condition boundary QA: python books/dark-angels/v2/reference-qa.py
+Pricing source QA: python books/dark-angels/v2/mfm-qa.py
+Native pricing build/check: node books/dark-angels/v2/mfm-build.mjs [--check]
 Python requires lxml, as in the existing SM V2 factual producer.
 
 Ownership pipeline
@@ -28,16 +30,24 @@ physical loadout assignments. Nested abilities retain their source section link.
 Inherited SM data
 inherited-sm-references.json references the existing SM effective owner. It does
 not copy SM stats, texts or weapon profiles or reapply SM official corrections.
-Chapter conditions and MFM candidates are non-executable ledgers. The existing
+Chapter conditions remain non-executable. Source-proven MFM identities bind pricing only. The existing
 shared mixed-owner context guard is unchanged. A reference ledger alone proves
 neither runtime integration nor physical Chapter context.
 
 Boundary
-No points, executor, importer, runtime contracts, registration, UI or Glossary
-are implemented here. Central DA MFM v1.4 is not consumed; v1.6 is candidate-only.
-All active gameplay bindings and Chapter keyword grants remain zero.
+MFM v1.6 now owns DA numeric facts centrally. mfm-bindings.json joins proven
+native source identities to central records. mfm-mapping-review.json records the
+independent source proof. mfm-boundary.mjs validates those joins; mfm-build.mjs
+uses the existing createEffectiveMfmArmyProjection, without a legacy builder.
+Generated mfm-presentation.json is a pricing projection, not a registered Army
+Book UI. No numeric MFM values are copied into DA canonical factual entities.
+All 69 shared prices stay SM-owned; inherited pricing references carry IDs only.
+No physical importer, executor, registration, UI or Glossary is implemented here.
+Chapter keyword grants and mixed-owner runtime remain inactive/unproven.
 Astraeus/Thunderhawk remain MFM-only; Deathwatch Support has a separate owner.
-The paid Cyclone option is a source candidate, never an inferred physical charge.
+The Cyclone price is unit-owned source data; no MODEL, selection or physical
+charge is inferred. Historical DA Legends retain their original v1.4 provenance.
+Lazarus source relation disagreement is preserved; eligibility is not activated.
 
 Source confidence
 SOURCE_COMPLETENESS=PARTIAL; SEMANTIC_COMPLETENESS=NOT_PROVEN.

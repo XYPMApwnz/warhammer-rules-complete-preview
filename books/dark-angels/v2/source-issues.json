@@ -14,8 +14,8 @@
     },
     {
       "id": "da-mfm-enrollment",
-      "status": "BLOCKED",
-      "detail": "Central DA remains v1.4; old points unusable. Official v1.6 captured for candidates only; no active pricing or relation bindings."
+      "status": "NATIVE_PRICING_BOUND_PHYSICAL_PRICING_NOT_IMPLEMENTED",
+      "detail": "Central DA v1.6 enrolled; only source-proven native pricing identities are active. Historical v1.4 points are not used. Physical paid-option selection and mixed-owner runtime are not implemented."
     },
     {
       "id": "da-chapter-conditions",
@@ -25,7 +25,12 @@
     {
       "id": "da-real-new-recruit-export",
       "status": "NOT_PROVEN",
-      "detail": "No verified real DA New Recruit export tested. Stage2A adds no importer."
+      "detail": "No verified real DA New Recruit export tested. Stages 2A/2B add no physical importer."
+    },
+    {
+      "id": "da-lazarus-leader-source-discrepancy",
+      "status": "SOURCE_CONFLICT",
+      "detail": "Official MFM v1.6 Lazarus LEADER includes COMPANY HEROES and omits HELLBLASTER SQUAD; accepted Army source lists HELLBLASTER SQUAD and omits COMPANY HEROES. Both original source declarations retained. No DA runtime relation eligibility activated in Stage2B."
     }
   ]
 }
