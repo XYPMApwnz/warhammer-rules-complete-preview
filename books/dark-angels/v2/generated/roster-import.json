@@ -1584,10 +1584,27 @@
             "sourceText": "The Emperor's Shield: Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "INCOMING_MODIFIER",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "field": "WOUND_ROLL",
+                "mode": "ADD",
+                "value": -1,
+                "comparison": "ATTACK_STRENGTH_GT_TARGET_TOUGHNESS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Emperor's Shield: Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
+              },
+              "contextQuote": "The Emperor's Shield: Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
+            }
           }
         ],
         "currentness": {
@@ -3823,10 +3840,27 @@
             "sourceText": "- Melee attacks that target this unit have -1 to hit rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "INCOMING_MODIFIER",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "field": "HIT_ROLL",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "melee"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Melee attacks that target this unit have -1 to hit rolls."
+              },
+              "contextQuote": "Braziers of Judgement:\n- This unit has Stealth.\n- Melee attacks that target this unit have -1 to hit rolls."
+            }
           }
         ],
         "currentness": {
@@ -4840,10 +4874,27 @@
             "sourceText": "Lightning-fast Manoeuvres: Ranged attacks that target this unit have -1 to wound rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "INCOMING_MODIFIER",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "field": "WOUND_ROLL",
+                "mode": "ADD",
+                "value": -1,
+                "weaponMode": "ranged"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Lightning-fast Manoeuvres: Ranged attacks that target this unit have -1 to wound rolls."
+              },
+              "contextQuote": "Lightning-fast Manoeuvres: Ranged attacks that target this unit have -1 to wound rolls."
+            }
           }
         ],
         "currentness": {
@@ -5695,10 +5746,26 @@
             "sourceText": "- Attacks that target this unit have -1 D.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "INCOMING_MODIFIER",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "field": "DAMAGE",
+                "mode": "ADD",
+                "value": -1
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Attacks that target this unit have -1 D."
+              },
+              "contextQuote": "Inner Circle:\n- Attacks that target this unit have -1 D.\n- This unit cannot be targeted with the Tactical Dreadnought Fortitude stratagem."
+            }
           },
           {
             "id": "review/ability-da-a17359d95b4b4ff4a606/text/57:138",

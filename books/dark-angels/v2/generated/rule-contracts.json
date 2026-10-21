@@ -1,13 +1,13 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "A4EBCF84488AEDDCC2DD7CD2E379EBC55773F46170A3435D80485B3B0703FFEA",
+  "reviewFingerprint": "3A285E190415440B916FBC213457386DB106A5FCC43BC331C6BE827E4D509161",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 191,
-      "CONDITIONAL_TEXT_ONLY": 10,
+      "TEXT_ONLY_SOURCE_BACKED": 187,
+      "CONDITIONAL_TEXT_ONLY": 14,
       "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
@@ -238,6 +238,30 @@
     {
       "recordId": "review/enhancement-da-fb83cfb304e74056b819/text/126:141",
       "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-490661bbb1ff4d45a4b8/text/0:111",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-6fefb0cfda4848bf9dd1/text/48:107",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-7f665e6bf3f0492b91ee/text/0:87",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-a17359d95b4b4ff4a606/text/14:56",
+      "kind": "INCOMING_MODIFIER",
       "recipientScope": "FORMED_UNIT",
       "execution": "CONDITIONAL_TEXT_ONLY"
     }

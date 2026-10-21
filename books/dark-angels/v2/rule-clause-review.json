@@ -9,8 +9,8 @@
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 191,
-      "CONDITIONAL_TEXT_ONLY": 10,
+      "TEXT_ONLY_SOURCE_BACKED": 187,
+      "CONDITIONAL_TEXT_ONLY": 14,
       "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
@@ -1192,9 +1192,9 @@
         "sourceEntityId": "da-source-d07a3b47ce7d4171b1dc",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack."
     },
     {
       "id": "review/ability-da-4c9ca538c02844aa9c2a/text/56:68",
@@ -1822,9 +1822,9 @@
         "sourceEntityId": "da-source-4a0be620f1f64d509459",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack."
     },
     {
       "id": "review/ability-da-71b5b408bc0e4300a85a/text/0:183",
@@ -2104,9 +2104,9 @@
         "sourceEntityId": "da-source-00b9a5143eaf42819d6b",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack."
     },
     {
       "id": "review/ability-da-8be1a0eb6522479d895b/text/0:112",
@@ -2302,9 +2302,9 @@
         "sourceEntityId": "da-source-a9248865a8bc41bbb093",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Typed incoming-attack policy retains actual defending physical UNIT/formation, melee/ranged or S>T qualification and exact source. It does not change outgoing weapons, target T, or resolve an unknown attack."
     },
     {
       "id": "review/ability-da-a17359d95b4b4ff4a606/text/57:138",

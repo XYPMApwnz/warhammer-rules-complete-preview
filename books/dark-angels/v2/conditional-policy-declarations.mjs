@@ -1,7 +1,7 @@
 /** Reviewed Stage4B source spans. These policies never simulate battle events.
  * Source text and provenance are bound from the unchanged mechanical ledger.
  */
-export const activeConditionalPolicyKinds=Object.freeze(['QUALIFIED_FNP','REROLL']);
+export const activeConditionalPolicyKinds=Object.freeze(['QUALIFIED_FNP','REROLL','INCOMING_MODIFIER']);
 export const conditionalPolicyDeclarations=Object.freeze([
  {recordId:'review/ability-da-57f090f793034b989e2a/text/0:86',kind:'QUALIFIED_FNP',recipientScope:'FORMED_UNIT',payload:{threshold:4,damageKinds:['PSYCHIC_ATTACK','MORTAL_WOUND']}},
  {recordId:'review/ability-da-7a6bf94476794dfcbaa6/text/0:86',kind:'QUALIFIED_FNP',recipientScope:'FORMED_UNIT',payload:{threshold:4,damageKinds:['PSYCHIC_ATTACK','MORTAL_WOUND']}},
