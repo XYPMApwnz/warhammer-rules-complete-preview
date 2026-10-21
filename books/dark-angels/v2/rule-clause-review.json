@@ -9,8 +9,8 @@
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 185,
-      "CONDITIONAL_TEXT_ONLY": 16,
+      "TEXT_ONLY_SOURCE_BACKED": 184,
+      "CONDITIONAL_TEXT_ONLY": 17,
       "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
@@ -2330,9 +2330,9 @@
         "sourceEntityId": "da-source-a9248865a8bc41bbb093",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Source-scoped prohibition references exact inherited SM Stratagem stratagem-sm-d642d4d85db04dc9 and its canonical owner. No targeting attempt is assumed or automatically validated; no other Stratagem is implicitly restricted."
     },
     {
       "id": "review/ability-da-a9d37be88a7a4a5a9efd/text/31:54",

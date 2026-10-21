@@ -1,13 +1,13 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "EA2AC38C8513B5041D3029189D6F5D75836E4F2B0345A7DF8E4D10EB873190BB",
+  "reviewFingerprint": "D863F4F05600B9D105339E1A15C5C9307731373CB2EDF0CEE150A0A24B24F0A9",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 185,
-      "CONDITIONAL_TEXT_ONLY": 16,
+      "TEXT_ONLY_SOURCE_BACKED": 184,
+      "CONDITIONAL_TEXT_ONLY": 17,
       "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
@@ -274,6 +274,12 @@
     {
       "recordId": "review/ability-da-4c9ca538c02844aa9c2a/text/69:81",
       "kind": "IGNORE_MODIFIERS",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-a17359d95b4b4ff4a606/text/57:138",
+      "kind": "STRATAGEM_TARGET_RESTRICTION",
       "recipientScope": "FORMED_UNIT",
       "execution": "CONDITIONAL_TEXT_ONLY"
     }
