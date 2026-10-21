@@ -9,6 +9,7 @@ import {buildSpaceMarinesContracts} from '../../space-marines/v2/rule-contract-b
 import {declarations,enhancementEligibility,recipientIdentityProofs} from './rule-contract-declarations.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {bindDarkAngelsNative} from './native-ability-bindings.mjs';
+import {bindDarkAngelsChapterSources} from './chapter-bindings-build.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
@@ -130,12 +131,13 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   for(const clause of entity.ruleContract.clauses)clause.rosterEffects=pending.get(clause.id);
  }
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
- const schema=createDarkAngelsRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+ const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
+ const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
- const artifact={scope:'STAGE_3A_NATIVE_DA_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
+ const artifact={scope:'STAGE_3B_NATIVE_PHYSICAL_CHAPTER_CONTEXT',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
   coverage:clone(review.coverage),executed,...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
-  chapterConditions:26,chapterGrantsActive:0,chapterContext:'NOT_PROVEN_NO_PHYSICAL_SOURCE_BINDER',
+  chapterConditions:26,chapterGrantsActive:0,chapterContext:'16_FIXED_SOURCE_CHAPTERS; 67_INHERITED_NOT_PROVEN',physicalChapterCoverage,
   unsupported:['INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','UNKNOWN_BATTLE_EVENTS'],
   inheritedPhysicalChoiceBindings:'Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.',
   relations:'INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT',physicalCycloneCharge:false,realNewRecruitExportTested:false};

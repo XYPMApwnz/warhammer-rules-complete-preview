@@ -1,5 +1,5 @@
 {
-  "scope": "STAGE_3A_NATIVE_DA_GAMEPLAY",
+  "scope": "STAGE_3B_NATIVE_PHYSICAL_CHAPTER_CONTEXT",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
   "reviewFingerprint": "8E3F24DF00D991151F88FB6B4476D124F16EE3AB4D2E2B4B8AE8C0D20ED5E232",
   "coverage": {
@@ -1091,7 +1091,20 @@
   "inheritedTypedClauses": 35,
   "chapterConditions": 26,
   "chapterGrantsActive": 0,
-  "chapterContext": "NOT_PROVEN_NO_PHYSICAL_SOURCE_BINDER",
+  "chapterContext": "16_FIXED_SOURCE_CHAPTERS; 67_INHERITED_NOT_PROVEN",
+  "physicalChapterCoverage": {
+    "fixedSourceChapters": 16,
+    "unresolvedInheritedChapters": 67,
+    "deathwingProofs": 0,
+    "deathwingConditions": 18,
+    "ravenwingProofs": 0,
+    "ravenwingConditions": 8,
+    "activeGrants": 0,
+    "basis": "EXPLICIT_SECOND_DATASHEET_FACTION_KEYWORD",
+    "missingEvidence": "NO_REVIEWED_PER_PHYSICAL_UNIT_CHAPTER_DECLARATION_FOR_GENERIC_SM",
+    "sharedChanges": 0,
+    "realNewRecruitExportTested": false
+  },
   "unsupported": [
     "INCOMING_WOUND_ROLL",
     "INCOMING_DAMAGE",

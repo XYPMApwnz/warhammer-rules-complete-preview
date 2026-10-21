@@ -9,8 +9,8 @@
     },
     {
       "id": "da-mixed-owner-context",
-      "status": "NATIVE_CONSUMER_PROJECTIONS_VERIFIED_PHYSICAL_CHAPTER_NOT_PROVEN",
-      "detail": "180 inherited references and 83 Datasheet members are resolved in a disposable mixed-owner view. Existing consumer-domain caption metadata satisfies the unchanged context guard. No full DA importer/gameplay or source-proven physical Chapter assignment is implemented."
+      "status": "NATIVE_PROJECTIONS_VERIFIED_FIXED_CHAPTERS_PROVEN_INHERITED_CHAPTER_NOT_PROVEN",
+      "detail": "180 inherited references and 83 Datasheet members resolve with the unchanged consumer-domain guard. Physical Chapter is source-proven for 16 fixed DA Datasheets by their second Faction keyword; 67 generic SM members have no reviewed physical Chapter declaration. Full DA importer/gameplay remains incomplete."
     },
     {
       "id": "da-mfm-enrollment",
@@ -20,7 +20,7 @@
     {
       "id": "da-chapter-conditions",
       "status": "SOURCE_CONDITIONS_REVIEWED_EXECUTION_DEFERRED",
-      "detail": "26 UNIT recipients require confirmed physical Dark Angels context. No automatic MODEL/formed-unit propagation and no keyword grants active."
+      "detail": "All 26 reviewed recipients are generic SM UNITs without a second Datasheet Faction keyword or reviewed per-UNIT Chapter declaration. Their Chapter context remains NOT_PROVEN and grants remain inactive. The 16 source-fixed DA Chapter proofs do not establish Chapter for these recipients, their attached partners or MODELs."
     },
     {
       "id": "da-real-new-recruit-export",

@@ -40,7 +40,7 @@ export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
  payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
  payload.rulePresentationLimitations={...payload.rulePresentationLimitations,scope:'STAGE_3A_NATIVE_GAMEPLAY',
   runtime:'EXISTING_SHARED_PHYSICAL_RUNTIME',sourceCoverage:clone(built.artifact.coverage),
-  physicalChapterContext:'NOT_PROVEN; 26 KEYWORD GRANTS INACTIVE',
+  physicalChapterContext:'16 FIXED_SOURCE_CHAPTERS; 67 INHERITED NOT_PROVEN; 26 KEYWORD GRANTS INACTIVE',
   conditionalFnp:'FULL_QUALIFIED_SOURCE_TEXT; NO_UNCONDITIONAL_FNP',
   battleState:'NOT_SIMULATED',relations:'INACTIVE_SOURCE_DECLARATIONS',
   importer:'NOT_IMPLEMENTED',frontend:'NOT_REGISTERED_OR_BROWSER_VERIFIED'};

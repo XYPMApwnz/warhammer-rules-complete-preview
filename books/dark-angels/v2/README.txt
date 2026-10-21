@@ -1,4 +1,4 @@
-Dark Angels V2 — native foundation, mixed-owner projection and gameplay (Stage 3A)
+Dark Angels V2 — native gameplay and physical Chapter evidence (Stage 3B)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -126,8 +126,41 @@ copied into MODEL keywords. Attachment permissions remain inactive; diagnostic
 formation tests prove scope only, not source-valid attachment eligibility.
 
 CHAPTER_CONTEXT_SOURCE=NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT. Parser/import only
-has army-level faction metadata. There is no source-qualified producer validating
-Chapter for a physical UNIT; book, Detachment, attachments and arbitrary snapshot
+has army-level faction metadata. There is no source-qualified declaration proving
+Chapter for a generic inherited physical UNIT; book, Detachment, attachments and arbitrary snapshot
 properties cannot supply that evidence. All 18 DEATHWING and 8 RAVENWING grants
 remain inactive. Existing FIELD and GRANT_UNIT_KEYWORD/PHYSICAL are sufficient once
 a separately proven physical source binding exists; no shared capability was added.
+
+Physical Chapter validation
+QA: node books/dark-angels/v2/physical-chapter-qa.mjs
+
+The accepted SM source condition army-rule-sm-0fc8f686c793466d defines an actual
+second Datasheet Faction keyword as that UNIT's Chapter. chapter-source-review.json
+pins this existing source and 16 exact DA Faction Keyword panels. This is proof
+metadata over canonical owners, not a new Chapter catalog or assignment input.
+chapter-bindings-build.mjs verifies canonical/source identities, field fingerprints
+and ownership. The consumer membership remains 83 Datasheets and 180 inherited
+references; the SM source condition is an evidence reference, not an extra DA rule.
+
+physical-chapter.mjs validates the existing physical roster and resolves each
+physical instance independently. Its canonical Datasheet must have the reviewed
+second Faction keyword. All 16 DA-owned types have explicit DARK ANGELS; the 67
+generic SM types have only ADEPTUS ASTARTES and remain CHAPTER_CONTEXT_NOT_PROVEN.
+Ownership, ordinary/formed keywords, title, army faction, Detachment and attachment
+are not Chapter proof. Unvalidated snapshot Chapter fields are ignored.
+
+The existing runtime adapter recomputes contexts atomically on every load. Query
+chapterContext(instanceId) returns the canonical source references and disposition.
+UNIT context exposes source-derived daPhysicalChapter only when proven, plus
+daChapterContextStatus. Caller extras cannot supply either field. Nothing is
+written into the snapshot or MODEL keywords; MODEL context receives no UNIT Chapter
+field. Invalid load preserves the previous runtime and Chapter contexts.
+
+All 26 reviewed DEATHWING/RAVENWING recipients are generic SM units, so this source
+proof activates zero new grants. Existing source-native DA keywords are preserved.
+Missing evidence: a reviewed per-UNIT Chapter declaration tied to its physical
+identity, or an accepted rule establishing equivalent per-UNIT semantics for a
+validated army Chapter declaration. Neither is available in the accepted inputs.
+Shared import candidate handoff is tested with constructed snapshots only; a
+complete DA importer and genuine New Recruit export remain unverified.
