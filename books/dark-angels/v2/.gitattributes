@@ -4,3 +4,5 @@
 .gitattributes text eol=lf
 # Preserve SHA-pinned captures byte for byte, as in SM V2.
 sources/raw/* -text -eol -diff
+# Preserve the accepted byte-pinned enrollment, including its CRLF endings.
+sources/enrollment.json -text -eol whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
