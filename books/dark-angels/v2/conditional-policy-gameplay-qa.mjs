@@ -18,7 +18,7 @@ const ledger=JSON.parse(fs.readFileSync(new URL('./rule-clause-review.json',impo
 const sources=new Map(ledger.records.map(row=>[row.id,row]));
 const cards=new Map(buildGameplayPresentation(built).cards.map(card=>[card.id,card]));
 const active=conditionalPolicyDeclarations.filter(row=>activeConditionalPolicyKinds.includes(row.kind));
-const checks=[],check=(id,fn)=>{fn();checks.push({id,status:'PASS'});};
+const cases=[],checks=[],check=(id,fn)=>{fn();checks.push({id,status:'PASS'});};
 const DA={intercessors:'unit-sm-59162946fee84360',sammael:'unit-da-0e189995095847bf9d47',vengeance:'unit-da-48fe8c59ed2449e1a36b',inner:'detachment-da-7e310c5c15914267a0ae',darkflight:'detachment-da-d7c1a2b23f2e443aa22a'};
 const ruleFor=spec=>records.get(sources.get(spec.recordId)?.canonicalId);
 const unit=(projection,id)=>projection.units.find(row=>row.instanceId===id);
@@ -71,7 +71,7 @@ check('source-span-ledger-and-kind-activation',()=>{
 for(const spec of active){
  check(spec.recordId+'/physical-source-and-non-numeric',()=>{
   const state=stateFor(spec),projection=project(state);assertInvariant(state,projection);
-  const own=policies(projection,'source',spec.recordId);assert.equal(own.length,1);assertRow(own[0],spec);
+  const own=policies(projection,'source',spec.recordId);assert.equal(own.length,1);assertRow(own[0],spec);cases.push({recordId:spec.recordId,sourceIdentity:sources.get(spec.recordId).sourceEntityId,sourcePhysicalUnitId:state.units[0].canonicalUnitId,sourceInstanceId:own[0].sourceInstanceId,sourceModelScopeId:own[0].sourceModelScopeId,actualPhysicalRecipientIds:own[0].recipientInstanceIds,recipientScope:spec.recipientScope,kind:spec.kind,payload:spec.payload,fullConditions:sources.get(spec.recordId).contextQuote,sourceProvenance:own[0].sourceProvenance,models:unit(projection,'source').profiles.map(m=>({profileId:m.canonicalProfileId,scopeId:m.scopeId,quantity:m.quantity})),status:'CONDITIONAL_TEXT_ONLY',automaticExecution:false});
   assert.deepEqual(own[0].recipientInstanceIds,spec.recipientScope==='AURA_UNRESOLVED'?[]:['source']);
   assert.equal(policies(projection,'unrelated',spec.recordId).length,0);
   const rule=ruleFor(spec),enhancement=rule.kind==='ENHANCEMENT';
@@ -110,4 +110,4 @@ for(const spec of active){
   });
  }
 }
-console.log(JSON.stringify({status:'PASS',activeKinds:activeConditionalPolicyKinds,activeSourceSpans:active.length,checks:checks.length,results:checks,conditionalOnly:true,realNewRecruitExportTested:false}));
+console.log(JSON.stringify({status:'PASS',activeKinds:activeConditionalPolicyKinds,activeSourceSpans:active.length,checks:checks.length,results:checks,cases,conditionalOnly:true,realNewRecruitExportTested:false}));

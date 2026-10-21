@@ -1861,10 +1861,26 @@
             "sourceText": "Exemplar of Hate: This unit’s melee attacks can re-roll hit rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "roll": "HIT",
+                "results": "ALL",
+                "weaponMode": "melee"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Exemplar of Hate: This unit’s melee attacks can re-roll hit rolls."
+              },
+              "contextQuote": "Exemplar of Hate: This unit’s melee attacks can re-roll hit rolls."
+            }
           }
         ],
         "currentness": {
@@ -2239,10 +2255,32 @@
             "sourceText": "- Re-roll hit rolls of 1.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "AURA_UNRESOLVED",
+              "activationReferenceId": "ability-da-2ed6377b2f794e0ea8af",
+              "payload": {
+                "roll": "HIT",
+                "results": "ONES",
+                "weaponMode": "melee"
+              },
+              "aura": {
+                "range": 6,
+                "allegiance": "FRIENDLY",
+                "unitKeyword": "DARK ANGELS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Re-roll hit rolls of 1."
+              },
+              "contextQuote": "Martial Exemplar: While a friendly DARK ANGELS unit is within 6\" of this unit, that unit’s melee attacks can:\n- Re-roll hit rolls of 1.\n- Re-roll wound rolls of 1."
+            }
           },
           {
             "id": "review/ability-da-531bbeae023c4f4fa766/text/136:163",
@@ -2282,10 +2320,32 @@
             "sourceText": "- Re-roll wound rolls of 1.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "AURA_UNRESOLVED",
+              "activationReferenceId": "ability-da-2ed6377b2f794e0ea8af",
+              "payload": {
+                "roll": "WOUND",
+                "results": "ONES",
+                "weaponMode": "melee"
+              },
+              "aura": {
+                "range": 6,
+                "allegiance": "FRIENDLY",
+                "unitKeyword": "DARK ANGELS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Re-roll wound rolls of 1."
+              },
+              "contextQuote": "Martial Exemplar: While a friendly DARK ANGELS unit is within 6\" of this unit, that unit’s melee attacks can:\n- Re-roll hit rolls of 1.\n- Re-roll wound rolls of 1."
+            }
           }
         ],
         "currentness": {
@@ -34553,10 +34613,25 @@
             "sourceText": "This unit can re-roll charge rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "roll": "CHARGE",
+                "results": "ALL"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This unit can re-roll charge rolls."
+              },
+              "contextQuote": "- Lord of the Ravenwing\nRAVENWING model only. This unit can re-roll charge rolls."
+            }
           }
         ],
         "detachmentId": "detachment-da-5a438082b8a74f8e8e08",
@@ -35177,10 +35252,25 @@
             "sourceText": "- Rolls to determine the A of a weapon.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "roll": "WEAPON_ATTACKS",
+                "results": "ALL"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Rolls to determine the A of a weapon."
+              },
+              "contextQuote": "- Nightforged BatteryUPGRADE\nLAND SPEEDER VENGEANCE unit only. This unit can re-roll:\n- Rolls to determine the A of a weapon.\n- Hazard rolls."
+            }
           },
           {
             "id": "review/enhancement-da-fb83cfb304e74056b819/text/126:141",
@@ -35222,10 +35312,25 @@
             "sourceText": "- Hazard rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-scoped typed reroll permission retains exact roll kind/results/melee restriction and physical source/bearer/formed recipient. No dice result or numeric proxy. Lion aura recipients and Primarch activation remain unresolved.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "roll": "HAZARD",
+                "results": "ALL"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Hazard rolls."
+              },
+              "contextQuote": "- Nightforged BatteryUPGRADE\nLAND SPEEDER VENGEANCE unit only. This unit can re-roll:\n- Rolls to determine the A of a weapon.\n- Hazard rolls."
+            }
           }
         ],
         "detachmentId": "detachment-da-d7c1a2b23f2e443aa22a",

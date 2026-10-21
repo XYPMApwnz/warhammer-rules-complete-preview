@@ -1,14 +1,14 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "B50EBB8BF442E3BB1F2DED8E3B90857AD5D2E4C0BD48A1B9D642C8AA6EBF83B9",
+  "reviewFingerprint": "A4EBCF84488AEDDCC2DD7CD2E379EBC55773F46170A3435D80485B3B0703FFEA",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 197,
+      "TEXT_ONLY_SOURCE_BACKED": 191,
+      "CONDITIONAL_TEXT_ONLY": 10,
       "EXECUTABLE_PROVEN": 43,
-      "CONDITIONAL_TEXT_ONLY": 4,
       "NOT_PROVEN": 8
     },
     "categories": {
@@ -203,6 +203,42 @@
       "recordId": "review/ability-da-8db740d71770467d858e/text/0:162",
       "kind": "QUALIFIED_FNP",
       "recipientScope": "AURA_UNRESOLVED",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-4d018955efb84dfc9751/text/0:66",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-531bbeae023c4f4fa766/text/110:135",
+      "kind": "REROLL",
+      "recipientScope": "AURA_UNRESOLVED",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/ability-da-531bbeae023c4f4fa766/text/136:163",
+      "kind": "REROLL",
+      "recipientScope": "AURA_UNRESOLVED",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/enhancement-da-822dfec678424ec293c2/text/46:81",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/enhancement-da-fb83cfb304e74056b819/text/86:125",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "CONDITIONAL_TEXT_ONLY"
+    },
+    {
+      "recordId": "review/enhancement-da-fb83cfb304e74056b819/text/126:141",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
       "execution": "CONDITIONAL_TEXT_ONLY"
     }
   ],
