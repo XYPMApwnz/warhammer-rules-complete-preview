@@ -129,9 +129,9 @@ export function runDarkAngelsGameplayQA(built=buildDarkAngelsContracts()){
   check('source-independent-nine-lowerings',()=>{
     assert.equal(scenarios.length,9);
     for(const row of scenarios)assert.ok(sources.get(row.rule)?.data.text.includes(row.quote),'Independent accepted source expectation changed '+row.id);
-    const executable=book.entities.filter(e=>e.bookId==='dark-angels'&&e.kind!=='ARMY_RULE').flatMap(e=>(e.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>({rule:e.id,clause:c.id})));
+    const executable=book.entities.filter(e=>e.bookId==='dark-angels'&&e.kind!=='ARMY_RULE'&&e.id!=='ability-da-a9d37be88a7a4a5a9efd').flatMap(e=>(e.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>({rule:e.id,clause:c.id})));
     assert.equal(executable.length,9,'Independent lowering denominator differs');
-    assert.equal(built.artifact.executed.length,15,'Nine original and six separately tested army clauses required');
+    assert.equal(built.artifact.executed.length,16,'Nine original, six Army and one separately tested MOBILE clause required');
     assert.deepEqual([...new Set(executable.map(row=>row.rule))].sort(),[...new Set(scenarios.map(row=>row.rule))].sort());
   });
   for(const row of scenarios){

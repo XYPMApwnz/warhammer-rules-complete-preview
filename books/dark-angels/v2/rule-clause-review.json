@@ -9,8 +9,8 @@
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 203,
-      "EXECUTABLE_PROVEN": 41,
+      "TEXT_ONLY_SOURCE_BACKED": 202,
+      "EXECUTABLE_PROVEN": 42,
       "NOT_PROVEN": 8
     },
     "categories": {
@@ -28,7 +28,7 @@
     "nativeWeaponProfiles": 68,
     "nativeAbilities": 12,
     "nativeInvulnerablePanels": 15,
-    "fullyCoveredTypedProofs": 14,
+    "fullyCoveredTypedProofs": 15,
     "partialTypedProofs": 1
   },
   "layoutOnly": [
@@ -2361,9 +2361,34 @@
         "sourceEntityId": "da-source-9153eeea0f2a40a9a830",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "grand-master-mobile-models"
+      ],
+      "reason": "Static MOBILE only. Core01-02 UNIT ability applies to each MODEL and Core13-06 gives MOBILE MODEL terrain semantics. Source physical MODELs when detached, actual formed-unit MODELs when attached; the following Command-phase Doctrine bullet is not executed.",
+      "implementation": {
+        "conditions": [
+          "Source physical Sammael instance present",
+          "Existing attachment graph determines actual formed UNIT membership; no battle condition assumed"
+        ],
+        "physicalRecipient": "SOURCE_UNIT_MODELS detached; SOURCE_FORMED_MODELS attached",
+        "effect": {
+          "operation": "GRANT_MODEL_KEYWORD",
+          "keyword": "MOBILE"
+        },
+        "coreReferences": [
+          "core-rule-01-02-units-and-models",
+          "core-rule-13-06-terrain-and-movement"
+        ],
+        "negativeQA": [
+          "Absent Sammael source",
+          "Independent repeated Bodyguard UNIT",
+          "Detach/reattach does not retain a departed source contribution",
+          "Doctrine remains unselected; no UNKNOWN battle event assumed",
+          "DW/RW UNIT keywords remain absent from generic MODELs"
+        ],
+        "targetedQA": "books/dark-angels/v2/static-gameplay-qa.mjs"
+      }
     },
     {
       "id": "review/ability-da-a9d37be88a7a4a5a9efd/text/55:105",

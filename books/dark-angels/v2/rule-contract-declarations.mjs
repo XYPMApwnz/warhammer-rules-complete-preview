@@ -3,6 +3,11 @@
 const stat=(field,value,extra={})=>({operation:'MODIFY_STAT',field,mode:'ADD',value,...extra});
 const weapon=(ability,weaponMode)=>({operation:'GRANT_WEAPON_ABILITY',ability,...(weaponMode?{weaponMode}:{})});
 export const declarations=[
+ {ruleId:'ability-da-a9d37be88a7a4a5a9efd',clauseId:'grand-master-mobile-models',quote:'- This unit has MOBILE.',
+  targetBinding:'SOURCE_FORMED_MODELS',targetSubject:'MODEL',formedOrPhysical:true,
+  effects:[{operation:'GRANT_MODEL_KEYWORD',keyword:'MOBILE'}],
+  coreDependencies:[{id:'core-rule-01-02-units-and-models',quote:'When an effect or ability applies to a unit, it applies to every model in that unit.'},
+   {id:'core-rule-13-06-terrain-and-movement',quote:'INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.'}]},
  {ruleId:'ability-da-7cd58c9465f544f08e8b',clauseId:'supreme-grand-master',quote:'Supreme Grand Master: This unit’s attacks have [SUSTAINED HITS 1].',targetBinding:'SOURCE_UNIT',targetSubject:'UNIT',effects:[weapon('SUSTAINED HITS 1')]},
  {ruleId:'ability-da-594a7ae294c948b39173',clauseId:'book-of-salvation',quote:'Book of Salvation: This unit’s melee attacks have +1 A.',targetBinding:'SOURCE_UNIT',targetSubject:'UNIT',effects:[stat('attacks',1,{weaponMode:'melee'})]},
  {ruleId:'ability-da-6fefb0cfda4848bf9dd1',clauseId:'braziers-stealth',quote:'This unit has Stealth.',targetBinding:'SOURCE_UNIT',targetSubject:'UNIT',effects:[{operation:'GRANT_ABILITY',ability:{canonicalId:'core-stealth',parameters:{}},unitScope:'FORMED'}]},

@@ -1,4 +1,4 @@
-Dark Angels V2 — native physical import (Stage 3C)
+Dark Angels V2 — static gameplay completion (Stage 3D)
 
 Offline build: python books/dark-angels/v2/build.py
 Freshness: python books/dark-angels/v2/build.py --check
@@ -226,3 +226,29 @@ Runtime modules are browser-native and exposed through the standard roster boot.
 No production registration, browser acceptance or actual New Recruit export is
 claimed. REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL and
 SEMANTIC_COMPLETENESS=NOT_PROVEN remain. Conditional battle mechanics retain text.
+
+Static gameplay completion (Stage 3D)
+QA: node books/dark-angels/v2/static-gameplay-qa.mjs
+
+The unchanged 252-clause source ledger now records 42 EXECUTABLE_PROVEN,
+202 TEXT_ONLY_SOURCE_BACKED and 8 NOT_PROVEN. This stage adds only Sammael's
+literal "This unit has MOBILE." clause. Core units-and-models and terrain
+movement definitions explicitly prove MODEL scope. Existing GRANT_MODEL_KEYWORD
+targets the source's physical models while detached and validated formed models
+while attached; those two branches are exclusive. Source/Core provenance is
+retained. No movement simulation or new shared operation is introduced.
+
+Independent constructed-input checks cover repeated bodyguards, Leader/Support
+formations, coexistence with the Ancient's OC modifier, detach/reattach, recompute,
+snapshot reload, identical reimport and confirmed source removal. Effective and
+Personal projectors retain MOBILE and its physical source. Mutation controls
+remove the effect, corrupt the Core scope proof and omit formed recipients.
+Chapter grants remain UNIT-scoped and require the existing army proof; generic-only
+input remains unresolved. Darkflight's RAVENWING+FLY restriction is unchanged.
+
+Command-phase Doctrine choice, incoming modifiers, rerolls, qualified FNP,
+unknown proximity, Advance-roll/CP mechanics and unknown battle events remain
+non-executable source text. The 8 unresolved clauses remain Lazarus source
+relation conflicts. Ten MFM relation-only references remain inactive. Full source
+and semantic completeness, authentic NR export and browser acceptance are not
+claimed. No changes to SM facts, central MFM or shared production are required.

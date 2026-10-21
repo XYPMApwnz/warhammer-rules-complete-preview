@@ -102,6 +102,10 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   const specs=inputs.filter(input=>input.ruleId===id);
   for(const input of specs){
    assert.ok(entity.data.text.includes(input.quote),'Missing literal effect source');
+   for(const proof of input.coreDependencies||[]){
+    const dependency=core.getById(proof.id);
+    assert.ok(dependency?.state==='FULL_CONTENT'&&dependency.text.includes(proof.quote),'Unproved Core static dependency');
+   }
    const proof={field:['text'],quote:input.quote},conditions=[];
    if(input.equipment)conditions.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'equipmentRequirementSatisfied',equals:true},proof,'ROSTER')});
    if(input.presence)conditions.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:input.presence,equals:true},proof,'ROSTER')});
@@ -114,7 +118,8 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
     if(branch.attached!==undefined)gated.push({binding:'SOURCE',predicate:atom('FIELD','UNIT',{key:'attached',equals:branch.attached},proof,'ROSTER')});
     const effect={id:`${id}::${input.clauseId}/${n+1}/${i+1}`,...clone(operation),targetBinding:branch.binding,targetSubject:input.targetSubject,
      conditions:gated,evidence:proof,sourceFields:[['text']],lifetime:input.armyContext?'ROSTER':enhancement?'WHILE_ASSIGNED':detachment?'WHILE_DETACHMENT_SELECTED':input.equipment?'WHILE_EQUIPPED':'WHILE_SOURCE_UNIT_PRESENT',
-     provenance:{canonicalRuleId:id,canonicalOwnerId:entity.parentId||book.bookId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance)}};
+     provenance:{canonicalRuleId:id,canonicalOwnerId:entity.parentId||book.bookId,canonicalClauseId:input.clauseId,sourceEvidence:clone(entity.provenance),
+      ...(input.coreDependencies?{coreEvidence:input.coreDependencies.map(proof=>({...clone(proof),provenance:clone(core.getById(proof.id).provenance)}))}:{})}};
     if(input.equipment)effect.equipmentRequirement={binding:'SOURCE',kind:'EQUIPMENT_PRESENT',equipmentId:id,sourceFieldPath:['text']};
     return effect;
    }));
@@ -136,11 +141,11 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
- const artifact={scope:'STAGE_3B_1_SOURCE_REVIEWED_ARMY_APPLICABILITY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
+ const artifact={scope:'STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
   coverage:clone(review.coverage),executed,...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
-  unsupported:['INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','UNKNOWN_BATTLE_EVENTS'],
+  unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','ADVANCE_ROLL_METRIC','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],
   inheritedPhysicalChoiceBindings:'Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.',
   relations:'INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT',physicalCycloneCharge:false,realNewRecruitExportTested:false};
  return {book,schema,artifact,native,sm};

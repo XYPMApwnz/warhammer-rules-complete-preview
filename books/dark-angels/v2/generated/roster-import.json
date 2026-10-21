@@ -5668,7 +5668,7 @@
         ],
         "clauses": [
           {
-            "id": "review/ability-da-a9d37be88a7a4a5a9efd/text/31:54",
+            "id": "grand-master-mobile-models",
             "roles": [
               {
                 "id": "owner",
@@ -5703,12 +5703,176 @@
               "quote": "- This unit has MOBILE."
             },
             "sourceText": "- This unit has MOBILE.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Source-reviewed static/physical lowering."
             },
-            "rosterEffects": []
+            "rosterEffects": [
+              {
+                "id": "ability-da-a9d37be88a7a4a5a9efd::grand-master-mobile-models/1/1",
+                "operation": "GRANT_MODEL_KEYWORD",
+                "keyword": "MOBILE",
+                "targetBinding": "SOURCE_FORMED_MODELS",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "key": "attached",
+                        "equals": true
+                      },
+                      "contextLevel": "ROSTER",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- This unit has MOBILE."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- This unit has MOBILE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-da-a9d37be88a7a4a5a9efd",
+                  "canonicalOwnerId": "unit-da-0e189995095847bf9d47",
+                  "canonicalClauseId": "grand-master-mobile-models",
+                  "sourceEvidence": {
+                    "sourceId": "dark-angels-waha-11e-2026-10-21",
+                    "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "da-source-9153eeea0f2a40a9a830",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "coreEvidence": [
+                    {
+                      "id": "core-rule-01-02-units-and-models",
+                      "quote": "When an effect or ability applies to a unit, it applies to every model in that unit.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "core-rule-13-06-terrain-and-movement",
+                      "quote": "INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "ability-da-a9d37be88a7a4a5a9efd::grand-master-mobile-models/2/1",
+                "operation": "GRANT_MODEL_KEYWORD",
+                "keyword": "MOBILE",
+                "targetBinding": "SOURCE_UNIT_MODELS",
+                "targetSubject": "MODEL",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "key": "attached",
+                        "equals": false
+                      },
+                      "contextLevel": "ROSTER",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- This unit has MOBILE."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- This unit has MOBILE."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-da-a9d37be88a7a4a5a9efd",
+                  "canonicalOwnerId": "unit-da-0e189995095847bf9d47",
+                  "canonicalClauseId": "grand-master-mobile-models",
+                  "sourceEvidence": {
+                    "sourceId": "dark-angels-waha-11e-2026-10-21",
+                    "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[6]/div[4]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "da-source-9153eeea0f2a40a9a830",
+                    "authority": "ACCEPTED_SECONDARY"
+                  },
+                  "coreEvidence": [
+                    {
+                      "id": "core-rule-01-02-units-and-models",
+                      "quote": "When an effect or ability applies to a unit, it applies to every model in that unit.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "core-rule-13-06-terrain-and-movement",
+                      "quote": "INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.",
+                      "provenance": {
+                        "base": {
+                          "sourceId": "waha-core-corpus-2026-09-25",
+                          "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                          "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                          "sourceDate": "2026-09-25",
+                          "sourceScope": "GLOBAL_CORE",
+                          "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           },
           {
             "id": "review/ability-da-a9d37be88a7a4a5a9efd/text/55:105",

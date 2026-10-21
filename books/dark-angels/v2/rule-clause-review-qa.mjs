@@ -51,7 +51,7 @@ for(const entity of built.book.entities.filter(entity=>entity.bookId==='dark-ang
    assert.ok(effect.conditions.some(condition=>condition.predicate.arguments?.key==='daArmyMembershipProven'));
   }
  }
-assert.equal(built.artifact.executed.length,15);assert.equal(built.artifact.coverage.clauses,252);
+assert.equal(built.artifact.executed.length,16);assert.equal(built.artifact.coverage.clauses,252);
 console.log(JSON.stringify({status:'PASS',sourceOwners:expected.length,clauses:review.records.length,
  classifications:review.coverage.classifications,completeNonOverlappingSourceCoverage:true,
- checkedRawDocuments:checkedSourceBytes,typedLowerings:15,fullyCovered:14,partialChargeOnly:1,mutationControls:mutations}));
+ checkedRawDocuments:checkedSourceBytes,typedLowerings:16,fullyCovered:15,partialChargeOnly:1,mutationControls:mutations}));

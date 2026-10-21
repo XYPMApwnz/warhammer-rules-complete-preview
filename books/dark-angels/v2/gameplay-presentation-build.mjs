@@ -38,7 +38,7 @@ export function buildGameplayPresentation(built=buildDarkAngelsContracts()){
  }
  payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
  payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
- payload.rulePresentationLimitations={...payload.rulePresentationLimitations,scope:'STAGE_3B_1_REVIEWED_ARMY_APPLICABILITY',
+ payload.rulePresentationLimitations={...payload.rulePresentationLimitations,scope:'STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY',
   chapterContext:'INTRINSIC_GENERIC_CHAPTER_NOT_PROVEN; ARMY_APPLICABILITY_VALIDATED_SEPARATELY',
   runtime:'EXISTING_SHARED_PHYSICAL_RUNTIME',sourceCoverage:clone(built.artifact.coverage),
   physicalChapterContext:'16 FIXED_SOURCE_CHAPTERS; 26 CONDITIONAL ARMY-MEMBERSHIP GRANTS; GENERIC-ONLY ARMY CONTEXT NOT_PROVEN',
