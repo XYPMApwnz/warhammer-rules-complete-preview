@@ -1718,10 +1718,28 @@
             "sourceText": "- BS and WS.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Exact optional ignore-modifier policy identifies BS/WS or Hit rolls and current physical UNIT/formation. It does not SET skill or silently suppress any existing modifier; application requires the actual attack/modifier and player choice.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "IGNORE_MODIFIERS",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "fields": [
+                  "BS",
+                  "WS"
+                ],
+                "optional": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- BS and WS."
+              },
+              "contextQuote": "Deathwing: This unit’s attacks can ignore modifiers to:\n- BS and WS.\n- Hit rolls."
+            }
           },
           {
             "id": "review/ability-da-4c9ca538c02844aa9c2a/text/69:81",
@@ -1761,10 +1779,27 @@
             "sourceText": "- Hit rolls.",
             "rosterClassification": "DISPLAY_ONLY",
             "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
+              "reason": "Exact optional ignore-modifier policy identifies BS/WS or Hit rolls and current physical UNIT/formation. It does not SET skill or silently suppress any existing modifier; application requires the actual attack/modifier and player choice.",
+              "reviewClassification": "CONDITIONAL_TEXT_ONLY"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "IGNORE_MODIFIERS",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "fields": [
+                  "HIT_ROLL"
+                ],
+                "optional": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Hit rolls."
+              },
+              "contextQuote": "Deathwing: This unit’s attacks can ignore modifiers to:\n- BS and WS.\n- Hit rolls."
+            }
           }
         ],
         "currentness": {

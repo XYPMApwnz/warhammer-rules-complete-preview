@@ -9,8 +9,8 @@
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 187,
-      "CONDITIONAL_TEXT_ONLY": 14,
+      "TEXT_ONLY_SOURCE_BACKED": 185,
+      "CONDITIONAL_TEXT_ONLY": 16,
       "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
@@ -1220,9 +1220,9 @@
         "sourceEntityId": "da-source-3fcf125d78534ad399fc",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Exact optional ignore-modifier policy identifies BS/WS or Hit rolls and current physical UNIT/formation. It does not SET skill or silently suppress any existing modifier; application requires the actual attack/modifier and player choice."
     },
     {
       "id": "review/ability-da-4c9ca538c02844aa9c2a/text/69:81",
@@ -1248,9 +1248,9 @@
         "sourceEntityId": "da-source-3fcf125d78534ad399fc",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
+      "status": "CONDITIONAL_TEXT_ONLY",
       "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed."
+      "reason": "Exact optional ignore-modifier policy identifies BS/WS or Hit rolls and current physical UNIT/formation. It does not SET skill or silently suppress any existing modifier; application requires the actual attack/modifier and player choice."
     },
     {
       "id": "review/ability-da-4d018955efb84dfc9751/text/0:66",
