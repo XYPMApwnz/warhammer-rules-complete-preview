@@ -85,11 +85,11 @@ export function validateRosterEffects(book, validatePredicate, evaluatePredicate
             effect.targetSubject==='MODEL' && effect.unitScope!==undefined ||
             effect.targetSubject==='UNIT' && !['PHYSICAL','FORMED'].includes(effect.unitScope))
           throw new TypeError('Invalid typed Critical Hit threshold');
-      } else if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
-      if (effect.operation === 'MODIFY_RULE_METRIC' && effect.field==='chargeRoll' &&
+      } else if (effect.operation === 'MODIFY_RULE_METRIC' && (!['contagionRange','detectionRange','chargeRoll','advanceRoll'].includes(effect.field) || effect.mode !== 'ADD' || !Number.isFinite(effect.value))) throw new TypeError('Invalid metric operation');
+      if (effect.operation === 'MODIFY_RULE_METRIC' && ['chargeRoll','advanceRoll'].includes(effect.field) &&
           (effect.targetSubject!=='UNIT' || !['PHYSICAL','FORMED'].includes(effect.unitScope) ||
            !Number.isSafeInteger(effect.value) || effect.max!==undefined || effect.weaponMode!==undefined || effect.weaponIds!==undefined))
-        throw new TypeError('Invalid typed UNIT Charge-roll modifier');
+        throw new TypeError(`Invalid typed UNIT ${effect.field==='chargeRoll'?'Charge':'Advance'}-roll modifier`);
       if (effect.operation==='MODIFY_RULE_METRIC' && effect.field==='detectionRange' && effect.unitScope!==undefined &&
           (effect.targetSubject!=='UNIT'||!['PHYSICAL','FORMED'].includes(effect.unitScope)||!Number.isSafeInteger(effect.value)||
            effect.weaponMode!==undefined||effect.weaponIds!==undefined||effect.max!==undefined))
@@ -404,7 +404,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       return row;
     };
     const physicalUnit=(effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD' ||
-      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','criticalHitThreshold','detectionRange'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
+      effect.operation==='MODIFY_RULE_METRIC' && ['chargeRoll','advanceRoll','criticalHitThreshold','detectionRange'].includes(effect.field)) && effect.unitScope==='PHYSICAL';
     const marker = `${rule.id}/${effect.id}/${source?.instanceId || 'roster'}/${target.model?.scopeId || (!physicalUnit && target.unit.formedUnitId) || target.unit.instanceId}`;
     if (processed.has(marker)) return;
     processed.add(marker);
@@ -629,7 +629,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason)===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
-        if(field==='chargeRoll'||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;
+        if(['chargeRoll','advanceRoll'].includes(field)||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;
         const own = model.metrics[field] || {modifier:0};
         model.metrics[field] = {modifier:own.modifier+metric.modifier,...((own.max||metric.max)?{max:Math.min(own.max??Infinity,metric.max??Infinity)}:{})};
       }

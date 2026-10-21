@@ -322,7 +322,7 @@ export function projectInstanceCards(cards, unit, effective) {
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);
   root.rosterUnitMetrics=Object.entries(effective.unitMetrics||{}).flatMap(([key,value])=>{
-    assert(['chargeRoll','detectionRange'].includes(key)&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');
+    assert(['chargeRoll','advanceRoll','detectionRange'].includes(key)&&Number.isSafeInteger(value.modifier),'Unsupported effective UNIT metric');
     const sources=(effective.unitMetricSources||[]).filter(source=>source.field===key);
     assert(sources.length&&sources.every(source=>source.operation==='MODIFY_RULE_METRIC'&&
       source.targetInstanceId===unit.instanceId&&!source.targetModelInstanceId&&
@@ -333,7 +333,7 @@ export function projectInstanceCards(cards, unit, effective) {
     // including other legacy UNIT contributions, without repeating them.
     if(key==='detectionRange'&&!sources.some(source=>['PHYSICAL','FORMED'].includes(source.unitScope)))return [];
     const unitScope=sources.every(source=>source.unitScope==='FORMED'||source.unitScope===undefined)?'FORMED':'PHYSICAL';
-    return [{key,label:key==='chargeRoll'?'Charge-roll modifier':'Detection Range modifier',value:clone(value),displayValue:`${value.modifier>=0?'+':''}${value.modifier}${key==='detectionRange'?'"':''}`,
+    return [{key,label:key==='chargeRoll'?'Charge-roll modifier':key==='advanceRoll'?'Advance-roll modifier':'Detection Range modifier',value:clone(value),displayValue:`${value.modifier>=0?'+':''}${value.modifier}${key==='detectionRange'?'"':''}`,
       unitScope,recipientInstanceIds:unitScope==='FORMED'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit.instanceId],
       formedUnitId:effective.formedUnit?.formedUnitId||null,sources:clone(sources)}];
   });

@@ -1,13 +1,13 @@
 {
   "scope": "STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY",
   "sourceFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "reviewFingerprint": "32AE2C631A0840AB7B7141F06AC7843EDE0C1F3AA25513F0185256C7CB149EEE",
+  "reviewFingerprint": "A4B234ED4FDF33BB2C0A90285DAF59D9B61756CCC66B4B76960955F4711E858B",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 202,
-      "EXECUTABLE_PROVEN": 42,
+      "TEXT_ONLY_SOURCE_BACKED": 201,
+      "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
     "categories": {
@@ -25,8 +25,8 @@
     "nativeWeaponProfiles": 68,
     "nativeAbilities": 12,
     "nativeInvulnerablePanels": 15,
-    "fullyCoveredTypedProofs": 15,
-    "partialTypedProofs": 1
+    "fullyCoveredTypedProofs": 16,
+    "partialTypedProofs": 0
   },
   "executed": [
     {
@@ -51,10 +51,11 @@
     {
       "ruleId": "ability-da-61ae3e245d824682a480",
       "clauseId": "honour-or-death-charge",
-      "partial": true,
-      "quote": "This unit has +1 to advance rolls and charge rolls.",
+      "partial": false,
+      "quote": "- This unit has +1 to advance rolls and charge rolls.",
       "effectIds": [
-        "ability-da-61ae3e245d824682a480::honour-or-death-charge/1/1"
+        "ability-da-61ae3e245d824682a480::honour-or-death-charge/1/1",
+        "ability-da-61ae3e245d824682a480::honour-or-death-charge/1/2"
       ]
     },
     {
@@ -1175,7 +1176,6 @@
     "INCOMING_DAMAGE",
     "REROLLS",
     "QUALIFIED_FNP",
-    "ADVANCE_ROLL_METRIC",
     "CP_MODIFIER",
     "PROXIMITY_WITHOUT_BATTLE_CONTEXT",
     "UNKNOWN_BATTLE_EVENTS"

@@ -4,13 +4,13 @@
   "reviewedAt": "2026-10-21",
   "authority": "ACCEPTED_SOURCE_FIELDS_AND_INDEPENDENT_RAW_XPATH_REVIEW_NOT_RUNTIME",
   "factualFingerprint": "521B9FB6C58D4807D874C7ABE39D89D7EB28E3D4CAC5A929345F5B8DAC623930",
-  "method": "Literal source ranges, explicit typed lowering review and complete source context. Sentence/list boundaries are transcription locators, never gameplay inference. Partial charge lowering does not certify unsupported Advance/CP text. Layout-only headings and duplicate aggregate ability sections are excluded.",
+  "method": "Literal source ranges, explicit typed lowering review and complete source context. Sentence/list boundaries are transcription locators, never gameplay inference. The Champion-conditioned Advance/Charge span is fully lowered; separate CP text remains non-executable. Layout-only headings and duplicate aggregate ability sections are excluded.",
   "coverage": {
     "sourceOwners": 131,
     "clauses": 252,
     "classifications": {
-      "TEXT_ONLY_SOURCE_BACKED": 202,
-      "EXECUTABLE_PROVEN": 42,
+      "TEXT_ONLY_SOURCE_BACKED": 201,
+      "EXECUTABLE_PROVEN": 43,
       "NOT_PROVEN": 8
     },
     "categories": {
@@ -28,8 +28,8 @@
     "nativeWeaponProfiles": 68,
     "nativeAbilities": 12,
     "nativeInvulnerablePanels": 15,
-    "fullyCoveredTypedProofs": 15,
-    "partialTypedProofs": 1
+    "fullyCoveredTypedProofs": 16,
+    "partialTypedProofs": 0
   },
   "layoutOnly": [
     {
@@ -1559,15 +1559,11 @@
         "sourceEntityId": "da-source-4c34a150946e4fa5b274",
         "authority": "ACCEPTED_SECONDARY"
       },
-      "status": "TEXT_ONLY_SOURCE_BACKED",
-      "typedClauseIds": [],
-      "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-      "partialLowering": {
-        "clauseId": "honour-or-death-charge",
-        "quote": "This unit has +1 to advance rolls and charge rolls.",
-        "covered": "Charge rolls +1 while the physical SOURCE UNIT contains its exact Ravenwing Champion profile.",
-        "uncovered": "Advance rolls +1 and Heroic Intervention CP change are not represented by existing operations."
-      }
+      "status": "EXECUTABLE_PROVEN",
+      "typedClauseIds": [
+        "honour-or-death-charge"
+      ],
+      "reason": "Source-proven physical Champion presence grants UNIT/FORMED Advance +1 and Charge +1. No movement-characteristic change, dice result, or Heroic Intervention CP execution."
     },
     {
       "id": "review/ability-da-61ae3e245d824682a480/text/118:203",

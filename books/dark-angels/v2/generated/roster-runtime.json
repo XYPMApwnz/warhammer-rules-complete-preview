@@ -2984,12 +2984,12 @@
               "field": [
                 "text"
               ],
-              "quote": "This unit has +1 to advance rolls and charge rolls."
+              "quote": "- This unit has +1 to advance rolls and charge rolls."
             },
-            "sourceText": "This unit has +1 to advance rolls and charge rolls.",
+            "sourceText": "- This unit has +1 to advance rolls and charge rolls.",
             "rosterClassification": "ROSTER_EXECUTABLE",
             "rosterClassificationNote": {
-              "reason": "Charge +1 only; Advance/CP remain non-executable source text."
+              "reason": "Source-reviewed static/physical lowering."
             },
             "rosterEffects": [
               {
@@ -3016,7 +3016,7 @@
                         "field": [
                           "text"
                         ],
-                        "quote": "This unit has +1 to advance rolls and charge rolls."
+                        "quote": "- This unit has +1 to advance rolls and charge rolls."
                       }
                     }
                   }
@@ -3025,7 +3025,62 @@
                   "field": [
                     "text"
                   ],
-                  "quote": "This unit has +1 to advance rolls and charge rolls."
+                  "quote": "- This unit has +1 to advance rolls and charge rolls."
+                },
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
+                "provenance": {
+                  "canonicalRuleId": "ability-da-61ae3e245d824682a480",
+                  "canonicalOwnerId": "unit-da-467009b00bb9402dadee",
+                  "canonicalClauseId": "honour-or-death-charge",
+                  "sourceEvidence": {
+                    "sourceId": "dark-angels-waha-11e-2026-10-21",
+                    "document": "books/dark-angels/v2/sources/raw/wahapedia-datasheets.html",
+                    "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+                    "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[6]/div[2]/div[2]/div[3]",
+                    "sourceEntityId": "da-source-4c34a150946e4fa5b274",
+                    "authority": "ACCEPTED_SECONDARY"
+                  }
+                }
+              },
+              {
+                "id": "ability-da-61ae3e245d824682a480::honour-or-death-charge/1/2",
+                "operation": "MODIFY_RULE_METRIC",
+                "field": "advanceRoll",
+                "mode": "ADD",
+                "value": 1,
+                "unitScope": "FORMED",
+                "targetBinding": "SOURCE_UNIT",
+                "targetSubject": "UNIT",
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "key": "daChampionPresent",
+                        "equals": true
+                      },
+                      "contextLevel": "ROSTER",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "- This unit has +1 to advance rolls and charge rolls."
+                      }
+                    }
+                  }
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- This unit has +1 to advance rolls and charge rolls."
                 },
                 "sourceFields": [
                   [
@@ -3048,49 +3103,6 @@
                 }
               }
             ]
-          },
-          {
-            "id": "review/ability-da-61ae3e245d824682a480/text/64:117",
-            "roles": [
-              {
-                "id": "owner",
-                "subject": "UNIT",
-                "purpose": "OWNER",
-                "allegiance": "FRIENDLY",
-                "selector": {
-                  "predicate": "ALWAYS",
-                  "subject": "UNIT",
-                  "arguments": {},
-                  "contextLevel": "STATIC",
-                  "evidence": {
-                    "field": [
-                      "text"
-                    ],
-                    "quote": "- This unit has +1 to advance rolls and charge rolls."
-                  }
-                },
-                "conditions": []
-              }
-            ],
-            "conditions": [],
-            "sourceFields": [
-              [
-                "text"
-              ]
-            ],
-            "evidence": {
-              "field": [
-                "text"
-              ],
-              "quote": "- This unit has +1 to advance rolls and charge rolls."
-            },
-            "sourceText": "- This unit has +1 to advance rolls and charge rolls.",
-            "rosterClassification": "DISPLAY_ONLY",
-            "rosterClassificationNote": {
-              "reason": "Full source text retained; battle action, target, timing, restriction or unsupported operation is not automatically assumed.",
-              "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
-            },
-            "rosterEffects": []
           },
           {
             "id": "review/ability-da-61ae3e245d824682a480/text/118:203",

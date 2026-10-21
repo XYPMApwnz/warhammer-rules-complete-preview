@@ -54,4 +54,4 @@ for(const entity of built.book.entities.filter(entity=>entity.bookId==='dark-ang
 assert.equal(built.artifact.executed.length,16);assert.equal(built.artifact.coverage.clauses,252);
 console.log(JSON.stringify({status:'PASS',sourceOwners:expected.length,clauses:review.records.length,
  classifications:review.coverage.classifications,completeNonOverlappingSourceCoverage:true,
- checkedRawDocuments:checkedSourceBytes,typedLowerings:16,fullyCovered:15,partialChargeOnly:1,mutationControls:mutations}));
+ checkedRawDocuments:checkedSourceBytes,typedLowerings:16,fullyCovered:16,partialChargeOnly:0,mutationControls:mutations}));

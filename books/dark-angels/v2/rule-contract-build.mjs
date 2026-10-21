@@ -145,7 +145,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
   coverage:clone(review.coverage),executed,...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
-  unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','ADVANCE_ROLL_METRIC','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],
+  unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],
   inheritedPhysicalChoiceBindings:'Existing SM FIELD-gated effects remain conditional until a DA physical binder supplies their proven context; no assumptions.',
   relations:'INACTIVE_SOURCE_DECLARATIONS; LAZARUS_SOURCE_CONFLICT',physicalCycloneCharge:false,realNewRecruitExportTested:false};
  return {book,schema,artifact,native,sm};

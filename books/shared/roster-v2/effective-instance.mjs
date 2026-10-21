@@ -10,7 +10,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
   // UNIT modifiers stay on the UNIT. Preserve the executor's final value
   // and resolve its exact typed source; presentation must not recalculate it.
-  const unitMetrics=Object.fromEntries(['chargeRoll','detectionRange'].filter(field=>unit.metrics?.[field]).map(field=>[field,clone(unit.metrics[field])]));
+  const unitMetrics=Object.fromEntries(['chargeRoll','advanceRoll','detectionRange'].filter(field=>unit.metrics?.[field]).map(field=>[field,clone(unit.metrics[field])]));
   const unitMetricSources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC'&&Object.hasOwn(unitMetrics,row.field)&&
     !row.targetModelInstanceId&&!row.targetProfileId&&!row.targetCompositionId&&!row.targetWeaponProfileId).map(row=>{
     const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(clause=>clause.id===row.clauseId);
