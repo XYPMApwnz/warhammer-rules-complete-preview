@@ -200,5 +200,30 @@ Stage 3A's clause census is unchanged: physical attachment permissions and impor
 bindings are recorded separately, not counted as new typed effects. Full texts,
 canonical source IDs and attribution remain with their accepted owners.
 REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL.
-SEMANTIC_COMPLETENESS=NOT_PROVEN. Actual BA New Recruit exports and browser
-acceptance remain unverified; constructed fixtures are scope diagnostics.
+SEMANTIC_COMPLETENESS=NOT_PROVEN. At the close of Stage 3B, actual BA New Recruit
+exports and browser acceptance were unverified; constructed fixtures are scope diagnostics.
+
+
+## Local V2 application enrollment (Stage 4A)
+
+`registration.mjs` loads `generated/app-presentation.json` and the browser-safe
+`roster-boot.mjs`. `app-build.mjs` decorates the existing native gameplay
+presentation; it does not produce new canonical facts. Regenerate with
+`node books/blood-angels/v2/app-build.mjs`; check with `--check`, `app-qa.mjs`
+and `glossary-qa.mjs`. The standard registry and Mega Glossary use this consumer.
+The full view contains 81 Datasheets, 3 Army Rules, 18 Detachments,
+32 Enhancements, 8 UNIT Upgrades and 60 Stratagems. Inherited records retain SM
+canonical ownership. Only the 301 BA-owned records are new Glossary entries.
+
+The local UI exposes import limitations before input. Unknown paid equipment
+continues to produce UNRESOLVED with a null final total and existing warnings.
+Two source-ambiguous weapon selections remain blocked without replacing the
+saved roster. Black Rage retains its OR and unknown positional condition;
+Legacy of the Angel still requires BLOOD ANGELS and CHARACTER. Stormlance
+SOURCE_CONFLICT, ten MFM REFERENCE_ONLY relations and seventeen clauses with
+shared capability gaps remain documented limitations, not automatic effects.
+The source-review enrollment is structural and UNVERIFIED, independent of the
+existing 233-clause gameplay review (37 executable, 187 text-only, 9 not proven).
+Constructed browser fixtures are not authentic New Recruit exports.
+REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL.
+SEMANTIC_COMPLETENESS=NOT_PROVEN. This stage does not publish the application.
