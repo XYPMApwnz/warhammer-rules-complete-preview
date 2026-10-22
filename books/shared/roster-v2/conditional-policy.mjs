@@ -25,7 +25,7 @@ export function validateConditionalPolicy(book,rule,clause){
  const p=policy.payload;
  switch(policy.kind){
   case 'QUALIFIED_FNP':requireValue(keys(p,['threshold','damageKinds'])&&Number.isInteger(p.threshold)&&p.threshold>=2&&p.threshold<=6&&uniqueStrings(p.damageKinds,['PSYCHIC_ATTACK','MORTAL_WOUND']),'Invalid qualified FNP policy');break;
-  case 'REROLL':requireValue(keys(p,['roll','results'],['weaponMode'])&&['HIT','WOUND','CHARGE','WEAPON_ATTACKS','HAZARD'].includes(p.roll)&&['ALL','ONES'].includes(p.results)&&(p.results!=='ONES'||['HIT','WOUND'].includes(p.roll))&&(p.weaponMode===undefined||['HIT','WOUND'].includes(p.roll)&&['melee','ranged'].includes(p.weaponMode)),'Invalid reroll policy');break;
+  case 'REROLL':requireValue(keys(p,['roll','results'],['weaponMode'])&&['HIT','WOUND','CHARGE','WEAPON_ATTACKS','HAZARD','ADVANCE','LEADERSHIP'].includes(p.roll)&&['ALL','ONES'].includes(p.results)&&(p.results!=='ONES'||['HIT','WOUND'].includes(p.roll))&&(p.weaponMode===undefined||['HIT','WOUND'].includes(p.roll)&&['melee','ranged'].includes(p.weaponMode)),'Invalid reroll policy');break;
   case 'INCOMING_MODIFIER':requireValue(keys(p,['field','mode','value'],['weaponMode','comparison'])&&['HIT_ROLL','WOUND_ROLL','DAMAGE'].includes(p.field)&&p.mode==='ADD'&&Number.isSafeInteger(p.value)&&p.value!==0&&(p.weaponMode===undefined||['melee','ranged'].includes(p.weaponMode))&&(p.comparison===undefined||p.field==='WOUND_ROLL'&&p.comparison==='ATTACK_STRENGTH_GT_TARGET_TOUGHNESS'),'Invalid incoming modifier policy');break;
   case 'IGNORE_MODIFIERS':requireValue(keys(p,['fields','optional'])&&uniqueStrings(p.fields,['BS','WS','HIT_ROLL'])&&p.optional===true,'Invalid ignore-modifier policy');break;
   case 'STRATAGEM_TARGET_RESTRICTION':{

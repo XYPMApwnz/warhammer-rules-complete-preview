@@ -68,4 +68,13 @@ check('nested activation choice is source-owned and remains unresolved',()=>{
  const projected=projectEffectiveInstance(f.book,run(f.book,f.state),'l');assert.equal(projected.conditional.find(r=>r.policy).activationContext.canonicalId,id('activation'));
  f.policy.activationReferenceId=id('bodyguard');assert.throws(()=>run(f.book,f.state));
 });
+check('Advance and Leadership are permission-only rerolls, never numbers',()=>{
+ for(const roll of ['ADVANCE','LEADERSHIP']){
+  const f=fixture('REROLL');f.policy.payload={roll,results:'ALL'};
+  const result=run(f.book,f.state);invariant(f,result);
+  assert.equal(projectEffectiveInstance(f.book,result,'l').conditional.find(row=>row.policy).policy.payload.roll,roll);
+  f.policy.payload.results='ONES';assert.throws(()=>run(f.book,f.state));
+  f.policy.payload={roll,results:'ALL',weaponMode:'melee'};assert.throws(()=>run(f.book,f.state));
+ }
+});
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,conditionalPoliciesOnly:true,battleSimulation:false}));
