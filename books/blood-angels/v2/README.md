@@ -1,8 +1,8 @@
 # Blood Angels V2 factual foundation
 
 This isolated foundation uses the accepted Stage 1 captures from 22 October 2026.
-It is not registered in the application and provides no executable effects,
-physical importer or Chapter grants.
+It is not registered in the application. Stage 3A adds reviewed native and
+static gameplay projections; physical import and Chapter grants remain absent.
 
 Run `python -B build.py` to produce the three files in `generated/`; use
 `python -B build.py --check` to check freshness. Run `foundation-qa.py`,
@@ -90,3 +90,63 @@ App capture is unavailable; the official BA v1.2 PDF is Legends-only and is not
 a source for current Datasheet facts. Existing SM official corrections remain
 with their original owner and are not reapplied here. Constructed or real New
 Recruit import acceptance has not been performed by this foundation.
+
+Stage 3A builds the source-reviewed gameplay view with:
+
+- `node books/blood-angels/v2/rule-contract-build.mjs`
+- `node books/blood-angels/v2/gameplay-presentation-build.mjs`
+
+Both accept `--check`. Run `gameplay-qa.mjs` and `rule-clause-review-qa.mjs`
+for source-authored physical projections, negative cases and mutation controls.
+These are existing shared Effective/Personal Guide projectors, not a second UI,
+New Recruit importer or application registration. Earlier paragraphs describe
+Stage 2 ownership and admission boundaries; their factual files remain intact.
+
+The non-overlapping BA census contains 233 clauses over 141 source records:
+37 EXECUTABLE_PROVEN, 187 TEXT_ONLY_SOURCE_BACKED and nine NOT_PROVEN. The 37
+comprise 20 native Core MODEL-presence references, nine unconditional source
+InSv panels and eight new static clauses. Native presence does not simulate
+FNP rolls, Deep Strike actions or Deadly Demise damage. Selection permissions,
+relation edges and composite eligibility/effect sentences have separate spans;
+44 aggregate source sections are preserved but not counted twice. All 301
+foundation records are accounted for. The 71 native weapon profiles remain
+base factual profiles, not 71 invented effect clauses.
+
+The eight static lowerings are Forlorn Hero Scouts 6", Fury Unbound Lethal
+Hits, Lost to Fury Sustained Hits 1, Blood Chalice +1 T, physically selected
+Relic Shield +1 W, Savage Fury +1 charge, Prescient Flash Scouts 6", and
+Archtraitor's Bridge bearer-only melee +2 A. Physical instances, exact MODEL
+assignments, selected Detachments and weapon modes are retained. Relic Shield
+requires an exact canonical MODEL selection covering its physical group;
+partial counts in an undifferentiated MODEL row do not identify its bearer.
+The separate Chainsword replacement permission remains NOT_PROVEN.
+
+Dante's complete Warden clause remains TEXT_ONLY. Its source-proven permanent
+Assault context is exposed only to existing SM consumers through the established
+physical formation binder; Tactical fallback permissions and phase/exclusivity
+logic are not calculated. No duplicate effect or global doctrine is created.
+Eight existing conditional policy displays cover five Black Rage hit-reroll
+spans and three incoming modifiers. All remain TEXT_ONLY and UNKNOWN battle
+context; no dice, incoming damage, hit or wound values are calculated.
+
+The five Black Rage positional spans retain their literal OR and NOT_PROVEN
+status. The other four NOT_PROVEN spans concern two equipment mappings:
+three Chainsword replacement permissions and one Bolt Rifle Fire permission.
+No aliases or weapon recipients are inferred. Legacy of the Angel retains
+BLOOD ANGELS plus CHARACTER eligibility; neither the book, Detachment nor
+attachment grants that Chapter keyword. Mephiston psychic conditions, other
+unknown combat events, unsupported Detachment conditional-policy sources,
+Advance/Leadership reroll policies, doctrine permissions and CP/target state
+remain full text with explicit ledger reasons.
+
+The gameplay view inherits 35 existing SM typed clauses without reminting IDs
+or source owners. The 180 references and closed 81-Datasheet membership remain
+unchanged, as do central MFM v1.6 and all 25 BA pricing bindings. Physical paid
+selection, charging and active native attachment permissions remain later-stage
+work. Ten relation-only references and Stormlance SOURCE_CONFLICT stay intact.
+Diagnostic attachment permissions used in QA are never production permissions
+or evidence of a legal army. Snapshots are native constructed diagnostics;
+reloading them is not a claim of New Recruit import/reimport acceptance.
+
+REAL_NEW_RECRUIT_EXPORT_TESTED=NO. BROWSER_ACCEPTANCE=NOT_RUN_NOT_CLAIMED.
+SOURCE_COMPLETENESS=PARTIAL. SEMANTIC_COMPLETENESS=NOT_PROVEN.
