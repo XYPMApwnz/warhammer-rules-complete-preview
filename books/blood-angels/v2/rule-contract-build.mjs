@@ -20,7 +20,7 @@ const clone=structuredClone,sha=text=>createHash('sha256').update(text).digest('
 const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,subject,arguments:args,contextLevel,evidence:clone(evidence)});
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
 const any=args=>args.length===1?args[0]:{op:'ANY',args};
-export function buildBloodAngelsContracts({inputs=declarations,review=read('./rule-clause-review.json')}={}){
+export function buildBloodAngelsContracts({inputs=declarations,review=read('./rule-clause-review.json'),conditionalInputs=conditionalPolicyDeclarations,coreCatalog=createEffectiveCoreCatalog()}={}){
 
  const native=buildBloodAngelsMixedBook(),book=clone(native.book),index=new Map(book.entities.map(e=>[e.id,e]));
  const facts=read('./generated/effective.json'),original=JSON.stringify(facts);
@@ -49,7 +49,7 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
    inheritedContracts.push(entity.id);
   }
  }
- const nativeBindings=bindBloodAngelsNative(book),core=createEffectiveCoreCatalog();
+ const nativeBindings=bindBloodAngelsNative(book),core=coreCatalog;
  for(const proof of permanentDoctrineSources){
   const entity=index.get(proof.ruleId);assert.equal(entity?.parentId,proof.unitId);
   assert.equal(entity.data.text,proof.quote);assert.equal(entity.bookId,'blood-angels');
@@ -64,7 +64,24 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
   const rows=grouped.get(entity.id)||[];rows.push(row);grouped.set(entity.id,rows);
  }
  assert.deepEqual([...grouped.keys()].sort(),[...review.reviewedSourceIds].sort());
- const conditionalDeclarations=new Map(conditionalPolicyDeclarations.map(row=>[row.recordId,row]));
+ const conditionalDeclarations=new Map(conditionalInputs.map(row=>[row.recordId,row]));
+ assert.equal(conditionalDeclarations.size,conditionalInputs.length,'Duplicate conditional source clause');
+ const policyFor=row=>{
+  const declaration=clone(conditionalDeclarations.get(row.id));if(!declaration)return null;
+  const dependency=declaration.coreDependency;
+  delete declaration.recordId;delete declaration.coreDependency;
+  if(dependency){
+   const reference=core.getById(dependency.id);
+   assert.equal(reference?.state,'FULL_CONTENT','Unproved Core policy action');
+   assert.equal(reference.code,dependency.code,'Wrong Core action code');
+   assert.ok(typeof dependency.quote==='string'&&dependency.quote&&reference.semanticContent.includes(dependency.quote),'Unproved Core action quote');
+   assert.ok(reference.sourceContentHashes.includes(dependency.sourceContentHash),'Unreviewed Core action source revision');
+   assert.equal(declaration.payload.referenceId,reference.id,'Wrong Core action identity');
+   declaration.coreReference={canonicalId:reference.id,ownerBookId:'core-rules',code:reference.code,label:reference.title,
+    quote:reference.semanticContent,sourceUnitIds:clone(reference.sourceUnitIds),sourceContentHashes:clone(reference.sourceContentHashes),provenance:clone(reference.provenance)};
+  }
+  return {...declaration,evidence:{field:clone(row.field),quote:row.quote},contextQuote:row.contextQuote};
+ };
  const classifications={};
  const nativeIds=new Set([...nativeBindings.nativeAbilities.map(row=>row.id),...nativeBindings.nativeProfiles.map(row=>row.id)]);
  for(const row of review.records){
@@ -134,7 +151,7 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
    if(specs.some(input=>!input.partial&&input.quote.includes(row.quote)))continue;
    declaration.clauses.push({id:row.id,roles:[clone(owner)],conditions:[],sourceFields:[clone(row.field)],evidence:{field:clone(row.field),quote:row.quote},sourceText:row.quote,
     rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:row.reason,reviewClassification:row.status},rosterEffects:[],
-    ...(conditionalDeclarations.has(row.id)?{conditionalPolicy:{...Object.fromEntries(Object.entries(clone(conditionalDeclarations.get(row.id))).filter(([key])=>key!=='recordId')),evidence:{field:clone(row.field),quote:row.quote},contextQuote:row.contextQuote}}:{})});
+    ...(conditionalDeclarations.has(row.id)?{conditionalPolicy:policyFor(row)}:{})});
   }
   const policies=new Map(declaration.clauses.filter(clause=>clause.conditionalPolicy).map(clause=>[clause.id,clause.conditionalPolicy]));
   const pending=new Map(declaration.clauses.map(clause=>[clause.id,clause.rosterEffects]));
@@ -147,10 +164,11 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
  const schema=createBloodAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3A_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
-  coverage:clone(review.coverage),executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'TEXT_ONLY_SOURCE_BACKED'})),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
+  coverage:{...clone(review.coverage),displayOnlyPolicyProofs:conditionalDeclarations.size},executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'TEXT_ONLY_SOURCE_BACKED'})),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterContext:'NOT_INFERRED_FROM_BOOK_DETACHMENT_OR_ATTACHMENT',
-  unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS','DETACHMENT_RULE_CONDITIONAL_POLICY_SOURCE','TACTICAL_FALLBACK_PERMISSIONS','DOCTRINE_PHASE_AND_EXCLUSIVITY','ADVANCE_AND_LEADERSHIP_REROLL_POLICIES'],
+  unsupported:['AUTOMATIC_INCOMING_ATTACK_RESOLUTION','AUTOMATIC_REROLL_RESOLUTION','AUTOMATIC_QUALIFIED_FNP_RESOLUTION','AUTOMATIC_CP_ACTION_COST','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS','TACTICAL_FALLBACK_PERMISSIONS','DOCTRINE_PHASE_AND_EXCLUSIVITY'],
+  conditionalPolicyCapabilities:['ADVANCE_AND_LEADERSHIP_REROLL_PERMISSION','DETACHMENT_OWNED_UNIT_POLICY','CORE_BOUND_ATTACK_TARGET_RESTRICTION','CORE_BOUND_ACTION_CP_MODIFIER'],
   inheritedPhysicalChoiceBindings:'Exact physical equipment bearer fields are derived from canonical MODEL selections; unsupported choice fields remain unresolved.',
   relations:'SOURCE_DECLARATIONS; NATIVE_ARMY_PERMISSION_POLICIES_RESOLVED_AT_PHYSICAL_IMPORT',realNewRecruitExportTested:false};
  return {book,schema,artifact,native,sm};

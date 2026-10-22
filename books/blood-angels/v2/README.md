@@ -227,3 +227,28 @@ existing 233-clause gameplay review (37 executable, 187 text-only, 9 not proven)
 Constructed browser fixtures are not authentic New Recruit exports.
 REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL.
 SEMANTIC_COMPLETENESS=NOT_PROVEN. This stage does not publish the application.
+
+
+## Shared conditional capabilities (Stage 4B)
+
+The 17 reviewed gap clauses are tracked separately in
+`shared-capability-review.json`. Eight existing policies remain unchanged;
+five newly structured policies describe Advance rerolls, Legacy hit/wound
+rerolls, Blazing Icon attack targeting and Instinctive Interception CP cost.
+All thirteen are CONDITIONAL_TEXT_ONLY with UNKNOWN battle context. No roll,
+target, CP spend or final action cost is calculated. The four doctrine clauses
+remain full source-backed text: Tactical permissions and explicit doctrine
+phase/exclusivity semantics are not added by this stage. The 233-clause census
+remains 37 executable / 187 text-only / 9 not proven.
+
+Detachment policies have a canonical Detachment source and no physical bearer.
+They require the actual selected Detachment and both source-declared UNIT
+keywords. Existing formed-unit keywords may establish BLOOD ANGELS + CHARACTER
+through real attached components; intrinsic UNIT/MODEL keywords are unchanged.
+Core action references resolve exact accepted canonical IDs and source hashes.
+Snap-shooting attack targets are distinct from the friendly Stratagem target;
+Heroic Intervention's CP modifier never substitutes a fabricated final cost.
+
+`shared-capability-qa.mjs` checks source/physical applicability and mutation
+controls. Existing source ambiguity, Chapter, battle-context, MFM and authentic
+New Recruit export limitations remain unchanged.

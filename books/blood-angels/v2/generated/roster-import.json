@@ -280,7 +280,22 @@
               "reason": "A reroll instruction is preserved, not represented as a numeric stat modifier or assumed roll result.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "roll": "ADVANCE",
+                "results": "ALL"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Overcharged Engines: This unit can re-roll advance rolls."
+              },
+              "contextQuote": "Overcharged Engines: This unit can re-roll advance rolls."
+            }
           }
         ],
         "currentness": {
@@ -26943,7 +26958,26 @@
               "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "ROSTER_UNITS",
+              "recipientKeywords": [
+                "BLOOD ANGELS",
+                "CHARACTER"
+              ],
+              "payload": {
+                "roll": "HIT",
+                "results": "ONES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Can re-roll hit rolls of 1."
+              },
+              "contextQuote": "Legacy of the Angel\nFriendly BLOOD ANGELS CHARACTER units:\n- Can re-roll hit rolls of 1.\n- Can re-roll wound rolls of 1.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+            }
           },
           {
             "id": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120",
@@ -26986,7 +27020,26 @@
               "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "REROLL",
+              "recipientScope": "ROSTER_UNITS",
+              "recipientKeywords": [
+                "BLOOD ANGELS",
+                "CHARACTER"
+              ],
+              "payload": {
+                "roll": "WOUND",
+                "results": "ONES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- Can re-roll wound rolls of 1."
+              },
+              "contextQuote": "Legacy of the Angel\nFriendly BLOOD ANGELS CHARACTER units:\n- Can re-roll hit rolls of 1.\n- Can re-roll wound rolls of 1.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+            }
           },
           {
             "id": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/121:255",
@@ -30968,7 +31021,46 @@
               "reason": "Exact eligibility, bearer and source Detachment retained. Unknown one-use activation, phase, roll or alternate effect is not automatically applied.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "ATTACK_TARGET_RESTRICTION",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "action": "PROHIBIT",
+                "attackKind": "SNAP_SHOOTING",
+                "referenceId": "core-rule-15-09-snap-shooting"
+              },
+              "coreReference": {
+                "canonicalId": "core-rule-15-09-snap-shooting",
+                "ownerBookId": "core-rules",
+                "code": "15.09",
+                "label": "SNAP SHOOTING",
+                "quote": "ELIGIBLE IF: As stated in the rule allowing this shooting type.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING:\n• You can only target one visible enemy unit within 24\" of your unit (and only if it is an eligible target).\n• Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s BS characteristic or any modifiers).\n• You cannot re-roll hit rolls.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
+                "sourceUnitIds": [
+                  "waha-core-rule-15-09"
+                ],
+                "sourceContentHashes": [
+                  "E0983D78F2F6BC1144DC4437249D74FF961A915079E3503BFD057B4009719173"
+                ],
+                "provenance": {
+                  "base": {
+                    "sourceId": "waha-core-corpus-2026-09-25",
+                    "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                    "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                    "sourceDate": "2026-09-25",
+                    "sourceScope": "GLOBAL_CORE",
+                    "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                  }
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Enemy units cannot target this unit with snap shooting attacks."
+              },
+              "contextQuote": "- Blazing Icon\nADEPTUS ASTARTES model only. Enemy units cannot target this unit with snap shooting attacks."
+            }
           }
         ],
         "detachmentId": "detachment-ba-23df164069854eb2996c",
@@ -31153,7 +31245,47 @@
               "reason": "Exact eligibility, bearer and source Detachment retained. Unknown one-use activation, phase, roll or alternate effect is not automatically applied.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "conditionalPolicy": {
+              "kind": "ACTION_CP_MODIFIER",
+              "recipientScope": "FORMED_UNIT",
+              "payload": {
+                "action": "HEROIC_INTERVENTION",
+                "mode": "ADD",
+                "value": -1,
+                "referenceId": "core-rule-15-11-heroic-intervention"
+              },
+              "coreReference": {
+                "canonicalId": "core-rule-15-11-heroic-intervention",
+                "ownerBookId": "core-rules",
+                "code": "15.11",
+                "label": "HEROIC INTERVENTION",
+                "quote": "1CP\nCore Stratagem\nVoices raised in furious war cries, your warriors surge forth to meet the enemy’s onslaught head-on.\nWHEN: End of your opponent’s Charge phase.\nTARGET: One friendly unengaged unit within 12\" of one or more enemy units. You can only select a VEHICLE unit if it is a CHARACTER/WALKER unit.\nEFFECT: Resolve a charge with your unit (11.02). While doing so, before making the charge roll, you must select one of the following modes:\n• Leap to Defend: When selecting charge targets, you can only select enemy units that made a charge move this phase and are within the maximum distance.\n+1CP\n• Into the Fray:\n• When making the charge roll, if the result is greater than 6 (after modifiers), change it to 6.\n• When selecting charge targets, you can select any enemy units that are within 6\" of your unit and within the maximum distance.",
+                "sourceUnitIds": [
+                  "waha-core-rule-15-11"
+                ],
+                "sourceContentHashes": [
+                  "91B5BDA042E5F65407109036C392BA5B4E43B67F5ACE50EC0E0B5D38DF1056A5"
+                ],
+                "provenance": {
+                  "base": {
+                    "sourceId": "waha-core-corpus-2026-09-25",
+                    "sourceClass": "ACCEPTED_OPERATIONAL_SECONDARY",
+                    "sourceArtifact": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+                    "sourceDate": "2026-09-25",
+                    "sourceScope": "GLOBAL_CORE",
+                    "authorityLevel": "OPERATIONAL_CONTENT_BASELINE"
+                  }
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+              },
+              "contextQuote": "- Instinctive Interception\nDEATH COMPANY model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+            }
           }
         ],
         "detachmentId": "detachment-ba-b84a7700a71549e399ba",

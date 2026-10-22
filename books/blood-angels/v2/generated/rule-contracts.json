@@ -31,7 +31,7 @@
     "supportEdges": 8,
     "excludedAggregateSections": 44,
     "allFoundationRecordsAccounted": 301,
-    "displayOnlyPolicyProofs": 8,
+    "displayOnlyPolicyProofs": 13,
     "partialContextProofs": 1
   },
   "executed": [
@@ -155,6 +155,36 @@
     {
       "recordId": "review/ability-ba-cfcc3c874e5644a8adb5/text/0:109",
       "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-16b14dac906045e3a48b/text/0:57",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/59:88",
+      "kind": "REROLL",
+      "recipientScope": "ROSTER_UNITS",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120",
+      "kind": "REROLL",
+      "recipientScope": "ROSTER_UNITS",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/enhancement-ba-3f19e1f57dd94fcc92ae/text/44:107",
+      "kind": "ATTACK_TARGET_RESTRICTION",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/enhancement-ba-9b2691d5805d46df9b88/text/53:137",
+      "kind": "ACTION_CP_MODIFIER",
       "recipientScope": "FORMED_UNIT",
       "execution": "TEXT_ONLY_SOURCE_BACKED"
     }
@@ -1153,18 +1183,20 @@
   "inheritedTypedClauses": 35,
   "chapterContext": "NOT_INFERRED_FROM_BOOK_DETACHMENT_OR_ATTACHMENT",
   "unsupported": [
-    "INCOMING_HIT_ROLL",
-    "INCOMING_WOUND_ROLL",
-    "INCOMING_DAMAGE",
-    "REROLLS",
-    "QUALIFIED_FNP",
-    "CP_MODIFIER",
+    "AUTOMATIC_INCOMING_ATTACK_RESOLUTION",
+    "AUTOMATIC_REROLL_RESOLUTION",
+    "AUTOMATIC_QUALIFIED_FNP_RESOLUTION",
+    "AUTOMATIC_CP_ACTION_COST",
     "PROXIMITY_WITHOUT_BATTLE_CONTEXT",
     "UNKNOWN_BATTLE_EVENTS",
-    "DETACHMENT_RULE_CONDITIONAL_POLICY_SOURCE",
     "TACTICAL_FALLBACK_PERMISSIONS",
-    "DOCTRINE_PHASE_AND_EXCLUSIVITY",
-    "ADVANCE_AND_LEADERSHIP_REROLL_POLICIES"
+    "DOCTRINE_PHASE_AND_EXCLUSIVITY"
+  ],
+  "conditionalPolicyCapabilities": [
+    "ADVANCE_AND_LEADERSHIP_REROLL_PERMISSION",
+    "DETACHMENT_OWNED_UNIT_POLICY",
+    "CORE_BOUND_ATTACK_TARGET_RESTRICTION",
+    "CORE_BOUND_ACTION_CP_MODIFIER"
   ],
   "inheritedPhysicalChoiceBindings": "Exact physical equipment bearer fields are derived from canonical MODEL selections; unsupported choice fields remain unresolved.",
   "relations": "SOURCE_DECLARATIONS; NATIVE_ARMY_PERMISSION_POLICIES_RESOLVED_AT_PHYSICAL_IMPORT",
