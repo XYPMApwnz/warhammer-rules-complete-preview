@@ -1,0 +1,59 @@
+{
+  "schema": "blood-angels-v2-factual-source-review/v1",
+  "bookId": "blood-angels",
+  "reviewedAt": "2026-10-22",
+  "acceptedBaseHead": "8d5889321f6f7a428a52683091ed258bc2b5d1e2",
+  "reviewStatus": "ACCEPTED_FOR_LIMITED_FACTUAL_IMPLEMENTATION",
+  "stage1ReportSha256": "B41C1F93D4BB7FEA31D1DEC6E3267C4E5292D05A14C11B121F20D0FC84B624A0",
+  "reviewedArtifacts": [
+    {
+      "path": "books/blood-angels/v2/sources/enrollment.json",
+      "sha256": "0123F1B7CA809776F447C1B0DCCECF4CEF629259747AA8D75A795F0063AF9CD6",
+      "bytes": 7815
+    },
+    {
+      "path": "books/blood-angels/v2/source-bindings.json",
+      "sha256": "DB84D4F4643BE6E3921361DF3B096BC1184C0644D7F6679B8E05849A175E34C9",
+      "bytes": 188606
+    },
+    {
+      "path": "books/blood-angels/v2/identity-bindings.json",
+      "sha256": "F00C3AC03D59581DC569B3B77C331CCC592471BBBDE5CCF0FD1035C02850CEA4",
+      "bytes": 71591
+    },
+    {
+      "path": "books/blood-angels/v2/inherited-sm-references.json",
+      "sha256": "95E2BDE8CFF94DA77C8ED80C6A8016C7FA141D359AA199514587BF1DF1EF3A80",
+      "bytes": 344603
+    },
+    {
+      "path": "books/blood-angels/v2/source-issues.json",
+      "sha256": "39B6587096B4D14CCDFB00EDFD7E5AB968D2B8D1B72468788D38283F485A0281",
+      "bytes": 15296
+    },
+    {
+      "path": "books/blood-angels/v2/mfm-identity-candidates.json",
+      "sha256": "EB8BD677D27183103C4E1E5D34C9A1A5BFEFDB7474BDB9A84AF07C05F9A09FC2",
+      "bytes": 45815
+    }
+  ],
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "officialCoverage": "PARTIAL; full current official App unavailable; Legends PDF not current corpus",
+  "acceptedScope": "301 BA-owned factual records; 180 inactive inherited SM references; 25 inactive MFM identity candidates",
+  "gameplayBindingsActivated": false,
+  "mfmPricingActivated": false,
+  "sourceIssues": "books/blood-angels/v2/source-issues.json",
+  "bytePolicy": "Enrollment UTF-8 LF pinned explicitly; raw captures retain accepted bytes without Git conversion",
+  "reviewedBoundaries": [
+    "No title/order-derived persistent identities",
+    "No copied SM facts or Chapter grants",
+    "No equipment aliases or inferred recipients",
+    "Black Rage literal OR and unknown positional context retained",
+    "Legacy of the Angel requires printed BLOOD ANGELS and CHARACTER",
+    "No invented CORE Leader or IMPERIUM for Death Company Jump Captain",
+    "No independent DOOMED/GRACE rules",
+    "Stormlance 2DP/1DP discrepancy retained",
+    "Official corrections already owned by SM not reapplied"
+  ]
+}

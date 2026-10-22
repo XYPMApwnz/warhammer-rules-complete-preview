@@ -1,0 +1,280 @@
+{
+  "schema": "blood-angels-v2-source-issues/v1",
+  "bookId": "blood-angels",
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "realNewRecruitExportTested": false,
+  "runtimeActive": false,
+  "issues": [
+    {
+      "id": "BA-SRC-APP-GAP",
+      "status": "SOURCE_GAP",
+      "evidence": "CurrentWahapedia App11E2.8.1 secondary corpus complete;full officialcurrentApp not captured. CurrentGWBApdfexplicitlyLegends-only.",
+      "action": "Propose pinned secondary foundation with official corroboration;do not claim full official completeness.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/ba-current-legends-20260930.pdf",
+          "url": "https://assets.warhammer-community.com/eng_30-09_wh40k_faction_pack_blood_angels-klcdcz9zip-wgf7iqk1vd.pdf",
+          "sha256": "99DE0E9915C80CA8A5D6AE92B139410C58BE0277EA86DD70BFE791F5916E04FE",
+          "authority": "OFFICIAL"
+        }
+      ]
+    },
+    {
+      "id": "BA-SRC-STORMLANCE-DP",
+      "status": "SOURCE_CONFLICT",
+      "sourceA": "Wahapedia BA Stormlance header2DP",
+      "sourceB": "Official current BA MFMv1.6 Stormlance1DP/RECONNAISSANCE",
+      "scope": "Numeric MFM-owned data;shared rule text andSM canonical ID unchanged",
+      "proposedResolution": "Use official1DP,which also agrees with accepted SMv1.6;do not invent BA2DP overlay or duplicateSMfacts. PreserveWaha2DP evidence and review in separately approved MFM enrollment.",
+      "applied": false,
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "sourceAnchor": "Stormlance-Task-Force"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/mfm-ba-hydrated.html",
+          "url": "https://mfm.warhammer-community.com/en/blood-angels",
+          "sha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD",
+          "authority": "OFFICIAL"
+        }
+      ],
+      "preservationPolicy": "Keep both 2DP and 1DP source declarations. No current pricing or force-disposition override is activated in Stage 2A."
+    },
+    {
+      "id": "BA-SRC-PREVIEW-ANGELIC-DP",
+      "status": "HISTORICAL_SUPERSEDED_PREVIEW",
+      "sourceA": "GW15Sep2026 preview2DP",
+      "sourceB": "Current officialMFMv1.6 andWaha3DP",
+      "action": "Historicalcorroboration only;not an active currentpricing override.",
+      "applied": false,
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+          "rawNodeSha256": "8A749E9BBF1F4FFF174131AD9B1403DB50A33772F3DD6B276AD3811749AA077A",
+          "sourceAnchor": "Angelic-Inheritors"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/mfm-ba-hydrated.html",
+          "url": "https://mfm.warhammer-community.com/en/blood-angels",
+          "sha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD",
+          "authority": "OFFICIAL"
+        }
+      ],
+      "preservationPolicy": "Historical preview is not an applied current correction; no numeric overlay in this stage."
+    },
+    {
+      "id": "BA-SRC-DC-JUMP-CHAIN",
+      "status": "NOT_PROVEN_MAPPING",
+      "unit": "Death Company Captain with jump pack",
+      "sourceA": "Composition andweapon profile:Chainsword",
+      "sourceB": "Wargear options:Astartes Chainsword",
+      "action": "Keep separate literal source references;no invented alias/profile binding.",
+      "detail": "Composition and weapon profile say Chainsword; the wargear options say Astartes Chainsword. These literal identities remain separate and the physical mapping remains NOT_PROVEN.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+          "rawNodeSha256": "F77652BC3B425D0B301B6B2E48C457805319833251495CB21FAFB67C0BBCD1EB",
+          "sourceAnchor": "Death-Company-Captain-with-Jump-Pack"
+        }
+      ],
+      "mappingStatus": "NOT_PROVEN",
+      "activeAliases": [],
+      "activeWeaponRecipients": []
+    },
+    {
+      "id": "BA-SRC-DC-BOLT-RIFLE",
+      "status": "NOT_PROVEN_MAPPING",
+      "unit": "Death Company Marines",
+      "sourceA": "Permission:Bolt Rifle Fire",
+      "sourceB": "Profiles:Bolt Rifle - Focused Fire;Bolt Rifle - Saturation",
+      "action": "No assumed alias;review source mapping before affected physical selections.",
+      "detail": "Permission says Bolt Rifle Fire; weapon profiles are Bolt Rifle - Focused Fire and Bolt Rifle - Saturation. Alternative-profile selection and physical recipient mapping are NOT_PROVEN.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+          "rawNodeSha256": "447EFB25CC134517DC321145B3D0C433D018F5D6E2167228B78301D7A82F2A9D",
+          "sourceAnchor": "Death-Company-Marines"
+        }
+      ],
+      "mappingStatus": "NOT_PROVEN",
+      "activeAliases": [],
+      "activeWeaponRecipients": []
+    },
+    {
+      "id": "BA-SRC-BLACK-RAGE",
+      "status": "SOURCE_REVIEW_GAP_BATTLE_CONTEXT_REQUIRED",
+      "sourceLiteral": "Two negative distance conditions joined OR;present on5DeathCompany sources",
+      "action": "Preserve literalOR;do not silently rewriteAND or auto-applyOC0/fall-back restriction without proven position/context. Staticreroll clause separate. No independent officialApp recertification.",
+      "detail": "Preserve the two negative distance clauses joined by the literal OR. Do not rewrite OR to AND or infer positions, Objective Control changes or fall-back restriction from roster context.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]",
+          "rawNodeSha256": "A161305D8146C3B60B345C44393EC09813B5D246F2DD9719B0C51A26695B8FEF",
+          "sourceAnchor": "Death-Company-Captain"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+          "rawNodeSha256": "F77652BC3B425D0B301B6B2E48C457805319833251495CB21FAFB67C0BBCD1EB",
+          "sourceAnchor": "Death-Company-Captain-with-Jump-Pack"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+          "rawNodeSha256": "447EFB25CC134517DC321145B3D0C433D018F5D6E2167228B78301D7A82F2A9D",
+          "sourceAnchor": "Death-Company-Marines"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]",
+          "rawNodeSha256": "2075EA9254F6CF650668891C67F9A8A541CE694C0975C73F5C63498217244888",
+          "sourceAnchor": "Death-Company-Marines-With-Jump-Packs"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]",
+          "rawNodeSha256": "A657ED11585058F965A8671F61B4FE80A3AC06B03B7100709FD2E87819FEC779",
+          "sourceAnchor": "Death-Company-Dreadnought"
+        }
+      ]
+    },
+    {
+      "id": "BA-SRC-DC-JUMP-LEADER",
+      "status": "REFERENCE_LIST_INCONSISTENCY",
+      "sourceA": "CORE reference pills omit Leader",
+      "sourceB": "Explicit LEADER declaration +officialMFM relation agree",
+      "action": "Keep explicit proven relation;no wholesale quarantine or inventedSOURCE_CONFLICT.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+          "rawNodeSha256": "F77652BC3B425D0B301B6B2E48C457805319833251495CB21FAFB67C0BBCD1EB",
+          "sourceAnchor": "Death-Company-Captain-with-Jump-Pack"
+        }
+      ],
+      "preservationPolicy": "Preserve exact CORE reference list, explicit Leader declaration and printed keywords independently. Do not invent a CORE Leader reference or IMPERIUM keyword."
+    },
+    {
+      "id": "BA-SRC-DC-JUMP-KEYWORDS",
+      "status": "SOURCE_KEYWORD_OUTLIER_NOT_AUTO_CORRECTED",
+      "source": "DCJumpCaptain current keyword block omits IMPERIUM while sibling BA entries include it",
+      "action": "Preserve literal current source. No independent officialApp keywordcorrection proven;do not normalize from generic Chapter expectations.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+          "rawNodeSha256": "F77652BC3B425D0B301B6B2E48C457805319833251495CB21FAFB67C0BBCD1EB",
+          "sourceAnchor": "Death-Company-Captain-with-Jump-Pack"
+        }
+      ],
+      "preservationPolicy": "Preserve exact CORE reference list, explicit Leader declaration and printed keywords independently. Do not invent a CORE Leader reference or IMPERIUM keyword."
+    },
+    {
+      "id": "BA-SRC-NAMED-CONDITIONS",
+      "status": "NOT_PROVEN_AS_SEPARATE_KEYWORDS",
+      "labels": [
+        "DOOMED",
+        "GRACE"
+      ],
+      "action": "Do not derivekeywords fromWrath of theDoomed/Instant ofGrace titles. Instant ofGrace actualtemporaryUNITCHARACTER condition preserved.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+          "rawNodeSha256": "8A749E9BBF1F4FFF174131AD9B1403DB50A33772F3DD6B276AD3811749AA077A",
+          "sourceAnchor": "Angelic-Inheritors"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2",
+          "rawNodeSha256": "CE85F4935D67EE9AA3C4CA4CDA19F725C095B1F406458615C2BDBA8DA8D58E25",
+          "sourceAnchor": "Encarmine-Speartip"
+        },
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2",
+          "rawNodeSha256": "29E6927435DC1695A7541F5AF6E88CD5A2C62BF50CE00BF8820D3B3B1CCB4A0B",
+          "sourceAnchor": "Wrath-of-the-Doomed"
+        }
+      ]
+    },
+    {
+      "id": "BA-SRC-REAL-NR",
+      "status": "SOURCE_GAP",
+      "action": "No confirmed-provenance currentBA11Eexport;constructedfixture is not realexport.",
+      "REAL_NEW_RECRUIT_EXPORT_TESTED": "NO",
+      "provenance": []
+    },
+    {
+      "id": "BA-SRC-LEGACY-OF-THE-ANGEL",
+      "status": "SOURCE_BACKED_CONDITIONAL_TEXT",
+      "detail": "Legacy of the Angel requires friendly BLOOD ANGELS CHARACTER UNIT. Inherited generic Space Marines membership does not grant a BLOOD ANGELS faction keyword; no DA-specific grants, physical Chapter grants or effects are active in Stage 2A.",
+      "provenance": [
+        {
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "authority": "ACCEPTED_SECONDARY",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]",
+          "rawNodeSha256": "35726FAE41E95770CAC18991FA46C835AB825230AC2311FC05CB13A36EBA81D6",
+          "sourceAnchor": "Legacy-of-the-Angel"
+        }
+      ],
+      "runtimeActive": false
+    }
+  ]
+}

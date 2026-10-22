@@ -1,0 +1,8 @@
+*.py text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+.gitattributes text eol=lf
+# Preserve SHA-pinned original captures, including original CRLF bytes.
+sources/raw/* -text -eol -diff
+# New enrollment is deliberately canonical LF, identical in Git and checkout.
+sources/enrollment.json text eol=lf
