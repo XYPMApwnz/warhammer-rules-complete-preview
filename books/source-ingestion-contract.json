@@ -3049,6 +3049,35 @@
         }
       ],
       "notes": "Targeted Stage2B offline enrollment from pinned2026-10-21 officialhydratedcapture. Extractor identifies existingsemanticDOMpattern; standalone six-factionv1.5capturetool notrun. ScopeDA-ownedonly;sharedSpaceMarinesandDeathwatch facts notduplicated;publication/effectivedate notestablished."
+    },
+    {
+      "book": "blood-angels",
+      "sourceId": "blood-angels-mfm-v1.6",
+      "authority": "official-live-mfm",
+      "sourceType": "official-web-capture",
+      "acceptedRevision": "v1.6",
+      "acceptedHash": "5b11b0e84503a11dd172be3ab4685a549bad7abdb5b8fc41065eb791ba61731f",
+      "lastChecked": "2026-10-22",
+      "upstreamObservedAt": "2026-10-22",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "CURRENT",
+      "status": "VERIFIED_CURRENT",
+      "rawOrigin": "RETAINED_OFFICIAL_WEB_CAPTURE",
+      "reproducible": "repository-artifact",
+      "extractor": "books/shared/tools/capture-current-mfm.mjs",
+      "artifacts": [
+        {
+          "path": "mfm/sources/v1.6/blood-angels.json",
+          "normalization": "lf",
+          "sha256": "b494f89c0f5ccdcd14c054ac7c4a7bdb0abcd698af78f6a96487914f09b50980"
+        },
+        {
+          "path": "mfm/sources/v1.6/official-mfm-ba-hydrated.html",
+          "normalization": "bytes",
+          "sha256": "cfb2246142919e21e77cab5f7945a59125be2f1d81f2673914f8a6912f4ad9fd"
+        }
+      ],
+      "notes": "Targeted offline enrollment from the already saved SHA-pinned official 2026-10-22 DOM using the existing MFM capture schema/DOM extraction pattern. The six-faction standalone live producer was not run. BA-owned partition only; SM/Deathwatch facts remain with their existing owners. Publication/effective date is not established."
     }
   ],
   "dormantLiveTools": [
