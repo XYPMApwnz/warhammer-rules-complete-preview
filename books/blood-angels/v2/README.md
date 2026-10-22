@@ -52,6 +52,33 @@ Stormlance remains SM-owned; no BA price record or override is introduced.
 Observation/verification on 22 October is separate from an unknown publication
 date; the effective date remains null. No physical equipment charge is inferred.
 
+Stage 2C uses `node books/blood-angels/v2/book-build.mjs` (or `--check`) from
+the repository root. Four disposable `generated/mixed-owner-*` projections
+resolve the 180 reviewed SM references and their 1,319 owned descendants. The
+result contains 81 Datasheets (14 BA + 67 SM), 106 MODEL and 400 weapon profiles,
+three SM Army Rules, 18 Detachments, 32 Enhancements, eight UNIT Upgrades and
+60 Stratagems. SM canonical records remain in the SM foundation; generated
+consumer views retain their original IDs, owners and provenance.
+
+The owned Datasheet layout adapter runs in memory during this build; a separate
+`generated/native-datasheets.json` is not a runtime dependency. The existing
+V2 projectors supply Effective and Personal Guide views. Caption references use
+the BA consumer domain while equipment and MODEL/weapon ownership stay with
+their canonical source. Shared membership and equipment-owner guards are
+unchanged. `mixed-owner-qa.mjs` and `mixed-owner-context-qa.mjs` exercise the
+consumer paths using constructed diagnostic snapshots, not New Recruit exports
+or browser acceptance.
+
+The mixed points view contains 81 native recipients, the 25 BA pricing bindings,
+and seven applicable shared SM paid-option price references. Neither the two
+SM MFM-only UNIT nor Deathwatch gains a BA Datasheet. Physical option selection
+and charging remain unimplemented. All 29 inherited/owned MFM role declarations
+are references only, including the ten unresolved targets; no attachment policy
+is activated. Chapter context for inherited physical UNIT remains NOT_PROVEN.
+Opening this book, membership or selecting a Detachment grants no Chapter
+keywords. The existing SM source-token normalization removes conditional
+Chapter tags; it is not a Deathwing/Ravenwing grant or a new BA effect.
+
 `source-issues.json` preserves the two unconfirmed equipment mappings, literal
 Black Rage OR and unknown positional context, printed keyword/reference
 omissions, Legacy of the Angel eligibility, and the Stormlance 2DP/1DP conflict.
