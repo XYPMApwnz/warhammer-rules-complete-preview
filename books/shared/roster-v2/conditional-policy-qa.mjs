@@ -77,4 +77,37 @@ check('Advance and Leadership are permission-only rerolls, never numbers',()=>{
   f.policy.payload={roll,results:'ALL',weaponMode:'melee'};assert.throws(()=>run(f.book,f.state));
  }
 });
+function detachmentFixture(){
+ const f=fixture('REROLL'),text='Friendly BLOOD ANGELS CHARACTER units can re-roll hit rolls of 1.';
+ Object.assign(f.rule,{kind:'DETACHMENT_RULE',bookId:id('book'),parentId:id('detachment')});
+ Object.assign(f.rule.ruleContract,{kind:'DETACHMENT_RULE',ownerId:id('detachment'),detachmentId:id('detachment')});
+ f.rule.data.text=text;f.policy.contextQuote=text;f.policy.evidence.quote=text;
+ const update=value=>{if(value&&typeof value==='object'){if(value.evidence)value.evidence.quote=text;Object.values(value).forEach(update);}};update(f.rule.ruleContract);
+ f.policy.recipientScope='ROSTER_UNITS';f.policy.recipientKeywords=['BLOOD ANGELS','CHARACTER'];f.policy.payload={roll:'HIT',results:'ONES'};
+ f.book.entities.find(e=>e.id===id('leader')).data.keywords=['BLOOD ANGELS','CHARACTER'];return f;
+}
+check('selected Detachment policies select proven formed UNIT keywords without bearer',()=>{
+ const f=detachmentFixture();let result=run(f.book,f.state);
+ assert.equal(rows(result,'a').length,0);assert.equal(rows(result,'l').length,1);
+ const numeric=clone(result);for(const u of numeric.units)u.conditional=u.conditional.filter(r=>!r.policy);assert.deepEqual(numeric,baseline(f));
+ const projected=projectEffectiveInstance(f.book,result,'l').conditional.find(row=>row.policy);
+ assert.equal(projected.sourceInstanceId,null);assert.equal(projected.sourceModelScopeId,null);assert.equal(projected.sourceLabel,'Synthetic detachment');assert.deepEqual(projected.recipientInstanceIds,['l']);
+ f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');result=run(f.book,f.state);
+ assert.deepEqual(rows(result,'a')[0].recipientInstanceIds,['a','l']);assert.equal(rows(result,'b').length,0);
+ assert.ok(!unit(result,'a').keywords.includes('BLOOD ANGELS'));assert.ok(unit(result,'a').profiles.every(model=>!model.keywords.includes('BLOOD ANGELS')));projectEffectiveInstance(f.book,result,'a');
+ const altered=clone(result);rows(altered,'a')[0].sourceInstanceId='l';assert.throws(()=>projectEffectiveInstance(f.book,altered,'a'));
+ const noSelection=clone(result);noSelection.detachmentIds=[];assert.throws(()=>projectEffectiveInstance(f.book,noSelection,'a'));
+ f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'DETACH','l');result=run(f.book,f.state);assert.equal(rows(result,'a').length,0);
+ f.book.entities.push({id:id('other-detachment'),kind:'DETACHMENT',bookId:id('book'),data:{title:'Other'}});f.state.detachments=[{instanceId:'other',canonicalDetachmentId:id('other-detachment')}];delete f.state.detachmentIds;delete f.state.selectedDetachmentIds;result=run(f.book,f.state);assert.equal(result.units.flatMap(u=>u.conditional.filter(r=>r.policy)).length,0);
+});
+check('Detachment policy guards reject unknown Chapter, selectors, owners and recipients',()=>{
+ for(const keywords of [[],['CHARACTER'],['BLOOD ANGELS'],['DARK ANGELS','CHARACTER']]){
+  const f=detachmentFixture();f.book.entities.find(e=>e.id===id('leader')).data.keywords=keywords;
+  assert.equal(run(f.book,f.state).units.flatMap(u=>u.conditional.filter(r=>r.policy)).length,0);
+ }
+ for(const mutate of [f=>delete f.policy.recipientKeywords,f=>f.policy.recipientKeywords=[],f=>f.policy.recipientKeywords=['UNKNOWN CHAPTER'],f=>f.policy.recipientScope='FORMED_UNIT',f=>f.rule.bookId='foreign',f=>f.rule.ruleContract.detachmentId='foreign',f=>f.policy.activationReferenceId=id('leader')]){
+  const f=detachmentFixture();mutate(f);assert.throws(()=>run(f.book,f.state));
+ }
+ const f=detachmentFixture(),result=run(f.book,f.state);unit(result,'b').conditional.push(clone(rows(result,'l')[0]));assert.throws(()=>projectEffectiveInstance(f.book,result,'b'));
+});
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,conditionalPoliciesOnly:true,battleSimulation:false}));
