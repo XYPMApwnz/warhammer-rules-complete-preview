@@ -2,7 +2,8 @@
 
 This isolated foundation uses the accepted Stage 1 captures from 22 October 2026.
 It is not registered in the application. Stage 3A adds reviewed native and
-static gameplay projections; physical import and Chapter grants remain absent.
+static gameplay projections. Stage 3B adds book-owned physical import; Chapter
+grants remain absent.
 
 Run `python -B build.py` to produce the three files in `generated/`; use
 `python -B build.py --check` to check freshness. Run `foundation-qa.py`,
@@ -141,12 +142,63 @@ remain full text with explicit ledger reasons.
 
 The gameplay view inherits 35 existing SM typed clauses without reminting IDs
 or source owners. The 180 references and closed 81-Datasheet membership remain
-unchanged, as do central MFM v1.6 and all 25 BA pricing bindings. Physical paid
-selection, charging and active native attachment permissions remain later-stage
-work. Ten relation-only references and Stormlance SOURCE_CONFLICT stay intact.
+unchanged, as do central MFM v1.6 and all 25 BA pricing bindings. At Stage 3A, physical paid
+selection, charging and active native attachment permissions remained later-stage
+work; Stage 3B below now supplies those book-owned consumers. Ten relation-only references and Stormlance SOURCE_CONFLICT stay intact.
 Diagnostic attachment permissions used in QA are never production permissions
 or evidence of a legal army. Snapshots are native constructed diagnostics;
 reloading them is not a claim of New Recruit import/reimport acceptance.
 
 REAL_NEW_RECRUIT_EXPORT_TESTED=NO. BROWSER_ACCEPTANCE=NOT_RUN_NOT_CLAIMED.
 SOURCE_COMPLETENESS=PARTIAL. SEMANTIC_COMPLETENESS=NOT_PROVEN.
+
+Stage 3B uses `node books/blood-angels/v2/roster-build.mjs` (or `--check`) to
+produce `generated/roster-import.json`. `roster-import.mjs` supplies the native
+service over the unchanged shared New Recruit parser, importer, physical
+runtime, snapshot/replacement commit and attachment guards. Run
+`node books/blood-angels/v2/roster-qa.mjs` for constructed source-authored
+physical acceptance. This does not register BA or claim a browser user path.
+
+Import vocabulary covers 81 Datasheets, 106 source-confirmed MODEL composition
+bindings, 400 explicit source weapon profiles, 18 Detachments, 32 Enhancements
+and eight UNIT Upgrades. Omitted loadout is UNKNOWN, not default equipment.
+Exact BA profile names do not invent replacements or select a firing mode.
+Astartes Chainsword for the Death Company Jump Captain and Bolt Rifle Fire for
+Death Company Marines remain NOT_PROVEN operations. They return NEEDS_BINDINGS
+with the source reason even if a caller attempts a manual weapon mapping.
+Independently confirmed composition and exact profile operations remain usable;
+this is not a claim of unrestricted 81/81 export compatibility or army legality.
+
+Army attachment policies use independently verified source hyperlinks, canonical
+membership and source ownership: 12 BA Leader edges, eight BA Support edges,
+three incoming SM declarations and admitted shared SM relations. The resulting
+29 declarations expose 110 admitted edges; 79 foreign/outside-membership target
+edges remain excluded. Existing physical capacity guards enforce one Leader
+and one Support unless a proven source exception exists. These Army permissions
+do not resolve or activate the ten central MFM relation-only references.
+
+Seven inherited SM paid-option identities retain the central SM owner, accepted
+v1.6 prices and physical quantity basis. Alternative profiles of one selected
+piece are charged once. Unknown selection, unknown/invalid quantity, foreign
+owner and unproven split alternative occurrences yield UNRESOLVED and
+`totalPoints=null`; a known subtotal is never a final total. The existing
+shared points-warning presentation can consume the service result. No BA
+pricing override or new calculator contract is introduced. Stormlance retains
+its source conflict without a BA override.
+
+New imports have no invented attachment, equipment bearer, Chapter or battle
+state. Assignments require source eligibility and an exact MODEL where needed.
+Reload validates canonical identities, quantities and stored MFM/source
+metadata. Identical reimport preserves confirmed assignments and attachments;
+changed physical input uses the existing explicit replace behavior. Failed
+import/load leaves the previous roster unchanged. Opening BA, a faction header,
+Detachment or attachment does not grant BLOOD ANGELS to a generic SM UNIT.
+Black Rage retains its OR and unknown positional condition, and no missing
+printed Death Company Jump Captain keyword or CORE reference is fabricated.
+
+Stage 3A's clause census is unchanged: physical attachment permissions and import
+bindings are recorded separately, not counted as new typed effects. Full texts,
+canonical source IDs and attribution remain with their accepted owners.
+REAL_NEW_RECRUIT_EXPORT_TESTED=NO. SOURCE_COMPLETENESS=PARTIAL.
+SEMANTIC_COMPLETENESS=NOT_PROVEN. Actual BA New Recruit exports and browser
+acceptance remain unverified; constructed fixtures are scope diagnostics.
