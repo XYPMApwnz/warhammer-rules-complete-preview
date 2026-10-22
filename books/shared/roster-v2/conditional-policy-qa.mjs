@@ -17,7 +17,9 @@ const payloads={
  REROLL:{roll:'HIT',results:'ALL',weaponMode:'melee'},
  INCOMING_MODIFIER:{field:'WOUND_ROLL',mode:'ADD',value:-1,comparison:'ATTACK_STRENGTH_GT_TARGET_TOUGHNESS'},
  IGNORE_MODIFIERS:{fields:['BS','WS'],optional:true},
- STRATAGEM_TARGET_RESTRICTION:{action:'PROHIBIT',stratagemId:id('stratagem'),ownerBookId:id('book')}
+ STRATAGEM_TARGET_RESTRICTION:{action:'PROHIBIT',stratagemId:id('stratagem'),ownerBookId:id('book')},
+ ATTACK_TARGET_RESTRICTION:{action:'PROHIBIT',attackKind:'SNAP_SHOOTING',referenceId:'core-rule-15-09-snap-shooting'},
+ ACTION_CP_MODIFIER:{action:'HEROIC_INTERVENTION',mode:'ADD',value:-1,referenceId:'core-rule-15-11-heroic-intervention'}
 };
 function fixture(kind='QUALIFIED_FNP',recipientScope='PHYSICAL_UNIT'){
  const entities=[{id:id('detachment'),kind:'DETACHMENT',bookId:id('book'),data:{title:'Synthetic detachment'}},
@@ -30,6 +32,8 @@ function fixture(kind='QUALIFIED_FNP',recipientScope='PHYSICAL_UNIT'){
   conditionalPolicy:{kind,recipientScope,payload:clone(payloads[kind]),evidence:clone(evidence),contextQuote}};
  const rule={id:id('rule'),parentId:id('leader'),kind:'DATASHEET_ABILITY',provenance:{sourceId:id('source')},data:{text:contextQuote},
   ruleContract:{schema:'rule-contract/v2',ruleId:id('rule'),ownerId:id('leader'),sourceId:id('source'),kind:'DATASHEET_ABILITY',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',roles:[owner],conditions:[],sourceFields:[['text']],clauses:[clause]}};
+ if(['ATTACK_TARGET_RESTRICTION','ACTION_CP_MODIFIER'].includes(kind))clause.conditionalPolicy.coreReference={
+  canonicalId:payloads[kind].referenceId,ownerBookId:'core-rules',code:kind==='ATTACK_TARGET_RESTRICTION'?'15.09':'15.11',label:'Synthetic Core action reference',quote:'Synthetic frozen Core context',sourceUnitIds:['synthetic-core-unit'],sourceContentHashes:['A'.repeat(64)],provenance:{sourceId:'synthetic-core-source'}};
  entities.push(rule);
  const unit=(instanceId,name)=>({instanceId,canonicalUnitId:id(name),startingStrength:1,enhancementIds:[],warlord:false,equipmentContextKnown:true,selections:[],modelRows:[{rowId:'model',quantity:1,canonicalProfileId:id(name+'/model'),selections:[],loadouts:[]}]});
  const book={bookId:id('book'),entities,rosterAttachmentPolicies:[{sourceId:id('leader'),targetId:id('bodyguard'),role:'LEADER',additionalLeaders:0,sourceIds:[id('relation')]}]};
@@ -109,5 +113,19 @@ check('Detachment policy guards reject unknown Chapter, selectors, owners and re
   const f=detachmentFixture();mutate(f);assert.throws(()=>run(f.book,f.state));
  }
  const f=detachmentFixture(),result=run(f.book,f.state);unit(result,'b').conditional.push(clone(rows(result,'l')[0]));assert.throws(()=>projectEffectiveInstance(f.book,result,'b'));
+});
+check('attack target and CP policies cannot reinterpret action, recipient, cost or Core reference',()=>{
+ for(const kind of ['ATTACK_TARGET_RESTRICTION','ACTION_CP_MODIFIER']){
+  const f=fixture(kind,'FORMED_UNIT');f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');
+  const result=run(f.book,f.state);invariant(f,result);
+  assert.equal(projectEffectiveInstance(f.book,result,'a').conditional.find(r=>r.policy).policy.coreReference.canonicalId,f.policy.payload.referenceId);
+  assert.equal(rows(result,'b').length,0);
+  for(const mutate of [p=>p.coreReference.canonicalId='core-stratagem-fire-overwatch',p=>p.coreReference.ownerBookId='foreign',p=>p.coreReference.code='15.08',p=>p.coreReference.sourceContentHashes=['fake'],p=>delete p.coreReference,p=>p.payload.referenceId='missing',p=>p.payload.value='-1']){
+   const altered=fixture(kind);mutate(altered.policy);assert.throws(()=>run(altered.book,altered.state));
+  }
+ }
+ const cp=fixture('ACTION_CP_MODIFIER');cp.policy.payload.mode='SET';assert.throws(()=>run(cp.book,cp.state));
+ const attack=fixture('ATTACK_TARGET_RESTRICTION');attack.policy.payload.attackKind='ALL_ATTACKS';assert.throws(()=>run(attack.book,attack.state));
+ const f=fixture('ACTION_CP_MODIFIER'),result=run(f.book,f.state);rows(result,'l')[0].policy.coreReference.sourceContentHashes=['B'.repeat(64)];assert.throws(()=>projectEffectiveInstance(f.book,result,'l'));
 });
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,conditionalPoliciesOnly:true,battleSimulation:false}));

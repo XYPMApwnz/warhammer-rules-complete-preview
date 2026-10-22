@@ -441,7 +441,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(unitModifiers)root.append(unitModifiers);
     if(card.rosterConditionalPolicies?.length){
       const section=part('conditional-policies','Conditional mechanics');
-      const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction'};
+      const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction',ATTACK_TARGET_RESTRICTION:'Attack target restriction',ACTION_CP_MODIFIER:'Conditional action CP modifier'};
       for(const row of card.rosterConditionalPolicies){
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
@@ -450,6 +450,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
         node.append(el('p','',row.policy.recipientScope==='AURA_UNRESOLVED'?`Recipient unresolved; requires measured ${row.policy.aura.range} inch range and matching ${row.policy.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
         if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
+        if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
         node.append(el('p','',row.policy.contextQuote));section.append(node);
       }root.append(section);
     }
