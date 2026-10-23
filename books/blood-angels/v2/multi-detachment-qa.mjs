@@ -1,0 +1,68 @@
+/** Literal user-supplied NR v37.2 input. Import acceptance is not army legality. */
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import {createBloodAngelsRosterService} from './roster-import.mjs';
+import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {buildApp} from './app-build.mjs';
+import {projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
+const book=JSON.parse(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'));
+const text=fs.readFileSync(new URL('./fixtures/newrecruit-v37.2-user-redemptor.txt',import.meta.url),'utf8');
+assert.equal(crypto.createHash('sha256').update(text).digest('hex').toUpperCase(),'FB0BE23EB8036A47D6228CE1BABFBB251B5980A7FB63A198033BE7E782E957D9');
+assert.equal([...text.matchAll(/\u00a0/g)].length,31);
+const service=createBloodAngelsRosterService(book),result=service.import(text);
+assert.equal(result.status,'READY',JSON.stringify({needs:result.needsBindings,errors:result.errors}));
+assert.equal(service.state.detachments.length,19);
+assert.equal(service.state.units.length,1);
+assert.equal(service.state.units[0].startingStrength,1);
+assert.equal(service.points.status,'RESOLVED');
+assert.equal(service.points.totalPoints,180);
+assert.equal(result.legality,'NOT_ASSESSED');
+const records=new Map(book.entities.map(row=>[row.id,row])),dw='detachment-dw-c015c08e99c14972',rule='detachment-rule-dw-b41deacc51464866';
+const snapshot=service.snapshot(),unit=snapshot.units[0];
+const owners=Object.fromEntries(['blood-angels','space-marines','deathwatch'].map(owner=>[owner,snapshot.detachments.filter(row=>records.get(row.canonicalDetachmentId)?.bookId===owner).length]));
+assert.deepEqual(owners,{'blood-angels':3,'space-marines':15,deathwatch:1});
+assert.equal(unit.canonicalUnitId,'unit-sm-32e5b655a21342f6');
+assert.equal(unit.modelRows.length,1);assert.equal(unit.modelRows[0].canonicalProfileId,'model-sm-00a645a59aad47b3');
+assert.equal(unit.selections.length,5);assert.ok(unit.selections.every(row=>row.physicalQuantity===1));
+const macro=unit.selections.find(row=>row.canonicalProfileIds.includes('weapon-sm-cfc9419c58f749a4'));
+assert.deepEqual(macro.canonicalProfileIds,['weapon-sm-cfc9419c58f749a4','weapon-sm-5de08c6a8aad4588']);
+const paid=service.points.units[0];assert.equal(paid.basePoints,170);assert.equal(paid.paid.options.length,1);
+assert.equal(paid.paid.options[0].quantity,1);assert.equal(paid.paid.totalPaidPoints,10);
+assert.equal(snapshot.detachments[4].canonicalDetachmentId,dw);assert.equal(records.get(dw).bookId,'deathwatch');
+assert.equal(service.points.detachmentPoints[4].value,1);assert.ok(!records.get(rule).ruleContract);
+assert.ok(!book.entities.some(row=>row.id==='army-rule-dw-c60cbc8c0a314778'));
+assert.ok(!book.entities.some(row=>row.id==='enhancement-dw-5d8e0ccbf8b9425a'));
+const projection=service.projection,points=service.points;
+assert.ok(!projection.units[0].keywords.includes('BLOOD ANGELS'));
+service.load(JSON.parse(JSON.stringify(snapshot)));assert.deepEqual(service.snapshot(),snapshot);
+assert.deepEqual(service.projection,projection);assert.deepEqual(service.points,points);
+service.recompute();assert.deepEqual(service.projection,projection);
+assert.equal(service.import(text).status,'READY');assert.deepEqual(service.snapshot(),snapshot);
+const unknown=text.replace('Deathwatch\u00a0Support','Unknown\u00a0Detachment');
+const blocked=service.import(unknown,{}, {replaceExisting:true});assert.equal(blocked.status,'NEEDS_BINDINGS');
+assert.equal(blocked.needsBindings[0].reason,'DETACHMENT_MEMBERSHIP_NOT_PROVEN');assert.deepEqual(service.snapshot(),snapshot);
+for(const label of ['Imperium - Adeptus Astartes - Dark Angels','Blood Angels - Dark Angels','Chaos - Blood Angels']){
+ const foreign=text.replace('Imperium - Adeptus Astartes - Blood Angels',label);
+ const rejected=service.import(foreign,{}, {replaceExisting:true});assert.equal(rejected.status,'INVALID');
+ assert.ok(rejected.errors.some(row=>row.code==='FOREIGN_FACTION_EXPORT'));assert.deepEqual(service.snapshot(),snapshot);
+}
+const invalid=structuredClone(snapshot);invalid.detachments[4].canonicalDetachmentId='detachment-unknown';delete invalid.detachmentIds;
+assert.throws(()=>service.load(invalid));assert.deepEqual(service.snapshot(),snapshot);
+const shared=createRosterImportService(book,book.importBindings);
+assert.equal(shared.import(text,{detachments:{'detachment/5':'detachment-sm-6341f5a9b9584677'}}).status,'INVALID');
+const repeated=text.replace('Deathwatch\u00a0Support','Deathwatch\u00a0Support, Deathwatch\u00a0Support');
+const doubled=createBloodAngelsRosterService(book);assert.equal(doubled.import(repeated).status,'READY');
+assert.equal(doubled.state.detachments.length,20);assert.equal(doubled.state.detachmentIds.length,19);
+assert.equal(doubled.points.totalPoints,180);assert.deepEqual(doubled.projection.units[0].applied,projection.units[0].applied);
+const two=text.replace(/\nCreated with/, '\n'+text.split('\n').find(line=>line.startsWith('1x Redemptor'))+'\n\nCreated with');
+const repeatUnits=createBloodAngelsRosterService(book);assert.equal(repeatUnits.import(two).status,'READY');
+assert.equal(repeatUnits.state.units.length,2);assert.equal(repeatUnits.points.totalPoints,360);
+assert.ok(repeatUnits.points.units.every(row=>row.paid.totalPaidPoints===10));
+const payload=buildApp(),cards=new Map(payload.cards.map(card=>[card.id,card]));
+assert.equal(cards.get(dw).identity.registryId,'deathwatch');assert.deepEqual(cards.get(rule).provenance,records.get(rule).provenance);
+assert.ok(projectPersonalBook(payload,snapshot).allowedIds.has(rule));
+assert.ok(!projection.units[0].applied.some(row=>row.ruleId===rule));
+console.log(JSON.stringify({status:'PASS',source:'USER_PROVIDED_NR37_2_LITERAL; SHA_PINNED_NOT_CONSTRUCTED',
+ detachments:19,canonicalOwners:owners,points:service.points,
+ controls:['snapshot-reload','recompute','keep-reimport','unknown-membership-atomic','foreign-faction-paths','invalid-snapshot','conflicting-ID','repeated-detachment-no-double-effects','repeated-unit-paid-isolation','canonical-reference-and-guide']}));

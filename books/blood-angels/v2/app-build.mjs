@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {buildBloodAngelsRosterBook} from './roster-build.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
+import {appendDetachmentReferencePresentation} from './detachment-reference-build.mjs';
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function assertBloodAngelsAppSourceReview(executionBook=buildBloodAngelsRosterBook()){
   const facts=read('./generated/effective.json');
@@ -37,7 +38,9 @@ export function buildApp(){
       ownerId:'blood-angels',title:'Gameplay and points limitations',
       message:'Black Rage retains its source OR and unknown positional context. Legacy of the Angel requires BLOOD ANGELS and CHARACTER; general Space Marines units do not gain BLOOD ANGELS automatically. Stormlance remains a source conflict. Ten MFM reference-only relations remain inactive. Unsupported mechanics retain full text; paid equipment requires an exact physical selection, otherwise points are unresolved.'
     }]};
-  return payload;
+  // Allied source references are reachable from imported occurrences. They do
+  // not expand the BA-owned/inherited SM browsing groups or rule assignments.
+  return appendDetachmentReferencePresentation(payload);
 }
 export function writeApp({check=false}={}){
   const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=JSON.stringify(payload,null,2)+'\n';

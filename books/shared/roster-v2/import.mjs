@@ -206,7 +206,10 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       const state=matches.exact.length>1?'AMBIGUOUS':'UNRESOLVED';
       resolutions.push({kind,key,state,canonicalIds:[]});
       const deferred=kind==='DATASHEET'?deferredUnits.find(item=>normalizeImportLabel(item.label)===normalizeImportLabel(rawLabel)):null;
-      need(kind,key,rawLabel,ownerId,{candidateIds,state,...(deferred?{reason:deferred.reason}: {})});return null;
+      need(kind,key,rawLabel,ownerId,{candidateIds,state,...(kind==='DETACHMENT'&&!candidateIds.length?{
+        reason:'DETACHMENT_MEMBERSHIP_NOT_PROVEN',
+        message:'This selected Detachment has no reviewed canonical membership in this Army Book. Its selection remains unresolved; no roster changes were saved.'
+      }:{}),...(deferred?{reason:deferred.reason}: {})});return null;
     }
     if (typeof id !== 'string') { issue('AMBIGUOUS_BINDING', key, 'Binding must contain one explicit canonical ID'); return null; }
     const entity = entities.get(id);

@@ -9,6 +9,7 @@ import {buildSpaceMarinesImportBook} from '../../space-marines/v2/roster-import-
 import {createBloodAngelsPaidOptionBindings} from './roster-paid-option-bindings-build.mjs';
 import {buildBloodAngelsAttachmentPolicies} from './roster-relations-build.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
+import {buildDetachmentReferences} from './detachment-reference-build.mjs';
 const clone=structuredClone;
 const evidence=(entityId,path)=>({entityId,path});
 export function buildBloodAngelsRosterBook({built=buildBloodAngelsContracts()}={}){
@@ -89,6 +90,19 @@ export function buildBloodAngelsRosterBook({built=buildBloodAngelsContracts()}={
  assert.equal(book.entities.filter(row=>row.kind==='DATASHEET').length,81);
  assert.equal(compositions.filter(row=>index.get(row.ownerId).bookId==='blood-angels').length,14);
  assert.equal(enhancements.length,40);assert.equal(book.mfmPhysicalPaidOptions.length,7);
+ // The physical schema already preserves multiple Detachment occurrences.
+ // Admit only the proven allied reference; never infer Chapter or execution.
+ const allied=buildDetachmentReferences(built.sm.native);
+ assert.ok(allied.entities.every(row=>!index.has(row.id)),'Duplicate allied membership');
+ book.entities.push(...allied.entities);
+ book.canonicalMembership.push(...allied.membership);
+ book.mfm.detachmentBindings.push(clone(allied.binding));
+ book.mfmImportReferences.partitions.detachmentBindings.push(clone(allied.binding));
+ book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
+ book.rosterDetachmentReferenceReview=clone(allied.review);
+ // Exact exported faction path is lexical army-domain evidence only. It is
+ // never a grant of BLOOD ANGELS to an inherited physical UNIT or MODEL.
+ book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Blood Angels'];
  assert.equal(JSON.stringify(built.book),before,'Import bindings changed the canonical consumer');
  return book;
 }
