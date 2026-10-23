@@ -19,5 +19,19 @@ export function createBloodAngelsPaidOptionBindings({book=JSON.parse(fs.readFile
   }
   assert.equal(binding.provenance.sourceId,'space-marines-mfm-v1.6');
  }
+ // Opt-in source-reviewed slot proof. Imported omission never selects the
+ // default weapon; a positive occurrence of its exclusive alternative proves
+ // this paid purchase absent. Other paid bindings retain their existing policy.
+ const redemptor=bindings.find(row=>row.costRecordId==='mfm-paid-upgrade-ccbd208631bacc48');
+ assert.equal(redemptor?.ownerUnitId,'unit-sm-32e5b655a21342f6');
+ const permission=index.get('wargear-sm-cd58de47865c4207'),unpaid=index.get('weapon-sm-4ba707edc43c44f6');
+ const quote='This model’s Heavy Onslaught Gatling Cannon can be replaced with 1 Macro Plasma Incinerator.';
+ assert.equal(permission?.parentId,redemptor.ownerUnitId);assert.ok(permission.data.text.includes(quote));
+ assert.equal(unpaid?.kind,'WEAPON_PROFILE');assert.equal(unpaid.parentId,redemptor.ownerUnitId);
+ assert.equal(unpaid.data.name,'Heavy Onslaught Gatling Cannon');
+ assert.equal(unpaid.provenance.sha256,permission.provenance.sha256);
+ redemptor.selectionResolution={kind:'EXCLUSIVE_PAID_WEAPON_SLOT',unpaidProfileIds:[unpaid.id],
+  permissionId:permission.id,quote,sourceProvenance:structuredClone(permission.provenance),
+  unpaidSourceProvenance:structuredClone(unpaid.provenance)};
  return structuredClone(bindings);
 }

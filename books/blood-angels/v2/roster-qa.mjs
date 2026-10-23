@@ -150,7 +150,10 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    assert.equal(binding.provenance.sourceLocator.sourceTitle,owner);assert.equal(binding.provenance.sourceLocator.sourceLabel,label);assert.equal(binding.provenance.sourceId,'space-marines-mfm-v1.6');
    const service=createBloodAngelsRosterService(book),bare=fixture(binding.ownerUnitId);ready(service,header()+bare.text);
    assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
-   const unpaid=sources.get(binding.ownerUnitId).data.weaponIds.map(id=>sources.get(id)).find(w=>!binding.profileIds.includes(w.id));assert.ok(unpaid,'No explicit unpaid equipment control');
+   // Redemptor RAW proves Heavy Onslaught OR Macro; an independent Icarus
+   // selection is not an unpaid-main control. Other six policies are unchanged.
+   const unpaidIds=id==='mfm-paid-upgrade-ccbd208631bacc48'?['weapon-sm-4ba707edc43c44f6']:sources.get(binding.ownerUnitId).data.weaponIds;
+   const unpaid=unpaidIds.map(id=>sources.get(id)).find(w=>!binding.profileIds.includes(w.id));assert.ok(unpaid,'No explicit unpaid equipment control');
    ready(service,header()+fixture(binding.ownerUnitId,{weapon:unpaid.data.name}).text,{}, {replaceExisting:true});
    assert.equal(service.points.status,'RESOLVED');assert.equal(service.points.units[0].paid.knownPaidPoints,0);
    const input=fixture(binding.ownerUnitId,{unitGear:'2x '+label.replace(/^per /,'')}),r=ready(service,header()+input.text,{}, {replaceExisting:true});
@@ -166,7 +169,12 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
   const selection=(b,key='ONE')=>({selectionKey:key,physicalQuantity:1,perModelQuantity:1,canonicalProfileIds:clone(b.profileIds),canonicalEquipmentIds:clone(b.equipmentIds),canonicalFieldPaths:Object.fromEntries(b.equipmentIds.map(id=>[id,['/text']]))});
   const unit=(b,id,items=[])=>({instanceId:id,canonicalUnitId:b.ownerUnitId,equipmentContextKnown:true,modelRows:[],selections:items});
   for(const [id,,,price]of PAID){const b=book.mfmPhysicalPaidOptions.find(r=>r.costRecordId===id),one=selection(b);
-   assert.equal(project([unit(b,'A',[one])]).totalPaidPoints,price);assert.equal(project([unit(b,'A')]).totalPaidPoints,0);
+   assert.equal(project([unit(b,'A',[one])]).totalPaidPoints,price);
+   // An existential equipment flag with no main choice cannot close the
+   // reviewed Redemptor slot; it does not instantiate omitted source defaults.
+   const empty=project([unit(b,'A')]),exclusive=id==='mfm-paid-upgrade-ccbd208631bacc48';
+   assert.equal(empty.totalPaidPoints,exclusive?null:0);
+   if(exclusive){assert.equal(empty.status,'UNRESOLVED');assert.ok(empty.unresolved.some(row=>row.reason==='PAID_SELECTION_UNKNOWN'));}
    const unknown=unit(b,'A');unknown.equipmentContextKnown=false;assert.equal(project([unknown]).totalPaidPoints,null);
    const bad=clone(one);delete bad.physicalQuantity;assert.equal(project([unit(b,'A',[bad])]).totalPaidPoints,null);
    assert.equal(project([unit(b,'A',[one,clone(one)])]).totalPaidPoints,null);
