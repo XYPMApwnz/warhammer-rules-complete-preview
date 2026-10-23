@@ -139878,7 +139878,31 @@
       "equipment": [],
       "quantityBasis": "PHYSICAL_SELECTION",
       "alternativeProfilesOnePurchase": true,
-      "exportEvidence": "CONSTRUCTED_ONLY_REAL_NEW_RECRUIT_EXPORT_NOT_PROVEN"
+      "exportEvidence": "CONSTRUCTED_ONLY_REAL_NEW_RECRUIT_EXPORT_NOT_PROVEN",
+      "selectionResolution": {
+        "kind": "EXCLUSIVE_PAID_WEAPON_SLOT",
+        "unpaidProfileIds": [
+          "weapon-sm-4ba707edc43c44f6"
+        ],
+        "permissionId": "wargear-sm-cd58de47865c4207",
+        "quote": "This model’s Heavy Onslaught Gatling Cannon can be replaced with 1 Macro Plasma Incinerator.",
+        "sourceProvenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]/div[2]/div[1]/div[3]/ul/li[4]",
+          "sourceEntityId": "sm-source-b2d44f4ddc1949a0",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "unpaidSourceProvenance": {
+          "sourceId": "space-marines-waha-11e-2026-10-20",
+          "document": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[8]/div[2]/div[1]/table/tbody[5]/tr[2]",
+          "sourceEntityId": "sm-source-0f262482f91046ac",
+          "authority": "ACCEPTED_SECONDARY"
+        }
+      }
     },
     {
       "costRecordId": "mfm-paid-upgrade-f0d7680f02efab10",

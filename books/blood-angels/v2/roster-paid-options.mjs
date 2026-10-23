@@ -34,6 +34,13 @@ export function projectBloodAngelsPaidOptions(state,{bindings}={}){
   }
   const options=expected.map(binding=>{
    const matches=selected.filter(({selection})=>selection.canonicalProfileIds?.some(id=>binding.profileIds.includes(id))||selection.canonicalEquipmentIds?.some(id=>binding.equipmentIds.includes(id)));
+   if(binding.selectionResolution?.kind==='EXCLUSIVE_PAID_WEAPON_SLOT'){
+    const positive=rows=>rows.some(({selection})=>Number.isSafeInteger(selection.physicalQuantity)&&selection.physicalQuantity>0);
+    const unpaid=selected.filter(({selection})=>selection.canonicalProfileIds?.some(id=>binding.selectionResolution.unpaidProfileIds.includes(id)));
+    const alreadyUnknown=unresolved.some(issue=>issue.reason==='PAID_SELECTION_UNKNOWN'&&
+     (issue.costRecordId===binding.costRecordId||issue.costRecordIds?.includes(binding.costRecordId)));
+    if(!positive(matches)&&!positive(unpaid)&&!alreadyUnknown)unresolved.push({reason:'PAID_SELECTION_UNKNOWN',costRecordId:binding.costRecordId});
+   }
    const proof=[];
    for(const occurrence of matches){
     const {selection,scope}=occurrence;
