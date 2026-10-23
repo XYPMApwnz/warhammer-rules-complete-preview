@@ -9,6 +9,19 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   if (!unit) throw new TypeError('Unresolved physical instance');
   const canonical=records.get(unit.canonicalUnitId),group=projection.formedUnits.find(g=>g.formedUnitId===unit.formedUnitId);
   const name = id=>records.get(id)?.data.title || records.get(id)?.data.name || id;
+  const effectSource=row=>{
+    const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(value=>value.id===row.clauseId);
+    const effect=clause?.rosterEffects.find(value=>value.id===row.effectId);
+    if(!effect||effect.operation!==row.operation||row.operation==='MODIFY_STAT'&&row.field!==({BS:'skill',WS:'skill'}[effect.field]||effect.field))
+      throw new TypeError('Unresolved executed effect attribution');
+    const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+    const origin=records.get(canonicalRuleId);
+    if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+      throw new TypeError('Unresolved canonical effect origin');
+    return {...clone(row),canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
+      provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{}),
+      ...(row.operation==='GRANT_WEAPON_ABILITY'?{ability:effect.ability}:{})};
+  };
   // Resolve only recorded keyword grants. The final keyword bags remain the
   // executor's authority; intrinsic/no-op keywords do not invent a source.
   const keywordSources=(group?projection.units.filter(member=>group.memberInstanceIds.includes(member.instanceId)):[unit])
@@ -107,7 +120,22 @@ export function projectEffectiveInstance(book,projection,instanceId) {
       });
       if(w.data.criticalHitThreshold!==undefined && (!sources.length||Math.min(6,...sources.map(s=>s.value))!==w.data.criticalHitThreshold))
         throw new TypeError('Missing or inconsistent Critical Hit threshold sources');
+      const abilitySources=unit.applied.filter(row=>row.operation==='GRANT_WEAPON_ABILITY'&&row.field==='abilities'&&
+        row.targetInstanceId===instanceId&&row.targetWeaponProfileId===w.canonicalProfileId&&
+        (row.targetCompositionId??null)===(w.scopeId??null)&&
+        (Object.hasOwn(row,'targetWeaponSelectionKey')||Object.hasOwn(row,'targetWeaponScopeId')
+          ? typeof w.selectionKey==='string'&&w.selectionKey.length>0&&row.targetWeaponSelectionKey===w.selectionKey&&
+            Object.hasOwn(row,'targetWeaponScopeId')&&row.targetWeaponScopeId===(w.scopeId??null)
+          : unambiguousLegacy)).map(effectSource).filter(source=>{
+        if(typeof source.ability!=='string'||source.before!==null&&!Array.isArray(source.before)||!Array.isArray(source.after)||
+            (source.before||[]).some(value=>value.toUpperCase()===source.ability.toUpperCase())||
+            !source.after.some(value=>value.toUpperCase()===source.ability.toUpperCase()))
+          throw new TypeError('Inconsistent executed weapon grant attribution');
+        if(source.before===null&&(records.get(w.canonicalProfileId)?.data.abilities||[]).some(value=>value.toUpperCase()===source.ability.toUpperCase()))return false;
+        return w.data.abilities.some(value=>value.toUpperCase()===source.ability.toUpperCase());
+      });
       return {id:w.canonicalProfileId,title:w.data.name,ownerInstanceId:instanceId,physicalQuantity:w.physicalQuantity,modelInstanceId:w.modelInstanceId,scopeId:w.scopeId || null,selectionKey:w.selectionKey,fields:fields(w.data),
+        ...(abilitySources.length?{abilitySources}:{}),
         ...(sources.length?{criticalHitSources:sources}:{})};
     }),
     abilities:[...new Set([...canonical.data.sectionIds,...canonical.data.ruleReferenceIds,...canonical.data.wargearOptionIds,...(canonical.data.rawFactIds||[]),

@@ -210,7 +210,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     return box;
   };
-  const renderWeapon=(card,{instanceId,popup=false}={})=>{
+  const renderWeapon=(card,{instanceId,popup=false,displayMembers=[card]}={})=>{
     const row=identity(el(popup?'article':'div',popup?'popup-weapon-profile':'weapon-row'),card,instanceId),used=new Set();
     if(!popup)row.setAttribute('role','row');
     const name=single(card,'name'),mode=single(card,'mode');
@@ -223,6 +223,36 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const field of card.fields.filter(f=>pointerKey(f)==='abilities'&&!(Array.isArray(f.value)&&!f.value.length))){
       const target=coreTargets[abilityCode(field.value)];const chip=target&&cards.has(target)?anchor('',target,true):el('span');
       chip.classList.add('tag','weapon-tag');chip.append(factValue('span',field));tags.append(chip);used.add(field.id);
+      const sources=[...new Map(displayMembers.flatMap(member=>member.fields.filter(candidate=>
+        pointerKey(candidate)==='abilities'&&candidate.value===field.value).flatMap(candidate=>candidate.weaponGrantSources||[]))
+        .map(source=>[JSON.stringify(source),source])).values()];
+      if(sources.length){
+        const note=el('small','ds-ability-sources ds-weapon-grant-sources');note.style.display='block';note.style.overflowWrap='anywhere';note.append(document.createTextNode('Source: '));
+        note.dataset.weaponGrantSources=JSON.stringify(sources);
+        const groups=new Map();for(const source of sources){
+          const key=JSON.stringify([source.canonicalRuleId,source.sourceInstanceId,source.sourceCompositionId??null,source.sourceModelInstanceId??null]);
+          if(!groups.has(key))groups.set(key,{source,targets:[]});groups.get(key).targets.push(source);
+        }
+        for(const [index,{source,targets}]of [...groups.values()].entries()){
+          if(index)note.append(document.createTextNode('; '));
+          const origin=anchor(source.label,source.canonicalRuleId,true);origin.dataset.weaponGrantSourceRuleId=source.canonicalRuleId;
+          origin.dataset.weaponGrantSourceInstanceId=source.sourceInstanceId||'';note.append(origin);
+          const physical=roster?.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
+          if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+            note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
+              (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+          const model=source.sourceProfileId&&cards.get(source.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
+          if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
+          const recipients=[...new Set(targets.map(target=>{
+            const member=displayMembers.find(member=>member.id===target.targetWeaponProfileId&&
+              (member.scopeId??null)===(target.targetCompositionId??null)&&
+              (!target.targetWeaponSelectionKey||member.selectionKey===target.targetWeaponSelectionKey));
+            return member?scopeCaption(member)||cards.get(member.parentId)?.title||'Physical unit':null;
+          }).filter(Boolean))];
+          if(recipients.length)note.append(document.createTextNode(' · Applies to: '+recipients.join('; ')));
+        }
+        tags.append(note);
+      }
     }
     nameCell.append(tags);
     if(card.criticalHitThreshold!==undefined) {
@@ -510,7 +540,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const weaponGroups=instanceId?groupDisplayRecords(weapons,weaponDisplayKey):weapons.map(weapon=>({members:[weapon]}));
       const shownInstructions=new Set();
       weaponGroups.forEach(displayGroup=>{
-        const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId});
+        const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId,displayMembers:displayGroup.members});
         if(instanceId&&displayGroup.members.length>1){
           row.dataset.weaponScopes=JSON.stringify(displayGroup.members.map(member=>[member.id,member.scopeId||null]));
           const threshold=row.querySelector('[data-critical-hit-threshold]');

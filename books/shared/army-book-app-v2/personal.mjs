@@ -194,6 +194,15 @@ export function projectInstanceCards(cards, unit, effective) {
         id:`${base.id}::/${key}/${index}`,value:clone(item),displayValue:undefined,
         contextId:base.contextId,source:{entityId:base.id,path:`/${key}/${index}`},runtimeDerived:true}));
     }
+    if(source==='WEAPON_PROFILE'&&record.abilitySources?.length) {
+      for(const origin of record.abilitySources)assert(origin.targetInstanceId===unit.instanceId&&origin.targetWeaponProfileId===record.id&&
+        (origin.targetCompositionId??null)===(record.scopeId??null)&&origin.canonicalRuleId,'Wrong weapon grant presentation recipient');
+      card.fields=card.fields.map(field=>{
+        if(!field.source?.path.startsWith('/abilities/'))return field;
+        const origins=record.abilitySources.filter(origin=>typeof field.value==='string'&&field.value.toUpperCase()===origin.ability.toUpperCase());
+        return origins.length?{...field,weaponGrantSources:clone(origins)}:field;
+      });
+    }
     if (source==='PROFILE') {
       card.effectiveAbilities=clone(record.abilities||[]);
       if(record.suppressedAbilityIds)card.suppressedAbilityIds=clone(record.suppressedAbilityIds);
