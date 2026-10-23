@@ -136,6 +136,8 @@ export function lexicalDraft(rawText, parse) {
     });
     return {id, name: raw.name, sourceRef: raw.sourceRef || '', rawQuantity: raw.quantity,
       points: raw.points, warlord: raw.warlord ?? null, modelRows,
+      ...((raw.loadouts||[]).length?{aggregateLoadouts:raw.loadouts.map((loadout,k)=>({key:`${id}/aggregate/loadout/${k+1}`,
+        quantity:loadout.quantity,selections:rawSelections(loadout.wargear,`${id}/aggregate/loadout/${k+1}`,'LOADOUT',loadout.quantity)}))}:{}),
       selections: [...rawSelections(raw.wargear, `${id}/unit`, 'UNIT', null),
         ...(raw.choiceLines||[]).flatMap((label,index)=>rawSelections(label,`${id}/choice/${index+1}`,'UNIT',null))]};
   });
@@ -327,12 +329,28 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       issue('INVALID_COMPOSITION', raw.id, 'Imported model composition is invalid');
     }
     const modelRows = [];
-    const rows = raw.modelRows.length ? raw.modelRows : [{key: `${raw.id}/aggregate`, name: raw.name, quantity: startingStrength, selections: [], loadouts: []}];
+    const aggregateLoadouts=raw.aggregateLoadouts||[];
+    if(aggregateLoadouts.some(row=>!Number.isSafeInteger(row.quantity)||row.quantity<1)||aggregateLoadouts.reduce((sum,row)=>sum+row.quantity,0)>startingStrength)
+      issue('INVALID_COMPOSITION',raw.id,'Imported grouped loadouts exceed or contradict the MODEL count');
+    if(aggregateLoadouts.length&&raw.modelRows.length)
+      issue('AMBIGUOUS_LOADOUT_SCOPE',raw.id,'Unnamed grouped loadouts cannot be assigned to named MODEL rows');
+    const rows = raw.modelRows.length ? raw.modelRows : [{key: `${raw.id}/aggregate`, name: raw.name, quantity: startingStrength, selections: [], loadouts: aggregateLoadouts}];
     for (const row of rows) {
       const explicitProfile = own(bindings.profiles, row.key);
       const declaredProfiles = unit.data?.profileIds || [];
       const profileId = explicitProfile ?? (declaredProfiles.length === 1 ? declaredProfiles[0] : undefined);
-      const profile = exact(profileId, 'PROFILE', row.key, row.name, unit.id);
+      let profile;
+      if(aggregateLoadouts.length&&declaredProfiles.length!==1){
+        if(explicitProfile===undefined){
+          resolutions.push({kind:'PROFILE',key:row.key,state:'AMBIGUOUS',canonicalIds:[]});
+          need('PROFILE',row.key,row.name,unit.id,{state:'AMBIGUOUS',candidateIds:[...declaredProfiles]});
+        }else{
+          const candidate=entities.get(explicitProfile);
+          if(candidate?.kind!=='PROFILE'||candidate.parentId!==unit.id||!declaredProfiles.includes(candidate.id))
+            issue('FOREIGN_PROFILE_OWNER',row.key,'Grouped loadout binding must identify a declared MODEL profile');
+          else{profile=candidate;resolutions.push({kind:'PROFILE',key:row.key,state:'MANUAL_RESOLVED',canonicalIds:[profile.id]});}
+        }
+      }else profile=exact(profileId, 'PROFILE', row.key, row.name, unit.id);
       if (profile && (profile.parentId !== unit.id || !declaredProfiles.includes(profile.id))) issue('FOREIGN_PROFILE_OWNER', row.key, 'Model profile belongs to another unit');
       modelRows.push({rowId: row.key, compositionScope: raw.modelRows.length ? 'MODEL_ROW' : 'UNIT', canonicalProfileId: profile?.id || null, quantity: row.quantity,
         // Display caption only. Canonical profile/selection identities above

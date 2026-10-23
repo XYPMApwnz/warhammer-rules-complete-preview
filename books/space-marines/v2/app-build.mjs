@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {buildSpaceMarinesImportBook} from './roster-import-build.mjs';
+import {appendDetachmentReferencePresentation} from './detachment-reference-build.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
@@ -40,8 +41,8 @@ export function buildApp(){
     mfmReferenceOnly:21,unprovenChapterKeywordBindings:26,
     unsupportedAutomaticMechanics:'books/space-marines/v2/static-gameplay-review.json',
     paidOptions:'EXACT_PHYSICAL_SELECTION_REQUIRED_ELSE_UNRESOLVED',
-    deathwatch:'SEPARATE_REFERENCE_OWNER_NOT_AN_SM_RULE_GROUP'};
-  return payload;
+    deathwatch:'TEXT_ONLY_SOURCE_BACKED_SELECTED_DETACHMENT_REFERENCE'};
+  return appendDetachmentReferencePresentation(payload);
 }
 
 export function writeApp({check=false}={}){

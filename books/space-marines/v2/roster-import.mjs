@@ -45,7 +45,8 @@ export function createSpaceMarinesRosterImport(book){
       if(draft){
         state.importEvidence=clone(draft.metadata);
         const faction=normalizeImportLabel(draft.metadata.faction);
-        if(faction&&faction!=='space marines'&&faction!=='adeptus astartes')error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
+        const declaredFaction=(metadata.factionIdentityLabels||[]).some(label=>normalizeImportLabel(label)===faction);
+        if(faction&&faction!=='space marines'&&faction!=='adeptus astartes'&&!declaredFaction)error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
       }
       if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||typeof bindings.modelBearers!=='object'||Array.isArray(bindings.modelBearers)))
         error('INVALID_MODEL_BINDINGS','modelBearers','Expected physical UNIT/Enhancement/MODEL dictionary');

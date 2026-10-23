@@ -9,6 +9,7 @@ import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesPaidOptionBindings} from './roster-paid-option-bindings-build.mjs';
 import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
+import {buildDetachmentReferences} from './detachment-reference-build.mjs';
 
 const clone=structuredClone;
 const evidence=(entityId,path)=>({entityId,path});
@@ -122,8 +123,20 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
     defaults:'OMITTED_LOADOUT_UNKNOWN',legality:'NOT_ASSESSED',realNewRecruitExportTested:false,
     referenceOnly,paidOptionsPhysicalStatus:'REQUIRES_EXACT_PHYSICAL_SELECTION_BINDING'};
   book.rosterEquipmentCaptionBindings=clone(equipmentSelections);
-  assert.equal(JSON.stringify(built.book),original,'Import builder changed the gameplay factual view');
+  // Consumer membership preserves canonical Deathwatch ownership and text;
+  // it grants no Deathwatch datasheets, Enhancement assignments or execution.
+  const allied=buildDetachmentReferences(built.native);
+  assert.ok(allied.entities.every(entity=>!index.has(entity.id)),'Duplicate allied membership');
   assert.ok(book.entities.every(entity=>entity.bookId==='space-marines'),'Foreign book factual owner');
+  book.entities.push(...allied.entities);
+  book.canonicalMembership=[...book.entities.filter(entity=>entity.bookId==='space-marines').map(entity=>({id:entity.id,bookId:entity.bookId,sourceEntityId:entity.sourceEntityId})),...allied.membership];
+  book.mfm.detachmentBindings.push(clone(allied.binding));
+  book.mfmImportReferences.partitions.detachmentBindings.push(clone(allied.binding));
+  book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
+  book.rosterDetachmentReferenceReview=clone(allied.review);
+  // Exact lexical export domain; never a Chapter keyword grant.
+  book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Space Marines'];
+  assert.equal(JSON.stringify(built.book),original,'Import builder changed the gameplay factual view');
   assert.equal(new Set(book.entities.map(entity=>entity.id)).size,book.entities.length);
   assert.ok(same(book.importBindings.compositions.map(row=>row.id).sort(),[...compositions.map(row=>row.id)].sort()));
   return book;
