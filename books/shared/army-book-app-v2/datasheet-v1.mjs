@@ -95,7 +95,44 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const node=el('small','ds-modifier-breakdown',text);node.dataset.rosterBaseValue=String(base);node.dataset.rosterModifier=String(changes.reduce((a,b)=>a+b,0));
     node.dataset.ruleIds=JSON.stringify(trace.map(change=>change.ruleId));
     node.dataset.modifierSources=JSON.stringify(trace.map(change=>[change.ruleId,change.clauseId,change.effectId,
-      change.sourceInstanceId??null,change.sourceCompositionId??null,change.sourceFields,change.lifetime]));return node;
+      change.sourceInstanceId??null,change.sourceCompositionId??null,change.sourceFields,change.lifetime]));
+    if(!Array.isArray(effective.statSources))return node;
+    const origins=trace.map(change=>effective.statSources.find(source=>source.ruleId===change.ruleId&&
+      source.clauseId===change.clauseId&&source.effectId===change.effectId&&source.targetInstanceId===change.targetInstanceId&&
+      source.targetProfileId===change.targetProfileId&&source.targetWeaponProfileId===change.targetWeaponProfileId&&
+      (source.targetCompositionId??null)===(change.targetCompositionId??null)&&
+      (source.targetWeaponSelectionKey??null)===(change.targetWeaponSelectionKey??null)&&
+      (source.targetWeaponScopeId??null)===(change.targetWeaponScopeId??null)&&source.sourceInstanceId===change.sourceInstanceId&&
+      (source.sourceCompositionId??null)===(change.sourceCompositionId??null)));
+    if(origins.some(origin=>!origin))throw new TypeError('Missing executed characteristic source attribution');
+    node.dataset.modifierAttribution=JSON.stringify(origins);return node;
+  };
+  const modifierSourceNote=(card,field,instanceId,change=modifiers(card,field,instanceId))=>{
+    if(!change?.dataset.modifierAttribution)return null;
+    const origins=JSON.parse(change.dataset.modifierAttribution),key=pointerKey(field);
+    const labels={M:'Move',T:'Toughness',SV:'Save',W:'Wounds',LD:'Leadership',OC:'Objective Control',INSV:'Invulnerable Save',
+      range:'Range',attacks:'Attacks',skill:'Hit Skill',strength:'Strength',ap:'AP',damage:'Damage'};
+    const scope=scopeCaption(card)||single(card,'name')?.value||card.title;
+    const note=el('p','ds-effective-metric ds-stat-modifier-sources');
+    note.dataset.modifierAttribution=change.dataset.modifierAttribution;note.dataset.modifierField=key;
+    note.dataset.recipientInstanceId=instanceId;note.dataset.recipientScope=card.scopeId||'';
+    note.dataset[card.kind==='WEAPON_PROFILE'?'recipientWeaponProfileId':'recipientProfileId']=card.id;
+    if(card.selectionKey)note.dataset.recipientSelectionKey=card.selectionKey;
+    note.append(el('b','',(labels[key]||key)+' · '+scope+' · Source: '));
+    const unique=[...new Map(origins.map(origin=>[JSON.stringify([origin.canonicalRuleId,origin.sourceInstanceId,
+      origin.sourceCompositionId??null,origin.sourceModelInstanceId??null]),origin])).values()];
+    for(const [index,origin]of unique.entries()){
+      if(index)note.append(document.createTextNode('; '));
+      const link=anchor(origin.label,origin.canonicalRuleId,true);link.dataset.modifierSourceRuleId=origin.canonicalRuleId;
+      link.dataset.modifierSourceInstanceId=origin.sourceInstanceId||'';note.append(link);
+      const physical=roster.state.units.find(unit=>unit.instanceId===origin.sourceInstanceId);
+      if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+        note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
+          (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+      const model=origin.sourceProfileId&&cards.get(origin.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
+      if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
+    }
+    return note;
   };
   const effectiveAbilityNode=ability=>{
     const node=el('span','ds-effective-ability');
@@ -180,16 +217,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     node.append(note);return node;
   };
   const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation,sharedMetricFields=new Set()}={})=>{
-    const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
+    const box=identity(el('div','model-profile'),card,instanceId),used=new Set(),sourceNotes=[];
     const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
     const line=el('div','statline');
     const labels={M:'M',T:'T',SV:'SV',W:'W',LD:'LD',OC:'OC',INSV:'INV'};
     for(const field of [...card.fields,...(card.profileFieldIds||[]).map(id=>boundFields.get(id))].filter(f=>Object.hasOwn(labels,pointerKey(f)))){
       const stat=el('div','stat');stat.append(el('b','',labels[pointerKey(field)]),factValue('span',field));
-      const change=modifiers(card,field,instanceId);if(change)stat.append(change);line.append(stat);used.add(field.id);
+      const change=modifiers(card,field,instanceId);if(change){stat.append(change);const note=modifierSourceNote(card,field,instanceId,change);if(note)sourceNotes.push(note);}line.append(stat);used.add(field.id);
     }
-    box.append(line);
+    box.append(line,...sourceNotes);
     if(abilityPresentation){
       if(abilityPresentation.length&&!caption&&!titleField)box.prepend(el('h5','ds-composition-scope',single(card,'name')?.value||cards.get(card.parentId).title));
       for(const ability of abilityPresentation){const pill=el('div','ds-granted-ability');pill.append(effectiveAbilityNode(ability));box.append(pill);}
@@ -280,7 +317,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const change=modifiers(card,field,instanceId);if(change){cell.dataset.rosterBaseValue=change.dataset.rosterBaseValue;cell.dataset.rosterModifier=change.dataset.rosterModifier;cell.append(change);}
       (popup?body:row).append(cell);used.add(field.id);
     }
-    if(popup)row.append(table);
+    if(popup){row.append(table);for(const key of Object.keys(fieldLabels)){const note=modifierSourceNote(card,single(card,key),instanceId);if(note)row.append(note);}}
     return row;
   };
   const renderSection=(card,{instanceId,inDialog=false}={})=>{
@@ -557,6 +594,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           }
         }
         appendOptionCost(row.querySelector('.weapon-name > div'),weapon.id);grid.append(row);
+        for(const member of displayGroup.members)for(const key of ['range','attacks','skill','strength','ap','damage']){
+          const note=modifierSourceNote(member,single(member,key),instanceId);if(note)grid.append(note);
+        }
         appendBoundAbilities(grid,weapon.id);
         for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id&&(!instanceId||displayGroup.members.some(member=>(binding.scopeId||null)===(member.scopeId||null))))){
           const instructionKey=JSON.stringify([selection.groupId,selection.profileIds.map(id=>{

@@ -130,6 +130,85 @@ for(const test of nativeCases)check('native-weapon-source-'+test.id,()=>{
   service.reattach('parsed-unit-1','parsed-unit-2');assert.deepEqual(service.effective('parsed-unit-2'),effective);
 });
 
+function statFixture(nested){
+  const f=weaponFixture(nested),model=f.raw.profiles[0];
+  delete f.effect.ability;
+  Object.assign(f.effect,{operation:'MODIFY_STAT',field:'T',mode:'ADD',value:1});
+  Object.assign(f.trace,{operation:'MODIFY_STAT',field:'T',before:'4',after:'5',targetWeaponProfileId:null});
+  delete f.trace.targetWeaponSelectionKey;delete f.trace.targetWeaponScopeId;
+  (model.profile.stats||model.profile).T='5';
+  return f;
+}
+for(const nested of [false,true]){
+  check('stat-source-physical-recipient-'+nested,()=>{
+    const f=statFixture(nested),before=clone(f.projection);
+    const effective=projectEffectiveInstance(f.model,f.projection,f.raw.instanceId);
+    assert.equal(effective.statSources?.length,1);
+    const source=effective.statSources[0],profile=effective.profiles[0];
+    assert.equal(source.canonicalRuleId,f.origin.id);
+    assert.notEqual(source.canonicalRuleId,source.ruleId,'Canonical source must not collapse to wrapper');
+    assert.equal(source.targetInstanceId,f.raw.instanceId);
+    assert.equal(source.targetProfileId,profile.id);
+    assert.equal(source.targetCompositionId,profile.scopeId);
+    assert.equal(source.before,'4');assert.equal(source.after,'5');
+    const value=profile.fields.find(field=>field.label===(nested?'stats':'T')).value;
+    assert.equal(nested?value.T:value,'5','Attribution does not recalculate the effective value');
+    const variants=projectInstanceCards(f.cards,f.unit,effective),card=variants.get(profile.id).find(c=>c.scopeId===profile.scopeId);
+    assert.ok(card.fields.some(field=>field.source?.path===(nested?'/stats/T':'/T')&&field.value==='5'));
+    assert.equal(projectEffectiveInstance(f.model,f.projection,f.peer.instanceId).statSources,undefined);
+    assert.deepEqual(f.projection,before,'Attribution must leave numeric traces and physical projection unchanged');
+    assert.deepEqual(projectEffectiveInstance(f.model,clone(f.projection),f.raw.instanceId),effective);
+  });
+  check('intrinsic-stat-has-no-source-'+nested,()=>{
+    const f=statFixture(nested);f.raw.applied=[];
+    assert.equal(projectEffectiveInstance(f.model,f.projection,f.raw.instanceId).statSources,undefined);
+  });
+  for(const [name,alter]of [
+    ['missing-stat-effect',f=>f.trace.effectId='missing'],
+    ['wrong-characteristic',f=>f.effect.field='W'],
+    ['missing-stat-origin',f=>f.effect.referencedRuleId='missing'],
+    ['contradictory-stat-origin',f=>f.effect.provenance.canonicalRuleId=f.rule.id]
+  ])check('reject-'+name+'-'+nested,()=>{
+    const f=statFixture(nested);alter(f);
+    assert.throws(()=>projectEffectiveInstance(f.model,f.projection,f.raw.instanceId),/attribution|origin/);
+  });
+}
+check('native-blood-chalice-numeric-source-and-lifecycle',()=>{
+  const rule='ability-ba-630ec2727ede4d3f85a2';
+  assert.ok(book.entities.find(e=>e.id===rule).data.text.includes('This unit has +1 T.'));
+  // Exact source composition, with omitted loadout left unknown. No points or
+  // weapon selection is invented to test a static MODEL Toughness modifier.
+  const intercessors='5x Intercessor Squad (9999 pts)\n• 1x Intercessor Sergeant\n• 4x Intercessor\n';
+  const input=header+'1x Sanguinary Priest (9999 pts)\n• 1x Sanguinary Priest\n'+intercessors+intercessors;
+  const service=createBloodAngelsRosterService(book);
+  assert.equal(service.import(input).status,'READY');
+  assert.equal(service.state.units[0].canonicalUnitId,'unit-ba-1388b9b0dc5d40c1aba4');
+  assert.equal(service.state.units[1].canonicalUnitId,'unit-sm-59162946fee84360');
+  const toughness=id=>service.effective(id).profiles.map(profile=>profile.fields.find(field=>field.label==='stats').value.T);
+  assert.ok(toughness('parsed-unit-2').every(value=>value==='5'),'Independent source base T5');
+  service.attach('parsed-unit-1','parsed-unit-2');
+  const effective=service.effective('parsed-unit-2'),snapshot=service.snapshot(),projection=clone(service.projection),points=clone(service.points);
+  assert.ok(toughness('parsed-unit-1').every(value=>value==='6'));
+  assert.ok(toughness('parsed-unit-2').every(value=>value==='6'));
+  assert.ok(toughness('parsed-unit-3').every(value=>value==='5'));
+  for(const profile of effective.profiles){
+    const sources=effective.statSources?.filter(source=>source.targetCompositionId===profile.scopeId&&source.field==='T');
+    assert.equal(sources?.length,1);
+    assert.equal(sources[0].canonicalRuleId,rule);assert.equal(sources[0].sourceInstanceId,'parsed-unit-1');
+    assert.equal(sources[0].before,'5');assert.equal(sources[0].after,'6');
+  }
+  assert.ok(!service.effective('parsed-unit-3').statSources?.some(source=>source.canonicalRuleId===rule));
+  const variants=projectInstanceCards(cards,service.state.units[1],effective);
+  assert.ok(effective.profiles.every(profile=>variants.get(profile.id).some(card=>card.scopeId===profile.scopeId&&
+    card.fields.some(field=>field.source?.path==='/stats/T'&&field.value==='6'))));
+  service.recompute();assert.deepEqual(service.effective('parsed-unit-2'),effective);
+  service.load(JSON.parse(JSON.stringify(snapshot)));assert.deepEqual(service.projection,projection);assert.deepEqual(service.points,points);
+  assert.equal(service.import(input).status,'READY');assert.deepEqual(service.snapshot(),snapshot);
+  service.detach('parsed-unit-1');assert.ok(toughness('parsed-unit-2').every(value=>value==='5'));
+  assert.ok(!service.effective('parsed-unit-2').statSources?.some(source=>source.canonicalRuleId===rule));
+  service.reattach('parsed-unit-1','parsed-unit-2');assert.deepEqual(service.effective('parsed-unit-2'),effective);
+});
+
 console.log(JSON.stringify({status:results.some(row=>row.status==='FAIL')?'FAIL':'PASS',
   checks:results.length,passed:results.filter(row=>row.status==='PASS').length,
   failed:results.filter(row=>row.status==='FAIL').length,results,

@@ -96,6 +96,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
     ...(keywordSources.length?{keywordSources}:{}),
+    ...(unit.applied.some(row=>row.operation==='MODIFY_STAT')?{statSources:unit.applied.filter(row=>row.operation==='MODIFY_STAT').map(effectSource)}:{}),
     enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
     ...(Object.keys(unitMetrics).length?{unitMetrics,unitMetricSources}:{}),
