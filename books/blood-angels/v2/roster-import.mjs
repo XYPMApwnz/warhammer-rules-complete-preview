@@ -1,7 +1,7 @@
 /** Native New Recruit boundary over the established shared parser, physical
  * import service, attachment graph and runtime commit. No army legality rules. */
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
-import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
+import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
@@ -56,7 +56,7 @@ export function createBloodAngelsRosterImport(book){
         const raw=draft?.units.find(row=>row.id===unit.instanceId),members=metadata.compositions.filter(row=>row.ownerId===unit.canonicalUnitId);
         for(const row of unit.modelRows){
           const lexical=raw?.modelRows.find(item=>item.key===row.rowId);
-          const candidates=draft&&raw.modelRows.length?members.filter(member=>member.labels.some(label=>normalizeImportLabel(label)===normalizeImportLabel(lexical?.name))):
+          const candidates=draft&&raw.modelRows.length?importModelLabelCandidates(members,lexical?.name,member=>member.labels):
             members.filter(member=>row.compositionMemberId?member.id===row.compositionMemberId:member.profileId===row.canonicalProfileId);
           if(candidates.length!==1){
             needs.push({kind:'COMPOSITION_MEMBER',key:row.rowId,rawLabel:lexical?.name||raw?.name||row.presentationLabel,

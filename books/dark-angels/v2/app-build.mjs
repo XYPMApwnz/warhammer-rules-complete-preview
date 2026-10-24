@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {buildDarkAngelsImportBook} from './roster-import-build.mjs';
+import {appendDetachmentReferencePresentation} from './detachment-reference-build.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function assertDarkAngelsAppSourceReview(executionBook=buildDarkAngelsImportBook()){
@@ -37,7 +38,7 @@ export function buildApp(){
       ownerId:'dark-angels',title:'Source and import limitations',
       message:'Ten MFM reference-only relations remain inactive. This importer has constructed-input coverage; an authentic Dark Angels New Recruit export has not been verified.'
     }]};
-  return payload;
+  return appendDetachmentReferencePresentation(payload);
 }
 export function writeApp({check=false}={}){
   const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=JSON.stringify(payload,null,2)+'\n';

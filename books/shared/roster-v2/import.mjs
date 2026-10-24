@@ -13,6 +13,22 @@ const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'g
 const gearLabel = value => normalizeImportLabel(value).replace(/^additional /,'').split(' ').map(word=>gearNouns[word] || word).join(' ');
 const entryLabel = (kind,value) => normalizeImportLabel(kind==='DETACHMENT'?String(value ?? '').replace(/\s*\([^)]*\)\s*$/,''):value);
 const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases || [])].filter(value=>typeof value==='string');
+// Import spelling equivalence only, never canonical identity creation. The
+// caller must provide the exact UNIT's declared MODEL records. Exact reviewed
+// names/aliases take precedence; plural collisions remain multiple candidates.
+// A reviewed composition quantity permitting multiple recipients is required;
+// a singular proper name ending in s is not thereby a plural MODEL label.
+const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(?<!s|u|i)s$/, '');
+export function importModelLabelCandidates(records,label,labels,quantityFor=record=>record.quantity??record.data?.composition?.quantity) {
+  const key=normalizeImportLabel(label),exact=records.filter(record=>labels(record).some(value=>normalizeImportLabel(value)===key));
+  if(exact.length||!key)return exact;
+  const numberKey=modelNumberLabel(key);
+  return records.filter(record=>{
+    const sourceQuantity=quantityFor(record);
+    return Number.isSafeInteger(sourceQuantity?.max)&&sourceQuantity.max>1&&labels(record).some(value=>modelNumberLabel(value)===numberKey);
+  });
+}
+
 const plausible = (label,names) => {
   const tokens=label.split(' ').filter(word=>!['of','the','a','and','with'].includes(word));
   return tokens.length && names.some(name=> {
@@ -20,10 +36,10 @@ const plausible = (label,names) => {
     return overlap===tokens.length || overlap===words.filter(word=>!['of','the','a','and','with'].includes(word)).length || overlap>=2 && overlap>=Math.ceil(tokens.length*.6);
   });
 };
-function identityCandidates(entities,kind,label,ownerId) {
+function identityCandidates(entities,kind,label,ownerId,profileQuantity) {
   const key=entryLabel(kind,label), scoped=[...entities.values()].filter(entity=>entity.kind===kind && (!ownerId || entity.parentId===ownerId));
   const names=entity=>named(entity).map(value=>entryLabel(kind,value));
-  const exact=scoped.filter(entity=>names(entity).includes(key));
+  const exact=kind==='PROFILE'?importModelLabelCandidates(scoped,label,named,profileQuantity):scoped.filter(entity=>names(entity).includes(key));
   return {exact,plausible:key && key!=='—'?scoped.filter(entity=>plausible(key,names(entity))):[]};
 }
 function selectionCandidates(entities,unit,label,weaponSelections,equipmentSelections=[]) {
@@ -198,7 +214,10 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
   const exact = (id, kind, key, rawLabel, ownerId) => {
     const scope = kind==='ENHANCEMENT' ? new Map([...entities].filter(([,entity])=>entity.kind!=='ENHANCEMENT' || detachmentIds.includes(entity.parentId))) :
       kind==='PROFILE'?new Map([...entities].filter(([id])=>entities.get(ownerId)?.data.profileIds.includes(id))):entities;
-    const matches = identityCandidates(scope,kind,rawLabel,ownerId);
+    const matches = identityCandidates(scope,kind,rawLabel,ownerId,profile=>{
+      const sourceComposition=book.importBindings?.compositions?.find(row=>row.profileId===profile.id&&row.ownerId===profile.parentId);
+      return sourceComposition?.quantity??profile.data?.composition?.quantity;
+    });
     if (kind==='PROFILE' && entities.get(ownerId)?.data.profileIds.length===1) matches.exact=[entities.get(entities.get(ownerId).data.profileIds[0])];
     const candidateIds=(matches.exact.length?matches.exact:matches.plausible).map(entity=>entity.id);
     if (id === undefined || id === null || id === '') {
