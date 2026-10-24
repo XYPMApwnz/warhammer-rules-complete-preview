@@ -1,0 +1,2113 @@
+{
+  "schema": "blood-angels-v2-persistent-identities/v1",
+  "policy": "Opaque UUID4 IDs enrolled once against explicit source addresses. Titles, order and text never generate identity.",
+  "bindings": [
+    {
+      "id": "unit-ba-7f57bc2e255748b09903",
+      "sourceEntityId": "ba-source-5822204cac5548cdb993",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-b445579cec2a4c1f85d8",
+      "sourceEntityId": "ba-source-bfeb9b0af938428997e5",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "weapon-ba-ac2c32670e88401ab26a",
+      "sourceEntityId": "ba-source-91bf185e350e4205ab06",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "section-ba-7f6d8fe914ad45acb062",
+      "sourceEntityId": "ba-source-2933780397c346ea804e",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "section-ba-5ce0204a53574faba196",
+      "sourceEntityId": "ba-source-c41c79ebc3cd491c9576",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "composition-ba-7f2e2d882f1147feac62",
+      "sourceEntityId": "ba-source-80570e4dc7be43718235",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "section-ba-ef434a0c7b3a4385aa4e",
+      "sourceEntityId": "ba-source-d21512237f834ba1aed1",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "relation-ba-fba2403abc454ac0b003",
+      "sourceEntityId": "ba-source-714d6bab568045fe91a0",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "ability-ba-3097116100de41eba931",
+      "sourceEntityId": "ba-source-a5d00bb2945d41c0b698",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "ability-ba-27e7ab674d0c49788288",
+      "sourceEntityId": "ba-source-7eec864479404e228e58",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "reference-ba-0a277003482e40619a06",
+      "sourceEntityId": "ba-source-9d11854a5550423ea312",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "reference-ba-9cd3efcd16084d199395",
+      "sourceEntityId": "ba-source-ed677df9efa540ad8ad6",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "reference-ba-57d4188314a0448b8d7a",
+      "sourceEntityId": "ba-source-c38563a11da24a3583b1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "invul-ba-dc372c06fdc44b1ab2d4",
+      "sourceEntityId": "ba-source-225133ce5a4c414fade4",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-5822204cac5548cdb993"
+    },
+    {
+      "id": "unit-ba-d84ea7c581874feca80b",
+      "sourceEntityId": "ba-source-4a7419bb2d754eb6aec2",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-bc38355a938d4409b2c0",
+      "sourceEntityId": "ba-source-040190017c9d4cb380e1",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "weapon-ba-c3babe56210d47bfafc7",
+      "sourceEntityId": "ba-source-8b34d03a53bb46eabe74",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "weapon-ba-b8013b7e1a2445c28e63",
+      "sourceEntityId": "ba-source-bcfdf53c15fb4dc5aa87",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "weapon-ba-a4729ff573764e329c01",
+      "sourceEntityId": "ba-source-50cbe1cd9d374aa1b709",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "weapon-ba-e612dc5b26474f91b51c",
+      "sourceEntityId": "ba-source-df337be236de40049353",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "weapon-ba-47eec5a11cdd4b8190bb",
+      "sourceEntityId": "ba-source-2ec2fc25f2ed46618296",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "section-ba-584ec8d6063c466b9953",
+      "sourceEntityId": "ba-source-20b92feefb874a7aacb0",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "section-ba-6427ddecc80045c99722",
+      "sourceEntityId": "ba-source-94170ca0fd454d88be1e",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "section-ba-bf386e70874140dfbb01",
+      "sourceEntityId": "ba-source-91d3b962c0a142ab9e51",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "composition-ba-354f831bf7cc44bbb699",
+      "sourceEntityId": "ba-source-a6ffa5c7d2c9466f9196",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "ability-ba-6816df7177b344c59f1d",
+      "sourceEntityId": "ba-source-085f3a2720b8479896fb",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "ability-ba-b8b4793806b3475ca6ac",
+      "sourceEntityId": "ba-source-44771c78433a45fc9b2d",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "ability-ba-78f224d8e53246938e2d",
+      "sourceEntityId": "ba-source-63ef256a5eab4fa3986d",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "reference-ba-b43fb450f80a4ac98b92",
+      "sourceEntityId": "ba-source-415c6426ca244975a0c5",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "reference-ba-30f553633c084dcd9916",
+      "sourceEntityId": "ba-source-52b559af96b0454ea6e7",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "reference-ba-2ed3d548224c41f7af95",
+      "sourceEntityId": "ba-source-5de22bf0948a4bc6a3ae",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "reference-ba-094e5ceb305b4a2f90dd",
+      "sourceEntityId": "ba-source-d1de105521be4bf89c78",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "reference-ba-bcb68bcc276a4cc18029",
+      "sourceEntityId": "ba-source-0cb7457f4ac64c579c71",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "invul-ba-aff7811ce49f479d849f",
+      "sourceEntityId": "ba-source-ced95096448849bfbbf5",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-4a7419bb2d754eb6aec2"
+    },
+    {
+      "id": "unit-ba-92fdb23a526b4c328367",
+      "sourceEntityId": "ba-source-3855b47ccc584cb39e44",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-0f0a6ff6fdac4bd29ba2",
+      "sourceEntityId": "ba-source-1cbac3d5670e4e74a081",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "weapon-ba-6b830f614ef34fee8f52",
+      "sourceEntityId": "ba-source-c299ab2b8d0f4ff58318",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "weapon-ba-77a7426fb4ab46c0a899",
+      "sourceEntityId": "ba-source-c7d6ea4ea5e3462ca890",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "section-ba-f749351fa62a46089929",
+      "sourceEntityId": "ba-source-12f97c752ba14741bc56",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "section-ba-1a37ff7ae112446aae6c",
+      "sourceEntityId": "ba-source-5e55c8c2c80d4723b9c0",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "composition-ba-dfea3da7c3f34e34a68c",
+      "sourceEntityId": "ba-source-2627c4a184854a85874d",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "section-ba-fb169621645c45bdbe15",
+      "sourceEntityId": "ba-source-b7861948d49b403fb63f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "relation-ba-57ff2bf53e4e457383ff",
+      "sourceEntityId": "ba-source-be4f95c5fd6b4da0a751",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "ability-ba-df4a0eb7051a498e8c68",
+      "sourceEntityId": "ba-source-04aa7c9b36f544e8be80",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "ability-ba-eb9da07320a4443fb871",
+      "sourceEntityId": "ba-source-3156a17153864a9b978e",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "reference-ba-8ecb5a34905b4df3aef3",
+      "sourceEntityId": "ba-source-acee198ef3524d53b620",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "reference-ba-c0b84986e0644ae78154",
+      "sourceEntityId": "ba-source-4e363b0286cb48af8df8",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "reference-ba-7088421cf1234ea6b5b3",
+      "sourceEntityId": "ba-source-7aac298244f14b5f9a04",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "reference-ba-fcf7abefd1c94010ac82",
+      "sourceEntityId": "ba-source-1ba646b580e249538cc1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "invul-ba-55eabd2986b34db5b737",
+      "sourceEntityId": "ba-source-76bd3061fa1b441f899f",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-3855b47ccc584cb39e44"
+    },
+    {
+      "id": "unit-ba-3483c88a4df4495ca2e2",
+      "sourceEntityId": "ba-source-7f21def8639f462d88e9",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-12ffbc772c874d8c923e",
+      "sourceEntityId": "ba-source-1e7e945d12f84b1a9d46",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "weapon-ba-31c57150aa59473db8f2",
+      "sourceEntityId": "ba-source-526a7b5424b04693a27a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "weapon-ba-48e48792fee84473ac50",
+      "sourceEntityId": "ba-source-8f78412aa5824af5b9d6",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "section-ba-af6e24d5a1c54abe89f5",
+      "sourceEntityId": "ba-source-ae8c875cb5ae4bcb930c",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "section-ba-6648ed8fcf154a4b9142",
+      "sourceEntityId": "ba-source-fce706ac93c24a21be37",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "composition-ba-9fbc7126c9b44d55a8cb",
+      "sourceEntityId": "ba-source-d1aea92fb96342219c1d",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "section-ba-56e3578ae3be4efba0a3",
+      "sourceEntityId": "ba-source-71c8887a05fc4fa8b52b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "relation-ba-c7c8453869a4424992f7",
+      "sourceEntityId": "ba-source-dbf96481de59428a9027",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "ability-ba-40389ffef38645ca922a",
+      "sourceEntityId": "ba-source-45e68859b7984ac29d6b",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "ability-ba-44df419581d3449eaff9",
+      "sourceEntityId": "ba-source-33c509c51724469e8dec",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "reference-ba-9cc88fc5c92e45adb913",
+      "sourceEntityId": "ba-source-81af71392dc14ed6a485",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "reference-ba-0168eadcb81f45d8bd77",
+      "sourceEntityId": "ba-source-b63428caddc94c44b067",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "reference-ba-c805b970fdb6422db3bb",
+      "sourceEntityId": "ba-source-c5011c22ef264fef9f35",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "reference-ba-4c2188ba7de345d2b74c",
+      "sourceEntityId": "ba-source-20d123b7733c4e9a947d",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "invul-ba-6b736b304b234656b667",
+      "sourceEntityId": "ba-source-a653bc161f0b49a8a0f0",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-7f21def8639f462d88e9"
+    },
+    {
+      "id": "unit-ba-4ea9a8226a61470fa157",
+      "sourceEntityId": "ba-source-88e0dcceb653428a9dc1",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-3f10d240967b477eb3d1",
+      "sourceEntityId": "ba-source-9d3932f476754f20826e",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "weapon-ba-4ddfc110885b46b58226",
+      "sourceEntityId": "ba-source-77ec8678896c41baa2e9",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "section-ba-92e1da00190642e7a0b8",
+      "sourceEntityId": "ba-source-40bc6c193ed54449b64e",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "section-ba-906a1b6e86e842e7b331",
+      "sourceEntityId": "ba-source-f7d3c93d717d41fa91f1",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "composition-ba-b95540b54e744381a78b",
+      "sourceEntityId": "ba-source-6223d3959994490680f3",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "ability-ba-8d4e126095f24bd09d8f",
+      "sourceEntityId": "ba-source-636343982b8d454c881d",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "ability-ba-662fef36440949108526",
+      "sourceEntityId": "ba-source-f1981384dde246449cd7",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "reference-ba-1f9c70afa3c24f809403",
+      "sourceEntityId": "ba-source-a06b7450c7ac4dfda3a4",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "reference-ba-847cc40702bf419cad5f",
+      "sourceEntityId": "ba-source-66c59dbefbc846189a30",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "reference-ba-cd018ea729b14a5390f0",
+      "sourceEntityId": "ba-source-27e123a79c5541c6a5c9",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "reference-ba-29922809499544f6923c",
+      "sourceEntityId": "ba-source-b0fb2675f3e544b8a712",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "invul-ba-b530c9ac96084437bb17",
+      "sourceEntityId": "ba-source-8d9936af09db48e68a60",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-88e0dcceb653428a9dc1"
+    },
+    {
+      "id": "unit-ba-09adea2bf319462fb4ed",
+      "sourceEntityId": "ba-source-bfa759739fb848ff9bfd",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-d92f4a4ff0964f5c8254",
+      "sourceEntityId": "ba-source-1d49e813d8644658b545",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "weapon-ba-170fe2098dbc4171aaea",
+      "sourceEntityId": "ba-source-5ff0361228824831b8b8",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "weapon-ba-970d954e4d064a638121",
+      "sourceEntityId": "ba-source-898ada6dbda64910a304",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "weapon-ba-59912140df2f42b7895d",
+      "sourceEntityId": "ba-source-1332be2ac9d0442e9357",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "weapon-ba-de6db584b30944d88234",
+      "sourceEntityId": "ba-source-a0a3a8898fa2408fbb4c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "weapon-ba-2dc7c30d0c3041769e6c",
+      "sourceEntityId": "ba-source-48b79d6b49da42789c20",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "wargear-ba-f9dd367a36564c6aa147",
+      "sourceEntityId": "ba-source-2d56939adb5942e78d31",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "wargear-ba-5dc8852ebbd442f3bfd5",
+      "sourceEntityId": "ba-source-35ae600ebaa543b6b11e",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "section-ba-5d76d8db3d9e476f9956",
+      "sourceEntityId": "ba-source-0dc09e9f5b54467ba377",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "section-ba-9c1a489a86b8480bb9fb",
+      "sourceEntityId": "ba-source-fa25931fd29b4738a833",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "section-ba-682b8c2df91e4a9ea4e6",
+      "sourceEntityId": "ba-source-10ac830bca5c4bb89fa5",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "composition-ba-f2cdabc44ca14887ba7c",
+      "sourceEntityId": "ba-source-c547a1c501a448a182e7",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "section-ba-3b3e0610f3ca4667bd9e",
+      "sourceEntityId": "ba-source-3b13b0507f4a42efaf3b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "relation-ba-1baa127c685d4b148d0c",
+      "sourceEntityId": "ba-source-47a599f6f11f4b219cf6",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "ability-ba-c03d6359af8a4aa48afa",
+      "sourceEntityId": "ba-source-146cc3ba63b94f1e8dca",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "ability-ba-88602de8086e4c71aff2",
+      "sourceEntityId": "ba-source-43c38214bebd4b73ab59",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "reference-ba-5c482799ddd74f48b0a9",
+      "sourceEntityId": "ba-source-cd293f7fd5634a2abbfe",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "reference-ba-baa4babdff4b46b28df3",
+      "sourceEntityId": "ba-source-a0b285ec0fa04db0b51a",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "reference-ba-7333b9e698a34ef0a33f",
+      "sourceEntityId": "ba-source-dacaea6490c5418596cd",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "invul-ba-3590261d314c4fe1b386",
+      "sourceEntityId": "ba-source-24d53c29d7de45edaea2",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-bfa759739fb848ff9bfd"
+    },
+    {
+      "id": "unit-ba-014cc7b19aca4d5b84a3",
+      "sourceEntityId": "ba-source-8bbe79e51dd341e39e69",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-81d63b75945a42c6b2ad",
+      "sourceEntityId": "ba-source-abf8e63f7e854f73b3dd",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "weapon-ba-50c1abc39bc6483482c0",
+      "sourceEntityId": "ba-source-51a1aa41662a48b69695",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "weapon-ba-59ce2d4330914159adfb",
+      "sourceEntityId": "ba-source-bb6f1700199a4a2485db",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "weapon-ba-2c64dcda4db842ffa10c",
+      "sourceEntityId": "ba-source-90a67d906531472a81a0",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "weapon-ba-a75745de597341778b26",
+      "sourceEntityId": "ba-source-a3cfb7df54004dc7b98a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "weapon-ba-5514f3142fb14fe58332",
+      "sourceEntityId": "ba-source-df86c881e307478295cb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "wargear-ba-b070363a20724577ad55",
+      "sourceEntityId": "ba-source-214e7311e2a04085b940",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "wargear-ba-395b2b1c53ef487494b2",
+      "sourceEntityId": "ba-source-bb2fef25001e43b9a8bd",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "section-ba-80bcd58f482c49a0adf5",
+      "sourceEntityId": "ba-source-a9b43bbbc363444e943f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "section-ba-1b8c583e6dc744f08f14",
+      "sourceEntityId": "ba-source-410d375efb404cb1b39d",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "section-ba-7e049914617848b9b728",
+      "sourceEntityId": "ba-source-b982b767bd58407f8d1c",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "composition-ba-4060d19990e648bb8d2d",
+      "sourceEntityId": "ba-source-4b708d0adef940a1ba06",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "section-ba-ecc19331191b4819b0fc",
+      "sourceEntityId": "ba-source-42fa0fe97de54a80a266",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "relation-ba-c1e44da5e69241dbb5da",
+      "sourceEntityId": "ba-source-f10aeb43538744508e01",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "ability-ba-d9198181cf67476c9045",
+      "sourceEntityId": "ba-source-6629072a090d44659ec2",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "ability-ba-de9ed78c7327410a8010",
+      "sourceEntityId": "ba-source-d0a2865dde73403c8a48",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "ability-ba-3c7cd126400b4e7cb0fc",
+      "sourceEntityId": "ba-source-95865ef06a01406e9351",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "reference-ba-f73bf2a789aa470ab054",
+      "sourceEntityId": "ba-source-b19d2bfe73ed4612bb45",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "reference-ba-7605e08b4f4241f3a99d",
+      "sourceEntityId": "ba-source-8a1d0330706d41a5b6b2",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "reference-ba-9a278a32d4334ac9be96",
+      "sourceEntityId": "ba-source-cf7b05f9aec9463f9da5",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "invul-ba-a5f7ec7ef35d4a7a8a1c",
+      "sourceEntityId": "ba-source-9848264074b8418d928c",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-8bbe79e51dd341e39e69"
+    },
+    {
+      "id": "unit-ba-5269d704246f4e3a8d81",
+      "sourceEntityId": "ba-source-6cb55022c3a0452083de",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-34b24a1ceeb440ffa1c4",
+      "sourceEntityId": "ba-source-7135d4d6ea234f519d8b",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-641bbe8d25604a0fa1dc",
+      "sourceEntityId": "ba-source-94eff42e94c44867b44d",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-919f79a7ccf54ea5b51b",
+      "sourceEntityId": "ba-source-76a764fef19e4ae0b516",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-ff113ed13f8644c9a212",
+      "sourceEntityId": "ba-source-98f004d4b87d4cd5bef0",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-8e57d824c53b49ffaf3d",
+      "sourceEntityId": "ba-source-9042921c99074a71bbda",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-d9f4b7805ff843238b95",
+      "sourceEntityId": "ba-source-5c71864e2f87439db0ac",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-41b4178774c546ab9e5e",
+      "sourceEntityId": "ba-source-cdfdd860c79242728f8e",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-9a51fc1450654c369b2e",
+      "sourceEntityId": "ba-source-153f589a8d0646a98c2e",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "weapon-ba-a15037624f55443993ca",
+      "sourceEntityId": "ba-source-84a8c7fc256f4d5fb67c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "wargear-ba-f12286d3acae4256ab76",
+      "sourceEntityId": "ba-source-b67cf3e039b048af92b8",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "wargear-ba-2d5db7e1edd244c3af20",
+      "sourceEntityId": "ba-source-2e791bb5dae44302960d",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "wargear-ba-2b9d415950c04b5f8652",
+      "sourceEntityId": "ba-source-c9bb569440414ace884f",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "wargear-ba-cdbaf0e5df7a4dc1be12",
+      "sourceEntityId": "ba-source-b76dfac53e3f4712a59a",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "section-ba-02812be591b4480ca200",
+      "sourceEntityId": "ba-source-07bb2b9306834d1685f6",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "section-ba-bcbd25b3c05c412983d5",
+      "sourceEntityId": "ba-source-5a4815095a554474a85f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "section-ba-d3512ec5d2f8452fbfcc",
+      "sourceEntityId": "ba-source-333aaedbe87744df9c4b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "composition-ba-f5248d7bfb494edeb902",
+      "sourceEntityId": "ba-source-ea6b82445df243f99247",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "section-ba-1aaf161d11ff427b98c7",
+      "sourceEntityId": "ba-source-52ca82eb07dd4e1da722",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "relation-ba-a2695b2a31c64b28a5f9",
+      "sourceEntityId": "ba-source-947975dddd1f4895b4b4",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "ability-ba-1d205c52ba9d49fbbcfd",
+      "sourceEntityId": "ba-source-259fd6d428cf42a7a88e",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "ability-ba-1eba3478bf954adf8c3b",
+      "sourceEntityId": "ba-source-af74e00f1bc94d34b3d8",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "ability-ba-7cbf2dc160514d6d83d6",
+      "sourceEntityId": "ba-source-b8c24ef09f7645d5a5df",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "ability-ba-da87d6022de8416d9040",
+      "sourceEntityId": "ba-source-450e49101a24462cbfc5",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "reference-ba-c0242433f3c44a0aa114",
+      "sourceEntityId": "ba-source-cd6cd700a360446483d7",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "reference-ba-2bee911087e44733b21c",
+      "sourceEntityId": "ba-source-4b74c7ad3a5d49e492a8",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "reference-ba-e9fdb7f52e00468883c1",
+      "sourceEntityId": "ba-source-5d717650cb9641c0a392",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "invul-ba-bf0237eaa86949b1b650",
+      "sourceEntityId": "ba-source-c035edaa381e44d7b986",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-6cb55022c3a0452083de"
+    },
+    {
+      "id": "unit-ba-1388b9b0dc5d40c1aba4",
+      "sourceEntityId": "ba-source-73cfa0e6ada0495a9bed",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-3572f4e68a864ef09633",
+      "sourceEntityId": "ba-source-10a9cef5b7e443fe9b55",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "weapon-ba-67645f200c494038ac73",
+      "sourceEntityId": "ba-source-dd94cca71e114f3791cb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "weapon-ba-fc448b5b270c44d6a641",
+      "sourceEntityId": "ba-source-9b473fc7136b48fa920a",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "section-ba-498daccfe4f2406182c0",
+      "sourceEntityId": "ba-source-46fe26f2c46a4cd28363",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "section-ba-952a36e112254257a50e",
+      "sourceEntityId": "ba-source-4ce7ac8230534d8097f2",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "composition-ba-e7e57f3770554edfaafd",
+      "sourceEntityId": "ba-source-cc84fa9ce678423da1bd",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "section-ba-59290c9e0e804d60a640",
+      "sourceEntityId": "ba-source-84d4a4b5be214d5b9819",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "relation-ba-1a8918bdaaee4c8f99ea",
+      "sourceEntityId": "ba-source-bebbe16b856342deb465",
+      "kind": "SOURCE_RELATION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "ability-ba-630ec2727ede4d3f85a2",
+      "sourceEntityId": "ba-source-9b9e084e22464c97bacd",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "ability-ba-50dfa393351d4afcb6e7",
+      "sourceEntityId": "ba-source-03a7aecf27ed449e99fa",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "reference-ba-bbce7384acf04e10aadb",
+      "sourceEntityId": "ba-source-8c994cfb6abf42928081",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "reference-ba-13b0ef923ea14db698c3",
+      "sourceEntityId": "ba-source-e975c776986240e4a083",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-73cfa0e6ada0495a9bed"
+    },
+    {
+      "id": "unit-ba-548417d73e544f7f920e",
+      "sourceEntityId": "ba-source-c58260ec29fb44aa9352",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-bc6275a6c33047e988f8",
+      "sourceEntityId": "ba-source-1005de301c6b4563aa8f",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-8803cd648fe94795bbe9",
+      "sourceEntityId": "ba-source-4684f4e9749c438caa25",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-43582636910743b9bdfc",
+      "sourceEntityId": "ba-source-4b219445c5b846238995",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-6b9b506d127a4f2e9765",
+      "sourceEntityId": "ba-source-5d04441467174b4d90d7",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-a013604219104e0f9b0e",
+      "sourceEntityId": "ba-source-33ce5bf894f9450eb7f5",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-71789f8ceb644e1aa200",
+      "sourceEntityId": "ba-source-9ba061c9ae8246029463",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-c63b6a84e62f4aba9bbd",
+      "sourceEntityId": "ba-source-575608acd3c54ee59871",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-3248087bba67459e9342",
+      "sourceEntityId": "ba-source-2d67e8870aa54f59bc40",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-f9685accb7a2411f9287",
+      "sourceEntityId": "ba-source-1882a853c8a04c86a639",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-22d53bcaf38a4c9dab3b",
+      "sourceEntityId": "ba-source-b19662db44b9499ebe3b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-7365fea653f145d8b2b2",
+      "sourceEntityId": "ba-source-0eb2d19cf20147fc9f7c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-aeabb3f382a9472aa927",
+      "sourceEntityId": "ba-source-01192395ac0d41aba20b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-4ae275f11742447a9acd",
+      "sourceEntityId": "ba-source-0a38164f6f474927a1b7",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-7f852de608b04ecab415",
+      "sourceEntityId": "ba-source-bf0a4b647d0d446887e2",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-5ec3169094b847f0970a",
+      "sourceEntityId": "ba-source-1622558148b740daa58b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "weapon-ba-7232f884d8d2450894b0",
+      "sourceEntityId": "ba-source-f41fe3e1e35547c09892",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "wargear-ba-14937b7017ff449ea60c",
+      "sourceEntityId": "ba-source-aecb8561f60840b3afed",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "wargear-ba-82b76a8329784aaa8ecc",
+      "sourceEntityId": "ba-source-268cfdfb0d704f488530",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "wargear-ba-d45d53fefc434f558cb0",
+      "sourceEntityId": "ba-source-b122a0e93be2445a82ff",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "wargear-ba-365bd51623c24b2fa592",
+      "sourceEntityId": "ba-source-6c5ffb3c1dff4be18db2",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "wargear-ba-8134d33cd11c4d07a5f1",
+      "sourceEntityId": "ba-source-89b0c5330938491e846f",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "section-ba-2a9a036bb7b643d59d17",
+      "sourceEntityId": "ba-source-cb1a78bdabde4b3da524",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "section-ba-4b164a668aed42dbbbdf",
+      "sourceEntityId": "ba-source-603864a2f0404c5e8ff4",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "section-ba-605a99fe772d4d5b9e68",
+      "sourceEntityId": "ba-source-a101d9d8441c40228ed0",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "composition-ba-4a1fb43935bb4340ab49",
+      "sourceEntityId": "ba-source-db176e74e6f6457f9f9b",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "ability-ba-11c612255925457c89ed",
+      "sourceEntityId": "ba-source-2e12b844926146c99035",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "ability-ba-72b0b3cfecf1494fab5e",
+      "sourceEntityId": "ba-source-59d2d8f6cb5d405b9a12",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "reference-ba-8e6865632c1c4de3a0dd",
+      "sourceEntityId": "ba-source-4ec433be560645cabc5f",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "reference-ba-4b0d59fc4ecb46359184",
+      "sourceEntityId": "ba-source-b198011e2fa940d4bce1",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c58260ec29fb44aa9352"
+    },
+    {
+      "id": "unit-ba-6903525e7ae0497e943a",
+      "sourceEntityId": "ba-source-c9a95688191042d2bf4c",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-52f3903a140343a39fbe",
+      "sourceEntityId": "ba-source-a516c0a21a574bc988df",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-6005de8a404a45bc9c4c",
+      "sourceEntityId": "ba-source-fe093176292d45c193a8",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-7296f605cda1477da64e",
+      "sourceEntityId": "ba-source-a16f37b3c22c4b6bb45f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-ad795b8cb2e0404ea503",
+      "sourceEntityId": "ba-source-1ea2481a676f4740bd7f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-d4f5e82ad6094184956c",
+      "sourceEntityId": "ba-source-3bee48da286141c6913e",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-09b16bfa531142c3bb28",
+      "sourceEntityId": "ba-source-4457ea93ca134011a9ed",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-3cab733a1f3f4111a0ac",
+      "sourceEntityId": "ba-source-49d9b7a3eb564975b835",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-175b88c9ddb5462e898c",
+      "sourceEntityId": "ba-source-751d91e044d2412abcfb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-2ef26be6e1804518b611",
+      "sourceEntityId": "ba-source-e5984949a2544213a704",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "weapon-ba-9b95cd2e8139443b9e78",
+      "sourceEntityId": "ba-source-8fb37d3cb2ef4e8bb6a7",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-08cfde9a9aa44fc681bf",
+      "sourceEntityId": "ba-source-90f40f0f51e24784bb9c",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-65e4ae6e3ec7423db390",
+      "sourceEntityId": "ba-source-ad68b020cd0549d6a67a",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-84816908f49b4b57a71c",
+      "sourceEntityId": "ba-source-0b5af96584a9498ebf0c",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-8edb8cb954db4194ad5a",
+      "sourceEntityId": "ba-source-58c4b377e0a847bcb67c",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-9092da1ccbf94446b82a",
+      "sourceEntityId": "ba-source-2c8142c2ab5d43c6be8d",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "wargear-ba-3dbc14e8163443308cf6",
+      "sourceEntityId": "ba-source-2a51b77c11ff40fe8661",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "section-ba-5c6f21f14c054dfda126",
+      "sourceEntityId": "ba-source-742666a4b0a24fdebb59",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "section-ba-46a58a63ec4f4eea9dbe",
+      "sourceEntityId": "ba-source-734b3d1a81f44a69ad29",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "section-ba-c6901a33b7df429aa965",
+      "sourceEntityId": "ba-source-f541b1d3f73245d09518",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "composition-ba-b2e49c4fa8ee4bbfa01c",
+      "sourceEntityId": "ba-source-1df5c6f18f224a9db698",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "ability-ba-9c4c7122376a4a73b2b0",
+      "sourceEntityId": "ba-source-662b1428f028439f8074",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "ability-ba-f103714e8c8e4f6f9352",
+      "sourceEntityId": "ba-source-b90693fd00244cf4be52",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "reference-ba-17e8f22421ca4907a3c7",
+      "sourceEntityId": "ba-source-6f507d4cb68843cea0b2",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "reference-ba-ef970cbce3c5415b9e8f",
+      "sourceEntityId": "ba-source-dfc32e390e004a649872",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "reference-ba-9b0cf3f7ea4741b5941d",
+      "sourceEntityId": "ba-source-64545adccba84c8ea110",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c9a95688191042d2bf4c"
+    },
+    {
+      "id": "unit-ba-5981fb6513b9436487f0",
+      "sourceEntityId": "ba-source-e07fba773e154d78a93c",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-dfcf687d6086441ab29c",
+      "sourceEntityId": "ba-source-400d3ef203ce4b839bc0",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "weapon-ba-aab1a1bcd3b64b099774",
+      "sourceEntityId": "ba-source-b9aa66f3442b4ac1aba9",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "weapon-ba-6dd70a1443824d9394f5",
+      "sourceEntityId": "ba-source-c143bfd823104037b098",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "weapon-ba-d295e53aa88948c987e0",
+      "sourceEntityId": "ba-source-7ab1802c5b1d42508d50",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "wargear-ba-1c52084bff8543db902b",
+      "sourceEntityId": "ba-source-89335d108e2b40d88d57",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "section-ba-d99f2ebbdadf44bb84ca",
+      "sourceEntityId": "ba-source-931a11d116db457d943b",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "section-ba-83286d09338546eb962f",
+      "sourceEntityId": "ba-source-6259a46efe4743558391",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "section-ba-c7bbec4ece3a4e85ac2e",
+      "sourceEntityId": "ba-source-0893ab76a0a3416d81fa",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "composition-ba-1b13ad999ef44b2f94d5",
+      "sourceEntityId": "ba-source-e7df3e48f4fc4d8ebb8d",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "ability-ba-cfcc3c874e5644a8adb5",
+      "sourceEntityId": "ba-source-ebac699b7a8145fdb21a",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "ability-ba-458e6e2c7c07492ea9ca",
+      "sourceEntityId": "ba-source-5cc59adce2e946338268",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "reference-ba-f09e25f58cd64984a207",
+      "sourceEntityId": "ba-source-3918129cf05540e493be",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "reference-ba-4eef36c1eafa402f97c8",
+      "sourceEntityId": "ba-source-6fa84ac1eb994887b28e",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "invul-ba-206c1ff569204e5bb877",
+      "sourceEntityId": "ba-source-b3c9fa76a79d47b58f02",
+      "kind": "INVULNERABLE_SAVE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-e07fba773e154d78a93c"
+    },
+    {
+      "id": "unit-ba-56917c1cd6a94406970f",
+      "sourceEntityId": "ba-source-9a3cb30a4d7f4fdb87fe",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-09b871352a8f4f8394f0",
+      "sourceEntityId": "ba-source-9d8e045ddc454043bc87",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-2801b172362f41719fde",
+      "sourceEntityId": "ba-source-7c9b05ae0c8545e0a01f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-2a0cc30f53cc4da5b184",
+      "sourceEntityId": "ba-source-bc31c65f24b24721855b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-bf488e4979b24c97ba12",
+      "sourceEntityId": "ba-source-5e5aee5797f34ef28d1f",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-6c3334b59b7f45d19ee3",
+      "sourceEntityId": "ba-source-d4f7e451ac5848fbbbfa",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-c37c5a2fd3514483895b",
+      "sourceEntityId": "ba-source-f30d19f929404d498d51",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-3aae0ddccec4425eaf3f",
+      "sourceEntityId": "ba-source-8898c85d6b8c4ba0a3fb",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "weapon-ba-ae628fc7a4e54972888a",
+      "sourceEntityId": "ba-source-3a2608c025654765bec0",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "wargear-ba-342119423ff64015a613",
+      "sourceEntityId": "ba-source-d60cef34c4584c9897fc",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "wargear-ba-fbfd1325c943410a8b5c",
+      "sourceEntityId": "ba-source-62a9e18f51794507ac30",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "wargear-ba-b27e99f1e1eb49488331",
+      "sourceEntityId": "ba-source-b55bc58ee5894e689833",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "wargear-ba-f74078d495d14444befa",
+      "sourceEntityId": "ba-source-00c5dd80c6c64479a0a9",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "section-ba-b1c7366c44c645979a5f",
+      "sourceEntityId": "ba-source-5a05bdddc554479283be",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "section-ba-cb86722f2fbe44ce8eac",
+      "sourceEntityId": "ba-source-8cb08027e3b248e8a4be",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "section-ba-c96a7f57210f4ffba1d9",
+      "sourceEntityId": "ba-source-943ad798e71541f6984d",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "composition-ba-844a11212547498ca560",
+      "sourceEntityId": "ba-source-1e3fe46dbda5498e93ca",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "ability-ba-16b14dac906045e3a48b",
+      "sourceEntityId": "ba-source-3fe1f87cc44c4c37baab",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "reference-ba-7af211280ca7404198b0",
+      "sourceEntityId": "ba-source-c2302f458f2e4036b4dc",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "reference-ba-7d233f7ec0b84b748be3",
+      "sourceEntityId": "ba-source-a92821ab25bd4d30a176",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "reference-ba-783de250487545aeaa23",
+      "sourceEntityId": "ba-source-c3fb05bdedd14011b591",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-9a3cb30a4d7f4fdb87fe"
+    },
+    {
+      "id": "unit-ba-72b98695e8914fc89bff",
+      "sourceEntityId": "ba-source-c13a5a07b9604532899f",
+      "kind": "DATASHEET",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "model-ba-f43346355bf141109565",
+      "sourceEntityId": "ba-source-b9f41fab51ea4b088093",
+      "kind": "MODEL_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-ff4c8a26a0a6462bafb0",
+      "sourceEntityId": "ba-source-b693ef5b27764186b23b",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-cd31ea3d0db14dab818d",
+      "sourceEntityId": "ba-source-6773aea9394f4eafbc5d",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-21e6f576a68e4c2abadc",
+      "sourceEntityId": "ba-source-e350e2049cee4d6d98a0",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-5890891b481a42778589",
+      "sourceEntityId": "ba-source-6467120bb438453090aa",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-322e354f41f24a91891d",
+      "sourceEntityId": "ba-source-4d3aaf5725fb490cbbaa",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "weapon-ba-e9cbfa1b67ec49e9a0fb",
+      "sourceEntityId": "ba-source-59d8bd14c89a4dbc9a1c",
+      "kind": "WEAPON_PROFILE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "wargear-ba-0c8db5309b1b40c39881",
+      "sourceEntityId": "ba-source-bebda586ada6455c80b1",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "wargear-ba-489cc5da98d54202bbe3",
+      "sourceEntityId": "ba-source-0e7862273a46427e9bc7",
+      "kind": "WARGEAR_OPTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "section-ba-cb4b2b5f824549feb64f",
+      "sourceEntityId": "ba-source-09645312c60947f8915f",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "section-ba-e32f3e93672b46db8aec",
+      "sourceEntityId": "ba-source-fa851d58b8b44a449686",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "section-ba-4a20908b574443749765",
+      "sourceEntityId": "ba-source-c184aa52dd5a4ca0a5e9",
+      "kind": "DATASHEET_SECTION",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "composition-ba-5ca41e18fb1743f489f7",
+      "sourceEntityId": "ba-source-e0e9fe36621b4d0aa2f8",
+      "kind": "COMPOSITION_MEMBER",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "ability-ba-dde72ebbc35a41cba614",
+      "sourceEntityId": "ba-source-a276a1a5c0fd4e8eb95f",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "ability-ba-4850e4568cd64406af40",
+      "sourceEntityId": "ba-source-90baf7e51dbc423e89b6",
+      "kind": "DATASHEET_ABILITY",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "reference-ba-f262f0ec02124bcbbce1",
+      "sourceEntityId": "ba-source-cb355010e00d463bb953",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "reference-ba-dda213b32ae943b7b989",
+      "sourceEntityId": "ba-source-be1e95ff60fa4601a5ae",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "reference-ba-012669ccdb194a6e9120",
+      "sourceEntityId": "ba-source-44987c59ae0e4cbe9f80",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "reference-ba-c95f0bb72e064969b7f8",
+      "sourceEntityId": "ba-source-ff06c973c28b4db6953c",
+      "kind": "RULE_REFERENCE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-c13a5a07b9604532899f"
+    },
+    {
+      "id": "detachment-ba-23df164069854eb2996c",
+      "sourceEntityId": "ba-source-534480eb1bf94fb39ecb",
+      "kind": "DETACHMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-ba-10c56bef78b24440bb5f",
+      "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "enhancement-ba-c3527131d00a41efae68",
+      "sourceEntityId": "ba-source-66f2a093cd5c490ab35f",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "enhancement-ba-3f19e1f57dd94fcc92ae",
+      "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "enhancement-ba-e41fcde20bd649ef8d51",
+      "sourceEntityId": "ba-source-7486f4c370bc462db5de",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "enhancement-ba-3cc1e896eab1460c8748",
+      "sourceEntityId": "ba-source-52014b3f41a8400c8ded",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-e5b411516bb14ce38841",
+      "sourceEntityId": "ba-source-b546bc64bb404286bf9e",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-4f0221041cb6437dbbfd",
+      "sourceEntityId": "ba-source-f3543dd563ad4f0bab90",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-0092ea51d02f44369b6c",
+      "sourceEntityId": "ba-source-88131b5777a04152a73d",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-ab678911cce14a2b8eb2",
+      "sourceEntityId": "ba-source-d9e02bfaaf0a4bed891e",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-e3949b0e4fd545219bb0",
+      "sourceEntityId": "ba-source-2b1a72dffb2e4b0eab95",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "stratagem-ba-f8a3f68c418a48679f2b",
+      "sourceEntityId": "ba-source-1403dfd49a43492b8ca6",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-534480eb1bf94fb39ecb"
+    },
+    {
+      "id": "detachment-ba-9d0ce920555a44b68025",
+      "sourceEntityId": "ba-source-1641dd004b06404290f2",
+      "kind": "DETACHMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-ba-891412625ddf4fba9a95",
+      "sourceEntityId": "ba-source-bbdb7e6a48084fc4983c",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "enhancement-ba-2e1605fc8a6b4631b096",
+      "sourceEntityId": "ba-source-d0bf28a4572346e7afcc",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "enhancement-ba-e4821c7600234224bb54",
+      "sourceEntityId": "ba-source-9e5f6cb3aeb74e2c9d9b",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "stratagem-ba-aad243ed03d34d61b84b",
+      "sourceEntityId": "ba-source-04c93fe1b047461e9b2c",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "stratagem-ba-4867f01da4154fdd86ad",
+      "sourceEntityId": "ba-source-295f3660b66c47d2a3d3",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "stratagem-ba-128d5a759fda4857bb70",
+      "sourceEntityId": "ba-source-32e7720c8e314267afe5",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-1641dd004b06404290f2"
+    },
+    {
+      "id": "detachment-ba-b84a7700a71549e399ba",
+      "sourceEntityId": "ba-source-47d25d12eb0e492193e9",
+      "kind": "DETACHMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": null
+    },
+    {
+      "id": "detachment-rule-ba-c8ada324eb3f4ef39122",
+      "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+      "kind": "DETACHMENT_RULE",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    },
+    {
+      "id": "enhancement-ba-9b2691d5805d46df9b88",
+      "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    },
+    {
+      "id": "enhancement-ba-c6832a51a86e4ae784ba",
+      "sourceEntityId": "ba-source-4095bd4462234210b0f9",
+      "kind": "ENHANCEMENT",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    },
+    {
+      "id": "stratagem-ba-2ae63b1c8da04a4a993f",
+      "sourceEntityId": "ba-source-48ac7ed950954884a1ca",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    },
+    {
+      "id": "stratagem-ba-99d5e441c2c84a5ea1c3",
+      "sourceEntityId": "ba-source-80129c8fe22040479699",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    },
+    {
+      "id": "stratagem-ba-0801161ed85e4233a6f3",
+      "sourceEntityId": "ba-source-54e619f6e3e042dc8f48",
+      "kind": "STRATAGEM",
+      "bookId": "blood-angels",
+      "ownerSourceId": "ba-source-47d25d12eb0e492193e9"
+    }
+  ]
+}

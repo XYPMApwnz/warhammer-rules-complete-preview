@@ -1,0 +1,720 @@
+{
+  "schema": "blood-angels-v2/shared-capability-review/v1",
+  "sourceLedger": "rule-clause-review.json",
+  "scope": "EXACT_STAGE3C_17_SHARED_CAPABILITY_GAP_CLAUSES",
+  "globalClauseCensusBefore": {
+    "clauses": 233,
+    "EXECUTABLE_PROVEN": 37,
+    "TEXT_ONLY_SOURCE_BACKED": 187,
+    "NOT_PROVEN": 9
+  },
+  "globalClauseCensusAfter": {
+    "clauses": 233,
+    "EXECUTABLE_PROVEN": 37,
+    "TEXT_ONLY_SOURCE_BACKED": 187,
+    "NOT_PROVEN": 9
+  },
+  "coverage": {
+    "clauses": 17,
+    "EXECUTABLE_PROVEN": 0,
+    "CONDITIONAL_TEXT_ONLY": 13,
+    "TEXT_ONLY_SOURCE_BACKED": 4,
+    "NOT_PROVEN": 0,
+    "existingConditionalPolicies": 8,
+    "newConditionalPolicies": 5
+  },
+  "restrictions": [
+    "No automatic dice, attacks, CP expenditure, battle events or target selection",
+    "Five positional Black Rage clauses retain literal OR and NOT_PROVEN",
+    "Two weapon mapping ambiguities remain NOT_PROVEN",
+    "No generic BLOOD ANGELS keyword inferred from book, Detachment or faction header",
+    "Stormlance SOURCE_CONFLICT and ten MFM REFERENCE_ONLY unchanged",
+    "No real New Recruit export acceptance claimed"
+  ],
+  "records": [
+    {
+      "recordId": "review/ability-ba-16b14dac906045e3a48b/text/0:57",
+      "canonicalId": "ability-ba-16b14dac906045e3a48b",
+      "sourceEntityId": "ba-source-3fe1f87cc44c4c37baab",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-56917c1cd6a94406970f",
+      "quote": "Overcharged Engines: This unit can re-roll advance rolls.",
+      "fullContext": "Overcharged Engines: This unit can re-roll advance rolls.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-3fe1f87cc44c4c37baab",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": true,
+      "executable": false,
+      "physicalRecipient": "Exact physical source UNIT, including attached formation under UNIT rule semantics; no peer UNIT",
+      "requiredContext": [
+        "Advance roll event and player re-roll choice unknown"
+      ],
+      "existingCapability": "REROLL policy exists; ADVANCE enum rejected",
+      "capabilityGap": "Explicit ADVANCE roll enum",
+      "minimalChange": "Add ADVANCE to REROLL policy roll enum; preserve UNKNOWN state and no numeric mutation",
+      "positiveControl": "Source UNIT policy payload ADVANCE ALL",
+      "negativeControl": "Peer/repeated UNIT without source has no policy; numeric Advance remains unchanged",
+      "reason": "NEW_STRUCTURED_CONDITIONAL_POLICY"
+    },
+    {
+      "recordId": "review/ability-ba-1d205c52ba9d49fbbcfd/text/12:67",
+      "canonicalId": "ability-ba-1d205c52ba9d49fbbcfd",
+      "sourceEntityId": "ba-source-259fd6d428cf42a7a88e",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-5269d704246f4e3a8d81",
+      "quote": "- This unit’s melee attacks can re-roll hit rolls of 1.",
+      "fullContext": "Black Rage:\n- This unit’s melee attacks can re-roll hit rolls of 1.\n- While this unit is not within 6\" of one or more friendly BLOOD ANGELS CHARACTER models, or not within 12\" of one or more friendly CHAPLAIN models, it cannot make a fall-back move and it’s OC is modified to 0.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-259fd6d428cf42a7a88e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Exact source UNIT/attached formation making melee attacks",
+      "requiredContext": [
+        "Melee hit roll event"
+      ],
+      "existingCapability": "REROLL HIT ONES melee FORMEd_UNIT policy already present",
+      "capabilityGap": "Actual roll/attack context; not needed for safe display",
+      "minimalChange": "None; preserve existing independent first bullet without changing positional OR bullet",
+      "positiveControl": "Exact source/formation melee HIT ONES policy",
+      "negativeControl": "Ranged attacks and peer UNIT not covered; no OC=0 inferred",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-44df419581d3449eaff9/text/0:62",
+      "canonicalId": "ability-ba-44df419581d3449eaff9",
+      "sourceEntityId": "ba-source-33c509c51724469e8dec",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-3483c88a4df4495ca2e2",
+      "quote": "Guardian of the Lost: Attacks that target this unit have -1 D.",
+      "fullContext": "Guardian of the Lost: Attacks that target this unit have -1 D.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[3]",
+        "sourceEntityId": "ba-source-33c509c51724469e8dec",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Actual source UNIT/attached formation targeted by an enemy attack",
+      "requiredContext": [
+        "Incoming attacker",
+        "Target",
+        "Weapon mode",
+        "Wound comparison where specified"
+      ],
+      "existingCapability": "INCOMING_MODIFIER already source-bound FORMEd_UNIT policy",
+      "capabilityGap": "Attack resolution context; no automatic attack calculator currently intended",
+      "minimalChange": "None. Reuse existing safe UNKNOWN policy; do not mutate outgoing weapon characteristics",
+      "positiveControl": "Exact source/formation policy remains available with value -1",
+      "negativeControl": "Peer UNIT unaffected; outgoing D/WS/Wound values unchanged",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-458e6e2c7c07492ea9ca/text/0:73",
+      "canonicalId": "ability-ba-458e6e2c7c07492ea9ca",
+      "sourceEntityId": "ba-source-5cc59adce2e946338268",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-5981fb6513b9436487f0",
+      "quote": "Angelic Visage: Melee attacks that target this unit have -1 to hit rolls.",
+      "fullContext": "Angelic Visage: Melee attacks that target this unit have -1 to hit rolls.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[3]",
+        "sourceEntityId": "ba-source-5cc59adce2e946338268",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Actual source UNIT/attached formation targeted by an enemy attack",
+      "requiredContext": [
+        "Incoming attacker",
+        "Target",
+        "Weapon mode",
+        "Wound comparison where specified"
+      ],
+      "existingCapability": "INCOMING_MODIFIER already source-bound FORMEd_UNIT policy",
+      "capabilityGap": "Attack resolution context; no automatic attack calculator currently intended",
+      "minimalChange": "None. Reuse existing safe UNKNOWN policy; do not mutate outgoing weapon characteristics",
+      "positiveControl": "Exact source/formation policy remains available with value -1",
+      "negativeControl": "Peer UNIT unaffected; outgoing D/WS/Wound values unchanged",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-72b0b3cfecf1494fab5e/text/12:67",
+      "canonicalId": "ability-ba-72b0b3cfecf1494fab5e",
+      "sourceEntityId": "ba-source-59d2d8f6cb5d405b9a12",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-548417d73e544f7f920e",
+      "quote": "- This unit’s melee attacks can re-roll hit rolls of 1.",
+      "fullContext": "Black Rage:\n- This unit’s melee attacks can re-roll hit rolls of 1.\n- While this unit is not within 6\" of one or more friendly BLOOD ANGELS CHARACTER models, or not within 12\" of one or more friendly CHAPLAIN models, it cannot make a fall-back move and it’s OC is modified to 0.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[3]",
+        "sourceEntityId": "ba-source-59d2d8f6cb5d405b9a12",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Exact source UNIT/attached formation making melee attacks",
+      "requiredContext": [
+        "Melee hit roll event"
+      ],
+      "existingCapability": "REROLL HIT ONES melee FORMEd_UNIT policy already present",
+      "capabilityGap": "Actual roll/attack context; not needed for safe display",
+      "minimalChange": "None; preserve existing independent first bullet without changing positional OR bullet",
+      "positiveControl": "Exact source/formation melee HIT ONES policy",
+      "negativeControl": "Ranged attacks and peer UNIT not covered; no OC=0 inferred",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-9c4c7122376a4a73b2b0/text/12:67",
+      "canonicalId": "ability-ba-9c4c7122376a4a73b2b0",
+      "sourceEntityId": "ba-source-662b1428f028439f8074",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-6903525e7ae0497e943a",
+      "quote": "- This unit’s melee attacks can re-roll hit rolls of 1.",
+      "fullContext": "Black Rage:\n- This unit’s melee attacks can re-roll hit rolls of 1.\n- While this unit is not within 6\" of one or more friendly BLOOD ANGELS CHARACTER models, or not within 12\" of one or more friendly CHAPLAIN models, it cannot make a fall-back move and it’s OC is modified to 0.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-662b1428f028439f8074",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Exact source UNIT/attached formation making melee attacks",
+      "requiredContext": [
+        "Melee hit roll event"
+      ],
+      "existingCapability": "REROLL HIT ONES melee FORMEd_UNIT policy already present",
+      "capabilityGap": "Actual roll/attack context; not needed for safe display",
+      "minimalChange": "None; preserve existing independent first bullet without changing positional OR bullet",
+      "positiveControl": "Exact source/formation melee HIT ONES policy",
+      "negativeControl": "Ranged attacks and peer UNIT not covered; no OC=0 inferred",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-cfcc3c874e5644a8adb5/text/0:109",
+      "canonicalId": "ability-ba-cfcc3c874e5644a8adb5",
+      "sourceEntityId": "ba-source-ebac699b7a8145fdb21a",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-5981fb6513b9436487f0",
+      "quote": "Heirs of Azkaellon: Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.",
+      "fullContext": "Heirs of Azkaellon: Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-ebac699b7a8145fdb21a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Actual source UNIT/attached formation targeted by an enemy attack",
+      "requiredContext": [
+        "Incoming attacker",
+        "Target",
+        "Weapon mode",
+        "Wound comparison where specified"
+      ],
+      "existingCapability": "INCOMING_MODIFIER already source-bound FORMEd_UNIT policy",
+      "capabilityGap": "Attack resolution context; no automatic attack calculator currently intended",
+      "minimalChange": "None. Reuse existing safe UNKNOWN policy; do not mutate outgoing weapon characteristics",
+      "positiveControl": "Exact source/formation policy remains available with value -1",
+      "negativeControl": "Peer UNIT unaffected; outgoing D/WS/Wound values unchanged",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-dde72ebbc35a41cba614/text/12:67",
+      "canonicalId": "ability-ba-dde72ebbc35a41cba614",
+      "sourceEntityId": "ba-source-a276a1a5c0fd4e8eb95f",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-72b98695e8914fc89bff",
+      "quote": "- This unit’s melee attacks can re-roll hit rolls of 1.",
+      "fullContext": "Black Rage:\n- This unit’s melee attacks can re-roll hit rolls of 1.\n- While this unit is not within 6\" of one or more friendly BLOOD ANGELS CHARACTER models, or not within 12\" of one or more friendly CHAPLAIN models, it cannot make a fall-back move and it’s OC is modified to 0.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-a276a1a5c0fd4e8eb95f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Exact source UNIT/attached formation making melee attacks",
+      "requiredContext": [
+        "Melee hit roll event"
+      ],
+      "existingCapability": "REROLL HIT ONES melee FORMEd_UNIT policy already present",
+      "capabilityGap": "Actual roll/attack context; not needed for safe display",
+      "minimalChange": "None; preserve existing independent first bullet without changing positional OR bullet",
+      "positiveControl": "Exact source/formation melee HIT ONES policy",
+      "negativeControl": "Ranged attacks and peer UNIT not covered; no OC=0 inferred",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-de9ed78c7327410a8010/text/12:67",
+      "canonicalId": "ability-ba-de9ed78c7327410a8010",
+      "sourceEntityId": "ba-source-d0a2865dde73403c8a48",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-014cc7b19aca4d5b84a3",
+      "quote": "- This unit’s melee attacks can re-roll hit rolls of 1.",
+      "fullContext": "Black Rage:\n- This unit’s melee attacks can re-roll hit rolls of 1.\n- While this unit is not within 6\" of one or more friendly BLOOD ANGELS CHARACTER models, or not within 12\" of one or more friendly CHAPLAIN models, it cannot make a fall-back move and it’s OC is modified to 0.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[3]",
+        "sourceEntityId": "ba-source-d0a2865dde73403c8a48",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "CONDITIONAL_TEXT_ONLY",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Exact source UNIT/attached formation making melee attacks",
+      "requiredContext": [
+        "Melee hit roll event"
+      ],
+      "existingCapability": "REROLL HIT ONES melee FORMEd_UNIT policy already present",
+      "capabilityGap": "Actual roll/attack context; not needed for safe display",
+      "minimalChange": "None; preserve existing independent first bullet without changing positional OR bullet",
+      "positiveControl": "Exact source/formation melee HIT ONES policy",
+      "negativeControl": "Ranged attacks and peer UNIT not covered; no OC=0 inferred",
+      "reason": "ALREADY_CONDITIONAL_NO_DUPLICATE"
+    },
+    {
+      "recordId": "review/ability-ba-eb9da07320a4443fb871/text/0:141",
+      "canonicalId": "ability-ba-eb9da07320a4443fb871",
+      "sourceEntityId": "ba-source-3156a17153864a9b978e",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "unit-ba-92fdb23a526b4c328367",
+      "quote": "Warden of the Imperium Nihilus: The assault doctrine and tactical doctrine are active for this unit in addition to any other combat doctrine.",
+      "fullContext": "Warden of the Imperium Nihilus: The assault doctrine and tactical doctrine are active for this unit in addition to any other combat doctrine.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[3]",
+        "sourceEntityId": "ba-source-3156a17153864a9b978e",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Dante physical UNIT/attached formation, not every army UNIT",
+      "requiredContext": [
+        "Physical source known",
+        "Fall-back/shoot/charge event unknown"
+      ],
+      "existingCapability": "Dante source-proven permanent ASSAULT marker already lowers known numeric SM effect context",
+      "capabilityGap": "Typed TACTICAL action permissions and qualified doctrine coexistence state",
+      "minimalChange": "A source-bound conditional doctrine permission can describe ASSAULT+TACTICAL without firing unknown actions. Do not add TACTICAL to current ASSAULT-only binder. Actual action automation needs separate battle context contract",
+      "positiveControl": "Dante formed UNIT gets source text ASSAULT+TACTICAL while existing ASSAULT calculation unchanged",
+      "negativeControl": "No Tactical-derived action success assumed, detached former recipient loses source, unrelated UNIT does not gain doctrine",
+      "reason": "KEEP_FULL_TEXT_OR_OPT_IN_DOCTRINE_POLICY"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/59:88",
+      "canonicalId": "detachment-rule-ba-10c56bef78b24440bb5f",
+      "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-23df164069854eb2996c",
+      "quote": "- Can re-roll hit rolls of 1.",
+      "fullContext": "Legacy of the Angel\nFriendly BLOOD ANGELS CHARACTER units:\n- Can re-roll hit rolls of 1.\n- Can re-roll wound rolls of 1.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": true,
+      "executable": false,
+      "physicalRecipient": "Friendly physical formed UNIT with BOTH BLOOD ANGELS and CHARACTER while Angelic Inheritors is selected; actual components determine formed keywords",
+      "requiredContext": [
+        "Selected Detachment known",
+        "Membership/physical formation known",
+        "Actual relevant roll unknown"
+      ],
+      "existingCapability": "REROLL HIT/WOUND ONES + native formed-unit keyword union exist",
+      "capabilityGap": "Detachment-owned policy with null physical source and source-proven recipient selector",
+      "minimalChange": "Opt-in DETACHMENT_RULE policy validation/dispatch/projection; sourceInstanceId=null; guarded all-keyword selector; no fake bearer and no intrinsic component/model keyword mutation",
+      "positiveControl": "BA Captain attached to generic Intercessors qualifies formed UNIT; detached BA Captain alone qualifies",
+      "negativeControl": "Generic-only Intercessors, SM Captain+Intercessors, wrong Detachment, foreign/unknown canonical owner do not qualify; detach removes grant from generic former bodyguard",
+      "reason": "NEW_STRUCTURED_CONDITIONAL_POLICY"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120",
+      "canonicalId": "detachment-rule-ba-10c56bef78b24440bb5f",
+      "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-23df164069854eb2996c",
+      "quote": "- Can re-roll wound rolls of 1.",
+      "fullContext": "Legacy of the Angel\nFriendly BLOOD ANGELS CHARACTER units:\n- Can re-roll hit rolls of 1.\n- Can re-roll wound rolls of 1.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": true,
+      "executable": false,
+      "physicalRecipient": "Friendly physical formed UNIT with BOTH BLOOD ANGELS and CHARACTER while Angelic Inheritors is selected; actual components determine formed keywords",
+      "requiredContext": [
+        "Selected Detachment known",
+        "Membership/physical formation known",
+        "Actual relevant roll unknown"
+      ],
+      "existingCapability": "REROLL HIT/WOUND ONES + native formed-unit keyword union exist",
+      "capabilityGap": "Detachment-owned policy with null physical source and source-proven recipient selector",
+      "minimalChange": "Opt-in DETACHMENT_RULE policy validation/dispatch/projection; sourceInstanceId=null; guarded all-keyword selector; no fake bearer and no intrinsic component/model keyword mutation",
+      "positiveControl": "BA Captain attached to generic Intercessors qualifies formed UNIT; detached BA Captain alone qualifies",
+      "negativeControl": "Generic-only Intercessors, SM Captain+Intercessors, wrong Detachment, foreign/unknown canonical owner do not qualify; detach removes grant from generic former bodyguard",
+      "reason": "NEW_STRUCTURED_CONDITIONAL_POLICY"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-891412625ddf4fba9a95/text/16:116",
+      "canonicalId": "detachment-rule-ba-891412625ddf4fba9a95",
+      "sourceEntityId": "ba-source-bbdb7e6a48084fc4983c",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-9d0ce920555a44b68025",
+      "quote": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.",
+      "fullContext": "Wrath of Angels\nThe tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-bbdb7e6a48084fc4983c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Friendly SANGUINARY GUARD physical UNIT/formation with Encarmine Speartip selected",
+      "requiredContext": [
+        "Selected Detachment and actual SANGUINARY GUARD UNIT known",
+        "Battle action unknown"
+      ],
+      "existingCapability": "Selected Detachment gating and physical keyword selectors exist",
+      "capabilityGap": "Typed TACTICAL permissions; Detachment policy source null",
+      "minimalChange": "Optional structured doctrine permission using exact keyword recipient and source=null. Never set existing ASSAULT boolean from a TACTICAL metadata row",
+      "positiveControl": "Selected Encarmine Sanguinary Guard UNIT has TACTICAL source permission",
+      "negativeControl": "Wrong Detachment, unrelated UNIT, generic peer do not; Assault-only effects not newly triggered",
+      "reason": "KEEP_FULL_TEXT_OR_OPT_IN_DOCTRINE_POLICY"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/142:208",
+      "canonicalId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+      "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-b84a7700a71549e399ba",
+      "quote": "- The devastator/tactical doctrine cannot be active for this unit.",
+      "fullContext": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Friendly DEATH COMPANY physical UNIT/formed UNIT with Wrath of the Doomed selected",
+      "requiredContext": [
+        "Selected Detachment known",
+        "Actual DEATH COMPANY membership known",
+        "Start-of-phase event unknown"
+      ],
+      "existingCapability": "Selected Detachment gating, DEATH COMPANY physical membership known",
+      "capabilityGap": "Typed doctrine exclusion/precedence with explicit phase-entry context",
+      "minimalChange": "Optional doctrine restriction policy only; represent forbidden Devastator/Tactical/any non-Assault, preserve regardless-of-other-rules text. Negative exclusion cannot assert positive Assault activation before source phase event",
+      "positiveControl": "Exact selected source recipients show forbidden non-Assault doctrine context",
+      "negativeControl": "No inferred phase-start/positive Assault; unrelated UNIT/wrong Detachment unaffected; Dante+DC conflict not silently chosen",
+      "reason": "KEEP_FULL_TEXT_OR_OPT_IN_DOCTRINE_RESTRICTION"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/209:343",
+      "canonicalId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+      "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-b84a7700a71549e399ba",
+      "quote": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.",
+      "fullContext": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[2]",
+        "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "newStructuredPolicy": false,
+      "executable": false,
+      "physicalRecipient": "Friendly DEATH COMPANY physical UNIT/formed UNIT with Wrath of the Doomed selected",
+      "requiredContext": [
+        "Selected Detachment known",
+        "Actual DEATH COMPANY membership known",
+        "Start-of-phase event unknown"
+      ],
+      "existingCapability": "Selected Detachment gating, DEATH COMPANY physical membership known",
+      "capabilityGap": "Typed doctrine exclusion/precedence with explicit phase-entry context",
+      "minimalChange": "Optional doctrine restriction policy only; represent forbidden Devastator/Tactical/any non-Assault, preserve regardless-of-other-rules text. Negative exclusion cannot assert positive Assault activation before source phase event",
+      "positiveControl": "Exact selected source recipients show forbidden non-Assault doctrine context",
+      "negativeControl": "No inferred phase-start/positive Assault; unrelated UNIT/wrong Detachment unaffected; Dante+DC conflict not silently chosen",
+      "reason": "KEEP_FULL_TEXT_OR_OPT_IN_DOCTRINE_RESTRICTION"
+    },
+    {
+      "recordId": "review/enhancement-ba-3f19e1f57dd94fcc92ae/text/44:107",
+      "canonicalId": "enhancement-ba-3f19e1f57dd94fcc92ae",
+      "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-23df164069854eb2996c",
+      "quote": "Enemy units cannot target this unit with snap shooting attacks.",
+      "fullContext": "- Blazing Icon\nADEPTUS ASTARTES model only. Enemy units cannot target this unit with snap shooting attacks.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": true,
+      "executable": false,
+      "physicalRecipient": "Enhancement bearer UNIT/attached formation as defender, never attacker selected by Fire Overwatch",
+      "requiredContext": [
+        "Valid assigned MODEL known",
+        "Enemy attack kind/target unknown"
+      ],
+      "existingCapability": "Assigned Enhancement physical MODEL bearer and UNIT/formation scope exist; STRATAGEM_TARGET_RESTRICTION exists but targets different entity",
+      "capabilityGap": "Typed enemy snap-shooting ATTACK TARGET prohibition",
+      "minimalChange": "Opt-in ATTACK_TARGET_RESTRICTION payload PROHIBIT + SNAP_SHOOTING + ENEMY source qualifier; do not reuse Stratagem target prohibition",
+      "positiveControl": "Assigned bearer formed UNIT has enemy SNAP_SHOOTING defender restriction",
+      "negativeControl": "Non-snap-shooting attacks unaffected; friendly attacker selection not blocked; unassigned/peer/wrongbearer UNIT no policy",
+      "reason": "NEW_STRUCTURED_CONDITIONAL_POLICY"
+    },
+    {
+      "recordId": "review/enhancement-ba-9b2691d5805d46df9b88/text/53:137",
+      "canonicalId": "enhancement-ba-9b2691d5805d46df9b88",
+      "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+      "sourceOwner": "blood-angels",
+      "sourceParentId": "detachment-ba-b84a7700a71549e399ba",
+      "quote": "When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+      "fullContext": "- Instinctive Interception\nDEATH COMPANY model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+      "sourceProvenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+        "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "rawProof": {
+        "sha256Matches": true,
+        "xpathNodeCount": 1,
+        "fullContextPresentInRaw": true,
+        "quotePresentInRaw": true
+      },
+      "factualLedgerStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "factualLedgerStatusAfter": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusBefore": "TEXT_ONLY_SOURCE_BACKED",
+      "capabilityStatusAfter": "CONDITIONAL_TEXT_ONLY",
+      "newStructuredPolicy": true,
+      "executable": false,
+      "physicalRecipient": "Proper DEATH COMPANY bearer UNIT targeted by actual Heroic Intervention use",
+      "requiredContext": [
+        "Valid assigned DEATH COMPANY MODEL known",
+        "Specific Heroic Intervention use/target unknown"
+      ],
+      "existingCapability": "Assigned Enhancement physical MODEL bearer and UNIT/formation scope; canonical Core Heroic Intervention reference available",
+      "capabilityGap": "Conditional action CP-cost modifier, not MFM pricing",
+      "minimalChange": "Opt-in action-cost policy with canonical owner/reference HEROIC INTERVENTION and delta -1CP. Never subtract MFM points or spend CP by default; full source trigger preserved",
+      "positiveControl": "Correct bearer UNIT policy -1CP for exact Heroic Intervention target use",
+      "negativeControl": "Other Stratagem/use/target, no bearer, peer/repeated UNIT unaffected; roster/MFM points unchanged",
+      "reason": "NEW_STRUCTURED_CONDITIONAL_POLICY"
+    }
+  ]
+}

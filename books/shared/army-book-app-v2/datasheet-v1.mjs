@@ -95,7 +95,44 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const node=el('small','ds-modifier-breakdown',text);node.dataset.rosterBaseValue=String(base);node.dataset.rosterModifier=String(changes.reduce((a,b)=>a+b,0));
     node.dataset.ruleIds=JSON.stringify(trace.map(change=>change.ruleId));
     node.dataset.modifierSources=JSON.stringify(trace.map(change=>[change.ruleId,change.clauseId,change.effectId,
-      change.sourceInstanceId??null,change.sourceCompositionId??null,change.sourceFields,change.lifetime]));return node;
+      change.sourceInstanceId??null,change.sourceCompositionId??null,change.sourceFields,change.lifetime]));
+    if(!Array.isArray(effective.statSources))return node;
+    const origins=trace.map(change=>effective.statSources.find(source=>source.ruleId===change.ruleId&&
+      source.clauseId===change.clauseId&&source.effectId===change.effectId&&source.targetInstanceId===change.targetInstanceId&&
+      source.targetProfileId===change.targetProfileId&&source.targetWeaponProfileId===change.targetWeaponProfileId&&
+      (source.targetCompositionId??null)===(change.targetCompositionId??null)&&
+      (source.targetWeaponSelectionKey??null)===(change.targetWeaponSelectionKey??null)&&
+      (source.targetWeaponScopeId??null)===(change.targetWeaponScopeId??null)&&source.sourceInstanceId===change.sourceInstanceId&&
+      (source.sourceCompositionId??null)===(change.sourceCompositionId??null)));
+    if(origins.some(origin=>!origin))throw new TypeError('Missing executed characteristic source attribution');
+    node.dataset.modifierAttribution=JSON.stringify(origins);return node;
+  };
+  const modifierSourceNote=(card,field,instanceId,change=modifiers(card,field,instanceId))=>{
+    if(!change?.dataset.modifierAttribution)return null;
+    const origins=JSON.parse(change.dataset.modifierAttribution),key=pointerKey(field);
+    const labels={M:'Move',T:'Toughness',SV:'Save',W:'Wounds',LD:'Leadership',OC:'Objective Control',INSV:'Invulnerable Save',
+      range:'Range',attacks:'Attacks',skill:'Hit Skill',strength:'Strength',ap:'AP',damage:'Damage'};
+    const scope=scopeCaption(card)||single(card,'name')?.value||card.title;
+    const note=el('p','ds-effective-metric ds-stat-modifier-sources');
+    note.dataset.modifierAttribution=change.dataset.modifierAttribution;note.dataset.modifierField=key;
+    note.dataset.recipientInstanceId=instanceId;note.dataset.recipientScope=card.scopeId||'';
+    note.dataset[card.kind==='WEAPON_PROFILE'?'recipientWeaponProfileId':'recipientProfileId']=card.id;
+    if(card.selectionKey)note.dataset.recipientSelectionKey=card.selectionKey;
+    note.append(el('b','',(labels[key]||key)+' · '+scope+' · Source: '));
+    const unique=[...new Map(origins.map(origin=>[JSON.stringify([origin.canonicalRuleId,origin.sourceInstanceId,
+      origin.sourceCompositionId??null,origin.sourceModelInstanceId??null]),origin])).values()];
+    for(const [index,origin]of unique.entries()){
+      if(index)note.append(document.createTextNode('; '));
+      const link=anchor(origin.label,origin.canonicalRuleId,true);link.dataset.modifierSourceRuleId=origin.canonicalRuleId;
+      link.dataset.modifierSourceInstanceId=origin.sourceInstanceId||'';note.append(link);
+      const physical=roster.state.units.find(unit=>unit.instanceId===origin.sourceInstanceId);
+      if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+        note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
+          (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+      const model=origin.sourceProfileId&&cards.get(origin.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
+      if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
+    }
+    return note;
   };
   const effectiveAbilityNode=ability=>{
     const node=el('span','ds-effective-ability');
@@ -180,16 +217,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     node.append(note);return node;
   };
   const renderProfile=(card,{instanceId,inDialog=false,abilityPresentation,sharedMetricFields=new Set()}={})=>{
-    const box=identity(el('div','model-profile'),card,instanceId),used=new Set();
+    const box=identity(el('div','model-profile'),card,instanceId),used=new Set(),sourceNotes=[];
     const caption=scopeCaption(card);if(caption)box.append(el('h5','ds-composition-scope',caption));
     const titleField=card.fields.find(f=>f.presentation==='heading');if(titleField){box.append(factValue('h5',titleField));used.add(titleField.id);}
     const line=el('div','statline');
     const labels={M:'M',T:'T',SV:'SV',W:'W',LD:'LD',OC:'OC',INSV:'INV'};
     for(const field of [...card.fields,...(card.profileFieldIds||[]).map(id=>boundFields.get(id))].filter(f=>Object.hasOwn(labels,pointerKey(f)))){
       const stat=el('div','stat');stat.append(el('b','',labels[pointerKey(field)]),factValue('span',field));
-      const change=modifiers(card,field,instanceId);if(change)stat.append(change);line.append(stat);used.add(field.id);
+      const change=modifiers(card,field,instanceId);if(change){stat.append(change);const note=modifierSourceNote(card,field,instanceId,change);if(note)sourceNotes.push(note);}line.append(stat);used.add(field.id);
     }
-    box.append(line);
+    box.append(line,...sourceNotes);
     if(abilityPresentation){
       if(abilityPresentation.length&&!caption&&!titleField)box.prepend(el('h5','ds-composition-scope',single(card,'name')?.value||cards.get(card.parentId).title));
       for(const ability of abilityPresentation){const pill=el('div','ds-granted-ability');pill.append(effectiveAbilityNode(ability));box.append(pill);}
@@ -210,7 +247,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     return box;
   };
-  const renderWeapon=(card,{instanceId,popup=false}={})=>{
+  const renderWeapon=(card,{instanceId,popup=false,displayMembers=[card]}={})=>{
     const row=identity(el(popup?'article':'div',popup?'popup-weapon-profile':'weapon-row'),card,instanceId),used=new Set();
     if(!popup)row.setAttribute('role','row');
     const name=single(card,'name'),mode=single(card,'mode');
@@ -223,6 +260,36 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const field of card.fields.filter(f=>pointerKey(f)==='abilities'&&!(Array.isArray(f.value)&&!f.value.length))){
       const target=coreTargets[abilityCode(field.value)];const chip=target&&cards.has(target)?anchor('',target,true):el('span');
       chip.classList.add('tag','weapon-tag');chip.append(factValue('span',field));tags.append(chip);used.add(field.id);
+      const sources=[...new Map(displayMembers.flatMap(member=>member.fields.filter(candidate=>
+        pointerKey(candidate)==='abilities'&&candidate.value===field.value).flatMap(candidate=>candidate.weaponGrantSources||[]))
+        .map(source=>[JSON.stringify(source),source])).values()];
+      if(sources.length){
+        const note=el('small','ds-ability-sources ds-weapon-grant-sources');note.style.display='block';note.style.overflowWrap='anywhere';note.append(document.createTextNode('Source: '));
+        note.dataset.weaponGrantSources=JSON.stringify(sources);
+        const groups=new Map();for(const source of sources){
+          const key=JSON.stringify([source.canonicalRuleId,source.sourceInstanceId,source.sourceCompositionId??null,source.sourceModelInstanceId??null]);
+          if(!groups.has(key))groups.set(key,{source,targets:[]});groups.get(key).targets.push(source);
+        }
+        for(const [index,{source,targets}]of [...groups.values()].entries()){
+          if(index)note.append(document.createTextNode('; '));
+          const origin=anchor(source.label,source.canonicalRuleId,true);origin.dataset.weaponGrantSourceRuleId=source.canonicalRuleId;
+          origin.dataset.weaponGrantSourceInstanceId=source.sourceInstanceId||'';note.append(origin);
+          const physical=roster?.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
+          if(physical){const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
+            note.append(document.createTextNode(' — '+(cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+
+              (peers.length>1?' #'+(peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1):'')));}
+          const model=source.sourceProfileId&&cards.get(source.sourceProfileId)?.fields.find(field=>(field.presentationPath||field.source?.path)==='/name');
+          if(typeof model?.value==='string')note.append(document.createTextNode(' ('+model.value+')'));
+          const recipients=[...new Set(targets.map(target=>{
+            const member=displayMembers.find(member=>member.id===target.targetWeaponProfileId&&
+              (member.scopeId??null)===(target.targetCompositionId??null)&&
+              (!target.targetWeaponSelectionKey||member.selectionKey===target.targetWeaponSelectionKey));
+            return member?scopeCaption(member)||cards.get(member.parentId)?.title||'Physical unit':null;
+          }).filter(Boolean))];
+          if(recipients.length)note.append(document.createTextNode(' · Applies to: '+recipients.join('; ')));
+        }
+        tags.append(note);
+      }
     }
     nameCell.append(tags);
     if(card.criticalHitThreshold!==undefined) {
@@ -250,7 +317,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const change=modifiers(card,field,instanceId);if(change){cell.dataset.rosterBaseValue=change.dataset.rosterBaseValue;cell.dataset.rosterModifier=change.dataset.rosterModifier;cell.append(change);}
       (popup?body:row).append(cell);used.add(field.id);
     }
-    if(popup)row.append(table);
+    if(popup){row.append(table);for(const key of Object.keys(fieldLabels)){const note=modifierSourceNote(card,single(card,key),instanceId);if(note)row.append(note);}}
     return row;
   };
   const renderSection=(card,{instanceId,inDialog=false}={})=>{
@@ -441,15 +508,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(unitModifiers)root.append(unitModifiers);
     if(card.rosterConditionalPolicies?.length){
       const section=part('conditional-policies','Conditional mechanics');
-      const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction'};
+      const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction',ATTACK_TARGET_RESTRICTION:'Attack target restriction',ACTION_CP_MODIFIER:'Conditional action CP modifier'};
       for(const row of card.rosterConditionalPolicies){
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
-        node.dataset.sourceInstanceId=row.sourceInstanceId;node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
+        node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
         node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
         node.append(el('h5','',labels[row.policy.kind]),el('p','','Conditional — Not automatically resolved'));
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
         node.append(el('p','',row.policy.recipientScope==='AURA_UNRESOLVED'?`Recipient unresolved; requires measured ${row.policy.aura.range} inch range and matching ${row.policy.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
         if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
+        if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
         node.append(el('p','',row.policy.contextQuote));section.append(node);
       }root.append(section);
     }
@@ -509,7 +577,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const weaponGroups=instanceId?groupDisplayRecords(weapons,weaponDisplayKey):weapons.map(weapon=>({members:[weapon]}));
       const shownInstructions=new Set();
       weaponGroups.forEach(displayGroup=>{
-        const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId});
+        const weapon=displayGroup.members[0],row=renderWeapon(weapon,{instanceId,displayMembers:displayGroup.members});
         if(instanceId&&displayGroup.members.length>1){
           row.dataset.weaponScopes=JSON.stringify(displayGroup.members.map(member=>[member.id,member.scopeId||null]));
           const threshold=row.querySelector('[data-critical-hit-threshold]');
@@ -526,6 +594,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           }
         }
         appendOptionCost(row.querySelector('.weapon-name > div'),weapon.id);grid.append(row);
+        for(const member of displayGroup.members)for(const key of ['range','attacks','skill','strength','ap','damage']){
+          const note=modifierSourceNote(member,single(member,key),instanceId);if(note)grid.append(note);
+        }
         appendBoundAbilities(grid,weapon.id);
         for(const selection of selections.filter(binding=>binding.profileIds.at(-1)===weapon.id&&(!instanceId||displayGroup.members.some(member=>(binding.scopeId||null)===(member.scopeId||null))))){
           const instructionKey=JSON.stringify([selection.groupId,selection.profileIds.map(id=>{

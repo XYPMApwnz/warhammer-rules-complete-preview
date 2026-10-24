@@ -194,6 +194,15 @@ export function projectInstanceCards(cards, unit, effective) {
         id:`${base.id}::/${key}/${index}`,value:clone(item),displayValue:undefined,
         contextId:base.contextId,source:{entityId:base.id,path:`/${key}/${index}`},runtimeDerived:true}));
     }
+    if(source==='WEAPON_PROFILE'&&record.abilitySources?.length) {
+      for(const origin of record.abilitySources)assert(origin.targetInstanceId===unit.instanceId&&origin.targetWeaponProfileId===record.id&&
+        (origin.targetCompositionId??null)===(record.scopeId??null)&&origin.canonicalRuleId,'Wrong weapon grant presentation recipient');
+      card.fields=card.fields.map(field=>{
+        if(!field.source?.path.startsWith('/abilities/'))return field;
+        const origins=record.abilitySources.filter(origin=>typeof field.value==='string'&&field.value.toUpperCase()===origin.ability.toUpperCase());
+        return origins.length?{...field,weaponGrantSources:clone(origins)}:field;
+      });
+    }
     if (source==='PROFILE') {
       card.effectiveAbilities=clone(record.abilities||[]);
       if(record.suppressedAbilityIds)card.suppressedAbilityIds=clone(record.suppressedAbilityIds);
@@ -340,7 +349,14 @@ export function projectInstanceCards(cards, unit, effective) {
   }
   const policies=(effective.conditional||[]).filter(row=>row.policy);
   if(policies.length){
-    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.sourceInstanceId&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
+    const hasSource=row=>{
+      if(row.sourceInstanceId)return true;
+      const rule=cards.get(row.ruleId),owner=cards.get(rule?.parentId);
+      return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.policy.recipientScope==='ROSTER_UNITS'&&
+        rule?.kind==='DETACHMENT_RULE'&&owner?.kind==='DETACHMENT'&&rule.identity?.canonicalId===row.ruleId&&owner.identity?.canonicalId===rule.parentId&&typeof rule.identity?.registryId==='string'&&rule.identity.registryId===owner.identity?.registryId&&
+        JSON.stringify(row.sourceProvenance)===JSON.stringify(rule.provenance)&&row.recipientInstanceIds?.includes(unit.instanceId);
+    };
+    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&hasSource(row)&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
     root.rosterConditionalPolicies=clone(policies);
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);

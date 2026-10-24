@@ -1,0 +1,33 @@
+/* Book colours only; all layouts and controls use the shared V2 reader. */
+:root {
+  color-scheme: dark;
+  --book-register-label: "BLOOD ANGELS";
+  --book-bg: #211113;
+  --book-canvas: #32191d;
+  --book-panel: #422329;
+  --book-panel-raised: #593038;
+  --book-ink: #e4ece4;
+  --book-ink-bright: #f6faf5;
+  --book-muted: #a7baaa;
+  --book-muted-readable: #c5d3c7;
+  --book-accent: #dc8c82;
+  --book-accent-deep: #984e49;
+  --book-link: #f3b6ad;
+  --book-signal: #dbc897;
+  --book-signal-deep: #796740;
+  --book-metal: #acbcb0;
+  --book-metal-bright: #d9e3db;
+  --book-control-line: #64846c;
+  --book-hover: #3a5b45;
+  --book-ring: rgba(220,140,130,.21);
+  --book-ring-soft: rgba(220,140,130,.047);
+  --book-ring-faint: rgba(220,140,130,.031);
+  --book-bg-rgb: 33,17,19;
+  --book-void-rgb: 6,12,8;
+  --book-panel-rgb: 66,35,41;
+  --book-ink-rgb: 228,236,228;
+  --book-accent-rgb: 220,140,130;
+  --book-accent-deep-rgb: 152,78,73;
+  --book-signal-rgb: 219,200,151;
+  --book-metal-rgb: 172,188,176;
+}

@@ -13,6 +13,22 @@ const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'g
 const gearLabel = value => normalizeImportLabel(value).replace(/^additional /,'').split(' ').map(word=>gearNouns[word] || word).join(' ');
 const entryLabel = (kind,value) => normalizeImportLabel(kind==='DETACHMENT'?String(value ?? '').replace(/\s*\([^)]*\)\s*$/,''):value);
 const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases || [])].filter(value=>typeof value==='string');
+// Import spelling equivalence only, never canonical identity creation. The
+// caller must provide the exact UNIT's declared MODEL records. Exact reviewed
+// names/aliases take precedence; plural collisions remain multiple candidates.
+// A reviewed composition quantity permitting multiple recipients is required;
+// a singular proper name ending in s is not thereby a plural MODEL label.
+const modelNumberLabel = value => normalizeImportLabel(value).replace(/ies$/, 'y').replace(/(?<!s|u|i)s$/, '');
+export function importModelLabelCandidates(records,label,labels,quantityFor=record=>record.quantity??record.data?.composition?.quantity) {
+  const key=normalizeImportLabel(label),exact=records.filter(record=>labels(record).some(value=>normalizeImportLabel(value)===key));
+  if(exact.length||!key)return exact;
+  const numberKey=modelNumberLabel(key);
+  return records.filter(record=>{
+    const sourceQuantity=quantityFor(record);
+    return Number.isSafeInteger(sourceQuantity?.max)&&sourceQuantity.max>1&&labels(record).some(value=>modelNumberLabel(value)===numberKey);
+  });
+}
+
 const plausible = (label,names) => {
   const tokens=label.split(' ').filter(word=>!['of','the','a','and','with'].includes(word));
   return tokens.length && names.some(name=> {
@@ -20,10 +36,10 @@ const plausible = (label,names) => {
     return overlap===tokens.length || overlap===words.filter(word=>!['of','the','a','and','with'].includes(word)).length || overlap>=2 && overlap>=Math.ceil(tokens.length*.6);
   });
 };
-function identityCandidates(entities,kind,label,ownerId) {
+function identityCandidates(entities,kind,label,ownerId,profileQuantity) {
   const key=entryLabel(kind,label), scoped=[...entities.values()].filter(entity=>entity.kind===kind && (!ownerId || entity.parentId===ownerId));
   const names=entity=>named(entity).map(value=>entryLabel(kind,value));
-  const exact=scoped.filter(entity=>names(entity).includes(key));
+  const exact=kind==='PROFILE'?importModelLabelCandidates(scoped,label,named,profileQuantity):scoped.filter(entity=>names(entity).includes(key));
   return {exact,plausible:key && key!=='—'?scoped.filter(entity=>plausible(key,names(entity))):[]};
 }
 function selectionCandidates(entities,unit,label,weaponSelections,equipmentSelections=[]) {
@@ -136,6 +152,8 @@ export function lexicalDraft(rawText, parse) {
     });
     return {id, name: raw.name, sourceRef: raw.sourceRef || '', rawQuantity: raw.quantity,
       points: raw.points, warlord: raw.warlord ?? null, modelRows,
+      ...((raw.loadouts||[]).length?{aggregateLoadouts:raw.loadouts.map((loadout,k)=>({key:`${id}/aggregate/loadout/${k+1}`,
+        quantity:loadout.quantity,selections:rawSelections(loadout.wargear,`${id}/aggregate/loadout/${k+1}`,'LOADOUT',loadout.quantity)}))}:{}),
       selections: [...rawSelections(raw.wargear, `${id}/unit`, 'UNIT', null),
         ...(raw.choiceLines||[]).flatMap((label,index)=>rawSelections(label,`${id}/choice/${index+1}`,'UNIT',null))]};
   });
@@ -196,7 +214,10 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
   const exact = (id, kind, key, rawLabel, ownerId) => {
     const scope = kind==='ENHANCEMENT' ? new Map([...entities].filter(([,entity])=>entity.kind!=='ENHANCEMENT' || detachmentIds.includes(entity.parentId))) :
       kind==='PROFILE'?new Map([...entities].filter(([id])=>entities.get(ownerId)?.data.profileIds.includes(id))):entities;
-    const matches = identityCandidates(scope,kind,rawLabel,ownerId);
+    const matches = identityCandidates(scope,kind,rawLabel,ownerId,profile=>{
+      const sourceComposition=book.importBindings?.compositions?.find(row=>row.profileId===profile.id&&row.ownerId===profile.parentId);
+      return sourceComposition?.quantity??profile.data?.composition?.quantity;
+    });
     if (kind==='PROFILE' && entities.get(ownerId)?.data.profileIds.length===1) matches.exact=[entities.get(entities.get(ownerId).data.profileIds[0])];
     const candidateIds=(matches.exact.length?matches.exact:matches.plausible).map(entity=>entity.id);
     if (id === undefined || id === null || id === '') {
@@ -206,7 +227,10 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       const state=matches.exact.length>1?'AMBIGUOUS':'UNRESOLVED';
       resolutions.push({kind,key,state,canonicalIds:[]});
       const deferred=kind==='DATASHEET'?deferredUnits.find(item=>normalizeImportLabel(item.label)===normalizeImportLabel(rawLabel)):null;
-      need(kind,key,rawLabel,ownerId,{candidateIds,state,...(deferred?{reason:deferred.reason}: {})});return null;
+      need(kind,key,rawLabel,ownerId,{candidateIds,state,...(kind==='DETACHMENT'&&!candidateIds.length?{
+        reason:'DETACHMENT_MEMBERSHIP_NOT_PROVEN',
+        message:'This selected Detachment has no reviewed canonical membership in this Army Book. Its selection remains unresolved; no roster changes were saved.'
+      }:{}),...(deferred?{reason:deferred.reason}: {})});return null;
     }
     if (typeof id !== 'string') { issue('AMBIGUOUS_BINDING', key, 'Binding must contain one explicit canonical ID'); return null; }
     const entity = entities.get(id);
@@ -324,12 +348,28 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       issue('INVALID_COMPOSITION', raw.id, 'Imported model composition is invalid');
     }
     const modelRows = [];
-    const rows = raw.modelRows.length ? raw.modelRows : [{key: `${raw.id}/aggregate`, name: raw.name, quantity: startingStrength, selections: [], loadouts: []}];
+    const aggregateLoadouts=raw.aggregateLoadouts||[];
+    if(aggregateLoadouts.some(row=>!Number.isSafeInteger(row.quantity)||row.quantity<1)||aggregateLoadouts.reduce((sum,row)=>sum+row.quantity,0)>startingStrength)
+      issue('INVALID_COMPOSITION',raw.id,'Imported grouped loadouts exceed or contradict the MODEL count');
+    if(aggregateLoadouts.length&&raw.modelRows.length)
+      issue('AMBIGUOUS_LOADOUT_SCOPE',raw.id,'Unnamed grouped loadouts cannot be assigned to named MODEL rows');
+    const rows = raw.modelRows.length ? raw.modelRows : [{key: `${raw.id}/aggregate`, name: raw.name, quantity: startingStrength, selections: [], loadouts: aggregateLoadouts}];
     for (const row of rows) {
       const explicitProfile = own(bindings.profiles, row.key);
       const declaredProfiles = unit.data?.profileIds || [];
       const profileId = explicitProfile ?? (declaredProfiles.length === 1 ? declaredProfiles[0] : undefined);
-      const profile = exact(profileId, 'PROFILE', row.key, row.name, unit.id);
+      let profile;
+      if(aggregateLoadouts.length&&declaredProfiles.length!==1){
+        if(explicitProfile===undefined){
+          resolutions.push({kind:'PROFILE',key:row.key,state:'AMBIGUOUS',canonicalIds:[]});
+          need('PROFILE',row.key,row.name,unit.id,{state:'AMBIGUOUS',candidateIds:[...declaredProfiles]});
+        }else{
+          const candidate=entities.get(explicitProfile);
+          if(candidate?.kind!=='PROFILE'||candidate.parentId!==unit.id||!declaredProfiles.includes(candidate.id))
+            issue('FOREIGN_PROFILE_OWNER',row.key,'Grouped loadout binding must identify a declared MODEL profile');
+          else{profile=candidate;resolutions.push({kind:'PROFILE',key:row.key,state:'MANUAL_RESOLVED',canonicalIds:[profile.id]});}
+        }
+      }else profile=exact(profileId, 'PROFILE', row.key, row.name, unit.id);
       if (profile && (profile.parentId !== unit.id || !declaredProfiles.includes(profile.id))) issue('FOREIGN_PROFILE_OWNER', row.key, 'Model profile belongs to another unit');
       modelRows.push({rowId: row.key, compositionScope: raw.modelRows.length ? 'MODEL_ROW' : 'UNIT', canonicalProfileId: profile?.id || null, quantity: row.quantity,
         // Display caption only. Canonical profile/selection identities above

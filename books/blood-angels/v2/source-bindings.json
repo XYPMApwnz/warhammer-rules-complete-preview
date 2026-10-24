@@ -1,0 +1,2716 @@
+{
+  "schema": "blood-angels-v2-source-bindings/v1",
+  "identityPolicy": "EXPLICIT_SOURCE_ADDRESSES_AND_PERSISTENT_IDS",
+  "nodeHashRecipe": "UTF8 universal-newline source parse; lxml HTML serialization; source artifact byte SHA is independent",
+  "recordAddresses": [
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]::DATASHEET",
+      "sourceEntityId": "ba-source-5822204cac5548cdb993",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]",
+      "rawNodeSha256": "63D92E221A8817EBBE030E44D22AC95E6472B0335D0A25DF2F9B2480F82E1ACE",
+      "dataFingerprint": "405E3EEAEB9B6721DFD9996C1DDD71232A4D1E802BA2E1C721B8D304A02C9E2D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-bfeb9b0af938428997e5",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[1]/div[8]",
+      "rawNodeSha256": "8ED2B26DB79B038A784338A5D922E9534F4134265297899D54DBC7BD7276D9A6",
+      "dataFingerprint": "9E9A29FD1626315DF6E9F18A9FC0B8FE70F4B2AF8BA31FFE5B7110421133E8AF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-91bf185e350e4205ab06",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "512AEF005A1BBD96C92889D03C19B8DC67610257AEECAB9914E0FDEAE6FFB4D8",
+      "dataFingerprint": "B65521BACA86F2D456766A3D42511F92847C74F5E0DCA66D11407AE798A8ACB8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-2933780397c346ea804e",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "76BC183595A65D60EFE54A4D3938CAA7732A5B4ACD6D0F6767BB2ABA2EF5383D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-c41c79ebc3cd491c9576",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "1B043660E812C0AC142CA671BEDC5413640FAB582026009D0F68D329DAFD95E4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-80570e4dc7be43718235",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "27262B2BB37502CA3DC2A45697669489B8279C89023E088DABF5FEBB749E6C69",
+      "dataFingerprint": "2AC36B502A3B201A65AC05B9166A4D7C9B8D3D9D91E432D4BE0854BB07ACD41E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[7]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-d21512237f834ba1aed1",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "395888448FE4B765DECD0FB6EA646A5968D85C1DB569E84D194F12F5ECFD7FBB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[7]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-714d6bab568045fe91a0",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "1D2FCBED092136F0B4D60BD0FFF38FF15D4BCE77AE4BA75DDCB165EA3BF63A6B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-a5d00bb2945d41c0b698",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "99C8FB5AB896D80891E1C53A61AF54C9B1FB4078ACBBEEF123DC7BD76C9BF19B",
+      "dataFingerprint": "2D74EC16AF9D2ADA5F3B8443D7FD63842B198AAD02580B7B765BF9E23E8CF23C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-7eec864479404e228e58",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "233D1E093F3D8AFD12AFB360B8010FB2D98DC4313FA31C1BBE29C91DE89B399C",
+      "dataFingerprint": "B5031BA764A8F8A6FEB96003CF03741A125C9EA2F076F228572242B1C64F2302"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-9d11854a5550423ea312",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "CF3C8ED55E6A810DEB6FFEAE67E64BE278D27AD763BE56F2833D25DC6E3E495B",
+      "dataFingerprint": "1A2860AABBA22C4960D32FF1F2556DC11E3A3252E7122A2008396783EE8AFE25"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-ed677df9efa540ad8ad6",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "5CB5E8CEF38A4242BA083C70566AB8D5B6A45A30BA09B75010129842ADA202E9",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-c38563a11da24a3583b1",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[38]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-225133ce5a4c414fade4",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "A5E7EFE085E80204D619CDA5C84A280756D23DEB07EA9387262E8B46BB1750A2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]::DATASHEET",
+      "sourceEntityId": "ba-source-4a7419bb2d754eb6aec2",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]",
+      "rawNodeSha256": "CA4CD245CE0B74DC9D53781B716E0977C14FC8474A37865CCFC6407AB09D9A3B",
+      "dataFingerprint": "96C66924776B34E5368AF2BB077B3999557B972328D2A2C29AC084F403C8B7C9"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-040190017c9d4cb380e1",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[1]/div[8]",
+      "rawNodeSha256": "F95A829B716880574BA70FBCFB0E1901784A3FB0BAC70F5E1C54C3F483C1BD90",
+      "dataFingerprint": "C7CB7DA95C86314EECAB6FBDAE062E487EA65F0A46C0D6BE3482CA8A6F1EE77F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-8b34d03a53bb46eabe74",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "BE9FF56B6BB24DF305319A123067AF1ADF317158CEA04ECBFF4EE9609FFD4FE9",
+      "dataFingerprint": "A20D47F5FA732C3147AD8B863E0EC5A4F28546EC845E843ADECD948CF599CD22"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[3]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-bcfdf53c15fb4dc5aa87",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[3]/tr[4]",
+      "rawNodeSha256": "D692A323EF7908C19EF7FFCED300DAF94395959391258B44329BACC99929EEF0",
+      "dataFingerprint": "0CDD371513939EE54A44A506F09F75C5DF69DFFAB478E03999A8A0697FE167DD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-50cbe1cd9d374aa1b709",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "8A9E1C3E3F8EE762A5C00FC076B817F37B5C0A6D6CD2AE2680EE6A7270DB038F",
+      "dataFingerprint": "CDFE58F08BAC302128438555932EED15F2C5D2104DFB6296328E4160F197F170"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[4]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-df337be236de40049353",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "rawNodeSha256": "F5C5AA9E6AEB03E6DB55762DE5D141784385610DF5C8F848A6F3BC7FED575EB6",
+      "dataFingerprint": "4EF1FBE4EAF0D9B032070D7850EEC1398D167FDE3D5D7DAC6952FDB03CF647AD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-2ec2fc25f2ed46618296",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "1337013523F48263201D6C20E975F2C8822A22675DF302CB0EA4102DA0DF7DCB",
+      "dataFingerprint": "FD7709A173192E4C09B4B24A04A17E6DB49F5F611905E4CC93F0AA0674683199"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-20b92feefb874a7aacb0",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "1D09AC98CC2403A94BC8CC7182F5237A899F64387E7C0D24687967DC3CF86BAC",
+      "dataFingerprint": "D7E214F7A7CB1862D15347DCAD986718CF18DA0FADCC01798D04C4CC1A77948F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-94170ca0fd454d88be1e",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "3BC0C6727853EF672900536187CA21E86E927F175ED6B9B4BB2CB5A015D3E2E6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[3]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-91d3b962c0a142ab9e51",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "C29F4F43277E813737916D2EC1BAC6D3BD3386C205DF1709E256A5F6AD945BF2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[4]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-a6ffa5c7d2c9466f9196",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[4]/ul/li",
+      "rawNodeSha256": "1A0B6F3514DBE3D19645D4E60DFC0148D3ABE131312CCD57C6C7FB9F9D0B5AA3",
+      "dataFingerprint": "F9A60C21C98BBD1EF696F85D3A684FDF8611CD93E85D35193B915474A0AB9316"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-085f3a2720b8479896fb",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[3]",
+      "rawNodeSha256": "4AD823E0BD3F98B841DCCA28AF6156F473DEA895226CD2B329A0B227267526D3",
+      "dataFingerprint": "8D451BAC5A93CD313C99F5FC3451228AE22E7C9BF66340442B4938BB91970447"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[4]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-44771c78433a45fc9b2d",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[1]/div[4]",
+      "rawNodeSha256": "5F2025E6C01FB56DB52B70E3DE9C552623FA523229DE5591AF9138A68437F807",
+      "dataFingerprint": "8BB9C72C1D8B00BD65BE65189747A07A7BDC0990A13C8032CD9EAE6936613925"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-63ef256a5eab4fa3986d",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "A38430AE4A2E75F89551B07789CD17D3FD0F181B97E8D74B37C1664EFA72C6AB",
+      "dataFingerprint": "84979DD8EF323EF94A6DD9F74651E2963149A03E564C679E2C5B085392654281"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-415c6426ca244975a0c5",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "DD62049B89A4F9126F325A1B888C79EB8E710FF9AFE4AEF086F7D2435534BA0E",
+      "dataFingerprint": "9DE78DF48D2CCD030D5D1EEE61465534B482BE538E1905E5BF0E66872235A0CC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-52b559af96b0454ea6e7",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "336033CF0EACBB3C5DD28B38EC2555AEB6F667D878D876A3437394E46CBF880C",
+      "dataFingerprint": "51548F9929267E60F1932791F02172CE090BE5CDAC8FC816160679B454424BA6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-5de22bf0948a4bc6a3ae",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+      "rawNodeSha256": "3A5FF3F89DB8B7AE1C5617FD15B24BA8CAD6ED4351B5B89D2E5C56960FCF8FA5",
+      "dataFingerprint": "18CC7D547E04214005E36472CAE818933C47BA688469E36E9B91746A07D14D91"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-d1de105521be4bf89c78",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]",
+      "rawNodeSha256": "96F0B1143A2822B334B470C06CDC56B6EA9F54C5B4CCAA62E59141A57B5B158C",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-0cb7457f4ac64c579c71",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]",
+      "rawNodeSha256": "4A45AEFAAB29FD7664169330C4E3C049294151E5E443A0F713B7BF9EE3B08299",
+      "dataFingerprint": "656031F5C8769C196EF9C50F849844A4B9CA768533EB8FBF0409D5521D6EB7F0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[40]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-ced95096448849bfbbf5",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "4006F6DE9300C2624640B6BAC74143DAE3DB72D4CDE7FE2D515DDDE97F41D1A4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]::DATASHEET",
+      "sourceEntityId": "ba-source-3855b47ccc584cb39e44",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]",
+      "rawNodeSha256": "0BBBA84CB5A7B04D30204D7AE78CE305CFA859A0DF730A847D83276FCF164065",
+      "dataFingerprint": "248F4E38F4F93AEDDF902E4E3F1BB313069AF08582E06502D12E28EB6D74569C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-1cbac3d5670e4e74a081",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[1]/div[8]",
+      "rawNodeSha256": "F0CC4CA170C222A0F00B172F312C7ABC19F4399EBA2999ADEDB0508B62D3CB8B",
+      "dataFingerprint": "9CA85A5E3C7CDCBD767A7383C424469A9AE8CF121193A31A1A6A42085A97C94A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-c299ab2b8d0f4ff58318",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "F602230539D5F38EC239BB532CAF906153FE94F1342E41D51B8F90EA4575CE4B",
+      "dataFingerprint": "362C74E261D166BCA0B48E062F94CE3E9DD875C7AFED042C83A5282D0764EA8C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-c7d6ea4ea5e3462ca890",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "DEF7DEE4ED4CA5FC3B3093159387A1F84750CD68E01BAD83416DC13F0E1C062A",
+      "dataFingerprint": "FCB491A7AFA194F5E1678D3BA70690ED8B6E8879A56A2BBBEA121010E2503065"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-12f97c752ba14741bc56",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "84068ACB4708855D62D496FF36787E27563298063BF76A9C49D0637B80902DA7"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-5e55c8c2c80d4723b9c0",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "58D09F866F3D825E539FD661D5B757AFC65D1279C7E42F512EA83F9D48F83C44"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-2627c4a184854a85874d",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "5C4C49215183A493114B1D86F45189DB54A19E31DCF687AC522F9903866F7D5F",
+      "dataFingerprint": "A98B712E5EDB4B20C56E19A0E338A9894D4242E4D0F002B959DF52FFA28C763C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[7]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-b7861948d49b403fb63f",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "FEBED1D1F4CD3D555A617B993C84D648ED97E44D772B85145F8FE19DCFCA1633"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[7]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-be4f95c5fd6b4da0a751",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "63D78530E0EFD6E1B3503C687A4C0C265D1D6D7F8C9135AF0B6C39428E6F1856"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-04aa7c9b36f544e8be80",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "A724999A7332A398A0E83109ADB64BF3BCEA4D2AE5F6387C28EB1F6CFF1BC375",
+      "dataFingerprint": "88D4C8F50E9F14B9683CE0238C74B9760EF910058D0C76D04EB58B3E5F7F4C37"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-3156a17153864a9b978e",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "28D7241A4461745F90DECA4F46A2ECABDA4EBEF38A5259E0B9CE607662CD0701",
+      "dataFingerprint": "3145C5A03F04CB1F9FF945BEB99A65CEC909E66F9E8D0B3F9B02E4C3DDFDABAD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-acee198ef3524d53b620",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "B9C5918DEE34CC521984956ED996858C7DA92EED565CB546D7025ACA46275AFF",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-4e363b0286cb48af8df8",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "FCC63F37D25075C2C1BF8E15272478E5A28F3DFDD405799D50844D69EE2F5C9F",
+      "dataFingerprint": "1A2860AABBA22C4960D32FF1F2556DC11E3A3252E7122A2008396783EE8AFE25"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-7aac298244f14b5f9a04",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]",
+      "rawNodeSha256": "96F0B1143A2822B334B470C06CDC56B6EA9F54C5B4CCAA62E59141A57B5B158C",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-1ba646b580e249538cc1",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]",
+      "rawNodeSha256": "4A45AEFAAB29FD7664169330C4E3C049294151E5E443A0F713B7BF9EE3B08299",
+      "dataFingerprint": "656031F5C8769C196EF9C50F849844A4B9CA768533EB8FBF0409D5521D6EB7F0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[42]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-76bd3061fa1b441f899f",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "FD578F616FCA4B994D798450F2C381799464006105F1D81E18A2AA0E92CA7639"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]::DATASHEET",
+      "sourceEntityId": "ba-source-7f21def8639f462d88e9",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]",
+      "rawNodeSha256": "351706CCB580CD45C67AB0AA57AC734ABC16045A9DA7C9C05969DCFC13E20D67",
+      "dataFingerprint": "833528BADC0B8555E0775A155DCD81A534CB4AC5D1A93289D9172FAD50ACDCE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-1e7e945d12f84b1a9d46",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[1]/div[8]",
+      "rawNodeSha256": "732408DEBA35F6FC34AA227D266C856890E2151EB2DA4D19B9A4AF9712D13682",
+      "dataFingerprint": "93B310EDD52D2B651311B914D2A3B4B054DFA8A49E1914210CEA55810E899C62"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-526a7b5424b04693a27a",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "71C6B44D66BC868943F267B446AE57BF078A18AAA422626596B4E40DBFFA197F",
+      "dataFingerprint": "E8E49EDB306BC58E0691F15F546A0FB1EE751766DA48FE8990BD65544AD920F6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-8f78412aa5824af5b9d6",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "C1E8FCBFC337BFF810B8823ED01505FBC3E58485C059EFBD239FD9A880047A93",
+      "dataFingerprint": "44EC778A5F2BEA7CB9A579AA6E3AFE2808381BA11813EECC33A9908EE4C5440C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-ae8c875cb5ae4bcb930c",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "4FCFD9EC8390AE105653CC98F9459E5CC2D58DE738A210D7D271F1B7CE8C291F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-fce706ac93c24a21be37",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "6A533A2BCF3CF72FF601795D0F7AC5B53F5ADBDA8D4EF921E0B1A9BAB7CADBD1"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-d1aea92fb96342219c1d",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "3A4399AFCC94EC3C63F19F6F88304A98FFC5D54C49A9684FC97251727A4FBCF0",
+      "dataFingerprint": "F6FE642352506D68A6ACAE8AD954366783616812B4FA69C150E199DDCD5D2953"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[7]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-71c8887a05fc4fa8b52b",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "395888448FE4B765DECD0FB6EA646A5968D85C1DB569E84D194F12F5ECFD7FBB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[7]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-dbf96481de59428a9027",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "1D2FCBED092136F0B4D60BD0FFF38FF15D4BCE77AE4BA75DDCB165EA3BF63A6B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-45e68859b7984ac29d6b",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "FAED0651186D59E02DCB88463AB12204EAFFA14792DAC0F9BF7D046020C8EBC3",
+      "dataFingerprint": "BC0A3AE3C427AD8ADAD2E05FC17624F9213052B13CE3CF9E3B906FC234B30DC9"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-33c509c51724469e8dec",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "DB11F25B343BE4F0C9DD94814015042F6358AC96494AB23EE97412EC4EF09D25",
+      "dataFingerprint": "084739237CAFBF4CC8B9BF40A773F592E15E7AA3066EB543E2EBFD5EB4EC7137"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-81af71392dc14ed6a485",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "B9C5918DEE34CC521984956ED996858C7DA92EED565CB546D7025ACA46275AFF",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-b63428caddc94c44b067",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "2DB91D7283F44BE63384B1617E460EDF58645CBAB63654EFA1401CC0FC2C835D",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-c5011c22ef264fef9f35",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+      "rawNodeSha256": "FCC63F37D25075C2C1BF8E15272478E5A28F3DFDD405799D50844D69EE2F5C9F",
+      "dataFingerprint": "1A2860AABBA22C4960D32FF1F2556DC11E3A3252E7122A2008396783EE8AFE25"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-20d123b7733c4e9a947d",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[44]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-a653bc161f0b49a8a0f0",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "FE6A8FDAC5955D3C52992CBC0BAA7570A2F8B4D6B1454D99807017D7088A13C5"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]::DATASHEET",
+      "sourceEntityId": "ba-source-88e0dcceb653428a9dc1",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]",
+      "rawNodeSha256": "38DB15E7B3DB7ADE903E4AFA948636F65B0F74EFCA3F4FBA887DB0843429210B",
+      "dataFingerprint": "831EDF4534D1F39325CDBA5531F4F0952D6B5A31BD9A937DF41725639FE3F124"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-9d3932f476754f20826e",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[1]/div[8]",
+      "rawNodeSha256": "560E0302B48DA111C76D44388546ADD04FA49E885930298C368210FFE51ECC45",
+      "dataFingerprint": "A6D84EB215FD5DF3B22B11057BCDE7B51A4032A91028E55648585C47637F33B3"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-77ec8678896c41baa2e9",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "BE758D4C0FF3307C689DF8F70F9FBCC1DC0916AFB0E215134E9870D7FAD44ECD",
+      "dataFingerprint": "6B299150E0BDAA61C715CF2DBDA969D42789037C4400389B07FEBEEA1C155BBA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-40bc6c193ed54449b64e",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "E4948E27902C6F48304CB660E332F4AC13064CD4513EE04A6B089B201359FB01"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-f7d3c93d717d41fa91f1",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "38E0A3D9AA02B71D8AE7C852B4E912C076E0873A049068315403243B5ABCE167"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-6223d3959994490680f3",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "E990269911DED1737B9C3DA2B2817B70FC3BB9E804C194732850D6D7693A8243",
+      "dataFingerprint": "DD012FCF0A5ED58E3DB5D96B48B6AE56791D0F73EE246BA7822D533057BF0740"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-636343982b8d454c881d",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "47DD113427C8B7500E225FC8297126E4A0CEBC4491AE1813D35C32374BE55470",
+      "dataFingerprint": "D1EFA0259B0B86C947D1CA6297FDC8CE8BBD0608D9C1DB67F50AA0C9353A56A7"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-f1981384dde246449cd7",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "6AE9DD28B0D9B874D79FA1B921B73FEDA24A2FA770281C6D34D181A12968E957",
+      "dataFingerprint": "8ED8AE38DC0B311BE7B9985853267C08B7ECDC0BF25660207E0A7860CE9C0CCA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-a06b7450c7ac4dfda3a4",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "B9C5918DEE34CC521984956ED996858C7DA92EED565CB546D7025ACA46275AFF",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-66c59dbefbc846189a30",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "336033CF0EACBB3C5DD28B38EC2555AEB6F667D878D876A3437394E46CBF880C",
+      "dataFingerprint": "51548F9929267E60F1932791F02172CE090BE5CDAC8FC816160679B454424BA6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-27e123a79c5541c6a5c9",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+      "rawNodeSha256": "3A5FF3F89DB8B7AE1C5617FD15B24BA8CAD6ED4351B5B89D2E5C56960FCF8FA5",
+      "dataFingerprint": "18CC7D547E04214005E36472CAE818933C47BA688469E36E9B91746A07D14D91"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-b0fb2675f3e544b8a712",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[2]/div[46]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-8d9936af09db48e68a60",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "056550449ED5AAC99C1304CBC24B398927A90543E5C26168771273825F105299"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]::DATASHEET",
+      "sourceEntityId": "ba-source-bfa759739fb848ff9bfd",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]",
+      "rawNodeSha256": "EBEAC440D8F6CFDD5F8CB36464EEFE6495B60CB5075393FC4ABCBE5F21A74C74",
+      "dataFingerprint": "2A13A2AC25F110BA9E8A476BE02BC3173CE692298EF08BEEFF56FE1A47368BE8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-1d49e813d8644658b545",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[1]/div[8]",
+      "rawNodeSha256": "435AEAD48678426B26F9267E9F100CC0A9B813E4BBCFA6947D1D548EC19302FD",
+      "dataFingerprint": "AC25ACDF6F4E7BD4021982BF826F715FE985DB1C2186D5AB4E0B6848C42B8567"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-5ff0361228824831b8b8",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "C06D8B4F67F5900B88D7A8AF523FC35F8AFC0BFD4F6B3FEF1AFD72748ACF291E",
+      "dataFingerprint": "9AB8586CE3B3BC2EB57A5B941DB58BDA8839A9916288FE9A1C337F9F7C34AACF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-898ada6dbda64910a304",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "E1E1F80C850F4C85C6A1F3BA7EDE2EAE53A10EDF13306699FB89EB1D297B3C2A",
+      "dataFingerprint": "6C9BC55E41C09F55946317A292BEC2288407982A9D44CAB9E8D28EEFD35E2C0A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-1332be2ac9d0442e9357",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "E333F3F7ED840EC691F18FAF8975C3A410C9894631B41FD578D092740E05A977",
+      "dataFingerprint": "10E7B3737621242129ECD5FBFFA063775C500D4FD98026D981168778A56D124C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[8]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-a0a3a8898fa2408fbb4c",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "rawNodeSha256": "CBAE9BC5941BB9D850F67899DC5BD005AC347BAC7458C865FEA2BB6F686D8D28",
+      "dataFingerprint": "CEE179EAF99005A543D24DED5436E236BC3D2B89699B6514BE83354932C80870"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[9]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-48b79d6b49da42789c20",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "rawNodeSha256": "1EB1B652717A26C2B286607D6EC17915D8E6CB5AAD5B2A0E96245E0944701BB4",
+      "dataFingerprint": "A81BC6A48A69910A95DBA3A4B0E71039AC1A30E55B4F33A8A6412480D6B7E54B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-2d56939adb5942e78d31",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "8E8D94B2D25FFC956E9C01892CEBAECFF1A08DBD4F3164C15860A603D321DEC3",
+      "dataFingerprint": "748C42A0FF398B24BB354D64E967C5AE7372074876169372B828E5CD3984BA7A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-35ae600ebaa543b6b11e",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "5D96DC0C972C1D06680FA531B2536E3252E07BEF401F5B3F058B22F685CB5FAC",
+      "dataFingerprint": "CFF640E2A088AB296CC21FC6A1CE09FBB56D820FD029C39F8936BAD227402DBD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-0dc09e9f5b54467ba377",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "5EC72E564656526602FAB363F7E3431BE6CCD2D254B1206226E4661258DF079F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-fa25931fd29b4738a833",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "89B8247E5417ABEF46027F7CAF71600504B55B6EC929885120F6841ED4112427"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-10ac830bca5c4bb89fa5",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "78192800B8C816DB24F43922705A516E18DCA8A95053BFBCC6968F5CA70A9F1F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-c547a1c501a448a182e7",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "D982C247463F6153F7C8284BB981F1C7E850CDECB33389F04703F67419CF09A1",
+      "dataFingerprint": "F0E07360FC09F741976296D5D407ABB69215CCFBB80622DFC8D5EA582159DC57"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[7]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-3b13b0507f4a42efaf3b",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "929D8148BEFF9F549C1D28ADDA657702788AFFF82E838B9E13146E5B4A53692E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[7]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-47a599f6f11f4b219cf6",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "1C61F47BA938D08C122ACC2AA32FB2A2789CC4BF5C83F623E8372845E166CA7B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-146cc3ba63b94f1e8dca",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "92BDA4F35E2D88BE5B4196933A570366378D7CAF8F55BDD140FEC1DBB91DF66C",
+      "dataFingerprint": "F93C0BAB9F96D7C866ED7F19A3057D4ED2309550ECD588A2FC3F499B2450B777"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-43c38214bebd4b73ab59",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "13E95613EC4EB20A990A91791A94A21E85E0E305A813F432122423B47231B5C0",
+      "dataFingerprint": "D09CB707272183A07DD81F2F54FFCA0233A4AEC53D5614550012332FF475C7BA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-cd293f7fd5634a2abbfe",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+      "rawNodeSha256": "FCC63F37D25075C2C1BF8E15272478E5A28F3DFDD405799D50844D69EE2F5C9F",
+      "dataFingerprint": "1A2860AABBA22C4960D32FF1F2556DC11E3A3252E7122A2008396783EE8AFE25"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-a0b285ec0fa04db0b51a",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[1]",
+      "rawNodeSha256": "96F0B1143A2822B334B470C06CDC56B6EA9F54C5B4CCAA62E59141A57B5B158C",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-dacaea6490c5418596cd",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span[2]",
+      "rawNodeSha256": "4A45AEFAAB29FD7664169330C4E3C049294151E5E443A0F713B7BF9EE3B08299",
+      "dataFingerprint": "656031F5C8769C196EF9C50F849844A4B9CA768533EB8FBF0409D5521D6EB7F0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[56]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-24d53c29d7de45edaea2",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "1C9FECA72350819EABF4B2478374EC352AA405E813A986EA297E89ADA7797764"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]::DATASHEET",
+      "sourceEntityId": "ba-source-8bbe79e51dd341e39e69",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]",
+      "rawNodeSha256": "A161305D8146C3B60B345C44393EC09813B5D246F2DD9719B0C51A26695B8FEF",
+      "dataFingerprint": "2ECEF1D6E95A6179341D1D9E9510DC840EF71C10260006E16E812614823ECBCC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-abf8e63f7e854f73b3dd",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[1]/div[8]",
+      "rawNodeSha256": "435AEAD48678426B26F9267E9F100CC0A9B813E4BBCFA6947D1D548EC19302FD",
+      "dataFingerprint": "BBC795FA3CFD00E2807C6512846B0B73998506BB1656527B1A01C4F2B743250E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-51a1aa41662a48b69695",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "C06D8B4F67F5900B88D7A8AF523FC35F8AFC0BFD4F6B3FEF1AFD72748ACF291E",
+      "dataFingerprint": "9AB8586CE3B3BC2EB57A5B941DB58BDA8839A9916288FE9A1C337F9F7C34AACF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-bb6f1700199a4a2485db",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "6BB134E20D2DDD68FEBC0511BED153C26229D7A876FD4AA9892E774E88A81E28",
+      "dataFingerprint": "FCB2743072A9C3A9D1833319167613B91848661FFBFE6D521AFA91719994352E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-90a67d906531472a81a0",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "B6A37655E27D7AC6FC2E47D7A45F93C38AFB38D36AD7CFEE32619D9A279C052C",
+      "dataFingerprint": "F5C9775A1CEFB34D06EFDD048046AE4F9B236B93A86F77EFE73A6B1DEA3F930E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[8]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-a3cfb7df54004dc7b98a",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "rawNodeSha256": "7EFD41CF9EC1A247FE08E0CAB9E66EDC59A0B32DAF0C9A62A3B0D5734E09B278",
+      "dataFingerprint": "6DA8047D31CABEF232473322004616CB2FBE0F8776CB5F00AB4119359D028E2D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[9]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-df86c881e307478295cb",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "rawNodeSha256": "849C5356238BD40EEAC9D1AF15076C96637F1F006B66896648EDB80F0A2F16D0",
+      "dataFingerprint": "59560EE5AB5329A04A085A3C3571207911BF3F3B47B80A16735C557E028394B2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-214e7311e2a04085b940",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "8E8D94B2D25FFC956E9C01892CEBAECFF1A08DBD4F3164C15860A603D321DEC3",
+      "dataFingerprint": "748C42A0FF398B24BB354D64E967C5AE7372074876169372B828E5CD3984BA7A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-bb2fef25001e43b9a8bd",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "5D96DC0C972C1D06680FA531B2536E3252E07BEF401F5B3F058B22F685CB5FAC",
+      "dataFingerprint": "CFF640E2A088AB296CC21FC6A1CE09FBB56D820FD029C39F8936BAD227402DBD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-a9b43bbbc363444e943f",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "5EC72E564656526602FAB363F7E3431BE6CCD2D254B1206226E4661258DF079F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-410d375efb404cb1b39d",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "FC2E8FB679242F8808E3B626CEECAE37AA72E1210E11A48A1FAEB62A86B9C0C8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[5]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-b982b767bd58407f8d1c",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[5]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "206BB25521885C01B1FEC22848A0098AE1DFB10B3DEA38DC88629992E323FD04"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[6]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-4b708d0adef940a1ba06",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[6]/ul/li",
+      "rawNodeSha256": "CD7E17786DF36778991F4934570E28DE0FBFC461B5D61A1826A7F4EBCCB0CC50",
+      "dataFingerprint": "2E065D085E85560F312A9D319AB9F5A36B96E961ED5EEF4FB4021E80155EC9AC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[8]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-42fa0fe97de54a80a266",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[8]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "DD7A602D2B276CD1EF8B34BA74EEB1C5FC51D36725C29E6A4F52F9162E2A933E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[8]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-f10aeb43538744508e01",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[8]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "E5522FDAF040C40A4F5026BF4F3A79377F855C12EE59D50EC5753572F6B49C56"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-6629072a090d44659ec2",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "AD2580C3CE15587A4EBA898F86DB638330B2F48C907AD31EDB2DBE23739ACF6E",
+      "dataFingerprint": "C82C610F3B6A98428FE7071F801ACBCF3B83015B10518F91EBF629880BD0666A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-d0a2865dde73403c8a48",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "1D1369DB72C27B880ED2222384DA1DB66A0C74BC613D3318F081E67CC698B2F4",
+      "dataFingerprint": "E1F53DCFBB17D9BDAAF05806BBAC2D2E012170FB07F6226C273501C99E9FC6DA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[4]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-95865ef06a01406e9351",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "60E5544F2C4D4DA86C4A3FB70832141D1F2898B5BD58FCB23DB748AB2AD5682C",
+      "dataFingerprint": "413831D2CC35D9B94D916B583B99FC836784E89AA42D323D604CAE096CB5C535"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-b19d2bfe73ed4612bb45",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "2DB91D7283F44BE63384B1617E460EDF58645CBAB63654EFA1401CC0FC2C835D",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-8a1d0330706d41a5b6b2",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "FCC63F37D25075C2C1BF8E15272478E5A28F3DFDD405799D50844D69EE2F5C9F",
+      "dataFingerprint": "1A2860AABBA22C4960D32FF1F2556DC11E3A3252E7122A2008396783EE8AFE25"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-cf7b05f9aec9463f9da5",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[58]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-9848264074b8418d928c",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "2F5E7FA3569F76DA26E002803EB34CE53DF8BEDB9921ED68166A5023B2C25080"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]::DATASHEET",
+      "sourceEntityId": "ba-source-6cb55022c3a0452083de",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+      "rawNodeSha256": "F77652BC3B425D0B301B6B2E48C457805319833251495CB21FAFB67C0BBCD1EB",
+      "dataFingerprint": "D6C122CB98C418AF03A338862BB554665C419596696A32BB9FC59A705035BAA1"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-7135d4d6ea234f519d8b",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[1]/div[8]",
+      "rawNodeSha256": "E1BA9BD385D96E2D6232DAEEDECB8EA03F3FC9478AF410C2E6CA93E5B2C294E1",
+      "dataFingerprint": "A127D70975DFADBB1889F34414096FFBE6C447F1D00371B65E62338DE871F6EF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-94eff42e94c44867b44d",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "5BE924BA305F09C851B9F51FDED29FB7A8088CC6A187B79EE10E65614A3D960F",
+      "dataFingerprint": "EFE3B836589FBD0D52A4D65FB62A437B70CDF64315FBA874035E6DB8854A4D52"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-76a764fef19e4ae0b516",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "C06D8B4F67F5900B88D7A8AF523FC35F8AFC0BFD4F6B3FEF1AFD72748ACF291E",
+      "dataFingerprint": "9AB8586CE3B3BC2EB57A5B941DB58BDA8839A9916288FE9A1C337F9F7C34AACF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[5]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-98f004d4b87d4cd5bef0",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "rawNodeSha256": "1FB460C1D8E1B02514E2A025F62616610E22EEC43141BAD72FDDDB0F21EFF263",
+      "dataFingerprint": "A8E85A7FF10A2C8B2185CDBE67DBA06C5253081E38BA06284F0EB1D692D13ABE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[5]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-9042921c99074a71bbda",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[5]/tr[4]",
+      "rawNodeSha256": "701604F494E6415E08D4252986EAE7638D91B7A5DB94D1CAD9E2B37C3E9D4D35",
+      "dataFingerprint": "65993E0A73B768540A3501EEFAFB9D1472D5A34FDF112FA48AB61A9F0AD4FA2E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[8]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-5c71864e2f87439db0ac",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "rawNodeSha256": "F9A934DCA30CAAC289B2671FD82CCCC5497432E05D4669A7AAC3940B94EBB530",
+      "dataFingerprint": "9AE724642AF37744AC3E38D54F4E04328F839D014511BA2494991C7751775B81"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[9]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-cdfdd860c79242728f8e",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "rawNodeSha256": "CBAE9BC5941BB9D850F67899DC5BD005AC347BAC7458C865FEA2BB6F686D8D28",
+      "dataFingerprint": "CEE179EAF99005A543D24DED5436E236BC3D2B89699B6514BE83354932C80870"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[10]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-153f589a8d0646a98c2e",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "rawNodeSha256": "1EB1B652717A26C2B286607D6EC17915D8E6CB5AAD5B2A0E96245E0944701BB4",
+      "dataFingerprint": "A81BC6A48A69910A95DBA3A4B0E71039AC1A30E55B4F33A8A6412480D6B7E54B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[11]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-84a8c7fc256f4d5fb67c",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "rawNodeSha256": "E893785AB5A274F103E4E9D3E3C5BF81A5238656DFBCCA8FBC1C10B5D62DA215",
+      "dataFingerprint": "ACED2D83C3553E76F34CB0897EE9AEBE7B9E61AD37D2D767801DAE1F65D8877A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-b67cf3e039b048af92b8",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "CE45B9309544C5B13D173F649AE9EA7F719C9DEA3D13A117D8138BF002BDD1E5",
+      "dataFingerprint": "AA526169E9E9081C1AF87718E90CEEF0C12262805D4A8152E9EF922E70717549"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-2e791bb5dae44302960d",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "9C477A3CF7247831B92D62AA6530518A90646F10295F59BB8D45DB27F31A3DF2",
+      "dataFingerprint": "6E21FDC5C3CB7CEEA394B915F7CE887909041FB0998E24359FD90A454492C07C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[3]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-c9bb569440414ace884f",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[3]",
+      "rawNodeSha256": "32629248FE8DD701B8AE4610E33185F6AA01BF3B6B763D5574D03543FE3B4BA0",
+      "dataFingerprint": "B92621493B35295274C395E7D0410AEFAF0E76996CE746E2D92C577A01071BA6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[4]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-b76dfac53e3f4712a59a",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[3]/ul/li[4]",
+      "rawNodeSha256": "B55309D59F9BE1FF1AF0D6C5F173490C67B5E9F825258C47E5DBE639550441A6",
+      "dataFingerprint": "B53734F8DCFBAB24196A1670785547366722BE6A069BFD05A25DA60DD2442417"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-07bb2b9306834d1685f6",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "64853592D3A8F4DDC140ADE32E328F054A22FE09D08F12146FAE15C43B31FF30"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-5a4815095a554474a85f",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "A730967643DBE4E53DFC389DF251C6DC7D76B85048609A2EC35906D0D197790D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[6]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-333aaedbe87744df9c4b",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[6]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "851C915B2A0AA8689997BC4A691D34022D5CEEE44298C4DE9F690F2E613A72FA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[7]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-ea6b82445df243f99247",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[7]/ul/li",
+      "rawNodeSha256": "62CC96FAE9E605C1ACB21D53783E5FB5291225F732E1801FBEA2B66E2B80A1F6",
+      "dataFingerprint": "79AB06D8255F3A76837D2FF0B4F22317A27C6546C71F8F1A288573B49D68770D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[9]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-52ca82eb07dd4e1da722",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[9]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "395888448FE4B765DECD0FB6EA646A5968D85C1DB569E84D194F12F5ECFD7FBB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[9]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-947975dddd1f4895b4b4",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[9]",
+      "rawNodeSha256": "1688BF099C412E3ABB54CCEB9E922D18EF5C86ABA18AF8F92BCACC3950027562",
+      "dataFingerprint": "1D2FCBED092136F0B4D60BD0FFF38FF15D4BCE77AE4BA75DDCB165EA3BF63A6B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-259fd6d428cf42a7a88e",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "1D1369DB72C27B880ED2222384DA1DB66A0C74BC613D3318F081E67CC698B2F4",
+      "dataFingerprint": "AEEF54DD605A6FCD7372D7F7DC124FE04D334E07B75E0854F9D3D66DE5DEDA38"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-af74e00f1bc94d34b3d8",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "AD2580C3CE15587A4EBA898F86DB638330B2F48C907AD31EDB2DBE23739ACF6E",
+      "dataFingerprint": "83452CCB0BA0DCE3A14DDFE0E38048D6AC3C8E3A3E8D029EEA4AD396AE8488DC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[4]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-b8c24ef09f7645d5a5df",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "8F964BF50175A0018C365D0E7F4CD96A7A28FBF87554F915C5B818A6B97B2EBD",
+      "dataFingerprint": "DBD86083F551C72EFC578B5FCED08ED3586B14F405B16DE645B3DD34A7C0F24E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[5]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-450e49101a24462cbfc5",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/div[5]",
+      "rawNodeSha256": "8FB6378CFAC541DD950BB68A5EE71EF1D4400D412F80E819F399A436E27FAED1",
+      "dataFingerprint": "089561A1F3C00FE8CAB347A3AED8E326D00C4753E3D64D66B6BF88211F0A9908"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-cd6cd700a360446483d7",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "B9C5918DEE34CC521984956ED996858C7DA92EED565CB546D7025ACA46275AFF",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-4b74c7ad3a5d49e492a8",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "3A0F708A9925B03F8B66758AE3EF4B58551200A88B7E7C5E10573E29F2891FDC",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-5d717650cb9641c0a392",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[60]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-c035edaa381e44d7b986",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "2B9A16D490EE1AD091106ABE8A070834551051D0E66DF09ADB6CA54DF57ACF58"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]::DATASHEET",
+      "sourceEntityId": "ba-source-73cfa0e6ada0495a9bed",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]",
+      "rawNodeSha256": "EA699173CEF3A8711E2EF44F9B41EBA8300FBD51EA6BADC7BB7E3804D3B7C41F",
+      "dataFingerprint": "EB24D1EC74C3A8AFA2EB7E9DC317BEA51FDF025A539D625357C26C85AC0AF973"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-10a9cef5b7e443fe9b55",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[1]/div[8]",
+      "rawNodeSha256": "391AD6867206B67B001EF4442CE53A7BABD83FBAAC0E87DEFE4053759DD52B7F",
+      "dataFingerprint": "2BA594147B4BEBD339B89BB565F0822BED0B44FF553957BCC1D454F3B024EBAC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-dd94cca71e114f3791cb",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "42C02315E3C5C756AC9FD4B828CEADC6FAFBBCC19D56232F49098B98069B8B8A",
+      "dataFingerprint": "B1927825E62F1527DF00F0D51CECB70034209A6F5AEBF751978F7E313311AACB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-9b473fc7136b48fa920a",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "0AFBB5599832DCCE4C3F04622C5E57CE040D9C2C72243C76D8DFD32D3DA1351E",
+      "dataFingerprint": "821082BA0BFEAE5990EE2D1BCDA49491313DAB8F9A92C9C7A6642330DC27A4D8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-46fe26f2c46a4cd28363",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "EFB441C157986D85A463EF61AFB97B952DA575355CC1CC81144C132BF040D7AF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-4ce7ac8230534d8097f2",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "85562ADF721AA4DCA387F8A6F912D509E6B72D0B60CB4F237BB5096C82055031"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-cc84fa9ce678423da1bd",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "5460B27BA5EF1ED4554EDA74074AB8B9ACF52D4BCC257C54AC3D7888B7BBB2BC",
+      "dataFingerprint": "CB7AD108A3CA8DA048A7CEAE037E3FDE9EC1921E88720A53EE2CF73EB386252A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[7]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-84d4a4b5be214d5b9819",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "DB6DD07858ABD0E5052D44551A653C98DC047EC77B3960C80FD009BBB28EEC5C",
+      "dataFingerprint": "33380FB6FF31F34065B5AA353480BDB617F5B204E52EE43BF563EA4AD62CCBE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[7]::SOURCE_RELATION",
+      "sourceEntityId": "ba-source-bebbe16b856342deb465",
+      "kind": "SOURCE_RELATION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[7]",
+      "rawNodeSha256": "DB6DD07858ABD0E5052D44551A653C98DC047EC77B3960C80FD009BBB28EEC5C",
+      "dataFingerprint": "F0A0258F38699BF7ED5AE82306C907E566AA6ADF6A0395B8A55A8CC6DD6F4FC5"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-9b9e084e22464c97bacd",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "C543879E0AD56D1187F75546DE834B7D6DEE7FC89EF44CDE59432D2E133E61E6",
+      "dataFingerprint": "3E1BF8A09328AAAFB941DF31B29565EA00AE0C8590E8370941815387C8C774A8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-03a7aecf27ed449e99fa",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "E4744F34CAB5B50F9E5AA5A3049CE5F629B2E906A22B9B33CF0D6DCB355AA373",
+      "dataFingerprint": "E9D5DC8E6CF2B251E24EA282764220D822CBA03980E945FA452846AC4383E187"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-8c994cfb6abf42928081",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+      "rawNodeSha256": "CC21DA12C2EDEF42C7F7625B77B510232DB8CD2D08CCF563241A43A5680AFFA2",
+      "dataFingerprint": "46B0A1A6910EA732CCD881ED11CECE03B7A245EB72F76E2B09FF37DEF98E190A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-e975c776986240e4a083",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]::DATASHEET",
+      "sourceEntityId": "ba-source-c58260ec29fb44aa9352",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+      "rawNodeSha256": "447EFB25CC134517DC321145B3D0C433D018F5D6E2167228B78301D7A82F2A9D",
+      "dataFingerprint": "B2783F23AAD8A334ED4DA433C739C4250CAE1DD18699C8CB9B5EA26A48A5533A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-1005de301c6b4563aa8f",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[1]/div[8]",
+      "rawNodeSha256": "1104D58D2F4BBBF8D15125280777FBB2A608C883FF193CA0A5398778197E2EEF",
+      "dataFingerprint": "AF765F0B25E343D999932C6945DFCB80DAAC6A5A7BAC9090FB088D7A8780F7E2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-4684f4e9749c438caa25",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "612206C6F95319F10DF4EA764DCC0C66579DA375C3D2FD71B78434AA3ABB5349",
+      "dataFingerprint": "306A417B4D34BF9FC69357D1BC5FCCAE04C309306338648974FEB95000067B85"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[3]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-4b219445c5b846238995",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[3]/tr[4]",
+      "rawNodeSha256": "DD9BFE9EC655FF8BB079ED87C40CA1CB980E6473456D58466AD6FBA8EE46CCA7",
+      "dataFingerprint": "FF63C7D402E5D6DA2144E22594D5721645D03CECFC0BE715B3DE0BDCBE831244"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-5d04441467174b4d90d7",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "4477B73D2C79783E677BED81A7E738A04B10F535E9D4A6686648BF05154D160F",
+      "dataFingerprint": "5A66B93A9E8AFCF143FC4059D5977D8E879FF8B0FD41ED6B6E4E4E62FC269269"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[4]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-33ce5bf894f9450eb7f5",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[4]/tr[4]",
+      "rawNodeSha256": "E3515498AE3C6D969F013B3FEF47EBE348665496F16C5F2E328BDB1F6FA17F6F",
+      "dataFingerprint": "F0D7FCF4DCB13838ABB5B0489A2718D8300DC38FC6E1B2034A4BA0511C7D999C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[5]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-9ba061c9ae8246029463",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "rawNodeSha256": "5BE924BA305F09C851B9F51FDED29FB7A8088CC6A187B79EE10E65614A3D960F",
+      "dataFingerprint": "EFE3B836589FBD0D52A4D65FB62A437B70CDF64315FBA874035E6DB8854A4D52"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-575608acd3c54ee59871",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "62CCEE4F8820F61DEAD3737069EE0EAA56A16B9CA48C6F7D81B282EDCD38A46B",
+      "dataFingerprint": "6FD571135F83589050EB973A3274FFA867EF4FECBD793B4E10E99AF21F3E5144"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-2d67e8870aa54f59bc40",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "7FA4C4776BCD03D3A34B41346B74C5A32C0FAFFB296FBE9F11EFC64B63350A12",
+      "dataFingerprint": "0267285F0A48A68F0E290D394AD05786675A3D4110E6075DBE95F0B73F5B41D0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[8]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-1882a853c8a04c86a639",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "rawNodeSha256": "52D2621595DAC880875E638A552291238932836FB7B3C1FF517729A522720C0D",
+      "dataFingerprint": "5C081C8A2F62F583DDB5BCC9CAF1321B14321348F89CF1E8F7AF279B53037F29"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[8]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-b19662db44b9499ebe3b",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[8]/tr[4]",
+      "rawNodeSha256": "89A72BA51109F887044E85F1BDAFD34F5668E6C5B2BBF0DBEAB1883969C74B05",
+      "dataFingerprint": "2ADB376BB2849892F07D0B5B661DC496EBBC9C7DBA6C23BC81064B052D90826F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[11]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-0eb2d19cf20147fc9f7c",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "rawNodeSha256": "0CE727FA96D10556ABD00C2BCB8A9A42381BD775DD504F5A43AB03E37CDDF9FF",
+      "dataFingerprint": "4C8DC5ACD399B9DE96A38C96C77BE067D49A718C3191528B4A94A9765CBE9F69"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[12]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-01192395ac0d41aba20b",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[12]/tr[2]",
+      "rawNodeSha256": "706F8468C0B26498E92AED40E04A6CA0B13C52C4F63A050D6B94C39DBCC62214",
+      "dataFingerprint": "F2AD03914CCD4A30711905C881613FB254AB3ECBB6B17EE50078ED6444D95170"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[13]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-0a38164f6f474927a1b7",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[13]/tr[2]",
+      "rawNodeSha256": "DA069DB5B64A95921520B9B4CDC20EE87F142DFC2E10AB94BBDACEE22F0CAB1C",
+      "dataFingerprint": "893F9E288BFD6ADACE24D383EE0217A594C35757438F1449B5EB5481EDDB85BB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[14]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-bf0a4b647d0d446887e2",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[14]/tr[2]",
+      "rawNodeSha256": "F26302F77813FCEC6E20BA32334E999340C6DEFE7470276B752E34BDD56DD44C",
+      "dataFingerprint": "DCBEE59C88606F94AB657B7B40C811C1D355C2C949A030DCA1DCC4EDEC9FE6BF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[15]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-1622558148b740daa58b",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[15]/tr[2]",
+      "rawNodeSha256": "CD8F380C2E1AE7134BC7AEA60A7EC12EED261242A13B885573724399BC37C27D",
+      "dataFingerprint": "F82DC66AAB3B88B62FC093F4CF7D3D4D18A51331D6576E8C88A4B0D623C61ECA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[16]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-f41fe3e1e35547c09892",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/table/tbody[16]/tr[2]",
+      "rawNodeSha256": "9B6FA9045C2B9D46D31E565FFF8159CE61615D2AA701179CD8F456CE45335869",
+      "dataFingerprint": "BDF42D8DE9B3E8730D6411AB659F541E07FEA797431A9F26A7C722E4E4195D0B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-aecb8561f60840b3afed",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "9EB2B1A17E2D7770EEE1435BCE3DD62B04BF93DF106D342B5852B9F01C942CCD",
+      "dataFingerprint": "0BBB0BD07829F913E68BC71E17A309D8F0898F52D141158775641EBD555B8C78"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-268cfdfb0d704f488530",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "DFA1A6A84BB35E76DFF84116E258272672CB52A90ADB5B4ED44F2768F51A6152",
+      "dataFingerprint": "DD4AD411CB6942B64836A32FAE994F9929CF6750045A3F04BDF2222CB15DB0DD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[3]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-b122a0e93be2445a82ff",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[3]",
+      "rawNodeSha256": "80A4F893308D37E2F07458107804890AB06C6B8917463A6716BB1E798A0BA009",
+      "dataFingerprint": "8E2AC06F111D7F528D9D72495C2884226137761B3323293D220D450E43036D30"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[4]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-6c5ffb3c1dff4be18db2",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[4]",
+      "rawNodeSha256": "058F6487B13A2B4E9E1FC719BCFCBE464F171DB2951E5A2DF9BC545B9DA96698",
+      "dataFingerprint": "7FEF45B1BABB70200B8346CC3488F0D8D67BBC889B09C859B79F80723525A141"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[5]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-89b0c5330938491e846f",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[3]/ul/li[5]",
+      "rawNodeSha256": "04FEBEA41818A727815C26A08F25A41E6583799922D4FB600CA8B0CEBD1FB525",
+      "dataFingerprint": "A36F7E25DF8548B649E6438BAB4FFDA00B2CE548A8339073A561219B989073FC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-cb1a78bdabde4b3da524",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "683F1FB712D9634F43212EE036EADAC6FDD87E7F59331A6ABDDE736387EC4697"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-603864a2f0404c5e8ff4",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "E312E8CB854D0385F534156ED470872FAC8ECB7E55C967950D592C97A0FE9F0C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-a101d9d8441c40228ed0",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "8D0DC51628BB3919A507DDA16A03590C32B1AE7E97548F97981CF5A70941526E"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-db176e74e6f6457f9f9b",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "FEC654458E74294B1596004C190184439A5D5597CC774467005141214AFCD44D",
+      "dataFingerprint": "2F06C9B12E5C572BF9D18B426DB03B3AFC6822799D274A96B8904D5B5325B3DE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-2e12b844926146c99035",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "6A69C3FAC29E06B7E33AFBD52F75B082B2A55E3387FE9DB6D7D394A003C70A8E",
+      "dataFingerprint": "E553654B0198ABE399F44465530AD4956CFA13AC5DD56034787C5CC248F3B690"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-59d2d8f6cb5d405b9a12",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "1D1369DB72C27B880ED2222384DA1DB66A0C74BC613D3318F081E67CC698B2F4",
+      "dataFingerprint": "3E63F6FD29D6047300A8F70401AB5106201B9B38E4D8908E8779D439B1EC02FA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-4ec433be560645cabc5f",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+      "rawNodeSha256": "3A0F708A9925B03F8B66758AE3EF4B58551200A88B7E7C5E10573E29F2891FDC",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-b198011e2fa940d4bce1",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]::DATASHEET",
+      "sourceEntityId": "ba-source-c9a95688191042d2bf4c",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]",
+      "rawNodeSha256": "2075EA9254F6CF650668891C67F9A8A541CE694C0975C73F5C63498217244888",
+      "dataFingerprint": "5148108E49A79DFA5417DDF272BCEE3255044BBC02B592909BAF61CD4DADB885"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-a516c0a21a574bc988df",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[1]/div[8]",
+      "rawNodeSha256": "835626434F7DBFFB845BFA43E90B7237F0CAA64D28B91F85F3A4438AD306ECD0",
+      "dataFingerprint": "2295AC2A6DC824A8FC3034EC0621891072F571CF207CA05AD22058CBC5FBAE01"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-fe093176292d45c193a8",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "62CCEE4F8820F61DEAD3737069EE0EAA56A16B9CA48C6F7D81B282EDCD38A46B",
+      "dataFingerprint": "6FD571135F83589050EB973A3274FFA867EF4FECBD793B4E10E99AF21F3E5144"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-a16f37b3c22c4b6bb45f",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "5BE924BA305F09C851B9F51FDED29FB7A8088CC6A187B79EE10E65614A3D960F",
+      "dataFingerprint": "EFE3B836589FBD0D52A4D65FB62A437B70CDF64315FBA874035E6DB8854A4D52"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[5]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-1ea2481a676f4740bd7f",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "rawNodeSha256": "B70B90585CEB13614CD3E6B67F0EA5F1B0CBB5DE7C94BEA4134B66EA53414337",
+      "dataFingerprint": "43A4F6ACF176E0093B97D8300B9D5CF71E97BFF4DA196CC9C8DA43D4A86E1B72"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-3bee48da286141c6913e",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "52D2621595DAC880875E638A552291238932836FB7B3C1FF517729A522720C0D",
+      "dataFingerprint": "5C081C8A2F62F583DDB5BCC9CAF1321B14321348F89CF1E8F7AF279B53037F29"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[6]/tr[4]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-4457ea93ca134011a9ed",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[6]/tr[4]",
+      "rawNodeSha256": "8B83B074A152CBD24D73FA26EBA12A05C4AFA6414E21299774C35216D023F0E7",
+      "dataFingerprint": "C7D02F10E46B928EB1C5EB927F8B392051B44C6478B32F302056CFF7BEA54D00"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[9]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-49d9b7a3eb564975b835",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "rawNodeSha256": "0CE727FA96D10556ABD00C2BCB8A9A42381BD775DD504F5A43AB03E37CDDF9FF",
+      "dataFingerprint": "4C8DC5ACD399B9DE96A38C96C77BE067D49A718C3191528B4A94A9765CBE9F69"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[10]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-751d91e044d2412abcfb",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "rawNodeSha256": "DA069DB5B64A95921520B9B4CDC20EE87F142DFC2E10AB94BBDACEE22F0CAB1C",
+      "dataFingerprint": "893F9E288BFD6ADACE24D383EE0217A594C35757438F1449B5EB5481EDDB85BB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[11]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-e5984949a2544213a704",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "rawNodeSha256": "F26302F77813FCEC6E20BA32334E999340C6DEFE7470276B752E34BDD56DD44C",
+      "dataFingerprint": "DCBEE59C88606F94AB657B7B40C811C1D355C2C949A030DCA1DCC4EDEC9FE6BF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[12]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-8fb37d3cb2ef4e8bb6a7",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/table/tbody[12]/tr[2]",
+      "rawNodeSha256": "CD8F380C2E1AE7134BC7AEA60A7EC12EED261242A13B885573724399BC37C27D",
+      "dataFingerprint": "F82DC66AAB3B88B62FC093F4CF7D3D4D18A51331D6576E8C88A4B0D623C61ECA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-90f40f0f51e24784bb9c",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "DFA1A6A84BB35E76DFF84116E258272672CB52A90ADB5B4ED44F2768F51A6152",
+      "dataFingerprint": "DD4AD411CB6942B64836A32FAE994F9929CF6750045A3F04BDF2222CB15DB0DD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-ad68b020cd0549d6a67a",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "2CE787AEC39D05A1EAF6EA7B3140D9E70A087611AA0D78BE761E0DD734734F4A",
+      "dataFingerprint": "FA698932026FE7764F5681B38851E96ED9B4969E4151A5B1964A06684B048714"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[3]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-0b5af96584a9498ebf0c",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[3]",
+      "rawNodeSha256": "1C32C8A507F4B86800D4C62381D47F14A39B0D84D0EC46FFF9B66B3E6C27238C",
+      "dataFingerprint": "20D141C4CF91F27B279440027D53B9D04358BD9876BD3A083C6622C2386A140B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[4]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-58c4b377e0a847bcb67c",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[4]",
+      "rawNodeSha256": "53F940BFBA4AB9426976ABA302645B9FADD07DAF192D381D54C5B0288D633BC6",
+      "dataFingerprint": "FC5D0271B52603875099AD1A5F5C348A00CAD1754632BC60D0838C1046F62B6B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[5]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-2c8142c2ab5d43c6be8d",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[5]",
+      "rawNodeSha256": "C221928DFCDDDB2B271D5A43DE6F8C29F84F685D56D7A2DD46165A4122DCF697",
+      "dataFingerprint": "FEE9376CB48BDD0624BD3FAE2A2931EA610014C8428E088771E99ECE4E3C5249"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[6]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-2a51b77c11ff40fe8661",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[3]/ul/li[6]",
+      "rawNodeSha256": "968B245D289A2B32E6D481CC960EDDDC6DCC6FB55A05DE83A759FBCF0F08E30A",
+      "dataFingerprint": "E0B665BF90905B95726D9E481CE598B4E15A60983315F2D280BBBC0296E3337D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-742666a4b0a24fdebb59",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "2AEDBC4FE8F28AF5E1756CE60A93033C8CB916D340A79D6C41EF9BEA4BC83103"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-734b3d1a81f44a69ad29",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "761A11D74593308DEB0A9BBD271839BEE0D6F97979596E6CA2D9FD35F154BC65"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-f541b1d3f73245d09518",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "46E13A3DF8349CDEAD831107349632DACF1884C9DB98270136D77BE1583BB1DE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-1df5c6f18f224a9db698",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "27271339823826A42B2FCBE71BC968608FF1C15B8A5C593859FF4825653D7FF7",
+      "dataFingerprint": "71BE372F3E8C721D9F36464455B874C9A3B78509C10A9BA745DE4AA5C9F89FB4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-662b1428f028439f8074",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "1D1369DB72C27B880ED2222384DA1DB66A0C74BC613D3318F081E67CC698B2F4",
+      "dataFingerprint": "A0BDDE0DE6463EC768C78F1E87E4BACAE95AF49DADEBE5D4D6CBD8D8856ABFCA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-b90693fd00244cf4be52",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "61EA80E935704612C582DE43C7FADB028595D2B6574180F4981571D779C5F7BD",
+      "dataFingerprint": "61C12D224DA59B0C7CFFE18EE37C0F4C9F6BC4AF74C2FFB96D7F43FB2D5DB561"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-6f507d4cb68843cea0b2",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "B9C5918DEE34CC521984956ED996858C7DA92EED565CB546D7025ACA46275AFF",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-dfc32e390e004a649872",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "3A0F708A9925B03F8B66758AE3EF4B58551200A88B7E7C5E10573E29F2891FDC",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-64545adccba84c8ea110",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]::DATASHEET",
+      "sourceEntityId": "ba-source-e07fba773e154d78a93c",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]",
+      "rawNodeSha256": "BDE263D63D678715713C560EAD343143BBA88692A830C7BA2416373D0464179E",
+      "dataFingerprint": "84CC8B617189BF2D6A85E72A8F37B72628B035A63BFA3E71371F4CD3187F76FC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-400d3ef203ce4b839bc0",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[1]/div[8]",
+      "rawNodeSha256": "43C1F01C802B751FBC41D1663A40D31FC880A8518658CBCE0EB8A0CF3949CF32",
+      "dataFingerprint": "BEDB02F2B4D3F47CD265A87C7C36E4E62C7BCF248E4569B3674E3F6041B5DEE0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-b9aa66f3442b4ac1aba9",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "8639F7BD94FB5414C4C3A1291B6C0863FA2FB0956F4238F39C6412CD0A11F595",
+      "dataFingerprint": "F454CCFF36B2123DA03AD16F5EF412A7FB5B5C57B2EF77D37C63AEECF57C272A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-c143bfd823104037b098",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "E1E1F80C850F4C85C6A1F3BA7EDE2EAE53A10EDF13306699FB89EB1D297B3C2A",
+      "dataFingerprint": "6C9BC55E41C09F55946317A292BEC2288407982A9D44CAB9E8D28EEFD35E2C0A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-7ab1802c5b1d42508d50",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "17FFB54AA9EECDC82C9825EB205DCA3514C8ECDBA04A83906A01EB392BDD9569",
+      "dataFingerprint": "32AD2ADEBD78C44AD5FA77B945C1AC2FF0C68DB46B25ECB52FAE607A1914C663"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/div[3]/ul/li::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-89335d108e2b40d88d57",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/div[3]/ul/li",
+      "rawNodeSha256": "4DBE5D6C1E16AC032C7B568F08406D186F189113E04E9252B1F88EDA2B0AE9A8",
+      "dataFingerprint": "D1CF3F144D6DE85BB1E4E0AFB23CE642EC5EC14CDAABF4B62219893ED1C9547B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-931a11d116db457d943b",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "D5AB575C49DE2FCF2FA65AA502DE14DCCF958C841A56AF6B300098DD868830CE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-6259a46efe4743558391",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "523D8EF50699C293B6A0B0562E0F0DC435CEF01A8B99A5808F970C081579679F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-0893ab76a0a3416d81fa",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "061F23CBFEE0D4647C3613C69789261A672B4276B8213D38506906931D598307"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-e7df3e48f4fc4d8ebb8d",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "5D1A37944A5259C0870486FD419ADE08A70FE315332984FDFE6D5E1D654F4B7E",
+      "dataFingerprint": "F26CAC839B13FAF2B9FC68714C79010891EF5985B64006FB4DF6856E5466AFE8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-ebac699b7a8145fdb21a",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "B6230AD7F8C5BD416BC5F4CC9A30EF01FDCCCD7CEFCE614B1819F67466F7E3BB",
+      "dataFingerprint": "45E0F7C4C262006040BA5A1B3D793F577C1D861880D167502B86FE113F82E693"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-5cc59adce2e946338268",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "C79A483BD822A9DDE7222E94B491520F54D702ECC85C2FA8A14557EC89F6B5EA",
+      "dataFingerprint": "BFE198CC41F80D4852BC17219F93BDF83A20AF3A9C55FAEE45F16B27754442AF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-3918129cf05540e493be",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+      "rawNodeSha256": "5CB5E8CEF38A4242BA083C70566AB8D5B6A45A30BA09B75010129842ADA202E9",
+      "dataFingerprint": "7BFC69D7052FBE0710B779451F75EF21024808BEBD029DD2BBF7BD1DDF59FAE4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-6fa84ac1eb994887b28e",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[24]/div[44]/div[1]/div[9]::INVULNERABLE_SAVE",
+      "sourceEntityId": "ba-source-b3c9fa76a79d47b58f02",
+      "kind": "INVULNERABLE_SAVE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[1]/div[9]",
+      "rawNodeSha256": "A2CA91D7FFCA0C5B8BD4B7F2E058CD52D1058AAEBA02A5CCC8E2B5DA93C3E4FC",
+      "dataFingerprint": "D268008D0AAA4D8F138AA75EF07E243185F0362933DE525CE8FC588248D67FBE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]::DATASHEET",
+      "sourceEntityId": "ba-source-9a3cb30a4d7f4fdb87fe",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]",
+      "rawNodeSha256": "060C5D164CAAE116CAD2B32EC7CBC621FDA71BA1A071F96870F36A590345E534",
+      "dataFingerprint": "D2910EA6100FAE5553246D13E7E8D6F34F26905C0819E6E6E3441491FF2101E2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-9d8e045ddc454043bc87",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[1]/div[8]",
+      "rawNodeSha256": "54F4B39AF43C0213E6BB2071CEC653BEEB6B201793874AF1FF2C160219CF027A",
+      "dataFingerprint": "FAA3AD5FF3FD00031C0D97458CE311B79A051B18EB880CE4C4963FBC49A03002"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-7c9b05ae0c8545e0a01f",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "E50544289D4268ADFC50B4D1DA14818E18A4A676657C2C40EB6D3D83BEF9D34B",
+      "dataFingerprint": "A33843A92A40FCE84665511E557C2B698089B9A3DADA3599BEF569F581E5910A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-bc31c65f24b24721855b",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "B5FE58222C47A7AFDC44DC0AB874907FC5129AC97D08DB1E5402FB91187C8FBB",
+      "dataFingerprint": "4328EA24A8BB720CC11E2A66C6F95CB96A6357FA5812D5D5A86C54A9B64D3F6B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[5]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-5e5aee5797f34ef28d1f",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "rawNodeSha256": "436A572DCD268CFAA8269B7AC42FD2365FA4942E3BCBB88237E1C1881055A12C",
+      "dataFingerprint": "404297111D3D49C17E27F206B6560C7CFB572620A21DF304126F4282F97C0BF9"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-d4f7e451ac5848fbbbfa",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "6ED389071DAFB8CB9392F6622149F300AD25AD7352FDC8E8022CB65C28B05BA8",
+      "dataFingerprint": "C09D3E3C246A0A7BAEC0A8C8D1D1C6A5A171725F238D08A9FDDC620767037683"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[7]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-f30d19f929404d498d51",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[7]/tr[2]",
+      "rawNodeSha256": "A260E1830EC4103CD959C47C92EDCEF56184421DA982AEF245D4E1EAA427F62F",
+      "dataFingerprint": "F9AB9873F1FEB568F489FA64287371BC633E3BECDA3A0EDB391DE50C26B94600"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[8]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-8898c85d6b8c4ba0a3fb",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[8]/tr[2]",
+      "rawNodeSha256": "B676D6BE11DA9CBBE981927421F8537C9EBAC9CA0B444900A6E4DDACD5A23033",
+      "dataFingerprint": "70A8B765B90275766BF96E305671B1F9D051C355E38DB0DF7F3B4111C0774007"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[11]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-3a2608c025654765bec0",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/table/tbody[11]/tr[2]",
+      "rawNodeSha256": "08355007B97AEC87E9433DA4AEA921B45ED7C452D37A660956C178EF3C0C4E23",
+      "dataFingerprint": "286E86B21ECD0549CA1E8996BB93E9EE81576A983177B060D71E056D579AAFB4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-d60cef34c4584c9897fc",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "17EA9871F3B9EC573FDC9F0AE724246386D480F616917E6EE2821DD681022C99",
+      "dataFingerprint": "7D9A99A5D8EBB16D79A9BE0A1E3E2BBEC398BBB2C0BE40D3E70EEC5FEC79E2A9"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-62a9e18f51794507ac30",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "5EAF6AD285B390E1C36E85017BCDBD2555CEF12D8C93D1717BB50B31587B59EC",
+      "dataFingerprint": "850F4197C2BAF26B2B7580F8D07ED963919F1D0203539008A0BB29091A08F85C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[3]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-b55bc58ee5894e689833",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[3]",
+      "rawNodeSha256": "AA065D8131B466F8A2E73F50EF823E2783532749A349AE788D8AAD351989F422",
+      "dataFingerprint": "C2A7184DE7A3394878A60742EC59C07D59A1CE90AB5A94246163B093B72FC371"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[4]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-00c5dd80c6c64479a0a9",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[3]/ul/li[4]",
+      "rawNodeSha256": "708A24EAA8518FAF7401AA048095CC0EDF3F63FFE1B12CED56E00C83644CCA9D",
+      "dataFingerprint": "80921F8E208767CB63086E0E51C39163756B7395D3B1661B4095BD0AA840D892"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-5a05bdddc554479283be",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "A1F98AE37D5248C06087BBE3A2B1BEFC3396CE44349371DBBF829AAFF325B53A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-8cb08027e3b248e8a4be",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "105A784DA4DA7A8967465F728988075FDC46043B6003ECF6C39118E760A47544"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[3]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-943ad798e71541f6984d",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "6E8B44A5466526AD9B1ABD8E096A1FC1485A9F6DBE4172BB3FCA1DDF6C6F56E6"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[4]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-1e3fe46dbda5498e93ca",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[4]/ul/li",
+      "rawNodeSha256": "ECC58D16F95F9852C55EE10B915069D47F524104E134F2F1D91850ED64F7CA32",
+      "dataFingerprint": "3E4919C656B2B445919B5DCF16B1D1992B67CAA4A129B68B33FD70A9752A65B0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-3fe1f87cc44c4c37baab",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "2FC82C0178197E1F508984ECFED9E35BAE92A2B21238DF3599374934AD45231C",
+      "dataFingerprint": "25CBE461147B04E67569EAEB6EB705391453CE07B58896A345A8D1ED84508E1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-c2302f458f2e4036b4dc",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "FE5DD3DBBEC27E9BF02538D23A8E8142F39F814314387B7BB4B68731C6A0A04F",
+      "dataFingerprint": "C31CBD5D954DCA2B0F58477E7321116D4E089DC1D612667D993B3EB4A02EA015"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-a92821ab25bd4d30a176",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "4AEE8CD3F7F43024B5305561812757FE833881F4CC50B6BCEA809B0ADBC0FCD2",
+      "dataFingerprint": "303B40ABE6A8E0B5C9C2B953E9C1C18546D132E7D9D0D98C8DDEC6FBA672ABFE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-c3fb05bdedd14011b591",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]::DATASHEET",
+      "sourceEntityId": "ba-source-c13a5a07b9604532899f",
+      "kind": "DATASHEET",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]",
+      "rawNodeSha256": "A657ED11585058F965A8671F61B4FE80A3AC06B03B7100709FD2E87819FEC779",
+      "dataFingerprint": "940F0162CBEF4C2B30E5857FD485E8B5C976FA0870603CB89ECD6EC0727B97DA"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[1]/div[8]::MODEL_PROFILE",
+      "sourceEntityId": "ba-source-b9f41fab51ea4b088093",
+      "kind": "MODEL_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[1]/div[8]",
+      "rawNodeSha256": "53890CE66A5F5E87C80B7C8B3B849C48B6D0BA0EF4C6F352136C641DCC25F5A1",
+      "dataFingerprint": "485915F4DC34AF03A30C5F022E79FDDFADB181F94F59119ADCFEA33AC5E6E4D9"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[3]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-b693ef5b27764186b23b",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[3]/tr[2]",
+      "rawNodeSha256": "6E9BC709B03BD0CAB920558F98D9DE8B0AA7FC05E509B481BA2F6FC0FCD7934B",
+      "dataFingerprint": "3198AC414050023096CF4A8B0C538BB5E0573D957330B4957478F41505A0431C"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[4]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-6773aea9394f4eafbc5d",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[4]/tr[2]",
+      "rawNodeSha256": "A26AE41363A1EBA0CE61EF6630C8BC4A873A86E5E8458E63A17CA261A105A11D",
+      "dataFingerprint": "2D29AAA0EB3B895DB7414BF71E95455C48979A31C1EA297167DBB7FA1B906193"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[5]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-e350e2049cee4d6d98a0",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[5]/tr[2]",
+      "rawNodeSha256": "0D3577C37B2D14DDE25BD90B5194731035F9D56986EC4D81FDA78EF9EC8AF55E",
+      "dataFingerprint": "C7D967FA1FF4DADFB8D6284DC83CBC4215F033483B135F763FDA5121BDACD6C5"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[6]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-6467120bb438453090aa",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[6]/tr[2]",
+      "rawNodeSha256": "D72BFD7D24557C2D251F27D3412E948523F35759D4A9F94F2EE3127E5E1B5388",
+      "dataFingerprint": "E512B7C7430115DE364C519800320D3B2D53CB8023044BAF13D8CBF93CD31DBF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[9]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-4d3aaf5725fb490cbbaa",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[9]/tr[2]",
+      "rawNodeSha256": "22E544D02FB37425DDADCDD42639DBDD86A2940B8C34513C67481523BF08C923",
+      "dataFingerprint": "2801F9C6699506351A84EF99138CC847090FBF247DB35DE0A89330D91AC6AEF2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[10]/tr[2]::WEAPON_PROFILE",
+      "sourceEntityId": "ba-source-59d8bd14c89a4dbc9a1c",
+      "kind": "WEAPON_PROFILE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/table/tbody[10]/tr[2]",
+      "rawNodeSha256": "4ABD55E7192A4D3ECBA777C8EBA1C1996C239834B3F119BB1BEBBFDC88A9F932",
+      "dataFingerprint": "497325AA93409884EC169DEC85B8C3B3E10B0BD87D5BCDBBEEE9287B96E4FF3B"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[3]/ul/li[1]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-bebda586ada6455c80b1",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[3]/ul/li[1]",
+      "rawNodeSha256": "C3505BB4075F5B62822A82B927DF932B08F0B755C66EE57EC8D9C9110D7D4DC5",
+      "dataFingerprint": "8DB04DA238C6C42A59F7F11B72A8BDB08DEC5586BD1F137F969E661FAF95FB6D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[3]/ul/li[2]::WARGEAR_OPTION",
+      "sourceEntityId": "ba-source-0e7862273a46427e9bc7",
+      "kind": "WARGEAR_OPTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[3]/ul/li[2]",
+      "rawNodeSha256": "093D55777F32E68DE7A3BF4094D4FCA64B883790DDCEBE68461D354AB40C8D01",
+      "dataFingerprint": "2C4DA90E064AC290B7A72080A56E3D8AB698015839E7B9D0C3C23DAFCE525E31"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[2]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-09645312c60947f8915f",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[1]/div[2]",
+      "rawNodeSha256": "9892AFA58E7E2A05872BA48B4650810A1D642440C1B5EEB52D4C02996363DB92",
+      "dataFingerprint": "257A9DEFF0E650BE5D329E257D4BA754799D1A7A0F05AAAD94BED9AAF5D5ED80"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[1]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-fa851d58b8b44a449686",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[1]",
+      "rawNodeSha256": "2EA4B22DAE4A9912BAD94E2FD708FFD045ED69AD864A03AE9E0B835CE9DE77A0",
+      "dataFingerprint": "B5E79E54DE3385A452B1CCF9194ED856D7718F0731EB1EF9743A1F23371C67CE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[4]::DATASHEET_SECTION",
+      "sourceEntityId": "ba-source-c184aa52dd5a4ca0a5e9",
+      "kind": "DATASHEET_SECTION",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[4]",
+      "rawNodeSha256": "58AC1222E57936A3C7501FCE1F5BDB52F002F28E20E0F53F47BD7E4DD81ECC64",
+      "dataFingerprint": "A7B1F2BFDEFA0FBEAE9AFCC4394549501309F60E0F208E8E2DA8F5FFDE8C44CB"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[5]/ul/li::COMPOSITION_MEMBER",
+      "sourceEntityId": "ba-source-e0e9fe36621b4d0aa2f8",
+      "kind": "COMPOSITION_MEMBER",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[5]/ul/li",
+      "rawNodeSha256": "9F8C35F0735A2CA0942B1314455CDD8BEDC3FFD529295E9E700CC10BAF24324F",
+      "dataFingerprint": "777EE7888AA8B699007BA487A567A73091A6979538E8E21A7A7CF25AE44866BC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[2]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-a276a1a5c0fd4e8eb95f",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[2]",
+      "rawNodeSha256": "1D1369DB72C27B880ED2222384DA1DB66A0C74BC613D3318F081E67CC698B2F4",
+      "dataFingerprint": "342049A15776C493BB1C25551DF4B618089D9140BD14AB8347226EB21D00A751"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[3]::DATASHEET_ABILITY",
+      "sourceEntityId": "ba-source-90baf7e51dbc423e89b6",
+      "kind": "DATASHEET_ABILITY",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/div[3]",
+      "rawNodeSha256": "404BEAEAD046921921EF227B00D5B58AA77060A48D4A2B15F9B6CBFA901143C6",
+      "dataFingerprint": "CCDC77D44C270AF004F58C15AFA58D5B100D3763B2635EE0AE85F9F013049CF7"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-cb355010e00d463bb953",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+      "rawNodeSha256": "FE5DD3DBBEC27E9BF02538D23A8E8142F39F814314387B7BB4B68731C6A0A04F",
+      "dataFingerprint": "C31CBD5D954DCA2B0F58477E7321116D4E089DC1D612667D993B3EB4A02EA015"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-be1e95ff60fa4601a5ae",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+      "rawNodeSha256": "B1EF2297922D7FAE8DA0087A9A946D51D8503E81E7CA8EBD69EC0D0BDCB00AE1",
+      "dataFingerprint": "303B40ABE6A8E0B5C9C2B953E9C1C18546D132E7D9D0D98C8DDEC6FBA672ABFE"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-44987c59ae0e4cbe9f80",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+      "rawNodeSha256": "3A0F708A9925B03F8B66758AE3EF4B58551200A88B7E7C5E10573E29F2891FDC",
+      "dataFingerprint": "C5CB89CAA8B534E864C1D147F8AEC814DEE39EFA0C4F81985FF742C7BD1F29C4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html#/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span::RULE_REFERENCE",
+      "sourceEntityId": "ba-source-ff06c973c28b4db6953c",
+      "kind": "RULE_REFERENCE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[2]/td[2]/b/span",
+      "rawNodeSha256": "68C6FC30B46B4F98E2C132F5960FE947CC5024675DFDE49B3B789763FCD92CD6",
+      "dataFingerprint": "07598592888AC52A262BF5A5C0A1487858EB3F3FAA145471E9D6085481545D1A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/h2::DETACHMENT",
+      "sourceEntityId": "ba-source-534480eb1bf94fb39ecb",
+      "kind": "DETACHMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+      "rawNodeSha256": "8A749E9BBF1F4FFF174131AD9B1403DB50A33772F3DD6B276AD3811749AA077A",
+      "dataFingerprint": "B178F1CA7DB344A6A58984C9D2217A4CC6374726122681797848D0DF90065BA8"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]::DETACHMENT_RULE",
+      "sourceEntityId": "ba-source-a7492f8b30cc4cd59788",
+      "kind": "DETACHMENT_RULE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]",
+      "rawNodeSha256": "35726FAE41E95770CAC18991FA46C835AB825230AC2311FC05CB13A36EBA81D6",
+      "dataFingerprint": "5CE7157246439FE929154449C569B4AD2505B7E1AD33D206E41DF082D872A7B4"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-66f2a093cd5c490ab35f",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "CA98C25B447F840621F7A2AA3925E4C8BDF5AD310FD3F207608A31C09AFBD153",
+      "dataFingerprint": "374497EF23568616DFCAB082DD8C5F07E507E9009579B4C7F0AC95300F6DF60D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "A59630404CB0EAA8203523629E1D6DDAEC6498B9F081D1BDF2A029B43AB71699",
+      "dataFingerprint": "CE0A3E4F3DDF449B018DACCBD8011E3C2EBC91AEB2F298DBC71B75AE02D46588"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-7486f4c370bc462db5de",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "A54B176680B2771A87237D9170DFC068FBCB26A5FC860DF2E53EA135FAD20FBC",
+      "dataFingerprint": "9ABEE012DF48363D908663B5FBF214407EC3C1228BA98B888C5A4DC000813338"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-52014b3f41a8400c8ded",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "E5B84ABC8A6068156A32460C472817775445F3B2EA9F4C8A32C0264C622CD003",
+      "dataFingerprint": "A5962FD4DB851D7C8CAF67647B4C181981428B3D8DC4E7D59790A9B260575183"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[1]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-b546bc64bb404286bf9e",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[1]/div",
+      "rawNodeSha256": "C458BE53F5E58948C678D90407DBE7AE89A29477CB3E461BA1BDFA8B1531F8EF",
+      "dataFingerprint": "949963ED15EB54FE92142C1888413F89B59768E8A8088F3C7A9DD649D33CC7F3"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[2]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-f3543dd563ad4f0bab90",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[2]/div",
+      "rawNodeSha256": "FD665458282B1336CBFBFBE61CDAE0034F44F715AA41062696536E0A8B922391",
+      "dataFingerprint": "8E0EC8C06C20F2FD3BDF995D6CB35CF59C4FD1A8671339A6B1C965002E3CEBFD"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[3]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-88131b5777a04152a73d",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[3]/div",
+      "rawNodeSha256": "58047D83CD09673161B94B0DBBCE425CAFBED1FC0C911CE88D3783EC3B9B48E5",
+      "dataFingerprint": "6D283858273AEB2EA204E69F729C52F4E624C1572F6C6588B0CCDADA959818E0"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[4]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-d9e02bfaaf0a4bed891e",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[4]/div",
+      "rawNodeSha256": "1D4D200FB5E6EDCC815F5D42F64CEEF4896DB35F5453E1FC19E6A8D9A102E5EE",
+      "dataFingerprint": "90AAAC20AC957C5D5E374878F4962D824EB1611F34B97EB466DDFB98B655249F"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[5]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-2b1a72dffb2e4b0eab95",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[5]/div",
+      "rawNodeSha256": "E7FE90AF04061D979AA02CC768EFE489EB60D19D76E0F53321F8EBB741C497FF",
+      "dataFingerprint": "D5373A9A72E5087C3CF65F4AD63D4E1FAC23CCF6026EA131A104EF25A3571881"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[6]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-1403dfd49a43492b8ca6",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[4]/div[6]/div",
+      "rawNodeSha256": "69797F807D6A44C836CDFA4AAF911D67F8F3CFFAB36C8130189EDEE8867F4552",
+      "dataFingerprint": "91860EFC083DD9D52FC8C04B2B3B9C0BBA78013654839262A05B2910C3D5E52A"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/h2::DETACHMENT",
+      "sourceEntityId": "ba-source-1641dd004b06404290f2",
+      "kind": "DETACHMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2",
+      "rawNodeSha256": "CE85F4935D67EE9AA3C4CA4CDA19F725C095B1F406458615C2BDBA8DA8D58E25",
+      "dataFingerprint": "29A0105F0D805438A3D23B8DE444FF1FF9032600870E1432FAC015BC1C9A2961"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[2]::DETACHMENT_RULE",
+      "sourceEntityId": "ba-source-bbdb7e6a48084fc4983c",
+      "kind": "DETACHMENT_RULE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[2]",
+      "rawNodeSha256": "AD3DA2B5765B9E1A3F2101A6D9F705A63D6663C25EE31456776C3A4EEF0E8BF4",
+      "dataFingerprint": "DF33634E9762FF17FDE1CC51D9FA10E001C6EDE09E1D9C56664C65EEB6556B47"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-d0bf28a4572346e7afcc",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "57FA5B31F82DC68F1514A822FCC472F3425FAB5D1060C08C0F1098496374C703",
+      "dataFingerprint": "1AB2D0608660FBFA1CD2F74C2613E88DFD7CCD57336EDCCF28ECA6D56ADE2074"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-9e5f6cb3aeb74e2c9d9b",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "AB6E209091A988AB6320D8BF1A7B343D00D7ED91B0F2CDE9F984C777B9D0188F",
+      "dataFingerprint": "446885D196DFAE3078A6AEABA492B0B316C60EBF5E34E8D5AAFF1DB14BF20AA5"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[1]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-04c93fe1b047461e9b2c",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[1]/div",
+      "rawNodeSha256": "55B9E4BB297570FDF92D539ECE3899E9BABDA54A076A9E9C80BFA45DDEFFB985",
+      "dataFingerprint": "0FAB5217F4CBA9FFFCD204A614A2BCAA2BFE6985CB2E0DDBFC72F3AE7BDDE4C5"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[2]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-295f3660b66c47d2a3d3",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[2]/div",
+      "rawNodeSha256": "BFCF4BC2062C102F43FB998265C1EB2829E893F9F171947BBFE3376BB89F4A3D",
+      "dataFingerprint": "E04E157A8D43BD8AE5C075AF3AD3990011A88F84C7E1411304DE661A916BDD15"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[3]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-32e7720c8e314267afe5",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[4]/div[3]/div",
+      "rawNodeSha256": "469B6AEE4D4FFF4F9787BAC3C6605623488922382DB4EF72D84ECFB488BEA7D2",
+      "dataFingerprint": "65576F963DAA6ABAA6734779031A415C37148A076BDADD480C9AB23A0BF059BF"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/h2::DETACHMENT",
+      "sourceEntityId": "ba-source-47d25d12eb0e492193e9",
+      "kind": "DETACHMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2",
+      "rawNodeSha256": "29E6927435DC1695A7541F5AF6E88CD5A2C62BF50CE00BF8820D3B3B1CCB4A0B",
+      "dataFingerprint": "50C64C73382F2493A7AC93121302FFD0CC104AD7A79570BCB926F71A593A0A92"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[2]::DETACHMENT_RULE",
+      "sourceEntityId": "ba-source-4431713df3a84d108c6f",
+      "kind": "DETACHMENT_RULE",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[2]",
+      "rawNodeSha256": "D08780BC016E396FE3113FB8A4866BF333E3593902CB3BDB1CFC9837FE68479C",
+      "dataFingerprint": "2B2DCC42908AEC9C32546177EEA5A73B252B275518FE7FA2251E52FF4D7F48DC"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "0E2CD746BBC271842E71CC4E024F72CC823EA6CA894ED33B3E21F662ED16553E",
+      "dataFingerprint": "405576C2F31AD80613A5B4D644A6F9E1DC432566BF98570C5DADBBBB1F7D05E2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td::ENHANCEMENT",
+      "sourceEntityId": "ba-source-4095bd4462234210b0f9",
+      "kind": "ENHANCEMENT",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+      "rawNodeSha256": "CF542462BFC02003DED339FA3B88C17B8808B83930A268BA19D7E42DE45DA599",
+      "dataFingerprint": "0030201790B28304F06A86F296214588EA90CA6F35FC92BA5746BE9DFF325FD1"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[1]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-48ac7ed950954884a1ca",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[1]/div",
+      "rawNodeSha256": "1BD46DFC9F5C329118EE1F8610CC8020568AC780803707091E6E2C638E37AC83",
+      "dataFingerprint": "1E920369E2A0AA0533E453A65A0923F0C30C3B22F6B8D73025E788D12F9EBB5D"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[2]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-80129c8fe22040479699",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[2]/div",
+      "rawNodeSha256": "35A8358F291D3F428BBFFD324301C58C126F729FA1265A52C4B8A14E928A0D68",
+      "dataFingerprint": "BEC9EF974905DA192AD3333D75AC82C92266E4D38F0DD368DE6E45B89BF77FA2"
+    },
+    {
+      "key": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html#/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[3]/div::STRATAGEM",
+      "sourceEntityId": "ba-source-54e619f6e3e042dc8f48",
+      "kind": "STRATAGEM",
+      "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[4]/div[3]/div",
+      "rawNodeSha256": "F5AB3F40CA067B52C6B914300BDB6FDFBD66A4A329F41044F8C94C53DA1F7A74",
+      "dataFingerprint": "6B2BEB3ECD0C836B103C3F9B6D795632576AA35C794383FDA494BF6E9C630B73"
+    }
+  ]
+}

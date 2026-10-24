@@ -17,7 +17,9 @@ const payloads={
  REROLL:{roll:'HIT',results:'ALL',weaponMode:'melee'},
  INCOMING_MODIFIER:{field:'WOUND_ROLL',mode:'ADD',value:-1,comparison:'ATTACK_STRENGTH_GT_TARGET_TOUGHNESS'},
  IGNORE_MODIFIERS:{fields:['BS','WS'],optional:true},
- STRATAGEM_TARGET_RESTRICTION:{action:'PROHIBIT',stratagemId:id('stratagem'),ownerBookId:id('book')}
+ STRATAGEM_TARGET_RESTRICTION:{action:'PROHIBIT',stratagemId:id('stratagem'),ownerBookId:id('book')},
+ ATTACK_TARGET_RESTRICTION:{action:'PROHIBIT',attackKind:'SNAP_SHOOTING',referenceId:'core-rule-15-09-snap-shooting'},
+ ACTION_CP_MODIFIER:{action:'HEROIC_INTERVENTION',mode:'ADD',value:-1,referenceId:'core-rule-15-11-heroic-intervention'}
 };
 function fixture(kind='QUALIFIED_FNP',recipientScope='PHYSICAL_UNIT'){
  const entities=[{id:id('detachment'),kind:'DETACHMENT',bookId:id('book'),data:{title:'Synthetic detachment'}},
@@ -30,6 +32,8 @@ function fixture(kind='QUALIFIED_FNP',recipientScope='PHYSICAL_UNIT'){
   conditionalPolicy:{kind,recipientScope,payload:clone(payloads[kind]),evidence:clone(evidence),contextQuote}};
  const rule={id:id('rule'),parentId:id('leader'),kind:'DATASHEET_ABILITY',provenance:{sourceId:id('source')},data:{text:contextQuote},
   ruleContract:{schema:'rule-contract/v2',ruleId:id('rule'),ownerId:id('leader'),sourceId:id('source'),kind:'DATASHEET_ABILITY',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',roles:[owner],conditions:[],sourceFields:[['text']],clauses:[clause]}};
+ if(['ATTACK_TARGET_RESTRICTION','ACTION_CP_MODIFIER'].includes(kind))clause.conditionalPolicy.coreReference={
+  canonicalId:payloads[kind].referenceId,ownerBookId:'core-rules',code:kind==='ATTACK_TARGET_RESTRICTION'?'15.09':'15.11',label:'Synthetic Core action reference',quote:'Synthetic frozen Core context',sourceUnitIds:['synthetic-core-unit'],sourceContentHashes:['A'.repeat(64)],provenance:{sourceId:'synthetic-core-source'}};
  entities.push(rule);
  const unit=(instanceId,name)=>({instanceId,canonicalUnitId:id(name),startingStrength:1,enhancementIds:[],warlord:false,equipmentContextKnown:true,selections:[],modelRows:[{rowId:'model',quantity:1,canonicalProfileId:id(name+'/model'),selections:[],loadouts:[]}]});
  const book={bookId:id('book'),entities,rosterAttachmentPolicies:[{sourceId:id('leader'),targetId:id('bodyguard'),role:'LEADER',additionalLeaders:0,sourceIds:[id('relation')]}]};
@@ -67,5 +71,61 @@ check('nested activation choice is source-owned and remains unresolved',()=>{
  f.policy.activationReferenceId=id('activation');f.book.entities.push({id:id('activation'),kind:'DATASHEET_ABILITY',parentId:id('leader'),provenance:{sourceId:id('activation/source')},data:{title:'Optional battle choice',text:'Choose this permission at the Command phase; no choice is assumed.'}});
  const projected=projectEffectiveInstance(f.book,run(f.book,f.state),'l');assert.equal(projected.conditional.find(r=>r.policy).activationContext.canonicalId,id('activation'));
  f.policy.activationReferenceId=id('bodyguard');assert.throws(()=>run(f.book,f.state));
+});
+check('Advance and Leadership are permission-only rerolls, never numbers',()=>{
+ for(const roll of ['ADVANCE','LEADERSHIP']){
+  const f=fixture('REROLL');f.policy.payload={roll,results:'ALL'};
+  const result=run(f.book,f.state);invariant(f,result);
+  assert.equal(projectEffectiveInstance(f.book,result,'l').conditional.find(row=>row.policy).policy.payload.roll,roll);
+  f.policy.payload.results='ONES';assert.throws(()=>run(f.book,f.state));
+  f.policy.payload={roll,results:'ALL',weaponMode:'melee'};assert.throws(()=>run(f.book,f.state));
+ }
+});
+function detachmentFixture(){
+ const f=fixture('REROLL'),text='Friendly BLOOD ANGELS CHARACTER units can re-roll hit rolls of 1.';
+ Object.assign(f.rule,{kind:'DETACHMENT_RULE',bookId:id('book'),parentId:id('detachment')});
+ Object.assign(f.rule.ruleContract,{kind:'DETACHMENT_RULE',ownerId:id('detachment'),detachmentId:id('detachment')});
+ f.rule.data.text=text;f.policy.contextQuote=text;f.policy.evidence.quote=text;
+ const update=value=>{if(value&&typeof value==='object'){if(value.evidence)value.evidence.quote=text;Object.values(value).forEach(update);}};update(f.rule.ruleContract);
+ f.policy.recipientScope='ROSTER_UNITS';f.policy.recipientKeywords=['BLOOD ANGELS','CHARACTER'];f.policy.payload={roll:'HIT',results:'ONES'};
+ f.book.entities.find(e=>e.id===id('leader')).data.keywords=['BLOOD ANGELS','CHARACTER'];return f;
+}
+check('selected Detachment policies select proven formed UNIT keywords without bearer',()=>{
+ const f=detachmentFixture();let result=run(f.book,f.state);
+ assert.equal(rows(result,'a').length,0);assert.equal(rows(result,'l').length,1);
+ const numeric=clone(result);for(const u of numeric.units)u.conditional=u.conditional.filter(r=>!r.policy);assert.deepEqual(numeric,baseline(f));
+ const projected=projectEffectiveInstance(f.book,result,'l').conditional.find(row=>row.policy);
+ assert.equal(projected.sourceInstanceId,null);assert.equal(projected.sourceModelScopeId,null);assert.equal(projected.sourceLabel,'Synthetic detachment');assert.deepEqual(projected.recipientInstanceIds,['l']);
+ f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');result=run(f.book,f.state);
+ assert.deepEqual(rows(result,'a')[0].recipientInstanceIds,['a','l']);assert.equal(rows(result,'b').length,0);
+ assert.ok(!unit(result,'a').keywords.includes('BLOOD ANGELS'));assert.ok(unit(result,'a').profiles.every(model=>!model.keywords.includes('BLOOD ANGELS')));projectEffectiveInstance(f.book,result,'a');
+ const altered=clone(result);rows(altered,'a')[0].sourceInstanceId='l';assert.throws(()=>projectEffectiveInstance(f.book,altered,'a'));
+ const noSelection=clone(result);noSelection.detachmentIds=[];assert.throws(()=>projectEffectiveInstance(f.book,noSelection,'a'));
+ f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'DETACH','l');result=run(f.book,f.state);assert.equal(rows(result,'a').length,0);
+ f.book.entities.push({id:id('other-detachment'),kind:'DETACHMENT',bookId:id('book'),data:{title:'Other'}});f.state.detachments=[{instanceId:'other',canonicalDetachmentId:id('other-detachment')}];delete f.state.detachmentIds;delete f.state.selectedDetachmentIds;result=run(f.book,f.state);assert.equal(result.units.flatMap(u=>u.conditional.filter(r=>r.policy)).length,0);
+});
+check('Detachment policy guards reject unknown Chapter, selectors, owners and recipients',()=>{
+ for(const keywords of [[],['CHARACTER'],['BLOOD ANGELS'],['DARK ANGELS','CHARACTER']]){
+  const f=detachmentFixture();f.book.entities.find(e=>e.id===id('leader')).data.keywords=keywords;
+  assert.equal(run(f.book,f.state).units.flatMap(u=>u.conditional.filter(r=>r.policy)).length,0);
+ }
+ for(const mutate of [f=>delete f.policy.recipientKeywords,f=>f.policy.recipientKeywords=[],f=>f.policy.recipientKeywords=['UNKNOWN CHAPTER'],f=>f.policy.recipientScope='FORMED_UNIT',f=>f.rule.bookId='foreign',f=>f.rule.ruleContract.detachmentId='foreign',f=>f.policy.activationReferenceId=id('leader')]){
+  const f=detachmentFixture();mutate(f);assert.throws(()=>run(f.book,f.state));
+ }
+ const f=detachmentFixture(),result=run(f.book,f.state);unit(result,'b').conditional.push(clone(rows(result,'l')[0]));assert.throws(()=>projectEffectiveInstance(f.book,result,'b'));
+});
+check('attack target and CP policies cannot reinterpret action, recipient, cost or Core reference',()=>{
+ for(const kind of ['ATTACK_TARGET_RESTRICTION','ACTION_CP_MODIFIER']){
+  const f=fixture(kind,'FORMED_UNIT');f.state=changeAttachment(f.book,f.state,f.book.rosterAttachmentPolicies,'ATTACH','l','a');
+  const result=run(f.book,f.state);invariant(f,result);
+  assert.equal(projectEffectiveInstance(f.book,result,'a').conditional.find(r=>r.policy).policy.coreReference.canonicalId,f.policy.payload.referenceId);
+  assert.equal(rows(result,'b').length,0);
+  for(const mutate of [p=>p.coreReference.canonicalId='core-stratagem-fire-overwatch',p=>p.coreReference.ownerBookId='foreign',p=>p.coreReference.code='15.08',p=>p.coreReference.sourceContentHashes=['fake'],p=>delete p.coreReference,p=>p.payload.referenceId='missing',p=>p.payload.value='-1']){
+   const altered=fixture(kind);mutate(altered.policy);assert.throws(()=>run(altered.book,altered.state));
+  }
+ }
+ const cp=fixture('ACTION_CP_MODIFIER');cp.policy.payload.mode='SET';assert.throws(()=>run(cp.book,cp.state));
+ const attack=fixture('ATTACK_TARGET_RESTRICTION');attack.policy.payload.attackKind='ALL_ATTACKS';assert.throws(()=>run(attack.book,attack.state));
+ const f=fixture('ACTION_CP_MODIFIER'),result=run(f.book,f.state);rows(result,'l')[0].policy.coreReference.sourceContentHashes=['B'.repeat(64)];assert.throws(()=>projectEffectiveInstance(f.book,result,'l'));
 });
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,conditionalPoliciesOnly:true,battleSimulation:false}));

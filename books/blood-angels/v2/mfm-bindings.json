@@ -1,0 +1,2907 @@
+{
+  "owner": "CENTRALIZED_MFM",
+  "sourceId": "blood-angels-mfm-v1.6",
+  "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+  "review": {
+    "date": "2026-10-22",
+    "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+    "policy": "EXPLICIT_PAIRED_SOURCE_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_CORROBORATION"
+  },
+  "unitBindings": [
+    {
+      "entityId": "unit-ba-014cc7b19aca4d5b84a3",
+      "sourceEntityId": "ba-source-8bbe79e51dd341e39e69",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-cfee14530993b6e6",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "DEATH COMPANY CAPTAIN",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]",
+          "sourceEntityId": "ba-source-8bbe79e51dd341e39e69",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/5",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[6]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Death Company Captain"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 80
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 80
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-09adea2bf319462fb4ed",
+      "sourceEntityId": "ba-source-bfa759739fb848ff9bfd",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-3b62b31bfc52b290",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "BLOOD ANGELS CAPTAIN",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]",
+          "sourceEntityId": "ba-source-bfa759739fb848ff9bfd",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/2",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[3]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Blood Angels Captain"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 90
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 90
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "ASSAULT INTERCESSOR SQUAD",
+                "COMPANY HEROES",
+                "INFERNUS SQUAD",
+                "INTERCESSOR SQUAD",
+                "STERNGUARD VETERAN SQUAD"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "ASSAULT INTERCESSOR SQUAD",
+                "COMPANY HEROES",
+                "INFERNUS SQUAD",
+                "INTERCESSOR SQUAD",
+                "STERNGUARD VETERAN SQUAD"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-1388b9b0dc5d40c1aba4",
+      "sourceEntityId": "ba-source-73cfa0e6ada0495a9bed",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-6eed004c1f2ff0eb",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "SANGUINARY PRIEST",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]",
+          "sourceEntityId": "ba-source-73cfa0e6ada0495a9bed",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/12",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[13]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Sanguinary Priest"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 60
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 60
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "SUPPORT": [
+                "ASSAULT INTERCESSOR SQUAD",
+                "BLADEGUARD VETERAN SQUAD",
+                "COMPANY HEROES",
+                "DESOLATION SQUAD",
+                "HELLBLASTER SQUAD",
+                "INFERNUS SQUAD",
+                "INTERCESSOR SQUAD",
+                "STERNGUARD VETERAN SQUAD"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "SUPPORT": [
+                "ASSAULT INTERCESSOR SQUAD",
+                "BLADEGUARD VETERAN SQUAD",
+                "COMPANY HEROES",
+                "DESOLATION SQUAD",
+                "HELLBLASTER SQUAD",
+                "INFERNUS SQUAD",
+                "INTERCESSOR SQUAD",
+                "STERNGUARD VETERAN SQUAD"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-3483c88a4df4495ca2e2",
+      "sourceEntityId": "ba-source-7f21def8639f462d88e9",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-b9bc42bc80e6a6b5",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "LEMARTES",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]",
+          "sourceEntityId": "ba-source-7f21def8639f462d88e9",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/10",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[11]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Lemartes"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 110
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 110
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-4ea9a8226a61470fa157",
+      "sourceEntityId": "ba-source-88e0dcceb653428a9dc1",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-ab9e5e853827c52a",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "THE SANGUINOR",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]",
+          "sourceEntityId": "ba-source-88e0dcceb653428a9dc1",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/13",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[14]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "The Sanguinor"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 120
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 120
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-5269d704246f4e3a8d81",
+      "sourceEntityId": "ba-source-6cb55022c3a0452083de",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-1618277b18ebb8b7",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "DEATH COMPANY CAPTAIN WITH JUMP PACK",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+          "sourceEntityId": "ba-source-6cb55022c3a0452083de",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/6",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[7]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Death Company Captain with Jump Pack"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 85
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 85
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-548417d73e544f7f920e",
+      "sourceEntityId": "ba-source-c58260ec29fb44aa9352",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-f897ea59a4340043",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "DEATH COMPANY MARINES",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+          "sourceEntityId": "ba-source-c58260ec29fb44aa9352",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/8",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[9]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 5,
+                "max": 10,
+                "modelSourceName": "Death Company Marines"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              5,
+              10
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 90
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 170
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD+ UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 105
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 185
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 90
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 170
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD + UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 105
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 185
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-56917c1cd6a94406970f",
+      "sourceEntityId": "ba-source-9a3cb30a4d7f4fdb87fe",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-f2f2d9925f7a3bab",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "BAAL PREDATOR",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]",
+          "sourceEntityId": "ba-source-9a3cb30a4d7f4fdb87fe",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/1",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[2]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Baal Predator"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 135
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD+ UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 150
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 135
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD + UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 150
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-5981fb6513b9436487f0",
+      "sourceEntityId": "ba-source-e07fba773e154d78a93c",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-0b546d80f7c5e0cf",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "SANGUINARY GUARD",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]",
+          "sourceEntityId": "ba-source-e07fba773e154d78a93c",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/11",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[12]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 3,
+                "max": 6,
+                "modelSourceName": "Sanguinary Guard"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              3,
+              6
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 3,
+                    "points": 135
+                  },
+                  {
+                    "modelCount": 6,
+                    "points": 275
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD+ UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 3,
+                    "points": 150
+                  },
+                  {
+                    "modelCount": 6,
+                    "points": 290
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 3,
+                    "points": 135
+                  },
+                  {
+                    "modelCount": 6,
+                    "points": 275
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD + UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 3,
+                    "points": 150
+                  },
+                  {
+                    "modelCount": 6,
+                    "points": 290
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-6903525e7ae0497e943a",
+      "sourceEntityId": "ba-source-c9a95688191042d2bf4c",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-d6499e18ac50d33a",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "DEATH COMPANY MARINES WITH JUMP PACKS",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]",
+          "sourceEntityId": "ba-source-c9a95688191042d2bf4c",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/9",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[10]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 5,
+                "max": 10,
+                "modelSourceName": "Death Company Marines with Jump Packs"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              5,
+              10
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 130
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 260
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD+ UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 160
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 290
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 130
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 260
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD + UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 5,
+                    "points": 160
+                  },
+                  {
+                    "modelCount": 10,
+                    "points": 290
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-72b98695e8914fc89bff",
+      "sourceEntityId": "ba-source-c13a5a07b9604532899f",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-fd3e1b59763ddf36",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "DEATH COMPANY DREADNOUGHT",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]",
+          "sourceEntityId": "ba-source-c13a5a07b9604532899f",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/7",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[8]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Death Company Dreadnought"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 165
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD+ UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 185
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR 1ST TO 2ND UNITS COST",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 165
+                  }
+                ]
+              },
+              {
+                "label": "YOUR 3RD + UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 185
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-7f57bc2e255748b09903",
+      "sourceEntityId": "ba-source-5822204cac5548cdb993",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-3eaea400e457aec0",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "ASTORATH",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]",
+          "sourceEntityId": "ba-source-5822204cac5548cdb993",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/0",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[1]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Astorath"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 90
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 90
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "DEATH COMPANY MARINES WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-92fdb23a526b4c328367",
+      "sourceEntityId": "ba-source-3855b47ccc584cb39e44",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-3fd834bae14227f2",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "COMMANDER DANTE",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]",
+          "sourceEntityId": "ba-source-3855b47ccc584cb39e44",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/4",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Commander Dante"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 140
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 140
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {
+              "LEADER": [
+                "ASSAULT INTERCESSORS WITH JUMP PACKS",
+                "SANGUINARY GUARD",
+                "VANGUARD VETERAN SQUAD WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {
+              "LEADER": [
+                "ASSAULT INTERCESSORS WITH JUMP PACKS",
+                "SANGUINARY GUARD",
+                "VANGUARD VETERAN SQUAD WITH JUMP PACKS"
+              ]
+            }
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "unit-ba-d84ea7c581874feca80b",
+      "sourceEntityId": "ba-source-4a7419bb2d754eb6aec2",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-unit-points-25e057532a527713",
+      "sourceLocator": {
+        "partition": "units",
+        "factionId": "blood-angels",
+        "sourceTitle": "CHIEF LIBRARIAN MEPHISTON",
+        "sourceGroup": "UNITS",
+        "status": "CURRENT"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+          "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+          "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]",
+          "sourceEntityId": "ba-source-4a7419bb2d754eb6aec2",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/units/3",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[4]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeSourcePublication",
+            "evidence": [
+              "App. Blood Angels (11th edition)"
+            ]
+          },
+          {
+            "property": "officialPartition",
+            "evidence": "UNITS BA-owned, not SPACE MARINES/LEGENDS"
+          },
+          {
+            "property": "composition",
+            "evidence": [
+              {
+                "min": 1,
+                "max": 1,
+                "modelSourceName": "Chief Librarian Mephiston"
+              }
+            ]
+          },
+          {
+            "property": "officialModelTiers",
+            "evidence": [
+              1
+            ]
+          },
+          {
+            "property": "nativePriceMirror",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 175
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "officialSchedules",
+            "evidence": [
+              {
+                "label": "YOUR UNIT COSTS",
+                "rows": [
+                  {
+                    "modelCount": 1,
+                    "points": 175
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "property": "priceScheduleParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeRelationDeclarations",
+            "evidence": {}
+          },
+          {
+            "property": "officialRelations",
+            "evidence": {}
+          },
+          {
+            "property": "relationParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit occurrence tuple + confirmed BA publication/official partition + full model composition tier coverage + complete price/copy schedules + all declared Leader/Support target sets. Pricing authority remains official, not secondary mirror."
+          }
+        ]
+      }
+    }
+  ],
+  "detachmentBindings": [
+    {
+      "entityId": "detachment-ba-23df164069854eb2996c",
+      "sourceEntityId": "ba-source-534480eb1bf94fb39ecb",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-detachment-494fc03f0dff6363",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "blood-angels",
+        "sourceTitle": "ANGELIC INHERITORS"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+          "sourceEntityId": "ba-source-534480eb1bf94fb39ecb",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/0",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[1]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeDetachmentStructure",
+            "evidence": {
+              "DP": 3,
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "officialDetachmentStructure",
+            "evidence": {
+              "DP": 3,
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "structureParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Exact source occurrences plus complete Enhancement ownership set, costs, DP and Force Disposition match; parent membership not title/order alone."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "detachment-ba-9d0ce920555a44b68025",
+      "sourceEntityId": "ba-source-1641dd004b06404290f2",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-detachment-ea9d5d1c84c47020",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "blood-angels",
+        "sourceTitle": "ENCARMINE SPEARTIP"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/h2",
+          "sourceEntityId": "ba-source-1641dd004b06404290f2",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/1",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[5]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeDetachmentStructure",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "DISRUPTION"
+              ],
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "officialDetachmentStructure",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "DISRUPTION"
+              ]
+            }
+          },
+          {
+            "property": "structureParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Exact source occurrences plus complete Enhancement ownership set, costs, DP and Force Disposition match; parent membership not title/order alone."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "detachment-ba-b84a7700a71549e399ba",
+      "sourceEntityId": "ba-source-47d25d12eb0e492193e9",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-detachment-929f4ed7941374d9",
+      "sourceLocator": {
+        "partition": "detachments",
+        "factionId": "blood-angels",
+        "sourceTitle": "WRATH OF THE DOOMED"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/h2",
+          "sourceEntityId": "ba-source-47d25d12eb0e492193e9",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/2",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[19]",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeDetachmentStructure",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ]
+            }
+          },
+          {
+            "property": "officialDetachmentStructure",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ],
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "structureParity",
+            "evidence": true
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Exact source occurrences plus complete Enhancement ownership set, costs, DP and Force Disposition match; parent membership not title/order alone."
+          }
+        ]
+      }
+    }
+  ],
+  "enhancementBindings": [
+    {
+      "entityId": "enhancement-ba-2e1605fc8a6b4631b096",
+      "sourceEntityId": "ba-source-d0bf28a4572346e7afcc",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-4cf594c6fa1107f5",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ENCARMINE SPEARTIP",
+        "sourceTitle": "Shadow of Abomination"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-d0bf28a4572346e7afcc",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/1/enhancements/1",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[5]/div[3]/ul/div[2]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[23]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[5]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "DISRUPTION"
+              ],
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "DISRUPTION"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 15
+          },
+          {
+            "property": "officialCost",
+            "evidence": 15
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES JUMP PACK model only. (once per battle, per army) When this unit is selected to fight you can use this ability. If you do, this model’s melee attacks have +1 D."
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-3cc1e896eab1460c8748",
+      "sourceEntityId": "ba-source-52014b3f41a8400c8ded",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-e4f01a7f5fe8b086",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ANGELIC INHERITORS",
+        "sourceTitle": "Unto Death"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-52014b3f41a8400c8ded",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/0/enhancements/3",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[4]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[22]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[1]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 3,
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 3,
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 15
+          },
+          {
+            "property": "officialCost",
+            "evidence": 15
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES model only. (Once per battle, per army) In your Command phase you can use this ability. If you do, until the end of the turn this unit can:"
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-3f19e1f57dd94fcc92ae",
+      "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-cf27a164f031db2d",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ANGELIC INHERITORS",
+        "sourceTitle": "Blazing Icon"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-c99f90a3afc74ce6aa95",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/0/enhancements/0",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[1]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[22]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[1]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 3,
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 3,
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 20
+          },
+          {
+            "property": "officialCost",
+            "evidence": 20
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES model only. Enemy units cannot target this unit with snap shooting attacks."
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-9b2691d5805d46df9b88",
+      "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-83825aa952dff48e",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "WRATH OF THE DOOMED",
+        "sourceTitle": "Instinctive Interception"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-ccd944798d144c0ea98a",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/2/enhancements/0",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[3]/ul/div[1]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[24]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[19]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ],
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 10
+          },
+          {
+            "property": "officialCost",
+            "evidence": 10
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "DEATH COMPANY model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-c3527131d00a41efae68",
+      "sourceEntityId": "ba-source-66f2a093cd5c490ab35f",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-870336fbe5f52ace",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ANGELIC INHERITORS",
+        "sourceTitle": "Prescient Flash"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-66f2a093cd5c490ab35f",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/0/enhancements/2",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[3]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[22]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[1]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 3,
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 3,
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 25
+          },
+          {
+            "property": "officialCost",
+            "evidence": 25
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES model only. This unit has Scouts 6\"."
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-c6832a51a86e4ae784ba",
+      "sourceEntityId": "ba-source-4095bd4462234210b0f9",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-b795bb93ab26ff6b",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "WRATH OF THE DOOMED",
+        "sourceTitle": "On the Archtraitor's Bridge"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-4095bd4462234210b0f9",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/2/enhancements/1",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[3]/ul/div[2]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[24]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[19]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "INSTINCTIVE INTERCEPTION",
+                  10
+                ],
+                [
+                  "ON THE ARCHTRAITOR'S BRIDGE",
+                  20
+                ]
+              ],
+              "forceDisposition": [
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 20
+          },
+          {
+            "property": "officialCost",
+            "evidence": 20
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "DEATH COMPANY model only. This model’s melee attacks have +2 A."
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-e41fcde20bd649ef8d51",
+      "sourceEntityId": "ba-source-7486f4c370bc462db5de",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-665d8f957902b102",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ANGELIC INHERITORS",
+        "sourceTitle": "Ordained Sacrifice"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-7486f4c370bc462db5de",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/0/enhancements/1",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[2]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[22]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[1]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 3,
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ],
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 3,
+              "enhancementSet": [
+                [
+                  "BLAZING ICON",
+                  20
+                ],
+                [
+                  "ORDAINED SACRIFICE",
+                  25
+                ],
+                [
+                  "PRESCIENT FLASH",
+                  25
+                ],
+                [
+                  "UNTO DEATH",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "PRIORITY ASSETS",
+                "PURGE THE FOE"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 25
+          },
+          {
+            "property": "officialCost",
+            "evidence": 25
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES model only. (Once per battle, per army) At the end of a phase in which this model is destroyed, roll one D6:"
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    },
+    {
+      "entityId": "enhancement-ba-e4821c7600234224bb54",
+      "sourceEntityId": "ba-source-9e5f6cb3aeb74e2c9d9b",
+      "bookId": "blood-angels",
+      "mfmRecordId": "mfm-enhancement-28b0fd6597a34a83",
+      "sourceLocator": {
+        "partition": "detachments.enhancements",
+        "factionId": "blood-angels",
+        "detachmentSourceTitle": "ENCARMINE SPEARTIP",
+        "sourceTitle": "Angelic Executioner"
+      },
+      "proof": {
+        "native": {
+          "sourceId": "blood-angels-waha-11e-2026-10-22",
+          "document": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+          "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+          "pointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+          "sourceEntityId": "ba-source-9e5f6cb3aeb74e2c9d9b",
+          "authority": "ACCEPTED_SECONDARY"
+        },
+        "mfm": {
+          "sourceId": "blood-angels-mfm-v1.6",
+          "sourcePath": "mfm/sources/v1.6/blood-angels.json",
+          "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+          "jsonPointer": "/detachments/1/enhancements/0",
+          "rawHtmlPointer": "/html/body/main/div[2]/div[4]/div/div[5]/div[3]/ul/div[1]/li",
+          "rawSha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD"
+        },
+        "corroboratedProperties": [
+          {
+            "property": "nativeParentPointer",
+            "evidence": "/html/body/div/div[1]/div[3]/div[23]/h2"
+          },
+          {
+            "property": "officialParentPointer",
+            "evidence": "/html/body/main/div[2]/div[4]/div/div[5]"
+          },
+          {
+            "property": "parentStructureNative",
+            "evidence": {
+              "DP": 1,
+              "forceDisposition": [
+                "DISRUPTION"
+              ],
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ]
+            }
+          },
+          {
+            "property": "parentStructureOfficial",
+            "evidence": {
+              "DP": 1,
+              "enhancementSet": [
+                [
+                  "ANGELIC EXECUTIONER",
+                  20
+                ],
+                [
+                  "SHADOW OF ABOMINATION",
+                  15
+                ]
+              ],
+              "forceDisposition": [
+                "DISRUPTION"
+              ]
+            }
+          },
+          {
+            "property": "parentOwnershipParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeCostMirror",
+            "evidence": 20
+          },
+          {
+            "property": "officialCost",
+            "evidence": 20
+          },
+          {
+            "property": "costParity",
+            "evidence": true
+          },
+          {
+            "property": "nativeEligibilityAndEffectText",
+            "evidence": "ADEPTUS ASTARTES JUMP PACK model only. When this unit is selected to fight, this unit’s melee attacks have:"
+          },
+          {
+            "property": "officialEligibility",
+            "evidence": "NOT_PRESENT_IN_OFFICIAL_MFM; native rule eligibility retained, no new MFM eligibility inference"
+          },
+          {
+            "property": "independentIdentitySupport",
+            "evidence": "Explicit unique Enhancement occurrence under structurally proven parent, full sibling set, owner and exact official/secondary price agreement. No weapon/model alias or gameplay scope inferred from this pricing binding."
+          }
+        ]
+      }
+    }
+  ],
+  "paidUpgradeBindings": []
+}

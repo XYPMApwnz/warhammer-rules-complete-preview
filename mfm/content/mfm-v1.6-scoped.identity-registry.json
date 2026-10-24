@@ -1,7 +1,7 @@
 {
   "schema": "wh40k-mfm-identity-registry/v1",
   "edition": "Warhammer 40,000 11th Edition",
-  "currentnessCutoff": "2026-10-21",
+  "currentnessCutoff": "2026-10-22",
   "sourceVersion": "v1.6-scoped-six",
   "identityPolicy": "EXPLICIT_OPAQUE_IDS_BOUND_BY_EXACT_SOURCE_LOCATORS",
   "notes": [
@@ -10,7 +10,8 @@
     "Reference-only unit identities preserve official Leader and Support targets that are outside the nine priced faction catalogs without promoting Army Book facts into MFM ownership.",
     "Six faction MFM projections use official v1.6 verified on 2026-10-14; effective date is not established. The three Space Marines-family projections retain v1.4.",
     "Space Marines CURRENT source enrolled v1.6 observed/verified2026-10-20. Historical76LEGENDS retain separately verifiedv1.4source provenance; DarkAngels/BloodAngels stayv1.4. sourceVersion is retained registryformat label, not a claim of exactlysix currentfactions.",
-    "Dark Angels current v1.6 source scoped to16DA-ownedunits/3DA-ownedDetachments/8Enhancement-or-Upgrade costs observed2026-10-21.69sharedSMpricedunits and15sharedSMDetachments retain centralSpaceMarinesowner;Deathwatchseparate. Historical3DA LEGENDS retain v1.4 provenance. No legacy Army identity transferred to native DA bindings."
+    "Dark Angels current v1.6 source scoped to16DA-ownedunits/3DA-ownedDetachments/8Enhancement-or-Upgrade costs observed2026-10-21.69sharedSMpricedunits and15sharedSMDetachments retain centralSpaceMarinesowner;Deathwatchseparate. Historical3DA LEGENDS retain v1.4 provenance. No legacy Army identity transferred to native DA bindings.",
+    "Blood Angels CURRENT source separately enrolled v1.6 observed/verified 2026-10-22: 14 BA-owned UNIT,19 schedules/25 rows,3 Detachments,8 Enhancements. The69sharedSMunits and shared rules/prices retain SM ownership; Deathwatch separate. Historical10LEGENDS retain originalv1.4 provenance and MFM identities,without active native Army recipients."
   ],
   "factionBindings": [
     {
@@ -6359,1747 +6360,248 @@
     },
     {
       "factionId": "blood-angels",
-      "sourceId": "blood-angels-mfm-v1.4",
-      "sourceCapturePath": "books/blood-angels/sources/official-mfm-v1.4.json",
-      "sourceCaptureSha256": "C3AECB9CB7C0C4A9356D4F9571E60BF8B837ACBB3E2399663BB962C3F1553690",
+      "sourceId": "blood-angels-mfm-v1.6",
+      "sourceCapturePath": "mfm/sources/v1.6/blood-angels.json",
+      "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
       "groupBindings": [
         {
-          "sourceLabel": "LEGENDS",
-          "id": "mfm-pricing-group-5dadc5630a843200"
-        },
-        {
-          "sourceLabel": "SPACE MARINES",
-          "id": "mfm-pricing-group-96330e50942ecec2"
-        },
-        {
           "sourceLabel": "UNITS",
-          "id": "mfm-pricing-group-59baf2de7ee01c72"
+          "id": "mfm-pricing-group-b5a623445574472b"
         }
       ],
       "unitBindings": [
         {
-          "sourceTitle": "AGGRESSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-346a1cb4615350ad",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-940313cc3d5655e8",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "ANCIENT",
-          "unitReferenceId": "mfm-unit-ref-2a2179c18e524a8c",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-0e11d4e191e39aed",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-e79264f0e92c5483"
-        },
-        {
-          "sourceTitle": "ANCIENT IN TERMINATOR ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-9de9caad9e3b8844",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-7db605ca736a87f2",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-79cda9efb7a20f52"
-        },
-        {
-          "sourceTitle": "APOTHECARY",
-          "unitReferenceId": "mfm-unit-ref-e75128d472d85cce",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-8dadcc4759a8ae42",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-7af3e8aaa5c25b16"
-        },
-        {
-          "sourceTitle": "APOTHECARY BIOLOGIS",
-          "unitReferenceId": "mfm-unit-ref-c9cd81585bd13012",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-ebfbe909bcbd76ef",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-e622dc94e166929a"
-        },
-        {
           "sourceTitle": "ASSAULT INTERCESSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-b563619a902201de",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-fa863453606e6413",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-629668894c1ee8d5"
         },
         {
           "sourceTitle": "ASSAULT INTERCESSORS WITH JUMP PACKS",
-          "unitReferenceId": "mfm-unit-ref-da1b7775660878a9",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-0fea2acab6e8b8d0",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-923f8dcda6071ae4"
         },
         {
           "sourceTitle": "ASTORATH",
-          "unitReferenceId": "mfm-unit-ref-266362994ff19491",
+          "unitReferenceId": "mfm-unit-ref-e250375c330223a2",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-54f29026a30c2539",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-3eaea400e457aec0",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-43e69417ae33a1ec"
-        },
-        {
-          "sourceTitle": "ASTRAEUS",
-          "unitReferenceId": "mfm-unit-ref-ce8e178c0d109a95",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-c314033b37a711bf",
-          "paidUpgradeBindings": []
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-500aacbf8ea1b931"
         },
         {
           "sourceTitle": "BAAL PREDATOR",
-          "unitReferenceId": "mfm-unit-ref-2a3ee551bb8aa797",
+          "unitReferenceId": "mfm-unit-ref-5a4e0bb481c1f572",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-5ec1ae580262ffb8",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-f2f2d9925f7a3bab",
           "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "BALLISTUS DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-a59bb967325fdb80",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-00e8acb10277fe49",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "BLADEGUARD ANCIENT",
-          "unitReferenceId": "mfm-unit-ref-28de9e499324c4a2",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-c0702a00ac98773a",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-b854386225e75317"
         },
         {
           "sourceTitle": "BLADEGUARD VETERAN SQUAD",
-          "unitReferenceId": "mfm-unit-ref-8b4258801364b611",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-8ede839dc7fc5582",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-fab467bf03b20d40"
         },
         {
           "sourceTitle": "BLOOD ANGELS CAPTAIN",
-          "unitReferenceId": "mfm-unit-ref-a9fae1133f82e32b",
+          "unitReferenceId": "mfm-unit-ref-ded02406687946a5",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-6cb4856d1d86902e",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-3b62b31bfc52b290",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-6f69cf38f14302f0"
-        },
-        {
-          "sourceTitle": "BROTHER CORBULO",
-          "unitReferenceId": "mfm-unit-ref-8be1e5a0b36cc849",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-e667b622010a82d1",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-e4daa9e116d60509"
-        },
-        {
-          "sourceTitle": "BRUTALIS DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-322886ffaecd733c",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-d61f69bd144daee8",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "CAPTAIN",
-          "unitReferenceId": "mfm-unit-ref-422813975145d3c1",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-e742af1245300dc7",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-340bb751cdb6e09b"
-        },
-        {
-          "sourceTitle": "CAPTAIN IN GRAVIS ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-d536c3c28c0401df",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-082bce18071657dd",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-b6eed6dcee929d34"
-        },
-        {
-          "sourceTitle": "CAPTAIN IN PHOBOS ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-51a84405208afdca",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-9f29320e6d8b41bb",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-40c59b658b12cf07"
-        },
-        {
-          "sourceTitle": "CAPTAIN IN TERMINATOR ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-092e637e690338fa",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-073d2105474b939c",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-9a007ae08aaba76e"
-        },
-        {
-          "sourceTitle": "CAPTAIN TYCHO",
-          "unitReferenceId": "mfm-unit-ref-aac4b69f4c832168",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-a4da8216e5b54ac0",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-af11571045a42920"
-        },
-        {
-          "sourceTitle": "CAPTAIN WITH JUMP PACK",
-          "unitReferenceId": "mfm-unit-ref-6b80e9e4f595f314",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-4d428d9b96935699",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-11f0f12427cc2f80"
-        },
-        {
-          "sourceTitle": "CENTURION ASSAULT SQUAD",
-          "unitReferenceId": "mfm-unit-ref-496bf6dde656a238",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-738a5a9e7cfde7c6",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "CENTURION DEVASTATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-1c3e9989d5d41602",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-a2d29361510e9791",
-          "paidUpgradeBindings": [
-            {
-              "sourceGroup": "WARGEAR OPTIONS",
-              "sourceLabel": "per Twin lascannon",
-              "id": "mfm-paid-upgrade-53f41872cf32194a"
-            }
-          ]
-        },
-        {
-          "sourceTitle": "CHAPLAIN",
-          "unitReferenceId": "mfm-unit-ref-c2a5cad5e206e772",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-bd89cf34b41d465d",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-7edb98fb237951ae"
-        },
-        {
-          "sourceTitle": "CHAPLAIN IN TERMINATOR ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-016455865d27c880",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-196ec4e09f9a6e9b",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-80707b0e0d4add8b"
-        },
-        {
-          "sourceTitle": "CHAPLAIN ON BIKE",
-          "unitReferenceId": "mfm-unit-ref-793cbffc057d0d21",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-c99b1dbf6be25445",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-a8fe056521a592dc"
-        },
-        {
-          "sourceTitle": "CHAPLAIN WITH JUMP PACK",
-          "unitReferenceId": "mfm-unit-ref-92d454b8d706b68b",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-91ce1c2b273e0e62",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-954e0bd5b4a48cbe"
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-85faff38c630de90"
         },
         {
           "sourceTitle": "CHIEF LIBRARIAN MEPHISTON",
-          "unitReferenceId": "mfm-unit-ref-c5a8439e398d6fc9",
+          "unitReferenceId": "mfm-unit-ref-af7c85e2e1c0a6ad",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-671657592b9ea5cd",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-25e057532a527713",
           "paidUpgradeBindings": []
         },
         {
           "sourceTitle": "COMMANDER DANTE",
-          "unitReferenceId": "mfm-unit-ref-76878a550662dbf5",
+          "unitReferenceId": "mfm-unit-ref-6ef4303fcbd9f5a3",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-0ba95f846c17467a",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-3fd834bae14227f2",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-fe7d47aa011d489a"
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-76f947e005de049e"
         },
         {
           "sourceTitle": "COMPANY HEROES",
-          "unitReferenceId": "mfm-unit-ref-efc6dbefba2d1e07",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-aa55797d06b76abe",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "CRUSADER SQUAD",
-          "unitReferenceId": "mfm-unit-ref-b1a2820e30741d4a"
+          "unitReferenceId": "mfm-unit-ref-06a4caeeb31f6a1c"
         },
         {
           "sourceTitle": "DEATH COMPANY CAPTAIN",
-          "unitReferenceId": "mfm-unit-ref-e7d984916e75dca6",
+          "unitReferenceId": "mfm-unit-ref-e7002e755ede1469",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-436c99529dd2319e",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-cfee14530993b6e6",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-6c44df091117265f"
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-127caba1a847e452"
         },
         {
           "sourceTitle": "DEATH COMPANY CAPTAIN WITH JUMP PACK",
-          "unitReferenceId": "mfm-unit-ref-6eec1b1eb7be7137",
+          "unitReferenceId": "mfm-unit-ref-bd41f2917345e656",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-2d35d50dbc17751b",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-1618277b18ebb8b7",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-610e02041e1f58c6"
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-8cdd7ed04fed61da"
         },
         {
           "sourceTitle": "DEATH COMPANY DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-506ae11be3d44aa4",
+          "unitReferenceId": "mfm-unit-ref-d1cf992aee19e0f3",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-759d7af344d8cd10",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEATH COMPANY DREADNOUGHT WITH MAGNA-GRAPPLE",
-          "unitReferenceId": "mfm-unit-ref-c43bce176d5d4a25",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-aae8528dfb11a2d2",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-fd3e1b59763ddf36",
           "paidUpgradeBindings": []
         },
         {
           "sourceTitle": "DEATH COMPANY MARINES",
-          "unitReferenceId": "mfm-unit-ref-e6ea17621fbdde35",
+          "unitReferenceId": "mfm-unit-ref-7cd15c81464bfe27",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-8fce1749e462489d",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEATH COMPANY MARINES WITH BOLT RIFLES",
-          "unitReferenceId": "mfm-unit-ref-c415815c379af539",
-          "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-8627f765765e03e5",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEATH COMPANY MARINES WITH BOLTGUNS",
-          "unitReferenceId": "mfm-unit-ref-1ab54cea4c9a7f15",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-66cc2011dbf572c9",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEATH COMPANY MARINES WITH BOLTGUNS AND JUMP PACKS",
-          "unitReferenceId": "mfm-unit-ref-1ebd291c5da45667",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-b6dbc64b50fca9e3",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-f897ea59a4340043",
           "paidUpgradeBindings": []
         },
         {
           "sourceTitle": "DEATH COMPANY MARINES WITH JUMP PACKS",
-          "unitReferenceId": "mfm-unit-ref-5863902ca774161a",
+          "unitReferenceId": "mfm-unit-ref-0ad1c8f172f2bc0e",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-2c20c5854375b4e1",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-d6499e18ac50d33a",
           "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEATHWATCH TERMINATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-491ac65a18d4b878"
-        },
-        {
-          "sourceTitle": "DEATHWATCH VETERANS",
-          "unitReferenceId": "mfm-unit-ref-b3d3dd4d9b3ab63f"
-        },
-        {
-          "sourceTitle": "DEATHWING KNIGHTS",
-          "unitReferenceId": "mfm-unit-ref-f0d8cc6d9fd19d55"
-        },
-        {
-          "sourceTitle": "DEATHWING TERMINATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-e6add1df9d8e8c8c"
-        },
-        {
-          "sourceTitle": "DECIMUS KILL TEAM",
-          "unitReferenceId": "mfm-unit-ref-b36c85d1ca6a3b0a"
         },
         {
           "sourceTitle": "DESOLATION SQUAD",
-          "unitReferenceId": "mfm-unit-ref-e9890c1d91124d18",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-98a53a11abb856ac",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DEVASTATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-b07c6520d3bc5a04",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-87e5468704ec4150",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-a209639181820f20",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-c3cfffbf12470668",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "DROP POD",
-          "unitReferenceId": "mfm-unit-ref-f7064e2fac7caf2c",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-4430f579d6e63952",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "ELIMINATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-c862d7d50322887f",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-699d7222f12db5c6",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "ERADICATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-cdd3b26ae40349b0",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-50d542e896c0b0a9",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "ERADICATOR SQUAD WITH HEAVY BOLTERS",
-          "unitReferenceId": "mfm-unit-ref-93ac5e8fc71496aa",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-32b4b36ea16999a5",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "FIRESTRIKE SERVO-TURRETS",
-          "unitReferenceId": "mfm-unit-ref-f36f79d66d178c39",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-2cb2eaa8976bed62",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "FORTIS KILL TEAM",
-          "unitReferenceId": "mfm-unit-ref-eb1eb7600a914157"
-        },
-        {
-          "sourceTitle": "FURIOSO DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-ebcc293451497803",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-0a25a57f38957381",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "GABRIEL SETH",
-          "unitReferenceId": "mfm-unit-ref-cf301140ca816a26",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-ec698c26599cc850",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-d42ae156ca2bca82"
-        },
-        {
-          "sourceTitle": "GLADIATOR LANCER",
-          "unitReferenceId": "mfm-unit-ref-7a7b7639e674ab23",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-106f61ad774f71fd",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "GLADIATOR REAPER",
-          "unitReferenceId": "mfm-unit-ref-fdef480c73d1d73e",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-0690fe3153cf4bc3",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "GLADIATOR VALIANT",
-          "unitReferenceId": "mfm-unit-ref-7f2e4b108e6d5f1d",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-fb30c34d8d8d26e1",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "HAMMERFALL BUNKER",
-          "unitReferenceId": "mfm-unit-ref-444d50d5c50011d8",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-aa911af8af07ca4e",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "HEAVY INTERCESSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-44a911580ce66c64",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-433e348bf0ebfcde",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-e791c87314a6cf19"
         },
         {
           "sourceTitle": "HELLBLASTER SQUAD",
-          "unitReferenceId": "mfm-unit-ref-cb1505401c18c046",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-b53ef7c51838daf4",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "IMPULSOR",
-          "unitReferenceId": "mfm-unit-ref-ab9936da36b5cf9d",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-5fe6f2024bab9c72",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INCEPTOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-415444e73c670b32",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-144b2f98fba2da1a",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INCURSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-0a14f23bbbd6260b",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-51462f7a9b3f831e",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INDOMITOR KILL TEAM",
-          "unitReferenceId": "mfm-unit-ref-b44c1d0678112284"
+          "unitReferenceId": "mfm-unit-ref-9d93e20e702d251d"
         },
         {
           "sourceTitle": "INFERNUS SQUAD",
-          "unitReferenceId": "mfm-unit-ref-1a2577a9a35be3fd",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-6a190fa8b558b643",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INFILTRATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-74a867a833350866",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-71c5342e2925ec91",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INNER CIRCLE COMPANIONS",
-          "unitReferenceId": "mfm-unit-ref-adbe9b6c1dc72399"
+          "unitReferenceId": "mfm-unit-ref-805f5fbeee23677d"
         },
         {
           "sourceTitle": "INTERCESSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-601dae5e94309f64",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-2cc7947e520b7883",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INVADER ATV",
-          "unitReferenceId": "mfm-unit-ref-cc1b9752f295e985",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-ad92010f9340a1f6",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "INVICTOR TACTICAL WARSUIT",
-          "unitReferenceId": "mfm-unit-ref-3b147a3982a4405b",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-1e2ada57be31a714",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "JUDICIAR",
-          "unitReferenceId": "mfm-unit-ref-2e2d53541afb1253",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-ee225bae5ae2f77e",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-fc23173139f2d758",
-          "supportEligibilityRecordId": "mfm-support-eligibility-b84afbf0ec45c061"
-        },
-        {
-          "sourceTitle": "LAND RAIDER",
-          "unitReferenceId": "mfm-unit-ref-99a91197a42a60d0",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-ffd0125dd5733f92",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "LAND RAIDER CRUSADER",
-          "unitReferenceId": "mfm-unit-ref-aed639fef82dae55",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-ff507601ea855232",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "LAND RAIDER REDEEMER",
-          "unitReferenceId": "mfm-unit-ref-0c0b788353fb1a6d",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-b6ed956e5cfcdd05",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "LAND SPEEDER",
-          "unitReferenceId": "mfm-unit-ref-356fe5e5207bd992",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-336cfca5edc4d4c7",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-85dccdb3e4162e4b"
         },
         {
           "sourceTitle": "LEMARTES",
-          "unitReferenceId": "mfm-unit-ref-a69d8d83d1c88ce1",
+          "unitReferenceId": "mfm-unit-ref-5fc1a3116cf02bc6",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-03dff0b81f961531",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-b9bc42bc80e6a6b5",
           "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-6275413fa5558e92"
-        },
-        {
-          "sourceTitle": "LIBRARIAN",
-          "unitReferenceId": "mfm-unit-ref-a71731e5b5643d4a",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-846ba739432fadb1",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-2bd739eb3e8b725e"
-        },
-        {
-          "sourceTitle": "LIBRARIAN DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-e5723abe9711ca06",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-111a6b630e012cab",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "LIBRARIAN IN PHOBOS ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-0917f97e8e9076a6",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-1e24b06523854f7f",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-3e9f7c2c2c48dad3"
-        },
-        {
-          "sourceTitle": "LIBRARIAN IN TERMINATOR ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-e54ae86f526d0ea6",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-92dbc7c62654c19d",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-7d800de788525a7e"
-        },
-        {
-          "sourceTitle": "LIEUTENANT",
-          "unitReferenceId": "mfm-unit-ref-eb840efb709b33f0",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-b2e6d32332de68cd",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-793647a42733374f"
-        },
-        {
-          "sourceTitle": "LIEUTENANT IN PHOBOS ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-992fece33a14fdec",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-f0308c85ae55faea",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-a96693ce1da8e238"
-        },
-        {
-          "sourceTitle": "LIEUTENANT IN REIVER ARMOUR",
-          "unitReferenceId": "mfm-unit-ref-6ad4468d3ed2b421",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-1f6c1a4933d230f9",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-c5d68a677148ad6d"
-        },
-        {
-          "sourceTitle": "LIEUTENANT WITH COMBI-WEAPON",
-          "unitReferenceId": "mfm-unit-ref-ee05c0767d60e63c",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-31823762875f6d71",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "OUTRIDER SQUAD",
-          "unitReferenceId": "mfm-unit-ref-42861b0d0360f877",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-3d758ec3f919a8b7",
-          "paidUpgradeBindings": [
-            {
-              "sourceGroup": "YOUR UNIT COSTS",
-              "sourceLabel": "+ 1 Invader ATV",
-              "id": "mfm-paid-upgrade-092721cd2e84ec7e"
-            }
-          ]
-        },
-        {
-          "sourceTitle": "PREDATOR ANNIHILATOR",
-          "unitReferenceId": "mfm-unit-ref-ea9ad5f56c5fda94",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-4d0b23f47f9b4869",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "PREDATOR DESTRUCTOR",
-          "unitReferenceId": "mfm-unit-ref-2cead5de57ae7aa5",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-78bcd2559656cec1",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "RAVENWING BLACK KNIGHTS",
-          "unitReferenceId": "mfm-unit-ref-c6c7923a6c63bb43"
-        },
-        {
-          "sourceTitle": "RAZORBACK",
-          "unitReferenceId": "mfm-unit-ref-6918143a3cfe5113",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-22ce3c9426814305",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "REDEMPTOR DREADNOUGHT",
-          "unitReferenceId": "mfm-unit-ref-c90e653b7c5e2a54",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-89b19f00204f3004",
-          "paidUpgradeBindings": [
-            {
-              "sourceGroup": "WARGEAR OPTIONS",
-              "sourceLabel": "per Macro plasma incinerator",
-              "id": "mfm-paid-upgrade-15dcc30a0c3bfd8f"
-            }
-          ]
-        },
-        {
-          "sourceTitle": "REIVER SQUAD",
-          "unitReferenceId": "mfm-unit-ref-177b18b4ed09a9bc",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-61668208329cd06b",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "REPULSOR",
-          "unitReferenceId": "mfm-unit-ref-12766f26b17801c0",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-bb7e5de4a71b1b6d",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "REPULSOR EXECUTIONER",
-          "unitReferenceId": "mfm-unit-ref-85e7f8b26b9c8cda",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-7d9eccca23926d27",
-          "paidUpgradeBindings": [
-            {
-              "sourceGroup": "WARGEAR OPTIONS",
-              "sourceLabel": "per Heavy laser destroyer",
-              "id": "mfm-paid-upgrade-7d8d693b59c2c96b"
-            }
-          ]
-        },
-        {
-          "sourceTitle": "RHINO",
-          "unitReferenceId": "mfm-unit-ref-a1d86a2cc377ba63",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-5e0a6f5d7a89f168",
-          "paidUpgradeBindings": []
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-474eefc477a4c308"
         },
         {
           "sourceTitle": "SANGUINARY GUARD",
-          "unitReferenceId": "mfm-unit-ref-bf643d5064e38da4",
+          "unitReferenceId": "mfm-unit-ref-f75fb9bb1564072c",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-6a00cf250558181f",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-0b546d80f7c5e0cf",
           "paidUpgradeBindings": []
         },
         {
           "sourceTitle": "SANGUINARY PRIEST",
-          "unitReferenceId": "mfm-unit-ref-00c5c647cc355e59",
+          "unitReferenceId": "mfm-unit-ref-4a5c9b07f2d4607f",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-bca48a462775e9d7",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-6eed004c1f2ff0eb",
           "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-cc3646c59e7c2d05"
-        },
-        {
-          "sourceTitle": "SANGUINARY PRIEST WITH JUMP PACK",
-          "unitReferenceId": "mfm-unit-ref-35f4ed109e57e3f4",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-27d8f8f8599df4e0",
-          "paidUpgradeBindings": [],
-          "supportEligibilityRecordId": "mfm-support-eligibility-58e2a337a2fc12f2"
-        },
-        {
-          "sourceTitle": "SCOUT SQUAD",
-          "unitReferenceId": "mfm-unit-ref-9e1d9734edc72008",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-4f698658a11e0d3d",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "SPECTRUS KILL TEAM",
-          "unitReferenceId": "mfm-unit-ref-42ba02be119b43b5"
+          "supportEligibilityRecordId": "mfm-support-eligibility-56a97307ae33afbd"
         },
         {
           "sourceTitle": "STERNGUARD VETERAN SQUAD",
-          "unitReferenceId": "mfm-unit-ref-823384acc060d721",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-aa6c6c271ca5c2d3",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORM SPEEDER HAILSTRIKE",
-          "unitReferenceId": "mfm-unit-ref-21310c01f3b4c6d4",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-93fcb66d97f41179",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORM SPEEDER HAMMERSTRIKE",
-          "unitReferenceId": "mfm-unit-ref-8ee5439e8497dd64",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-b711a13e29eae6f6",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORM SPEEDER THUNDERSTRIKE",
-          "unitReferenceId": "mfm-unit-ref-bdeb3d643f6aec9a",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-b04b4d6205a587d1",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORMHAWK INTERCEPTOR",
-          "unitReferenceId": "mfm-unit-ref-8531cad1b69ca591",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-5a4976d85810b306",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORMRAVEN GUNSHIP",
-          "unitReferenceId": "mfm-unit-ref-d8eea7fec17f348d",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-3e66ae8d84a21dad",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "STORMTALON GUNSHIP",
-          "unitReferenceId": "mfm-unit-ref-a7a57f980caa1461",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-c21d878e43f4de99",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "SUPPRESSOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-2964e2a468554404",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-9d503cae0a138c50",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "SWORD BRETHREN SQUAD",
-          "unitReferenceId": "mfm-unit-ref-110ea22cb729bc72"
-        },
-        {
-          "sourceTitle": "TACTICAL SQUAD",
-          "unitReferenceId": "mfm-unit-ref-608c229ac0ae0c83",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-2c488bd023b939cb",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "TALONSTRIKE KILL TEAM",
-          "unitReferenceId": "mfm-unit-ref-9eb106c9efd67df4"
-        },
-        {
-          "sourceTitle": "TECHMARINE",
-          "unitReferenceId": "mfm-unit-ref-047a184ba859530d",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-dcee74943d6684e4",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-ba766741f5241114"
-        },
-        {
-          "sourceTitle": "TERMINATOR ASSAULT SQUAD",
-          "unitReferenceId": "mfm-unit-ref-bb6b6b16c4858035",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-70f1c825961819ac",
-          "paidUpgradeBindings": [
-            {
-              "sourceGroup": "WARGEAR OPTIONS",
-              "sourceLabel": "per Thunder Hammer",
-              "id": "mfm-paid-upgrade-ed48ad7602dc2217"
-            }
-          ]
-        },
-        {
-          "sourceTitle": "TERMINATOR SQUAD",
-          "unitReferenceId": "mfm-unit-ref-4d0fe89a2603709b",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-0050c38c919af674",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-25607e52541dec72"
         },
         {
           "sourceTitle": "THE SANGUINOR",
-          "unitReferenceId": "mfm-unit-ref-6919176cbd270643",
+          "unitReferenceId": "mfm-unit-ref-adca2ad7e37c7e2f",
           "sourceGroup": "UNITS",
-          "pricingGroupId": "mfm-pricing-group-59baf2de7ee01c72",
           "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-26e8df1aa924c8b9",
+          "pricingGroupId": "mfm-pricing-group-b5a623445574472b",
+          "unitPointRecordId": "mfm-unit-points-ab9e5e853827c52a",
           "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "THUNDERHAWK GUNSHIP",
-          "unitReferenceId": "mfm-unit-ref-3e4b1e58a6165fab",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-d2ab7553cc6546eb",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "TYCHO THE LOST",
-          "unitReferenceId": "mfm-unit-ref-a9b73d60185bb186",
-          "sourceGroup": "LEGENDS",
-          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
-          "status": "LEGENDS",
-          "unitPointRecordId": "mfm-unit-points-0ae614c0ca9e7c65",
-          "paidUpgradeBindings": [],
-          "leaderEligibilityRecordId": "mfm-leader-eligibility-61983c4b77c06786"
         },
         {
           "sourceTitle": "VANGUARD VETERAN SQUAD WITH JUMP PACKS",
-          "unitReferenceId": "mfm-unit-ref-72f7978c018d64bd",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-d825b24334d53e21",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "VICTRIX HONOUR GUARD",
-          "unitReferenceId": "mfm-unit-ref-d40e482e7dc0f6f2"
-        },
-        {
-          "sourceTitle": "VINDICATOR",
-          "unitReferenceId": "mfm-unit-ref-fc2f3618f77233e3",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-84cedbf42aa33ba6",
-          "paidUpgradeBindings": []
-        },
-        {
-          "sourceTitle": "WHIRLWIND",
-          "unitReferenceId": "mfm-unit-ref-629971a14ddfd0d6",
-          "sourceGroup": "SPACE MARINES",
-          "pricingGroupId": "mfm-pricing-group-96330e50942ecec2",
-          "status": "CURRENT",
-          "unitPointRecordId": "mfm-unit-points-9e9b252678d69d0f",
-          "paidUpgradeBindings": []
+          "unitReferenceId": "mfm-unit-ref-f986081ac2bded2f"
         }
       ],
       "detachmentBindings": [
         {
-          "sourceTitle": "1ST COMPANY TASK FORCE",
-          "id": "mfm-detachment-3c26c2afc965db0f",
+          "sourceTitle": "ANGELIC INHERITORS",
+          "id": "mfm-detachment-494fc03f0dff6363",
           "qualifierBindings": [],
           "enhancementBindings": [
             {
-              "sourceTitle": "Fear Made Manifest",
-              "id": "mfm-enhancement-b780ba6c85dbbd6b",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Iron Resolve",
-              "id": "mfm-enhancement-318bd2e9614743dc",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Rites of War",
-              "id": "mfm-enhancement-ca5fb5be4af6d6ee",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "The Imperium’s Sword",
-              "id": "mfm-enhancement-0d98599c7a0d7b92",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "ANGELIC INHERITORS",
-          "id": "mfm-detachment-ffd2fcece708887e",
-          "qualifierBindings": [
-            {
-              "kind": "UNIQUE",
-              "value": "GRACE",
-              "id": "mfm-qualifier-4d1de9ad843cd623"
-            }
-          ],
-          "enhancementBindings": [
-            {
               "sourceTitle": "Blazing Icon",
-              "id": "mfm-enhancement-a4498409d881d20f",
+              "id": "mfm-enhancement-cf27a164f031db2d",
               "qualifierBindings": []
             },
             {
               "sourceTitle": "Ordained Sacrifice",
-              "id": "mfm-enhancement-4c5e1d92f9088dea",
+              "id": "mfm-enhancement-665d8f957902b102",
               "qualifierBindings": []
             },
             {
               "sourceTitle": "Prescient Flash",
-              "id": "mfm-enhancement-ab9bd43a750a23a6",
+              "id": "mfm-enhancement-870336fbe5f52ace",
               "qualifierBindings": []
             },
             {
-              "sourceTitle": "Troubling Visions",
-              "id": "mfm-enhancement-d5c43790a8a2dd14",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "ANVIL SIEGE FORCE",
-          "id": "mfm-detachment-f1e18b57ffe83df5",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Architect of War",
-              "id": "mfm-enhancement-7e7412b31ea78d9c",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Fleet Commander",
-              "id": "mfm-enhancement-112790ee6f86e3f8",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Indomitable Fury",
-              "id": "mfm-enhancement-85aacad2fb1c1b01",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Stoic Defender",
-              "id": "mfm-enhancement-0297d1ca6646a61d",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "ARMOURED SPEARTIP",
-          "id": "mfm-detachment-1917f938cec1bdd3",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Armoured Commander",
-              "id": "mfm-enhancement-f9c3ee49b9a831dc",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Liberator",
-              "id": "mfm-enhancement-9b7e3632c66c361c",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Shock Deployment",
-              "id": "mfm-enhancement-a0348929e6229d51",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Tip of the Spear",
-              "id": "mfm-enhancement-91e9b0c28dcbc235",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "BASTION TASK FORCE",
-          "id": "mfm-detachment-8c825108ac0780a6",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Blades of Valour",
-              "id": "mfm-enhancement-00a580832c3cb3fc",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Bombast Omnivox",
-              "id": "mfm-enhancement-b189cfe7d2c7b9c9",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Eye of the Primarch",
-              "id": "mfm-enhancement-0727b7389d4313d4",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Hero of the Chapter",
-              "id": "mfm-enhancement-0e50a9dcf71242a4",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "CERAMITE SENTINELS",
-          "id": "mfm-detachment-3461e1854facad55",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Castellum Omnivox",
-              "id": "mfm-enhancement-8f5bb224de7f21bf",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Defensive Mastery",
-              "id": "mfm-enhancement-81315583e5d2edb9",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Honour Indefatigable",
-              "id": "mfm-enhancement-450a2f76ae43f1e0",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Spy-skull Data Link",
-              "id": "mfm-enhancement-80fb4f4900814268",
+              "sourceTitle": "Unto Death",
+              "id": "mfm-enhancement-e4f01a7f5fe8b086",
               "qualifierBindings": []
             }
           ]
         },
         {
           "sourceTitle": "ENCARMINE SPEARTIP",
-          "id": "mfm-detachment-ac51fb9a30aad6cc",
+          "id": "mfm-detachment-ea9d5d1c84c47020",
           "qualifierBindings": [],
           "enhancementBindings": [
             {
               "sourceTitle": "Angelic Executioner",
-              "id": "mfm-enhancement-b66dacc62d25e7ba",
+              "id": "mfm-enhancement-28b0fd6597a34a83",
               "qualifierBindings": []
             },
             {
               "sourceTitle": "Shadow of Abomination",
-              "id": "mfm-enhancement-d9b1d8e2f452b597",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "FIRESTORM ASSAULT FORCE",
-          "id": "mfm-detachment-9a5fb04ca93489d9",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Adamantine Mantle",
-              "id": "mfm-enhancement-ea6dcde4ee41828c",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Champion of Humanity",
-              "id": "mfm-enhancement-c0cbabf0523d6253",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Forged in Battle",
-              "id": "mfm-enhancement-48f5683d82e15b8e",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "War-tempered Artifice",
-              "id": "mfm-enhancement-b15eefd84fbbf3c5",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "FULGURIS TASK FORCE",
-          "id": "mfm-detachment-621dffbc673a0dd1",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Bellicose Weapon Spirits (Upgrade)",
-              "id": "mfm-enhancement-8d5a9fba8b7cf208",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Raptorial Cogitator Core (Upgrade)",
-              "id": "mfm-enhancement-9a2945d126bab2e3",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "GLADIUS TASK FORCE",
-          "id": "mfm-detachment-7b2072a458d127c9",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Adept of the Codex",
-              "id": "mfm-enhancement-54cf82464513ecc1",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Artificer Armour",
-              "id": "mfm-enhancement-41c089e6842b3a5b",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Fire Discipline",
-              "id": "mfm-enhancement-689c6661104389b9",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "The Honour Vehement",
-              "id": "mfm-enhancement-a152bada94e65ae8",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "HEADHUNTER TASK FORCE",
-          "id": "mfm-detachment-da96fb69311e9cdc",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Astartes Tank Ace",
-              "id": "mfm-enhancement-0bcbb966f074f292",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Firestorm Coordinators",
-              "id": "mfm-enhancement-60494039f8017386",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Gunnery Honours",
-              "id": "mfm-enhancement-6a8a62ffdc66492d",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Redoubtable Machine Spirit",
-              "id": "mfm-enhancement-db486493432ac134",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "IRONSTORM SPEARHEAD",
-          "id": "mfm-detachment-4f1556339b4c6d44",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Adept of the Omnissiah",
-              "id": "mfm-enhancement-837b728ca35363ab",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Master of Machine War",
-              "id": "mfm-enhancement-aa78c5a8d7e697b0",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Target Augury Web",
-              "id": "mfm-enhancement-234072074fca1fe2",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "The Flesh Is Weak",
-              "id": "mfm-enhancement-7b86ae19fa906b52",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "LEGACY OF GRACE",
-          "id": "mfm-detachment-100c555c085c96d4",
-          "qualifierBindings": [
-            {
-              "kind": "UNIQUE",
-              "value": "GRACE",
-              "id": "mfm-qualifier-926cf85fc0fe6b70"
-            }
-          ],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Aureole of the Angel",
-              "id": "mfm-enhancement-1e2d94124fc54d07",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Blood Boil",
-              "id": "mfm-enhancement-8f9ed99048aaf6d8",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "LIBERATOR ASSAULT GROUP",
-          "id": "mfm-detachment-f70fd9423fa330dc",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Gift of Foresight",
-              "id": "mfm-enhancement-9133233d6df19131",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Icon of the Angel",
-              "id": "mfm-enhancement-21f016123928ba43",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Rage-fuelled Warrior",
-              "id": "mfm-enhancement-af88f45629363cc5",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Speed of the Primarch",
-              "id": "mfm-enhancement-c544811e1fb59637",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "LIBRARIUS CONCLAVE",
-          "id": "mfm-detachment-d83e4f3743acf5a7",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Celerity",
-              "id": "mfm-enhancement-ca851ff358f0420a",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Fusillade",
-              "id": "mfm-enhancement-0129c601d7d8a2fd",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Obfuscation",
-              "id": "mfm-enhancement-17ba08ab47471a84",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Prescience",
-              "id": "mfm-enhancement-b2873330e3fbe947",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Temporal Corridor",
-              "id": "mfm-enhancement-b98e1b6b5a92048c",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "ORBITAL ASSAULT FORCE",
-          "id": "mfm-detachment-6df024b4ef89bca1",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Dedicated Gunship",
-              "id": "mfm-enhancement-24950db49ed939ea",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Laurels of Thunder",
-              "id": "mfm-enhancement-3b586d5681a3a4d2",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Orbital Uplink Reliquary",
-              "id": "mfm-enhancement-b794a2aaa1e43db2",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Veteran of the Vanguard",
-              "id": "mfm-enhancement-3edf11b92f07211b",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "RAGE-CURSED ONSLAUGHT",
-          "id": "mfm-detachment-5b9d3fa7660bd504",
-          "qualifierBindings": [
-            {
-              "kind": "UNIQUE",
-              "value": "DOOMED",
-              "id": "mfm-qualifier-16256de810de10ce"
-            }
-          ],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Angel’s Fang",
-              "id": "mfm-enhancement-b45c9219d0c19dd9",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Carmine Reliquary",
-              "id": "mfm-enhancement-77fccb04304ecdd1",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Master of the Red Thirst",
-              "id": "mfm-enhancement-c6244edbc96c2079",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Sanguinary Tear",
-              "id": "mfm-enhancement-9cf64940c6f9fa6b",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "STORMLANCE TASK FORCE",
-          "id": "mfm-detachment-be061c66509e0eda",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Feinting Withdrawal",
-              "id": "mfm-enhancement-2e5fcd93eacb1513",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Fury of the Storm",
-              "id": "mfm-enhancement-64cf8469f1df6a68",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Hunter’s Instincts",
-              "id": "mfm-enhancement-977955a99c263a1b",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Portents of Wisdom",
-              "id": "mfm-enhancement-1b0fdc3612b1705b",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "SUBVERSION ASSETS",
-          "id": "mfm-detachment-52c005444a80f2ba",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Death in the Dark (Upgrade)",
-              "id": "mfm-enhancement-6026286d731f725c",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Shroud Field",
-              "id": "mfm-enhancement-288fe3ddf9841e33",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "THE ANGELIC HOST",
-          "id": "mfm-detachment-09fdb64757131e4a",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Archangel’s Shard",
-              "id": "mfm-enhancement-feea21e836711863",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Artisan of War",
-              "id": "mfm-enhancement-68e6ed80b53fe274",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Gleaming Pinions",
-              "id": "mfm-enhancement-f5ecb13baffa356f",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Visage of Death",
-              "id": "mfm-enhancement-9d3b0456c08c072d",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "THE LOST BRETHREN",
-          "id": "mfm-detachment-ec8c4900c2e8e182",
-          "qualifierBindings": [
-            {
-              "kind": "UNIQUE",
-              "value": "DOOMED",
-              "id": "mfm-qualifier-b5e8b5e8b571c9c6"
-            }
-          ],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Blood Shard",
-              "id": "mfm-enhancement-38c95f3f7467c99e",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Sanguinius’ Grace",
-              "id": "mfm-enhancement-691227c9e6ced5d1",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "To Slay The Warmaster",
-              "id": "mfm-enhancement-8201427595d1988a",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Vengeful Onslaught",
-              "id": "mfm-enhancement-be37dd79a19052f3",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "VANGUARD SPEARHEAD",
-          "id": "mfm-detachment-8d6d3bfc86006c92",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Execute and Redeploy",
-              "id": "mfm-enhancement-82d35823131aa2c5",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Ghostweave Cloak",
-              "id": "mfm-enhancement-6c839297f2fffb17",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Shadow War Veteran",
-              "id": "mfm-enhancement-40a19ed4408933dd",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "The Blade Driven Deep",
-              "id": "mfm-enhancement-21c722fcf46d282e",
-              "qualifierBindings": []
-            }
-          ]
-        },
-        {
-          "sourceTitle": "VENGEFUL HOSTS",
-          "id": "mfm-detachment-31e640c08a8b3451",
-          "qualifierBindings": [],
-          "enhancementBindings": [
-            {
-              "sourceTitle": "Avenging Angel",
-              "id": "mfm-enhancement-bb66283491d69bd1",
-              "qualifierBindings": []
-            },
-            {
-              "sourceTitle": "Orksbane",
-              "id": "mfm-enhancement-da16a8cde2701b7c",
+              "id": "mfm-enhancement-4cf594c6fa1107f5",
               "qualifierBindings": []
             }
           ]
         },
         {
           "sourceTitle": "WRATH OF THE DOOMED",
-          "id": "mfm-detachment-be93431997f3105b",
-          "qualifierBindings": [
-            {
-              "kind": "UNIQUE",
-              "value": "DOOMED",
-              "id": "mfm-qualifier-a1e714edd8c527f6"
-            }
-          ],
+          "id": "mfm-detachment-929f4ed7941374d9",
+          "qualifierBindings": [],
           "enhancementBindings": [
             {
               "sourceTitle": "Instinctive Interception",
-              "id": "mfm-enhancement-3c2dfb1471a65d0f",
+              "id": "mfm-enhancement-83825aa952dff48e",
               "qualifierBindings": []
             },
             {
               "sourceTitle": "On the Archtraitor's Bridge",
-              "id": "mfm-enhancement-f0925fd9b6f2c4ba",
+              "id": "mfm-enhancement-b795bb93ab26ff6b",
               "qualifierBindings": []
             }
           ]
@@ -8137,7 +6639,7 @@
       "unitPointRecordId": "mfm-unit-points-a273c224855f8ac1"
     }
   ],
-  "verifiedAt": "2026-10-21",
+  "verifiedAt": "2026-10-22",
   "effectiveDate": null,
   "historicalRegistry": "mfm/content/mfm-v1.5-scoped.identity-registry.json",
   "historicalSourceBindings": [
@@ -8955,6 +7457,176 @@
         {
           "sourceTitle": "TERMINATOR SQUAD",
           "unitReferenceId": "mfm-unit-ref-4957ba33ead99913"
+        }
+      ],
+      "detachmentBindings": [],
+      "acceptedStatuses": [
+        "LEGENDS"
+      ],
+      "includeDetachments": false
+    },
+    {
+      "factionId": "blood-angels",
+      "sourceId": "blood-angels-mfm-v1.4",
+      "sourceCapturePath": "books/blood-angels/sources/official-mfm-v1.4.json",
+      "sourceCaptureSha256": "C3AECB9CB7C0C4A9356D4F9571E60BF8B837ACBB3E2399663BB962C3F1553690",
+      "groupBindings": [
+        {
+          "sourceLabel": "LEGENDS",
+          "id": "mfm-pricing-group-5dadc5630a843200"
+        }
+      ],
+      "unitBindings": [
+        {
+          "sourceTitle": "ASSAULT INTERCESSOR SQUAD",
+          "unitReferenceId": "mfm-unit-ref-b563619a902201de"
+        },
+        {
+          "sourceTitle": "ASSAULT INTERCESSORS WITH JUMP PACKS",
+          "unitReferenceId": "mfm-unit-ref-da1b7775660878a9"
+        },
+        {
+          "sourceTitle": "BLADEGUARD VETERAN SQUAD",
+          "unitReferenceId": "mfm-unit-ref-8b4258801364b611"
+        },
+        {
+          "sourceTitle": "BROTHER CORBULO",
+          "unitReferenceId": "mfm-unit-ref-8be1e5a0b36cc849",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-e667b622010a82d1",
+          "paidUpgradeBindings": [],
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-e4daa9e116d60509"
+        },
+        {
+          "sourceTitle": "CAPTAIN TYCHO",
+          "unitReferenceId": "mfm-unit-ref-aac4b69f4c832168",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-a4da8216e5b54ac0",
+          "paidUpgradeBindings": [],
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-af11571045a42920"
+        },
+        {
+          "sourceTitle": "COMPANY HEROES",
+          "unitReferenceId": "mfm-unit-ref-efc6dbefba2d1e07"
+        },
+        {
+          "sourceTitle": "DEATH COMPANY DREADNOUGHT WITH MAGNA-GRAPPLE",
+          "unitReferenceId": "mfm-unit-ref-c43bce176d5d4a25",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-aae8528dfb11a2d2",
+          "paidUpgradeBindings": []
+        },
+        {
+          "sourceTitle": "DEATH COMPANY MARINES",
+          "unitReferenceId": "mfm-unit-ref-e6ea17621fbdde35"
+        },
+        {
+          "sourceTitle": "DEATH COMPANY MARINES WITH BOLT RIFLES",
+          "unitReferenceId": "mfm-unit-ref-c415815c379af539"
+        },
+        {
+          "sourceTitle": "DEATH COMPANY MARINES WITH BOLTGUNS",
+          "unitReferenceId": "mfm-unit-ref-1ab54cea4c9a7f15",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-66cc2011dbf572c9",
+          "paidUpgradeBindings": []
+        },
+        {
+          "sourceTitle": "DEATH COMPANY MARINES WITH BOLTGUNS AND JUMP PACKS",
+          "unitReferenceId": "mfm-unit-ref-1ebd291c5da45667",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-b6dbc64b50fca9e3",
+          "paidUpgradeBindings": []
+        },
+        {
+          "sourceTitle": "DESOLATION SQUAD",
+          "unitReferenceId": "mfm-unit-ref-e9890c1d91124d18"
+        },
+        {
+          "sourceTitle": "DEVASTATOR SQUAD",
+          "unitReferenceId": "mfm-unit-ref-b07c6520d3bc5a04"
+        },
+        {
+          "sourceTitle": "FURIOSO DREADNOUGHT",
+          "unitReferenceId": "mfm-unit-ref-ebcc293451497803",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-0a25a57f38957381",
+          "paidUpgradeBindings": []
+        },
+        {
+          "sourceTitle": "GABRIEL SETH",
+          "unitReferenceId": "mfm-unit-ref-cf301140ca816a26",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-ec698c26599cc850",
+          "paidUpgradeBindings": [],
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-d42ae156ca2bca82"
+        },
+        {
+          "sourceTitle": "HELLBLASTER SQUAD",
+          "unitReferenceId": "mfm-unit-ref-cb1505401c18c046"
+        },
+        {
+          "sourceTitle": "INFERNUS SQUAD",
+          "unitReferenceId": "mfm-unit-ref-1a2577a9a35be3fd"
+        },
+        {
+          "sourceTitle": "INTERCESSOR SQUAD",
+          "unitReferenceId": "mfm-unit-ref-601dae5e94309f64"
+        },
+        {
+          "sourceTitle": "LIBRARIAN DREADNOUGHT",
+          "unitReferenceId": "mfm-unit-ref-e5723abe9711ca06",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-111a6b630e012cab",
+          "paidUpgradeBindings": []
+        },
+        {
+          "sourceTitle": "SANGUINARY PRIEST WITH JUMP PACK",
+          "unitReferenceId": "mfm-unit-ref-35f4ed109e57e3f4",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-27d8f8f8599df4e0",
+          "paidUpgradeBindings": [],
+          "supportEligibilityRecordId": "mfm-support-eligibility-58e2a337a2fc12f2"
+        },
+        {
+          "sourceTitle": "STERNGUARD VETERAN SQUAD",
+          "unitReferenceId": "mfm-unit-ref-823384acc060d721"
+        },
+        {
+          "sourceTitle": "TACTICAL SQUAD",
+          "unitReferenceId": "mfm-unit-ref-608c229ac0ae0c83"
+        },
+        {
+          "sourceTitle": "TYCHO THE LOST",
+          "unitReferenceId": "mfm-unit-ref-a9b73d60185bb186",
+          "sourceGroup": "LEGENDS",
+          "pricingGroupId": "mfm-pricing-group-5dadc5630a843200",
+          "status": "LEGENDS",
+          "unitPointRecordId": "mfm-unit-points-0ae614c0ca9e7c65",
+          "paidUpgradeBindings": [],
+          "leaderEligibilityRecordId": "mfm-leader-eligibility-61983c4b77c06786"
+        },
+        {
+          "sourceTitle": "VANGUARD VETERAN SQUAD WITH JUMP PACKS",
+          "unitReferenceId": "mfm-unit-ref-72f7978c018d64bd"
         }
       ],
       "detachmentBindings": [],

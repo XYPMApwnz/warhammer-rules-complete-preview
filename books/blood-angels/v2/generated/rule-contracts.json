@@ -1,0 +1,1204 @@
+{
+  "scope": "STAGE_3A_SOURCE_PROVEN_STATIC_GAMEPLAY",
+  "sourceFingerprint": "03037DADD563BB5F8AD965D2D02FEFE59AC39A2569562CC2DDEB0EFE1AFE2822",
+  "reviewFingerprint": "7167371A241B2F1F3F7229B22996474049C03433BCF57C990BF66F6C5D5283EE",
+  "coverage": {
+    "sourceOwners": 141,
+    "clauses": 233,
+    "classifications": {
+      "TEXT_ONLY_SOURCE_BACKED": 187,
+      "NOT_PROVEN": 9,
+      "EXECUTABLE_PROVEN": 37
+    },
+    "categories": {
+      "DATASHEET_ABILITY": 54,
+      "DETACHMENT_RULE": 9,
+      "ENHANCEMENT": 17,
+      "INVULNERABLE_SAVE": 9,
+      "RULE_REFERENCE": 45,
+      "SOURCE_RELATION": 20,
+      "STRATAGEM": 53,
+      "WARGEAR_OPTION": 26
+    },
+    "nativeWeaponProfiles": 71,
+    "nativeAbilities": 20,
+    "nativeInvulnerablePanels": 9,
+    "fullyCoveredTypedProofs": 8,
+    "partialTypedProofs": 0,
+    "abilityOwners": 31,
+    "supplementalPsychicOwners": 2,
+    "leaderEdges": 12,
+    "supportEdges": 8,
+    "excludedAggregateSections": 44,
+    "allFoundationRecordsAccounted": 301,
+    "displayOnlyPolicyProofs": 13,
+    "partialContextProofs": 1
+  },
+  "executed": [
+    {
+      "ruleId": "ability-ba-3c7cd126400b4e7cb0fc",
+      "clauseId": "forlorn-hero-scouts",
+      "partial": false,
+      "quote": "Forlorn Hero: This unit has Scouts 6\".",
+      "effectIds": [
+        "ability-ba-3c7cd126400b4e7cb0fc::forlorn-hero-scouts/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-ba-40389ffef38645ca922a",
+      "clauseId": "fury-unbound-melee",
+      "partial": false,
+      "quote": "Fury Unbound: This unit’s melee attacks have [LETHAL HITS].",
+      "effectIds": [
+        "ability-ba-40389ffef38645ca922a::fury-unbound-melee/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-ba-630ec2727ede4d3f85a2",
+      "clauseId": "blood-chalice-toughness",
+      "partial": false,
+      "quote": "Blood Chalice: This unit has +1 T.",
+      "effectIds": [
+        "ability-ba-630ec2727ede4d3f85a2::blood-chalice-toughness/1/1",
+        "ability-ba-630ec2727ede4d3f85a2::blood-chalice-toughness/2/1"
+      ]
+    },
+    {
+      "ruleId": "ability-ba-7cbf2dc160514d6d83d6",
+      "clauseId": "lost-to-fury-melee",
+      "partial": false,
+      "quote": "Lost to Fury: This unit’s melee attacks have [SUSTAINED HITS 1].",
+      "effectIds": [
+        "ability-ba-7cbf2dc160514d6d83d6::lost-to-fury-melee/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-ba-da87d6022de8416d9040",
+      "clauseId": "selected-relic-shield",
+      "partial": false,
+      "quote": "Relic Shield: This model has +1 W.",
+      "effectIds": [
+        "ability-ba-da87d6022de8416d9040::selected-relic-shield/1/1"
+      ]
+    },
+    {
+      "ruleId": "ability-ba-f103714e8c8e4f6f9352",
+      "clauseId": "savage-fury-charge",
+      "partial": false,
+      "quote": "Savage Fury: This unit has +1 to charge rolls.",
+      "effectIds": [
+        "ability-ba-f103714e8c8e4f6f9352::savage-fury-charge/1/1"
+      ]
+    },
+    {
+      "ruleId": "enhancement-ba-c3527131d00a41efae68",
+      "clauseId": "prescient-flash-scouts",
+      "partial": false,
+      "quote": "This unit has Scouts 6\".",
+      "effectIds": [
+        "enhancement-ba-c3527131d00a41efae68::prescient-flash-scouts/1/1"
+      ]
+    },
+    {
+      "ruleId": "enhancement-ba-c6832a51a86e4ae784ba",
+      "clauseId": "archtraitor-bridge-attacks",
+      "partial": false,
+      "quote": "This model’s melee attacks have +2 A.",
+      "effectIds": [
+        "enhancement-ba-c6832a51a86e4ae784ba::archtraitor-bridge-attacks/1/1"
+      ]
+    }
+  ],
+  "conditionalPolicies": [
+    {
+      "recordId": "review/ability-ba-1d205c52ba9d49fbbcfd/text/12:67",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-72b0b3cfecf1494fab5e/text/12:67",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-9c4c7122376a4a73b2b0/text/12:67",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-dde72ebbc35a41cba614/text/12:67",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-de9ed78c7327410a8010/text/12:67",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-44df419581d3449eaff9/text/0:62",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-458e6e2c7c07492ea9ca/text/0:73",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-cfcc3c874e5644a8adb5/text/0:109",
+      "kind": "INCOMING_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/ability-ba-16b14dac906045e3a48b/text/0:57",
+      "kind": "REROLL",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/59:88",
+      "kind": "REROLL",
+      "recipientScope": "ROSTER_UNITS",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120",
+      "kind": "REROLL",
+      "recipientScope": "ROSTER_UNITS",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/enhancement-ba-3f19e1f57dd94fcc92ae/text/44:107",
+      "kind": "ATTACK_TARGET_RESTRICTION",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    },
+    {
+      "recordId": "review/enhancement-ba-9b2691d5805d46df9b88/text/53:137",
+      "kind": "ACTION_CP_MODIFIER",
+      "recipientScope": "FORMED_UNIT",
+      "execution": "TEXT_ONLY_SOURCE_BACKED"
+    }
+  ],
+  "nativeAbilities": [
+    {
+      "id": "reference-ba-012669ccdb194a6e9120",
+      "ownerId": "unit-ba-72b98695e8914fc89bff",
+      "sourceEntityId": "ba-source-44987c59ae0e4cbe9f80",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-f43346355bf141109565"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+        "sourceEntityId": "ba-source-44987c59ae0e4cbe9f80",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-0168eadcb81f45d8bd77",
+      "ownerId": "unit-ba-3483c88a4df4495ca2e2",
+      "sourceEntityId": "ba-source-b63428caddc94c44b067",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-12ffbc772c874d8c923e"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-b63428caddc94c44b067",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-17e8f22421ca4907a3c7",
+      "ownerId": "unit-ba-6903525e7ae0497e943a",
+      "sourceEntityId": "ba-source-6f507d4cb68843cea0b2",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-52f3903a140343a39fbe"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-6f507d4cb68843cea0b2",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-1f9c70afa3c24f809403",
+      "ownerId": "unit-ba-4ea9a8226a61470fa157",
+      "sourceEntityId": "ba-source-a06b7450c7ac4dfda3a4",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-3f10d240967b477eb3d1"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-a06b7450c7ac4dfda3a4",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-2bee911087e44733b21c",
+      "ownerId": "unit-ba-5269d704246f4e3a8d81",
+      "sourceEntityId": "ba-source-4b74c7ad3a5d49e492a8",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-34b24a1ceeb440ffa1c4"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-4b74c7ad3a5d49e492a8",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-2ed3d548224c41f7af95",
+      "ownerId": "unit-ba-d84ea7c581874feca80b",
+      "sourceEntityId": "ba-source-5de22bf0948a4bc6a3ae",
+      "quote": "Lone Operative",
+      "sourceFieldSha256": "A3B8522CFC6E5A6C88305E79231704A1774509150CBCCD41DF6BAE3055FD3EAF",
+      "modelProfileIds": [
+        "model-ba-bc38355a938d4409b2c0"
+      ],
+      "canonicalAbilityId": "core-lone-operative",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+        "sourceEntityId": "ba-source-5de22bf0948a4bc6a3ae",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-30f553633c084dcd9916",
+      "ownerId": "unit-ba-d84ea7c581874feca80b",
+      "sourceEntityId": "ba-source-52b559af96b0454ea6e7",
+      "quote": "Fights First",
+      "sourceFieldSha256": "DCAB3EC1A646B28E2CF3ACAC4B4CA3C3AD40225EAB94A4BEC6D2BD83298BEE98",
+      "modelProfileIds": [
+        "model-ba-bc38355a938d4409b2c0"
+      ],
+      "canonicalAbilityId": "core-fights-first",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-52b559af96b0454ea6e7",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-7d233f7ec0b84b748be3",
+      "ownerId": "unit-ba-56917c1cd6a94406970f",
+      "sourceEntityId": "ba-source-a92821ab25bd4d30a176",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-ba-09b871352a8f4f8394f0"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-a92821ab25bd4d30a176",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-847cc40702bf419cad5f",
+      "ownerId": "unit-ba-4ea9a8226a61470fa157",
+      "sourceEntityId": "ba-source-66c59dbefbc846189a30",
+      "quote": "Fights First",
+      "sourceFieldSha256": "DCAB3EC1A646B28E2CF3ACAC4B4CA3C3AD40225EAB94A4BEC6D2BD83298BEE98",
+      "modelProfileIds": [
+        "model-ba-3f10d240967b477eb3d1"
+      ],
+      "canonicalAbilityId": "core-fights-first",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-66c59dbefbc846189a30",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-8e6865632c1c4de3a0dd",
+      "ownerId": "unit-ba-548417d73e544f7f920e",
+      "sourceEntityId": "ba-source-4ec433be560645cabc5f",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-bc6275a6c33047e988f8"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+        "sourceEntityId": "ba-source-4ec433be560645cabc5f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-8ecb5a34905b4df3aef3",
+      "ownerId": "unit-ba-92fdb23a526b4c328367",
+      "sourceEntityId": "ba-source-acee198ef3524d53b620",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-0f0a6ff6fdac4bd29ba2"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-acee198ef3524d53b620",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-9cc88fc5c92e45adb913",
+      "ownerId": "unit-ba-3483c88a4df4495ca2e2",
+      "sourceEntityId": "ba-source-81af71392dc14ed6a485",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-12ffbc772c874d8c923e"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-81af71392dc14ed6a485",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-9cd3efcd16084d199395",
+      "ownerId": "unit-ba-7f57bc2e255748b09903",
+      "sourceEntityId": "ba-source-ed677df9efa540ad8ad6",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-b445579cec2a4c1f85d8"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-ed677df9efa540ad8ad6",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-b43fb450f80a4ac98b92",
+      "ownerId": "unit-ba-d84ea7c581874feca80b",
+      "sourceEntityId": "ba-source-415c6426ca244975a0c5",
+      "quote": "Feel No Pain 5+",
+      "sourceFieldSha256": "F40249EF06CDF1CDDC339040E0D4703E1814443BA055186E12DE951372E8F455",
+      "modelProfileIds": [
+        "model-ba-bc38355a938d4409b2c0"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 5
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-415c6426ca244975a0c5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-c0242433f3c44a0aa114",
+      "ownerId": "unit-ba-5269d704246f4e3a8d81",
+      "sourceEntityId": "ba-source-cd6cd700a360446483d7",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-34b24a1ceeb440ffa1c4"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-cd6cd700a360446483d7",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-cd018ea729b14a5390f0",
+      "ownerId": "unit-ba-4ea9a8226a61470fa157",
+      "sourceEntityId": "ba-source-27e123a79c5541c6a5c9",
+      "quote": "Lone Operative",
+      "sourceFieldSha256": "A3B8522CFC6E5A6C88305E79231704A1774509150CBCCD41DF6BAE3055FD3EAF",
+      "modelProfileIds": [
+        "model-ba-3f10d240967b477eb3d1"
+      ],
+      "canonicalAbilityId": "core-lone-operative",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[3]",
+        "sourceEntityId": "ba-source-27e123a79c5541c6a5c9",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-dda213b32ae943b7b989",
+      "ownerId": "unit-ba-72b98695e8914fc89bff",
+      "sourceEntityId": "ba-source-be1e95ff60fa4601a5ae",
+      "quote": "Deadly Demise D3",
+      "sourceFieldSha256": "D265C9B278EBD2413359FD63CD7DC32E7106EA9AC45DC46DDC393F7CE65FB7FF",
+      "modelProfileIds": [
+        "model-ba-f43346355bf141109565"
+      ],
+      "canonicalAbilityId": "core-deadly-demise",
+      "parameters": {
+        "value": "D3"
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-be1e95ff60fa4601a5ae",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-ef970cbce3c5415b9e8f",
+      "ownerId": "unit-ba-6903525e7ae0497e943a",
+      "sourceEntityId": "ba-source-dfc32e390e004a649872",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-52f3903a140343a39fbe"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[2]",
+        "sourceEntityId": "ba-source-dfc32e390e004a649872",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-f09e25f58cd64984a207",
+      "ownerId": "unit-ba-5981fb6513b9436487f0",
+      "sourceEntityId": "ba-source-3918129cf05540e493be",
+      "quote": "Deep Strike",
+      "sourceFieldSha256": "3C428E37084730EF0C7FCB3A4DF90E292C881C1AD3F31EF93B951D71C10C4AD0",
+      "modelProfileIds": [
+        "model-ba-dfcf687d6086441ab29c"
+      ],
+      "canonicalAbilityId": "core-deep-strike",
+      "parameters": {},
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span",
+        "sourceEntityId": "ba-source-3918129cf05540e493be",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    },
+    {
+      "id": "reference-ba-f73bf2a789aa470ab054",
+      "ownerId": "unit-ba-014cc7b19aca4d5b84a3",
+      "sourceEntityId": "ba-source-b19d2bfe73ed4612bb45",
+      "quote": "Feel No Pain 6+",
+      "sourceFieldSha256": "D939BFA69DC95B40F2F70C838E04F66F2ABD01F0CA2BEFB0411CF3C86ECF44CC",
+      "modelProfileIds": [
+        "model-ba-81d63b75945a42c6b2ad"
+      ],
+      "canonicalAbilityId": "core-feel-no-pain",
+      "parameters": {
+        "value": 6
+      },
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[2]/div[2]/table/tbody/tr[1]/td[2]/b/span[1]",
+        "sourceEntityId": "ba-source-b19d2bfe73ed4612bb45",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN",
+      "scope": "MODEL"
+    }
+  ],
+  "nativeProfiles": [
+    {
+      "id": "invul-ba-206c1ff569204e5bb877",
+      "profileId": "model-ba-dfcf687d6086441ab29c",
+      "ownerId": "unit-ba-5981fb6513b9436487f0",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-b3c9fa76a79d47b58f02",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-3590261d314c4fe1b386",
+      "profileId": "model-ba-d92f4a4ff0964f5c8254",
+      "ownerId": "unit-ba-09adea2bf319462fb4ed",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-24d53c29d7de45edaea2",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-55eabd2986b34db5b737",
+      "profileId": "model-ba-0f0a6ff6fdac4bd29ba2",
+      "ownerId": "unit-ba-92fdb23a526b4c328367",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-76bd3061fa1b441f899f",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-6b736b304b234656b667",
+      "profileId": "model-ba-12ffbc772c874d8c923e",
+      "ownerId": "unit-ba-3483c88a4df4495ca2e2",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-a653bc161f0b49a8a0f0",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-a5f7ec7ef35d4a7a8a1c",
+      "profileId": "model-ba-81d63b75945a42c6b2ad",
+      "ownerId": "unit-ba-014cc7b19aca4d5b84a3",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-9848264074b8418d928c",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-aff7811ce49f479d849f",
+      "profileId": "model-ba-bc38355a938d4409b2c0",
+      "ownerId": "unit-ba-d84ea7c581874feca80b",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-ced95096448849bfbbf5",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-b530c9ac96084437bb17",
+      "profileId": "model-ba-3f10d240967b477eb3d1",
+      "ownerId": "unit-ba-4ea9a8226a61470fa157",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-8d9936af09db48e68a60",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-bf0237eaa86949b1b650",
+      "profileId": "model-ba-34b24a1ceeb440ffa1c4",
+      "ownerId": "unit-ba-5269d704246f4e3a8d81",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-c035edaa381e44d7b986",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    },
+    {
+      "id": "invul-ba-dc372c06fdc44b1ab2d4",
+      "profileId": "model-ba-b445579cec2a4c1f85d8",
+      "ownerId": "unit-ba-7f57bc2e255748b09903",
+      "value": "4+",
+      "provenance": {
+        "sourceId": "blood-angels-waha-11e-2026-10-22",
+        "document": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+        "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+        "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]/div[1]/div[9]",
+        "sourceEntityId": "ba-source-225133ce5a4c414fade4",
+        "authority": "ACCEPTED_SECONDARY"
+      },
+      "status": "EXECUTABLE_PROVEN"
+    }
+  ],
+  "invulnerablePanels": 9,
+  "inheritedContracts": [
+    "ability-sm-022ef427b01e4c7b",
+    "ability-sm-0392756f7c5a4d57",
+    "ability-sm-06f3f2b2b22b48a4",
+    "ability-sm-085c2275cf994ee9",
+    "ability-sm-097567b13c02404d",
+    "ability-sm-0b388f007b4646fe",
+    "ability-sm-0ddc39d588604fde",
+    "ability-sm-0f4892fe36c747b8",
+    "ability-sm-11a0d9920bb0418a",
+    "ability-sm-185c1918b7874488",
+    "ability-sm-19685137f0e6497a",
+    "ability-sm-1bc852ceb33c42c2",
+    "ability-sm-1cf2874d93964927",
+    "ability-sm-2247cd3f894f4825",
+    "ability-sm-2743f7d90c6649fb",
+    "ability-sm-27da44095a1f491e",
+    "ability-sm-2910eaf9f6b14351",
+    "ability-sm-2dac27f33b834777",
+    "ability-sm-32ef85e542eb4c62",
+    "ability-sm-342f87e3b2bc4c74",
+    "ability-sm-34322896f9c94867",
+    "ability-sm-3594f132956b48ad",
+    "ability-sm-3ecdb71b4dc84065",
+    "ability-sm-431f22d15f7545b4",
+    "ability-sm-4dad1a0320cc4a5b",
+    "ability-sm-4fe2016cef894fd3",
+    "ability-sm-50059a5e06f84048",
+    "ability-sm-51d60a67f0f24993",
+    "ability-sm-53a5d8e182284a35",
+    "ability-sm-570683b0864b41f2",
+    "ability-sm-59302e8505a64fb9",
+    "ability-sm-5b1332b320d84c1d",
+    "ability-sm-5bc9f13380dc4437",
+    "ability-sm-5c59e70e49d14df0",
+    "ability-sm-5cd67a433a36466f",
+    "ability-sm-619a9f848d494de6",
+    "ability-sm-61b7b22212e64e8d",
+    "ability-sm-63d4ca967fa64b79",
+    "ability-sm-646ddebc78db43aa",
+    "ability-sm-65002253aef041ec",
+    "ability-sm-672cd084d5ba41f0",
+    "ability-sm-683740758e7c490c",
+    "ability-sm-688ad5dccd464866",
+    "ability-sm-68f84cbf74d9438b",
+    "ability-sm-6ac11fadb7fd4996",
+    "ability-sm-73199edf642245f5",
+    "ability-sm-76dc910fa6014c38",
+    "ability-sm-779fefc8580f4b31",
+    "ability-sm-7a9a925615614019",
+    "ability-sm-7d0c729bd52143f9",
+    "ability-sm-7ed0d69082b34649",
+    "ability-sm-801f058790ba4ed4",
+    "ability-sm-846fc84a9f914844",
+    "ability-sm-898bc0e521c448fd",
+    "ability-sm-8a3aacf1c37a49d0",
+    "ability-sm-8af7e9233ac44749",
+    "ability-sm-8c4891b959d44a52",
+    "ability-sm-8c9e7e37a8494c1d",
+    "ability-sm-937c10c6fda940f7",
+    "ability-sm-998a121477614f78",
+    "ability-sm-9af6e1978ed64988",
+    "ability-sm-9c118e29005d43fd",
+    "ability-sm-9d5ab45e2d8f4669",
+    "ability-sm-9d616a4674ec4997",
+    "ability-sm-9f87df3b6435456f",
+    "ability-sm-a228df25b2964c6c",
+    "ability-sm-a41ba26a731241e7",
+    "ability-sm-a5d5e1d025e7462d",
+    "ability-sm-a6dca5d8dbbd4f80",
+    "ability-sm-a858c0c3201e480a",
+    "ability-sm-aa81f0067a3140de",
+    "ability-sm-aad6d2f9552a4377",
+    "ability-sm-ab71f802f781470f",
+    "ability-sm-ad1debae4779454b",
+    "ability-sm-ad7f3276300c45e2",
+    "ability-sm-b165097313314e4e",
+    "ability-sm-b493244f85db49ad",
+    "ability-sm-b7e21b532c0f4c32",
+    "ability-sm-b8da66f5bd13419b",
+    "ability-sm-b954019b08c44c19",
+    "ability-sm-be499e0ec6b94a98",
+    "ability-sm-bea60cd2a4c4448f",
+    "ability-sm-bee76d4d4aba454d",
+    "ability-sm-c02e12fe43d24413",
+    "ability-sm-c13c2cc4e60d47d7",
+    "ability-sm-c1891ebd7c1c430f",
+    "ability-sm-c442db72a70e4c05",
+    "ability-sm-c4f67b7dd73c4764",
+    "ability-sm-c8d57fe4071d462a",
+    "ability-sm-cc070941c7d245e9",
+    "ability-sm-cced70b1a7a7481b",
+    "ability-sm-cd2e2cf591f64961",
+    "ability-sm-cffaf4f8768c4c99",
+    "ability-sm-d039c5e501d140e6",
+    "ability-sm-d0e46ad8ba424e4c",
+    "ability-sm-d0ec30683ac14df3",
+    "ability-sm-d2243c7cb45a4f6b",
+    "ability-sm-d38d7600e5de4546",
+    "ability-sm-d4eec98d015844a3",
+    "ability-sm-d74f321b15b44943",
+    "ability-sm-daf87042d20348dd",
+    "ability-sm-dd8aeb693b58472c",
+    "ability-sm-ddf866d2fc594e1e",
+    "ability-sm-e19da629a4a04887",
+    "ability-sm-e1dfd21a50374ace",
+    "ability-sm-e24df255d94d4435",
+    "ability-sm-e24f4657d9c34d8b",
+    "ability-sm-e2f0c3ceeb42424d",
+    "ability-sm-e39f83b26ec64787",
+    "ability-sm-e86e14b9f76343cb",
+    "ability-sm-ebba7a64c9a14f94",
+    "ability-sm-ece9a939dcf642bf",
+    "ability-sm-ef122532fb1244f3",
+    "ability-sm-f2faaceb1f904510",
+    "ability-sm-f5605009d22a48ae",
+    "ability-sm-f62ebe4003a44752",
+    "ability-sm-f7557319f2854ccb",
+    "detachment-rule-sm-05b00954e4744b59",
+    "detachment-rule-sm-07f085c819ea4835",
+    "detachment-rule-sm-35102c2d34334220",
+    "detachment-rule-sm-3a97ffd48f0f4bf6",
+    "detachment-rule-sm-5d279871994f428e",
+    "detachment-rule-sm-6e133b8acd6b4550",
+    "detachment-rule-sm-8381795466754812",
+    "detachment-rule-sm-8aba3398dfe14b66",
+    "detachment-rule-sm-93a70d72216b4f0c",
+    "detachment-rule-sm-9684d98e8f664479",
+    "detachment-rule-sm-bded7031de204fd4",
+    "detachment-rule-sm-bff921aaeb624b43",
+    "detachment-rule-sm-d1b9f7be1db34a49",
+    "detachment-rule-sm-e16b0f9b19fd4c33",
+    "detachment-rule-sm-f3f6dd9bf1b24f66",
+    "enhancement-sm-07e95c69297b4d6f",
+    "enhancement-sm-10ccd3b868bf41e2",
+    "enhancement-sm-1ba9914b76954183",
+    "enhancement-sm-28614fb697744ed6",
+    "enhancement-sm-2e55051da6594198",
+    "enhancement-sm-33db6f7f8bc04d0c",
+    "enhancement-sm-37140db132394ce3",
+    "enhancement-sm-38b8b31ab2ce47de",
+    "enhancement-sm-4c07c7ad03a44355",
+    "enhancement-sm-4fce0dc37bd14c6f",
+    "enhancement-sm-60ab5885f6294e78",
+    "enhancement-sm-6230db0cdc954fdd",
+    "enhancement-sm-6d3f4024b9f14a67",
+    "enhancement-sm-7b4f677483594724",
+    "enhancement-sm-7cb5acef68494f69",
+    "enhancement-sm-89cb52bb94b4419d",
+    "enhancement-sm-90130970a79d4ac0",
+    "enhancement-sm-90544ca326d243be",
+    "enhancement-sm-90b7ccf121e34215",
+    "enhancement-sm-96a03924178349b9",
+    "enhancement-sm-9c7f16cb33a54e71",
+    "enhancement-sm-9d44d0978b974773",
+    "enhancement-sm-a6d2243e7dab403e",
+    "enhancement-sm-a872c96c64354de3",
+    "enhancement-sm-a9b5f170cd214ef8",
+    "enhancement-sm-cfb520ff879f4733",
+    "enhancement-sm-d79a770177054671",
+    "enhancement-sm-db9dd5a127854fa2",
+    "enhancement-sm-dcbae3c2b6534ac1",
+    "enhancement-sm-e5c04a1c3f6444b7",
+    "enhancement-sm-f2a5e85d052342cd",
+    "enhancement-sm-f44cee5f5e3049ed",
+    "relation-sm-0d96c1aa752f4fe8",
+    "relation-sm-1a834dffe8c644e5",
+    "relation-sm-2534b1242db14504",
+    "relation-sm-44a8052e5fa249b3",
+    "relation-sm-492bd4612acb4a76",
+    "relation-sm-4be68a014d274e55",
+    "relation-sm-4d43d9a655e44400",
+    "relation-sm-55492ad98c4b494a",
+    "relation-sm-5cd8ec044ab2413f",
+    "relation-sm-5eae00734ac94ec1",
+    "relation-sm-68cda5d6f6c94d6a",
+    "relation-sm-6e2703705bf04f37",
+    "relation-sm-7dde17281f0f49cc",
+    "relation-sm-818ca6921f6d4c8d",
+    "relation-sm-82cf8ef1e1554933",
+    "relation-sm-8e046f77bde345da",
+    "relation-sm-8faff2b62caf4027",
+    "relation-sm-908ca9dfe226499c",
+    "relation-sm-92d26035774a4c13",
+    "relation-sm-9746be67a6a44b56",
+    "relation-sm-9e78ca969a2c4a15",
+    "relation-sm-a8796d5461e24804",
+    "relation-sm-ab65dbfd0eaa4f28",
+    "relation-sm-c1ef7f5073094a34",
+    "relation-sm-d354f0d5937e4ebe",
+    "relation-sm-d92fec612cea452d",
+    "relation-sm-e41b176546e44d05",
+    "relation-sm-e4c42d0de9dd46dc",
+    "relation-sm-eee0941eb781450d",
+    "relation-sm-f86e8d53f0ba4283",
+    "section-sm-0983122635a64ee8",
+    "section-sm-0dd9f71bd1b64aaf",
+    "section-sm-2afa5929503c4859",
+    "section-sm-34e239e216b44574",
+    "section-sm-740cc0c974384de5",
+    "section-sm-786e28b2f8d849d7",
+    "section-sm-8f112eb8c1ea42d7",
+    "section-sm-b8da909cf52b447e",
+    "section-sm-d07e5cf9b51a46da",
+    "section-sm-e36d69c738e74b6c",
+    "section-sm-e4697eb6483447c7",
+    "stratagem-sm-02921fdd8b6242a6",
+    "stratagem-sm-0535aebd698e4323",
+    "stratagem-sm-079891eda74042ad",
+    "stratagem-sm-099e768dfc7b4e2d",
+    "stratagem-sm-0d0f47368d2944c6",
+    "stratagem-sm-125c803bfe7749c4",
+    "stratagem-sm-165185d7c1d04840",
+    "stratagem-sm-202d43d3a3a54d18",
+    "stratagem-sm-210e7e9e774c4e7b",
+    "stratagem-sm-22d9e6906241422f",
+    "stratagem-sm-27496d381a364a6e",
+    "stratagem-sm-36d57c0fe4e749ff",
+    "stratagem-sm-3a46ef47dc2f4ed4",
+    "stratagem-sm-3c36cc7d9ade438a",
+    "stratagem-sm-3eb2f068419e4e92",
+    "stratagem-sm-3fc669c545274dec",
+    "stratagem-sm-40173dcf29124da5",
+    "stratagem-sm-48bce6a91cfe4938",
+    "stratagem-sm-4e1b0376f6604827",
+    "stratagem-sm-5083815fb7e34cbe",
+    "stratagem-sm-518c2a26e3624920",
+    "stratagem-sm-613cddaa26084fb2",
+    "stratagem-sm-61fd86dcc1394918",
+    "stratagem-sm-635962cdf879468f",
+    "stratagem-sm-65387435f3a641c4",
+    "stratagem-sm-67a14d3d77984c23",
+    "stratagem-sm-6fa62f326da54301",
+    "stratagem-sm-7017f3c4832540c6",
+    "stratagem-sm-7cabf49e71194a9c",
+    "stratagem-sm-7d6130f1d89f44d1",
+    "stratagem-sm-835e21c4a8e34e29",
+    "stratagem-sm-8509fb96e0844319",
+    "stratagem-sm-8d8390a96e104ea8",
+    "stratagem-sm-9c1e682899e240d4",
+    "stratagem-sm-9f5ed1a884a14306",
+    "stratagem-sm-a2ff0b812cf349d0",
+    "stratagem-sm-a3067cc567994adf",
+    "stratagem-sm-a32818b0436a44dd",
+    "stratagem-sm-a7ecc5f3f3e04650",
+    "stratagem-sm-ab92482177a14323",
+    "stratagem-sm-ae4a39306eac42f4",
+    "stratagem-sm-ba168da7a465485f",
+    "stratagem-sm-c7e6ae242a1344d7",
+    "stratagem-sm-d1c4ac406b484b41",
+    "stratagem-sm-d642d4d85db04dc9",
+    "stratagem-sm-d73478d582584763",
+    "stratagem-sm-e25acace6b584a5e",
+    "stratagem-sm-ee7521323e3742d5"
+  ],
+  "selectorProjections": [
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-1",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-2",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-3",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    },
+    {
+      "ruleId": "enhancement-sm-6d3f4024b9f14a67",
+      "effectId": "enhancement-sm-6d3f4024b9f14a67::master-forged-firearms/branch-1/effect-4",
+      "canonicalExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-1e00be38156541ec",
+        "weapon-sm-4e2c60ee42944338",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-835b6a9bad7d4ab6",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c",
+        "weapon-sm-ef91e4d8964546a9"
+      ],
+      "consumerExclusions": [
+        "weapon-sm-0528ec22f40f4e24",
+        "weapon-sm-132cd13a68ba4929",
+        "weapon-sm-57c866094fe448ea",
+        "weapon-sm-88955398d8344953",
+        "weapon-sm-8d5fa8ae33a44e11",
+        "weapon-sm-8ddc9bc061da4f91",
+        "weapon-sm-c022a6cbab224d8f",
+        "weapon-sm-d1e8373308e64d69",
+        "weapon-sm-ddbc0642408e4c2c"
+      ],
+      "reason": "Closed membership intersection only; excluded Chapter weapons cannot occur in this consumer."
+    }
+  ],
+  "permanentDoctrineSources": [
+    {
+      "ruleId": "ability-ba-eb9da07320a4443fb871",
+      "unitId": "unit-ba-92fdb23a526b4c328367",
+      "quote": "Warden of the Imperium Nihilus: The assault doctrine and tactical doctrine are active for this unit in addition to any other combat doctrine.",
+      "activeDoctrines": [
+        "ASSAULT",
+        "TACTICAL"
+      ],
+      "evaluatedContext": "ASSAULT_ONLY"
+    }
+  ],
+  "inheritedTypedClauses": 35,
+  "chapterContext": "NOT_INFERRED_FROM_BOOK_DETACHMENT_OR_ATTACHMENT",
+  "unsupported": [
+    "AUTOMATIC_INCOMING_ATTACK_RESOLUTION",
+    "AUTOMATIC_REROLL_RESOLUTION",
+    "AUTOMATIC_QUALIFIED_FNP_RESOLUTION",
+    "AUTOMATIC_CP_ACTION_COST",
+    "PROXIMITY_WITHOUT_BATTLE_CONTEXT",
+    "UNKNOWN_BATTLE_EVENTS",
+    "TACTICAL_FALLBACK_PERMISSIONS",
+    "DOCTRINE_PHASE_AND_EXCLUSIVITY"
+  ],
+  "conditionalPolicyCapabilities": [
+    "ADVANCE_AND_LEADERSHIP_REROLL_PERMISSION",
+    "DETACHMENT_OWNED_UNIT_POLICY",
+    "CORE_BOUND_ATTACK_TARGET_RESTRICTION",
+    "CORE_BOUND_ACTION_CP_MODIFIER"
+  ],
+  "inheritedPhysicalChoiceBindings": "Exact physical equipment bearer fields are derived from canonical MODEL selections; unsupported choice fields remain unresolved.",
+  "relations": "SOURCE_DECLARATIONS; NATIVE_ARMY_PERMISSION_POLICIES_RESOLVED_AT_PHYSICAL_IMPORT",
+  "realNewRecruitExportTested": false
+}

@@ -72,3 +72,28 @@ MFM/Army-source recipient difference is retained, not silently reconciled.
 `books/dark-angels/v2/mfm-boundary.mjs` consumes central facts through the existing
 V2 Army projection. Native pricing enrollment does not activate the inherited
 Army corpus, Chapter keyword grants, physical importer, gameplay or app registry.
+
+### Native Blood Angels v1.6 enrollment (22 October 2026)
+
+The independently reviewed BA-owned partition contains 14 CURRENT priced UNIT,
+19 schedules / 25 rows, three Detachments and eight Enhancements. The complete
+official HTML is SHA-pinned alongside its scoped central capture. Observation
+and verification are 22 October; publication and effective dates remain unknown.
+The standalone six-faction live producer was not run for this enrollment.
+
+All 25 pricing bridges use explicit persistent BA identities and independently
+reviewed source occurrences with structural and numeric corroboration. The 69
+shared SM prices and their identities remain SM-owned; shared Detachments and
+costs are not duplicated. Astraeus and Thunderhawk retain MFM-only references.
+Deathwatch Support and Beacon Angelis retain their separate owner.
+
+Ten historical BA Legends keep their original v1.4 MFM records and provenance
+through a LEGENDS-only historical source binding. They supply no current native
+Army recipients. Ten unpriced current relation-target references remain
+REFERENCE_ONLY and cannot activate mixed-owner attachments.
+
+The BA secondary page's Stormlance 2DP declaration conflicts with official MFM
+and the accepted SM source's 1DP for the same shared Detachment fact. Both are
+retained with provenance in the BA boundary; existing SM-owned pricing is
+unchanged and no BA override is created. Pricing enrollment does not activate
+BA's inherited Army references, effects, physical importer or app registration.

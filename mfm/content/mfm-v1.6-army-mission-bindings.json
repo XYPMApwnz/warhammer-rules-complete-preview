@@ -1,7 +1,7 @@
 {
   "schema": "wh40k-mfm-cross-domain-bindings/v1",
   "edition": "Warhammer 40,000 11th Edition",
-  "currentnessCutoff": "2026-10-21",
+  "currentnessCutoff": "2026-10-22",
   "sourceVersion": "v1.6-scoped-six",
   "identityPolicy": "EXPLICIT_CANONICAL_IDS_ONLY_NO_TITLE_OR_SLUG_JOINS",
   "armyBookBindings": {
@@ -54,11 +54,6 @@
       "armyUnitId": "unit-lord-of-poxes",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-00c5c647cc355e59": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-sanguinary-priest",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-00c960a750c1d5cf": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-servitor-battleclade",
@@ -72,11 +67,6 @@
     "mfm-unit-ref-015d3c757add3f31": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-016455865d27c880": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-chaplain-in-terminator-armour",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-02c64c3a47bb7470": {
       "bindingStatus": "BOUND",
@@ -92,11 +82,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-lord-discordant-on-helstalker",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-047a184ba859530d": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-techmarine",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-055cdfa66a4c087f": {
       "bindingStatus": "BOUND",
@@ -172,25 +157,10 @@
       "armyUnitId": "unit-blightlord-terminators",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-0917f97e8e9076a6": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-librarian-in-phobos-armour",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-092e637e690338fa": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain-in-terminator-armour",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-0981492e5a937d25": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-sun-shark-bomber",
       "armyBookId": "tau-empire"
-    },
-    "mfm-unit-ref-0a14f23bbbd6260b": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-incursor-squad",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-0a7d45de0ab305f7": {
       "bindingStatus": "BOUND",
@@ -206,11 +176,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-lord-exultant",
       "armyBookId": "emperors-children"
-    },
-    "mfm-unit-ref-0c0b788353fb1a6d": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-land-raider-redeemer",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-0c48a201b09ea167": {
       "bindingStatus": "BOUND",
@@ -264,10 +229,6 @@
       "armyUnitId": "unit-fellgor-beastmen",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-110ea22cb729bc72": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-11157ccedc4c1eb1": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-hive-guard",
@@ -281,11 +242,6 @@
     "mfm-unit-ref-12053f2b758659fa": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-sokar-pattern-stormbird",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-12766f26b17801c0": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-repulsor",
       "armyBookId": "space-marines"
     },
     "mfm-unit-ref-12c8aecdfb016095": {
@@ -327,11 +283,6 @@
       "armyUnitId": "unit-crisis-sunforge-battlesuits",
       "armyBookId": "tau-empire"
     },
-    "mfm-unit-ref-177b18b4ed09a9bc": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-reiver-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-18e8e17a54814d2a": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-onager-dunecrawler",
@@ -343,9 +294,8 @@
       "armyBookId": "death-guard"
     },
     "mfm-unit-ref-1a2577a9a35be3fd": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-infernus-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-1a3278256dd7bc73": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -357,9 +307,8 @@
       "armyBookId": "chaos-space-marines"
     },
     "mfm-unit-ref-1ab54cea4c9a7f15": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-marines-with-boltguns",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-1b07e57eedd7e090": {
       "bindingStatus": "BOUND",
@@ -379,11 +328,6 @@
     "mfm-unit-ref-1c292fc73565f8ac": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-1c3e9989d5d41602": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-centurion-devastator-squad",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-1cab09e05ca0be89": {
       "bindingStatus": "BOUND",
@@ -416,9 +360,8 @@
       "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-1ebd291c5da45667": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-marines-with-boltguns-and-jump-packs",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-1f3e1bd292bd1111": {
       "bindingStatus": "BOUND",
@@ -444,11 +387,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-hammerhead-gunship",
       "armyBookId": "tau-empire"
-    },
-    "mfm-unit-ref-21310c01f3b4c6d4": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-storm-speeder-hailstrike",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-215e64a8050d4330": {
       "bindingStatus": "BOUND",
@@ -492,11 +430,6 @@
       "armyUnitId": "unit-renegade-enforcer",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-266362994ff19491": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-astorath",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-2666eac64ac6c952": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-fabius-bile",
@@ -530,45 +463,15 @@
       "armyUnitId": "unit-sicaran-venator",
       "armyBookId": "space-marines"
     },
-    "mfm-unit-ref-28de9e499324c4a2": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-bladeguard-ancient",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-2964e2a468554404": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-suppressor-squad",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-2a2179c18e524a8c": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-ancient",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-2a3ee551bb8aa797": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-baal-predator",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-2affff3328845ab4": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-obliterators",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-2cead5de57ae7aa5": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-predator-destructor",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-2d83f258b29da556": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-forgefiend",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-2e2d53541afb1253": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-judiciar",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-2e9195b7cbf72eff": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -603,11 +506,6 @@
       "armyUnitId": "unit-chaos-rhino",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-322886ffaecd733c": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-brutalis-dreadnought",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-32f4ce9606d757f9": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
@@ -632,20 +530,10 @@
       "armyUnitId": "unit-nemesis-claw",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-346a1cb4615350ad": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-aggressor-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-3568ad667fd07920": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-lord-with-jump-pack",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-356fe5e5207bd992": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-land-speeder",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-35819bac78c27a2b": {
       "bindingStatus": "BOUND",
@@ -653,9 +541,8 @@
       "armyBookId": "adeptus-mechanicus"
     },
     "mfm-unit-ref-35f4ed109e57e3f4": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-sanguinary-priest-with-jump-pack",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-372d518dfa252d54": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -686,20 +573,10 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-3b147a3982a4405b": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-invictor-tactical-warsuit",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-3bb907d52910f64c": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-ripper-swarms",
       "armyBookId": "tyranids"
-    },
-    "mfm-unit-ref-3e4b1e58a6165fab": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-thunderhawk-gunship",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-3e4c27c07209f18a": {
       "bindingStatus": "BOUND",
@@ -741,11 +618,6 @@
       "armyUnitId": "unit-intercessor-squad",
       "armyBookId": "space-marines"
     },
-    "mfm-unit-ref-415444e73c670b32": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-inceptor-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-41757c352269c560": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-beasts-of-nurgle",
@@ -756,29 +628,15 @@
       "armyUnitId": "unit-shalaxi-helbane",
       "armyBookId": "emperors-children"
     },
-    "mfm-unit-ref-422813975145d3c1": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-425b2ca7009c50cb": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-red-corsairs-raiders",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-42861b0d0360f877": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-outrider-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-429526f083a49573": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-typhus",
       "armyBookId": "death-guard"
-    },
-    "mfm-unit-ref-42ba02be119b43b5": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-42fafb290fcf3e15": {
       "bindingStatus": "BOUND",
@@ -789,16 +647,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-termagants",
       "armyBookId": "tyranids"
-    },
-    "mfm-unit-ref-444d50d5c50011d8": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-hammerfall-bunker",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-44a911580ce66c64": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-heavy-intercessor-squad",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-44c891fabdc6a66e": {
       "bindingStatus": "BOUND",
@@ -824,18 +672,9 @@
       "armyUnitId": "unit-khorne-lord-of-skulls",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-491ac65a18d4b878": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-4957ba33ead99913": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "HISTORICAL_LEGENDS_RELATION_TARGET_WITHOUT_CURRENT_NATIVE_BINDING"
-    },
-    "mfm-unit-ref-496bf6dde656a238": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-centurion-assault-squad",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-49f71eed366973c8": {
       "bindingStatus": "BOUND",
@@ -862,11 +701,6 @@
       "armyUnitId": "unit-chaos-thunderhawk",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-4d0fe89a2603709b": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-terminator-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-4db705da15e0be71": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
@@ -874,11 +708,6 @@
     "mfm-unit-ref-4e48cb3bc47c1fb6": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-506ae11be3d44aa4": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-dreadnought",
-      "armyBookId": "blood-angels"
     },
     "mfm-unit-ref-51128cb65a9cf41d": {
       "bindingStatus": "BOUND",
@@ -894,11 +723,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-renegade-ogryn-brutes",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-51a84405208afdca": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain-in-phobos-armour",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-535621dc842af385": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -932,11 +756,6 @@
     "mfm-unit-ref-5746b804e573d075": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-5863902ca774161a": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-marines-with-jump-packs",
-      "armyBookId": "blood-angels"
     },
     "mfm-unit-ref-588a96c9ffcdd1a2": {
       "bindingStatus": "BOUND",
@@ -989,14 +808,12 @@
       "armyBookId": "tyranids"
     },
     "mfm-unit-ref-601dae5e94309f64": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-intercessor-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-608c229ac0ae0c83": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-tactical-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-60a708d538820955": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -1025,11 +842,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-serberys-raiders",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-unit-ref-629971a14ddfd0d6": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-whirlwind",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-62a70dbf6bd71468": {
       "bindingStatus": "BOUND",
@@ -1069,24 +881,9 @@
       "armyUnitId": "unit-typhon",
       "armyBookId": "space-marines"
     },
-    "mfm-unit-ref-6918143a3cfe5113": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-razorback",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-6919176cbd270643": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-the-sanguinor",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-69746633fc894e4b": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-6ad4468d3ed2b421": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-lieutenant-in-reiver-armour",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-6af4b0147feefca7": {
       "bindingStatus": "BOUND",
@@ -1097,11 +894,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-biologus-putrifier",
       "armyBookId": "death-guard"
-    },
-    "mfm-unit-ref-6b80e9e4f595f314": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain-with-jump-pack",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-6cdf826afb9d1b57": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -1132,11 +924,6 @@
       "armyUnitId": "unit-rotigus",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-6eec1b1eb7be7137": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-captain-with-jump-pack",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-6ffd5d50d9e11e9a": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
@@ -1166,9 +953,8 @@
       "armyBookId": "adeptus-mechanicus"
     },
     "mfm-unit-ref-72f7978c018d64bd": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-vanguard-veteran-squad-with-jump-packs",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-73745773b68d85fb": {
       "bindingStatus": "BOUND",
@@ -1189,11 +975,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-lord-of-contagion",
       "armyBookId": "death-guard"
-    },
-    "mfm-unit-ref-74a867a833350866": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-infiltrator-squad",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-74b8765d49fa221e": {
       "bindingStatus": "BOUND",
@@ -1220,11 +1001,6 @@
       "armyUnitId": "unit-sydonian-skatros",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-unit-ref-76878a550662dbf5": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-commander-dante",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-77716be6776bdd30": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-rhino",
@@ -1234,16 +1010,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-pteraxii-sterylizors",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-unit-ref-793cbffc057d0d21": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-chaplain-on-bike",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-7a7b7639e674ab23": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-gladiator-lancer",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-7b787d0fcc5715e1": {
       "bindingStatus": "BOUND",
@@ -1289,11 +1055,6 @@
       "armyUnitId": "unit-darkstrider",
       "armyBookId": "tau-empire"
     },
-    "mfm-unit-ref-7f2e4b108e6d5f1d": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-gladiator-valiant",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-7fdd7b345ffc8da3": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
@@ -1309,9 +1070,8 @@
       "armyBookId": "emperors-children"
     },
     "mfm-unit-ref-823384acc060d721": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-sternguard-veteran-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-82b0a88b5010ac36": {
       "bindingStatus": "BOUND",
@@ -1330,16 +1090,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-sorcerer-on-palanquin-of-nurgle",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-8531cad1b69ca591": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-stormhawk-interceptor",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-85e7f8b26b9c8cda": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-repulsor-executioner",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-85ec7499adc77a35": {
       "bindingStatus": "BOUND",
@@ -1386,14 +1136,12 @@
       "armyBookId": "chaos-space-marines"
     },
     "mfm-unit-ref-8b4258801364b611": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-bladeguard-veteran-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-8be1e5a0b36cc849": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-brother-corbulo",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-8bef35a1ec97c3a6": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -1417,11 +1165,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-poxwalkers",
       "armyBookId": "death-guard"
-    },
-    "mfm-unit-ref-8ee5439e8497dd64": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-storm-speeder-hammerstrike",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-8f438abbd09f8c27": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -1456,11 +1199,6 @@
       "armyUnitId": "unit-serberys-sulphurhounds",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-unit-ref-92d454b8d706b68b": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-chaplain-with-jump-pack",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-932ff99cf16e3aa3": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-havocs",
@@ -1469,11 +1207,6 @@
     "mfm-unit-ref-935becd787ae6d0b": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-93ac5e8fc71496aa": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-eradicator-squad-with-heavy-bolters",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-94789d9f750f223c": {
       "bindingStatus": "BOUND",
@@ -1525,20 +1258,10 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-992fece33a14fdec": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-lieutenant-in-phobos-armour",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-99718e59ccad3b59": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-accursed-cultists",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-99a91197a42a60d0": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-land-raider",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-99ef69d5f4af30ca": {
       "bindingStatus": "BOUND",
@@ -1568,20 +1291,6 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-9de9caad9e3b8844": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-ancient-in-terminator-armor",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-9e1d9734edc72008": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-scout-squad",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-9eb106c9efd67df4": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-a08c5cfeceb92533": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-harridan",
@@ -1606,19 +1315,9 @@
       "armyUnitId": "unit-lord-kakophonist",
       "armyBookId": "emperors-children"
     },
-    "mfm-unit-ref-a1d86a2cc377ba63": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-rhino",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-a1ea5fd2820fe25c": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-a209639181820f20": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-dreadnought",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-a28869e45e959850": {
       "bindingStatus": "BOUND",
@@ -1649,11 +1348,6 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-a59bb967325fdb80": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-ballistus-dreadnought",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-a5af47b440ce2b4f": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
@@ -1666,21 +1360,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-warpsmith",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-a69d8d83d1c88ce1": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-lemartes",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-unit-ref-a71731e5b5643d4a": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-librarian",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-a7a57f980caa1461": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-stormtalon-gunship",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-a81053881c18f8e5": {
       "bindingStatus": "BOUND",
@@ -1698,14 +1377,8 @@
       "armyBookId": "chaos-space-marines"
     },
     "mfm-unit-ref-a9b73d60185bb186": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-tycho-the-lost",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-unit-ref-a9fae1133f82e32b": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-blood-angels-captain",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-aa5fbbe139bdad0e": {
       "bindingStatus": "BOUND",
@@ -1713,9 +1386,8 @@
       "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-aac4b69f4c832168": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain-tycho",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-aadd9cf907909d85": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -1730,11 +1402,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-gargoyles",
       "armyBookId": "tyranids"
-    },
-    "mfm-unit-ref-ab9936da36b5cf9d": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-impulsor",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-abbd7d02e7993c2b": {
       "bindingStatus": "BOUND",
@@ -1769,11 +1436,6 @@
       "armyUnitId": "unit-skitarii-marshal",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-unit-ref-adbe9b6c1dc72399": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-inner-circle-companions",
-      "armyBookId": "dark-angels"
-    },
     "mfm-unit-ref-aeadb69b1058d161": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-deathwing-command-squad",
@@ -1783,11 +1445,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-tormentors",
       "armyBookId": "emperors-children"
-    },
-    "mfm-unit-ref-aed639fef82dae55": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-land-raider-crusader",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-af4fc37c13da8252": {
       "bindingStatus": "BOUND",
@@ -1804,9 +1461,8 @@
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-b07c6520d3bc5a04": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-devastator-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-b092aef2d510cb3f": {
       "bindingStatus": "BOUND",
@@ -1818,10 +1474,6 @@
       "armyUnitId": "unit-tallyman",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-b1a2820e30741d4a": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-b2f81eeb2fd9aba7": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-terminators",
@@ -1832,22 +1484,10 @@
       "armyUnitId": "unit-kroot-flesh-shaper",
       "armyBookId": "tau-empire"
     },
-    "mfm-unit-ref-b36c85d1ca6a3b0a": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-b3d3dd4d9b3ab63f": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-b402658c62e0daf2": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-renegade-ogryn-beast-handler",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-b44c1d0678112284": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-b4d866adda123642": {
       "bindingStatus": "BOUND",
@@ -1855,9 +1495,8 @@
       "armyBookId": "space-marines"
     },
     "mfm-unit-ref-b563619a902201de": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-assault-intercessor-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-b58802e1d611c010": {
       "bindingStatus": "BOUND",
@@ -1911,11 +1550,6 @@
       "armyUnitId": "unit-tyrannofex",
       "armyBookId": "tyranids"
     },
-    "mfm-unit-ref-bb6b6b16c4858035": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-terminator-assault-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-bb81e995941326d2": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-foul-blightspawn",
@@ -1929,11 +1563,6 @@
     "mfm-unit-ref-bc863f996cde7139": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
-    "mfm-unit-ref-bdeb3d643f6aec9a": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-storm-speeder-thunderstrike",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-be078b662e2ecdb2": {
       "bindingStatus": "BOUND",
@@ -1954,11 +1583,6 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-bf643d5064e38da4": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-sanguinary-guard",
-      "armyBookId": "blood-angels"
-    },
     "mfm-unit-ref-c04c63c3659ce53d": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-crisis-fireknife-battlesuits",
@@ -1967,11 +1591,6 @@
     "mfm-unit-ref-c1b514e78559bb06": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-assault-intercessor-squad",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-c2a5cad5e206e772": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-chaplain",
       "armyBookId": "space-marines"
     },
     "mfm-unit-ref-c2a7d15afa5cf331": {
@@ -1989,14 +1608,12 @@
       "armyBookId": "tyranids"
     },
     "mfm-unit-ref-c415815c379af539": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-marines-with-bolt-rifles",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-c43bce176d5d4a25": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-dreadnought-with-magna-grapple",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-c43d49db238577e0": {
       "bindingStatus": "BOUND",
@@ -2007,11 +1624,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-xiphon-interceptor",
       "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-c5a8439e398d6fc9": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-chief-librarian-mephiston",
-      "armyBookId": "blood-angels"
     },
     "mfm-unit-ref-c5abd3f7b93c8ff1": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -2031,16 +1643,6 @@
       "armyUnitId": "unit-fulgurite-electro-priests",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-unit-ref-c6c7923a6c63bb43": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-ravenwing-black-knights",
-      "armyBookId": "dark-angels"
-    },
-    "mfm-unit-ref-c862d7d50322887f": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-eliminator-squad",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-c897c26b506c9456": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-deimos-predator",
@@ -2051,20 +1653,10 @@
       "armyUnitId": "unit-hive-crone",
       "armyBookId": "tyranids"
     },
-    "mfm-unit-ref-c90e653b7c5e2a54": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-redemptor-dreadnought",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-c93f741d9d7308e7": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-master-of-possession",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-c9cd81585bd13012": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-apothecary-biologis",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-ca7ddee05baca334": {
       "bindingStatus": "BOUND",
@@ -2072,19 +1664,13 @@
       "armyBookId": "adeptus-mechanicus"
     },
     "mfm-unit-ref-cb1505401c18c046": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-hellblaster-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-cb244dcc8f744819": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-commander-in-enforcer-battlesuit",
       "armyBookId": "tau-empire"
-    },
-    "mfm-unit-ref-cc1b9752f295e985": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-invader-atv",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-cc4121cfcef44ec2": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -2105,20 +1691,9 @@
       "armyUnitId": "unit-riptide-battlesuit",
       "armyBookId": "tau-empire"
     },
-    "mfm-unit-ref-cdd3b26ae40349b0": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-eradicator-squad",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-ce8e178c0d109a95": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-astraeus",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-cf301140ca816a26": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-gabriel-seth",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-cfb8529d3421e885": {
       "bindingStatus": "BOUND",
@@ -2158,20 +1733,10 @@
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
-    "mfm-unit-ref-d40e482e7dc0f6f2": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-victrix-honour-guard",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-d43a1951f1112416": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-hormagaunts",
       "armyBookId": "tyranids"
-    },
-    "mfm-unit-ref-d536c3c28c0401df": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-captain-in-gravis-armour",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-d538d6f85280f771": {
       "bindingStatus": "BOUND",
@@ -2188,15 +1753,9 @@
       "armyUnitId": "unit-whirlwind-scorpius",
       "armyBookId": "space-marines"
     },
-    "mfm-unit-ref-d8eea7fec17f348d": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-stormraven-gunship",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-da1b7775660878a9": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-assault-intercessors-with-jump-packs",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-daab23ee08c4084a": {
       "bindingStatus": "BOUND",
@@ -2265,15 +1824,9 @@
       "armyUnitId": "unit-chaos-vindicator",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-e54ae86f526d0ea6": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-librarian-in-terminator-armour",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-e5723abe9711ca06": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-librarian-dreadnought",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-e5aea171a2dc7e0a": {
       "bindingStatus": "BOUND",
@@ -2285,24 +1838,13 @@
       "armyUnitId": "unit-daemonettes",
       "armyBookId": "emperors-children"
     },
-    "mfm-unit-ref-e6add1df9d8e8c8c": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-deathwing-terminator-squad",
-      "armyBookId": "dark-angels"
-    },
     "mfm-unit-ref-e6c0d765ba0b5537": {
       "bindingStatus": "REFERENCE_ONLY",
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-e6ea17621fbdde35": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-marines",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-unit-ref-e75128d472d85cce": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-apothecary",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-e77d0426179319d7": {
       "bindingStatus": "REFERENCE_ONLY",
@@ -2312,11 +1854,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-lord-on-disc-of-tzeentch",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-e7d984916e75dca6": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-death-company-captain",
-      "armyBookId": "blood-angels"
     },
     "mfm-unit-ref-e8300d322ff9847a": {
       "bindingStatus": "BOUND",
@@ -2328,9 +1865,8 @@
       "reason": "LEGENDS_MFM_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
     },
     "mfm-unit-ref-e9890c1d91124d18": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-desolation-squad",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-e9976581ac650744": {
       "bindingStatus": "BOUND",
@@ -2342,24 +1878,10 @@
       "armyUnitId": "unit-deathshroud-terminators",
       "armyBookId": "death-guard"
     },
-    "mfm-unit-ref-ea9ad5f56c5fda94": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-predator-annihilator",
-      "armyBookId": "space-marines"
-    },
-    "mfm-unit-ref-eb1eb7600a914157": {
-      "bindingStatus": "REFERENCE_ONLY",
-      "reason": "RELATION_TARGET_HAS_NO_ACCEPTED_ARMY_CANONICAL_UNIT"
-    },
     "mfm-unit-ref-eb4cb49dc4e5fbf3": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-hastarii-exterminators",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-unit-ref-eb840efb709b33f0": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-lieutenant",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-ebb01575fe349349": {
       "bindingStatus": "BOUND",
@@ -2367,9 +1889,8 @@
       "armyBookId": "death-guard"
     },
     "mfm-unit-ref-ebcc293451497803": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-furioso-dreadnought",
-      "armyBookId": "blood-angels"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-ed1770b67cc25a18": {
       "bindingStatus": "BOUND",
@@ -2380,11 +1901,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-chaos-bikers",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-unit-ref-ee05c0767d60e63c": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-lieutenant-with-combi-weapon",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-ee8344cdb52a3402": {
       "bindingStatus": "BOUND",
@@ -2397,19 +1913,13 @@
       "armyBookId": "tau-empire"
     },
     "mfm-unit-ref-efc6dbefba2d1e07": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-company-heroes",
-      "armyBookId": "space-marines"
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "HISTORICAL_MFM_V14_LEGENDS_ONLY_NO_CURRENT_NATIVE_RECIPIENT"
     },
     "mfm-unit-ref-effec5cf1e7685f0": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-psychophage",
       "armyBookId": "tyranids"
-    },
-    "mfm-unit-ref-f0d8cc6d9fd19d55": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-deathwing-knights",
-      "armyBookId": "dark-angels"
     },
     "mfm-unit-ref-f0fc6d179821dff1": {
       "bindingStatus": "BOUND",
@@ -2429,11 +1939,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-plague-surgeon",
       "armyBookId": "death-guard"
-    },
-    "mfm-unit-ref-f36f79d66d178c39": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-firestrike-servo-turrets",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-f3c52f2d440dbea1": {
       "bindingStatus": "BOUND",
@@ -2471,11 +1976,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-deathwing-strikemaster",
       "armyBookId": "dark-angels"
-    },
-    "mfm-unit-ref-f7064e2fac7caf2c": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-drop-pod",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-f7b005048bcdbf20": {
       "bindingStatus": "BOUND",
@@ -2536,11 +2036,6 @@
       "armyUnitId": "unit-chaos-lord-in-terminator-armour",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-unit-ref-fc2f3618f77233e3": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-vindicator",
-      "armyBookId": "space-marines"
-    },
     "mfm-unit-ref-fd9894bc9ee9ac4b": {
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-leviathan-dreadnought",
@@ -2550,11 +2045,6 @@
       "bindingStatus": "BOUND",
       "armyUnitId": "unit-ghostkeel-battlesuit",
       "armyBookId": "tau-empire"
-    },
-    "mfm-unit-ref-fdef480c73d1d73e": {
-      "bindingStatus": "BOUND",
-      "armyUnitId": "unit-gladiator-reaper",
-      "armyBookId": "space-marines"
     },
     "mfm-unit-ref-ff3131ea14c775e4": {
       "bindingStatus": "BOUND",
@@ -3520,6 +3010,320 @@
         "sourceCaptureSha256": "561615E45C4D527731DBA262DC71FFC6FAC2DCEF301D2FEA52455550AB14724A",
         "reviewedAt": "2026-10-21"
       }
+    },
+    "mfm-unit-ref-629668894c1ee8d5": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-923f8dcda6071ae4": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-e250375c330223a2": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-7f57bc2e255748b09903",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-5822204cac5548cdb993",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[2]/div[38]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[1]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-5a4e0bb481c1f572": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-56917c1cd6a94406970f",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-9a3cb30a4d7f4fdb87fe",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[32]/div[22]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[2]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-fab467bf03b20d40": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-ded02406687946a5": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-09adea2bf319462fb4ed",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-bfa759739fb848ff9bfd",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[10]/div[56]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[3]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-af7c85e2e1c0a6ad": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-d84ea7c581874feca80b",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-4a7419bb2d754eb6aec2",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[2]/div[40]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[4]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-6ef4303fcbd9f5a3": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-92fdb23a526b4c328367",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-3855b47ccc584cb39e44",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[2]/div[42]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[5]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-06a4caeeb31f6a1c": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-e7002e755ede1469": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-014cc7b19aca4d5b84a3",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-8bbe79e51dd341e39e69",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[10]/div[58]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[6]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-bd41f2917345e656": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-5269d704246f4e3a8d81",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-6cb55022c3a0452083de",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[10]/div[60]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[7]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-d1cf992aee19e0f3": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-72b98695e8914fc89bff",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-c13a5a07b9604532899f",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[34]/div[10]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[8]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-7cd15c81464bfe27": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-548417d73e544f7f920e",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-c58260ec29fb44aa9352",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/div[40]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[9]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-0ad1c8f172f2bc0e": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-6903525e7ae0497e943a",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-c9a95688191042d2bf4c",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/div[42]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[10]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-e791c87314a6cf19": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-9d93e20e702d251d": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-805f5fbeee23677d": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-85dccdb3e4162e4b": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-5fc1a3116cf02bc6": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-3483c88a4df4495ca2e2",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-7f21def8639f462d88e9",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[2]/div[44]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[11]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-f75fb9bb1564072c": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-5981fb6513b9436487f0",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-e07fba773e154d78a93c",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/div[44]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[12]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-4a5c9b07f2d4607f": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-1388b9b0dc5d40c1aba4",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-73cfa0e6ada0495a9bed",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[10]/div[62]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[13]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-25607e52541dec72": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-adca2ad7e37c7e2f": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyUnitId": "unit-ba-4ea9a8226a61470fa157",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-88e0dcceb653428a9dc1",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[2]/div[46]",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[3]/div[1]/div/div[14]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-unit-ref-f986081ac2bded2f": {
+      "bindingStatus": "REFERENCE_ONLY",
+      "reason": "NATIVE_V2_SOURCE_IDENTITY_BRIDGE_PENDING_REVIEW",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "reviewedAt": "2026-10-22"
+      }
     }
   },
   "detachmentBindings": {
@@ -3544,12 +3348,6 @@
       "missionForceDispositionIds": [
         "force-disposition-reconnaissance"
       ]
-    },
-    "mfm-detachment-09fdb64757131e4a": {
-      "armyDetachmentId": "the-angelic-host",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "blood-angels"
     },
     "mfm-detachment-0a531332ffbbbba0": {
       "armyDetachmentId": "slaaneshs-chosen",
@@ -3580,18 +3378,6 @@
       "missionForceDispositionIds": [
         "force-disposition-disruption"
       ]
-    },
-    "mfm-detachment-100c555c085c96d4": {
-      "armyDetachmentId": "legacy-of-grace",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-detachment-1917f938cec1bdd3": {
-      "armyDetachmentId": "armoured-speartip",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-24cf4ec242a27696": {
       "armyDetachmentId": "murdertalon-raiders",
@@ -3635,12 +3421,6 @@
         "force-disposition-reconnaissance"
       ]
     },
-    "mfm-detachment-31e640c08a8b3451": {
-      "armyDetachmentId": "vengeful-hosts",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-345e29874bd7b141": {
       "armyDetachmentId": "retaliation-cadre",
       "armyBookId": "tau-empire",
@@ -3653,12 +3433,6 @@
         "force-disposition-reconnaissance"
       ]
     },
-    "mfm-detachment-3461e1854facad55": {
-      "armyDetachmentId": "ceramite-sentinels",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-37fa2ca54f6194c9": {
       "armyDetachmentId": "detachment-lords-of-the-forge",
       "armyBookId": "adeptus-mechanicus",
@@ -3669,12 +3443,6 @@
         "force-disposition-priority-assets"
       ]
     },
-    "mfm-detachment-3c26c2afc965db0f": {
-      "armyDetachmentId": "1st-company-task-force",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-3fc01675a2e1861a": {
       "armyDetachmentId": "assimilation-swarm",
       "armyBookId": "tyranids",
@@ -3684,18 +3452,6 @@
       "missionForceDispositionIds": [
         "force-disposition-priority-assets"
       ]
-    },
-    "mfm-detachment-4f1556339b4c6d44": {
-      "armyDetachmentId": "ironstorm-spearhead",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
-    },
-    "mfm-detachment-52c005444a80f2ba": {
-      "armyDetachmentId": "subversion-assets",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-56996422dd40a230": {
       "armyDetachmentId": "spectacle-of-slaughter",
@@ -3716,12 +3472,6 @@
       "missionForceDispositionIds": [
         "force-disposition-take-and-hold"
       ]
-    },
-    "mfm-detachment-5b9d3fa7660bd504": {
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "blood-angels"
     },
     "mfm-detachment-5e0ac78fb606c41f": {
       "armyDetachmentId": "detachment-paragons-of-putrescence",
@@ -3752,12 +3502,6 @@
       "missionForceDispositionIds": [
         "force-disposition-take-and-hold"
       ]
-    },
-    "mfm-detachment-621dffbc673a0dd1": {
-      "armyDetachmentId": "fulguris-task-force",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-6273cb0c47d756d9": {
       "armyDetachmentId": "fellhammer-siege-host",
@@ -3818,12 +3562,6 @@
       "missionForceDispositionIds": [
         "force-disposition-take-and-hold"
       ]
-    },
-    "mfm-detachment-6df024b4ef89bca1": {
-      "armyDetachmentId": "orbital-assault-force",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-6e7dc3b9ba6a73a9": {
       "armyDetachmentId": "dread-talons",
@@ -3887,12 +3625,6 @@
         "force-disposition-disruption"
       ]
     },
-    "mfm-detachment-7b2072a458d127c9": {
-      "armyDetachmentId": "gladius-task-force",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-7e125e0af0be8a27": {
       "armyDetachmentId": "detachment-flyblown-host",
       "armyBookId": "death-guard",
@@ -3934,18 +3666,6 @@
       "missionForceDispositionIds": [
         "force-disposition-priority-assets"
       ]
-    },
-    "mfm-detachment-8c825108ac0780a6": {
-      "armyDetachmentId": "bastion-task-force",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
-    },
-    "mfm-detachment-8d6d3bfc86006c92": {
-      "armyDetachmentId": "vanguard-spearhead",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-8e7262a2f771a041": {
       "armyDetachmentId": "detachment-tallyband-summoners",
@@ -4010,12 +3730,6 @@
       "missionForceDispositionIds": [
         "force-disposition-priority-assets"
       ]
-    },
-    "mfm-detachment-9a5fb04ca93489d9": {
-      "armyDetachmentId": "firestorm-assault-force",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-9b892ff13e0dc5ad": {
       "armyDetachmentId": "frenzied-host",
@@ -4095,12 +3809,6 @@
         "force-disposition-priority-assets"
       ]
     },
-    "mfm-detachment-ac51fb9a30aad6cc": {
-      "armyDetachmentId": "encarmine-speartip",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "blood-angels"
-    },
     "mfm-detachment-ae194da29bc7d8f2": {
       "armyDetachmentId": "detachment-contagion-engines",
       "armyBookId": "death-guard",
@@ -4143,18 +3851,6 @@
         "force-disposition-disruption"
       ]
     },
-    "mfm-detachment-be061c66509e0eda": {
-      "armyDetachmentId": "stormlance-task-force",
-      "missionForceDispositionId": "force-disposition-disruption",
-      "mfmForceDispositionId": "mfm-force-disposition-100e822e9e9eea9a",
-      "armyBookId": "space-marines"
-    },
-    "mfm-detachment-be93431997f3105b": {
-      "armyDetachmentId": "wrath-of-the-doomed",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "blood-angels"
-    },
     "mfm-detachment-cec574725ab015d8": {
       "armyDetachmentId": "detachment-rad-zone-corps",
       "armyBookId": "adeptus-mechanicus",
@@ -4175,12 +3871,6 @@
         "force-disposition-purge-the-foe"
       ]
     },
-    "mfm-detachment-d83e4f3743acf5a7": {
-      "armyDetachmentId": "librarius-conclave",
-      "missionForceDispositionId": "force-disposition-reconnaissance",
-      "mfmForceDispositionId": "mfm-force-disposition-992779bc35bb90e1",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-d88527bfa05bf302": {
       "armyDetachmentId": "talons-of-the-norn-queen",
       "armyBookId": "tyranids",
@@ -4200,12 +3890,6 @@
       "missionForceDispositionIds": [
         "force-disposition-priority-assets"
       ]
-    },
-    "mfm-detachment-da96fb69311e9cdc": {
-      "armyDetachmentId": "headhunter-task-force",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "space-marines"
     },
     "mfm-detachment-daacacbed0ef00b6": {
       "armyDetachmentId": "veterans-of-the-long-war",
@@ -4257,18 +3941,6 @@
         "force-disposition-take-and-hold"
       ]
     },
-    "mfm-detachment-ec8c4900c2e8e182": {
-      "armyDetachmentId": "the-lost-brethren",
-      "missionForceDispositionId": "force-disposition-purge-the-foe",
-      "mfmForceDispositionId": "mfm-force-disposition-312f0b592e98e73f",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-detachment-f1e18b57ffe83df5": {
-      "armyDetachmentId": "anvil-siege-force",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "space-marines"
-    },
     "mfm-detachment-f5d91b98cb39b545": {
       "armyDetachmentId": "mercurial-host",
       "armyBookId": "emperors-children",
@@ -4278,12 +3950,6 @@
       "missionForceDispositionIds": [
         "force-disposition-reconnaissance"
       ]
-    },
-    "mfm-detachment-f70fd9423fa330dc": {
-      "armyDetachmentId": "liberator-assault-group",
-      "missionForceDispositionId": "force-disposition-take-and-hold",
-      "mfmForceDispositionId": "mfm-force-disposition-fbe107a60517f6d9",
-      "armyBookId": "blood-angels"
     },
     "mfm-detachment-f8188b1403ca9370": {
       "armyDetachmentId": "unending-swarm",
@@ -4304,12 +3970,6 @@
       "missionForceDispositionIds": [
         "force-disposition-reconnaissance"
       ]
-    },
-    "mfm-detachment-ffd2fcece708887e": {
-      "armyDetachmentId": "angelic-inheritors",
-      "missionForceDispositionId": "force-disposition-priority-assets",
-      "mfmForceDispositionId": "mfm-force-disposition-9d87888f5b974a03",
-      "armyBookId": "blood-angels"
     },
     "mfm-detachment-ffe40487f76ad520": {
       "armyDetachmentId": "advanced-acquisition-cadre",
@@ -4742,6 +4402,74 @@
         "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
         "reviewedAt": "2026-10-21"
       }
+    },
+    "mfm-detachment-494fc03f0dff6363": {
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-9d87888f5b974a03",
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-priority-assets",
+        "force-disposition-purge-the-foe"
+      ],
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-23df164069854eb2996c",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-534480eb1bf94fb39ecb",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[22]/h2",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[1]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-detachment-ea9d5d1c84c47020": {
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-100e822e9e9eea9a"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-disruption"
+      ],
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-9d0ce920555a44b68025",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-1641dd004b06404290f2",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[23]/h2",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[5]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-detachment-929f4ed7941374d9": {
+      "mfmForceDispositionIds": [
+        "mfm-force-disposition-312f0b592e98e73f"
+      ],
+      "missionForceDispositionIds": [
+        "force-disposition-purge-the-foe"
+      ],
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-b84a7700a71549e399ba",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-47d25d12eb0e492193e9",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/h2",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
     }
   },
   "enhancementBindings": {
@@ -4750,20 +4478,10 @@
       "armyEnhancementId": "encircling-horrors",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-00a580832c3cb3fc": {
-      "armyDetachmentId": "bastion-task-force",
-      "armyEnhancementId": "blades-of-valour",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-012638083ea6714e": {
       "armyDetachmentId": "detachment-explorator-maniple",
       "armyEnhancementId": "enhancement-artisan",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-0129c601d7d8a2fd": {
-      "armyDetachmentId": "librarius-conclave",
-      "armyEnhancementId": "fusillade",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-02466c23871d189e": {
       "armyDetachmentId": "chaos-cult",
@@ -4774,11 +4492,6 @@
       "armyDetachmentId": "detachment-virulent-vectorium",
       "armyEnhancementId": "enhancement-arch-contaminator",
       "armyBookId": "death-guard"
-    },
-    "mfm-enhancement-0297d1ca6646a61d": {
-      "armyDetachmentId": "anvil-siege-force",
-      "armyEnhancementId": "anvil-siege-force-stoic-defender",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-03a251d4e568bb90": {
       "armyDetachmentId": "carnival-of-excess",
@@ -4794,11 +4507,6 @@
       "armyDetachmentId": "detachment-tallyband-summoners",
       "armyEnhancementId": "enhancement-entropic-knell",
       "armyBookId": "death-guard"
-    },
-    "mfm-enhancement-0727b7389d4313d4": {
-      "armyDetachmentId": "bastion-task-force",
-      "armyEnhancementId": "eye-of-the-primarch",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-07c990775296d91b": {
       "armyDetachmentId": "creations-of-bile",
@@ -4825,11 +4533,6 @@
       "armyEnhancementId": "enhancement-intoxicating-musk",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-0bcbb966f074f292": {
-      "armyDetachmentId": "headhunter-task-force",
-      "armyEnhancementId": "astartes-tank-ace-aura",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-0ced9b991e097ce6": {
       "armyDetachmentId": "detachment-tallyband-summoners",
       "armyEnhancementId": "enhancement-tome-of-bounteous-blessings",
@@ -4839,16 +4542,6 @@
       "armyDetachmentId": "warpstrike-champions",
       "armyEnhancementId": "enhancement-akshurs-binding-runes",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-0d98599c7a0d7b92": {
-      "armyDetachmentId": "1st-company-task-force",
-      "armyEnhancementId": "1st-company-task-force-the-imperiums-sword",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-0e50a9dcf71242a4": {
-      "armyDetachmentId": "bastion-task-force",
-      "armyEnhancementId": "hero-of-the-chapter",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-0e9742e217d57101": {
       "armyDetachmentId": "detachment-eradication-cohort",
@@ -4864,11 +4557,6 @@
       "armyDetachmentId": "devotees-of-destruction",
       "armyEnhancementId": "enhancement-eye-of-oblivion",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-112790ee6f86e3f8": {
-      "armyDetachmentId": "anvil-siege-force",
-      "armyEnhancementId": "anvil-siege-force-fleet-commander",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-11fe235a1d6a1016": {
       "armyDetachmentId": "nightmare-hunt",
@@ -4890,11 +4578,6 @@
       "armyEnhancementId": "enhancement-neuronode",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-17ba08ab47471a84": {
-      "armyDetachmentId": "librarius-conclave",
-      "armyEnhancementId": "obfuscation",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-17ce99236e3b3b35": {
       "armyDetachmentId": "detachment-death-lords-chosen",
       "armyEnhancementId": "enhancement-vile-vigour",
@@ -4904,11 +4587,6 @@
       "armyDetachmentId": "invasion-fleet",
       "armyEnhancementId": "enhancement-synaptic-linchpin",
       "armyBookId": "tyranids"
-    },
-    "mfm-enhancement-1b0fdc3612b1705b": {
-      "armyDetachmentId": "stormlance-task-force",
-      "armyEnhancementId": "stormlance-task-force-portents-of-wisdom",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-1b3fc2ff60474963": {
       "armyDetachmentId": "detachment-eradication-cohort",
@@ -4924,11 +4602,6 @@
       "armyDetachmentId": "dread-talons",
       "armyEnhancementId": "enhancement-dread-talons-warp-fuelled-thrusters",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-1e2d94124fc54d07": {
-      "armyDetachmentId": "legacy-of-grace",
-      "armyEnhancementId": "enhancement-aureole-of-the-angel",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-1f16b67b360fce82": {
       "armyDetachmentId": "detachment-champions-of-contagion",
@@ -4950,35 +4623,15 @@
       "armyEnhancementId": "enhancement-eager-for-vengeance",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-21c722fcf46d282e": {
-      "armyDetachmentId": "vanguard-spearhead",
-      "armyEnhancementId": "vanguard-spearhead-the-blade-driven-deep",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-21f016123928ba43": {
-      "armyDetachmentId": "liberator-assault-group",
-      "armyEnhancementId": "enhancement-icon-of-the-angel",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-22a08f8fd174d51e": {
       "armyDetachmentId": "synaptic-nexus",
       "armyEnhancementId": "enhancement-power-of-the-hive-mind",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-234072074fca1fe2": {
-      "armyDetachmentId": "ironstorm-spearhead",
-      "armyEnhancementId": "ironstorm-spearhead-target-augury-web",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-240cefea4526db25": {
       "armyDetachmentId": "peerless-bladesmen",
       "armyEnhancementId": "enhancement-blinding-speed",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-24950db49ed939ea": {
-      "armyDetachmentId": "orbital-assault-force",
-      "armyEnhancementId": "dedicated-gunship",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-25feb21db0b8ea2e": {
       "armyDetachmentId": "creations-of-bile",
@@ -4994,11 +4647,6 @@
       "armyDetachmentId": "detachment-cohort-cybernetica",
       "armyEnhancementId": "enhancement-lord-of-machines",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-288fe3ddf9841e33": {
-      "armyDetachmentId": "subversion-assets",
-      "armyEnhancementId": "shroud-field",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-2b62d031eb24cc22": {
       "armyDetachmentId": "deceptors",
@@ -5025,11 +4673,6 @@
       "armyEnhancementId": "enhancement-tzagulla",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-2e5fcd93eacb1513": {
-      "armyDetachmentId": "stormlance-task-force",
-      "armyEnhancementId": "stormlance-task-force-feinting-withdrawal",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-3017cc93e15438b5": {
       "armyDetachmentId": "experimental-prototype-cadre",
       "armyEnhancementId": "thermoneutronic-projector",
@@ -5039,11 +4682,6 @@
       "armyDetachmentId": "talons-of-the-norn-queen",
       "armyEnhancementId": "destabilising-predation",
       "armyBookId": "tyranids"
-    },
-    "mfm-enhancement-318bd2e9614743dc": {
-      "armyDetachmentId": "1st-company-task-force",
-      "armyEnhancementId": "1st-company-task-force-iron-resolve",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-327e01ad7ad2572b": {
       "armyDetachmentId": "detachment-tallyband-summoners",
@@ -5080,11 +4718,6 @@
       "armyEnhancementId": "enhancement-spearhead-striker",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-38c95f3f7467c99e": {
-      "armyDetachmentId": "the-lost-brethren",
-      "armyEnhancementId": "enhancement-blood-shard",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-38de42ff2be1376e": {
       "armyDetachmentId": "crusher-stampede",
       "armyEnhancementId": "enhancement-monstrous-nemesis",
@@ -5094,16 +4727,6 @@
       "armyDetachmentId": "invasion-fleet",
       "armyEnhancementId": "enhancement-perfectly-adapted",
       "armyBookId": "tyranids"
-    },
-    "mfm-enhancement-3b586d5681a3a4d2": {
-      "armyDetachmentId": "orbital-assault-force",
-      "armyEnhancementId": "laurels-of-thunder",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-3c2dfb1471a65d0f": {
-      "armyDetachmentId": "wrath-of-the-doomed",
-      "armyEnhancementId": "enhancement-instinctive-interception",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-3c61e3bc9e9ed7ea": {
       "armyDetachmentId": "renegade-warband",
@@ -5130,11 +4753,6 @@
       "armyEnhancementId": "enhancement-warped-foresight",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-3edf11b92f07211b": {
-      "armyDetachmentId": "orbital-assault-force",
-      "armyEnhancementId": "veteran-of-the-vanguard",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-3f5d9c86abbd7169": {
       "armyDetachmentId": "detachment-data-psalm-conclave",
       "armyEnhancementId": "enhancement-mechanicus-locum",
@@ -5145,11 +4763,6 @@
       "armyEnhancementId": "enhancement-eye-of-the-warp",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-40a19ed4408933dd": {
-      "armyDetachmentId": "vanguard-spearhead",
-      "armyEnhancementId": "vanguard-spearhead-shadow-war-veteran",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-414121ce8c787cf3": {
       "armyDetachmentId": "montka",
       "armyEnhancementId": "enhancement-strategic-conqueror",
@@ -5159,11 +4772,6 @@
       "armyDetachmentId": "detachment-champions-of-contagion",
       "armyEnhancementId": "enhancement-cornucophagus",
       "armyBookId": "death-guard"
-    },
-    "mfm-enhancement-41c089e6842b3a5b": {
-      "armyDetachmentId": "gladius-task-force",
-      "armyEnhancementId": "gladius-task-force-artificer-armour",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-420bf8f8ae18813e": {
       "armyDetachmentId": "detachment-cohort-acquisitus",
@@ -5190,20 +4798,10 @@
       "armyEnhancementId": "enhancement-dark-blessings",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-450a2f76ae43f1e0": {
-      "armyDetachmentId": "ceramite-sentinels",
-      "armyEnhancementId": "honour-indefatigable",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-4808dd49311a19bc": {
       "armyDetachmentId": "cult-of-the-arkifane",
       "armyEnhancementId": "enhancement-mark-of-the-soul-forges",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-48f5683d82e15b8e": {
-      "armyDetachmentId": "firestorm-assault-force",
-      "armyEnhancementId": "firestorm-assault-force-forged-in-battle",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-4b5a85dab433a83a": {
       "armyDetachmentId": "nightmare-hunt",
@@ -5214,11 +4812,6 @@
       "armyDetachmentId": "detachment-cohort-acquisitus",
       "armyEnhancementId": "enhancement-explorator-dispensation",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-4c5e1d92f9088dea": {
-      "armyDetachmentId": "angelic-inheritors",
-      "armyEnhancementId": "enhancement-ordained-sacrifice",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-4c90749b53719c71": {
       "armyDetachmentId": "detachment-cohort-cybernetica",
@@ -5275,11 +4868,6 @@
       "armyEnhancementId": "enhancement-loathsome-dexterity",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-54cf82464513ecc1": {
-      "armyDetachmentId": "gladius-task-force",
-      "armyEnhancementId": "gladius-task-force-adept-of-the-codex",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-55139acc592a587f": {
       "armyDetachmentId": "soulforged-warpack",
       "armyEnhancementId": "enhancement-soul-harvester",
@@ -5325,20 +4913,10 @@
       "armyEnhancementId": "enhancement-sorrowsyphon",
       "armyBookId": "death-guard"
     },
-    "mfm-enhancement-6026286d731f725c": {
-      "armyDetachmentId": "subversion-assets",
-      "armyEnhancementId": "death-in-the-dark",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-603b8d0fe5439255": {
       "armyDetachmentId": "subterranean-assault",
       "armyEnhancementId": "vanguard-intellect",
       "armyBookId": "tyranids"
-    },
-    "mfm-enhancement-60494039f8017386": {
-      "armyDetachmentId": "headhunter-task-force",
-      "armyEnhancementId": "firestorm-coordinators",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-627df5a7f8ace1b1": {
       "armyDetachmentId": "detachment-cohort-cybernetica",
@@ -5365,55 +4943,25 @@
       "armyEnhancementId": "supernova-launcher",
       "armyBookId": "tau-empire"
     },
-    "mfm-enhancement-64cf8469f1df6a68": {
-      "armyDetachmentId": "stormlance-task-force",
-      "armyEnhancementId": "stormlance-task-force-fury-of-the-storm",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-6815db67d2f9a9e8": {
       "armyDetachmentId": "detachment-haloscreed-battle-clade",
       "armyEnhancementId": "enhancement-cognitive-reinforcement",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-689c6661104389b9": {
-      "armyDetachmentId": "gladius-task-force",
-      "armyEnhancementId": "gladius-task-force-fire-discipline",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-68b9ea8517ef2643": {
       "armyDetachmentId": "assimilation-swarm",
       "armyEnhancementId": "enhancement-regenerating-monstrosity",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-68e6ed80b53fe274": {
-      "armyDetachmentId": "the-angelic-host",
-      "armyEnhancementId": "enhancement-artisan-of-war",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-691227c9e6ced5d1": {
-      "armyDetachmentId": "the-lost-brethren",
-      "armyEnhancementId": "enhancement-sanguinius-grace",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-6a44f3cb542277e9": {
       "armyDetachmentId": "creations-of-bile",
       "armyEnhancementId": "enhancement-surgical-precision",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-6a8a62ffdc66492d": {
-      "armyDetachmentId": "headhunter-task-force",
-      "armyEnhancementId": "gunnery-honours",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-6b376bf7f83b14e5": {
       "armyDetachmentId": "warpstrike-champions",
       "armyEnhancementId": "enhancement-infernal-fulgurite",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-6c839297f2fffb17": {
-      "armyDetachmentId": "vanguard-spearhead",
-      "armyEnhancementId": "vanguard-spearhead-ghostweave-cloak",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-6edc9a58ebedb999": {
       "armyDetachmentId": "chaos-cult",
@@ -5470,11 +5018,6 @@
       "armyEnhancementId": "enhancement-kroothawk-flock",
       "armyBookId": "tau-empire"
     },
-    "mfm-enhancement-77fccb04304ecdd1": {
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "armyEnhancementId": "enhancement-carmine-reliquary",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-78d417fd4ce93868": {
       "armyDetachmentId": "detachment-death-lords-chosen",
       "armyEnhancementId": "enhancement-face-of-death",
@@ -5484,11 +5027,6 @@
       "armyDetachmentId": "soulforged-warpack",
       "armyEnhancementId": "enhancement-forges-blessing",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-7b86ae19fa906b52": {
-      "armyDetachmentId": "ironstorm-spearhead",
-      "armyEnhancementId": "ironstorm-spearhead-the-flesh-is-weak",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-7bbd848f52537535": {
       "armyDetachmentId": "detachment-shamblerot-vectorium",
@@ -5500,11 +5038,6 @@
       "armyEnhancementId": "enhancement-emotionless-clarity",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-enhancement-7e7412b31ea78d9c": {
-      "armyDetachmentId": "anvil-siege-force",
-      "armyEnhancementId": "anvil-siege-force-architect-of-war",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-7e9a1613f81c6b02": {
       "armyDetachmentId": "subterranean-assault",
       "armyEnhancementId": "synaptic-strategy",
@@ -5515,40 +5048,15 @@
       "armyEnhancementId": "enhancement-final-ingredient",
       "armyBookId": "death-guard"
     },
-    "mfm-enhancement-80fb4f4900814268": {
-      "armyDetachmentId": "ceramite-sentinels",
-      "armyEnhancementId": "spy-skull-data-link",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-81315583e5d2edb9": {
-      "armyDetachmentId": "ceramite-sentinels",
-      "armyEnhancementId": "defensive-mastery",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-81f24b1d0d25736f": {
       "armyDetachmentId": "synaptic-nexus",
       "armyEnhancementId": "enhancement-psychostatic-disruption-aura",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-8201427595d1988a": {
-      "armyDetachmentId": "the-lost-brethren",
-      "armyEnhancementId": "enhancement-to-slay-the-warmaster",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-82d35823131aa2c5": {
-      "armyDetachmentId": "vanguard-spearhead",
-      "armyEnhancementId": "vanguard-spearhead-execute-and-redeploy",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-83495e777a676dc7": {
       "armyDetachmentId": "detachment-rad-zone-corps",
       "armyEnhancementId": "enhancement-malphonic-susurrus",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-837b728ca35363ab": {
-      "armyDetachmentId": "ironstorm-spearhead",
-      "armyEnhancementId": "ironstorm-spearhead-adept-of-the-omnissiah",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-84cdc2fa3764f096": {
       "armyDetachmentId": "detachment-virulent-vectorium",
@@ -5559,11 +5067,6 @@
       "armyDetachmentId": "kroot-hunting-pack",
       "armyEnhancementId": "enhancement-root-carved-weapons",
       "armyBookId": "tau-empire"
-    },
-    "mfm-enhancement-85aacad2fb1c1b01": {
-      "armyDetachmentId": "anvil-siege-force",
-      "armyEnhancementId": "anvil-siege-force-indomitable-fury",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-86b9e3c5a18732fa": {
       "armyDetachmentId": "detachment-death-lords-chosen",
@@ -5585,11 +5088,6 @@
       "armyEnhancementId": "enhancement-daemon-weapon-of-nurgle",
       "armyBookId": "death-guard"
     },
-    "mfm-enhancement-8d5a9fba8b7cf208": {
-      "armyDetachmentId": "fulguris-task-force",
-      "armyEnhancementId": "bellicose-weapon-spirits",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-8dac0d4d963ecce4": {
       "armyDetachmentId": "detachment-eradication-cohort",
       "armyEnhancementId": "enhancement-martial-signatum-amplificator",
@@ -5600,30 +5098,10 @@
       "armyEnhancementId": "enhancement-cybinfernal-font",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-8f5bb224de7f21bf": {
-      "armyDetachmentId": "ceramite-sentinels",
-      "armyEnhancementId": "castellum-omnivox",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-8f9ed99048aaf6d8": {
-      "armyDetachmentId": "legacy-of-grace",
-      "armyEnhancementId": "enhancement-blood-boil",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-90923bc89821bdf7": {
       "armyDetachmentId": "detachment-virulent-vectorium",
       "armyEnhancementId": "enhancement-revolting-regeneration",
       "armyBookId": "death-guard"
-    },
-    "mfm-enhancement-9133233d6df19131": {
-      "armyDetachmentId": "liberator-assault-group",
-      "armyEnhancementId": "enhancement-gift-of-foresight",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-91e9b0c28dcbc235": {
-      "armyDetachmentId": "armoured-speartip",
-      "armyEnhancementId": "tip-of-the-spear",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-948f30022bb4da17": {
       "armyDetachmentId": "nightmare-hunt",
@@ -5640,20 +5118,10 @@
       "armyEnhancementId": "enhancement-tempting-addendum",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-977955a99c263a1b": {
-      "armyDetachmentId": "stormlance-task-force",
-      "armyEnhancementId": "stormlance-task-force-hunters-instincts",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-99529f80c5ef29c2": {
       "armyDetachmentId": "detachment-lords-of-the-forge",
       "armyEnhancementId": "enhancement-tl-4-9",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-9a2945d126bab2e3": {
-      "armyDetachmentId": "fulguris-task-force",
-      "armyEnhancementId": "raptorial-cogitator-core",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-9a68ea9bc16d40a0": {
       "armyDetachmentId": "subterranean-assault",
@@ -5665,21 +5133,6 @@
       "armyEnhancementId": "enhancement-shadowcowl-talisman",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-9b7e3632c66c361c": {
-      "armyDetachmentId": "armoured-speartip",
-      "armyEnhancementId": "liberator",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-9cf64940c6f9fa6b": {
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "armyEnhancementId": "enhancement-sanguinary-tear-aura",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-9d3b0456c08c072d": {
-      "armyDetachmentId": "the-angelic-host",
-      "armyEnhancementId": "enhancement-visage-of-death",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-9e23ca6527e6211e": {
       "armyDetachmentId": "huron-s-marauders",
       "armyEnhancementId": "enhancement-voice-of-the-tyrant",
@@ -5690,20 +5143,10 @@
       "armyEnhancementId": "enhancement-exemplar-of-the-montka",
       "armyBookId": "tau-empire"
     },
-    "mfm-enhancement-a0348929e6229d51": {
-      "armyDetachmentId": "armoured-speartip",
-      "armyEnhancementId": "shock-deployment",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-a11b495719fd796a": {
       "armyDetachmentId": "peerless-bladesmen",
       "armyEnhancementId": "enhancement-faultless-opportunist",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-a152bada94e65ae8": {
-      "armyDetachmentId": "gladius-task-force",
-      "armyEnhancementId": "gladius-task-force-the-honour-vehement",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-a1a9a68af60d9f73": {
       "armyDetachmentId": "montka",
@@ -5724,11 +5167,6 @@
       "armyDetachmentId": "carnival-of-excess",
       "armyEnhancementId": "enhancement-warp-walker",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-a4498409d881d20f": {
-      "armyDetachmentId": "angelic-inheritors",
-      "armyEnhancementId": "enhancement-blazing-icon",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-a4b10818158fdf7d": {
       "armyDetachmentId": "frenzied-host",
@@ -5780,16 +5218,6 @@
       "armyEnhancementId": "enhancement-radial-suffusion",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-enhancement-aa78c5a8d7e697b0": {
-      "armyDetachmentId": "ironstorm-spearhead",
-      "armyEnhancementId": "ironstorm-spearhead-master-of-machine-war",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-ab9bd43a750a23a6": {
-      "armyDetachmentId": "angelic-inheritors",
-      "armyEnhancementId": "enhancement-prescient-flash",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-abae6e675813ca0e": {
       "armyDetachmentId": "court-of-the-phoenician",
       "armyEnhancementId": "enhancement-soulstain-made-manifest",
@@ -5810,11 +5238,6 @@
       "armyEnhancementId": "synaptoprescience",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-af88f45629363cc5": {
-      "armyDetachmentId": "liberator-assault-group",
-      "armyEnhancementId": "enhancement-rage-fuelled-warrior",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-b0c56c15dc5b233c": {
       "armyDetachmentId": "soulforged-warpack",
       "armyEnhancementId": "enhancement-invigorated-mechatendrils",
@@ -5825,16 +5248,6 @@
       "armyEnhancementId": "enhancement-shroud-of-obfuscation",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-b15eefd84fbbf3c5": {
-      "armyDetachmentId": "firestorm-assault-force",
-      "armyEnhancementId": "firestorm-assault-force-war-tempered-artifice",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-b189cfe7d2c7b9c9": {
-      "armyDetachmentId": "bastion-task-force",
-      "armyEnhancementId": "bombast-omnivox",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-b247f86e3b6e4907": {
       "armyDetachmentId": "fellhammer-siege-host",
       "armyEnhancementId": "enhancement-iron-artifice",
@@ -5844,11 +5257,6 @@
       "armyDetachmentId": "detachment-data-psalm-conclave",
       "armyEnhancementId": "enhancement-data-blessed-autosermon",
       "armyBookId": "adeptus-mechanicus"
-    },
-    "mfm-enhancement-b2873330e3fbe947": {
-      "armyDetachmentId": "librarius-conclave",
-      "armyEnhancementId": "prescience",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-b39766631c026c96": {
       "armyDetachmentId": "cult-of-the-arkifane",
@@ -5865,45 +5273,15 @@
       "armyEnhancementId": "enhancement-slayer-of-champions",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-b45c9219d0c19dd9": {
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "armyEnhancementId": "enhancement-angels-fang",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-b66dacc62d25e7ba": {
-      "armyDetachmentId": "encarmine-speartip",
-      "armyEnhancementId": "enhancement-angelic-executioner",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-b771c7a0fa34d46e": {
       "armyDetachmentId": "detachment-haloscreed-battle-clade",
       "armyEnhancementId": "enhancement-transoracular-dyad-wafers",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-enhancement-b780ba6c85dbbd6b": {
-      "armyDetachmentId": "1st-company-task-force",
-      "armyEnhancementId": "enhancement-fear-made-manifest",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-b794a2aaa1e43db2": {
-      "armyDetachmentId": "orbital-assault-force",
-      "armyEnhancementId": "orbital-uplink-reliquary",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-b98e1b6b5a92048c": {
-      "armyDetachmentId": "librarius-conclave",
-      "armyEnhancementId": "temporal-corridor",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-bb00410ffd1d69c0": {
       "armyDetachmentId": "mercurial-host",
       "armyEnhancementId": "enhancement-steeped-in-suffering",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-bb66283491d69bd1": {
-      "armyDetachmentId": "vengeful-hosts",
-      "armyEnhancementId": "enhancement-avenging-angel",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-bb920bbb6ac8c06d": {
       "armyDetachmentId": "detachment-mortarions-hammer",
@@ -5930,16 +5308,6 @@
       "armyEnhancementId": "enhancement-warp-tracer",
       "armyBookId": "chaos-space-marines"
     },
-    "mfm-enhancement-be37dd79a19052f3": {
-      "armyDetachmentId": "the-lost-brethren",
-      "armyEnhancementId": "enhancement-vengeful-onslaught",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-c0cbabf0523d6253": {
-      "armyDetachmentId": "firestorm-assault-force",
-      "armyEnhancementId": "firestorm-assault-force-champion-of-humanity",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-c0fc40c99132a777": {
       "armyDetachmentId": "ambush-predators",
       "armyEnhancementId": "cryptophotaic-camouflage",
@@ -5955,11 +5323,6 @@
       "armyEnhancementId": "enhancement-adaptive-biology",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-c544811e1fb59637": {
-      "armyDetachmentId": "liberator-assault-group",
-      "armyEnhancementId": "enhancement-speed-of-the-primarch",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-c588550b44ee1b6f": {
       "armyDetachmentId": "montka",
       "armyEnhancementId": "enhancement-coordinated-exploitation",
@@ -5969,11 +5332,6 @@
       "armyDetachmentId": "court-of-the-phoenician",
       "armyEnhancementId": "enhancement-tears-of-the-phoenix",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-c6244edbc96c2079": {
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "armyEnhancementId": "enhancement-master-of-the-red-thirst",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-c772ebd7007ff20c": {
       "armyDetachmentId": "nightmare-hunt",
@@ -6004,16 +5362,6 @@
       "armyDetachmentId": "elegant-brutes",
       "armyEnhancementId": "enhancement-frenzied-ferocity",
       "armyBookId": "emperors-children"
-    },
-    "mfm-enhancement-ca5fb5be4af6d6ee": {
-      "armyDetachmentId": "1st-company-task-force",
-      "armyEnhancementId": "1st-company-task-force-rites-of-war",
-      "armyBookId": "space-marines"
-    },
-    "mfm-enhancement-ca851ff358f0420a": {
-      "armyDetachmentId": "librarius-conclave",
-      "armyEnhancementId": "celerity",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-ca96bbe97584402d": {
       "armyDetachmentId": "dread-talons",
@@ -6055,11 +5403,6 @@
       "armyEnhancementId": "enhancement-electromiasmic-brazier",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-enhancement-d5c43790a8a2dd14": {
-      "armyDetachmentId": "angelic-inheritors",
-      "armyEnhancementId": "enhancement-troubling-visions",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-d5fefff1b08c424a": {
       "armyDetachmentId": "rapid-evisceration",
       "armyEnhancementId": "enhancement-sublime-prescience",
@@ -6080,16 +5423,6 @@
       "armyEnhancementId": "enhancement-beguiling-grotesquerie",
       "armyBookId": "emperors-children"
     },
-    "mfm-enhancement-d9b1d8e2f452b597": {
-      "armyDetachmentId": "encarmine-speartip",
-      "armyEnhancementId": "enhancement-shadow-of-abomination",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-enhancement-da16a8cde2701b7c": {
-      "armyDetachmentId": "vengeful-hosts",
-      "armyEnhancementId": "enhancement-orksbane",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-dacef9222772aee6": {
       "armyDetachmentId": "elegant-brutes",
       "armyEnhancementId": "enhancement-cacophonic-accompaniment",
@@ -6099,11 +5432,6 @@
       "armyDetachmentId": "kauyon",
       "armyEnhancementId": "enhancement-solid-image-projection-unit",
       "armyBookId": "tau-empire"
-    },
-    "mfm-enhancement-db486493432ac134": {
-      "armyDetachmentId": "headhunter-task-force",
-      "armyEnhancementId": "redoubtable-machine-spirit",
-      "armyBookId": "space-marines"
     },
     "mfm-enhancement-db9505976450ec26": {
       "armyDetachmentId": "detachment-explorator-maniple",
@@ -6155,11 +5483,6 @@
       "armyEnhancementId": "enhancement-sanctified-ordnance",
       "armyBookId": "adeptus-mechanicus"
     },
-    "mfm-enhancement-ea6dcde4ee41828c": {
-      "armyDetachmentId": "firestorm-assault-force",
-      "armyEnhancementId": "firestorm-assault-force-adamantine-mantle",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-ed169bd0533b5e8c": {
       "armyDetachmentId": "detachment-paragons-of-putrescence",
       "armyEnhancementId": "enhancement-rejuvenating-swarm",
@@ -6179,11 +5502,6 @@
       "armyDetachmentId": "veterans-of-the-long-war",
       "armyEnhancementId": "enhancement-eye-of-abaddon",
       "armyBookId": "chaos-space-marines"
-    },
-    "mfm-enhancement-f0925fd9b6f2c4ba": {
-      "armyDetachmentId": "wrath-of-the-doomed",
-      "armyEnhancementId": "enhancement-on-the-archtraitors-bridge",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-f0a2fa53a306d1d9": {
       "armyDetachmentId": "detachment-skitarii-hunter-cohort",
@@ -6205,11 +5523,6 @@
       "armyEnhancementId": "enhancement-null-nodules",
       "armyBookId": "tyranids"
     },
-    "mfm-enhancement-f5ecb13baffa356f": {
-      "armyDetachmentId": "the-angelic-host",
-      "armyEnhancementId": "enhancement-gleaming-pinions",
-      "armyBookId": "blood-angels"
-    },
     "mfm-enhancement-f65a3b4191ba7362": {
       "armyDetachmentId": "huron-s-marauders",
       "armyEnhancementId": "enhancement-dread-reputation",
@@ -6225,11 +5538,6 @@
       "armyEnhancementId": "enhancement-lord-of-the-walking-pox",
       "armyBookId": "death-guard"
     },
-    "mfm-enhancement-f9c3ee49b9a831dc": {
-      "armyDetachmentId": "armoured-speartip",
-      "armyEnhancementId": "armoured-commander",
-      "armyBookId": "space-marines"
-    },
     "mfm-enhancement-faa97aafb8009195": {
       "armyDetachmentId": "coterie-of-the-conceited",
       "armyEnhancementId": "enhancement-pledge-of-mortal-pain",
@@ -6239,11 +5547,6 @@
       "armyDetachmentId": "kauyon",
       "armyEnhancementId": "enhancement-precision-of-the-patient-hunter",
       "armyBookId": "tau-empire"
-    },
-    "mfm-enhancement-feea21e836711863": {
-      "armyDetachmentId": "the-angelic-host",
-      "armyEnhancementId": "enhancement-archangels-shard",
-      "armyBookId": "blood-angels"
     },
     "mfm-enhancement-fef76c4def11168d": {
       "armyDetachmentId": "detachment-mortarions-hammer",
@@ -6732,15 +6035,145 @@
         "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
         "reviewedAt": "2026-10-21"
       }
+    },
+    "mfm-enhancement-cf27a164f031db2d": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-23df164069854eb2996c",
+      "armyEnhancementId": "enhancement-ba-3f19e1f57dd94fcc92ae",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-c99f90a3afc74ce6aa95",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[1]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-665d8f957902b102": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-23df164069854eb2996c",
+      "armyEnhancementId": "enhancement-ba-e41fcde20bd649ef8d51",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-7486f4c370bc462db5de",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[3]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[2]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-870336fbe5f52ace": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-23df164069854eb2996c",
+      "armyEnhancementId": "enhancement-ba-c3527131d00a41efae68",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-66f2a093cd5c490ab35f",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[3]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-e4f01a7f5fe8b086": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-23df164069854eb2996c",
+      "armyEnhancementId": "enhancement-ba-3cc1e896eab1460c8748",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-52014b3f41a8400c8ded",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[22]/div[2]/div[3]/div[4]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[1]/div[4]/ul/div[4]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-28b0fd6597a34a83": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-9d0ce920555a44b68025",
+      "armyEnhancementId": "enhancement-ba-e4821c7600234224bb54",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-9e5f6cb3aeb74e2c9d9b",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[5]/div[3]/ul/div[1]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-4cf594c6fa1107f5": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-9d0ce920555a44b68025",
+      "armyEnhancementId": "enhancement-ba-2e1605fc8a6b4631b096",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-d0bf28a4572346e7afcc",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[23]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[5]/div[3]/ul/div[2]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-83825aa952dff48e": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-b84a7700a71549e399ba",
+      "armyEnhancementId": "enhancement-ba-9b2691d5805d46df9b88",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-ccd944798d144c0ea98a",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[3]/ul/div[1]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
+    },
+    "mfm-enhancement-b795bb93ab26ff6b": {
+      "bindingStatus": "BOUND",
+      "armyBookId": "blood-angels",
+      "armyDetachmentId": "detachment-ba-b84a7700a71549e399ba",
+      "armyEnhancementId": "enhancement-ba-c6832a51a86e4ae784ba",
+      "provenance": {
+        "sourceId": "blood-angels-mfm-v1.6",
+        "sourceCaptureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593",
+        "mappingReviewPath": "books/blood-angels/v2/mfm-mapping-review.json",
+        "mappingReviewSha256": "39C327C1232A8630F2789C09F108F16DDDACBF25F933A0BFACB1AB094908B9E8",
+        "nativeSourceId": "ba-source-4095bd4462234210b0f9",
+        "nativeSourcePointer": "/html/body/div/div[1]/div[3]/div[24]/div[2]/div[3]/div[2]/table/tbody[2]/tr/td",
+        "mfmSourcePointer": "/html/body/main/div[2]/div[4]/div/div[19]/div[3]/ul/div[2]/li",
+        "identityEvidence": "EXPLICIT_PAIRED_OCCURRENCE_PLUS_INDEPENDENT_STRUCTURAL_AND_NUMERIC_PROPERTIES_NOT_TITLE_MATCH",
+        "reviewedAt": "2026-10-22"
+      }
     }
   },
   "qualifierOwnerBindings": {
-    "mfm-qualifier-16256de810de10ce": {
-      "ownerKind": "DETACHMENT",
-      "mfmOwnerId": "mfm-detachment-5b9d3fa7660bd504",
-      "armyDetachmentId": "rage-cursed-onslaught",
-      "armyBookId": "blood-angels"
-    },
     "mfm-qualifier-18f0522cde73d410": {
       "ownerKind": "DETACHMENT",
       "mfmOwnerId": "mfm-detachment-345e29874bd7b141",
@@ -6773,12 +6206,6 @@
       "armyEnhancementId": "enhancement-exalted-patron",
       "armyBookId": "emperors-children"
     },
-    "mfm-qualifier-4d1de9ad843cd623": {
-      "ownerKind": "DETACHMENT",
-      "mfmOwnerId": "mfm-detachment-ffd2fcece708887e",
-      "armyDetachmentId": "angelic-inheritors",
-      "armyBookId": "blood-angels"
-    },
     "mfm-qualifier-546435e88e489433": {
       "ownerKind": "ENHANCEMENT",
       "mfmOwnerId": "mfm-enhancement-4b5a85dab433a83a",
@@ -6803,24 +6230,6 @@
       "mfmOwnerId": "mfm-detachment-e2fcbdcbba193d50",
       "armyDetachmentId": "experimental-prototype-cadre",
       "armyBookId": "tau-empire"
-    },
-    "mfm-qualifier-926cf85fc0fe6b70": {
-      "ownerKind": "DETACHMENT",
-      "mfmOwnerId": "mfm-detachment-100c555c085c96d4",
-      "armyDetachmentId": "legacy-of-grace",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-qualifier-a1e714edd8c527f6": {
-      "ownerKind": "DETACHMENT",
-      "mfmOwnerId": "mfm-detachment-be93431997f3105b",
-      "armyDetachmentId": "wrath-of-the-doomed",
-      "armyBookId": "blood-angels"
-    },
-    "mfm-qualifier-b5e8b5e8b571c9c6": {
-      "ownerKind": "DETACHMENT",
-      "mfmOwnerId": "mfm-detachment-ec8c4900c2e8e182",
-      "armyDetachmentId": "the-lost-brethren",
-      "armyBookId": "blood-angels"
     },
     "mfm-qualifier-e03337d79d78c7d0": {
       "ownerKind": "DETACHMENT",
@@ -7260,12 +6669,12 @@
   },
   "declaredCounts": {
     "armyBooks": 10,
-    "unitBindings": 526,
-    "unitReferenceOnly": 129,
-    "unitReferences": 655,
-    "detachmentBindings": 112,
-    "enhancementBindings": 367,
-    "qualifierOwnerBindings": 30,
+    "unitBindings": 426,
+    "unitReferenceOnly": 154,
+    "unitReferences": 580,
+    "detachmentBindings": 91,
+    "enhancementBindings": 290,
+    "qualifierOwnerBindings": 25,
     "missionForceDispositionIds": 5,
     "relationAdjudications": 3,
     "forceDispositionBindings": 5,
@@ -7311,6 +6720,6 @@
       "sourceFactionId": "thousand-sons"
     }
   },
-  "verifiedAt": "2026-10-21",
+  "verifiedAt": "2026-10-22",
   "effectiveDate": null
 }

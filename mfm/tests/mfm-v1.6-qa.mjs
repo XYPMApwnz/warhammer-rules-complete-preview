@@ -19,10 +19,14 @@ const currentRegistry=read('mfm/content/mfm-v1.6-scoped.identity-registry.json')
 validateMfmIdentityRegistry(read('mfm/content/mfm-v1.4.identity-registry.json'));
 const old=createCanonicalMfmFacts({identityRegistry:oldRegistry}),current=createCanonicalMfmFacts();
 validateCanonicalMfmFacts(old);validateCanonicalMfmFacts(current);
-assert.equal(current.sourceVersion,'v1.6-scoped-six');assert.equal(current.currentnessCutoff,'2026-10-21');
+assert.equal(current.sourceVersion,'v1.6-scoped-six');assert.equal(current.currentnessCutoff,'2026-10-22');
 assert.equal(createEffectiveMfmCatalog({canonicalFacts:old}).catalog.currentnessCutoff,'2026-09-30');
 const partitions=['pricingGroups','unitReferences','unitPointRecords','paidUpgradeRecords','leaderEligibilityRecords','supportEligibilityRecords','detachments','enhancementCosts','qualifierRecords'];
-const equalGameplay=facts=>{for(const key of partitions)assert.deepEqual(withoutProvenance(facts[key].filter(r=>!['space-marines','dark-angels'].includes(r.factionId))),withoutProvenance(old[key].filter(r=>!['space-marines','dark-angels'].includes(r.factionId))),key+' changed unrelated faction semantics');};
+// The three native SM-family sources were separately enrolled after this v1.5
+// snapshot. Six unchanged owners still compare with that historical baseline;
+// BA's new source is checked independently below, including mutation controls.
+const nativeEnrolledBooks=new Set(['space-marines','dark-angels','blood-angels']);
+const equalGameplay=facts=>{for(const key of partitions)assert.deepEqual(withoutProvenance(facts[key].filter(r=>!nativeEnrolledBooks.has(r.factionId))),withoutProvenance(old[key].filter(r=>!nativeEnrolledBooks.has(r.factionId))),key+' changed unrelated faction semantics');};
 equalGameplay(current);
 const six=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
 const findings=[];
@@ -46,10 +50,41 @@ for(const binding of currentRegistry.crossFactionUnitDependencies){
   verifyFrozenSource(binding.sourceId);assert.deepEqual(capture.unit,read(previous.sourceCapturePath).unit);
   assert.equal(capture.effectiveDate,null);
 }
-for(const book of ['blood-angels']){
-  assert.deepEqual(currentRegistry.factionBindings.find(f=>f.factionId===book),oldRegistry.factionBindings.find(f=>f.factionId===book));
-  assert.equal(createEffectiveMfmArmyProjection(book).sourceMetadata.version,'v1.4');
-}
+const baBinding=currentRegistry.factionBindings.find(f=>f.factionId==='blood-angels');
+const baCapture=read(baBinding.sourceCapturePath);
+verifyFrozenSource('blood-angels-mfm-v1.6');
+assert.equal(baCapture.version,'v1.6');assert.equal(baCapture.observedAt,'2026-10-22');assert.equal(baCapture.verifiedAt,'2026-10-22');
+assert.equal(baCapture.effectiveDate,null);assert.equal(baCapture.sourceUpdatedAt,null);
+assert.equal(baCapture.rawArtifacts[0].sha256,'CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD');
+const {captureSha256:baFingerprint,...baPayload}=baCapture;
+assert.equal(sha(JSON.stringify(stable(baPayload))),baFingerprint);
+const baGameplay=facts=>{
+  const units=facts.unitPointRecords.filter(r=>r.factionId==='blood-angels'&&r.status==='CURRENT');
+  assert.equal(units.length,14);assert.equal(units.reduce((n,u)=>n+u.pointSchedules.length,0),19);
+  assert.equal(units.reduce((n,u)=>n+u.pointSchedules.reduce((m,s)=>m+s.entries.length,0),0),25);
+  const refs=new Map(facts.unitReferences.map(r=>[r.id,r]));
+  for(const source of baCapture.units){
+    const point=units.find(r=>r.provenance.sourceLocator.sourceTitle===source.title);assert.ok(point);
+    assert.deepEqual(point.pointSchedules,source.pointSchedules);
+    for(const role of ['leader','support']){
+      const records=facts[role==='leader'?'leaderEligibilityRecords':'supportEligibilityRecords'].filter(r=>r.sourceUnitPointRecordId===point.id);
+      const expected=source.relations?.[role]??[];
+      assert.equal(records.length,expected.length?1:0);
+      if(expected.length)assert.deepEqual(records[0].targetUnitReferenceIds.map(id=>refs.get(id).provenance.sourceLocator.sourceTitle),expected);
+    }
+  }
+  const detachments=facts.detachments.filter(r=>r.factionId==='blood-angels');assert.equal(detachments.length,3);
+  const costs=facts.enhancementCosts.filter(r=>r.factionId==='blood-angels');assert.equal(costs.length,8);
+  for(const source of baCapture.detachments){
+    const det=detachments.find(r=>r.provenance.sourceLocator.sourceTitle===source.title);assert.ok(det);
+    assert.equal(det.detachmentPoints,source.detachmentPoints);
+    assert.deepEqual(det.mfmForceDispositionIds.map(id=>facts.crossDomainBindings.forceDispositionBindings[id].sourceValue),source.forceDispositions);
+    assert.deepEqual(costs.filter(r=>r.detachmentId===det.id).map(r=>[r.provenance.sourceLocator.sourceTitle,r.value]).sort(),source.enhancements.map(e=>[e.title,e.value]).sort());
+  }
+};
+baGameplay(current);
+assert.deepEqual(current.unitPointRecords.filter(r=>r.factionId==='blood-angels'&&r.status==='LEGENDS'),old.unitPointRecords.filter(r=>r.factionId==='blood-angels'&&r.status==='LEGENDS'));
+assert.equal(createEffectiveMfmArmyProjection('blood-angels').sourceMetadata.version,'v1.6');
 let mutations=0;
 const reject=(change,check=equalGameplay)=>{const mutant=structuredClone(current);change(mutant);assert.throws(()=>check(mutant));mutations++;};
 reject(f=>f.unitPointRecords.find(record=>record.factionId!=='space-marines').pointSchedules[0].entries[0].value++);
@@ -61,6 +96,10 @@ reject(f=>f.unitPointRecords.splice(f.unitPointRecords.findIndex(r=>r.factionId!
 reject(f=>f.unitPointRecords.push(structuredClone(f.unitPointRecords.find(record=>record.factionId!=='space-marines'))));
 reject(f=>f.sourceSnapshots.find(s=>s.version==='v1.6').effectiveDate='2026-09-30',validateCanonicalMfmFacts);
 reject(f=>f.unitPointRecords.find(r=>r.provenance.sourceVersion==='v1.6').provenance.verifiedAt='2026-09-30',validateCanonicalMfmFacts);
+reject(f=>f.unitPointRecords.find(r=>r.factionId==='blood-angels'&&r.status==='CURRENT').pointSchedules[0].entries[0].value++,baGameplay);
+reject(f=>f.unitPointRecords.find(r=>r.factionId==='blood-angels'&&r.status==='CURRENT'&&r.pointSchedules.some(s=>s.minCopies)).pointSchedules[0].minCopies=9,baGameplay);
+reject(f=>f.enhancementCosts.find(r=>r.factionId==='blood-angels').value++,baGameplay);
+reject(f=>f.leaderEligibilityRecords.find(r=>r.factionId==='blood-angels'&&r.status==='CURRENT').targetUnitReferenceIds.pop(),baGameplay);
 const validReference={id:'central-mfm-source',type:'CENTRALIZED_MFM_REFERENCE',authority:'CENTRALIZED_MFM',versionOrDate:'v1.6',status:'CURRENT',effectiveDate:null,verifiedAt:'2026-10-14',currentnessCutoff:'2026-10-14',url:'https://mfm.warhammer-community.com/en/death-guard'};
 validateRegistry([validReference]);
 assert.throws(()=>validateRegistry([{...validReference,effectiveFrom:'2026-09-30'}]));

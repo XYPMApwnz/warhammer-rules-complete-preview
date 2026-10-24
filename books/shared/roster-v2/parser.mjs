@@ -122,6 +122,14 @@ export function parse(text, options = {}) {
       if (unit) {
         const wargear = selectionParts(unit[5]);
         currentUnit = { id:`parsed-unit-${units.length + 1}`, sourceRef:unit[1] || '', quantity:integer(unit[2]), name:unit[3], points:integer(unit[4]), wargear:wargear.value, models:[], warlord:null };
+        // A leading N with describes N models sharing the whole comma list,
+        // not N copies of its first weapon. Canonical MODEL identity is still
+        // resolved at the import boundary, independently of this lexical group.
+        const group = wargear.value.match(/^(\d+)\s+with\s+(.+)$/i);
+        if (group) {
+          currentUnit.wargear='';
+          currentUnit.loadouts=[{quantity:integer(group[1]),wargear:group[2]}];
+        }
         currentModel = null;
         units.push(currentUnit);
         if (wargear.warlord) warlordMarkers.add(currentUnit.id);
@@ -158,6 +166,10 @@ export function parse(text, options = {}) {
         const equipment = selectionParts(loadout[2]);
         if (equipment.value) currentModel.loadouts.push({ quantity:integer(loadout[1]), wargear:equipment.value });
         if (equipment.warlord && currentUnit) warlordMarkers.add(currentUnit.id);
+      } else if (loadout && currentUnit) {
+        const equipment=selectionParts(loadout[2]);
+        if(equipment.value)(currentUnit.loadouts??=[]).push({quantity:integer(loadout[1]),wargear:equipment.value});
+        if(equipment.warlord)warlordMarkers.add(currentUnit.id);
       }
     }
 

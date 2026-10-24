@@ -359,7 +359,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
         blocked = true;
         const limitation=importLimitationForNeed(need,importLimitations);
-        fieldset.append(el('p', 'v2-roster-hint', limitation?limitation.message+' No roster changes were saved.':
+        fieldset.append(el('p', 'v2-roster-hint', limitation?limitation.message+' No roster changes were saved.':need.reason==='DETACHMENT_MEMBERSHIP_NOT_PROVEN'?need.message:
           'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
         fieldset.append(el('p', 'v2-roster-hint', need.kind==='ENHANCEMENT_BEARER'

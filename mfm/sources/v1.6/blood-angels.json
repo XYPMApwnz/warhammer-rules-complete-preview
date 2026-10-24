@@ -1,0 +1,536 @@
+{
+  "schema": "warhammer-mfm-live-capture/v1",
+  "title": "Munitorum Field Manual",
+  "edition": "Warhammer 40,000 11th Edition",
+  "factionId": "blood-angels",
+  "factionLabel": "Blood Angels",
+  "version": "v1.6",
+  "sourceUpdatedAt": null,
+  "capturedAt": "2026-10-22T07:14:15.463Z",
+  "observedAt": "2026-10-22",
+  "verifiedAt": "2026-10-22",
+  "effectiveDate": null,
+  "currentnessCutoff": "2026-10-22",
+  "currentness": "CURRENT",
+  "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
+  "url": "https://mfm.warhammer-community.com/en/blood-angels",
+  "rawArtifacts": [
+    {
+      "path": "official-mfm-ba-hydrated.html",
+      "sha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD",
+      "bytes": 506163,
+      "state": "CURRENT"
+    }
+  ],
+  "sourceGroups": [
+    "UNITS"
+  ],
+  "counts": {
+    "currentUnits": 14,
+    "legendsUnits": 0,
+    "totalPricedUnits": 14,
+    "pointSchedules": 19,
+    "pointRows": 25,
+    "paidOptions": 0,
+    "leaderRecords": 6,
+    "leaderEdges": 12,
+    "supportRecords": 1,
+    "supportEdges": 8,
+    "detachments": 3,
+    "enhancements": 8,
+    "detachmentQualifierRecords": 0,
+    "enhancementQualifierRecords": 0
+  },
+  "units": [
+    {
+      "title": "ASTORATH",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "DEATH COMPANY MARINES WITH JUMP PACKS"
+        ]
+      }
+    },
+    {
+      "title": "BAAL PREDATOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 135
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 150
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "BLOOD ANGELS CAPTAIN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 90
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "COMPANY HEROES",
+          "INFERNUS SQUAD",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "CHIEF LIBRARIAN MEPHISTON",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 175
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "COMMANDER DANTE",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 140
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "ASSAULT INTERCESSORS WITH JUMP PACKS",
+          "SANGUINARY GUARD",
+          "VANGUARD VETERAN SQUAD WITH JUMP PACKS"
+        ]
+      }
+    },
+    {
+      "title": "DEATH COMPANY CAPTAIN",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 80
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "DEATH COMPANY MARINES"
+        ]
+      }
+    },
+    {
+      "title": "DEATH COMPANY CAPTAIN WITH JUMP PACK",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 85
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "DEATH COMPANY MARINES WITH JUMP PACKS"
+        ]
+      }
+    },
+    {
+      "title": "DEATH COMPANY DREADNOUGHT",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 165
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 185
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "DEATH COMPANY MARINES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 90
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 170
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 105
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 185
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "DEATH COMPANY MARINES WITH JUMP PACKS",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 130
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 260
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "5 models",
+              "minModels": 5,
+              "maxModels": 5,
+              "value": 160
+            },
+            {
+              "sourceLabel": "10 models",
+              "minModels": 10,
+              "maxModels": 10,
+              "value": 290
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "LEMARTES",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 110
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "leader": [
+          "DEATH COMPANY MARINES WITH JUMP PACKS"
+        ]
+      }
+    },
+    {
+      "title": "SANGUINARY GUARD",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR 1ST TO 2ND UNITS COST",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 135
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 275
+            }
+          ],
+          "minCopies": 1,
+          "maxCopies": 2
+        },
+        {
+          "sourceLabel": "YOUR 3RD + UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "3 models",
+              "minModels": 3,
+              "maxModels": 3,
+              "value": 150
+            },
+            {
+              "sourceLabel": "6 models",
+              "minModels": 6,
+              "maxModels": 6,
+              "value": 290
+            }
+          ],
+          "minCopies": 3
+        }
+      ]
+    },
+    {
+      "title": "SANGUINARY PRIEST",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 60
+            }
+          ]
+        }
+      ],
+      "relations": {
+        "support": [
+          "ASSAULT INTERCESSOR SQUAD",
+          "BLADEGUARD VETERAN SQUAD",
+          "COMPANY HEROES",
+          "DESOLATION SQUAD",
+          "HELLBLASTER SQUAD",
+          "INFERNUS SQUAD",
+          "INTERCESSOR SQUAD",
+          "STERNGUARD VETERAN SQUAD"
+        ]
+      }
+    },
+    {
+      "title": "THE SANGUINOR",
+      "sourceGroup": "UNITS",
+      "status": "CURRENT",
+      "pointSchedules": [
+        {
+          "sourceLabel": "YOUR UNIT COSTS",
+          "entries": [
+            {
+              "sourceLabel": "1 model",
+              "minModels": 1,
+              "maxModels": 1,
+              "value": 120
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "detachments": [
+    {
+      "title": "ANGELIC INHERITORS",
+      "detachmentPoints": 3,
+      "forceDispositions": [
+        "PRIORITY ASSETS",
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Blazing Icon",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Ordained Sacrifice",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Prescient Flash",
+          "value": 25,
+          "qualifiers": []
+        },
+        {
+          "title": "Unto Death",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "ENCARMINE SPEARTIP",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "DISRUPTION"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Angelic Executioner",
+          "value": 20,
+          "qualifiers": []
+        },
+        {
+          "title": "Shadow of Abomination",
+          "value": 15,
+          "qualifiers": []
+        }
+      ]
+    },
+    {
+      "title": "WRATH OF THE DOOMED",
+      "detachmentPoints": 1,
+      "forceDispositions": [
+        "PURGE THE FOE"
+      ],
+      "qualifiers": [],
+      "enhancements": [
+        {
+          "title": "Instinctive Interception",
+          "value": 10,
+          "qualifiers": []
+        },
+        {
+          "title": "On the Archtraitor's Bridge",
+          "value": 20,
+          "qualifiers": []
+        }
+      ]
+    }
+  ],
+  "sourceId": "blood-angels-mfm-v1.6",
+  "enrollmentScope": {
+    "policy": "BA_OWNED_ONLY_SHARED_SM_AND_DEATHWATCH_REFERENCED_NOT_DUPLICATED",
+    "sharedUnitsOmitted": 69,
+    "sharedDetachmentsOmitted": 15,
+    "deathwatchDetachmentsOmitted": 1,
+    "sharedEnhancementUpgradeEntriesOmitted": 32,
+    "deathwatchEnhancementsOmitted": 1,
+    "note": "The full official HTML is retained. Only reviewed BA-owned CURRENT facts are enrolled here; shared prices and identities stay with their existing SM or Deathwatch owner."
+  },
+  "captureSha256": "1BC946E2290E8C4089F239D41B50E7B6A23A92BF77F5212E48DDEB4DCA78E593"
+}

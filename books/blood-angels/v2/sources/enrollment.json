@@ -1,0 +1,166 @@
+{
+  "schema": "blood-angels-v2-source-enrollment/v1",
+  "bookId": "blood-angels",
+  "edition": "11E",
+  "verifiedAt": "2026-10-22",
+  "acceptedBaseHead": "8d5889321f6f7a428a52683091ed258bc2b5d1e2",
+  "sourceStatus": "ACCEPTED_FOR_LIMITED_FACTUAL_IMPLEMENTATION;SECONDARY_WITH_OFFICIAL_PARTIAL_CORROBORATION",
+  "sourcePublicationVersionReportedByWaha": "App. Blood Angels (11th edition),2.8.1 October2026",
+  "artifacts": [
+    {
+      "path": "books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/blood-angels",
+      "sha256": "1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4",
+      "bytes": 869381,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:11.408144+00:00",
+      "authority": "ACCEPTED_SECONDARY",
+      "usage": "FACTUAL_INPUT"
+    },
+    {
+      "path": "books/blood-angels/v2/sources/raw/wahapedia-datasheets.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+      "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+      "bytes": 13660919,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:11.408144+00:00",
+      "authority": "ACCEPTED_SECONDARY",
+      "usage": "FACTUAL_INPUT"
+    },
+    {
+      "path": "books/blood-angels/v2/sources/raw/mfm-ba-hydrated.html",
+      "url": "https://mfm.warhammer-community.com/en/blood-angels",
+      "sha256": "CFB2246142919E21E77CAB5F7945A59125BE2F1D81F2673914F8A6912F4AD9FD",
+      "bytes": 506163,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:15.463Z",
+      "authority": "OFFICIAL",
+      "usage": "BOUNDARY_REVIEW_ONLY_NO_PRICING"
+    },
+    {
+      "path": "books/blood-angels/v2/sources/raw/mfm-blood-angels.html",
+      "url": "https://mfm.warhammer-community.com/en/blood-angels",
+      "sha256": "260007BB84ED9A2F40B844D930CED31E795F608F426A7C348ECEA5ACBE7B4754",
+      "bytes": 374272,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:36.333382+00:00",
+      "authority": "OFFICIAL",
+      "usage": "BOUNDARY_REVIEW_ONLY_NO_PRICING"
+    },
+    {
+      "path": "books/blood-angels/v2/sources/raw/ba-current-legends-20260930.pdf",
+      "url": "https://assets.warhammer-community.com/eng_30-09_wh40k_faction_pack_blood_angels-klcdcz9zip-wgf7iqk1vd.pdf",
+      "sha256": "99DE0E9915C80CA8A5D6AE92B139410C58BE0277EA86DD70BFE791F5916E04FE",
+      "bytes": 2704812,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:54.610727+00:00",
+      "authority": "OFFICIAL",
+      "usage": "LEGENDS_BOUNDARY_ONLY_NOT_CURRENT_FACTS"
+    },
+    {
+      "path": "books/blood-angels/v2/sources/raw/gw-sm-ba-da-update.html",
+      "url": "https://www.warhammer-community.com/en-gb/articles/voakmnny/space-marines-detachments-blood-angels-and-dark-angels/",
+      "sha256": "148D217CE719FE59DA40791CE27A2209384AA65D4F52A07E42C8C580BCD9DEEB",
+      "bytes": 370894,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:36.840099+00:00",
+      "authority": "OFFICIAL",
+      "usage": "HISTORICAL_PREVIEW_NOT_ACTIVE_OVERLAY"
+    },
+    {
+      "path": "books/space-marines/v2/sources/raw/wahapedia-space-marines-main.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "sha256": "DD7420597CCC235859B9326F146964746EFFBC8A48752DA4D622BC99DEE1BED7",
+      "bytes": 1412322,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:11.407144+00:00",
+      "authority": "EXISTING_ACCEPTED_SM_OWNER",
+      "usage": "DEPENDENCY_SOURCE_REFERENCE_NOT_COPIED_OR_REAPPLIED"
+    },
+    {
+      "path": "books/space-marines/v2/sources/raw/wahapedia-datasheets-probe.html",
+      "url": "https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html",
+      "sha256": "66E115EF9E2DC6E3336A3C1B8F3331EB4B92493DDA1D1B9B59133E8CCA07291D",
+      "bytes": 13660919,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:11.408144+00:00",
+      "authority": "EXISTING_ACCEPTED_SM_OWNER",
+      "usage": "DEPENDENCY_SOURCE_REFERENCE_NOT_COPIED_OR_REAPPLIED"
+    },
+    {
+      "path": "books/space-marines/v2/sources/raw/official-sm-updates.pdf",
+      "url": "https://assets.warhammer-community.com/eng_14-10_wh40k_printed_product_updates_space_marines_updates-91hillwcff-wzs8qnozam.pdf",
+      "sha256": "98C2B114E4E4B33EA385C7115BB9ACBA83C32AE4E17F753A3D73EF20C7D45D1F",
+      "bytes": 933727,
+      "httpStatus": 200,
+      "capturedAtUTC": "2026-10-22T07:14:54.862640+00:00",
+      "authority": "EXISTING_ACCEPTED_SM_OWNER",
+      "usage": "DEPENDENCY_SOURCE_REFERENCE_NOT_COPIED_OR_REAPPLIED"
+    }
+  ],
+  "additionalReviewedCaptures": [
+    {
+      "url": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+      "sha256": "A548237A6E8DF95F2EEAAC9AC4256E1715B0C91AA1F7E99102F1EA4E986B6133",
+      "bytes": 323305,
+      "capturedAtUTC": "2026-10-22T07:14:35.565918+00:00",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    },
+    {
+      "url": "https://mfm.warhammer-community.com/en/",
+      "sha256": "88E5326E3476BFCDE3D72D8B551F08B9B770BE468DCA904B4CD8DC3652FCC33E",
+      "bytes": 97477,
+      "capturedAtUTC": "2026-10-22T07:14:36.538840+00:00",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    },
+    {
+      "url": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/",
+      "sha256": "653F24E5B9CD39CCACE5350C0E073327A24F2BBA49121EB7779E859FD647481B",
+      "bytes": 573140,
+      "capturedAtUTC": "2026-10-22T07:14:11.927Z",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    },
+    {
+      "url": "https://assets.warhammer-community.com/eng_wh40k_core&key_universal_rules_updates-lu3grocned-rphh78bl6k.pdf",
+      "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+      "bytes": 935104,
+      "capturedAtUTC": "2026-10-22T07:14:55.262801+00:00",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    },
+    {
+      "url": "https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf",
+      "sha256": "F6A2443A44627AC5F0EF08407D29AA5EC7E97339998F05BC35F3AE37BF276833",
+      "bytes": 32214071,
+      "capturedAtUTC": "2026-10-22T07:14:56.819506+00:00",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    },
+    {
+      "url": "https://mfm.warhammer-community.com/en/blood-angels",
+      "sha256": "7B3E70A2BDA2FA80337809EA7E65F7C40D53262F4F6517E3A93CC5511EF70220",
+      "bytes": 522862,
+      "capturedAtUTC": "2026-10-22T07:17:37.388Z",
+      "usage": "STAGE1_REVIEW_METADATA_ONLY_NOT_PRODUCER_INPUT"
+    }
+  ],
+  "sourceBindings": "books/blood-angels/v2/source-bindings.json",
+  "identityBindings": "books/blood-angels/v2/identity-bindings.json",
+  "sourceReview": "books/blood-angels/v2/source-review.json",
+  "sourceCompleteness": "PARTIAL",
+  "semanticCompleteness": "NOT_PROVEN",
+  "officialCorrections": {
+    "currentBAPack": "v1.2 Legends-only;no current facts imported",
+    "currentOfficialApp": "FULL_CAPTURE_UNAVAILABLE",
+    "historicalPreview": "2026-09-15;not active field correction",
+    "inheritedSM": "Existing accepted corrected facts remain SM-owned;never reapplied"
+  },
+  "limitations": [
+    "No gameplay/importer/Chapter keyword grants/UI registration",
+    "Central BA MFMv1.4 untouched;v1.6 candidates inactive",
+    "No aliases for two unresolved equipment wordings",
+    "Preserve BlackRage literalOR and unknown positional context",
+    "No invented CORELeader/IMPERIUM onDCJumpCaptain;explicitLEADERdeclaration retained",
+    "DOOMED/GRACE not source-defined independent keywords in accepted corpus",
+    "Mixed owner references are not runtime integration",
+    "Real NewRecruit BA11E export not tested"
+  ]
+}
