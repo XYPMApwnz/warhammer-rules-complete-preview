@@ -24,7 +24,7 @@ function fixture(){
     fs.mkdirSync(path.dirname(target),{recursive:true});
     fs.copyFileSync(path.resolve(coreRoot,'content',image.artifact),target);
   }
-  for(const file of ['build.mjs','presentation.mjs','presentation-bindings.json'])fs.copyFileSync(path.join(coreRoot,'reader',file),path.join(stagedCore,'reader',file));
+  for(const file of ['build.mjs','term-bindings.mjs','presentation.mjs','presentation-bindings.json'])fs.copyFileSync(path.join(coreRoot,'reader',file),path.join(stagedCore,'reader',file));
   fs.copyFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),path.join(root,'books','shared','runtime-asset-versions.json'));
   fs.cpSync(path.join(repoRoot,'books','shared','canonical-content-v2'),path.join(root,'books','shared','canonical-content-v2'),{recursive:true});
   return {root,core:stagedCore,reader:path.join(stagedCore,'reader')};

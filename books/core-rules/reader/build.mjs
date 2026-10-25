@@ -5,6 +5,7 @@ import {verifyPdfParity} from '../tools/verify_pdf_parity.mjs';
 import {recordText} from '../content/record-content.mjs';
 import {createCoreFactProjection} from '../content/core-fact-projection.mjs';
 import {createReaderPresentation} from './presentation.mjs';
+import {createAutolinkTerms} from './term-bindings.mjs';
 
 const root=path.dirname(fileURLToPath(import.meta.url));
 const bookRoot=path.dirname(root);
@@ -12,7 +13,8 @@ const repoRoot=path.resolve(bookRoot,'..','..');
 const runtimeVersions=JSON.parse(fs.readFileSync(path.join(repoRoot,'books','shared','runtime-asset-versions.json'),'utf8'));
 const projection=createCoreFactProjection({repoRoot});
 const catalog=projection.catalog;
-const readerPresentation=createReaderPresentation(catalog,JSON.parse(fs.readFileSync(path.join(root,'presentation-bindings.json'),'utf8')));
+const presentationBindings=JSON.parse(fs.readFileSync(path.join(root,'presentation-bindings.json'),'utf8'));
+const readerPresentation=createReaderPresentation(catalog,presentationBindings);
 const data=catalog.presentation.reader;
 const pdf=projection.coreSource;
 const modules=[
@@ -67,7 +69,7 @@ const displayTitleOverrides={'24.37.01':'Torrent Restrictions'};
 const displayTitle=rule=>displayTitleOverrides[rule.code]||rule.title;
 const sectionReferences=new Map([
   ['16.00',{label:'Actions',term:termByCode.get('16.01')}],
-  ['23.00',{label:'Aircraft',term:termByCode.get('23.01')}],
+  ['23.00',{label:'Aircraft',chapterId:sectionByNumber.get('23')}],
   ['17.00',{label:'Monsters and Vehicles',term:termByCode.get('17.01')}],
   ['20.00',{label:'Strategic Reserves',term:termByCode.get('20.01')}],
   ['18.00',{label:'Transports',term:termByCode.get('18.01')}]
@@ -98,19 +100,12 @@ const characteristicTerms=new Map([
   ['Armour Penetration','02.04'],
   ['Damage','02.04']
 ]);
-const candidates=new Map();
-for(const term of coreTermById.values()){
-  for(const label of [term.title?.en,...(term.aliases||[]),...(term.matchLabels||[])]){
-    const token=normalizeLabel(label);
-    if(token.length<3||ignoredAutolinkLabels.has(token))continue;
-    const entries=candidates.get(token)||[];
-    if(!entries.some(entry=>entry.id===term.id))entries.push(term);
-    candidates.set(token,entries);
-  }
-}
-for(const [code,term] of termByCode)candidates.set(normalizeLabel(code),[term]);
-const terms=new Map([...candidates].filter(([,entries])=>entries.length===1).map(([token,entries])=>[token,entries[0]]));
+const terms=createAutolinkTerms({terms:[...coreTermById.values()],termByCode,referenceOnlyIds:presentationBindings.referenceOnlyAutolinkIds,ignoredLabels:ignoredAutolinkLabels});
 const matcher=new RegExp(`(^|[^A-Za-z0-9])(${[...terms.keys()].sort((a,b)=>b.length-a.length).map(escapeRegExp).join('|')})(?=$|[^A-Za-z0-9])`,'gi');
+
+function chapterLink(reference,label=reference.label){
+  return `<a class="rule-reference" href="${escapeHtml(fileFor(reference.chapterId))}">${escapeHtml(label)}</a>`;
+}
 
 function termButton(term,label,extraClass=''){
   if(!term)return escapeHtml(label);
@@ -152,6 +147,14 @@ function linkedText(value,seen=new Set(),excludedId=''){
     const code=match[0].replace(/[()]/g,'');
     const sectionReference=sectionReferences.get(code);
     const chapterReference=chapterReferences.get(code);
+    if(sectionReference?.chapterId){
+      const before=text.slice(cursor,match.index);
+      const duplicate=new RegExp(`${escapeRegExp(sectionReference.label)}\\s*$`,'i').exec(before);
+      html+=linkedTerms(duplicate?before.slice(0,duplicate.index):before,seen,excludedId);
+      html+=chapterLink(sectionReference,duplicate?.[0].trim()||sectionReference.label);
+      cursor=match.index+match[0].length;
+      continue;
+    }
     const term=termByCode.get(code)||sectionReference?.term||chapterReference?.term;
     if(!term)continue;
     const before=text.slice(cursor,match.index);
@@ -183,6 +186,8 @@ function seeAlsoItem(value){
   const match=text.match(/\b\d{2}\.\d{2}(?:\.\d{2})?\b/);
   if(match){
     const code=match[0];
+    const reference=sectionReferences.get(code);
+    if(reference?.chapterId)return chapterLink(reference,text.slice(0,match.index).trim()||reference.label);
     const term=termByCode.get(code)||sectionReferences.get(code)?.term||chapterReferences.get(code)?.term;
     const label=text.slice(0,match.index).trim().replace(/^\[|\]$/g,'')||term?.title?.en||code;
     return termButton(term,label,'rule-reference');
