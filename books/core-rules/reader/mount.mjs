@@ -7,6 +7,7 @@ const readerURL=new URL('./index.html',import.meta.url);
 
 /** Placement only: existing reader navigation and search projections own these addresses. */
 export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL.href}) {
+  if(!Array.isArray(chapterURLs)||!Array.isArray(placements)||!placements.length)throw new Error('Invalid Core reader placements');
   const base=new URL(baseURL),chapters=new Map(),targets=new Map(),owners=new Map();
   for(const address of chapterURLs) {
     const url=new URL(address,base);
@@ -17,7 +18,7 @@ export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL
   for(const entry of placements) {
     const id=entry.id||entry.code,url=new URL(entry.url,base);
     const chapterId=[...chapters].find(([,pathname])=>pathname===url.pathname)?.[0];
-    if(!chapterId||!url.hash||typeof id!=='string')throw new Error('Unbound Core reader placement');
+    if(url.origin!==base.origin||!chapterId||!url.hash||typeof id!=='string')throw new Error('Unbound Core reader placement');
     const sectionId=decodeURIComponent(url.hash.slice(1)),target={chapterId,sectionId,canonicalId:id};
     if(targets.has(id)||owners.has(url.pathname+url.hash))throw new Error('Duplicate Core reader placement');
     targets.set(id,target);owners.set(url.pathname+url.hash,target);
@@ -41,6 +42,37 @@ export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL
   return Object.freeze({routeFor,locationFor,chapterIds:Object.freeze([...chapters.keys()])});
 }
 
+export async function loadReaderNavigation(view,{signal}={}) {
+  const [html,placements]=await Promise.all([
+    view.fetch(readerURL,{signal}).then(response=>{if(!response.ok)throw new Error('Core navigation unavailable');return response.text();}),
+    view.fetch(new URL('./search-index.json',import.meta.url),{signal}).then(response=>{if(!response.ok)throw new Error('Core placements unavailable');return response.json();})
+  ]);
+  const source=new view.DOMParser().parseFromString(html,'text/html');
+  return createReaderNavigation({chapterURLs:[readerURL.href,...[...source.querySelectorAll('.sidebar nav a[href]')].map(link=>link.getAttribute('href'))],placements});
+}
+
+/** Navigation follows existing canonical source relationships, never matching titles. */
+export function createCoreReferenceRoutes(corpus,navigation) {
+  const entries=new Map(corpus.entries.map(entry=>[entry.id,entry]));
+  function targets(entry,trail=new Set()) {
+    if(!entry||trail.has(entry.id))return [];
+    if(entry.domain==='CORE'){
+      try{return [navigation.routeFor(navigation.locationFor({destination:'CORE_RULES',registryId:'core-rules',canonicalId:entry.sourceOwner.canonicalId}).url)];}catch{}
+    }
+    const next=new Set([...trail,entry.id]);
+    return (entry.canonicalReferences||[]).filter(ref=>ref.domain==='CORE'&&
+      (entry.domain==='CORE'?['sourceRuleId','targetRuleId'].includes(ref.relationType):['CORE ABILITIES','Conditional source references'].includes(ref.relationType)))
+      .flatMap(ref=>{
+        const target=entries.get(ref.id);
+        return target?.domain==='CORE'&&(!ref.canonicalId||ref.canonicalId===target.sourceOwner.canonicalId)?targets(target,next):[];
+      });
+  }
+  return Object.freeze({routeFor(id){
+    const routes=new Map(targets(entries.get(id)).filter(Boolean).map(route=>[JSON.stringify(route),route]));
+    return routes.size===1?[...routes.values()][0]:null;
+  }});
+}
+
 /** The certified standalone reader is the sole Core presenter in both entry modes. */
 export function mountCoreReader(document,{root,entryURL,route,navigate}) {
   const view=document.defaultView,lifecycle=createLifecycle(view),previousTitle=document.title;
@@ -49,14 +81,7 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
   host.append(frame);root.append(host);
   const controller=new view.AbortController();
   let navigation,references,documentLife=null,pending=null,sequence=0,currentAddress='',currentLocation=null,departing=false;
-  const metadata=Promise.all([
-    view.fetch(readerURL,{signal:controller.signal}).then(response=>{if(!response.ok)throw new Error('Core navigation unavailable');return response.text();}),
-    view.fetch(new URL('./search-index.json',import.meta.url),{signal:controller.signal}).then(response=>{if(!response.ok)throw new Error('Core placements unavailable');return response.json();})
-  ]).then(([html,placements])=>{
-    const source=new view.DOMParser().parseFromString(html,'text/html');
-    navigation=createReaderNavigation({chapterURLs:[readerURL.href,...[...source.querySelectorAll('.sidebar nav a[href]')].map(link=>link.getAttribute('href'))],placements});
-    return navigation;
-  });
+  const metadata=loadReaderNavigation(view,{signal:controller.signal}).then(value=>navigation=value);
   function capture() {
     if(!lifecycle.active||departing||!currentLocation||view.location.href!==currentAddress||frame.contentWindow?.location.href!==currentLocation.url||!frame.contentWindow.WHPageState)return;
     frame.contentWindow.WHPageState.capture();

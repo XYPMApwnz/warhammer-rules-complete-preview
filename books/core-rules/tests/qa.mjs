@@ -269,7 +269,7 @@ const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const id of routeIds)assert(readerIndex.includes(`href="${id}.html"`),`reader Start is missing ${id}`);
 assert(readerIndex.includes('id="searchDialog"')&&readerIndex.includes('id="searchButton"'),'reader shell must expose local search');
 const readerApp=fs.readFileSync(path.join(readerRoot,'app.js'),'utf8');
-assert(readerApp.includes("glossary.entries().filter(term => term.domain === 'CORE')")&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must use local Glossary V2 Core entries and support Ctrl/Cmd+K');
+assert(readerApp.includes('window.WH40K_GLOSSARY_V2_INDEX')&&readerApp.includes('createReferenceContract')&&readerApp.includes("registryId==='core-rules'")&&readerApp.includes('search.navigation.locationFor(route)')&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must use the shared local Glossary V2 contract, verified Core placements and Ctrl/Cmd+K');
 assert(readerIndex.includes('id="popupReturn"')&&readerApp.includes('restorePopup(returnRecord)'),'full-rule targets must expose a return to their originating popup');
 assert(readerIndex.includes('assets.warhammer-community.com')&&readerIndex.includes('Official GW PDF ↗'),'reader Start must promote the official GW PDF');
 assert(!readerIndex.includes('Wahapedia 11E ↗'),'reader Start must not promote a secondary source');

@@ -94,9 +94,14 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
       try {
         const response=await view.fetch(new URL('../../../glossary/v2/generated/index.en.json',import.meta.url));
         if(!response.ok)throw new Error('Glossary unavailable');const corpus=await response.json();
+        // Core placements enrich navigation; they are not a dependency of the catalog.
+        const loadCoreRoutes=async signal=>{
+          const {loadReaderNavigation,createCoreReferenceRoutes}=await import('../../core-rules/reader/mount.mjs');
+          return createCoreReferenceRoutes(corpus,await loadReaderNavigation(view,{signal}));
+        };
         if(!lifecycle.active||token!==generation)return;
         moduleRoot.replaceChildren();
-        activeModule=mountGlobalGlossary(document,corpus,{root:moduleRoot,entryURL,registryLabels:Object.fromEntries(registry.entries.map(book=>[book.id,book.title]))});
+        activeModule=mountGlobalGlossary(document,corpus,{root:moduleRoot,entryURL,loadCoreRoutes,registryLabels:Object.fromEntries(registry.entries.map(book=>[book.id,book.title]))});
         activeModuleKind='GLOSSARY';updateNavigation();return activeModule;
       } catch {
         if(!lifecycle.active||token!==generation)return;

@@ -7,13 +7,16 @@ import {decodeRoute,encodeRoute} from '../army-book-app-v2/route-context.mjs';
 import {positionV1Popup} from '../army-book-app-v2/popup-v1.mjs';
 
 /** Global catalog scope; canonical search/resolution/articles are the book reference contract. */
-export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabels={}}) {
+export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabels={},coreRoutes=null,loadCoreRoutes=null}) {
   const view=document.defaultView,lifecycle=createLifecycle(view),previousTitle=document.title;
   const projection=adaptGlobalGlossary(corpus,{registryLabels}),cards=new Map(projection.cards.map(card=>[card.id,card]));
   const contract=createReferenceContract({cards,index:projection.index});
   const el=(tag,className,text)=>{const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;};
   const button=(label,className,action)=>{const node=el('button',className,label);node.type='button';lifecycle.listen(node,'click',action);return node;};
   const shell=el('div','v2-global-glossary v2-book-surface');shell.dataset.globalGlossary='';
+  let availableCoreRoutes=coreRoutes;
+  let coreNavigationStatus=Object.freeze({status:coreRoutes?'READY':loadCoreRoutes?'LOADING':'UNAVAILABLE',reason:null});
+  shell.dataset.coreNavigationStatus=coreNavigationStatus.status;
   const main=el('main','global-glossary-main');main.tabIndex=-1;
   const dialog=el('dialog','term-popup');dialog.setAttribute('aria-labelledby','v2-detail-heading');
   const close=button('×','popup-close',()=>dialog.close());close.setAttribute('aria-label','Close rule reference');
@@ -33,14 +36,28 @@ export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabel
   };
   const factValue=(tag,field)=>el(tag,'',field.displayValue??String(field.value));
   const presenter=createReferencePresenter({el,factValue,anchor,contract,cards,payload:{},allowedIds:()=>null});
-  function navigate(id) {
-    view.history.pushState(null,'',urlFor(id));view.dispatchEvent(new view.PopStateEvent('popstate'));
+  function navigateRoute(route) {
+    view.history.pushState(null,'',encodeRoute(entryURL,route));view.dispatchEvent(new view.PopStateEvent('popstate'));
     main.focus({preventScroll:true});view.scrollTo({top:0,behavior:'instant'});
   }
+  const navigate=id=>navigateRoute(routeFor(id));
+  function addCoreLink(node,id) {
+    const route=availableCoreRoutes?.routeFor(id);
+    if(route){
+      const link=el('a','v2-permalink reference-permalink','Open in Core Rules');
+      link.href=encodeRoute(entryURL,route);link.dataset.coreTarget=route.canonicalId;
+      lifecycle.listen(link,'click',event=>{
+        if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+        event.preventDefault();navigateRoute(route);
+      });node.append(link);
+    }
+    return node;
+  }
+  const article=(id,options)=>addCoreLink(presenter.render(id,options),id);
   function openPopup(id,origin) {
     if(!dialog.open)lastFocus=origin||document.activeElement;
     popupOrigin=origin;
-    dialogBody.replaceChildren(presenter.render(id,{popup:true}));
+    dialogBody.replaceChildren(article(id,{popup:true}));
     if(!dialog.open)dialog.showModal();positionV1Popup(dialog,{origin});
   }
   lifecycle.listen(dialog,'click',event=>{if(event.target===dialog)dialog.close();});
@@ -60,7 +77,7 @@ export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabel
     const targetRequested=legacy||decodeRoute(view.location.href).canonicalId;
     if(id) {
       const toolbar=el('nav','v2-breadcrumbs');toolbar.append(button('Glossary','',()=>navigate(null)));
-      main.replaceChildren(toolbar,presenter.render(id));document.title=`${cards.get(id).title} · Mega Glossary`;catalog=null;
+      main.replaceChildren(toolbar,article(id));document.title=`${cards.get(id).title} · Mega Glossary`;catalog=null;
     } else if(targetRequested) {
       main.replaceChildren(el('p','v2-not-found','This reference is unavailable. Choose an entry from the Glossary.'),button('Glossary','',()=>navigate(null)));catalog=null;
     } else {
@@ -72,5 +89,31 @@ export function mountGlobalGlossary(document,corpus,{root,entryURL,registryLabel
   }
   lifecycle.cleanup(()=>{if(dialog.open)dialog.close();shell.remove();styles.forEach(style=>style.remove());document.title=previousTitle;});
   sync();
-  return Object.freeze({sync,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;},contract,counts:projection.counts});
+  if(loadCoreRoutes){
+    const controller=new view.AbortController();
+    lifecycle.cleanup(()=>controller.abort());
+    // Handle only this optional capability's failure. Catalog/rendering failures
+    // still follow their existing error path, and the diagnostic is retained.
+    const unavailable=error=>{
+      if(!lifecycle.active)return;
+      availableCoreRoutes=null;
+      coreNavigationStatus=Object.freeze({status:'UNAVAILABLE',reason:String(error?.message||error)});
+      shell.dataset.coreNavigationStatus=coreNavigationStatus.status;
+      shell.dataset.coreNavigationError=coreNavigationStatus.reason;
+    };
+    Promise.resolve().then(()=>loadCoreRoutes(controller.signal)).then(routes=>{
+      if(!lifecycle.active)return;
+      if(typeof routes?.routeFor!=='function'){unavailable(new TypeError('Invalid Core navigation capability'));return;}
+      availableCoreRoutes=routes;
+      coreNavigationStatus=Object.freeze({status:'READY',reason:null});
+      shell.dataset.coreNavigationStatus=coreNavigationStatus.status;
+      for(const node of shell.querySelectorAll('.v1-reference-article[data-card-id]')){
+        node.querySelector(':scope > [data-core-target]')?.remove();
+        addCoreLink(node,node.dataset.cardId);
+      }
+      if(dialog.open)positionV1Popup(dialog,{origin:popupOrigin});
+    },unavailable);
+  }
+  return Object.freeze({sync,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;},
+    get coreNavigationStatus(){return coreNavigationStatus;},contract,counts:projection.counts});
 }

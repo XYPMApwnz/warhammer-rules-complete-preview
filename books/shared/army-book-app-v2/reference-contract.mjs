@@ -94,7 +94,8 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     for(const entry of entries.values()) {
       if(!available.has(entry.targetId)||(category&&categoryFor(cards.get(entry.targetId))!==(categories[category] || 'Reference')))continue;
       const candidates=[{label:entry.label},...entry.aliases];
-      let best=null;
+      let best=null,model=null;
+      const resolved=()=>model??=resolve(entry.targetId,allowedIds);
       for(const candidate of candidates) {
         const value=normalizeGlossaryQuery(candidate.label);
         if(normalized&&!value.includes(normalized))continue;
@@ -102,13 +103,19 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
         if(!best||score<best.score)best={...candidate,score};
       }
       if(!best&&normalized) {
-        const text=normalizeGlossaryQuery(resolve(entry.targetId,allowedIds).sections.flatMap(section=>section.fields.map(field=>field.value)).join(' '));
+        const text=normalizeGlossaryQuery(resolved().sections.flatMap(section=>section.fields.map(field=>field.value)).join(' '));
         if(text.includes(normalized))best={label:entry.label,score:3};
       }
-      if(best)results.push({...entry,categoryLabel:categoryFor(cards.get(entry.targetId)),matchedLabel:best.label,
-        ...(best.fieldPath?{matchedFieldPath:best.fieldPath}:{}),score:best.score});
+      if(best){
+        const card=cards.get(entry.targetId);
+        const hasDefinition=normalized&&resolved().sections.some(section=>section.fields.some(field=>
+          typeof field.value==='string'&&normalizeGlossaryQuery(field.value)&&normalizeGlossaryQuery(field.value)!==normalizeGlossaryQuery(entry.label)));
+        const fullCore=hasDefinition&&card.domain==='CORE'&&['MAIN_RULE','CORE_MAIN_RULE','CORE_CONCEPT','CORE_CORE_CONCEPT'].includes(card.kind);
+        results.push({...entry,categoryLabel:categoryFor(card),matchedLabel:best.label,
+          ...(best.fieldPath?{matchedFieldPath:best.fieldPath}:{}),score:best.score,definitionRank:!normalized?0:fullCore?0:hasDefinition?1:2});
+      }
     }
-    return results.sort((a,b)=>a.score-b.score || byLabel(a,b)).map(({score,...entry})=>entry);
+    return results.sort((a,b)=>a.score-b.score || a.definitionRank-b.definitionRank || byLabel(a,b)).map(({score,definitionRank,...entry})=>entry);
   }
   function categoryList(allowedIds=null) {
     const available=scope(allowedIds),kinds=new Set([...entries.values()].filter(entry=>available.has(entry.targetId)).map(entry=>entry.category));
