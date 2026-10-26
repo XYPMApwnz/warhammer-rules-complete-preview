@@ -3658,6 +3658,87 @@
       ]
     },
     {
+      "path": "books/blood-angels/v2/generated/app-presentation.json",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/generated/roster-import.json",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/registration.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-registration",
+          "from": "v2/army-books.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-boot.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-import.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-paid-options.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/roster-runtime.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/v2/theme.css",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/blood-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
       "reasons": [
         {
@@ -11432,6 +11513,105 @@
       ]
     },
     {
+      "path": "books/dark-angels/v2/generated/app-presentation.json",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/generated/roster-import.json",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/physical-chapter.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/rule-contract-schema.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/registration.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-registration",
+          "from": "v2/army-books.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-boot.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-import.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-paid-options.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/roster-runtime.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/rule-contract-schema.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/dark-angels/v2/theme.css",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/dark-angels/v2/registration.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/death-guard/assets/icon-v4.svg",
       "reasons": [
         {
@@ -18580,6 +18760,15 @@
         {
           "kind": "module-import",
           "from": "books/tau-empire/v2/roster-source-choices.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/conditional-policy.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/shared/roster-v2/effective-instance.mjs"
         }
       ]
     },
