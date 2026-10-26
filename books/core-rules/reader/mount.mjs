@@ -74,16 +74,17 @@ export function createCoreReferenceRoutes(corpus,navigation) {
 }
 
 /** The certified standalone reader is the sole Core presenter in both entry modes. */
-export function mountCoreReader(document,{root,entryURL,route,navigate}) {
+export function mountCoreReader(document,{root,entryURL,route,navigate,deferPresentation=false}) {
   const view=document.defaultView,lifecycle=createLifecycle(view),previousTitle=document.title;
   const host=document.createElement('div');host.className='v2-core-host';host.dataset.coreReader='';
+  let committed=!deferPresentation;host.hidden=!committed;
   const frame=document.createElement('iframe');frame.className='v2-core-reader';frame.title='Core Rules reader';
   host.append(frame);root.append(host);
   const controller=new view.AbortController();
   let navigation,references,documentLife=null,pending=null,sequence=0,currentAddress='',currentLocation=null,departing=false;
   const metadata=loadReaderNavigation(view,{signal:controller.signal}).then(value=>navigation=value);
   function capture() {
-    if(!lifecycle.active||departing||!currentLocation||view.location.href!==currentAddress||frame.contentWindow?.location.href!==currentLocation.url||!frame.contentWindow.WHPageState)return;
+    if(!committed||!lifecycle.active||departing||!currentLocation||view.location.href!==currentAddress||frame.contentWindow?.location.href!==currentLocation.url||!frame.contentWindow.WHPageState)return;
     frame.contentWindow.WHPageState.capture();
     view.history.replaceState({...view.history.state,coreReader:{chapterId:currentLocation.chapterId,readerURL:frame.contentWindow.location.href,state:frame.contentWindow.history.state}},'',view.location.href);
   }
@@ -126,6 +127,7 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
       // Let the existing same-document popup return restore its own reading context.
       if(link.id==='popupReturn'&&child.WHGlossaryReturn?.isSameDocument()) {
         queueMicrotask(lifecycle.guard(()=>{
+          if(!committed)return;
           const restored=navigation.routeFor(child.location.href);if(!restored)return;
           currentAddress=encodeRoute(entryURL,restored);currentLocation=navigation.locationFor(restored);
           view.history.replaceState(view.history.state,'',currentAddress);
@@ -140,9 +142,10 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
     let captureFrame=0;
     documentLife.listen(child,'scroll',()=>{if(!captureFrame)captureFrame=documentLife.frame(()=>{captureFrame=0;capture();});},{passive:true});
     rewriteLinks(doc);
-    await focusLocation(request.location);
+    if(committed)await focusLocation(request.location);
     if(!lifecycle.active||request!==pending)return;
-    document.title=doc.title;host.removeAttribute('aria-busy');request.resolve();pending=null;
+    if(committed)document.title=doc.title;
+    host.removeAttribute('aria-busy');request.resolve();pending=null;
   }
   async function focusLocation(location) {
     const child=frame.contentWindow,doc=frame.contentDocument,saved=view.history.state?.coreReader;
@@ -173,7 +176,15 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
     } else frame.contentWindow.location.replace(location.url);
     return result;
   }
-  lifecycle.cleanup(()=>{++sequence;controller.abort();pending?.resolve();pending=null;documentLife?.destroy();host.remove();document.title=previousTitle;});
+  async function commit() {
+    if(!lifecycle.active||committed)return;
+    committed=true;host.hidden=false;
+    // A hidden frame has no final viewport. Apply the existing location
+    // restoration once it is visible; never move/reparent the iframe.
+    if(currentLocation)await focusLocation(currentLocation);
+    if(lifecycle.active)document.title=frame.contentDocument.title;
+  }
+  lifecycle.cleanup(()=>{++sequence;controller.abort();pending?.resolve();pending=null;documentLife?.destroy();host.remove();if(committed)document.title=previousTitle;});
   const ready=sync(route);
-  return Object.freeze({ready,sync,capture,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;}});
+  return Object.freeze({ready,sync,capture,commit,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;}});
 }

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {createHash,webcrypto} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -14,13 +15,15 @@ function workerRuntime(){
   const self={
     location:new URL('https://example.test/service-worker.js'),
     WH40K_CACHE_REVISION:'testrevision',
+    WH40K_PRECACHE:['./install-one.js','./install-two.js'],
+    WH40K_RUNTIME_ASSETS:Object.fromEntries(['install-one.js','install-two.js'].map(path=>[path,{sha256:createHash('sha256').update('network').digest('hex'),bytes:7}])),
     registration:{active:{}},
     clients:{claim:async()=>{},matchAll:async()=>[]},
     skipWaiting:async()=>{skipWaitingCalls+=1;},
     addEventListener(type,listener){listeners[type]=listener;}
   };
   const context=vm.createContext({
-    URL,URLSearchParams,Request,Response,Promise,Set,
+    URL,URLSearchParams,Request,Response,Promise,Set,crypto:webcrypto,
     self,
     importScripts(){},
     console:{warn(...args){warnings.push(args);}},
@@ -31,6 +34,7 @@ function workerRuntime(){
       open:async()=>({
         add:async()=>{},
         keys:async()=>[],
+        match:async(key,options)=>{cacheMatches.push({key,options});return behavior.match(key,options);},
         async put(key,response){puts.push({key,response});return behavior.put(key,response);}
       }),
       async match(key,options){cacheMatches.push({key,options});return behavior.match(key,options);}

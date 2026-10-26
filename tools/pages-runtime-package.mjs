@@ -1,5 +1,5 @@
 /** Publication packaging only. Browser facts and runtime files are copied verbatim;
- * only the existing offline/cache producers write their two declared outputs. */
+ * only the existing offline/cache producers stamp their declared outputs. */
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -10,7 +10,7 @@ import {readAppShell,resolveAppShellUrl,verifyCacheRevision,writeCacheRevision,n
 const here=path.dirname(fileURLToPath(import.meta.url));
 const manifestPath=path.join(here,'pages-runtime-manifest.json');
 const reportName='PAGES_RUNTIME_MANIFEST.json';
-const generated=new Set(['service-worker.js','glossary/generated/cache-revision.js']);
+const generated=new Set(['service-worker.js','glossary/generated/cache-revision.js','v2/app.html']);
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const json=value=>JSON.stringify(value,null,2)+'\n';
 const relativeFile=(root,relative)=>{
@@ -83,10 +83,9 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
       else fs.copyFileSync(relativeFile(sourceRoot,relative),target);
     }
     buildOfflineMobileRoutes({root:outRoot,sourceRoot});
-    writeCacheRevision({root:outRoot});
+    writeCacheRevision({root:outRoot,manifest});
   }
   buildOfflineMobileRoutes({root:outRoot,sourceRoot,check:true});
-  const cache=verifyCacheRevision({root:outRoot});
   const files=[...allowed].sort().map(relative=>{
     // The static Pages marker has no gameplay data. Normalize its checkout-only
     // CRLF difference so Windows and Linux produce the same publication hash.
@@ -98,6 +97,7 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
       ...(relative==='.nojekyll'?{inputNormalization:'CHECKOUT_EOL_TO_LF'}:{}),
       producer:generated.has(relative)?'EXISTING_OFFLINE_OR_CACHE_PRODUCER':relative==='.nojekyll'?'STATIC_MARKER_LF':'VERBATIM_RUNTIME_INPUT'};
   });
+  const cache=verifyCacheRevision({root:outRoot,manifest});
   const unexpected=allFiles(outRoot).map(file=>path.relative(outRoot,file).replaceAll('\\','/')).filter(file=>!allowed.has(file)&&file!==reportName);
   if(unexpected.length)throw new Error('Unlisted publication files: '+unexpected.join(', '));
   const report={schema:'unified-v2-pages-runtime-package/v1',allowlistSha256:hash(normalizeCacheText(fs.readFileSync(manifestFile,'utf8'))),fileCount:files.length,

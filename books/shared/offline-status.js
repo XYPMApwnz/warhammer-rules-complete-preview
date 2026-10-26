@@ -1,8 +1,32 @@
 (function(root){
   'use strict';
   const script=document.currentScript,swUrl=script?.dataset.serviceWorker;
-  if(!swUrl||!('serviceWorker' in navigator)||!location.protocol.startsWith('http'))return;
+  if(!swUrl||!('serviceWorker' in navigator)||!location.protocol.startsWith('http')){root.WHOfflineStatus=Object.freeze({ready:Promise.resolve()});return;}
   const MESSAGE='WH_OFFLINE_PACKAGE_STATUS',QUERY='WH_OFFLINE_PACKAGE_STATUS_QUERY',VERSION_QUERY='GET_VERSION',ACTIVATE_UPDATE='SKIP_WAITING';
+  const v2Bootstrap=script.hasAttribute('data-v2-bootstrap'),expectedRevision=root.WHPwaExpectedRevision;
+  let reloadRequired=false;
+  let resolveReady;const ready=new Promise(resolve=>{resolveReady=resolve;});if(!v2Bootstrap)resolveReady();
+  if(v2Bootstrap&&!document.querySelector('[data-pwa-updater]')){
+    const panel=document.createElement('section');panel.className='pwa-update-panel';panel.dataset.pwaUpdater='';panel.dataset.state='idle';panel.setAttribute('aria-label','Offline application updates');
+    panel.innerHTML='<div class="pwa-update-copy"><strong data-pwa-update-status role="status" aria-live="polite">Check for updates</strong><span class="pwa-update-versions"><small>Offline version: <code data-pwa-installed-version>checking…</code></small><small data-pwa-available-row hidden>Available version: <code data-pwa-available-version></code></small></span></div><button type="button" data-pwa-update-action>Check for updates</button>';
+    document.body.prepend(panel);const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./styles/offline-status.css',script.src).href;document.head.append(style);
+  }
+  const draftKey='wh40k:pwa-import-drafts:v1';
+  function activeBook(){return root.ArmyBookAppV2?.payload?.book?.id;}
+  function restoreDraft(){
+    const book=activeBook(),input=document.querySelector('[data-roster-input="raw-text"]');if(!book||!input||input.value)return;
+    let drafts;try{drafts=JSON.parse(sessionStorage.getItem(draftKey)||'{}');}catch{return;}
+    const draft=drafts[book];if(!draft)return;
+    input.value=draft.value;input.setSelectionRange(draft.start,draft.end);input.dispatchEvent(new Event('input',{bubbles:true}));
+    delete drafts[book];try{sessionStorage.setItem(draftKey,JSON.stringify(drafts));}catch{}
+  }
+  if(v2Bootstrap)new MutationObserver(restoreDraft).observe(document.body,{childList:true,subtree:true});
+  function confirmedReload(){
+    if(reloaded)return;
+    const book=activeBook(),input=document.querySelector('[data-roster-input="raw-text"]');
+    if(book&&input){try{const drafts=JSON.parse(sessionStorage.getItem(draftKey)||'{}');drafts[book]={value:input.value,start:input.selectionStart,end:input.selectionEnd};sessionStorage.setItem(draftKey,JSON.stringify(drafts));}catch{activationRequested=false;setUpdateState('failed');return;}}
+    reloaded=true;location.reload();
+  }
   const updater=document.querySelector('[data-pwa-updater]'),updateStatus=updater?.querySelector('[data-pwa-update-status]'),updateAction=updater?.querySelector('[data-pwa-update-action]'),installedVersion=updater?.querySelector('[data-pwa-installed-version]'),availableRow=updater?.querySelector('[data-pwa-available-row]'),availableVersion=updater?.querySelector('[data-pwa-available-version]');
   let node,label,meter,bar,announcement,activeSeen=false,readyTimer=0,lastAnnouncement='',failedRevision='',registration,checkPromise=null,autoChecked=false,activationRequested=false,reloaded=false,controlledWorker=navigator.serviceWorker.controller;
   const watchedWorkers=new WeakSet(),workerSequences=new WeakMap();
@@ -12,7 +36,8 @@
     up_to_date:['Up to date','Check again',false],
     downloading:['Downloading update…','Downloading update…',true],
     ready:['Update ready','Install and restart',false],
-    failed:['Could not check for updates','Retry',false]
+    failed:['Could not check for updates','Retry',false],
+    changed:['Сайт обновился. Перезагрузить?','Перезагрузить',false]
   };
   function setUpdateState(state){
     if(!updater)return;
@@ -22,7 +47,7 @@
   function showAvailable(revision){if(!availableRow||!availableVersion)return;availableVersion.textContent=revision||'unknown';availableRow.hidden=false;}
   function mount(){
     if(node)return node;
-    const header=document.querySelector('header.app-header, header.topbar');if(!header)return null;
+    const header=document.querySelector('header.app-header, header.topbar, header.v2-primary-header');if(!header)return null;
     header.classList.add('offline-package-host');
     node=document.createElement('div');node.className='offline-package-status';node.dataset.offlinePackageStatus='';node.hidden=true;
     label=document.createElement('span');label.className='offline-package-label';label.setAttribute('aria-hidden','true');
@@ -53,13 +78,13 @@
   }
   function request(worker,type,data={}){
     if(!worker)return Promise.reject(new Error('Service worker unavailable'));
-    return new Promise((resolve,reject)=>{const channel=new MessageChannel();channel.port1.onmessage=event=>resolve(event.data);try{worker.postMessage({type,...data},[channel.port2]);}catch(error){reject(error);}});
+    return new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>{channel.port1.close();reject(new Error('Service worker reply timed out'));},10000);channel.port1.onmessage=event=>{clearTimeout(timer);channel.port1.close();resolve(event.data);};try{worker.postMessage({type,...data},[channel.port2]);}catch(error){reject(error);}});
   }
   async function query(worker){const payload=await request(worker,QUERY);apply(payload,worker);return payload;}
   async function readRevision(worker){const payload=await request(worker,VERSION_QUERY);return payload?.revision||'';}
   async function syncInstalled(){
     const worker=registration?.active||navigator.serviceWorker.controller;if(!worker)return;
-    try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;}catch{}
+    try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;if(v2Bootstrap){if(payload.revision===expectedRevision)resolveReady();else {reloadRequired=true;setUpdateState('changed');}}}catch{}
   }
   async function updateReady(worker){
     if(!worker||!registration?.active)return;
@@ -94,13 +119,57 @@
     })().catch(error=>{if(!quiet)setUpdateState('failed');throw error;}).finally(()=>{checkPromise=null;});
     return checkPromise;
   }
+  async function checkRunningVersion({startedOnline}={}){
+    if(!v2Bootstrap)return true;
+    if(startedOnline===true&&!navigator.onLine){reloadRequired=true;setUpdateState('changed');return false;}
+    if(reloadRequired){setUpdateState('changed');return false;}
+    let current;
+    if(!navigator.onLine){
+      try{current=await readRevision(navigator.serviceWorker.controller||registration?.active);}catch{return false;}
+      if(current!==expectedRevision){reloadRequired=true;showAvailable(current);setUpdateState('changed');return false;}
+      return true;
+    }
+    try{
+      const oracle=new URL('./glossary/generated/cache-revision.js',new URL(swUrl,location.href));
+      oracle.searchParams.set('version-check',Date.now().toString(36)+'-'+Math.random().toString(36).slice(2));
+      const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);
+      let response;try{response=await fetch(oracle,{cache:'no-store',signal:controller.signal});if(!response.ok)throw new Error('Version check unavailable');
+      current=(await response.text()).match(/WH40K_CACHE_REVISION\s*=\s*["']([a-f0-9]{16})["']/)?.[1];}finally{clearTimeout(timer);}
+      if(!current)throw new Error('Invalid version response');
+    }catch{
+      if(navigator.onLine){if(startedOnline!==undefined){reloadRequired=true;setUpdateState('changed');}else setUpdateState('failed');return false;}
+      // Offline use is bound to the installed worker; it only falls back to
+      // cached bytes matching its immutable publication integrity inventory.
+      try{current=await readRevision(navigator.serviceWorker.controller||registration?.active);}catch{return false;}
+    }
+    if(current!==expectedRevision){reloadRequired=true;showAvailable(current);setUpdateState('changed');return false;}
+    return true;
+  }
   async function installUpdate(){
+    if(v2Bootstrap&&registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
     const waiting=registration?.waiting;if(!waiting){setUpdateState('failed');return;}
     activationRequested=true;updateAction.disabled=true;
     try{
       const revision=availableVersion?.textContent||await readRevision(waiting),reply=await request(waiting,ACTIVATE_UPDATE,{revision});
       if(!reply?.accepted)throw new Error('Waiting worker declined activation');
+      if(waiting.state!=='activated')await new Promise((resolve,reject)=>{
+        const timer=setTimeout(()=>reject(new Error('Worker activation timed out')),15000);
+        const changed=()=>{if(waiting.state==='activated'){clearTimeout(timer);waiting.removeEventListener('statechange',changed);resolve();}};waiting.addEventListener('statechange',changed);changed();
+      });
+      confirmedReload();
     }catch{activationRequested=false;setUpdateState('failed');}
+  }
+  async function confirmChanged(){
+    // A duplicate waiting registration must not block a version already active.
+    if(registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
+    if(registration?.waiting){await installUpdate();return;}
+    if(!navigator.onLine){confirmedReload();return;}
+    try{
+      await checkForUpdate({quiet:true});
+      if(registration?.waiting){await installUpdate();return;}
+      if(registration?.installing){setUpdateState('downloading');return;}
+      confirmedReload();
+    }catch{setUpdateState('failed');}
   }
   async function start(){
     try{
@@ -113,11 +182,12 @@
     }catch{
       try{registration=await navigator.serviceWorker.getRegistration();if(registration){observe(registration);return;}}catch{}
       apply({type:MESSAGE,status:'error',completed:0,total:0,revision:''});setUpdateState('failed');
+      if(!navigator.serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';resolveReady();}
     }
   }
-  updateAction?.addEventListener('click',()=>{if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});});
-  navigator.serviceWorker.addEventListener('message',event=>apply(event.data,event.source));
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{const next=navigator.serviceWorker.controller,replaced=Boolean(controlledWorker&&next&&controlledWorker!==next);controlledWorker=next;if((replaced||activationRequested)&&next&&!reloaded){reloaded=true;location.reload();return;}syncInstalled();});
-  if(document.readyState==='complete')start();else addEventListener('load',start,{once:true});
-  root.WHOfflineStatus=Object.freeze({query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
+  updateAction?.addEventListener('click',()=>{if(updater.dataset.state==='changed')confirmChanged();else if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});});
+  navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){reloadRequired=true;setUpdateState('changed');return;}apply(event.data,event.source);});
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=navigator.serviceWorker.controller;syncInstalled();});
+  if(v2Bootstrap||document.readyState==='complete')start();else addEventListener('load',start,{once:true});
+  root.WHOfflineStatus=Object.freeze({ready,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
 })(window);

@@ -1,0 +1,70 @@
+Minimal PWA update contract
+
+Scope
+- One network-first service worker, ordinary code/data caches, no client pin map.
+- Revision covers reviewed runtime inputs. A raw-byte fingerprint isolates cache
+  namespaces when LF/CRLF packaging differs without a semantic revision change.
+- Mandatory precache is code/small shell resources. Army Book JSON and the large
+  native/legacy Glossary data remain lazy. Previously cached bodies are retained.
+- Cached native data/code is reused offline only when its SHA-256 matches the
+  installed publication. Changed book data requires a compatible online copy.
+- No JavaScript response is rewritten or prevented from evaluating by a loader.
+
+Application acceptance boundary
+- Check the fresh version oracle before loading and after real payload/factory
+  preparation, before mounting results. Preserve the old view, raw import,
+  roster, URL and history when a check refuses or a loader fails.
+- The real nine roster factories were audited and tested: no DOM/storage writes
+  during import/factory preparation, state remains null until the normal mount.
+- Core iframe HTML preparation remains hidden; its final version check precedes
+  presentation commit, old view teardown and parent title/history changes.
+- Actual child classic Core scripts still execute during preparation. Their
+  existing transient sessionStorage return-record cleanup is not a transaction;
+  no guarantee that all classic reader session markers can be rolled back.
+
+Manual update and saved data
+- When another tab already activated the offered version, confirmation reloads
+  directly rather than enqueueing a second service-worker update.
+- Controller changes never reload another tab. Only explicit user confirmation
+  reloads this document. Its unfinished import is preserved in a book-keyed
+  sessionStorage draft; localStorage roster snapshots are not rewritten/cleared.
+- A detected change stays blocked until reload, including a transition that
+  loses connectivity after it started online. Normal offline use consults the
+  installed worker and compatible cached bytes.
+- A failed online version query refuses a new transition while preserving the
+  current view. Wi-Fi with no WAN may remain navigator.onLine=true: in that case
+  checking can refuse a new view rather than pretend the version is current.
+- In browsers that block SW registration, online-only operation is retained;
+  no offline-readiness claim is made and the unavailable updater is hidden.
+
+Accepted residual risks / migration
+- The previously published cache-first worker can mix old and newly fetched
+  resources before transition. It cannot be repaired retroactively; already
+  open old V2 documents need a one-time manual refresh after saving raw input.
+  Closing all old tabs and reopening is the verified migration path; ordinary
+  in-place reload of the already published client is not certified by this QA.
+- Pre/post checks do not make import() atomic. A future module with top-level
+  external side effects can execute before the late check. The synthetic
+  generation-marker reproduction remains an archived RISK, not a demonstrated
+  current user-state defect. New adapters must preserve pure preparation and
+  repeat the real-factory transition gate.
+- tests/browser/minimal-pwa-version-race.mjs intentionally exits 1 to preserve
+  that diagnostic result; it is not the current product acceptance gate.
+- Cache Storage is retained, not garbage-collected by this fix. Browser eviction
+  and quota remain platform policy. Injected Chromium quota failures do not
+  establish Safari/iOS behavior. Physical Safari/iPhone are untested.
+
+Checks
+node tests/minimal-pwa-import-purity-qa.mjs
+node tests/minimal-pwa-cache-qa.mjs
+node tests/service-worker-resilience-qa.mjs
+node tests/cache-revision-portability-qa.mjs
+node v2/pwa-transition-qa.mjs
+node tests/browser/pwa-update-flow.mjs
+node tools/pages-runtime-package-qa.mjs --source ... --published ... --work ...
+Browser helpers honor WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH.
+
+Historical QA debt is recorded externally and is not fixed by changing expected
+values. Runtime packaging regenerates the existing offline route inventory;
+this also removes its stale missing-Tau-route failure. The unrelated rendered
+Glossary link failure remains identical to the baseline.
