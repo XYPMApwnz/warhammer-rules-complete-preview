@@ -1240,9 +1240,9 @@ async function transferV2Data(activatingWorker){
     const source=await caches.open(name);
     for(const request of await source.keys()){
       const url=new URL(request.url),item=publicationPath(url);
-      // Only native V2 data present in the current publication. V1, stale
-      // code and unknown resources are deliberately not carried forward.
-      if(!item||!/(?:^|\/)v2\/.*\.json$/.test(item)||!RUNTIME_ASSETS[item])continue;
+      // Native V2 JSON plus the lazy definition data used by the Core reader.
+      // Other JavaScript, V1 and unlisted resources are not carried forward.
+      if(!item||(!/(?:^|\/)v2\/.*\.json$/.test(item)&&item!=='glossary/v2/generated/index.en.js')||!RUNTIME_ASSETS[item])continue;
       const response=await source.match(request);
       if(!response)throw new Error('Old cached response disappeared: '+item);
       if(!await matchesPublishedAsset(url,response))continue;

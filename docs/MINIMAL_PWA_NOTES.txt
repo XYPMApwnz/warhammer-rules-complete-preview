@@ -5,8 +5,10 @@ Scope
 - Revision covers reviewed runtime inputs. A raw-byte fingerprint isolates cache
   namespaces when LF/CRLF packaging differs without a semantic revision change.
 - Mandatory precache is code/small shell resources. Army Book JSON and the large
-  native/legacy Glossary data remain lazy. Compatible native V2 JSON in old
-  caches is copied to the current data cache, then read back and SHA-256 verified.
+  native/legacy Glossary data remain lazy. Compatible native V2 JSON and exactly
+  glossary/v2/generated/index.en.js in old caches are copied to the current
+  data cache, then read back and SHA-256 verified. The latter is Core definition
+  data and remains excluded from mandatory precache; no other JS is migrated.
 - Only after all eligible copies pass verification are this app's old caches
   removed, including V1. Changed/unlisted JSON is not migrated. Other apps'
   caches are untouched. No book opening or UI validation runs inside the SW.

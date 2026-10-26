@@ -140,4 +140,31 @@ await test('migration is idempotent and never fetches books',async()=>{
  const w=worker();await w.cache(old).put(base+data,new Response('DATA_A'));w.behavior.fetch=async()=>{throw new Error('Migration must not fetch');};
  assert.equal((await w.migrate()).status,'complete');assert.equal((await w.migrate()).status,'complete');assert.equal(await (await w.cache(current+'-data').match(base+data)).text(),'DATA_A');
 });
+const coreGlossary='glossary/v2/generated/index.en.js',otherJS='glossary/v2/generated/other.js';
+const glossaryBody='self.CORE_GLOSSARY_DEFINITIONS={accepted:true};';
+const glossaryAsset={sha256:createHash('sha256').update(glossaryBody).digest('hex'),bytes:Buffer.byteLength(glossaryBody)};
+await test('only the exact lazy Core glossary JS is migrated, including old query URLs',async()=>{
+ const w=worker({assets:{...assets,[coreGlossary]:glossaryAsset,[otherJS]:glossaryAsset}});
+ await w.cache(old).put(base+coreGlossary+'?v=1',new Response(glossaryBody));await w.cache(old).put(base+otherJS,new Response(glossaryBody));
+ const result=await w.migrate();assert.equal(result.status,'complete');assert.equal(result.transferred,1);assert.equal(w.stores.has(old),false);
+ assert.equal(await(await w.cache(current+'-data').match(base+coreGlossary)).text(),glossaryBody);assert.equal(await w.cache(current+'-data').match(base+otherJS),undefined);
+ w.behavior.fetch=async()=>{throw new TypeError('offline');};assert.equal(await(await w.request(coreGlossary+'?v=1')).text(),glossaryBody);
+});
+await test('a changed or unlisted Core glossary JS is not migrated',async()=>{
+ for(const inventory of [{...assets,[coreGlossary]:glossaryAsset},assets]){
+  const w=worker({assets:inventory});await w.cache(old).put(base+coreGlossary,new Response('STALE_GLOSSARY'));
+  assert.equal((await w.migrate()).status,'complete');assert.equal(await w.cache(current+'-data').match(base+coreGlossary),undefined);
+ }
+});
+await test('failed Core glossary copy retains old caches and retries on next startup without activation',async()=>{
+ const stores=new Map(),inventory={...assets,[coreGlossary]:glossaryAsset};const w=worker({stores,assets:inventory});
+ await w.cache(old).put(base+coreGlossary+'?v=1',new Response(glossaryBody));await w.cache(old+'-v1').put(base+'legacy-book.html',new Response('OLD_V1'));
+ w.behavior.quota=true;assert.equal((await w.migrate()).status,'failed');assert.ok(w.stores.has(old));assert.ok(w.stores.has(old+'-v1'));
+ const restarted=worker({stores,assets:inventory});assert.equal((await restarted.migrate()).status,'complete');assert.equal(restarted.activation,0);assert.equal(stores.has(old),false);assert.equal(stores.has(old+'-v1'),false);
+ assert.equal(await(await restarted.cache(current+'-data').match(base+coreGlossary)).text(),glossaryBody);
+});
+await test('Core glossary destination SHA failure prevents old-cache deletion',async()=>{
+ const w=worker({assets:{...assets,[coreGlossary]:glossaryAsset}});await w.cache(old).put(base+coreGlossary,new Response(glossaryBody));w.behavior.corrupt=true;
+ assert.equal((await w.migrate()).status,'failed');assert.ok(w.stores.has(old));w.behavior.corrupt=false;assert.equal((await w.migrate()).status,'complete');assert.equal(w.stores.has(old),false);
+});
 console.log(JSON.stringify({status:'PASS',checks:results.length,results},null,2));
