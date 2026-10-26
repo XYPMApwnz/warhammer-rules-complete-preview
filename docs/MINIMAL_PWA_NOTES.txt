@@ -1,0 +1,92 @@
+Minimal PWA update contract
+
+Scope
+- One network-first service worker, ordinary code/data caches, no client pin map.
+- Revision covers reviewed runtime inputs. A raw-byte fingerprint isolates cache
+  namespaces when LF/CRLF packaging differs without a semantic revision change.
+- Mandatory precache is code/small shell resources. Army Book JSON and the large
+  native/legacy Glossary data remain lazy. Compatible native V2 JSON and exactly
+  glossary/v2/generated/index.en.js in old caches are copied to the current
+  data cache, then read back and SHA-256 verified. The latter is Core definition
+  data and remains excluded from mandatory precache; no other JS is migrated.
+- Only after all eligible copies pass verification are this app's old caches
+  removed, including V1. Changed/unlisted JSON is not migrated. Other apps'
+  caches are untouched. No book opening or UI validation runs inside the SW.
+- Migration runs on activation and is requested from registration.active on
+  every app startup/controller change. Copy/read/hash failure retains all old
+  caches. A later startup retries without requiring another activation.
+  Installing/waiting updates defer cleanup to protect their prepared cache.
+  Before scanning and each deletion, the worker confirms it still owns the
+  active cache via the existing GET_VERSION contract; a superseded worker
+  cannot delete the replacement publication. No persistent tab state is added.
+- Cached native data/code is reused offline only when its SHA-256 matches the
+  installed publication. Changed book data requires a compatible online copy.
+- No JavaScript response is rewritten or prevented from evaluating by a loader.
+
+Application acceptance boundary
+- Check the fresh version oracle before loading and after real payload/factory
+  preparation, before mounting results. Preserve the old view, raw import,
+  roster, URL and history when a check refuses or a loader fails.
+- The real nine roster factories were audited and tested: no DOM/storage writes
+  during import/factory preparation, state remains null until the normal mount.
+- Core iframe HTML preparation remains hidden; its final version check precedes
+  presentation commit, old view teardown and parent title/history changes.
+- Actual child classic Core scripts still execute during preparation. Their
+  existing transient sessionStorage return-record cleanup is not a transaction;
+  no guarantee that all classic reader session markers can be rolled back.
+
+Manual update and saved data
+- Explicit update consent recovers the existing prepared-cache readiness after
+  a waiting worker restart; incomplete caches and wrong revisions still refuse
+  activation. No hidden status query or retained in-memory flag is required.
+- When another tab already activated the offered version, confirmation reloads
+  directly rather than enqueueing a second service-worker update.
+- Controller changes never reload another tab. Only explicit user confirmation
+  reloads this document. Its unfinished import is preserved in a book-keyed
+  sessionStorage draft; localStorage roster snapshots are not rewritten/cleared.
+- A detected change stays blocked until reload, including a transition that
+  loses connectivity after it started online. Normal offline use consults the
+  installed worker and compatible cached bytes.
+- A failed online version query refuses a new transition while preserving the
+  current view. Wi-Fi with no WAN may remain navigator.onLine=true: in that case
+  checking can refuse a new view rather than pretend the version is current.
+- In browsers that block SW registration, online-only operation is retained;
+  no offline-readiness claim is made and the unavailable updater is hidden.
+
+Accepted residual risks / migration
+- The previously published cache-first worker can mix old and newly fetched
+  resources before transition. It cannot be repaired retroactively; already
+  open old V2 documents need a one-time manual refresh after saving raw input.
+  Closing all old tabs and reopening is the verified migration path; ordinary
+  in-place reload of the already published client is not certified by this QA.
+- An intermittent first Install -> Retry during the old-SW transition was
+  reproduced on both committed baseline 371f5470 and the migration candidate.
+  Its cause remains unproven. Failed activation kept the old worker/caches;
+  successful protocol cases separately verified the exact new active/controller
+  and offline book reopening. This migration does not claim to fix that issue.
+- Pre/post checks do not make import() atomic. A future module with top-level
+  external side effects can execute before the late check. The synthetic
+  generation-marker reproduction remains an archived RISK, not a demonstrated
+  current user-state defect. New adapters must preserve pure preparation and
+  repeat the real-factory transition gate.
+- tests/browser/minimal-pwa-version-race.mjs intentionally exits 1 to preserve
+  that diagnostic result; it is not the current product acceptance gate.
+- After verified V2 data transfer, old caches including V1 are removed.
+  Offline V1 is intentionally no longer preserved. Browser eviction and quota
+  remain platform policy. Injected Chromium quota failures do not
+  establish Safari/iOS behavior. Physical Safari/iPhone are untested.
+
+Checks
+node tests/minimal-pwa-import-purity-qa.mjs
+node tests/minimal-pwa-cache-qa.mjs
+node tests/service-worker-resilience-qa.mjs
+node tests/cache-revision-portability-qa.mjs
+node v2/pwa-transition-qa.mjs
+node tests/browser/pwa-update-flow.mjs
+node tools/pages-runtime-package-qa.mjs --source ... --published ... --work ...
+Browser helpers honor WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH.
+
+Historical QA debt is recorded externally and is not fixed by changing expected
+values. Runtime packaging regenerates the existing offline route inventory;
+this also removes its stale missing-Tau-route failure. The unrelated rendered
+Glossary link failure remains identical to the baseline.

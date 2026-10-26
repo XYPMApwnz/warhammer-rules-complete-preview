@@ -26,7 +26,18 @@
   const searchResults = document.getElementById('searchResults');
   const glossary = window.WH40K_GLOSSARY;
   const presentation = JSON.parse(document.getElementById('readerPresentation')?.textContent || '{}');
-  const searchIndex = glossary.entries().filter(term => term.domain === 'CORE');
+  let searchReady;
+  const searchContext = () => searchReady ??= Promise.all([
+    import('../../shared/army-book-app-v2/global-glossary.mjs'),
+    import('../../shared/army-book-app-v2/reference-contract.mjs'),
+    import('./mount.mjs')
+  ]).then(async ([{adaptGlobalGlossary},{createReferenceContract},{loadReaderNavigation,createCoreReferenceRoutes}])=>{
+    const corpus=window.WH40K_GLOSSARY_V2_INDEX,projection=adaptGlobalGlossary(corpus);
+    const contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
+    const navigation=await loadReaderNavigation(window),routes=createCoreReferenceRoutes(corpus,navigation);
+    return {contract,navigation,routes};
+  });
+  let searchSequence=0;
   let termOpener;
   let drawerScrollY = 0;
 
@@ -140,20 +151,30 @@
   searchButton.addEventListener('click', openSearch);
   searchDialog.addEventListener('click', event => { if (event.target === searchDialog) searchDialog.close(); });
   searchResults.addEventListener('click', event => { if (event.target.closest('a')) searchDialog.close(); });
-  searchInput.addEventListener('input', () => {
+  searchInput.addEventListener('input', async () => {
+    const sequence=++searchSequence;
     const query = normalizeSearch(searchInput.value);
     if (query.length < 2) {
       searchStatus.textContent = 'Type at least two characters.';
       searchResults.replaceChildren();
       return;
     }
-    const matches = searchIndex.filter(item => normalizeSearch(`${item.label} ${(item.aliases||[]).join(' ')} ${item.searchableContent}`).includes(query)).sort((a,b)=>Number(!normalizeSearch(a.label).includes(query))-Number(!normalizeSearch(b.label).includes(query))).slice(0, 40);
+    let search;
+    try{search=await searchContext();}catch(error){
+      if(sequence===searchSequence){searchStatus.textContent='Search unavailable. Reload and try again.';searchStatus.dataset.error=String(error?.message||error);searchResults.replaceChildren();}
+      return;
+    }
+    if(sequence!==searchSequence)return;
+    const matches=search.contract.search(searchInput.value).filter(item=>
+      search.contract.identityFor(item.targetId)?.registryId==='core-rules'&&
+      search.contract.resolve(item.targetId).sections.some(section=>section.fields.some(field=>typeof field.value==='string'&&field.value.trim()))).slice(0,40);
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.replaceChildren(...matches.map(item=>{
-      const link=document.createElement('a');link.href=`../../../glossary/index.html#${encodeURIComponent(item.id)}`;
-      const kind=document.createElement('small');kind.textContent=item.recordType.replaceAll('_',' ');
+      const route=search.routes.routeFor(item.targetId);
+      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:`../../../glossary/index.html#${encodeURIComponent(item.targetId)}`;
+      const kind=document.createElement('small');kind.textContent=item.categoryLabel;
       const heading=document.createElement('strong');heading.textContent=item.label;
-      const excerpt=document.createElement('span');excerpt.textContent=item.definition.en.slice(0,180);
+      const excerpt=document.createElement('span');excerpt.textContent=search.contract.resolve(item.targetId).sections.flatMap(section=>section.fields.map(field=>field.value)).join(' ').slice(0,180);
       link.append(kind,heading,excerpt);return link;
     }));
   });

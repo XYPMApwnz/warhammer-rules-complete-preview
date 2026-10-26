@@ -7,6 +7,7 @@ const readerURL=new URL('./index.html',import.meta.url);
 
 /** Placement only: existing reader navigation and search projections own these addresses. */
 export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL.href}) {
+  if(!Array.isArray(chapterURLs)||!Array.isArray(placements)||!placements.length)throw new Error('Invalid Core reader placements');
   const base=new URL(baseURL),chapters=new Map(),targets=new Map(),owners=new Map();
   for(const address of chapterURLs) {
     const url=new URL(address,base);
@@ -17,7 +18,7 @@ export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL
   for(const entry of placements) {
     const id=entry.id||entry.code,url=new URL(entry.url,base);
     const chapterId=[...chapters].find(([,pathname])=>pathname===url.pathname)?.[0];
-    if(!chapterId||!url.hash||typeof id!=='string')throw new Error('Unbound Core reader placement');
+    if(url.origin!==base.origin||!chapterId||!url.hash||typeof id!=='string')throw new Error('Unbound Core reader placement');
     const sectionId=decodeURIComponent(url.hash.slice(1)),target={chapterId,sectionId,canonicalId:id};
     if(targets.has(id)||owners.has(url.pathname+url.hash))throw new Error('Duplicate Core reader placement');
     targets.set(id,target);owners.set(url.pathname+url.hash,target);
@@ -41,24 +42,49 @@ export function createReaderNavigation({chapterURLs,placements,baseURL=readerURL
   return Object.freeze({routeFor,locationFor,chapterIds:Object.freeze([...chapters.keys()])});
 }
 
+export async function loadReaderNavigation(view,{signal}={}) {
+  const [html,placements]=await Promise.all([
+    view.fetch(readerURL,{signal}).then(response=>{if(!response.ok)throw new Error('Core navigation unavailable');return response.text();}),
+    view.fetch(new URL('./search-index.json',import.meta.url),{signal}).then(response=>{if(!response.ok)throw new Error('Core placements unavailable');return response.json();})
+  ]);
+  const source=new view.DOMParser().parseFromString(html,'text/html');
+  return createReaderNavigation({chapterURLs:[readerURL.href,...[...source.querySelectorAll('.sidebar nav a[href]')].map(link=>link.getAttribute('href'))],placements});
+}
+
+/** Navigation follows existing canonical source relationships, never matching titles. */
+export function createCoreReferenceRoutes(corpus,navigation) {
+  const entries=new Map(corpus.entries.map(entry=>[entry.id,entry]));
+  function targets(entry,trail=new Set()) {
+    if(!entry||trail.has(entry.id))return [];
+    if(entry.domain==='CORE'){
+      try{return [navigation.routeFor(navigation.locationFor({destination:'CORE_RULES',registryId:'core-rules',canonicalId:entry.sourceOwner.canonicalId}).url)];}catch{}
+    }
+    const next=new Set([...trail,entry.id]);
+    return (entry.canonicalReferences||[]).filter(ref=>ref.domain==='CORE'&&
+      (entry.domain==='CORE'?['sourceRuleId','targetRuleId'].includes(ref.relationType):['CORE ABILITIES','Conditional source references'].includes(ref.relationType)))
+      .flatMap(ref=>{
+        const target=entries.get(ref.id);
+        return target?.domain==='CORE'&&(!ref.canonicalId||ref.canonicalId===target.sourceOwner.canonicalId)?targets(target,next):[];
+      });
+  }
+  return Object.freeze({routeFor(id){
+    const routes=new Map(targets(entries.get(id)).filter(Boolean).map(route=>[JSON.stringify(route),route]));
+    return routes.size===1?[...routes.values()][0]:null;
+  }});
+}
+
 /** The certified standalone reader is the sole Core presenter in both entry modes. */
-export function mountCoreReader(document,{root,entryURL,route,navigate}) {
+export function mountCoreReader(document,{root,entryURL,route,navigate,deferPresentation=false}) {
   const view=document.defaultView,lifecycle=createLifecycle(view),previousTitle=document.title;
   const host=document.createElement('div');host.className='v2-core-host';host.dataset.coreReader='';
+  let committed=!deferPresentation;host.hidden=!committed;
   const frame=document.createElement('iframe');frame.className='v2-core-reader';frame.title='Core Rules reader';
   host.append(frame);root.append(host);
   const controller=new view.AbortController();
   let navigation,references,documentLife=null,pending=null,sequence=0,currentAddress='',currentLocation=null,departing=false;
-  const metadata=Promise.all([
-    view.fetch(readerURL,{signal:controller.signal}).then(response=>{if(!response.ok)throw new Error('Core navigation unavailable');return response.text();}),
-    view.fetch(new URL('./search-index.json',import.meta.url),{signal:controller.signal}).then(response=>{if(!response.ok)throw new Error('Core placements unavailable');return response.json();})
-  ]).then(([html,placements])=>{
-    const source=new view.DOMParser().parseFromString(html,'text/html');
-    navigation=createReaderNavigation({chapterURLs:[readerURL.href,...[...source.querySelectorAll('.sidebar nav a[href]')].map(link=>link.getAttribute('href'))],placements});
-    return navigation;
-  });
+  const metadata=loadReaderNavigation(view,{signal:controller.signal}).then(value=>navigation=value);
   function capture() {
-    if(!lifecycle.active||departing||!currentLocation||view.location.href!==currentAddress||frame.contentWindow?.location.href!==currentLocation.url||!frame.contentWindow.WHPageState)return;
+    if(!committed||!lifecycle.active||departing||!currentLocation||view.location.href!==currentAddress||frame.contentWindow?.location.href!==currentLocation.url||!frame.contentWindow.WHPageState)return;
     frame.contentWindow.WHPageState.capture();
     view.history.replaceState({...view.history.state,coreReader:{chapterId:currentLocation.chapterId,readerURL:frame.contentWindow.location.href,state:frame.contentWindow.history.state}},'',view.location.href);
   }
@@ -101,6 +127,7 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
       // Let the existing same-document popup return restore its own reading context.
       if(link.id==='popupReturn'&&child.WHGlossaryReturn?.isSameDocument()) {
         queueMicrotask(lifecycle.guard(()=>{
+          if(!committed)return;
           const restored=navigation.routeFor(child.location.href);if(!restored)return;
           currentAddress=encodeRoute(entryURL,restored);currentLocation=navigation.locationFor(restored);
           view.history.replaceState(view.history.state,'',currentAddress);
@@ -115,9 +142,10 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
     let captureFrame=0;
     documentLife.listen(child,'scroll',()=>{if(!captureFrame)captureFrame=documentLife.frame(()=>{captureFrame=0;capture();});},{passive:true});
     rewriteLinks(doc);
-    await focusLocation(request.location);
+    if(committed)await focusLocation(request.location);
     if(!lifecycle.active||request!==pending)return;
-    document.title=doc.title;host.removeAttribute('aria-busy');request.resolve();pending=null;
+    if(committed)document.title=doc.title;
+    host.removeAttribute('aria-busy');request.resolve();pending=null;
   }
   async function focusLocation(location) {
     const child=frame.contentWindow,doc=frame.contentDocument,saved=view.history.state?.coreReader;
@@ -148,7 +176,15 @@ export function mountCoreReader(document,{root,entryURL,route,navigate}) {
     } else frame.contentWindow.location.replace(location.url);
     return result;
   }
-  lifecycle.cleanup(()=>{++sequence;controller.abort();pending?.resolve();pending=null;documentLife?.destroy();host.remove();document.title=previousTitle;});
+  async function commit() {
+    if(!lifecycle.active||committed)return;
+    committed=true;host.hidden=false;
+    // A hidden frame has no final viewport. Apply the existing location
+    // restoration once it is visible; never move/reparent the iframe.
+    if(currentLocation)await focusLocation(currentLocation);
+    if(lifecycle.active)document.title=frame.contentDocument.title;
+  }
+  lifecycle.cleanup(()=>{++sequence;controller.abort();pending?.resolve();pending=null;documentLife?.destroy();host.remove();if(committed)document.title=previousTitle;});
   const ready=sync(route);
-  return Object.freeze({ready,sync,capture,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;}});
+  return Object.freeze({ready,sync,capture,commit,destroy:lifecycle.destroy,get destroyed(){return !lifecycle.active;}});
 }

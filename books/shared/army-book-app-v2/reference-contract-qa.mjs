@@ -124,6 +124,19 @@ check('Search normalization handles accents, punctuation and case',()=>{
   for(const query of ['deep-strike','DÉEP STRIKE','deep strike'])assert.deepEqual(ids(references.search(query)),['deep']);
 });
 
+check('Full Core definitions outrank label-only references without deleting either',()=>{
+  const reference=card('a-reference','Deep Strike','CORE_ABILITY_MEMBERSHIP',{fields:[field('a-reference','/semanticContent','Deep Strike')]});
+  const full=card('z-definition','DEEP STRIKE','MAIN_RULE',{domain:'CORE',fields:[field('z-definition','/semanticContent','This unit can arrive from reserves as described by the rule.')]});
+  const empty=card('a-core-empty','Deep Strike','MAIN_RULE',{domain:'CORE',fields:[]});
+  const exact=card('army-exact','Deep Strike Master','ARMY_RULE',{fields:[field('army-exact','/text','A specific named army rule.')]});
+  const references=createReferenceContract(registry([reference,full,empty,exact]));
+  assert.equal(references.search('deep strike')[0].targetId,full.id);
+  assert.deepEqual(new Set(ids(references.search('deep strike'))),new Set([reference.id,full.id,empty.id,exact.id]));
+  assert.equal(references.search('deep strike master')[0].targetId,exact.id,'An unrelated Core title must not replace an exact army query');
+  assert.equal(references.resolve(reference.id).identity.canonicalId,reference.id);
+  assert.deepEqual(ids(references.search('')),ids(createReferenceContract(registry([reference,full,empty,exact])).search('')));
+});
+
 check('Categories expose human labels and retain canonical filtering',()=>{
   const categories=contract.categories(scope),idsInScope=new Set(contract.search('',{allowedIds:scope}).map(hit=>hit.category));
   assert.deepEqual(new Set(categories.map(category=>category.id)),idsInScope);

@@ -193,7 +193,9 @@ assert(conceptsPage.includes('If a rule refers to ‘you’, it is referring to 
 assert(!conceptsPage.includes('<summary><strong>You</strong></summary>'),'You clarification must not become a standalone accordion');
 for(const block of generatedReader.matchAll(/<h4 class="see-also">See also<\/h4><ul>([\s\S]*?)<\/ul>/g)){
   for(const item of block[1].matchAll(/<li>([\s\S]*?)<\/li>/g)){
-    assert(/^<button class="term rule-reference"/.test(item[1]),'every See also item must be one clickable rule reference');
+    // Source #Aircraft (23.00) addresses a chapter, not its first subrule.
+    const aircraftChapter=item[1]==='<a class="rule-reference" href="aircraft.html">Aircraft</a>';
+    assert(aircraftChapter||/^<button class="term rule-reference"/.test(item[1]),'every See also item must be one clickable rule or source chapter reference');
     assert(!/>[^<]*\]<\/button>/.test(item[1]),'See also labels must not retain a closing source bracket');
   }
 }
@@ -267,7 +269,7 @@ const readerIndex=fs.readFileSync(path.join(readerRoot,'index.html'),'utf8');
 for(const id of routeIds)assert(readerIndex.includes(`href="${id}.html"`),`reader Start is missing ${id}`);
 assert(readerIndex.includes('id="searchDialog"')&&readerIndex.includes('id="searchButton"'),'reader shell must expose local search');
 const readerApp=fs.readFileSync(path.join(readerRoot,'app.js'),'utf8');
-assert(readerApp.includes("glossary.entries().filter(term => term.domain === 'CORE')")&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must use local Glossary V2 Core entries and support Ctrl/Cmd+K');
+assert(readerApp.includes('window.WH40K_GLOSSARY_V2_INDEX')&&readerApp.includes('createReferenceContract')&&readerApp.includes("registryId==='core-rules'")&&readerApp.includes('search.navigation.locationFor(route)')&&readerApp.includes("event.key.toLowerCase() === 'k'"),'reader search must use the shared local Glossary V2 contract, verified Core placements and Ctrl/Cmd+K');
 assert(readerIndex.includes('id="popupReturn"')&&readerApp.includes('restorePopup(returnRecord)'),'full-rule targets must expose a return to their originating popup');
 assert(readerIndex.includes('assets.warhammer-community.com')&&readerIndex.includes('Official GW PDF ↗'),'reader Start must promote the official GW PDF');
 assert(!readerIndex.includes('Wahapedia 11E ↗'),'reader Start must not promote a secondary source');

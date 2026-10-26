@@ -1,5 +1,6 @@
 import {launchChromium} from '../helpers/browser-launch.mjs';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
@@ -32,7 +33,13 @@ const server=http.createServer(async(request,response)=>{
     serviceWorkerRequests+=1;signal(serviceWorkerWaiters);if(serviceWorkerGate){const current=serviceWorkerGate;serviceWorkerGate=null;await current.promise;}
     return send(response,200,'text/javascript; charset=utf-8',`${workerTemplate}\n// fixture-generation:${generation}\n`);
   }
-  if(url.pathname==='/glossary/generated/cache-revision.js')return send(response,200,'text/javascript; charset=utf-8',`self.WH40K_CACHE_REVISION=${JSON.stringify(revisions[generation])};`);
+  if(url.pathname==='/glossary/generated/cache-revision.js'){
+    const bodies={'index.html':fixtureHtml(),'books/shared/offline-status.js':clientSource,'books/shared/styles/offline-status.css':clientCss,
+      'death-approaches.html':`<!doctype html><title>Death Approaches</title><main>${generation==='A'?'At the start of the battle round, spread the sickness.':'In your Movement phase, spread the sickness.'}</main>`,
+      'required-b.js':`self.fixtureRequired=${JSON.stringify(generation)};`};
+    const assets=Object.fromEntries(Object.entries(bodies).map(([path,body])=>[path,{sha256:createHash('sha256').update(body).digest('hex'),bytes:Buffer.byteLength(body)}]));
+    return send(response,200,'text/javascript; charset=utf-8',`self.WH40K_CACHE_REVISION=${JSON.stringify(revisions[generation])};self.WH40K_PRECACHE=${JSON.stringify(appShell)};self.WH40K_RUNTIME_ASSETS=${JSON.stringify(assets)};`);
+  }
   if(url.pathname==='/'||url.pathname==='/index.html')return send(response,200,'text/html; charset=utf-8',fixtureHtml());
   if(url.pathname==='/books/shared/offline-status.js')return send(response,200,'text/javascript; charset=utf-8',clientSource);
   if(url.pathname==='/books/shared/styles/offline-status.css')return send(response,200,'text/css; charset=utf-8',clientCss);
@@ -123,6 +130,9 @@ try{
     const sibling=await successContext.newPage();await sibling.goto(`${origin}/index.html`);await sibling.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
     await sibling.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.A);
     const siblingLoads=Number(await sibling.evaluate(()=>sessionStorage.pwaLoads));
+    // Finish initial quiet checks before changing the server generation.
+    // The test must not gate a startup update and then wait for a disabled button.
+    await sibling.evaluate(()=>WHOfflineStatus.check());await page.bringToFront();await page.evaluate(()=>WHOfflineStatus.check());
     generation='B';requiredGate=gate();const requiredBefore=requiredRequests;
     await page.locator('[data-pwa-update-action]').click();
     await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='downloading');
@@ -139,16 +149,22 @@ try{
     assert.equal(await page.evaluate(async name=>(await (await caches.open(name)).keys()).length,`warhammer-rules-fe1d435-${revisions.B}`),appShell.length,'READY was shown before every generation B asset was cached');
     await page.getByRole('button',{name:'Install and restart'}).click();
     await page.waitForFunction(({revision,loads})=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision&&Number(sessionStorage.pwaLoads)===loads+1,{revision:revisions.B,loads});
-    await sibling.waitForFunction(({revision,loads})=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision&&Number(sessionStorage.pwaLoads)===loads+1&&document.querySelector('h1')?.textContent===`Library generation B`,{revision:revisions.B,loads:siblingLoads});
+    await sibling.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.B);
+    assert.equal(await sibling.locator('h1').textContent(),'Library generation A','A different tab was reloaded without its user confirmation');
     assert.equal(await workerRevision(page),revisions.B,'Generation B did not control the restarted page');
     assert.equal(await workerRevision(sibling),revisions.B,'Generation B did not control the restarted sibling page');
-    await page.waitForFunction(revision=>caches.keys().then(keys=>keys.length===1&&keys[0]===`warhammer-rules-fe1d435-${revision}`),revisions.B);
+    // Await Cache Storage in Node: Promise-returning waitForFunction is not
+    // reliable with the bundled browser adapter. Keep the actual assertion below.
+    const deletionDeadline=Date.now()+15000;
+    while((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`)&&Date.now()<deletionDeadline)await new Promise(resolve=>setTimeout(resolve,100));
+    assert.equal((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),false,'Obsolete cache survived successful migration');
+    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.B}`),'New prepared cache was not retained');
     assert.equal(Number(await page.evaluate(()=>sessionStorage.pwaLoads)),loads+1,'Confirmed update did not reload exactly once');
-    assert.equal(Number(await sibling.evaluate(()=>sessionStorage.pwaLoads)),siblingLoads+1,'Sibling update did not reload exactly once');
+    assert.equal(Number(await sibling.evaluate(()=>sessionStorage.pwaLoads)),siblingLoads,'Sibling page reloaded without explicit confirmation');
     await successContext.setOffline(true);
     await page.goto(`${origin}/death-approaches.html`);
     await page.getByText('In your Movement phase, spread the sickness.').waitFor();
-    console.log('PWA UPDATE QA: successful two-generation update, sibling-tab convergence and Death Approaches PASS');
+    console.log('PWA UPDATE QA: successful two-generation update, manual sibling consent, obsolete cache cleanup and current offline page PASS');
   }finally{await successContext.close();await resetScenario();}
 
   const failedContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
