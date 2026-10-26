@@ -166,11 +166,12 @@
     }
     if(sequence!==searchSequence)return;
     const matches=search.contract.search(searchInput.value).filter(item=>
-      search.contract.identityFor(item.targetId)?.registryId==='core-rules'&&search.routes.routeFor(item.targetId)).slice(0,40);
+      search.contract.identityFor(item.targetId)?.registryId==='core-rules'&&
+      search.contract.resolve(item.targetId).sections.some(section=>section.fields.some(field=>typeof field.value==='string'&&field.value.trim()))).slice(0,40);
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.replaceChildren(...matches.map(item=>{
-      const route=search.routes.routeFor(item.targetId),location=search.navigation.locationFor(route);
-      const link=document.createElement('a');link.href=location.url;
+      const route=search.routes.routeFor(item.targetId);
+      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:`../../../glossary/index.html#${encodeURIComponent(item.targetId)}`;
       const kind=document.createElement('small');kind.textContent=item.categoryLabel;
       const heading=document.createElement('strong');heading.textContent=item.label;
       const excerpt=document.createElement('span');excerpt.textContent=search.contract.resolve(item.targetId).sections.flatMap(section=>section.fields.map(field=>field.value)).join(' ').slice(0,180);

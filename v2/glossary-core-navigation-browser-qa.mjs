@@ -14,6 +14,7 @@ fs.mkdirSync(out,{recursive:true});
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const placements=JSON.parse(fs.readFileSync(path.join(repo,'books/core-rules/reader/search-index.json'),'utf8'));
 const controls=[['Deep Strike','core-deep-strike'],['Leader','core-leader'],['Lone Operative','core-lone-operative'],['Advance','core-rule-09-06-advance-move'],['Coherency','core-rule-03-03-coherency']];
+const concepts=[['Engagement Range','core-engagement-range'],['Critical Hit','core-critical-hit'],['Wholly Within','core-wholly-within'],['Within','core-within'],['Active Player','core-active-player'],['Objective Control','core-objective-control'],['Attached Unit','core-attached-unit'],['Critical Wound','core-critical-wound']];
 const books=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg'};
 const server=http.createServer((request,response)=>{try{
@@ -55,7 +56,7 @@ function observe(page,{metadataFault=false}={}){
 try{
   for(const width of (process.env.WH_CORE_NAV_BROWSER_METADATA_ONLY?[]:[1440,390])){
     const context=await browser.newContext({viewport:{width,height:width===390?844:900},serviceWorkers:'block'}),page=await context.newPage();observe(page);
-    const row={width,glossary:[],reader:[],books:[],negative:[]};report.results.push(row);
+    const row={width,glossary:[],reader:[],concepts:[],books:[],negative:[]};report.results.push(row);
     await page.goto(entry);await ready(page);
     for(const [query,canonical] of controls){
       await navigate(page,{destination:'GLOSSARY'});await status(page,'READY');const view=await popup(page,query,canonical);
@@ -74,6 +75,38 @@ try{
       const href=new URL(await first.getAttribute('href'),entry);assert.equal(href.searchParams.get('v2'),'CORE_RULES');assert.equal(href.hash,'#'+canonical);
       await first.click();await page.waitForURL(url=>url.hash==='#'+canonical);await coreLocation(page,canonical);assert.equal(await page.locator('[data-global-glossary]').count(),0);row.reader.push({query,canonical,status:'PASS'});
     }
+    // Source-owned concepts have full definitions but no standalone Reader placement.
+    // Standalone Reader retains its qualified legacy Glossary target; the mounted
+    // Reader translates that same identity through the existing REFERENCE route.
+    const standalone=await context.newPage();observe(standalone);
+    await standalone.goto(`${origin}/books/core-rules/reader/core-abilities.html`);
+    await standalone.locator('#searchButton').click();
+    for(const [query,canonical] of concepts){
+      const source=corpus.entries.find(item=>item.id==='core::'+canonical);
+      assert.equal(source?.recordType,'CORE_CONCEPT',query+' accepted concept identity');
+      assert.equal(source.sourceOwner.canonicalId,canonical);
+      assert.equal(placements.some(item=>item.id===canonical),false,'do not fabricate a Reader placement');
+      await standalone.locator('#searchInput').fill(query);
+      await standalone.waitForFunction(id=>[...document.querySelectorAll('#searchResults a')].some(link=>decodeURIComponent(new URL(link.href).hash.slice(1))==='core::'+id),canonical);
+      const legacyHref=await standalone.locator('#searchResults a').evaluateAll((nodes,id)=>nodes.find(link=>decodeURIComponent(new URL(link.href).hash.slice(1))==='core::'+id).href,canonical);
+      assert.equal(new URL(legacyHref).pathname,'/glossary/index.html');assert.equal(decodeURIComponent(new URL(legacyHref).hash.slice(1)),'core::'+canonical);
+      await navigate(page,{destination:'CORE_RULES',registryId:'core-rules',chapterId:'core-abilities'});const readerURL=page.url(),frame=await child(page);
+      await frame.locator('#searchButton').click();await frame.locator('#searchInput').fill(query);
+      await frame.waitForFunction(id=>[...document.querySelectorAll('#searchResults a')].some(link=>decodeURIComponent(new URL(link.href).hash.slice(1))===id),canonical);
+      const target=await frame.locator('#searchResults a').evaluateAll((nodes,id)=>nodes.findIndex(link=>decodeURIComponent(new URL(link.href).hash.slice(1))===id),canonical);
+      const link=frame.locator('#searchResults a').nth(target),referenceURL=await link.getAttribute('href');
+      assert.equal(new URL(referenceURL).searchParams.get('v2'),'REFERENCE');assert.equal(new URL(referenceURL).hash,'#'+canonical);
+      await link.click();await page.waitForURL(referenceURL);await article(page,'core::'+canonical).waitFor();
+      const definition=await article(page,'core::'+canonical).locator('.reference-definition').innerText();
+      const normalize=value=>value.replace(/\s+/g,' ').trim();assert(normalize(definition).includes(normalize(source.facts.semanticContent)),query+' complete canonical definition');
+      await status(page,'READY');assert.equal(await article(page,'core::'+canonical).getByRole('link',{name:'Open in Core Rules'}).count(),0,'unplaced concept has no false Core action');
+      await page.goBack();await page.waitForURL(readerURL);await ready(page);assert.equal(await page.locator('iframe.v2-core-reader').count(),1);
+      await page.goForward();await page.waitForURL(referenceURL);await article(page,'core::'+canonical).waitFor();
+      await page.reload();await article(page,'core::'+canonical).waitFor();assert.equal(new URL(page.url()).hash,'#'+canonical);
+      await page.screenshot({path:path.join(out,`${width}-${canonical}-fallback.png`)});
+      row.concepts.push({query,canonical,legacyTarget:new URL(legacyHref).pathname+new URL(legacyHref).hash,referenceTarget:new URL(referenceURL).search+new URL(referenceURL).hash,fullCanonicalDefinition:true,backForwardReload:true});
+    }
+    await standalone.close();
     // A reading-context round trip uses the existing popup/history contracts.
     await navigate(page,{destination:'CORE_RULES',registryId:'core-rules',chapterId:'monsters-vehicles'});const readingURL=page.url();let reading=await child(page);
     await reading.locator('[data-term="core-blast"]').first().click();await reading.locator('#termFull').click();await article(page,'core::core-blast').waitFor();await status(page,'READY');
@@ -142,4 +175,4 @@ try{
   assert.deepEqual(report.errors,[]);assert.deepEqual(report.missing,[]);report.status='PASS';
 }catch(error){report.status='FAIL';report.error=error.stack;throw error;}
 finally{await browser.close();await new Promise(resolve=>server.close(resolve));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));}
-console.log(JSON.stringify({status:report.status,viewports:report.results.map(row=>({width:row.width,controls:row.glossary.length,reader:row.reader.length,books:row.books.length})),metadata:report.metadata,evidence:out}));
+console.log(JSON.stringify({status:report.status,viewports:report.results.map(row=>({width:row.width,controls:row.glossary.length,reader:row.reader.length,concepts:row.concepts.length,books:row.books.length})),metadata:report.metadata,evidence:out}));
