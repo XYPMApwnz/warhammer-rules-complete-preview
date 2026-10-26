@@ -5,7 +5,18 @@ Scope
 - Revision covers reviewed runtime inputs. A raw-byte fingerprint isolates cache
   namespaces when LF/CRLF packaging differs without a semantic revision change.
 - Mandatory precache is code/small shell resources. Army Book JSON and the large
-  native/legacy Glossary data remain lazy. Previously cached bodies are retained.
+  native/legacy Glossary data remain lazy. Compatible native V2 JSON in old
+  caches is copied to the current data cache, then read back and SHA-256 verified.
+- Only after all eligible copies pass verification are this app's old caches
+  removed, including V1. Changed/unlisted JSON is not migrated. Other apps'
+  caches are untouched. No book opening or UI validation runs inside the SW.
+- Migration runs on activation and is requested from registration.active on
+  every app startup/controller change. Copy/read/hash failure retains all old
+  caches. A later startup retries without requiring another activation.
+  Installing/waiting updates defer cleanup to protect their prepared cache.
+  Before scanning and each deletion, the worker confirms it still owns the
+  active cache via the existing GET_VERSION contract; a superseded worker
+  cannot delete the replacement publication. No persistent tab state is added.
 - Cached native data/code is reused offline only when its SHA-256 matches the
   installed publication. Changed book data requires a compatible online copy.
 - No JavaScript response is rewritten or prevented from evaluating by a loader.
@@ -23,6 +34,9 @@ Application acceptance boundary
   no guarantee that all classic reader session markers can be rolled back.
 
 Manual update and saved data
+- Explicit update consent recovers the existing prepared-cache readiness after
+  a waiting worker restart; incomplete caches and wrong revisions still refuse
+  activation. No hidden status query or retained in-memory flag is required.
 - When another tab already activated the offered version, confirmation reloads
   directly rather than enqueueing a second service-worker update.
 - Controller changes never reload another tab. Only explicit user confirmation
@@ -43,6 +57,11 @@ Accepted residual risks / migration
   open old V2 documents need a one-time manual refresh after saving raw input.
   Closing all old tabs and reopening is the verified migration path; ordinary
   in-place reload of the already published client is not certified by this QA.
+- An intermittent first Install -> Retry during the old-SW transition was
+  reproduced on both committed baseline 371f5470 and the migration candidate.
+  Its cause remains unproven. Failed activation kept the old worker/caches;
+  successful protocol cases separately verified the exact new active/controller
+  and offline book reopening. This migration does not claim to fix that issue.
 - Pre/post checks do not make import() atomic. A future module with top-level
   external side effects can execute before the late check. The synthetic
   generation-marker reproduction remains an archived RISK, not a demonstrated
@@ -50,8 +69,9 @@ Accepted residual risks / migration
   repeat the real-factory transition gate.
 - tests/browser/minimal-pwa-version-race.mjs intentionally exits 1 to preserve
   that diagnostic result; it is not the current product acceptance gate.
-- Cache Storage is retained, not garbage-collected by this fix. Browser eviction
-  and quota remain platform policy. Injected Chromium quota failures do not
+- After verified V2 data transfer, old caches including V1 are removed.
+  Offline V1 is intentionally no longer preserved. Browser eviction and quota
+  remain platform policy. Injected Chromium quota failures do not
   establish Safari/iOS behavior. Physical Safari/iPhone are untested.
 
 Checks

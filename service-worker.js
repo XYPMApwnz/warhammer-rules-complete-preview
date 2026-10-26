@@ -1144,6 +1144,7 @@ const OFFLINE_PACKAGE_QUERY = "WH_OFFLINE_PACKAGE_STATUS_QUERY";
 const VERSION_QUERY = "GET_VERSION";
 const VERSION_RESPONSE = "VERSION";
 const ACTIVATE_UPDATE = "SKIP_WAITING";
+const MIGRATE_V2_DATA = "WH_PWA_MIGRATE_V2_DATA";
 let offlinePackageSequence = 0;
 let offlinePackageStatus = {status: "idle", completed: 0, total: INSTALL_SHELL.length, error: null};
 function offlinePackagePayload() {return {type: OFFLINE_PACKAGE_STATUS, revision: self.WH40K_CACHE_REVISION, sequence: offlinePackageSequence, ...offlinePackageStatus};}
@@ -1161,10 +1162,18 @@ self.addEventListener("message",event=>{
   const reply=payload=>{if(event.ports[0])event.ports[0].postMessage(payload);else if(event.source)event.source.postMessage(payload);};
   if(event.data?.type===OFFLINE_PACKAGE_QUERY){event.waitUntil(currentOfflinePackageStatus().then(reply));return;}
   if(event.data?.type===VERSION_QUERY){reply(versionPayload());return;}
+  // Sent to registration.active on every application startup, not to a
+  // waiting worker. A failed activation migration can therefore be retried.
+  if(event.data?.type===MIGRATE_V2_DATA){event.waitUntil(migrateV2Data().then(reply));return;}
   if(event.data?.type!==ACTIVATE_UPDATE)return;
-  const accepted=event.data.revision===self.WH40K_CACHE_REVISION&&offlinePackageStatus.status==="ready"&&offlinePackageStatus.completed===INSTALL_SHELL.length;
-  reply(versionPayload({accepted}));
-  if(accepted)event.waitUntil(Promise.resolve(self.skipWaiting()));
+  event.waitUntil((async()=>{
+    // A waiting worker can be stopped/restarted by the browser. Recover its
+    // existing prepared-cache status instead of relying on lost memory state.
+    const status=event.data.revision===self.WH40K_CACHE_REVISION?await currentOfflinePackageStatus():null;
+    const accepted=status?.status==="ready"&&status.completed===INSTALL_SHELL.length;
+    reply(versionPayload({accepted:Boolean(accepted)}));
+    if(accepted)await self.skipWaiting();
+  })());
 });
 
 self.addEventListener("install", (event) => {
@@ -1172,9 +1181,8 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate",event=>{
-  // Installation is not permission to delete previously downloaded V1 or V2.
-  // There is no shared client/version record or per-tab cache state.
-  event.waitUntil(self.clients.claim());
+  const activatingWorker=self.registration.active;
+  event.waitUntil(migrateV2Data(activatingWorker).then(()=>self.clients.claim()));
 });
 
 function publicationPath(url){
@@ -1193,6 +1201,70 @@ function mutableV2(url){
   return /\.(?:mjs|css|json)$/.test(url.pathname)||url.pathname.includes('/v2/')||url.pathname.includes('/books/core-rules/reader/')||url.pathname.endsWith('/books/shared/offline-status.js');
 }
 const DATA_CACHE_NAME=CACHE_NAME+'-data';
+let migrationTask;
+function migrateV2Data(activatingWorker=null){
+  // Only serialize concurrent copies in this worker. No persistent client or
+  // version state; after any failure the next startup performs the same scan.
+  if(migrationTask)return migrationTask;
+  migrationTask=transferV2Data(activatingWorker).catch(error=>{
+    console.warn('Service Worker V2 data migration failed; old caches retained',error);
+    return {status:'failed',error:String(error.message||error)};
+  }).finally(()=>{migrationTask=null;});
+  return migrationTask;
+}
+async function currentMigrationOwner(activatingWorker){
+  const active=self.registration.active;
+  if(!active||self.registration.installing||self.registration.waiting)return false;
+  // During this worker's own activate event, messaging itself could wait for
+  // activation to finish. Its captured registration object is sufficient here.
+  if(active===activatingWorker)return true;
+  if(active.state!=='activated')return false;
+  const payload=await new Promise(resolve=>{
+    const channel=new MessageChannel();
+    const finish=value=>{clearTimeout(timer);channel.port1.close();resolve(value);};
+    const timer=setTimeout(()=>finish(null),5000);
+    channel.port1.onmessage=event=>finish(event.data);
+    try{active.postMessage({type:VERSION_QUERY},[channel.port2]);}catch{finish(null);}
+  });
+  return self.registration.active===active&&!self.registration.installing&&!self.registration.waiting&&payload?.cacheName===CACHE_NAME;
+}
+async function transferV2Data(activatingWorker){
+  const keys=await caches.keys();
+  const old=keys.filter(name=>name.startsWith(CACHE_PREFIX)&&name!==CACHE_NAME&&name!==DATA_CACHE_NAME);
+  // Never remove a newly prepared cache belonging to another pending update.
+  if(!old.length)return {status:'complete',transferred:0};
+  if(!await currentMigrationOwner(activatingWorker))return {status:'deferred'};
+  if(!Object.keys(RUNTIME_ASSETS).length)throw new Error('Publication integrity inventory missing');
+  const transferred=new Set();let destination;
+  for(const name of old){
+    const source=await caches.open(name);
+    for(const request of await source.keys()){
+      const url=new URL(request.url),item=publicationPath(url);
+      // Only native V2 data present in the current publication. V1, stale
+      // code and unknown resources are deliberately not carried forward.
+      if(!item||!/(?:^|\/)v2\/.*\.json$/.test(item)||!RUNTIME_ASSETS[item])continue;
+      const response=await source.match(request);
+      if(!response)throw new Error('Old cached response disappeared: '+item);
+      if(!await matchesPublishedAsset(url,response))continue;
+      const target=new URL('./'+item,self.location.href).href;
+      destination ||= await caches.open(DATA_CACHE_NAME);
+      if(!await matchesPublishedAsset(url,await destination.match(target)))await destination.put(target,response);
+      transferred.add(target);
+    }
+  }
+  // Read back every migrated body from its final cache. Copy success alone
+  // is insufficient. No book/UI/gameplay validation belongs in this worker.
+  for(const target of transferred){
+    if(!await matchesPublishedAsset(new URL(target),await destination.match(target)))throw new Error('Migrated data verification failed: '+target);
+  }
+  // This boundary is reached only after all compatible V2 bodies were verified.
+  // Delete this application's obsolete caches, including V1; leave other apps.
+  for(const name of old){
+    if(!await currentMigrationOwner(activatingWorker))return {status:'deferred'};
+    await caches.delete(name);
+  }
+  return {status:'complete',transferred:transferred.size};
+}
 async function fetchAndCache(request,cacheKey=request,event=null){
   const response=await fetch(request);
   if(response.ok){

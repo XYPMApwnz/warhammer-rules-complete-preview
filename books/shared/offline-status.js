@@ -73,7 +73,7 @@
       if(!activeSeen){hide();return;}
       label.textContent='Готово офлайн ✓';meter.setAttribute('aria-valuenow','100');bar.style.setProperty('--offline-progress','100%');target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Готово офлайн',true);readyTimer=setTimeout(hide,1400);return;
     }
-    if(state==='error'){failedRevision=payload.revision||failedRevision;activeSeen=true;label.textContent='Офлайн-пакет не готов';target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Офлайн-пакет не готов',true);if(registration?.active)setUpdateState('failed');return;}
+    if(state==='error'){console.warn('Offline package status error',{revision:payload.revision,completed,total,error:payload.error});failedRevision=payload.revision||failedRevision;activeSeen=true;label.textContent='Офлайн-пакет не готов';target.hidden=false;requestAnimationFrame(()=>target.classList.add('is-visible'));announce('Офлайн-пакет не готов',true);if(registration?.active)setUpdateState('failed');return;}
     hide();
   }
   function request(worker,type,data={}){
@@ -84,6 +84,9 @@
   async function readRevision(worker){const payload=await request(worker,VERSION_QUERY);return payload?.revision||'';}
   async function syncInstalled(){
     const worker=registration?.active||navigator.serviceWorker.controller;if(!worker)return;
+    // Each app startup/controller change retries an interrupted data transfer.
+    // Never ask an installing/waiting publication to clean the active cache.
+    request(worker,'WH_PWA_MIGRATE_V2_DATA').catch(()=>{});
     try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;if(v2Bootstrap){if(payload.revision===expectedRevision)resolveReady();else {reloadRequired=true;setUpdateState('changed');}}}catch{}
   }
   async function updateReady(worker){
@@ -157,7 +160,7 @@
         const changed=()=>{if(waiting.state==='activated'){clearTimeout(timer);waiting.removeEventListener('statechange',changed);resolve();}};waiting.addEventListener('statechange',changed);changed();
       });
       confirmedReload();
-    }catch{activationRequested=false;setUpdateState('failed');}
+    }catch(error){console.warn('Service worker update activation failed',error);activationRequested=false;setUpdateState('failed');}
   }
   async function confirmChanged(){
     // A duplicate waiting registration must not block a version already active.

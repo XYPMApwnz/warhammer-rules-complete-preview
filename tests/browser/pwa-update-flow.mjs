@@ -130,6 +130,9 @@ try{
     const sibling=await successContext.newPage();await sibling.goto(`${origin}/index.html`);await sibling.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
     await sibling.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.A);
     const siblingLoads=Number(await sibling.evaluate(()=>sessionStorage.pwaLoads));
+    // Finish initial quiet checks before changing the server generation.
+    // The test must not gate a startup update and then wait for a disabled button.
+    await sibling.evaluate(()=>WHOfflineStatus.check());await page.bringToFront();await page.evaluate(()=>WHOfflineStatus.check());
     generation='B';requiredGate=gate();const requiredBefore=requiredRequests;
     await page.locator('[data-pwa-update-action]').click();
     await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='downloading');
@@ -150,14 +153,18 @@ try{
     assert.equal(await sibling.locator('h1').textContent(),'Library generation A','A different tab was reloaded without its user confirmation');
     assert.equal(await workerRevision(page),revisions.B,'Generation B did not control the restarted page');
     assert.equal(await workerRevision(sibling),revisions.B,'Generation B did not control the restarted sibling page');
-    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),'Previously available offline cache was removed');
+    // Await Cache Storage in Node: Promise-returning waitForFunction is not
+    // reliable with the bundled browser adapter. Keep the actual assertion below.
+    const deletionDeadline=Date.now()+15000;
+    while((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`)&&Date.now()<deletionDeadline)await new Promise(resolve=>setTimeout(resolve,100));
+    assert.equal((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),false,'Obsolete cache survived successful migration');
     assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.B}`),'New prepared cache was not retained');
     assert.equal(Number(await page.evaluate(()=>sessionStorage.pwaLoads)),loads+1,'Confirmed update did not reload exactly once');
     assert.equal(Number(await sibling.evaluate(()=>sessionStorage.pwaLoads)),siblingLoads,'Sibling page reloaded without explicit confirmation');
     await successContext.setOffline(true);
     await page.goto(`${origin}/death-approaches.html`);
     await page.getByText('In your Movement phase, spread the sickness.').waitFor();
-    console.log('PWA UPDATE QA: successful two-generation update, manual sibling consent, cache retention and Death Approaches PASS');
+    console.log('PWA UPDATE QA: successful two-generation update, manual sibling consent, obsolete cache cleanup and current offline page PASS');
   }finally{await successContext.close();await resetScenario();}
 
   const failedContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
