@@ -49,7 +49,15 @@ try{
   write('v2/app.html',`<script>window.WHPwaExpectedRevision='__WH_PWA_REVISION__';</script><script src="../books/shared/offline-status.js?wh-pwa=__WH_PWA_REVISION__"></script><script type="module" src="./boot.mjs?wh-pwa=__WH_PWA_REVISION__"></script>\n`);
   write('glossary/v2/generated/index.en.js','self.BIG_LEGACY_GLOSSARY={};\n');write('glossary/v2/generated/corpus.en.json','{"cards":[]}\n');write('books/core-rules/reader/index.html','<script src="../../../glossary/v2/generated/index.en.js?v=1"></script><script src="app.js?v=18"></script>\n');write('books/core-rules/reader/app.js','void 0;\n');write('books/core-rules/reader/search-index.json','[]\n');
   write('v2/boot.mjs','export const value=1;\n');write('books/shared/application-v2/shell.css','body { color:white; }\n');write('books/test/v2/generated/app-presentation.json','{"cards":[]}\n');write('glossary/generated/cache-revision.js',"self.WH40K_CACHE_REVISION='0000000000000000';\n");
+  for(const relative of ['books/shared/datasheet-system.css','books/shared/unit-art.css']){
+    paths.push(relative);write(relative,'.offline-datasheet { display: grid; }\n');
+  }
+  write('tools/pages-runtime-manifest.json',JSON.stringify({schema:'unified-v2-pages-runtime-allowlist/v1',files:paths.map(p=>({path:p,reasons:[{kind:'fixture'}]}))}));
   const initial=calculateCacheRevision({root:native});
+  for(const relative of ['books/shared/datasheet-system.css','books/shared/unit-art.css']){
+    assert.ok(initial.urls.includes('./'+relative),`${relative} is missing from mandatory offline stylesheet coverage`);
+    assert.equal(initial.urls.filter(url=>url==='./'+relative).length,1,'offline stylesheet was duplicated');
+  }
   write('.nojekyll','\n');
   assert.equal(calculateCacheRevision({root:native}).revision,initial.revision,'stock package normalization of .nojekyll changed revision');
   for(const relative of ['v2/boot.mjs','books/shared/application-v2/shell.css','books/test/v2/generated/app-presentation.json']){

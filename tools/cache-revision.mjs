@@ -72,7 +72,7 @@ function minimalPrecache(root,paths){
       relative.startsWith('books/shared/application-v2/')||relative.startsWith('books/shared/army-book-app-v2/')||
       relative.startsWith('v2/')||/\/v2\/theme\.css$/.test(relative)||relative==='books/shared/styles/offline-status.css'))add(relative);
   }
-  for(const relative of ['index.html','v2/app.html','manifest.webmanifest','assets/apple-touch-icon.png','assets/icon-192.png','assets/icon-512.png','assets/icon-maskable-512.png','assets/warhammer-40000-logo-optimized.png','assets/games-workshop-logo.png','books/core-rules/reader/search-index.json'])add(relative);
+  for(const relative of ['index.html','v2/app.html','manifest.webmanifest','assets/apple-touch-icon.png','assets/icon-192.png','assets/icon-512.png','assets/icon-maskable-512.png','assets/warhammer-40000-logo-optimized.png','assets/games-workshop-logo.png','books/core-rules/reader/search-index.json','books/shared/datasheet-system.css','books/shared/unit-art.css'])add(relative);
   if(allowed.has('index.html'))urls.add('./');
   if(allowed.has('books/shared/offline-status.js')){
     add('books/shared/offline-status.js','?v=4');
