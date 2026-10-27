@@ -783,6 +783,28 @@
     },
     {
       "book": "death-guard",
+      "sourceId": "death-guard-wargear-option-contracts",
+      "authority": "structured-contract",
+      "sourceType": "structured-contract",
+      "acceptedRevision": "c111b854ec7f865e3b1eb7389f792655d89477ba",
+      "acceptedHash": "77517420555b232d3e37dfc59b4d7d48030b6970b3394f87c254e19389cca418",
+      "lastChecked": "2026-09-26",
+      "upstreamUpdateKnown": false,
+      "upstreamCurrentness": "N/A",
+      "status": "VERIFIED_FROZEN",
+      "rawOrigin": "REPOSITORY_ARTIFACT",
+      "reproducible": "repository-artifact",
+      "artifacts": [
+        {
+          "path": "books/death-guard/sources/death-guard-wargear-option-contracts.v1.json",
+          "normalization": "lf",
+          "sha256": "77517420555b232d3e37dfc59b4d7d48030b6970b3394f87c254e19389cca418"
+        }
+      ],
+      "notes": "Byte-identical to the accepted wargear-option contract introduced by c111b854; consumed by the DG canonical/effective adapter and native V2 comparison QA. No upstream currentness claim."
+    },
+    {
+      "book": "death-guard",
       "sourceId": "death-guard-enhancement-owner-matrix",
       "authority": "structured-contract",
       "sourceType": "structured-contract",

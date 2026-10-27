@@ -204,6 +204,24 @@
       ]
     },
     {
+      "id": "death-guard-wargear-option-contracts",
+      "sourceId": "death-guard-wargear-option-contracts",
+      "active": true,
+      "sourceType": "structured-contract",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "factsOwned": [
+        "wargear-option-constraints"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "CERTIFICATION_QA"
+      ],
+      "paths": [
+        "books/death-guard/sources/death-guard-wargear-option-contracts.v1.json"
+      ]
+    },
+    {
       "id": "death-guard-mfm-v1.4",
       "sourceId": "death-guard-mfm-v1.4",
       "active": false,

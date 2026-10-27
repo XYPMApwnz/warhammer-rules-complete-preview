@@ -14,6 +14,54 @@ const copy=(fromRoot,toRoot,relative)=>{const target=path.join(toRoot,relative);
 const copyTree=(fromRoot,toRoot,relative)=>{const source=path.join(fromRoot,relative);if(fs.existsSync(source))fs.cpSync(source,path.join(toRoot,relative),{recursive:true});};
 const publication=json('books/publication-inventory.json');
 const registry=json('books/source-ingestion-contract.json');
+
+// Isolate this source boundary so unrelated central-domain enrollment debt cannot
+// prevent its negative controls from running. The normal full-book gate below
+// remains unchanged and still reports that debt; this fixture is not its PASS.
+function assertDeathGuardWargearEnrollment(){
+  const book='death-guard',sourceId='death-guard-wargear-option-contracts';
+  const artifact=`books/${book}/sources/death-guard-wargear-option-contracts.v1.json`;
+  const manifestPath=`books/${book}/sources/source-manifest.json`,configPath=`books/${book}/book.config.json`;
+  const config=json(configPath),manifest=json(manifestPath);
+  const declaration=manifest.sources.find(source=>source.sourceId===sourceId);
+  const registered=registry.sources.find(source=>source.book===book&&source.sourceId===sourceId);
+  assert(declaration,'DG wargear manifest registration missing');
+  assert(registered,'DG wargear registry registration missing');
+  assert.equal(config.sources.wargearOptionContracts,'sources/death-guard-wargear-option-contracts.v1.json');
+  assert.equal(hash(fs.readFileSync(path.join(root,artifact))),
+    '77517420555b232d3e37dfc59b4d7d48030b6970b3394f87c254e19389cca418',
+    'DG wargear bytes must remain the accepted c111b854 contract');
+  assert.equal(declaration.active,true);assert.equal(declaration.lifecycle,'ACCEPTED_SOURCE');
+  for(const consumer of ['CANONICAL_BUILD','EFFECTIVE_MODEL','CERTIFICATION_QA'])assert(declaration.consumers.includes(consumer));
+  const scoped=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-dg-wargear-enrollment-'));
+  const write=(relative,value)=>{const file=path.join(scoped,relative);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,stable(value));};
+  try{
+    write('books/publication-inventory.json',{schema:publication.schema,books:[{
+      id:book,title:config.title,config:configPath,library:true,offline:false,freshness:true,mobile:false
+    }]});
+    write(configPath,{id:book,title:config.title,sources:{manifest:config.sources.manifest,wargearOptionContracts:config.sources.wargearOptionContracts}});
+    write(manifestPath,{schema:manifest.schema,bookId:book,enrollmentScope:manifest.enrollmentScope,sources:[declaration]});
+    write('books/source-ingestion-contract.json',{schema:registry.schema,sources:[registered]});
+    copy(root,scoped,artifact);
+    const run=()=>buildSourceEnrollment({repo:scoped});
+    assert.deepEqual(run().rows.map(row=>row.sourceId),[sourceId]);
+    const mutate=(relative,change,pattern)=>{
+      const file=path.join(scoped,relative),before=fs.readFileSync(file);
+      try{const value=JSON.parse(before);change(value);write(relative,value);assert.throws(run,pattern);}
+      finally{fs.writeFileSync(file,before);}
+    };
+    mutate(manifestPath,value=>value.sources=[],/actual build source is omitted from manifest/);
+    mutate('books/source-ingestion-contract.json',value=>value.sources=[],/active manifest sources are not registered/);
+    mutate('books/source-ingestion-contract.json',value=>value.sources[0].artifacts[0].sha256='0'.repeat(64),/frozen artifact hash mismatch/);
+    mutate(manifestPath,value=>value.sources[0].consumers=[],/consumers are incomplete/);
+    mutate(configPath,value=>delete value.sources.wargearOptionContracts,/active source has no declared consumer graph reference/);
+    console.log(JSON.stringify({check:'dg-wargear-source-enrollment',status:'PASS',scope:'SINGLE_SOURCE_FIXTURE',negativeControls:5,
+      fullRepositoryEnrollment:'NOT_ASSESSED_BY_THIS_FIXTURE'}));
+  }finally{fs.rmSync(scoped,{recursive:true,force:true});}
+}
+assertDeathGuardWargearEnrollment();
+if(process.argv.includes('--dg-wargear-only'))process.exit(0);
+
 const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-source-enrollment-'));
 
 try{
