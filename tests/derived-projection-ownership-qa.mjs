@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {createCanonicalBuildContext} from '../books/shared/tools/canonical-build-contract.mjs';
 import {buildCanonicalBook} from '../books/shared/tools/build-army-book.mjs';
 import {createEffectiveBookModel,validateEffectiveBookModel} from '../books/shared/tools/effective-book-model.mjs';
-import {createPointsCatalogFromProjections} from '../roster-guides/effective-points-catalog.mjs';
+import {createPointsCatalogFromProjections} from '../books/shared/points/effective-catalog.mjs';
 import {projectEffectiveEnhancementSources} from '../glossary/tools/effective-enhancement-sources.mjs';
 import {projectDeathGuardGlossaryFacts} from '../books/death-guard/tools/canonical-source-adapter.mjs';
 import {renderEffectiveBook as renderDeathGuard} from '../books/death-guard/tools/presentation-hook.mjs';
@@ -21,7 +21,7 @@ for(const id of books){
 }
 
 const cloneProjections=()=>new Map([...projections].map(([id,value])=>[id,structuredClone(value)]));
-const assessmentRuntime=catalog=>{const scope={window:{WH_POINTS_CATALOG:catalog}};vm.createContext(scope);vm.runInContext(fs.readFileSync(path.join(root,'books/shared/rule-facts.js'),'utf8'),scope);vm.runInContext(fs.readFileSync(path.join(root,'roster-guides/points-validator.js'),'utf8'),scope);return scope.window.WHRosterPoints;};
+const assessmentRuntime=catalog=>{const scope={window:{WH_POINTS_CATALOG:catalog}};vm.createContext(scope);vm.runInContext(fs.readFileSync(path.join(root,'books/shared/rule-facts.js'),'utf8'),scope);vm.runInContext(fs.readFileSync(path.join(root,'books/shared/points/points-validator.js'),'utf8'),scope);return scope.window.WHRosterPoints;};
 const am=models.get('adeptus-mechanicus'),explorator=am.effectivePointsProjection.enhancements.find(item=>item.id==='enhancement-explorator-dispensation');
 assert.ok(explorator,'AM Explorator Dispensation points projection');
 const amMarshal={id:'marshal-a',canonicalUnitId:'unit-skitarii-marshal',name:'Skitarii Marshal',quantity:1,models:[]},amMarshalTwo={...amMarshal,id:'marshal-b'};

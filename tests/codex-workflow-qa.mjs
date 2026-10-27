@@ -8,8 +8,8 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const packageJson=JSON.parse(read('package.json')),scripts=packageJson.scripts||{};
 const localQa=['qa:sm','qa:da','qa:ba','qa:dg','qa:am','qa:tyranids','qa:tau','qa:ec','qa:csm','qa:effects','qa:points','qa:roster','qa:glossary','qa:publication','qa:sources','qa:architecture','qa:integration','qa:workflow','qa:help'];
-const requiredFiles=['AGENTS.md','books/shared/AGENTS.md','books/space-marines/AGENTS.md','books/death-guard/AGENTS.md','books/adeptus-mechanicus/AGENTS.md','glossary/AGENTS.md','roster-guides/AGENTS.md','docs/codex/REPO_MAP.md','docs/codex/QA_MATRIX.md','docs/codex/WORKFLOW.md','docs/codex/PROMPTS.md','tools/qa-help.mjs'];
-const mappedPaths=['books/source-ingestion-contract.json','books/publication-inventory.json','books/shared/tools/canonical-build-contract.mjs','books/shared/tools/canonical-join-contract.mjs','books/shared/tools/effective-book-model.mjs','books/shared/tools/build-effective-book.mjs','books/shared/tools/build-army-book.mjs','books/death-guard/tools/canonical-source-adapter.mjs','books/death-guard/tools/presentation-hook.mjs','books/adeptus-mechanicus/tools/canonical-source-adapter.mjs','books/shared/tools/effect-contract.mjs','books/shared/effect-contract-runtime.js','books/shared/tools/effective-points-projection.mjs','roster-guides/effective-points-catalog.mjs','glossary/tools/build-glossary.mjs','glossary/tools/check-glossary.mjs','books/shared/tools/render-structured-effective-book.mjs','books/shared/tools/publication-inventory.mjs','tools/build-offline-mobile-routes.mjs'];
+const requiredFiles=['AGENTS.md','books/shared/AGENTS.md','books/space-marines/AGENTS.md','books/death-guard/AGENTS.md','books/adeptus-mechanicus/AGENTS.md','glossary/AGENTS.md','docs/codex/REPO_MAP.md','docs/codex/QA_MATRIX.md','docs/codex/WORKFLOW.md','docs/codex/PROMPTS.md','tools/qa-help.mjs'];
+const mappedPaths=['books/source-ingestion-contract.json','books/publication-inventory.json','books/shared/tools/canonical-build-contract.mjs','books/shared/tools/canonical-join-contract.mjs','books/shared/tools/effective-book-model.mjs','books/shared/tools/build-effective-book.mjs','books/shared/tools/build-army-book.mjs','books/death-guard/tools/canonical-source-adapter.mjs','books/death-guard/tools/presentation-hook.mjs','books/adeptus-mechanicus/tools/canonical-source-adapter.mjs','books/shared/tools/effect-contract.mjs','books/shared/effect-contract-runtime.js','books/shared/tools/effective-points-projection.mjs','books/shared/points/effective-catalog.mjs','glossary/v2/tools/build-glossary-v2.mjs','books/shared/tools/render-structured-effective-book.mjs','books/shared/tools/publication-inventory.mjs','tools/pages-runtime-package.mjs'];
 
 for(const file of requiredFiles)assert.ok(fs.existsSync(path.join(root,file)),`missing documented workflow path: ${file}`);
 for(const file of mappedPaths)assert.ok(fs.existsSync(path.join(root,file)),`repository map references missing path: ${file}`);
@@ -33,7 +33,7 @@ const visit=name=>{
 for(const name of qaNames)visit(name);
 
 const rootLines=read('AGENTS.md').trimEnd().split(/\r?\n/).length;
-assert.ok(rootLines>=60&&rootLines<=120,`root AGENTS.md should stay concise (60-120 lines); got ${rootLines}`);
+assert.ok(rootLines>0&&rootLines<=60,`root AGENTS.md should stay concise (at most 60 lines); got ${rootLines}`);
 const docs=['docs/codex/REPO_MAP.md','docs/codex/QA_MATRIX.md','docs/codex/WORKFLOW.md','docs/codex/PROMPTS.md'].map(read).join('\n');
 for(const name of [...localQa.filter(name=>!['qa:help','qa:workflow'].includes(name)),'qa:release'])assert.ok(docs.includes(name),`Codex docs do not reference ${name}`);
 

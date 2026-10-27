@@ -2,16 +2,16 @@
 
 ## Scope and authority
 
-This records the user's product decisions of 2026-10-18 for the five-book Unified
-V2 Recovery application: Death Guard, Adeptus Mechanicus, Chaos Space Marines,
-Emperor's Children and Tyranids. Recording a requirement is not a claim that the
+This preserves the user's Unified V2 rule-presentation requirements, originally
+recorded on 2026-10-18. Current product scope and entrypoints are defined in
+[README](../../README.md); all nine native books use the applicable requirements. Recording a requirement is not a claim that the
 current UI meets it. Browser acceptance results belong to their recorded HEAD and
 evidence, separately from this contract.
 
-The working baseline for this decision is `recovery/v2-minimal` at
-`40eefc6b24e76587b38c0d19485ef68897a9af1e`. Historical milestone statements in
-[CURRENT_HANDOFF](../CURRENT_HANDOFF.md) remain historical, not certification of
-this Recovery checkout.
+The original decision baseline was `recovery/v2-minimal` at
+`40eefc6b24e76587b38c0d19485ef68897a9af1e`. That historical reference does not
+certify a newer checkout. Removed V1 interfaces and compatibility journeys are
+not current product requirements.
 
 Product decisions define the required presentation; they do not change gameplay
 facts. Accepted book-owned Wahapedia sources and applicable accepted official

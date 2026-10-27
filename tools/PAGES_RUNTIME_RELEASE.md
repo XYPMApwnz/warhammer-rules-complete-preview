@@ -1,86 +1,35 @@
 # Unified V2 runtime publication
 
-The repository retains sources, PDFs, V1, factual producers and QA. Pages receives
-only the explicit reviewed `pages-runtime-manifest.json` dependency allowlist.
-No directory-wide copy of the repository is used.
+[README](../README.md#runtime-only-packaging-and-publication) is the primary build and product guide. Unified V2 is the sole UI. Roster Guides, V1 readers, old mobile HTML routes and V1 URL/roster/update compatibility are retired. Canonical sources, accepted RAW/PDF, required producers, the Core iframe reader and active V2 presentation modules remain in source.
 
-## Local build
+## Build and verify
 
-Use Node 24, the approved seven-book candidate as `SOURCE`, and a new empty output
-directory outside that candidate:
+Use Node.js 24 and a fresh clean checkout of the exact reviewed source commit. Check working bytes with `git ls-files --eol` when hashes differ from Git blobs. Do not change accepted enrollment bytes or normalize source inputs to force a desired hash.
 
 ```text
-node tools/pages-runtime-package.mjs --source SOURCE --out PUBLISH_DIRECTORY
-node tools/pages-runtime-package.mjs --source SOURCE --out PUBLISH_DIRECTORY --check
-node tools/pages-runtime-package-qa.mjs --source SOURCE --published PUBLISH_DIRECTORY --work NEW_QA_DIRECTORY
+node tools/pages-runtime-package.mjs --source SOURCE --out NEW_PUBLISH_DIRECTORY
+node tools/pages-runtime-package.mjs --source SOURCE --out NEW_PUBLISH_DIRECTORY --check
+node tools/pages-runtime-package-qa.mjs --source SOURCE --published NEW_PUBLISH_DIRECTORY --work NEW_QA_DIRECTORY
 ```
 
-No package installation, network source refresh or factual producer runs. Output
-paths must be explicit. A build refuses to overwrite a non-empty directory. The
-check command writes nothing and rejects changed or unlisted files. Symlinked
-publication files, path traversal and accidental QA/source capture publication
-are rejected. One reviewed Core source JSON remains because a public page links
-to its download; being in `sources/` alone is not grounds for omission.
+Normal packaging is network-free. It publishes only the explicit `tools/pages-runtime-manifest.json` allowlist and refuses a non-empty output directory, missing module/resource dependencies, symlinks, unsafe paths, unlisted files or corrupted bodies. QA files and development archives are not runtime inputs. Retained publicly linked source downloads remain explicitly declared; a `/sources/` pathname alone is not permission to publish a capture.
 
-The allowlist covers native V2 module imports, dynamically loaded JSON/styles,
-data-driven images, the Core iframe and all existing legacy public entry routes.
-Files named `*build*` can be browser dependencies, so names are not a deny rule.
-When adding runtime dependencies, extend the explicit allowlist with their owner
-and reason, then repeat dependency and dist-only browser checks.
+`PAGES_RUNTIME_MANIFEST.json` records paths, byte sizes, SHA-256, input hashes and a deterministic aggregate. Runtime bodies are copied verbatim except declared outputs of existing publication/cache producers and the static `.nojekyll` LF marker. Review any changed dependency reason and repeat dist-only browser checks. File counts and hashes are new release baselines, not fixed historical targets.
 
-`PAGES_RUNTIME_MANIFEST.json` records every published runtime path, bytes, SHA-256,
-input SHA-256, producer and a deterministic aggregate content hash. Source facts,
-runtime modules and images are copied verbatim. The non-gameplay `.nojekyll`
-marker is normalized to LF (including its declared input fingerprint) to remove
-Windows/Linux checkout variance. The allowlist fingerprint also normalizes only
-checkout line endings; a CRLF/LF build comparison checks identical output. Only `service-worker.js` and
-`glossary/generated/cache-revision.js` are regenerated through the existing
-offline-mobile and cache-revision producers. The optional `sourceRoot` parameter
-lets those producers read source-side inventories/configs without publishing them.
+The mandatory precache contains V2 code and small shell resources, including `books/shared/datasheet-system.css` and `books/shared/unit-art.css`. Army Book JSON and the large glossary payloads remain lazy. Core still needs `glossary/v2/generated/index.en.js` after it is opened. Test current V2 install, compatible cached data, manual updates and offline reading; no retired V1 migration journey is an acceptance requirement.
 
-The offline mobile list is refreshed from the accepted publication inventory.
-Previously available URLs remain in the package, including the historical held
-Orks index URL; refreshing precache membership does not remove that file. Native
-V2 cold offline support is not newly promised by this packaging task. Existing
-legacy precache and previously visited native routes must be tested separately.
+## Source review and release authorization
 
-## Prepared Pages workflow — not activated
+The GitHub repository is `XYPMApwnz/warhammer-rules-complete-preview`. `codex/unified-v2-source` and authorized feature/review branches carry source review. Check the actual Git remotes; a local `origin` may be a backup rather than GitHub.
 
-Current Pages source is `unified-v2-release`, root `/`, `build_type=legacy`.
-That automatically publishes the whole repository and therefore must not be used
-to publish the over-limit full seven-book tree.
+`.github/workflows/pages-runtime.yml` runs on `unified-v2-release` and guards its build/deploy jobs with that exact ref. Pages is configured for GitHub Actions. Source or feature pushes do not publish the site. Never change Pages settings, dispatch a workflow or push a release without explicit authorization.
 
-`.github/workflows/pages-runtime.yml` prepares the standard GitHub Pages artifact
-workflow. It builds from checked-in runtime projections, uploads only the explicit
-publish directory, and deploys that artifact. It does not rewrite game facts or
-delete source-side/V1 files. It only runs for `unified-v2-release`; ordinary
-Recovery pushes do not publish. No workflow has been dispatched in Stage 6B.1.
+For an authorized release:
 
-After separate release authorization, the required actions are:
+1. Verify clean source/candidate, current source and release refs, exact tree/parent/diff, reviewed limitations and required QA. Record the previous release SHA and available Pages artifact for rollback.
+2. Independently package the exact source and a fresh candidate checkout. Require matching reviewed runtime hashes, file inventories, packaging checks and deterministic rebuilds.
+3. Confirm current Pages configuration and release workflow. Push only the reviewed candidate through an explicit GitHub URL, normally fast-forward; no force push or history rewrite.
+4. Wait for hosted build and deploy SUCCESS at the candidate SHA. Verify the actual HTTPS `PAGES_RUNTIME_MANIFEST.json`, not only local output or an Actions conclusion.
+5. Check root V2 entry, nine books, Core, Glossary, representative roster/Effective/Guide paths, required assets, cache revision, manual updates and desktop/mobile behavior on the live site.
 
-1. Close any independent release gate, including the known Wardens import notice.
-   Recheck remote release SHA and record the exact source/tree to promote.
-2. Preserve the old release SHA and last successful Pages artifact. Confirm the
-   github-pages environment permits deployments from `unified-v2-release`.
-3. Change Settings / Pages / Build and deployment / Source to **GitHub Actions**.
-   This switch was not performed in Stage 6B.1. The workflow's configure-pages
-   enablement is explicitly false; it is not a settings-migration mechanism.
-4. Promote the reviewed seven-book tree and these packaging files with a normal
-   fast-forward release commit. Push only to the explicit GitHub URL; Recovery's
-   `origin` points at the backup and must not be used for publication.
-5. Check workflow artifact size/content manifest, deployment SHA and the live
-   HTTPS site under `/warhammer-rules-complete-preview/` on desktop/mobile.
-
-The workflow also offers manual dispatch if GitHub has registered that workflow
-on the default branch. The release-branch push trigger does not depend on that
-registration and does not require modifying `main`.
-
-For rollback, prefer redeploying the preserved previous artifact. Otherwise create
-a new rollback commit restoring the previous runtime input tree while retaining
-the packaging workflow/tools, build a reviewed previous-runtime artifact and
-deploy it. Never force push/reset release history or silently remove user roster
-storage. The old complete six-book branch remains below the Pages size limit, but
-switching back to branch publication would be a separate explicit Pages change.
-
-Official workflow reference:
-https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+Prefer a verified previous Pages artifact for rollback. Otherwise prepare a reviewed new rollback commit preserving release history and runtime-only packaging. Do not reset or force-push, and do not clear current V2 localStorage/rosters to make a test pass.

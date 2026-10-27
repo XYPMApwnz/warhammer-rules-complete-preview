@@ -32,7 +32,8 @@ Enhancement: TL-4Ø9
 • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw
 10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon
 10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon`;
-const app='/books/adeptus-mechanicus/v2/app.html',requests=[],legacy=[];
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus';
+const app='/v2/app.html',requests=[],legacy=[];
 const forbidden=url=>!isApplicationTestDependency(url)&&(/\/books\/death-guard\/(?!assets\/)/.test(url)||/\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(url)||
   /target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\./.test(url));
 const allowed=url=>isApplicationTestDependency(url)||url===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(url)||
@@ -42,7 +43,7 @@ const server=http.createServer((request,response)=>{
   const url=new URL(request.url,'http://localhost').pathname;
   if(forbidden(url)){legacy.push(url);response.writeHead(200,{'Content-Type':'text/javascript'});response.end('throw new Error("LEGACY_POISON");');return;}
   if(!allowed(url)){if(url!=='/favicon.ico')requests.push(url);response.writeHead(404);response.end();return;}
-  const extension=path.extname(url),types={'.mjs':'text/javascript','.css':'text/css','.json':'application/json','.html':'text/html','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
+  const extension=path.extname(url),types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.html':'text/html','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
   response.writeHead(200,{'Content-Type':types[extension]||'image/jpeg','Cache-Control':'no-store'});response.end(fs.readFileSync(path.join(repo,url.slice(1))));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -54,7 +55,7 @@ try{
  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
   const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[];let controls=0;
   page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(15000);
-  await page.goto(`http://127.0.0.1:${server.address().port}${app}`);
+  await page.goto(`http://127.0.0.1:${server.address().port}${appURL}`);
   await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
   await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
   await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);

@@ -1,4 +1,3 @@
-import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {buildRuleContractV2} from './rule-contract-build.mjs';
 import fs from 'node:fs';
@@ -44,7 +43,7 @@ export function buildApp(inputs=readAppInputs()) {
 export function writeApp({check=false}={}) {
   assertBookSourceReview('death-guard',{executionBook:buildRuleContractV2()});
   const payload=buildApp();
-  const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',renderCompatibilityEntry({title:'Death Guard',bookId:'death-guard'})]]);
+  const output=new Map([['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n']]);
   for (const [file,value] of output) {
     const location=new URL(file,import.meta.url);
     if (check) {if (fs.readFileSync(location,'utf8')!==value) throw new Error(`Stale Army Book App output: ${file}`);}

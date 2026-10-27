@@ -2,10 +2,10 @@
 
 - `book.config.json` declares the accepted `content/` and `sources/` owners.
 - `tools/canonical-source-adapter.mjs` normalizes those owners before effective-model validation.
-- Publication uses the shared structured renderer; AM-specific scripts may adapt runtime inputs but may not become factual owners.
+- Native `v2/` producers and shared V2 presenters consume accepted effective facts; AM-specific bindings may adapt runtime inputs but may not become factual owners.
 - `sources/adeptus-mechanicus-effect-contracts.v1.json` owns structured local effect facts.
 - `mobile/related-rules.inc` is an accepted authoritative runtime source, not generated output.
-- `reader.html`, `index.html`, `scripts/data.js`, `scripts/target-data.js`, `scripts/roster-data.js`, `generated/compatible-rules.json`, and mobile HTML are generated.
+- Native `v2/generated/` and retained downstream projections are generated; removed V1 readers and mobile HTML are not compatibility targets.
 - Glossary facts must come from the canonical/effective projection, not a second AM semantic assembly.
 - Run `npm run qa:am` for local changes.
 - Add `npm run qa:effects` for composition/effect-runtime changes and `npm run qa:glossary` for glossary projection changes.

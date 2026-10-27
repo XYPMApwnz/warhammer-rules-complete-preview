@@ -8,12 +8,6 @@ import {isDeepStrictEqual} from 'node:util';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const json=file=>JSON.parse(read(file));
-const runtimeVersions=json('books/shared/runtime-asset-versions.json');
-const generatedBook=bookId=>{
-  const sandbox={window:{}};
-  vm.runInNewContext(read(`books/${bookId}/scripts/target-data.js`),sandbox);
-  return sandbox.window.WH_ARMY_BOOK_TARGETS;
-};
 const clean=value=>String(value??'').replaceAll('\u00a0',' ').replace(/\r\n?/g,'\n').replace(/[ \t]+/g,' ').trim();
 const slug=value=>clean(value).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const decode=html=>clean(html.replace(/<[^>]+>/g,' ').replaceAll('&quot;','"').replaceAll('&#39;',"'").replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>'))
@@ -37,69 +31,6 @@ function getById(value,id){
   };
   visit(value);
   return matches;
-}
-
-function extractAt(html,tag,index){
-  const tags=new RegExp(`<\\/?${tag}\\b[^>]*>`,'gi');
-  tags.lastIndex=index;
-  let depth=0;
-  for(let match;(match=tags.exec(html));){
-    depth+=match[0][1]==='/'?-1:1;
-    if(depth===0)return html.slice(index,tags.lastIndex);
-  }
-  throw new Error(`Unclosed <${tag}> at ${index}`);
-}
-
-function elementsByAttribute(html,name,value){
-  const result=[],pattern=new RegExp(`<([a-z][\\w-]*)\\b[^>]*\\s${escapeRegExp(name)}="${escapeRegExp(value)}"[^>]*>`,'gi');
-  for(let match;(match=pattern.exec(html));)result.push(extractAt(html,match[1],match.index));
-  return result;
-}
-
-function elementById(html,id){
-  const result=elementsByAttribute(html,'id',id);
-  return exactlyOne(result,`#${id}`);
-}
-
-function attr(html,name){
-  return new RegExp(`\\b${escapeRegExp(name)}="([^"]*)"`,'i').exec(html)?.[1]??null;
-}
-
-function field(scope,name){
-  return elementsByAttribute(scope,'data-source-field',name);
-}
-
-function textField(scope,name){
-  const value=decode(exactlyOne(field(scope,name),`[data-source-field="${name}"]`));
-  return ['when','target','effect','restrictions'].includes(name)?value.replace(new RegExp(`^${name}\\s+`,'i'),''):value;
-}
-
-function listField(scope,name,child='li'){
-  const block=exactlyOne(field(scope,name),`[data-source-field="${name}"]`);
-  return [...block.matchAll(new RegExp(`<${child}\\b[^>]*>([\\s\\S]*?)<\\/${child}>`,'gi'))].map(match=>decode(match[1]));
-}
-
-function weaponField(scope,profileKey){
-  const row=exactlyOne(field(scope,`weapons.${profileKey}`),`weapon ${profileKey}`);
-  const value=name=>textField(row,name);
-  const nameField=exactlyOne(field(row,'name'),`weapon ${profileKey} name`);
-  const weaponName=/<button\b(?=[^>]*\bclass="[^"]*\bweapon-button\b[^"]*")[^>]*>([\s\S]*?)<\/button>/i.exec(nameField);
-  const abilityTokens=[...nameField.matchAll(/<(button|span)\b(?=[^>]*\bclass="[^"]*\btag\b[^"]*")[^>]*>([\s\S]*?)<\/\1>/gi)];
-  if(profileKey==='solar-atomiser'){
-    const melta=exactlyOne(abilityTokens.filter(match=>attr(match[0],'data-term')==='core-melta'),'Solar atomiser MELTA token');
-    assert.equal(decode(melta[2]),'MELTA 3','Solar atomiser must expose the complete atomic MELTA 3 token');
-  }
-  return {
-    name:weaponName?decode(weaponName[1]):value('name'),
-    mode:attr(row,'data-mode'),
-    range:value('range'),
-    a:value('a'),
-    skill:value('skill'),
-    s:value('s'),
-    ap:value('ap'),
-    d:value('d'),
-    abilities:(abilityTokens.length?abilityTokens.map(match=>decode(match[2])).join(', '):((/<small>([\s\S]*?)<\/small>/i.exec(row)?.[1]&&decode(RegExp.$1))||'')).replace(/\s*-\s*/g,'-')
-  };
 }
 
 const dgSource=json('books/death-guard/content/death-guard-rules.en.json');
@@ -129,12 +60,6 @@ assert.deepEqual(
   {name:'Paired accursed weapons',mode:'melee',range:'Melee',a:'4',skill:'3+',s:'5',ap:'-2',d:'1',abilities:'Twin-linked'},
   'Nemesis Claw paired accursed weapons must match the official v1.2 profile'
 );
-const glossary=json('glossary/registry.en.json').terms;
-const glossaryV2=json('glossary/v2/generated/index.en.json').entries;
-const glossaryContexts=Object.fromEntries(['death-guard','adeptus-mechanicus','tyranids','tau-empire'].map(bookId=>[
-  bookId,json(`glossary/contexts/${bookId}.json`).terms
-]));
-
 const dgOfficialMarkers=[
   ['dg-fp-1.1-p7-contagion-range-cap','Gift - Contagion Range:'],
   ['dg-fp-1.1-p7-skullsquirm-blight','Gift - Skullsquirm Blight:'],
@@ -286,94 +211,6 @@ function tauObserved(update,target){
   throw new Error(`Unsupported T'au target kind ${target.kind}`);
 }
 
-function targetScope(bookId,target,html){
-  if(bookId==='death-guard'){
-    const ids=elementsByAttribute(html,'id',target.owner);
-    if(ids.length)return exactlyOne(ids,`#${target.owner}`);
-    return exactlyOne(elementsByAttribute(html,'data-rule-id',target.owner),`[data-rule-id="${target.owner}"]`);
-  }
-  if(target.kind==='army-rule-branch')return elementById(html,target.branchId);
-  if(target.unitId)return elementById(html,target.unitId);
-  if(target.kind==='army-rule')return elementById(html,`army-rule-${slug(target.title)}`);
-  if(target.detachmentId)return elementById(html,bookId==='tau-empire'?`detachment-${target.detachmentId}`:target.detachmentId);
-  if(target.kind==='detachment-rule'&&target.owner)return elementById(html,`${target.owner}-rule`);
-  if(target.owner)return elementById(html,`detachment-${target.owner}`);
-  if(target.ruleId)return elementById(html,target.ruleId);
-  throw new Error(`${bookId}: no deterministic scope for ${JSON.stringify(target)}`);
-}
-
-function surfaceObserved(bookId,target,html){
-  const scope=targetScope(bookId,target,html);
-  if(bookId==='death-guard'){
-    if(target.field==='keywords')return parseDgKeywords(decode(exactlyOne([...scope.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(match=>match[1]),`DG ${target.owner} keyword paragraph`)));
-    if(target.kind==='weapon-profile-replacement')return decode(exactlyOne(elementsByAttribute(scope,'data-label','S'),'DG weapon S'));
-    if(/^<p\b/i.test(scope))return decode(scope);
-    const paragraphs=[...scope.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(match=>decode(match[1]));
-    return exactlyOne(paragraphs,`DG ${target.owner} paragraph`);
-  }
-  if(target.kind==='army-rule-branch')return listField(scope,'effects');
-  if(target.kind==='detachment-rule')return textField(target.ruleId?elementById(scope,target.ruleId):scope,'text');
-  if(target.kind==='enhancement'){
-    const card=exactlyOne(elementsByAttribute(scope,'data-rule-id',target.enhancementId),`enhancement ${target.enhancementId}`);
-    return textField(card,'text');
-  }
-  if(target.kind==='stratagem'||target.kind==='stratagem-field'){
-    const card=exactlyOne(elementsByAttribute(scope,'data-rule-id',target.stratagemId||slug(target.title)),`stratagem ${target.stratagemId||target.title}`);
-    return textField(card,target.field);
-  }
-  if(target.kind==='army-rule')return textField(scope,'text');
-  if(target.kind==='datasheet-stat'||target.kind==='stat'){
-    const profile=target.profile?exactlyOne(elementsByAttribute(scope,'data-profile',slug(target.profile)),`profile ${target.profile}`):scope;
-    const stat=exactlyOne(field(profile,`stats.${target.field}`),`stat ${target.field}`);
-    return decode(exactlyOne([...stat.matchAll(/<span\b[^>]*>([\s\S]*?)<\/span>/gi)].map(match=>match[1]),`stat ${target.field} value`));
-  }
-  if(target.kind==='weapon-profile')return weaponField(scope,target.profileKey);
-  if(['weapon-stat','weapon-profile-replacement'].includes(target.kind)&&target.field){
-    const row=exactlyOne(field(scope,`weapons.${slug(target.title)}`),`weapon ${target.title}`);
-    return textField(row,target.field);
-  }
-  if(target.kind==='datasheet-keyword'){
-    const matches=field(scope,`keywords.${slug(target.keyword)}`);
-    return matches.length?decode(exactlyOne(matches,`keyword ${target.keyword}`)):null;
-  }
-  if(target.kind==='keyword')return field(scope,`keywords.${slug(target.value)}`).length===1;
-  if(target.kind==='datasheet-core-ability'){
-    const matches=field(scope,`abilities.${target.abilityKey}`);
-    if(!matches.length)return null;
-    const ability=exactlyOne(matches,`ability ${target.abilityKey}`);
-    const heading=/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(ability)?.[1];
-    return decode(heading||ability);
-  }
-  if(target.kind==='core-ability')return field(scope,`abilities.${slug(target.title)}`).length===1;
-  if(target.kind==='datasheet-ability'){
-    let ability=field(scope,`abilities.${target.abilityKey}`);
-    if(ability.length)return target.field==='title'?decode(exactlyOne(ability,`ability ${target.abilityKey}`)).split(/\s{2,}/)[0]:textField(exactlyOne(ability,`ability ${target.abilityKey}`),target.field);
-    const canticles=exactlyOne(field(scope,'abilities.canticles-of-the-omnissiah'),'Canticles');
-    const option=exactlyOne(field(canticles,`options.${target.abilityKey}`),`Canticles ${target.abilityKey}`);
-    return textField(option,target.field);
-  }
-  if(target.kind==='ability'){
-    const ability=exactlyOne(field(scope,`abilities.${slug(target.title)}`),`ability ${target.title}`);
-    if(!field(ability,target.field).length&&attr(ability,'data-source-value')!==null)return decode(attr(ability,'data-source-value'));
-    return textField(ability,target.field);
-  }
-  if(target.kind==='wargear-ability')return textField(exactlyOne(field(scope,`wargearAbilities.${slug(target.title)}`),`wargear ability ${target.title}`),target.field);
-  if(target.kind==='enhancement-text'){
-    const card=exactlyOne(elementsByAttribute(scope,'data-rule-id',target.enhancementId),`enhancement ${target.title}`);
-    return textField(card,target.field);
-  }
-  throw new Error(`${bookId}: unsupported surface target ${target.kind}`);
-}
-
-function mobileFile(bookId,target){
-  if(bookId==='death-guard'&&target.owner==='faq-spore-laced-shock-waves')return 'books/death-guard/mobile/updates.html';
-  if(target.unitId)return `books/${bookId}/mobile/${target.unitId.slice(5)}.html`;
-  if(target.kind==='army-rule'||target.kind==='army-rule-branch'||bookId==='death-guard'&&['contagion-range-cap','skullsquirm-blight'].includes(target.owner))return `books/${bookId}/mobile/army-rules.html`;
-  if(bookId==='death-guard')return 'books/death-guard/mobile/index.html';
-  const detachment=target.detachmentId?.replace(/^detachment-/,'')||target.owner;
-  return `books/${bookId}/mobile/${detachment}.html`;
-}
-
 function sameSet(actual,expected,label){
   assert.deepStrictEqual([...new Set(actual)].sort(),[...new Set(expected)].sort(),label);
 }
@@ -401,99 +238,17 @@ function verifyOfficialInventory(bookId,ledger){
   sameSet(ledger.updates.map(item=>item.id),inventory,`${bookId}: official inventory and ledger differ`);
 }
 
-function targetConcept(target){
-  if(target.kind==='army-rule')return target.title;
-  if(['keyword','datasheet-keyword','keyword-addition'].includes(target.kind))return target.value||target.keyword;
-  if(['core-ability','datasheet-core-ability'].includes(target.kind))return target.abilityKey||target.title||target.effectiveAfter;
-  if(target.kind==='datasheet-ability')return target.abilityKey;
-  return null;
-}
-
-const ruleText=value=>clean(value).replace(/:\s*\u2022\s*/g,': ').replace(/\.\s*\u2022\s*/g,'; ').toLowerCase();
-
-function glossaryMappings(bookId,target){
-  const unitId=target.unitId;
-  const concept=targetConcept(target);
-  const exactDefinition=typeof target.effectiveAfter==='string'?clean(target.effectiveAfter):null;
-  const matches=[];
-  for(const [contextId,context] of Object.entries(glossaryContexts[bookId])){
-    const term=glossary[context.termId];
-    if(!term)continue;
-    const navigation=context.navigation||{};
-    const addressMatches=unitId&&(navigation.units?.includes(unitId)||navigation.datasheet===unitId||navigation.rule===unitId)
-      ||target.owner&&navigation.rule===target.owner;
-    if(!addressMatches)continue;
-    const title=slug(term.title?.en||'').replace(/-\d+$/,'');
-    const conceptMatches=concept&&title===slug(concept).replace(/-\d+$/,'');
-    const definitionMatches=exactDefinition&&clean(term.definition?.en||'')===exactDefinition;
-    if(conceptMatches||definitionMatches)matches.push({contextId,termId:context.termId});
-  }
-  if(target.kind==='army-rule'){
-    for(const [termId,term] of Object.entries(glossary))if(term.scope===bookId&&slug(term.title?.en||'')===slug(target.title)&&ruleText(term.definition?.en||'')===ruleText(exactDefinition))matches.push({contextId:null,termId});
-  }
-  return [...new Map(matches.map(item=>[item.termId,item])).values()];
-}
-
-function verifyGlossary(bookId,update,target){
-  if(!target.glossaryTermId){
-    assert.equal(target.glossary?.status,'not-applicable',`${bookId}/${update.id}: missing glossary contract`);
-    assert.ok(target.glossary.reason,`${bookId}/${update.id}: glossary reason is required`);
-    assert.deepStrictEqual(glossaryMappings(bookId,target),[],`${bookId}/${update.id}: glossary not-applicable has an addressable mapping`);
-    return;
-  }
-  const v2Matches=bookId==='death-guard'?glossaryV2.filter(entry=>
-    entry.contexts?.some(context=>context.effectiveBookId===bookId)
-    &&[entry.sourceOwner?.canonicalId,entry.facts?.id,entry.facts?.termId].includes(target.owner)
-  ):[];
-  assert.ok(v2Matches.length<=1,`${bookId}/${update.id}: ambiguous Glossary V2 owner ${target.owner}`);
-  const v2Entry=v2Matches[0],facts=v2Entry?.facts;
-  const term=v2Entry?{
-    title:{en:v2Entry.label},
-    definition:{en:facts?.text||facts?.abilities||v2Entry.searchableContent||''},
-    structured:facts?.type==='weapon'?{weapon:{Range:facts.range,A:facts.a,[facts.mode==='ranged'?'BS':'WS']:facts.skill,S:facts.s,AP:facts.ap,D:facts.d}}:undefined
-  }:glossary[target.glossaryTermId];
-  assert.ok(term,`${bookId}/${update.id}: missing glossary ${target.glossaryTermId}`);
-  if(target.kind==='army-rule'){
-    assert.equal(ruleText(term.definition?.en||''),ruleText(target.effectiveAfter),`${bookId}/${update.id}: glossary army rule differs`);
-    assert.ok(glossaryMappings(bookId,target).some(item=>item.termId===target.glossaryTermId),`${bookId}/${update.id}: glossary ${target.glossaryTermId} is not mapped to the exact target`);
-    return;
-  }
-  if(['army-rule','keyword','datasheet-keyword','keyword-addition','core-ability','datasheet-core-ability'].includes(target.kind)){
-    assert.ok(glossaryMappings(bookId,target).some(item=>item.termId===target.glossaryTermId),`${bookId}/${update.id}: glossary ${target.glossaryTermId} is not mapped to the exact target`);
-    return;
-  }
-  const value=target.effectiveAfter;
-  if(value&&typeof value==='object'&&!Array.isArray(value)){
-    assert.equal(clean(term.title.en).replace(/^➤\s*/,''),clean(value.name).replace(/^➤\s*/,''),
-      `${target.glossaryTermId}: weapon name`);
-    const structured=term.structured?.weapon||{};
-    for(const [sourceKey,termKey] of [['range','Range'],['a','A'],['s','S'],['ap','AP'],['d','D']])assert.equal(clean(structured[termKey]),clean(value[sourceKey]),`${target.glossaryTermId}.${termKey}`);
-    assert.equal(clean(structured[value.mode==='ranged'?'BS':'WS']),clean(value.skill),`${target.glossaryTermId}.skill`);
-    assert.ok(clean(term.definition.en).includes(clean(value.abilities)),`${target.glossaryTermId}: abilities`);
-    return;
-  }
-  if(['weapon-stat','weapon-profile-replacement'].includes(target.kind)&&target.field){
-    const fieldName={range:'Range',a:'A',skill:'BS',s:'S',ap:'AP',d:'D'}[target.field];
-    assert.ok(fieldName,`${target.glossaryTermId}: unsupported weapon field ${target.field}`);
-    assert.equal(clean(term.structured?.weapon?.[fieldName]),clean(value),`${target.glossaryTermId}.${fieldName}`);
-    return;
-  }
-  const flat=value=>clean(value).replace(/[▪■•]/g,'•').replace(/\s+/g,' ');
-  const text=flat(`${term.title?.en||''} ${term.definition?.en||term.summary?.en||''}`);
-  for(const part of Array.isArray(value)?value:[value])if(part!==null&&part!==false)assert.equal(text.split(flat(part)).length-1,1,`${target.glossaryTermId}: expected updated value exactly once`);
-}
-
 const configs={
-  'death-guard':{complete:true,ledger:'books/death-guard/content/official-update-ledger.en.json',desktop:'books/death-guard/reader.html',source:(_u,t)=>dgObserved(t)},
-  'adeptus-mechanicus':{complete:true,ledger:'books/adeptus-mechanicus/content/official-update-ledger.en.json',desktop:'books/adeptus-mechanicus/reader.html',source:(_u,t)=>amObserved(t)},
-  tyranids:{complete:false,ledger:'books/tyranids/content/official-update-ledger.en.json',desktop:'books/tyranids/reader.html',source:tyrObserved},
-  'tau-empire':{complete:false,ledger:'books/tau-empire/content/official-update-ledger.en.json',desktop:'books/tau-empire/reader.html',source:tauObserved}
+  'death-guard':{complete:true,ledger:'books/death-guard/content/official-update-ledger.en.json',source:(_u,t)=>dgObserved(t)},
+  'adeptus-mechanicus':{complete:true,ledger:'books/adeptus-mechanicus/content/official-update-ledger.en.json',source:(_u,t)=>amObserved(t)},
+  tyranids:{complete:false,ledger:'books/tyranids/content/official-update-ledger.en.json',source:tyrObserved},
+  'tau-empire':{complete:false,ledger:'books/tau-empire/content/official-update-ledger.en.json',source:tauObserved}
 };
 const ranks={matched:0,'already-effective':0,unavailable:1,invalid:2};
 let updateCount=0,targetCount=0,warnings=0;
 
 for(const [bookId,config] of Object.entries(configs)){
-  const ledger=json(config.ledger),generated=generatedBook(bookId),desktop=generated.html,updateIds=new Set(),globalAddresses=new Set();
+  const ledger=json(config.ledger),updateIds=new Set(),globalAddresses=new Set();
   assert.equal(ledger.schema,1);
   assert.equal(ledger.bookId,bookId);
   assert.ok(ledger.updates.length,`${bookId}: ledger is empty`);
@@ -530,14 +285,6 @@ for(const [bookId,config] of Object.entries(configs)){
         }else throw error;
       }
       states.push(state);
-      assert.deepStrictEqual(normalizedSurface(surfaceObserved(bookId,target,desktop)),normalizedSurface(target.effectiveAfter),`${bookId}/${update.id}: desktop target mismatch`);
-      const mobile=mobileFile(bookId,target);
-      assert.ok(fs.existsSync(path.join(root,mobile)),`${bookId}/${update.id}: missing ${mobile}`);
-      const mobileStub=read(mobile),routeTarget=attr(mobileStub,'data-canonical-target');
-      assert.equal(attr(mobileStub,'data-canonical-reader'),'../reader.html',`${bookId}/${update.id}: mobile route lost canonical reader`);
-      assert.match(mobileStub,new RegExp(`mobile-route-redirect\\.js\\?v=${runtimeVersions.shared.mobileRouteRedirect}`),`${bookId}/${update.id}: mobile route uses stale redirect runtime`);
-      assert.ok(routeTarget&&(generated.targets[routeTarget]||generated.targets[generated.aliases?.[routeTarget]]),`${bookId}/${update.id}: mobile target ${routeTarget||'(missing)'} is absent from generated content`);
-      verifyGlossary(bookId,update,target);
     }
     const state=states.reduce((worst,current)=>ranks[current]>ranks[worst]?current:worst,'already-effective');
     assert.notEqual(state,'invalid',`${bookId}/${update.id}: invalid update`);

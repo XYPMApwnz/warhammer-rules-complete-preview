@@ -4,7 +4,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {buildOfflineMobileRoutes} from './build-offline-mobile-routes.mjs';
 import {readAppShell,resolveAppShellUrl,verifyCacheRevision,writeCacheRevision,normalizeCacheText} from './cache-revision.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
@@ -68,8 +67,7 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
     if(!stat.isFile()||stat.isSymbolicLink())throw new Error('Non-regular runtime input: '+relative);
   }
   checkModuleClosure(sourceRoot,allowed);
-  // Preserve every previously available precache URL, including compatibility
-  // routes outside the native seven-book registry.
+  // Every mandatory shell URL belongs to the native V2 publication.
   for(const url of readAppShell(sourceRoot).urls){
     const {relative}=resolveAppShellUrl(sourceRoot,url);
     if(!allowed.has(relative))throw new Error('Existing precache file omitted: '+url);
@@ -82,10 +80,8 @@ export function buildPagesRuntimePackage({sourceRoot=path.resolve(here,'..'),out
       if(relative==='.nojekyll')fs.writeFileSync(target,normalizeCacheText(fs.readFileSync(relativeFile(sourceRoot,relative),'utf8')),'utf8');
       else fs.copyFileSync(relativeFile(sourceRoot,relative),target);
     }
-    buildOfflineMobileRoutes({root:outRoot,sourceRoot});
     writeCacheRevision({root:outRoot,manifest});
   }
-  buildOfflineMobileRoutes({root:outRoot,sourceRoot,check:true});
   const files=[...allowed].sort().map(relative=>{
     // The static Pages marker has no gameplay data. Normalize its checkout-only
     // CRLF difference so Windows and Linux produce the same publication hash.

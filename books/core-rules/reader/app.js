@@ -26,16 +26,25 @@
   const searchResults = document.getElementById('searchResults');
   const glossary = window.WH40K_GLOSSARY;
   const presentation = JSON.parse(document.getElementById('readerPresentation')?.textContent || '{}');
-  let searchReady;
-  const searchContext = () => searchReady ??= Promise.all([
+  let referencesReady, searchReady;
+  const referenceContext = () => referencesReady ??= Promise.all([
     import('../../shared/army-book-app-v2/global-glossary.mjs'),
     import('../../shared/army-book-app-v2/reference-contract.mjs'),
-    import('./mount.mjs')
-  ]).then(async ([{adaptGlobalGlossary},{createReferenceContract},{loadReaderNavigation,createCoreReferenceRoutes}])=>{
+    import('../../shared/army-book-app-v2/route-context.mjs')
+  ]).then(([{adaptGlobalGlossary},{createReferenceContract},{encodeRoute}])=>{
     const corpus=window.WH40K_GLOSSARY_V2_INDEX,projection=adaptGlobalGlossary(corpus);
     const contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
+    const referenceURL=id=>{
+      const identity=contract.identityFor(id);
+      return identity&&contract.canResolve(identity)?encodeRoute(new URL('../../../v2/app.html',location.href).href,{destination:'REFERENCE',...identity}):null;
+    };
+    return {contract,corpus,referenceURL};
+  });
+  const searchContext = () => searchReady ??= Promise.all([referenceContext(),import('./mount.mjs')])
+  .then(async ([references,{loadReaderNavigation,createCoreReferenceRoutes}])=>{
+    const {corpus}=references;
     const navigation=await loadReaderNavigation(window),routes=createCoreReferenceRoutes(corpus,navigation);
-    return {contract,navigation,routes};
+    return {...references,navigation,routes};
   });
   let searchSequence=0;
   let termOpener;
@@ -63,7 +72,11 @@
         summary.append(document.createTextNode(definition.slice(offset).trimEnd()));
       }
     }
-    full.href = `../../../glossary/index.html#${encodeURIComponent(term.id)}`;
+    full.hidden=true;full.removeAttribute('href');
+    referenceContext().then(({referenceURL})=>{
+      if(dialog.dataset.openTerm!==term.id)return;
+      const href=referenceURL(term.id);if(href){full.href=href;full.hidden=false;}
+    }).catch(error=>{if(dialog.dataset.openTerm===term.id)full.dataset.error=String(error?.message||error);});
     const fullRulePath=trigger.dataset.fullRulePath;
     rule.hidden = !fullRulePath;
     if (fullRulePath) rule.href = window.WHGlossaryReturn.href(fullRulePath);
@@ -171,7 +184,7 @@
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.replaceChildren(...matches.map(item=>{
       const route=search.routes.routeFor(item.targetId);
-      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:`../../../glossary/index.html#${encodeURIComponent(item.targetId)}`;
+      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:search.referenceURL(item.targetId);
       const kind=document.createElement('small');kind.textContent=item.categoryLabel;
       const heading=document.createElement('strong');heading.textContent=item.label;
       const excerpt=document.createElement('span');excerpt.textContent=search.contract.resolve(item.targetId).sections.flatMap(section=>section.fields.map(field=>field.value)).join(' ').slice(0,180);

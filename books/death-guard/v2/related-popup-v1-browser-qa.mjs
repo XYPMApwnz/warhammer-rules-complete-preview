@@ -12,7 +12,8 @@ import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 // V2 payload/services; V1 files are deliberately unavailable to the browser.
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const appPath='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html';
 const payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const payload=buildApp();
 const rows=payload.relatedRules.rows;
@@ -104,7 +105,7 @@ try{
     const page=await context.newPage();page.setDefaultTimeout(15000);const errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error'&&!/favicon|404/i.test(message.text()))errors.push(message.text());});
-    await page.goto(origin+appPath);await ready(page);
+    await page.goto(origin+appURL);await ready(page);
     await page.evaluate(id=>window.ArmyBookAppV2.open(id),unitId);
     await page.waitForSelector(`main [data-card-id="${unitId}"]`);
     const unit=page.locator(`main [data-card-id="${unitId}"]`).first();

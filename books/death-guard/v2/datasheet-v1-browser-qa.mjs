@@ -13,7 +13,8 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;
 if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
-const app='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const app='/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
 const expected=enumerateExpectedFacts(inputs.model,inputs.records).map(fact=>({...fact,display:expectedDisplay(fact,inputs.model,inputs.records)}));
@@ -82,7 +83,7 @@ try{
     page.setDefaultTimeout(15000);
     page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
-    await page.goto(origin+app);await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
+    await page.goto(origin+appURL);await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
 
     // The ordinary player journey is intentionally curated. It must contain
     // every player fact and no source-layout, binding, empty-value or MFM

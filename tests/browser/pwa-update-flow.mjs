@@ -1,193 +1,49 @@
-import {launchChromium} from '../helpers/browser-launch.mjs';
+/** Real native V2 A/B publication transport, actual updater and persisted roster.
+ * A newline-only change in the external B fixture exercises changed-data hashes;
+ * migration internals, quota and copy retry are covered by minimal-pwa-cache-qa. */
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
 import fs from 'node:fs';
-import http from 'node:http';
+import os from 'node:os';
 import path from 'node:path';
+import http from 'node:http';
 import {fileURLToPath} from 'node:url';
+import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
+import {writeCacheRevision,readCacheRevision} from '../../tools/cache-revision.mjs';
+import {launchChromium} from '../helpers/browser-launch.mjs';
 
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const updaterMarkup=fs.readFileSync(path.join(root,'index.html'),'utf8').match(/<section class="pwa-update-panel"[\s\S]*?<\/section>/)?.[0];
-assert.ok(updaterMarkup,'Root Library updater markup was not found');
-const clientSource=fs.readFileSync(path.join(root,'books/shared/offline-status.js'),'utf8');
-const clientCss=fs.readFileSync(path.join(root,'books/shared/styles/offline-status.css'),'utf8');
-const productionWorker=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
-const appShell=['./','./index.html','./books/shared/offline-status.js?v=4','./books/shared/styles/offline-status.css?v=2','./death-approaches.html','./required-b.js'];
-const workerTemplate=productionWorker.replace(/const APP_SHELL = \[[\s\S]*?\n\];/,`const APP_SHELL = ${JSON.stringify(appShell,null,2)};`);
-assert.notEqual(workerTemplate,productionWorker,'Fixture could not replace APP_SHELL deterministically');
-
-const revisions={A:'aaaaaaaaaaaaaaaa',B:'bbbbbbbbbbbbbbbb'};
-let generation='A',legacyRoot=false,failRequired=false,requiredGate=null,serviceWorkerGate=null,serviceWorkerRequests=0,requiredRequests=0;
-const serviceWorkerWaiters=[],requiredWaiters=[];
-function gate(){let release;const promise=new Promise(resolve=>{release=resolve;});return{promise,release};}
-function signal(waiters){for(const resolve of waiters.splice(0))resolve();}
-function nextRequest(count,previous,waiters){return count()>previous?Promise.resolve():new Promise(resolve=>waiters.push(resolve));}
-function fixtureHtml(){
-  if(legacyRoot&&generation==='A')return '<!doctype html><html><body><header></header><main><h1>Legacy Library generation A</h1></main><script>navigator.serviceWorker.register("/service-worker.js")</script></body></html>';
-  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/books/shared/styles/offline-status.css?v=2"></head><body><header class="topbar"></header>${updaterMarkup}<main><h1>Library generation ${generation}</h1></main><script>sessionStorage.pwaLoads=String(Number(sessionStorage.pwaLoads||0)+1)</script><script src="/books/shared/offline-status.js?v=4" data-service-worker="/service-worker.js"></script></body></html>`;
-}
-function send(response,status,type,body){response.writeHead(status,{'content-type':type,'cache-control':'no-store'});response.end(body);}
-const server=http.createServer(async(request,response)=>{
-  const url=new URL(request.url,'http://localhost');
-  if(url.pathname==='/service-worker.js'){
-    serviceWorkerRequests+=1;signal(serviceWorkerWaiters);if(serviceWorkerGate){const current=serviceWorkerGate;serviceWorkerGate=null;await current.promise;}
-    return send(response,200,'text/javascript; charset=utf-8',`${workerTemplate}\n// fixture-generation:${generation}\n`);
-  }
-  if(url.pathname==='/glossary/generated/cache-revision.js'){
-    const bodies={'index.html':fixtureHtml(),'books/shared/offline-status.js':clientSource,'books/shared/styles/offline-status.css':clientCss,
-      'death-approaches.html':`<!doctype html><title>Death Approaches</title><main>${generation==='A'?'At the start of the battle round, spread the sickness.':'In your Movement phase, spread the sickness.'}</main>`,
-      'required-b.js':`self.fixtureRequired=${JSON.stringify(generation)};`};
-    const assets=Object.fromEntries(Object.entries(bodies).map(([path,body])=>[path,{sha256:createHash('sha256').update(body).digest('hex'),bytes:Buffer.byteLength(body)}]));
-    return send(response,200,'text/javascript; charset=utf-8',`self.WH40K_CACHE_REVISION=${JSON.stringify(revisions[generation])};self.WH40K_PRECACHE=${JSON.stringify(appShell)};self.WH40K_RUNTIME_ASSETS=${JSON.stringify(assets)};`);
-  }
-  if(url.pathname==='/'||url.pathname==='/index.html')return send(response,200,'text/html; charset=utf-8',fixtureHtml());
-  if(url.pathname==='/books/shared/offline-status.js')return send(response,200,'text/javascript; charset=utf-8',clientSource);
-  if(url.pathname==='/books/shared/styles/offline-status.css')return send(response,200,'text/css; charset=utf-8',clientCss);
-  if(url.pathname==='/death-approaches.html'){
-    const wording=generation==='A'?'At the start of the battle round, spread the sickness.':'In your Movement phase, spread the sickness.';
-    return send(response,200,'text/html; charset=utf-8',`<!doctype html><title>Death Approaches</title><main>${wording}</main>`);
-  }
-  if(url.pathname==='/required-b.js'){
-    requiredRequests+=1;signal(requiredWaiters);if(requiredGate)await requiredGate.promise;
-    if(generation==='B'&&failRequired)return send(response,503,'text/plain','injected required asset failure');
-    return send(response,200,'text/javascript; charset=utf-8',`self.fixtureRequired=${JSON.stringify(generation)};`);
-  }
-  send(response,404,'text/plain','not found');
-});
-await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
-const origin=`http://127.0.0.1:${server.address().port}`;
+const source=fileURLToPath(new URL('../../',import.meta.url)),out=path.resolve(process.env.WH_PWA_QA_OUT||fs.mkdtempSync(path.join(os.tmpdir(),'wh-v2-update-')));
+fs.mkdirSync(out,{recursive:true});
+const A=path.join(out,'A'),B=path.join(out,'B');
+const publication=buildPagesRuntimePackage({sourceRoot:source,outRoot:A});
+fs.cpSync(A,B,{recursive:true});
+fs.appendFileSync(path.join(B,'books/tyranids/v2/generated/app-presentation.json'),'\n');
+const mutation=process.env.WH_PWA_QA_MUTATION||null;
+if(mutation==='erase-storage'){const app=path.join(B,'v2/app.html');fs.writeFileSync(app,fs.readFileSync(app,'utf8').replace('<head>','<head><script>localStorage.removeItem("army-book-app-v2:roster:space-marines");localStorage.removeItem("pwa-test-sentinel");</script>'));}
+const bRevision=writeCacheRevision({root:B}),aRevision=readCacheRevision({root:A});assert.notEqual(aRevision,bRevision);
+let generation='A',failInstall=false;const prefix='/warhammer-rules-complete-preview/',report={publication,aRevision,bRevision,mutation,results:[]};
+const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};
+const server=http.createServer((q,s)=>{const u=new URL(q.url,'http://localhost');try{assert(u.pathname.startsWith(prefix));const root=generation==='A'?A:B;let file=path.resolve(root,u.pathname.slice(prefix.length));assert(file===root||file.startsWith(root+path.sep));if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');if(failInstall&&generation==='B'&&u.pathname.endsWith('/books/shared/datasheet-system.css')){s.writeHead(503);s.end('Test mandatory-resource outage');return;}let bytes=fs.readFileSync(file);if(mutation==='auto-activate'&&generation==='B'&&u.pathname.endsWith('/service-worker.js'))bytes=Buffer.concat([bytes,Buffer.from('\nself.addEventListener("install",event=>event.waitUntil(self.skipWaiting()));\n')]);s.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream','cache-control':'no-store'});s.end(bytes);}catch{s.writeHead(404);s.end('Missing runtime resource');}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const base=`http://127.0.0.1:${server.address().port}${prefix}`,entry=base+'v2/app.html',sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function poll(p,fn,arg,timeout=60000){const end=Date.now()+timeout;while(Date.now()<end){try{const value=await p.evaluate(fn,arg);if(value)return value;}catch(e){if(!/context|navigation/.test(e.message))throw e;}await sleep(150);}throw Error('Browser condition timed out: '+fn.toString().slice(0,150));}
+async function ready(p){await poll(p,()=>!!window.WarhammerAppV2);await p.evaluate(()=>WarhammerAppV2.ready);}
+async function go(p,query=''){await p.goto(entry+query,{waitUntil:'load'});await ready(p);}
+async function core(p){await go(p,'?v2=CORE_RULES&registry=core-rules&chapter=core-abilities');assert.equal(await p.locator('iframe.v2-core-reader').count(),1,'Core reader must survive update offline');const f=await(await p.locator('iframe.v2-core-reader').elementHandle()).contentFrame();await f.waitForLoadState('load');assert(await f.evaluate(()=>window.WH40K_GLOSSARY_V2_INDEX?.entries?.length>1000),'Core full glossary dependency must survive update offline');await f.locator('[data-term="core-blast"]').first().click();await f.locator('#termDialog[open]').waitFor();assert.match(await f.locator('#termSummary').innerText(),/High-explosive rounds/);}
+async function mega(p){await go(p,'?v2=GLOSSARY');await p.locator('[data-global-glossary]').waitFor();assert(await p.locator('[data-global-glossary] [data-target-id]').count()>20);}
+async function offlineRoster(p){await go(p,'?v2=ROSTER&book=space-marines');assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.getByRole('button',{name:'Effective datasheet',exact:true}).first().click();await p.locator('main .unit-card').waitFor();const styles=await p.evaluate(()=>{const found=[];function visit(s){let rules;try{rules=[...s.cssRules];}catch{return;}if(s.href&&/\/(datasheet-system|unit-art)\.css/.test(s.href)&&rules.length)found.push(s.href);for(const r of rules)if(r.styleSheet)visit(r.styleSheet);}for(const s of document.styleSheets)visit(s);return{found,display:getComputedStyle(document.querySelector('.statline')).display};});assert.equal(styles.found.length,2,'Both native datasheet styles must survive update offline');assert.equal(styles.display,'flex');await go(p,'?v2=ROSTER&book=space-marines');await p.getByRole('button',{name:'Open personal guide',exact:true}).click();await poll(p,()=>new URL(location.href).searchParams.get('v2')==='PERSONAL_GUIDE');assert.match(await p.locator('main').innerText(),/Invader|Redemptor|Repulsor/);return styles;}
+async function worker(p){return p.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration(),ask=w=>w?new Promise(resolve=>{const c=new MessageChannel(),t=setTimeout(()=>resolve(null),3000);c.port1.onmessage=e=>{clearTimeout(t);resolve(e.data);};w.postMessage({type:'GET_VERSION'},[c.port2]);}):null;return{active:await ask(r?.active),controller:await ask(navigator.serviceWorker.controller),waiting:await ask(r?.waiting),installing:!!r?.installing};});}
+async function waitWorker(p,revision){const end=Date.now()+60000;let state;while(Date.now()<end){state=await worker(p);if(state.active?.revision===revision&&state.controller?.revision===revision&&!state.installing)return state;await sleep(200);}throw Error('Worker revision did not become ready: '+JSON.stringify(state));}
+const draft='Unfinished native V2 import\nNBSP: Blood\u00a0Angels';
+async function imported(p){await go(p,'?v2=ROSTER&book=space-marines');await p.locator('.v2-roster textarea').fill(fs.readFileSync(path.join(source,'books/space-marines/v2/fixtures/newrecruit-v37.3-user-sm.txt'),'utf8'));await p.getByRole('button',{name:'Import roster',exact:true}).click();await poll(p,()=>ArmyBookAppV2.roster.state?.units.length===3);assert.equal(await p.evaluate(()=>ArmyBookAppV2.roster.points.totalPoints),490);await p.evaluate(()=>ArmyBookAppV2.openRoster());await p.locator('[data-roster-input="raw-text"]').fill(draft);await p.evaluate(()=>{localStorage.setItem('pwa-test-sentinel','preserve me');window.pwaDocumentSentinel='original A';});return state(p);}
+async function state(p){return p.evaluate(()=>({storage:Object.fromEntries(Object.entries(localStorage).sort()),snapshot:ArmyBookAppV2.roster.state?ArmyBookAppV2.roster.snapshot():null,draft:document.querySelector('[data-roster-input="raw-text"]')?.value,document:window.pwaDocumentSentinel,revision:window.WHPwaExpectedRevision}));}
 const browser=await launchChromium();
-
-async function workerRevision(page,selector='active'){
-  return page.evaluate(async selector=>{
-    const registration=await navigator.serviceWorker.getRegistration();
-    const worker=registration?.[selector]||navigator.serviceWorker.controller;
-    if(!worker)return null;
-    return new Promise(resolve=>{const channel=new MessageChannel();channel.port1.onmessage=event=>resolve(event.data?.revision||null);worker.postMessage({type:'GET_VERSION'},[channel.port2]);});
-  },selector);
-}
-async function cacheNames(page){return page.evaluate(()=>caches.keys());}
-async function installA(context){
-  generation='A';failRequired=false;requiredGate=null;serviceWorkerGate=null;
-  const page=await context.newPage();
-  await page.goto(`${origin}/index.html`);
-  await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
-  await page.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.A);
-  assert.equal(await workerRevision(page),revisions.A,'Generation A did not become the active worker');
-  return page;
-}
-async function resetScenario(){generation='A';legacyRoot=false;failRequired=false;requiredGate=null;serviceWorkerGate=null;}
-
 try{
-  const bootstrapContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
-  try{
-    legacyRoot=true;generation='A';
-    const oldPage=await bootstrapContext.newPage();await oldPage.goto(`${origin}/index.html`);await oldPage.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
-    assert.equal(await oldPage.locator('[data-pwa-updater]').count(),0,'Legacy release fixture unexpectedly contained the new updater');
-    generation='B';legacyRoot=false;await oldPage.close();
-    const currentPage=await bootstrapContext.newPage();await currentPage.goto(`${origin}/index.html`);await currentPage.locator('[data-pwa-updater]').waitFor();
-    await currentPage.waitForFunction(revision=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'&&document.querySelector('[data-pwa-available-version]')?.textContent===revision,revisions.B);
-    assert.equal(await workerRevision(currentPage),revisions.A,'Generation B activated without confirmation during first-release bootstrap');
-    await currentPage.getByRole('button',{name:'Install and restart'}).click();
-    await currentPage.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.B);
-    assert.equal(await workerRevision(currentPage),revisions.B,'Generation B did not control the Library after first-release confirmation');
-    console.log('PWA UPDATE QA: first-release close/reopen bootstrap needs no storage reset PASS');
-  }finally{await bootstrapContext.close();await resetScenario();}
+const context=await browser.newContext({viewport:{width:1440,height:900},serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);
+try{generation='A';console.log('STAGE A install');await go(p);await waitWorker(p,aRevision);await go(p,'?v2=ARMY_BOOK&book=tyranids');await poll(p,()=>ArmyBookAppV2?.payload?.book?.id==='tyranids');await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');const sibling=await context.newPage();await go(sibling,'?v2=ROSTER&book=space-marines');await sibling.locator('[data-roster-input="raw-text"]').fill('Sibling unfinished draft');await sibling.evaluate(()=>window.pwaDocumentSentinel='sibling A');
+console.log('STAGE B check');generation='B';await p.evaluate(()=>WHOfflineStatus.check());const end=Date.now()+60000;let waiting;while(Date.now()<end){waiting=await worker(p);if(waiting.waiting?.revision===bRevision||waiting.active?.revision===bRevision)break;await sleep(200);}assert.equal(waiting.waiting?.revision,bRevision,'B must wait for manual confirmation');assert.equal(waiting.active?.revision,aRevision,'Update must not auto-activate before consent');assert.deepEqual(await state(p),before,'Waiting update must preserve current native state');await poll(p,()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'||document.querySelector('[data-pwa-update-action]')?.textContent==='Install and restart');await p.locator('[data-pwa-update-action]').click();await poll(p,expected=>window.WHPwaExpectedRevision===expected,bRevision);await ready(p);await waitWorker(p,bRevision);await poll(p,()=>!!window.ArmyBookAppV2?.roster);await p.evaluate(()=>ArmyBookAppV2.openRoster());await poll(p,draft=>document.querySelector('[data-roster-input="raw-text"]')?.value===draft,draft);const after=await state(p);assert.deepEqual(after.storage,before.storage,'Confirmed update must preserve all localStorage');assert.deepEqual(after.snapshot,before.snapshot,'Confirmed update must preserve native roster');assert.equal(after.draft,draft);assert.equal(await sibling.evaluate(()=>window.pwaDocumentSentinel),'sibling A','Sibling tab must not automatically reload');assert.equal(await sibling.locator('[data-roster-input="raw-text"]').inputValue(),'Sibling unfinished draft');
+await context.setOffline(true);report.offlineCSS=await offlineRoster(p);await core(p);await mega(p);await go(p);await p.locator('[data-v2-book="tyranids"]').click();await poll(p,()=>/unavailable|not available|Reconnect/i.test(document.querySelector('main')?.textContent||''));const unavailable=await p.locator('main').innerText();assert.match(unavailable,/unavailable|not available|Reconnect/i);assert(!await p.locator('main .unit-card').count(),'Changed offline data must never mount stale cards');await p.screenshot({path:path.join(out,'changed-book-offline.png'),fullPage:true});report.results.push({case:'manual A→B, sibling, roster, draft, changed-book unavailable',status:'PASS',unavailable});
+}finally{await context.close();}
 
-  const noUpdateContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
-  try{
-    const page=await installA(noUpdateContext);
-    assert.equal(await page.getByRole('button',{name:'Check for updates'}).count(),1,'Root updater is not exposed as one accessible button');
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true,'Root updater overflows the 320px viewport');
-    const loads=Number(await page.evaluate(()=>sessionStorage.pwaLoads));
-    const before=serviceWorkerRequests,swGate=gate();serviceWorkerGate=swGate;
-    await page.evaluate(()=>{const button=document.querySelector('[data-pwa-update-action]');button.click();button.click();button.click();});
-    await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='checking');
-    await nextRequest(()=>serviceWorkerRequests,before,serviceWorkerWaiters);
-    assert.equal(serviceWorkerRequests,before+1,'Repeated Check clicks created duplicate service-worker update requests');
-    swGate.release();
-    await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='up_to_date');
-    assert.equal(serviceWorkerRequests,before+1,'One manual check performed more than one update request');
-    assert.equal(Number(await page.evaluate(()=>sessionStorage.pwaLoads)),loads,'No-update check reloaded the page');
-    assert.deepEqual(await cacheNames(page),[`warhammer-rules-fe1d435-${revisions.A}`],'No-update check changed the active cache generation');
-    console.log('PWA UPDATE QA: no update and multiple-click race PASS');
-  }finally{await noUpdateContext.close();await resetScenario();}
-
-  const automaticContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
-  try{
-    const page=await installA(automaticContext),loads=Number(await page.evaluate(()=>sessionStorage.pwaLoads));
-    generation='B';
-    await page.reload();
-    await page.waitForFunction(revision=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'&&document.querySelector('[data-pwa-available-version]')?.textContent===revision,revisions.B);
-    assert.equal(await workerRevision(page),revisions.A,'Quiet startup check activated generation B');
-    assert.equal(Number(await page.evaluate(()=>sessionStorage.pwaLoads)),loads+1,'Quiet startup check forced an additional reload');
-    console.log('PWA UPDATE QA: quiet startup check surfaces a waiting update without activation PASS');
-  }finally{await automaticContext.close();await resetScenario();}
-
-  const successContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
-  try{
-    const page=await installA(successContext),loads=Number(await page.evaluate(()=>sessionStorage.pwaLoads));
-    const sibling=await successContext.newPage();await sibling.goto(`${origin}/index.html`);await sibling.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
-    await sibling.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.A);
-    const siblingLoads=Number(await sibling.evaluate(()=>sessionStorage.pwaLoads));
-    // Finish initial quiet checks before changing the server generation.
-    // The test must not gate a startup update and then wait for a disabled button.
-    await sibling.evaluate(()=>WHOfflineStatus.check());await page.bringToFront();await page.evaluate(()=>WHOfflineStatus.check());
-    generation='B';requiredGate=gate();const requiredBefore=requiredRequests;
-    await page.locator('[data-pwa-update-action]').click();
-    await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='downloading');
-    await nextRequest(()=>requiredRequests,requiredBefore,requiredWaiters);
-    assert.equal(await workerRevision(page),revisions.A,'Generation B replaced A before completing its cache');
-    assert.match(await page.evaluate(()=>fetch('/death-approaches.html').then(response=>response.text())),/At the start of the battle round/,'Generation A stopped serving cached content during B install');
-    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),'Generation A cache was deleted during B install');
-    requiredGate.release();requiredGate=null;
-    await page.waitForFunction(revision=>document.querySelector('[data-pwa-updater]')?.dataset.state==='ready'&&document.querySelector('[data-pwa-available-version]')?.textContent===revision,revisions.B);
-    assert.equal(await workerRevision(page),revisions.A,'Generation B activated before user confirmation');
-    const waitingCaches=await cacheNames(page);
-    assert.ok(waitingCaches.includes(`warhammer-rules-fe1d435-${revisions.A}`),'Generation A cache was deleted while B waited');
-    assert.ok(waitingCaches.includes(`warhammer-rules-fe1d435-${revisions.B}`),'READY was shown without a generation B cache');
-    assert.equal(await page.evaluate(async name=>(await (await caches.open(name)).keys()).length,`warhammer-rules-fe1d435-${revisions.B}`),appShell.length,'READY was shown before every generation B asset was cached');
-    await page.getByRole('button',{name:'Install and restart'}).click();
-    await page.waitForFunction(({revision,loads})=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision&&Number(sessionStorage.pwaLoads)===loads+1,{revision:revisions.B,loads});
-    await sibling.waitForFunction(revision=>document.querySelector('[data-pwa-installed-version]')?.textContent===revision,revisions.B);
-    assert.equal(await sibling.locator('h1').textContent(),'Library generation A','A different tab was reloaded without its user confirmation');
-    assert.equal(await workerRevision(page),revisions.B,'Generation B did not control the restarted page');
-    assert.equal(await workerRevision(sibling),revisions.B,'Generation B did not control the restarted sibling page');
-    // Await Cache Storage in Node: Promise-returning waitForFunction is not
-    // reliable with the bundled browser adapter. Keep the actual assertion below.
-    const deletionDeadline=Date.now()+15000;
-    while((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`)&&Date.now()<deletionDeadline)await new Promise(resolve=>setTimeout(resolve,100));
-    assert.equal((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),false,'Obsolete cache survived successful migration');
-    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.B}`),'New prepared cache was not retained');
-    assert.equal(Number(await page.evaluate(()=>sessionStorage.pwaLoads)),loads+1,'Confirmed update did not reload exactly once');
-    assert.equal(Number(await sibling.evaluate(()=>sessionStorage.pwaLoads)),siblingLoads,'Sibling page reloaded without explicit confirmation');
-    await successContext.setOffline(true);
-    await page.goto(`${origin}/death-approaches.html`);
-    await page.getByText('In your Movement phase, spread the sickness.').waitFor();
-    console.log('PWA UPDATE QA: successful two-generation update, manual sibling consent, obsolete cache cleanup and current offline page PASS');
-  }finally{await successContext.close();await resetScenario();}
-
-  const failedContext=await browser.newContext({serviceWorkers:'allow',viewport:{width:320,height:800}});
-  try{
-    const page=await installA(failedContext);
-    generation='B';failRequired=true;
-    await page.locator('[data-pwa-update-action]').click();
-    await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='failed');
-    assert.equal(await workerRevision(page),revisions.A,'Failed B install replaced active A');
-    assert.equal(await page.evaluate(async()=>Boolean((await navigator.serviceWorker.getRegistration()).waiting)),false,'Failed B install became ready/waiting');
-    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),'Failed B install deleted A cache');
-    await failedContext.setOffline(true);
-    await page.goto(`${origin}/death-approaches.html`);
-    await page.getByText('At the start of the battle round, spread the sickness.').waitFor();
-    await page.goto(`${origin}/index.html`);
-    await page.getByRole('button',{name:'Check for updates'}).click();
-    await page.waitForFunction(()=>document.querySelector('[data-pwa-updater]')?.dataset.state==='failed');
-    assert.equal(await page.getByRole('button',{name:'Retry'}).count(),1,'Offline check did not expose a retry action');
-    assert.ok((await cacheNames(page)).includes(`warhammer-rules-fe1d435-${revisions.A}`),'Offline retry deleted the installed cache');
-    await page.getByRole('heading',{name:'Library generation A'}).waitFor();
-    console.log('PWA UPDATE QA: failed install and offline retry preserve generation A PASS');
-  }finally{await failedContext.close();}
-}finally{
-  await browser.close();
-  await new Promise(resolve=>server.close(resolve));
-}
+if(!mutation){generation='A';failInstall=false;const context=await browser.newContext({serviceWorkers:'allow'}),p=await context.newPage();p.setDefaultTimeout(30000);try{await go(p);await waitWorker(p,aRevision);await core(p);await mega(p);console.log('STAGE import');const before=await imported(p);console.log('STAGE imported');generation='B';failInstall=true;await p.evaluate(()=>WHOfflineStatus.check());await poll(p,()=>document.querySelector('[data-pwa-update-action]')?.textContent==='Retry');const failed=await worker(p);assert.equal(failed.active?.revision,aRevision);assert.equal(failed.controller?.revision,aRevision);assert.deepEqual(await state(p),before,'Failed mandatory shell install must leave live native app and data untouched');report.results.push({case:'failed B install preserves A and user state',status:'PASS'});}finally{await context.close();}}
+report.status='PASS';console.log('Native V2 update browser PASS');
+}catch(error){report.status='FAIL';report.error=error.stack;console.error(error.stack);process.exitCode=1;}finally{await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));console.log('Evidence '+out);}

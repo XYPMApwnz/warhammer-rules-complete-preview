@@ -1,1 +1,0 @@
-try{window.WHArmyBook.install({bookId:'dark-angels',readerPath:'./reader.html',dedicatedMobile:true,rosterContext:{parentBookId:'space-marines'},relatedRules:{enabled:true},extensions:[]});}catch(error){document.documentElement.dataset.bookError=String(error&&error.stack||error);console.error(error);}

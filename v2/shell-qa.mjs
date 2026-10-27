@@ -6,17 +6,19 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {createBookRegistry} from '../books/shared/application-v2/registry.mjs';
-import {resolveApplicationRoute,applicationRouteURL,legacyBookURL} from '../books/shared/application-v2/routes.mjs';
+import {resolveApplicationRoute,applicationRouteURL} from '../books/shared/application-v2/routes.mjs';
+import * as shellRoutes from '../books/shared/application-v2/routes.mjs';
+import {armyBooks} from './army-books.mjs';
 import {decodeRoute,normalizeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 import {createSyntheticPersonalFixture} from '../books/shared/army-book-app-v2/personal-datasheet-qa.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const definitions=['synthetic-a','synthetic-b','synthetic-third'].map(id=>({id,title:'Independent '+id,
-  loadPayload:async()=>({book:{id}}),createRoster:async()=>null,styles:[],assetBaseURL:'https://example.invalid/'+id+'/',routeAliases:['/legacy/'+id+'/app.html']}));
+  loadPayload:async()=>({book:{id}}),createRoster:async()=>null,styles:[],assetBaseURL:'https://example.invalid/'+id+'/',routeAliases:['/registered/'+id+'/app.html']}));
 const registry=createBookRegistry(definitions);
 assert.deepEqual(registry.entries.map(entry=>entry.id),definitions.map(entry=>entry.id));
 for(const definition of definitions){assert.equal(registry.get(definition.id).id,definition.id);assert.equal(registry.has(definition.id),true);
-  assert.equal(registry.forPath('/legacy/'+definition.id+'/app.html')?.id,definition.id);}
+  assert.equal(registry.forPath('/registered/'+definition.id+'/app.html')?.id,definition.id);}
 assert.equal(registry.has('unregistered'),false);assert.ok(!registry.get('unregistered'));assert.ok(!registry.forPath('/unregistered/app.html'));
 assert.throws(()=>createBookRegistry([definitions[0],definitions[0]]),'Duplicate registry IDs must fail closed');
 assert.throws(()=>createBookRegistry([definitions[0],{...definitions[1],routeAliases:definitions[0].routeAliases}]),'An alias cannot belong to two books');
@@ -33,9 +35,12 @@ const physical={destination:'REFERENCE',bookId:'synthetic-third',registryId:'syn
   instanceId:'instance/%2F/Ж',scopeId:'instance/%2F/Ж/row 1',profileId:'profile/α',canonicalId:'weapon/#?%+Ж',fieldPath:'/skill'};
 const physicalURL=applicationRouteURL(base,physical);
 assert.deepEqual(decodeRoute(physicalURL),normalizeRoute(physical));assert.equal(resolveApplicationRoute(physicalURL,registry).bookId,'synthetic-third');
-const legacy=new URL(physicalURL);legacy.pathname='/legacy/synthetic-third/app.html';legacy.searchParams.delete('book');
-const adapted=legacyBookURL(legacy.href,base,'synthetic-third');
-assert.deepEqual(decodeRoute(adapted),normalizeRoute(physical));assert.equal(new URL(adapted).pathname,'/v2/app.html');
+assert.equal('legacyBookURL' in shellRoutes,false,'Retired book-entry adapter remains exported');
+for(const book of armyBooks){
+  assert.deepEqual(book.routeAliases,[],'Retired per-book app route is registered: '+book.id);
+  assert.equal(fs.existsSync(path.join(repo,'books',book.id,'v2/app.html')),false,'Retired per-book app entry remains: '+book.id);
+}
+
 for(const url of [base+'&v2=HOME&v2=ROSTER',base+'&book=unregistered',base+'&v2=UNIT_INSTANCE',base+'&v2=CORE_RULES&registry=foreign',
   base+'&v2=HOME&book=synthetic-a',base+'&v2=GLOSSARY#unbound-canonical-id'])assert.throws(()=>resolveApplicationRoute(url,registry),'Invalid shell context was accepted: '+url);
 
@@ -51,7 +56,7 @@ import {createBookRegistry} from '/books/shared/application-v2/registry.mjs';
 const fixtures=await(await fetch('/fixtures.json')).json();
 const loads=[],gates=new Map();
 const entries=fixtures.map(fixture=>({id:fixture.id,title:fixture.title,styles:[],assetBaseURL:new URL('/synthetic-assets/'+fixture.id+'/',location.href).href,
- routeAliases:['/legacy/'+fixture.id+'/app.html'],createRoster:async()=>null,
+ routeAliases:['/registered/'+fixture.id+'/app.html'],createRoster:async()=>null,
  async loadPayload(){loads.push(fixture.id);if(gates.has(fixture.id))await gates.get(fixture.id).promise;return structuredClone(fixture.payload);}}));
 const registry=createBookRegistry(entries);
 window.synthetic={fixtures,loads,registry,gates,createApplication,

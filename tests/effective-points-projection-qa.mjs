@@ -21,7 +21,7 @@ fs.readFileSync=function guardedRead(file,...args){
 
 let pointsApi,projectionApi,first,second;
 try{
-  pointsApi=await import('../roster-guides/effective-points-catalog.mjs');
+  pointsApi=await import('../books/shared/points/effective-catalog.mjs');
   projectionApi=await import('../books/shared/tools/effective-points-projection.mjs');
   first=await pointsApi.createPointsCatalog(root);
   second=await pointsApi.createPointsCatalog(root);
@@ -37,7 +37,7 @@ const projectionMapClone=source=>new Map([...source].map(([id,projection])=>[id,
 const values=(projection,unitId)=>projection.units.find(unit=>unit.id===unitId)?.points.map(tier=>tier.value);
 
 function readPublishedCatalog(){
-  const source=originalReadFileSync(path.join(root,'roster-guides','points-data.js'),'utf8'),context={};
+  const source=originalReadFileSync(path.join(root,'books/shared/points','points-data.js'),'utf8'),context={};
   context.window=context;
   vm.runInNewContext(source,context);
   return {source,catalog:JSON.parse(JSON.stringify(context.WH_POINTS_CATALOG))};
@@ -217,7 +217,7 @@ const inheritedIndex=inheritedMutation.get('dark-angels').enhancements.findIndex
 inheritedMutation.get('dark-angels').enhancements.splice(inheritedIndex,1);
 assert.throws(()=>assertSupplementControls(inheritedMutation),/inherited Enhancement coverage differs/);
 
-for(const file of ['roster-guides/build-points.mjs','roster-guides/effective-points-catalog.mjs']){
+for(const file of ['books/shared/points/build.mjs','books/shared/points/effective-catalog.mjs']){
   const source=originalReadFileSync(path.join(root,file),'utf8');
   assert.equal(generatedInputPattern.test(path.resolve(root,file)),false);
   assert.doesNotMatch(source,/scripts[\\/]roster-data\.js|scripts[\\/]target-data\.js|reader\.html|mobile[\\/](?:generated|scripts)[\\/]/i,`${file} retains a generated factual input path`);

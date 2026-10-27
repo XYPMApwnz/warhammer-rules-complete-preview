@@ -2,6 +2,7 @@
  * evaluate calls inspect state, source payload and rendered DOM only. No state,
  * storage, DOM, CSS or computed-value injection is permitted by this QA. */
 import assert from 'node:assert/strict';
+import {armyBooks} from '../../../v2/army-books.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
@@ -13,7 +14,7 @@ const out=process.env.TAU_V2_BROWSER_EVIDENCE||'E:/Warhammer/qa-artifacts/recove
 const previous=process.env.TAU_V2_STAGE4G_EVIDENCE||'E:/Warhammer/qa-artifacts/recovery-tau-v2-stage4g-final-20261019';
 const requestedGroups=process.env.TAU_V2_BROWSER_GROUPS?.split(',');
 const mainApplication=process.env.TAU_V2_BROWSER_MAIN==='1';
-const applicationPath=mainApplication?'/v2/app.html':'/books/tau-empire/v2/app.html';
+const applicationPath='/v2/app.html';
 fs.mkdirSync(out,{recursive:true});
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),records=new Map(facts.entities.map(entity=>[entity.id,entity]));
@@ -34,7 +35,7 @@ const server=http.createServer((request,response)=>{
   if(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
     result.missing.push({url:pathname,status:404});response.writeHead(404);response.end();return;
   }
-  const mime={'.html':'text/html','.mjs':'text/javascript','.css':'text/css','.json':'application/json',
+  const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
     '.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});
   response.end(fs.readFileSync(file));
@@ -149,11 +150,11 @@ try{
         await screenshot(page,`${device}-${id}-failure`);result.results.push({device,id,status:'FAIL',error:error.message,evidence});}}
     await page.goto(origin+applicationPath);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2)||Boolean(document.querySelector('[data-v2-book="tau-empire"]')));
     if(!await page.evaluate(()=>Boolean(window.ArmyBookAppV2)))await page.locator('[data-v2-book="tau-empire"]').click();await ready(page);
-    if(mainApplication)await group('main-home-six-books',async()=>{
-      const expected=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire'];
+    if(mainApplication)await group('main-home-nine-books',async()=>{
+      const expected=armyBooks.map(book=>book.id);
       await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();
       const books=await page.locator('[data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book));
-      assert.deepEqual(books.sort(),expected.slice().sort(),'Exactly six unique main Home registrations');await geometry(page);await screenshot(page,device+'-main-home-six-books');
+      assert.deepEqual(books.sort(),expected.slice().sort(),'All nine unique main Home registrations');await geometry(page);await screenshot(page,device+'-main-home-nine-books');
       for(const book of expected){
         await page.locator(`[data-v2-book="${book}"]`).click();await ready(page);
         assert.equal(await page.evaluate(()=>window.WarhammerAppV2.activeBookId),book);assert.ok(await page.locator('[data-army-book-v2]').count());

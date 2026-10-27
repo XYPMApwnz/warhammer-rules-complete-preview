@@ -15,7 +15,8 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;
 if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
-const appPath='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 const kinds=new Set(['BOOK_USAGE_RULES','ARMY_RULE','ARMY_RULE_COMPONENT','DETACHMENT','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM']);
 const sourceEntities=inputs.model.entities.filter(entity=>kinds.has(entity.kind));
@@ -132,7 +133,7 @@ try{
   for(const[device,viewport]of[['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[];page.setDefaultTimeout(10000);
     page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+appPath+'#start');await ready(page);await page.waitForTimeout(150);
+    await page.goto(origin+appURL+'#start');await ready(page);await page.waitForTimeout(150);
     const observed=await observe(page);assertFacts(observed,expected,device);
     // Source-owned table cells must have one display occurrence. Prose retains
     // its original fact identity/value while the duplicate flattened line is omitted.
@@ -157,7 +158,7 @@ try{
     if(screenshots){
       await page.evaluate(()=>window.ArmyBookAppV2.open('detachment-shamblerot-vectorium:rule'));
       await page.screenshot({path:path.join(screenshots,device+'-numberless-horde.png')});
-      await page.goto(origin+appPath+'#start');await ready(page);
+      await page.goto(origin+appURL+'#start');await ready(page);
     }
     const cover=page.locator('main .v2-hero[data-book-artwork]');
     assert.equal(await cover.count(),1,`${device} missing faction cover`);
@@ -202,7 +203,7 @@ try{
       await page.locator(`main [data-card-id="${entity.id}"] a.v2-reference[data-target-id="${entity.id}"]`).first().click();const reader=await detail(entity.id);await page.keyboard.press('Escape');
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(entity.data.title);
       await page.locator(`.v2-glossary-result[data-target-id="${entity.id}"]`).click();assert.deepEqual(await detail(entity.id),reader,`${device} Glossary detail identity`);await page.keyboard.press('Escape');
-      await page.goto(origin+appPath+'#start');await ready(page);
+      await page.goto(origin+appURL+'#start');await ready(page);
       const relation=payload.relatedRules.rows.find(row=>row.ruleId===entity.id&&['MATCH','CONDITIONAL'].includes(row.applicability));
       if(relation){
         await page.evaluate(id=>window.ArmyBookAppV2.openRelatedRules(id),relation.unitId);
@@ -214,7 +215,7 @@ try{
       }
     }
     // Selected book record and popup remain dark even without any datasheet.
-    await page.goto(origin+appPath+'#army-rule-nurgles-gift');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
+    await page.goto(origin+appURL+'#army-rule-nurgles-gift');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
     await page.evaluate(()=>window.ArmyBookAppV2.open('army-rule-pact-of-decay'));
     assert.equal(await page.locator('main .v2-card').count(),0,`${device} selected generic book record`);
     assert.deepEqual(errors,[],`${device} uncaught errors`);
@@ -233,7 +234,7 @@ try{
   assert.throws(()=>buildApp({...inputs,model:mutatedModel,records:mutatedRecords}),/source atom without exact evidence/,'Upstream source integrity must fail closed');
   const mutatedPresentation=projectArmyBook(mutatedModel,mutatedRecords,payload.book);
   servedPayload={...payload,...mutatedPresentation,cards:[...mutatedPresentation.cards,...payload.cards.filter(card=>card.domain==='CORE')],bookPresentation:projectBookPresentation(mutatedModel,mutatedRecords)};
-  const page=await browser.newPage();await page.goto(origin+appPath+'#start');await ready(page);const mutated=await observe(page);
+  const page=await browser.newPage();await page.goto(origin+appURL+'#start');await ready(page);const mutated=await observe(page);
   assertFacts(mutated,expectedPlayerFacts(mutatedModel,mutatedRecords),'V2 mutation');
   assert.throws(()=>assertFacts(mutated,expected,'Dropped/changed player fact'),/WRONG_VALUE|WRONG_DISPLAY/,'Canonical mutation must fail source parity');
   servedPayload=payload;legacyPoison='LEGACY_POISON_B';await page.reload();await ready(page);assertFacts(await observe(page),expected,'Legacy disconnect/poison');await page.close();

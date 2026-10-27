@@ -36,7 +36,8 @@ const unit=(instanceId,name,enhancementIds=[])=>{
 };
 const snapshot=(units,detachmentIds)=>({schema:'roster-v2/roster',bookId:book.bookId,rosterId:'admech-visible-effects',units,
   detachmentIds,detachments:detachmentIds.map((id,i)=>({instanceId:'detachment-'+i,canonicalDetachmentId:id})),attachments:[],warlordInstanceId:null});
-const app='/books/adeptus-mechanicus/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus';
+const app='/v2/app.html';
 const forbidden=address=>!isApplicationTestDependency(address)&&(/\/books\/death-guard\/(?!assets\/)/.test(address)||
   /\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(address)||
   /(?:target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\.)/.test(address));
@@ -49,7 +50,7 @@ const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;
   if(forbidden(address)){forbiddenRequests.push(address);response.writeHead(200,{'Content-Type':'text/javascript'});response.end('throw new Error("POISONED_LEGACY_RUNTIME");');return;}
   if(!allowed(address)){if(address!=='/favicon.ico')unexpectedRequests.push(address);response.writeHead(404);response.end();return;}
-  const mime=address.endsWith('.mjs')?'text/javascript':address.endsWith('.css')?'text/css':address.endsWith('.html')?'text/html':address.endsWith('.json')?'application/json':address.endsWith('.svg')?'image/svg+xml':address.endsWith('.png')?'image/png':address.endsWith('.webp')?'image/webp':'image/jpeg';
+  const mime=(address.endsWith('.mjs')||address.endsWith('.js'))?'text/javascript':address.endsWith('.css')?'text/css':address.endsWith('.html')?'text/html':address.endsWith('.json')?'application/json':address.endsWith('.svg')?'image/svg+xml':address.endsWith('.png')?'image/png':address.endsWith('.webp')?'image/webp':'image/jpeg';
   response.writeHead(200,{'Content-Type':mime,'Cache-Control':'no-store'});response.end(fs.readFileSync(path.join(repo,address.slice(1))));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -59,14 +60,14 @@ const screenshots=process.env.ARMY_APP_V2_SCREENSHOTS;if(screenshots)fs.mkdirSyn
 const results=[];
 try{
  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
-  const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[];let checks=0;
+  const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage(),errors=[];let checks=0;
   page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(`http://127.0.0.1:${server.address().port}${app}`);
+  await page.goto(`http://127.0.0.1:${server.address().port}${appURL}`);
   await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2?.rosterPanel));await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
   assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state),null,'Book startup invented roster state');
   const api=async(fn,arg)=>page.evaluate(fn,arg);
   const open=async id=>{await api(id=>{window.ArmyBookAppV2.openPersonalGuide();window.ArmyBookAppV2.openInstance(id);},id);
-    await page.waitForFunction(id=>document.querySelector('main .v2-current-card')?.dataset.rosterInstanceId===id,id);};
+    await page.waitForFunction(id=>Boolean(document.querySelector(`main .v2-current-card[data-roster-instance-id="${id}"], main .v2-current-card [data-roster-instance-id="${id}"]`)),id);};
   const load=async state=>api(state=>window.ArmyBookAppV2.roster.load(state),state);
   const attach=async(source,target)=>api(([source,target])=>window.ArmyBookAppV2.roster.attach(source,target),[source,target]);
   const detach=async source=>api(source=>window.ArmyBookAppV2.roster.detach(source),source);
@@ -149,7 +150,7 @@ try{
   await load(weaponState);await attach('owner','body');await open('owner');
   for(const key of ['range','attacks','skill','strength','ap','damage'])await field(contributed,'/'+key,records.get(contributed).data[key]);
   await open('duplicate');assert.equal((await inspect(contributed)).length,0,'Canonical weapon leaked to duplicate');checks++;
-  await open('body');assert.equal((await inspect(contributed)).length,0,'Canonical weapon leaked through attachment');checks++;
+  await open('body');assert.equal(await page.locator('main [data-roster-instance-id="body"] [data-card-id="'+contributed+'"]').count(),0,'Canonical weapon leaked through attachment');checks++;
   await modelAbility('datasheet-servitor-battleclade:profile:servitor-underseer','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);
   await modelAbility('datasheet-servitor-battleclade:profile:combat-and-gun-servitors','core-feel-no-pain',{value:5},/Feel No Pain\s*:?\s*5\+/i);
   // Dominus grants FNP to the whole led unit; detach leaves only the global

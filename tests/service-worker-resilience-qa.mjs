@@ -69,13 +69,8 @@ async function dispatchMessage(runtime,data){
 }
 
 const routing=workerRuntime();
-assert.equal(fallback(routing,'https://example.test/books/space-marines/index.html'),'./books/space-marines/','Space Marines index must use its cached book entry');
-assert.equal(fallback(routing,'https://example.test/books/space-marines/'),'./books/space-marines/','Space Marines directory must use its cached book entry without changing route ownership');
-assert.equal(fallback(routing,'https://example.test/books/space-marines/reader.html'),'./books/space-marines/reader.html','Space Marines reader must retain its reader fallback');
-assert.equal(fallback(routing,'https://example.test/books/chaos-space-marines/index.html'),'./books/chaos-space-marines/index.html','another supported book must retain its entry fallback');
-assert.equal(fallback(routing,'https://example.test/'),'./index.html','root navigation must retain the Library fallback');
-assert.equal(fallback(routing,'https://example.test/index.html'),'./index.html','Library navigation must retain the Library fallback');
-assert.equal(vm.runInContext("APP_SHELL.filter(url=>url==='./books/space-marines/').length",routing.context),1,'Space Marines cached entry membership changed');
+for(const url of ['https://example.test/','https://example.test/v2/app.html','https://example.test/missing-page'])assert.equal(fallback(routing,url),'./v2/app.html','Offline navigation must return the single native entry');
+assert.equal(vm.runInContext("APP_SHELL.some(url=>url.includes('roster-guides')||url.includes('/mobile/'))",routing.context),false,'Legacy UI entered mandatory shell');
 
 const successfulWrite=workerRuntime();
 const written=await fetchAndCache(successfulWrite,{url:'https://example.test/assets/example.js'});

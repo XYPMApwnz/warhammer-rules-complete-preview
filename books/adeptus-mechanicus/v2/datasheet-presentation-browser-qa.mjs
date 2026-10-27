@@ -21,7 +21,7 @@ const server=http.createServer((request,response)=>{
   if(old)name=name.slice('baseline/'.length);
   const file=path.resolve(repo,name);
   if(!file.startsWith(repo+path.sep)||!fs.existsSync(file)||fs.statSync(file).isDirectory()){response.writeHead(404);response.end();return;}
-  const mime={'.html':'text/html','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
+  const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
   response.writeHead(200,{'Content-Type':mime[path.extname(file)]||'image/jpeg','Cache-Control':'no-store'});
   response.end(old&&originals.has(name)?originals.get(name):fs.readFileSync(file));
 });
@@ -75,7 +75,7 @@ try{
  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
   const context=await browser.newContext({viewport,reducedMotion:'reduce'}),page=await context.newPage();
   page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(origin+'/books/adeptus-mechanicus/v2/app.html');await ready(page);
+  await page.goto(origin+'/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus');await ready(page);
   for(const unit of payload.cards.filter(card=>card.kind==='DATASHEET')){
     await open(page,unit.id);await clean(page);
     const root=page.locator('main .unit-card');
@@ -129,7 +129,7 @@ try{
   for(const old of [true,false]){
     const ctx=await browser.newContext({viewport,reducedMotion:'reduce'}),p=await ctx.newPage();
     p.on('pageerror',error=>errors.push(error.message));
-    await p.goto(origin+(old?'/baseline':'')+'/books/death-guard/v2/app.html');await ready(p);contexts.push(ctx);pages.push(p);
+    await p.goto(origin+(old?'/baseline/books/death-guard/v2/app.html':'/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard'));await ready(p);contexts.push(ctx);pages.push(p);
   }
   for(const surface of ['unit-lord-of-contagion','unit-deathshroud-terminators','personal-lord']){
     for(const p of pages){if(surface==='personal-lord')await importRoster(p,dgText,'parsed-unit-2');else await open(p,surface);}

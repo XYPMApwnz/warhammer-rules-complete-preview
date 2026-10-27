@@ -10,7 +10,8 @@ import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 // Exercise ordinary production screens, not the source/debug census renderer.
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const app='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const app='/v2/app.html';
 const payload=JSON.parse(fs.readFileSync(path.join(repo,'books/death-guard/v2/generated/app-presentation.json'),'utf8'));
 const allowed=new Map([[app,'text/html'],
   ['/books/death-guard/v2/generated/app-presentation.json','application/json'],
@@ -79,7 +80,7 @@ const results=[];
 try{
   for(const[device,viewport]of[['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+app+'#start');await ready(page);
+    await page.goto(origin+appURL+'#start');await ready(page);
     await noInternalText(page,'main',device+' full book');
     const popupIds=payload.cards.filter(card=>['ARMY_RULE','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','SOURCE_ERRATUM'].includes(card.kind)).map(card=>card.id);
     popupIds.push('core-deep-strike');

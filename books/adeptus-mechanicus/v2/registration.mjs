@@ -5,7 +5,7 @@ export const registration=Object.freeze({
     cover:new URL('../../../assets/adeptus-mechanicus-cover-480.webp',import.meta.url).href,coverAlt:'Adeptus Mechanicus cover',
     accent:'#9e3d30',label:'Interactive army book',order:10}),
   assetBaseURL:new URL('./',import.meta.url).href,
-  styles:[new URL('./theme.css',import.meta.url).href],routeAliases:['/books/adeptus-mechanicus/v2/app.html'],
+  styles:[new URL('./theme.css',import.meta.url).href],routeAliases:[],
   async loadPayload() {
     const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('Army Book unavailable');return response.json();

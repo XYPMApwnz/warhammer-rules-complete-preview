@@ -27,8 +27,9 @@ if(probe){
     else throw new Error(`unknown numeric ownership probe ${kind}`);
     return args[0]?.includes?.('b')?Buffer.from(JSON.stringify(config)):JSON.stringify(config);
   };
-  process.argv=[process.argv[0],path.join(root,'books/shared/tools/build-army-book.mjs'),target,'--check'];
-  await import(`${pathToFileURL(path.join(root,'books/shared/tools/build-army-book.mjs')).href}?numeric-owner-probe=${kind}`);
+  const {buildCanonicalBook}=await import(`${pathToFileURL(path.join(root,'books/shared/tools/build-army-book.mjs')).href}?numeric-owner-probe=${kind}`);
+  const {createCanonicalBuildContext}=await import('../books/shared/tools/canonical-build-contract.mjs');
+  await buildCanonicalBook(createCanonicalBuildContext({configPath:target,args:['--check']}),{projectionOnly:true});
   console.log(`${bookId} ${kind} config poison ignored by production build`);
 }else{
   for(const bookId of books)assert.deepEqual(activeOverrides(readConfig(bookId)),[],`${bookId}: active config still competes with centralized MFM numeric ownership`);

@@ -41,7 +41,7 @@ Report exact records, authority, correction, QA, and semantic deltas.
 ## Roster or gameplay bug
 
 ```text
-Read root AGENTS.md, roster-guides/AGENTS.md, affected book AGENTS.md, and QA_MATRIX.md.
+Read root AGENTS.md, books/shared/roster-v2/PHYSICAL_BEHAVIOR_CONTRACT.md, affected book AGENTS.md, and QA_MATRIX.md.
 HEAD=[sha]
 Task: fix [runtime/roster behavior].
 
@@ -100,7 +100,7 @@ Task: perform the explicitly authorized release acceptance stage.
 
 Run qa:release and record every failure without masking known debt.
 Confirm nine public/offline Army Books; Orks remains freshness-only.
-Verify generated outputs, publication inventory, offline routes, cache/release state, and clean rebuild requirements.
+Verify generated outputs, publication inventory, runtime inventory, cache/release state, and clean rebuild requirements.
 Do not repair unrelated failures inside acceptance without a new bounded task.
 
 Push/deploy/cache/tag actions require explicit authorization.
@@ -113,5 +113,5 @@ Report command results, blockers, final SHA, and working-tree state.
 | --- | --- | --- | --- | --- |
 | Space Marines content bug | `books/`, all book scripts, global tests, publication tooling | `books/space-marines/`, its config/source/adapter, closest tests | `qa:sm` | Add `qa:da` and `qa:ba` only for inherited semantics |
 | Death Guard popup bug | all generated readers/glossary/runtime files | DG adapter/presentation hook, canonical projection, popup consumer | `qa:dg`, then `qa:glossary` if glossary facts change | No, unless a shared popup/glossary mechanism is proven |
-| Roster runtime bug | all nine roster catalogs and browser suites | `roster-guides/`, named book contract, exact `books/shared/roster-*` consumer | `qa:roster`, affected `qa:<book>` | Only affected provider/attachment consumers |
+| Roster runtime bug | all nine roster catalogs and browser suites | `books/shared/roster-v2/`, native book bindings and exact presentation consumer | `qa:roster`, affected `qa:<book>` | Only affected provider/attachment consumers |
 | Glossary-only bug | every book `scripts/data.js`, registry, readers, contexts | `glossary/`, editorial contract or named canonical projection | `qa:glossary` | Only books whose projection changes |

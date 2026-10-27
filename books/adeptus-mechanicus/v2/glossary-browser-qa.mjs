@@ -34,7 +34,8 @@ Enhancement: TL-4Ø9
 • 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw
 • 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw
 10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon`;
-const app='/books/adeptus-mechanicus/v2/app.html',requests=[],legacy=[],unexpected=[];
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus';
+const app='/v2/app.html',requests=[],legacy=[],unexpected=[];
 const forbidden=url=>!isApplicationTestDependency(url)&&(/\/books\/death-guard\/(?!assets\/)/.test(url)||/\/books\/adeptus-mechanicus\/(?!v2\/|assets\/)/.test(url)||
   /target-data|compatible-rules\.json|correction-ledger|enhancement-owner|\/glossary\/(?:data|generated)|\/shared\/(?:roster-parser|effect-runtime|roster-context)\./.test(url));
 const allowed=url=>isApplicationTestDependency(url)||url===app||/^\/books\/adeptus-mechanicus\/v2\/(?:theme\.css|[\w.-]+\.mjs|roster-import-aliases\.json|generated\/(?:app-presentation|roster-runtime)\.json)$/.test(url)||
@@ -44,7 +45,7 @@ const server=http.createServer((request,response)=>{
   const url=new URL(request.url,'http://localhost').pathname;requests.push(url);
   if(forbidden(url)){legacy.push(url);response.writeHead(200,{'Content-Type':'text/javascript'});response.end('throw new Error("LEGACY_GLOSSARY_POISON");');return;}
   if(!allowed(url)){if(url!=='/favicon.ico')unexpected.push(url);response.writeHead(404);response.end();return;}
-  const types={'.mjs':'text/javascript','.css':'text/css','.json':'application/json','.html':'text/html','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
+  const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.html':'text/html','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'};
   response.writeHead(200,{'Content-Type':types[path.extname(url)]||'image/jpeg','Cache-Control':'no-store'});
   response.end(fs.readFileSync(path.join(repo,url.slice(1))));
 });
@@ -59,7 +60,7 @@ try{
  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
   const context=await browser.newContext({viewport,...(device==='phone'?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage(),errors=[];
   currentPage=page;page.setDefaultTimeout(15000);page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(origin+app+'#unit-tech-priest-dominus');await ready(page);
+  await page.goto(origin+appURL+'#unit-tech-priest-dominus');await ready(page);
   const visibleResults=()=>page.locator('main .v2-glossary-result').evaluateAll(nodes=>nodes.map(node=>node.dataset.targetId));
   const search=async(query,expectedId,expectedScope=null)=>{
     await page.getByRole('searchbox',{name:'Search glossary',exact:true}).fill(query);
@@ -140,7 +141,7 @@ try{
   await page.getByRole('button',{name:'Close glossary',exact:true}).click();await page.waitForSelector('main .v2-glossary',{state:'hidden'});
   await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'');
   await page.keyboard.press('Escape');await page.waitForSelector('main .v2-glossary',{state:'hidden'});
-  await page.goto(origin+app+'#view-glossary');await ready(page);assert.equal((await visibleResults()).length,census.entries);
+  await page.goto(origin+appURL.replace('v2=ARMY_BOOK','v2=GLOSSARY')+'#view-glossary');await ready(page);assert.equal((await visibleResults()).length,census.entries);
   await page.reload();await ready(page);assert.equal((await visibleResults()).length,census.entries);await noDebug();
   for(const query of ['deep-strike','DÉEP STRIKE','ZXQ_NO_SUCH_GLOSSARY_TERM_8426']){step=device+'/normalized-search/'+query;await search(query);}
   step=device+'/personal-import';await page.evaluate(()=>window.ArmyBookAppV2.openRoster());
