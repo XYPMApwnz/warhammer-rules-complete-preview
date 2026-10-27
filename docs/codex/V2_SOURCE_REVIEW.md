@@ -2,7 +2,7 @@
 
 Run `npm run qa:unified:v2:ready` before treating a Unified V2 book or release as ready. It checks authoritative factual freshness, the source review inventory, and the existing independent source-effect runtime/presentation guard. It is also the first stage of `qa:release`. The normal V2 Army Book presentation builders and Glossary builder validate source review metadata before publishing generated outputs. Normal builds are offline and never accept a new review baseline automatically.
 
-`v2/army-books.mjs` owns the registered book list used by both the browser shell and the readiness check. Registration alone does not constitute source review. A sixth book must have a reviewed source inventory before it can pass readiness.
+`v2/army-books.mjs` owns the registered book list used by both the browser shell and the readiness check. Registration alone does not constitute source review. A newly registered book must have a reviewed source inventory before it can pass readiness.
 
 ## What is reviewed
 
@@ -33,7 +33,7 @@ The review inventory is validation metadata. Canonical/effective Army Book owner
 
 The normal Army Book writers check freshly produced effect declarations before writing outputs. The readiness command additionally uses the existing authoritative factual/Army Book parity producer and runs independent executor/presentation checks. Static build validation alone is not runtime proof. The accepted historical census is checked separately so deleting one sibling classification cannot be hidden by keeping another clause in its block.
 
-## Existing five-book baseline and limits
+## Historical five-book baseline and limits
 
 The imported coverage audit contains 1,223 historical clauses and 397 historical executable requirements. The current 15 `EXECUTABLE_REQUIRED` obligations each need the independent runtime/presentation proof. The 361 historical `EXECUTABLE_PRESENT` observations are currently `UNVERIFIED`, with their original classification and required status preserved as historical evidence. Three historical required unverified cases remain unverified. These explicit grandfathered exceptions do not silently become current independent runtime/presentation PASS. Documented capability gaps, source ambiguities, battle-dependent clauses, and unverified source blocks remain explicit.
 

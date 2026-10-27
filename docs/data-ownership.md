@@ -12,7 +12,7 @@ Reviewed tracked canonical factual sources and explicit config-owned overrides a
 
 ## Importers and promotion
 
-Importers parse external sources and produce candidate data. They are not production factual owners. Import does not promote data and must not overwrite reviewed canonical files. In V1, an accepted promotion is a focused, reviewed Git patch to canonical tracked data.
+Importers parse external sources and produce candidate data. They are not production factual owners. Import does not promote data and must not overwrite reviewed canonical files. An accepted promotion is a focused, reviewed Git patch to canonical tracked data.
 
 ## Generated output
 

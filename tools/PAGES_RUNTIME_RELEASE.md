@@ -20,16 +20,19 @@ The mandatory precache contains V2 code and small shell resources, including `bo
 
 ## Source review and release authorization
 
-The GitHub repository is `XYPMApwnz/warhammer-rules-complete-preview`. `codex/unified-v2-source` and authorized feature/review branches carry source review. Check the actual Git remotes; a local `origin` may be a backup rather than GitHub.
+The GitHub repository is `XYPMApwnz/warhammer-rules-complete-preview`. Check actual remotes and current GitHub refs; a local `origin` may be a backup rather than GitHub.
+
+Start a separate feature branch from current `codex/unified-v2-source` and push only that branch. After independent Claude review returns PASS for its exact head, explicit owner authorization permits an ordinary fast-forward push of that head to `codex/unified-v2-source`. Recheck both remote SHAs and ancestry before pushing; never force-push or update `main`. Codex never pushes `unified-v2-release`; the owner performs that step below.
 
 `.github/workflows/pages-runtime.yml` runs on `unified-v2-release` and guards its build/deploy jobs with that exact ref. Pages is configured for GitHub Actions. Source or feature pushes do not publish the site. Never change Pages settings, dispatch a workflow or push a release without explicit authorization.
 
 For an authorized release:
 
-1. Verify clean source/candidate, current source and release refs, exact tree/parent/diff, reviewed limitations and required QA. Record the previous release SHA and available Pages artifact for rollback.
-2. Independently package the exact source and a fresh candidate checkout. Require matching reviewed runtime hashes, file inventories, packaging checks and deterministic rebuilds.
-3. Confirm current Pages configuration and release workflow. Push only the reviewed candidate through an explicit GitHub URL, normally fast-forward; no force push or history rewrite.
-4. Wait for hosted build and deploy SUCCESS at the candidate SHA. Verify the actual HTTPS `PAGES_RUNTIME_MANIFEST.json`, not only local output or an Actions conclusion.
-5. Check root V2 entry, nine books, Core, Glossary, representative roster/Effective/Guide paths, required assets, cache revision, manual updates and desktop/mobile behavior on the live site.
+1. Verify clean reviewed source, current GitHub source/release refs, reviewed limitations and required QA. Record the previous release SHA and available Pages artifact for rollback.
+2. Create the candidate with `git commit-tree <reviewed-source-tree> -p <current-release-sha>`. Its tree must equal the reviewed source tree and its parent must equal current `unified-v2-release`. Push the candidate only to a review branch.
+3. Obtain independent Claude review of the exact candidate, including Linux packaging, runtime hashes, file inventories, deterministic rebuilds and browser acceptance. Require PASS before release.
+4. Recheck candidate tree/parent, remote refs, Pages configuration and release workflow. The owner performs the ordinary fast-forward push of the reviewed candidate to `unified-v2-release` through the explicit GitHub URL. No force push, merge, rebase or history rewrite; if release moved, prepare and review a new candidate.
+5. Wait for hosted build and deploy SUCCESS at the candidate SHA. Verify the actual HTTPS `PAGES_RUNTIME_MANIFEST.json`, not only local output or an Actions conclusion.
+6. Check root V2 entry, nine books, Core, Glossary, representative roster/Effective/Guide paths, required assets, cache revision, manual updates and desktop/mobile behavior on the live site.
 
 Prefer a verified previous Pages artifact for rollback. Otherwise prepare a reviewed new rollback commit preserving release history and runtime-only packaging. Do not reset or force-push, and do not clear current V2 localStorage/rosters to make a test pass.
