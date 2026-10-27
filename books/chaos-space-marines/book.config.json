@@ -80,62 +80,11 @@
   },
   "generatedOutputs": [
     {
-      "class": "CANONICAL_PUBLICATION_BUNDLE",
-      "producer": "books/shared/tools/build-army-book.mjs",
-      "paths": [
-        "reader.html",
-        "index.html",
-        "scripts/data.js"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "TARGET_CATALOG",
-      "producer": "books/shared/tools/build-army-book.mjs",
-      "paths": [
-        "scripts/target-data.js"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "ROSTER_CATALOG",
-      "producer": "books/shared/tools/build-army-book.mjs",
-      "paths": [
-        "scripts/roster-data.js"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "GENERATED_BOOK_STYLING",
-      "producer": "books/shared/tools/build-army-book.mjs",
-      "paths": [
-        "styles/book.css"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
       "class": "GENERATED_RELATED_RULES_MARKUP",
       "producer": "books/shared/tools/build-army-book.mjs",
       "paths": [
         "mobile/related-rules.inc"
       ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "MOBILE_COMPATIBILITY_ROUTES",
-      "producer": "books/chaos-space-marines/mobile/build.mjs",
-      "pattern": "mobile/*.html",
-      "inventoryFrom": "scripts/target-data.js",
       "required": true,
       "tracked": true,
       "lifecycle": "NORMAL_BUILD_OUTPUT"

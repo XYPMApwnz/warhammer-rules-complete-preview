@@ -63,7 +63,7 @@
         summary.append(document.createTextNode(definition.slice(offset).trimEnd()));
       }
     }
-    full.href = `../../../glossary/index.html#${encodeURIComponent(term.id)}`;
+    full.href = `../../../v2/app.html?v2=GLOSSARY&registry=core-rules#${encodeURIComponent(term.id)}`;
     const fullRulePath=trigger.dataset.fullRulePath;
     rule.hidden = !fullRulePath;
     if (fullRulePath) rule.href = window.WHGlossaryReturn.href(fullRulePath);
@@ -171,7 +171,7 @@
     searchStatus.textContent = matches.length ? `${matches.length}${matches.length === 40 ? '+' : ''} results` : 'No matching rules.';
     searchResults.replaceChildren(...matches.map(item=>{
       const route=search.routes.routeFor(item.targetId);
-      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:`../../../glossary/index.html#${encodeURIComponent(item.targetId)}`;
+      const link=document.createElement('a');link.href=route?search.navigation.locationFor(route).url:`../../../v2/app.html?v2=GLOSSARY&registry=core-rules#${encodeURIComponent(item.targetId)}`;
       const kind=document.createElement('small');kind.textContent=item.categoryLabel;
       const heading=document.createElement('strong');heading.textContent=item.label;
       const excerpt=document.createElement('span');excerpt.textContent=search.contract.resolve(item.targetId).sections.flatMap(section=>section.fields.map(field=>field.value)).join(' ').slice(0,180);

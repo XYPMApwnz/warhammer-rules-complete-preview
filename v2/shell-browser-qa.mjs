@@ -6,13 +6,18 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
+import {armyBooks} from './army-books.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webmanifest':'application/manifest+json'};
-const isAllowedResource=address=>isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
+const registeredHomeResources=new Set(['/books/shared/offline-status.js','/books/shared/styles/offline-status.css','/glossary/generated/cache-revision.js','/service-worker.js',...armyBooks.flatMap(book=>[
+  `/books/${book.id}/v2/registration.mjs`,
+  '/'+path.relative(repo,fileURLToPath(book.home.cover)).split(path.sep).join('/')
+])]);
+const isAllowedResource=address=>registeredHomeResources.has(address)||isApplicationTestDependency(address)||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
     /^\/books\/(?:death-guard|adeptus-mechanicus)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
@@ -154,9 +159,9 @@ try{
     await screenshot(page,`shell-home-${device}`);
     assert.equal(await page.locator('[data-v2-shell]').count(),1);
     for(const destination of ['HOME','CORE_RULES','ARMY_BOOK','ROSTER','GLOSSARY'])assert.equal(await page.locator(`[data-v2-primary-nav] [data-v2-destination="${destination}"]`).count(),1);
-    assert.deepEqual(await page.locator('.v2-library-home [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book)),
-      ['adeptus-mechanicus','death-guard','chaos-space-marines','emperors-children','tyranids'],'Exact five Army Books on Home');
-    for(const book of ['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids'])assert.ok(await page.locator(`[data-v2-book="${book}"]`).count()>0,'Home omits a registered book');
+    assert.deepEqual((await page.locator('.v2-library-home [data-v2-book]').evaluateAll(nodes=>nodes.map(node=>node.dataset.v2Book))).sort(),
+      armyBooks.map(book=>book.id).sort(),'Home preserves all nine registered Army Books');
+    for(const book of armyBooks.map(book=>book.id))assert.ok(await page.locator(`[data-v2-book="${book}"]`).count()>0,'Home omits a registered book');
     await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await active(page,null);
     assert.equal(new URL(page.url()).searchParams.get('v2'),'ROSTER');
     for(const destination of ['CORE_RULES','GLOSSARY']){
@@ -224,12 +229,10 @@ try{
       if(book==='death-guard')assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state.attachments.length),1);
       await retain(page);await navigate(page,{destination:'HOME',sectionId:'army-books'});await active(page,null);await released(page);
     }
-    // A legacy book entry adapts its old hash/context to the shell URL.
-    for(const book of Object.keys(cases)){
-      const old=new URL(urls[book]);old.pathname=`/books/${book}/v2/app.html`;
-      await page.goto(old.href);await ready(page);await active(page,book);await fact(page,cases[book]);
-      assert.equal(new URL(page.url()).pathname,'/v2/app.html');
-      assert.equal(new URL(page.url()).searchParams.get('instance'),'parsed-unit-1');
+    // Only the native shell hosts books; no retired per-book entry is registered.
+    for(const book of armyBooks){
+      assert.deepEqual(book.routeAliases,[],'Retired per-book alias remains: '+book.id);
+      assert.equal(fs.existsSync(path.join(repo,'books',book.id,'v2/app.html')),false,'Retired per-book app HTML remains: '+book.id);
     }
     // Book and home history transitions must swap the physical owner.
     await navigate(page,{destination:'ARMY_BOOK',bookId:'death-guard'});await active(page,'death-guard');
@@ -238,7 +241,7 @@ try{
     await page.goBack();await active(page,'adeptus-mechanicus');await page.goBack();await active(page,'death-guard');await page.goForward();await active(page,'adeptus-mechanicus');await geometry(page);
     assert.deepEqual(errors,[],'Shell emitted browser exceptions');
     results.push({device,home:true,integratedDestinations:true,booklessRoster:true,import:true,attachment:true,personalGuide:true,
-      physicalReference:true,nativeNewTab:true,directReload:true,legacyAdapters:true,backForward:true,lifecycle:true,theme:true,
+      physicalReference:true,nativeNewTab:true,directReload:true,retiredAdaptersAbsent:true,backForward:true,lifecycle:true,theme:true,
       neutralPrimaryNavigation:true,bookContentsPreserved:true,sectionNavigation:true,relatedRules:true,popupViewport:true,longCorePopup:true,
       homeCovers:true,lazyLoading:true,resourceNegativeControls:5,overflow:false});
     await context.close();

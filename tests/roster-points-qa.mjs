@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const context={window:{}};
 vm.createContext(context);
-for(const file of ['books/shared/roster-parser.js','books/shared/rule-facts.js','roster-guides/points-data.js','roster-guides/points-validator.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
+for(const file of ['books/shared/roster-parser.js','books/shared/rule-facts.js','books/shared/points/points-data.js','books/shared/points/points-validator.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});
 const {WHRosterParser,WH_POINTS_CATALOG,WHRosterPoints}=context.window;
 assert.equal(Object.keys(WH_POINTS_CATALOG).length,9);
 assert.equal(Object.keys(WH_POINTS_CATALOG['death guard'].units).length,36);
@@ -219,7 +219,7 @@ const fixtureDefinition={title:'Bounded Unit',points:[{label:'1 model',value:100
 const fixtureCatalog={fixture:{units:{'bounded unit':fixtureDefinition},enhancements:{},detachments:{}}};
 const fixturePoints=catalog=>{
   const scope={window:{WHRuleFacts:{normalizeKeyword:value=>String(value).toUpperCase()},WH_POINTS_CATALOG:catalog}};
-  vm.runInNewContext(fs.readFileSync('roster-guides/points-validator.js','utf8'),scope,{filename:'roster-guides/points-validator.js'});
+  vm.runInNewContext(fs.readFileSync('books/shared/points/points-validator.js','utf8'),scope,{filename:'books/shared/points/points-validator.js'});
   return scope.window.WHRosterPoints;
 };
 const boundedRoster=quantity=>({units:[{id:'bounded',quantity:1,name:'Bounded Unit',models:[{quantity:1,name:'Bounded Unit',loadouts:[{quantity,wargear:'upgrade'}]}]}],declared:110,unitLineTotal:110,enhancements:[],detachments:[]});

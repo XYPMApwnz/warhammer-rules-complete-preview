@@ -11,7 +11,8 @@ import {fileURLToPath} from 'node:url';
 // and source-backed selectors. The Library filter is deliberately independent.
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const app='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const app='/v2/app.html';
 const detachments=['detachment-flyblown-host','detachment-paragons-of-putrescence','detachment-contagion-engines'];
 const unselected='detachment-virulent-vectorium';
 const plagueveil=detachments[0]+':enhancement:2',lancet=detachments[2]+':enhancement:2';
@@ -65,7 +66,7 @@ try {
     const device=phone?'phone':'desktop',context=await browser.newContext({viewport:{width:phone?390:1440,height:phone?844:1000},acceptDownloads:true,...(phone?{isMobile:true,hasTouch:true}:{})});
     const page=await context.newPage();activePage=page;page.setDefaultTimeout(12000);const errors=[];
     page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('404'))errors.push(m.text());});
-    await page.goto(origin+app);await ready(page);
+    await page.goto(origin+appURL);await ready(page);
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-plague-marines'));
     await page.locator('main .v2-detachment-filter').selectOption(unselected);
     const noRoster=await page.locator('main > article').textContent();

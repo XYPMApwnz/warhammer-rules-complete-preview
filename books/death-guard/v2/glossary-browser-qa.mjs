@@ -47,7 +47,8 @@ for(const fact of sourceFacts.values()){
   if(record?.recordType==='MFM_DETACHMENT'&&fact.path?.[0]==='forceDispositionIds')fact.display=forceBindings[record.mfmForceDispositionIds[fact.path[1]]].sourceValue;
 }
 const expectedIds=id=>new Set([...descendants(id)].flatMap(id=>cards.get(id).fields.filter(normalField).map(field=>field.id)));
-const appPath='/books/death-guard/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html',payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const allowed=new Map([[appPath,'text/html'],[payloadPath,'application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
 const requests=[],legacyRequests=[];
@@ -119,7 +120,7 @@ try {
     const context=await browser.newContext({viewport,...(device==='phone'?{isMobile:true,hasTouch:true}:{})});
     const page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
-    await page.goto(origin+appPath+'#unit-plague-marines');await ready(page);
+    await page.goto(origin+appURL+'#unit-plague-marines');await ready(page);
     activeStep=device+'/actual-open-close';
     if(device==='phone')await page.getByRole('button',{name:'Open navigation',exact:true}).click();
     await page.getByRole('button',{name:'Mega Glossary',exact:true}).click();await page.waitForSelector('main .v2-glossary');
@@ -198,9 +199,9 @@ try {
       await page.goForward();await page.waitForSelector('dialog[open]');assertFacts(await observe(page,'dialog[open]'),targetId);await page.keyboard.press('Escape');await page.waitForSelector('dialog[open]',{state:'hidden'});historyChecks++;
       await page.reload();await ready(page);await page.waitForSelector('main .v2-glossary');assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),query);reloadChecks++;
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'','Fresh Glossary open must clear prior query');
-      await page.goto(origin+appPath+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});await page.reload();await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});reloadChecks++;
+      await page.goto(origin+appURL+'#'+encodeURIComponent(targetId));await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});await page.reload();await ready(page);assertFacts(await observe(page,'main .v2-current-card'),targetId,{reader:true});reloadChecks++;
     }
-    activeStep=device+'/glossary-deep-link';await page.goto(origin+appPath+'#view-glossary');await ready(page);assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'');assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);await page.reload();await ready(page);assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);reloadChecks++;
+    activeStep=device+'/glossary-deep-link';await page.goto(origin+appURL.replace('v2=ARMY_BOOK','v2=GLOSSARY')+'#view-glossary');await ready(page);assert.equal(await page.getByRole('searchbox',{name:'Search glossary',exact:true}).inputValue(),'');assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);await page.reload();await ready(page);assert.equal(await page.locator('.v2-glossary-result').count(),census.entries);reloadChecks++;
     await search('Foul Infusion',named.targetId);
     if(screenshots)await page.screenshot({path:path.join(screenshots,device+'-glossary.png'),animations:'disabled'});
     await page.locator('.v2-glossary-result').first().click();await page.waitForSelector('dialog[open]');
@@ -231,7 +232,7 @@ try {
   for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]) {
     const context=await browser.newContext({viewport,...(device==='phone'?{isMobile:true,hasTouch:true}:{})}),page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+appPath);await ready(page);
+    await page.goto(origin+appURL);await ready(page);
     for(const control of sensitivity) {
       activeStep=device+'/source-sensitivity/'+control.targetId;
       await page.evaluate(id=>window.ArmyBookAppV2.open(id),control.targetId);

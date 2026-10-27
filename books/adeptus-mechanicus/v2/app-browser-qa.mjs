@@ -10,7 +10,8 @@ import {enumerateExpectedFacts} from './app-fact-oracle.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const appPath='/books/adeptus-mechanicus/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=adeptus-mechanicus&registry=adeptus-mechanicus';
+const appPath='/v2/app.html';
 const payloadPath='/books/adeptus-mechanicus/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 const effective=JSON.parse(fs.readFileSync(new URL('./generated/effective.json',import.meta.url),'utf8'));
@@ -45,7 +46,7 @@ const allowed=address=>isApplicationTestDependency(address)||address===appPath||
   /^\/assets\/[\w./-]+\.(?:webp|png|jpe?g|svg)$/.test(address);
 const requests=[],forbiddenRequests=[],unexpectedRequests=[];
 let servedPayload=payload;
-const mime=address=>address.endsWith('.mjs')?'text/javascript':address.endsWith('.css')?'text/css':address.endsWith('.html')?'text/html':address.endsWith('.json')?'application/json':address.endsWith('.svg')?'image/svg+xml':address.endsWith('.png')?'image/png':address.endsWith('.webp')?'image/webp':'image/jpeg';
+const mime=address=>(address.endsWith('.mjs')||address.endsWith('.js'))?'text/javascript':address.endsWith('.css')?'text/css':address.endsWith('.html')?'text/html':address.endsWith('.json')?'application/json':address.endsWith('.svg')?'image/svg+xml':address.endsWith('.png')?'image/png':address.endsWith('.webp')?'image/webp':'image/jpeg';
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
   if(forbidden(address)){forbiddenRequests.push(address);response.writeHead(200,{'Content-Type':'text/javascript'});response.end('throw new Error("POISONED_LEGACY_INPUT");');return;}
@@ -67,7 +68,7 @@ try{
     const context=await browser.newContext({viewport,...(device==='phone'?{isMobile:true,hasTouch:true}:{})});
     const page=await context.newPage(),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+appPath);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
+    await page.goto(origin+appURL);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
     assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster?.state??null),null,'Book mode invented roster state');
     const normalCoverage=new Map();
     const observeNormal=async()=>{
@@ -257,7 +258,7 @@ try{
     await page.locator('main a[data-target-id="core-deep-strike"]').first().click();await page.waitForSelector('dialog.v2-detail-dialog[open]');
     assert.equal(await page.locator('dialog.v2-detail-dialog[open] [data-card-id]').first().getAttribute('data-card-id'),'core-deep-strike');
     await page.keyboard.press('Escape');await page.waitForSelector('dialog.v2-detail-dialog[open]',{state:'hidden'});
-    await page.goto(origin+appPath+'#unit-servitor-battleclade');await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
+    await page.goto(origin+appURL+'#unit-servitor-battleclade');await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
     assert.equal(await page.locator('main .v2-current-card').getAttribute('data-card-id'),'unit-servitor-battleclade');
     await page.reload();await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-tech-priest-dominus'));
@@ -280,7 +281,7 @@ try{
   const weapon=byKind('WEAPON_PROFILE').find(entity=>entities.get(entity.parentId)?.kind==='DATASHEET');
   const field=servedPayload.cards.find(card=>card.id===weapon.id).fields.find(field=>field.source?.path==='/strength');
   field.value='77';field.displayValue='77';
-  const page=await browser.newPage();await page.goto(origin+appPath+'#'+weapon.parentId);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
+  const page=await browser.newPage();await page.goto(origin+appURL+'#'+weapon.parentId);await page.waitForFunction(()=>Boolean(window.ArmyBookAppV2));
   assert.equal(await page.locator(`main [data-fact-id="${weapon.id}::/strength"]`).textContent(),'77');await page.close();
   assert.deepEqual(forbiddenRequests,[],'Legacy or DG factual/runtime dependency');assert.deepEqual(unexpectedRequests,[],'Unclassified frontend dependency');
   console.log(JSON.stringify({status:'PASS',results,legacyAdMechFactualReads:0,legacyAdMechRuntimeReads:0,deathGuardFactualReads:0,legacyDisconnected:'PASS',v2FactPoison:'VISIBLE_77',requestedPaths:[...new Set(requests)]},null,2));

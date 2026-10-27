@@ -9,7 +9,8 @@ import {buildApp} from './app-build.mjs';
 
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const appPath='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html';
 const payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const payload=buildApp();
 assert.equal(payload.relatedRules?.schema,'army-book-related-rules/v2');
@@ -50,7 +51,7 @@ try {
     const context=await browser.newContext({viewport,...(device==='phone'?{hasTouch:true,isMobile:true}:{})});
     const page=await context.newPage(),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
-    await page.goto(origin+appPath);await page.waitForFunction(()=>!!window.ArmyBookAppV2);
+    await page.goto(origin+appURL);await page.waitForFunction(()=>!!window.ArmyBookAppV2);
     let queries=0,visibleRelations=0,hiddenNegativeControls=0;
     const observedStates=new Set();
     // Every supported canonical unit is queried through the same normal reader flow.

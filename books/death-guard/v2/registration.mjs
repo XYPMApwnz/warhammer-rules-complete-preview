@@ -5,7 +5,7 @@ export const registration=Object.freeze({
     cover:new URL('../../../assets/death-guard-cover-480.webp',import.meta.url).href,coverAlt:'Death Guard cover',coverFit:'cover',
     accent:'#718153',label:'Full interactive army book',order:10}),
   assetBaseURL:new URL('./',import.meta.url).href,
-  styles:[],routeAliases:['/books/death-guard/v2/app.html'],
+  styles:[],routeAliases:[],
   async loadPayload() {
     const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('Army Book unavailable');return response.json();

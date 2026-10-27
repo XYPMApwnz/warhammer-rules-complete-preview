@@ -58,7 +58,7 @@ try{
     assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.payload.book.id),'chaos-space-marines');
     assert.equal(await page.locator('textarea').count(),1);
     await page.goBack();await page.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');
-    for(const address of [url,origin+'/books/chaos-space-marines/v2/app.html']){
+    for(const address of [url,origin+'/v2/app.html?v2=ARMY_BOOK&book=chaos-space-marines&registry=chaos-space-marines']){
       const direct=await context.newPage();await direct.goto(address);await direct.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');
       await direct.reload();await direct.waitForFunction(()=>window.ArmyBookAppV2?.payload.book.id==='chaos-space-marines');await direct.close();
     }

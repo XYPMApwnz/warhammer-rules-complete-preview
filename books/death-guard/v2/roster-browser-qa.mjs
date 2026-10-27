@@ -14,7 +14,8 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const payload=JSON.parse(fs.readFileSync(path.join(repo,'books/death-guard/v2/generated/app-presentation.json'),'utf8'));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
-const appPath='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html';
 const detachmentId='detachment-virulent-vectorium';
 const enhancementId=detachmentId+':enhancement:2';
 const plagueSurgeId=detachmentId+':stratagem:3';
@@ -107,7 +108,7 @@ try {
     const page=await context.newPage(),errors=[];activePage=page;
     page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
-    await page.goto(origin+appPath);await ready(page);
+    await page.goto(origin+appURL);await ready(page);
     assert.equal(await page.evaluate(()=>window.ArmyBookAppV2.roster.state),null,'No-roster boot invented a roster');
     const readerCensus=async label=>{
       await page.evaluate(()=>window.ArmyBookAppV2.openLibrary());
@@ -289,7 +290,7 @@ try {
     const after=await readerCensus('reader-after-roster');assert.deepEqual(after,before,'Roster mutated canonical Reader facts');
     await page.evaluate(()=>window.ArmyBookAppV2.open('unit-biologus-putrifier'));await page.locator('main .v2-detachment-filter').selectOption('');
     for(const ruleId of [enhancementId,plagueSurgeId])assert.equal(await page.locator(`main .v2-compatible-item[data-rule-id="${ruleId}"]`).getAttribute('data-applicability'),'CONDITIONAL','Roster rewrote the Reader-only compatibility context');
-    await page.goto(origin+appPath+'#view-roster');await ready(page);await effectiveParity();assert.deepEqual(await snapshot(page),durable,'Roster deep link lost persisted state');
+    await page.goto(origin+appURL.replace('v2=ARMY_BOOK','v2=ROSTER')+'#view-roster');await ready(page);await effectiveParity();assert.deepEqual(await snapshot(page),durable,'Roster deep link lost persisted state');
     await page.reload();await ready(page);await effectiveParity();assert.deepEqual(await snapshot(page),durable);reloadChecks++;
     assert.deepEqual(errors,[]);assert.deepEqual(legacyRequests,[],'Browser requested a legacy factual/runtime dependency');
     results.push({device,viewport,status:'PASS',physicalInstances:7,manualCanonicalSelections:bindings.length,canonicalUnits:unitIds,readerFactsBefore:before.length,readerFactsAfter:after.length,readerRoots:payload.groups.flatMap(group=>group.itemIds).length,attachmentActions,relatedChecks,canonicalPopupChecks:popupChecks,reloadChecks,backupChecks:3,stateHash:digest(durable.state),effectsHash:digest(durable.projection),readerHash:digest(before),horizontalOverflow:0,runtimeErrors:0,staleEffects:0,duplicateRelatedRows:0});

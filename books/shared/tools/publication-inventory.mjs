@@ -53,8 +53,7 @@ function run(command,args,root){
 
 export function checkPublicationFreshness({root=defaultRoot()}={}){
   const inventory=loadPublicationInventory({root});
-  for(const book of selectArmyBookBuildBooks(inventory))run(process.execPath,['books/shared/tools/build-army-book.mjs',book.config,'--check'],root);
-  for(const book of selectPublicationBooks(inventory,'mobile'))run(process.execPath,[`books/${book.id}/mobile/build.mjs`,'--check'],root);
+  for(const book of selectArmyBookBuildBooks(inventory))run(process.execPath,[`books/${book.id}/v2/app-build.mjs`,'--check'],root);
   if(selectFreshnessOnlyBooks(inventory).length)run(process.execPath,['books/shared/tools/source-freshness.mjs'],root);
   return inventory;
 }

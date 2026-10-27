@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
-import {createPointsCatalog} from '../roster-guides/effective-points-catalog.mjs';
+import {createPointsCatalog} from '../books/shared/points/effective-catalog.mjs';
 import {createEffectiveMfmArmyProjection} from '../books/shared/tools/effective-mfm-army-projection.mjs';
 import {createEffectiveMfmCatalog} from '../mfm/content/effective-mfm-catalog.mjs';
 
@@ -91,7 +91,7 @@ assert.equal(new Set(ecUpgrades.map(([id])=>id)).size,ecUpgrades.length,"Emperor
 
 const amSandbox={window:{}};
 amSandbox.window.window=amSandbox.window;
-for(const file of ['roster-guides/points-data.js','books/adeptus-mechanicus/scripts/roster-data.js','books/adeptus-mechanicus/scripts/roster-enhancements.js'])vm.runInNewContext(read(file),amSandbox,{filename:file});
+for(const file of ['books/shared/points/points-data.js','books/adeptus-mechanicus/scripts/roster-data.js','books/adeptus-mechanicus/scripts/roster-enhancements.js'])vm.runInNewContext(read(file),amSandbox,{filename:file});
 const amEnhancements=amSandbox.window.AMRosterEnhancements;
 const currentAmEnhancement=(id,detachmentId,name)=>amEnhancements.enriched({enhancements:[{id,ruleId:id,canonicalEnhancementId:id,detachmentId,canonicalDetachmentId:detachmentId,name,ownerStatus:'resolved'}]})[0];
 assert.equal(currentAmEnhancement('enhancement-necromechanic','detachment-cohort-cybernetica','Renamed display').value,20,'Adeptus Mechanicus: Necromechanic current points did not resolve by canonical ID');

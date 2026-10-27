@@ -123,6 +123,6 @@ assert.throws(()=>createAdMechRosterImport(book,{...metadata,aliases:[{...aliase
 const loads=[];const loaded=await loadRosterImport({fetch:async url=>{loads.push(url.pathname);return {ok:true,json:async()=>read(url.pathname.endsWith('effective.json')?'./generated/effective.json':'./roster-import-aliases.json')};}});
 assert.equal(loads.length,2);assert.equal(loaded.import(fixtures[0].text).status,'READY');
 assert.deepEqual(book,original);
-assert.equal(fs.readFileSync(new URL('./app.html',import.meta.url),'utf8').includes('roster-import.mjs'),false,'No import/attachment UI in this stage');
+assert.equal(fs.existsSync(new URL('./app.html',import.meta.url)),false,'Retired per-book compatibility entry must not be recreated');
 console.log(JSON.stringify({status:'PASS',sourceFixtures:fixtures.length,positive,negative,physicalEntries:entries,canonicalNameControls:canonicalNames,
   mixedProfiles:'PASS',selectionOwnership:'PASS',explicitWarlordOnly:'PASS',roundtrip:'PASS',noEffectProjection:'PASS',canonicalFactsImmutable:'PASS'}));

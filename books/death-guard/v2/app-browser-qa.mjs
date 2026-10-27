@@ -11,7 +11,8 @@ import {expectedDisplay,validatePresentation,legacyClasses} from './app-qa.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const appPath='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const appPath='/v2/app.html';
 const payloadPath='/books/death-guard/v2/generated/app-presentation.json';
 const inputs=readAppInputs(),payload=buildApp(inputs);
 validatePresentation(payload,inputs.model,inputs.records);
@@ -71,7 +72,7 @@ try {
     const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('404'))errors.push(message.text());});
-    await page.goto(origin+appPath);await page.waitForFunction(()=>!!window.ArmyBookAppV2);
+    await page.goto(origin+appURL);await page.waitForFunction(()=>!!window.ArmyBookAppV2);
     // Lossless source inspection is explicit QA, not the ordinary curated
     // datasheet journey. The dedicated datasheet browser QA separately proves
     // the complete player-facing subset and absence of metadata tails.
@@ -100,7 +101,7 @@ try {
     const normalMissing=normalNonDatasheetExpected.filter(fact=>!normalFacts.has(fact.id)).map(fact=>fact.id);assert.equal(normalFacts.size,normalNonDatasheetExpected.length,`${device} NORMAL_NON_DATASHEET_MISSING ${JSON.stringify(normalMissing.slice(0,30))}`);
     for(const fact of normalNonDatasheetExpected){const observed=normalFacts.get(fact.id);assert.deepEqual(observed.value,fact.value,`${device} normal WRONG_VALUE ${fact.id}`);assert.equal(observed.text,normalDisplay(fact),`${device} normal WRONG_DISPLAY ${fact.id}`);assert.equal(observed.entityId,fact.entityId);assert.equal(observed.contextId,fact.contextId);assert.equal(observed.cardId,fact.entityId===inputs.model.bookId?fact.contextId:fact.entityId);assert.equal(observed.visible,true,`${device} hidden normal fact ${fact.id}`);}
     // Deep links survive refresh, then normal canonical links and browser history.
-    await page.goto(origin+appPath+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
+    await page.goto(origin+appURL+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
     assert.equal(await page.locator('main .v2-current-card').getAttribute('data-card-id'),'unit-plague-marines');
     const boltgun=page.locator('[data-card-id="datasheet-plague-marines:weapon:2"]');
     assert.equal(await boltgun.locator('[data-fact-id$="::/strength"]').textContent(),'5');assert.equal(await boltgun.locator('[data-fact-id$="::/ap"]').textContent(),'-1');
@@ -144,7 +145,7 @@ try {
   // A changed V2 source value reaches the actual Reader. No legacy factual files are served.
   const poisoned=structuredClone(inputs.model);poisoned.entities.find(e=>e.id==='datasheet-plague-marines:weapon:2').data.strength='77';
   servedPayload=buildApp({model:poisoned,records:inputs.records});
-  const page=await browser.newPage();await page.goto(origin+appPath+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
+  const page=await browser.newPage();await page.goto(origin+appURL+'#unit-plague-marines');await page.waitForFunction(()=>!!window.ArmyBookAppV2);
   assert.equal(await page.locator('[data-fact-id="datasheet-plague-marines:weapon:2::/strength"]').textContent(),'77');await page.close();
   assert.deepEqual(legacyRequests,[],'V1/Glossary browser factual read');
   assert.ok(requests.every(request=>allowed.has(request)||request==='/favicon.ico'),'Unexpected runtime dependency');

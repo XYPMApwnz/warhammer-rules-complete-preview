@@ -34,7 +34,7 @@ export function createHomePresenter({document,registry,entryURL}) {
   const tools=[
     {id:'core-rules',title:'Core Rules',label:'Primary rules',cover:asset('core-rules-cover-fallback.jpg'),coverAlt:'Warhammer 40,000 Core Rules cover',
       sources:`${asset('core-rules-cover-480.webp')} 480w, ${asset('core-rules-cover-800.webp')} 800w`,route:{destination:'CORE_RULES',registryId:'core-rules'}},
-    {id:'roster',title:'Roster',label:'New Recruit roster tools',coverKind:'roster',markLabel:'Army builder',markTitle:'Roster Guides',accent:'#d2963e',route:{destination:'ROSTER'}},
+    {id:'roster',title:'Roster',label:'New Recruit roster tools',coverKind:'roster',markLabel:'Army builder',markTitle:'Roster',accent:'#d2963e',route:{destination:'ROSTER'}},
     {id:'glossary',title:'Mega Glossary',label:'Shared terminology',coverKind:'reference',markLabel:'Rules reference',markTitle:'Mega Glossary',accent:'#756849',route:glossary}
   ];
   function link(className,route,text) {

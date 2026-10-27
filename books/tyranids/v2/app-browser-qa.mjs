@@ -13,14 +13,14 @@ const importBook=buildTyranidsImportBook();
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const out=process.env.TYRANIDS_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/tyranids-v2-isolated-browser';
 fs.mkdirSync(out,{recursive:true});
-const entry='/books/tyranids/v2/app.html';
+const entry='/v2/app.html';
 const allowed=url=>/^\/books\/tyranids\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(url)||
  /^\/books\/tyranids\/assets\/tyranids-cover-(?:480|800)\.webp$/.test(url)||
  /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w./-]+\.(?:mjs|css|json)$/.test(url)||
  /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(url)||/^\/assets\/[\w./-]+\.(?:webp|png|jpe?g|svg|woff2)$/.test(url);
 for(const url of ['/books/tyranids/scripts/data.js','/books/tyranids/sources/corpus.json','/books/emperors-children/v2/registration.mjs','/books/tyranids/assets/unknown.webp'])assert.equal(allowed(url),false);
 const missing=[],forbidden=[],errors=[],results=[];
-const mime={'.html':'text/html','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
+const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost').pathname;if(url==='/favicon.ico'){res.writeHead(204);res.end();return;}
  if(!allowed(url)){forbidden.push(url);res.writeHead(404);res.end();return;}

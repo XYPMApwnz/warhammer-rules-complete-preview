@@ -1,94 +1,21 @@
-import fs from 'node:fs';
-import strictAssert from 'node:assert/strict';
-import path from 'node:path';
-import os from 'node:os';
-import {spawnSync} from 'node:child_process';
-import {fileURLToPath} from 'node:url';
-import {calculateCacheRevision,readAppShell,resolveAppShellUrl} from '../tools/cache-revision.mjs';
-import {loadPublicationInventory,selectPublicationBooks} from '../books/shared/tools/publication-inventory.mjs';
-import {assertCoreDiagramInventoriesEqual,readPublishedCoreDiagramInventory} from './helpers/core-diagram-inventory.mjs';
-
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const publication=loadPublicationInventory({root});
-const books=selectPublicationBooks(publication,'offline').map(book=>book.id);
-const versions=JSON.parse(fs.readFileSync(path.join(root,'books/shared/runtime-asset-versions.json'),'utf8')),failures=[];
-const assert=(ok,message)=>{if(!ok)failures.push(message);},read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
-const assets=(book,html)=>[...html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+)"/gi)].map(match=>match[1]).filter(x=>!x.match(/^(?:https?:|data:|#)/)).map(source=>{const u=new URL(source,'https://local/books/'+book+'/reader.html');return {source,relative:decodeURIComponent(u.pathname.slice(1)),exact:'./'+decodeURIComponent(u.pathname.slice(1))+u.search,version:u.searchParams.get('v')};}).filter(x=>/\.(?:js|css)$/.test(x.relative));
-const localDynamicAsset=(source,base,kind)=>{const url=new URL(source,base);if(url.origin!=='https://local')return null;const relative=decodeURIComponent(url.pathname.slice(1));return {kind,source,relative,exact:'./'+relative+url.search,version:url.searchParams.get('v')};};
-const discoverDynamicAssets=(book,app,defaultTemplate)=>{
-  const readerBase='https://local/books/'+book+'/reader.html',scriptBase='https://local/books/'+book+'/scripts/app.js',found=[];
-  const add=(source,base,kind)=>{const item=localDynamicAsset(source,base,kind);if(item&&!found.some(existing=>existing.exact===item.exact))found.push(item);};
-  for(const match of app.matchAll(/\btemplateUrl\s*:\s*(['"])(.*?)\1/g))add(match[2],readerBase,'templateUrl');
-  if(/\brelatedRules\s*:/.test(app)&&!found.some(item=>item.kind==='templateUrl'))add(defaultTemplate,readerBase,'defaultTemplateUrl');
-  for(const match of app.matchAll(/\bnew URL\(\s*(['"])(.*?)\1\s*,\s*scriptUrl\s*\)/g))add(match[2],scriptBase,'scriptUrl');
-  for(const match of app.matchAll(/\bfetch\(\s*(['"])(.*?)\1/g))add(match[2],readerBase,'fetch');
-  return found;
-};
-const missingDynamicAssets=(items,urls,allowlist)=>items.filter(item=>!allowlist.has(item.exact)&&!urls.has(item.exact));
-const proveRevisionSensitivity=()=>{
-  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'wh-cache-revision-')),asset=path.join(temp,'asset.js'),other=path.join(temp,'other.txt'),worker=path.join(temp,'service-worker.js');
-  const workerSource=version=>`const LIBRARY_FALLBACK = "./index.html";\nconst APP_SHELL = [\n  "./asset.js?v=${version}"\n];\n`;
-  try{
-    fs.writeFileSync(asset,'one\n');fs.writeFileSync(other,'outside\n');fs.writeFileSync(worker,workerSource(1));
-    const initial=calculateCacheRevision({root:temp}).revision;
-    fs.writeFileSync(other,'changed outside\n');assert(calculateCacheRevision({root:temp}).revision===initial,'Non-APP_SHELL file changed cache revision');
-    fs.writeFileSync(asset,'two\n');const assetChanged=calculateCacheRevision({root:temp}).revision;assert(assetChanged!==initial,'APP_SHELL content change did not change revision');
-    fs.writeFileSync(worker,workerSource(2));assert(calculateCacheRevision({root:temp}).revision!==assetChanged,'APP_SHELL query change did not change revision');
-  }finally{for(const file of [asset,other,worker])if(fs.existsSync(file))fs.unlinkSync(file);fs.rmdirSync(temp);}
-};
-proveRevisionSensitivity();const status=()=>spawnSync('git',['status','--short'],{cwd:root,encoding:'utf8'}).stdout,before=status(),shell=readAppShell(root),urls=new Set(shell.urls);
-assert(urls.size===shell.urls.length,'APP_SHELL contains duplicate exact URLs');
-const shared={ruleFacts:['books/shared/rule-facts.js',versions.shared.ruleFacts],relatedRules:['books/shared/army-related-rules.js',versions.shared.relatedRules],armyBook:['books/shared/army-book-app.js',versions.shared.armyBook],rosterContext:['books/shared/roster-context.js',versions.shared.rosterContext]},local={tokens:'styles/tokens.css',book:'styles/book.css',app:'scripts/app.js',rosterFilter:'scripts/roster-filter.js'};
-const relatedRuntime=read('books/shared/army-related-rules.js'),defaultTemplateMatch=/templateUrl=options\.templateUrl\|\|(['"])(.*?)\1/.exec(relatedRuntime),dynamicNetworkOnly=new Set(),dynamic=[];
-assert(defaultTemplateMatch,'Shared Related Rules default template URL is not discoverable');
-for(const book of books){
-  const html=read('books/'+book+'/reader.html'),list=assets(book,html);
-  for(const item of list){assert(fs.existsSync(path.join(root,item.relative)),book+' missing '+item.source);assert(urls.has(item.exact),book+' not cached exactly: '+item.exact);}
-  for(const [key,[relative,expected]] of Object.entries(shared)){const item=list.find(x=>x.relative===relative);assert(item,book+' misses '+key);if(item)assert(Number(item.version)===expected,book+' '+key+' version mismatch');}
-  assert(html.indexOf('../shared/roster-context.js')>=0&&html.indexOf('../shared/roster-context.js')<html.indexOf('../shared/army-book-app.js'),book+' shared runtime order invalid');
-  const file=path.join(root,'books',book,'book.config.json');
-  if(fs.existsSync(file)){const config=JSON.parse(fs.readFileSync(file,'utf8'));for(const [key,[,expected]] of Object.entries(shared))if(config.assetVersions?.[key]!==undefined)assert(config.assetVersions[key]===expected,book+' config '+key+' mismatch');for(const [key,suffix] of Object.entries(local)){if(config.assetVersions?.[key]===undefined)continue;const item=list.find(x=>x.relative==='books/'+book+'/'+suffix);if(item)assert(Number(item.version)===config.assetVersions[key],book+' '+key+' reader/config mismatch');}}
-  for(const item of list.filter(x=>x.relative==='roster-guides/points-data.js'))assert(Number(item.version)===versions.points.data,book+' points-data mismatch');
-  for(const item of list.filter(x=>x.relative==='roster-guides/points-validator.js'))assert(Number(item.version)===versions.points.validator,book+' points-validator mismatch');
-  const appFile=path.join(root,'books',book,'scripts/app.js');
-  if(fs.existsSync(appFile)&&defaultTemplateMatch)for(const item of discoverDynamicAssets(book,fs.readFileSync(appFile,'utf8'),defaultTemplateMatch[2])){dynamic.push({...item,book});assert(fs.existsSync(path.join(root,item.relative)),book+' missing dynamic '+item.kind+': '+item.source);}
+/** Native publication dependency closure and exact mandatory URL checks. */
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
+import {armyBooks} from '../v2/army-books.mjs';
+import {readAppShell,resolveAppShellUrl,calculateCacheRevision} from '../tools/cache-revision.mjs';
+import {validateRuntimeManifest} from '../tools/pages-runtime-package.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const manifest=JSON.parse(read('tools/pages-runtime-manifest.json')),allowed=validateRuntimeManifest(manifest),dependencies=[];
+const resolve=(relative,request,admitted=allowed)=>{const u=new URL(request,'https://runtime.invalid/'+relative);if(u.origin!=='https://runtime.invalid')return;const dependency=decodeURIComponent(u.pathname).slice(1);assert(admitted.has(dependency),`Unlisted native dependency: ${relative} -> ${dependency}`);assert(fs.existsSync(path.join(root,dependency)),`Missing native dependency: ${relative} -> ${dependency}`);return dependency;};
+for(const relative of allowed){
+ assert(fs.statSync(path.join(root,relative)).isFile(),'Non-file publication input '+relative);
+ if(!relative.endsWith('.mjs'))continue;const source=read(relative),requests=[...source.matchAll(/(?:\b(?:import|export)\s+(?:[^;"']*?\s+from\s*)?|\bimport\s*\()\s*["'](\.[^"']+)["']/g)].map(m=>m[1]);
+ for(const m of source.matchAll(/new\s+URL\(\s*["']([^"']+)["']\s*,\s*import\.meta\.url\s*\)/g))if(!m[1].endsWith('/'))requests.push(m[1]);
+ for(const request of requests)if(request.startsWith('.'))dependencies.push({from:relative,to:resolve(relative,request)});
 }
-for(const item of missingDynamicAssets(dynamic,urls,dynamicNetworkOnly))assert(false,item.book+' dynamic '+item.kind+' not cached exactly: '+item.exact);
-const versionedDynamic=dynamic.find(item=>item.version);
-assert(versionedDynamic,'No versioned dynamic dependency was discovered');
-if(versionedDynamic){const staleUrl=new URL(versionedDynamic.exact.slice(1),'https://local/');staleUrl.searchParams.set('v','stale');const staleExact='.'+staleUrl.pathname+staleUrl.search,fixtureUrls=new Set(urls);fixtureUrls.delete(versionedDynamic.exact);fixtureUrls.add(staleExact);assert(missingDynamicAssets([versionedDynamic],fixtureUrls,dynamicNetworkOnly).some(item=>item.exact===versionedDynamic.exact),'Dynamic exact-query sensitivity fixture did not detect a stale cached version');}
-for(const url of shell.urls)resolveAppShellUrl(root,url);
-const revision=calculateCacheRevision({root});assert(revision.assets.length===shell.urls.length,'cache coverage mismatch');
-const sharedBuildBooks=[...books];
-assert(!sharedBuildBooks.includes('orks'),'freshness-only Orks must not be required to produce an Army Book build');
-const mechanicusConfig=JSON.parse(read('books/adeptus-mechanicus/book.config.json')),mechanicusWrapper=read('books/adeptus-mechanicus/tools/build-full-content.mjs');
-assert(mechanicusConfig.effectiveModel?.schema==='wh40k-effective-book-model/v1','Adeptus Mechanicus effective model contract is not configured');
-assert(mechanicusConfig.effectiveModel?.renderer==='books/shared/tools/render-structured-effective-book.mjs','Adeptus Mechanicus shared structured renderer is not configured');
-assert(!mechanicusConfig.buildExtension,'Adeptus Mechanicus full semantic buildExtension must be retired');
-const mechanicusImports=[...mechanicusWrapper.matchAll(/^import\s+(.+?)\s+from\s+['"]([^'"]+)['"];?$/gm)].map(([,bindings,source])=>({bindings:bindings.replace(/\s+/g,' '),source}));
-strictAssert.deepStrictEqual(mechanicusImports,[
-  {bindings:'path',source:'node:path'},
-  {bindings:'{fileURLToPath}',source:'node:url'},
-  {bindings:'{createCanonicalBuildContext}',source:'../../shared/tools/canonical-build-contract.mjs'},
-  {bindings:'{buildCanonicalBook}',source:'../../shared/tools/build-army-book.mjs'}
-],'Adeptus Mechanicus legacy build entry imports outside the shared build contract');
-assert(/const configPath=path\.resolve\(path\.dirname\(fileURLToPath\(import\.meta\.url\)\),'\.\.','book\.config\.json'\);/.test(mechanicusWrapper),'Adeptus Mechanicus wrapper lost its canonical book config identity');
-assert((mechanicusWrapper.match(/await buildCanonicalBook\(createCanonicalBuildContext\(\{configPath,args:process\.argv\.slice\(2\)\}\)\);/g)||[]).length===1,'Adeptus Mechanicus wrapper must delegate exactly once to the shared effective-model build');
-assert(!/\b(?:fetch|XMLHttpRequest|readFile|writeFile|appendFile|spawn|exec|mkdir|unlink|rename)\b/.test(mechanicusWrapper),'Adeptus Mechanicus wrapper owns file, network, or process work outside the canonical build contract');
-const mechanicusWrapperResidue=mechanicusWrapper.replace(/^import\s+.+?\s+from\s+['"][^'"]+['"];?$/gm,'').replace(/const configPath=path\.resolve\(path\.dirname\(fileURLToPath\(import\.meta\.url\)\),'\.\.','book\.config\.json'\);/,'').replace(/await buildCanonicalBook\(createCanonicalBuildContext\(\{configPath,args:process\.argv\.slice\(2\)\}\)\);/,'').replace(/\/\*[\s\S]*?\*\/|\/\/[^\r\n]*/g,'').trim();
-assert(mechanicusWrapperResidue==='','Adeptus Mechanicus wrapper contains behavior outside its declared canonical delegation statements');
-const checks=[...sharedBuildBooks.map(id=>['books/shared/tools/build-army-book.mjs',['books/'+id+'/book.config.json','--check']]),...selectPublicationBooks(publication,'mobile').map(book=>['books/'+book.id+'/mobile/build.mjs',['--check']])];
-for(const [script,args] of checks){const result=spawnSync(process.execPath,[script,...args],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});assert(result.status===0,'Generated check failed: '+script+' '+args.join(' ')+'\n'+(result.stderr||result.stdout));}
-assert(status()===before,'Wiring checks changed working tree');
-const resolveConsumerAsset=(consumer,asset)=>{const resolved=new URL(asset,`https://offline.local/${consumer}`);return `.${resolved.pathname}${resolved.search}`;};
-const exactScriptAsset=(consumer,pattern,label)=>{const source=fs.readFileSync(path.join(root,...consumer.split('/')),'utf8'),match=source.match(pattern);assert(match,`${label} active script URL is missing`);return match?resolveConsumerAsset(consumer,match[1]):null;};
-const glossaryIndexUrl=exactScriptAsset('glossary/index.html',/<script src="(\.\/v2\/generated\/index\.en\.js\?v=[^"]+)"/, 'Standalone Glossary V2 index');
-const glossaryRuntimeUrl=exactScriptAsset('glossary/index.html',/<script src="(\.\/v2\/runtime\/glossary-v2-runtime\.js\?v=[^"]+)"/, 'Standalone Glossary V2 runtime');
-const ruleFactsRuntimeUrl=exactScriptAsset('roster-guides/index.html',/<script src="(\.\.\/books\/shared\/rule-facts\.js\?v=[^"]+)"/, 'Roster Guides Rule Facts');
-const coreDiagramPaths=readPublishedCoreDiagramInventory({root}),coreDiagramUrls=coreDiagramPaths.map(value=>`./${value}`),cachedCoreDiagramUrls=shell.urls.filter(url=>url.startsWith('./books/core-rules/assets/diagrams/'));
-assertCoreDiagramInventoriesEqual(coreDiagramUrls,cachedCoreDiagramUrls,'APP_SHELL Core Rules diagrams');
-const firstInstallRequired=[glossaryIndexUrl,glossaryRuntimeUrl,ruleFactsRuntimeUrl,...coreDiagramUrls].filter(Boolean),runtimeOnlyRequired=firstInstallRequired.filter(url=>!urls.has(url));
-assert(runtimeOnlyRequired.length===0,'Required first-install assets are absent from exact APP_SHELL URLs: '+runtimeOnlyRequired.join(', '));
-if(failures.length){console.error('Repository wiring consistency: FAIL');for(const failure of failures)console.error('- '+failure);process.exit(1);}
-console.log('Repository wiring consistency: PASS');console.log('Books: '+books.length+'; APP_SHELL URLs: '+shell.urls.length+'; cache revision: '+revision.revision+'; generated checks: '+checks.length+'.');console.log('First-install required URLs: '+firstInstallRequired.length+'; runtime-only required: '+runtimeOnlyRequired.length+'; network-only required: 0; Core Rules diagrams: '+coreDiagramUrls.length+'.');
-console.log('Dynamic local URLs: '+dynamic.length+'; intentional network-only exclusions: '+dynamicNetworkOnly.size+'.');
+const shell=readAppShell(root);assert.equal(shell.urls.length,new Set(shell.urls).size);for(const url of shell.urls){const {relative}=resolveAppShellUrl(root,url);assert(allowed.has(relative),'Mandatory URL not in runtime manifest '+url);}
+const revision=calculateCacheRevision({root});assert(revision.assets.length>=allowed.size-1);assert(revision.urls.length>0);for(const p of ['books/shared/datasheet-system.css','books/shared/unit-art.css'])assert(revision.urls.includes('./'+p),'Missing mandatory native CSS '+p);
+assert(revision.urls.includes('./books/core-rules/reader/app.js?v=18'),'Exact active Core script query missing');assert(!revision.urls.includes('./books/core-rules/reader/app.js?v=17'),'Obsolete Core script query remains');assert(!revision.urls.some(u=>u.includes('glossary/v2/generated/')),'Large glossary data must remain lazy');
+for(const b of armyBooks)assert(allowed.has(`books/${b.id}/v2/generated/app-presentation.json`));
+const missing=new Set(allowed);missing.delete('v2/army-books.mjs');assert.throws(()=>resolve('v2/boot.mjs','./army-books.mjs',missing),/Unlisted/,'missing module negative control');assert.throws(()=>resolve('v2/boot.mjs','./invented.mjs'),/Unlisted/,'invented module negative control');
+assert(![...allowed].some(p=>p.startsWith('books/orks/')||p.startsWith('roster-guides/')),'Retired/held runtime re-enrolled');
+console.log(JSON.stringify({status:'PASS',books:armyBooks.length,runtimeFiles:allowed.size,moduleEdges:dependencies.length,mandatoryUrls:revision.urls.length,scope:'Native V2 dependencies; no legacy publication producers or freshness subprocesses'}));

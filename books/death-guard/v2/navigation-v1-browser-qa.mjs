@@ -13,7 +13,7 @@ import {assertUpgradeLabelFacts} from './app-fact-oracle.mjs';
 const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=path.resolve(fileURLToPath(new URL('../../../',import.meta.url)));
 const v1Path='/books/death-guard/reader.html?view=full#start';
-const v2Path='/books/death-guard/v2/app.html#start';
+const v2Path='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#start';
 const evidence=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'dg-v1-navigation-browser-qa-'));
 fs.mkdirSync(evidence,{recursive:true});
 

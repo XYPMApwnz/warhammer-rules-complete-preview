@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
-import {catalog as builtCatalog,resolveEnhancementOwner} from '../roster-guides/build-points.mjs';
+import {catalog as builtCatalog,resolveEnhancementOwner} from '../books/shared/points/build.mjs';
 import {createRosterFixture} from './helpers/roster-fixtures.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');

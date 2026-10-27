@@ -1,4 +1,3 @@
-import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -103,8 +102,7 @@ export function writeApp({check=false}={}) {
   assertBookSourceReview('adeptus-mechanicus',{executionBook:buildRosterRuntimeBook()});
   writeRosterRuntime({check});
   const payload=buildApp(),outputs=new Map([
-    ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],
-    ['./app.html',renderCompatibilityEntry({title:'Adeptus Mechanicus',bookId:'adeptus-mechanicus'})]]);
+    ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n']]);
   for(const [name,value]of outputs){const location=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(location,'utf8'),value,'Stale Army Book projection: '+name);else fs.writeFileSync(location,value);}
   return payload;
 }

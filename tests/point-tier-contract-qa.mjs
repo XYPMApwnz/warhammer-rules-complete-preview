@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {pointTierContract as tiers} from '../books/shared/tools/point-tier-contract.mjs';
-import {catalog,rawCatalog} from '../roster-guides/build-points.mjs';
+import {catalog,rawCatalog} from '../books/shared/points/build.mjs';
 import {createRosterFixture} from './helpers/roster-fixtures.mjs';
 
 const plain=value=>JSON.parse(JSON.stringify(value));
@@ -78,7 +78,7 @@ assert.equal(resolve('t au empire','kroot carnivores',10),65,"T'au structured co
 assert.equal(resolve('tyranids','hormagaunts',10),70,'Tyranids structured control');
 
 const load=(file,key)=>{const scope={window:{}};vm.runInNewContext(fs.readFileSync(file,'utf8'),scope,{filename:file});return scope.window[key];};
-const publishedPoints=load('roster-guides/points-data.js','WH_POINTS_CATALOG');
+const publishedPoints=load('books/shared/points/points-data.js','WH_POINTS_CATALOG');
 const fixture=(book,catalogKey,units)=>createRosterFixture({catalog:load(`books/${book}/scripts/roster-data.js`,'WH_BOOK_ROSTER_CATALOG'),pointsCatalog:publishedPoints[catalogKey],id:'point-tier-probe',units});
 const specs=(id,quantities)=>quantities.map((quantity,index)=>({instanceId:`parsed-unit-${index+1}`,datasheetId:id,quantity}));
 assert.deepEqual(fixture('death-guard','death guard',specs('unit-poxwalkers',[10,20])).units.map(unit=>unit.points),[65,130]);

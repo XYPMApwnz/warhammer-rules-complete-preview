@@ -8,7 +8,7 @@ const plain=value=>JSON.parse(JSON.stringify(value));
 const orderedWargear=value=>plain(value).sort((left,right)=>`${left.name}\0${left.value}`.localeCompare(`${right.name}\0${right.value}`));
 const normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const loadWindow=(file,key)=>{const context={window:{}};vm.runInNewContext(fs.readFileSync(file,'utf8'),context,{filename:file});return context.window[key];};
-const catalog=loadWindow('roster-guides/points-data.js','WH_POINTS_CATALOG');
+const catalog=loadWindow('books/shared/points/points-data.js','WH_POINTS_CATALOG');
 const targetHtml=book=>loadWindow(`books/${book}/scripts/target-data.js`,'WH_ARMY_BOOK_TARGETS').html;
 const unitCard=(html,id)=>{const start=html.indexOf(`<article class="unit-card surface" id="${id}"`);assert.notEqual(start,-1,`${id} effective Army Book card`);const end=html.indexOf('<article class="unit-card surface"',start+1);return html.slice(start,end<0?html.length:end);};
 const visibleText=html=>normalize(html.replace(/<[^>]+>/g,' '));
@@ -38,7 +38,7 @@ for(const [book,catalogKey] of [['tau-empire','t au empire'],['tyranids','tyrani
 }
 
 assert.deepEqual(plain(catalog['t au empire'].units['crisis starscythe battlesuits'].points.map(row=>row.value)),[100,110],'Starscythe factual catalog schedule remains 100/110; model-count resolution stays in Package 3');
-const producer=fs.readFileSync('roster-guides/build-points.mjs','utf8'),projectionProducer=fs.readFileSync('roster-guides/effective-points-catalog.mjs','utf8'),dgAdapter=fs.readFileSync('books/death-guard/tools/canonical-source-adapter.mjs','utf8'),amAdapter=fs.readFileSync('books/adeptus-mechanicus/tools/canonical-source-adapter.mjs','utf8');
+const producer=fs.readFileSync('books/shared/points/build.mjs','utf8'),projectionProducer=fs.readFileSync('books/shared/points/effective-catalog.mjs','utf8'),dgAdapter=fs.readFileSync('books/death-guard/tools/canonical-source-adapter.mjs','utf8'),amAdapter=fs.readFileSync('books/adeptus-mechanicus/tools/canonical-source-adapter.mjs','utf8');
 assert.match(producer,/createPointsCatalog/,'Roster Guides must consume the effective points projection');
 assert.match(projectionProducer,/buildSharedCanonicalBook\(context,\{projectionOnly:true\}\)/,'all books must expose effective points through the shared effective-model build');
 assert.match(dgAdapter,/buildDeathGuardCanonicalModel/,'Death Guard points must follow its configured canonical model');

@@ -83,7 +83,8 @@ const dsWeapons=['datasheet-deathshroud-terminators:weapon:2','datasheet-deathsh
 const profileId=id=>records.get(id).data.profileIds[0];
 
 const {chromium}=createRequire(import.meta.url)('playwright');
-const app='/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const app='/v2/app.html';
 const allowed=new Map([[app,'text/html'],['/books/death-guard/v2/generated/app-presentation.json','application/json'],['/books/shared/army-book-app-v2/runtime.mjs','text/javascript'],['/books/shared/army-book-app-v2/glossary.mjs','text/javascript'],['/books/shared/army-book-app-v2/styles.css','text/css']]);
 allowRosterDependencies(allowed);
 // Exact current production imports, not a wildcard bypass of the QA dependency boundary.
@@ -100,7 +101,7 @@ try{
  for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['phone',{width:390,height:844}]]){
   const context=await browser.newContext({viewport}),page=await context.newPage(),errors=[],covered=new Set();let controls=0,mutations=0;
   page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(`http://127.0.0.1:${server.address().port}${app}`);
+  await page.goto(`http://127.0.0.1:${server.address().port}${appURL}`);
   await page.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
   const api=async(fn,arg)=>page.evaluate(fn,arg);
   let currentInstanceId=null;
@@ -299,7 +300,7 @@ Created with newrecruit.eu v36.31`;
   for(const [mode,kind] of [['POPUP','WEAPON'],['POPUP','MODEL'],['STANDALONE','WEAPON']]){
    runtimePoison=mode;const poisonedContext=await browser.newContext({viewport}),poisonedPage=await poisonedContext.newPage();
    try{
-    await poisonedPage.goto(`http://127.0.0.1:${server.address().port}${app}`);await poisonedPage.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await poisonedPage.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
+    await poisonedPage.goto(`http://127.0.0.1:${server.address().port}${appURL}`);await poisonedPage.waitForFunction(()=>!!window.ArmyBookAppV2?.rosterPanel);await poisonedPage.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);
     await poisonedPage.evaluate(text=>{const app=window.ArmyBookAppV2;assertReady(app.roster.import(text));app.roster.attach('parsed-unit-1','parsed-unit-3');app.openPersonalGuide();app.openInstance('parsed-unit-1');function assertReady(result){if(result.status!=='READY')throw new Error('Mutation import failed');}},real);
     const id=kind==='MODEL'?profileId(LOC):lordWeapons[0];
     await poisonedPage.evaluate(({mode,id})=>mode==='STANDALONE'?window.ArmyBookAppV2.open(id):window.ArmyBookAppV2.showDetail(id),{mode,id});

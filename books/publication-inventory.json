@@ -1,15 +1,95 @@
 {
   "schema": "warhammer-publication-inventory/v1",
   "books": [
-    {"id":"death-guard","title":"Death Guard","config":"books/death-guard/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"adeptus-mechanicus","title":"Adeptus Mechanicus","config":"books/adeptus-mechanicus/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"tyranids","title":"Tyranids","config":"books/tyranids/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"tau-empire","title":"T'au Empire","config":"books/tau-empire/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"emperors-children","title":"Emperor's Children","config":"books/emperors-children/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"chaos-space-marines","title":"Chaos Space Marines","config":"books/chaos-space-marines/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"space-marines","title":"Space Marines","config":"books/space-marines/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"dark-angels","title":"Dark Angels","config":"books/dark-angels/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"blood-angels","title":"Blood Angels","config":"books/blood-angels/book.config.json","library":true,"offline":true,"freshness":true,"mobile":true},
-    {"id":"orks","title":"Orks","config":"books/orks/book.config.json","library":false,"offline":false,"freshness":true,"mobile":false}
+    {
+      "id": "death-guard",
+      "title": "Death Guard",
+      "config": "books/death-guard/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "adeptus-mechanicus",
+      "title": "Adeptus Mechanicus",
+      "config": "books/adeptus-mechanicus/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "tyranids",
+      "title": "Tyranids",
+      "config": "books/tyranids/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "tau-empire",
+      "title": "T'au Empire",
+      "config": "books/tau-empire/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "emperors-children",
+      "title": "Emperor's Children",
+      "config": "books/emperors-children/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "chaos-space-marines",
+      "title": "Chaos Space Marines",
+      "config": "books/chaos-space-marines/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "space-marines",
+      "title": "Space Marines",
+      "config": "books/space-marines/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "dark-angels",
+      "title": "Dark Angels",
+      "config": "books/dark-angels/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "blood-angels",
+      "title": "Blood Angels",
+      "config": "books/blood-angels/book.config.json",
+      "library": true,
+      "offline": true,
+      "freshness": true,
+      "mobile": false
+    },
+    {
+      "id": "orks",
+      "title": "Orks",
+      "config": "books/orks/book.config.json",
+      "library": false,
+      "offline": false,
+      "freshness": true,
+      "mobile": false
+    }
   ]
 }

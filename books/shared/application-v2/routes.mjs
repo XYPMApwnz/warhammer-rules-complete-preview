@@ -29,11 +29,3 @@ export function applicationRouteURL(baseURL,input) {
   }
   return encodeRoute(baseURL,input);
 }
-
-/** Compatibility redirect keeps semantic identity, including effective profile scope. */
-export function legacyBookURL(address,entryURL,bookId) {
-  const original=new URL(address),target=new URL(entryURL);
-  target.search=original.search;target.hash=original.hash;
-  if(!target.searchParams.has('book'))target.searchParams.set('book',bookId);
-  return target.href;
-}

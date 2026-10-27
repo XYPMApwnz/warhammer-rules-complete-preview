@@ -1,3 +1,4 @@
+import {execFileSync as runNativeBuild} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -584,4 +585,8 @@ if(errors.length)throw new Error(errors.join('\n'));
 return finishCanonicalBuild(context,outputs,{normalizeLineEndings:true,summary:`${check?'Checked':'Built'} ${config.title}: ${units.length} datasheets, ${detachments.length} detachments, ${terms.size} local terms`});
 }
 
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))await buildCanonicalBook(createCanonicalBuildContext());
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+  const context=createCanonicalBuildContext(),native=path.join(context.root,'v2/app-build.mjs');
+  if(!fs.existsSync(native))throw new Error(context.config.id+': native V2 publication is not enrolled; canonical source tools remain available');
+  runNativeBuild(process.execPath,[native,...(context.check?['--check']:[])],{cwd:context.repo,stdio:'inherit'});
+}

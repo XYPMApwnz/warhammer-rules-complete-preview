@@ -10,7 +10,6 @@ import {createCSMCompatibilityCompiler} from './rule-contract-context.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-import {renderCompatibilityEntry} from '../../shared/application-v2/compatibility.mjs';
 import {buildPresentationReferences,referenceDeclaration} from './presentation-reference-build.mjs';
 import {buildCSMRosterPresentation} from './roster-presentation.mjs';
 import {modelBaseDisplayValue} from '../../shared/army-book-app-v2/model-base-presentation.mjs';
@@ -225,7 +224,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
 export function writeApp({check=false}={}){
   assertBookSourceReview('chaos-space-marines',{executionBook:buildCSMRosterEffectBook()});
   const payload=buildApp();
-  for(const [name,value]of [['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n'],['./app.html',renderCompatibilityEntry({title:'Chaos Space Marines',bookId:'chaos-space-marines'})]]){
+  for(const [name,value]of [['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n']]){
     const file=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(file,'utf8'),value,'Stale CSM presentation');else{fs.mkdirSync(new URL('./generated/',import.meta.url),{recursive:true});fs.writeFileSync(file,value);}
   }
   return payload;

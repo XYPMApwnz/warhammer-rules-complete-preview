@@ -6,7 +6,7 @@ export const registration=Object.freeze({
     coverAlt:'Chaos Space Marines army book',accent:'#a27e39',label:'Interactive army book',order:20},
   assetBaseURL:new URL('./',import.meta.url).href,
   styles:[new URL('./theme.css',import.meta.url).href],
-  routeAliases:['/books/chaos-space-marines/v2/app.html'],
+  routeAliases:[],
   async loadPayload(){const response=await fetch(new URL('./generated/app-presentation.json',import.meta.url));
     if(!response.ok)throw new Error('CSM V2 presentation unavailable');return response.json();},
   async createRoster(){return (await import('./roster-boot.mjs')).createBrowserRoster();}

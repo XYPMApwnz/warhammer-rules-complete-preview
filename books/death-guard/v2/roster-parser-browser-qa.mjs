@@ -8,7 +8,8 @@ import {allowRosterDependencies} from './roster-browser-dependencies.mjs';
 
 const {chromium} = createRequire(import.meta.url)('playwright');
 const repo = fileURLToPath(new URL('../../../', import.meta.url));
-const app = '/books/death-guard/v2/app.html';
+const appURL='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard';
+const app = '/v2/app.html';
 const oldParser = '/books/shared/roster-parser.js';
 const newParser = '/books/shared/roster-v2/parser.mjs';
 const allowed = new Map([[app, 'text/html'],
@@ -66,7 +67,7 @@ try {
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    await page.goto(origin + app + '#view-roster');
+    await page.goto(origin+appURL.replace('v2=ARMY_BOOK','v2=ROSTER') + '#view-roster');
     await page.waitForFunction(() => !!window.ArmyBookAppV2?.rosterPanel);
     await page.evaluate(() => window.ArmyBookAppV2.rosterPanel.ready);
     await page.locator('[data-roster-input=raw-text]').fill(text);

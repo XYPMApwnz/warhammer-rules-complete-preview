@@ -93,12 +93,7 @@ export function mountCoreReader(document,{root,entryURL,route,navigate,deferPres
     if(url.origin===entry.origin&&url.pathname===entry.pathname)return decodeRoute(url.href);
     const core=navigation.routeFor(url.href);if(core)return core;
     if(url.origin===readerURL.origin&&url.pathname===new URL('../../../index.html',import.meta.url).pathname)return {destination:'HOME'};
-    if(url.origin===readerURL.origin&&url.pathname===new URL('../../../glossary/index.html',import.meta.url).pathname) {
-      if(!url.hash)return {destination:'GLOSSARY'};
-      const id=decodeURIComponent(url.hash.slice(1));
-      const target=references.resolveAlias(id,{registryId:'core-rules'}),identity=references.identityFor(target);
-      if(identity?.registryId==='core-rules')return {destination:'REFERENCE',...identity};
-    }
+
     return null;
   }
   function rewriteLinks(doc) {
