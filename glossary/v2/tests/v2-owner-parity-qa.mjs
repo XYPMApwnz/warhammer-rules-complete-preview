@@ -31,7 +31,7 @@ const daFacts=read('books/dark-angels/v2/generated/effective.json').entities;
 const daEntries=index.entries.filter(article=>article.sourceOwner.bookId==='dark-angels');
 assert.deepEqual(new Set(daEntries.map(article=>article.sourceOwner.canonicalId)),new Set(daFacts.map(entity=>entity.id)),'Only independently owned DA factual records may be added');
 assert.ok(daEntries.every(article=>!article.sourceOwner.canonicalId.includes('-sm-')),'Inherited SM references duplicated as DA owners');
-const excludedBooks=new Set(['blood-angels']);
+const excludedBooks=new Set(index.entries.filter(entry=>entry.domain==='ARMY').map(entry=>entry.sourceOwner.bookId).filter(book=>!V2_ARMY_BOOK_IDS.includes(book)));
 assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;

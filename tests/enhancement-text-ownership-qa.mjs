@@ -6,7 +6,6 @@ import {fileURLToPath} from 'node:url';
 import {createCanonicalBuildContext} from '../books/shared/tools/canonical-build-contract.mjs';
 import {buildCanonicalBook} from '../books/shared/tools/build-army-book.mjs';
 import {validateEffectiveBookModel} from '../books/shared/tools/effective-book-model.mjs';
-import {renderEffectiveBook as renderStructuredEffectiveBook} from '../books/shared/tools/render-structured-effective-book.mjs';
 import {projectEffectiveEnhancementSources} from '../glossary/tools/effective-enhancement-sources.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -41,19 +40,11 @@ tauCanonicalDirection.enhancements.find(item=>item.detachmentId===strike.detachm
 tauCanonicalDirection.rosterCatalog.enhancements.find(item=>item.detachmentId===tauRoster.detachmentId&&item.id===tauRoster.id).text=canonicalMarker;
 validateEffectiveBookModel(tauCanonicalDirection);
 
-const relatedScope={window:{WHRuleFacts:{normalizeKeyword:value=>String(value||'').trim().toLowerCase()}}};
-vm.runInNewContext(fs.readFileSync(path.join(root,'books/shared/army-related-rules.js'),'utf8'),relatedScope,{filename:'army-related-rules.js'});
-const resolvePresentation=relatedScope.window.WHArmyRelatedRules.resolveRosterEnhancementPresentation;
-assert.equal(resolvePresentation(tauCanonicalDirection.rosterCatalog,{id:tauRoster.id,detachmentId:tauRoster.detachmentId}).text,canonicalMarker,'T’au actual roster presentation follows canonical text');
 const tauSourceContext=createCanonicalBuildContext({args:['--check'],configPath:path.join(root,'books/tau-empire/book.config.json'),repo:root}),readTauJson=tauSourceContext.readJson;
 tauSourceContext.readJson=file=>{const data=readTauJson(file);if(!String(file).endsWith('tau-empire-codex-parity.en.json'))return data;const clone=structuredClone(data),source=clone.detachments.flatMap(item=>item.enhancements||[]).find(item=>item.id==='enhancement-strike-swiftly');assert.ok(source,'T’au canonical source direction fixture');source.text=canonicalMarker;return clone;};
 const {effectiveBookModel:tauSourceDirection}=await buildCanonicalBook(tauSourceContext,{projectionOnly:true}),sourceDirectionCanonical=tauSourceDirection.enhancements.find(item=>item.id===strike.id),sourceDirectionRoster=tauSourceDirection.rosterCatalog.enhancements.find(item=>item.id===tauRoster.id&&item.detachmentId===tauRoster.detachmentId);
 assert.equal(sourceDirectionCanonical.text,canonicalMarker,'T’au canonical model did not follow its source-backed text owner');
 assert.equal(sourceDirectionRoster.text,canonicalMarker,'T’au roster projection did not derive source-backed canonical text');
-assert.equal(resolvePresentation(tauSourceDirection.rosterCatalog,{id:tauRoster.id,detachmentId:tauRoster.detachmentId}).text,canonicalMarker,'T’au actual roster consumer did not follow canonical source direction');
-assert.equal(resolvePresentation(tauCanonicalDirection.rosterCatalog,{id:tauRoster.id,detachmentId:'wrong-detachment'}),null,'wrong Detachment scope must not resolve roster text');
-const duplicateCatalog=structuredClone(tauCanonicalDirection.rosterCatalog);duplicateCatalog.enhancements.push(structuredClone(duplicateCatalog.enhancements.find(item=>item.id===tauRoster.id&&item.detachmentId===tauRoster.detachmentId)));
-assert.throws(()=>resolvePresentation(duplicateCatalog,{id:tauRoster.id,detachmentId:tauRoster.detachmentId}),/must resolve exactly once/,'duplicate scoped roster Enhancement must fail');
 
 const unknownRoster=structuredClone(tau);unknownRoster.rosterCatalog.enhancements[0].id='enhancement-unknown-text-owner';unknownRoster.rosterCatalog.enhancements[0].ruleId='enhancement-unknown-text-owner';
 assert.throws(()=>validateEffectiveBookModel(unknownRoster),/has no canonical identity/,'unknown roster Enhancement identity must fail');
@@ -74,9 +65,8 @@ assert.equal(projectedPoison.text,amExplorator.text,'AM nested glossary text poi
 const amCanonicalDirection=structuredClone(am),amMarker='AM_CANONICAL_ENHANCEMENT_TEXT_DIRECTION';amCanonicalDirection.enhancements.find(item=>item.id===amExplorator.id&&item.detachmentId===amExplorator.detachmentId).text=amMarker;
 const canonicalProjection=projectEffectiveEnhancementSources(amCanonicalDirection,{label:'AM canonical direction'}),projectedCanonical=canonicalProjection.find(item=>item.id===amExplorator.detachmentId).enhancements.find(item=>item.id===amExplorator.id);
 assert.equal(projectedCanonical.text,amMarker,'AM glossary projection did not follow canonical owner');
-assert.match((await renderStructuredEffectiveBook(contexts.get('adeptus-mechanicus'),amCanonicalDirection)).readerSource,new RegExp(amMarker),'AM reader did not follow the same canonical owner');
 for(const detachment of projectEffectiveEnhancementSources(am,{label:'AM reader/glossary equality'}))for(const item of detachment.enhancements)assert.equal(item.text,am.enhancements.find(record=>record.id===item.id&&record.detachmentId===detachment.id).text,`AM ${item.id}: reader/glossary text equality`);
 const unknownAm=structuredClone(am);unknownAm.detachments[0].enhancements[0].id='enhancement-unknown-am-glossary';assert.throws(()=>projectEffectiveEnhancementSources(unknownAm),/must resolve exactly once/);
 const duplicateAm=structuredClone(am);duplicateAm.enhancements.push(structuredClone(duplicateAm.enhancements[0]));assert.throws(()=>projectEffectiveEnhancementSources(duplicateAm),/must resolve exactly once/);
 
-console.log('Enhancement text ownership QA: PASS (474 canonical owners; T’au roster and AM glossary poisons isolated; actual reader/roster consumers follow scoped canonical text; identity/scope/substitution mutations fail closed).');
+console.log('Enhancement text ownership QA: PASS (474 canonical owners; T’au roster and AM glossary poisons isolated; canonical consumers follow scoped source text; identity/scope/substitution mutations fail closed).');

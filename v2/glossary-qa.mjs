@@ -1,3 +1,4 @@
+import {armyBooks} from './army-books.mjs';
 /** Independent corpus/identity guards. The global enrolled corpus is never modified. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,11 +8,10 @@ import {validateGlossary} from '../books/shared/army-book-app-v2/glossary.mjs';
 import {encodeRoute,decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 
 const corpus=JSON.parse(fs.readFileSync(new URL('../glossary/v2/generated/index.en.json',import.meta.url),'utf8'));
-const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines'];
-assert.deepEqual(corpus.supportedArmyBooks,includedBooks,'Exactly seven registered V2 factual owners');
-const excludedBooks=['dark-angels','blood-angels'];
-for(const book of excludedBooks)assert.ok(!corpus.entries.some(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId===book&&
-  !(entry.contexts||[]).some(context=>includedBooks.includes(context.effectiveBookId))),book+': unexpected standalone book');
+// Enrollment is the active registry contract, independent of the display projection.
+const includedBooks=armyBooks.map(book=>book.id);
+assert.deepEqual(corpus.supportedArmyBooks,includedBooks,'Exactly the registered V2 factual owners');
+for(const entry of corpus.entries.filter(entry=>entry.domain==='ARMY'))assert.ok(includedBooks.includes(entry.sourceOwner.bookId),'Unregistered standalone factual owner '+entry.sourceOwner.bookId);
 const ec=JSON.parse(fs.readFileSync(new URL('../books/emperors-children/v2/generated/effective.json',import.meta.url),'utf8'));
 const ecEntries=corpus.entries.filter(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId==='emperors-children');
 assert.equal(ecEntries.length,ec.entities.length,'One EC Glossary record per existing canonical owner');

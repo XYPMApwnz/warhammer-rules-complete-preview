@@ -1,3 +1,4 @@
+import {armyBooks} from './army-books.mjs';
 /** Fresh real-browser global Glossary smoke; no standalone viewer runtime is served. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,8 +15,8 @@ const repo=fileURLToPath(new URL('../',import.meta.url));
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const projection=adaptGlobalGlossary(corpus),contract=createReferenceContract({cards:new Map(projection.cards.map(card=>[card.id,card])),index:projection.index});
 const projectedEntries=projection.index.entries.length;
-assert.equal(corpus.entries.length,3769,'Canonical inventory includes the 486 EC V2 source-owned records');
-assert.equal(projectedEntries,3952,'183 source-field references augment, rather than replace, the canonical catalog');
+assert.deepEqual(corpus.supportedArmyBooks,armyBooks.map(book=>book.id),'All currently registered canonical Army Books');
+assert.equal(projectedEntries,corpus.entries.length+corpus.entries.reduce((sum,entry)=>sum+(entry.presentation?.referenceFields?.length||0),0),'Source-field views augment canonical owners without replacement');
 const abilitySamples=[
   {book:'death-guard',id:'datasheet-lord-of-contagion:section:1',path:'/blocks/0/text',label:'Vector of Disease',category:'ABILITY'},
   {book:'adeptus-mechanicus',id:'datasheet-skitarii-rangers:section:1',path:'/blocks/0/text',label:'Objective Scouted',category:'ABILITY'},
@@ -30,14 +31,12 @@ const abilitySamples=[
   {book:'chaos-space-marines',id:'datasheet-legionaries:section:1:block:1:text',label:'Chaos Icon',category:'WARGEAR_ABILITY'},
   {book:'death-guard',id:'datasheet-great-unclean-one:raw-dsAbility:1',label:'Reverberating Summons',category:'WARGEAR_ABILITY'}
 ];
-const includedBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
-const excludedBooks=['tyranids','tau-empire','space-marines','dark-angels','blood-angels'];
+const includedBooks=armyBooks.map(book=>book.id);
+const priorAbilityBooks=['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children'];
 const canonicalEntry=(bookId,canonicalId)=>{
   const matches=corpus.entries.filter(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===bookId&&item.sourceOwner.canonicalId===canonicalId);
   assert.equal(matches.length,1,`${bookId}/${canonicalId}: exactly one canonical owner`);return matches[0];
 };
-for(const book of excludedBooks)assert.ok(!corpus.entries.some(item=>item.domain==='ARMY'&&item.sourceOwner.bookId===book&&
-  !(item.contexts||[]).some(context=>includedBooks.includes(context.effectiveBookId))),`${book}: unsupported standalone book`);
 const updatedReferences=[
   {book:'death-guard',id:'unit-lord-of-contagion',pattern:/\bT\s+7\b/,text:['Invulnerable Save 4+','Vector of Disease','While this model is leading a unit','Manreaper','UNIT COMPOSITION']},
   {book:'death-guard',id:'datasheet-lord-of-contagion:weapon:1',pattern:/\bS\s+9\b/,text:['AP -2','D 3','lethal hits']},
@@ -68,15 +67,15 @@ const requests=[],forbidden=[],errors=[],results=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
 const isAllowedResource=address=>isApplicationTestDependency(address)||address==='/books/emperors-children/assets/emperors-children-cover-800.webp'||/^\/v2\/[\w./-]+\.(?:html|mjs|css)$/.test(address)||
-    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
+    /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children|tyranids|tau-empire|space-marines|dark-angels|blood-angels)\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(address)||
     /^\/books\/shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)\/[\w.-]+\.(?:mjs|css)$/.test(address)||
     /^\/books\/shared\/(?:datasheet-system|unit-art)\.css$/.test(address)||
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address)||
-    ['/glossary/index.html','/glossary/v2/compatibility.mjs','/glossary/v2/generated/index.en.json'].includes(address);
+    address==='/glossary/v2/generated/index.en.json';
 assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
 assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-800.webp'),true);
 for(const address of ['/books/emperors-children/assets/unknown.webp','/books/emperors-children/assets/emperors-children-cover-640.webp',
-  '/books/emperors-children/scripts/data.js','/books/tyranids/v2/registration.mjs'])
+  '/books/emperors-children/scripts/data.js','/books/unregistered/v2/registration.mjs'])
   assert.equal(isAllowedResource(address),false,'Unexpected resource admitted: '+address);
 const server=http.createServer((request,response)=>{
   const address=new URL(request.url,'http://localhost').pathname;requests.push(address);
@@ -95,7 +94,7 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
 const screenshots=process.env.V2_GLOSSARY_SCREENSHOTS||'E:/Warhammer/qa-artifacts/mega-glossary-v2';fs.mkdirSync(screenshots,{recursive:true});
 const ready=async page=>{
-  await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
+  try{await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));}catch(error){console.error('GLOSSARY_BROWSER_READINESS',JSON.stringify({url:page.url(),requests,forbidden,errors,page:await page.evaluate(()=>({url:location.href,title:document.title,body:document.body?.innerText,revision:document.querySelector('meta[name=\"wh-runtime-revision\"]')?.content,pwa:!!window.WHOfflineStatus})).catch(()=>null)}));throw error;}await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));
 };
 const active=async(page,id)=>{await page.waitForFunction(id=>window.WarhammerAppV2?.activeBookId===id,id);await ready(page);};
@@ -125,13 +124,13 @@ try {
     const homeRequestStart=requests.length;
     const page=await context.newPage();await page.goto(entry);await ready(page);
     assert.deepEqual(requests.slice(homeRequestStart).filter(address=>
-      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
+      /^\/books\/(?:death-guard|adeptus-mechanicus|chaos-space-marines|emperors-children|tyranids|tau-empire|space-marines|dark-angels|blood-angels)\/v2\//.test(address)&&!address.endsWith('/registration.mjs')),
     [],'Home loaded book factual data or roster service before book selection');
     const home=await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)}));
     await page.locator('.v2-library-home a[data-v2-shell-link][href*="v2=GLOSSARY"]').first().click();await global(page);
     assert.equal(await page.locator('.v2-search-status').innerText(),`${projectedEntries} entries found`);
-    assert.equal(await page.locator('.v2-glossary-result').count(),120,'Initial global catalog must preserve V1 progressive loading');
+    assert.equal(await page.locator('.v2-glossary-result').count(),120,'Initial global catalog preserves progressive loading');
     await page.getByRole('button',{name:'Show more entries',exact:true}).click();
     assert.equal(await page.locator('.v2-glossary-result').count(),240,'Progressive loading silently truncated global coverage');
     assert.equal(await page.locator('.v2-search-status').innerText(),`${projectedEntries} entries found`);
@@ -146,7 +145,7 @@ try {
       ['Wargear Ability',33,{'death-guard':7,'adeptus-mechanicus':12,'chaos-space-marines':7,'emperors-children':7}]]){
       const selected=contract.categories().find(category=>category.label===label);assert.ok(selected,`${label}: category exists`);
       await page.locator('[data-glossary-category="'+selected.id+'"]').click();
-      const expected=contract.search('',{category:selected.id});assert.equal(expected.length,total,`${label}: exact source-derived inventory`);
+      const expected=contract.search('',{category:selected.id});assert.equal(expected.filter(row=>priorAbilityBooks.includes(contract.identityFor(row.targetId).registryId)).length,total,`${label}: previous canonical owner inventory preserved`);
       for(const [book,count]of Object.entries(perBook))assert.equal(expected.filter(row=>contract.identityFor(row.targetId).registryId===book).length,count,`${label}/${book}: missing or extra abilities`);
       while(await page.getByRole('button',{name:'Show more entries',exact:true}).count()){
         const before=await page.locator('.v2-glossary-result').count();
@@ -255,25 +254,7 @@ try {
       await page.reload();await ready(page);assert.equal(await (await article(page,selected.id)).innerText(),text,'Reload changed canonical reference');
       await geometry(page);
     }
-    const excludedLegacyIds={
-      tyranids:'army::tyranids::unit::unit-barbgaunts',
-      'tau-empire':'army::tau-empire::unit::unit-breacher-team',
-      'space-marines':'army::space-marines::unit::unit-adrax-agatone',
-      'dark-angels':'army::dark-angels::unit::unit-asmodai',
-      'blood-angels':'army::blood-angels::unit::unit-astorath'
-    };
-    for(const [book,id] of Object.entries(excludedLegacyIds)){
-      await page.goto(origin+'/glossary/index.html?book='+book+'#'+encodeURIComponent(id));await ready(page);await global(page);
-      assert.equal(await page.locator('main .v2-not-found').innerText(),'This reference is unavailable. Choose an entry from the Glossary.');
-      assert.equal(await page.locator('main article.v1-reference-article').count(),0,`${book}: excluded link resolved to another rule`);
-    }
-    // Full old global IDs and contextual local aliases retain their exact target.
-    for(const old of ['/glossary/index.html#'+encodeURIComponent(deep),'/glossary/index.html?book=core-rules#core-deep-strike',
-      '/glossary/index.html?book=death-guard#core-deep-strike','/glossary/index.html?book=adeptus-mechanicus#datasheet-deep-strike']) {
-      await page.goto(origin+old);await ready(page);await article(page,deep);assert.equal(new URL(page.url()).pathname,'/v2/app.html');
-      assert.deepEqual(decodeRoute(page.url()),decodeRoute(href));
-    }
-    await page.goto(origin+'/glossary/index.html');await ready(page);await global(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
+    await page.goto(encodeRoute(entry,{destination:'GLOSSARY'}));await ready(page);await global(page);await page.getByRole('searchbox',{name:'Search glossary',exact:true}).waitFor();
     // Each normal book and its real imported personal guide can enter the global catalog.
     // Constructed source-backed examples use supported New Recruit grammar; these are not captured user exports.
     const fixtures={
@@ -308,10 +289,10 @@ try {
     await page.locator('[data-v2-primary-nav] [data-v2-destination="HOME"]').click();await active(page,null);
     assert.deepEqual(await page.evaluate(()=>({title:document.title,html:document.querySelector('.v2-library-home').outerHTML,
       background:getComputedStyle(document.querySelector('.v2-library-home')).backgroundImage,styles:[...document.querySelectorAll('link[rel="stylesheet"]')].map(link=>link.href)})),home,'Glossary changed Home presentation');
-    results.push({device,corpus:corpus.entries.length,projectedEntries,abilityCategories:{ability:251,wargearAbility:33},qualifiedAbilitySamples:abilitySamples.length,
+    results.push({device,corpus:corpus.entries.length,projectedEntries,previousFourBookAbilityCategories:{ability:251,wargearAbility:33},qualifiedAbilitySamples:abilitySamples.length,
       searchTitle:true,searchAliases:true,searchDefinition:true,categories:true,
       canonicalPopup:true,fullArticle:true,closeEscapeOutsideFocus:true,nativeNewTab:true,directReload:true,backForward:true,
-      legacyLinks:true,excludedLegacyUnavailable:excludedBooks.length,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',registeredArmyBooks:includedBooks,resourceNegativeControls:4,
+      nativeGlossaryRoutes:true,currentOfficialReferences:updatedReferences.length,mfmVersion:'v1.6',registeredArmyBooks:includedBooks,resourceNegativeControls:4,
       bookToGlobal:true,personalGuideToGlobal:true,scopeUnrestricted:true,lifecycleCleanup:true,themeIsolation:true,overflow:false});
     await context.close();
   }

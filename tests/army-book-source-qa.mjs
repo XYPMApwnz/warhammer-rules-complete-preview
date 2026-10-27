@@ -352,7 +352,7 @@ for(const id of ['tyranids',...Object.keys(books)]){
     if(fs.existsSync(path.join(root,file)))scan(read(file),file);
   }
 }
-scan(read('glossary/registry.en.json'),'glossary/registry.en.json');
+// The retired registry is not a factual owner. Native glossary parity checks current canonical source text.
 
 const tyranids=read('books/tyranids/content/tyranids-points.en.json');
 for(const [title,labels] of [['Termagants',['10 models','11-20 models']],['Hormagaunts',['10 models','11-20 models']]]){

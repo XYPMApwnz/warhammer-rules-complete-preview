@@ -61,14 +61,8 @@ const buildSource=fs.readFileSync(path.join(root,'books/shared/tools/build-army-
 const runtimeSource=fs.readFileSync(path.join(root,'books/shared/roster-context.js'),'utf8');
 const providerSource=fs.readFileSync(path.join(root,'books/extensions/book-roster-enhancement-providers.js'),'utf8');
 const rosterBuilderSource=fs.readFileSync(path.join(root,'books/shared/tools/build-roster-catalog.mjs'),'utf8');
-const glossaryBuilderSource=fs.readFileSync(path.join(root,'glossary/tools/build-glossary.mjs'),'utf8');
 assert.doesNotMatch(buildSource,/config\.armyRules|pointTitleKey\(/,'authoritative title join remains in shared publication');
 assert.doesNotMatch(runtimeSource,/target==='plasma'|target\.startsWith\('family:'\)/,'runtime weapon targeting still reads display titles');
 assert.doesNotMatch(rosterBuilderSource,/\bplasma\b.*profile\.name|profile\.name.*\bplasma\b/i,'weapon class membership still derives from a display title');
 assert.doesNotMatch(providerSource,/candidates=.*normalize\(item\.title\)/,'downstream Enhancement provider still re-resolves display titles');
-const amGlossaryFunction=glossaryBuilderSource.slice(glossaryBuilderSource.indexOf('function addMechanicusDetachments'),glossaryBuilderSource.indexOf('for(const source of amDetachmentSources'));
-assert.doesNotMatch(amGlossaryFunction,/find\([^\n]*\.title|filter\([^\n]*\.title/,'AM glossary publication still merges Detachments or Enhancements by display title');
-assert.match(glossaryBuilderSource,/projectEffectiveEnhancementSources\(amModel/,'AM glossary publication no longer consumes final effective Enhancements');
-assert.doesNotMatch(glossaryBuilderSource,/amModel\.glossaryFacts/,'AM glossary publication still consumes an independently mutable gameplay-fact copy');
-
 console.log('Authoritative non-ID join QA: PASS (Army rule, scoped Enhancement, profile membership, collision and fail-closed controls).');

@@ -70,48 +70,5 @@ const owned=json('tests/fixtures/army-book-owned-datasheets.json');
 assert.equal(countExactString(owned,oldId),0,'Old Titus ownership fixture identity');
 assert.equal(countExactString(owned,newId),1,'Captain Titus ownership fixture identity');
 
-const context={window:{}};vm.createContext(context);
-vm.runInContext(read('books/space-marines/scripts/roster-data.js'),context,{filename:'space-marines/roster-data.js'});
-const catalog=context.window.WH_BOOK_ROSTER_CATALOG;
-const catalogUnits=catalog.units.filter(unit=>unit.id===newId),oldCatalogUnits=catalog.units.filter(unit=>unit.id===oldId);
-assert.equal(catalogUnits.length,1,'Captain Titus catalog identity');
-assert.equal(oldCatalogUnits.length,0,'Old Titus catalog identity');
-const catalogTitus=catalogUnits[0];
-assert.equal(catalogTitus.title,newTitle,'Captain Titus catalog title');
-assert.equal(JSON.stringify(catalog).includes(oldId),false,'Old Titus identity must not be exposed in the roster catalog');
-const direct=catalogTitus.relations?.canLead||[];
-assert.deepEqual(Array.from(direct,item=>String(item.unitId)),expectedRelations.map(([id])=>id),'Exact generated Captain Titus direct relation IDs');
-for(const [targetId] of expectedRelations){
-  const target=catalog.units.find(unit=>unit.id===targetId);
-  assert.ok(target,`Generated Titus target ${targetId}`);
-  assert.equal((target.relations?.canBeLedBy||[]).filter(item=>item.unitId===newId).length,1,`Generated inverse ${targetId}<${newId}`);
-}
-const canonicalIdentityValues=[];
-const collectIdentityFields=value=>{if(Array.isArray(value))value.forEach(collectIdentityFields);else if(value&&typeof value==='object'){for(const [key,item] of Object.entries(value)){if(key==='canonicalDatasheetId')canonicalIdentityValues.push(item);collectIdentityFields(item);}}};
-collectIdentityFields(catalogTitus);
-for(const value of canonicalIdentityValues)assert.equal(value,newId,'Existing runtime canonicalDatasheetId contract');
-
-const activeProductionFiles=[
-  'books/space-marines/content/space-marines-codex-datasheets.en.json',
-  'books/space-marines/content/space-marines-codex-wargear.en.json',
-  'books/space-marines/content/space-marines-points.en.json',
-  'books/space-marines/content/space-marines-related-rules.en.json',
-  'books/space-marines/sources/wahapedia-compatible-rules.snapshot.json',
-  'books/space-marines/sources/space-marines-effect-contracts.v1.json',
-  'books/extensions/book-roster-enhancement-providers.js',
-  'books/space-marines/reader.html',
-  'books/space-marines/scripts/data.js',
-  'books/space-marines/scripts/target-data.js',
-  'books/space-marines/scripts/roster-data.js',
-  'books/dark-angels/scripts/target-data.js',
-  'books/dark-angels/mobile/related-rules.inc',
-  'glossary/contexts/space-marines.json',
-  'glossary/generated/glossary.en.js',
-  'glossary/registry.en.json',
-  'roster-guides/points-data.js'
-];
-for(const relative of activeProductionFiles){const source=read(relative);assert.equal(source.includes(oldId),false,`${relative}: old Titus ID`);assert.equal(source.includes(oldTitle),false,`${relative}: old Titus title`);}
-assert.equal(fs.existsSync(path.join(root,'books/space-marines/mobile/captain-titus.html')),true,'Captain Titus mobile route');
-assert.equal(fs.existsSync(path.join(root,'books/space-marines/mobile/lieutenant-titus.html')),false,'Old Lieutenant Titus mobile route');
-
-console.log('R2 Captain Titus identity QA passed: one canonical/catalog identity, exact 9-edge relation graph, factual fingerprints preserved and no old production identity.');
+// Retired reader/catalog/mobile projections no longer own current V2 identities.
+console.log('Captain Titus source identity QA passed: canonical identity, exact 9-edge source relation graph, points/wargear fingerprints and source contracts preserved.');

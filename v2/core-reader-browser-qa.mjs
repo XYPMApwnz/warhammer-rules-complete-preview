@@ -48,7 +48,8 @@ try{
     for(const file of routes){
       await navigate(page,{...core,chapterId:file==='index.html'?null:file.slice(0,-5)});frame=await child(page);
       const original=fs.readFileSync(path.join(reader,file),'utf8');
-      assert(await frame.evaluate(html=>new DOMParser().parseFromString(html,'text/html').querySelector('main').textContent===document.querySelector('main').textContent,original),`${file}: reader text differs from certified standalone presentation`);
+      const comparison=await frame.evaluate(html=>({expected:new DOMParser().parseFromString(html,'text/html').querySelector('main').textContent,actual:document.querySelector('main').textContent}),original);
+      assert.equal(comparison.actual,comparison.expected,`${file}: reader text differs from certified standalone presentation`);
       await frame.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
       const metrics=await frame.evaluate(async()=>{
         const images=[...document.querySelectorAll('main img')];for(const img of images){img.loading='eager';await img.decode();}

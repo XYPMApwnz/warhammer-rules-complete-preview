@@ -76,8 +76,7 @@ try{
       await first.click();await page.waitForURL(url=>url.hash==='#'+canonical);await coreLocation(page,canonical);assert.equal(await page.locator('[data-global-glossary]').count(),0);row.reader.push({query,canonical,status:'PASS'});
     }
     // Source-owned concepts have full definitions but no standalone Reader placement.
-    // Standalone Reader retains its qualified legacy Glossary target; the mounted
-    // Reader translates that same identity through the existing REFERENCE route.
+    // Both entry modes use the same qualified canonical REFERENCE contract.
     const standalone=await context.newPage();observe(standalone);
     await standalone.goto(`${origin}/books/core-rules/reader/core-abilities.html`);
     await standalone.locator('#searchButton').click();
@@ -87,26 +86,41 @@ try{
       assert.equal(source.sourceOwner.canonicalId,canonical);
       assert.equal(placements.some(item=>item.id===canonical),false,'do not fabricate a Reader placement');
       await standalone.locator('#searchInput').fill(query);
-      await standalone.waitForFunction(id=>[...document.querySelectorAll('#searchResults a')].some(link=>decodeURIComponent(new URL(link.href).hash.slice(1))==='core::'+id),canonical);
-      const legacyHref=await standalone.locator('#searchResults a').evaluateAll((nodes,id)=>nodes.find(link=>decodeURIComponent(new URL(link.href).hash.slice(1))==='core::'+id).href,canonical);
-      assert.equal(new URL(legacyHref).pathname,'/glossary/index.html');assert.equal(decodeURIComponent(new URL(legacyHref).hash.slice(1)),'core::'+canonical);
+      await standalone.waitForFunction(id=>[...document.querySelectorAll('#searchResults a')].some(link=>new URL(link.href).searchParams.get('field')==='/glossary/core::'+id),canonical);
+      const standaloneHref=await standalone.locator('#searchResults a').evaluateAll((nodes,id)=>nodes.find(link=>new URL(link.href).searchParams.get('field')==='/glossary/core::'+id).href,canonical);
+      assert.equal(new URL(standaloneHref).pathname,'/v2/app.html');assert.equal(new URL(standaloneHref).searchParams.get('v2'),'REFERENCE');assert.equal(decodeURIComponent(new URL(standaloneHref).hash.slice(1)),canonical);
       await navigate(page,{destination:'CORE_RULES',registryId:'core-rules',chapterId:'core-abilities'});const readerURL=page.url(),frame=await child(page);
       await frame.locator('#searchButton').click();await frame.locator('#searchInput').fill(query);
       await frame.waitForFunction(id=>[...document.querySelectorAll('#searchResults a')].some(link=>decodeURIComponent(new URL(link.href).hash.slice(1))===id),canonical);
       const target=await frame.locator('#searchResults a').evaluateAll((nodes,id)=>nodes.findIndex(link=>decodeURIComponent(new URL(link.href).hash.slice(1))===id),canonical);
       const link=frame.locator('#searchResults a').nth(target),referenceURL=await link.getAttribute('href');
       assert.equal(new URL(referenceURL).searchParams.get('v2'),'REFERENCE');assert.equal(new URL(referenceURL).hash,'#'+canonical);
+      assert.equal(new URL(referenceURL).searchParams.get('field'),'/glossary/core::'+canonical);
       await link.click();await page.waitForURL(referenceURL);await article(page,'core::'+canonical).waitFor();
       const definition=await article(page,'core::'+canonical).locator('.reference-definition').innerText();
       const normalize=value=>value.replace(/\s+/g,' ').trim();assert(normalize(definition).includes(normalize(source.facts.semanticContent)),query+' complete canonical definition');
       await status(page,'READY');assert.equal(await article(page,'core::'+canonical).getByRole('link',{name:'Open in Core Rules'}).count(),0,'unplaced concept has no false Core action');
-      await page.goBack();await page.waitForURL(readerURL);await ready(page);assert.equal(await page.locator('iframe.v2-core-reader').count(),1);
+      await page.goBack();await page.waitForURL(readerURL);await ready(page);await page.locator('iframe.v2-core-reader').waitFor();
       await page.goForward();await page.waitForURL(referenceURL);await article(page,'core::'+canonical).waitFor();
       await page.reload();await article(page,'core::'+canonical).waitFor();assert.equal(new URL(page.url()).hash,'#'+canonical);
       await page.screenshot({path:path.join(out,`${width}-${canonical}-fallback.png`)});
-      row.concepts.push({query,canonical,legacyTarget:new URL(legacyHref).pathname+new URL(legacyHref).hash,referenceTarget:new URL(referenceURL).search+new URL(referenceURL).hash,fullCanonicalDefinition:true,backForwardReload:true});
+      await page.goto(standaloneHref);await article(page,'core::'+canonical).waitFor();
+      assert(normalize(await article(page,'core::'+canonical).locator('.reference-definition').innerText()).includes(normalize(source.facts.semanticContent)),query+' direct canonical definition');
+      row.concepts.push({query,canonical,standaloneTarget:new URL(standaloneHref).search+new URL(standaloneHref).hash,referenceTarget:new URL(referenceURL).search+new URL(referenceURL).hash,fullCanonicalDefinition:true,backForwardReload:true});
     }
     await standalone.close();
+    await navigate(page,{destination:'CORE_RULES',registryId:'core-rules',chapterId:'core-concepts'});
+    let battleFrame=await child(page);
+    const battleSource=corpus.entries.find(item=>item.id==='core::core-rule-01-07-battle-shock-rolls');assert(battleSource);
+    await battleFrame.locator('details').evaluateAll(nodes=>nodes.forEach(node=>node.open=true));
+    await battleFrame.locator('[data-term="core-rule-01-07-battle-shock-rolls"]').first().click();
+    const battleLink=battleFrame.locator('#termFull');await battleLink.waitFor({state:'visible'});
+    const battleURL=await battleLink.getAttribute('href');assert.equal(new URL(battleURL).searchParams.get('v2'),'REFERENCE');
+    assert.equal(new URL(battleURL).searchParams.get('field'),'/glossary/core::core-rule-01-07-battle-shock-rolls');
+    await battleLink.click();const battleArticle=article(page,battleSource.id);await battleArticle.waitFor();
+    assert((await battleArticle.locator('.reference-definition').innerText()).replace(/\s+/g,' ').includes(battleSource.facts.semanticContent.replace(/\s+/g,' ')));
+    await page.reload();await battleArticle.waitFor();await page.screenshot({path:path.join(out,`${width}-battle-shock-article.png`)});
+    row.battleShockFullArticle=true;
     // A reading-context round trip uses the existing popup/history contracts.
     await navigate(page,{destination:'CORE_RULES',registryId:'core-rules',chapterId:'monsters-vehicles'});const readingURL=page.url();let reading=await child(page);
     await reading.locator('[data-term="core-blast"]').first().click();await reading.locator('#termFull').click();await article(page,'core::core-blast').waitFor();await status(page,'READY');
@@ -173,6 +187,6 @@ try{
     report.metadata.push({width:1440,fault:'requiredCorpus-'+fault,status:'PASS',expected:'existing Glossary unavailable error path'});await context.close();
   }
   assert.deepEqual(report.errors,[]);assert.deepEqual(report.missing,[]);report.status='PASS';
-}catch(error){report.status='FAIL';report.error=error.stack;throw error;}
+}catch(error){report.status='FAIL';report.error=error.stack;report.failureState=[];for(const context of browser.contexts())for(const page of context.pages()){try{report.failureState.push(await page.evaluate(()=>({url:location.href,text:document.querySelector('main')?.innerText?.slice(0,2500),route:window.WarhammerAppV2?.currentRoute,revision:window.WHPwaExpectedRevision})));}catch{}}throw error;}
 finally{await browser.close();await new Promise(resolve=>server.close(resolve));fs.writeFileSync(path.join(out,'REPORT.json'),JSON.stringify(report,null,2));}
 console.log(JSON.stringify({status:report.status,viewports:report.results.map(row=>({width:row.width,controls:row.glossary.length,reader:row.reader.length,concepts:row.concepts.length,books:row.books.length})),metadata:report.metadata,evidence:out}));

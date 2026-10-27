@@ -47,34 +47,6 @@ assert.deepEqual(landSpeeder.weapons.filter(item=>item.name!=='Heavy Flamer'),[
   {name:'Close combat weapon',mode:'melee',range:'Melee',a:'4',skill:'3+',s:'4',ap:'0',d:'1',abilities:''}
 ]);
 
-const glossaryTerms=JSON.parse(read('glossary/registry.en.json')).terms;
-const glossary=glossaryTerms[oathId],abilityGlossary=glossaryTerms[oathAbilityId];
-assert.match(glossary.definition.en,/Munitorum Field Manual sections/);
-assert.equal(normalized(glossary.definition.en),normalized(oathUpdate.change));
-assert.equal(normalized(abilityGlossary.definition.en),normalized(oathUpdate.change));
-assert.equal(abilityGlossary.canonicalSource.locator,'unit-assault-intercessor-squad');
-
-for(const book of ['space-marines','dark-angels','blood-angels']){
-  const terms=load(`books/${book}/scripts/data.js`,'DG_TERMS');
-  const roster=load(`books/${book}/scripts/roster-data.js`,'WH_BOOK_ROSTER_CATALOG');
-  const targets=load(`books/${book}/scripts/target-data.js`,'WH_ARMY_BOOK_TARGETS');
-  assert.equal(terms[oathId].rule,'army-rule-oath-of-moment',`${book}: canonical Oath term publication`);
-  assert.equal(terms[oathAbilityId].rule,'unit-assault-intercessor-squad',`${book}: Datasheet Oath identity publication`);
-  const eradicator=roster.units.find(unit=>unit.id===auditedIds[0]);
-  assert.ok(eradicator,`${book}: inherited Eradicator missing`);
-  const oath=one(eradicator.gameSelections.abilities.filter(item=>item.id===oathId),`${book}: Eradicator Oath`);
-  assert.equal(oath.text,oathUpdate.change);
-  assert.match(targets.html,/id="army-rule-oath-of-moment"/);
-  assert.match(targets.html,/Munitorum Field Manual sections/);
-  assert.doesNotMatch(targets.html,/data-term="space-marines-ability-oath-of-moment"/);
-  if(book==='space-marines'){
-    assert.ok(roster.units.some(unit=>unit.id===auditedIds[1]),'Space Marines: Wardens missing');
-  }else{
-    assert.ok(!roster.units.some(unit=>unit.id===auditedIds[1]),`${book}: chapter-excluded Wardens leaked`);
-    assert.equal(eradicator.sourceBookId,'space-marines');
-  }
-}
-
 const intercessor=byId.get('unit-intercessor-squad');
 const intercessorOath=one(intercessor.abilities.filter(item=>item.title==='Oath of Moment'),'unrelated Intercessor Oath');
 assert.equal(intercessorOath.text,oathUpdate.change);
