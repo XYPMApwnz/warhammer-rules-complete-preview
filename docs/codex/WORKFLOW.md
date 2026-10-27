@@ -21,7 +21,7 @@ Read the root and nearest scoped `AGENTS.md`, then use `REPO_MAP.md` and `QA_MAT
 ## Roster session
 
 - **Starting scope:** parsed fixture, canonical unit/profile/effect contract, shared runtime consumer.
-- **Read first:** `roster-guides/AGENTS.md`, affected book contract, `books/shared/roster-context.js` and closest helper.
+- **Read first:** the physical contract in `books/shared/roster-v2/PHYSICAL_BEHAVIOR_CONTRACT.md`, affected book contract, `books/shared/roster-v2/runtime.mjs` and closest helper.
 - **Normal QA:** `qa:roster`, affected `qa:<book>`, targeted real-browser scenario when rendering matters.
 - **Expand when:** shared selectors/interpreter operations or attachment/dependency semantics change.
 - **Do not run:** every browser suite or every book by default.
@@ -31,7 +31,7 @@ Read the root and nearest scoped `AGENTS.md`, then use `REPO_MAP.md` and `QA_MAT
 - **Starting scope:** named page/component, its data contract, styles, and a focused browser reproduction.
 - **Read first:** relevant renderer/presentation code and generated-output producer.
 - **Normal QA:** targeted browser test, `qa:integration`, and `qa:publication` only for routes/inventory.
-- **Expand when:** shared UI assets, Library, offline routes, or APP_SHELL are affected.
+- **Expand when:** shared UI assets, Library, runtime inventory or mandatory precache are affected.
 - **Do not run:** source or architecture suites for a presentation-only change.
 
 ## Release session

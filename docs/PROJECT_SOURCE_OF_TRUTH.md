@@ -1,35 +1,8 @@
-# Project source of truth
+# Source ownership and independent certification
 
-This document describes the repository at the certified local milestone below. Treat current code, enrolled evidence and passing QA as authoritative when this document and an older handoff disagree. Start a new conversation with `docs/CURRENT_HANDOFF.md`.
+[README](../README.md) is the current product, entrypoint, build and release guide. This document preserves source/gameplay requirements and the independent V2 certification contract. Historical milestone counts, deferred-book exclusions, old repository URLs, V1 surfaces and V1 compatibility obligations do not define the current product. Unified V2 supports the nine books listed in README. Current enrolled artifacts and scoped evidence determine source versions and factual results; this documentation does not re-certify them.
 
-For new independent unified V2 audits, use the [certification requirements](#independent-v2-certification-requirements) in section 17. Milestone results and release details below remain historical evidence for their recorded HEAD and scope; this contract does not certify a newer checkout.
-
-## 1. Current baseline
-
-- Branch: `working/army-books-clean`.
-- Certified local HEAD: `8fc01265a18e6c367451d18a7b86bf522edf63e8`.
-- Public site: <https://xypmapwnz.github.io/warhammer-rules-fe1d435/>.
-- Pages source: the root of `release/working/army-books-clean` in `XYPMApwnz/warhammer-rules-fe1d435`.
-- Cache revision: `5d5ff33f862d9332`, generated in `glossary/generated/cache-revision.js` and consumed by `service-worker.js`.
-- The expected maintenance state is a clean working tree. This local HEAD contains the latest certified milestone work but is **not yet the public Pages release**.
-- An independent Astra red team, adjudication of any findings, final aggregate/generated refresh, scoped release gate and fresh public acceptance remain before deployment.
-
-## 2. Product scope
-
-Production includes the Library/root, Core Rules reader, nine Army Book surfaces, roster guides and effective roster views, Glossary V2, current standard/event mission reference content, desktop and phone readers, and installable offline/PWA behavior. Certification for the **current milestone** is intentionally narrower than all visible production surfaces.
-
-The certified milestone scope is:
-
-1. Death Guard
-2. Adeptus Mechanicus
-3. Tyranids
-4. T'au Empire
-5. Emperor's Children
-6. Chaos Space Marines
-
-Core Rules is also in scope and certified. Space Marines, Dark Angels and Blood Angels are explicitly out of scope for this milestone and must not be described as currently content- or roster-certified. Existing SM/DA/BA code and historical QA remain production context, not certification evidence for this milestone.
-
-Other factions, game modes, a Mission Assistant and a Game Assistant are future scope unless current tracked code explicitly says otherwise. The Orks source/build work is not one of the nine supported production books.
+The removed handoffs and old milestone snapshots remain available in Git history. Detailed historical content evidence remains under `docs/certification/`; its conclusions apply to its recorded revisions and declared scope.
 
 ## 3. Factual ownership model
 
@@ -44,17 +17,17 @@ accepted factual source
 ```
 
 - Core facts: the pinned Wahapedia 11E Core + Rules Appendix corpus is the operational completeness/content baseline, normalized in `books/core-rules/content/` and exposed by `createEffectiveCoreCatalog()` in `effective-core-catalog.mjs`. Explicit stronger current GW evidence overrides only direct conflicts.
-- Army facts: each book's accepted canonical sources and explicit overrides, normalized into `wh40k-effective-book-model/v1` by the shared Army builders. Generated `data.js`, `roster-data.js`, HTML and mobile stubs are projections.
+- Army facts: each book's accepted canonical sources and explicit overrides, normalized into `wh40k-effective-book-model/v1` by the shared Army builders. Generated JSON/JavaScript/HTML and runtime presentation are projections.
 - MFM facts: `mfm/content/canonical-mfm-facts.mjs`, exposed by `createEffectiveMfmCatalog()` and projected to Army models through `books/shared/tools/effective-mfm-army-projection.mjs`.
 - Mission facts: `missions/content/chapter-approved-2026-27.canonical.json`, validated by `mission-model-contract.mjs` and exposed through `createEffectiveMissionCatalog()`.
 - Glossary V2: a downstream index over effective Core, Army, MFM and Missions interfaces. It does not own gameplay facts.
 - Roster effective state: a runtime projection of canonical/effective book facts, MFM facts, selected physical roster instances, selections, attachments and structured effects.
 
-Generated readers, HTML, scripts, search indexes, popup payloads and roster projections are never factual owners. The legacy Glossary is presentation/history only and must not feed factual semantics or identity back into any producer.
+Generated readers, HTML, scripts, search indexes, popup payloads and roster projections are never factual owners. The large Core-reader glossary JavaScript remains an active definition-data consumer; it must not feed semantics or identity back into factual producers.
 
 ## 4. MFM contract
 
-The current official MFM v1.5 capture, updated 2026-09-30, and centralized effective MFM catalog are the sole current owners of MFM-owned facts:
+The enrolled official captures and centralized effective MFM catalog are the sole owners of MFM-owned facts. Read each owner's accepted source/version rather than treating an old milestone version as globally current:
 
 - unit points and model/copy schedules;
 - paid upgrades and wargear costs;
@@ -66,7 +39,7 @@ The current official MFM v1.5 capture, updated 2026-09-30, and centralized effec
 
 Army-owned gameplay overlays may add distinct Army semantics, but book configuration and historical per-book MFM snapshots must not validate, override or block current MFM-owned numeric values. Cross-domain binding uses explicit identities in `mfm/content/mfm-army-mission-bindings.json`; `REFERENCE_ONLY` records remain explicit instead of creating synthetic Army datasheets.
 
-The current scoped migration covers Death Guard, Adeptus Mechanicus, Tyranids, T'au Empire, Emperor's Children and Chaos Space Marines: 586/586 in-scope records, 0 gaps and 12/12 multi-Force-Disposition records. Multiple Force Dispositions are canonical stable-ID arrays with exact membership, no duplicates and no ordering semantics unless a source explicitly defines order. Khorne Berzerkers and Rubric Marines are enrolled as the two external CSM MFM dependencies. Central MFM remains the sole owner, with 0 owner conflicts and 0 book numeric overrides.
+MFM references keep their original owner and identity. Multiple Force Dispositions are canonical stable-ID arrays with exact membership, no duplicates and no ordering semantics unless a source explicitly defines order. Unsupported or relation-only records stay explicitly non-executable; no synthetic Army datasheets or guessed prices may be created.
 
 `tests/mfm-numeric-ownership-qa.mjs`, `tests/mfm-production-migration-qa.mjs`, MFM domain/cross-domain QA and focused book controls use parity and poisoned/stale-owner controls to prove that obsolete book values cannot influence the effective result.
 
@@ -76,14 +49,14 @@ The current scoped migration covers Death Guard, Adeptus Mechanicus, Tyranids, T
 
 Current examples:
 
-- `Stormlance Task Force` remains one shared canonical Detachment identity, while its MFM augmentation resolves to 2DP in Blood Angels context and to each sibling book's own current value.
-- An inherited Space Marines `Terminator Squad` keeps its shared identity, while Dark Angels context adds the accepted `DEATHWING` keyword overlay without leaking it into Space Marines or Blood Angels.
+- `Stormlance Task Force` keeps its shared canonical identity; contextual values and any accepted source conflict remain explicit rather than being collapsed by name.
+- An inherited Space Marines `Terminator Squad` keeps its shared identity, while a proven Dark Angels army context can enable the source-conditioned `DEATHWING` overlay without leaking it into other contexts or physical MODEL keywords.
 
 Correctness-sensitive joins use explicit canonical IDs or an explicit stable source-ID-to-canonical-ID registry. A display rename must not change identity. Parent-scoped child identities are valid where a global identity is not justified. In particular, same-name weapon profiles can have different semantics and must not be merged globally by title. Title/prose lookup is not acceptable when a stable identity exists.
 
-## 6. Deferred Space Marines, Dark Angels and Blood Angels context
+## 6. Space Marines dependency contexts
 
-Space Marines, Dark Angels and Blood Angels are out of scope for the current certification milestone. Do not treat the architecture notes below, existing code, historical QA or visible book surfaces as proof that these three books are currently certified. Their content and roster certification must be performed in a later bounded milestone.
+These are supported native V2 books. Their current sources, bindings and scoped acceptance evidence determine behavior; old milestone exclusions are not product restrictions.
 
 Space Marines supplies a shared base. Dark Angels and Blood Angels build effective books from that dependency plus their own accepted local facts and explicit stable-ID overlays.
 
@@ -114,15 +87,15 @@ Consequences:
 - conditional effects remain conditional and fail closed when their condition is not proven;
 - effective stats, weapon profiles, abilities and keywords are calculated without mutating canonical facts.
 
-Current QA covers Leader↔Bodyguard behavior, Support, Enhancements, Detachments, selected wargear, stat and weapon changes, added/removed abilities and keywords, stacking, conditional effects, attachment cleanup and duplicate-instance isolation. The main runtime boundaries are `books/shared/roster-context.js`, `roster-game-presentation.js` and `effect-contract-runtime.js`.
+Current QA covers Leader↔Bodyguard behavior, Support, Enhancements, Detachments, selected wargear, stat and weapon changes, added/removed abilities and keywords, stacking, conditional effects, attachment cleanup and duplicate-instance isolation. The current native boundaries are `books/shared/roster-v2/` and the V2 presentation consumers. Historical controls are evidence for their original runtime and revision, not automatic certification of a newer implementation.
 
 ## 8. Effect contract model
 
-Structured effect contracts are built in `books/shared/tools/effect-contract.mjs` and interpreted by `books/shared/effect-contract-runtime.js`. Source semantics determine selector, scope, condition and operation. The shared interpreter should be extended only when an accepted current rule cannot be represented by an existing semantic dimension.
+Source-produced structured contracts feed native bindings and the shared `books/shared/roster-v2/` execution path. Retained canonical/effective producers remain upstream; removed V1 UI is not an alternate runtime. Source semantics determine selector, scope, condition and operation. The shared interpreter should be extended only when an accepted current rule cannot be represented by an existing semantic dimension.
 
 Scope is significant: bearer-only, model-only and profile-only effects must not spread to a unit or attachment group. Conversely, an accepted **Attached Unit** effect must propagate through the formed physical group. Do not add rule-name or faction-name branches when an existing scope/selector expresses the rule.
 
-Certified examples:
+Source-backed behavioral requirements:
 
 - Belicosa-class Capacitor Vanes propagates its accepted weapon changes across the attached physical unit and remains isolated from another copy.
 - Helix Gauntlet grants the accepted Feel No Pain effect to the attached group, including the attached Librarian, and disappears from that character after detach.
@@ -130,7 +103,7 @@ Certified examples:
 
 ## 9. Attachment-group constraint model
 
-MFM eligibility answers **who may attach**. The canonical constraint layer answers **how many, in which roles, under which Bodyguard condition, whether duplicate canonical characters may coexist, and whether attachment is mandatory**. `attachment-group-constraint.mjs` validates the contract; exact constraints are projected onto existing relation edges; `roster-context.js` evaluates them against physical instances.
+MFM eligibility answers **who may attach**. The canonical constraint layer answers **how many, in which roles, under which Bodyguard condition, whether duplicate canonical characters may coexist, and whether attachment is mandatory**. Exact constraints are projected onto source-backed relation edges; the native attachment service and runtime evaluate physical instances.
 
 The current schema supports only proven corpus dimensions:
 
@@ -144,21 +117,21 @@ The current schema supports only proven corpus dimensions:
 
 Do not replace this with a second eligibility graph or a general expression language.
 
-Certified examples and decisions:
+Source-backed decisions to preserve:
 
 - Cybernetica Datasmith→Kastelan Robots permits repeated physical Datasmith instances. The accepted rule is not `max=2`; the exact relation uses unbounded same-canonical/role/total permission while each physical instance remains unique.
 - A Kroot Carnivores Bodyguard at Starting Strength 20 can take a conditional second **distinct** eligible Shaper; ordinary duplicate rules still apply.
 - Ordinary groups retain the default one-Leader/one-Support behavior unless an accepted exact constraint says otherwise.
 - Death Guard dual-role exceptions retain their accepted scoped behavior.
-- Current official MFM v1.5 proves Judiciar has both Leader and Support eligibility. Support does not supersede Leader. One physical Judiciar chooses one feasible role in the actual group. Preserve this accepted hard decision when the deferred SM-family milestone begins.
+- Accepted official MFM evidence proves Judiciar has both Leader and Support eligibility. Support does not supersede Leader. One physical Judiciar chooses one feasible role in the actual group. Preserve this accepted hard decision.
 
-`tests/attachment-group-constraints-qa.mjs` certifies 43/43 current exception records with mutation controls; browser controls cover Datasmith, Kroot, detach/reload and physical isolation.
+For the affected native consumer, verify exact capacity/role conditions, detach/reload and physical isolation with source-backed positive and negative controls. Historical exception counts are not current independent certification.
 
 ## 10. Glossary V2
 
 Glossary V2 is the production factual/search projection. Its canonical input contract is `glossary/v2/content/glossary-v2-index.mjs`; generated `index.en.json` is disposable output. Search, Army/Core popup and full article must resolve the same V2 identity. There is no legacy Glossary gameplay fallback.
 
-The current generated index contains 4,705 entries: 1,813 standalone browse articles and 2,892 parent-scoped children. Main browse exposes standalone entries; scoped children remain searchable and directly openable with parent/book context. Same-name profiles retain visible parent context and may not resolve to an arbitrary global entity.
+The generated index contains standalone browse articles and parent-scoped children; its current inventory is checked by the native producer and source review rather than pinned to a historical count. Main browse exposes standalone entries; scoped children remain searchable and directly openable with parent/book context. Same-name profiles retain visible parent context and may not resolve to an arbitrary global entity.
 
 Shared canonical entries can expose context-specific effective facts through `resolveView(bookId, id)`. Filter/search changes must reconcile the active article with the visible result set while deep-link and Back/Forward behavior remain coherent.
 
@@ -188,30 +161,9 @@ Current evidence limitations:
 - Mirrored World has accepted rule, options, D6 metadata and reroll-6 fact, but no proven roll-to-option mapping; option order must not be turned into die results.
 - Six Deployment and 45 Event-layout machine geometry layers await verified digitization.
 
-## 13. Current milestone certification state
+## 14. Generic runtime requirements
 
-Content certification is source-first and distinct from roster certification. The current state is:
-
-| Domain | Content certification | Roster certification | Current MFM v1.5 |
-|---|---|---|---|
-| Core Rules | Complete corpus, normalized text, structured facts, player-visible projection and references certified against the accepted Waha baseline and source-defect ledger | Not an Army roster denominator | Operational baseline certified |
-| Death Guard | 100% certified | 100% certified; source-derived denominator fully executable | Regression PASS |
-| Adeptus Mechanicus | 100% certified | 100% certified | Regression PASS |
-| Tyranids | 100% certified | 1269/1269; partial 0; missing 0 | Regression PASS |
-| T'au Empire | 100% certified | 1291/1291; partial 0; missing 0 | Regression PASS |
-| Emperor's Children | 100% certified | 670/670; partial 0; missing 0 | Regression PASS |
-| Chaos Space Marines | 100% certified | current v1.5 denominator 1586/1586; partial 0; missing 0 | Convergence PROVEN |
-| Space Marines | Out of scope | Out of scope | Deferred |
-| Dark Angels | Out of scope | Out of scope | Deferred |
-| Blood Angels | Out of scope | Out of scope | Deferred |
-
-The final CSM census additionally proves attachments 58/58, active effects 100/100, physical-instance cases 67/67, runtime operator classes 11/11, composition capabilities 3/3, muster-legality classes 5/5 and transport classes 2/2.
-
-Book content records are documented under `docs/certification/`. Roster certification is proven by the focused source-derived censuses and mutation controls accumulated in the corresponding book tests; do not confuse one certification layer with the other.
-
-## 14. Certified generic runtime contracts
-
-The following shared mechanisms are certified in the current milestone and must remain data-driven and faction-agnostic:
+The following supported mechanisms must remain data-driven and faction-agnostic. Each implementation claim still needs evidence for its recorded HEAD and scope:
 
 - physical roster-instance identity and duplicate isolation;
 - exact composition bounds, multipart mixtures and canonical model identities;
@@ -233,65 +185,18 @@ The following shared mechanisms are certified in the current milestone and must 
 
 Preserve these decisions: Judiciar is Leader + Support; Datasmith multiplicity is not an invented maximum of two; Kroot capacity is conditionally source-backed; MFM is the sole numeric owner; canonical identity does not make contextual facts globally identical; same-name profiles remain parent-scoped; generated UI and tests are never factual owners.
 
-## 15. Closed defect classes — do not reopen without new evidence
+## 16. Unresolved evidence and current QA debt
 
-These contracts are certified at the baseline. Investigate them again only after a concrete new failure, source change or reproducible contradiction.
-
-| Class | Certified contract | Focused QA |
-|---|---|---|
-| MFM numeric ownership | Central MFM is the current numeric/eligibility owner; stale book values have zero influence | `mfm-numeric-ownership-qa.mjs`, `mfm-production-migration-qa.mjs`, `points-consumer-convergence-qa.mjs` |
-| Judiciar dual role | Current MFM preserves Leader and Support alternatives; this is a hard decision for the deferred SM-family milestone, not a current SM/DA/BA certification claim | `mfm-production-migration-qa.mjs`, roster attachment QA |
-| Attachment constraints | 43/43 enrolled exceptions validate and mutation controls fail closed | `attachment-group-constraints-qa.mjs`, `browser/attachment-group-constraints.mjs` |
-| Datasmith/Kroot | Exact multiplicity and Starting-Strength-20 capacity work without weakening ordinary groups | same attachment QA/browser paths |
-| Physical instances | duplicate datasheets, attachments and effects remain isolated | `physical-unit-game-projection-qa.mjs`, `physical-unit-game-effects-qa.mjs` |
-| Belicosa/Helix | accepted Attached Unit effects propagate and detach/isolation controls hold | `attached-unit-wide-effect-scope-qa.mjs`, `browser/attached-unit-wide-effects.mjs` |
-| Glossary context | existing contextual identity controls retain book-specific facts without sibling leakage; SM-family certification remains deferred | `glossary-v2-faction-context-qa.mjs`, `browser/glossary-v2-faction-context.mjs` |
-| Weapon keywords | HEAVY, ASSAULT, PRECISION and LETHAL HITS navigate to Core while weapon profiles remain separate | `browser/weapon-keyword-navigation.mjs` |
-| DG keyword popup | `keyword-death-guard` resolves through V2 to its canonical Core owner | Glossary production/navigation QA and public release smoke |
-| Mission projection | current Mission article classes have useful source-backed projections; operation codes do not replace readable rules | Mission full-corpus/domain QA, Glossary V2 production smoke |
-| Source integrity | all current declared sources are classified and enrolled with exact integrity/currentness checks | `npm run source:check`, source enrollment/ingestion QA |
-| Publication freshness | final aggregate publication refresh is deferred until after independent red-team adjudication | `npm run publication:check` at the final release gate |
-| Cache/offline | the current derived stamp is `5d5ff33f862d9332`; update and offline acceptance must be repeated at the final release gate | `npm run cache:check`, `test:pwa-update`, `test:cold-offline` |
-
-Certification is scoped to what these controls prove; it is not permission to ignore a new reproducible defect.
-
-## 16. Known open issues and evidence gaps
-
-**PROVEN BUG**
-
-- None recorded at the certified baseline.
-
-**EVIDENCE GAP**
-
-- Mirrored World exact D6-to-option mapping.
-- Verified vector digitization for 6 Deployment and 45 Event-layout geometries.
-
-**TECH DEBT**
-
-- Some books retain different adapter/source shapes behind the shared effective contract; do not refactor merely for uniformity.
-- Legacy Glossary files and historical per-book MFM snapshots remain for compatibility/provenance. They must remain non-authoritative.
-- Accepted compatibility rows that lack stable upstream source identities remain outside correctness-sensitive identity repairs; do not invent title-to-ID ownership.
-- Four current priced T'au Imperial Armour MFM records (Ta'unar Supremacy Armour, Manta, Tiger Shark and AX-1-0 Tiger Shark) remain explicit `REFERENCE_ONLY` because no accepted Army canonical datasheet identities exist.
-- `tests/sm-family-normalization-qa.mjs` is a standalone historical QA path with a stale Orksbane-profile assertion; it is not part of the current aggregate and is not evidence of a production defect.
-
-**FUTURE WORK**
-
-- Complete intended faction/mode coverage, Mission/Game Assistant features and any remaining product UX before considering a clean rewrite.
-- Digitize geometry only from accepted evidence with independent verification.
-- Close evidence gaps when new accepted official evidence is enrolled.
+- Mirrored World exact D6-to-option mapping remains unproven where not enrolled; option order is not a die-result mapping.
+- Verified vector digitization for Deployment and Event-layout geometries requires independent accepted evidence. Images alone do not prove polygons or measurement endpoints.
+- Accepted compatibility rows lacking stable upstream source identities remain outside guessed title-to-ID repairs.
+- MFM-only or `REFERENCE_ONLY` entries must not become physical Army datasheets or executable pricing bindings without source-backed enrollment.
+- Current book-specific Chapter, equipment, battle-context and semantic limits remain in their review ledgers and source-bound artifacts.
+- Known reproducible QA debt, including the historical SM/Deathwatch `--fresh` failure, is tracked in [TRACKER](TRACKER.md). A known failure remains FAIL; do not hide it by changing EXPECTED.
 
 ## 17. QA and certification contract
 
-Major release gates are:
-
-- `npm run test:full` — complete aggregate, reserved for the final scoped release gate after red-team adjudication and generated-output refresh.
-- `npm run publication:check` — generated publication ownership/freshness and offline route inventory; it is not yet the release claim for this local milestone HEAD.
-- `npm run source:check` and enrolled-source QA — exact accepted source integrity/currentness; rerun at the final gate rather than copying a historical owner count into a release claim.
-- `npm run cache:check`, `npm run test:pwa-update`, `npm run test:cold-offline` — derived cache revision, update behavior and offline routes.
-- deterministic builder `--check` paths for Core/Army/Glossary/Missions outputs.
-- focused `qa:points`, `qa:roster`, `qa:effects`, book QA and integration controls for correctness-sensitive changes.
-
-Use focused QA during a repair and reserve `test:full` for explicit checkpoints/release gates. A green test is not independent factual proof when its expected value comes from the same producer under test. Prefer accepted-source comparisons, independent contracts, poisoned-input checks and mutation controls.
+Use the current native commands, runtime-only packaging and scope rules in [README](../README.md) and [QA_MATRIX](codex/QA_MATRIX.md). Focused regression PASS is not independent factual proof when EXPECTED comes from the same producer. Source-derived expectations, poisoned inputs, negative controls and mutation sensitivity remain required at the affected boundary. Broad acceptance is a separate authorized stage.
 
 ### Independent V2 certification requirements
 
@@ -434,15 +339,9 @@ as evidence for their recorded HEAD, sources and scope; do not retroactively
 invalidate them or automatically transfer their PASS to a new independent audit.
 Adding this contract performs no certification and reopens no closed defect class.
 
-## 18. Release and Pages workflow
+## 18. Release workflow
 
-- Authoritative working branch: `working/army-books-clean`.
-- Deployment remote: `release` → `XYPMApwnz/warhammer-rules-fe1d435`.
-- GitHub Pages serves branch `working/army-books-clean`, path `/`, through the repository's existing legacy Pages build.
-- Before deployment, fetch and resolve the actual Pages source SHA from current configuration/build state. Create a clearly named rollback branch at that exact SHA.
-- Require the published SHA to be an ancestor of the certified local HEAD. Push a normal fast-forward only; never force-push or rewrite release history.
-- Wait for Pages to report the new exact SHA, then use fresh desktop/phone contexts to verify public routes, critical controls, required assets, service worker/cache revision and offline behavior.
-- Public URL: <https://xypmapwnz.github.io/warhammer-rules-fe1d435/>.
+Follow [README](../README.md#runtime-only-packaging-and-publication) and the [runtime-only checklist](../tools/PAGES_RUNTIME_RELEASE.md). GitHub Actions publishes only an explicitly authorized `unified-v2-release` candidate. Source/feature branches are for review; Pages settings and release history must not be changed implicitly. No V1 URL, roster or offline-migration compatibility is required.
 
 ## 19. Development policy
 
@@ -452,20 +351,7 @@ Adding this contract performs no certification and reopens no closed defect clas
 - Fix a systemic defect once at the common producer/runtime boundary instead of patching every output.
 - Do not reopen a certified class without a new signal.
 - Preserve explicit stable identities and fail closed on unknown/conflicting bindings.
-- Run broad `test:full` only at checkpoints or release gates, then deploy only the exact certified clean HEAD.
-
-## 20. Future clean rewrite
-
-A clean rewrite starts only after the entire intended product is feature-complete, not merely after the present Game Night scope is stable. Its inputs should be:
-
-- canonical/effective factual exports;
-- the accepted source/evidence package;
-- final behavior specification;
-- final UX/design specification;
-- the acceptance suite;
-- the current final application as a behavioral oracle.
-
-The new implementation should preserve proven contracts and observable behavior without copying legacy architecture blindly.
+- Run broad acceptance only at authorized checkpoints or release gates, and publish only the exact reviewed clean candidate.
 
 ## 21. Do not regress these decisions
 
@@ -480,12 +366,6 @@ The new implementation should preserve proven contracts and observable behavior 
 > - Effects and attachments operate on physical instances and must not leak between duplicate datasheets.
 > - Reuse the shared structured effect runtime instead of duplicating rule-specific behavior.
 
-## Death Guard content certification
+## Historical content certification records
 
-The complete supported/current Death Guard gameplay corpus is certified source-first against the 2026-09-25 Waha 11E capture, with current centralized MFM ownership and official Faction Pack precedence. See [DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md](certification/DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md).
-
-## Adeptus Mechanicus content certification
-
-The complete supported/current Adeptus Mechanicus gameplay corpus is certified source-first against the 2026-09-25 Waha 11E capture, with current centralized MFM ownership and stronger enrolled official evidence taking precedence on direct conflicts. See [ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md](certification/ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md).
-
-The remaining certified milestone content records are [Tyranids](certification/TYRANIDS_WAHA_CONTENT_CERTIFICATION.md), [T'au Empire](certification/TAU_EMPIRE_WAHA_CONTENT_CERTIFICATION.md), [Emperor's Children](certification/EMPERORS_CHILDREN_WAHA_CONTENT_CERTIFICATION.md) and [Chaos Space Marines](certification/CHAOS_SPACE_MARINES_WAHA_CONTENT_CERTIFICATION.md). Core is documented in [CORE_WAHA_CONTENT_CERTIFICATION.md](certification/CORE_WAHA_CONTENT_CERTIFICATION.md).
+The retained records for [Core](certification/CORE_WAHA_CONTENT_CERTIFICATION.md), [Death Guard](certification/DEATH_GUARD_WAHA_CONTENT_CERTIFICATION.md), [Adeptus Mechanicus](certification/ADEPTUS_MECHANICUS_WAHA_CONTENT_CERTIFICATION.md), [Tyranids](certification/TYRANIDS_WAHA_CONTENT_CERTIFICATION.md), [T'au Empire](certification/TAU_EMPIRE_WAHA_CONTENT_CERTIFICATION.md), [Emperor's Children](certification/EMPERORS_CHILDREN_WAHA_CONTENT_CERTIFICATION.md) and [Chaos Space Marines](certification/CHAOS_SPACE_MARINES_WAHA_CONTENT_CERTIFICATION.md) preserve their source baselines and scoped historical conclusions. They are not automatically new certificates for this checkout.

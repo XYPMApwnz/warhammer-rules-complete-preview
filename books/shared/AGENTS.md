@@ -1,15 +1,13 @@
-# Shared Army Book code
+# Shared native V2 and factual producer code
 
-- This scope contains canonical joins, effective-model construction, roster/effect runtime, shared rendering, and source/build contracts used by multiple books.
-- Read `book.config.json` for the affected book and `docs/codex/REPO_MAP.md` before tracing shared code.
-- Accepted book/Core sources and config-owned contracts feed `tools/build-army-book.mjs` and `tools/effective-book-model.mjs`.
-- `effect-contract-runtime.js`, `roster-context.js`, and presentation helpers implement generic behavior; book facts belong in accepted structured contracts.
-- `tools/canonical-join-contract.mjs`, `tools/build-roster-catalog.mjs`, and related helpers must use persistent canonical IDs.
-- Files under book `scripts/`, generated publication bundles, mobile HTML, and glossary outputs are consumers, not factual inputs.
-- Keep the effective model authoritative after validation; compatibility and presentation copies may not override it.
-- For a book-local fix, begin in that book and expand here only when the shared mechanism is the demonstrated cause.
-- For a shared change, identify every affected consumer family before choosing dependent QA.
-- Run the relevant subsystem QA first, then affected `qa:<book>` commands, then `npm run qa:integration`.
-- Use `npm run qa:architecture` only when canonical/effective ownership or identity boundaries changed.
-- Do not migrate book-specific presentation merely to make implementations look uniform.
-- Do not edit generated book outputs by hand; rebuild through the declared producer.
+- Read [README](../../README.md), the affected native book config/bindings and the repository map before tracing shared code.
+- Accepted sources and canonical/effective producers own facts. Native bindings and runtime/presentation are consumers, not alternative factual owners.
+- `roster-v2/` implements physical imports, selections, attachments and typed gameplay; `application-v2/` owns shell/routes; `army-book-app-v2/` owns book/Effective/Guide presentation.
+- Retained tools and canonical contracts may remain necessary even when their former V1 UI was removed. Trace actual imports before deleting code.
+- Preserve persistent identities, source conditions, physical UNIT/MODEL/weapon ownership, mixed-owner membership and attribution.
+- Generated artifacts and glossary data must not feed authoritative facts back into source producers.
+- For a local fix, begin with the affected owner; expand only when a shared mechanism or declared dependency is proved.
+- Shared changes need regressions for affected consumers and `qa:integration`; use real browser QA for visible behavior.
+- Use `qa:architecture` only when canonical/effective ownership or identity boundaries change.
+- Do not add faction/name branches or rebuild architecture merely for uniformity.
+- Legacy V1 UI, old URLs, Roster Guides and V1 roster/update compatibility are not current requirements.

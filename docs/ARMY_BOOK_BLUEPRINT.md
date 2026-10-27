@@ -1,8 +1,10 @@
 # Army Book Blueprint
 
-This document is the product contract for adding and maintaining Warhammer 40,000
-11th Edition Army Books. It defines what a book does without prescribing one
-implementation.
+This document preserves the content and user-path requirements for adding and
+maintaining Warhammer 40,000 11th Edition Army Books. [README](../README.md) defines
+the current Unified V2 product. Retired V1 interfaces, old URLs, separate mobile
+HTML and V1 roster/update compatibility are not requirements. Existing native
+contracts are reused; this document does not authorize a parallel UI or engine.
 
 - `PREVIEW` is the minimum gate for adding a useful book to the Library.
 - `OPTIONAL` capabilities apply only when a book claims to support them.
@@ -80,9 +82,9 @@ not mandatory architectural templates.**
 
 ## PREVIEW-005 - Reader, Library and navigation
 
-- The user MUST be able to move from Library to the book entry and reader, choose a
-  view manually when needed, use the entry without JavaScript as a fallback, and
-  return to the Library.
+- The user MUST be able to move from V2 Home to the book and its intended reading
+  target, and return with meaningful context. Use the existing JavaScript V2
+  application and responsive layout; a second no-JavaScript or V1 reader is not required.
 - Primary navigation MUST reach the book's available major sections and reveal the
   branch containing the active rule, Detachment, category or Datasheet. Current state
   and target positioning MUST remain observable rather than depending on hover.
@@ -90,8 +92,9 @@ not mandatory architectural templates.**
   MUST open the correct Profile, Abilities, Wargear Abilities, Composition, Wargear
   Options, Leader, Keywords or other applicable section; absent sections MUST NOT
   create empty controls.
-- Semantic identifiers, Desktop anchors and direct Phone routes MUST remain stable
-  across ordinary rebuilds. Deep links MUST resolve to the intended reading target.
+- Native semantic identifiers and V2 route context MUST remain stable across
+  ordinary rebuilds. Supported V2 deep links MUST resolve to the intended reading
+  target; removed V1 anchors and standalone Phone URLs are not compatibility targets.
 - Back, close and return actions MUST restore the previous meaningful reading context
   rather than blindly discard it. Popup and Mega Glossary round trips SHOULD preserve
   the originating Army Book, Datasheet and recoverable reference context.
@@ -101,9 +104,9 @@ not mandatory architectural templates.**
 - Desktop and Phone MUST expose equivalent Army Rule, Detachment, Datasheet,
   category, ability, Wargear Ability, Leader and Updates inventories, with the same
   rule-bearing meaning and order. Presentation MAY differ.
-- Switching views SHOULD preserve the equivalent Start, rule, Detachment, Datasheet
-  or semantic section when that target exists, rather than returning to Start without
-  need.
+- Responsive viewport changes SHOULD preserve the current Start, rule, Detachment,
+  Datasheet or semantic section. Do not add separate Desktop/Phone implementations
+  or a legacy view switcher.
 - Phone navigation MUST be usable by touch, expose its current route and parent
   branch, open and close without hover dependence, and avoid horizontal overflow.
   Conditional sections MUST remain available in both views when applicable.
@@ -116,10 +119,11 @@ not mandatory architectural templates.**
 - Clickable abilities, weapons, weapon tags and rule terms MUST open the correct
   definition over the current reading context. Closing MUST restore that context and
   focus; nested references MUST return through their meaningful popup stack.
-- Navigation targets, public deep links and generated Phone routes MUST resolve and
-  retain rule-bearing content. Dead or silently mismatched routes are failures.
-- The Library, entry, Desktop reader, Phone routes and required assets MUST remain
-  usable after supported offline or cold reloads once built and cached.
+- Supported V2 navigation targets and deep links MUST resolve and retain
+  rule-bearing content. Dead or silently mismatched current routes are failures.
+- The V2 shell, book/Core views and required assets MUST remain usable after
+  supported offline reloads when their compatible data has been cached. Large book
+  and glossary payloads stay lazy; retired V1 cold-start journeys are not required.
 - Representative Library, reader, navigation, popup, Phone and offline use MUST NOT
   produce uncaught runtime or console errors.
 

@@ -21,7 +21,7 @@ For independent unified V2 certification of Core, DG, AdMech and CSM, follow the
 | Roster parser/projection/runtime | `qa:roster` | Affected `qa:<book>`, `qa:integration`, targeted browser runtime | `qa:release` |
 | V2 selected Enhancement / declarative grant presentation | `qa:shared:v2:enhancement-presentation` | `qa:shared:v2:enhancement-presentation:browser`, `qa:shared:v2:source-effects`, `qa:integration` | No new content certification |
 | Glossary facts/editorial/build | `qa:glossary` | Affected `qa:<book>` for projection changes; `qa:integration` for viewer wiring | `qa:release` |
-| Publication/mobile/offline inventory | `qa:publication` | `qa:integration`; targeted rendered/browser QA | `qa:release` |
+| V2 publication/offline inventory | `qa:publication` | `qa:integration`; targeted rendered/browser QA | `qa:release` |
 | Source manifest/authentication | `qa:sources` | Affected `qa:<book>` and source-specific `--check` | `qa:release` |
 | Architecture-sensitive ownership/identity | `qa:architecture` plus direct subsystem QA | Affected books and `qa:integration` | `qa:release` |
 | General route/wiring change | `qa:integration` | `qa:publication` or targeted browser QA | `qa:release` |
