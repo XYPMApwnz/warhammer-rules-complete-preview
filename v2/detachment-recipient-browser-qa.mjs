@@ -7,19 +7,15 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {createRequire} from 'node:module';
+import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {chargeFixtures} from './charge-qa-fixtures.mjs';
 
 const repo=path.resolve(process.env.F1_BROWSER_ROOT||fileURLToPath(new URL('../',import.meta.url)));
-const out=process.env.F1_BROWSER_SCREENSHOTS||'E:/Warhammer/qa-artifacts/f1-detachment-recipients-20261028/browser';
+const out=path.resolve(process.env.F1_BROWSER_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'wh-f1-recipients-browser-')));
+const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+assert.ok(out!==sourceRepo&&!out.startsWith(sourceRepo+path.sep),'Browser evidence must be outside the repository');
 fs.mkdirSync(out,{recursive:true});
-const require=createRequire(import.meta.url);
-let playwright;
-try{playwright=require('playwright');}catch(error){
-  if(error.code!=='MODULE_NOT_FOUND')throw error;
-  playwright=require(path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
-}
 const am='adeptus-mechanicus',dg='death-guard',csm='chaos-space-marines';
 const forge='detachment-lords-of-the-forge:rule',halo='detachment-haloscreed-battle-clade:rule',fly='detachment-flyblown-host:rule';
 const dominusProfile='datasheet-tech-priest-dominus:profile:default';
@@ -168,13 +164,12 @@ async function assertEligibility(page,instance,ruleId,clauseId,{wanted,quote,lab
 }
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin='http://127.0.0.1:'+server.address().port;
-const executable=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Users/denis/AppData/Local/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-win64/chrome-headless-shell.exe';
 let browser;
 const amUnits=['unit-tech-priest-dominus','unit-tech-priest-dominus','unit-servitor-battleclade','unit-skitarii-rangers','unit-skitarii-rangers'];
 try{
   assert.ok(!process.env.F1_BROWSER_DEVICE||['desktop','mobile'].includes(process.env.F1_BROWSER_DEVICE),'Unknown browser device filter');
   assert.ok(!process.env.F1_BROWSER_CASE||['Lords MODEL recipients','wrong AM Detachment','Haloscreed eligibility only','Haloscreed wrong Detachment','Flyblown Host','Virulent Vectorium','CSM daemonkin source binding','CSM wrong Detachment','EC native fixture','DG Omega','blood-angels existing export','dark-angels existing export','space-marines existing export','tau-empire existing fixture','tyranids existing fixture','CSM Creations table selection','CSM Huron table selection'].includes(process.env.F1_BROWSER_CASE),'Unknown browser case filter');
-  browser=await playwright.chromium.launch({headless:true,...(fs.existsSync(executable)?{executablePath:executable}:{})});
+  browser=await launchChromium();
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]
     .filter(([device])=>!process.env.F1_BROWSER_DEVICE||process.env.F1_BROWSER_DEVICE===device)){
     const filter=process.env.F1_BROWSER_CASE;
@@ -332,6 +327,7 @@ try{
   assert.equal(requestFailures.length,0,'Failed runtime resource');
   assert.ok(results.length,'No browser assertion was executed');
 }finally{
+  console.log('F1 browser evidence: '+out);
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({browser:browser?.version(),root:repo,
     realNewRecruitExportTested:false,viewports:[{width:1440,height:1000},{width:390,height:844}],
     filters:{device:process.env.F1_BROWSER_DEVICE||null,case:process.env.F1_BROWSER_CASE||null},

@@ -1,6 +1,11 @@
-/** F1 publication A -> B: manual update preserves a physical roster and exposes
- * the new MODEL text. Packages are built separately from the exact two trees.
- * Only normal import/attachment/update controls change application state. */
+/** One-off historical F1 A -> B acceptance; intentionally not a mandatory suite.
+ * Permanent update coverage is tests/browser/pwa-update-flow.mjs (test:pwa-update).
+ * Build separate baseline/feature packages with tools/pages-runtime-package.mjs,
+ * set F1_PWA_BASELINE_PACKAGE, F1_PWA_FEATURE_PACKAGE and F1_PWA_OUT to their
+ * external paths, then run: node v2/detachment-recipient-pwa-qa.mjs.
+ * Browser selection uses WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH via the existing
+ * browser-launch helper. Only normal import/attachment/update controls change
+ * application state; packages are never generated into the repository. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';

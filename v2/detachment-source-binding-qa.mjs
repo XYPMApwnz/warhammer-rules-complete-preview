@@ -13,11 +13,17 @@ import {createCSMBrowserRoster} from '../books/chaos-space-marines/v2/roster-boo
 import {normalizeCSMEffectiveBook} from '../books/chaos-space-marines/v2/roster-presentation.mjs';
 import {createBloodAngelsRosterRuntime} from '../books/blood-angels/v2/roster-runtime.mjs';
 import {createDarkAngelsRosterRuntime} from '../books/dark-angels/v2/roster-runtime.mjs';
+import {createBloodAngelsRosterService} from '../books/blood-angels/v2/roster-import.mjs';
+import {createDarkAngelsRosterService} from '../books/dark-angels/v2/roster-import.mjs';
+import {createBloodAngelsRuleSchema} from '../books/blood-angels/v2/rule-contract-schema.mjs';
+import {createDarkAngelsRuleSchema} from '../books/dark-angels/v2/rule-contract-schema.mjs';
 import {conditionalPolicyDeclarations as baDeclarations} from '../books/blood-angels/v2/conditional-policy-declarations.mjs';
 import {conditionalPolicyDeclarations as daDeclarations} from '../books/dark-angels/v2/conditional-policy-declarations.mjs';
 import {createECBrowserRoster} from '../books/emperors-children/v2/roster-boot.mjs';
 import {projectDetachmentText,detachmentTextDeclaration,detachmentOwnerChain,projectConditionalRow,detachmentTableOption} from '../books/shared/roster-v2/conditional-policy.mjs';
-import {validateRoster} from '../books/shared/roster-v2/context.mjs';
+import {validateRoster,formRoster,predicateContext,withRosterDetachments} from '../books/shared/roster-v2/context.mjs';
+import {enhancementOwnerContext} from '../books/shared/roster-v2/compatibility-context.mjs';
+import {executeRosterEffects} from '../books/shared/roster-v2/effects.mjs';
 import {projectEffectiveInstance} from '../books/shared/roster-v2/effective-instance.mjs';
 import {prepareRosterPresentationCards,projectFormedUnitCards,validateDetachmentTextPresentation,groupDetachmentTextRows} from '../books/shared/army-book-app-v2/personal.mjs';
 
@@ -28,7 +34,7 @@ const runtimeFiles={
   'emperors-children':'roster-attachments','blood-angels':'roster-runtime','dark-angels':'roster-runtime',
   'space-marines':'roster-runtime','tau-empire':'roster-import','tyranids':'roster-runtime'
 };
-const results=[],mutations=[],census=[],typedControls=[],temporal=[],tableProofs=[];
+const results=[],mutations=[],census=[],typedControls=[],temporal=[],tableProofs=[],enhancementOwnerReachability=[];
 function independentChain(book,rule){const index=new Map(book.entities.map(entity=>[entity.id,entity])),seen=new Set(),chain=[];while(rule){assert.ok(!seen.has(rule.id),'Independent source ownership cycle');seen.add(rule.id);chain.push({id:rule.id,kind:rule.kind,parentId:rule.parentId||null});if(rule.kind==='DETACHMENT')return chain;rule=index.get(rule.parentId);}return null;}
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const rowFor=(projection,instance,rule,clause)=>projection.units.find(unit=>unit.instanceId===instance)?.conditional
@@ -308,7 +314,78 @@ for(const config of [
  temporal.push({book:'death-guard',fixture:'omega-megaroster.txt',operations:['attach','detach','reattach','load','detachment switch'],status:'PASS'});
 }
 
-const result={status:'PASS',cases:results.length,mutationsRejected:mutations.length,results,mutations,census,typedControls,temporal,tableProofs,
+// Actual native imports, rather than a fabricated diagnostic row or a stubbed
+// evaluator, guard the four canonical Enhancement owner-assignment paths. All
+// three MODEL assignments are STATIC MODEL_KEYWORD atoms: physical keywords
+// yield TRUE/FALSE even when Warlord is unknown. Nightforged is a known UNIT_ID
+// and cannot enter the executor's MODEL-only unavailable-owner branch.
+for(const config of [
+ {book:'blood-angels',name:'Blazing Icon',id:'enhancement-ba-3f19e1f57dd94fcc92ae',unit:'unit-ba-09adea2bf319462fb4ed',
+  predicate:'MODEL_KEYWORD',subject:'MODEL',keyword:'ADEPTUS ASTARTES',create:createBloodAngelsRosterService,schema:createBloodAngelsRuleSchema},
+ {book:'blood-angels',name:'Instinctive Interception',id:'enhancement-ba-9b2691d5805d46df9b88',unit:'unit-ba-014cc7b19aca4d5b84a3',
+  predicate:'MODEL_KEYWORD',subject:'MODEL',keyword:'DEATH COMPANY',create:createBloodAngelsRosterService,schema:createBloodAngelsRuleSchema},
+ {book:'dark-angels',name:'Lord of the Ravenwing',id:'enhancement-da-822dfec678424ec293c2',unit:'unit-da-467009b00bb9402dadee',
+  predicate:'MODEL_KEYWORD',subject:'MODEL',keyword:'RAVENWING',create:createDarkAngelsRosterService,schema:createDarkAngelsRuleSchema},
+ {book:'dark-angels',name:'Nightforged Battery',id:'enhancement-da-fb83cfb304e74056b819',unit:'unit-da-48fe8c59ed2449e1a36b',peer:'unit-da-f8f0629206e744459a9f',
+  predicate:'UNIT_ID',subject:'UNIT',create:createDarkAngelsRosterService,schema:createDarkAngelsRuleSchema}
+]){
+ const book=read(`books/${config.book}/v2/generated/roster-import.json`),index=new Map(book.entities.map(entity=>[entity.id,entity]));
+ const before=clone(book),rule=index.get(config.id),selector=rule.ruleContract.assignment.selector;
+ assert.equal(rule.data.title,config.name);assert.equal(selector.predicate,config.predicate);
+ assert.equal(selector.subject,config.subject);assert.equal(selector.contextLevel,'STATIC');
+ assert.deepEqual(selector.arguments,config.keyword?{keyword:config.keyword}:{id:config.unit});
+ const expectedPolicies=config.subject==='UNIT'?2:1;
+ const unitText=(id,{enhancement=false,warlord=false}={})=>{
+  const members=book.importBindings.compositions.filter(row=>row.ownerId===id&&row.quantity.min>0);
+  assert.ok(members.length,'Real native composition missing');
+  return members.reduce((sum,row)=>sum+row.quantity.min,0)+'x '+index.get(id).data.title+' (9999 pts)\n'+
+   members.map(row=>'• '+row.quantity.min+'x '+index.get(row.id).data.name+'\n').join('')+
+   (warlord?'Warlord\n':'')+(enhancement?'Enhancement: '+config.name+'\n':'');
+ };
+ for(const mode of ['unspecified','peer',...(config.subject==='MODEL'?['owner']:[])]){
+  const text='+ FACTION KEYWORD: '+(config.book==='blood-angels'?'Blood Angels':'Dark Angels')+'\n+ DETACHMENT: '+index.get(rule.parentId).data.title+'\n'+
+   unitText(config.unit,{enhancement:true,warlord:mode==='owner'})+unitText(config.peer||config.unit,{warlord:mode==='peer'});
+  let service=config.create(book),imported=service.import(text);const bindings={};
+  if(imported.status==='NEEDS_BINDINGS'){
+   assert.ok(imported.needsBindings.length&&imported.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER'));
+   bindings.enhancementBearers=Object.fromEntries(imported.needsBindings.map(need=>[need.key,need.candidates[mode==='peer'?need.candidates.length-1:0].id]));
+   imported=service.import(text,bindings);
+  }else if(imported.status==='READY'&&mode==='peer'&&config.subject==='MODEL'){
+   const assignment=service.state.units[0].enhancementAssignments.find(row=>row.enhancementId===config.id);assert.ok(assignment);
+   bindings.modelBearers={'parsed-unit-1':{[config.id]:assignment.modelScopeId}};
+   service=config.create(book);imported=service.import(text,bindings);
+  }
+  assert.equal(imported.status,'READY',config.name+': real native import '+JSON.stringify(imported.errors));
+  const state=service.snapshot();assert.equal(state.units[0].warlord,mode==='unspecified'?null:mode==='owner');
+  const verified=validateRoster(book,state,book.rosterAttachmentPolicies),base=formRoster(book,verified);
+  const api=withRosterDetachments(config.schema({book,state})),owner=base.units[0];
+  const contexts=config.subject==='MODEL'?owner.profiles.map(model=>predicateContext(verified,base,owner.instanceId,'MODEL',model.scopeId)):
+   [predicateContext(verified,base,owner.instanceId,'UNIT')];
+  const states=contexts.map(context=>api.evaluatePredicate(selector,enhancementOwnerContext(rule.ruleContract,context)));
+  assert.ok(states.length&&states.every(state=>['TRUE','FALSE'].includes(state)),'Valid physical owner must not produce UNKNOWN/INVALID');
+  assert.ok(states.includes('TRUE'),'Native accepted bearer must have a proven physical owner');
+  // The native service already invokes the real executor with its equipment
+  // binder. Also exercise the exported executor with the real native schema;
+  // these four STATIC owner atoms do not depend on equipment context.
+  const executed=executeRosterEffects(book,verified,api);
+  const rows=projection=>projection.units.flatMap(unit=>unit.conditional.filter(row=>row.ruleId===config.id).map(row=>({instanceId:unit.instanceId,row})));
+  assert.deepEqual(rows(executed),rows(service.projection),'Scoped native/direct Enhancement executor drift');
+  assert.ok(!executed.units.some(unit=>unit.conditional.some(row=>row.ruleId===config.id&&row.reason==='Enhancement owner context unavailable')),
+   'An actual unavailable-owner diagnostic would require a fresh reachability review');
+  const policies=rows(executed).filter(item=>item.row.policy);assert.equal(policies.length,expectedPolicies);
+  assert.ok(policies.every(item=>item.instanceId==='parsed-unit-1'),'Unassigned repeated source acquired Enhancement policy');
+  for(const unit of state.units){
+   assert.doesNotThrow(()=>service.effective(unit.instanceId),'Native effective consumer must accept actual executor rows');
+   assert.doesNotThrow(()=>projectEffectiveInstance(book,executed,unit.instanceId),'Effective projector must accept real scoped executor rows');
+  }
+  enhancementOwnerReachability.push({book:config.book,ruleId:config.id,name:config.name,warlord:state.units[0].warlord,
+   mode,ownerSubject:config.subject,assignmentStates:states,typedPolicyRows:policies.length,unavailableOwnerRows:0,
+   nativeImport:'READY',realExecutor:true,effective:'PASS',explicitBindings:bindings,status:'PASS'});
+ }
+ assert.deepEqual(book,before,'Reachability controls modified the canonical native book');
+}
+
+const result={status:'PASS',cases:results.length,mutationsRejected:mutations.length,results,mutations,census,typedControls,temporal,tableProofs,enhancementOwnerReachability,
   boundary:'Runtime source/provenance/recipient proof is checked before canonical presentation binding. Presentation decoration equality is intentionally not required.',
   realNewRecruitExportTested:false,gameplayExecutionChanged:false};
 if(process.env.F1_SOURCE_BINDING_OUT){fs.mkdirSync(process.env.F1_SOURCE_BINDING_OUT,{recursive:true});

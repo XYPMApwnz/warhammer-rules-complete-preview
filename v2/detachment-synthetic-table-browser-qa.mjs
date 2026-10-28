@@ -2,13 +2,15 @@
  * Synthetic declarations exist only in external runtime-package copies. The
  * browser uses normal fetch/import/Guide controls; evaluation only reads public
  * roster evidence. No common-code replacement, state mutation or DOM patching.
- * Prepare: F1_SYNTHETIC_TABLE_PACKAGE=<package> F1_SYNTHETIC_TABLE_OUT=<external>
- *          node v2/detachment-synthetic-table-browser-qa.mjs --prepare-only
- * Run the prepared copies with the same environment and --run-prepared.
+ * The default invocation builds a fresh external runtime package and fixtures,
+ * then runs every desktop/mobile case. Optional --prepare-only can use an
+ * explicit F1_SYNTHETIC_TABLE_PACKAGE; --run-prepared requires an explicit
+ * F1_SYNTHETIC_TABLE_OUT containing the earlier fixture manifest.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import http from 'node:http';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -16,14 +18,27 @@ import {projectArmyBook} from '../books/shared/army-book-app-v2/project.mjs';
 import {projectBookPresentation} from '../books/shared/army-book-app-v2/book-v1-projection.mjs';
 import {writeCacheRevision,verifyCacheRevision} from '../tools/cache-revision.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {buildPagesRuntimePackage} from '../tools/pages-runtime-package.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const source=path.resolve(process.env.F1_SYNTHETIC_TABLE_PACKAGE||'');
-const out=path.resolve(process.env.F1_SYNTHETIC_TABLE_OUT||'');
-assert.ok(process.env.F1_SYNTHETIC_TABLE_PACKAGE&&process.env.F1_SYNTHETIC_TABLE_OUT,
-  'Set F1_SYNTHETIC_TABLE_PACKAGE and F1_SYNTHETIC_TABLE_OUT');
+const runPrepared=process.argv.includes('--run-prepared'),prepareOnly=process.argv.includes('--prepare-only');
+assert.ok(!(runPrepared&&prepareOnly),'Choose only one optional preparation mode');
+if(runPrepared)assert.ok(process.env.F1_SYNTHETIC_TABLE_OUT,'--run-prepared requires F1_SYNTHETIC_TABLE_OUT');
+const workspace=runPrepared?null:fs.mkdtempSync(path.join(os.tmpdir(),'wh-f1-synthetic-table-'));
+const outputHint=process.env.F1_SYNTHETIC_TABLE_OUT?path.resolve(process.env.F1_SYNTHETIC_TABLE_OUT):null;
+if(outputHint)assert.ok(outputHint!==path.resolve(repo)&&!outputHint.startsWith(path.resolve(repo)+path.sep),'Fixture output must be outside the repository');
+// An optional evidence destination is a parent for fresh default runs, so
+// repeated mandatory invocations cannot accidentally reuse prior fixtures.
+if(outputHint&&!runPrepared&&!prepareOnly)fs.mkdirSync(outputHint,{recursive:true});
+const out=outputHint?(!runPrepared&&!prepareOnly?fs.mkdtempSync(path.join(outputHint,'run-')):outputHint):path.join(workspace,'fixtures');
+const preparedManifest=runPrepared?JSON.parse(fs.readFileSync(path.join(out,'FIXTURES.json'),'utf8')):null;
+const source=path.resolve(preparedManifest?.source||(prepareOnly&&process.env.F1_SYNTHETIC_TABLE_PACKAGE)||path.join(workspace,'runtime'));
 assert.ok(!out.startsWith(path.resolve(repo)+path.sep)&&out!==path.resolve(repo),'Fixture output must be outside the repository');
 assert.ok(out!==source&&!out.startsWith(source+path.sep)&&!source.startsWith(out+path.sep),'Fixture output and source package must be separate');
+// Default runs always package current reviewed runtime bytes, even when a
+// previous manual preparation left F1_SYNTHETIC_TABLE_PACKAGE in the environment.
+const packageReport=!runPrepared&&!(prepareOnly&&process.env.F1_SYNTHETIC_TABLE_PACKAGE)
+  ?buildPagesRuntimePackage({sourceRoot:repo,outRoot:source}):null;
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const clone=structuredClone;
@@ -111,14 +126,15 @@ function prepare(){
       [relative,sha(fs.readFileSync(path.join(root,relative)))]))});
   }
   const manifest={source,sourceHashes,bookId,ownerId,ruleId,tableId,leadId,childId,leading,cells,
+    freshRuntimePackage:packageReport?{fileCount:packageReport.fileCount,contentSha256:packageReport.contentSha256,cacheRevision:packageReport.cacheRevision}:null,
     boundary:'Synthetic declaration fixture only. No accepted source, factual enrollment, tracked generated output or common production code is changed.',fixtures};
   fs.writeFileSync(path.join(out,'FIXTURES.json'),JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
-const manifest=process.argv.includes('--run-prepared')?read(path.join(out,'FIXTURES.json')):prepare();
+const manifest=runPrepared?preparedManifest:prepare();
 assert.deepEqual(manifest.sourceHashes,sourceHashes,'Source runtime package changed since fixture preparation');
 for(const fixture of manifest.fixtures){assert.equal(verifyCacheRevision({root:fixture.root}).revision,fixture.revision);
   for(const [relative,expected]of Object.entries(fixture.hashes))assert.equal(sha(fs.readFileSync(path.join(fixture.root,relative))),expected);}
-if(process.argv.includes('--prepare-only')){
+if(prepareOnly){
   console.log(JSON.stringify({status:'PREPARED',manifest:path.join(out,'FIXTURES.json'),variants:manifest.fixtures.map(f=>({variant:f.variant,revision:f.revision}))}));
 }else{
   const prefix='/warhammer-rules-complete-preview/',results=[],errors=[],requests=[];
@@ -202,6 +218,7 @@ if(process.argv.includes('--prepare-only')){
   }catch(error){status='FAIL';console.error(error.stack);process.exitCode=1;}
   finally{
     fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify({status,fixtureOnly:true,realNewRecruitExportTested:false,
+      automaticFreshRun:!runPrepared&&!prepareOnly,freshRuntimePackage:manifest.freshRuntimePackage,
       normalApplicationPath:true,sourceHashes,trackedGeneratedHashes,trackedGeneratedUnchanged:Object.entries(trackedGeneratedHashes).every(([relative,expected])=>sha(fs.readFileSync(path.join(repo,relative)))===expected),
       fixtures:manifest.fixtures,results,errors,requests},null,2)+'\n');
     if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));
