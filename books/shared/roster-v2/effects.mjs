@@ -272,7 +272,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       }
       for (const clause of rule.ruleContract.clauses) {
         appendConditionalPolicy(result,rule,clause,source,ownerModel);
-        if (clause.rosterClassification === 'BATTLE_ONLY') {
+        if (clause.rosterClassification === 'BATTLE_ONLY' && rule.kind!=='DETACHMENT_RULE') {
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
         for (const effect of clause.rosterEffects) pending.push({rule,clause,effect,source,ownerModel});
@@ -628,8 +628,15 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
   for(const item of suppressions)for(const target of targets(item))apply(item,target);
   for(const [object,fields]of numericValues)for(const [field,value]of fields)for(const row of value.rows)row.finalValue=clone(object[field]);
+  // Recipient text observes the final roster vocabulary, including existing
+  // typed keyword effects, without changing any of those computations.
+  for(const rule of book.entities.filter(entity=>entity.kind==='DETACHMENT_RULE'&&entity.ruleContract))
+    for(const clause of rule.ruleContract.clauses)if(!clause.conditionalPolicy)
+      appendConditionalPolicy(result,rule,clause,null,null,book,evaluatePredicate);
   for (const unit of result.units) {
-    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason&&Boolean(r.policy)===Boolean(row.policy)&&(!row.policy||r.sourceInstanceId===row.sourceInstanceId&&r.sourceModelScopeId===row.sourceModelScopeId))===i);
+    unit.conditional = unit.conditional.filter((row,i,rows)=>rows.findIndex(r=>r.ruleId===row.ruleId&&r.clauseId===row.clauseId&&r.reason===row.reason&&Boolean(r.policy)===Boolean(row.policy)&&
+      Boolean(r.detachmentText)===Boolean(row.detachmentText)&&(!row.detachmentText||JSON.stringify(r.detachmentText)===JSON.stringify(row.detachmentText)&&JSON.stringify(r.recipientModelScopeIds)===JSON.stringify(row.recipientModelScopeIds))&&
+      (!row.policy||r.sourceInstanceId===row.sourceInstanceId&&r.sourceModelScopeId===row.sourceModelScopeId))===i);
     for (const model of unit.profiles) {
       for (const [field,metric] of Object.entries(unit.metrics)) {
         if(['chargeRoll','advanceRoll'].includes(field)||field==='detectionRange'&&scopedDetectionUnits.has(unit))continue;

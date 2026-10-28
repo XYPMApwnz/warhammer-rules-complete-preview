@@ -2,6 +2,36 @@
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
+/** Table rows are pending choices under the proven leading recipient. Keep raw
+ * clause proof intact; this only omits duplicate standalone option rendering. */
+export function groupDetachmentTextRows(rows){
+  return rows.filter(row=>!row.detachmentText.tableOption||!rows.some(leading=>leading.ruleId===row.ruleId&&
+    leading.clauseId===row.detachmentText.tableOption.leadingClauseId&&leading.detachmentText.tableOptions?.length&&
+    leading.detachmentText.recipientSubject===row.detachmentText.recipientSubject&&
+    JSON.stringify(leading.recipientInstanceIds)===JSON.stringify(row.recipientInstanceIds)&&
+    JSON.stringify(leading.recipientModelScopeIds)===JSON.stringify(row.recipientModelScopeIds)));
+}
+/** F1 uses runtime-verified provenance. Presentation cards bind only canonical
+ * rule/parent IDs; their optional provenance decorations are book-specific. */
+export function validateDetachmentTextPresentation(cards,unit,effective,row){
+  const rule=cards.get(row.ruleId),owner=cards.get(row.sourceDetachmentId),text=row.detachmentText,chain=row.sourceOwnerChain;
+  const chainMatches=Array.isArray(chain)&&chain.length>1&&new Set(chain.map(link=>link.id)).size===chain.length&&
+    chain[0].id===row.ruleId&&chain[0].parentId===row.sourceParentId&&chain.at(-1).id===row.sourceDetachmentId&&
+    chain.every((link,index)=>{const card=cards.get(link.id);return card?.id===link.id&&card.kind===link.kind&&
+      (card.parentId||null)===link.parentId&&(index===chain.length-1?card.kind==='DETACHMENT':card.kind!=='DETACHMENT'&&link.parentId===chain[index+1].id);});
+  const expectedRecipients=text?.recipientSubject==='UNIT'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit?.instanceId];
+  const verified=(effective.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===text?.roleId);
+  assert(!row.policy&&text&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&
+    text.classification==='BATTLE_ONLY'&&chainMatches&&rule?.id===row.ruleId&&rule.kind==='DETACHMENT_RULE'&&
+    owner?.id===row.sourceDetachmentId&&owner.kind==='DETACHMENT'&&
+    JSON.stringify(row.recipientInstanceIds)===JSON.stringify(expectedRecipients)&&
+    verified.length===1&&JSON.stringify(row.recipientModelScopeIds)===JSON.stringify(verified[0].recipientModelScopeIds)&&
+    JSON.stringify(row.detachmentText)===JSON.stringify(verified[0].detachmentText)&&
+    ['UNIT','MODEL'].includes(text.recipientSubject)&&Array.isArray(row.recipientModelScopeIds)&&
+    (text.recipientSubject==='UNIT'?row.recipientModelScopeIds.length===0:
+      row.recipientModelScopeIds.length>0&&row.recipientModelScopeIds.every(id=>effective.profiles.some(model=>model.scopeId===id))),
+    'Unresolved textual Detachment presentation');
+}
 /** Book-owned canonical profile bindings apply only to physical views. The
  * normal book map and every factual field/address remain unchanged. */
 export function prepareRosterPresentationCards(cards,presentation) {
@@ -58,6 +88,17 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
     }
     for(const component of components.slice(1))component.card.rosterUnitMetrics=component.card.rosterUnitMetrics.filter(value=>
       value.unitScope!=='FORMED'||identity(value)!==expected);
+  }
+  if(group){
+    const seen=new Set();
+    for(const component of components){
+      if(!component.card.rosterDetachmentTexts)continue;
+      component.card.rosterDetachmentTexts=component.card.rosterDetachmentTexts.filter(row=>{
+      if(row.detachmentText.recipientSubject!=='UNIT')return true;
+      const identity=JSON.stringify([row.ruleId,row.clauseId,row.detachmentText,row.recipientInstanceIds,row.sourceProvenance]);
+      if(seen.has(identity))return false;seen.add(identity);return true;
+      });
+    }
   }
   return {formedUnitId:group?.formedUnitId||null,components};
 }
@@ -347,6 +388,9 @@ export function projectInstanceCards(cards, unit, effective) {
     if(factionGroup)groups.push(clone(factionGroup));
     root.keywordGroups=groups;
   }
+  const texts=(effective.conditional||[]).filter(row=>row.detachmentText);
+  for(const row of texts)validateDetachmentTextPresentation(cards,unit,effective,row);
+  if(texts.length)root.rosterDetachmentTexts=clone(texts);
   const policies=(effective.conditional||[]).filter(row=>row.policy);
   if(policies.length){
     const hasSource=row=>{

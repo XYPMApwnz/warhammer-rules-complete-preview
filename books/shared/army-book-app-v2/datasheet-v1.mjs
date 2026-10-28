@@ -3,6 +3,7 @@ import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './nor
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
+import {validateDetachmentTextPresentation,groupDetachmentTextRows} from './personal.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -506,10 +507,31 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       unitModifiers.append(node);
     }
     if(unitModifiers)root.append(unitModifiers);
-    if(card.rosterConditionalPolicies?.length){
+    if(card.rosterConditionalPolicies?.length||card.rosterDetachmentTexts?.length){
       const section=part('conditional-policies','Conditional mechanics');
       const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction',ATTACK_TARGET_RESTRICTION:'Attack target restriction',ACTION_CP_MODIFIER:'Conditional action CP modifier'};
-      for(const row of card.rosterConditionalPolicies){
+      const textEffective=card.rosterDetachmentTexts?.length?roster.effective(instanceId):null;
+      for(const row of card.rosterDetachmentTexts||[])validateDetachmentTextPresentation(cards,roster.state.units.find(unit=>unit.instanceId===instanceId),textEffective,row);
+      for(const row of groupDetachmentTextRows(card.rosterDetachmentTexts||[])){
+          const text=row.detachmentText,node=el('div','ds-conditional-policy');
+          node.dataset.conditionalPolicy='DETACHMENT_TEXT';node.dataset.execution=row.execution;
+          node.dataset.recipientSubject=text.recipientSubject;node.dataset.recipientModelScopeIds=JSON.stringify(row.recipientModelScopeIds);
+          node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);node.dataset.selectionStatus=text.kind;
+          node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
+          node.dataset.rosterClassification=text.classification;
+          node.append(el('h5','',row.label),el('p','',text.kind==='ABILITY_PRESENT'?'Ability available — Not automatically calculated':
+            text.kind==='ELIGIBLE_FOR_SELECTION'?'Eligible for selection — Selection not recorded — Not automatically calculated':'Conditional rule — Not automatically calculated'));
+          const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel));node.append(source);
+          node.append(el('p','','Applies to: '+row.recipientLabels.join('; ')));
+          const clauseText=el('p','',text.text);clauseText.dataset.detachmentClauseText='';node.append(clauseText);
+          if(text.tableOptions?.length){
+            const choices=el('ul','');choices.dataset.detachmentOptions='';
+            for(const option of text.tableOptions){const item=el('li','',option.text);item.dataset.optionClauseId=option.clauseId;item.dataset.optionTableId=option.tableId;item.dataset.optionRowIndex=String(option.rowIndex);choices.append(item);}
+            node.append(choices);
+          }
+          section.append(node);
+      }
+      for(const row of card.rosterConditionalPolicies||[]){
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
         node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
