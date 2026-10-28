@@ -88,10 +88,17 @@ async function rows(page,ruleId,clauseId){const found=await page.locator('main .
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId||source.clauseId!==clauseId)return [];
   const shared=node.dataset.detachmentClauseTextRef?document.getElementById(node.dataset.detachmentClauseTextRef):null;
   const clauseText=node.querySelector('[data-detachment-clause-text]')||shared;
+  const refs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
+  const withoutTables=node=>node.nodeType===Node.TEXT_NODE?node.textContent:
+    node.nodeType!==Node.ELEMENT_NODE||node.tagName==='TABLE'?'':[...node.childNodes].map(withoutTables).join('');
+  const canonicalText=refs.length?refs.map(id=>{const field=document.getElementById(id);if(!field)throw new Error('Missing visible canonical clause field');
+    if(!field.getClientRects().length)throw new Error('Canonical clause field is not visible');
+    return field.matches('table[data-detachment-source-table]')?[...field.querySelectorAll('tr')].map(row=>[...row.querySelectorAll('th,td')].map(cell=>cell.textContent).join(' · ')).join('\n'):withoutTables(field);
+  }).join('\n'):(clauseText||node.querySelector('p:last-child'))?.textContent;
   return [{source,cardInstance:node.closest('.unit-card')?.dataset.rosterInstanceId||null,
     execution:node.dataset.execution,classification:node.dataset.rosterClassification,subject:node.dataset.recipientSubject,
     instances:JSON.parse(node.dataset.recipientInstanceIds||'[]'),models:JSON.parse(node.dataset.recipientModelScopeIds||'[]'),
-    selectionStatus:node.dataset.selectionStatus,text:node.innerText+' '+(shared?.textContent||'')+' '+(node.closest('[data-detachment-rule-id]')?.querySelector('h5')?.textContent||''),clauseText:(clauseText||node.querySelector('p:last-child'))?.textContent,
+    selectionStatus:node.dataset.selectionStatus,text:node.innerText+' '+(canonicalText||'')+' '+(node.closest('[data-detachment-rule-id]')?.querySelector('h5')?.textContent||''),clauseText:canonicalText,
     applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
     options:[...node.querySelectorAll('[data-detachment-options] [data-option-table-id]')].map(option=>({tableId:option.dataset.optionTableId,rowIndex:Number(option.dataset.optionRowIndex),clauseId:option.dataset.optionClauseId,text:option.textContent})),
     sourceLinks:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),visible:Boolean(node.getClientRects().length)}];

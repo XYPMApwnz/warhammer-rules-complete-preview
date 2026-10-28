@@ -3,6 +3,7 @@ import {mount} from '../army-book-app-v2/runtime.mjs';
 import {applicationRouteURL,resolveApplicationRoute} from './routes.mjs';
 import {createHomePresenter,createHomeBranding} from './home.mjs';
 import {mountGlobalGlossary} from './glossary.mjs';
+import {loadDetachmentPresentationSources} from '../army-book-app-v2/personal.mjs';
 
 /** Top-level destinations only. ArmyBookApp retains all book/roster/reference logic. */
 export function createApplication(document,{registry,entryURL=new URL('../../../v2/app.html',import.meta.url).href,root=document.body}={}) {
@@ -167,11 +168,12 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     try {
       if(!await transitionAllowed(token))return activeModule;
       const [payload,roster]=await Promise.all([registration.loadPayload(),registration.createRoster?.()]);
+      const presentationRuleSources=roster?await loadDetachmentPresentationSources({payload,assetBaseURL:registration.assetBaseURL,fetch:view.fetch?.bind(view)}):new Map();
       if(!await transitionAllowed(token,startedOnline))return activeModule;
       if(payload.book?.id!==registration.id)throw new TypeError('Book registry identity mismatch');
       stopModule();
       moduleRoot.replaceChildren();
-      activeModule=mount(document,payload,{root:moduleRoot,roster,styles:registration.styles,assetBaseURL:registration.assetBaseURL});
+      activeModule=mount(document,payload,{root:moduleRoot,roster,presentationRuleSources,styles:registration.styles,assetBaseURL:registration.assetBaseURL});
       activeBookId=registration.id;
       rememberRenderedLocation();
       await activeModule.rosterPanel?.ready;

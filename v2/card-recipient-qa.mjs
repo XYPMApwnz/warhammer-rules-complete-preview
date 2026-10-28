@@ -6,7 +6,9 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createDGRosterRuntime} from '../books/death-guard/v2/roster-boot.mjs';
-import {prepareRosterPresentationCards,projectFormedUnitCards} from '../books/shared/army-book-app-v2/personal.mjs';
+import {createAdMechRosterRuntime} from '../books/adeptus-mechanicus/v2/roster-runtime.mjs';
+import {createECBrowserRoster} from '../books/emperors-children/v2/roster-boot.mjs';
+import {prepareRosterPresentationCards,projectFormedUnitCards,projectDetachmentFields} from '../books/shared/army-book-app-v2/personal.mjs';
 import {countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey} from '../books/shared/army-book-app-v2/effective-datasheet-presentation.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -19,15 +21,16 @@ const check=(name,run)=>{run();checks.push(name);};
 const text=file=>fs.readFileSync(path.join(root,file),'utf8');
 function imported(file){const runtime=createDGRosterRuntime(book),result=runtime.import(text(file));
   assert.equal(result.status,'READY',JSON.stringify(result));return runtime;}
-function component(runtime,id){
+function component(runtime,id,presentationCards=cards){
   const beforeState=runtime.snapshot(),beforeProjection=structuredClone(runtime.projection);
-  const projected=projectFormedUnitCards(cards,runtime,id).components.find(component=>component.unit.instanceId===id);
+  const projected=projectFormedUnitCards(presentationCards,runtime,id).components.find(component=>component.unit.instanceId===id);
   assert.deepEqual(runtime.snapshot(),beforeState,'Presentation mutated imported state');
   assert.deepEqual(runtime.projection,beforeProjection,'Presentation mutated effective effects');
   const records=[...projected.variants.values()].flat();
-  return {unit:projected.unit,profiles:records.filter(record=>record.kind==='PROFILE'),weapons:records.filter(record=>record.kind==='WEAPON_PROFILE')};
+  return {unit:projected.unit,unitCard:presentationCards.get(projected.unit.canonicalUnitId),
+    profiles:records.filter(record=>record.kind==='PROFILE'),weapons:records.filter(record=>record.kind==='WEAPON_PROFILE')};
 }
-const labels=(records,view,counter=countPhysicalCarriers)=>formatPhysicalCarriers(counter(records,view.profiles,{unit:view.unit}));
+const labels=(records,view,counter=countPhysicalCarriers)=>formatPhysicalCarriers(counter(records,view.profiles,{unit:view.unit,unitCard:view.unitCard}));
 const vector='datasheet-lord-of-contagion:section:1';
 const hasVector=record=>record.fields.some(field=>(field.weaponGrantSources||[]).some(source=>source.canonicalRuleId===vector));
 const omega=imported('books/death-guard/v2/fixtures/omega-megaroster.txt');
@@ -81,6 +84,108 @@ check('Detach removes actual Vector grant; reattach restores it without changing
   assert.ok(detached.weapons.every(record=>!hasVector(record)));
   deathshroud.reattach('parsed-unit-1','parsed-unit-2');const attached=component(deathshroud,'parsed-unit-2');
   assert.deepEqual(labels(attached.weapons.filter(record=>record.id==='datasheet-deathshroud-terminators:weapon:2'&&hasVector(record)),attached),evidence.deathshroud.manreaperLabels);
+});
+
+function singletonProof(view,weaponIds,expectedLabel,expectedProfileId,counter=countPhysicalCarriers){
+  const selected=view.weapons.filter(record=>weaponIds.includes(record.id));
+  assert.deepEqual(selected.map(record=>record.id).toSorted(),[...weaponIds].toSorted(),'Independently named selected weapon profiles');
+  const groups=counter(selected,view.profiles,{unit:view.unit,unitCard:view.unitCard});
+  assert.deepEqual(formatPhysicalCarriers(groups),[expectedLabel+' · 1 model'],'Recipient is the named physical MODEL, never a weapon');
+  assert.deepEqual(groups.map(group=>group.labelIdentity),[{kind:'PROFILE',canonicalId:expectedProfileId,instanceId:view.unit.instanceId}],
+    'Caption identity must be a proved PROFILE, never WEAPON_PROFILE');
+  assert.ok(groups[0].members.every(member=>member.proof==='SINGLE_MODEL_COMPONENT'));
+  assert.equal(new Set(groups[0].members.map(member=>member.address)).size,1,'All selected modes/items belong to the same physical MODEL');
+  return groups;
+}
+const lordView=component(deathshroud,'parsed-unit-1');
+const lordWeapons=['datasheet-lord-of-contagion:weapon:1','datasheet-lord-of-contagion:weapon:2'];
+check('DG singleton Lord: actual Vector and Furnace Manreaper strike/sweep label the Lord, one MODEL',()=>{
+  singletonProof(lordView,lordWeapons,'Lord of Contagion','datasheet-lord-of-contagion:profile:default');
+  for(const id of lordWeapons){const record=lordView.weapons.find(record=>record.id===id),sources=record.fields.flatMap(field=>field.weaponGrantSources||[]);
+    assert.ok(sources.some(source=>source.canonicalRuleId===vector),'Actual Vector contribution is present');
+    assert.ok(sources.some(source=>source.canonicalRuleId==='detachment-virulent-vectorium:enhancement:2'),'Actual Furnace contribution is present');
+    assert.deepEqual(labels([record],lordView),['Lord of Contagion · 1 model']);
+  }
+});
+const amBook=read('books/adeptus-mechanicus/v2/generated/roster-runtime.json');
+const am=createAdMechRosterRuntime(amBook,read('books/adeptus-mechanicus/v2/roster-import-aliases.json'));
+assert.equal(am.import(`+ FACTION KEYWORD: Imperium - Adeptus Mechanicus
++ DETACHMENT: Haloscreed Battle Clade
+Char1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe
+Enhancement: Cognitive Reinforcement`).status,'READY');
+const amPayload=read('books/adeptus-mechanicus/v2/generated/app-presentation.json');
+const amCards=prepareRosterPresentationCards(new Map(amPayload.cards.map(card=>[card.id,card])),amPayload.rosterPresentation);
+const dominusView=component(am,'parsed-unit-1',amCards),dominusWeapons=['datasheet-tech-priest-dominus:weapon:3','datasheet-tech-priest-dominus:weapon:5'];
+const haloId='detachment-haloscreed-battle-clade:rule',haloRule=amBook.entities.find(rule=>rule.id===haloId);
+const haloRows=am.effective('parsed-unit-1').conditional.filter(row=>row.ruleId===haloId&&row.detachmentText);
+const haloSources=new Map([[haloId,haloRule]]);
+check('Canonical Detachment text/table fields are unique while each clause keeps its proof and condition',()=>{
+  const before=structuredClone(haloRows),plan=projectDetachmentFields(amCards.get(haloId),haloRows,haloSources);
+  assert.deepEqual(plan.fields.map(field=>field.kind),['TEXT','TABLE']);
+  assert.equal(plan.fields[0].text,haloRule.data.text);assert.deepEqual(plan.fields[1].rows,haloRule.data.tables[0].rows);
+  const leading=plan.clauses.find(clause=>clause.row.clauseId==='halo-override-selection');
+  const choice=plan.clauses.find(clause=>clause.row.clauseId==='override-choice');
+  assert.deepEqual(leading.fieldIds,plan.fields.map(field=>field.id));assert.deepEqual(choice.fieldIds,[plan.fields[0].id]);
+  for(const clause of plan.clauses){const canonical=haloRule.ruleContract.clauses.find(row=>row.id===clause.row.clauseId);
+    assert.deepEqual(clause.evidence,canonical.evidence);assert.deepEqual(clause.conditions,canonical.conditions);}
+  assert.equal(plan.fields[1].anchor.fieldId,plan.fields[0].id);
+  const quote=haloRule.ruleContract.clauses.find(clause=>clause.id==='halo-override-selection').evidence.quote;
+  assert.equal(plan.fields[1].anchor.offset,quote.length);assert.equal(haloRule.data.text.slice(0,quote.length),quote);
+  assert.deepEqual(haloRows,before,'Field planning must not change F1 conditional/effective data');
+});
+check('Missing, ambiguous or foreign source-bound table position is not guessed',()=>{
+  for(const quote of ['', 'not an accepted quote', 'units']){
+    const rule=structuredClone(haloRule);rule.ruleContract.clauses.find(clause=>clause.id==='halo-override-selection').evidence.quote=quote;
+    const plan=projectDetachmentFields(amCards.get(haloId),haloRows,new Map([[haloId,rule]]));
+    assert.equal(plan.fields.filter(field=>field.kind==='TEXT').length,1);
+    assert.equal(plan.fields.find(field=>field.kind==='TABLE').anchor,undefined);
+  }
+  const plan=projectDetachmentFields(amCards.get(haloId),haloRows);
+  assert.deepEqual(plan.fields.map(field=>field.kind),['TEXT','TABLE']);
+  assert.equal(plan.fields[1].anchor,undefined,'Canonical card fields remain displayable without a guessed runtime evidence boundary');
+});
+check('AM singleton Dominus: actual Imperatives Macrostubber/Volkite label the Dominus, one MODEL',()=>{
+  singletonProof(dominusView,dominusWeapons,'Tech-priest Dominus','datasheet-tech-priest-dominus:profile:default');
+  for(const id of dominusWeapons){const record=dominusView.weapons.find(record=>record.id===id),sources=record.fields.flatMap(field=>field.weaponGrantSources||[]);
+    assert.ok(sources.some(source=>source.canonicalRuleId.startsWith('army-rule-doctrina-imperatives:')),'Actual activated Imperative source is present');
+    assert.deepEqual(labels([record],dominusView),['Tech-priest Dominus · 1 model']);
+  }
+});
+const ecBook=read('books/emperors-children/v2/generated/roster-attachments.json'),ec=createECBrowserRoster(ecBook);
+assert.equal(ec.import(read('books/emperors-children/v2/roster-import-fixtures.json').fixtures.find(fixture=>fixture.id==='character-bodyguard').text).status,'READY');
+ec.attach('parsed-unit-1','parsed-unit-2');
+const ecPayload=read('books/emperors-children/v2/generated/app-presentation.json');
+const ecCards=prepareRosterPresentationCards(new Map(ecPayload.cards.map(card=>[card.id,card])),ecPayload.rosterPresentation);
+const exultantView=component(ec,'parsed-unit-1',ecCards),exultantWeapons=[1,2,3,5,7].map(number=>'datasheet-lord-exultant:weapon:'+number);
+check('EC singleton Lord Exultant: four selected weapons, both plasma modes, one proved MODEL',()=>{
+  singletonProof(exultantView,exultantWeapons,'Lord Exultant','datasheet-lord-exultant:profile:1');
+  assert.equal(new Set(exultantView.weapons.map(record=>record.selectionKey)).size,4,'Four physical selected weapons, with two plasma profiles');
+  for(const id of exultantWeapons){const record=exultantView.weapons.find(record=>record.id===id);
+    assert.ok(record.fields.flatMap(field=>field.weaponGrantSources||[]).some(source=>source.canonicalRuleId==='datasheet-lord-exultant:section:1'),'Actual Lord ability contribution is present');
+    assert.deepEqual(labels([record],exultantView),['Lord Exultant · 1 model']);
+  }
+});
+evidence.singletonCharacters={
+  deathGuard:singletonProof(lordView,lordWeapons,'Lord of Contagion','datasheet-lord-of-contagion:profile:default'),
+  adMech:singletonProof(dominusView,dominusWeapons,'Tech-priest Dominus','datasheet-tech-priest-dominus:profile:default'),
+  emperorsChildren:singletonProof(exultantView,exultantWeapons,'Lord Exultant','datasheet-lord-exultant:profile:1')
+};
+check('Singleton fallback cannot escape a physical owner or an exact selected weapon',()=>{
+  for(const mutated of [{...lordView.weapons[0],selectionKey:'foreign-selection'},
+    {...lordView.weapons[0],instanceId:'other-physical-lord'},
+    {...lordView.weapons[0],scopeId:'foreign-model-scope'},
+    {...lordView.weapons[0],id:'unselected-weapon'}]){
+    const groups=countPhysicalCarriers([mutated],lordView.profiles,{unit:lordView.unit,unitCard:lordView.unitCard});
+    assert.ok(groups.every(group=>group.quantity===null));
+    assert.ok(groups.every(group=>group.labelIdentity.kind!=='WEAPON_PROFILE'));
+  }
+});
+check('Aggregate multi-model weapon inventory still has unknown distribution',()=>{
+  const aggregate=structuredClone(shroudView.unit),weapon={...gauntlets[0],scopeId:null,selectionKey:'aggregate-gauntlets',rosterQuantity:4};
+  aggregate.selections=[{selectionKey:weapon.selectionKey,canonicalProfileIds:[weapon.id],physicalQuantity:4,perModelQuantity:null}];
+  const groups=countPhysicalCarriers([weapon],shroudView.profiles,{unit:aggregate,unitCard:shroudView.unitCard});
+  assert.equal(groups[0].quantity,null);assert.equal(groups[0].labelIdentity.kind,'DATASHEET');
+  assert.deepEqual(formatPhysicalCarriers(groups),['Deathshroud Terminators · model count unknown']);
 });
 
 const profile=(instanceId,scopeId,quantity,extra={})=>({id:'profile-shared',kind:'PROFILE',instanceId,scopeId,
@@ -141,5 +246,30 @@ fs.writeFileSync(mutant,source.replace(target,'else if(!duplicate&&group.quantit
 const {countPhysicalCarriers:brokenCounter}=await import(pathToFileURL(mutant));
 assert.throws(()=>verifyOmega(brokenCounter),assert.AssertionError,'Text-caption deduplication survived real Omega expectation');
 evidence.mutations=[{id:'production-caption-dedup',result:'REJECTED'}];
+const weaponLabelTarget='const label=display?.canonicalLabelIncluded?';
+assert.equal(source.split(weaponLabelTarget).length,2,'Production model-label mutation target changed');
+const weaponLabelFile=path.join(directory,'weapon-label-mutant.mjs');
+fs.writeFileSync(weaponLabelFile,source.replace(weaponLabelTarget,"const label=record.kind==='WEAPON_PROFILE'?record.title:display?.canonicalLabelIncluded?"));
+const weaponLabelMutant=await import(pathToFileURL(weaponLabelFile));
+assert.throws(()=>singletonProof(lordView,lordWeapons,'Lord of Contagion','datasheet-lord-of-contagion:profile:default',weaponLabelMutant.countPhysicalCarriers),
+  assert.AssertionError,'Weapon record.title escaped the explicit expected physical MODEL label');
+evidence.mutations.push({id:'production-weapon-title-as-model-label',result:'REJECTED'});
+const identityTarget='const labelIdentity=profileLabel?';
+assert.equal(source.split(identityTarget).length,2,'Production label identity mutation target changed');
+const weaponIdentityFile=path.join(directory,'weapon-label-identity-mutant.mjs');
+fs.writeFileSync(weaponIdentityFile,source.replace(identityTarget,"const labelIdentity=record.kind==='WEAPON_PROFILE'?{kind:'WEAPON_PROFILE',canonicalId:record.id,instanceId}:profileLabel?"));
+const weaponIdentityMutant=await import(pathToFileURL(weaponIdentityFile));
+assert.throws(()=>singletonProof(lordView,lordWeapons,'Lord of Contagion','datasheet-lord-of-contagion:profile:default',weaponIdentityMutant.countPhysicalCarriers),
+  assert.AssertionError,'A weapon identity escaped the independently expected PROFILE identity');
+evidence.mutations.push({id:'production-weapon-label-identity',result:'REJECTED'});
+if(process.env.F2_REVIEW_BASELINE_ROOT){
+  const baseline=await import(pathToFileURL(path.join(process.env.F2_REVIEW_BASELINE_ROOT,'books/shared/army-book-app-v2/effective-datasheet-presentation.mjs')));
+  evidence.singletonBeforeAfter={};
+  for(const [name,view,ids]of [['DG',lordView,lordWeapons],['AM',dominusView,dominusWeapons],['EC',exultantView,exultantWeapons]]){
+    const records=view.weapons.filter(record=>ids.includes(record.id)),options={unit:view.unit,unitCard:view.unitCard};
+    evidence.singletonBeforeAfter[name]={before:formatPhysicalCarriers(baseline.countPhysicalCarriers(records,view.profiles,options)),
+      after:formatPhysicalCarriers(countPhysicalCarriers(records,view.profiles,options))};
+  }
+}
 fs.writeFileSync(path.join(directory,'RESULTS.json'),JSON.stringify({checks,evidence},null,2));
-console.log('F2_CARD_RECIPIENT_QA '+JSON.stringify({status:'PASS',checks:checks.length,mutations:1,evidence:directory,omega:evidence.omega.labels,deathshroud:evidence.deathshroud}));
+console.log('F2_CARD_RECIPIENT_QA '+JSON.stringify({status:'PASS',checks:checks.length,mutations:evidence.mutations.length,evidence:directory,omega:evidence.omega.labels,deathshroud:evidence.deathshroud}));

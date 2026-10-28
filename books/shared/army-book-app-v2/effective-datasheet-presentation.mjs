@@ -27,32 +27,57 @@ export function groupDisplayRecords(records,identity) {
 }
 /** Count MODEL carriers, never weapon copies or repeated captions. Call once per
  * exact source/effect contribution. A PROFILE's physical scope owns its model
- * quantity; WEAPON_PROFILE quantities are deliberately not read here. */
-export function countPhysicalCarriers(records,profileCards=[],{unit}={}) {
+ * quantity; WEAPON_PROFILE quantities only verify a selected item and never
+ * become a model count. A one-model component also proves its own inventory. */
+export function countPhysicalCarriers(records,profileCards=[],{unit,unitCard}={}) {
   const groups=new Map();
   for(const record of records){
-    const candidates=record.kind==='PROFILE'?[record]:profileCards.filter(profile=>
-      profile.kind==='PROFILE'&&profile.instanceId===record.instanceId&&
-      typeof record.scopeId==='string'&&profile.scopeId===record.scopeId);
-    const profile=candidates.length===1?candidates[0]:null;
-    const display=profile?.presentationScope||record.presentationScope;
-    const named=profile?.fields?.find(field=>path(field)==='/name')?.value;
-    const label=display?.canonicalLabelIncluded?display.label.replace(/ · Group \d+$/,''):
-      display?.label||named||profile?.title||record.title||'Physical models';
-    const instanceId=record.instanceId||null,profileId=profile?.id||null;
-    const signature=key([instanceId,profileId,label]);
-    let group=groups.get(signature);
-    if(!group){group={instanceId,profileId,label,quantity:0,scopeIds:[],modelInstanceIds:[],members:[]};groups.set(signature,group);}
-    const quantity=profile?.rosterQuantity;
-    const modelId=record.modelInstanceId||profile?.modelInstanceId||null;
-    const selections=unit?[...(unit.selections||[]),...(unit.modelRows||[]).flatMap(row=>[
+    const instanceId=record.instanceId||null;
+    const selections=unit?.instanceId===instanceId?[...(unit.selections||[]),...(unit.modelRows||[]).flatMap(row=>[
       ...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]
       .filter(selection=>selection.selectionKey===record.selectionKey):[];
     const selection=selections.length===1?selections[0]:null;
+    const equipped=record.kind==='WEAPON_PROFILE'&&selection?.canonicalProfileIds?.includes(record.id)&&
+      Number.isSafeInteger(selection.physicalQuantity)&&selection.physicalQuantity>0&&
+      Number.isSafeInteger(record.rosterQuantity)&&record.rosterQuantity>0;
+    const candidates=record.kind==='PROFILE'?[record]:profileCards.filter(profile=>
+      profile.kind==='PROFILE'&&profile.instanceId===record.instanceId&&
+      typeof record.scopeId==='string'&&profile.scopeId===record.scopeId);
+    const physicalProfiles=profileCards.filter(profile=>profile.kind==='PROFILE'&&profile.instanceId===instanceId);
+    // A validated one-model component has exactly one possible physical carrier
+    // for its own selected weapon, including a UNIT-level equipment selection.
+    // The same conclusion is unavailable for aggregate multi-model inventory.
+    const singleton=equipped&&unit?.instanceId===instanceId&&unit.startingStrength===1&&
+      unit.modelRows?.reduce((sum,row)=>sum+row.quantity,0)===1&&physicalProfiles.length===1&&
+      unit.modelRows.every(row=>row.canonicalProfileId===physicalProfiles[0].id)&&
+      physicalProfiles[0].rosterQuantity===1&&record.rosterQuantity===selection.physicalQuantity&&
+      (record.scopeId==null||record.scopeId===physicalProfiles[0].scopeId)&&
+      (!record.parentId||record.parentId===unit.canonicalUnitId);
+    const profile=candidates.length===1?candidates[0]:candidates.length===0&&singleton?physicalProfiles[0]:null;
+    const display=profile?.presentationScope;
+    const named=profile?.fields?.find(field=>path(field)==='/name')?.value;
+    const componentCard=unit?.instanceId===instanceId&&unitCard?.kind==='DATASHEET'&&unitCard.id===unit.canonicalUnitId?unitCard:null;
+    const profileTitle=profile?.title&&profile.title!=='PROFILE'?profile.title:null;
+    const rowLabels=unit?.instanceId===instanceId?(unit.modelRows||[]).filter(row=>row.canonicalProfileId===profile?.id)
+      .map(row=>row.presentationLabel).filter(label=>typeof label==='string'&&label.trim()):[];
+    const rowLabel=new Set(rowLabels).size===1?rowLabels[0]:null;
+    // A weapon name is never a model label. Carry the typed label identity so
+    // both renderers and tests can verify its physical/canonical origin.
+    const profileLabel=display?.label||named||profileTitle||rowLabel;
+    const label=display?.canonicalLabelIncluded?display.label.replace(/ · Group \d+$/,''):
+      profileLabel||componentCard?.title||'Physical models';
+    const labelIdentity=profileLabel?{kind:'PROFILE',canonicalId:profile.id,instanceId}:
+      componentCard?{kind:'DATASHEET',canonicalId:componentCard.id,instanceId}:{kind:'UNRESOLVED',canonicalId:null,instanceId};
+    const profileId=profile?.id||null;
+    const signature=key([instanceId,profileId,label]);
+    let group=groups.get(signature);
+    if(!group){group={instanceId,profileId,label,labelIdentity,quantity:0,scopeIds:[],modelInstanceIds:[],members:[]};groups.set(signature,group);}
+    const quantity=profile?.rosterQuantity;
+    const modelId=record.modelInstanceId||profile?.modelInstanceId||null;
     // A scoped item total alone does not prove its distribution among models.
-    const distribution=record.kind!=='WEAPON_PROFILE'||unit?.instanceId===instanceId&&selection&&
-      selection.canonicalProfileIds?.includes(record.id)&&Number.isSafeInteger(selection.perModelQuantity)&&
-      selection.perModelQuantity>0&&record.rosterQuantity===selection.perModelQuantity*quantity;
+    const distribution=record.kind!=='WEAPON_PROFILE'||equipped&&(singleton||
+      Number.isSafeInteger(selection.perModelQuantity)&&selection.perModelQuantity>0&&
+      record.rosterQuantity===selection.perModelQuantity*quantity);
     const known=instanceId&&profile&&typeof profile.scopeId==='string'&&profile.scopeId.length&&
       Number.isSafeInteger(quantity)&&quantity>0&&(!modelId||quantity===1)&&distribution;
     const address=known?key([instanceId,modelId?'MODEL':'SCOPE',modelId||profile.scopeId]):null;
@@ -61,7 +86,8 @@ export function countPhysicalCarriers(records,profileCards=[],{unit}={}) {
     if(!known||duplicate&&group.members.some(member=>member.address===address&&member.quantity!==quantity))group.quantity=null;
     else if(!duplicate&&group.quantity!==null)group.quantity+=quantity;
     if(known&&!duplicate){group.scopeIds.push(profile.scopeId);if(modelId)group.modelInstanceIds.push(modelId);}
-    group.members.push({address,quantity:known?quantity:null,scopeId:record.scopeId||null,selectionKey:record.selectionKey||null});
+    group.members.push({address,quantity:known?quantity:null,scopeId:record.scopeId||null,selectionKey:record.selectionKey||null,
+      proof:known?(singleton?'SINGLE_MODEL_COMPONENT':'SCOPED_PROFILE'):null});
   }
   return [...groups.values()];
 }

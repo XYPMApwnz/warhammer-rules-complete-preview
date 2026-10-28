@@ -2,6 +2,83 @@
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
+/** Read-only presentation context from already published native runtime assets.
+ * This never adds facts to the roster, executes clauses or changes F1 rows.
+ * Missing/ambiguous metadata simply leaves table placement unproved. */
+export async function loadDetachmentPresentationSources({payload,assetBaseURL,fetch:read}){
+  const result=new Map(),wanted=new Set(payload.cards.filter(card=>card.kind==='DETACHMENT_RULE'&&
+    card.fields.some(field=>field.presentation==='table-cell')).map(card=>card.id));
+  if(!wanted.size||!assetBaseURL||!read)return result;
+  try{
+    const root=new URL('../../../',import.meta.url),base=new URL('generated/',assetBaseURL);
+    const response=await read(new URL('glossary/generated/cache-revision.js',root));
+    if(!response.ok)return result;
+    const match=(await response.text()).match(/self\.WH40K_RUNTIME_ASSETS=(\{[^\n]*\});/);
+    if(!match)return result;
+    const assets=JSON.parse(match[1]),urls=Object.keys(assets).map(path=>new URL(path,root)).filter(url=>
+      url.origin===base.origin&&url.pathname.startsWith(base.pathname)&&
+      /\/(?:roster-runtime|rule-contract-effective|roster-attachments|roster-import)\.json$/.test(url.pathname));
+    const inputs=await Promise.allSettled(urls.map(async url=>{const response=await read(url);return response.ok?response.json():null;}));
+    const ambiguous=new Set();
+    for(const input of inputs)if(input.status==='fulfilled'&&input.value?.bookId===payload.book.id)
+      for(const rule of input.value.entities||[]){
+        if(!wanted.has(rule.id)||rule.kind!=='DETACHMENT_RULE'||!rule.ruleContract?.clauses||!rule.provenance?.sourceId)continue;
+        if(result.has(rule.id)&&JSON.stringify(result.get(rule.id))!==JSON.stringify(rule))ambiguous.add(rule.id);
+        else result.set(rule.id,rule);
+      }
+    for(const id of ambiguous)result.delete(id);
+  }catch{/* Render canonical fields without a guessed table insertion point. */}
+  return result;
+}
+/** Field identity, not flattened text, owns display deduplication. Native row
+ * proof is validated separately and is never rewritten by this display plan. */
+export function projectDetachmentFields(card,rows,sources=new Map()){
+  const fields=new Map(),clauses=[];
+  for(const row of rows){
+    const rule=sources.get(row.ruleId),matches=rule?.ruleContract?.clauses.filter(clause=>clause.id===row.clauseId)||[];
+    const clause=matches.length===1&&JSON.stringify(rule.provenance)===JSON.stringify(row.sourceProvenance)?matches[0]:null;
+    let selected=[];
+    if(clause){
+      for(const sourcePath of clause.sourceFields||[]){
+        const value=sourcePath.reduce((value,key)=>value?.[key],rule.data),id=JSON.stringify([row.ruleId,'/'+sourcePath.join('/')]);
+        if(typeof value==='string')selected.push({id,kind:'TEXT',sourcePath,text:value});
+        else if(Array.isArray(value))value.forEach((table,index)=>{
+          if(Array.isArray(table?.rows)&&table.rows.every(cells=>Array.isArray(cells)&&cells.every(cell=>typeof cell==='string')))
+            selected.push({id:JSON.stringify([row.ruleId,'/'+[...sourcePath,index,'rows'].join('/')]),kind:'TABLE',sourcePath:[...sourcePath,index,'rows'],rows:clone(table.rows)});
+        });
+      }
+      const flat=selected.filter(field=>field.kind==='TEXT').map(field=>field.text).join('\n')+
+        selected.filter(field=>field.kind==='TABLE').map(field=>'\n'+field.rows.map(cells=>cells.join(' · ')).join('\n')).join('');
+      if(flat!==row.detachmentText.text)selected=[];
+    }
+    if(!selected.length){
+      const matching=card.fields.filter(field=>field.source?.entityId===row.ruleId&&field.presentation!=='heading'&&
+        field.presentation!=='table-cell'&&typeof field.value==='string'&&field.value===row.detachmentText.text);
+      const field=matching.length===1?matching[0]:null;
+      selected=[{id:JSON.stringify([row.ruleId,field?.source.path||row.detachmentText.text]),kind:'TEXT',
+        sourcePath:field?.source.path||null,text:row.detachmentText.text}];
+      if(!field){
+        const tables=new Map();
+        for(const cell of card.fields.filter(field=>field.presentation==='table-cell'&&field.source?.entityId===row.ruleId)){
+          const id=cell.table?.id;if(!id)continue;
+          if(!tables.has(id))tables.set(id,{id:JSON.stringify([row.ruleId,id.slice(id.indexOf('::')+2)]),kind:'TABLE',sourcePath:id.slice(id.indexOf('::')+2),rows:[]});
+          const rows=tables.get(id).rows;rows[cell.table.row]??=[];rows[cell.table.row][cell.table.column]=cell.value;
+        }
+        const suffix=[...tables.values()].map(field=>'\n'+field.rows.map(cells=>cells.join(' · ')).join('\n')).join('');
+        const prefixes=card.fields.filter(field=>field.source?.entityId===row.ruleId&&field.presentation!=='heading'&&field.presentation!=='table-cell'&&
+          typeof field.value==='string'&&suffix&&field.value+suffix===row.detachmentText.text);
+        if(prefixes.length===1)selected=[{id:JSON.stringify([row.ruleId,prefixes[0].source.path]),kind:'TEXT',sourcePath:prefixes[0].source.path,text:prefixes[0].value},...[...tables.values()]];
+      }
+    }
+    const tables=selected.filter(field=>field.kind==='TABLE'),quote=clause?.evidence?.quote;
+    const anchors=selected.filter(field=>field.kind==='TEXT'&&JSON.stringify(field.sourcePath)===JSON.stringify(clause?.evidence?.field)&&
+      typeof quote==='string'&&quote.length&&field.text.indexOf(quote)>=0&&field.text.indexOf(quote)===field.text.lastIndexOf(quote));
+    if(tables.length===1&&anchors.length===1)tables[0].anchor={fieldId:anchors[0].id,offset:anchors[0].text.indexOf(quote)+quote.length};
+    for(const field of selected)if(!fields.has(field.id))fields.set(field.id,field);
+    clauses.push({row,fieldIds:selected.map(field=>field.id),...(clause?{evidence:clone(clause.evidence),conditions:clone(clause.conditions||[])}:{})});
+  }
+  return {fields:[...fields.values()],clauses};
+}
 /** Table rows are pending choices under the proven leading recipient. Keep raw
  * clause proof intact; this only omits duplicate standalone option rendering. */
 export function groupDetachmentTextRows(rows){

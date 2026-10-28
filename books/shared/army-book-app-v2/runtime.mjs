@@ -180,7 +180,7 @@ export function mount(document, payload, options = {}) {
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
     renderCanonicalRule:card=>bookPresenter.accepts(card)||card.kind==='STRUCTURED_RULE_TABLE'
       ?bookPresenter.render(card,{inline:true}):renderCard(card,{depth:1}),
-    related:renderRelatedRules,roster:options.roster,
+    related:renderRelatedRules,roster:options.roster,presentationRuleSources:options.presentationRuleSources,
     navigateSection:(id,section,nav,instanceId)=>contents.controller.navigateSection(id,section,{nav,instanceId:instanceId || ''})});
   const bookPresenter=createBookPresenter({document,payload,cards,el,factValue,anchor,allowedIds:scopedIds,renderWeapon:datasheets.renderWeapon});
   const referencePresenter=createReferencePresenter({el,factValue,anchor,contract:references,cards,payload,allowedIds:scopedIds,

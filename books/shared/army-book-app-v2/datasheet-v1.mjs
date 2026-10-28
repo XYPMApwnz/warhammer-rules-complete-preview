@@ -3,7 +3,7 @@ import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './nor
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
-import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards} from './personal.mjs';
+import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields} from './personal.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -48,7 +48,7 @@ const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
-export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule}) {
+export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule,presentationRuleSources=new Map()}) {
   const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const config=payload.datasheetPresentation;
   const physicalCards=prepareRosterPresentationCards(cards,payload.rosterPresentation);
@@ -274,7 +274,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       if(sources.length){
         const note=el('small','ds-ability-sources ds-weapon-grant-sources');note.style.display='block';note.style.overflowWrap='anywhere';note.append(document.createTextNode('Source: '));
         note.dataset.weaponGrantSources=JSON.stringify(sources);
-        const groups=new Map();for(const source of sources){
+        const groups=new Map(),physicalCarriers=[];for(const source of sources){
           const key=effectContributionKey(source);
           if(!groups.has(key))groups.set(key,{source,targets:[]});groups.get(key).targets.push(source);
         }
@@ -291,11 +291,15 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           const members=targets.flatMap(target=>displayMembers.filter(member=>member.instanceId===target.targetInstanceId&&member.id===target.targetWeaponProfileId&&
               (member.scopeId??null)===(target.targetCompositionId??null)&&
               (!target.targetWeaponSelectionKey||member.selectionKey===target.targetWeaponSelectionKey)));
-          const recipients=formatPhysicalCarriers(countPhysicalCarriers(members,physicalProfiles(instanceId),{
-            unit:roster.state.units.find(unit=>unit.instanceId===instanceId)
-          }));
+          const carriers=countPhysicalCarriers(members,physicalProfiles(instanceId),{
+            unit:roster.state.units.find(unit=>unit.instanceId===instanceId),
+            unitCard:cards.get(roster.state.units.find(unit=>unit.instanceId===instanceId).canonicalUnitId)
+          });
+          physicalCarriers.push(...carriers);
+          const recipients=formatPhysicalCarriers(carriers);
           note.append(document.createTextNode(' · Applies to: '+(recipients.join('; ')||'Physical recipient count unresolved')));
         }
+        note.dataset.physicalCarriers=JSON.stringify(physicalCarriers);
         tags.append(note);
       }
     }
@@ -520,13 +524,36 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const textEffective=card.rosterDetachmentTexts?.length?roster.effective(instanceId):null;
       const physicalUnit=roster.state.units.find(unit=>unit.instanceId===instanceId),ruleGroups=new Map();
       for(const row of card.rosterDetachmentTexts||[])validateComponentDetachmentText(cards,roster,physicalUnit,textEffective,row);
-      for(const row of groupDetachmentTextRows(card.rosterDetachmentTexts||[])){
+      const displayRows=groupDetachmentTextRows(card.rosterDetachmentTexts||[]);
+      const ruleKey=row=>JSON.stringify([row.ruleId,row.sourceProvenance,row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
+      for(const row of displayRows){
           const signature=JSON.stringify([row.ruleId,row.sourceProvenance,row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
           let group=ruleGroups.get(signature);
           if(!group){
             const node=el('article','ds-detachment-rule');node.dataset.detachmentRuleId=row.ruleId;
             node.append(el('h5','',row.label));section.append(node);
-            group={node,texts:new Map()};ruleGroups.set(signature,group);
+            const plan=projectDetachmentFields(cards.get(row.ruleId),displayRows.filter(row=>ruleKey(row)===signature),presentationRuleSources);
+            const ids=new Map(plan.fields.map(field=>[field.id,'ds-field-'+domKey(JSON.stringify([instanceId,signature,field.id]))]));
+            const rendered=new Set(),area=el('div','ds-detachment-fields');node.append(area);
+            const tableNode=field=>{
+              const table=el('table','');table.id=ids.get(field.id);table.dataset.detachmentSourceTable='';
+              table.dataset.sourceFieldPath=JSON.stringify(field.sourcePath);const body=el('tbody');
+              for(const cells of field.rows){const tr=el('tr');for(const value of cells)tr.append(el('td','',value));body.append(tr);}
+              table.append(body);rendered.add(field.id);return table;
+            };
+            for(const field of plan.fields.filter(field=>field.kind==='TEXT')){
+              const text=el('div','');text.id=ids.get(field.id);text.dataset.detachmentFieldText='';
+              text.dataset.sourceFieldPath=JSON.stringify(field.sourcePath);
+              let offset=0;
+              for(const table of plan.fields.filter(table=>table.kind==='TABLE'&&table.anchor?.fieldId===field.id)
+                .sort((a,b)=>a.anchor.offset-b.anchor.offset)){
+                text.append(document.createTextNode(field.text.slice(offset,table.anchor.offset)),tableNode(table));offset=table.anchor.offset;
+              }
+              text.append(document.createTextNode(field.text.slice(offset)));area.append(text);
+            }
+            // No source-bound unique anchor: retain the real table after text.
+            for(const field of plan.fields.filter(field=>field.kind==='TABLE'&&!rendered.has(field.id)))area.append(tableNode(field));
+            group={node,plan,ids};ruleGroups.set(signature,group);
           }
           const text=row.detachmentText,node=el('div','ds-conditional-policy');
           node.dataset.conditionalPolicy='DETACHMENT_TEXT';node.dataset.execution=row.execution;
@@ -540,13 +567,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           const profiles=physicalProfiles(instanceId).filter(profile=>text.recipientSubject==='UNIT'||row.recipientModelScopeIds.includes(profile.scopeId));
           const recipients=formatPhysicalCarriers(countPhysicalCarriers(profiles));
           node.append(el('p','','Applies to: '+(recipients.join('; ')||cards.get(physicalUnit.canonicalUnitId).title+' · model count unresolved')));
-          const sharedText=group.texts.get(text.text);
-          if(sharedText){node.dataset.detachmentClauseTextRef=sharedText.id;node.setAttribute('aria-describedby',sharedText.id);}
-          else{
-            const clauseText=el('p','',text.text);clauseText.dataset.detachmentClauseText='';
-            clauseText.id='ds-clause-'+domKey(JSON.stringify([instanceId,signature,row.clauseId,text.roleId]));
-            node.append(clauseText);group.texts.set(text.text,clauseText);
-          }
+          const clause=group.plan.clauses.find(clause=>clause.row===row),refs=clause.fieldIds.map(id=>group.ids.get(id));
+          node.dataset.detachmentClauseFieldRefs=JSON.stringify(refs);node.dataset.detachmentClauseTextRef=refs[0];
+          node.setAttribute('aria-describedby',refs.join(' '));
+          if(clause.evidence)node.dataset.detachmentClauseEvidence=JSON.stringify(clause.evidence);
+          if(clause.conditions)node.dataset.detachmentClauseConditions=JSON.stringify(clause.conditions);
           if(text.tableOptions?.length){
             const choices=el('ul','');choices.dataset.detachmentOptions='';
             for(const option of text.tableOptions){const item=el('li','',option.text);item.dataset.optionClauseId=option.clauseId;item.dataset.optionTableId=option.tableId;item.dataset.optionRowIndex=String(option.rowIndex);choices.append(item);}

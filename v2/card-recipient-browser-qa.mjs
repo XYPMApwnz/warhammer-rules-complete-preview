@@ -38,6 +38,7 @@ const constructed={
 + DETACHMENT: Haloscreed Battle Clade
 + DETACHMENT: Lords of the Forge
 Char1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe
+Enhancement: Cognitive Reinforcement
 Char2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe
 9x Servitor Battleclade (110 pts)
 • 1x Servitor Underseer: Mechanicus pistol, Dataspikes
@@ -103,9 +104,24 @@ async function current(page){return page.evaluate(()=>({snapshot:window.ArmyBook
 async function rows(page,instance,ruleId){return card(page,instance).locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll((nodes,ruleId)=>nodes.flatMap(node=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId)return [];
   const text=node.querySelector('[data-detachment-clause-text]')||document.getElementById(node.dataset.detachmentClauseTextRef);
+  const fieldRefs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
+  const fields=fieldRefs.map(id=>document.getElementById(id));
+  // A shared text field can contain an inline source table. The canonical F1
+  // flat clause keeps those fields separate and appends its referenced table;
+  // reconstruct that contract from the actual visible text/table DOM only.
+  const textWithoutTables=current=>current.nodeType===Node.TEXT_NODE?current.textContent:
+    current.nodeType===Node.ELEMENT_NODE&&current.matches('table[data-detachment-source-table]')?'':
+    [...current.childNodes].map(textWithoutTables).join('');
+  const tableText=table=>[...table.querySelectorAll('tr')].map(row=>[...row.querySelectorAll('th,td')].map(cell=>cell.textContent).join(' · ')).join('\n');
+  const fieldText=field=>!field?null:field.matches('table[data-detachment-source-table]')?tableText(field):textWithoutTables(field);
+  const fieldEvidence=fields.map((field,index)=>({id:fieldRefs[index],exists:Boolean(field),visible:Boolean(field?.getClientRects().length),
+    kind:field?.matches('table[data-detachment-source-table]')?'TABLE':'TEXT',text:fieldText(field)}));
   return [{source,subject:node.dataset.recipientSubject,instances:JSON.parse(node.dataset.recipientInstanceIds),models:JSON.parse(node.dataset.recipientModelScopeIds),
     classification:node.dataset.rosterClassification,execution:node.dataset.execution,status:node.dataset.selectionStatus,
-    text:text?.textContent,body:node.innerText,applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
+    text:fieldRefs.length?fieldEvidence.map(field=>field.text).join('\n'):text?.textContent,fieldRefs,fields:fieldEvidence,
+    evidence:node.dataset.detachmentClauseEvidence?JSON.parse(node.dataset.detachmentClauseEvidence):null,
+    conditions:node.dataset.detachmentClauseConditions?JSON.parse(node.dataset.detachmentClauseConditions):null,
+    body:node.innerText,applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
     links:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId)}];
 }),ruleId);}
 async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,subject,recipients,status}={}){
@@ -116,6 +132,7 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
   assert.ok(shown.length,'Expected source-bound physical clause');
   for(const row of shown){
     const proof=canonical.find(proof=>proof.clauseId===row.source.clauseId&&proof.recipientInstanceIds.includes(instance));assert.ok(proof,'Current executed proof contains physical recipient');
+    assert.ok(row.fields.every(field=>field.exists&&field.visible),'Every source-field reference resolves to actual visible content');
     assert.equal(norm(row.text),norm(proof.detachmentText.text),'Exact canonical clause text is retained, directly or by shared DOM reference');
     assert.deepEqual(row.source.provenance,proof.sourceProvenance,'Source provenance is retained for every clause');
     assert.deepEqual(row.instances,proof.recipientInstanceIds,'Full effective recipient set is not rewritten for local labels');
@@ -140,6 +157,69 @@ async function weaponNote(page,instance,weapon,expected,expectedRows=1){
   for(const note of vector)assert.ok(note.text.includes('Applies to: '+expected),'Explicit physical carrier counts: '+note.text);
   return {weapon,text:(await weapons.allInnerTexts()).join('\n'),vector};
 }
+async function ownWeaponCarriers(page,instance,profiles,{rules,label,profileId,contributionCounts={}}){
+  const evidence=[];
+  for(const id of profiles){
+    const weapon=card(page,instance).locator('.weapon-row[data-card-id="'+id+'"]');assert.equal(await weapon.count(),1,'Exact selected weapon-profile identity');
+    const notes=await weapon.locator('.ds-weapon-grant-sources').evaluateAll(nodes=>nodes.map(node=>({text:node.innerText,
+      sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null')})));
+    for(const ruleId of rules){
+      const contributions=notes.filter(note=>note.sources.some(source=>source.canonicalRuleId===ruleId&&source.targetWeaponProfileId===id));
+      assert.equal(contributions.length,contributionCounts[ruleId]||1,'All distinct actual source contributions are shown on exact physical weapon profile '+id+'/'+ruleId);
+      for(const note of contributions){
+        assert.ok(note.text.includes('Applies to: '+label+' · 1 model'),'Visible caption names exactly the one physical model, not its weapon');
+        assert.ok(Array.isArray(note.carriers)&&note.carriers.length,'The renderer exposes the actual physical-carrier evidence');
+        for(const group of note.carriers){
+          assert.equal(group.instanceId,instance);assert.equal(group.profileId,profileId);
+          assert.equal(group.label,label,'Exact independently expected model label');assert.equal(group.quantity,1,'One physical bearer regardless of weapon copies');
+          assert.deepEqual(group.labelIdentity,{kind:'PROFILE',canonicalId:profileId,instanceId:instance},'Typed label identity belongs to the MODEL profile, never a weapon');
+          assert.ok(group.members.length&&group.members.every(member=>member.quantity===1),'Every contribution has an explicit single-model proof');
+        }
+        const sources=note.sources.filter(source=>source.canonicalRuleId===ruleId&&source.targetWeaponProfileId===id);
+        assert.ok(sources.every(source=>source.targetInstanceId===instance),'Exact physical recipient identity is retained');
+        assert.ok(sources.every(source=>source.clauseId&&source.effectId),'Executed clause/effect identities are retained');
+        evidence.push({weaponProfileId:id,ruleId,note});
+      }
+    }
+  }
+  return evidence;
+}
+async function noosphericTable(page,instance){
+  const outer=card(page,instance).locator('[data-detachment-rule-id="'+halo+'"]');
+  const text=outer.locator('[data-detachment-field-text]'),table=outer.locator('table[data-detachment-source-table]');
+  assert.equal(await text.count(),1,'Noospheric canonical text field is visible once across both clauses');
+  assert.equal(await table.count(),1,'Noospheric canonical source table is visible once');
+  const cells=await table.locator('tr').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('th,td')].map(cell=>cell.textContent)));
+  assert.deepEqual(cells,[['INCURSION:','1 UNIT'],['STRIKE FORCE','2 UNITS'],['ONSLAUGHT','3 UNITS']],'The existing three battle-size source rows are complete and separate cells');
+  const rule=JSON.parse(fs.readFileSync(path.join(repo,'books/adeptus-mechanicus/v2/generated/roster-runtime.json'),'utf8')).entities.find(entity=>entity.id===halo);
+  const placement=await outer.evaluate(outer=>{
+    const field=outer.querySelector('[data-detachment-field-text]'),table=outer.querySelector('table[data-detachment-source-table]'),tokens=[];
+    function visit(node){if(node===table){tokens.push({kind:'TABLE'});return;}if(node.nodeType===Node.TEXT_NODE){tokens.push({kind:'TEXT',text:node.textContent});return;}for(const child of node.childNodes)visit(child);}
+    visit(field);const marker=tokens.findIndex(token=>token.kind==='TABLE');
+    return {inline:field.contains(table),before:marker<0?null:tokens.slice(0,marker).map(token=>token.text||'').join(''),after:marker<0?null:tokens.slice(marker+1).map(token=>token.text||'').join(''),
+      fieldText:tokens.filter(token=>token.kind==='TEXT').map(token=>token.text).join(''),
+      followsField:Boolean(field.compareDocumentPosition(table)&Node.DOCUMENT_POSITION_FOLLOWING)};
+  });
+  assert.equal(norm(placement.fieldText),norm(rule.data.text),'One visible field retains the full canonical prose without truncation');
+  if(process.env.F2_AM_TABLE_PLACEMENT==='APPENDED'){
+    if(placement.inline){assert.equal(norm(placement.before),norm(rule.data.text),'An ambiguous anchor places the table only after all canonical text');assert.equal(norm(placement.after),'','No arbitrary middle anchor is selected');}
+    else assert.equal(placement.followsField,true,'The complete source table is preserved after the field when its anchor is ambiguous');
+  }else{
+    const quote=rule.ruleContract.clauses.find(clause=>clause.id==='halo-override-selection').evidence.quote;
+    assert.equal(rule.data.text.split(quote).length,2,'Normal accepted source has one exact structural anchor');
+    assert.equal(placement.inline,true,'The actual source table belongs inside the shared source text field');
+    assert.equal(norm(placement.before),norm(quote),'The source table follows the complete exact leading evidence, ending as follows:');
+    assert.equal(norm(placement.after),norm(rule.data.text.slice(rule.data.text.indexOf(quote)+quote.length)),'The remaining source prose follows the table without duplication or loss');
+  }
+  const shown=await rows(page,instance,halo);assert.deepEqual(shown.map(row=>row.source.clauseId).toSorted(),['halo-override-selection','override-choice'].toSorted());
+  for(const row of shown){const clause=rule.ruleContract.clauses.find(clause=>clause.id===row.source.clauseId);
+    assert.deepEqual(row.evidence,clause.evidence,'Each independently addressed clause keeps its source evidence');
+    assert.deepEqual(row.conditions,clause.conditions||[],'Different clause conditions are not merged into the shared prose');
+  }
+  assert.deepEqual(shown.map(row=>row.fields.map(field=>field.kind)),[['TEXT','TABLE'],['TEXT']],'Each distinct clause retains exactly its own canonical field references');
+  assert.equal(shown[0].fieldRefs[0],shown[1].fieldRefs[0],'Both clauses reference the same visible canonical text');
+  return {cells,placement,clauses:shown};
+}
 
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin='http://127.0.0.1:'+server.address().port;
@@ -147,7 +227,8 @@ let browser;
 try{
   browser=await launchChromium();
   assert.ok(!process.env.F2_BROWSER_DEVICE||['desktop','mobile'].includes(process.env.F2_BROWSER_DEVICE),'Unknown device filter');
-  const families=['DG Omega physical blade carriers','Owner Deathshroud New Recruit v37.6','AM-1 clauses and local recipients','DG-1 Verminous Haze local components','CSM Veterans three physical datasheets'];
+  assert.ok(!process.env.F2_AM_TABLE_PLACEMENT||process.env.F2_AM_TABLE_PLACEMENT==='APPENDED','Unknown table-placement fixture mode');
+  const families=['DG Omega physical blade carriers','Owner Deathshroud New Recruit v37.6','AM-1 clauses and local recipients','DG-1 Verminous Haze local components','CSM Veterans three physical datasheets','EC native Lord Exultant physical bearer'];
   assert.ok(!process.env.F2_BROWSER_CASE||families.includes(process.env.F2_BROWSER_CASE),'Unknown scenario filter');
   for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]].filter(([device])=>!process.env.F2_BROWSER_DEVICE||process.env.F2_BROWSER_DEVICE===device)){
     async function run(book,name,work){
@@ -173,15 +254,20 @@ try{
       assert.deepEqual(state.units.map(unit=>unit.canonicalUnitId),['unit-lord-of-contagion','unit-deathshroud-terminators']);
       await attach(page,'parsed-unit-1','parsed-unit-2');await guide(page,'parsed-unit-2');
       const proof=await weaponNote(page,'parsed-unit-2','Manreaper','Deathshroud Terminator Champion · 1 model; Deathshroud Terminator · 2 models',2);
+      const own=await ownWeaponCarriers(page,'parsed-unit-1',[1,2].map(number=>'datasheet-lord-of-contagion:weapon:'+number),{
+        rules:['datasheet-lord-of-contagion:section:1','detachment-virulent-vectorium:enhancement:2'],label:'Lord of Contagion',profileId:'datasheet-lord-of-contagion:profile:default',
+        contributionCounts:{'datasheet-lord-of-contagion:section:1':2}});
       const gauntlets=card(page,'parsed-unit-2').locator('.weapon-row').filter({has:page.locator('.weapon-button').filter({hasText:'Plaguespurt gauntlet'})});
       assert.equal(await gauntlets.count(),1);assert.match(await gauntlets.innerText(),/×4/);assert.equal(await gauntlets.locator('.ds-weapon-grant-sources').count(),0,'Do not invent an Applies-to effect for gauntlets');
-      await screen(page,device+'-owner-deathshroud-vector');return {proof,realExport:true,gauntletWeapons:4,gauntletEffectInvented:false};
+      await screen(page,device+'-owner-deathshroud-vector');return {proof,own,realExport:true,gauntletWeapons:4,gauntletEffectInvented:false};
     });
     await run('adeptus-mechanicus','AM-1 clauses and local recipients',async page=>{
       await imported(page,constructed.am,5);await attach(page,'parsed-unit-1','parsed-unit-3');await attach(page,'parsed-unit-2','parsed-unit-4');
       const evidence=[];
       async function verify(stage){
         await guide(page,'parsed-unit-3');
+        evidence.push({stage,ownImperatives:await ownWeaponCarriers(page,'parsed-unit-1',[3,5].map(number=>'datasheet-tech-priest-dominus:weapon:'+number),{
+          rules:['army-rule-doctrina-imperatives:protector-imperative','army-rule-doctrina-imperatives:conqueror-imperative'],label:'Tech-priest Dominus',profileId:'datasheet-tech-priest-dominus:profile:default'})});
         for(const [instance,label,other]of [['parsed-unit-3','Servitor Underseer','Tech-priest Dominus'],['parsed-unit-1','Tech-priest Dominus','Servitor Underseer']]){
           const shown=await validateClauses(page,instance,halo,{expectedClauses:['halo-override-selection','override-choice'],localLabel:label,subject:'UNIT',recipients:['parsed-unit-1','parsed-unit-3'],status:'ELIGIBLE_FOR_SELECTION'});
           assert.ok(shown.every(row=>!row.applies.join(' ').includes(other)),'UNIT Applies to stays local to this datasheet');evidence.push({stage,instance,rule:halo,shown});
@@ -193,9 +279,7 @@ try{
         assert.equal((await rows(page,'parsed-unit-4',forge)).length,0,'MODEL-only Baffling never leaks to attached Rangers');
         assert.deepEqual(dominus[0].instances,['parsed-unit-2']);assert.ok(dominus[0].models.every(scope=>scope.startsWith('parsed-unit-2/')));
         await validateClauses(page,'parsed-unit-4',halo,{expectedClauses:['halo-override-selection','override-choice'],localLabel:'Skitarii Rangers',subject:'UNIT'});
-        const outer=card(page,'parsed-unit-4').locator('[data-detachment-rule-id="'+halo+'"]');
-        const clauses=await rows(page,'parsed-unit-4',halo);const texts=new Set(clauses.map(row=>row.text));
-        assert.equal(await outer.locator('[data-detachment-clause-text]').count(),texts.size,'Identical canonical prose is rendered once while both clauses remain inspectable');
+        evidence.push({stage,instance:'parsed-unit-4',canonicalSourceTable:await noosphericTable(page,'parsed-unit-4')});
         assert.equal((await current(page)).projection.units.find(unit=>unit.instanceId==='parsed-unit-4').keywords.includes('HALO OVERRIDE'),false);
       }
       await verify('attached');await screen(page,device+'-am-grouped-clauses');
@@ -238,9 +322,19 @@ try{
       await guide(page,'parsed-unit-2');await validateClauses(page,'parsed-unit-2',veterans,{expectedClauses:['source-clause-1-1'],recipients:['parsed-unit-2'],localLabel:'Master of Executions'});
       await attach(page,'parsed-unit-2','parsed-unit-3');await verify('reattached');return {evidence};
     });
+    await run('emperors-children','EC native Lord Exultant physical bearer',async page=>{
+      const fixtures=JSON.parse(fs.readFileSync(path.join(sourceRepo,'books/emperors-children/v2/roster-import-fixtures.json'),'utf8'));
+      const fixture=fixtures.fixtures.find(item=>item.id==='character-bodyguard');assert.ok(fixture,'Existing native EC import fixture');
+      const state=await imported(page,fixture.text,2);assert.deepEqual(state.units.map(unit=>unit.canonicalUnitId),['unit-lord-exultant','unit-infractors']);
+      await attach(page,'parsed-unit-1','parsed-unit-2');await guide(page,'parsed-unit-1');
+      // Four physical weapons retain both canonical Plasma pistol modes.
+      const evidence=await ownWeaponCarriers(page,'parsed-unit-1',[1,2,3,5,7].map(number=>'datasheet-lord-exultant:weapon:'+number),{
+        rules:['datasheet-lord-exultant:section:1'],label:'Lord Exultant',profileId:'datasheet-lord-exultant:profile:1'});
+      await screen(page,device+'-ec-lord-exultant-own-carriers');return {fixture:fixture.id,physicalWeapons:4,canonicalWeaponModes:5,evidence};
+    });
   }
   assert.equal(errors.length,0,'No uncaught browser errors');assert.equal(missing.length,0,'No missing runtime resources');assert.equal(requestFailures.length,0,'No failed runtime requests');
-  assert.equal(results.length,(process.env.F2_BROWSER_CASE?1:5)*(process.env.F2_BROWSER_DEVICE?1:2),'Every selected family actually executed on its requested viewports');
+  assert.equal(results.length,(process.env.F2_BROWSER_CASE?1:6)*(process.env.F2_BROWSER_DEVICE?1:2),'Every selected family actually executed on its requested viewports');
 }finally{
   fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({browser:browser?.version(),root:repo,filters:{case:process.env.F2_BROWSER_CASE||null,device:process.env.F2_BROWSER_DEVICE||null},viewports:[{width:1440,height:1000},{width:390,height:844}],results,errors,missing,requestFailures,consoleMessages,screenshots},null,2)+'\n');
   console.log('F2 browser evidence: '+out);if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));

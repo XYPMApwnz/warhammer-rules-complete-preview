@@ -155,9 +155,16 @@ if(prepareOnly){
   async function guide(page,instance){await guideIndex(page);await page.locator('main a[data-target-id="roster-unit/'+instance+'"]').click();
     await page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]').waitFor();}
   const visibleRows=page=>page.locator('main .ds-conditional-policy').evaluateAll((nodes,ruleId)=>nodes.flatMap(node=>{
-    const proof=JSON.parse(node.dataset.policySource||'{}');return proof.ruleId===ruleId?[{proof,subject:node.dataset.recipientSubject,
+    const proof=JSON.parse(node.dataset.policySource||'{}');
+    const refs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
+    const withoutTables=node=>node.nodeType===Node.TEXT_NODE?node.textContent:
+      node.nodeType!==Node.ELEMENT_NODE||node.tagName==='TABLE'?'':[...node.childNodes].map(withoutTables).join('');
+    const clauseText=refs.length?refs.map(id=>{const field=document.getElementById(id);if(!field||!field.getClientRects().length)throw new Error('Missing visible clause source field');
+      return field.matches('table[data-detachment-source-table]')?[...field.querySelectorAll('tr')].map(row=>[...row.querySelectorAll('th,td')].map(cell=>cell.textContent).join(' · ')).join('\n'):withoutTables(field);
+    }).join('\n'):node.querySelector('[data-detachment-clause-text]')?.textContent;
+    return proof.ruleId===ruleId?[{proof,subject:node.dataset.recipientSubject,
       instances:JSON.parse(node.dataset.recipientInstanceIds),models:JSON.parse(node.dataset.recipientModelScopeIds),text:node.innerText,
-      clauseText:node.querySelector('[data-detachment-clause-text]')?.textContent,
+      clauseText,
       options:[...node.querySelectorAll('[data-detachment-options] li')].map(item=>({text:item.textContent,tableId:item.dataset.optionTableId,rowIndex:Number(item.dataset.optionRowIndex),clauseId:item.dataset.optionClauseId}))}]:[];
   }),ruleId);
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
