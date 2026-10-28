@@ -11,7 +11,7 @@ import {validateRoster,changeAttachment,withRosterDetachments} from '../books/sh
 import {executeRosterEffects,validateRosterEffects} from '../books/shared/roster-v2/effects.mjs';
 import {projectEffectiveInstance} from '../books/shared/roster-v2/effective-instance.mjs';
 import {detachmentTextDeclaration,projectConditionalRow} from '../books/shared/roster-v2/conditional-policy.mjs';
-import {prepareRosterPresentationCards,projectFormedUnitCards} from '../books/shared/army-book-app-v2/personal.mjs';
+import {prepareRosterPresentationCards,projectFormedUnitCards,validateComponentDetachmentText} from '../books/shared/army-book-app-v2/personal.mjs';
 import {decodeSourceText} from '../books/death-guard/v2/raw-source.mjs';
 import * as dgSchema from '../books/death-guard/v2/rule-contract-schema.mjs';
 import {createECRuleSchema} from '../books/emperors-children/v2/rule-contract-schema.mjs';
@@ -168,7 +168,31 @@ check('AM/Halo/UNIT-selection-eligible-not-selected',()=>{
   assert.equal(projection.units.find(unit=>unit.instanceId===id).keywords.includes('HALO OVERRIDE'),false,'Unrecorded choice executed');
  }
  const view=personal(am,snapshot,projection,'rangers');
- assert.equal(view.components.flatMap(component=>component.card.rosterDetachmentTexts||[]).filter(row=>row.ruleId===halo&&row.clauseId==='halo-override-selection').length,1,'Formed UNIT choice must appear once');
+ for(const component of view.components)assert.equal((component.card.rosterDetachmentTexts||[]).filter(row=>row.ruleId===halo&&row.clauseId==='halo-override-selection').length,1,'F2: each proven physical component shows the UNIT choice once');
+ // A missing local UNIT row can use another current component's native proof,
+ // without changing either effective array or its complete recipient set.
+ const payload=read('books/adeptus-mechanicus/v2/generated/app-presentation.json');
+ const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
+ const snapshots=new Map(snapshot.units.map(unit=>[unit.instanceId,effective(am,projection,unit.instanceId)]));
+ const own=snapshots.get('priest');own.conditional=own.conditional.filter(row=>row.ruleId!==halo);
+ const before=clone([...snapshots]),service={state:snapshot,effective:id=>snapshots.get(id)};
+ const copied=projectFormedUnitCards(cards,service,'rangers').components.find(component=>component.unit.instanceId==='priest').card.rosterDetachmentTexts.find(row=>row.ruleId===halo&&row.clauseId==='halo-override-selection');
+ assert.ok(copied,'Missing local UNIT presentation is recovered only from current native proof');
+ assert.deepEqual([...snapshots],before,'Presentation changed effective rows');
+ assert.deepEqual(copied.recipientInstanceIds,['rangers','priest']);
+ const physical=snapshot.units.find(unit=>unit.instanceId==='priest');
+ for(const [name,mutate]of [
+  ['recipient',row=>row.recipientInstanceIds=['priest']],
+  ['clause',row=>row.clauseId='foreign-clause'],
+  ['provenance',row=>row.sourceProvenance.sourceId='foreign-source'],
+  ['physical-source',row=>row.sourceInstanceId='foreign-physical-source'],
+  ['physical-source-model',row=>row.sourceModelScopeId='foreign-physical-model'],
+  ['owner',row=>row.sourceOwnerChain.at(-1).id='foreign-owner'],
+  ['MODEL-transfer',row=>row.detachmentText.recipientSubject='MODEL'],
+  ['canonical-text',row=>row.detachmentText.text+=' changed']
+ ]){const row=clone(copied);mutate(row);rejected('F2/UNIT-copy/'+name,()=>validateComponentDetachmentText(cards,service,physical,own,row));}
+ const detached=clone(own);detached.formedUnit=null;
+ rejected('F2/UNIT-copy/stale-after-detach',()=>validateComponentDetachmentText(cards,service,physical,detached,copied));
  assert.equal(textRows(execute(am,wrongDetachment(am,snapshot)),'rangers',halo).length,0);unchangedNumerics(am,snapshot,projection);
  const outsider=clone(am);for(const binding of outsider.rosterProfileBindings.filter(binding=>binding.unitId===rangers))binding.intrinsicKeywords=binding.intrinsicKeywords.filter(keyword=>keyword!=='ADEPTUS MECHANICUS');
  for(const member of outsider.entities.filter(record=>record.id===rangers))member.data.factionKeywords=[];
@@ -267,7 +291,7 @@ check('nested-ROSTER-prerequisite-for-foreign-role-is-not-recipient-proof',()=>{
 });
 
 const result={status:failures.length?'FAIL':'PASS',failures,checks:checks.length,checkIds:checks,scenarios,sourceProof,mutationControls:mutations.length,mutations,
- numericAppliedKeywordSelectionAttachmentParity:baselineExecute?{baseline:'023554a1',cases:baselineNumericParity,status:'PASS'}:{status:'NOT_RUN',reason:'Set F1_BASELINE_ROOT for independent interpreter parity; fixed INV/FNP controls still run'},
+ numericAppliedKeywordSelectionAttachmentParity:baselineExecute?{baselineRoot:process.env.F1_BASELINE_ROOT,cases:baselineNumericParity,status:'PASS'}:{status:'NOT_RUN',reason:'Set F1_BASELINE_ROOT for independent interpreter parity; fixed INV/FNP controls still run'},
  gameplayExecutionChanged:false,realNewRecruitExportTested:false,browserAcceptance:'Separate v2/detachment-recipient-browser-qa.mjs',
  limits:['CSM and AM Halo negative faction controls use disposable keyword-removal mutants because accepted book membership shares the faction selector','SM/DA/Tau/Tyr text dispatch is N/A; unsupported selectors were not invented','Existing typed BA HIT/WOUND policy coverage retained; EC existing passive grant remains unchanged']};
 if(process.env.F1_UNIT_OUT){fs.mkdirSync(process.env.F1_UNIT_OUT,{recursive:true});fs.writeFileSync(path.join(process.env.F1_UNIT_OUT,'RESULTS.json'),JSON.stringify(result,null,2)+'\n');}

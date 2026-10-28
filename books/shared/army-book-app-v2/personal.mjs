@@ -13,24 +13,54 @@ export function groupDetachmentTextRows(rows){
 }
 /** F1 uses runtime-verified provenance. Presentation cards bind only canonical
  * rule/parent IDs; their optional provenance decorations are book-specific. */
-export function validateDetachmentTextPresentation(cards,unit,effective,row){
+export function validateDetachmentTextPresentation(cards,unit,effective,row,origin){
   const rule=cards.get(row.ruleId),owner=cards.get(row.sourceDetachmentId),text=row.detachmentText,chain=row.sourceOwnerChain;
   const chainMatches=Array.isArray(chain)&&chain.length>1&&new Set(chain.map(link=>link.id)).size===chain.length&&
     chain[0].id===row.ruleId&&chain[0].parentId===row.sourceParentId&&chain.at(-1).id===row.sourceDetachmentId&&
     chain.every((link,index)=>{const card=cards.get(link.id);return card?.id===link.id&&card.kind===link.kind&&
       (card.parentId||null)===link.parentId&&(index===chain.length-1?card.kind==='DETACHMENT':card.kind!=='DETACHMENT'&&link.parentId===chain[index+1].id);});
   const expectedRecipients=text?.recipientSubject==='UNIT'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit?.instanceId];
-  const verified=(effective.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===text?.roleId);
+  const proof=origin?.effective||effective;
+  const verified=(proof.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===text?.roleId);
+  if(origin){
+    // Only an already verified UNIT row can be displayed on another current
+    // component. Its complete recipient set and native proof stay untouched.
+    validateDetachmentTextPresentation(cards,origin.unit,proof,row);
+    assert(text?.recipientSubject==='UNIT'&&effective.formedUnit&&proof.formedUnit&&
+      effective.formedUnit.formedUnitId===proof.formedUnit.formedUnitId&&
+      JSON.stringify(effective.formedUnit.memberInstanceIds)===JSON.stringify(proof.formedUnit.memberInstanceIds)&&
+      effective.instanceId===unit.instanceId&&proof.instanceId===origin.unit.instanceId&&
+      expectedRecipients.includes(unit.instanceId)&&expectedRecipients.includes(origin.unit.instanceId),
+      'Foreign textual Detachment presentation component');
+  }
   assert(!row.policy&&text&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&
     text.classification==='BATTLE_ONLY'&&chainMatches&&rule?.id===row.ruleId&&rule.kind==='DETACHMENT_RULE'&&
     owner?.id===row.sourceDetachmentId&&owner.kind==='DETACHMENT'&&
     JSON.stringify(row.recipientInstanceIds)===JSON.stringify(expectedRecipients)&&
     verified.length===1&&JSON.stringify(row.recipientModelScopeIds)===JSON.stringify(verified[0].recipientModelScopeIds)&&
     JSON.stringify(row.detachmentText)===JSON.stringify(verified[0].detachmentText)&&
+    JSON.stringify(row.sourceProvenance)===JSON.stringify(verified[0].sourceProvenance)&&
+    JSON.stringify(row.sourceOwnerChain)===JSON.stringify(verified[0].sourceOwnerChain)&&
+    ['sourceInstanceId','sourceModelScopeId','sourceDetachmentId','sourceParentId'].every(key=>row[key]===verified[0][key])&&
     ['UNIT','MODEL'].includes(text.recipientSubject)&&Array.isArray(row.recipientModelScopeIds)&&
     (text.recipientSubject==='UNIT'?row.recipientModelScopeIds.length===0:
       row.recipientModelScopeIds.length>0&&row.recipientModelScopeIds.every(id=>effective.profiles.some(model=>model.scopeId===id))),
     'Unresolved textual Detachment presentation');
+}
+/** Re-read native projections for every render, including presentation-only UNIT
+ * copies. No cached proof or effective row is transferred between components. */
+export function validateComponentDetachmentText(cards,roster,unit,effective,row){
+  const hasRow=projection=>(projection.conditional||[]).some(item=>item.detachmentText&&
+    item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===row.detachmentText.roleId);
+  if(hasRow(effective))return validateDetachmentTextPresentation(cards,unit,effective,row);
+  assert(row.detachmentText.recipientSubject==='UNIT'&&effective.formedUnit&&
+    row.recipientInstanceIds.includes(unit.instanceId),'Missing local textual Detachment proof');
+  for(const id of effective.formedUnit.memberInstanceIds){
+    if(id===unit.instanceId)continue;
+    const source=roster.state.units.find(item=>item.instanceId===id),proof=roster.effective(id);
+    if(source&&hasRow(proof))return validateDetachmentTextPresentation(cards,unit,effective,row,{unit:source,effective:proof});
+  }
+  throw new TypeError('Missing current textual Detachment UNIT proof');
 }
 /** Book-owned canonical profile bindings apply only to physical views. The
  * normal book map and every factual field/address remain unchanged. */
@@ -90,14 +120,17 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
       value.unitScope!=='FORMED'||identity(value)!==expected);
   }
   if(group){
-    const seen=new Set();
+    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.roleId,row.sourceProvenance,row.sourceOwnerChain]);
+    const sources=components.flatMap(component=>component.card.rosterDetachmentTexts||[])
+      .filter(row=>row.detachmentText.recipientSubject==='UNIT');
     for(const component of components){
-      if(!component.card.rosterDetachmentTexts)continue;
-      component.card.rosterDetachmentTexts=component.card.rosterDetachmentTexts.filter(row=>{
-      if(row.detachmentText.recipientSubject!=='UNIT')return true;
-      const identity=JSON.stringify([row.ruleId,row.clauseId,row.detachmentText,row.recipientInstanceIds,row.sourceProvenance]);
-      if(seen.has(identity))return false;seen.add(identity);return true;
-      });
+      const rows=component.card.rosterDetachmentTexts||[],seen=new Set(rows.map(identity));
+      for(const row of sources){
+        if(seen.has(identity(row))||!row.recipientInstanceIds.includes(component.unit.instanceId))continue;
+        validateComponentDetachmentText(cards,roster,component.unit,roster.effective(component.unit.instanceId),row);
+        rows.push(clone(row));seen.add(identity(row));
+      }
+      if(rows.length)component.card.rosterDetachmentTexts=rows;
     }
   }
   return {formedUnitId:group?.formedUnitId||null,components};

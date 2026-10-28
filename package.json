@@ -33,7 +33,7 @@
     "test:pwa": "node tests/minimal-pwa-cache-qa.mjs && node v2/pwa-transition-qa.mjs",
     "test:pwa-update": "node tests/browser/pwa-update-flow.mjs",
     "test:cold-offline": "node tests/browser/cold-offline.mjs",
-    "test:browser": "node tests/helpers/run-qa-suite.mjs v2/shell-browser-qa.mjs v2/core-reader-browser-qa.mjs npm:test:pwa npm:test:pwa-update npm:test:cold-offline v2/detachment-recipient-browser-qa.mjs v2/detachment-synthetic-table-browser-qa.mjs",
+    "test:browser": "node tests/helpers/run-qa-suite.mjs v2/shell-browser-qa.mjs v2/core-reader-browser-qa.mjs npm:test:pwa npm:test:pwa-update npm:test:cold-offline v2/detachment-recipient-browser-qa.mjs v2/detachment-synthetic-table-browser-qa.mjs v2/card-recipient-browser-qa.mjs",
     "test:release": "npm run test:full",
     "army-books:check": "npm run publication:check",
     "army-books:sources:check": "npm run source:check && node books/shared/tools/extract-bsdata-11e.mjs books/tyranids/sources/bsdata-extract.config.json --check && node books/shared/tools/extract-bsdata-11e.mjs books/tau-empire/sources/bsdata-extract.config.json --check && node books/shared/tools/extract-bsdata-11e.mjs books/chaos-space-marines/sources/bsdata-extract.config.json --check && node books/shared/tools/extract-bsdata-11e.mjs books/orks/sources/bsdata-extract.config.json --check && node books/emperors-children/tools/build-bsdata-enhancement-index.mjs --check && node books/shared/tools/extract-bsdata-11e.mjs books/emperors-children/sources/bsdata-extract.config.json --check && python books/space-marines/tools/build-bsdata-layer.py --check && node books/space-marines/tools/extract-faction-pack.mjs --check && node books/space-marines/tools/extract-codex-details.cjs --check && node books/space-marines/tools/build-related-rules.mjs --check && npm run blood-angels:extract:check",
@@ -136,7 +136,7 @@
     "ec:build": "node books/emperors-children/v2/app-build.mjs",
     "blood-angels:qa": "node books/blood-angels/v2/app-qa.mjs && node books/blood-angels/v2/roster-qa.mjs",
     "publication:check": "node books/shared/tools/publication-inventory.mjs --check && node tests/publication-inventory-qa.mjs && node tests/generated-output-ownership-qa.mjs",
-    "qa:roster": "node tests/helpers/run-qa-suite.mjs books/shared/roster-v2/import-service-qa.mjs books/shared/roster-v2/import-selections-qa.mjs books/shared/roster-v2/attachment-service-qa.mjs books/shared/roster-v2/attachment-conditions-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs v2/detachment-recipient-qa.mjs",
+    "qa:roster": "node tests/helpers/run-qa-suite.mjs books/shared/roster-v2/import-service-qa.mjs books/shared/roster-v2/import-selections-qa.mjs books/shared/roster-v2/attachment-service-qa.mjs books/shared/roster-v2/attachment-conditions-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs v2/detachment-recipient-qa.mjs v2/card-recipient-qa.mjs",
     "qa:glossary": "node v2/glossary-core-navigation-qa.mjs && node glossary/v2/tests/ability-category-qa.mjs && node glossary/v2/tests/v2-owner-parity-qa.mjs",
     "test:preview": "npm run publication:check && npm run wiring:check && npm run cache:check && npm run qa:integration && npm run qa:publication && node v2/core-reader-qa.mjs && node v2/glossary-core-navigation-qa.mjs",
     "test:full": "npm run test:preview && npm run qa:effects && npm run qa:points && npm run qa:roster"

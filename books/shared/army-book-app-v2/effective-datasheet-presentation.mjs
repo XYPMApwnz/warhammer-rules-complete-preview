@@ -25,6 +25,58 @@ export function groupDisplayRecords(records,identity) {
   }
   return [...groups.values()];
 }
+/** Count MODEL carriers, never weapon copies or repeated captions. Call once per
+ * exact source/effect contribution. A PROFILE's physical scope owns its model
+ * quantity; WEAPON_PROFILE quantities are deliberately not read here. */
+export function countPhysicalCarriers(records,profileCards=[],{unit}={}) {
+  const groups=new Map();
+  for(const record of records){
+    const candidates=record.kind==='PROFILE'?[record]:profileCards.filter(profile=>
+      profile.kind==='PROFILE'&&profile.instanceId===record.instanceId&&
+      typeof record.scopeId==='string'&&profile.scopeId===record.scopeId);
+    const profile=candidates.length===1?candidates[0]:null;
+    const display=profile?.presentationScope||record.presentationScope;
+    const named=profile?.fields?.find(field=>path(field)==='/name')?.value;
+    const label=display?.canonicalLabelIncluded?display.label.replace(/ · Group \d+$/,''):
+      display?.label||named||profile?.title||record.title||'Physical models';
+    const instanceId=record.instanceId||null,profileId=profile?.id||null;
+    const signature=key([instanceId,profileId,label]);
+    let group=groups.get(signature);
+    if(!group){group={instanceId,profileId,label,quantity:0,scopeIds:[],modelInstanceIds:[],members:[]};groups.set(signature,group);}
+    const quantity=profile?.rosterQuantity;
+    const modelId=record.modelInstanceId||profile?.modelInstanceId||null;
+    const selections=unit?[...(unit.selections||[]),...(unit.modelRows||[]).flatMap(row=>[
+      ...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]
+      .filter(selection=>selection.selectionKey===record.selectionKey):[];
+    const selection=selections.length===1?selections[0]:null;
+    // A scoped item total alone does not prove its distribution among models.
+    const distribution=record.kind!=='WEAPON_PROFILE'||unit?.instanceId===instanceId&&selection&&
+      selection.canonicalProfileIds?.includes(record.id)&&Number.isSafeInteger(selection.perModelQuantity)&&
+      selection.perModelQuantity>0&&record.rosterQuantity===selection.perModelQuantity*quantity;
+    const known=instanceId&&profile&&typeof profile.scopeId==='string'&&profile.scopeId.length&&
+      Number.isSafeInteger(quantity)&&quantity>0&&(!modelId||quantity===1)&&distribution;
+    const address=known?key([instanceId,modelId?'MODEL':'SCOPE',modelId||profile.scopeId]):null;
+    const duplicate=address&&group.members.some(member=>member.address===address);
+    // Unknown/ambiguous ownership remains visible without an invented count.
+    if(!known||duplicate&&group.members.some(member=>member.address===address&&member.quantity!==quantity))group.quantity=null;
+    else if(!duplicate&&group.quantity!==null)group.quantity+=quantity;
+    if(known&&!duplicate){group.scopeIds.push(profile.scopeId);if(modelId)group.modelInstanceIds.push(modelId);}
+    group.members.push({address,quantity:known?quantity:null,scopeId:record.scopeId||null,selectionKey:record.selectionKey||null});
+  }
+  return [...groups.values()];
+}
+export function formatPhysicalCarriers(groups) {
+  return groups.map(group=>group.label+(group.quantity===null?' · model count unknown':
+    ` · ${group.quantity} ${group.quantity===1?'model':'models'}`));
+}
+/** Source/effect identity precedes recipient aggregation. Equal rule titles or
+ * final values never merge independently executed contributions. */
+export const effectContributionKey=source=>key([
+  source.canonicalRuleId||source.ruleId,source.clauseId??null,source.effectId??null,source.operation??null,
+  source.field??null,source.sourceInstanceId??null,source.sourceProfileId??null,source.sourceCompositionId??null,
+  source.sourceModelInstanceId??null,source.sourceFields??null,source.lifetime??null,
+  source.targetInstanceId??null,source.recipientScope??null,source.unitScope??null
+]);
 /** Share an effective annotation only when the same typed effect/source and
  * final presentation apply to EVERY represented physical profile scope.
  * Missing execution provenance fails closed; captions/text alone are not IDs. */

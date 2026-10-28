@@ -86,10 +86,12 @@ async function attach(page,leader,bodyguard){
 const attachDominus=page=>attach(page,'parsed-unit-1','parsed-unit-4');
 async function rows(page,ruleId,clauseId){const found=await page.locator('main .ds-conditional-policy').evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId||source.clauseId!==clauseId)return [];
+  const shared=node.dataset.detachmentClauseTextRef?document.getElementById(node.dataset.detachmentClauseTextRef):null;
+  const clauseText=node.querySelector('[data-detachment-clause-text]')||shared;
   return [{source,cardInstance:node.closest('.unit-card')?.dataset.rosterInstanceId||null,
     execution:node.dataset.execution,classification:node.dataset.rosterClassification,subject:node.dataset.recipientSubject,
     instances:JSON.parse(node.dataset.recipientInstanceIds||'[]'),models:JSON.parse(node.dataset.recipientModelScopeIds||'[]'),
-    selectionStatus:node.dataset.selectionStatus,text:node.innerText,clauseText:(node.querySelector('[data-detachment-clause-text]')||node.querySelector('p:last-child'))?.textContent,
+    selectionStatus:node.dataset.selectionStatus,text:node.innerText+' '+(shared?.textContent||'')+' '+(node.closest('[data-detachment-rule-id]')?.querySelector('h5')?.textContent||''),clauseText:(clauseText||node.querySelector('p:last-child'))?.textContent,
     applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
     options:[...node.querySelectorAll('[data-detachment-options] [data-option-table-id]')].map(option=>({tableId:option.dataset.optionTableId,rowIndex:Number(option.dataset.optionRowIndex),clauseId:option.dataset.optionClauseId,text:option.textContent})),
     sourceLinks:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),visible:Boolean(node.getClientRects().length)}];
@@ -215,7 +217,7 @@ try{
     await run(am,'Haloscreed eligibility only',async page=>{
       await imported(page,amRoster('Haloscreed Battle Clade'),amUnits);
       for(const instance of ['parsed-unit-2','parsed-unit-3','parsed-unit-5'])await assertEligibility(page,instance,halo,'halo-override-selection',{
-        wanted:true,quote:'select one or more ADEPTUS MECHANICUS units',label:instance==='parsed-unit-2'?'Dominus':instance==='parsed-unit-3'?'Servitor Battleclade':'Skitarii Rangers',stage:device+' Haloscreed '+instance});
+        wanted:true,quote:'select one or more ADEPTUS MECHANICUS units',label:instance==='parsed-unit-2'?'Dominus':instance==='parsed-unit-3'?'Servitor Underseer':'Skitarii Rangers',stage:device+' Haloscreed '+instance});
       await sourceLink(page,halo,'halo-override-selection','Until the start of your next Command phase, those units gain the HALO OVERRIDE keyword.');
       await shot(page,device,'haloscreed-selection-not-recorded');
     });
@@ -225,7 +227,7 @@ try{
     for(const detachment of ['Flyblown Host','Virulent Vectorium'])await run(dg,detachment,async page=>{
       await imported(page,dgRoster(detachment),['unit-plague-marines','unit-blightlord-terminators']);
       const wanted=detachment==='Flyblown Host';
-      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marines',stage:device+' '+detachment+' Plague Marines'});
+      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marine',stage:device+' '+detachment+' Plague Marines'});
       if(wanted){await sourceLink(page,fly,'selected-infiltrators','Those units have Infiltrators.');await shot(page,device,'flyblown-selection-not-recorded');}
       await assertEligibility(page,'parsed-unit-2',fly,'selected-infiltrators',{wanted:false,stage:device+' '+detachment+' Blightlord negative'});
     });
@@ -286,13 +288,13 @@ try{
     });
     await run(dg,'DG Omega',async page=>{
       const text=fs.readFileSync(path.join(repo,'books/death-guard/v2/fixtures/omega-megaroster.txt'),'utf8');await imported(page,text,38);
-      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted:true,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marines',stage:device+' Omega standalone PM'});
+      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted:true,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marine',stage:device+' Omega standalone PM'});
       await attach(page,'parsed-unit-27','parsed-unit-1');await guide(page,'parsed-unit-1');
       const attached=await rows(page,fly,'selected-infiltrators');assert.ok(attached.length);for(const row of attached){assert.equal(row.subject,'UNIT');assert.deepEqual(row.instances.toSorted(),['parsed-unit-1','parsed-unit-27'].toSorted());assert.equal(row.selectionStatus,'ELIGIBLE_FOR_SELECTION');}
       const before=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());await page.reload();await ready(page);assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot()),before);
       await guide(page,'parsed-unit-1');assert.deepEqual(await rows(page,fly,'selected-infiltrators'),attached,'Actual persisted Omega retains full UNIT recipient proof');
       await roster(page);await page.locator('[data-roster-action="detach"][data-leader-instance-id="parsed-unit-27"]').click();
-      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted:true,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marines',stage:device+' Omega detached PM'});
+      await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted:true,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marine',stage:device+' Omega detached PM'});
       results.push({device,stage:'DG Omega attached/reload/detach',rows:attached,status:'PASS'});await shot(page,device,'dg-omega-source-binding');
     });
     const tauText='+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n+ DETACHMENT: Kroot Hunting Pack\n'+
