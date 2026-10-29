@@ -28,9 +28,9 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
  }
  const validated=validateBookRecipients(book);
  const policies=book.entities.flatMap(rule=>(rule.ruleContract?.clauses||[]).filter(clause=>clause.conditionalPolicy).map(clause=>({rule,clause})));
- if(bookId==='blood-angels'){
-  const summary=JSON.parse(fs.readFileSync(new URL('../../blood-angels/v2/generated/rule-contracts.json',import.meta.url),'utf8')).conditionalPolicies;
-  assert.equal(summary.length,13);
+ if(['blood-angels','dark-angels'].includes(bookId)){
+  const summary=JSON.parse(fs.readFileSync(new URL(`../../${bookId}/v2/generated/rule-contracts.json`,import.meta.url),'utf8')).conditionalPolicies;
+  assert.equal(summary.length,bookId==='blood-angels'?13:17);
   for(const row of summary){
    assert.ok(!Object.hasOwn(row,'recipientScope'),'Legacy recipient scope survived in the policy summary');
    const rule=book.entities.find(entity=>entity.id===row.ruleId),clause=rule.ruleContract.clauses.find(item=>item.id===row.clauseId);
@@ -43,6 +43,9 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
   assert.equal(recipient.who,'UNIT');assert.equal(recipient.from,'SOURCE_UNIT');assert.equal(recipient.scope,'FORMED');
  }
  if(bookId==='chaos-space-marines'){
+  const flock=book.entities.find(rule=>rule.id==='datasheet-dark-commune:section:1:block:0:text').ruleContract.clauses.find(clause=>clause.id==='model-invulnerable');
+  assert.ok(!Object.hasOwn(flock,'recipientScope'),'Dark Commune retains a duplicate recipient binding');
+  assert.ok(flock.recipientIds.every(id=>resolveRecipient(book.entities.find(rule=>rule.id==='datasheet-dark-commune:section:1:block:0:text'),flock,id).from==='SOURCE_FORMED_MODELS'));
   const lifetimes=book.entities.filter(rule=>rule.kind!=='STRATAGEM'&&rule.ruleContract?.kind!=='STRATAGEM').flatMap(rule=>(rule.ruleContract?.clauses||[]).filter(clause=>clause.lifetime?.recipientIds).map(clause=>({rule,clause})));
   assert.equal(lifetimes.length,17,'Recorded CSM clause lifetime recipient sets disappeared');
   for(const {rule,clause}of lifetimes){
@@ -96,6 +99,12 @@ const role={id:'recipient',purpose:'RECIPIENT',subject:'UNIT',allegiance:'FRIEND
 const fixture={bookId:'test',entities:[{id:'rule',kind:'DATASHEET_ABILITY',parentId:'unit',data:{text:'source'},provenance:{sourceId:'accepted'},ruleContract:{roles:[],clauses:[{id:'one',roles:[role],conditions:[],sourceFields:[['text']],operation:'TEST',effectRecipientRoleIds:['recipient'],rosterClassification:'BATTLE_ONLY',rosterEffects:[]},{id:'two',roles:[clone(role)],conditions:[],sourceFields:[['text']],operation:'TEST',effectRecipientRoleIds:['recipient'],rosterClassification:'BATTLE_ONLY',rosterEffects:[]}],duration:[{id:'duration',endpoint:'END_CURRENT_TURN',roleIds:['recipient'],bindings:[{clauseId:'one',roleIds:['recipient']},{clauseId:'two',roleIds:['recipient']}]}]}}]};
 for(const clause of fixture.entities[0].ruleContract.clauses)clause.lifetime={sourceBoundaries:['end of turn'],recipientRoleIds:['recipient']};
 const compiled=compileBookRecipients(fixture),rule=compiled.entities[0],clauses=rule.ruleContract.clauses;
+const aliasFixture=clone(fixture);
+for(const clause of aliasFixture.entities[0].ruleContract.clauses){clause.recipientScope='SOURCE_UNIT';clause.roles[0].binding='SOURCE_UNIT';}
+const aliasFree=clone(aliasFixture);for(const clause of aliasFree.entities[0].ruleContract.clauses)delete clause.recipientScope;
+assert.deepEqual(compileBookRecipients(aliasFixture),compileBookRecipients(aliasFree),'Redundant clause binding changed canonical recipients');
+aliasFixture.entities[0].ruleContract.clauses[0].recipientScope='SOURCE_FORMED_MODELS';
+assert.throws(()=>compileBookRecipients(aliasFixture),TypeError,'Contradictory clause binding alias accepted');
 assert.deepEqual(clauses.map(clause=>clause.lifetime.recipientIds),clauses.map(clause=>clause.recipientIds));
 assert.deepEqual(recipientDeclarationView(compiled),fixture,'Clause lifetime recipient set changed during translation');
 assert.notEqual(clauses[0].recipientIds[0],clauses[1].recipientIds[0],'Duration recipient IDs are not rule-unique');
@@ -109,6 +118,7 @@ for(const [name,mutate]of [
  ['clause-lifetime-foreign-recipient',book=>{const rows=book.entities[0].ruleContract.clauses;rows[0].lifetime.recipientIds=[rows[1].recipientIds[0]];}],
  ['clause-lifetime-legacy-address',book=>{book.entities[0].ruleContract.clauses[0].lifetime.recipientRoleIds=['recipient'];}],
  ['legacy-address',book=>{book.entities[0].ruleContract.clauses[0].effectRecipientRoleIds=['recipient'];}],
+ ['legacy-clause-binding-alias',book=>{book.entities[0].ruleContract.clauses[0].recipientScope='SOURCE_UNIT';}],
  ['recipient-proof-drift',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].selector.arguments.keyword='OTHER';}],
  ['recipient-purpose-drift',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].purpose='OWNER';}],
  ['invented-source-role',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].sourceRoleId='owner';}],

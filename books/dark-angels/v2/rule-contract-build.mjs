@@ -149,7 +149,12 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
-  coverage:clone(review.coverage),executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'CONDITIONAL_TEXT_ONLY'})),...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
+  coverage:clone(review.coverage),executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>{
+   const matches=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.id===row.recordId&&clause.conditionalPolicy).map(clause=>({entity,clause})));
+   assert.equal(matches.length,1,'Ambiguous conditional policy summary');
+   const {entity,clause}=matches[0];
+   return {recordId:row.recordId,kind:row.kind,ruleId:entity.id,clauseId:clause.id,recipientId:clause.conditionalPolicy.recipientId,execution:'CONDITIONAL_TEXT_ONLY'};
+  }),...nativeBindings,inheritedContracts,selectorProjections,recipientIdentityProofs:clone(recipientIdentityProofs),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterConditions:26,chapterGrantsActive:26,chapterContext:'16_FIXED_SOURCE_CHAPTERS; INHERITED_UNIT_CHAPTER_UNCHANGED; ARMY_APPLICABILITY_REQUIRES_VALIDATED_DA_MEMBER',physicalChapterCoverage,
   unsupported:['INCOMING_HIT_ROLL','INCOMING_WOUND_ROLL','INCOMING_DAMAGE','REROLLS','QUALIFIED_FNP','CP_MODIFIER','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS'],

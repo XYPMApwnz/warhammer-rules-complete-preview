@@ -94,6 +94,7 @@ export function validateRuleRecipients(book,rule){
  for(const clause of clauses){
   requireValue(STATUSES.has(clause.recipientStatus)&&Array.isArray(clause.recipients),'missing canonical recipient declaration');
   requireValue(!own(clause,'effectRecipientRoleIds'),'legacy clause recipient addresses');
+  requireValue(!FROM.has(clause.recipientScope),'legacy clause recipient binding alias');
   requireValue(clause.recipientStatus==='RECORDED'?clause.recipients.length>0:clause.recipients.length===0,'recipient status disagrees with addresses');
   if(clause.recipientStatus==='NOT_APPLICABLE')requireValue(clause.rosterClassification==='NOT_AN_EFFECT','unproved inapplicable recipient status');
   const referenced=new Set(),consume=value=>{for(const id of idsOf(value)){resolveRecipient(rule,clause,id);referenced.add(id);}};
@@ -268,6 +269,10 @@ export function compileRuleRecipients(book,inputRule,options={}){
   if(own(original,'effectRecipientRoleIds'))clause.recipientIds=array(original.effectRecipientRoleIds).map(id=>roleRecipient(id).id);
   delete clause.effectRecipientRoleIds;
   clause.recipients=recipients;
+  if(FROM.has(clause.recipientScope)){
+   requireValue(recipients.length>0&&recipients.every(recipient=>recipient.from===clause.recipientScope),'clause recipient binding alias disagrees with declared recipients');
+   delete clause.recipientScope;
+  }
   clause.recipientStatus=recipients.length?'RECORDED':clause.rosterClassification==='NOT_AN_EFFECT'?'NOT_APPLICABLE':'NOT_RECORDED';
   maps.set(clause.id,{clause,roleRecipients,oldRoleIds:array(original.effectRecipientRoleIds)});
  }

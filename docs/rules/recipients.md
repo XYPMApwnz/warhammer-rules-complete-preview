@@ -83,9 +83,16 @@ unchanged non-contract facts and excluded Stratagem serialization.
 T'au's `rule-contracts.json#/deferred` retains source-review descriptions named
 `recipientScope` and `recipient`. These are review annotations, not executable
 addresses: canonical clauses mark `reviewedRecipient.runtimeSelector=false`.
-They cannot supply a missing structured selector. Blood Angels policy summaries
+They cannot supply a missing structured selector. Blood Angels and Dark Angels policy summaries
 reference the canonical rule, clause and `recipientId`; clause lifetimes also use
 `recipientIds`, preserving their original boundaries and evidence.
+
+CSM retains two `effect.parameters.unitScope` values for Charge-roll lowering.
+`roster-effect-build.mjs` copies those operation parameters into its producer
+scratch effects; the compiler then records their scope in canonical recipients.
+Runtime execution resolves scope through `recipientId`, not these parameters.
+The unused Dark Commune clause-level binding alias is removed only after its
+equality with all declared recipient bindings has been proved.
 
 Accepted text, characteristics, conditions, equipment, attachments, ownership and
 card wording are unchanged. New canonical consumers must not fall back to an old
