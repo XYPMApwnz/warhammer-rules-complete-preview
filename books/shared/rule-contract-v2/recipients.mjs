@@ -94,7 +94,7 @@ export function validateRuleRecipients(book,rule){
  for(const clause of clauses){
   requireValue(STATUSES.has(clause.recipientStatus)&&Array.isArray(clause.recipients),'missing canonical recipient declaration');
   requireValue(!own(clause,'effectRecipientRoleIds'),'legacy clause recipient addresses');
-  requireValue(!FROM.has(clause.recipientScope),'legacy clause recipient binding alias');
+  requireValue(!FROM.has(clause.recipientScope)&&clause.recipientScope!=='BODYGUARD_COMPONENT_MODELS','legacy clause recipient binding alias');
   requireValue(clause.recipientStatus==='RECORDED'?clause.recipients.length>0:clause.recipients.length===0,'recipient status disagrees with addresses');
   if(clause.recipientStatus==='NOT_APPLICABLE')requireValue(clause.rosterClassification==='NOT_AN_EFFECT','unproved inapplicable recipient status');
   const referenced=new Set(),consume=value=>{for(const id of idsOf(value)){resolveRecipient(rule,clause,id);referenced.add(id);}};
@@ -271,6 +271,13 @@ export function compileRuleRecipients(book,inputRule,options={}){
   clause.recipients=recipients;
   if(FROM.has(clause.recipientScope)){
    requireValue(recipients.length>0&&recipients.every(recipient=>recipient.from===clause.recipientScope),'clause recipient binding alias disagrees with declared recipients');
+   delete clause.recipientScope;
+  }
+  if(clause.recipientScope==='BODYGUARD_COMPONENT_MODELS'){
+   const participants=recipients.filter(recipient=>recipient.roleId);
+   const bodyguardOnly=recipient=>array(recipient.conditions).flatMap(leaves).some(node=>node.predicate==='FIELD'&&node.subject==='MODEL'&&node.contextLevel==='ROSTER'&&node.arguments?.key==='isBodyguardComponentOfSource'&&node.arguments.equals===true);
+   requireValue(participants.length>0&&participants.every(bodyguardOnly)&&recipients.every(recipient=>recipient.who==='MODEL'&&recipient.from==='SOURCE_FORMED_MODELS'),'bodyguard clause alias lacks exact component recipient proof');
+   requireValue(array(clause.rosterEffects).every(effect=>array(effect.conditions).some(condition=>condition.binding==='TARGET'&&leaves(condition.predicate).some(node=>node.predicate==='FIELD'&&node.subject==='MODEL'&&node.contextLevel==='ROSTER'&&node.arguments?.key==='isBodyguardModel'&&node.arguments.equals===true))),'bodyguard executable effect lost its component restriction');
    delete clause.recipientScope;
   }
   clause.recipientStatus=recipients.length?'RECORDED':clause.rosterClassification==='NOT_AN_EFFECT'?'NOT_APPLICABLE':'NOT_RECORDED';

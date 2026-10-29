@@ -152,6 +152,36 @@ test('Fabius requires explicit matching initial attachment and bodyguard scope',
   input.attachments=[];assert.equal(applied(outputs(input),id).length,0);
   input.attachments=[edge('leader','bodyguard')];assert.ok(applied(outputs(input),id).length);
 });
+test('Enhanced Warriors changes only Bodyguard models with Fabius and an attached Support character',()=>{
+  const id='datasheet-fabius-bile:section:1:block:0:text';
+  const input=state('renegade-raiders',[physical('leader','unit-fabius-bile'),physical('bodyguard','unit-legionaries'),
+    physical('support','unit-master-of-executions'),physical('other','unit-legionaries')],
+    [edge('leader','bodyguard'),{leaderInstanceId:'support',bodyguardInstanceId:'bodyguard',role:'SUPPORT'}]);
+  input.initialAttachments=clone(input.attachments);
+  const base=formRoster(book,input),yes=outputs(input),rows=applied(yes,id);
+  for(const clauseId of ['bodyguard-melee-strength','bodyguard-toughness']){
+    const found=rows.filter(row=>row.clauseId===clauseId);
+    assert.ok(found.length,'Enhanced Warriors clause did not execute: '+clauseId);
+    assert.ok(found.every(row=>row.targetInstanceId==='bodyguard'),'Enhanced Warriors escaped the physical Bodyguard component');
+  }
+  for(const instanceId of ['leader','support','other']){
+    assert.equal(unit(yes,instanceId).applied.filter(row=>row.ruleId===id).length,0);
+    for(const profile of unit(yes,instanceId).profiles){
+      const original=unit(base,instanceId).profiles.find(row=>row.scopeId===profile.scopeId);
+      assert.equal(profile.profile.stats?.T??profile.profile.T,original.profile.stats?.T??original.profile.T);
+      assert.deepEqual(profile.weapons.map(weapon=>weapon.data.strength),original.weapons.map(weapon=>weapon.data.strength));
+    }
+  }
+  for(const profile of unit(yes,'bodyguard').profiles){
+    const original=unit(base,'bodyguard').profiles.find(row=>row.scopeId===profile.scopeId);
+    assert.equal(Number(profile.profile.stats?.T??profile.profile.T),Number(original.profile.stats?.T??original.profile.T)+1);
+    for(const weapon of profile.weapons.filter(row=>row.data.mode==='melee')){
+      const source=original.weapons.find(row=>row.canonicalProfileId===weapon.canonicalProfileId&&row.selectionKey===weapon.selectionKey);
+      assert.ok(source);assert.equal(Number(weapon.data.strength),Number(source.data.strength)+1);
+    }
+  }
+});
+
 test('Malformed or source-illegal initial attachment fails closed',()=>{
   const input=state('renegade-raiders',[physical('leader','unit-fabius-bile'),physical('bodyguard','unit-legionaries')]);
   for(const edges of [{},[edge('missing','bodyguard')],[edge('leader','leader')],

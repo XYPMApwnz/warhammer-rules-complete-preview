@@ -43,6 +43,18 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
   assert.equal(recipient.who,'UNIT');assert.equal(recipient.from,'SOURCE_UNIT');assert.equal(recipient.scope,'FORMED');
  }
  if(bookId==='chaos-space-marines'){
+  const enhanced=book.entities.find(rule=>rule.id==='datasheet-fabius-bile:section:1:block:0:text');
+  for(const id of ['bodyguard-melee-strength','bodyguard-toughness']){
+   const clause=enhanced.ruleContract.clauses.find(item=>item.id===id);
+   assert.ok(!Object.hasOwn(clause,'recipientScope'),'Bodyguard component alias survived canonical translation');
+   const recipients=clause.semanticEffects.map(effect=>resolveRecipient(enhanced,clause,effect.recipientId));
+   assert.ok(recipients.length>0&&recipients.every(recipient=>recipient.who==='MODEL'&&recipient.from==='SOURCE_FORMED_MODELS'&&recipient.conditions.some(node=>node.predicate==='FIELD'&&node.arguments.key==='isBodyguardComponentOfSource'&&node.arguments.equals===true)));
+  }
+  const historical=clone(scratch.entities.find(rule=>rule.id===enhanced.id));
+  for(const clause of historical.ruleContract.clauses)clause.recipientScope='BODYGUARD_COMPONENT_MODELS';
+  assert.deepEqual(compileRuleRecipients(scratch,historical,{f1Declaration:declaration}),enhanced,'Bodyguard alias removal changed exact recipients or effects');
+  const unproved=clone(historical);unproved.ruleContract.clauses[0].roles.find(role=>role.id==='bodyguardModels').conditions=[];
+  assert.throws(()=>compileRuleRecipients(scratch,unproved,{f1Declaration:declaration}),TypeError,'Bodyguard alias removal accepted an unrestricted formed-model recipient');
   const flock=book.entities.find(rule=>rule.id==='datasheet-dark-commune:section:1:block:0:text').ruleContract.clauses.find(clause=>clause.id==='model-invulnerable');
   assert.ok(!Object.hasOwn(flock,'recipientScope'),'Dark Commune retains a duplicate recipient binding');
   assert.ok(flock.recipientIds.every(id=>resolveRecipient(book.entities.find(rule=>rule.id==='datasheet-dark-commune:section:1:block:0:text'),flock,id).from==='SOURCE_FORMED_MODELS'));
@@ -119,6 +131,7 @@ for(const [name,mutate]of [
  ['clause-lifetime-legacy-address',book=>{book.entities[0].ruleContract.clauses[0].lifetime.recipientRoleIds=['recipient'];}],
  ['legacy-address',book=>{book.entities[0].ruleContract.clauses[0].effectRecipientRoleIds=['recipient'];}],
  ['legacy-clause-binding-alias',book=>{book.entities[0].ruleContract.clauses[0].recipientScope='SOURCE_UNIT';}],
+ ['legacy-bodyguard-component-alias',book=>{book.entities[0].ruleContract.clauses[0].recipientScope='BODYGUARD_COMPONENT_MODELS';}],
  ['recipient-proof-drift',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].selector.arguments.keyword='OTHER';}],
  ['recipient-purpose-drift',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].purpose='OWNER';}],
  ['invented-source-role',book=>{book.entities[0].ruleContract.clauses[0].recipients[0].sourceRoleId='owner';}],
