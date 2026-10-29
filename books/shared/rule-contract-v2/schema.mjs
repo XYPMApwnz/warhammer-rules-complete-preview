@@ -1,4 +1,5 @@
 /** Bounded, typed applicability predicates. This module never reads source prose. */
+import {validateBookRecipients,recipientDeclarationView} from './recipients.mjs';
 export const subjects = Object.freeze(['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER']);
 export const levels = Object.freeze(['STATIC','ROSTER','BATTLE']);
 export const publicResult = Object.freeze({TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'});
@@ -67,7 +68,7 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     checkBinding(node);
     validatePredicate(node,role.subject,model,entity);
   }
-  function validateContracts(model) {
+  function validateContractDeclarations(model) {
     const seen=new Set();
     for (const entity of model.entities.filter(record=>record.ruleContract)) {
       const contract=entity.ruleContract;
@@ -281,5 +282,9 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     return combine([evaluatePredicate(role.selector,context),...(role.conditions||[]).map(node=>evaluatePredicate(node,context)),...conditions.map(node=>evaluatePredicate(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context))],'ALL');
   }
 
-  return Object.freeze({subjects,levels,publicResult,predicateTypes,validatePredicate,validateContracts,evaluatePredicate,evaluateRole});
+  function validateContracts(model) {
+    validateBookRecipients(model);
+    return validateContractDeclarations(recipientDeclarationView(model));
+  }
+  return Object.freeze({subjects,levels,publicResult,predicateTypes,validatePredicate,validateContracts,validateContractDeclarations,evaluatePredicate,evaluateRole});
 }

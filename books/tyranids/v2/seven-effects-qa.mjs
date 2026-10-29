@@ -11,6 +11,9 @@ import {createTyranidsRuleSchema} from './rule-contract-build.mjs';
 import {projectFormedUnitCards,prepareRosterPresentationCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {collectAbilityReferences,projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
+import {resolveExecutionEffect} from '../../shared/roster-v2/recipient-execution.mjs';
+import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 const read=f=>JSON.parse(fs.readFileSync(new URL(f,import.meta.url),'utf8')),clone=structuredClone;
 export const sevenEffectsExpectations=read('./seven-effects-source-expectations.json').cases;
 const book=read('./generated/roster-runtime.json'),facts=read('./generated/effective.json'),payload=read('./generated/app-presentation.json');
@@ -19,6 +22,9 @@ const sorted=values=>[...new Set(values)].sort(),normal=s=>s.replace(/\s+/g,''),
 const sourceRecords=new Map(facts.entities.map(e=>[e.id,e])),mutations=[],scenarios=[],negativeControls=[];
 const relevant=(e,x)=>e.expectedOperations.some(op=>x.operation===op.operation&&x.field===op.field);
 const effects=(b,e)=>b.entities.find(x=>x.id===e.source.canonicalId).ruleContract?.clauses.flatMap(c=>c.rosterEffects||[]).filter(x=>relevant(e,x))||[];
+const compile=b=>compileBookRecipients(b,{f1Declaration:producerDetachmentTextDeclaration});
+const effectRecords=(b,e)=>{const rule=b.entities.find(x=>x.id===e.source.canonicalId);return (rule.ruleContract?.clauses||[])
+ .flatMap(clause=>(clause.rosterEffects||[]).filter(effect=>relevant(e,effect)).map(effect=>({rule,clause,effect})));};
 function sourceCheck(e,b=book){
  const s=e.source,raw=fs.readFileSync(new URL(s.document,root));assert.equal(sha(raw),s.sha256,'Accepted source SHA');
  const visible=raw.toString('utf8').replace(/<[^>]*>/g,' ').replaceAll('&nbsp;',' ').replaceAll('&amp;','&');
@@ -32,7 +38,7 @@ function sourceCheck(e,b=book){
  assert.ok(card.fields.some(f=>f.value===s.quote)||s.field[0]==='blocks'&&card.fields.some(f=>f.value===s.quote),'Presentation full source text');
 }
 function bindingCheck(e,b=book){
- const entity=b.entities.find(x=>x.id===e.source.canonicalId),actual=effects(b,e);
+ const entity=b.entities.find(x=>x.id===e.source.canonicalId),actual=effectRecords(b,e).map(({rule,clause,effect})=>resolveExecutionEffect(rule,clause,effect));
  assert.ok(entity.ruleContract,'EXECUTABLE BINDING REQUIRED');assert.equal(entity.ruleContract.ownerId,e.source.ownerId,'CONTRACT OWNER');
  assert.equal(actual.length,e.expectedOperations.length,'EXACT EXECUTABLE EFFECT INVENTORY');
  for(const expected of e.expectedOperations){
@@ -45,7 +51,7 @@ function bindingCheck(e,b=book){
  if(e.declarativeClause){assert.ok(entity.ruleContract.clauses.some(c=>c.rosterClassification==='BATTLE_ONLY'&&c.sourceText.includes(e.declarativeClause)&&!c.rosterEffects.length),'Wound reroll must remain separate declarative clause');}
 }
 function removeEffects(b,e){for(const c of b.entities.find(x=>x.id===e.source.canonicalId).ruleContract.clauses){c.rosterEffects=(c.rosterEffects||[]).filter(x=>!relevant(e,x));if(!c.rosterEffects.length&&c.rosterClassification==='ROSTER_EXECUTABLE')c.rosterClassification='DISPLAY_ONLY';}}
-function without(e){const b=clone(book);removeEffects(b,e);return b;}
+function without(e){const b=recipientDeclarationView(book);removeEffects(b,e);return compile(b);}
 const baseBooks=new Map(sevenEffectsExpectations.map(e=>[e.id,without(e)]));
 function service(e,b=book,state=null){const s=createTyranidsBrowserRoster(b);if(state)s.load(clone(state));else assert.equal(s.import(sevenEffectFixtures[e.fixture].text).status,'READY');return s;}
 const cleanAbility=a=>({canonicalId:a.canonicalId||null,name:a.canonicalId?null:a.name||null,value:a.value??null,parameters:a.parameters||{}});
@@ -168,7 +174,7 @@ for(const [id,leader,body,invalidIndex]of [
 
 // Mutants remain disposable inputs/observations. Expected source values stay
 // fixed; failures must come from source/operation/result comparisons.
-function rejected(e,name,mutate){const b=clone(book);mutate(b);let s;
+function rejected(e,name,mutate){const input=clone(book),b=mutate(input)||input;let s;
  if(name==='wrong-source-owner'){
   assert.throws(()=>sourceCheck(e,b),/SOURCE OWNER/,'Independent source owner comparator missed mutation');
   mutations.push({id:e.id,mutation:name});return;
@@ -178,12 +184,13 @@ function rejected(e,name,mutate){const b=clone(book);mutate(b);let s;
  mutations.push({id:e.id,mutation:name});
 }
 for(const e of sevenEffectsExpectations){
- rejected(e,'deleted-executable-binding',b=>{const count=b.entities.filter(x=>x.ruleContract).length;removeEffects(b,e);assert.equal(b.entities.filter(x=>x.ruleContract).length,count);});
+ rejected(e,'deleted-executable-binding',b=>{const count=b.entities.filter(x=>x.ruleContract).length,declaration=recipientDeclarationView(b);removeEffects(declaration,e);assert.equal(declaration.entities.filter(x=>x.ruleContract).length,count);return compile(declaration);});
  rejected(e,'wrong-value-or-canonical-ability',b=>{const x=effects(b,e)[0];if(x.value!==undefined)x.value+=1;else if(x.ability?.value!==undefined)x.ability.value=4;else if(x.ability)x.ability.canonicalId=e.abilityId==='core-stealth'?'core-deep-strike':'core-stealth';else x.keyword='TYRANIDS';});
  rejected(e,'wrong-source-owner',b=>{b.entities.find(x=>x.id===e.source.canonicalId).parentId='unit-psychophage';});
  const badContract=clone(book);badContract.entities.find(x=>x.id===e.source.canonicalId).ruleContract.ownerId='unit-psychophage';
  assert.throws(()=>bindingCheck(e,badContract),/CONTRACT OWNER/);mutations.push({id:e.id,mutation:'wrong-contract-owner'});
- rejected(e,'wrong-recipient',b=>{for(const x of effects(b,e))x.conditions.push({binding:'TARGET',predicate:{predicate:x.targetSubject==='MODEL'?'MODEL_ID':'UNIT_ID',subject:x.targetSubject,contextLevel:'STATIC',arguments:{id:x.targetSubject==='MODEL'?'datasheet-psychophage:profile:1':'unit-psychophage'},evidence:clone(x.evidence)}});});
+ rejected(e,'wrong-recipient',b=>{for(const {rule,clause,effect}of effectRecords(b,e)){const subject=resolveRecipient(rule,clause,effect.recipientId).who;
+  effect.conditions.push({binding:'TARGET',predicate:{predicate:subject==='MODEL'?'MODEL_ID':'UNIT_ID',subject,contextLevel:'STATIC',arguments:{id:subject==='MODEL'?'datasheet-psychophage:profile:1':'unit-psychophage'},evidence:clone(effect.evidence)}});}});
  rejected(e,'wrong-activation-gate',b=>{const rule=b.entities.find(x=>x.id===e.source.canonicalId).ruleContract;
   if(e.id==='tyr-guardian')for(const x of effects(b,e))x.conditions.push({binding:'SOURCE',predicate:{predicate:'LEADING',subject:'UNIT',contextLevel:'ROSTER',arguments:{value:true},evidence:clone(x.evidence)}});
   else rule.detachmentId='detachment-crusher-stampede';});

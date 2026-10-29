@@ -3,6 +3,8 @@
  * already imported MODEL scopes; they never create a MODEL or guess a bearer.
  */
 import {formRoster} from '../../shared/roster-v2/context.mjs';
+import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
@@ -24,7 +26,7 @@ export const physicalStaticBindings=Object.freeze([Object.freeze({
  * bindings do. No stored derived clauses, grants or old source scopes survive.
  */
 export function bindSpaceMarinesStaticModels(book,state){
-  const result=clone(book),index=new Map(result.entities.map(entity=>[entity.id,entity]));
+  const result=recipientDeclarationView(book),index=new Map(result.entities.map(entity=>[entity.id,entity]));
   for(const binding of physicalStaticBindings){
     const rule=index.get(binding.ruleId),profile=index.get(binding.sourceProfileId);
     requireValue(rule?.parentId===binding.sourceUnitId&&rule.data.text===binding.quote&&
@@ -69,5 +71,5 @@ export function bindSpaceMarinesStaticModels(book,state){
       contract.clauses.push(clause);
     }
   }
-  return result;
+  return finalizeRecipientBook(result);
 }

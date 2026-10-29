@@ -3,7 +3,8 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-global-model:'+name;
 const evidence={field:['text'],quote:'Reviewed synthetic containing unit and exact model recipient declaration.'};
@@ -67,8 +68,8 @@ function rule(book,name,{unitSelector=keyword('UNIT','CONSTRUCT'),modelSelector=
 }
 function execute(book,state,evaluator=api) {
   const bookBefore=clone(book),stateBefore=clone(state);
-  evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),evaluator);
   assert.deepEqual(book,bookBefore,'Global selector mutated canonical facts');
   assert.deepEqual(state,stateBefore,'Global selector mutated imported state');
   return result;
@@ -154,7 +155,7 @@ check('attached member is not selected if its own MODEL selector fails',()=>{
   const result=execute(book,attached(book,state));assert.equal(profile(result,'shell').profile.M,'7"');assert.equal(profile(result,'escort-profile','escort').profile.M,'5"');
 });
 check('detachment without selected membership never applies',()=>{
-  const {book,state}=fixture();rule(book,'unselected');const entity=book.entities.at(-1);
+  const {book,state}=fixture();rule(book,'unselected-rule');const entity=book.entities.at(-1);
   entity.parentId=id('unselected');entity.ruleContract.ownerId=entity.parentId;entity.ruleContract.detachmentId=entity.parentId;
   const result=execute(book,state);assert.ok(result.units.every(row=>row.applied.length===0));
 });

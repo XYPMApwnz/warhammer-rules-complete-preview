@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** Source-reviewed BA gameplay over the existing closed mixed-owner view.
  * No Chapter is inferred from book membership, a Detachment or attachment. */
 import fs from 'node:fs';
@@ -161,6 +162,7 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
  }
  assert.equal(executed.length,inputs.length,'Orphan BA lowering');
 
+ finalizeRecipientBook(book);
  const schema=createBloodAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3A_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),

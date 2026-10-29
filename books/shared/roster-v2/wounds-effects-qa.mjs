@@ -4,7 +4,8 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments,formRoster,predicateContext} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-wounds:'+name;
 const evidence={field:['text'],quote:'The assigned eligible bearer gains one Wound.'};
@@ -43,8 +44,8 @@ export function woundsFixture(parameters={field:'W',mode:'ADD',value:1}) {
 }
 export function runWounds(book,state,api=evaluator) {
   const before=JSON.stringify({book,state});
-  api.validateContracts(book);validateRosterEffects(book,api.validatePredicate,api.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),api);
+  const canonical=compileRecipientFixture(book,api);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),api);
   assert.equal(JSON.stringify({book,state}),before,'Canonical or imported data mutated');
   return result;
 }
@@ -112,7 +113,7 @@ export function verifyWounds(parameters={field:'W',mode:'ADD',value:1}) {
   assert.equal(model(runWounds(composed,state),'a','bearer').profile.stats.W,'8');
   for(const mutation of [{targetSubject:'UNIT',targetBinding:'SOURCE_UNIT'}, {value:0.5},{weaponMode:'melee'}]) {
     const invalid=clone(book);Object.assign(invalid.entities.at(-1).ruleContract.clauses[0].rosterEffects[0],mutation);
-    assert.throws(()=>validateRosterEffects(invalid,evaluator.validatePredicate,evaluator.evaluatePredicate),/Invalid characteristic/);
+    assert.throws(()=>compileRecipientFixture(invalid,evaluator),/Invalid characteristic/);
   }
   const absent=clone(book);delete absent.entities.find(row=>row.id===id('bearer')).data.stats.W;
   assert.throws(()=>runWounds(absent,state),/Missing characteristic base/);

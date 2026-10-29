@@ -4,9 +4,10 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const evaluator=withRosterDetachments(createRuleContractSchema({stateFields:{
   leading:{contextLevel:'ROSTER',valueType:'boolean'},
@@ -72,9 +73,8 @@ function rule(book,name,{parent='mixed',enhancement=false,targetSubject='MODEL',
 }
 function execute(book,state) {
   const originalBook=clone(book),originalState=clone(state);
-  evaluator.validateContracts(book);
-  validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),evaluator);
   assert.deepEqual(book,originalBook,'Execution changed canonical facts or ability definitions');
   assert.deepEqual(state,originalState,'Execution changed imported physical-instance state');
   return result;
@@ -257,7 +257,7 @@ check('effective datasheet API preserves separate canonical UNIT and MODEL abili
     maxModels:binding.unitId===id('mixed')?2:1})));
   owned(book,state,'api-unit',{ability:'conceal',parameters:{distance:15},targetSubject:'UNIT',targetBinding:'SOURCE_UNIT',unitScope:'PHYSICAL'});
   owned(book,state,'api-model',{ability:'scout',parameters:{distance:6},conditions:[targetProfile('profile-a')]});
-  const runtime=createRosterRuntime(book,evaluator);runtime.load(state);
+  const runtime=createRosterRuntime(compileRecipientFixture(book,evaluator),evaluator);runtime.load(state);
   const effective=runtime.effective('alpha');
   assert.deepEqual(effective.unitAbilities,[{canonicalId:id('conceal'),name:'Distant concealment',parameters:{distance:15}}]);
   assert.ok(effective.profiles.find(profile=>profile.id===id('profile-a')).abilities.some(ability=>ability.canonicalId===id('scout')));

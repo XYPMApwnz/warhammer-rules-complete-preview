@@ -9,6 +9,8 @@ import {createAdMechRosterRuntime} from './roster-runtime.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {projectFormedUnitCards,prepareRosterPresentationCards} from '../../shared/army-book-app-v2/personal.mjs';
+import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 
 const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
 export const nativeFnpExpectation=read('./native-fnp-source-expectations.json');
@@ -19,6 +21,7 @@ const root=new URL('../../../',import.meta.url),byId=new Map(book.entities.map(e
   fnp=a=>a.canonicalId==='core-feel-no-pain'||a.name==='Feel No Pain'||expectation.nativeSources.some(s=>s.entryId===a.id),
   allRows=p=>[...p.core,...p.profiles.flatMap(x=>x.abilities)].filter(fnp);
 const mutations=[],scenarios=[];
+const compile=book=>compileBookRecipients(book,{f1Declaration:producerDetachmentTextDeclaration});
 function sourceCheck(candidate=book){
   for(const source of [expectation.source,...expectation.nativeSources]){
     const raw=fs.readFileSync(new URL(source.document,root));
@@ -118,7 +121,7 @@ assert.ok(forge.effective(fixture.leader).applied.some(a=>a.ruleId!==expectation
 // Production source/data remain immutable. Only these disposable QA books add
 // an assignment-targeted numeric override or suppression operation.
 function synthetic(operation,value=4){
-  const b=clone(book),ruleId='qa-only:admech-fnp-control',quote='Disposable typed executor control',
+  const b=recipientDeclarationView(book),ruleId='qa-only:admech-fnp-control',quote='Disposable typed executor control',
     selector={predicate:'UNIT_ID',subject:'UNIT',contextLevel:'STATIC',arguments:{id:'unit-fulgurite-electro-priests'},evidence:{field:['text'],quote}},
     effect={id:ruleId+'/effect',operation,targetSubject:'MODEL',targetBinding:'SOURCE_UNIT_MODELS',
       ability:operation==='REMOVE_ABILITY'?{canonicalId:'core-feel-no-pain'}:{name:'Feel No Pain',value},
@@ -135,7 +138,7 @@ function synthetic(operation,value=4){
   cards.set(ruleId,{id:ruleId,kind:'ENHANCEMENT',parentId:'detachment-haloscreed-battle-clade',
     title:quote,children:[],links:[],fields:[{id:ruleId+'::/text',value:quote,
       source:{entityId:ruleId,path:'/text'}}]});
-  const s=make(b),state=s.snapshot();state.units.find(u=>u.instanceId===fixture.fulgurite).enhancementIds.push(ruleId);s.load(state);return s;
+  const s=make(compile(b)),state=s.snapshot();state.units.find(u=>u.instanceId===fixture.fulgurite).enhancementIds.push(ruleId);s.load(state);return s;
 }
 for(const value of [4,5]){
   const changed=synthetic('GRANT_MODEL_ABILITY',value);verify(changed,{...baselineValues,[fixture.fulgurite]:value});
@@ -149,7 +152,7 @@ const nonFnp=s=>s.projection.units.map(u=>({id:u.instanceId,models:u.profiles.ma
 const unchanged=nonFnp(make());for(const s of [service,forge,synthetic('GRANT_MODEL_ABILITY'),synthetic('REMOVE_ABILITY')])assert.deepEqual(nonFnp(s),unchanged);
 
 function reject(name,mutate,{attached=true,native=false}={}){
-  const b=clone(book);mutate(b);const bad=make(b);if(attached)bad.attach(fixture.leader,fixture.fulgurite);
+  const input=clone(book),b=mutate(input)||input;const bad=make(b);if(attached)bad.attach(fixture.leader,fixture.fulgurite);
   assert.throws(()=>{if(native)sourceCheck(b);verify(bad,attached?attachedValues(fixture.fulgurite):baselineValues);},
     /Typed native numeric source binding|Independent FNP source -> native\/granted executor -> presentation/,'Comparator failed to reject '+name);
   mutations.push(name);
@@ -165,8 +168,14 @@ for(const source of expectation.nativeSources){
   }
 }
 const clause=b=>b.entities.find(e=>e.id===expectation.source.canonicalId).ruleContract.clauses.find(c=>c.id===expectation.expectedClauseId);
-reject('wrong-MODEL-recipient',b=>clause(b).rosterEffects[0].targetBinding='SOURCE_MODEL');
-reject('missing-granted-4',b=>{clause(b).rosterEffects=[];clause(b).rosterClassification='DISPLAY_ONLY';});
+reject('wrong-MODEL-recipient',b=>{
+  const rule=b.entities.find(e=>e.id===expectation.source.canonicalId),entry=clause(b);
+  resolveRecipient(rule,entry,entry.rosterEffects[0].recipientId).from='SOURCE_MODEL';
+});
+reject('missing-granted-4',b=>{
+  const declaration=recipientDeclarationView(b),entry=clause(declaration);
+  entry.rosterEffects=[];entry.rosterClassification='DISPLAY_ONLY';return compile(declaration);
+});
 // Presenter-regression mutations operate on actual projected runtime bags.
 const attached=make();attached.attach(fixture.leader,fixture.fulgurite);
 const duplicate={...attached,effective(id){const e=clone(attached.effective(id));if(id===fixture.fulgurite)e.profiles.forEach(p=>p.abilities.push({id:expectation.nativeSources[0].entryId,name:'Feel No Pain',value:5}));return e;}};

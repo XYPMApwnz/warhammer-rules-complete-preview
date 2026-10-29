@@ -1,9 +1,10 @@
-import {validateConditionalPolicy,appendConditionalPolicy} from './conditional-policy.mjs';
+import {validateConditionalPolicy,validateConditionalPolicyDeclaration,appendConditionalPolicy} from './conditional-policy.mjs';
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
+import {resolveExecutionEffect,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
-const bindingSubjects = {SOURCE_MODEL:'MODEL',SOURCE_UNIT:'UNIT',SOURCE_UNIT_MODELS:'MODEL',SOURCE_FORMED_MODELS:'MODEL',LEADERS_OF_SOURCE:'MODEL',ROSTER_UNITS:'UNIT',ROSTER_MODELS:'MODEL'};
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
 // bounds apply to the combined result, never to each modifier contribution.
 const numericDomain = {
@@ -47,13 +48,31 @@ function grantedAbilities(before,ability) {
   return result.sort((a,b)=>key(a).localeCompare(key(b),'en'));
 }
 export function validateRosterEffects(book, validatePredicate, evaluatePredicate) {
+  validateBookRecipients(book);
+  return validateEffectOperations(book,validatePredicate,evaluatePredicate,resolveExecutionEffect,validateConditionalPolicy);
+}
+/** Producer-input validation only, before recipient compilation. Runtime callers
+ * must use validateRosterEffects; canonical effects cannot enter this path. */
+export function validateRosterEffectDeclarations(book,validatePredicate,evaluatePredicate) {
+  if(book.entities.some(rule=>rule.kind!=='STRATAGEM'&&rule.ruleContract?.kind!=='STRATAGEM'&&
+      rule.ruleContract?.clauses.some(clause=>Object.hasOwn(clause,'recipients')||Object.hasOwn(clause,'recipientStatus'))))
+    throw new TypeError('Producer validation requires uncompiled recipient declarations');
+  const declarationEffect=(_rule,_clause,effect)=>{
+    if(Object.hasOwn(effect,'recipientId')||Object.hasOwn(effect,'recipientIds'))
+      throw new TypeError('Producer validation requires uncompiled roster effect declarations');
+    return effect;
+  };
+  return validateEffectOperations(book,validatePredicate,evaluatePredicate,declarationEffect,validateConditionalPolicyDeclaration);
+}
+function validateEffectOperations(book,validatePredicate,evaluatePredicate,effectView,validatePolicy) {
   const records = new Map(book.entities.map(e => [e.id,e]));
   for (const entity of book.entities.filter(e=>e.ruleContract)) for (const clause of entity.ruleContract.clauses) {
     if (!['ROSTER_EXECUTABLE','BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(clause.rosterClassification)) throw new TypeError('Unclassified roster clause');
     if ((clause.rosterEffects.length > 0) !== (clause.rosterClassification === 'ROSTER_EXECUTABLE')) throw new TypeError('Execution classification mismatch');
-    validateConditionalPolicy(book,entity,clause);
+    validatePolicy(book,entity,clause);
     const ids = new Set();
-    for (const effect of clause.rosterEffects) {
+    for (const declaration of clause.rosterEffects) {
+      const effect=effectView(entity,clause,declaration);
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
       ids.add(effect.id);
       // Root Army Rules have no physical source instance. Only actual global
@@ -275,7 +294,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
         if (clause.rosterClassification === 'BATTLE_ONLY' && rule.kind!=='DETACHMENT_RULE') {
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
-        for (const effect of clause.rosterEffects) pending.push({rule,clause,effect,source,ownerModel});
+        for (const effect of clause.rosterEffects) pending.push({rule,clause,effect:resolveExecutionEffect(rule,clause,effect),source,ownerModel});
       }
     }
   }

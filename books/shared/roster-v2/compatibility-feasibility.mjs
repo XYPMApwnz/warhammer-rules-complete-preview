@@ -1,6 +1,7 @@
 /** Disposable capability bounds and mandatory-recipient feasibility.
  * Only typed canonical identities/relations enter this module; no source prose.
  */
+import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 export function buildAttachmentFeasibility(book, composition) {
   const units=book.entities.filter(e=>e.kind==='DATASHEET');
   const compositionKeys=composition.map(row=>row.unitId+'\0'+row.profileId);
@@ -82,6 +83,22 @@ const withoutRelation=(node,key)=>{
 };
 const requiresRelation=(node,key)=>withoutRelation(node,key)===false;
 const explicitlyRequired=role=>role.required===true&&['TARGET','ANCHOR'].includes(role.purpose);
+const clauseRecipientRoles=(contract,clause)=>{
+  // Stratagems are outside the recipient-format migration. Their existing
+  // action participants and explicit receiver edges retain the old contract.
+  if(contract.kind==='STRATAGEM')return clause.effectRecipientRoleIds||[];
+  if(Object.hasOwn(clause,'effectRecipientRoleIds')||!Array.isArray(clause.recipients)||
+      !['RECORDED','NOT_RECORDED','NOT_APPLICABLE'].includes(clause.recipientStatus))
+    throw new TypeError('Missing canonical compatibility recipient declaration');
+  if(clause.recipientIds===undefined)return [];
+  if(!Array.isArray(clause.recipientIds)||new Set(clause.recipientIds).size!==clause.recipientIds.length)
+    throw new TypeError('Invalid compatibility recipient references');
+  return clause.recipientIds.map(id=>{
+    const recipient=resolveRecipient({ruleContract:contract},clause,id);
+    if(!recipient.roleId)throw new TypeError('Missing compatibility recipient participant');
+    return recipient.roleId;
+  });
+};
 
 /** A secondary target is required; a linked effect recipient must be explicitly
  * separate from/leadable by the actor. Passive beneficiaries and created units
@@ -90,7 +107,10 @@ const explicitlyRequired=role=>role.required===true&&['TARGET','ANCHOR'].include
 export function requiredRecipientRoles(contract) {
   const recipientRoles=[...contract.roles.filter(role=>['SECONDARY_TARGET','EFFECT_RECIPIENT'].includes(role.purpose)||
     explicitlyRequired(role)),
-    ...(contract.clauses||[]).flatMap(clause=>(clause.roles||[]).filter(role=>explicitlyRequired(role)||clause.effectRecipientRoleIds?.includes(role.id)))];
+    ...(contract.clauses||[]).flatMap(clause=>{
+      const recipientIds=clauseRecipientRoles(contract,clause);
+      return (clause.roles||[]).filter(role=>explicitlyRequired(role)||recipientIds.includes(role.id));
+    })];
   return [...new Map(recipientRoles.map(role=>[JSON.stringify(role),role])).values()].filter(role=>
     role.allegiance==='FRIENDLY'&&['MODEL','UNIT','FORMED_ATTACHED_UNIT'].includes(role.subject)&&
     role.required!==false&&role.optional!==true&&

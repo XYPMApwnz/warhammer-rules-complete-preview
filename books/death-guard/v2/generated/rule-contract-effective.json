@@ -127,7 +127,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -217,7 +219,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -533,8 +537,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "ability": "LETHAL HITS",
                 "sourceFields": [
                   [
@@ -550,7 +552,8 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               },
               {
                 "id": "source-clause-1:roster-effect:2",
@@ -577,8 +580,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "criticalHitThreshold",
                 "mode": "SET",
                 "value": 5,
@@ -597,9 +598,27 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/2"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-clause-1::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -619,7 +638,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -709,7 +730,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -799,7 +822,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1233,7 +1258,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1313,7 +1340,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1393,7 +1422,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1473,7 +1504,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1553,7 +1586,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1633,7 +1668,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -1723,7 +1760,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -1813,7 +1852,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -2192,7 +2233,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -2272,7 +2315,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -2391,7 +2436,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -2482,7 +2529,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -2572,7 +2621,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -2662,7 +2713,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -3073,7 +3126,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -3153,7 +3208,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -3233,7 +3290,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -3323,7 +3382,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -3413,7 +3474,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -3503,7 +3566,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -3925,7 +3990,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4005,7 +4072,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4085,7 +4154,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4175,7 +4246,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -4265,7 +4338,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4355,7 +4430,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -4692,7 +4769,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4772,7 +4851,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -4862,7 +4943,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -4952,7 +5035,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -5042,7 +5127,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -5273,7 +5360,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -5363,7 +5452,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -5634,7 +5725,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -5654,7 +5747,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -5674,7 +5769,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -5764,7 +5861,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -6035,7 +6134,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -6055,7 +6156,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -6145,7 +6248,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -6406,7 +6511,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -6486,7 +6593,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -6639,8 +6748,6 @@
                 ],
                 "lifetime": "WHILE_LEADING_SOURCE_UNIT",
                 "operation": "GRANT_MODEL_ABILITY",
-                "targetBinding": "LEADERS_OF_SOURCE",
-                "targetSubject": "MODEL",
                 "ability": {
                   "name": "Feel No Pain",
                   "value": 4
@@ -6659,9 +6766,20 @@
                     "text"
                   ],
                   "quote": "While a CHARACTER model is leading this unit, that CHARACTER model has the Feel No Pain 4+ ability."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "LEADERS_OF_SOURCE",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -6681,7 +6799,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -6701,7 +6821,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -6792,7 +6914,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -7763,7 +7887,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -7843,7 +7969,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -7923,7 +8051,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -8003,7 +8133,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -8115,7 +8247,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -8135,7 +8269,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -8236,7 +8372,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -8337,7 +8475,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -8614,7 +8754,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -8704,7 +8846,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -8794,7 +8938,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -9039,7 +9185,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -9129,7 +9277,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -9383,7 +9533,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -9403,7 +9555,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -9493,7 +9647,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -9583,7 +9739,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -9916,7 +10074,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -9996,7 +10156,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -10090,7 +10252,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -10110,7 +10274,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -10200,7 +10366,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -10290,7 +10458,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -10409,7 +10579,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -10907,7 +11079,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -10987,7 +11161,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -11067,7 +11243,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -11147,7 +11325,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -11241,7 +11421,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -11288,8 +11470,6 @@
                 ],
                 "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "field": "attacks",
                 "mode": "ADD",
@@ -11320,9 +11500,20 @@
                     "text"
                   ],
                   "quote": "If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons."
-                }
+                },
+                "recipientId": "source-clause-2::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -11412,7 +11603,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -11531,7 +11724,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -11819,8 +12014,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "OC",
                 "mode": "ADD",
                 "value": 1,
@@ -11838,9 +12031,20 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -11860,7 +12064,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -11950,7 +12156,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -12040,7 +12248,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -12312,8 +12522,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "ability": "SUSTAINED HITS 1",
                 "sourceFields": [
@@ -12330,7 +12538,8 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               },
               {
                 "id": "source-clause-1:roster-effect:2",
@@ -12357,8 +12566,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "ability": "LANCE",
                 "sourceFields": [
@@ -12375,9 +12582,27 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/2"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-clause-1::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -12397,7 +12622,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -12487,7 +12714,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -12577,7 +12806,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -12857,8 +13088,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_SOURCE_MODEL_HAS_RULE",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "field": "contagionRange",
                 "mode": "ADD",
                 "value": 3,
@@ -12884,9 +13113,20 @@
                     "text"
                   ],
                   "quote": "Add 3\" to the range of this model’s Contagion Range."
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -12906,7 +13146,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -12996,7 +13238,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -13086,7 +13330,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -13336,7 +13582,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -13356,7 +13604,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -13446,7 +13696,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -13536,7 +13788,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -13854,7 +14108,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -13874,7 +14130,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -13964,7 +14222,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -14054,7 +14314,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -14273,7 +14535,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -14371,7 +14635,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -14391,7 +14657,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -14411,7 +14679,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -14501,7 +14771,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -14833,7 +15105,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -14853,7 +15127,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -14873,7 +15149,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -14964,7 +15242,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -15058,7 +15338,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -15078,7 +15360,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -15168,7 +15452,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -15258,7 +15544,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -15583,7 +15871,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -15673,7 +15963,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -15976,8 +16268,6 @@
                 ],
                 "lifetime": "WHILE_LEADING",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "M",
                 "mode": "ADD",
                 "value": 1,
@@ -15995,9 +16285,20 @@
                     "text"
                   ],
                   "quote": "While this model is leading a unit, add 1\" to the Move characteristic of models in that unit"
-                }
+                },
+                "recipientId": "source-clause-1::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -16017,7 +16318,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -16107,7 +16410,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -16197,7 +16502,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -16414,7 +16721,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -16504,7 +16813,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -16761,7 +17072,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -16841,7 +17154,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -16939,7 +17254,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -16985,8 +17302,6 @@
                 ],
                 "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_UNIT_MODELS",
-                "targetSubject": "MODEL",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -17012,9 +17327,20 @@
                     "text"
                   ],
                   "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
-                }
+                },
+                "recipientId": "source-clause-2::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_UNIT_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -17060,9 +17386,6 @@
                 ],
                 "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_UNIT",
-                "targetSubject": "UNIT",
-                "unitScope": "FORMED",
                 "field": "chargeRoll",
                 "mode": "ADD",
                 "value": 1,
@@ -17088,9 +17411,21 @@
                     "text"
                   ],
                   "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
-                }
+                },
+                "recipientId": "source-clause-3::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-3::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -17180,7 +17515,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -17777,7 +18114,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -17857,7 +18196,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -17937,7 +18278,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18017,7 +18360,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18097,7 +18442,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18177,7 +18524,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18257,7 +18606,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18337,7 +18688,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18431,7 +18784,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -18451,7 +18806,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -18541,7 +18898,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -18825,7 +19184,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -18845,7 +19206,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -18935,7 +19298,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -19025,7 +19390,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -19231,7 +19598,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -19311,7 +19680,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -19409,7 +19780,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -19455,8 +19828,6 @@
                 ],
                 "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_UNIT_MODELS",
-                "targetSubject": "MODEL",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -19482,9 +19853,20 @@
                     "text"
                   ],
                   "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
-                }
+                },
+                "recipientId": "source-clause-2::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_UNIT_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -19530,9 +19912,6 @@
                 ],
                 "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_UNIT",
-                "targetSubject": "UNIT",
-                "unitScope": "FORMED",
                 "field": "chargeRoll",
                 "mode": "ADD",
                 "value": 1,
@@ -19558,9 +19937,21 @@
                     "text"
                   ],
                   "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
-                }
+                },
+                "recipientId": "source-clause-3::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "source-clause-3::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -19650,7 +20041,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -19987,7 +20380,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -20067,7 +20462,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -20187,7 +20584,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -20278,7 +20677,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -20368,7 +20769,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -20601,7 +21004,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -20691,7 +21096,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -20962,7 +21369,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -20982,7 +21391,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -21072,7 +21483,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -21162,7 +21575,9 @@
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -21445,7 +21860,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -21465,7 +21882,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -21555,7 +21974,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -21645,7 +22066,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -21901,7 +22324,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -21921,7 +22346,9 @@
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22012,7 +22439,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -22102,7 +22531,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -22335,7 +22766,9 @@
             "rosterClassificationNote": {
               "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22424,7 +22857,9 @@
             "rosterClassificationNote": {
               "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22521,7 +22956,9 @@
             "rosterClassificationNote": {
               "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22603,7 +23040,9 @@
             "rosterClassificationNote": {
               "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22684,7 +23123,9 @@
             "rosterClassificationNote": {
               "reason": "Enemy Afflicted state, selected Plague and/or current battle-round Contagion Range are required."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -22832,7 +23273,9 @@
             "rosterClassificationNote": {
               "reason": "Army Faction selection restriction."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {
@@ -23008,7 +23451,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "objective-affliction",
@@ -23073,7 +23518,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -23247,8 +23694,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "field": "criticalHitThreshold",
                 "mode": "SET",
@@ -23263,9 +23708,20 @@
                     "text"
                   ],
                   "quote": "an unmodified Hit roll of 5+"
-                }
+                },
+                "recipientId": "critical-hit::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "critical-hit::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -23451,8 +23907,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "field": "strength",
                 "mode": "ADD",
@@ -23467,15 +23921,14 @@
                     "text"
                   ],
                   "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-                }
+                },
+                "recipientId": "weapon-modifiers::recipient/effect/1"
               },
               {
                 "id": "weapon-modifiers:roster-effect:2",
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "field": "attacks",
                 "mode": "ADD",
@@ -23490,15 +23943,14 @@
                     "text"
                   ],
                   "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-                }
+                },
+                "recipientId": "weapon-modifiers::recipient/effect/2"
               },
               {
                 "id": "weapon-modifiers:roster-effect:3",
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "ability": "DEVASTATING WOUNDS",
                 "sourceFields": [
@@ -23511,9 +23963,34 @@
                     "text"
                   ],
                   "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-                }
+                },
+                "recipientId": "weapon-modifiers::recipient/effect/3"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "weapon-modifiers::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "weapon-modifiers::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "weapon-modifiers::recipient/effect/3",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -23724,7 +24201,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -23910,8 +24389,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "GRANT_MODEL_ABILITY",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "ability": {
                   "name": "Feel No Pain",
                   "value": 5
@@ -23926,9 +24403,20 @@
                     "text"
                   ],
                   "quote": "The bearer has the Feel No Pain 5+ ability."
-                }
+                },
+                "recipientId": "feel-no-pain::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "feel-no-pain::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -26961,7 +27449,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "battleline",
@@ -27045,8 +27535,6 @@
                 ],
                 "lifetime": "WHILE_DETACHMENT_SELECTED",
                 "operation": "GRANT_UNIT_KEYWORD",
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
                 "keyword": "BATTLELINE",
                 "sourceFields": [
                   [
@@ -27058,9 +27546,20 @@
                     "text"
                   ],
                   "quote": "POXWALKERS units from your army gain the BATTLELINE keyword."
-                }
+                },
+                "recipientId": "battleline::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "battleline::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -27268,8 +27767,6 @@
                 ],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "OC",
                 "mode": "ADD",
                 "value": 1,
@@ -27283,9 +27780,20 @@
                     "text"
                   ],
                   "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit"
-                }
+                },
+                "recipientId": "objective-control::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "objective-control::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "test-modifier",
@@ -27335,7 +27843,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -27575,7 +28085,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -27825,8 +28337,6 @@
                 ],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "field": "damage",
                 "mode": "ADD",
                 "value": 1,
@@ -27844,9 +28354,20 @@
                     "text"
                   ],
                   "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon."
-                }
+                },
+                "recipientId": "plague-wind-damage::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "plague-wind-damage::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "bodyguard-destruction",
@@ -27933,7 +28454,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -28190,8 +28713,6 @@
                 ],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "T",
                 "mode": "ADD",
                 "value": 1,
@@ -28205,9 +28726,20 @@
                     "text"
                   ],
                   "quote": "While the bearer is leading a unit, add 1 to the Toughness characteristic of POXWALKERS models in that unit."
-                }
+                },
+                "recipientId": "poxwalkers-toughness::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "poxwalkers-toughness::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -31262,7 +31794,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "contagion-range",
@@ -31314,7 +31848,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "include-plague-legions",
@@ -31349,7 +31885,9 @@
             "rosterClassificationNote": {
               "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           },
           {
             "id": "warlord-restriction",
@@ -31384,7 +31922,9 @@
             "rosterClassificationNote": {
               "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "sourceFields": [
@@ -31565,7 +32105,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -31752,8 +32294,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "weaponMode": "melee",
                 "field": "attacks",
                 "mode": "ADD",
@@ -31768,9 +32308,20 @@
                     "text"
                   ],
                   "quote": "Add 2 to the Attacks characteristic of the bearer’s melee weapons."
-                }
+                },
+                "recipientId": "melee-attacks::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "melee-attacks::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -31998,7 +32549,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -32213,7 +32766,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "recover-wounds",
@@ -32281,7 +32836,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "return-models",
@@ -32368,7 +32925,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -35430,7 +35989,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -35598,7 +36159,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -35816,8 +36379,6 @@
                 ],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_STAT",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "field": "M",
                 "mode": "ADD",
                 "value": 1,
@@ -35831,9 +36392,20 @@
                     "text"
                   ],
                   "quote": "While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit"
-                }
+                },
+                "recipientId": "movement::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "movement::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "advance-reroll",
@@ -35883,7 +36455,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -36123,7 +36697,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -36369,7 +36945,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -39227,7 +39805,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -39392,7 +39972,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -39587,7 +40169,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -39806,7 +40390,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -40001,7 +40587,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "vehicle-wound-reroll",
@@ -40088,7 +40676,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -43392,7 +43982,9 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -43614,7 +44206,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -43820,7 +44414,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -44015,7 +44611,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -44227,7 +44825,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -47611,8 +48211,6 @@
                 ],
                 "lifetime": "WHILE_DETACHMENT_SELECTED",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
                 "field": "contagionRange",
                 "mode": "ADD",
                 "value": 3,
@@ -47627,9 +48225,20 @@
                     "text"
                   ],
                   "quote": "Friendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\")."
-                }
+                },
+                "recipientId": "contagion-range::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "contagion-range::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -47845,7 +48454,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -48160,7 +48771,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -49828,8 +50441,6 @@
                 ],
                 "lifetime": "WHILE_DETACHMENT_SELECTED",
                 "operation": "GRANT_UNIT_KEYWORD",
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
                 "keyword": "CONTAGION ENGINE",
                 "sourceFields": [
                   [
@@ -49841,9 +50452,20 @@
                     "text"
                   ],
                   "quote": "Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE."
-                }
+                },
+                "recipientId": "grant-contagion-engine::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "grant-contagion-engine::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "ranged-assault",
@@ -49902,8 +50524,6 @@
                 ],
                 "lifetime": "WHILE_DETACHMENT_SELECTED",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
                 "weaponMode": "ranged",
                 "ability": "ASSAULT",
                 "sourceFields": [
@@ -49916,9 +50536,20 @@
                     "text"
                   ],
                   "quote": "Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]."
-                }
+                },
+                "recipientId": "ranged-assault::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "ranged-assault::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "exclusive-detachment",
@@ -49951,7 +50582,9 @@
             "rosterClassificationNote": {
               "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "sourceFields": [
@@ -50123,7 +50756,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -50345,8 +50980,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "GRANT_UNIT_KEYWORD",
-                "targetBinding": "SOURCE_UNIT",
-                "targetSubject": "UNIT",
                 "keyword": "MOBILE",
                 "sourceFields": [
                   [
@@ -50358,9 +50991,20 @@
                     "text"
                   ],
                   "quote": "This unit has MOBILE."
-                }
+                },
+                "recipientId": "mobile::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "mobile::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -51959,7 +52603,34 @@
             "rosterClassificationNote": {
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "f1RecipientIds": [
+              "selected-infiltrators::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "selected-infiltrators::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE MARINES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE MARINES"
+                  }
+                },
+                "textKind": "ELIGIBLE_FOR_SELECTION"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "exclusive-detachment",
@@ -51992,7 +52663,9 @@
             "rosterClassificationNote": {
               "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "sourceFields": [
@@ -52164,7 +52837,9 @@
             "rosterClassificationNote": {
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "sourceFields": [
@@ -52348,8 +53023,6 @@
                 "conditions": [],
                 "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetBinding": "SOURCE_UNIT",
-                "targetSubject": "UNIT",
                 "field": "detectionRange",
                 "mode": "ADD",
                 "value": -3,
@@ -52363,9 +53036,20 @@
                     "text"
                   ],
                   "quote": "This unit has -3\" detection range."
-                }
+                },
+                "recipientId": "detection-range::recipient/effect/1"
               }
-            ]
+            ],
+            "recipients": [
+              {
+                "id": "detection-range::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -53808,7 +54492,9 @@
             "rosterClassificationNote": {
               "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -53889,7 +54575,9 @@
             "rosterClassificationNote": {
               "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -53981,7 +54669,9 @@
             "rosterClassificationNote": {
               "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -54063,7 +54753,9 @@
             "rosterClassificationNote": {
               "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -54166,7 +54858,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -54186,7 +54880,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -54206,7 +54902,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-4",
@@ -54226,7 +54924,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-5",
@@ -54246,7 +54946,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           },
           {
             "id": "source-clause-6",
@@ -54266,7 +54968,9 @@
             "rosterClassificationNote": {
               "reason": "Book usage instruction; no unit characteristic or ability effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -54368,7 +55072,9 @@
             "rosterClassificationNote": {
               "reason": "Source directive has already been consumed in the effective book; it is not a second runtime effect."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "currentness": {
@@ -54494,7 +55200,9 @@
             "rosterClassificationNote": {
               "reason": "Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "currentness": {

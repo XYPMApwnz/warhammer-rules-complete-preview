@@ -7,6 +7,9 @@ import {parseSourceHtml,sourceNodeText} from './raw-source.mjs';
 import {projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {weaponDisplayKey} from '../../shared/army-book-app-v2/effective-datasheet-presentation.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
+import {resolveRecipient,recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
+import {validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
+import {validatePredicate,evaluatePredicate} from './rule-contract-schema.mjs';
 const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
 const book=read('./generated/rule-contract-effective.json'),payload=read('./generated/app-presentation.json');
 const cards=new Map(payload.cards.map(c=>[c.id,c]));
@@ -68,15 +71,21 @@ for(const [i,file]of ['Biologus-Putrifier.html','death-guard.html'].entries()){
 }
 verify();let mutations=0;
 for(const kind of ['missing','value','recipient','gate']){
-  const bad=structuredClone(book),effect=bad.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId).ruleContract.clauses[0].rosterEffects.find(e=>e.field==='criticalHitThreshold');
+  const bad=structuredClone(book),rule=bad.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId),clause=rule.ruleContract.clauses[0],effect=clause.rosterEffects.find(e=>e.field==='criticalHitThreshold');
   if(kind==='missing')bad.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId).ruleContract.clauses[0].rosterEffects=bad.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId).ruleContract.clauses[0].rosterEffects.filter(e=>e!==effect);
   if(kind==='value')effect.value=4;
-  if(kind==='recipient')effect.targetBinding='SOURCE_UNIT_MODELS';
+  if(kind==='recipient')resolveRecipient(rule,clause,effect.recipientId).from='SOURCE_UNIT_MODELS';
   if(kind==='gate')effect.conditions=[];
   assert.throws(()=>verify(bad),undefined,kind+' mutation escaped');mutations++;
 }
 assert.throws(()=>verify(book,(...args)=>{const result=projectInstanceCards(...args);for(const values of result.values())for(const c of values){delete c.criticalHitThreshold;delete c.criticalHitSources;}return result;}));mutations++;
 for(const invalid of [{mode:'ADD'},{value:1},{value:7},{value:4.5},{value:'5+'},{unitScope:'FORMED'},{weaponMode:'psychic'}]){
+  if(Object.hasOwn(invalid,'unitScope')){
+    // This is a malformed producer-address control. Keep its original typed
+    // operation guard before canonicalization removes the declaration field.
+    const declaration=recipientDeclarationView(book),effect=declaration.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId).ruleContract.clauses[0].rosterEffects.find(e=>e.field==='criticalHitThreshold');
+    Object.assign(effect,invalid);assert.throws(()=>validateRosterEffectDeclarations(declaration,validatePredicate,evaluatePredicate),/Critical Hit threshold/);mutations++;continue;
+  }
   const bad=structuredClone(book),effect=bad.entities.find(e=>e.id===criticalHitExpectations[0].source.canonicalId).ruleContract.clauses[0].rosterEffects.find(e=>e.field==='criticalHitThreshold');
   Object.assign(effect,invalid);assert.throws(()=>createDGRosterRuntime(bad),/Critical Hit threshold/);mutations++;
 }

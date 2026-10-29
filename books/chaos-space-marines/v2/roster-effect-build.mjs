@@ -1,9 +1,11 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** Book-owned lowering of reviewed typed clauses. No source sentence is parsed
  * here and this module does not connect import, UI, or Army Rule dispatch. */
 import assert from 'node:assert/strict';
 import {buildCSMContracts,readJson} from './rule-contract-build.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 
 const clone=structuredClone;
@@ -19,8 +21,12 @@ export function executableClauses(built) {
     .map(clause=>({rule,clause})));
 }
 
-export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
-  const before=JSON.stringify(built),book=clone(built.book),records=new Map(book.entities.map(e=>[e.id,e]));
+export function buildCSMRosterEffectBook(built=buildCSMContracts({recipientStage:'DECLARATION'})) {
+  const before=JSON.stringify(built);
+  // Reopen a canonical public result only as an explicit producer scratch view.
+  const lowering=built.book.entities.some(entity=>entity.ruleContract?.clauses?.some(clause=>Array.isArray(clause.recipients)))
+    ?{...built,book:recipientDeclarationView(built.book)}:built;
+  const book=clone(lowering.book),records=new Map(book.entities.map(e=>[e.id,e]));
   const sourceUnit=entity=>{
     const visited=new Set();
     while(entity&&entity.kind!=='DATASHEET') {
@@ -96,7 +102,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
     standaloneBinding:'SOURCE_UNIT',attachedBinding:'SOURCE_FORMED_MODELS',subject:'UNIT',
     canonicalRuleReferences:clone(huron.ruleContract.clauses[0].effect.parameters.canonicalRuleReferences)};
 
-  for(const {rule:canonical,clause:typed} of executableClauses(built)) {
+  for(const {rule:canonical,clause:typed} of executableClauses(lowering)) {
     const rule=records.get(canonical.id),contract=rule.ruleContract;
     const clause=contract.clauses.find(c=>c.id===typed.id);
     const role=id=>clause.roles.find(r=>r.id===id)||contract.roles.find(r=>r.id===id);
@@ -228,6 +234,8 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts()) {
   for(const mark of marks)for(const subject of ['Model','Unit'])registerField(`sourceBacked${subject}Mark:${mark.data.keyword}`,'boolean',
     {kind:'SELECTED_MARK',markId:mark.id});
   const evaluator=createRuleContractSchema(book.rosterSchema);
+  evaluator.validateContractDeclarations(book);validateRosterEffectDeclarations(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
+  finalizeRecipientBook(book);
   evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
   assert.equal(JSON.stringify(built),before,'Lowering mutated canonical facts/contracts');
   const clauses=book.entities.flatMap(r=>(r.ruleContract?.clauses||[]).filter(c=>c.rosterEffects.length).map(c=>`${r.id}::${c.id}`));

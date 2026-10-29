@@ -5,7 +5,8 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,predicateContext,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const evaluator=withRosterDetachments(createRuleContractSchema({stateFields:{
   leading:{contextLevel:'ROSTER',valueType:'boolean'},
@@ -65,9 +66,8 @@ function rule(book,name,{operation='GRANT_MODEL_KEYWORD',keyword:word='BONUS',ta
 }
 function execute(book,state) {
   const canonicalBefore=clone(book),rosterBefore=clone(state);
-  evaluator.validateContracts(book);
-  validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),evaluator);
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),evaluator);
   assert.deepEqual(book,canonicalBefore,'Keyword effects mutated canonical facts');
   assert.deepEqual(state,rosterBefore,'Keyword effects mutated saved physical-instance state');
   return result;
@@ -579,8 +579,8 @@ check('root Army Rule TARGET FIELD fails closed for false and unknown',()=>{
     Object.assign(root.ruleContract,{kind:'ARMY_RULE',ownerId:book.bookId});
     const schema={...evaluator,evaluatePredicate:(node,context)=>evaluator.evaluatePredicate(node,
       {...context,roster:{...context.roster,...(value===undefined?{}:{equipmentRequirementSatisfied:value})}})};
-    validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
-    const projection=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),schema);
+    const canonical=compileRecipientFixture(book,schema);
+    const projection=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),schema);
     assert.ok(projection.units.every(row=>row.keywords.includes('BONUS')===(value===true)));
   }
 });

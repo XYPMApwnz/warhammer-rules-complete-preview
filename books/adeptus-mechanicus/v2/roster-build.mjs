@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -29,6 +30,7 @@ export function buildRosterRuntimeBook(built=buildAdMechContracts()) {
       clause.rosterClassification='BATTLE_ONLY';clause.rosterEffects=[];
     }
   }
+  finalizeRecipientBook(book);
   built.schema.evaluator.validateContracts(book);
   validateRosterEffects(book,built.schema.evaluator.validatePredicate,built.schema.evaluator.evaluatePredicate);
   assert.deepEqual(built.book,canonicalBefore,'Runtime input build mutated canonical records');

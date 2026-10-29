@@ -3,6 +3,7 @@
  * or keyword deltas). Production contracts never create the expected set. */
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {resolveExecutionEffect} from './recipient-execution.mjs';
 export function assertSourceEffectExpectation({expectation,book,applied,observation,expectedObservation}) {
   const {source,expectedOperation}=expectation;
   const entity=book.entities.find(e=>e.id===source.canonicalId);
@@ -15,7 +16,8 @@ export function assertSourceEffectExpectation({expectation,book,applied,observat
     .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({clause,effect})))
     .filter(({effect})=>effect.operation===expectedOperation.operation&&effect.field===expectedOperation.field);
   assert.ok(effects.length,'EXECUTABLE BINDING REQUIRED: '+source.canonicalId);
-  for(const {clause,effect}of effects){
+  for(const {clause,effect:declaration}of effects){
+    const effect=resolveExecutionEffect(entity,clause,declaration);
     assert.equal(clause.rosterClassification,'ROSTER_EXECUTABLE','Permanent obligation classified as non-executable');
     for(const [key,value]of Object.entries(expectedOperation))assert.deepEqual(effect[key],value,'TYPED OPERATION: '+key);
   }

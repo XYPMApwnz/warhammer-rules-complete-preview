@@ -44,7 +44,7 @@ const checks=[],mutations=[];
 const check=(name,run)=>{run();checks.push(name);};
 const guard=(test,contract)=>{
   validateContractBinding(test.input,contract);
-  kernel.validateContracts({...test.model,entities:test.model.entities.map(entity=>
+  kernel.validateContractDeclarations({...test.model,entities:test.model.entities.map(entity=>
     entity.id===test.input.entity.id?{...entity,ruleContract:contract}:entity)});
 };
 function mutation(name,change) {
@@ -133,7 +133,7 @@ check('duplicate canonical semantic owner rejection',()=>{
     new Map([['blue:rule',b.input.declaration]])]).size,2);
   assert.throws(()=>mergeContractDeclarations([new Map([['same',{}]]),new Map([['same',{}]])]),/semantic owner/);
   const duplicate={...a.model,entities:[...a.model.entities,structuredClone(a.model.entities[0])]};
-  assert.throws(()=>kernel.validateContracts(duplicate),/duplicate independent semantic owner/);
+  assert.throws(()=>kernel.validateContractDeclarations(duplicate),/duplicate independent semantic owner/);
 });
 mutation('TARGET prerequisite removed',contract=>{contract.roles[0].conditions=[];});
 mutation('STATIC exclusion moved to BATTLE',contract=>{contract.roles[0].selector.args[0].contextLevel='BATTLE';});
@@ -156,7 +156,7 @@ mutations.push('duplicate semantic owner');
 if (!process.argv.includes('--isolated-child')) {
   const directory=fs.mkdtempSync(path.join(os.tmpdir(),'typed-bindings-qa-'));
   try {
-    for (const file of ['schema.mjs','bindings.mjs','bindings-qa.mjs'])
+    for (const file of ['schema.mjs','recipients.mjs','bindings.mjs','bindings-qa.mjs'])
       fs.copyFileSync(new URL(file,import.meta.url),path.join(directory,file));
     const result=JSON.parse(execFileSync(process.execPath,[path.join(directory,'bindings-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));
     assert.equal(result.status,'PASS');

@@ -1,3 +1,5 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -125,7 +127,9 @@ function classify(entity,clause) {
   return ['NOT_AN_EFFECT','Composition, equipment-option/footnote, Leader, transport, Warlord, or per-attack profile-selection declaration.'];
 }
 export function extendRosterContracts(model) {
-  const extended=structuredClone(model),index=new Map(extended.entities.map(e=>[e.id,e])),consumed=new Set();
+  // This function is a producer boundary, including closure regeneration.
+  const scratch=model.entities.some(entity=>entity.ruleContract?.clauses?.some(clause=>Array.isArray(clause.recipients)))?recipientDeclarationView(model):model;
+  const extended=structuredClone(scratch),index=new Map(extended.entities.map(e=>[e.id,e])),consumed=new Set();
   for(const entity of extended.entities.filter(e=>e.ruleContract))for(const clause of entity.ruleContract.clauses) {
     const [classification,reason]=classify(entity,clause);clause.rosterClassification=classification;clause.rosterClassificationNote={reason};clause.rosterEffects=[];
     const key=entity.id+'\0'+clause.id,declaration=declarations.get(key);if(!declaration)continue;
@@ -140,7 +144,8 @@ export function extendRosterContracts(model) {
       return result;
     });
   }
-  assert.deepEqual(consumed,new Set(declarations.keys()),'Complete exact source roster clause identities');return extended;
+  assert.deepEqual(consumed,new Set(declarations.keys()),'Complete exact source roster clause identities');
+  return finalizeRecipientBook(extended);
 }
 export function summarizeRosterContracts(model) {
   const rows=model.entities.filter(e=>e.ruleContract).flatMap(entity=>entity.ruleContract.clauses.map(clause=>({ruleId:entity.id,clauseId:clause.id,kind:entity.ruleContract.kind,

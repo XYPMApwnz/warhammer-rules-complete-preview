@@ -6,6 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {createCompatibilityCompiler} from '../rule-contract-v2/compatibility.mjs';
 import {buildAttachmentFeasibility,evaluateRequiredRecipients} from './compatibility-feasibility.mjs';
+import {compileBookRecipients} from '../rule-contract-v2/recipients.mjs';
 
 // Standalone synthetic books: no army records, parser or factual fixtures.
 const evidence={field:['text'],quote:'Two friendly units and a friendly beacon.'};
@@ -37,7 +38,7 @@ const contextFor=(candidate,subject,battle={})=>({subject,unitId:candidate.canon
   instanceId:candidate.instanceId,formedUnitId:candidate.formedUnitId,
   keywords:new Set(entities.find(e=>e.id===candidate.canonicalUnitId).data.keywords),roster:{},battle,
   owner:{unitId:candidate.canonicalUnitId}});
-const evaluate=(contract,candidates,battle={})=>evaluateRequiredRecipients(contract,'trooper',candidates,
+const evaluate=(contract,candidates,battle={})=>evaluateRequiredRecipients({kind:'STRATAGEM',...contract},'trooper',candidates,
   {book,evaluateRole:evaluator.evaluateRole,sourceInstanceId:'first',contextFor:(candidate,subject)=>contextFor(candidate,subject,battle)});
 const checks=[];
 const check=(name,run)=>{run();checks.push(name);};
@@ -80,6 +81,20 @@ check('existing clause-local linked recipients remain mandatory without a purpos
     assert.equal(evaluate(local,[first]),'FALSE');assert.equal(evaluate(local,[first,beacon]),'UNKNOWN');
   }
 });
+check('canonical recipient references retain linked-recipient feasibility and reject legacy or foreign addresses',()=>{
+  const recipient={...role('linked','BEACON'),binding:'INDEPENDENT_ENTITY',conditions:[{
+    predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',arguments:{key:'otherFriendlyUnit',equals:true},evidence}]};
+  delete recipient.required;delete recipient.purpose;
+  const rule={id:'canonical-linked',kind:'ENHANCEMENT',ruleContract:{kind:'ENHANCEMENT',roles:[],clauses:[{
+    id:'canonical-linked/clause',roles:[recipient],effectRecipientRoleIds:['linked'],rosterClassification:'BATTLE_ONLY',rosterEffects:[]}]}};
+  const canonical=compileBookRecipients({entities:[rule]}).entities[0].ruleContract;
+  assert.equal(evaluate(canonical,[first]),'FALSE');assert.equal(evaluate(canonical,[first,beacon]),'TRUE');
+  const foreign=structuredClone(canonical);foreign.clauses[0].recipientIds=['foreign-recipient'];
+  assert.throws(()=>evaluate(foreign,[first,beacon]),/recipient ID/);
+  const legacy=structuredClone(canonical);legacy.clauses[0].effectRecipientRoleIds=['linked'];
+  assert.throws(()=>evaluate(legacy,[first,beacon]),/canonical compatibility/);
+  const before=structuredClone(canonical);evaluate(canonical,[first,beacon]);assert.deepEqual(canonical,before);
+});
 check('book feasibility permits potential duplicate copies without inventing battle state',()=>{
   const compiler=createCompatibilityCompiler({book,evaluator,profileBindings,referenceSemantics:{},attachmentRelations:[]});
   assert.equal(compiler.evaluateRule('trooper','pair').state,'UNKNOWN');
@@ -114,7 +129,7 @@ if(!process.argv.includes('--isolated-child')) {
   try {
     for(const folder of ['roster-v2','rule-contract-v2'])fs.mkdirSync(path.join(temporary,folder));
     for(const file of ['roster-v2/required-recipients-qa.mjs','roster-v2/compatibility-feasibility.mjs','roster-v2/compatibility-context.mjs',
-      'rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs'])
+      'rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/recipients.mjs'])
       fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(temporary,file));
     const child=JSON.parse(execFileSync(process.execPath,[path.join(temporary,'roster-v2/required-recipients-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));
     assert.equal(child.status,'PASS');

@@ -98,7 +98,7 @@ export function validateDetachmentTextPresentation(cards,unit,effective,row,orig
       (card.parentId||null)===link.parentId&&(index===chain.length-1?card.kind==='DETACHMENT':card.kind!=='DETACHMENT'&&link.parentId===chain[index+1].id);});
   const expectedRecipients=text?.recipientSubject==='UNIT'&&effective.formedUnit?[...effective.formedUnit.memberInstanceIds]:[unit?.instanceId];
   const proof=origin?.effective||effective;
-  const verified=(proof.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===text?.roleId);
+  const verified=(proof.conditional||[]).filter(item=>item.detachmentText&&item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.recipientId===text?.recipientId);
   if(origin){
     // Only an already verified UNIT row can be displayed on another current
     // component. Its complete recipient set and native proof stay untouched.
@@ -118,7 +118,7 @@ export function validateDetachmentTextPresentation(cards,unit,effective,row,orig
     JSON.stringify(row.detachmentText)===JSON.stringify(verified[0].detachmentText)&&
     JSON.stringify(row.sourceProvenance)===JSON.stringify(verified[0].sourceProvenance)&&
     JSON.stringify(row.sourceOwnerChain)===JSON.stringify(verified[0].sourceOwnerChain)&&
-    ['sourceInstanceId','sourceModelScopeId','sourceDetachmentId','sourceParentId'].every(key=>row[key]===verified[0][key])&&
+    ['recipientId','sourceInstanceId','sourceModelScopeId','sourceDetachmentId','sourceParentId'].every(key=>row[key]===verified[0][key])&&
     ['UNIT','MODEL'].includes(text.recipientSubject)&&Array.isArray(row.recipientModelScopeIds)&&
     (text.recipientSubject==='UNIT'?row.recipientModelScopeIds.length===0:
       row.recipientModelScopeIds.length>0&&row.recipientModelScopeIds.every(id=>effective.profiles.some(model=>model.scopeId===id))),
@@ -128,7 +128,7 @@ export function validateDetachmentTextPresentation(cards,unit,effective,row,orig
  * copies. No cached proof or effective row is transferred between components. */
 export function validateComponentDetachmentText(cards,roster,unit,effective,row){
   const hasRow=projection=>(projection.conditional||[]).some(item=>item.detachmentText&&
-    item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.roleId===row.detachmentText.roleId);
+    item.ruleId===row.ruleId&&item.clauseId===row.clauseId&&item.detachmentText.recipientId===row.detachmentText.recipientId);
   if(hasRow(effective))return validateDetachmentTextPresentation(cards,unit,effective,row);
   assert(row.detachmentText.recipientSubject==='UNIT'&&effective.formedUnit&&
     row.recipientInstanceIds.includes(unit.instanceId),'Missing local textual Detachment proof');
@@ -197,7 +197,7 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
       value.unitScope!=='FORMED'||identity(value)!==expected);
   }
   if(group){
-    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.roleId,row.sourceProvenance,row.sourceOwnerChain]);
+    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.recipientId,row.sourceProvenance,row.sourceOwnerChain]);
     const sources=components.flatMap(component=>component.card.rosterDetachmentTexts||[])
       .filter(row=>row.detachmentText.recipientSubject==='UNIT');
     for(const component of components){
@@ -506,11 +506,11 @@ export function projectInstanceCards(cards, unit, effective) {
     const hasSource=row=>{
       if(row.sourceInstanceId)return true;
       const rule=cards.get(row.ruleId),owner=cards.get(rule?.parentId);
-      return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.policy.recipientScope==='ROSTER_UNITS'&&
+      return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.recipient?.from==='ROSTER_UNITS'&&
         rule?.kind==='DETACHMENT_RULE'&&owner?.kind==='DETACHMENT'&&rule.identity?.canonicalId===row.ruleId&&owner.identity?.canonicalId===rule.parentId&&typeof rule.identity?.registryId==='string'&&rule.identity.registryId===owner.identity?.registryId&&
         JSON.stringify(row.sourceProvenance)===JSON.stringify(rule.provenance)&&row.recipientInstanceIds?.includes(unit.instanceId);
     };
-    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&hasSource(row)&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
+    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.recipientId===row.policy.recipientId&&row.recipient?.id===row.recipientId&&hasSource(row)&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
     root.rosterConditionalPolicies=clone(policies);
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);

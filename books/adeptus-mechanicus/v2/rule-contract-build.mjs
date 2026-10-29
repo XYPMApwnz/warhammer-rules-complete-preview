@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -99,8 +100,10 @@ export function buildAdMechContracts({book=readJson('generated/effective.json'),
     validateContractBinding({entity,bookId:book.bookId,schema:'rule-contract/v2',declaration,
       currentness:entity.ruleContract.currentness},entity.ruleContract);
   }
-  const valid=schema.evaluator.validateContracts(result);
+  const valid=schema.evaluator.validateContractDeclarations(result);
   assert.equal(valid.rules,owners.length-blockedIds.size,'Owner accounting mismatch');
+  finalizeRecipientBook(result);
+  schema.evaluator.validateContracts(result);
   return {book:result,schema,declarations,inventory,blocked,blockedIds};
 }
 

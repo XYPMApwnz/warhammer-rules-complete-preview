@@ -15,6 +15,7 @@ import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
+import {resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
 
 const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
@@ -278,11 +279,11 @@ test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
   for(const selection of selections(state.units[0]).filter(row=>row.sourceEquipmentIdentity===shieldId))
    assert.deepEqual(selection.sourceEquipmentProvenance,root.provenance);
   if(!known)assert.ok(state.units[0].modelRows.every(model=>model.selections.length===0),'Unknown bearer is never invented');
-  const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(entity=>entity.ruleContract?.clauses||[])
-   .flatMap(clause=>clause.rosterEffects).filter(effect=>effect.provenance?.canonicalRuleId===shieldId);
+  const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(rule=>(rule.ruleContract?.clauses||[])
+   .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({rule,clause,effect})))).filter(({effect})=>effect.provenance?.canonicalRuleId===shieldId);
   assert.equal(effects.length,known?1:0);
-  if(known){const effect=effects[0];assert.deepEqual(effect.provenance.sourceEvidence,root.provenance);
-   assert.equal(effect.value,2);assert.equal(effect.targetBinding,'SOURCE_UNIT_MODELS');
+  if(known){const {rule,clause,effect}=effects[0];assert.deepEqual(effect.provenance.sourceEvidence,root.provenance);
+   assert.equal(effect.value,2);assert.equal(resolveRecipient(rule,clause,effect.recipientId).from,'SOURCE_UNIT_MODELS');
    assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId);}
   assert.deepEqual(runtime(JSON.parse(JSON.stringify(run.snapshot()))).projection,run.projection,'Shield scope and quantity persist');
   records.shieldSourceCoverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',quantity:2,status:'PASS'});

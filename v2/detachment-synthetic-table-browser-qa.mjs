@@ -19,6 +19,8 @@ import {projectBookPresentation} from '../books/shared/army-book-app-v2/book-v1-
 import {writeCacheRevision,verifyCacheRevision} from '../tools/cache-revision.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {buildPagesRuntimePackage} from '../tools/pages-runtime-package.mjs';
+import {recipientDeclarationView} from '../books/shared/rule-contract-v2/recipients.mjs';
+import {finalizeRecipientBook} from '../books/shared/rule-contract-v2/finalize-recipients.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const runPrepared=process.argv.includes('--run-prepared'),prepareOnly=process.argv.includes('--prepare-only');
@@ -92,7 +94,9 @@ function fixtureEntities(book){
 }
 function prepare(){
   fs.mkdirSync(out,{recursive:true});assert.ok(!fs.existsSync(path.join(out,'FIXTURES.json')),'Use a fresh external output for preparation');
-  const book=read(path.join(source,runtimeRelative)),payload=read(path.join(source,presentationRelative));
+  // Append source declarations only in an explicit producer scratch view. Each
+  // fixture is normalized before deliberate runtime source-proof corruption.
+  const book=recipientDeclarationView(read(path.join(source,runtimeRelative))),payload=read(path.join(source,presentationRelative));
   const {parent,rule,table}=fixtureEntities(book);
   const emptyMfm={source:{label:'SYNTHETIC FIXTURE'},unitBindings:[],detachmentBindings:[],enhancementBindings:[],
     paidUpgradeBindings:[],relations:[],eligibilityEvidenceBindings:[]};
@@ -109,6 +113,7 @@ function prepare(){
     const fixtureBook=clone(book),fixturePayload=clone(payload);
     fixtureBook.entities[fixtureBook.entities.findIndex(entity=>entity.id===ownerId)]=clone(parent);
     fixtureBook.entities.push(clone(rule),clone(table));
+    finalizeRecipientBook(fixtureBook);
     for(const card of projected.cards.filter(card=>[ruleId,tableId].includes(card.id)))fixturePayload.cards.push(card);
     fixturePayload.factManifest.push(...projected.factManifest.filter(field=>[ruleId,tableId].includes(field.entityId)));
     fixturePayload.cards.find(card=>card.id===ownerId).children.push(ruleId);

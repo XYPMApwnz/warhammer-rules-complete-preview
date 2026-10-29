@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -45,7 +46,8 @@ export function createCSMSchema(declarations) {
 }
 
 export function buildCSMContracts({facts=readJson('generated/effective.json'),inputs=declarationFiles.map(readJson),
-  identities=readJson('identity-bindings.json')}={}) {
+  identities=readJson('identity-bindings.json'),recipientStage='CANONICAL'}={}) {
+  assert.ok(['CANONICAL','DECLARATION'].includes(recipientStage),'Unknown recipient producer stage');
   const original=JSON.stringify(facts),semantic=semanticInputs(facts,identities),{book}=semantic;
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
   const inventory=ownerInventory(facts),owners=inventory.filter(row=>row.disposition==='RULE_OWNER');
@@ -98,10 +100,11 @@ export function buildCSMContracts({facts=readJson('generated/effective.json'),in
     entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',declaration,index,
       currentness:{acceptedBaseHead:facts.acceptedBaseHead,sourceEvidence:entity.provenance.sourceEvidence}});
   }
-  const valid=schema.evaluator.validateContracts(book);
+  const valid=schema.evaluator.validateContractDeclarations(book);
   assert.equal(valid.rules,declarations.size);
   rejectPairwiseAuthority(book);
   assert.equal(JSON.stringify(facts),original,'Canonical factual input mutated');
+  if(recipientStage==='CANONICAL'){finalizeRecipientBook(book);schema.evaluator.validateContracts(book);}
   return {facts,...semantic,schema,declarations,classifications,inventory};
 }
 

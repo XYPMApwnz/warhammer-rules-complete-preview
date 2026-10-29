@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** EC-owned bounded Rule Contract overlay. No importer, service or UI wiring.
  * The shared engine consumes a disposable view of the existing factual owner. */
 import fs from 'node:fs';
@@ -7,7 +8,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createECRuleSchema} from './rule-contract-schema.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
@@ -191,8 +192,10 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
       .reduce((n,member)=>n+member.data.quantity.max,0)})));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
-  schema.validateContracts(book);
-  validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  schema.validateContractDeclarations(book);
+  validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  finalizeRecipientBook(book);
+  schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');
   const scope={implementedRules:10+permissionInputs.length+additions.length+finals.length+aegis.length,directReuseRules:10,bindingAdaptationRules:permissionInputs.length,
     formationRuleFamilies:additions.length?5:0,formationSourceOwners:additions.length,

@@ -5,6 +5,7 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {enhancementOwnerFixture} from './enhancement-owner-fixture.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 import {rangeId as id} from './ability-range-fixture.mjs';
 import {createRosterRuntime} from './runtime.mjs';
 import {buildAttachmentFeasibility} from './compatibility-feasibility.mjs';
@@ -58,7 +59,7 @@ check('removal and restoration preserve exact owned effect and deterministic reb
   const f=enhancementOwnerFixture();f.assign();const r=verify(f),before=r.effective('a'),snapshot=r.snapshot();
   snapshot.units[0].enhancementIds=[];snapshot.units[0].enhancementAssignments=[];r.load(snapshot);assert.equal(wounds(r),'3');
   r.load(f.state);assert.deepEqual(r.effective('a'),before);
-  const restored=createRosterRuntime(f.book,f.api);restored.load(JSON.parse(JSON.stringify(r.snapshot())));
+  const restored=createRosterRuntime(compileRecipientFixture(f.book,f.api,{validateContracts:false}),f.api);restored.load(JSON.parse(JSON.stringify(r.snapshot())));
   assert.deepEqual(restored.projection,r.projection);
 });
 check('multiple independently owned Enhancements bind separate MODEL profiles in one physical unit',()=>{
@@ -108,7 +109,8 @@ check('same canonical profile in separate physical groups requires and respects 
 check('unknown MODEL owner eligibility stays conditional without selecting a bearer',()=>{
   const f=enhancementOwnerFixture();f.rule.ruleContract.assignment.selector={predicate:'FIELD',subject:'MODEL',
     contextLevel:'BATTLE',arguments:{key:'eligibleNow',equals:true},evidence:clone(f.effect.evidence)};
-  const r=createRosterRuntime(f.book,createRuleContractSchema({stateFields:{eligibleNow:{contextLevel:'BATTLE',valueType:'boolean'}}}));
+  const evaluator=createRuleContractSchema({stateFields:{eligibleNow:{contextLevel:'BATTLE',valueType:'boolean'}}});
+  const r=createRosterRuntime(compileRecipientFixture(f.book,evaluator,{validateContracts:false}),evaluator);
   r.load(f.state);const result=r.projection.units[0];assert.equal(result.applied.length,0);
   assert.ok(result.conditional.some(row=>row.state==='UNKNOWN'));
 });

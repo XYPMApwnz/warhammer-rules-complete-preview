@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -8,7 +9,7 @@ import {consumeMfm} from './mfm-boundary.mjs';
 import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs';
 import {addTauPrototypeChoices} from './roster-weapon-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
@@ -18,7 +19,7 @@ const at=(value,path)=>path.slice(1).split('/').reduce((item,key)=>item?.[key],v
 /** Disposable import/runtime view; canonical entities remain the factual owners.
  * No selection legality or inferred default weapon is introduced here. */
 export function buildTauImportBook(){
-  const {book}=buildTauContracts(),source=read('./roster-import-source-bindings.json');
+  const {book}=buildTauContracts({recipientStage:'DECLARATION'}),source=read('./roster-import-source-bindings.json');
   const index=new Map(book.entities.map(e=>[e.id,e]));
   const bytes=fs.readFileSync(new URL('../../../'+source.exportSource.document,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(),source.exportSource.sha256);
@@ -139,7 +140,9 @@ export function buildTauImportBook(){
     prototypePhysicalWeapon:'EXISTING_SCOPE_AND_SELECTION_QUANTITY_ONE_ONLY',
     shieldOccurrenceCount:shieldBindings.length,shieldPhysicalModel:'CONFIRMED_SCOPE_AND_PER_MODEL_QUANTITY_ONLY',
     student:'PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING',krootBodyguard:'BOOK_BOUNDARY_STARTING_STRENGTH_GATE'};
-  const schema=createTauRuleSchema();schema.validateContracts(book);
+  const schema=createTauRuleSchema();
+  schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  finalizeRecipientBook(book);schema.validateContracts(book);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   return book;
 }

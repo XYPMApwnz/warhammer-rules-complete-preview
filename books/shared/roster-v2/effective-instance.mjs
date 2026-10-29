@@ -1,4 +1,6 @@
 import {projectConditionalRow} from './conditional-policy.mjs';
+import {resolveExecutionEffect} from './recipient-execution.mjs';
+import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
  * This does not evaluate rules or combine component inventories. */
 const clone=value=>structuredClone(value);
@@ -27,7 +29,8 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const keywordSources=(group?projection.units.filter(member=>group.memberInstanceIds.includes(member.instanceId)):[unit])
     .flatMap(member=>member.applied.filter(row=>['GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD'].includes(row.operation)).flatMap(row=>{
       const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(item=>item.id===row.clauseId);
-      const effect=clause?.rosterEffects.find(item=>item.id===row.effectId);
+      const declaration=clause?.rosterEffects.find(item=>item.id===row.effectId);
+      const effect=declaration&&resolveExecutionEffect(rule,clause,declaration);
       const model=row.operation==='GRANT_MODEL_KEYWORD'?member.profiles.find(profile=>profile.scopeId===row.targetCompositionId&&profile.canonicalProfileId===row.targetProfileId):null;
       if(!effect||effect.operation!==row.operation||effect.targetSubject!==(model?'MODEL':'UNIT')||
           row.targetInstanceId!==member.instanceId||row.field!=='keywords'||!Array.isArray(row.after)||!row.after.includes(effect.keyword)||
@@ -49,7 +52,8 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   const unitMetricSources=unit.applied.filter(row=>row.operation==='MODIFY_RULE_METRIC'&&Object.hasOwn(unitMetrics,row.field)&&
     !row.targetModelInstanceId&&!row.targetProfileId&&!row.targetCompositionId&&!row.targetWeaponProfileId).map(row=>{
     const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(clause=>clause.id===row.clauseId);
-    const effect=clause?.rosterEffects.find(effect=>effect.id===row.effectId);
+    const declaration=clause?.rosterEffects.find(effect=>effect.id===row.effectId);
+    const effect=declaration&&resolveExecutionEffect(rule,clause,declaration);
     if(!effect||effect.operation!=='MODIFY_RULE_METRIC'||effect.field!==row.field||effect.targetSubject!=='UNIT'||
         !(effect.field==='detectionRange'&&effect.unitScope===undefined||['PHYSICAL','FORMED'].includes(effect.unitScope))||row.targetInstanceId!==instanceId||row.targetModelInstanceId)
       throw new TypeError('Unresolved typed UNIT metric provenance');
@@ -79,14 +83,16 @@ export function projectEffectiveInstance(book,projection,instanceId) {
       subject==='MODEL'&&unit.profiles.length===1&&unit.profiles[0].quantity===1?unit.profiles[0]:null;
     const grantedRules=(rule.ruleContract?.clauses||[]).flatMap(clause=>{
       const binding=clause.rosterReferenceBinding;if(!binding)return [];
-      if(binding.sourceBinding!=='SOURCE_MODEL'||binding.subject!=='UNIT'||
-          binding.standaloneBinding!=='SOURCE_UNIT'||binding.attachedBinding!=='SOURCE_FORMED_MODELS')
+      const standalone=resolveRecipient(rule,clause,binding.standaloneRecipientId),attached=resolveRecipient(rule,clause,binding.attachedRecipientId);
+      if(binding.sourceBinding!=='SOURCE_MODEL'||['subject','standaloneBinding','attachedBinding'].some(key=>Object.hasOwn(binding,key))||
+          standalone.who!=='UNIT'||standalone.from!=='SOURCE_UNIT'||standalone.scope!=='PHYSICAL'||
+          attached.who!=='UNIT'||attached.from!=='SOURCE_UNIT'||attached.scope!=='FORMED'||standalone.id===attached.id)
         throw new TypeError('Unsupported declarative reference scope');
       if(!model)return []; // An unresolved physical bearer cannot grant a rule.
       return binding.canonicalRuleReferences.map(canonicalId=>{
         if(!records.has(canonicalId))throw new TypeError('Unresolved granted canonical rule');
         return {canonicalId,sourceRuleId:id,clauseId:clause.id,sourceInstanceId:instanceId,
-          sourceModelScopeId:model.scopeId,subject:binding.subject,
+          sourceModelScopeId:model.scopeId,subject:(group?attached:standalone).who,
           recipientInstanceIds:group?[...group.memberInstanceIds]:[instanceId]};
       });
     });

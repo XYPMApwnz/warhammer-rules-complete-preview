@@ -1,3 +1,5 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** T'au-owned decisions over existing physical selections; no weapon IDs or
  * infantry instances are invented to split aggregate inventory. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -104,7 +106,7 @@ export function setTauPrototypeChoice(book,snapshot,sourceInstanceId,ruleId,refe
 }
 
 export function bindTauPrototypeChoices(book,state){
-  const choices=validateTauPrototypeChoices(book,state),result=clone(book);
+  const choices=validateTauPrototypeChoices(book,state),result=recipientDeclarationView(book);
   for(const spec of pendingPhysicalBindings){
     const rule=result.entities.find(entity=>entity.id===spec.ruleId);
     rule.ruleContract.clauses=rule.ruleContract.clauses.filter(clause=>!clause.physicalWeaponSource);
@@ -124,7 +126,7 @@ export function bindTauPrototypeChoices(book,state){
       provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,sourceEvidence:clone(rule.provenance)}}));
     rule.ruleContract.clauses.push(clause);
   }
-  return result;
+  return finalizeRecipientBook(result);
 }
 
 export function tauWeaponSelectionResolver(book,state){

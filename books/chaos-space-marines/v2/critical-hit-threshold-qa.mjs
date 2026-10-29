@@ -10,6 +10,8 @@ import {createCSMBrowserRoster} from './roster-boot.mjs';
 import {physical,fixtureState,assignBearer} from './roster-effect-fixture.mjs';
 import {prepareRosterPresentationCards,projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
+import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
+import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 
 const clone=structuredClone,ruleId='detachment-cult-of-the-arkifane:enhancement:3';
 export const criticalHitThresholdExpectation=JSON.parse(fs.readFileSync(new URL('./critical-hit-source-expectations.json',import.meta.url),'utf8')).cases[0];
@@ -101,14 +103,17 @@ function run(inputBook=book) {
 export const criticalHitThresholdGuardResult={id:criticalHitThresholdExpectation.id,status:'PASS',...run()};
 const mutations=[];
 for(const mutation of ['missing-binding','wrong-value','wrong-recipient','wrong-owner','wrong-gate']) {
-  const changed=clone(book),rule=changed.entities.find(entity=>entity.id===ruleId),clause=rule.ruleContract.clauses.find(clause=>clause.id==='battle-clause-1');
+  const changed=mutation==='missing-binding'?recipientDeclarationView(book):clone(book),rule=changed.entities.find(entity=>entity.id===ruleId),clause=rule.ruleContract.clauses.find(clause=>clause.id==='battle-clause-1');
   const effect=clause.rosterEffects[0];
   if(mutation==='missing-binding'){clause.rosterEffects=[];clause.rosterClassification='DISPLAY_ONLY';}
   if(mutation==='wrong-value')effect.value=4;
-  if(mutation==='wrong-recipient')effect.targetBinding='SOURCE_UNIT_MODELS';
+  if(mutation==='wrong-recipient')resolveRecipient(rule,clause,effect.recipientId).from='SOURCE_UNIT_MODELS';
   if(mutation==='wrong-owner')rule.ruleContract.assignment.selector={predicate:'MODEL_ID',subject:'MODEL',contextLevel:'STATIC',arguments:{id:'datasheet-dark-apostle:section:2:member:2'},evidence:effect.evidence};
   if(mutation==='wrong-gate')effect.conditions.push({binding:'SOURCE',predicate:{op:'NOT',args:[{predicate:'ALWAYS',subject:'MODEL',contextLevel:'STATIC',arguments:{},evidence:effect.evidence}]}});
-  assert.throws(()=>run(changed),undefined,mutation+' escaped accepted-source oracle');mutations.push(mutation);
+  // Dropping an effect also drops its now-unused recipient declaration at the
+  // producer boundary; the gameplay oracle still sees the missing effect.
+  const candidate=mutation==='missing-binding'?compileBookRecipients(changed,{f1Declaration:producerDetachmentTextDeclaration}):changed;
+  assert.throws(()=>run(candidate),undefined,mutation+' escaped accepted-source oracle');mutations.push(mutation);
 }
 assert.equal(JSON.stringify(book),before);assert.equal(JSON.stringify(importBook),factsBefore);
 console.log(JSON.stringify({status:'PASS',...criticalHitThresholdGuardResult,mutationsRejected:mutations,realNewRecruitExportTested:false}));

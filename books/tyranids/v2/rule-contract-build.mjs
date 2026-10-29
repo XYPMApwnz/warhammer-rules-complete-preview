@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -8,7 +9,7 @@ import {declarations,conditionalCandidates} from './rule-contract-declarations.m
 import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 export {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 
@@ -163,6 +164,9 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),maxModels:book.importBindings.compositions
     .filter(c=>c.profileId===binding.profileId).reduce((sum,c)=>sum+c.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  schema.validateContractDeclarations(book);
+  validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  finalizeRecipientBook(book);
   schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input changed');
   const artifact={schema:'tyranids-v2-rule-contracts/v1',authority:'BOOK_OWNED_DERIVED_OVERLAY',

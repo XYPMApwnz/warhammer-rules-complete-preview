@@ -5,8 +5,9 @@
 import assert from 'node:assert/strict';
 import {createRuleContractSchema} from '../rule-contract-v2/schema.mjs';
 import {changeAttachment,validateRoster,withRosterDetachments} from './context.mjs';
-import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
+import {executeRosterEffects} from './effects.mjs';
 import {projectEffectiveInstance} from './effective-instance.mjs';
+import {compileRecipientFixture} from './recipient-fixture.mjs';
 
 const clone=value=>structuredClone(value),id=name=>'synthetic-numeric:'+name;
 const evidence={field:['text'],quote:'Reviewed synthetic characteristic and recipient evidence.'};
@@ -61,8 +62,8 @@ function rule(book,state,name,{owner='alpha',parent='mixed',targetSubject='MODEL
 }
 function execute(book,state,options={}) {
   const baseBook=clone(book),baseState=clone(state);
-  evaluator.validateContracts(book);validateRosterEffects(book,evaluator.validatePredicate,evaluator.evaluatePredicate);
-  const result=executeRosterEffects(book,validateRoster(book,state,book.rosterAttachmentPolicies),{...evaluator,...options});
+  const canonical=compileRecipientFixture(book,evaluator);
+  const result=executeRosterEffects(canonical,validateRoster(canonical,state,canonical.rosterAttachmentPolicies),{...evaluator,...options});
   assert.deepEqual(book,baseBook,'Numeric operation mutated canonical facts');assert.deepEqual(state,baseState,'Numeric operation mutated imported state');
   return result;
 }

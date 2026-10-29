@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {createDGCompatibilityCompiler} from './rule-contract-context.mjs';
 import {mergeContractDeclarations,bindCanonicalContract} from '../../shared/rule-contract-v2/bindings.mjs';
 import fs from 'node:fs';
@@ -7,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 import {buildFactualV2} from './build.mjs';
 import {buildEnhancementContracts,buildDetachmentContracts} from './rule-contract-enhancements.mjs';
 import {buildStratagemContracts} from './rule-contract-stratagems.mjs';
-import {validateContracts,evaluatePredicate} from './rule-contract-schema.mjs';
+import {validateContracts,validateContractDeclarations,evaluatePredicate} from './rule-contract-schema.mjs';
 import {parseSourceHtml,sourceNode,sourceNodeText,normalizeSourceText} from './raw-source.mjs';
 import {extendRosterContracts} from './roster-contract-build.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
@@ -60,7 +61,7 @@ export function buildRuleContractV2() {
     assert.equal(entity.ruleContract.kind,ruleKind(entity),'Canonical kind drift');
   }
   assert.equal(declared.size,effective.entities.filter(e=>['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'].includes(e.kind)).length,'Structured source rule coverage');
-  validateContracts(model);
+  validateContractDeclarations(model);
   model.schema='death-guard-rule-contract-effective/v2';
   const extended=extendRosterContracts(model);
   extended.rosterReferenceSemantics={};
@@ -78,6 +79,8 @@ export function buildRuleContractV2() {
       distinctCanonicalLeaders:true,sourceIds:[relation.mfmRecordId,...(exception?[exception.sourceEntityId]:[])]};
   });
   extended.compatibilityFeasibility=buildCompatibilityFeasibility(extended);
+  finalizeRecipientBook(extended);
+  validateContracts(extended);
   validateRosterEffects(extended,validatePredicate,evaluatePredicate);
   return extended;
 }

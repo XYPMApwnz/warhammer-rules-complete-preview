@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -8,7 +9,7 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 import {createTauRuleSchema} from './rule-contract-schema.mjs';
 export {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
-import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
@@ -16,7 +17,8 @@ const clone=structuredClone,at=(value,path)=>path.reduce((v,key)=>v?.[key],value
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 /** Disposable contract view, like EC/Tyranids. No parser, importer or execution code. */
 export function buildTauContracts({facts=read('./generated/effective.json'),inputs=declarations,
-  review=read('./rule-clause-review.json'),pendingInputs=pendingPhysicalBindings}={}){
+  review=read('./rule-clause-review.json'),pendingInputs=pendingPhysicalBindings,recipientStage='CANONICAL'}={}){
+  assert.ok(['CANONICAL','DECLARATION'].includes(recipientStage),'Unknown recipient producer stage');
   const original=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(book.bookId,'tau-empire');assert.equal(index.size,book.entities.length,'Duplicate canonical owner');
   assert.ok(book.entities.every(e=>!e.ruleContract),'Factual owner must not contain contracts');
@@ -190,7 +192,11 @@ export function buildTauContracts({facts=read('./generated/effective.json'),inpu
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),
     maxModels:facts.entities.filter(e=>e.kind==='COMPOSITION_MEMBER'&&e.data.modelProfileId===binding.profileId).reduce((n,e)=>n+e.data.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
-  schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  if(recipientStage==='CANONICAL'){
+    finalizeRecipientBook(book);
+    schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  }
   assert.equal(JSON.stringify(facts),original,'Stage 2 factual foundation changed');
   const deferred=review.records.filter(r=>r.classification!=='EXECUTABLE').map(row=>({...clone(row),executable:false,
     sourceReference:{bookId:book.bookId,entityId:row.canonicalId,path:'/'+row.field.join('/')}}));

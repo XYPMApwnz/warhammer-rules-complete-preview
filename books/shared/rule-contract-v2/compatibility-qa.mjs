@@ -5,6 +5,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {createRuleContractSchema} from './schema.mjs';
 import {createCompatibilityCompiler} from './compatibility.mjs';
+import {compileBookRecipients} from './recipients.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
 
 const evaluator=createRuleContractSchema({modelAbilities:['ABILITY_X'],stateFields:{
@@ -53,7 +54,9 @@ function fixture(prefix='amber') {
   recipient.ruleContract.roles.push({id:'secondary',subject:'UNIT',allegiance:'FRIENDLY',purpose:'SECONDARY_TARGET',binding:'INDEPENDENT_ENTITY',
     selector:keyword('UNIT','BODYGUARD'),conditions:[atom('FIELD','UNIT','ROSTER',{key:'otherFriendlyUnit',equals:true})]});
   recipient.ruleContract.compatibilityRoleIds=['primary'];
-  const book={bookId:prefix,entities,rosterAttachmentPolicies:[{sourceId:id('character'),targetId:id('bodyguard'),additionalLeaders:0}]};
+  // These are producer declarations; the real compatibility consumer receives
+  // their compiled canonical recipient contract, with no legacy fallback.
+  const book=compileBookRecipients({bookId:prefix,entities,rosterAttachmentPolicies:[{sourceId:id('character'),targetId:id('bodyguard'),additionalLeaders:0}]});
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,profileBindings.map(row=>({...row,maxModels:1})));
   const options={book,evaluator,profileBindings,referenceSemantics:{},attachmentRelations:book.rosterAttachmentPolicies};
   return {id,book,options,compiler:createCompatibilityCompiler(options)};
@@ -181,7 +184,7 @@ if (!process.argv.includes('--isolated-child')) {
   const directory=fs.mkdtempSync(path.join(os.tmpdir(),'compatibility-qa-'));
   try {
     for (const folder of ['rule-contract-v2','roster-v2']) fs.mkdirSync(path.join(directory,folder));
-    for (const file of ['rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/compatibility-qa.mjs',
+    for (const file of ['rule-contract-v2/schema.mjs','rule-contract-v2/recipients.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/compatibility-qa.mjs',
       'roster-v2/compatibility-context.mjs','roster-v2/compatibility-feasibility.mjs'])
       fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(directory,file));
     const result=JSON.parse(execFileSync(process.execPath,[path.join(directory,'rule-contract-v2/compatibility-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));

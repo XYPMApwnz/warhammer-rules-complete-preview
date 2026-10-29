@@ -2,13 +2,30 @@
  * they never resolve a roll, select a battle target or mutate characteristics. */
 import {predicateContext,withRosterDetachments} from './context.mjs';
 import {createRuleContractSchema,predicateTypes} from '../rule-contract-v2/schema.mjs';
+import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 const clone=structuredClone;
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
 const keys=(value,required,optional=[])=>value&&typeof value==='object'&&!Array.isArray(value)&&required.every(k=>Object.hasOwn(value,k))&&Object.keys(value).every(k=>[...required,...optional].includes(k));
 const uniqueStrings=(items,allowed)=>Array.isArray(items)&&items.length>0&&new Set(items).size===items.length&&items.every(v=>typeof v==='string'&&v&&(allowed===undefined||allowed.includes(v)));
+/** Validate the explicit producer input before canonical recipient translation. */
+export function validateConditionalPolicyDeclaration(book,rule,clause){
+ const policy=clause.conditionalPolicy;if(policy===undefined)return;
+ requireValue(keys(policy,['kind','recipientScope','payload','evidence','contextQuote'],['aura','activationReferenceId','recipientKeywords','coreReference']),'Malformed conditional policy');
+ requireValue(['PHYSICAL_UNIT','FORMED_UNIT','AURA_UNRESOLVED','ROSTER_UNITS'].includes(policy.recipientScope),'Invalid conditional recipient scope');
+ const recipient={who:'UNIT',...(policy.recipientScope==='ROSTER_UNITS'?{from:'ROSTER_UNITS',scope:'FORMED',unitKeywords:policy.recipientKeywords}:
+  policy.recipientScope==='AURA_UNRESOLVED'?{how:'AURA',aura:policy.aura}:{from:'SOURCE_UNIT',scope:policy.recipientScope==='FORMED_UNIT'?'FORMED':'PHYSICAL'}),
+  ...(policy.recipientScope!=='ROSTER_UNITS'&&policy.recipientKeywords!==undefined?{unitKeywords:policy.recipientKeywords}:{}),
+  ...(policy.recipientScope!=='AURA_UNRESOLVED'&&policy.aura!==undefined?{aura:policy.aura}:{})};
+ validateConditionalPolicyRecord(book,rule,clause,policy,recipient);
+}
+/** Runtime accepts only a canonical recipient reference, never producer aliases. */
 export function validateConditionalPolicy(book,rule,clause){
  const policy=clause.conditionalPolicy;if(policy===undefined)return;
+ requireValue(keys(policy,['kind','recipientId','payload','evidence','contextQuote'],['activationReferenceId','coreReference']),'Malformed conditional policy');
+ validateConditionalPolicyRecord(book,rule,clause,policy,resolveRecipient(rule,clause,policy.recipientId));
+}
+function validateConditionalPolicyRecord(book,rule,clause,policy,recipient){
  const index=new Map(book.entities.map(e=>[e.id,e]));
  requireValue(clause.rosterClassification==='DISPLAY_ONLY'&&clause.rosterEffects.length===0,'Conditional policy cannot execute roster effects');
  const detachment=rule.kind==='DETACHMENT_RULE',parent=index.get(rule.parentId);
@@ -16,15 +33,15 @@ export function validateConditionalPolicy(book,rule,clause){
   ?parent?.kind==='DETACHMENT'&&parent.bookId===rule.bookId&&rule.ruleContract.detachmentId===parent.id
   :['DATASHEET_ABILITY','DATASHEET_SECTION','ENHANCEMENT'].includes(rule.kind)&&
    (rule.kind==='ENHANCEMENT'?parent?.kind==='DETACHMENT'&&rule.ruleContract.assignment:parent?.kind==='DATASHEET')),'Unresolved conditional policy source owner');
- requireValue(keys(policy,['kind','recipientScope','payload','evidence','contextQuote'],['aura','activationReferenceId','recipientKeywords','coreReference']),'Malformed conditional policy');
- requireValue(['PHYSICAL_UNIT','FORMED_UNIT','AURA_UNRESOLVED','ROSTER_UNITS'].includes(policy.recipientScope),'Invalid conditional recipient scope');
+ requireValue(recipient.who==='UNIT'&&(recipient.how==='AURA'?recipient.from!=='ROSTER_UNITS':
+  recipient.from==='SOURCE_UNIT'&&['PHYSICAL','FORMED'].includes(recipient.scope)||recipient.from==='ROSTER_UNITS'&&recipient.scope==='FORMED'),'Invalid conditional recipient scope');
  requireValue(keys(policy.evidence,['field','quote'])&&Array.isArray(policy.evidence.field)&&policy.evidence.field.length&&policy.evidence.field.every(k=>typeof k==='string'&&k)&&typeof policy.evidence.quote==='string'&&policy.evidence.quote,'Unproven conditional policy');
  const text=policy.evidence.field.reduce((value,key)=>value?.[key],rule.data);
  requireValue(typeof text==='string'&&policy.contextQuote===text&&text.includes(policy.evidence.quote),'Unproven conditional policy context');
- if(detachment)requireValue(policy.recipientScope==='ROSTER_UNITS'&&uniqueStrings(policy.recipientKeywords)&&policy.recipientKeywords.every(keyword=>text.includes(keyword))&&policy.activationReferenceId===undefined,'Unproven Detachment UNIT selector');
- else requireValue(policy.recipientScope!=='ROSTER_UNITS'&&policy.recipientKeywords===undefined,'Detachment selector on physical source');
- if(policy.recipientScope==='AURA_UNRESOLVED')requireValue(keys(policy.aura,['range','allegiance','unitKeyword'])&&Number.isSafeInteger(policy.aura.range)&&policy.aura.range>0&&policy.aura.allegiance==='FRIENDLY'&&typeof policy.aura.unitKeyword==='string'&&policy.aura.unitKeyword,'Invalid unresolved aura');
- else requireValue(policy.aura===undefined,'Aura metadata on a resolved UNIT scope');
+ if(detachment)requireValue(recipient.from==='ROSTER_UNITS'&&uniqueStrings(recipient.unitKeywords)&&recipient.unitKeywords.every(keyword=>text.includes(keyword))&&policy.activationReferenceId===undefined,'Unproven Detachment UNIT selector');
+ else requireValue(recipient.from!=='ROSTER_UNITS'&&recipient.unitKeywords===undefined,'Detachment selector on physical source');
+ if(recipient.how==='AURA')requireValue(keys(recipient.aura,['range','allegiance','unitKeyword'])&&Number.isSafeInteger(recipient.aura.range)&&recipient.aura.range>0&&recipient.aura.allegiance==='FRIENDLY'&&typeof recipient.aura.unitKeyword==='string'&&recipient.aura.unitKeyword,'Invalid unresolved aura');
+ else requireValue(recipient.aura===undefined,'Aura metadata on a resolved UNIT scope');
  if(policy.activationReferenceId!==undefined){
   const activation=index.get(policy.activationReferenceId);
   requireValue(activation&&activation.id!==rule.id&&activation.parentId===rule.parentId&&activation.bookId===rule.bookId&&['DATASHEET_ABILITY','DATASHEET_SECTION'].includes(activation.kind)&&typeof activation.data.text==='string'&&activation.provenance?.sourceId,'Unresolved conditional activation reference');
@@ -56,9 +73,9 @@ export function validateConditionalPolicy(book,rule,clause){
 }
 // Source-declared UNIT keywords use the existing formed UNIT vocabulary. This
 // selects consumers only; it never changes intrinsic UNIT or MODEL keywords.
-const detachmentRecipients=(projection,policy)=>projection.units.filter(unit=>{
+const detachmentRecipients=(projection,recipient)=>projection.units.filter(unit=>{
  const group=projection.formedUnits.find(row=>row.formedUnitId===unit.formedUnitId);
- return policy.recipientKeywords.every(keyword=>(group?.keywords||unit.keywords).includes(keyword));
+ return recipient.unitKeywords.every(keyword=>(group?.keywords||unit.keywords).includes(keyword));
 });
 const componentRecipients=(projection,unit)=>projection.formedUnits.find(group=>group.formedUnitId===unit.formedUnitId)?.memberInstanceIds||[unit.instanceId];
 const evidenceText=(rule,evidence)=>evidence?.field?.reduce((value,key)=>value?.[key],rule.data);
@@ -135,23 +152,43 @@ export function detachmentTableOption(book,rule,clause){
  return {tableId:id,rowIndex:index,clauseId:clause.id,cells:clone(cells),text:cells.filter(cell=>cell.length).join(' · '),
   sourceProvenance:clone(table.provenance),leadingClauseId:leaders[0].clause.id,leadingText:leaders[0].text};
 }
-/** One declaration channel for textual Detachment clauses. Roles are already
- * source-bound contracts; an OWNER/ANCHOR or ALWAYS is never a recipient. */
-export function detachmentTextDeclaration(book,rule,clause){
+function detachmentTextSource(book,rule,clause){
  if(rule.kind!=='DETACHMENT_RULE'||clause.rosterClassification!=='BATTLE_ONLY'||
   clause.rosterEffects.length||clause.conditionalPolicy)return null;
  const chain=detachmentOwnerChain(book,rule),owner=chain?.at(-1);
  if(!owner||rule.ruleContract.detachmentId&&rule.ruleContract.detachmentId!==owner.id||!sourceProvenancePresent(rule.provenance))return null;
- const roles=textRoles(clause,rule);if(!roles.length)return null;
  const tableReference=clause.effect?.canonicalTableId!==undefined||(clause.sourceFields||[]).some(field=>field.at(-1)==='tableId');
  const tableOption=tableReference?detachmentTableOption(book,rule,clause):null;
  if(tableReference&&!tableOption)return null;
  const text=tableOption?.text||readableClauseText(rule,clause);
  if(!text)return null;
  const tableOptions=tableOption?[]:(rule.ruleContract?.clauses||[]).map(candidate=>detachmentTableOption(book,rule,candidate)).filter(option=>option?.leadingClauseId===clause.id);
+ return {text,classification:clause.rosterClassification,chain,detachmentId:owner.id,tableOption,tableOptions};
+}
+/** Producer-only preservation of the established F1 admission and text label.
+ * Canonical runtime clauses must use their recorded f1RecipientIds instead. */
+export function producerDetachmentTextDeclaration(book,rule,clause){
+ const source=detachmentTextSource(book,rule,clause);if(!source)return null;
+ const roles=textRoles(clause,rule);if(!roles.length)return null;
+ const {tableOption,tableOptions,text}=source;
  const kindFor=role=>tableOption||tableOptions.length||offersRecipientSelection(role,clause,rule)||clause.potentialKeywordProjection&&equal(clause.potentialKeywordProjection.selector,role.selector)?'ELIGIBLE_FOR_SELECTION':
    /\b(?:models|units) have the following ability\b/i.test(clause.evidence?.quote||text)?'ABILITY_PRESENT':'CONDITIONAL';
- return {roles,text,kindFor,classification:clause.rosterClassification,chain,detachmentId:owner.id,tableOption,tableOptions};
+ return {...source,roles,kindFor};
+}
+/** Canonical F1 admission is an explicit recipient list, not participant purpose. */
+export function detachmentTextDeclaration(book,rule,clause){
+ const source=detachmentTextSource(book,rule,clause);if(!source)return null;
+ const ids=clause.f1RecipientIds;if(!Array.isArray(ids)||!ids.length)return null;
+ requireValue(clause.recipientStatus==='RECORDED'&&uniqueStrings(ids),'Unresolved textual Detachment recipient declaration');
+ const recipients=ids.map(id=>resolveRecipient(rule,clause,id));
+ for(const recipient of recipients){
+  const role=(clause.roles||[]).find(role=>role.id===recipient.roleId);
+  requireValue(role&&recipient.side==='FRIENDLY'&&['MODEL','UNIT'].includes(recipient.who)&&
+   recipient.who===(role.subject==='MODEL'?'MODEL':'UNIT')&&equal(recipient.selector,role.selector)&&
+   equal(recipient.conditions||[],role.conditions||[])&&['CONDITIONAL','ABILITY_PRESENT','ELIGIBLE_FOR_SELECTION','SELECTED'].includes(recipient.textKind),
+   'Unresolved textual Detachment recipient participant');
+ }
+ return {...source,recipients};
 }
 const evaluators=new WeakMap();
 const evaluatorFor=book=>{
@@ -162,10 +199,11 @@ function detachmentTextRows(book,projection,rule,clause,evaluatePredicate=evalua
  const declaration=detachmentTextDeclaration(book,rule,clause);
  if(!declaration||!projection.detachmentIds.includes(declaration.detachmentId))return [];
  const rows=[];
- for(const role of declaration.roles)for(const unit of recipientUnit?[recipientUnit]:projection.units){
+ for(const recipient of declaration.recipients)for(const unit of recipientUnit?[recipientUnit]:projection.units){
+  const role=clause.roles.find(role=>role.id===recipient.roleId);
   const matches=model=>{
    const context=predicateContext(projection,projection,unit.instanceId,role.subject,model?.scopeId);
-   if(!context||evaluatePredicate(role.selector,context)!=='TRUE')return false;
+   if(!context||evaluatePredicate(recipient.selector,context)!=='TRUE')return false;
    // Unknown roster eligibility is not proof. Battle conditions only qualify
    // the visible text; mixed-level expressions are left on the source page.
    const leaves=node=>{
@@ -178,7 +216,7 @@ function detachmentTextRows(book,projection,rule,clause,evaluatePredicate=evalua
     return type?.subjects.includes(node.subject)&&['STATIC','ROSTER','BATTLE'].includes(node.contextLevel)&&
       (type.level==='CONTEXTUAL'||type.level===node.contextLevel)&&node.arguments&&typeof node.arguments==='object'?[node]:[];
    };
-   return [...(role.conditions||[]),...(clause.conditions||[]),...(rule.ruleContract.conditions||[])].every(condition=>{
+   return [...(recipient.conditions||[]),...(clause.conditions||[]),...(rule.ruleContract.conditions||[])].every(condition=>{
     const levels=leaves(condition).map(node=>node.contextLevel);
     if(!levels.length)return false;
     if(levels.every(level=>level==='BATTLE'))return true;
@@ -198,12 +236,12 @@ function detachmentTextRows(book,projection,rule,clause,evaluatePredicate=evalua
     candidate.row.detachmentText.recipientSubject===(role.subject==='MODEL'?'MODEL':'UNIT')&&equal(candidate.row.recipientInstanceIds,recipientInstanceIds)&&
     equal(candidate.row.recipientModelScopeIds,models.map(model=>model.scopeId))))continue;
   }
-  rows.push({unit,row:{ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',execution:'CONDITIONAL_TEXT_ONLY',
+  rows.push({unit,row:{ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',execution:'CONDITIONAL_TEXT_ONLY',
    reason:'Battle effects are not automatically calculated',sourceInstanceId:null,sourceModelScopeId:null,
    recipientInstanceIds:[...recipientInstanceIds],recipientModelScopeIds:models.map(model=>model.scopeId),
    sourceProvenance:clone(rule.provenance),sourceParentId:rule.parentId,sourceDetachmentId:declaration.detachmentId,sourceOwnerChain:clone(declaration.chain),
-   detachmentText:{roleId:role.id,recipientSubject:role.subject==='MODEL'?'MODEL':'UNIT',
-    kind:declaration.kindFor(role),classification:declaration.classification,text:declaration.text,
+   detachmentText:{recipientId:recipient.id,recipientSubject:role.subject==='MODEL'?'MODEL':'UNIT',
+    kind:recipient.textKind,classification:declaration.classification,text:declaration.text,
     ...(declaration.tableOption?{tableOption:clone(declaration.tableOption)}:{}),
     ...(declaration.tableOptions.length?{tableOptions:clone(declaration.tableOptions)}:{})}}});
  }
@@ -212,23 +250,24 @@ function detachmentTextRows(book,projection,rule,clause,evaluatePredicate=evalua
 export function appendConditionalPolicy(result,rule,clause,source,ownerModel,book,evaluatePredicate){
  if(book&&rule.kind==='DETACHMENT_RULE')for(const {unit,row}of detachmentTextRows(book,result,rule,clause,evaluatePredicate))unit.conditional.push(row);
  if(!clause.conditionalPolicy)return;
+ const policy=clause.conditionalPolicy,recipient=resolveRecipient(rule,clause,policy.recipientId);
  if(rule.kind==='DETACHMENT_RULE'){
   requireValue(source===null&&!ownerModel&&result.detachmentIds.includes(rule.ruleContract.detachmentId),'Unresolved conditional Detachment source');
-  for(const unit of detachmentRecipients(result,clause.conditionalPolicy))unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(clause.conditionalPolicy),sourceInstanceId:null,sourceModelScopeId:null,recipientInstanceIds:[...componentRecipients(result,unit)],sourceProvenance:clone(rule.provenance)});
+  for(const unit of detachmentRecipients(result,recipient))unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:null,sourceModelScopeId:null,recipientInstanceIds:[...componentRecipients(result,unit)],sourceProvenance:clone(rule.provenance)});
   return;
  }
  requireValue(source,'Missing conditional physical source');
- const policy=clause.conditionalPolicy,group=result.formedUnits.find(g=>g.formedUnitId===source.formedUnitId);
- const recipients=policy.recipientScope==='AURA_UNRESOLVED'?[]:policy.recipientScope==='FORMED_UNIT'&&group?[...group.memberInstanceIds]:[source.instanceId];
- const storage=policy.recipientScope==='AURA_UNRESOLVED'?[source]:result.units.filter(u=>recipients.includes(u.instanceId));
- for(const unit of storage)unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:source.instanceId,sourceModelScopeId:ownerModel?.scopeId||null,recipientInstanceIds:[...recipients],sourceProvenance:clone(rule.provenance)});
+ const group=result.formedUnits.find(g=>g.formedUnitId===source.formedUnitId);
+ const recipients=recipient.how==='AURA'?[]:recipient.scope==='FORMED'&&group?[...group.memberInstanceIds]:[source.instanceId];
+ const storage=recipient.how==='AURA'?[source]:result.units.filter(u=>recipients.includes(u.instanceId));
+ for(const unit of storage)unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:source.instanceId,sourceModelScopeId:ownerModel?.scopeId||null,recipientInstanceIds:[...recipients],sourceProvenance:clone(rule.provenance)});
 }
 export function projectDetachmentText(book,projection,unit,row){
   requireValue(row.detachmentText&&!row.policy,'Textual Detachment row cannot replace a typed policy');
   const rules=book.entities.filter(entity=>entity.id===row.ruleId),rule=rules[0],clauses=rule?.ruleContract?.clauses.filter(clause=>clause.id===row.clauseId),clause=clauses?.[0];
   requireValue(rules.length===1&&clauses?.length===1&&sourceProvenancePresent(row.sourceProvenance)&&sourceProvenancePresent(rule.provenance)&&equal(row.sourceProvenance,rule.provenance),
     'Unresolved textual Detachment source provenance');
-  const expected=rule?.kind==='DETACHMENT_RULE'&&clause&&detachmentTextRows(book,projection,rule,clause,undefined,unit).find(item=>item.row.detachmentText.roleId===row.detachmentText.roleId);
+  const expected=rule?.kind==='DETACHMENT_RULE'&&clause&&detachmentTextRows(book,projection,rule,clause,undefined,unit).find(item=>item.row.recipientId===row.recipientId);
   requireValue(expected&&equal(expected.row,row),'Unresolved textual Detachment recipient/provenance');
   const title=id=>{const entity=book.entities.find(entity=>entity.id===id);return entity?.data.title||entity?.data.name||entity?.displayName||id;};
   const labels=row.detachmentText.recipientSubject==='MODEL'?unit.profiles.filter(model=>row.recipientModelScopeIds.includes(model.scopeId))
@@ -251,15 +290,17 @@ export function projectConditionalPolicy(book,projection,unit,row){
  const index=new Map(book.entities.map(e=>[e.id,e])),rule=index.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId),source=projection.units.find(u=>u.instanceId===row.sourceInstanceId);
  requireValue(rule&&equal(row.policy,clause?.conditionalPolicy)&&equal(row.sourceProvenance,rule.provenance)&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN','Unresolved conditional policy provenance');
  validateConditionalPolicy(book,rule,clause);
+ const recipient=resolveRecipient(rule,clause,row.recipientId);
+ requireValue(row.recipientId===row.policy.recipientId&&(row.recipient===undefined||equal(row.recipient,recipient)),'Unresolved conditional policy recipient declaration');
  const title=id=>index.get(id)?.data.title||index.get(id)?.data.name||id;
  if(rule.kind==='DETACHMENT_RULE'){
   const expected=componentRecipients(projection,unit);
-  requireValue(row.sourceInstanceId===null&&row.sourceModelScopeId===null&&projection.detachmentIds.includes(rule.ruleContract.detachmentId)&&detachmentRecipients(projection,row.policy).some(recipient=>recipient.instanceId===unit.instanceId)&&equal(row.recipientInstanceIds,expected),'Foreign conditional Detachment recipient');
-  return {...clone(row),sourceLabel:title(rule.parentId),sourceModelLabel:null,recipientLabels:expected.map(id=>{const recipient=projection.units.find(item=>item.instanceId===id);return `${title(recipient.canonicalUnitId)} (${id})`;})};
+  requireValue(row.sourceInstanceId===null&&row.sourceModelScopeId===null&&projection.detachmentIds.includes(rule.ruleContract.detachmentId)&&detachmentRecipients(projection,recipient).some(recipient=>recipient.instanceId===unit.instanceId)&&equal(row.recipientInstanceIds,expected),'Foreign conditional Detachment recipient');
+  return {...clone(row),recipient:clone(recipient),sourceLabel:title(rule.parentId),sourceModelLabel:null,recipientLabels:expected.map(id=>{const recipient=projection.units.find(item=>item.instanceId===id);return `${title(recipient.canonicalUnitId)} (${id})`;})};
  }
  requireValue(source,'Missing conditional physical source');
  requireValue(rule.kind==='ENHANCEMENT'?source.enhancementIds.includes(rule.id):source.canonicalUnitId===rule.parentId,'Foreign conditional physical source');
- const group=projection.formedUnits.find(g=>g.formedUnitId===source.formedUnitId),expected=row.policy.recipientScope==='AURA_UNRESOLVED'?[]:row.policy.recipientScope==='FORMED_UNIT'&&group?[...group.memberInstanceIds]:[source.instanceId];
+ const group=projection.formedUnits.find(g=>g.formedUnitId===source.formedUnitId),expected=recipient.how==='AURA'?[]:recipient.scope==='FORMED'&&group?[...group.memberInstanceIds]:[source.instanceId];
  requireValue(equal(row.recipientInstanceIds,expected)&&(expected.length?expected.includes(unit.instanceId):unit.instanceId===source.instanceId),'Foreign conditional recipient');
  const model=row.sourceModelScopeId?source.profiles.find(p=>p.scopeId===row.sourceModelScopeId):null;
  if(row.sourceModelScopeId)requireValue(model?.quantity===1,'Unresolved conditional MODEL bearer');
@@ -267,5 +308,5 @@ export function projectConditionalPolicy(book,projection,unit,row){
  if(ownerRole?.subject==='MODEL')requireValue(model&&(!source.enhancementAssignments?.length||source.enhancementAssignments.some(a=>a.enhancementId===rule.id&&a.modelScopeId===model.scopeId)),'Missing conditional MODEL assignment');
  if(ownerRole?.subject!=='MODEL')requireValue(row.sourceModelScopeId===null,'Unexpected conditional MODEL bearer');
  const activation=row.policy.activationReferenceId?index.get(row.policy.activationReferenceId):null;
- return {...clone(row),...(activation?{activationContext:{canonicalId:activation.id,label:title(activation.id),text:activation.data.text,provenance:clone(activation.provenance)}}:{}),sourceLabel:`${title(source.canonicalUnitId)} (${source.instanceId})`,sourceModelLabel:model?`${title(model.canonicalProfileId)} (${model.scopeId})`:null,recipientLabels:expected.map(id=>{const u=projection.units.find(u=>u.instanceId===id);return `${title(u.canonicalUnitId)} (${id})`;})};
+ return {...clone(row),recipient:clone(recipient),...(activation?{activationContext:{canonicalId:activation.id,label:title(activation.id),text:activation.data.text,provenance:clone(activation.provenance)}}:{}),sourceLabel:`${title(source.canonicalUnitId)} (${source.instanceId})`,sourceModelLabel:model?`${title(model.canonicalProfileId)} (${model.scopeId})`:null,recipientLabels:expected.map(id=>{const u=projection.units.find(u=>u.instanceId===id);return `${title(u.canonicalUnitId)} (${id})`;})};
 }

@@ -673,8 +673,6 @@
                 "field": "LD",
                 "mode": "ADD",
                 "value": -1,
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_LEADING",
                 "evidence": {
                   "field": [
@@ -720,7 +718,8 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_FORMED_MODELS"
-                }
+                },
+                "recipientId": "roster-known::recipient/effect/1"
               },
               {
                 "id": "detachment-coterie-of-the-conceited:enhancement:2::roster-known/effect-2",
@@ -728,8 +727,6 @@
                 "field": "OC",
                 "mode": "ADD",
                 "value": 1,
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_LEADING",
                 "evidence": {
                   "field": [
@@ -775,9 +772,48 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_FORMED_MODELS"
+                },
+                "recipientId": "roster-known::recipient/effect/2"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-coterie-of-the-conceited",
@@ -1361,9 +1397,6 @@
                   "canonicalId": "detachment-carnival-of-excess:enhancement:1",
                   "parameters": {}
                 },
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "conditions": [],
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
@@ -1408,9 +1441,42 @@
                     }
                   },
                   "recipientBinding": "SOURCE_UNIT"
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "heroic-intervention",
@@ -1490,18 +1556,42 @@
             "sourceText": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
             "effect": {
               "sourceClause": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
-              "recipientRoleId": "recipient",
               "parameters": {
                 "canonicalRuleReferences": [
                   "detachment-carnival-of-excess:enhancement:1"
                 ]
-              }
+              },
+              "recipientId": "heroic-intervention::recipient/role/1"
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [
+              {
+                "id": "heroic-intervention::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "assignment": {
@@ -1754,8 +1844,6 @@
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-noise-marines:profile:1/datasheet-noise-marines:weapon:5",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-noise-marines:weapon:5"
@@ -1824,13 +1912,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/1"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-noise-marines:profile:1/datasheet-noise-marines:weapon:6",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-noise-marines:weapon:6"
@@ -1899,13 +1986,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/2"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-tormentors:profile:1/datasheet-tormentors:weapon:8",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-tormentors:weapon:8"
@@ -1974,13 +2060,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/3"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-tormentors:profile:1/datasheet-tormentors:weapon:9",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-tormentors:weapon:9"
@@ -2049,13 +2134,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/4"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-tormentors:profile:1/datasheet-tormentors:weapon:10",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-tormentors:weapon:10"
@@ -2124,13 +2208,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/5"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-rhino:profile:1/datasheet-chaos-rhino:weapon:4",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-rhino:weapon:4"
@@ -2199,13 +2282,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/6"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-fulgrim:profile:1/datasheet-fulgrim:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-fulgrim:weapon:2"
@@ -2274,13 +2356,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/7"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-fulgrim:profile:1/datasheet-fulgrim:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-fulgrim:weapon:3"
@@ -2349,13 +2430,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/8"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-fulgrim:profile:1/datasheet-fulgrim:weapon:4",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-fulgrim:weapon:4"
@@ -2424,13 +2504,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/9"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-flawless-blades:profile:1/datasheet-flawless-blades:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-flawless-blades:weapon:2"
@@ -2499,13 +2578,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/10"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-exultant:profile:1/datasheet-lord-exultant:weapon:5",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-exultant:weapon:5"
@@ -2574,13 +2652,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/11"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-exultant:profile:1/datasheet-lord-exultant:weapon:6",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-exultant:weapon:6"
@@ -2649,13 +2726,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/12"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-exultant:profile:1/datasheet-lord-exultant:weapon:7",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-exultant:weapon:7"
@@ -2724,13 +2800,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/13"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-exultant:profile:1/datasheet-lord-exultant:weapon:8",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-exultant:weapon:8"
@@ -2799,13 +2874,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/14"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-exultant:profile:1/datasheet-lord-exultant:weapon:9",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-exultant:weapon:9"
@@ -2874,13 +2948,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/15"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-daemon-prince-of-slaanesh:profile:1/datasheet-daemon-prince-of-slaanesh:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-daemon-prince-of-slaanesh:weapon:2"
@@ -2949,13 +3022,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/16"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-daemon-prince-of-slaanesh:profile:1/datasheet-daemon-prince-of-slaanesh:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-daemon-prince-of-slaanesh:weapon:3"
@@ -3024,13 +3096,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/17"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-terminators:profile:1/datasheet-chaos-terminators:weapon:5",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-terminators:weapon:5"
@@ -3099,13 +3170,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/18"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-terminators:profile:1/datasheet-chaos-terminators:weapon:6",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-terminators:weapon:6"
@@ -3174,13 +3244,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/19"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-terminators:profile:1/datasheet-chaos-terminators:weapon:7",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-terminators:weapon:7"
@@ -3249,13 +3318,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/20"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-terminators:profile:1/datasheet-chaos-terminators:weapon:8",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-terminators:weapon:8"
@@ -3324,13 +3392,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/21"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-kakophonist:profile:1/datasheet-lord-kakophonist:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-kakophonist:weapon:2"
@@ -3399,13 +3466,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/22"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lord-kakophonist:profile:1/datasheet-lord-kakophonist:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lord-kakophonist:weapon:3"
@@ -3474,13 +3540,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/23"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-spawn:profile:1/datasheet-chaos-spawn:weapon:1",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-spawn:weapon:1"
@@ -3549,13 +3614,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/24"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-daemon-prince-of-slaanesh-with-wings:profile:1/datasheet-daemon-prince-of-slaanesh-with-wings:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-daemon-prince-of-slaanesh-with-wings:weapon:2"
@@ -3624,13 +3688,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/25"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-daemon-prince-of-slaanesh-with-wings:profile:1/datasheet-daemon-prince-of-slaanesh-with-wings:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-daemon-prince-of-slaanesh-with-wings:weapon:3"
@@ -3699,13 +3762,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/26"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-infractors:profile:1/datasheet-infractors:weapon:4",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-infractors:weapon:4"
@@ -3774,13 +3836,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/27"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-infractors:profile:1/datasheet-infractors:weapon:5",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-infractors:weapon:5"
@@ -3849,13 +3910,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/28"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-infractors:profile:1/datasheet-infractors:weapon:6",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-infractors:weapon:6"
@@ -3924,13 +3984,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/29"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lucius-the-eternal:profile:1/datasheet-lucius-the-eternal:weapon:1",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lucius-the-eternal:weapon:1"
@@ -3999,13 +4058,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/30"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-lucius-the-eternal:profile:1/datasheet-lucius-the-eternal:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-lucius-the-eternal:weapon:2"
@@ -4074,13 +4132,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/31"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-sorcerer:profile:1/datasheet-sorcerer:weapon:4",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-sorcerer:weapon:4"
@@ -4149,13 +4206,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/32"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-chaos-land-raider:profile:1/datasheet-chaos-land-raider:weapon:6",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-chaos-land-raider:weapon:6"
@@ -4224,13 +4280,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/33"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-heldrake:profile:1/datasheet-heldrake:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-heldrake:weapon:3"
@@ -4299,13 +4354,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/34"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-defiler:profile:1/datasheet-defiler:weapon:10",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-defiler:weapon:10"
@@ -4374,13 +4428,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/35"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-defiler:profile:1/datasheet-defiler:weapon:11",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-defiler:weapon:11"
@@ -4449,13 +4502,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/36"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-defiler:profile:1/datasheet-defiler:weapon:12",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-defiler:weapon:12"
@@ -4524,13 +4576,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/37"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-maulerfiend:profile:1/datasheet-maulerfiend:weapon:2",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-maulerfiend:weapon:2"
@@ -4599,13 +4650,12 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/38"
               },
               {
                 "id": "detachment-carnival-of-excess:enhancement:3::selected-weapon/datasheet-maulerfiend:profile:1/datasheet-maulerfiend:weapon:3",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "weaponMode": "melee",
                 "weaponIds": [
                   "datasheet-maulerfiend:weapon:3"
@@ -4674,12 +4724,312 @@
                     "pointer": "/detachments/1/enhancements/2",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "selected-weapon::recipient/effect/39"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Explicit canonical selection or passive permission reference only."
-            }
+            },
+            "recipients": [
+              {
+                "id": "selected-weapon::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/3",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/4",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/5",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/6",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/7",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/8",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/9",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/10",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/11",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/12",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/13",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/14",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/15",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/16",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/17",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/18",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/19",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/20",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/21",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/22",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/23",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/24",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/25",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/26",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/27",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/28",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/29",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/30",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/31",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/32",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/33",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/34",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/35",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/36",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/37",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/38",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/effect/39",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "selected-weapon::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "bearer",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "EMPEROR’S CHILDREN"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, while resolving those attacks, add 1 to the Damage characteristic of that weapon and that weapon has the [devastating wounds] and [hazardous] abilities."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "optional-fight-use",
@@ -4765,8 +5115,34 @@
             },
             "effect": {
               "sourceClause": "In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, while resolving those attacks, add 1 to the Damage characteristic of that weapon and that weapon has the [devastating wounds] and [hazardous] abilities.",
-              "recipientRoleId": "bearer"
-            }
+              "recipientId": "optional-fight-use::recipient/role/1"
+            },
+            "recipients": [
+              {
+                "id": "optional-fight-use::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "bearer",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "EMPEROR’S CHILDREN"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, while resolving those attacks, add 1 to the Damage characteristic of that weapon and that weapon has the [devastating wounds] and [hazardous] abilities."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-carnival-of-excess",
@@ -5778,9 +6154,6 @@
                   "canonicalId": "detachment-peerless-bladesmen:enhancement:1",
                   "parameters": {}
                 },
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "conditions": [],
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
@@ -5825,9 +6198,42 @@
                     }
                   },
                   "recipientBinding": "SOURCE_UNIT"
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "heroic-intervention",
@@ -5905,18 +6311,42 @@
             "sourceText": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
             "effect": {
               "sourceClause": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
-              "recipientRoleId": "recipient",
               "parameters": {
                 "canonicalRuleReferences": [
                   "detachment-peerless-bladesmen:enhancement:1"
                 ]
-              }
+              },
+              "recipientId": "heroic-intervention::recipient/role/1"
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [
+              {
+                "id": "heroic-intervention::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "assignment": {
@@ -6167,8 +6597,6 @@
                 "mode": "ADD",
                 "value": 1,
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -6196,7 +6624,8 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
-                }
+                },
+                "recipientId": "roster-known::recipient/effect/1"
               },
               {
                 "id": "detachment-peerless-bladesmen:enhancement:3::roster-known/effect-2",
@@ -6205,8 +6634,6 @@
                 "mode": "ADD",
                 "value": 1,
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -6234,9 +6661,48 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
+                },
+                "recipientId": "roster-known::recipient/effect/2"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-peerless-bladesmen",
@@ -6753,9 +7219,6 @@
                   "canonicalId": "detachment-court-of-the-phoenician:enhancement:1",
                   "parameters": {}
                 },
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "conditions": [],
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
@@ -6783,9 +7246,42 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_UNIT"
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "melee-attack",
@@ -6885,18 +7381,42 @@
             "sourceText": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
             "effect": {
               "sourceClause": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
-              "recipientRoleId": "recipient",
               "parameters": {
                 "canonicalRuleReferences": [
                   "detachment-court-of-the-phoenician:enhancement:1"
                 ]
-              }
+              },
+              "recipientId": "melee-attack::recipient/role/1"
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [
+              {
+                "id": "melee-attack::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "assignment": {
@@ -7097,8 +7617,6 @@
                 "field": "M",
                 "mode": "ADD",
                 "value": 1,
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -7126,9 +7644,41 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-court-of-the-phoenician",
@@ -7390,8 +7940,6 @@
                 "mode": "ADD",
                 "value": 1,
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -7419,7 +7967,8 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
-                }
+                },
+                "recipientId": "roster-known::recipient/effect/1"
               },
               {
                 "id": "detachment-court-of-the-phoenician:enhancement:4::roster-known/effect-2",
@@ -7428,8 +7977,6 @@
                 "mode": "ADD",
                 "value": 1,
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -7457,9 +8004,48 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
+                },
+                "recipientId": "roster-known::recipient/effect/2"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-court-of-the-phoenician",
@@ -8026,8 +8612,6 @@
                 "operation": "GRANT_WEAPON_ABILITY",
                 "ability": "PRECISION",
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -8055,9 +8639,41 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "character-attack",
@@ -8117,7 +8733,9 @@
             "rosterClassificationNote": {
               "reason": "Requires an actual melee attack targeting a CHARACTER unit; no battle state is simulated."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [],
+            "recipientStatus": "NOT_RECORDED"
           }
         ],
         "detachmentId": "detachment-slaaneshs-chosen",
@@ -8699,9 +9317,6 @@
                   "canonicalId": "detachment-mercurial-host:rule",
                   "parameters": {}
                 },
-                "targetSubject": "UNIT",
-                "targetBinding": "ROSTER_UNITS",
-                "unitScope": "FORMED",
                 "conditions": [
                   {
                     "binding": "TARGET",
@@ -8747,9 +9362,44 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "ROSTER_UNITS"
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "EMPEROR’S CHILDREN"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "advance-roll",
@@ -8831,18 +9481,48 @@
             "sourceText": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army.",
             "effect": {
               "sourceClause": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army.",
-              "recipientRoleId": "recipient",
               "parameters": {
                 "canonicalRuleReferences": [
                   "detachment-mercurial-host:rule"
                 ]
-              }
+              },
+              "recipientId": "advance-roll::recipient/role/1"
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "f1RecipientIds": [
+              "advance-roll::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "advance-roll::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "EMPEROR’S CHILDREN"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army."
+                  }
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -9100,9 +9780,6 @@
                   "canonicalId": "detachment-mercurial-host:enhancement:4",
                   "parameters": {}
                 },
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "conditions": [],
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
@@ -9130,9 +9807,42 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_UNIT"
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "movement",
@@ -9232,18 +9942,42 @@
             "sourceText": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
             "effect": {
               "sourceClause": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
-              "recipientRoleId": "recipient",
               "parameters": {
                 "canonicalRuleReferences": [
                   "detachment-mercurial-host:enhancement:4"
                 ]
-              }
+              },
+              "recipientId": "movement::recipient/role/1"
             },
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Source timing, choices and restrictions require the actual battle event; no roll, movement, modifier cancellation or CP expenditure is executed."
             },
-            "rosterEffects": []
+            "rosterEffects": [],
+            "recipients": [
+              {
+                "id": "movement::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "assignment": {
@@ -9711,9 +10445,6 @@
                   "canonicalId": "core-fights-first",
                   "parameters": {}
                 },
-                "unitScope": "FORMED",
-                "targetBinding": "ROSTER_UNITS",
-                "targetSubject": "UNIT",
                 "lifetime": "WHILE_DETACHMENT_SELECTED",
                 "evidence": {
                   "field": [
@@ -9759,9 +10490,42 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "ROSTER_UNITS"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Friendly FLAWLESS BLADES units have Fights First"
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-spectacle-of-slaughter",
@@ -9919,8 +10683,6 @@
               {
                 "id": "detachment-spectacle-of-slaughter:enhancement:1::source-effect-1/effect",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_UNIT_MODELS",
                 "field": "M",
                 "mode": "ADD",
                 "value": 2,
@@ -9969,13 +10731,12 @@
                     "pointer": "/detachments/7/enhancements/0",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               },
               {
                 "id": "detachment-spectacle-of-slaughter:enhancement:1::source-effect-1/effect/formed",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_FORMED_MODELS",
                 "field": "M",
                 "mode": "ADD",
                 "value": 2,
@@ -10024,12 +10785,51 @@
                     "pointer": "/detachments/7/enhancements/0",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/2"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_UNIT_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "FLAWLESS BLADES unit only. This unit has +2\" M."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-spectacle-of-slaughter",
@@ -10230,9 +11030,6 @@
               {
                 "id": "detachment-spectacle-of-slaughter:enhancement:2::permission-reference",
                 "operation": "GRANT_ABILITY",
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "ability": {
                   "canonicalId": "detachment-spectacle-of-slaughter:enhancement:2",
                   "parameters": {}
@@ -10262,12 +11059,45 @@
                     "pointer": "/detachments/7/enhancements/1",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "permission-reference::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Explicit canonical selection or passive permission reference only."
-            }
+            },
+            "recipients": [
+              {
+                "id": "permission-reference::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "permission-reference::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "FLAWLESS BLADES unit only. Enemy units cannot target this unit with snap shooting attacks."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "snap-shooting",
@@ -10372,8 +11202,32 @@
             },
             "effect": {
               "sourceClause": "FLAWLESS BLADES unit only. Enemy units cannot target this unit with snap shooting attacks.",
-              "recipientRoleId": "recipient"
-            }
+              "recipientId": "snap-shooting::recipient/role/1"
+            },
+            "recipients": [
+              {
+                "id": "snap-shooting::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "FLAWLESS BLADES unit only. Enemy units cannot target this unit with snap shooting attacks."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-spectacle-of-slaughter",
@@ -10758,8 +11612,6 @@
                 "mode": "ADD",
                 "value": 1,
                 "weaponMode": "melee",
-                "targetBinding": "SOURCE_MODEL",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -10787,9 +11639,41 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_MODEL"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-frenzied-host",
@@ -10992,8 +11876,6 @@
                 "mode": "ADD",
                 "value": -1,
                 "weaponMode": "ranged",
-                "targetBinding": "SOURCE_UNIT",
-                "targetSubject": "UNIT",
                 "lifetime": "WHILE_ASSIGNED",
                 "evidence": {
                   "field": [
@@ -11021,9 +11903,41 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_UNIT"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-frenzied-host",
@@ -11420,8 +12334,6 @@
               {
                 "id": "detachment-elegant-brutes:enhancement:1::source-effect-1/effect",
                 "operation": "GRANT_ABILITY",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "ability": {
                   "canonicalId": "core-deep-strike",
                   "parameters": {}
@@ -11469,12 +12381,44 @@
                       "authority": "ACCEPTED_SECONDARY"
                     }
                   }
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-effect-2",
@@ -11539,8 +12483,6 @@
               {
                 "id": "detachment-elegant-brutes:enhancement:1::source-effect-2/effect",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
                 "weaponMode": "ranged",
                 "ability": "IGNORES COVER",
                 "conditions": [],
@@ -11586,12 +12528,44 @@
                       "authority": "ACCEPTED_SECONDARY"
                     }
                   }
-                }
+                },
+                "recipientId": "source-effect-2::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-2::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient-2",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER]."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-elegant-brutes",
@@ -11806,8 +12780,6 @@
               {
                 "id": "detachment-elegant-brutes:enhancement:2::source-effect-1/effect",
                 "operation": "GRANT_WEAPON_ABILITY",
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
                 "ability": "SUSTAINED HITS 1",
                 "conditions": [],
                 "evidence": {
@@ -11835,12 +12807,44 @@
                     "pointer": "/detachments/9/enhancements/1",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1]."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-elegant-brutes",
@@ -13936,7 +14940,98 @@
             "rosterEffects": [],
             "rosterClassificationNote": {
               "reason": "Complete source-owned Transport declaration; no embarkation simulation."
-            }
+            },
+            "recipients": [
+              {
+                "id": "transport-declaration::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "passenger",
+                "side": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "EMPEROR’S CHILDREN"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "This model has a transport capacity of 12 EMPEROR’S CHILDREN INFANTRY models (excluding TERMINATOR and FLAWLESS BLADE models)."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "INFANTRY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "This model has a transport capacity of 12 EMPEROR’S CHILDREN INFANTRY models (excluding TERMINATOR and FLAWLESS BLADE models)."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "MODEL_KEYWORD",
+                          "subject": "MODEL",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "TERMINATOR"
+                          },
+                          "evidence": {
+                            "field": [
+                              "blocks",
+                              0,
+                              "text"
+                            ],
+                            "quote": "This model has a transport capacity of 12 EMPEROR’S CHILDREN INFANTRY models (excluding TERMINATOR and FLAWLESS BLADE models)."
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "MODEL_ID",
+                          "subject": "MODEL",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "id": "datasheet-flawless-blades:profile:1"
+                          },
+                          "evidence": {
+                            "field": [
+                              "blocks",
+                              0,
+                              "text"
+                            ],
+                            "quote": "This model has a transport capacity of 12 EMPEROR’S CHILDREN INFANTRY models (excluding TERMINATOR and FLAWLESS BLADE models)."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "declarationType": "TRANSPORT_DECLARATION",
@@ -14548,8 +15643,6 @@
               {
                 "id": "datasheet-keeper-of-secrets:section:1::shining-aegis/SV",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "field": "SV",
                 "mode": "SET",
                 "value": 3,
@@ -14633,12 +15726,48 @@
                     "pointer": "/datasheets/3/sections/0",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "shining-aegis::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Exact selected Shining Aegis occurrence on its singleton MODEL bearer; ordinary Save only."
-            }
+            },
+            "recipients": [
+              {
+                "id": "shining-aegis::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "shining-aegis::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "bearer",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "id": "datasheet-keeper-of-secrets:profile:1"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Shining Aegis: The bearer has a Save characteristic of 3+."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -15141,8 +16270,6 @@
               {
                 "id": "datasheet-daemonettes:section:1::source-effect-1/effect",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_UNIT_MODELS",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -15224,13 +16351,12 @@
                   "sourceFieldPath": [
                     "text"
                   ]
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               },
               {
                 "id": "datasheet-daemonettes:section:1::source-effect-1/effect/formed",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_FORMED_MODELS",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -15312,12 +16438,53 @@
                   "sourceFieldPath": [
                     "text"
                   ]
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/2"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_UNIT_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "instrument-of-chaos",
@@ -15407,9 +16574,6 @@
               {
                 "id": "datasheet-daemonettes:section:1::instrument-of-chaos/chargeRoll",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "field": "chargeRoll",
                 "mode": "ADD",
                 "value": 1,
@@ -15471,7 +16635,8 @@
                     "pointer": "/datasheets/4/sections/0",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "instrument-of-chaos::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
@@ -15489,7 +16654,41 @@
                 "authority": "ACCEPTED_SECONDARY"
               },
               "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
-            }
+            },
+            "recipients": [
+              {
+                "id": "instrument-of-chaos::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "instrument-of-chaos::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "instrument-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -16021,8 +17220,6 @@
               {
                 "id": "datasheet-seekers:section:1::source-effect-1/effect",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_UNIT_MODELS",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -16104,13 +17301,12 @@
                   "sourceFieldPath": [
                     "text"
                   ]
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               },
               {
                 "id": "datasheet-seekers:section:1::source-effect-1/effect/formed",
                 "operation": "MODIFY_STAT",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_FORMED_MODELS",
                 "field": "LD",
                 "mode": "SET",
                 "value": 6,
@@ -16192,12 +17388,53 @@
                   "sourceFieldPath": [
                     "text"
                   ]
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/2"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Selected physical owner/equipment and existing formation determine recipients."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_UNIT_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "instrument-of-chaos",
@@ -16287,9 +17524,6 @@
               {
                 "id": "datasheet-seekers:section:1::instrument-of-chaos/chargeRoll",
                 "operation": "MODIFY_RULE_METRIC",
-                "targetSubject": "UNIT",
-                "targetBinding": "SOURCE_UNIT",
-                "unitScope": "FORMED",
                 "field": "chargeRoll",
                 "mode": "ADD",
                 "value": 1,
@@ -16351,7 +17585,8 @@
                     "pointer": "/datasheets/5/sections/0",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "instrument-of-chaos::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
@@ -16369,7 +17604,41 @@
                 "authority": "ACCEPTED_SECONDARY"
               },
               "currentOfficialSource": "gw-ec-faction-pack-v1.3-2026-09-30"
-            }
+            },
+            "recipients": [
+              {
+                "id": "instrument-of-chaos::recipient/effect/1",
+                "who": "UNIT",
+                "from": "SOURCE_UNIT",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "FORMED"
+              },
+              {
+                "id": "instrument-of-chaos::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "instrument-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -18310,8 +19579,6 @@
                 "id": "datasheet-lord-exultant:section:1::roster-known/effect-1",
                 "operation": "GRANT_WEAPON_ABILITY",
                 "ability": "LETHAL HITS",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_LEADING",
                 "evidence": {
                   "field": [
@@ -18363,9 +19630,43 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_FORMED_MODELS"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -18659,8 +19960,6 @@
               {
                 "id": "datasheet-lord-exultant:section:4::source-effect-1/effect",
                 "operation": "GRANT_ABILITY",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "ability": {
                   "canonicalId": "core-infiltrators",
                   "parameters": {}
@@ -18716,12 +20015,46 @@
                     "pointer": "/datasheets/9/sections/3",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "source-effect-1::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Requires explicit source-valid Declare Battle Formations snapshot; current attachment alone cannot activate."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-1::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-1",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-effect-2",
@@ -18812,8 +20145,6 @@
               {
                 "id": "datasheet-lord-exultant:section:4::source-effect-2/effect",
                 "operation": "GRANT_ABILITY",
-                "targetSubject": "MODEL",
-                "targetBinding": "SOURCE_MODEL",
                 "ability": {
                   "canonicalId": "core-scouts",
                   "parameters": {
@@ -18871,12 +20202,46 @@
                     "pointer": "/datasheets/9/sections/3",
                     "authority": "ACCEPTED_SECONDARY"
                   }
-                }
+                },
+                "recipientId": "source-effect-2::recipient/effect/1"
               }
             ],
             "rosterClassificationNote": {
               "reason": "Requires explicit source-valid Declare Battle Formations snapshot; current attachment alone cannot activate."
-            }
+            },
+            "recipients": [
+              {
+                "id": "source-effect-2::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "source-effect-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient-2",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities."
+                  }
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "duration": [
@@ -20354,8 +21719,6 @@
                 "operation": "GRANT_WEAPON_ABILITY",
                 "ability": "SUSTAINED HITS 1",
                 "weaponMode": "ranged",
-                "targetBinding": "SOURCE_FORMED_MODELS",
-                "targetSubject": "MODEL",
                 "lifetime": "WHILE_LEADING",
                 "evidence": {
                   "field": [
@@ -20407,9 +21770,43 @@
                     "authority": "ACCEPTED_SECONDARY"
                   },
                   "recipientBinding": "SOURCE_FORMED_MODELS"
+                },
+                "recipientId": "roster-known::recipient/effect/1"
+              }
+            ],
+            "recipients": [
+              {
+                "id": "roster-known::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "roster-known::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+                  }
                 }
               }
-            ]
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "currentness": {
@@ -23055,7 +24452,56 @@
             "rosterEffects": [],
             "rosterClassificationNote": {
               "reason": "Complete source-owned Transport declaration; no embarkation simulation."
-            }
+            },
+            "recipients": [
+              {
+                "id": "transport-declaration::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "passenger",
+                "side": "FRIENDLY",
+                "purpose": "RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "EMPEROR’S CHILDREN"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "This model has a transport capacity of 14 EMPEROR’S CHILDREN INFANTRY models. Each TERMINATOR and FLAWLESS BLADE model takes up the space of 2 models."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "INFANTRY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "This model has a transport capacity of 14 EMPEROR’S CHILDREN INFANTRY models. Each TERMINATOR and FLAWLESS BLADE model takes up the space of 2 models."
+                      }
+                    }
+                  ]
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "declarationType": "TRANSPORT_DECLARATION",

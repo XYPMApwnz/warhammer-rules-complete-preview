@@ -580,12 +580,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           group.node.append(node);
       }
       for(const row of card.rosterConditionalPolicies||[]){
+        if(row.recipient?.id!==row.recipientId||row.policy.recipientId!==row.recipientId)throw new TypeError('Unresolved conditional policy recipient presentation');
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
         node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
         node.append(el('h5','',labels[row.policy.kind]),el('p','','Conditional — Not automatically resolved'));
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
-        node.append(el('p','',row.policy.recipientScope==='AURA_UNRESOLVED'?`Recipient unresolved; requires measured ${row.policy.aura.range} inch range and matching ${row.policy.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
+        node.append(el('p','',row.recipient.how==='AURA'?`Recipient unresolved; requires measured ${row.recipient.aura.range} inch range and matching ${row.recipient.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
         if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
         if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
         node.append(el('p','',row.policy.contextQuote));section.append(node);

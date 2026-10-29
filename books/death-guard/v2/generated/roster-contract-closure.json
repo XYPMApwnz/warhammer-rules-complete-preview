@@ -78,8 +78,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "GRANT_WEAPON_ABILITY",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "ability": "LETHAL HITS",
           "sourceFields": [
             [
@@ -95,7 +93,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         },
         {
           "id": "source-clause-1:roster-effect:2",
@@ -122,8 +121,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "criticalHitThreshold",
           "mode": "SET",
           "value": 5,
@@ -142,7 +139,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+, instead of only a 6."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/2"
         }
       ]
     },
@@ -815,8 +813,6 @@
           ],
           "lifetime": "WHILE_LEADING_SOURCE_UNIT",
           "operation": "GRANT_MODEL_ABILITY",
-          "targetBinding": "LEADERS_OF_SOURCE",
-          "targetSubject": "MODEL",
           "ability": {
             "name": "Feel No Pain",
             "value": 4
@@ -835,7 +831,8 @@
               "text"
             ],
             "quote": "While a CHARACTER model is leading this unit, that CHARACTER model has the Feel No Pain 4+ ability."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         }
       ]
     },
@@ -1314,8 +1311,6 @@
           ],
           "lifetime": "WHILE_EQUIPMENT_REQUIREMENT_SATISFIED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "field": "attacks",
           "mode": "ADD",
@@ -1346,7 +1341,8 @@
               "text"
             ],
             "quote": "If this model is equipped with two melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons."
-          }
+          },
+          "recipientId": "source-clause-2::recipient/effect/1"
         }
       ]
     },
@@ -1415,8 +1411,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "OC",
           "mode": "ADD",
           "value": 1,
@@ -1434,7 +1428,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, add 1 to the Objective Control characteristic of models in that unit."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         }
       ]
     },
@@ -1518,8 +1513,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "GRANT_WEAPON_ABILITY",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "ability": "SUSTAINED HITS 1",
           "sourceFields": [
@@ -1536,7 +1529,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         },
         {
           "id": "source-clause-1:roster-effect:2",
@@ -1563,8 +1557,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "GRANT_WEAPON_ABILITY",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "ability": "LANCE",
           "sourceFields": [
@@ -1581,7 +1573,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] and [LANCE] abilities."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/2"
         }
       ]
     },
@@ -1645,8 +1638,6 @@
           "conditions": [],
           "lifetime": "WHILE_SOURCE_MODEL_HAS_RULE",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "field": "contagionRange",
           "mode": "ADD",
           "value": 3,
@@ -1672,7 +1663,8 @@
               "text"
             ],
             "quote": "Add 3\" to the range of this model’s Contagion Range."
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         }
       ]
     },
@@ -2081,8 +2073,6 @@
           ],
           "lifetime": "WHILE_LEADING",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "M",
           "mode": "ADD",
           "value": 1,
@@ -2100,7 +2090,8 @@
               "text"
             ],
             "quote": "While this model is leading a unit, add 1\" to the Move characteristic of models in that unit"
-          }
+          },
+          "recipientId": "source-clause-1::recipient/effect/1"
         }
       ]
     },
@@ -2252,8 +2243,6 @@
           ],
           "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_UNIT_MODELS",
-          "targetSubject": "MODEL",
           "field": "LD",
           "mode": "SET",
           "value": 6,
@@ -2279,7 +2268,8 @@
               "text"
             ],
             "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
-          }
+          },
+          "recipientId": "source-clause-2::recipient/effect/1"
         }
       ]
     },
@@ -2321,9 +2311,6 @@
           ],
           "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_UNIT",
-          "targetSubject": "UNIT",
-          "unitScope": "FORMED",
           "field": "chargeRoll",
           "mode": "ADD",
           "value": 1,
@@ -2349,7 +2336,8 @@
               "text"
             ],
             "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
-          }
+          },
+          "recipientId": "source-clause-3::recipient/effect/1"
         }
       ]
     },
@@ -2647,8 +2635,6 @@
           ],
           "lifetime": "WHILE_DAEMONIC_ICON_BEARER_IS_IN_UNIT",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_UNIT_MODELS",
-          "targetSubject": "MODEL",
           "field": "LD",
           "mode": "SET",
           "value": 6,
@@ -2674,7 +2660,8 @@
               "text"
             ],
             "quote": "Models in the bearer’s unit have a Leadership characteristic of 6+."
-          }
+          },
+          "recipientId": "source-clause-2::recipient/effect/1"
         }
       ]
     },
@@ -2716,9 +2703,6 @@
           ],
           "lifetime": "WHILE_INSTRUMENT_BEARER_IS_IN_UNIT",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_UNIT",
-          "targetSubject": "UNIT",
-          "unitScope": "FORMED",
           "field": "chargeRoll",
           "mode": "ADD",
           "value": 1,
@@ -2744,7 +2728,8 @@
               "text"
             ],
             "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit."
-          }
+          },
+          "recipientId": "source-clause-3::recipient/effect/1"
         }
       ]
     },
@@ -3147,8 +3132,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "field": "criticalHitThreshold",
           "mode": "SET",
@@ -3163,7 +3146,8 @@
               "text"
             ],
             "quote": "an unmodified Hit roll of 5+"
-          }
+          },
+          "recipientId": "critical-hit::recipient/effect/1"
         }
       ]
     },
@@ -3184,8 +3168,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "field": "strength",
           "mode": "ADD",
@@ -3200,15 +3182,14 @@
               "text"
             ],
             "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-          }
+          },
+          "recipientId": "weapon-modifiers::recipient/effect/1"
         },
         {
           "id": "weapon-modifiers:roster-effect:2",
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "field": "attacks",
           "mode": "ADD",
@@ -3223,15 +3204,14 @@
               "text"
             ],
             "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-          }
+          },
+          "recipientId": "weapon-modifiers::recipient/effect/2"
         },
         {
           "id": "weapon-modifiers:roster-effect:3",
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "GRANT_WEAPON_ABILITY",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "ability": "DEVASTATING WOUNDS",
           "sourceFields": [
@@ -3244,7 +3224,8 @@
               "text"
             ],
             "quote": "Add 1 to the Strength and Attacks characteristics of the bearers melee weapons, and the bearer’s melee weapons have the [DEVASTATING WOUNDS] ability."
-          }
+          },
+          "recipientId": "weapon-modifiers::recipient/effect/3"
         }
       ]
     },
@@ -3278,8 +3259,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "GRANT_MODEL_ABILITY",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "ability": {
             "name": "Feel No Pain",
             "value": 5
@@ -3294,7 +3273,8 @@
               "text"
             ],
             "quote": "The bearer has the Feel No Pain 5+ ability."
-          }
+          },
+          "recipientId": "feel-no-pain::recipient/effect/1"
         }
       ]
     },
@@ -3499,8 +3479,6 @@
           ],
           "lifetime": "WHILE_DETACHMENT_SELECTED",
           "operation": "GRANT_UNIT_KEYWORD",
-          "targetBinding": "ROSTER_UNITS",
-          "targetSubject": "UNIT",
           "keyword": "BATTLELINE",
           "sourceFields": [
             [
@@ -3512,7 +3490,8 @@
               "text"
             ],
             "quote": "POXWALKERS units from your army gain the BATTLELINE keyword."
-          }
+          },
+          "recipientId": "battleline::recipient/effect/1"
         }
       ]
     },
@@ -3568,8 +3547,6 @@
           ],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "OC",
           "mode": "ADD",
           "value": 1,
@@ -3583,7 +3560,8 @@
               "text"
             ],
             "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit"
-          }
+          },
+          "recipientId": "objective-control::recipient/effect/1"
         }
       ]
     },
@@ -3665,8 +3643,6 @@
           ],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "field": "damage",
           "mode": "ADD",
           "value": 1,
@@ -3684,7 +3660,8 @@
               "text"
             ],
             "quote": "While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon."
-          }
+          },
+          "recipientId": "plague-wind-damage::recipient/effect/1"
         }
       ]
     },
@@ -3753,8 +3730,6 @@
           ],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "T",
           "mode": "ADD",
           "value": 1,
@@ -3768,7 +3743,8 @@
               "text"
             ],
             "quote": "While the bearer is leading a unit, add 1 to the Toughness characteristic of POXWALKERS models in that unit."
-          }
+          },
+          "recipientId": "poxwalkers-toughness::recipient/effect/1"
         }
       ]
     },
@@ -4009,8 +3985,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_MODEL",
-          "targetSubject": "MODEL",
           "weaponMode": "melee",
           "field": "attacks",
           "mode": "ADD",
@@ -4025,7 +3999,8 @@
               "text"
             ],
             "quote": "Add 2 to the Attacks characteristic of the bearer’s melee weapons."
-          }
+          },
+          "recipientId": "melee-attacks::recipient/effect/1"
         }
       ]
     },
@@ -4277,8 +4252,6 @@
           ],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_STAT",
-          "targetBinding": "SOURCE_FORMED_MODELS",
-          "targetSubject": "MODEL",
           "field": "M",
           "mode": "ADD",
           "value": 1,
@@ -4292,7 +4265,8 @@
               "text"
             ],
             "quote": "While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit"
-          }
+          },
+          "recipientId": "movement::recipient/effect/1"
         }
       ]
     },
@@ -4908,8 +4882,6 @@
           ],
           "lifetime": "WHILE_DETACHMENT_SELECTED",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "ROSTER_UNITS",
-          "targetSubject": "UNIT",
           "field": "contagionRange",
           "mode": "ADD",
           "value": 3,
@@ -4924,7 +4896,8 @@
               "text"
             ],
             "quote": "Friendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\")."
-          }
+          },
+          "recipientId": "contagion-range::recipient/effect/1"
         }
       ]
     },
@@ -5081,8 +5054,6 @@
           ],
           "lifetime": "WHILE_DETACHMENT_SELECTED",
           "operation": "GRANT_UNIT_KEYWORD",
-          "targetBinding": "ROSTER_UNITS",
-          "targetSubject": "UNIT",
           "keyword": "CONTAGION ENGINE",
           "sourceFields": [
             [
@@ -5094,7 +5065,8 @@
               "text"
             ],
             "quote": "Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE."
-          }
+          },
+          "recipientId": "grant-contagion-engine::recipient/effect/1"
         }
       ]
     },
@@ -5133,8 +5105,6 @@
           ],
           "lifetime": "WHILE_DETACHMENT_SELECTED",
           "operation": "GRANT_WEAPON_ABILITY",
-          "targetBinding": "ROSTER_UNITS",
-          "targetSubject": "UNIT",
           "weaponMode": "ranged",
           "ability": "ASSAULT",
           "sourceFields": [
@@ -5147,7 +5117,8 @@
               "text"
             ],
             "quote": "Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT]."
-          }
+          },
+          "recipientId": "ranged-assault::recipient/effect/1"
         }
       ]
     },
@@ -5194,8 +5165,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "GRANT_UNIT_KEYWORD",
-          "targetBinding": "SOURCE_UNIT",
-          "targetSubject": "UNIT",
           "keyword": "MOBILE",
           "sourceFields": [
             [
@@ -5207,7 +5176,8 @@
               "text"
             ],
             "quote": "This unit has MOBILE."
-          }
+          },
+          "recipientId": "mobile::recipient/effect/1"
         }
       ]
     },
@@ -5312,8 +5282,6 @@
           "conditions": [],
           "lifetime": "WHILE_ENHANCEMENT_ASSIGNED",
           "operation": "MODIFY_RULE_METRIC",
-          "targetBinding": "SOURCE_UNIT",
-          "targetSubject": "UNIT",
           "field": "detectionRange",
           "mode": "ADD",
           "value": -3,
@@ -5327,7 +5295,8 @@
               "text"
             ],
             "quote": "This unit has -3\" detection range."
-          }
+          },
+          "recipientId": "detection-range::recipient/effect/1"
         }
       ]
     },

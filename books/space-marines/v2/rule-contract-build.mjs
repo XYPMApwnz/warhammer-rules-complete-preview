@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** Book-owned typed declarations over native source facts. Shared V2 validators
  * and executor own behaviour. No importer, V1 dependency or source interpreter.
  */
@@ -157,7 +158,8 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
     contracts.push(entity.ruleContract);
   }
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
-  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
+  finalizeRecipientBook(book);
+ const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');
   const artifact={factualFingerprint:sha(original),contracts,executed,physicalBindingTemplates:clone(physicalStaticBindings),nativeAbilities:nativeAbilities.bindings,nativeProfiles:nativeProfiles.bindings,
     pending:clone(pendingPhysicalBindings.filter(row=>!reviewedScopes.has(row.ruleId))),nativeKeywords,coverage:clone(review.coverage),reviewFingerprint:sha(JSON.stringify(review)),

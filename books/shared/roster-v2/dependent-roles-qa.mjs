@@ -73,7 +73,7 @@ if(!process.argv.includes('--isolated-child')) {
   try {
     for(const folder of ['roster-v2','rule-contract-v2'])fs.mkdirSync(path.join(temporary,folder));
     for(const file of ['roster-v2/dependent-roles-qa.mjs','roster-v2/compatibility-feasibility.mjs','roster-v2/compatibility-context.mjs',
-      'rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs'])fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(temporary,file));
+      'rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/recipients.mjs'])fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(temporary,file));
     assert.equal(JSON.parse(execFileSync(process.execPath,[path.join(temporary,'roster-v2/dependent-roles-qa.mjs'),'--isolated-child'],{encoding:'utf8'})).status,'PASS');
   } finally {assert.equal(path.dirname(path.resolve(temporary)),path.resolve(os.tmpdir()));fs.rmSync(temporary,{recursive:true,force:true});}
 }

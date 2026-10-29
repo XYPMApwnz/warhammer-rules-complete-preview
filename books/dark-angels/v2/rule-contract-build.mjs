@@ -1,3 +1,4 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** Book-owned DA declarations over the existing closed mixed-owner view.
  * Army applicability is derived separately from intrinsic physical Chapter. */
 import fs from 'node:fs';
@@ -144,6 +145,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
  }
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
+ finalizeRecipientBook(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3D_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),

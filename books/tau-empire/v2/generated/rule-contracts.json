@@ -105,7 +105,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "army-rule-for-the-greater-good:definition#spotted-marking",
@@ -171,7 +173,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "army-rule-for-the-greater-good:definition#guided-definition",
@@ -237,7 +241,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "army-rule-for-the-greater-good:definition#guided-bs-and-markerlight",
@@ -303,7 +309,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -449,7 +457,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Breach and Clear: Each time a model in this unit makes a ranged attack that targets an enemy unit within range of an objective marker, you can re-roll the Wound roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-breacher-team:section:1#ability-2-conditional",
@@ -536,7 +546,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -682,7 +694,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-strike-team:section:1#ability-2-conditional",
@@ -769,7 +783,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -887,8 +903,6 @@
               "mode": "ADD",
               "value": 1,
               "weaponMode": "ranged",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -938,9 +952,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "volley-fire::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "volley-fire::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-cadre-fireblade:section:1#ability-2-conditional",
@@ -1027,7 +1052,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Crack Shot: Each time this model makes a ranged attack, on a Critical Wound, that attack has an Armour Penetration characteristic of -3."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -1155,8 +1182,6 @@
               "field": "M",
               "mode": "SET",
               "value": 12,
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -1206,15 +1231,14 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "coldstar-commander::recipient/effect/1"
             },
             {
               "id": "datasheet-commander-in-coldstar-battlesuit:section:1::coldstar-commander/effect-2",
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "ASSAULT",
               "weaponMode": "ranged",
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -1264,9 +1288,27 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "coldstar-commander::recipient/effect/2"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "coldstar-commander::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            },
+            {
+              "id": "coldstar-commander::recipient/effect/2",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-commander-in-coldstar-battlesuit:section:1#ability-2-conditional",
@@ -1353,7 +1395,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "shield-generator",
@@ -1411,8 +1455,6 @@
               "field": "INSV",
               "mode": "SET",
               "value": 4,
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -1473,9 +1515,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "shield-generator::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "shield-generator::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-commander-in-coldstar-battlesuit:section:1#ability-4-conditional",
@@ -1562,7 +1615,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -1718,7 +1773,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-commander-in-enforcer-battlesuit:section:1#ability-2-conditional",
@@ -1805,7 +1862,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "shield-generator",
@@ -1863,8 +1922,6 @@
               "field": "INSV",
               "mode": "SET",
               "value": 4,
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -1925,9 +1982,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "shield-generator::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "shield-generator::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-commander-in-enforcer-battlesuit:section:1#ability-4-conditional",
@@ -2014,7 +2082,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -2137,8 +2207,6 @@
                 "name": "Feel No Pain",
                 "value": 5
               },
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -2188,9 +2256,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "failure-is-not-an-option::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "failure-is-not-an-option::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-ethereal:section:1#ability-2-conditional",
@@ -2277,7 +2356,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Coordinated Leadership: At the end of your Command phase, roll one D6: on a 4+, you gain 1CP."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "hover-drone",
@@ -2334,8 +2415,6 @@
               "id": "datasheet-ethereal:section:1::hover-drone/effect-1",
               "operation": "GRANT_MODEL_KEYWORD",
               "keyword": "FLY",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -2396,7 +2475,8 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "hover-drone::recipient/effect/1"
             },
             {
               "id": "datasheet-ethereal:section:1::hover-drone/effect-2",
@@ -2404,8 +2484,6 @@
               "field": "M",
               "mode": "SET",
               "value": 10,
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -2466,9 +2544,27 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "hover-drone::recipient/effect/2"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "hover-drone::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            },
+            {
+              "id": "hover-drone::recipient/effect/2",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "currentness": {
@@ -2609,7 +2705,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Precise Targeting: Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -2725,8 +2823,6 @@
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "SUSTAINED HITS 1",
               "weaponMode": "melee",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -2776,9 +2872,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "ritual-butchery::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "ritual-butchery::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "rites-of-feasting-baseline",
@@ -2837,8 +2944,6 @@
                 "name": "Feel No Pain",
                 "value": 6
               },
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -2888,9 +2993,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "rites-of-feasting-baseline::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "rites-of-feasting-baseline::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-kroot-flesh-shaper:section:1#ability-2-battle-upgrade",
@@ -2977,7 +3093,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Rites of Feasting: While this model is leading a unit, models in that unit have the Feel No Pain 6+ ability. If that unit destroys one or more enemy units in the Fight phase, until the end of the battle, models in that unit have the Feel No Pain 5+ ability instead."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -3123,7 +3241,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Advanced Scouting: Each time this model makes a ranged attack that hits an enemy unit, until the end of the turn, each time another KROOT model from your army makes an attack that targets that enemy unit, you can re-roll the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-kroot-lone-spear:section:1#ability-2-conditional",
@@ -3210,7 +3330,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fire and Fade: In your Shooting phase, after this model has shot, if it is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 6\". If it does, until the end of the turn, this model is not eligible to declare a charge."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -3356,7 +3478,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Trail Finding: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\"."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-kroot-trail-shaper:section:1#ability-2-conditional",
@@ -3443,7 +3567,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -3589,7 +3715,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-kroot-war-shaper:section:1#ability-2-conditional",
@@ -3676,7 +3804,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Root of Honour: Once per battle, at the start of any phase, you can select one friendly KROOT unit that is Battle-shocked and within 12\" of this model. That unit is no longer Battle-shocked."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -3817,7 +3947,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Rapid Deployment: Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -3963,7 +4095,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-commander-farsight:section:1#ability-2-conditional",
@@ -4050,7 +4184,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -4206,7 +4342,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Agile Combatant: This model is eligible to shoot in a turn in which it Fell Back."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-commander-shadowsun:section:1#ability-2-conditional",
@@ -4293,7 +4431,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Hero of the Empire (Aura): While a friendly T’AU EMPIRE unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-commander-shadowsun:section:1#ability-3-conditional",
@@ -4380,7 +4520,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Advanced Guardian Drone: Each time a ranged attack targets the bearer, subtract 1 from the Wound roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-commander-shadowsun:section:1#ability-4-conditional",
@@ -4467,7 +4609,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Command-link Drone (Aura): While a friendly T’AU EMPIRE unit is within 6\" of the bearer, each time you select that unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -4582,7 +4726,9 @@
             },
             "activationConditions": "Retain the exact source activation; never substitute BS/WS, Strength, or a global save for this mechanism."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-darkstrider:section:1#ability-2-conditional",
@@ -4669,7 +4815,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Jammer Array: Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of this model."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -4825,7 +4973,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Exemplars of Mont’ka: Each time a model in this unit makes a ranged attack that targets the closest eligible target, that attack has the [SUSTAINED HITS 1] and [IGNORES COVER] abilities."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-the-twin-lance:section:1#ability-2-conditional",
@@ -4912,7 +5062,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Neocapacitor Shields: At the start of your opponent’s Charge phase, you can select one visible enemy unit (excluding MONSTER and VEHICLE units) within 12\" of this unit. That unit must take a Battle-shock test and, until the end of the turn, subtract 1 from Charge rolls made for that unit."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-the-twin-lance:section:1#ability-3-conditional",
@@ -4999,7 +5151,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Retro-thrusters: At the end of the Fight phase, if this unit was eligible to fight this phase, this unit can either make a Normal move of up to 6\" or a Fall Back move."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-the-twin-lance:section:1#ability-4-contributed-weapon",
@@ -5057,7 +5211,9 @@
             },
             "activationConditions": "Confirmed physical MODEL equipment quantity"
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -5198,7 +5354,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -5344,7 +5502,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Bounty Hunters: At the start of the battle, select one unit from your opponent’s army. Each time a model in this unit makes an attack that targets that unit, that attack has the [LETHAL HITS] and [PRECISION] abilities."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "pechra",
@@ -5401,8 +5561,6 @@
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "IGNORES COVER",
               "weaponMode": "ranged",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -5463,9 +5621,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "pechra::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "pechra::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "currentness": {
@@ -5621,7 +5790,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Target Uploaded: Each time a model in this unit makes an attack that targets their Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and that attack has the [IGNORES COVER] ability."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-pathfinder-team:section:1#ability-2-conditional",
@@ -5708,7 +5879,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "pulse-accelerator-drone",
@@ -5770,8 +5943,6 @@
               "weaponIds": [
                 "datasheet-pathfinder-team:weapon:4"
               ],
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -5849,9 +6020,20 @@
                     "authority": "AUTHORITATIVE_CURRENT"
                   }
                 }
-              }
+              },
+              "recipientId": "pulse-accelerator-drone::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "pulse-accelerator-drone::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-pathfinder-team:section:1#ability-4-contributed-weapon",
@@ -5909,7 +6091,9 @@
             },
             "activationConditions": "Confirmed selected Recon Drone equipment and actual physical bearer"
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "recon-drone-infiltrators",
@@ -5968,9 +6152,6 @@
                 "canonicalId": "core-infiltrators",
                 "parameters": {}
               },
-              "unitScope": "FORMED",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -6048,9 +6229,21 @@
                     "authority": "AUTHORITATIVE_CURRENT"
                   }
                 }
-              }
+              },
+              "recipientId": "recon-drone-infiltrators::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "recon-drone-infiltrators::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER",
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "currentness": {
@@ -6196,7 +6389,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Forward Observers: Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-stealth-battlesuits:section:1#ability-2-conditional",
@@ -6283,7 +6478,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Homing Beacon: Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\nDesigner’s Note: Place a Homing Beacon token next to this unit, removing it once this ability is used."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -6429,7 +6626,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Airborne Agility: At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-vespid-stingwings:section:1#ability-2-conditional",
@@ -6516,7 +6715,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Oversight Drone: Once per battle, when the bearer’s unit is selected to shoot, until the end of the phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability.\nDesigner’s Note: Place an Oversight Drone token next to the bearer, removing it once this ability has been used."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -6662,7 +6863,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Advanced Armour: Models in this unit have the Feel No Pain 4+ ability against mortal wounds."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-broadside-battlesuits:section:1#ability-2-conditional",
@@ -6749,7 +6952,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -6864,7 +7069,9 @@
             },
             "activationConditions": "Retain the exact source activation; never substitute BS/WS, Strength, or a global save for this mechanism."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-crisis-fireknife-battlesuits:section:1#ability-1-target-starting-strength",
@@ -6951,7 +7158,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-crisis-fireknife-battlesuits:section:1#ability-2-conditional",
@@ -7038,7 +7247,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Weapon Support System: Each time a model in this unit makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -7184,7 +7395,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Starscythe: Each time a model in this unit makes a ranged attack (excluding attacks that target MONSTERS and VEHICLES), improve the Armour Penetration characteristic of that attack by 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-crisis-starscythe-battlesuits:section:1#ability-2-conditional",
@@ -7271,7 +7484,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: This unit is eligible to shoot in a turn in which it Fell Back."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -7412,7 +7627,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Sunforge: Each time a model in this unit makes a ranged attack that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll and you can re-roll the Damage roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -7558,7 +7775,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Stealth Drones: Twice per battle, after an attack has been allocated to this model, you can change the Damage characteristic of that attack to 0.\nDesigner’s Note: Place two Stealth Drone tokens next to the unit, removing one each time this ability has been used."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "support-system-remove-smoke",
@@ -7614,8 +7833,6 @@
               "id": "datasheet-ghostkeel-battlesuit:section:1::support-system-remove-smoke/effect-1",
               "operation": "REMOVE_KEYWORD",
               "keyword": "SMOKE",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -7676,9 +7893,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "support-system-remove-smoke::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "support-system-remove-smoke::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-ghostkeel-battlesuit:section:1#ability-2-fall-back-shoot",
@@ -7765,7 +7993,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer is eligible to shoot in a turn in which it Fell Back but it loses the SMOKE keyword."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -7911,7 +8141,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Armour Hunter: Each time this model makes an attack that targets a MONSTER or VEHICLE, add 1 to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-hammerhead-gunship:section:1#ability-2-conditional",
@@ -7998,7 +8230,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Targeting Array: Each time this model is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8144,7 +8378,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Loping Pounce: At the start of your Command phase, if this unit is within 6\" of one or more friendly KROOT INFANTRY units, then until the end of the turn, this unit is eligible to declare a charge in a turn in which it Advanced."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-kroot-hounds:section:1#ability-2-conditional",
@@ -8231,7 +8467,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Hunting Hounds: While this unit is within 12\" of one or more friendly KROOT CHARACTER models, the Objective Control characteristic of models in this unit is 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8372,7 +8610,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Kroot Linebreakers: Each time this unit ends a Charge move, select one enemy unit within Engagement Range of it, then roll one D6 for each model in this unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers D3 mortal wounds. If one or more enemy models are destroyed as a result of these mortal wounds, that enemy unit must take a Battle-shock test."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8513,7 +8753,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Kroot Packmates: Once per turn, in your opponent’s Shooting phase, when a friendly KROOT INFANTRY unit within 6\" of this unit is selected as the target of an attack, one unit from your army with this ability can use it. If it does, after that enemy unit has finished making its attacks, that unit with this ability can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target)."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8654,7 +8896,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Drone Harassment Tactics: At the end of your Movement phase, select one enemy unit within 12\" of this unit; that enemy unit must take a Battle-shock test."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8795,7 +9039,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Ground Strike Fighter: Each time this model makes a ranged attack that targets an enemy unit that cannot FLY, add 1 to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -8946,7 +9192,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer is eligible to shoot in a turn in which it Fell Back."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-riptide-battlesuit:section:1#ability-2-conditional",
@@ -9033,7 +9281,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Nova Charge: Once per battle, when this unit is selected to shoot in your Shooting phase, select one ranged weapon equipped by this model. Until the end of the phase, that weapon has the [DEVASTATING WOUNDS] ability."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-riptide-battlesuit:section:1#ability-3-conditional",
@@ -9120,7 +9370,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Weapon Support System: Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -9266,7 +9518,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Velocity Tracker: Each time this model makes a ranged attack that targets a unit that can FLY, you can re-roll the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-sky-ray-gunship:section:1#ability-2-conditional",
@@ -9353,7 +9607,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Targeting Array: Each time this unit is selected to shoot, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -9504,7 +9760,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Heavy Walker: Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain features that are 4\" or less in height as if they were not there."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-stormsurge:section:1#ability-2-conditional",
@@ -9591,7 +9849,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Support System: Each time this model makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-stormsurge:section:1#ability-3-conditional",
@@ -9678,7 +9938,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Titan-killer: Each time this model makes a ranged attack that targets a TITANIC or TOWERING unit, you can re-roll the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -9819,7 +10081,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Pulse Bombs: At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: For each 4+, that unit suffers 1 mortal wound."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -9970,7 +10234,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Droneport: Each time this FORTIFICATION is selected to shoot, its drone defender’s weapon will target and resolve attacks against every enemy unit that is an eligible target to this FORTIFICATION."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-droneport:section:1#ability-2-nested-1",
@@ -10057,7 +10323,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-droneport:section:1#ability-2-nested-2",
@@ -10144,7 +10412,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-droneport:section:1#ability-3-conditional",
@@ -10231,7 +10501,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Tidewall Cover: Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this Fortification, that model has the Benefit of Cover against that attack."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -10377,7 +10649,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-gunrig:section:1#ability-1-nested-2",
@@ -10464,7 +10738,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-gunrig:section:1#ability-2-conditional",
@@ -10551,7 +10827,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Tidewall Cover: Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -10702,7 +10980,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-shieldline:section:1#ability-1-nested-2",
@@ -10789,7 +11069,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fortification: While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army:\n- That unit can still be selected as the target of ranged attacks, but each time such an attack is made, unless it is made with a Pistol, subtract 1 from the Hit roll.\n- Models in that unit do not need to take Desperate Escape tests due to Falling Back while Battle-shocked, except for those that will move over enemy models when doing so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-tidewall-shieldline:section:1#ability-2-conditional",
@@ -10876,7 +11158,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Tidewall Cover: Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "tidewall-defence-platform",
@@ -10934,8 +11218,6 @@
               "field": "W",
               "mode": "SET",
               "value": 15,
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -10996,9 +11278,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "tidewall-defence-platform::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "tidewall-defence-platform::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "currentness": {
@@ -11139,7 +11432,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Titan Hunter: This model’s twin heavy rail cannon and seeker missiles have the [ANTI-TITANIC 3+] ability while targeting a unit within half range."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -11285,7 +11580,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Aggressive Deployment: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "datasheet-manta:section:1#ability-2-conditional",
@@ -11372,7 +11669,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Air Caste Colossus: Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -11518,7 +11817,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Strafing Run: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks that cannot FLY. That enemy unit must take a Battle-shock test."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "transport-bay",
@@ -11574,8 +11875,6 @@
               "id": "datasheet-tiger-shark:section:1::transport-bay/effect-1",
               "operation": "GRANT_MODEL_KEYWORD",
               "keyword": "TRANSPORT",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -11636,9 +11935,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "transport-bay::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "transport-bay::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-tiger-shark:section:1#ability-2-capacity",
@@ -11725,7 +12035,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Transport Bay: The bearer has the TRANSPORT keyword and has a transport capacity of 12 TACTICAL DRONES models."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -11866,7 +12178,9 @@
             },
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Coordinated Strike: While this model is a Guided unit, each time it makes an attack that targets its Spotted unit, re-roll a Hit roll of 1."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -11991,7 +12305,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-montka:rule#battle-clause-2",
@@ -12066,7 +12382,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -12192,7 +12510,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -12318,7 +12638,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-kauyon:rule#battle-clause-2",
@@ -12393,7 +12715,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -12519,7 +12843,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Each time a KROOT model from your army makes an attack, add 1 to the Hit roll if the target of that attack is below its Starting Strength, and add 1 to the Wound roll as well if the target of that attack is Below Half-strength."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -12645,7 +12971,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: KROOT models from your army have a 6+ invulnerable save against melee attacks and a 5+ invulnerable save against ranged attacks."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -12746,9 +13074,6 @@
               "id": "detachment-kroot-hunting-pack:keywords::battleline/effect-1",
               "operation": "GRANT_UNIT_KEYWORD",
               "keyword": "BATTLELINE",
-              "unitScope": "PHYSICAL",
-              "targetBinding": "ROSTER_UNITS",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "TARGET",
@@ -12792,9 +13117,21 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[4]/div[1]/div",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "battleline::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "battleline::recipient/effect/1",
+              "who": "UNIT",
+              "from": "ROSTER_UNITS",
+              "side": "FRIENDLY",
+              "how": "ROSTER",
+              "scope": "PHYSICAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -12920,7 +13257,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden. This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-auxiliary-cadre:rule#localised-stealth-projectors",
@@ -12995,7 +13334,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden. This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-auxiliary-cadre:rule#detachment-tag",
@@ -13070,7 +13411,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden. This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-auxiliary-cadre",
@@ -13174,8 +13517,6 @@
               "mode": "ADD",
               "value": 6,
               "weaponMode": "ranged",
-              "targetBinding": "ROSTER_UNITS",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "TARGET",
@@ -13238,9 +13579,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[16]/div[3]/div[2]",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "superior-craftsmanship::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "superior-craftsmanship::recipient/effect/1",
+              "who": "UNIT",
+              "from": "ROSTER_UNITS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:rule#detachment-tag",
@@ -13315,7 +13667,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: Friendly BATTLESUIT CHARACTER units’ ranged attacks have +6\" R. This detachment has the BATTLESUIT tag and cannot be taken with another BATTLESUIT detachment."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-experimental-prototype-cadre",
@@ -13441,7 +13795,9 @@
             },
             "activationConditions": "All quoted source gates and exceptions: In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-advanced-acquisition-cadre",
@@ -13648,7 +14004,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -13916,7 +14274,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -14098,7 +14458,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -14237,7 +14599,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -14398,8 +14762,6 @@
               "id": "detachment-retaliation-cadre:enhancement:1::internal-grenade-racks/effect-1",
               "operation": "GRANT_MODEL_KEYWORD",
               "keyword": "GRENADES",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [],
               "evidence": {
                 "field": [
@@ -14425,9 +14787,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[12]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "internal-grenade-racks::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "internal-grenade-racks::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "detachment-retaliation-cadre:enhancement:1#mortal-wounds",
@@ -14514,7 +14887,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -14710,7 +15085,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -14906,7 +15283,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -15102,7 +15481,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -15346,7 +15727,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -15512,7 +15895,9 @@
             },
             "activationConditions": "Retain the exact source activation; never substitute BS/WS, Strength, or a global save for this mechanism."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-kauyon:enhancement:2#battle-round-wound-roll",
@@ -15580,7 +15965,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -15719,7 +16106,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -15944,7 +16333,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -16151,9 +16542,6 @@
               "mode": "SET",
               "value": 5,
               "weaponMode": "melee",
-              "unitScope": "FORMED",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -16197,9 +16585,21 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[1]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "borthrod-gland::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "borthrod-gland::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER",
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -16342,8 +16742,6 @@
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "IGNORES COVER",
               "weaponMode": "ranged",
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [],
               "evidence": {
                 "field": [
@@ -16369,9 +16767,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[2]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "kroothawk-flock::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "kroothawk-flock::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "detachment-kroot-hunting-pack:enhancement:2#reinforcements-exclusion",
@@ -16439,7 +16848,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -16603,8 +17014,6 @@
               "field": "M",
               "mode": "ADD",
               "value": 3,
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -16648,15 +17057,14 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[3]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "nomadic-hunter::recipient/effect/1"
             },
             {
               "id": "detachment-kroot-hunting-pack:enhancement:3::nomadic-hunter/effect-2",
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "ASSAULT",
               "weaponMode": "ranged",
-              "targetBinding": "SOURCE_FORMED_MODELS",
-              "targetSubject": "MODEL",
               "conditions": [
                 {
                   "binding": "SOURCE",
@@ -16700,9 +17108,27 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[3]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "nomadic-hunter::recipient/effect/2"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "nomadic-hunter::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            },
+            {
+              "id": "nomadic-hunter::recipient/effect/2",
+              "who": "MODEL",
+              "from": "SOURCE_FORMED_MODELS",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -16883,8 +17309,6 @@
               "id": "detachment-kroot-hunting-pack:enhancement:4::root-carved-weapons/effect-1",
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "PRECISION",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [],
               "evidence": {
                 "field": [
@@ -16910,14 +17334,13 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[4]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "root-carved-weapons::recipient/effect/1"
             },
             {
               "id": "detachment-kroot-hunting-pack:enhancement:4::root-carved-weapons/effect-2",
               "operation": "GRANT_WEAPON_ABILITY",
               "ability": "DEVASTATING WOUNDS",
-              "targetBinding": "SOURCE_MODEL",
-              "targetSubject": "MODEL",
               "conditions": [],
               "evidence": {
                 "field": [
@@ -16943,9 +17366,27 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[13]/div[3]/div[5]/div[4]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "root-carved-weapons::recipient/effect/2"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "root-carved-weapons::recipient/effect/1",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            },
+            {
+              "id": "root-carved-weapons::recipient/effect/2",
+              "who": "MODEL",
+              "from": "SOURCE_MODEL",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kroot-hunting-pack",
@@ -17127,7 +17568,9 @@
             },
             "activationConditions": "The explicitly selected physical recipients and source conditions must be confirmed before execution."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-auxiliary-cadre",
@@ -17333,7 +17776,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-auxiliary-cadre",
@@ -17482,7 +17927,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-ap",
@@ -17536,7 +17983,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-damage",
@@ -17590,7 +18039,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-experimental-prototype-cadre",
@@ -17715,7 +18166,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-attacks",
@@ -17769,7 +18222,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-ap",
@@ -17823,7 +18278,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-damage",
@@ -17877,7 +18334,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-experimental-prototype-cadre",
@@ -18002,7 +18461,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-ap",
@@ -18056,7 +18517,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-damage",
@@ -18110,7 +18573,9 @@
             },
             "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-experimental-prototype-cadre",
@@ -18235,8 +18700,6 @@
               "field": "detectionRange",
               "mode": "ADD",
               "value": -3,
-              "targetBinding": "SOURCE_UNIT",
-              "targetSubject": "UNIT",
               "conditions": [],
               "evidence": {
                 "field": [
@@ -18262,9 +18725,20 @@
                   "pointer": "/html/body/div/div[1]/div[3]/div[14]/div[2]/div[3]/div[1]/table/tbody[2]/tr/td",
                   "authority": "ACCEPTED_SECONDARY"
                 }
-              }
+              },
+              "recipientId": "negation-emitters::recipient/effect/1"
             }
-          ]
+          ],
+          "recipients": [
+            {
+              "id": "negation-emitters::recipient/effect/1",
+              "who": "UNIT",
+              "from": "SOURCE_UNIT",
+              "side": "FRIENDLY",
+              "how": "ROSTER"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-advanced-acquisition-cadre",
@@ -18470,7 +18944,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "detachmentId": "detachment-advanced-acquisition-cadre",
@@ -18639,7 +19115,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -18741,7 +19219,9 @@
             },
             "activationConditions": "Exact selected equipment count and physical bearer confirmed"
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -18843,7 +19323,9 @@
             },
             "activationConditions": "Confirmed selected Marker Drone equipment source UNIT"
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         },
         {
           "id": "drone-marker-drone#observer-after-advance",
@@ -18909,7 +19391,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -19011,7 +19495,9 @@
             },
             "activationConditions": "Exact selected equipment count and physical bearer confirmed"
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -19113,7 +19599,9 @@
             },
             "activationConditions": "The explicitly selected physical recipients and source conditions must be confirmed before execution."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -31913,7 +32401,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32023,7 +32513,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32133,7 +32625,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32243,7 +32737,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32353,7 +32849,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32463,7 +32961,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32573,7 +33073,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32683,7 +33185,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32793,7 +33297,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -32903,7 +33409,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33013,7 +33521,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33123,7 +33633,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33233,7 +33745,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33345,7 +33859,9 @@
             },
             "activationConditions": "The explicitly selected physical recipients and source conditions must be confirmed before execution."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33473,7 +33989,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33601,7 +34119,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33729,7 +34249,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33857,7 +34379,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -33985,7 +34509,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34113,7 +34639,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34241,7 +34769,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34351,7 +34881,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34461,7 +34993,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34571,7 +35105,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34699,7 +35235,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34809,7 +35347,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -34937,7 +35477,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -35065,7 +35607,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {
@@ -35193,7 +35737,9 @@
             },
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
-          "rosterEffects": []
+          "rosterEffects": [],
+          "recipients": [],
+          "recipientStatus": "NOT_RECORDED"
         }
       ],
       "currentness": {

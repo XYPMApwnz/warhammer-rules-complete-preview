@@ -8711,6 +8711,17 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/recipient-execution.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/related.mjs",
       "reasons": [
         {
@@ -8775,6 +8786,28 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/recipients.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "canonical-recipient-contract"
         }
       ]
     },

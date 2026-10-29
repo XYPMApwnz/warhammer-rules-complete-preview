@@ -1,3 +1,5 @@
+import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -135,7 +137,7 @@ export function tauSourceChoiceContext(book,state) {
 /** Bind inventory counts to the existing MODEL scopes, not canonical profile
  * IDs. The shared operation computes W; this lowering never changes a stat. */
 export function bindTauShieldModels(book,state){
-  const result=clone(book),records=indexOf(result),root=records.get('drone-shield-drone');
+  const result=recipientDeclarationView(book),records=indexOf(result),root=records.get('drone-shield-drone');
   requireValue(root?.data.text==='SHIELD DRONE Add 1 to the bearer’s Wounds characteristic.',
     'Unreviewed Shield Drone source');
   for(const entity of result.entities)if(entity.ruleContract)
@@ -180,7 +182,7 @@ export function bindTauShieldModels(book,state){
       local.ruleContract.clauses.push(clause);
     }
   }
-  return result;
+  return finalizeRecipientBook(result);
 }
 
 /** Lower validated decisions to existing SOURCE and TARGET FIELD conditions.
@@ -188,14 +190,14 @@ export function bindTauShieldModels(book,state){
  * the canonical display clause on every load, so choices cannot accumulate. */
 export function bindTauStudentPairs(book,state) {
   validateTauSourceChoices(book,state);
-  const result=clone(book),rule=indexOf(result).get(tauStudentRuleId);
+  const result=recipientDeclarationView(book),rule=indexOf(result).get(tauStudentRuleId);
   requireValue(rule.data.text===quote,'Unreviewed Student of Kauyon source');
   const contract=rule.ruleContract;
   contract.clauses=contract.clauses.filter(clause=>!clause.physicalSourcePair);
   const template=contract.clauses.find(clause=>clause.rosterClassificationNote?.sourceChoice===rule.id);
   requireValue(template?.rosterClassification==='DISPLAY_ONLY'&&template.rosterEffects.length===0,
     'Student requires the original canonical display clause before physical lowering');
-  if(!state.detachmentIds.includes(rule.parentId))return result;
+  if(!state.detachmentIds.includes(rule.parentId))return finalizeRecipientBook(result);
   const sources=state.units.filter(unit=>unit.enhancementIds.includes(rule.id)).sort((a,b)=>a.instanceId.localeCompare(b.instanceId));
   for(const source of sources)for(const decision of decisionRows(source))for(const recipient of [...decision.recipientInstanceIds].sort()){
     const pair={sourceInstanceId:source.instanceId,recipientInstanceId:recipient,sourceModelScopeId:decision.sourceModelScopeId};
@@ -214,7 +216,7 @@ export function bindTauStudentPairs(book,state) {
         sourceEvidence:clone(rule.provenance),physicalSourcePair:clone(pair)}}];
     contract.clauses.push(clause);
   }
-  return result;
+  return finalizeRecipientBook(result);
 }
 
 function physicalInput(state) {

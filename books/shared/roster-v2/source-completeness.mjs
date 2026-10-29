@@ -5,6 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {armyBooks} from '../../../v2/army-books.mjs';
+import {resolveExecutionEffect} from './recipient-execution.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const reviewPath='books/shared/roster-v2/source-completeness-review.json';
@@ -79,7 +80,8 @@ function assertExecutable(clause,expectation,book) {
     const candidates=clauses.flatMap(item=>(item.rosterEffects||[]).filter(effect=>effect.operation===expected.operation&&effect.field===expected.field&&
       (expected.keyword===undefined||effect.keyword===expected.keyword)).map(effect=>({item,effect})));
     requireValue(candidates.length,'EXECUTABLE_MISSING',clause.id+' '+expected.operation);
-    for(const {item,effect}of candidates){
+    for(const {item,effect:declaration}of candidates){
+      const effect=resolveExecutionEffect(entity,item,declaration);
       requireValue(item.rosterClassification==='ROSTER_EXECUTABLE','EXECUTABLE_MISSING',clause.id+' non-executable clause');
       for(const [key,value]of Object.entries(expected))requireValue(stableJson(effect[key])===stableJson(value),'INDEPENDENT_EFFECT_MISMATCH',clause.id+' '+key);
       requireValue(['MODEL','UNIT'].includes(effect.targetSubject)&&typeof effect.targetBinding==='string','RECIPIENT_MISSING',clause.id);
