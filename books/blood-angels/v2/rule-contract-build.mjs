@@ -166,7 +166,12 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
  const schema=createBloodAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
  const artifact={scope:'STAGE_3A_SOURCE_PROVEN_STATIC_GAMEPLAY',sourceFingerprint:review.factualFingerprint,reviewFingerprint:sha(JSON.stringify(review)),
-  coverage:{...clone(review.coverage),displayOnlyPolicyProofs:conditionalDeclarations.size},executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>({recordId:row.recordId,kind:row.kind,recipientScope:row.recipientScope,execution:'TEXT_ONLY_SOURCE_BACKED'})),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
+  coverage:{...clone(review.coverage),displayOnlyPolicyProofs:conditionalDeclarations.size},executed,conditionalPolicies:[...conditionalDeclarations.values()].map(row=>{
+   const matches=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).filter(clause=>clause.id===row.recordId&&clause.conditionalPolicy).map(clause=>({entity,clause})));
+   assert.equal(matches.length,1,'Ambiguous conditional policy summary');
+   const {entity,clause}=matches[0];
+   return {recordId:row.recordId,kind:row.kind,ruleId:entity.id,clauseId:clause.id,recipientId:clause.conditionalPolicy.recipientId,execution:'TEXT_ONLY_SOURCE_BACKED'};
+  }),...nativeBindings,inheritedContracts,selectorProjections,permanentDoctrineSources:clone(permanentDoctrineSources),
   inheritedTypedClauses:book.entities.filter(e=>e.bookId==='space-marines').flatMap(e=>e.ruleContract?.clauses||[]).filter(row=>row.rosterEffects.length).length,
   chapterContext:'NOT_INFERRED_FROM_BOOK_DETACHMENT_OR_ATTACHMENT',
   unsupported:['AUTOMATIC_INCOMING_ATTACK_RESOLUTION','AUTOMATIC_REROLL_RESOLUTION','AUTOMATIC_QUALIFIED_FNP_RESOLUTION','AUTOMATIC_CP_ACTION_COST','PROXIMITY_WITHOUT_BATTLE_CONTEXT','UNKNOWN_BATTLE_EVENTS','TACTICAL_FALLBACK_PERMISSIONS','DOCTRINE_PHASE_AND_EXCLUSIVITY'],

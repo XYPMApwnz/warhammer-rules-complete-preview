@@ -12,6 +12,15 @@
   "legacyReads": {
     "stratagemCompatibility": "compatibility-feasibility.mjs retains effectRecipientRoleIds for STRATAGEM only.",
     "sourceDeclarations": "Producer-only compiler and declaration validators read accepted existing input encodings. They do not provide a runtime fallback.",
+    "tauReviewAnnotations": {
+      "path": "books/tau-empire/v2/generated/rule-contracts.json#/deferred",
+      "records": 293,
+      "fields": [
+        "recipientScope",
+        "recipient"
+      ],
+      "meaning": "Frozen source-review descriptions, not executable selectors. Corresponding canonical clause annotations explicitly state reviewedRecipient.runtimeSelector=false. These descriptions do not establish new recipients."
+    },
     "validationViews": "recipientDeclarationView produces a temporary inverse for source evidence guards; no old recipient fields are serialized into migrated canonical clauses.",
     "executionViews": "resolveExecutionEffect derives temporary operation arguments from recipientId. Physical execution and provenance fields retain their original meaning."
   },
@@ -4236,7 +4245,7 @@
     {
       "bookId": "chaos-space-marines",
       "input": "books/chaos-space-marines/v2/generated/roster-runtime.json",
-      "sha256": "f9c7ea60a8d4de4b22b47aad25776ff644a659322c394537c1c8b093f11d32f5",
+      "sha256": "a3a7f54babf5446ca22d3e5230537c1ef4952d31c1f0532b33cb0b8dc8913f5b",
       "counts": {
         "RECORDED": 199,
         "NOT_RECORDED": 118,

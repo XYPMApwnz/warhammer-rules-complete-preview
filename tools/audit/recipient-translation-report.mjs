@@ -66,6 +66,7 @@ const report={schema:'recipient-translation-1/v1',base,excludedBooks:['orks'],ex
  legacyReads:{
   stratagemCompatibility:'compatibility-feasibility.mjs retains effectRecipientRoleIds for STRATAGEM only.',
   sourceDeclarations:'Producer-only compiler and declaration validators read accepted existing input encodings. They do not provide a runtime fallback.',
+  tauReviewAnnotations:{path:'books/tau-empire/v2/generated/rule-contracts.json#/deferred',records:JSON.parse(fs.readFileSync(path.join(root,'books/tau-empire/v2/generated/rule-contracts.json'))).deferred.length,fields:['recipientScope','recipient'],meaning:'Frozen source-review descriptions, not executable selectors. Corresponding canonical clause annotations explicitly state reviewedRecipient.runtimeSelector=false. These descriptions do not establish new recipients.'},
   validationViews:'recipientDeclarationView produces a temporary inverse for source evidence guards; no old recipient fields are serialized into migrated canonical clauses.',
   executionViews:'resolveExecutionEffect derives temporary operation arguments from recipientId. Physical execution and provenance fields retain their original meaning.'
  },books};

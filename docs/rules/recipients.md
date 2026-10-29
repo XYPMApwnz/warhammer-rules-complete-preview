@@ -80,6 +80,13 @@ Regenerate it with `node tools/audit/recipient-translation-report.mjs --write`;
 `--check` verifies the saved report and exact baseline translation, including
 unchanged non-contract facts and excluded Stratagem serialization.
 
+T'au's `rule-contracts.json#/deferred` retains source-review descriptions named
+`recipientScope` and `recipient`. These are review annotations, not executable
+addresses: canonical clauses mark `reviewedRecipient.runtimeSelector=false`.
+They cannot supply a missing structured selector. Blood Angels policy summaries
+reference the canonical rule, clause and `recipientId`; clause lifetimes also use
+`recipientIds`, preserving their original boundaries and evidence.
+
 Accepted text, characteristics, conditions, equipment, attachments, ownership and
 card wording are unchanged. New canonical consumers must not fall back to an old
 address field or infer missing recipients from English text.

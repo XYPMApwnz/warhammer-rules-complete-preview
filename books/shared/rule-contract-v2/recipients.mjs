@@ -99,6 +99,11 @@ export function validateRuleRecipients(book,rule){
   const referenced=new Set(),consume=value=>{for(const id of idsOf(value)){resolveRecipient(rule,clause,id);referenced.add(id);}};
   for(const recipient of clause.recipients){validateRecipient(recipient,rule,clause);requireValue(!seen.has(recipient.id),'duplicate recipient ID within rule');seen.add(recipient.id);total++;}
   consume(clause);
+  if(clause.lifetime){
+   requireValue(!own(clause.lifetime,'recipientRoleIds'),'legacy clause lifetime recipient addresses');
+   consume(clause.lifetime);
+   if(own(clause.lifetime,'recipientIds'))requireValue(clause.lifetime.recipientIds.length>0,'empty clause lifetime recipient set');
+  }
   if(own(clause,'f1RecipientIds')){
    requireValue(Array.isArray(clause.f1RecipientIds)&&new Set(clause.f1RecipientIds).size===clause.f1RecipientIds.length,'invalid F1 recipient list');
    for(const id of clause.f1RecipientIds){const recipient=resolveRecipient(rule,clause,id);requireValue(recipient.roleId&&['MODEL','UNIT'].includes(recipient.who)&&['CONDITIONAL','ABILITY_PRESENT','ELIGIBLE_FOR_SELECTION','SELECTED'].includes(recipient.textKind),'unproved F1 recipient');referenced.add(id);}
@@ -230,6 +235,12 @@ export function compileRuleRecipients(book,inputRule,options={}){
   for(const effect of array(clause.rosterEffects))translateEffect(effect,'effect',true);
   for(const effect of array(clause.semanticEffects))translateEffect(effect,'semantic');
   if(clause.effect)translateEffect(clause.effect,'declaration');
+  if(clause.lifetime&&own(clause.lifetime,'recipientRoleIds')){
+   const ids=clause.lifetime.recipientRoleIds;
+   requireValue(Array.isArray(ids)&&ids.length>0&&new Set(ids).size===ids.length,'malformed clause lifetime recipient set');
+   clause.lifetime.recipientIds=ids.map(id=>roleRecipient(id).id);
+   delete clause.lifetime.recipientRoleIds;
+  }
   if(clause.conditionalPolicy){
    const policy=clause.conditionalPolicy,value={who:'UNIT'};
    if(policy.recipientScope==='FORMED_UNIT'||policy.recipientScope==='PHYSICAL_UNIT')Object.assign(value,{from:'SOURCE_UNIT',scope:policy.recipientScope==='FORMED_UNIT'?'FORMED':'PHYSICAL'});
@@ -347,6 +358,11 @@ export function recipientDeclarationView(inputBook){
    }
    if(clause.conditionalPolicy){Object.assign(clause.conditionalPolicy,policies.get(clause.conditionalPolicy));delete clause.conditionalPolicy.recipientId;delete clause.conditionalPolicy.recipientIds;}
    if(clause.rosterReferenceBinding){Object.assign(clause.rosterReferenceBinding,references.get(clause.rosterReferenceBinding));delete clause.rosterReferenceBinding.standaloneRecipientId;delete clause.rosterReferenceBinding.attachedRecipientId;}
+   if(clause.lifetime&&own(clause.lifetime,'recipientIds')){
+    clause.lifetime.recipientRoleIds=clause.lifetime.recipientIds.map(id=>resolveRecipient(rule,clause,id).roleId);
+    requireValue(clause.lifetime.recipientRoleIds.every(Boolean),'clause lifetime lost its participant identity');
+    delete clause.lifetime.recipientIds;
+   }
    delete clause.recipientIds;delete clause.f1RecipientIds;delete clause.recipients;delete clause.recipientStatus;
   }
   for(const duration of array(contract.duration))if(durations.has(duration)){Object.assign(duration,durations.get(duration));delete duration.recipientIds;}

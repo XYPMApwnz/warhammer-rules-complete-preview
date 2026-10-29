@@ -5890,9 +5890,6 @@
               "sourceBoundaries": [
                 "until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -5900,7 +5897,10 @@
                   "text"
                 ],
                 "quote": "Each time a unit with one of these keywords gains a weapon ability as the result of a Dark Pact and does not fail the resulting Leadership test, until the end of the phase, that unit gains the associated ability below."
-              }
+              },
+              "recipientIds": [
+                "dark-pact-phase-effects::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -10058,15 +10058,15 @@
               "sourceBoundaries": [
                 "until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "owner"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "Each time the bearer’s unit makes a Dark Pact and does not fail the resulting Leadership test, roll one D3: until the end of the phase, add the result to the Attacks and Strength characteristics of the bearers melee weapons instead."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -13209,9 +13209,6 @@
               "sourceBoundaries": [
                 "until the end of the battle"
               ],
-              "recipientRoleIds": [
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -13219,7 +13216,10 @@
                   "text"
                 ],
                 "quote": "At the start of the battle, select which augmentations are active for HERETIC ASTARTES INFANTRY models (excluding DAMNED models) from your army until the end of the battle. To do so, either select one from the list below, or randomly determine two by rolling two D6. If FABIUS BILE is your WARLORD, when randomly determining your augmentations, you can re-roll one or both of the dice. Duplicated augmentations have no additional effect."
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -19804,9 +19804,6 @@
                 "Until the start of your next Command phase",
                 "until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -19814,7 +19811,10 @@
                   "text"
                 ],
                 "quote": "In your Command phase, select one of the following abilities. Until the start of your next Command phase, each Heretic Astartes Infantry unit from your army has that ability. At the start of each phase, if such a unit is visible to a friendly Huron Blackheart model, until the end of the phase, it has both of the following abilities."
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -29410,10 +29410,6 @@
               "sourceBoundaries": [
                 "until the end of the battle"
               ],
-              "recipientRoleIds": [
-                "recipient",
-                "attached-character-unit"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -29421,7 +29417,11 @@
                   "text"
                 ],
                 "quote": "until the end of the battle, those units, and any CHARACTER units attached to them (excluding EPIC HEROES), have the Infiltrators ability. The maximum number of units you can select in this way depends on the battle size, as shown below."
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-2::recipient/role/1",
+                "source-clause-1-2::recipient/role/2"
+              ]
             },
             "sourceDependencyClauseIds": [
               "source-clause-1-1"
@@ -33796,15 +33796,15 @@
               "sourceBoundaries": [
                 "Until the start of your next Command phase"
               ],
-              "recipientRoleIds": [
-                "owner"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "Until the start of your next Command phase, the bearer gains the PSYKER keyword, and replace the bearer’s datasheet abilities with the datasheet abilities of the CHARACTER you selected."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "sourceDependencyClauseIds": [
               "battle-clause-1"
@@ -48799,15 +48799,15 @@
               "sourceBoundaries": [
                 "until the end of the turn"
               ],
-              "recipientRoleIds": [
-                "bearer-unit"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "Each time the bearer’s unit is set up on the battlefield, until the end of the turn, you can re-roll Charge rolls made for that unit."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -50096,15 +50096,15 @@
               "sourceBoundaries": [
                 "until the end of the turn"
               ],
-              "recipientRoleIds": [
-                "owner"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "In addition, each time the bearer’s unit is set up on the battlefield from Reserves, until the end of the turn, improve the Damage characteristic of the bearer’s weapons by 1."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -53574,10 +53574,6 @@
               "sourceBoundaries": [
                 "until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "affected-models",
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -53585,7 +53581,11 @@
                   "text"
                 ],
                 "quote": "Each time a DAMNED unit from your army with the Dark Pacts ability is selected to make a Normal or Advance move or declare a charge (excluding units that arrived from Reserves this turn), it can make a Desperate Pact (see below). If it does, until the end of the phase, add 2 to the Move characteristic of models in that unit and add 2 to Charge rolls made for that unit."
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-1::recipient/role/1",
+                "source-clause-1-1::recipient/role/2"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -66116,15 +66116,15 @@
               "sourceBoundaries": [
                 "until you select a new one"
               ],
-              "recipientRoleIds": [
-                "selected-enemy"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "That enemy unit becomes your Vendetta target until you select a new one."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -66975,15 +66975,15 @@
               "sourceBoundaries": [
                 "until the end of the turn"
               ],
-              "recipientRoleIds": [
-                "unit-models"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "In a turn in which the bearer’s unit chose to Default to Doctrine, until the end of the turn, each time a model in this unit makes an attack, you can re-roll the Hit roll."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -72153,15 +72153,15 @@
               "sourceBoundaries": [
                 "Until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "selected-enemy"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "Until the end of the phase, that enemy unit cannot have the Benefit of Cover."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "sourceDependencyClauseIds": [
               "battle-clause-1"
@@ -75148,9 +75148,6 @@
               "sourceBoundaries": [
                 "until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -75158,7 +75155,10 @@
                   "text"
                 ],
                 "quote": "Each time a HERETIC ASTARTES DAEMON VEHICLE unit from your army makes a Dark Pact, it can invoke its contract. If it does, subtract 1 from the resulting Leadership test when making that Dark Pact, and until the end of the phase:"
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -76046,15 +76046,15 @@
               "sourceBoundaries": [
                 "Until the start of your next Command phase"
               ],
-              "recipientRoleIds": [
-                "selected-friendly-vehicle"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "Until the start of your next Command phase, that unit has the Feel No Pain 6+ ability."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "sourceDependencyClauseIds": [
               "battle-clause-1"
@@ -77327,15 +77327,15 @@
               "sourceBoundaries": [
                 "Until the end of the phase"
               ],
-              "recipientRoleIds": [
-                "contract-unit-models"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "- Until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-3::recipient/role/1"
+              ]
             },
             "sourceDependencyClauseIds": [
               "battle-clause-1"
@@ -80842,9 +80842,6 @@
               "sourceBoundaries": [
                 "Until the start of your next Command phase"
               ],
-              "recipientRoleIds": [
-                "recipient"
-              ],
               "evidence": {
                 "field": [
                   "content",
@@ -80852,7 +80849,10 @@
                   "text"
                 ],
                 "quote": "At the start of your Command phase, select one unit from your opponents army to be your focus of hatred. Until the start of your next Command phase, each time a HERETIC ASTARTES model from your army (excluding DAMNED models) makes an attack that targets your focus of hatred, you can re-roll the Hit roll."
-              }
+              },
+              "recipientIds": [
+                "source-clause-1-1::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
@@ -89912,15 +89912,15 @@
               "sourceBoundaries": [
                 "until this unit has shot"
               ],
-              "recipientRoleIds": [
-                "selected-enemy"
-              ],
               "evidence": {
                 "field": [
                   "text"
                 ],
                 "quote": "That enemy unit has +6\" detection range until this unit has shot."
-              }
+              },
+              "recipientIds": [
+                "battle-clause-2::recipient/role/1"
+              ]
             },
             "rosterEffects": [],
             "rosterClassification": "BATTLE_ONLY",
