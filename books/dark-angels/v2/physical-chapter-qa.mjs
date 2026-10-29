@@ -100,8 +100,8 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
    if(row.status===PROVEN){assert.equal(row.sourceReferences[0].path,'/factionKeywords/1');assert.equal(row.sourceReferences[1].canonicalId,DEFINITION);
     assert.deepEqual(row.sourceReferences[1].provenance,source.get(DEFINITION).provenance);}
    assert.deepEqual(runtime.chapterContext(unit.instanceId),row);
-   const context=runtime.context(unit.instanceId,'UNIT');assert.equal(context.roster.daChapterContextStatus,row.status);
-   assert.equal(context.roster.daPhysicalChapter,row.chapter??undefined);
+   const context=runtime.context(unit.instanceId,'UNIT');assert.equal(context.roster.chapterContextStatus,row.status);
+   assert.equal(context.roster.physicalChapter,row.chapter??undefined);
    physicalEvidence.push({...row});
   }
  });
@@ -132,13 +132,13 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
   for(const claimed of ['DARK ANGELS','BLOOD ANGELS']){
    const state=roster([physical('a',common),physical('b',common),physical('fixed',azrael)]);
    state.importEvidence={faction:claimed};Object.assign(state.units[0],{chapter:claimed,chapterConfirmed:true,sourceOwner:'dark-angels',
-    chapterEvidence:{sourceId:'forged',canonicalUnitId:common},daPhysicalChapter:claimed,daChapterContextStatus:PROVEN});
+    chapterEvidence:{sourceId:'forged',canonicalUnitId:common},physicalChapter:claimed,chapterContextStatus:PROVEN});
    const runtime=createDarkAngelsRosterRuntime(built);runtime.load(state);assert.equal(runtime.chapterContext('a').status,UNKNOWN);assert.equal(runtime.chapterContext('b').status,UNKNOWN);
    assert.equal(runtime.chapterContext('fixed').chapter,DA);
-   const extra={daPhysicalChapter:DA,daChapterContextStatus:PROVEN};const context=runtime.context('a','UNIT',undefined,extra);
-   assert.equal(context.roster.daPhysicalChapter,undefined);assert.equal(context.roster.daChapterContextStatus,UNKNOWN);
+   const extra={physicalChapter:DA,chapterContextStatus:PROVEN};const context=runtime.context('a','UNIT',undefined,extra);
+   assert.equal(context.roster.physicalChapter,undefined);assert.equal(context.roster.chapterContextStatus,UNKNOWN);
    const schema=createDarkAngelsRuleSchema({book,state});
-   const predicate={predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',arguments:{key:'daPhysicalChapter',equals:DA}};
+   const predicate={predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',arguments:{key:'physicalChapter',equals:DA}};
    const forged={...context,roster:{...context.roster,...extra}};
    assert.notEqual(schema.evaluatePredicate(predicate,forged),'TRUE');
   }
@@ -167,7 +167,7 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
    const detached=roster([physical('character',azrael),physical('bodyguard',common)]);runtime.load(detached);
    const attached=changeAttachment(diagnostic,runtime.snapshot(),diagnostic.rosterAttachmentPolicies,'ATTACH','character','bodyguard');runtime.load(attached);
    assertProof(runtime.chapterContext('bodyguard'),common,'bodyguard');assertProof(runtime.chapterContext('character'),azrael,'character');
-   assert.equal(runtime.context('bodyguard','UNIT').roster.daChapterContextStatus,UNKNOWN);
+   assert.equal(runtime.context('bodyguard','UNIT').roster.chapterContextStatus,UNKNOWN);
    assert.ok(runtime.projection.formedUnits[0].keywords.includes(DA),'Diagnostic formed union expected');
    const candidate=runtime.snapshot();candidate.attachments=[];
    assert.equal(commitRosterImport({status:'READY',roster:candidate},runtime.snapshot(),state=>runtime.load(state)).status,'READY');
@@ -186,8 +186,8 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
   const selector=index.get('enhancement-da-4e1c055c3dfe4754bd0c').ruleContract.assignment.selector;
   for(const [instance,expected]of [['fixed','TRUE'],['generic','FALSE']]){
    const projected=runtime.projection.units.find(row=>row.instanceId===instance),scope=projected.profiles[0].scopeId;
-   const context=runtime.context(instance,'MODEL',scope,{daPhysicalChapter:DA,daChapterContextStatus:PROVEN});
-   assert.equal(context.roster.daPhysicalChapter,undefined,'UNIT Chapter field escaped into MODEL scope');
+   const context=runtime.context(instance,'MODEL',scope,{physicalChapter:DA,chapterContextStatus:PROVEN});
+   assert.equal(context.roster.physicalChapter,undefined,'UNIT Chapter field escaped into MODEL scope');
    assert.equal(schema.evaluatePredicate(selector,context),expected);
   }
  });
@@ -223,7 +223,7 @@ export function runPhysicalChapterQA(built=buildDarkAngelsContracts()){
   const grants=book.entities.flatMap(entity=>(entity.ruleContract?.clauses||[]).flatMap(clause=>clause.rosterEffects||[]))
    .filter(effect=>effect.operation==='GRANT_UNIT_KEYWORD'&&['DEATHWING','RAVENWING'].includes(effect.keyword));
   assert.equal(grants.length,6);assert.ok(grants.every(effect=>effect.unitScope==='PHYSICAL'&&effect.conditions.some(condition=>
-   condition.predicate.arguments?.key==='daArmyMembershipProven')));
+   condition.predicate.arguments?.key==='reviewedArmyMembershipProven')));
  });
  return {status:'PASS',checks,negativeControls,sourceEvidence,physicalEvidence,
   counts:{checks:checks.length,negativeControls:negativeControls.length,physicalMembership:83,intrinsicChapterProven:16,inheritedChapterNotProven:67,

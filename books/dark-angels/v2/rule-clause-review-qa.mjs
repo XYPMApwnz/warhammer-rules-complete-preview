@@ -48,7 +48,7 @@ for(const entity of built.book.entities.filter(entity=>entity.bookId==='dark-ang
   assert.notEqual(effect.operation,'GRANT_MODEL_ABILITY','Qualified DA FNP must not become unqualified numeric FNP');
   if(['DEATHWING','RAVENWING'].includes(effect.keyword)){
    assert.equal(entity.kind,'ARMY_RULE');assert.equal(effect.unitScope,'PHYSICAL');
-   assert.ok(effect.conditions.some(condition=>condition.predicate.arguments?.key==='daArmyMembershipProven'));
+   assert.ok(effect.conditions.some(condition=>condition.predicate.arguments?.key==='reviewedArmyMembershipProven'));
   }
  }
 assert.equal(built.artifact.executed.length,16);assert.equal(built.artifact.coverage.clauses,252);

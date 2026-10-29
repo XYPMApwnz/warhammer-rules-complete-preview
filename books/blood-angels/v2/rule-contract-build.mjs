@@ -162,6 +162,7 @@ export function buildBloodAngelsContracts({inputs=declarations,review=read('./ru
  }
  assert.equal(executed.length,inputs.length,'Orphan BA lowering');
 
+ book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'UNIFORM_PHYSICAL_GROUP'};
  finalizeRecipientBook(book);
  const schema=createBloodAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);

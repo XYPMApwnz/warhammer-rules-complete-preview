@@ -194,6 +194,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  book.conditionBindingOptions={...book.conditionBindingOptions,selectedUpgradeMode:'VALIDATED_EQUIPPED_WEAPON'};
   finalizeRecipientBook(book);
   schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');

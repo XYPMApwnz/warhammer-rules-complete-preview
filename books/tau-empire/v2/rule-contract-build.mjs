@@ -194,6 +194,7 @@ export function buildTauContracts({facts=read('./generated/effective.json'),inpu
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
   schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
   if(recipientStage==='CANONICAL'){
+    book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'tau'};
     finalizeRecipientBook(book);
     schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   }

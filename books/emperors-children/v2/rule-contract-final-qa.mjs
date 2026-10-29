@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {buildECContracts} from './rule-contract-build.mjs';
 import {createFormationContext} from './rule-contract-formation-context.mjs';
-import {bladeId,bladeField} from './rule-contract-final-bindings.mjs';
+import {bladeId} from './rule-contract-final-bindings.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateRoster,changeAttachment,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
@@ -39,7 +39,7 @@ function inventory(values) {
     assert.equal(effect.operation,'MODIFY_STAT');assert.equal(effect.targetBinding,'SOURCE_MODEL');assert.equal(effect.targetSubject,'MODEL');
     assert.equal(effect.field,'attacks');assert.equal(effect.mode,'ADD');assert.equal(effect.value,1);assert.equal(effect.weaponMode,'melee');
     assert.equal(effect.weaponIds.length,1);assert.equal(canonical.get(effect.weaponIds[0]).data.mode,'melee');
-    const choice=effect.conditions.find(c=>c.predicate.arguments?.key===bladeField)?.predicate;
+    const choice=effect.conditions.find(c=>c.predicate.arguments?.key==='selectedUpgrade'&&c.predicate.arguments.selectionGroupId===bladeId)?.predicate;
     assert.ok(choice);const option=book.rosterSelectionOptions.find(o=>o.id===choice.arguments.equals);
     assert.equal(option?.data.weaponProfileId,effect.weaponIds[0]);
   }
@@ -208,7 +208,7 @@ mutate(finals,x=>x[0].clauses[0].rosterEffects[0].weaponIds=[],inventory);
 mutate(finals,x=>x[1].clauses[1].conditions[0].arguments.key='rangedAttack',inventory);
 mutate(finals,x=>x[2].transport.capacity=13,inventory);mutate(finals,x=>x[3].transport.slotRules[0].slots=1,inventory);
 mutate(finals,x=>x[2].roles.find(r=>r.id==='passenger').selector.args.pop(),transports);
-mutate(book,x=>x.entities.find(e=>e.id===bladeId).ruleContract.clauses[0].rosterEffects.forEach(e=>e.conditions=e.conditions.filter(c=>c.predicate.arguments?.key!==bladeField)),x=>{
+mutate(book,x=>x.entities.find(e=>e.id===bladeId).ruleContract.clauses[0].rosterEffects.forEach(e=>e.conditions=e.conditions.filter(c=>!(c.predicate.arguments?.key==='selectedUpgrade'&&c.predicate.arguments.selectionGroupId===bladeId))),x=>{
   const r=evaluate(bladeState(),x);bladeResult(r,null);
 });
 assert.equal(JSON.stringify(facts),original);assert.equal(artifact.scope.finalBindingRules,4);

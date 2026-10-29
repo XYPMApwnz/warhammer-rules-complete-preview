@@ -1,4 +1,5 @@
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -123,7 +124,7 @@ export function artifacts(built,compiled) {
   const blocked=[...built.classifications.values()].filter(row=>row.status==='BLOCKED_BY_CONFIRMED_GENERIC_CAPABILITY');
   const contracts=Object.fromEntries(built.book.entities.filter(entity=>entity.ruleContract).map(entity=>[entity.id,entity.ruleContract]));
   return {'rule-contracts':{schema:'csm-rule-contract-overlay/v2',authority:'DISPOSABLE_PROJECTION',
-    factualInput:'generated/effective.json',contracts,registry:{stateFields:built.schema.stateFields,modelAbilities:built.schema.modelAbilities},
+    factualInput:'generated/effective.json',contracts,registry:{...compileConditionSchema(built.schema.stateFields,{book:built.book}),modelAbilities:built.schema.modelAbilities},
     modelBindings:built.profileBindings},
     'rule-contract-census':{schema:'csm-rule-contract-census/v2',ruleOwners:built.classifications.size,
       counts,validContracts:Object.keys(contracts).length,unclassifiedRuleOwners:0,invalidRuleContracts:0,unboundRuleContracts:0,

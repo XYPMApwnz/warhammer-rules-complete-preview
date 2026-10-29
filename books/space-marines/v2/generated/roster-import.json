@@ -1538,8 +1538,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-097567b13c02404d"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -5628,8 +5630,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-431f22d15f7545b4"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -9352,8 +9356,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-63d4ca967fa64b79"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -13947,8 +13953,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-8c9e7e37a8494c1d"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -16513,8 +16521,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-aa81f0067a3140de"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -23103,8 +23113,10 @@
                       "predicate": "FIELD",
                       "subject": "MODEL",
                       "arguments": {
-                        "key": "smEquipmentBearerSatisfied",
-                        "equals": true
+                        "key": "equipmentBearerSatisfied",
+                        "equals": true,
+                        "quantityProof": "POSITIVE_SELECTION",
+                        "equipmentId": "ability-sm-daf87042d20348dd"
                       },
                       "contextLevel": "ROSTER",
                       "evidence": {
@@ -40931,7 +40943,7 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "smPermanentAssaultSource",
+                        "key": "permanentDoctrineSourcePresent",
                         "equals": true
                       },
                       "evidence": {
@@ -41017,7 +41029,7 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "smPermanentAssaultSource",
+                        "key": "permanentDoctrineSourcePresent",
                         "equals": true
                       },
                       "evidence": {
@@ -47471,7 +47483,7 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "smPermanentAssaultSource",
+                        "key": "permanentDoctrineSourcePresent",
                         "equals": true
                       },
                       "evidence": {
@@ -47557,7 +47569,7 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "smPermanentAssaultSource",
+                        "key": "permanentDoctrineSourcePresent",
                         "equals": true
                       },
                       "evidence": {
@@ -136721,6 +136733,11 @@
       }
     }
   },
+  "conditionBindingOptions": {
+    "physicalIdentityNamespace": "sm",
+    "equipmentBearerMode": "POSITIVE_SELECTION"
+  },
+  "conditionSchema": "conditions/v1",
   "rosterAttachmentPolicies": [],
   "mfmImportReferences": {
     "source": {

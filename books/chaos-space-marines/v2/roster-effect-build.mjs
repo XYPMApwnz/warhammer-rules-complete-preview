@@ -112,7 +112,7 @@ export function buildCSMRosterEffectBook(built=buildCSMContracts({recipientStage
       assert.equal(recipient.subject,'UNIT');assert.equal(recipient.binding,'ROSTER_UNITS');
       const marks=book.entities.filter(e=>e.kind==='UPGRADE_OPTION'&&e.data.selectionRuleId===rule.id);
       const eligibilityKey=`needsMarkSelection:${rule.id}`;
-      registerField(eligibilityKey,'boolean',{kind:'MARK_SELECTION_ELIGIBLE',keywords:marks.map(mark=>mark.data.keyword)});
+      registerField(eligibilityKey,'boolean',{kind:'MARK_SELECTION_ELIGIBLE',keywords:marks.map(mark=>mark.data.keyword),requiredKeywords:['HERETIC ASTARTES'],excludedKeywords:['EPIC HERO']});
       for(const mark of marks) {
         const conditions=[{binding:'TARGET',predicate:clone(recipient.selector)},
           {binding:'TARGET',predicate:field(eligibilityKey,'UNIT',true,clause.evidence)},

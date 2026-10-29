@@ -22466,8 +22466,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -23298,8 +23299,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -24057,8 +24059,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -25227,8 +25230,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -26738,8 +26742,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -27914,8 +27919,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -38735,8 +38741,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -40024,8 +40031,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -41648,8 +41656,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -42476,8 +42485,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -43376,8 +43386,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -44150,8 +44161,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "tauMarkerSelected",
-                        "equals": true
+                        "key": "sourceEquipmentSelected",
+                        "equals": true,
+                        "sourceEquipmentIdentity": "drone-marker-drone"
                       },
                       "evidence": {
                         "field": [
@@ -85202,5 +85214,6 @@
     "shieldPhysicalModel": "CONFIRMED_SCOPE_AND_PER_MODEL_QUANTITY_ONLY",
     "student": "PHYSICAL_SOURCE_RECIPIENT_PAIR_LOWERING",
     "krootBodyguard": "BOOK_BOUNDARY_STARTING_STRENGTH_GATE"
-  }
+  },
+  "conditionSchema": "conditions/v1"
 }

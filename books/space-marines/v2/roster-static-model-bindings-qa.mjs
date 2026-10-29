@@ -32,8 +32,8 @@ const state={schema:'roster-v2/roster',bookId:'space-marines',rosterId:'physical
     {leaderInstanceId:'kaius-b',bodyguardInstanceId:'body-b',role:'SUPPORT'},
     {leaderInstanceId:'captain-b',bodyguardInstanceId:'body-b',role:'LEADER'}],warlordInstanceId:null};
 const schema=createSpaceMarinesRuleSchema({bindContext:context=>context?{...context,roster:{...context.roster,
-  smPhysicalUnitInstanceId:context.instanceId||'',
-  smPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context});
+  physicalUnitInstanceId:context.instanceId||'',
+  physicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context});
 const evaluator=withRosterDetachments(schema);
 function run(snapshot,mutate){
   const derived=bindSpaceMarinesStaticModels(book,snapshot);mutate?.(derived);
@@ -80,7 +80,7 @@ const mutations=[];
 function mutation(name,change){let failed=false;try{check(run(state,change).projection);}catch{failed=true;}assert.equal(failed,true,'Undetected mutation '+name);mutations.push(name);}
 mutation('source-model-not-excluded',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(condition=>condition.predicate.op!=='NOT')));
 mutation('non-character-models-included',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(condition=>condition.predicate.predicate!=='MODEL_KEYWORD')));
-mutation('physical-source-unit-gate-removed',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(condition=>condition.predicate.arguments?.key!=='smPhysicalUnitInstanceId')));
+mutation('physical-source-unit-gate-removed',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(condition=>condition.predicate.arguments?.key!=='physicalUnitInstanceId')));
 mutation('wrong-fnp-threshold',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].ability.value=3));
 mutation('wrong-physical-recipient-binding',model=>clauseList(model).forEach(clause=>clause.rosterEffects[0].targetBinding='SOURCE_UNIT_MODELS'));
 const wrongSource=clone(book);wrongSource.entities.find(entity=>entity.id===RULE).parentId=CAPTAIN;

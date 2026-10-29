@@ -1,4 +1,5 @@
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -126,7 +127,7 @@ export function artifacts(built,compiled) {
     blocked:built.blocked};
   return {'rule-contracts':{schema:'adeptus-mechanicus-rule-contract-overlay/v2',authority:'DISPOSABLE_PROJECTION',
     factualInput:'generated/effective.json',contracts:Object.fromEntries(contracts.map(entity=>[entity.id,entity.ruleContract])),
-    registry:{stateFields:built.schema.stateFields,modelAbilities:built.schema.modelAbilities}},
+    registry:{...compileConditionSchema(built.schema.stateFields,{book:built.book}),modelAbilities:built.schema.modelAbilities}},
     'rule-contract-compatibility':{schema:'adeptus-mechanicus-compatibility/v2',...compiled.projection},'rule-contract-census':census};
 }
 

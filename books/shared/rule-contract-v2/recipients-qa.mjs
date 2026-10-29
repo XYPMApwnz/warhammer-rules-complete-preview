@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as policy from '../roster-v2/conditional-policy.mjs';
 import {compileBookRecipients,compileRuleRecipients,validateBookRecipients,validateRuleRecipients,resolveRecipient,recipientDeclarationView} from './recipients.mjs';
+import {compileBookConditions} from './conditions-build.mjs';
 
 const clone=structuredClone;
 const declaration=policy.producerDetachmentTextDeclaration||policy.detachmentTextDeclaration;
@@ -17,7 +18,7 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
  assert.equal(JSON.stringify(input),before,'Compiler mutated the execution source');
  assert.deepEqual(compileBookRecipients(book,{f1Declaration:declaration}),book,'Compilation is not idempotent');
  const scratch=recipientDeclarationView(book);
- assert.deepEqual(compileBookRecipients(scratch,{f1Declaration:declaration}),book,'Producer validation view changed canonical recipients');
+ assert.deepEqual(input.conditionSchema?compileBookConditions(compileBookRecipients(scratch,{f1Declaration:declaration})):compileBookRecipients(scratch,{f1Declaration:declaration}),book,'Producer validation view changed canonical recipients');
  const stratagems=input.entities.filter(rule=>rule.kind==='STRATAGEM'||rule.ruleContract?.kind==='STRATAGEM');
  for(const source of stratagems){
   assert.deepEqual(book.entities.find(rule=>rule.id===source.id),source,'Compiler changed an excluded Stratagem');

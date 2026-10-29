@@ -158,6 +158,7 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
     contracts.push(entity.ruleContract);
   }
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
+  book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
   finalizeRecipientBook(book);
  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');

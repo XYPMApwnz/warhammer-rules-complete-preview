@@ -3,6 +3,7 @@
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {physicalPresenceBindings} from './rule-contract-declarations.mjs';
 import {resolvePhysicalChapterContexts} from './physical-chapter.mjs';
+import {createVerifiedPhysicalConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
 export function createDarkAngelsRuleSchema({state,book,bindContext=context=>context}={}){
  const stateFields={};
  for(const key of ['attached','equipmentRequirementSatisfied','smEquipmentBearerSatisfied','smPermanentAssaultSource','daAncientPresent','daChampionPresent','daArmyMembershipProven'])stateFields[key]={contextLevel:'ROSTER',valueType:'boolean'};
@@ -11,27 +12,8 @@ export function createDarkAngelsRuleSchema({state,book,bindContext=context=>cont
  stateFields.battleConditionSatisfied={contextLevel:'BATTLE',valueType:'boolean'};
  const schema=createRuleContractSchema({stateFields,modelAbilities:['Deep Strike']});
  const chapters=book&&state?resolvePhysicalChapterContexts(book,state):[];
- const bind=(context,predicate)=>{
-  if(!context)return context;
-  context=bindContext(context,predicate);
-  const roster={...context.roster};
-  // Caller extras cannot substitute for the verified physical source row.
-  delete roster.daAncientPresent;delete roster.daChampionPresent;
-  delete roster.daPhysicalChapter;delete roster.daChapterContextStatus;
-  delete roster.daArmyMembershipProven;
-  if(state){
-   const unit=state.units.find(unit=>unit.instanceId===context.instanceId);
-   for(const [key,proof]of Object.entries(physicalPresenceBindings))
-    roster[key]=Boolean(unit&&unit.canonicalUnitId===proof.unitId&&unit.modelRows.some(row=>row.canonicalProfileId===proof.profileId&&Number.isSafeInteger(row.quantity)&&row.quantity>0));
-   if(context.subject==='UNIT'){
-    const chapter=chapters.find(row=>row.instanceId===unit?.instanceId&&row.canonicalUnitId===context.owner?.unitId);
-    roster.daChapterContextStatus=chapter?.status||'CHAPTER_CONTEXT_NOT_PROVEN';
-    roster.daArmyMembershipProven=chapter?.armyApplicability.status==='DA_ARMY_CONTEXT_PROVEN';
-    if(chapter?.status==='CHAPTER_CONTEXT_PROVEN')roster.daPhysicalChapter=chapter.chapter;
-   }
-  }
-  return {...context,roster};
- };
+ const physicalContext=createVerifiedPhysicalConditionContext({state,presenceBindings:physicalPresenceBindings,chapterFacts:chapters,armyProvenStatus:'DA_ARMY_CONTEXT_PROVEN'});
+ const bind=(context,predicate)=>physicalContext(bindContext(context,predicate));
  return {...schema,bindPhysicalContext:bind,physicalChapterContexts:structuredClone(chapters),evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bind(context,node)),
   evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bind(context))};
 }

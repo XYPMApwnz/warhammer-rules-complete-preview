@@ -72419,6 +72419,704 @@
         "valueType": "boolean"
       }
     },
+    "conditionFields": [
+      {
+        "key": "aboutToConsolidate",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "analysed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "atEndOfPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "atStartOfBattle",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "atStartOfBattleRound",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "atStartOfFirstBattleRound",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "atStartOfPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "attached",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "attackAllocated",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "attackFromTargetUnitAllocatedToModel",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "attackType",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "battleInProgress",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "battleRoundInTwoToFive",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "battleShocked",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "belowStartingStrength",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "bombardmentChoice",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "bothArmiesDeployed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "broadSpectrumDataTetherEquipped",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "canAttachToReferencedUnit",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "characterModelLeadingSource",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "citationInSavageryActive",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "commandUplinkEquipped",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "conquerorImperativeActive",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "containsTechPriestModel",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "destroyed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "disembarkedFromTransportThisTurn",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "disembarkingFromTargetModel",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "equipmentBearerLabel",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "string"
+      },
+      {
+        "key": "equipmentRequirementSatisfied",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "everyModelWithin3OfTargetTransport",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "failedBattleShockTest",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "foughtThisPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "hasFought",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "hasShot",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "hasShotThisPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "inOptionalSupportUnit",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "inTargetUnit",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justAllocatedMortalWound",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justDeclaredCharge",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justDestroyed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justEndedNormalAdvanceOrFallBackMove",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justFellBack",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justSelectedAttackTargets",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "justShot",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "leadershipTestPassed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "lostModelsToTriggerEnemyUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "madeChargeMoveThisTurn",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "makingAttack",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "meleeAttackTargetsUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "modelInUnitMakingAttack",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "moreThan3FromAllEnemyUnits",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "onBattlefield",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "oncePerBattleRoundUseAvailable",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "oncePerBattleUseAvailable",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "oncePerPhaseUseAvailable",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "oncePerTurnUseAvailable",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "otherDataPsalmDetachmentSelected",
+        "arguments": {},
+        "contextLevel": "ROSTER",
+        "valueType": "boolean"
+      },
+      {
+        "key": "panegyricProcessionActive",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "phase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "phaseBoundary",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "protectorImperativeActive",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "remainingWoundsBand",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "resolvingFallout",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "savingThrowFailed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "secondBattleRoundOrLater",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedAttackTargetsNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedObjectiveIsAcquisitionObjective",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedObjectiveWithin24",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedOverrideAbility",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "selectedToAdvanceNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToAttackNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToFallBackNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToFight",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToFightThisPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToMoveThisPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToShoot",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToShootNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "selectedToShootThisPhase",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "settingUpAsReinforcements",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "startingActionNow",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "sufficientCapacityForEntireTargetUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "targetTransportMadeNormalMove",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "targetedByTriggerEnemyCharge",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "targetedByTriggerEnemyUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "turnOwner",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "string"
+      },
+      {
+        "key": "usedPostShootingNormalMove",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "visibleEnemyTarget",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "visibleToBearer",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "visibleToReconUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within12OfBearer",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within12OfReconAnchor",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within12OfReconUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within18OfTargetUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within3OfEnemyUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within6OfCultMechanicusModelInTargetUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within6OfOpponentDeploymentZone",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within6OfTargetUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "within8OfTriggerEnemyUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinAcquisitionObjectiveRange",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinEnemyEngagementRange",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinEngagementRange",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinEngagementRangeOfEnemy",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinEngagementRangeOfTargetUnit",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinFriendlyMechanicusBattleline6",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinFriendlyMechanicusVehicle3",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinHalfWeaponRange",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinOpponentDeploymentZone",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinOtherFriendlyMechanicus3",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinRangeOfAcquisitionObjective",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinRangeOfFriendlyControlledObjectiveWhenDestroyed",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinRangeOfObjective",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinRangeOfSelectedObjective",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinSource12",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinSource3",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinSource6",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      },
+      {
+        "key": "withinSourceEngagementRange",
+        "arguments": {},
+        "contextLevel": "BATTLE",
+        "valueType": "boolean"
+      }
+    ],
     "modelAbilities": [
       "Deadly Demise"
     ]

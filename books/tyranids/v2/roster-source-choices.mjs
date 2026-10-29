@@ -1,5 +1,6 @@
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {createSelectedSourceChoiceConditionContext,withDefaultConditionValue} from '../../shared/roster-v2/physical-condition-context.mjs';
 
 export const surpriseRuleId='detachment-subterranean-assault:rule';
 export const trygonCharacterOptionId=surpriseRuleId+'::choice::trygon-character';
@@ -77,15 +78,14 @@ export function setTyranidsSourceChoice(book,snapshot,instanceId,ruleId,optionId
  * Absence means no selection; Enhancement, SYNAPSE and names are irrelevant. */
 export function tyranidsSourceChoiceContext(book,state) {
   validateTyranidsSourceChoices(book,state);
-  const chosen=new Map(state.units.map(u=>[u.instanceId,u[selectionField]?.[0]||'']));
-  return context=>context?{...context,roster:{...context.roster,[trygonChoiceField]:chosen.get(context.instanceId)||''}}:context;
+  return createSelectedSourceChoiceConditionContext(state,{selectionField,ruleId:surpriseRuleId});
 }
 
 export function createTyranidsRuleSchema({bindContext=context=>context}={}) {
   const kernel=createRuleContractSchema({stateFields:{attached:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
     [trygonChoiceField]:{contextLevel:'ROSTER',valueType:'string'}}});
-  const bind=context=>bindContext(context?{...context,roster:{[trygonChoiceField]:'',...context.roster}}:context);
+  const bind=context=>bindContext(withDefaultConditionValue(context,{key:'selectedSourceChoice',ruleId:surpriseRuleId},''));
   return {...kernel,evaluatePredicate:(node,context)=>kernel.evaluatePredicate(node,bind(context)),
     evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bind(context))};
 }

@@ -145,6 +145,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
  }
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
+ book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
  finalizeRecipientBook(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);

@@ -210,8 +210,9 @@
                   "subject": "UNIT",
                   "contextLevel": "ROSTER",
                   "arguments": {
-                    "key": "selectedSurpriseAssaultChoice",
-                    "equals": "detachment-subterranean-assault:rule::choice::trygon-character"
+                    "key": "selectedSourceChoice",
+                    "equals": "detachment-subterranean-assault:rule::choice::trygon-character",
+                    "ruleId": "detachment-subterranean-assault:rule"
                   },
                   "evidence": {
                     "field": [
@@ -277,8 +278,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "selectedSurpriseAssaultChoice",
-                        "equals": "detachment-subterranean-assault:rule::choice::trygon-character"
+                        "key": "selectedSourceChoice",
+                        "equals": "detachment-subterranean-assault:rule::choice::trygon-character",
+                        "ruleId": "detachment-subterranean-assault:rule"
                       },
                       "evidence": {
                         "field": [
@@ -339,8 +341,9 @@
                           "subject": "UNIT",
                           "contextLevel": "ROSTER",
                           "arguments": {
-                            "key": "selectedSurpriseAssaultChoice",
-                            "equals": "detachment-subterranean-assault:rule::choice::trygon-character"
+                            "key": "selectedSourceChoice",
+                            "equals": "detachment-subterranean-assault:rule::choice::trygon-character",
+                            "ruleId": "detachment-subterranean-assault:rule"
                           },
                           "evidence": {
                             "field": [
@@ -422,8 +425,9 @@
                       "subject": "UNIT",
                       "contextLevel": "ROSTER",
                       "arguments": {
-                        "key": "selectedSurpriseAssaultChoice",
-                        "equals": "detachment-subterranean-assault:rule::choice::trygon-character"
+                        "key": "selectedSourceChoice",
+                        "equals": "detachment-subterranean-assault:rule::choice::trygon-character",
+                        "ruleId": "detachment-subterranean-assault:rule"
                       },
                       "evidence": {
                         "field": [
@@ -56286,5 +56290,6 @@
         "leaderTargetIds": []
       }
     ]
-  }
+  },
+  "conditionSchema": "conditions/v1"
 }

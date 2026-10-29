@@ -1,6 +1,7 @@
 /** Lossless producer translation of declared recipient addresses.
  * This module never interprets source prose or selects physical roster units.
  */
+import {conditionDeclarationView} from './conditions-build.mjs';
 const clone=structuredClone;
 const own=(value,key)=>Object.hasOwn(value,key);
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -311,7 +312,7 @@ export function compileBookRecipients(inputBook,options={}){
  */
 export function recipientDeclarationView(inputBook){
  validateBookRecipients(inputBook);
- const book=clone(inputBook);
+ const book=inputBook.conditionSchema?conditionDeclarationView(inputBook):clone(inputBook);
  for(const rule of book.entities){
   const contract=rule.ruleContract;if(!contract||excludedStratagem(rule))continue;
   const roleIds=(clause,ids)=>ids.map(id=>{

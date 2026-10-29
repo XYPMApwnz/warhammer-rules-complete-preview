@@ -53,7 +53,7 @@ function inventory(values) {
         assert.ok(effect.conditions.some(c=>c.predicate.arguments?.key==='equipmentRequirementSatisfied'));
       }
       if(id===HOST) {
-        assert.equal(effect.conditions.length,1);assert.equal(effect.conditions[0].predicate.arguments.key,'lordOfHostDeclaredBattleline');
+        assert.equal(effect.conditions.length,1);assert.equal(effect.conditions[0].predicate.arguments.key,'initialAttachmentBattleline');
         assert.equal(effect.conditions[0].predicate.contextLevel,'ROSTER');assert.equal(effect.conditions[0].predicate.arguments.equals,true);
       }
     }

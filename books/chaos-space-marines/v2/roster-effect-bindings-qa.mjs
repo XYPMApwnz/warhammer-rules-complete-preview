@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {buildCSMRosterEffectBook} from './roster-effect-build.mjs';
 import {evaluateCSMRosterDeclarations,createCSMRosterEffectContext} from './roster-effect-context.mjs';
 import {formRoster,predicateContext} from '../../shared/roster-v2/context.mjs';
+import {translateFieldArguments} from '../../shared/rule-contract-v2/conditions.mjs';
 
 const book=buildCSMRosterEffectBook(), original=JSON.stringify(book), clone=structuredClone;
 const records=new Map(book.entities.map(e=>[e.id,e]));
@@ -108,7 +109,7 @@ test('One bodyguard profile with Scouts does not establish UNIT-wide Scouts prer
   bodyguard.abilities=[];bodyguard.profiles.forEach(p=>p.abilities=[]);
   bodyguard.profiles[0].abilities=[{canonicalId:'core-scouts',name:'Scouts',parameters:{distance:6}}];
   const predicate={predicate:'FIELD',subject:'MODEL',contextLevel:'ROSTER',
-    arguments:{key:`ledBodyguardHasScouts6:${scoutsId}`,equals:true}};
+    arguments:translateFieldArguments({key:`ledBodyguardHasScouts6:${scoutsId}`,equals:true},{book})};
   const context=predicateContext(input,projection,'leader','MODEL',unit(projection,'leader').profiles[0].scopeId);
   const api=createCSMRosterEffectContext(book,input,{abilityProjection:projection});
   assert.equal(api.evaluatePredicate(predicate,context),'FALSE');

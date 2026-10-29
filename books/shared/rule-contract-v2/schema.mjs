@@ -1,5 +1,7 @@
 /** Bounded, typed applicability predicates. This module never reads source prose. */
 import {validateBookRecipients,recipientDeclarationView} from './recipients.mjs';
+import {conditionSpec,isCanonicalCondition,findConditionValue,declarationFieldArguments,translateFieldArguments} from './conditions.mjs';
+import {compileConditionSchema,validateBookConditions} from './conditions-build.mjs';
 export const subjects = Object.freeze(['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER']);
 export const levels = Object.freeze(['STATIC','ROSTER','BATTLE']);
 export const publicResult = Object.freeze({TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'});
@@ -17,7 +19,7 @@ const fail = message => { throw new Error(`Rule Contract V2: ${message}`); };
 const get = (object, fields) => fields.reduce((value,key)=>value?.[key],object);
 const text = value => typeof value==='string'?value:JSON.stringify(value);
 /** Each factory owns a snapshot of its book's reviewed context and ability vocabulary. */
-export function createRuleContractSchema({stateFields = {}, modelAbilities = [], contractSchema = 'rule-contract/v2'} = {}) {
+export function createRuleContractSchema({stateFields = {}, conditionFields = [], modelAbilities = [], contractSchema = 'rule-contract/v2'} = {}) {
   if (!stateFields || typeof stateFields!=='object' || Array.isArray(stateFields) ||
       typeof contractSchema!=='string' || !contractSchema || !Array.isArray(modelAbilities) ||
       modelAbilities.some(name=>typeof name!=='string'||!name)) fail('invalid schema configuration');
@@ -30,6 +32,22 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
       {intrinsicAllKeywords:Object.freeze([...spec.intrinsicAllKeywords])}:{})})];
   })));
   const acceptedAbilities=new Set(modelAbilities);
+  const registeredFields=Object.fromEntries(Object.entries(stateFields).filter(([key])=>{
+    try{translateFieldArguments({key});return true;}catch{return false;}
+  }));
+  const normalizedFields=compileConditionSchema(registeredFields).conditionFields;
+  const fieldSpec=args=>{
+    if(!isCanonicalCondition(args))return stateFields[args?.key];
+    const definition=conditionSpec(args);
+    const matches=[...conditionFields,...normalizedFields].filter(row=>row.key===args.key&&
+      Object.entries(row.arguments||{}).every(([key,value])=>JSON.stringify(args[key])===JSON.stringify(value)));
+    let declaration=matches[0];
+    if(!declaration){
+      const legacy=declarationFieldArguments(args);
+      declaration=stateFields[legacy.key]||stateFields[args.key];
+    }
+    return declaration?{...definition,...declaration}:undefined;
+  };
   function validatePredicate(node, subject, model, entity, fieldTypes = {}) {
     if (!node || typeof node!=='object') fail('malformed predicate');
     if (node.op) {
@@ -47,7 +65,8 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
     if (node.predicate==='MODEL_ABILITY'&&!acceptedAbilities.has(args.ability)) fail('unknown static ability');
     if (node.predicate==='FIELD') {
       if (!args.key||!Object.hasOwn(args,'equals')||node.contextLevel==='STATIC') fail('contextual field misclassified or missing');
-      if(!stateFields[args.key]||stateFields[args.key].contextLevel!==node.contextLevel||stateFields[args.key].valueType!==typeof args.equals) fail('unknown field, wrong type or context');
+      const spec=fieldSpec(args);
+      if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof args.equals) fail('unknown field, wrong type or context');
       if (fieldTypes[args.key]&&fieldTypes[args.key]!==node.contextLevel) fail(`field context drift ${args.key}`);
     }
     if (['MODEL_ID','UNIT_ID','BODYGUARD_ID','DETACHMENT'].includes(node.predicate)) {
@@ -259,7 +278,7 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
         return available(context.roster,'characterModelCount',value=>truth(value>=(a.min??0)&&value<=(a.max??Infinity)));
       }
       case 'FIELD': {
-        const spec=stateFields[a.key];
+        const spec=fieldSpec(a);
         if(!spec||spec.contextLevel!==node.contextLevel||spec.valueType!==typeof a.equals)return 'INVALID';
         if(a.key==='attached'&&!Object.hasOwn(context.roster||{},a.key)&&context.capabilities) {
           if(typeof context.capabilities.canBeAttached!=='boolean')return 'INVALID';
@@ -272,7 +291,12 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
           if(!(context.intrinsicKeywords instanceof Set))return 'INVALID';
           if(!spec.intrinsicAllKeywords.every(keyword=>context.intrinsicKeywords.has(keyword)))return truth(false===a.equals);
         }
-        return available(context[node.contextLevel==='BATTLE'?'battle':'roster'],a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
+        const bag=context[node.contextLevel==='BATTLE'?'battle':'roster'];
+        if(isCanonicalCondition(a)){
+          const found=findConditionValue(bag,a);
+          return !found.present?'UNKNOWN':typeof found.value!==spec.valueType?'INVALID':truth(found.value===a.equals);
+        }
+        return available(bag,a.key,value=>typeof value!==spec.valueType?'INVALID':truth(value===a.equals));
       }
       default: return 'INVALID';
     }
@@ -284,6 +308,7 @@ export function createRuleContractSchema({stateFields = {}, modelAbilities = [],
 
   function validateContracts(model) {
     validateBookRecipients(model);
+    if(model.conditionSchema)validateBookConditions(model);
     return validateContractDeclarations(recipientDeclarationView(model));
   }
   return Object.freeze({subjects,levels,publicResult,predicateTypes,validatePredicate,validateContracts,validateContractDeclarations,evaluatePredicate,evaluateRole});

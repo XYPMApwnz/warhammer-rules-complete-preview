@@ -8434,6 +8434,14 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/condition-context.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/conditional-policy.mjs",
       "reasons": [
         {
@@ -8711,6 +8719,14 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/physical-condition-context.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/recipient-execution.mjs",
       "reasons": [
         {
@@ -8786,6 +8802,22 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/rule-contract-v2/conditions.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
         }
       ]
     },

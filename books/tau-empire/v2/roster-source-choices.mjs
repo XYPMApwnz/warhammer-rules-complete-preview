@@ -3,6 +3,7 @@ import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
+import {createSourceEquipmentConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {tauPrototypeField,tauPrototypeDecisions,validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
 
@@ -124,14 +125,7 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
 
 export function tauSourceChoiceContext(book,state) {
   validateTauSourceChoices(book,state);
-  // This context is bound only after the import boundary validates equipment
-  // identity, source caption, quantity and provenance. Shared option IDs alone
-  // cannot distinguish different drones selected from the same source field.
-  const markers=new Set(state.units.filter(unit=>selections(unit).some(selection=>
-    selection.sourceEquipmentIdentity==='drone-marker-drone'&&selection.physicalQuantity>0)).map(unit=>unit.instanceId));
-  return context=>context?{...context,roster:{...context.roster,
-    tauPhysicalUnitInstanceId:context.instanceId||'',tauMarkerSelected:markers.has(context.instanceId),
-    tauPhysicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context;
+  return createSourceEquipmentConditionContext(state,{sourceEquipmentIdentity:'drone-marker-drone'});
 }
 
 /** Bind inventory counts to the existing MODEL scopes, not canonical profile

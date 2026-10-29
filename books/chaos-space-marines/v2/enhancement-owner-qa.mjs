@@ -6,6 +6,7 @@ import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {setConditionValue,translateFieldArguments} from '../../shared/rule-contract-v2/conditions.mjs';
 
 const clone=structuredClone, built=buildCSMContracts(), factualSnapshot=JSON.stringify(built.facts);
 const cases=[['pactbound-zealots',2,1],['pactbound-zealots',4,1],['creations-of-bile',1,1],
@@ -105,9 +106,10 @@ for(const [detachment,number,clauseNumber] of cases){
     if(context.instanceId==='a'&&context.modelId===state.units[0].modelRows[0].canonicalProfileId){
       if(detachment==='pactbound-zealots')keywords.add(number===2?'SLAANESH':'KHORNE');
     }
-    const roster={...context.roster,[`ledBodyguardHasScouts6:${ruleId}`]:known.scouts,
-      [`enhancementAssigned:${ruleId}`]:context.instanceId==='a'&&
-        context.modelId===state.units[0].modelRows[0].canonicalProfileId};
+    const roster={...context.roster};
+    setConditionValue(roster,translateFieldArguments({key:`ledBodyguardHasScouts6:${ruleId}`,equals:true},{book}),known.scouts);
+    setConditionValue(roster,translateFieldArguments({key:`enhancementAssigned:${ruleId}`,equals:true},{book}),context.instanceId==='a'&&
+      context.modelId===state.units[0].modelRows[0].canonicalProfileId);
     return evaluator.evaluatePredicate(node,{...context,keywords,intrinsicKeywords:keywords,roster});
   };
   const runtime=createRosterRuntime(book,{...evaluator,evaluatePredicate});
