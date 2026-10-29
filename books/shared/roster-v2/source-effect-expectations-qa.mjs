@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Small assertion helper, not an effect interpreter. Independent reviewed
  * expectations and case adapters supply exact observations (numeric, ability
  * or keyword deltas). Production contracts never create the expected set. */
@@ -10,7 +11,7 @@ export function assertSourceEffectExpectation({expectation,book,applied,observat
   assert.ok(entity,'SOURCE PRESENT: '+source.canonicalId);
   assert.equal(entity.parentId,source.ownerId,'SOURCE OWNER: '+source.canonicalId);
   assert.equal(source.field.reduce((value,key)=>value?.[key],entity.data),source.quote,'SOURCE TEXT: '+source.canonicalId);
-  assert.ok(entity.provenance,'SOURCE PROVENANCE: '+source.canonicalId);
+  assert.ok(sourceSnapshot(entity),'SOURCE PROVENANCE: '+source.canonicalId);
   assert.ok(entity.ruleContract,'CONTRACT PRESENT: '+source.canonicalId);
   const effects=entity.ruleContract.clauses.filter(clause=>!expectation.expectedClauseId||clause.id===expectation.expectedClauseId)
     .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({clause,effect})))

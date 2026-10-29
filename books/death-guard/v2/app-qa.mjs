@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {compileBookSourceRefs,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
@@ -103,6 +105,14 @@ export function runProjectionQA() {
 if (process.argv[1]===fileURLToPath(import.meta.url)) {
   const {readAppInputs,buildApp}=await import('./app-build.mjs');
   const inputs=readAppInputs(),payload=buildApp(inputs),result=validatePresentation(payload,inputs.model,inputs.records),mutations=[];
+  const canonicalSourceBook=compileBookSourceRefs(inputs.model);
+  assert.deepEqual(enumerateExpectedFacts(canonicalSourceBook,inputs.records),enumerateExpectedFacts(inputs.model,inputs.records),'Source encoding changed independent fact enumeration');
+  const severedQualification=sourceDeclarationView(canonicalSourceBook);
+  const qualified=severedQualification.entities.find(entity=>entity.qualifications?.length);
+  assert.ok(qualified,'Actual canonical qualification required for source-proof negative control');
+  delete qualified.qualifications[0].provenance;
+  assert.throws(()=>enumerateExpectedFacts(compileBookSourceRefs(severedQualification),inputs.records),/unknown\/missing qualification shape/,'Canonical qualification source proof was optional');
+  mutations.push('canonical qualification source proof severed');
   for (const [name,mutate] of [
     ['missing visible fact',p=>p.cards[0].fields.pop()],
     ['wrong visible value',p=>p.cards[0].fields[0].value='POISON'],
@@ -128,6 +138,6 @@ if (process.argv[1]===fileURLToPath(import.meta.url)) {
   const shared=new URL('../../shared/army-book-app-v2/',import.meta.url);
   for (const file of ['project.mjs','runtime.mjs']) assert.doesNotMatch(fs.readFileSync(new URL(file,shared),'utf8'),/death-guard|plague-marines|defiler|mortarion|compatible-rules\.json|legacy-glossary|(?:\.\.\/)+glossary\/|scripts\/data/i,'Book-specific/V1 factual dependency');
   const isolation=runProjectionQA();
-  const generated=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));assert.equal(hash(generated),hash(payload),'Generated output stale');
+  const generated=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));assert.equal(hash(generated),hash(payload),'Generated output stale');
   console.log(JSON.stringify({status:'PASS',...result,mutations,legacyPoisonClasses:isolation.legacyPoisonClasses,v1FactualReads:0,legacyGlossaryFactualReads:0,titleOrProseFactualJoins:0,deathGuardGameplayBranches:0,tracedBuildReads:isolation.buildReads.length},null,2));
 }

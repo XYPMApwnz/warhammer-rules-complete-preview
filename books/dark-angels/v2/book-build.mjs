@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Closed DA consumer membership over independently owned native facts.
  * This is a disposable V2 projection, never a second SM factual owner.
  */
@@ -13,12 +14,15 @@ import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {buildDAOwnedNative} from './owned-book-view.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,sort=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
 
 export function buildDarkAngelsMixedBook({daFacts=read('./generated/effective.json'),
   daBase=read('./generated/base.json'),smFacts=read('../../space-marines/v2/generated/effective.json'),
   membership=read('./inherited-sm-references.json')}={}){
+  daFacts=prepareSourceProducer(daFacts);
+  daBase=prepareSourceProducer(daBase);
+  smFacts=prepareSourceProducer(smFacts);
   assert.deepEqual(membership,read('./inherited-sm-references.json'),'Unreviewed inherited membership');
   const before=[daFacts,daBase,smFacts,membership].map(value=>JSON.stringify(value));
   const smById=new Map(smFacts.entities.map(entity=>[entity.id,entity]));
@@ -97,7 +101,7 @@ export function buildDarkAngelsMixedBook({daFacts=read('./generated/effective.js
     return {...binding,maxModels:member.data.quantity.max};
   });
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
-  const payload=projectArmyBook(book,records,{title:'Dark Angels',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(book,records,{title:'Dark Angels',edition:'11th Edition'}));
   const templates=new Map([...da.payload.cards,...sm.payload.cards.filter(card=>inheritedIds.has(card.id))].map(card=>[card.id,card]));
   for(const card of payload.cards){
     const entity=byId.get(card.id),centralFact=records.get(card.id);
@@ -163,7 +167,7 @@ export function writeDarkAngelsMixedBook({check=false}={}){
   const result=buildDarkAngelsMixedBook();
   for(const [name,value]of [['mixed-owner-book',result.book],['mixed-owner-presentation',result.payload],
     ['mixed-owner-points',result.points],['mixed-owner-coverage',result.coverage]]){
-    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale DA mixed-owner output '+name);else fs.writeFileSync(file,bytes);
   }
   return result;

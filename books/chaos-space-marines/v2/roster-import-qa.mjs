@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {buildCSMImportBook} from './roster-import-build.mjs';
@@ -26,7 +27,7 @@ for(const unit of native) {
 
 // New Recruit text fixtures use current canonical composition/selection names;
 // points here are imported lexical values, not factual/MFM assertions.
-const text=JSON.parse(fs.readFileSync(new URL('./roster-import-fixtures.json',import.meta.url),'utf8')).fixtures[0].text;
+const text=parseSourceFixtureJSON(fs.readFileSync(new URL('./roster-import-fixtures.json',import.meta.url),'utf8')).fixtures[0].text;
 const service=make(),state=ready(text,service),[lordA,lordB,legionA,legionB,commune,accursed,princeA,princeB]=state.units;
 assert.equal(new Set(state.units.map(u=>u.instanceId)).size,8);
 assert.deepEqual(state.detachmentIds,['detachment-veterans-of-the-long-war','detachment-pactbound-zealots']);
@@ -137,7 +138,7 @@ const foreignChoice=structuredClone(state);foreignChoice.units[2].selectedUpgrad
 assert.throws(()=>make().load(foreignChoice),/option/);
 const mutated=structuredClone(book);mutated.entities.find(e=>e.id==='datasheet-dark-commune:section:2:member:2').data.name='wrong model';
 assert.equal(createCSMRosterImport(mutated).import(text).status,'NEEDS_BINDINGS','Canonical profile identity mutation must be detected');
-const browserEntry=await loadRosterImport({fetch:async()=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'))})});
+const browserEntry=await loadRosterImport({fetch:async()=>({ok:true,json:async()=>parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'))})});
 assert.deepEqual(ready(text,browserEntry),state);
 assert.deepEqual(book,original);
 console.log(JSON.stringify({status:'PASS',nativeDatasheets:54,canonicalWeapons:315,mixedProfiles:'PASS',duplicateInstances:'PASS',selectedOptions:'PASS',enhancementOwners:'PASS',explicitWarlordOnly:'PASS',deferredAllies:4,canonicalMutation:'REJECTED',importOnly:true}));

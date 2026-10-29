@@ -1,3 +1,4 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native attachment permissions over admitted BA/SM source records.
  * The join is the source's exact datasheet hyperlink, never its display label.
  * These are Army-source permissions, not resolutions of central MFM references.
@@ -6,11 +7,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 
-const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url),'utf8'));
+const read=path=>parseProducerJSON(fs.readFileSync(new URL(path,import.meta.url),'utf8'));
 const clone=structuredClone;
 const sourceURL='https://wahapedia.ru/wh40k11ed/factions/space-marines/datasheets.html';
 
 export function buildBloodAngelsAttachmentPolicies(book){
+  book=prepareSourceProducer(book);
   assert.equal(book.bookId,'blood-angels','Wrong native attachment domain');
   const owners=[read('./generated/effective.json'),read('../../space-marines/v2/generated/effective.json')];
   const factual=new Map(owners.flatMap(owner=>owner.entities).map(entity=>[entity.id,entity]));

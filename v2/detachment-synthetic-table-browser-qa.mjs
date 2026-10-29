@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** Non-CSM F1 table fixture through the real native application.
  * Synthetic declarations exist only in external runtime-package copies. The
  * browser uses normal fetch/import/Guide controls; evaluation only reads public
@@ -33,7 +34,7 @@ if(outputHint)assert.ok(outputHint!==path.resolve(repo)&&!outputHint.startsWith(
 // repeated mandatory invocations cannot accidentally reuse prior fixtures.
 if(outputHint&&!runPrepared&&!prepareOnly)fs.mkdirSync(outputHint,{recursive:true});
 const out=outputHint?(!runPrepared&&!prepareOnly?fs.mkdtempSync(path.join(outputHint,'run-')):outputHint):path.join(workspace,'fixtures');
-const preparedManifest=runPrepared?JSON.parse(fs.readFileSync(path.join(out,'FIXTURES.json'),'utf8')):null;
+const preparedManifest=runPrepared?parseSourceFixtureJSON(fs.readFileSync(path.join(out,'FIXTURES.json'),'utf8')):null;
 const source=path.resolve(preparedManifest?.source||(prepareOnly&&process.env.F1_SYNTHETIC_TABLE_PACKAGE)||path.join(workspace,'runtime'));
 assert.ok(!out.startsWith(path.resolve(repo)+path.sep)&&out!==path.resolve(repo),'Fixture output must be outside the repository');
 assert.ok(out!==source&&!out.startsWith(source+path.sep)&&!source.startsWith(out+path.sep),'Fixture output and source package must be separate');
@@ -42,7 +43,7 @@ assert.ok(out!==source&&!out.startsWith(source+path.sep)&&!source.startsWith(out
 const packageReport=!runPrepared&&!(prepareOnly&&process.env.F1_SYNTHETIC_TABLE_PACKAGE)
   ?buildPagesRuntimePackage({sourceRoot:repo,outRoot:source}):null;
 const sha=value=>createHash('sha256').update(value).digest('hex');
-const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));
+const read=file=>parseSourceFixtureJSON(fs.readFileSync(file,'utf8'));
 const clone=structuredClone;
 const bookId='adeptus-mechanicus',ownerId='detachment-lords-of-the-forge';
 const ruleId=ownerId+':rule:f1-synthetic-table',tableId=ruleId+':table:1';

@@ -21,6 +21,8 @@ sys.dont_write_bytecode = True
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 BOOK = 'tau-empire'
 SOURCE = 'books/tau-empire/sources/waha-11e-current-2026-09-28'
 HUB = SOURCE+'/tau-empire.html'
@@ -337,14 +339,14 @@ def main():
     ap.add_argument('--check',action='store_true')
     args = ap.parse_args()
     outputs = build()
-    for name,value in outputs.items():
+    for name,value in serialized_source_outputs(outputs, ROOT).items():
         target = HERE/'generated'/(name+'.json')
         if args.check:
-            if not target.exists() or target.read_bytes()!=serialize(value):
+            if not target.exists() or target.read_bytes()!=value:
                 raise ValueError('Stale factual output: '+name)
         else:
             target.parent.mkdir(exist_ok=True)
-            target.write_bytes(serialize(value))
+            target.write_bytes(value)
     print(json.dumps(outputs['factual-census']))
 
 if __name__=='__main__':

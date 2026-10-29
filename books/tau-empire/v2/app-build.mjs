@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable isolated T’au UI projection. Facts, effects and central MFM keep their existing owners. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-pro
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
 import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 // Exact accepted labels select existing canonical definitions; no fuzzy joins.
 const references={
   'For the Greater Good':['army-rule-for-the-greater-good','ARMY RULES',{}],
@@ -47,6 +48,7 @@ export function assertTauAppSourceReview(executionBook=buildTauImportBook()){
     sourceReview:captureSourceReview('tau-empire',facts)}],expectations:[],registeredBookIds:[],checkAllRegistrations:false});
 }
 export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveCoreCatalog()}={}){
+  book=prepareSourceProducer(book);
   const original=JSON.stringify(book),facts=read('./generated/effective.json'),p=consumeMfm(facts.entities).partitions;
   const mfm={unitBindings:p.unitBindings,detachmentBindings:p.detachmentBindings,enhancementBindings:p.enhancementBindings,
     paidUpgradeBindings:p.paidOptionBindings,leaderEligibilityBindings:p.leaderBindings,qualifierBindings:[]},records=new Map();
@@ -59,7 +61,7 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
     if(['ERRATA','FAQ'].includes(e.kind))e.kind='SOURCE_ERRATUM';
     if(e.kind==='DETACHMENT'){assert.ok(e.data.ruleIds.length&&new Set(e.data.ruleIds).size===e.data.ruleIds.length);e.data.ruleId=e.data.ruleIds[0];}
   }
-  const payload=projectArmyBook(model,records,{title:'T’au Empire',edition:'11th Edition'}),cards=new Map(payload.cards.map(c=>[c.id,c]));
+  const payload=prepareSourceProducer(projectArmyBook(model,records,{title:'T’au Empire',edition:'11th Edition'})),cards=new Map(payload.cards.map(c=>[c.id,c]));
   for(const e of model.entities){const card=cards.get(e.id),allowed=new Set(visible[e.kind]||[]);
     card.provenance=clone(e.provenance);card.fieldProvenance=clone(e.fieldProvenance||{});
     card.fields=card.fields.filter(f=>allowed.has(f.source.path.split('/')[1]));
@@ -73,7 +75,7 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
   const optionCosts=mfm.paidUpgradeBindings.flatMap(b=>{const binding=paid.find(row=>row.mfmRecordId===b.mfmRecordId);assert.ok(binding);return binding.relatedEntityIds.map(itemId=>({unitId:binding.ownerEntityId,itemId,optionIds:[],costRecordId:b.mfmRecordId}));});
   payload.datasheetPresentation=buildDatasheetPresentation(model,{units:{}},{bindings:{optionCosts},records});
   Object.assign(payload.datasheetPresentation,{rosterEffectSummary:false,rosterKeywordLabel:'Keywords',basePlacement:'composition',compactPointsLabels:true});
-  const glossary=buildGlossary({model,coreCatalog});payload.cards.push(...glossary.coreCards);payload.glossary=glossary.index;
+  const glossary=prepareSourceProducer(buildGlossary({model,coreCatalog}));payload.cards.push(...glossary.coreCards);payload.glossary=glossary.index;
   const projected=new Map(payload.cards.map(c=>[c.id,c])),fields={};
   for(const e of model.entities.filter(e=>e.kind==='RULE_REFERENCE')){
     const binding=references[e.data.label];assert.ok(binding,'Unbound exact reference '+e.data.label);
@@ -82,19 +84,19 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
     fields[field.id]=[{start:0,end:field.value.length,targetId,group,parameters}];
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
-  payload.bookPresentation=projectBookPresentation(model,records);
+  payload.bookPresentation=prepareSourceProducer(projectBookPresentation(model,records));
   payload.bookPresentation.coverImage='../assets/tau-empire-cover-800.webp';
   payload.ruleContractIds=book.entities.filter(e=>e.ruleContract).map(e=>e.id);
   const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',rows:model.entities.filter(e=>e.kind==='DATASHEET').flatMap(unit=>model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(rule=>({unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,...clone(conditional),selectedDetachment:clone(conditional)})))};
   payload.sourceEnrollment=read('./sources/enrollment.json');
   payload.rulePresentationLimitations={authority:'EXISTING_STAGE_3_REVIEW',review:'books/tau-empire/v2/rule-clause-review.json',capabilityMissing:3,unverifiedExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],battleState:'NOT_SIMULATED',legality:'NOT_ASSESSED'};
-  assert.equal(JSON.stringify(book),original,'Presentation changed factual/contract owner');return payload;
+  assert.equal(JSON.stringify(book),original,'Presentation changed factual/contract owner');return finalizeSourceOutput(payload);
 }
 export function writeApp({check=false}={}){
   const book=buildTauImportBook(),sourceGate=assertTauAppSourceReview(book),payload=buildApp(book);
   payload.sourceCompleteness=sourceGate;
-  const bytes=JSON.stringify(payload,null,2)+'\n',file=new URL('./generated/app-presentation.json',import.meta.url);
+  const bytes=serializeSourceJSON(payload),file=new URL('./generated/app-presentation.json',import.meta.url);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale T’au app presentation');else fs.writeFileSync(file,bytes);
   return payload;
 }

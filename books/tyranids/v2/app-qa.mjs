@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Bounded presentation parity and fail-closed controls; no source re-audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +8,7 @@ import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildTyranidsContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
@@ -21,7 +23,7 @@ export function assertPresentationParity(candidate){
   for(const entity of facts.entities){
     const card=candidate.cards.find(card=>card.id===entity.id);assert.ok(card,'Missing factual card '+entity.id);
     assert.equal(card.parentId,entity.parentId,'Changed canonical owner '+entity.id);
-    assert.deepEqual(card.provenance,entity.provenance,'Changed provenance '+entity.id);
+    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Changed provenance '+entity.id);
   }
   for(const card of candidate.cards)for(const field of card.fields){
     if(!index.has(field.source.entityId)&&!field.source.entityId.startsWith('mfm-'))continue;

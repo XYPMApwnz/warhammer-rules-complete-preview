@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Standalone synthetic guards for canonical, explicitly scoped ability grants.
  * No book facts, source grammar, or individual infantry ownership are imported.
  */
@@ -62,7 +63,7 @@ function rule(book,name,{parent='mixed',enhancement=false,targetSubject='MODEL',
   const ownerRole={id:'owner',subject:'UNIT',allegiance:'FRIENDLY',selector:atom('UNIT_ID','UNIT',{id:id(parent)}),conditions:[]};
   const effect={id:name+'/effect',operation:'GRANT_ABILITY',targetSubject,targetBinding,
     ability:{canonicalId:id(ability),parameters:clone(parameters)},conditions,evidence:clone(evidence),sourceFields:[['text']],lifetime:'ROSTER',...extra};
-  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId,sourceId:entity.provenance.sourceId,
+  entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId,sourceId:sourceSnapshot(entity).sourceId,
     kind,executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',
     ...(parent==='main'||enhancement?{detachmentId:id('main')}:{}),
     roles:enhancement?[ownerRole]:[],conditions:[],sourceFields:[['text']],

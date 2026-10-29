@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable Tyranids presentation. Existing effective facts and central MFM own all values. */
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ import {buildGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 
 const clone=structuredClone;
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 // Exact accepted reference labels bind existing owners, never resolve by similarity.
 const references={
   Synapse:['army-rule-synapse','ARMY RULES',{}],
@@ -43,6 +44,7 @@ const visible={
 };
 
 export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffectiveCoreCatalog()}={}) {
+  built={...built,book:prepareSourceProducer(built.book)};
   const original=JSON.stringify(built.book),facts=read('./generated/effective.json');
   const consumed=consumeMfm(facts.entities),p=consumed.partitions;
   const mfm={unitBindings:p.unitBindings,detachmentBindings:p.detachmentBindings,enhancementBindings:p.enhancementBindings,
@@ -59,7 +61,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
       entity.data.ruleId=entity.data.ruleIds[0];
     }
   }
-  const payload=projectArmyBook(model,records,{title:'Tyranids',edition:'11th Edition'}),cards=new Map(payload.cards.map(card=>[card.id,card]));
+  const payload=prepareSourceProducer(projectArmyBook(model,records,{title:'Tyranids',edition:'11th Edition'})),cards=new Map(payload.cards.map(card=>[card.id,card]));
   // Official removals retain historical evidence entities, but the effective
   // unit's reference list is authoritative for active datasheet occurrences.
   for(const unit of model.entities.filter(e=>e.kind==='DATASHEET'))cards.get(unit.id).children=
@@ -131,7 +133,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
     assert.equal(unit.kind,'DATASHEET','Missing supplemental unit presentation owner');
     if(!unit.children.includes(card.id))unit.children.push(card.id);
   }
-  const glossary=buildGlossary({model,coreCatalog});
+  const glossary=prepareSourceProducer(buildGlossary({model,coreCatalog}));
   payload.cards.push(...glossary.coreCards);payload.glossary=glossary.index;
   const projected=new Map(payload.cards.map(card=>[card.id,card])),fields={};
   for(const entity of model.entities.filter(entity=>entity.kind==='RULE_REFERENCE')){
@@ -142,7 +144,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
     fields[field.id]=[{start:0,end:field.value.length,targetId,group,parameters,...(targetId==='core-feel-no-pain'?{legacyValue:true}:{})}];
   }
   payload.datasheetPresentation.referenceBindings={schema:'army-book-app-v2/datasheet-reference-bindings/v1',fields};
-  payload.bookPresentation=projectBookPresentation(model,records);
+  payload.bookPresentation=prepareSourceProducer(projectBookPresentation(model,records));
   payload.bookPresentation.coverImage='../../../assets/tyranids-cover-800.webp';
   payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
   // A book view lacks physical assignments and battle context. Unbound rules
@@ -155,14 +157,14 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   payload.sourceEnrollment=read('./sources/enrollment.json');
   payload.deferredRules=clone(built.deferred);
   assert.equal(JSON.stringify(built.book),original,'Presentation changed its factual/contract owner');
-  return payload;
+  return finalizeSourceOutput(payload);
 }
 export function writeApp({check=false}={}) {
   const built=buildTyranidsContracts();
   assertBookSourceReview('tyranids',{executionBook:built.book});
   const payload=buildApp(built);
   for(const [name,value]of [['app-presentation',payload],['roster-runtime',built.book]]){
-    const bytes=JSON.stringify(value,null,2)+'\n',file=new URL('./generated/'+name+'.json',import.meta.url);
+    const bytes=serializeSourceJSON(value),file=new URL('./generated/'+name+'.json',import.meta.url);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale Tyranids '+name);else fs.writeFileSync(file,bytes);
   }
   return payload;

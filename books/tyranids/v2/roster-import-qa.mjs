@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {buildTyranidsImportBook} from './roster-import-build.mjs';
@@ -7,7 +8,7 @@ import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 
 // Constructed source-backed New Recruit TEXT fixtures, not captured exports.
 // The accepted factual owner, not import metadata, supplies the inventory.
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),source=read('./roster-import-source-bindings.json');
 const mfm=read('../../../mfm/sources/v1.6/tyranids.json'),book=buildTyranidsImportBook();
 const original=structuredClone(book),records=new Map(facts.entities.map(e=>[e.id,e]));
@@ -251,7 +252,7 @@ check(()=>{
     assert.deepEqual(u.applied,[]);assert.deepEqual(u.metrics,{});assert.ok(u.profiles.every(p=>p.abilities.length===0));
   }
   for(const e of facts.entities){const actual=book.entities.find(a=>a.id===e.id);assert.ok(actual,e.id);
-    assert.deepEqual(actual.data,e.data);assert.deepEqual(actual.provenance,e.provenance);assert.equal(actual.parentId,e.parentId);}
+    assert.deepEqual(actual.data,e.data);assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}
   const transports=book.entities.filter(e=>e.kind==='DATASHEET_SECTION'&&e.data.title==='TRANSPORT');
   assert.deepEqual(transports.map(e=>e.parentId).sort(),['unit-harridan','unit-hierophant','unit-tyrannocyte']);
   assert.ok(transports.every(e=>e.data.executable===false&&e.data.declaration.conditionalOnly));

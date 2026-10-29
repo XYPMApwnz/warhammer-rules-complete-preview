@@ -1,4 +1,5 @@
 /** Presentation-only reader. Canonical IDs and supplied fields are its only content authority. */
+import {registerBookSources} from '../source-refs-v2/source-refs.mjs';
 import {createLifecycle} from './lifecycle.mjs';
 import {validateGlossary} from './glossary.mjs';
 import {createReferenceContract} from './reference-contract.mjs';
@@ -18,6 +19,7 @@ const glossaryRoute = 'view-glossary'; // Presentation route, never a factual id
 const rosterRoute = 'view-roster';
 const personalRoute = 'view-roster-guide';
 export function mount(document, payload, options = {}) {
+  registerBookSources(payload);
   if (payload?.schema !== 'army-book-app-v2/presentation') throw new TypeError('Unsupported Army Book presentation.');
   const window = document.defaultView;
   const cards = new Map(payload.cards.map(card => [card.id, card]));

@@ -24,6 +24,8 @@ const isAllowedResource=address=>registeredHomeResources.has(address)||isApplica
     /^\/(?:assets|books\/(?:death-guard|adeptus-mechanicus)\/assets)\/[\w./-]+\.(?:png|webp|jpe?g|svg)$/.test(address);
 assert.equal(isAllowedResource('/books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp'),true);
 assert.equal(isAllowedResource('/books/emperors-children/assets/emperors-children-cover-480.webp'),true);
+assert.equal(isAllowedResource('/books/shared/source-refs-v2/source-refs.mjs'),true,'The shared browser source reader is a declared dependency');
+for(const module of ['producer-io','source-registry'])assert.equal(isAllowedResource(`/books/shared/source-refs-v2/${module}.mjs`),false,'Node-only source tooling must not be served');
 for(const address of ['/books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp',
   '/books/chaos-space-marines/assets/unknown.webp','/books/chaos-space-marines/scripts/data.js',
   '/books/emperors-children/assets/unknown.webp','/books/tyranids/v2/app.html'])assert.equal(isAllowedResource(address),false,'Unexpected resource admitted: '+address);

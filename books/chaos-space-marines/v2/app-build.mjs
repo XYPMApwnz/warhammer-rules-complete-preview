@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable normal-book projection. The canonical catalog remains the sole factual owner. */
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {buildCSMRosterEffectBook} from './roster-effect-build.mjs';
@@ -14,7 +15,7 @@ import {buildPresentationReferences,referenceDeclaration} from './presentation-r
 import {buildCSMRosterPresentation} from './roster-presentation.mjs';
 import {modelBaseDisplayValue} from '../../shared/army-book-app-v2/model-base-presentation.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const aliases={MODEL_PROFILE:'PROFILE',CORE_ABILITY_MEMBERSHIP:'RULE_REFERENCE',ARMY_RULE_MEMBERSHIP:'RULE_REFERENCE',
   DATASHEET_ABILITY:'SUPPLEMENTAL_DATASHEET_RULE',EQUIPMENT_ABILITY:'SUPPLEMENTAL_DATASHEET_RULE',
   UNIT_COMPOSITION:'DATASHEET_SECTION',ATTACHMENT_DECLARATION:'DATASHEET_SECTION',TRANSPORT_DECLARATION:'DATASHEET_SECTION',
@@ -31,6 +32,7 @@ const visiblePaths={DATASHEET:[],PROFILE:['name','stats'],WEAPON_PROFILE:['name'
   ENHANCEMENT_COST_QUALIFIERS:['title','value','qualifiers']};
 
 export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
+  built={...built,facts:prepareSourceProducer(built.facts),book:prepareSourceProducer(built.book)};
   const facts=built.facts,index=new Map(facts.entities.map(e=>[e.id,e]));
   const sourceToCanonical=new Map(facts.entities.flatMap(e=>(e.provenance||[]).map(p=>[p.sourceEntityId,e.id])));
   const attachmentHeadings={LEADER:'Leader',SUPPORT:'Support','ATTACHED UNIT':'Attached Unit'};
@@ -41,7 +43,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
     currentness:{currentness:'CURRENT',lastReconciledSource:'Accepted current source corpus'},
     mfm:{source:{label:''},unitBindings:[],detachmentBindings:[],enhancementBindings:[],paidUpgradeBindings:[],relations:[],eligibilityEvidenceBindings:[]}};
   for(const unit of model.entities.filter(e=>e.kind==='DATASHEET'))unit.data.profileIds=unit.data.modelProfileIds;
-  const payload=projectArmyBook(model,new Map(),{title:'Chaos Space Marines',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(model,new Map(),{title:'Chaos Space Marines',edition:'11th Edition'}));
   const cards=new Map(payload.cards.map(c=>[c.id,c]));
   const mfmSource=read('../sources/official-mfm-v1.5.json');
   for(const entity of facts.entities.filter(e=>e.kind==='POINTS_SCHEDULE_ROW')){
@@ -219,12 +221,12 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   assert.ok(payload.relatedRules.rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'));
   payload.ruleContractIds=built.book.entities.filter(e=>e.ruleContract).map(e=>e.id);
   payload.rosterPresentation=buildCSMRosterPresentation(facts);
-  return payload;
+  return finalizeSourceOutput(payload);
 }
 export function writeApp({check=false}={}){
   assertBookSourceReview('chaos-space-marines',{executionBook:buildCSMRosterEffectBook()});
   const payload=buildApp();
-  for(const [name,value]of [['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n']]){
+  for(const [name,value]of [['./generated/app-presentation.json',serializeSourceJSON(payload)]]){
     const file=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(file,'utf8'),value,'Stale CSM presentation');else{fs.mkdirSync(new URL('./generated/',import.meta.url),{recursive:true});fs.writeFileSync(file,value);}
   }
   return payload;

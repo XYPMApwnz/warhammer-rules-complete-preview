@@ -1,4 +1,5 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 
 /** Reviewed presentation link, not an equipment identity or effect declaration.
  * The selected ability block and the option spelling retain their own owners. */
@@ -15,9 +16,9 @@ export function withEquipmentCaptionBindings(book) {
     const selected=records.get(id),option=records.get(optionId);
     if(book.bookId!=='adeptus-mechanicus'||records.get(ownerId)?.kind!=='DATASHEET'||
       selected?.kind!=='DATASHEET_SECTION'||selected.parentId!==ownerId||
-      selected.data.blocks?.[index]?.wargearAbility!==true||!selected.provenance?.sourceId||
+      selected.data.blocks?.[index]?.wargearAbility!==true||!getRecordedSourceIdentity(selected,{book})||
       !selected.data.blocks[index].text.toLowerCase().startsWith(label+':')||
-      option?.kind!=='WARGEAR_OPTION'||option.parentId!==ownerId||!option.provenance?.sourceId)
+      option?.kind!=='WARGEAR_OPTION'||option.parentId!==ownerId||!getRecordedSourceIdentity(option,{book}))
       throw new TypeError('Missing canonical '+label+' caption owner');
     const text=option.data.text,start=text?.indexOf(label);
     if(typeof text!=='string'||start<0||text.indexOf(label,start+label.length)!==-1)

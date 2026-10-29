@@ -3,6 +3,7 @@
  * state is returned: every loadout/option below passes through text import.
  */
 import assert from 'node:assert/strict';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import {buildCSMContracts} from './rule-contract-build.mjs';
 import {buildCSMRosterEffectBook,executableClauses} from './roster-effect-build.mjs';
 import {clauseFixture} from './roster-effect-fixture.mjs';
@@ -96,7 +97,7 @@ export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),buil
     return {id:`${rule.id}::${clause.id}`,owner:rule.id,clauseId:clause.id,text,
       sourceCanonicalUnitId:source.canonicalUnitId,sourceOrdinal:1,
       bearerProfileId:witness.profileId,
-      sourceEvidence:structuredClone(rule.provenance.sourceEvidence),
+      sourceEvidence:structuredClone(sourceSnapshot(rule,{book}).sourceEvidence),
       sourceClause:structuredClone(clause.evidence),sourceFields:structuredClone(sourceFields),
       units,attachments,
       ...(source.canonicalUnitId==='unit-fabius-bile'?{initialAttachments:structuredClone(attachments)}:{}),

@@ -1,0 +1,454 @@
+{
+  "schema": "source-producer-reconfirmation/v1",
+  "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+  "reason": "Translate 3: source-reference format",
+  "authorization": {
+    "kind": "EXPLICIT_OWNER_AUTHORIZATION",
+    "scope": "Reconfirm the changed Space Marines v2/build.py only after proving serialization-only changes and all original SM fields unchanged. Apply the same procedure to any other changed pinned producer. Do not weaken hash guards, refresh accepted gameplay facts, or bypass review.",
+    "publication": "Feature branch only; no source/release/main fast-forward or publication authorized."
+  },
+  "commitReference": {
+    "status": "PENDING_FINAL_FEATURE_COMMIT",
+    "sha": null,
+    "note": "The root agent must record the resulting implementation commit after it exists; this file does not claim an absent commit."
+  },
+  "producer": {
+    "path": "books/space-marines/v2/build.py",
+    "oldSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+    "newSha256": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e",
+    "diffSha256": "ccc9c2177f190024b4c523cdadceb6bd3d57df1278fc7f7efcc171cf6921f8ef",
+    "diff": "diff --git a/books/space-marines/v2/build.py b/books/space-marines/v2/build.py\nindex d6727536..39b0f37b 100644\n--- a/books/space-marines/v2/build.py\n+++ b/books/space-marines/v2/build.py\n@@ -18,6 +18,8 @@ from lxml import html\n sys.dont_write_bytecode = True\n HERE = Path(__file__).resolve().parent\n ROOT = HERE.parents[2]\n+sys.path.insert(0, str(ROOT/'books/shared/tools'))\n+from source_refs_output import serialized_source_outputs\n BOOK = 'space-marines'\n RAW = 'books/space-marines/v2/sources/raw/'\n HUB = RAW+'wahapedia-space-marines-main.html'\n@@ -440,9 +442,8 @@ def main():\n     parser.add_argument('--check',action='store_true')\n     args=parser.parse_args()\n     documents=build()\n-    for name,value in documents.items():\n+    for name,expected in serialized_source_outputs(documents, ROOT).items():\n         path=HERE/'generated'/(name+'.json')\n-        expected=serialize(value)\n         if args.check:\n             if not path.exists() or path.read_bytes()!=expected:\n                 raise ValueError('Stale/non-deterministic factual output: '+name)\n",
+    "scopeProof": "Exact reversal of the two import/path lines and final serialization-loop substitution restores the complete base producer byte-for-byte. All factual parsing/build functions and original --check guard remain unchanged.",
+    "sharedSerializer": {
+      "path": "books/shared/tools/source_refs_output.py",
+      "sha256": "5e17904f2dc4a5dcce6021b190a85eb5af437a66b44094f286b2c542800de35e",
+      "purpose": "Serializes the existing named producer outputs through the common source-reference compiler at the final output boundary.",
+      "nodeBridge": {
+        "path": "books/shared/source-refs-v2/producer-io.mjs",
+        "sha256": "d55cb154c93705e7d655acafc6c322dca21595f2dd5125c30a9a7471e20fa34f"
+      },
+      "codec": {
+        "path": "books/shared/source-refs-v2/source-refs.mjs",
+        "sha256": "65390b89d5020141a89db6996e981eaeeca1e202fb573e5a8d47d4390295f77b"
+      },
+      "sharedCatalog": {
+        "path": "books/shared/source-refs-v2/source-catalog.json",
+        "sha256": "8591b7904796abbfda9481df098ed4d700c1fddbd20ebb436a2e3ca32d60f0c4"
+      }
+    }
+  },
+  "reviewFilesScanned": [
+    "books/blood-angels/v2/app-source-review.json",
+    "books/blood-angels/v2/source-review.json",
+    "books/dark-angels/v2/app-source-review.json",
+    "books/dark-angels/v2/chapter-source-review.json",
+    "books/shared/roster-v2/source-completeness-review.json",
+    "books/space-marines/v2/source-review.json",
+    "books/tau-empire/v2/app-source-review.json"
+  ],
+  "pinnedCodeReferences": [
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/0/sha256",
+      "producerPath": "books/adeptus-mechanicus/tools/import-waha-current-corpus.py",
+      "recordedSha256": "9721805f1b9cf54e9b70b4ecb58411b645e6d0ab792922156ee2b2b1a80d8c2b",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/death-guard/tools/import-waha-current-corpus.py",
+      "recordedSha256": "7d20c5cb50d7b1649e7633d6b9f50490fc0a10adb2588e2c8e39701f4ad26599",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/47/sha256",
+      "producerPath": "books/tau-empire/tools/import-waha-current-corpus.py",
+      "recordedSha256": "34983b59fcaed1d9b4fd010613e0a0fadac4c6d5f0eb690bcc6ef91744c545e5",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "changed": true
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/2/sha256",
+      "producerPath": "books/space-marines/v2/foundation-qa.py",
+      "recordedSha256": "665241c0c592d4b8f5a6e5f5bfcfa98f63a2d173b0611ad92912ae8f4d30a6ba",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/6/sha256",
+      "producerPath": "books/space-marines/v2/official-qa.py",
+      "recordedSha256": "d4e84a520cb769125e5f82dbf95e10945f5553935f09efde911c1d296a3c11e8",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/7/sha256",
+      "producerPath": "books/space-marines/v2/official.py",
+      "recordedSha256": "af540e3a92d4d18e0d368c88d29b4702e1bb019de84122e675ec8721e0c42f18",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/8/sha256",
+      "producerPath": "books/space-marines/v2/raw-inventory-qa.py",
+      "recordedSha256": "98d10032ada8904bf0921769b984552e2fe7a19764076a41bbccf6815d71dad1",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "changed": true
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/2/sha256",
+      "producerPath": "books/space-marines/v2/foundation-qa.py",
+      "recordedSha256": "665241c0c592d4b8f5a6e5f5bfcfa98f63a2d173b0611ad92912ae8f4d30a6ba",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/6/sha256",
+      "producerPath": "books/space-marines/v2/official-qa.py",
+      "recordedSha256": "d4e84a520cb769125e5f82dbf95e10945f5553935f09efde911c1d296a3c11e8",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/7/sha256",
+      "producerPath": "books/space-marines/v2/official.py",
+      "recordedSha256": "af540e3a92d4d18e0d368c88d29b4702e1bb019de84122e675ec8721e0c42f18",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/8/sha256",
+      "producerPath": "books/space-marines/v2/raw-inventory-qa.py",
+      "recordedSha256": "98d10032ada8904bf0921769b984552e2fe7a19764076a41bbccf6815d71dad1",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "changed": true
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/2/sha256",
+      "producerPath": "books/space-marines/v2/foundation-qa.py",
+      "recordedSha256": "665241c0c592d4b8f5a6e5f5bfcfa98f63a2d173b0611ad92912ae8f4d30a6ba",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/6/sha256",
+      "producerPath": "books/space-marines/v2/official-qa.py",
+      "recordedSha256": "d4e84a520cb769125e5f82dbf95e10945f5553935f09efde911c1d296a3c11e8",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/7/sha256",
+      "producerPath": "books/space-marines/v2/official.py",
+      "recordedSha256": "af540e3a92d4d18e0d368c88d29b4702e1bb019de84122e675ec8721e0c42f18",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/8/sha256",
+      "producerPath": "books/space-marines/v2/raw-inventory-qa.py",
+      "recordedSha256": "98d10032ada8904bf0921769b984552e2fe7a19764076a41bbccf6815d71dad1",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/tau-empire/v2/app-source-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/0/sha256",
+      "producerPath": "books/adeptus-mechanicus/tools/import-waha-current-corpus.py",
+      "recordedSha256": "9721805f1b9cf54e9b70b4ecb58411b645e6d0ab792922156ee2b2b1a80d8c2b",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/tau-empire/v2/app-source-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/death-guard/tools/import-waha-current-corpus.py",
+      "recordedSha256": "7d20c5cb50d7b1649e7633d6b9f50490fc0a10adb2588e2c8e39701f4ad26599",
+      "changed": false
+    },
+    {
+      "reviewPath": "books/tau-empire/v2/app-source-review.json",
+      "pointer": "/books/tau-empire/sourceReview/artifacts/47/sha256",
+      "producerPath": "books/tau-empire/tools/import-waha-current-corpus.py",
+      "recordedSha256": "34983b59fcaed1d9b4fd010613e0a0fadac4c6d5f0eb690bcc6ef91744c545e5",
+      "changed": false
+    }
+  ],
+  "updatedPins": [
+    {
+      "reviewPath": "books/shared/roster-v2/source-completeness-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "oldSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "newSha256": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e"
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/space-marines/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "oldSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "newSha256": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e"
+    },
+    {
+      "reviewPath": "books/space-marines/v2/source-review.json",
+      "pointer": "/books/deathwatch/sourceReview/artifacts/1/sha256",
+      "producerPath": "books/space-marines/v2/build.py",
+      "recordedSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "oldSha256": "874db1b4dd016c2565f4a71a8bf46bcc2f071986139e2ddf24b558516bfc3fa4",
+      "newSha256": "f887c2e4f6d64e4543367159ce3e49aa1bf5ba3b065a39693662c3f2ba4c702e"
+    }
+  ],
+  "guards": {
+    "status": "UNCHANGED",
+    "path": "books/shared/roster-v2/source-completeness.mjs",
+    "statements": [
+      "path:relative,sha256:bytesFingerprint(fs.readFileSync(path.join(root,relative)))",
+      "requireValue(stableJson(reviewed.sourceReview)===stableJson(input.sourceReview),'UNREVIEWED_SOURCE_REVISION',input.bookId);"
+    ]
+  },
+  "spaceMarinesFieldParity": {
+    "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+    "phase": "FINAL_REGENERATED_ARTIFACTS",
+    "verification": "Every original JSON field and exact string restored; compact UTF-8 serialization equal, including original object order",
+    "artifacts": [
+      {
+        "file": "books/space-marines/v2/generated/app-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 2523,
+        "fields": 522964,
+        "baselineBytesSha256": "46b084b187ba9f2e932797fbbef6ec11c0a76979685dd24ec1cf26210848588a",
+        "featureBytesSha256": "464e7cee4007492c9799ae0c1f9e388dd29f8138cd86990007305dedbbb86187",
+        "baselineCompactSha256": "655632be03baf03f23ace7e74499ae33698f5c2ab7347c2aa938458d8d07482a",
+        "inverseCompactSha256": "655632be03baf03f23ace7e74499ae33698f5c2ab7347c2aa938458d8d07482a"
+      },
+      {
+        "file": "books/space-marines/v2/generated/base.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1714,
+        "fields": 42193,
+        "baselineBytesSha256": "6f91076a881783ab319686e4bbd20be63b05a479d1034cdbbbede9f89a443a8a",
+        "featureBytesSha256": "a1790607824ebecc5d11e2fc2fa27a0e80d177c7e1b42bd23679ffec73573f93",
+        "baselineCompactSha256": "ce74b00f70536440eefde6c49dbbd6535ed2ce6bd17ff2dd63af7add65e7012e",
+        "inverseCompactSha256": "ce74b00f70536440eefde6c49dbbd6535ed2ce6bd17ff2dd63af7add65e7012e"
+      },
+      {
+        "file": "books/space-marines/v2/generated/book-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1904,
+        "fields": 299966,
+        "baselineBytesSha256": "e41a953f21485db14a67840d76a7828923a7897f58d52900a3227d1cc59cc5e5",
+        "featureBytesSha256": "92c5b6daa9a58df4342abc5112e1094e8c3e8fa2052b8862a2b89cf524f79c32",
+        "baselineCompactSha256": "3baeeaa7683cbae8dbbe176c3d352d5c3c5900f8edb2519752f6ee0a7946c9ce",
+        "inverseCompactSha256": "3baeeaa7683cbae8dbbe176c3d352d5c3c5900f8edb2519752f6ee0a7946c9ce"
+      },
+      {
+        "file": "books/space-marines/v2/generated/cross-owner-references.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 8,
+        "fields": 159,
+        "baselineBytesSha256": "159c23dd164896be0a9e682cde2a8136d525ae7d5b80ef6d50cfdd0851c5955e",
+        "featureBytesSha256": "30caf52d952f80191627b78b5d8b5d5c3303c0c2da0c9b13ff3a0dcd93fef684",
+        "baselineCompactSha256": "29098bc7a4f0ae97b5216386bbd92161e945341e7393e8715f8aa0c81551c00c",
+        "inverseCompactSha256": "29098bc7a4f0ae97b5216386bbd92161e945341e7393e8715f8aa0c81551c00c"
+      },
+      {
+        "file": "books/space-marines/v2/generated/datasheet-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1524,
+        "fields": 264178,
+        "baselineBytesSha256": "ebad26f166c614e39b0fab78f4f3d378b9ab05af9e44d5be80ae045041dc9f71",
+        "featureBytesSha256": "db65782ba0c8494cf054998602d3a9ac4b7fa98af5d758f0ac2dd71e562f2bdd",
+        "baselineCompactSha256": "54692decdcf5e5b042364575a87e7d8727debef213efd3c369befb6d04f917ef",
+        "inverseCompactSha256": "54692decdcf5e5b042364575a87e7d8727debef213efd3c369befb6d04f917ef"
+      },
+      {
+        "file": "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 18,
+        "fields": 3951,
+        "baselineBytesSha256": "acf5a7dc08f1c5c0a4b5cabdebc29a776759a2cf9b9afa3490c3b226886e79ca",
+        "featureBytesSha256": "eb8fa7ae7fddc63398e74e910a146b38ac423f7f7e66ecf199219bfef32af182",
+        "baselineCompactSha256": "2c3dcf38e09c0e05a8bfaf5102811344c6f69b712dd3f80a0370b148dcddaf44",
+        "inverseCompactSha256": "2c3dcf38e09c0e05a8bfaf5102811344c6f69b712dd3f80a0370b148dcddaf44"
+      },
+      {
+        "file": "books/space-marines/v2/generated/deathwatch-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 16,
+        "fields": 3756,
+        "baselineBytesSha256": "784f395d810bb3824ceda7564982c57e63a07993f2a964224266b79050f9710d",
+        "featureBytesSha256": "2a1456fdaea1ea2e10fcfe4de3e3c1684510911982d25ef8f0c09ca50aa67c06",
+        "baselineCompactSha256": "129d59916c50633b47b2a58c3b94ab934983a17f41208cc1ca058fcaf8495b7a",
+        "inverseCompactSha256": "129d59916c50633b47b2a58c3b94ab934983a17f41208cc1ca058fcaf8495b7a"
+      },
+      {
+        "file": "books/space-marines/v2/generated/effective.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1714,
+        "fields": 42385,
+        "baselineBytesSha256": "c25af190e3baff3556f4445ecaa4117a0babd472cd21aee349a59f6ff7e2abdf",
+        "featureBytesSha256": "3c3572cc2ec0ea399236bc4ea0180b67b649696c11682578116b2ed12f4ee6de",
+        "baselineCompactSha256": "024841ef613fffefc101875cea900ea6d02ef9f4b79765d96b483c35e606866f",
+        "inverseCompactSha256": "024841ef613fffefc101875cea900ea6d02ef9f4b79765d96b483c35e606866f"
+      },
+      {
+        "file": "books/space-marines/v2/generated/factual-census.json",
+        "status": "PASS",
+        "serializationStatus": "NO_MIGRATABLE_SOURCE_SLOTS",
+        "entities": 0,
+        "fields": 54,
+        "baselineBytesSha256": "836eff6653927c1337766cac33ad703ede8042f7ed31c237763af800d4132650",
+        "featureBytesSha256": "836eff6653927c1337766cac33ad703ede8042f7ed31c237763af800d4132650",
+        "baselineCompactSha256": "42c7918c66d308cce052ba2558f41f2f7dff9baabc15788b9dd26f286ab32bfd",
+        "inverseCompactSha256": "42c7918c66d308cce052ba2558f41f2f7dff9baabc15788b9dd26f286ab32bfd"
+      },
+      {
+        "file": "books/space-marines/v2/generated/gameplay-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 2518,
+        "fields": 379777,
+        "baselineBytesSha256": "40760e2b7ba9beb40dbab80a5e1a72a86187d0cca6b6d62ca2ba5dc6e8647f04",
+        "featureBytesSha256": "9a76297d4ef3250881c05bd6f49c81cfed1c3329b439ca6ceb7014f6795faf3c",
+        "baselineCompactSha256": "a4db02e8d52546f94e4ce0023c09474f5020ec0f5ffdc49630230630c7b4de70",
+        "inverseCompactSha256": "a4db02e8d52546f94e4ce0023c09474f5020ec0f5ffdc49630230630c7b4de70"
+      },
+      {
+        "file": "books/space-marines/v2/generated/mfm-coverage.json",
+        "status": "PASS",
+        "serializationStatus": "NO_MIGRATABLE_SOURCE_SLOTS",
+        "entities": 1722,
+        "fields": 12000,
+        "baselineBytesSha256": "52b1e1320474bd85a80a13e252c6d1c5c6776c4310285d29c15783120a551e53",
+        "featureBytesSha256": "52b1e1320474bd85a80a13e252c6d1c5c6776c4310285d29c15783120a551e53",
+        "baselineCompactSha256": "f196c6ac36e94b88587d0ec7c54d3cd9ef53305048b5e32e157676e5d2fce7e4",
+        "inverseCompactSha256": "f196c6ac36e94b88587d0ec7c54d3cd9ef53305048b5e32e157676e5d2fce7e4"
+      },
+      {
+        "file": "books/space-marines/v2/generated/mfm-presentation.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 2144,
+        "fields": 344577,
+        "baselineBytesSha256": "a83a2ef7a022ec073267f8a281f05d666d64318f564aac253a968ae7cbc8d2d7",
+        "featureBytesSha256": "ef3a2ef65fb61bbf6f8fcbe9f8047f21d7aefcec4463b978ad79dcd1223d68e0",
+        "baselineCompactSha256": "22cb139b8940566b6db113d4d64a2c598e6cc26080d056fbc638a5b45a99d08f",
+        "inverseCompactSha256": "22cb139b8940566b6db113d4d64a2c598e6cc26080d056fbc638a5b45a99d08f"
+      },
+      {
+        "file": "books/space-marines/v2/generated/native-book.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1714,
+        "fields": 45620,
+        "baselineBytesSha256": "ffcd59872715dfcf710748e3a67508b11cad24b0b203ef6a32be83b69518b9fa",
+        "featureBytesSha256": "60190b6a61a524f3afcc68083f1f0e01bee550426bead3e257a479ade772c8e9",
+        "baselineCompactSha256": "8c8f653f97f71e29260efc918e42b4d5e8b041f9e548a48608732bfee637e73b",
+        "inverseCompactSha256": "8c8f653f97f71e29260efc918e42b4d5e8b041f9e548a48608732bfee637e73b"
+      },
+      {
+        "file": "books/space-marines/v2/generated/native-datasheets.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1524,
+        "fields": 40717,
+        "baselineBytesSha256": "7b7fb0aeefae151236646b1ba8cb00f13a858f61e1e385fbb35b4da50edc22b2",
+        "featureBytesSha256": "d752c3b2f886d32acc6296a53ded89c325c851e68205723b4265c5e1f9cb7939",
+        "baselineCompactSha256": "ad9881ccb470d99a01270465edd868f3028ad6d338870c20f3cc448b0d0cc90f",
+        "inverseCompactSha256": "ad9881ccb470d99a01270465edd868f3028ad6d338870c20f3cc448b0d0cc90f"
+      },
+      {
+        "file": "books/space-marines/v2/generated/native-mfm-book.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1714,
+        "fields": 53134,
+        "baselineBytesSha256": "15e2a8f93fc258b73d6c540cf26750144170b76e67f2fec3dcc311f6c85f72b1",
+        "featureBytesSha256": "d6d66b72f31d005ed18be1b20f66c032d81ca1bc8f0f1967f849bae5cd2df084",
+        "baselineCompactSha256": "791f542acc08bce34c190a87a45d6ce6e4307626f71b51dcb48780bbb980cb71",
+        "inverseCompactSha256": "791f542acc08bce34c190a87a45d6ce6e4307626f71b51dcb48780bbb980cb71"
+      },
+      {
+        "file": "books/space-marines/v2/generated/roster-import.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1729,
+        "fields": 142165,
+        "baselineBytesSha256": "bef0c0e2e53376c4a9fa74e5e0948eb23957595b73803a7b32dbc629184da268",
+        "featureBytesSha256": "e3d7178572102f5ffb9195b947cc397b15ff5fdffbc3071d9026c9df9acea1dd",
+        "baselineCompactSha256": "ac5fcaf2596209c5d7b44f94e813a5e544f7d454065d97beaa891baffa6f5523",
+        "inverseCompactSha256": "ac5fcaf2596209c5d7b44f94e813a5e544f7d454065d97beaa891baffa6f5523"
+      },
+      {
+        "file": "books/space-marines/v2/generated/roster-runtime.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 1714,
+        "fields": 109123,
+        "baselineBytesSha256": "b21cd4628b9d3d4f5b3fc3bd1aa52c57db4daf90f7fb3140ac145eb902abe7dc",
+        "featureBytesSha256": "13b34b3a92888e6a6bfe5ce9badc12f625a0bacf593983169c32b4f822a55be3",
+        "baselineCompactSha256": "d11dc81215ae39d986573417ecfe359fd901688a7cbf29b58c6fb567267308fe",
+        "inverseCompactSha256": "d11dc81215ae39d986573417ecfe359fd901688a7cbf29b58c6fb567267308fe"
+      },
+      {
+        "file": "books/space-marines/v2/generated/rule-contracts.json",
+        "status": "PASS",
+        "serializationStatus": "SOURCE_REFS_REGENERATED",
+        "entities": 0,
+        "fields": 60408,
+        "baselineBytesSha256": "310a421c72d5ee5ca83a72ee0d94535774c6053dd50fc52acba8dd981a77f3f3",
+        "featureBytesSha256": "3da3bc6599872156e063dd0a3ee4293dec0308e654984b939a07601d3bccf037",
+        "baselineCompactSha256": "41c6a70cb39234feda6f6013d58074feb169322ad8f111c3bcd13fbd06045aab",
+        "inverseCompactSha256": "41c6a70cb39234feda6f6013d58074feb169322ad8f111c3bcd13fbd06045aab"
+      },
+      {
+        "file": "books/space-marines/v2/generated/source-ledger-coverage.json",
+        "status": "PASS",
+        "serializationStatus": "NO_MIGRATABLE_SOURCE_SLOTS",
+        "entities": 1722,
+        "fields": 11951,
+        "baselineBytesSha256": "ad39da3f99d2e8428141e8c3206ce5069eb73e2cb7112d36e1afe126b26f8003",
+        "featureBytesSha256": "ad39da3f99d2e8428141e8c3206ce5069eb73e2cb7112d36e1afe126b26f8003",
+        "baselineCompactSha256": "43a3f1b4b36fb5801785840c89dd62ff36f1a36f5e0bcd8097258de8ce04fb13",
+        "inverseCompactSha256": "43a3f1b4b36fb5801785840c89dd62ff36f1a36f5e0bcd8097258de8ce04fb13"
+      }
+    ],
+    "failures": 0
+  },
+  "limitations": [
+    "All 19 native SM generated JSON outputs are final: 16 contain regenerated sourceRefs and 3 require no source binding migration. Every inverse field/string/order matches base. Final QA results are reported separately.",
+    "This is an automatic static all-field/inverse proof and producer diff review, not a new semantic audit or browser attestation. No QA suites were executed for this reconfirmation.",
+    "BA and DA review files were scanned. They contain no separate pin for this SM producer; the SM source-review also contains a historical Deathwatch copy, which is updated to the identical producer bytes without changing Deathwatch data or scope."
+  ]
+}

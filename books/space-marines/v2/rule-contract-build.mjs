@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** Book-owned typed declarations over native source facts. Shared V2 validators
  * and executor own behaviour. No importer, V1 dependency or source interpreter.
@@ -16,7 +17,7 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const clone=structuredClone,at=(data,path)=>path.reduce((value,key)=>value?.[key],data);
 const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,subject,arguments:args,contextLevel,evidence:clone(evidence)});
@@ -25,6 +26,9 @@ const any=nodes=>nodes.length===1?nodes[0]:{op:'ANY',args:nodes};
 
 export function buildSpaceMarinesContracts({facts=read('./generated/effective.json'),base,cross,
   review=read('./rule-clause-review.json'),inputs=declarations}={}){
+  facts=prepareSourceProducer(facts);
+  base=prepareSourceProducer(base);
+  cross=prepareSourceProducer(cross);
   const original=JSON.stringify(facts),native=buildNativeMfmBook({facts,base,cross}),book=clone(native.model);
   assert.equal(sha(original),review.factualFingerprint,'Unreviewed factual source');
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -170,7 +174,7 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
 export function writeSpaceMarinesContracts({check=false}={}){
   const result=buildSpaceMarinesContracts();
   for(const [name,value]of [['rule-contracts',result.artifact],['roster-runtime',result.book]]){
-    const path=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const path=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(path,'utf8'),bytes,'Stale SM native contract output '+name);else fs.writeFileSync(path,bytes);
   }
   return result;

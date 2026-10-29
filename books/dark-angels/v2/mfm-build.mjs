@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native DA pricing projection using the existing central V2 MFM projector.
  * A reader, physical importer and mixed-owner gameplay remain separate stages.
  */
@@ -5,7 +6,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {consumeMfm} from './mfm-boundary.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 
 export function buildNativeMfmBook({facts=read('./generated/effective.json'),canonicalFacts,bindings}={}){
@@ -34,7 +35,7 @@ export function buildNativeMfmBook({facts=read('./generated/effective.json'),can
 export function writeNativeMfmBook({check=false}={}){
   const result=buildNativeMfmBook();
   for(const [name,value]of [['native-mfm-book',result.model],['mfm-presentation',result.payload],['mfm-coverage',result.coverage]]){
-    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale DA native MFM projection '+name);
     else fs.writeFileSync(file,bytes);
   }

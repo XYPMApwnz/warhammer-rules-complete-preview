@@ -4,6 +4,7 @@ import {validateRoster,changeAttachment,attachmentCheck,predicateContext,withRos
 import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 import {validateCompatibilityFeasibility} from './compatibility-feasibility.mjs';
 import {projectRosterRelated} from './related.mjs';
+import {registerBookSources,cloneSourceBook} from '../source-refs-v2/source-refs.mjs';
 const clone = value=>structuredClone(value);
 const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value==='object'
   ?Object.fromEntries(Object.keys(value).sort().map(key=>[key,ordered(value[key])])):value;
@@ -31,7 +32,8 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
   if(resolveWeaponSelection!==undefined && typeof resolveWeaponSelection!=='function')throw new TypeError('Invalid physical weapon selection resolver');
   if(resolveWeaponPartitions!==undefined && typeof resolveWeaponPartitions!=='function')throw new TypeError('Invalid projection weapon partition resolver');
   ({evaluatePredicate,evaluateRole}=withRosterDetachments({evaluatePredicate,evaluateRole}));
-  book=structuredClone(book);
+  book=cloneSourceBook(book);
+  registerBookSources(book);
   validateRosterEffects(book,validatePredicate,evaluatePredicate);
   const records = new Map(book.entities.map(e=>[e.id,e])), policies = book.rosterAttachmentPolicies;
   validateCompatibilityFeasibility(book);

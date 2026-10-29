@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native application projection over the existing factual, MFM and gameplay
  * producers. This module owns layout metadata only; no facts or calculations. */
 import fs from 'node:fs';
@@ -8,7 +9,7 @@ import {buildSpaceMarinesImportBook} from './roster-import-build.mjs';
 import {appendDetachmentReferencePresentation} from './detachment-reference-build.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function assertSpaceMarinesAppSourceReview(executionBook=buildSpaceMarinesImportBook()){
   const facts=read('./generated/effective.json'),cross=read('./generated/cross-owner-references.json');
   return assertSourceCompletenessGate({review:read('./source-review.json'),books:[
@@ -18,7 +19,7 @@ export function assertSpaceMarinesAppSourceReview(executionBook=buildSpaceMarine
 }
 
 export function buildApp(){
-  const payload=buildGameplayPresentation(),facts=read('./generated/effective.json');
+  const payload=prepareSourceProducer(buildGameplayPresentation()),facts=read('./generated/effective.json');
   const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.bookPresentation.coverImage='../assets/space-marines-cover-800.webp';
   // The established related-rule index retains canonical Detachment ownership.
@@ -42,11 +43,11 @@ export function buildApp(){
     unsupportedAutomaticMechanics:'books/space-marines/v2/static-gameplay-review.json',
     paidOptions:'EXACT_PHYSICAL_SELECTION_REQUIRED_ELSE_UNRESOLVED',
     deathwatch:'TEXT_ONLY_SOURCE_BACKED_SELECTED_DETACHMENT_REFERENCE'};
-  return appendDetachmentReferencePresentation(payload);
+  return finalizeSourceOutput(appendDetachmentReferencePresentation(payload));
 }
 
 export function writeApp({check=false}={}){
-  const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=JSON.stringify(payload,null,2)+'\n';
+  const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=serializeSourceJSON(payload);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale Space Marines app presentation');
   else fs.writeFileSync(file,bytes);
   return payload;

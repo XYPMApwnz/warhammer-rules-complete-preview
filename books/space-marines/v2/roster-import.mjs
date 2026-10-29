@@ -8,6 +8,7 @@ import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {projectSpaceMarinesPaidOptions} from './roster-paid-options.mjs';
+import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const clone=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
@@ -39,6 +40,14 @@ export function createSpaceMarinesRosterImport(book){
     const checked=(object,key,value)=>{
       if(Object.hasOwn(object,key)&&!same(object[key],value))error('CONFLICTING_SOURCE_BINDING',key,'Stored source/physical binding changed');
       else object[key]=clone(value);
+    };
+    const checkedSource=(object,key,source)=>{
+      if((Object.hasOwn(object,key)||object.sourceBindings?.[key])&&!sameSourceEvidence(object,source,{book,slot:key,otherSlot:'provenance'}))
+        error('CONFLICTING_SOURCE_BINDING',key,'Stored source/physical binding changed');
+      else {
+        const prior=Object.keys(object.sourceBindings||{}).filter(slot=>!slot.startsWith('$')).map(slot=>copySourceEvidence(object,{book,slot}));
+        delete object[key];Object.assign(object,mergeSourceEvidence(...prior,copySourceEvidence(source,{book,targetSlot:key})));
+      }
     };
     try{
       const graph=state.attachments;state=validateRoster(book,{...state,attachments:[]},[]);state.attachments=graph;
@@ -82,7 +91,7 @@ export function createSpaceMarinesRosterImport(book){
               if(matched.length===1){
                 const source=matched[0],id=source.canonicalEquipmentIds[0];
                 if(!same(selection.sourceReferences||[],source.sourceReferences||[]))error('WRONG_EQUIPMENT_REFERENCE',selection.selectionKey,'Source equipment caption differs');
-                checked(selection,'sourceEquipmentIdentity',id);checked(selection,'sourceEquipmentProvenance',index.get(id).provenance);
+                checked(selection,'sourceEquipmentIdentity',id);checkedSource(selection,'sourceEquipmentProvenance',index.get(id));
               }else if(selection.canonicalEquipmentIds.some(id=>index.get(id)?.kind!=='WARGEAR_OPTION'))
                 error('UNREVIEWED_EQUIPMENT_BINDING',selection.selectionKey,'Unknown source equipment occurrence');
             }

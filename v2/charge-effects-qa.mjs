@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** Seven independently reviewed source obligations, exercised through the real
  * book adapters and shared executor/presentation. No expected set is derived
  * from production contracts. This is focused QA, not 397-requirement parity. */
@@ -14,7 +16,7 @@ import {prepareRosterPresentationCards,projectFormedUnitCards} from '../books/sh
 import {resolveRecipient,recipientDeclarationView,compileBookRecipients} from '../books/shared/rule-contract-v2/recipients.mjs';
 import {producerDetachmentTextDeclaration} from '../books/shared/roster-v2/conditional-policy.mjs';
 
-const root=new URL('../',import.meta.url),read=path=>JSON.parse(fs.readFileSync(new URL(path,root),'utf8'));
+const root=new URL('../',import.meta.url),read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,root),'utf8'));
 const expectations=read('books/shared/roster-v2/charge-source-expectations.json');
 const ledger=read('books/shared/roster-v2/source-effect-coverage-baseline.json');
 const clone=structuredClone,results=[],mutations=[];
@@ -30,8 +32,8 @@ for(const bookId of new Set(expectations.cases.map(e=>e.bookId))){
   const create={'death-guard':createDGRosterRuntime,'adeptus-mechanicus':createAdMechRosterRuntime,'chaos-space-marines':createCSMBrowserRoster,'emperors-children':createECBrowserRoster}[bookId];
   adapters.set(bookId,{book,cards,make:(candidate=book)=>create(candidate,...extra)});
 }
-const characteristics=service=>service.projection.units.map(unit=>({id:unit.instanceId,
-  profiles:unit.profiles.map(model=>({id:model.canonicalProfileId,profile:model.profile,weapons:model.weapons})),weapons:unit.weapons}));
+const characteristics=service=>sourceDeclarationView(service.projection.units.map(unit=>({id:unit.instanceId,
+  profiles:unit.profiles.map(model=>({id:model.canonicalProfileId,profile:model.profile,weapons:model.weapons})),weapons:unit.weapons})));
 function observe(service,cards,expectation){
   return service.projection.units.map(unit=>{
     const view=projectFormedUnitCards(cards,service,unit.instanceId);
@@ -42,7 +44,7 @@ function observe(service,cards,expectation){
         source:a.sourceInstanceId,target:a.targetInstanceId,model:a.targetModelInstanceId,after:a.after})),
       presentation:metrics.map(m=>({key:m.key,label:m.label,value:m.value.modifier,display:m.displayValue,
         scope:m.unitScope,recipients:[...m.recipientInstanceIds].sort(),sources:[...new Set(m.sources.map(s=>s.ruleId))],
-        sourceInstances:[...new Set(m.sources.map(s=>s.sourceInstanceId))],provenance:m.sources.every(s=>Object.keys(s.provenance).length>0)}))};
+        sourceInstances:[...new Set(m.sources.map(s=>s.sourceInstanceId))],provenance:m.sources.every(s=>Object.keys(sourceSnapshot(s)).length>0)}))};
   });
 }
 function expected(service,fixture,expectation,enabled){

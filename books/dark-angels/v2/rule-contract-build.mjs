@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** Book-owned DA declarations over the existing closed mixed-owner view.
  * Army applicability is derived separately from intrinsic physical Chapter. */
@@ -15,7 +16,7 @@ import {bindDarkAngelsChapterSources,chapterGrantDeclarations} from './chapter-b
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,sha=text=>createHash('sha256').update(text).digest('hex').toUpperCase();
 const atom=(predicate,subject,args,evidence,contextLevel='STATIC')=>({predicate,subject,arguments:args,contextLevel,evidence:clone(evidence)});
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
@@ -166,7 +167,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
 export function writeDarkAngelsContracts({check=false}={}){
  const result=buildDarkAngelsContracts();
  for(const [name,value]of [['rule-contracts',result.artifact],['roster-runtime',result.book]]){
-  const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+  const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
   if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale DA gameplay output '+name);else fs.writeFileSync(file,bytes);
  }
  return result;

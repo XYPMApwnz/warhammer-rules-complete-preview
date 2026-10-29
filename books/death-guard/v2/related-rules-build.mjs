@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -22,6 +23,7 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
  * source-card occurrences, V1 outputs and generated caches never choose answers.
  */
 export function buildRelatedRules(model) {
+  model=prepareSourceProducer(model);
   const compiler=createDGCompatibilityCompiler(model),kinds=['STRATAGEM','ENHANCEMENT'];
   const base=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true});
   const selectedRows=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true,contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId})});
@@ -47,8 +49,8 @@ export function buildRelatedRules(model) {
 }
 
 export function writeRelatedRules({check=false,model}={}) {
-  model??=JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-effective.json',import.meta.url),'utf8'));
-  const projection=buildRelatedRules(model),text=JSON.stringify(projection,null,2)+'\n';
+  model??=parseProducerJSON(fs.readFileSync(new URL('./generated/rule-contract-effective.json',import.meta.url),'utf8'));
+  const projection=buildRelatedRules(model),text=serializeSourceJSON(projection);
   const location=new URL('./generated/related-rules-v2.json',import.meta.url);
   if(check)assert.equal(fs.readFileSync(location,'utf8'),text,'Disposable compatibility output is stale');
   else fs.writeFileSync(location,text);

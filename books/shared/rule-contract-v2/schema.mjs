@@ -2,6 +2,7 @@
 import {validateBookRecipients,recipientDeclarationView} from './recipients.mjs';
 import {conditionSpec,isCanonicalCondition,findConditionValue,declarationFieldArguments,translateFieldArguments} from './conditions.mjs';
 import {compileConditionSchema,validateBookConditions} from './conditions-build.mjs';
+import {getRecordedSourceIdentity} from '../source-refs-v2/source-refs.mjs';
 export const subjects = Object.freeze(['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER']);
 export const levels = Object.freeze(['STATIC','ROSTER','BATTLE']);
 export const publicResult = Object.freeze({TRUE:'MATCH',FALSE:'NO_MATCH',UNKNOWN:'CONDITIONAL',INVALID:'INVALID'});
@@ -94,7 +95,7 @@ export function createRuleContractSchema({stateFields = {}, conditionFields = []
       if(contract.schema!==contractSchema) fail('unknown contract schema');
       if (seen.has(contract.ruleId)||contract.ruleId!==entity.id) fail('duplicate independent semantic owner or changed rule ID');
       seen.add(contract.ruleId);
-      if (!entity.provenance?.sourceId||contract.sourceId!==entity.provenance.sourceId||contract.ownerId!==(entity.parentId||model.bookId)) fail('source provenance/owner severed');
+      if (!getRecordedSourceIdentity(entity,{book:model})||getRecordedSourceIdentity(contract,{book:model,slot:'sourceId'})!==getRecordedSourceIdentity(entity,{book:model})||contract.ownerId!==(entity.parentId||model.bookId)) fail('source provenance/owner severed');
       if (!levels.includes(contract.contextLevel)||!Array.isArray(contract.roles)) fail('invalid contract shape');
       if(!['ARMY_RULE','DATASHEET_ABILITY','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM','FAQ_ERRATA_RULE','OTHER_RULE'].includes(contract.kind)||!['SOURCE_DIRECTIVE','DATASHEET_DECLARATION','RULE_DECLARATION','DECLARATIVE_APPLICABILITY','BATTLE_ACTION'].includes(contract.executionMode))fail('unknown kind or execution mode');
       if(contract.detachmentId&&(contract.detachmentId!==entity.parentId||model.entities.find(record=>record.id===contract.detachmentId)?.kind!=='DETACHMENT'))fail('invalid Detachment scope');

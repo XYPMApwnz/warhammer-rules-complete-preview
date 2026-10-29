@@ -10,6 +10,7 @@ import argparse
 import copy
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -21,6 +22,9 @@ from model_sources import validate_model_bindings
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 BOOK = "chaos-space-marines"
 read = lambda path: json.loads(path.read_text(encoding="utf-8"))
 
@@ -427,15 +431,14 @@ def main():
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     outputs = build()
-    for name, data in outputs.items():
+    for name, data in serialized_source_outputs(outputs, ROOT).items():
         path = HERE / "generated" / (name + ".json")
-        text = serialized(data)
         if args.check:
-            if not path.is_file() or path.read_text(encoding="utf-8") != text:
+            if not path.is_file() or path.read_bytes() != data:
                 raise SystemExit("STALE factual output: " + str(path))
         else:
             path.parent.mkdir(exist_ok=True)
-            path.write_text(text, encoding="utf-8")
+            path.write_bytes(data)
     print(json.dumps(outputs["factual-census"], ensure_ascii=False))
 
 

@@ -1,3 +1,4 @@
+import {serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
@@ -17,7 +18,7 @@ export function buildECRosterAttachmentBook() {
   return {...built,book};
 }
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])) {
-  const text=JSON.stringify(buildECRosterAttachmentBook().book,null,2)+'\n',file=new URL('./generated/roster-attachments.json',import.meta.url);
+  const text=serializeSourceJSON(buildECRosterAttachmentBook().book),file=new URL('./generated/roster-attachments.json',import.meta.url);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),text,'Stale EC attachment input');
   else fs.writeFileSync(file,text);
   console.log(JSON.stringify({status:'PASS',leaderRelations:8,unresolvedRelations:1,armyLegality:'NOT_ASSESSED'}));

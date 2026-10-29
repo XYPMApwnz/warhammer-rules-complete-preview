@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
@@ -525,9 +526,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const physicalUnit=roster.state.units.find(unit=>unit.instanceId===instanceId),ruleGroups=new Map();
       for(const row of card.rosterDetachmentTexts||[])validateComponentDetachmentText(cards,roster,physicalUnit,textEffective,row);
       const displayRows=groupDetachmentTextRows(card.rosterDetachmentTexts||[]);
-      const ruleKey=row=>JSON.stringify([row.ruleId,row.sourceProvenance,row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
+      const ruleKey=row=>JSON.stringify([row.ruleId,sourceSnapshot(row,{slot:'sourceProvenance'}),row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
       for(const row of displayRows){
-          const signature=JSON.stringify([row.ruleId,row.sourceProvenance,row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
+          const signature=JSON.stringify([row.ruleId,sourceSnapshot(row,{slot:'sourceProvenance'}),row.sourceOwnerChain,row.sourceInstanceId,row.sourceModelScopeId]);
           let group=ruleGroups.get(signature);
           if(!group){
             const node=el('article','ds-detachment-rule');node.dataset.detachmentRuleId=row.ruleId;
@@ -559,7 +560,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           node.dataset.conditionalPolicy='DETACHMENT_TEXT';node.dataset.execution=row.execution;
           node.dataset.recipientSubject=text.recipientSubject;node.dataset.recipientModelScopeIds=JSON.stringify(row.recipientModelScopeIds);
           node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);node.dataset.selectionStatus=text.kind;
-          node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
+          node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:sourceSnapshot(row,{slot:'sourceProvenance'})});
           node.dataset.rosterClassification=text.classification;
           node.append(el('p','',text.kind==='ABILITY_PRESENT'?'Ability available — Not automatically calculated':
             text.kind==='ELIGIBLE_FOR_SELECTION'?'Eligible for selection — Selection not recorded — Not automatically calculated':'Conditional rule — Not automatically calculated'));
@@ -583,7 +584,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         if(row.recipient?.id!==row.recipientId||row.policy.recipientId!==row.recipientId)throw new TypeError('Unresolved conditional policy recipient presentation');
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
-        node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:row.sourceProvenance});
+        node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:sourceSnapshot(row,{slot:'sourceProvenance'})});
         node.append(el('h5','',labels[row.policy.kind]),el('p','','Conditional — Not automatically resolved'));
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
         node.append(el('p','',row.recipient.how==='AURA'?`Recipient unresolved; requires measured ${row.recipient.aura.range} inch range and matching ${row.recipient.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));

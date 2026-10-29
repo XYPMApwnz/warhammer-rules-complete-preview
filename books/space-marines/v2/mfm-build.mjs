@@ -1,3 +1,4 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native MFM presentation stage; the central catalog owns all numeric facts.
  * No legacy builder, import, gameplay execution or app registration.
  */
@@ -29,7 +30,7 @@ function projectPricedBook(native,consumed){
   for(const rows of Object.values(consumed.partitions))for(const binding of rows)if(ids.has(binding.entityId))own(binding.mfmRecordId);
   for(const declaration of model.mfm.relationDeclarations)for(const target of declaration.targets.filter(target=>!target.entityId))own(target.mfmUnitReferenceId);
   for(const entity of model.entities.filter(entity=>entity.kind==='DETACHMENT'))entity.data.ruleId=entity.data.ruleIds[0];
-  const generated=projectArmyBook(model,records,{title:native.payload.book.title,edition:'11th Edition'});
+  const generated=prepareSourceProducer(projectArmyBook(model,records,{title:native.payload.book.title,edition:'11th Edition'}));
   const projected=new Map(generated.cards.map(card=>[card.id,card]));
   const cards=native.payload.cards.map(card=>{
     const view=clone(card),fresh=projected.get(card.id);
@@ -38,7 +39,7 @@ function projectPricedBook(native,consumed){
   cards.push(...generated.cards.filter(card=>!ids.has(card.id)));
   const payload={...clone(native.payload),book:generated.book,cards:sort(cards),factManifest:sort([
     ...native.payload.factManifest,...generated.factManifest.filter(field=>field.ownerType==='CENTRALIZED_MFM')]),
-    bookPresentation:projectBookPresentation(model,records)};
+    bookPresentation:prepareSourceProducer(projectBookPresentation(model,records))};
   payload.rulePresentationLimitations={...payload.rulePresentationLimitations,scope:'STAGE_4A_NATIVE_MFM_BOOK',
     points:'CONFIRMED_CENTRAL_MFM_V1_6',relations:consumed.relationStatus,runtime:'NOT_IMPLEMENTED',
     paidOptions:'CENTRAL_UNIT_OWNED_PRICES_NOT_PHYSICAL_SELECTION_BINDINGS'};
@@ -68,7 +69,7 @@ export function writeNativeMfmBook({check=false}={}){
   const result=buildNativeMfmBook();
   for(const [name,value]of [['native-mfm-book',result.model],['mfm-presentation',result.payload],
     ['deathwatch-mfm-presentation',result.deathwatch.payload],['mfm-coverage',result.coverage]]){
-    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=JSON.stringify(value,null,2)+'\n';
+    const file=new URL('./generated/'+name+'.json',import.meta.url),bytes=serializeSourceJSON(value);
     if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale native MFM output '+name);else fs.writeFileSync(file,bytes);
   }
   return result;

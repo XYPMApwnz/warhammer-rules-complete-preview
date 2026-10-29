@@ -5,6 +5,7 @@
 import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
@@ -31,7 +32,7 @@ export function bindSpaceMarinesStaticModels(book,state){
     const rule=index.get(binding.ruleId),profile=index.get(binding.sourceProfileId);
     requireValue(rule?.parentId===binding.sourceUnitId&&rule.data.text===binding.quote&&
       profile?.kind==='PROFILE'&&profile.parentId===binding.sourceUnitId&&
-      JSON.stringify(rule.provenance)===JSON.stringify(binding.sourceEvidence),
+      sameSourceEvidence(rule,binding,{book:result,otherSlot:'sourceEvidence'}),
       'Unreviewed physical static MODEL source');
     const contract=rule.ruleContract;
     requireValue(contract?.ruleId===rule.id,'Missing canonical physical static contract');
@@ -66,8 +67,8 @@ export function bindSpaceMarinesStaticModels(book,state){
           {binding:'TARGET',predicate:{predicate:'MODEL_KEYWORD',subject:'MODEL',contextLevel:'STATIC',
             arguments:{keyword:binding.recipientKeyword},evidence:clone(proof)}}],
         sourceFields:[clone(binding.field)],evidence:clone(proof),
-        provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,
-          sourceEvidence:clone(rule.provenance),physicalSourceModel:clone(pair)}}];
+        ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,
+          sourceEvidence:sourceSnapshot(rule,{book:result}),physicalSourceModel:clone(pair)}},{book:result})}];
       contract.clauses.push(clause);
     }
   }

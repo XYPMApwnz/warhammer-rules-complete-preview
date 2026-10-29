@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Stage 4: independent input-quantity oracle over the existing shared importer.
  * Factual identities/source text are read from accepted foundation; expected
  * physical quantities come from fixture INPUT, never production import bindings.
@@ -17,7 +19,7 @@ import {formRoster,selections,predicateContext} from '../../shared/roster-v2/con
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
 
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
 const units=facts.entities.filter(e=>e.kind==='DATASHEET'),detachments=facts.entities.filter(e=>e.kind==='DETACHMENT');
 const enhancements=facts.entities.filter(e=>e.kind==='ENHANCEMENT');
@@ -80,11 +82,11 @@ test('facts-and-source-ownership',()=>{
     assert.ok(sourceOptions.includes(id==='drone-gun-drone:weapon:1'?'gun drone':'missile drone'),'Source-backed equipment occurrence required for common weapon reference');}
    copy.weaponIds=clone(fact.data.weaponIds);assert.deepEqual(copy,fact.data,'No copied/reparented/mutated canonical facts');
   }else assert.deepEqual(actual.data,fact.data,'Importer does not change canonical data');
-  assert.deepEqual(actual.provenance,fact.provenance,'Source provenance retained');assert.equal(actual.parentId,fact.parentId);
+  assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(fact),'Source provenance retained');assert.equal(actual.parentId,fact.parentId);
  }
  const root=new URL('../../../',import.meta.url),seen=new Set();
  for(const fact of units){
-  const proof=fact.provenance;if(seen.has(proof.document))continue;seen.add(proof.document);
+  const proof=sourceSnapshot(fact);if(seen.has(proof.document))continue;seen.add(proof.document);
   assert.equal(createHash('sha256').update(fs.readFileSync(new URL(proof.document,root))).digest('hex').toUpperCase(),proof.sha256,'Accepted raw source fingerprint');
  }
 });
@@ -194,9 +196,9 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
   const contract=local.ruleContract,effect=contract.clauses.find(clause=>clause.id==='marker-drone-physical-unit').rosterEffects[0];
   const expectedReferences=[markerId,...(index.get(occurrence.optionId).data.text.toLowerCase().includes('shield drone')?['drone-shield-drone']:[])];
   assert.deepEqual(contract.canonicalRuleReferences,expectedReferences,'Each equipment rule retains its one original generic factual owner');
-  assert.deepEqual(effect.provenance.sourceEvidence,source.provenance,'Every occurrence retains generic source provenance');
-  assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId,'Every occurrence retains its physical source option identity');
-  assert.deepEqual(effect.provenance.physicalEquipmentReference.provenance,local.provenance,'Every occurrence retains local source provenance');
+  assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(source),'Every occurrence retains generic source provenance');
+  assert.equal(sourceSnapshot(effect).physicalEquipmentReference.entityId,occurrence.optionId,'Every occurrence retains its physical source option identity');
+  assert.deepEqual(sourceSnapshot(effect).physicalEquipmentReference.provenance,sourceSnapshot(local),'Every occurrence retains local source provenance');
   const id=occurrence.unitId,plain=header()+fixture(id).text+fixture(id).text;
   const baseline=runtime(ready(plain).roster).projection;
   for(const known of [false,true]){
@@ -204,7 +206,7 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
    const text=header()+equipped+fixture(id).text,service=make(),state=ready(text,{},service).roster,run=runtime(state);
    const inventory=selections(state.units[0]).filter(selection=>selection.sourceEquipmentIdentity===markerId);
    assert.equal(inventory.length,1);assert.equal(inventory[0].physicalQuantity,1);
-   assert.deepEqual(inventory[0].sourceEquipmentProvenance,source.provenance,'One generic source provenance');
+   assert.deepEqual(inventory[0].sourceEquipmentProvenance,sourceSnapshot(source),'One generic source provenance');
    assert.ok(inventory[0].canonicalEquipmentIds.includes(occurrence.optionId),'Physical equipment uses correct local source occurrence');
    if(!known)assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown bearer remains unknown');
    assertMarkerOnly(run.projection,state.units[0].instanceId,baseline);
@@ -277,14 +279,14 @@ test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
   const local=book.entities.find(entity=>entity.id===occurrence.optionId);
   assert.equal(local.ruleContract.canonicalRuleReferences.filter(id=>id===shieldId).length,1);
   for(const selection of selections(state.units[0]).filter(row=>row.sourceEquipmentIdentity===shieldId))
-   assert.deepEqual(selection.sourceEquipmentProvenance,root.provenance);
+   assert.deepEqual(selection.sourceEquipmentProvenance,sourceSnapshot(root));
   if(!known)assert.ok(state.units[0].modelRows.every(model=>model.selections.length===0),'Unknown bearer is never invented');
   const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(rule=>(rule.ruleContract?.clauses||[])
-   .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({rule,clause,effect})))).filter(({effect})=>effect.provenance?.canonicalRuleId===shieldId);
+   .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({rule,clause,effect})))).filter(({effect})=>sourceSnapshot(effect)?.canonicalRuleId===shieldId);
   assert.equal(effects.length,known?1:0);
-  if(known){const {rule,clause,effect}=effects[0];assert.deepEqual(effect.provenance.sourceEvidence,root.provenance);
+  if(known){const {rule,clause,effect}=effects[0];assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(root));
    assert.equal(effect.value,2);assert.equal(resolveRecipient(rule,clause,effect.recipientId).from,'SOURCE_UNIT_MODELS');
-   assert.equal(effect.provenance.physicalEquipmentReference.entityId,occurrence.optionId);}
+   assert.equal(sourceSnapshot(effect).physicalEquipmentReference.entityId,occurrence.optionId);}
   assert.deepEqual(runtime(JSON.parse(JSON.stringify(run.snapshot()))).projection,run.projection,'Shield scope and quantity persist');
   records.shieldSourceCoverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',quantity:2,status:'PASS'});
  }
@@ -352,7 +354,7 @@ test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
  const verify=(domain,bind=enrich)=>{
   const owned=clauses(domain);assert.equal(owned.length,2);assert.equal(new Set(owned.map(row=>row.id)).size,2);
   for(const clause of owned)for(const effect of clause.rosterEffects){
-   assert.equal(effect.referencedRuleId,shieldId);assert.deepEqual(effect.provenance.sourceEvidence,index.get(shieldId).provenance);
+   assert.equal(effect.referencedRuleId,shieldId);assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(index.get(shieldId)));
    const local=domain.entities.find(entity=>entity.ruleContract?.clauses.includes(clause));assert.ok(local.ruleContract.canonicalRuleReferences.includes(shieldId));
   }
   assert.deepEqual(shieldW(execute(domain,bind)),expected,'Independent input oracle catches missing effect, pooling and foreign recipients');
@@ -364,7 +366,7 @@ test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
   ['missing-target-scope',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(row=>row.binding!=='TARGET'))],
   ['wrong-target-scope',domain=>clauses(domain)[0].rosterEffects[0].conditions.find(row=>row.binding==='TARGET').predicate.arguments.equals=formRoster(book,state).units[0].profiles[2].scopeId],
   ['wrong-physical-source',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions.find(row=>row.binding==='SOURCE').predicate.arguments.equals='parsed-unit-2')],
-  ['wrong-generic-provenance',domain=>clauses(domain)[0].rosterEffects[0].provenance.sourceEvidence.sourceId='foreign'],
+  ['wrong-generic-provenance',domain=>sourceFixture(clauses(domain)[0].rosterEffects[0]).provenance.sourceEvidence.sourceId='foreign'],
   ['removed-generic-reference',domain=>domain.entities.filter(entity=>entity.ruleContract).forEach(entity=>entity.ruleContract.canonicalRuleReferences=(entity.ruleContract.canonicalRuleReferences||[]).filter(id=>id!==shieldId))],
   ['duplicate-contribution',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.physicalShieldSelection));local.ruleContract.clauses.push(clone(local.ruleContract.clauses.find(row=>row.physicalShieldSelection)));}]
  ])mutation('stage4d-'+id,()=>{const bad=clone(bound);mutate(bad);assert.throws(()=>verify(bad));});
@@ -398,7 +400,7 @@ test('gun-missile-recon-mv15-source-weapons-counted-once',()=>{
   assert.equal(state.units[0].startingStrength,fixture(c.unit).expected.models,'No fake drone MODEL');
   assert.deepEqual(make().load(state),state,'Equipment + weapon quantities survive save/load');
   assert.ok(inventory[0].sourceReferences?.length,'Canonical equipment source references retained');
-  for(const proof of inventory[0].sourceReferences){assert.ok(index.has(proof.entityId),'Reference resolves exact factual owner');assert.ok(index.get(proof.entityId).provenance.sha256);}
+  for(const proof of inventory[0].sourceReferences){assert.ok(index.has(proof.entityId),'Reference resolves exact factual owner');assert.ok(sourceSnapshot(index.get(proof.entityId)).sha256);}
   records.fixtures.push({id:'drone-'+c.label.toLowerCase().replaceAll(' ','-'),text,expected:[{unit:c.unit,equipment:c.label,quantity:c.qty,weapon:c.weapon}]});
  }
 });
@@ -429,7 +431,7 @@ test('all39-common-drone-and-tidewall-source-inventory-occurrences',()=>{
    assert.equal(chosen.length,1,'One exact UNIT-level equipment selection');assert.equal(chosen[0].physicalQuantity,2);
    assert.ok(chosen[0].canonicalEquipmentIds.includes(source.id),'Accepted Datasheet option remains physical UNIT owner');
    assert.equal(chosen[0].sourceEquipmentIdentity,equipment.id,'One generic drone factual identity');
-   assert.deepEqual(chosen[0].sourceEquipmentProvenance,equipment.provenance,'Generic drone provenance retained');
+   assert.deepEqual(chosen[0].sourceEquipmentProvenance,sourceSnapshot(equipment),'Generic drone provenance retained');
    assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown MODEL bearer never invented');
    assert.deepEqual(make().load(state),state,'Aggregate equipment inventory reload');count++;
   }
@@ -661,7 +663,7 @@ function assertAggregateProjection(run,base,reference,deltas,ruleId){
   assert.equal(part.scopeId??null,reference.scopeId);assert.equal(part.modelInstanceId,original.modelInstanceId);
   assert.equal(part.canonicalProfileId,reference.canonicalProfileId);
   const proof=part.quantityPartition;assert.equal(proof.originalQuantity,2);assert.equal(proof.sourceRuleId,ruleId);
-  assert.deepEqual(proof.sourceProvenance,index.get(ruleId).provenance);
+  assert.deepEqual(sourceSnapshot(proof,{slot:'sourceProvenance'}),sourceSnapshot(index.get(ruleId)));
   assert.equal(proof.sourceSelection.physicalQuantity,2);assert.equal(proof.sourceSelection.quantityEvidence.selectedQuantity,2);
   assert.equal(part.selectionKey,JSON.stringify(['weapon-quantity-portion',reference.unitInstanceId,reference.scopeId,reference.selectionKey,reference.canonicalProfileId,ruleId,proof.role]));
   const expected=clone(original.data);
@@ -705,10 +707,10 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
   for(const row of rows){assert.equal(row.sourceInstanceId,physical.instanceId);assert.equal(row.targetInstanceId,physical.instanceId);
    assert.equal(row.targetWeaponSelectionKey,first.selectionKey);assert.equal(row.targetWeaponScopeId,first.scopeId);
    assert.deepEqual(row.sourceFields,[['text']]);assert.equal(row.sourceCompositionId,first.scopeId);}
-  const decision=tauPrototypeDecisions(run.snapshot().units[0])[0];assert.deepEqual(decision.sourceProvenance,rule.provenance);
+  const decision=tauPrototypeDecisions(run.snapshot().units[0])[0];assert.deepEqual(sourceSnapshot(decision,{slot:'sourceProvenance'}),sourceSnapshot(rule));
   const bound=bindTauPrototypeChoices(book,run.snapshot()),effects=bound.entities.find(row=>row.id===ruleId).ruleContract.clauses.flatMap(row=>row.rosterEffects);
-  assert.ok(effects.every(effect=>effect.provenance.canonicalRuleId===ruleId&&effect.provenance.canonicalOwnerId===rule.parentId&&
-   JSON.stringify(effect.provenance.sourceEvidence)===JSON.stringify(rule.provenance)),'Derived effects preserve original factual owner and provenance');
+  assert.ok(effects.every(effect=>sourceSnapshot(effect).canonicalRuleId===ruleId&&sourceSnapshot(effect).canonicalOwnerId===rule.parentId&&
+   JSON.stringify(sourceSnapshot(effect).sourceEvidence)===JSON.stringify(sourceSnapshot(rule))),'Derived effects preserve original factual owner and provenance');
   const saved=JSON.parse(JSON.stringify(run.snapshot())),projection=clone(run.projection);
   assert.deepEqual(runtime(saved).projection,projection,'Snapshot JSON/load retains exact weapon selection');
   run.load(saved);assert.deepEqual(run.projection,projection,'Recompute does not accumulate modifiers');
@@ -904,7 +906,7 @@ test('student-of-kauyon-exact-three-physical-unit-recipients',()=>{
  for(const [id,mutate]of [
   ['student-missing-selection',bad=>bad.units[0].modelRows[0].selections=[]],
   ['student-wrong-physical-owner',bad=>bad.units[0].modelRows[0].selections.find(s=>s.recipientInstanceIds).sourceInstanceId='parsed-unit-2'],
-  ['student-wrong-source-id',bad=>bad.units[0].modelRows[0].selections.find(s=>s.recipientInstanceIds).sourceProvenance.sourceId='wrong-source'],
+  ['student-wrong-source-id',bad=>sourceFixture(bad.units[0].modelRows[0].selections.find(s=>s.recipientInstanceIds)).sourceProvenance.sourceId='wrong-source'],
   ['student-wrong-recipient',bad=>bad.units[0].modelRows[0].selections.find(s=>s.recipientInstanceIds).recipientInstanceIds=['parsed-unit-1']]
  ])mutation(id,()=>{const bad=clone(saved);mutate(bad);assert.throws(()=>run.load(bad));});
  records.runtimeCases.push({id:'student-of-kauyon',expected:'Exactly3 chosen KROOT physical UNIT get DeepStrike;0other',actual:'Exactly3 chosen physical UNIT; removals recompute',status:'PASS'});
@@ -981,14 +983,14 @@ test('stage4b-independent-marker-and-student-mutation-controls',()=>{
   assert.equal(effect.sourceRuleEvidence.evidence.quote,'The bearer’s unit has the MARKERLIGHT keyword','Only the static keyword clause is executable');
   assert.ok(index.get(markerId).data.text.includes(effect.sourceRuleEvidence.evidence.quote));
   assert.deepEqual(domain.entities.find(entity=>entity.id===markerId).data,index.get(markerId).data,'Full original source including conditional Observer permission remains unchanged');
-  assert.deepEqual(effect.provenance.sourceEvidence,index.get(markerId).provenance,'Reference retains exact source provenance');
+  assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(index.get(markerId)),'Reference retains exact source provenance');
   const projection=diagnostic(domain,state);assertMarkerOnly(projection,'parsed-unit-1',baseline);
  };
  assertMarkerDomain(book);
  for(const [id,mutate]of [
   ['marker-removed-executable-reference',rule=>rule.ruleContract.clauses=rule.ruleContract.clauses.filter(clause=>clause.id!=='marker-drone-physical-unit')],
   ['marker-wrong-generic-root',rule=>rule.ruleContract.canonicalRuleReferences=['drone-shield-drone']],
-  ['marker-wrong-root-provenance',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].provenance.sourceEvidence.sourceId='foreign-source'],
+  ['marker-wrong-root-provenance',rule=>sourceFixture(rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0]).provenance.sourceEvidence.sourceId='foreign-source'],
   ['marker-wrong-field-gate',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].conditions[0].predicate.arguments.equals=false],
   ['marker-wrong-keyword',rule=>rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit').rosterEffects[0].keyword='FLY'],
   ['marker-duplicate-reference',rule=>rule.ruleContract.clauses.push(clone(rule.ruleContract.clauses.find(c=>c.id==='marker-drone-physical-unit')))]

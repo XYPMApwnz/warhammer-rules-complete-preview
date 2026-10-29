@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Targeted isolated presentation parity, fail-closed controls and adapter checks. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -7,7 +9,7 @@ import {createTauBrowserRoster} from './roster-boot.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const book=buildTauImportBook(),original=JSON.stringify(book),facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
 const payload=writeApp({check:true}),cards=new Map(payload.cards.map(c=>[c.id,c]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical presentation card');
@@ -23,8 +25,8 @@ export function assertPresentationParity(candidate){
   }
   for(const e of facts.entities){
     const card=candidate.cards.find(c=>c.id===e.id);assert.ok(card,'Missing canonical presentation '+e.id);
-    assert.deepEqual(card.provenance,e.provenance,'Missing source provenance');
-    assert.deepEqual(card.fieldProvenance,e.fieldProvenance||{},'Missing official field provenance');
+    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(e),'Missing source provenance');
+    assert.deepEqual(sourceSnapshot(card,{slot:'fieldProvenance'}),sourceSnapshot(e,{slot:'fieldProvenance'})||{},'Missing official field provenance');
     for(const [i,block]of(e.data.blocks||[]).entries())if(typeof block.text==='string')assert.ok(seen.has(e.id+'::/blocks/'+i+'/text'),'Missing source block '+e.id);
     if(typeof e.data.text==='string')assert.ok(seen.has(e.id+'::/text'),'Missing canonical text '+e.id);
     if(e.kind==='WEAPON_PROFILE')for(const key of ['range','attacks','skill','strength','ap','damage'])assert.ok(seen.has(e.id+'::/'+key),'Missing weapon characteristic');

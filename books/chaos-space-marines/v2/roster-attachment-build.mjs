@@ -1,13 +1,14 @@
+import {getRecordedSourceIdentity,sourceSnapshot,cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
 
 /** Disposable attachment adapter. Canonical relation facts supply pairs/roles;
  * book-owned typed bindings supply source grammar and roster prerequisites. */
 export function buildCSMAttachmentInputs(canonical,bindings) {
-  const book=structuredClone(canonical),records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const book=cloneSourceBook(canonical),records=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(records.size===book.entities.length&&bindings?.schema==='roster-v2/attachment-bindings','Invalid attachment inputs');
   const evidence=id=>{
     const entity=records.get(id);
-    requireValue(entity?.provenance?.sourceId&&entity.provenance.sourceEvidence?.length,'Unbound attachment evidence: '+id);
+    requireValue(getRecordedSourceIdentity(entity,{book})&&sourceSnapshot(entity,{book})?.sourceEvidence?.length,'Unbound attachment evidence: '+id);
     return entity;
   };
   book.rosterProfileBindings=[];book.rosterReferenceSemantics={};

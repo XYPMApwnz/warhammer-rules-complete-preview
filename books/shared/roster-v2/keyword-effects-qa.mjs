@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Standalone synthetic guards for shared roster keyword operations.
  * These fixtures express reviewed typed facts; their prose is evidence only.
  * MODEL targets are imported composition/profile groups, never invented models.
@@ -58,7 +59,7 @@ function rule(book,name,{operation='GRANT_MODEL_KEYWORD',keyword:word='BONUS',ta
   const effect={id:name+'/effect',operation,keyword:word,targetSubject,targetBinding,conditions,
     evidence:clone(evidence),sourceFields:[['text']],lifetime:'ROSTER',...extra};
   entity.ruleContract={schema:'rule-contract/v2',ruleId:entity.id,ownerId:entity.parentId,
-    sourceId:entity.provenance.sourceId,kind:entity.kind,executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',
+    sourceId:sourceSnapshot(entity).sourceId,kind:entity.kind,executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',
     ...(parent==='main'?{detachmentId:id('main')}:{}),roles:[],conditions:[],sourceFields:[['text']],
     clauses:[{id:name+'/clause',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]};
   book.entities.push(entity);
@@ -92,8 +93,8 @@ function assertProof(book,row,name,{instanceId='alpha',profileName=null,operatio
   assert.equal(row.field,'keywords');
   assert.deepEqual(row.sourceFields,[['text']]);
   assert.equal(row.lifetime,'ROSTER');
-  assert.ok(entity.provenance.sourceId);
-  assert.equal(entity.ruleContract.sourceId,entity.provenance.sourceId);
+  assert.ok(sourceSnapshot(entity).sourceId);
+  assert.equal(sourceSnapshot(entity.ruleContract,{slot:'sourceId'}),sourceSnapshot(entity).sourceId);
   assert.ok(entity.data.text.includes(evidence.quote));
   assert.equal(row.targetProfileId,profileName?id(profileName):null);
   if(profileName) {

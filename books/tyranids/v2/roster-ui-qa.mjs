@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -56,7 +58,7 @@ const aggregate=createTyranidsBrowserRoster(book),aggregateText='+ DETACHMENT: I
   '10x Termagants (60 pts): 10x Fleshborer, 10x Chitinous claws and teeth\n'+
   '10x Termagants (60 pts): 10x Termagant spinefists, 10x Chitinous claws and teeth\n';
 assert.equal(aggregate.import(aggregateText).status,'READY');
-const payload=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
+const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
 for(const [n,expected]of [[0,['datasheet-termagants:weapon:1','datasheet-termagants:weapon:7']],
   [1,['datasheet-termagants:weapon:6','datasheet-termagants:weapon:7']]]){
@@ -73,7 +75,7 @@ assert.equal(JSON.stringify(book),before,'Presentation adapter must not mutate c
 
 // Independent accepted source -> explicit physical decision -> executor ->
 // actual production Effective/Guide projector. No invented NR choice token.
-export const trygonChoiceExpectation=JSON.parse(fs.readFileSync(new URL('./source-choice-expectations.json',import.meta.url))).cases[0];
+export const trygonChoiceExpectation=parseSourceFixtureJSON(fs.readFileSync(new URL('./source-choice-expectations.json',import.meta.url))).cases[0];
 const ce=trygonChoiceExpectation,ruleId=ce.source.canonicalId,optionId=ce.selection.selectedOptionId;
 const rawSource=fs.readFileSync(new URL('../../../'+ce.source.document,import.meta.url));
 assert.equal(createHash('sha256').update(rawSource).digest('hex').toUpperCase(),ce.source.sha256);
@@ -91,7 +93,7 @@ assert.ok(selected.projection.units.slice(0,2).every(u=>!u.keywords.includes('CH
 assert.equal(selected.sourceChoices('parsed-unit-3').length,0);
 function verifyChoice(s,candidate=book,{presentationLost=false}={}) {
   const entity=candidate.entities.find(e=>e.id===ruleId),fact=book.entities.find(e=>e.id===ruleId);
-  assert.equal(entity.parentId,ce.source.ownerId);assert.equal(entity.data.text,ce.source.quote);assert.deepEqual(entity.provenance,fact.provenance);
+  assert.equal(entity.parentId,ce.source.ownerId);assert.equal(entity.data.text,ce.source.quote);assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(fact));
   const effect=entity.ruleContract?.clauses.find(c=>c.id===ce.expectedClauseId)?.rosterEffects[0];assert.ok(effect,'Choice binding required');
   assert.equal(effect.conditions.find(c=>c.binding==='TARGET').predicate.args.find(p=>p.predicate==='FIELD').arguments.equals,optionId,'Explicit selection gate');
   const state=s.snapshot(),u=state.units[0],v=s.effective(u.instanceId),other=s.projection.units[1];
@@ -109,7 +111,7 @@ function verifyChoice(s,candidate=book,{presentationLost=false}={}) {
   assert.equal(cards.get(ruleId).fields.find(f=>f.source.path==='/text').value,ce.source.quote,'Full Guide source text');
   const decision=u.modelRows[0].selections.find(row=>row.canonicalOptionIds?.includes(optionId));
   assert.equal(decision.sourceModelScopeId,v.profiles[0].scopeId);assert.equal(decision.sourceChoiceReference.entityId,ruleId);
-  assert.deepEqual(decision.sourceProvenance,entity.provenance);
+  assert.deepEqual(sourceSnapshot(decision,{slot:'sourceProvenance'}),sourceSnapshot(entity));
   assert.ok(v.applied.filter(a=>a.ruleId===ruleId).every(a=>a.targetInstanceId===u.instanceId));
 }
 selected.setSourceChoice('parsed-unit-1',ruleId,optionId);verifyChoice(selected);
@@ -143,7 +145,7 @@ for(const [name,mutate]of [
   ['missing-field',s=>{delete s.units[0].selectedSourceChoiceIds;}],
   ['wrong-option',s=>{s.units[0].selectedSourceChoiceIds=['unknown-choice'];}],
   ['wrong-model',s=>{s.units[0].modelRows[0].selections.at(-1).sourceModelScopeId=s.units[1].instanceId;}],
-  ['wrong-provenance',s=>{s.units[0].modelRows[0].selections.at(-1).sourceProvenance.sourceId='foreign';}],
+  ['wrong-provenance',s=>{sourceFixture(s.units[0].modelRows[0].selections.at(-1)).sourceProvenance.sourceId='foreign';}],
   ['duplicate-choice',s=>{s.units[0].modelRows[0].selections.push(structuredClone(s.units[0].modelRows[0].selections.at(-1)));}],
   ['foreign-recipient',s=>{s.units[2].selectedSourceChoiceIds=s.units[0].selectedSourceChoiceIds;s.units[2].modelRows[0].selections.push(s.units[0].modelRows[0].selections.pop());delete s.units[0].selectedSourceChoiceIds;}]
 ]) {const s=structuredClone(selectedSnapshot);mutate(s);assert.throws(()=>selected.load(s),name);assert.deepEqual(selected.snapshot(),selectedSnapshot,'Invalid load preserves previous roster');choiceNegatives.push(name);}

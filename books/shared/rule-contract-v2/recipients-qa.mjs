@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import * as policy from '../roster-v2/conditional-policy.mjs';
 import {compileBookRecipients,compileRuleRecipients,validateBookRecipients,validateRuleRecipients,resolveRecipient,recipientDeclarationView} from './recipients.mjs';
 import {compileBookConditions} from './conditions-build.mjs';
+import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 
 const clone=structuredClone;
 const declaration=policy.producerDetachmentTextDeclaration||policy.detachmentTextDeclaration;
@@ -18,7 +19,7 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
  assert.equal(JSON.stringify(input),before,'Compiler mutated the execution source');
  assert.deepEqual(compileBookRecipients(book,{f1Declaration:declaration}),book,'Compilation is not idempotent');
  const scratch=recipientDeclarationView(book);
- assert.deepEqual(input.conditionSchema?compileBookConditions(compileBookRecipients(scratch,{f1Declaration:declaration})):compileBookRecipients(scratch,{f1Declaration:declaration}),book,'Producer validation view changed canonical recipients');
+ assert.deepEqual(input.conditionSchema?compileBookConditions(compileBookRecipients(scratch,{f1Declaration:declaration})):compileBookRecipients(scratch,{f1Declaration:declaration}),sourceDeclarationView(book),'Producer validation view changed canonical recipients');
  const stratagems=input.entities.filter(rule=>rule.kind==='STRATAGEM'||rule.ruleContract?.kind==='STRATAGEM');
  for(const source of stratagems){
   assert.deepEqual(book.entities.find(rule=>rule.id===source.id),source,'Compiler changed an excluded Stratagem');
@@ -53,7 +54,7 @@ for(const [bookId,artifact]of Object.entries(artifacts)){
   }
   const historical=clone(scratch.entities.find(rule=>rule.id===enhanced.id));
   for(const clause of historical.ruleContract.clauses)clause.recipientScope='BODYGUARD_COMPONENT_MODELS';
-  assert.deepEqual(compileRuleRecipients(scratch,historical,{f1Declaration:declaration}),enhanced,'Bodyguard alias removal changed exact recipients or effects');
+  assert.deepEqual(compileRuleRecipients(scratch,historical,{f1Declaration:declaration}),sourceDeclarationView(enhanced,{book}),'Bodyguard alias removal changed exact recipients or effects');
   const unproved=clone(historical);unproved.ruleContract.clauses[0].roles.find(role=>role.id==='bodyguardModels').conditions=[];
   assert.throws(()=>compileRuleRecipients(scratch,unproved,{f1Declaration:declaration}),TypeError,'Bodyguard alias removal accepted an unrestricted formed-model recipient');
   const flock=book.entities.find(rule=>rule.id==='datasheet-dark-commune:section:1:block:0:text').ruleContract.clauses.find(clause=>clause.id==='model-invulnerable');

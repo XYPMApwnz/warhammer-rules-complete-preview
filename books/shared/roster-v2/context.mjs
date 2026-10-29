@@ -1,4 +1,5 @@
 /** Roster UNIT instances. Composition/profile scopes are not individual-model simulations. */
+import {getRecordedSourceIdentity,registerBookSources} from '../source-refs-v2/source-refs.mjs';
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -40,6 +41,7 @@ export function withRosterDetachments(api) {
       conditions.map(node=>bind(node,node.subject==='ROSTER'?{...context,subject:'ROSTER'}:context)),context)};
 }
 export function validateRoster(book, state, policies) {
+  registerBookSources(book);
   state = normalizeDetachments(state);
   assert(state?.schema === 'roster-v2/roster' && state.bookId === book.bookId, 'Invalid roster domain');
   assert(typeof state.rosterId === 'string' && state.rosterId.length, 'Missing physical namespace');
@@ -121,7 +123,7 @@ export function validateRoster(book, state, policies) {
             const ownCaption=selection.canonicalEquipmentIds.includes(reference.entityId)&&
               selection.canonicalFieldPaths?.[reference.entityId]?.includes(reference.path);
             const linkedCaption=record?.kind==='WARGEAR_OPTION'&&reference.path==='/text'&&
-              record.provenance?.sourceId&&selected?.provenance?.sourceId&&selected.kind==='DATASHEET_SECTION'&&
+              getRecordedSourceIdentity(record,{book})&&getRecordedSourceIdentity(selected,{book})&&selected.kind==='DATASHEET_SECTION'&&
               selected.parentId===canonical.id&&selection.canonicalProfileIds.length===0&&
               (book.rosterEquipmentCaptionBindings||[]).some(binding=>{
                 const paths=binding.canonicalFieldPaths?.[selectedId],actual=selection.canonicalFieldPaths?.[selectedId];

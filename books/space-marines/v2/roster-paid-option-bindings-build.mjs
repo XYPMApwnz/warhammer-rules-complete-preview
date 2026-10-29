@@ -1,3 +1,4 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Source-reviewed SM bridges into the existing central MFM owner. Prices are
  * never copied into Army facts. Only resolved physical selections are charged;
  * neither a Datasheet nor a permission to select equipment proves a purchase. */
@@ -8,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 // Persistent identities were checked against the accepted source occurrences,
 // replacement clauses, equipment FIELDs and weapon tables, not title equality.
@@ -46,13 +47,14 @@ export const paidOptionReview=[
 ];
 
 export function createSpaceMarinesPaidOptionBindings({facts=read('./generated/effective.json'),catalog=createEffectiveMfmCatalog().catalog}={}){
+  facts=prepareSourceProducer(facts);
  const entities=new Map(facts.entities.map(row=>[row.id,row])),hashes=new Map();
  const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId==='space-marines-mfm-v1.6');
  assert.ok(snapshot,'Missing accepted MFM source');
  const captureBytes=fs.readFileSync(new URL('../../../'+snapshot.sourcePath,import.meta.url));
  const verification=verifyFrozenSource(snapshot.sourceId,{repoRoot:fileURLToPath(new URL('../../../',import.meta.url))});
  assert.equal(verification.aggregateArtifactHash,snapshot.acceptedArtifactHash,'Accepted MFM capture changed');
- const capture=JSON.parse(captureBytes);
+ const capture=parseProducerJSON(captureBytes);
  const factsById=new Map(catalog.paidUpgradeRecords.map(row=>[row.id,row]));
  const actual=catalog.paidUpgradeRecords.filter(row=>row.factionId==='space-marines'&&row.provenance.sourceId==='space-marines-mfm-v1.6');
  assert.deepEqual(actual.map(row=>row.id).sort(),paidOptionReview.map(row=>row.costRecordId).sort(),'Paid option review incomplete');

@@ -628,24 +628,6 @@
           "references": [
             "mfm-detachment-e26c443b34304d56"
           ],
-          "provenance": {
-            "observedAt": "2026-10-21",
-            "verifiedAt": "2026-10-21",
-            "effectiveDate": null,
-            "sourceId": "dark-angels-mfm-v1.6",
-            "sourceVersion": "v1.6",
-            "currentness": "CURRENT",
-            "currentnessCutoff": "2026-10-21",
-            "sourceCaptureSha256": "561615E45C4D527731DBA262DC71FFC6FAC2DCEF301D2FEA52455550AB14724A",
-            "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-            "sourceLocator": {
-              "partition": "detachments.qualifiers",
-              "factionId": "dark-angels",
-              "sourceTitle": "WRATH OF THE ROCK",
-              "kind": "UNIQUE",
-              "value": "TERMINATOR"
-            }
-          },
           "factionId": "dark-angels",
           "ownerKind": "DETACHMENT",
           "ownerId": "mfm-detachment-e26c443b34304d56",
@@ -654,7 +636,9 @@
           "kind": "UNIQUE",
           "values": [
             "TERMINATOR"
-          ]
+          ],
+          "sourceRefs": [{"documentId":"documents-8fe7bb1848c2bed2","referenceId":"refs-88b8e9155b3665c1","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.qualifiers","factionId":"dark-angels","sourceTitle":"WRATH OF THE ROCK","kind":"UNIQUE","value":"TERMINATOR"}}]}],
+          "sourceBindings": "bindings-14ad7b8459b76c1a"
         }
       ],
       "forceDispositions": [
@@ -1103,5 +1087,6 @@
     }
   ],
   "paidOptionPhysicalSelections": "NOT_PROVEN_NO_CHARGE",
-  "relationsActivated": false
+  "relationsActivated": false,
+  "sourceSchema": "source-refs/v1"
 }

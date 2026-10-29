@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native application wiring only; no browser or full semantic certification. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {buildApp,assertDarkAngelsAppSourceReview} from './app-build.mjs';
 import {registration} from './registration.mjs';
 import {armyBooks} from '../../../v2/army-books.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),sm=read('../../space-marines/v2/generated/effective.json');
 const before=JSON.stringify([facts,sm]),payload=buildApp(),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const membership=read('./inherited-sm-references.json'),checks=[];
@@ -22,7 +24,7 @@ check('exact-source-owned-corpus-and-inherited-identities',()=>{
  assert.equal(ds.filter(card=>card.identity.registryId==='dark-angels').length,16);
  assert.equal(ds.filter(card=>card.identity.registryId==='space-marines').length,67);
  for(const card of ds){const source=[...facts.entities,...sm.entities].find(row=>row.id===card.id);assert.ok(source);
-  assert.equal(card.identity.canonicalId,source.id);assert.equal(card.identity.registryId,source.bookId);assert.deepEqual(card.provenance,source.provenance);}
+  assert.equal(card.identity.canonicalId,source.id);assert.equal(card.identity.registryId,source.bookId);assert.deepEqual(sourceSnapshot(card),sourceSnapshot(source));}
  for(const row of membership.excludedOtherChapterDatasheets)assert.ok(!cards.has(row.canonicalId));
  assert.equal(payload.groups.find(group=>group.id==='army-rules').itemIds.length,5);
  assert.equal(payload.groups.find(group=>group.id==='detachments').itemIds.length,18);

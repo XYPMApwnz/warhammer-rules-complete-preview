@@ -1,12 +1,13 @@
 /** V2 identity/DOM adapter for the actual V1 Contents interaction core. */
 import {NavigationController} from './navigation-v1-controller.mjs';
 import {Highlighter} from './navigation-v1-targets.mjs';
+import {getSourceContext} from '../source-refs-v2/source-refs.mjs';
 
 const categories=[['EPIC HERO','Epic Heroes'],['CHARACTER','Characters'],['BATTLELINE','Battleline'],
   ['DEDICATED TRANSPORT','Dedicated Transports'],['FORTIFICATION','Fortifications'],['INFANTRY','Infantry'],
   ['BEAST','Beasts'],['VEHICLE','Vehicles'],['MONSTER','Monsters'],['MOUNTED','Mounted'],['SWARM','Swarms']];
 const list=value=>Array.isArray(value)?value:[];
-const currentRelation=relation=>relation?.certainty==='current'&&relation?.provenance?.kind==='explicit-roster-attachment';
+const currentRelation=relation=>relation?.certainty==='current'&&getSourceContext(relation).kind==='explicit-roster-attachment';
 const keywordsFor=unit=>new Set(list(unit?.intrinsicKeywords).map(value=>String(value).trim().toUpperCase()));
 // Actual V1 presentation ordering; its inputs below are adapted solely from V2.
   function physicalRosterOrder(game,catalog){

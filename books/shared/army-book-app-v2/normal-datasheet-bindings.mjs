@@ -1,3 +1,4 @@
+import {copySourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Normal-book presentation relations. Facts and roster projections stay immutable. */
 export function buildNormalDatasheetBindings(model, records, bindings = {}) {
   const entities = new Map(model.entities.map(entity => [entity.id, entity]));
@@ -26,11 +27,11 @@ export function buildNormalDatasheetBindings(model, records, bindings = {}) {
       unitId: entity.parentId, instructionId: entity.id,
       groupId: group.profileGroupId || group.id,
       profileIds: group.profileIds || group.weaponProfileIds,
-      text: entity.data.text, source: entity.provenance
+      text: entity.data.text, ...copySourceEvidence(entity,{book:model,targetSlot:'source'})
     });
   }
   for (const binding of bindings.profileSelections || []) {
-    if (!binding.source?.sourceId || !binding.source.pointer || !binding.source.sha256)
+    if (!sourceSnapshot(binding,{book:model,slot:'source'})?.sourceId || !sourceSnapshot(binding,{book:model,slot:'source'})?.pointer || !sourceSnapshot(binding,{book:model,slot:'source'})?.sha256)
       throw new TypeError('Missing profile selection source evidence');
     addSelection(binding);
   }

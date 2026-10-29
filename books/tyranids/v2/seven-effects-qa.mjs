@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Independent accepted-source obligations. Production declarations do not
  * create the expected inventory, values, recipients or mutation oracles. */
 import assert from 'node:assert/strict';
@@ -14,7 +16,7 @@ import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effec
 import {resolveExecutionEffect} from '../../shared/roster-v2/recipient-execution.mjs';
 import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
 import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
-const read=f=>JSON.parse(fs.readFileSync(new URL(f,import.meta.url),'utf8')),clone=structuredClone;
+const read=f=>parseSourceFixtureJSON(fs.readFileSync(new URL(f,import.meta.url),'utf8')),clone=structuredClone;
 export const sevenEffectsExpectations=read('./seven-effects-source-expectations.json').cases;
 const book=read('./generated/roster-runtime.json'),facts=read('./generated/effective.json'),payload=read('./generated/app-presentation.json');
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(c=>[c.id,c])),payload.rosterPresentation),root=new URL('../../../',import.meta.url);
@@ -31,10 +33,10 @@ function sourceCheck(e,b=book){
  for(const clause of s.rawClauses||[s.quote])assert.ok(normal(visible).includes(normal(clause)),`RAW SOURCE CLAUSE: ${e.id}: ${clause}`);
  const entity=b.entities.find(x=>x.id===s.canonicalId);assert.equal(entity.parentId,s.ownerId,'SOURCE OWNER');
  assert.equal(s.field.reduce((v,k)=>v?.[k],entity.data),s.quote,'SOURCE EXACT TEXT');
- assert.deepEqual(entity.provenance,sourceRecords.get(s.canonicalId).provenance,'SOURCE PROVENANCE');
- assert.equal(entity.provenance.document,s.document);assert.equal(entity.provenance.sha256,s.sha256);
- assert.ok(entity.provenance.pointer&&entity.provenance.corpusSha256);
- const card=cards.get(s.canonicalId);assert.deepEqual(card.provenance,entity.provenance,'Presentation source provenance');
+ assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(sourceRecords.get(s.canonicalId)),'SOURCE PROVENANCE');
+ assert.equal(sourceSnapshot(entity).document,s.document);assert.equal(sourceSnapshot(entity).sha256,s.sha256);
+ assert.ok(sourceSnapshot(entity).pointer&&sourceSnapshot(entity).corpusSha256);
+ const card=cards.get(s.canonicalId);assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Presentation source provenance');
  assert.ok(card.fields.some(f=>f.value===s.quote)||s.field[0]==='blocks'&&card.fields.some(f=>f.value===s.quote),'Presentation full source text');
 }
 function bindingCheck(e,b=book){
@@ -45,8 +47,8 @@ function bindingCheck(e,b=book){
   const matched=actual.filter(x=>x.operation===expected.operation&&x.field===expected.field&&(!expected.keyword||x.keyword===expected.keyword));
   assert.equal(matched.length,1,'EXACT EXECUTABLE OPERATION');
   for(const [k,v]of Object.entries(expected))assert.deepEqual(matched[0][k],v,'SOURCE TYPED OPERATION '+k);
-  assert.equal(matched[0].provenance.canonicalRuleId,e.source.canonicalId);assert.equal(matched[0].provenance.canonicalOwnerId,e.source.ownerId);
-  assert.deepEqual(matched[0].provenance.sourceEvidence,entity.provenance);
+  assert.equal(sourceSnapshot(matched[0]).canonicalRuleId,e.source.canonicalId);assert.equal(sourceSnapshot(matched[0]).canonicalOwnerId,e.source.ownerId);
+  assert.deepEqual(sourceSnapshot(matched[0]).sourceEvidence,sourceSnapshot(entity));
  }
  if(e.declarativeClause){assert.ok(entity.ruleContract.clauses.some(c=>c.rosterClassification==='BATTLE_ONLY'&&c.sourceText.includes(e.declarativeClause)&&!c.rosterEffects.length),'Wound reroll must remain separate declarative clause');}
 }

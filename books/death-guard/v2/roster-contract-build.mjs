@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 import fs from 'node:fs';
@@ -155,8 +156,8 @@ export function summarizeRosterContracts(model) {
     classifications:counts,rosterEffects:rows.reduce((sum,row)=>sum+row.effects.length,0),battleExecution:false,rows};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
-  const base=JSON.parse(fs.readFileSync(path.join(directory,'generated/rule-contract-effective.json'),'utf8'));
-  const closure=summarizeRosterContracts(extendRosterContracts(base)),serialized=JSON.stringify(closure,null,2)+'\n',file=path.join(directory,'generated/roster-contract-closure.json');
+  const base=parseProducerJSON(fs.readFileSync(path.join(directory,'generated/rule-contract-effective.json'),'utf8'));
+  const closure=summarizeRosterContracts(extendRosterContracts(base)),serialized=serializeSourceJSON(closure),file=path.join(directory,'generated/roster-contract-closure.json');
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),serialized,'Deterministic roster contract closure drift');else fs.writeFileSync(file,serialized);
   console.log(JSON.stringify({ruleOwners:closure.ruleOwners,clauses:closure.clauses,classifications:closure.classifications,rosterEffects:closure.rosterEffects}));
 }

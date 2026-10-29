@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Accepted-source oracle -> import -> executor -> production presentation.
  * No roll simulation, characteristic substitution or title-based joining. */
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effec
 import {resolveRecipient,recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 import {validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {validatePredicate,evaluatePredicate} from './rule-contract-schema.mjs';
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
+const read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
 const book=read('./generated/rule-contract-effective.json'),payload=read('./generated/app-presentation.json');
 const cards=new Map(payload.cards.map(c=>[c.id,c]));
 export const criticalHitExpectations=read('./critical-hit-source-expectations.json').cases;

@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** F2: the real Personal Guide, physical components and source-bound clauses.
  * Constructed rosters are labelled below; the Deathshroud export is the owner's
  * unchanged New Recruit v37.6 text. All state changes use normal app controls. */
@@ -14,8 +16,19 @@ const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const repo=path.resolve(process.env.F2_BROWSER_ROOT||sourceRepo);
 const out=fs.mkdtempSync(path.join(os.tmpdir(),'wh-f2-card-recipients-browser-'));
 const results=[],screenshots=[],errors=[],missing=[],requestFailures=[],consoleMessages=[];
+const runtimeSourceBooks=new Map();
+function runtimeSourceBook(bookId){
+  if(!runtimeSourceBooks.has(bookId)){
+    const files=[...manifest].filter(file=>file.startsWith('/books/'+bookId+'/v2/generated/')&&file.endsWith('.json')).sort();
+    assert.ok(files.length,'The published book has actual source-bearing inputs');
+    const catalogs={sourceRefCatalog:{},sourceLayoutCatalog:{},sourceContextCatalog:{}};
+    for(const file of files){const input=parseSourceFixtureJSON(fs.readFileSync(path.join(repo,file.slice(1)),'utf8'));for(const key of Object.keys(catalogs))Object.assign(catalogs[key],input[key]||{});}
+    runtimeSourceBooks.set(bookId,catalogs);
+  }
+  return runtimeSourceBooks.get(bookId);
+}
 const inventory=path.join(repo,fs.existsSync(path.join(repo,'tools/pages-runtime-manifest.json'))?'tools/pages-runtime-manifest.json':'PAGES_RUNTIME_MANIFEST.json');
-const manifest=new Set(JSON.parse(fs.readFileSync(inventory,'utf8')).files.map(row=>'/'+row.path));
+const manifest=new Set(parseSourceFixtureJSON(fs.readFileSync(inventory,'utf8')).files.map(row=>'/'+row.path));
 const allowed=address=>!/(?:\/sources\/|-qa\.|-fixtures\.)/.test(address)&&
   (manifest.has(address)||isApplicationTestDependency(address)||
    /^\/books\/(?:shared\/(?:application-v2|army-book-app-v2|roster-v2|rule-contract-v2)|(?:adeptus-mechanicus|death-guard|chaos-space-marines)\/v2)\/[\w./-]+\.(?:mjs|js|json|css)$/.test(address)||
@@ -126,6 +139,7 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
 }),ruleId);}
 async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,subject,recipients,status}={}){
   const shown=await rows(page,instance,ruleId),data=await current(page),physical=data.projection.units.find(unit=>unit.instanceId===instance);
+  const sourceBook=runtimeSourceBook(data.snapshot.bookId);
   const canonical=data.projection.units.flatMap(unit=>unit.conditional).filter(row=>row.ruleId===ruleId&&row.detachmentText);
   assert.equal(await card(page,instance).locator('[data-detachment-rule-id="'+ruleId+'"]').count(),1,'Exactly one outer rule block in this physical datasheet');
   if(expectedClauses)assert.deepEqual(shown.map(row=>row.source.clauseId).toSorted(),[...expectedClauses].toSorted(),'Every independently named clause remains individually inspectable');
@@ -134,7 +148,7 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
     const proof=canonical.find(proof=>proof.clauseId===row.source.clauseId&&proof.recipientInstanceIds.includes(instance));assert.ok(proof,'Current executed proof contains physical recipient');
     assert.ok(row.fields.every(field=>field.exists&&field.visible),'Every source-field reference resolves to actual visible content');
     assert.equal(norm(row.text),norm(proof.detachmentText.text),'Exact canonical clause text is retained, directly or by shared DOM reference');
-    assert.deepEqual(row.source.provenance,proof.sourceProvenance,'Source provenance is retained for every clause');
+    assert.deepEqual(sourceSnapshot(row.source,{book:sourceBook}),sourceSnapshot(proof,{book:sourceBook,slot:'sourceProvenance'}),'Source provenance is retained for every clause');
     assert.deepEqual(row.instances,proof.recipientInstanceIds,'Full effective recipient set is not rewritten for local labels');
     assert.deepEqual(row.models,proof.recipientModelScopeIds);assert.equal(row.classification,'BATTLE_ONLY');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');
     assert.equal(row.status,proof.detachmentText.kind);if(status)assert.equal(row.status,status);if(subject)assert.equal(row.subject,subject);
@@ -191,7 +205,7 @@ async function noosphericTable(page,instance){
   assert.equal(await table.count(),1,'Noospheric canonical source table is visible once');
   const cells=await table.locator('tr').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('th,td')].map(cell=>cell.textContent)));
   assert.deepEqual(cells,[['INCURSION:','1 UNIT'],['STRIKE FORCE','2 UNITS'],['ONSLAUGHT','3 UNITS']],'The existing three battle-size source rows are complete and separate cells');
-  const rule=JSON.parse(fs.readFileSync(path.join(repo,'books/adeptus-mechanicus/v2/generated/roster-runtime.json'),'utf8')).entities.find(entity=>entity.id===halo);
+  const rule=parseSourceFixtureJSON(fs.readFileSync(path.join(repo,'books/adeptus-mechanicus/v2/generated/roster-runtime.json'),'utf8')).entities.find(entity=>entity.id===halo);
   const placement=await outer.evaluate(outer=>{
     const field=outer.querySelector('[data-detachment-field-text]'),table=outer.querySelector('table[data-detachment-source-table]'),tokens=[];
     function visit(node){if(node===table){tokens.push({kind:'TABLE'});return;}if(node.nodeType===Node.TEXT_NODE){tokens.push({kind:'TEXT',text:node.textContent});return;}for(const child of node.childNodes)visit(child);}
@@ -323,7 +337,7 @@ try{
       await attach(page,'parsed-unit-2','parsed-unit-3');await verify('reattached');return {evidence};
     });
     await run('emperors-children','EC native Lord Exultant physical bearer',async page=>{
-      const fixtures=JSON.parse(fs.readFileSync(path.join(sourceRepo,'books/emperors-children/v2/roster-import-fixtures.json'),'utf8'));
+      const fixtures=parseSourceFixtureJSON(fs.readFileSync(path.join(sourceRepo,'books/emperors-children/v2/roster-import-fixtures.json'),'utf8'));
       const fixture=fixtures.fixtures.find(item=>item.id==='character-bodyguard');assert.ok(fixture,'Existing native EC import fixture');
       const state=await imported(page,fixture.text,2);assert.deepEqual(state.units.map(unit=>unit.canonicalUnitId),['unit-lord-exultant','unit-infractors']);
       await attach(page,'parsed-unit-1','parsed-unit-2');await guide(page,'parsed-unit-1');

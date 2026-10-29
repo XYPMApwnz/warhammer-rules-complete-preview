@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
@@ -13,7 +14,7 @@ import {semanticInputs,bindModelDenotations,createCSMCompatibilityCompiler} from
 export const directory=path.dirname(fileURLToPath(import.meta.url));
 export const declarationFiles=['contract-datasheet-army-declarations.json','contract-enhancement-detachment-declarations.json',
   'contract-stratagem-declarations.json','contract-construction-declarations.json'];
-export const readJson=name=>JSON.parse(fs.readFileSync(path.join(directory,name),'utf8'));
+export const readJson=name=>parseProducerJSON(fs.readFileSync(path.join(directory,name),'utf8'));
 export const ruleKinds=new Set(['ARMY_RULE','DATASHEET_ABILITY','EQUIPMENT_ABILITY','SPECIAL_DATASHEET_RULE',
   'NAMED_RULE_COMPONENT','UPGRADE_DECLARATION','UPGRADE_OPTION','DETACHMENT_RULE','ENHANCEMENT','STRATAGEM',
   'WARGEAR_OPTION','UNIT_COMPOSITION','ATTACHMENT_DECLARATION','TRANSPORT_DECLARATION','FAQ','ERRATA',
@@ -48,6 +49,7 @@ export function createCSMSchema(declarations) {
 
 export function buildCSMContracts({facts=readJson('generated/effective.json'),inputs=declarationFiles.map(readJson),
   identities=readJson('identity-bindings.json'),recipientStage='CANONICAL'}={}) {
+  facts=prepareSourceProducer(facts);
   assert.ok(['CANONICAL','DECLARATION'].includes(recipientStage),'Unknown recipient producer stage');
   const original=JSON.stringify(facts),semantic=semanticInputs(facts,identities),{book}=semantic;
   const index=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -137,7 +139,7 @@ export function artifacts(built,compiled) {
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const built=buildCSMContracts(),compiled=compileCSMContracts(built),outputs=artifacts(built,compiled);
   for(const [name,value] of Object.entries(outputs)) {
-    const text=JSON.stringify(value,null,2)+'\n',file=path.join(directory,'generated',name+'.json');
+    const text=serializeSourceJSON(value),file=path.join(directory,'generated',name+'.json');
     if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),text,'Disposable projection drift: '+name);
     else fs.writeFileSync(file,text);
   }

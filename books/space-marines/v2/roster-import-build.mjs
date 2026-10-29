@@ -1,3 +1,4 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Source-owned import vocabulary over the existing physical V2 contract.
  * These names address existing records; they create no models, default weapons,
  * points, army legality decisions or legacy compatibility identities.
@@ -17,6 +18,7 @@ const names=entity=>[entity.data.title,entity.data.name].filter(value=>typeof va
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 
 export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),modelMappings,scopeCorrections}={}){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
   if(modelMappings===undefined||scopeCorrections===undefined){
     const review=readSpaceMarinesRosterCorrections();
     modelMappings??=review.modelMappings;scopeCorrections??=review.scopeCorrections;
@@ -144,7 +146,7 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
 
 export function writeSpaceMarinesImportBook({check=false}={}){
   const book=buildSpaceMarinesImportBook(),target=new URL('./generated/roster-import.json',import.meta.url);
-  const bytes=JSON.stringify(book,null,2)+'\n';
+  const bytes=serializeSourceJSON(book);
   if(check)assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale Space Marines native import view');
   else fs.writeFileSync(target,bytes);
   return {status:'PASS',datasheets:book.entities.filter(entity=>entity.kind==='DATASHEET').length,

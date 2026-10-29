@@ -3,6 +3,7 @@
 import {predicateContext,withRosterDetachments} from './context.mjs';
 import {createRuleContractSchema,predicateTypes} from '../rule-contract-v2/schema.mjs';
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
+import {getRecordedSourceIdentity,sameSourceEvidence,copySourceEvidence,sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 const clone=structuredClone;
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
@@ -29,7 +30,7 @@ function validateConditionalPolicyRecord(book,rule,clause,policy,recipient){
  const index=new Map(book.entities.map(e=>[e.id,e]));
  requireValue(clause.rosterClassification==='DISPLAY_ONLY'&&clause.rosterEffects.length===0,'Conditional policy cannot execute roster effects');
  const detachment=rule.kind==='DETACHMENT_RULE',parent=index.get(rule.parentId);
- requireValue(rule.provenance?.sourceId&&(detachment
+ requireValue(getRecordedSourceIdentity(rule,{book})&&(detachment
   ?parent?.kind==='DETACHMENT'&&parent.bookId===rule.bookId&&rule.ruleContract.detachmentId===parent.id
   :['DATASHEET_ABILITY','DATASHEET_SECTION','ENHANCEMENT'].includes(rule.kind)&&
    (rule.kind==='ENHANCEMENT'?parent?.kind==='DETACHMENT'&&rule.ruleContract.assignment:parent?.kind==='DATASHEET')),'Unresolved conditional policy source owner');
@@ -44,11 +45,11 @@ function validateConditionalPolicyRecord(book,rule,clause,policy,recipient){
  else requireValue(recipient.aura===undefined,'Aura metadata on a resolved UNIT scope');
  if(policy.activationReferenceId!==undefined){
   const activation=index.get(policy.activationReferenceId);
-  requireValue(activation&&activation.id!==rule.id&&activation.parentId===rule.parentId&&activation.bookId===rule.bookId&&['DATASHEET_ABILITY','DATASHEET_SECTION'].includes(activation.kind)&&typeof activation.data.text==='string'&&activation.provenance?.sourceId,'Unresolved conditional activation reference');
+  requireValue(activation&&activation.id!==rule.id&&activation.parentId===rule.parentId&&activation.bookId===rule.bookId&&['DATASHEET_ABILITY','DATASHEET_SECTION'].includes(activation.kind)&&typeof activation.data.text==='string'&&getRecordedSourceIdentity(activation,{book}),'Unresolved conditional activation reference');
  }
  const p=policy.payload;
  const actionReference=(canonicalId,code)=>{
-  const ref=policy.coreReference;
+  const ref=sourceDeclarationView(policy.coreReference,{book});
   requireValue(keys(ref,['canonicalId','ownerBookId','code','label','quote','sourceUnitIds','sourceContentHashes','provenance'])&&ref.canonicalId===canonicalId&&p.referenceId===ref.canonicalId&&ref.ownerBookId==='core-rules'&&ref.code===code&&typeof ref.label==='string'&&ref.label&&typeof ref.quote==='string'&&ref.quote&&uniqueStrings(ref.sourceUnitIds)&&uniqueStrings(ref.sourceContentHashes)&&ref.sourceContentHashes.every(hash=>/^[A-Fa-f0-9]{64}$/.test(hash))&&Boolean(ref.provenance?.base?.sourceId||ref.provenance?.sourceId),'Unresolved conditional Core action reference');
  };
  if(!['ATTACK_TARGET_RESTRICTION','ACTION_CP_MODIFIER'].includes(policy.kind))requireValue(policy.coreReference===undefined,'Unexpected conditional Core action reference');
@@ -66,7 +67,7 @@ function validateConditionalPolicyRecord(book,rule,clause,policy,recipient){
   case 'STRATAGEM_TARGET_RESTRICTION':{
    requireValue(keys(p,['action','stratagemId','ownerBookId'])&&p.action==='PROHIBIT','Invalid Stratagem restriction policy');
    const target=index.get(p.stratagemId),detachment=index.get(target?.parentId);
-   requireValue(target?.kind==='STRATAGEM'&&target.provenance?.sourceId&&target.bookId===p.ownerBookId&&typeof p.ownerBookId==='string'&&detachment?.kind==='DETACHMENT'&&detachment.bookId===p.ownerBookId,'Unresolved conditional Stratagem owner/reference');break;
+   requireValue(target?.kind==='STRATAGEM'&&getRecordedSourceIdentity(target,{book})&&target.bookId===p.ownerBookId&&typeof p.ownerBookId==='string'&&detachment?.kind==='DETACHMENT'&&detachment.bookId===p.ownerBookId,'Unresolved conditional Stratagem owner/reference');break;
   }
   default:throw new TypeError('Unsupported conditional policy kind');
  }
@@ -79,7 +80,7 @@ const detachmentRecipients=(projection,recipient)=>projection.units.filter(unit=
 });
 const componentRecipients=(projection,unit)=>projection.formedUnits.find(group=>group.formedUnitId===unit.formedUnitId)?.memberInstanceIds||[unit.instanceId];
 const evidenceText=(rule,evidence)=>evidence?.field?.reduce((value,key)=>value?.[key],rule.data);
-const sourceProvenancePresent=value=>value&&typeof value==='object'&&!Array.isArray(value)&&typeof value.sourceId==='string'&&value.sourceId.trim().length>0;
+const sourceProvenancePresent=(record,book,slot='provenance')=>{const id=getRecordedSourceIdentity(record,{book,slot});return typeof id==='string'&&id.trim().length>0;};
 const provenSelector=node=>{
  if(node?.op==='ALL')return node.args.some(provenSelector);
  if(node?.op==='ANY')return node.args.length>0&&node.args.every(provenSelector);
@@ -132,7 +133,7 @@ export function detachmentTableOption(book,rule,clause){
  const id=clause.effect?.canonicalTableId,index=clause.effect?.rowIndex;
  if(typeof id!=='string'||!Number.isSafeInteger(index)||index<0)return null;
  const matches=book.entities.filter(entity=>entity.id===id),table=matches[0];
- if(matches.length!==1||table.kind!=='STRUCTURED_RULE_TABLE'||table.parentId!==rule.id||!sourceProvenancePresent(table.provenance))return null;
+ if(matches.length!==1||table.kind!=='STRUCTURED_RULE_TABLE'||table.parentId!==rule.id||!sourceProvenancePresent(table,book))return null;
  const cells=table.data?.rows?.[index],proof=clause.evidence;
  if(!Array.isArray(cells)||!cells.length||!cells.every(cell=>typeof cell==='string')||!cells.some(cell=>cell.trim())||
    proof?.otherEntityId!==id||!equal(proof.field,['rows',index])||proof.quote!==JSON.stringify(cells)||cells.some(internalRuleText))return null;
@@ -150,13 +151,13 @@ export function detachmentTableOption(book,rule,clause){
  const nearest=Math.max(...candidates.map(candidate=>candidate.position)),leaders=candidates.filter(candidate=>candidate.position===nearest);
  if(leaders.length!==1)return null;
  return {tableId:id,rowIndex:index,clauseId:clause.id,cells:clone(cells),text:cells.filter(cell=>cell.length).join(' · '),
-  sourceProvenance:clone(table.provenance),leadingClauseId:leaders[0].clause.id,leadingText:leaders[0].text};
+  ...copySourceEvidence(table,{book,targetSlot:'sourceProvenance'}),leadingClauseId:leaders[0].clause.id,leadingText:leaders[0].text};
 }
 function detachmentTextSource(book,rule,clause){
  if(rule.kind!=='DETACHMENT_RULE'||clause.rosterClassification!=='BATTLE_ONLY'||
   clause.rosterEffects.length||clause.conditionalPolicy)return null;
  const chain=detachmentOwnerChain(book,rule),owner=chain?.at(-1);
- if(!owner||rule.ruleContract.detachmentId&&rule.ruleContract.detachmentId!==owner.id||!sourceProvenancePresent(rule.provenance))return null;
+ if(!owner||rule.ruleContract.detachmentId&&rule.ruleContract.detachmentId!==owner.id||!sourceProvenancePresent(rule,book))return null;
  const tableReference=clause.effect?.canonicalTableId!==undefined||(clause.sourceFields||[]).some(field=>field.at(-1)==='tableId');
  const tableOption=tableReference?detachmentTableOption(book,rule,clause):null;
  if(tableReference&&!tableOption)return null;
@@ -239,7 +240,7 @@ function detachmentTextRows(book,projection,rule,clause,evaluatePredicate=evalua
   rows.push({unit,row:{ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',execution:'CONDITIONAL_TEXT_ONLY',
    reason:'Battle effects are not automatically calculated',sourceInstanceId:null,sourceModelScopeId:null,
    recipientInstanceIds:[...recipientInstanceIds],recipientModelScopeIds:models.map(model=>model.scopeId),
-   sourceProvenance:clone(rule.provenance),sourceParentId:rule.parentId,sourceDetachmentId:declaration.detachmentId,sourceOwnerChain:clone(declaration.chain),
+   ...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'}),sourceParentId:rule.parentId,sourceDetachmentId:declaration.detachmentId,sourceOwnerChain:clone(declaration.chain),
    detachmentText:{recipientId:recipient.id,recipientSubject:role.subject==='MODEL'?'MODEL':'UNIT',
     kind:recipient.textKind,classification:declaration.classification,text:declaration.text,
     ...(declaration.tableOption?{tableOption:clone(declaration.tableOption)}:{}),
@@ -253,19 +254,19 @@ export function appendConditionalPolicy(result,rule,clause,source,ownerModel,boo
  const policy=clause.conditionalPolicy,recipient=resolveRecipient(rule,clause,policy.recipientId);
  if(rule.kind==='DETACHMENT_RULE'){
   requireValue(source===null&&!ownerModel&&result.detachmentIds.includes(rule.ruleContract.detachmentId),'Unresolved conditional Detachment source');
-  for(const unit of detachmentRecipients(result,recipient))unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:null,sourceModelScopeId:null,recipientInstanceIds:[...componentRecipients(result,unit)],sourceProvenance:clone(rule.provenance)});
+  for(const unit of detachmentRecipients(result,recipient))unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:null,sourceModelScopeId:null,recipientInstanceIds:[...componentRecipients(result,unit)],...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'})});
   return;
  }
  requireValue(source,'Missing conditional physical source');
  const group=result.formedUnits.find(g=>g.formedUnitId===source.formedUnitId);
  const recipients=recipient.how==='AURA'?[]:recipient.scope==='FORMED'&&group?[...group.memberInstanceIds]:[source.instanceId];
  const storage=recipient.how==='AURA'?[source]:result.units.filter(u=>recipients.includes(u.instanceId));
- for(const unit of storage)unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:source.instanceId,sourceModelScopeId:ownerModel?.scopeId||null,recipientInstanceIds:[...recipients],sourceProvenance:clone(rule.provenance)});
+ for(const unit of storage)unit.conditional.push({ruleId:rule.id,clauseId:clause.id,recipientId:recipient.id,state:'UNKNOWN',reason:'Battle context is not resolved; no automatic calculation',execution:'CONDITIONAL_TEXT_ONLY',policy:clone(policy),sourceInstanceId:source.instanceId,sourceModelScopeId:ownerModel?.scopeId||null,recipientInstanceIds:[...recipients],...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'})});
 }
 export function projectDetachmentText(book,projection,unit,row){
   requireValue(row.detachmentText&&!row.policy,'Textual Detachment row cannot replace a typed policy');
   const rules=book.entities.filter(entity=>entity.id===row.ruleId),rule=rules[0],clauses=rule?.ruleContract?.clauses.filter(clause=>clause.id===row.clauseId),clause=clauses?.[0];
-  requireValue(rules.length===1&&clauses?.length===1&&sourceProvenancePresent(row.sourceProvenance)&&sourceProvenancePresent(rule.provenance)&&equal(row.sourceProvenance,rule.provenance),
+  requireValue(rules.length===1&&clauses?.length===1&&sourceProvenancePresent(row,book,'sourceProvenance')&&sourceProvenancePresent(rule,book)&&sameSourceEvidence(row,rule,{book,slot:'sourceProvenance',otherSlot:'provenance'}),
     'Unresolved textual Detachment source provenance');
   const expected=rule?.kind==='DETACHMENT_RULE'&&clause&&detachmentTextRows(book,projection,rule,clause,undefined,unit).find(item=>item.row.recipientId===row.recipientId);
   requireValue(expected&&equal(expected.row,row),'Unresolved textual Detachment recipient/provenance');
@@ -288,7 +289,7 @@ export function projectConditionalRow(book,projection,unit,row){
 export function projectConditionalPolicy(book,projection,unit,row){
  if(!row.policy)return clone(row);
  const index=new Map(book.entities.map(e=>[e.id,e])),rule=index.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId),source=projection.units.find(u=>u.instanceId===row.sourceInstanceId);
- requireValue(rule&&equal(row.policy,clause?.conditionalPolicy)&&equal(row.sourceProvenance,rule.provenance)&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN','Unresolved conditional policy provenance');
+ requireValue(rule&&equal(row.policy,clause?.conditionalPolicy)&&sameSourceEvidence(row,rule,{book,slot:'sourceProvenance',otherSlot:'provenance'})&&row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN','Unresolved conditional policy provenance');
  validateConditionalPolicy(book,rule,clause);
  const recipient=resolveRecipient(rule,clause,row.recipientId);
  requireValue(row.recipientId===row.policy.recipientId&&(row.recipient===undefined||equal(row.recipient,recipient)),'Unresolved conditional policy recipient declaration');
@@ -308,5 +309,5 @@ export function projectConditionalPolicy(book,projection,unit,row){
  if(ownerRole?.subject==='MODEL')requireValue(model&&(!source.enhancementAssignments?.length||source.enhancementAssignments.some(a=>a.enhancementId===rule.id&&a.modelScopeId===model.scopeId)),'Missing conditional MODEL assignment');
  if(ownerRole?.subject!=='MODEL')requireValue(row.sourceModelScopeId===null,'Unexpected conditional MODEL bearer');
  const activation=row.policy.activationReferenceId?index.get(row.policy.activationReferenceId):null;
- return {...clone(row),recipient:clone(recipient),...(activation?{activationContext:{canonicalId:activation.id,label:title(activation.id),text:activation.data.text,provenance:clone(activation.provenance)}}:{}),sourceLabel:`${title(source.canonicalUnitId)} (${source.instanceId})`,sourceModelLabel:model?`${title(model.canonicalProfileId)} (${model.scopeId})`:null,recipientLabels:expected.map(id=>{const u=projection.units.find(u=>u.instanceId===id);return `${title(u.canonicalUnitId)} (${id})`;})};
+ return {...clone(row),recipient:clone(recipient),...(activation?{activationContext:{canonicalId:activation.id,label:title(activation.id),text:activation.data.text,...copySourceEvidence(activation,{book})}}:{}),sourceLabel:`${title(source.canonicalUnitId)} (${source.instanceId})`,sourceModelLabel:model?`${title(model.canonicalProfileId)} (${model.scopeId})`:null,recipientLabels:expected.map(id=>{const u=projection.units.find(u=>u.instanceId===id);return `${title(u.canonicalUnitId)} (${id})`;})};
 }

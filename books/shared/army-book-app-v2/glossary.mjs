@@ -1,3 +1,4 @@
+import {copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 // Disposable presentation/search projection. Definitions remain in canonical cards.
 export const GLOSSARY_SCHEMA = 'army-book-glossary/v2';
 
@@ -44,7 +45,7 @@ function projectCore(coreCatalog) {
     if (!record.id || !record.title || (record.state !== 'FULL_CONTENT'&&!sourceConflict)) throw new Error(`Unavailable Core record: ${record.id}`);
     const card = {id: record.id, kind: `CORE_${record.recordType}`, title: record.title,
       domain: 'CORE', parentId: null, contextId: record.id, source: {entityId: record.id},
-      provenance: structuredClone(record.provenance), children: [], fields: [], links: []};
+      ...copySourceEvidence(record,{book:coreCatalog}), children: [], fields: [], links: []};
     const add = (path, value, label, type = 'text') => {
       const sourcePath = pointer(path), id = `${record.id}::${sourcePath}`;
       card.fields.push({id, label, value: structuredClone(value), type, contextId: record.id,

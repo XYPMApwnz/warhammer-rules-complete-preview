@@ -1,3 +1,4 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
@@ -7,7 +8,8 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
  * composition requires explicit profile bindings instead of a name-based join.
  */
 export function buildCompatibilityFeasibility(book) {
-  const source=JSON.parse(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
+  book=prepareSourceProducer(book);
+  const source=parseProducerJSON(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
   const sourceRecords=new Map(source.datasheets.map(sheet=>[sheet.sourceId,sheet]));
   const composition=[];
   for(const unit of book.entities.filter(e=>e.kind==='DATASHEET')) {

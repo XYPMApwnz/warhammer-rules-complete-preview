@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** Existing independent source guard: seven Charge, one AdMech FNP, seven
  * Tyranids effects, one explicit Tyranids source choice and three Critical Hit
  * thresholds. The historical census is unchanged. */
@@ -14,7 +15,7 @@ import {reimportAttachmentGuardResult} from '../books/shared/roster-v2/reimport-
 import {nativeReferencePresentationGuardResult} from './native-reference-presentation-qa.mjs';
 import {assessEffectCoverage} from '../books/shared/roster-v2/source-effect-expectations-qa.mjs';
 import {assertSourceCompletenessGate,loadSourceCompletenessInputs} from '../books/shared/roster-v2/source-completeness.mjs';
-const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
+const read=file=>parseSourceFixtureJSON(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
 const ledger=read('../books/shared/roster-v2/source-effect-coverage-baseline.json'),
   charge=read('../books/shared/roster-v2/charge-source-expectations.json').cases,
   expectations=[...charge,nativeFnpExpectation,...sevenEffectsExpectations,trygonChoiceExpectation,...criticalHitExpectations,criticalHitThresholdExpectation],

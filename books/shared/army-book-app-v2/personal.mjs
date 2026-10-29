@@ -1,4 +1,5 @@
 /** Disposable presentation views. Roster services own eligibility and effects. */
+import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
@@ -22,7 +23,7 @@ export async function loadDetachmentPresentationSources({payload,assetBaseURL,fe
     const ambiguous=new Set();
     for(const input of inputs)if(input.status==='fulfilled'&&input.value?.bookId===payload.book.id)
       for(const rule of input.value.entities||[]){
-        if(!wanted.has(rule.id)||rule.kind!=='DETACHMENT_RULE'||!rule.ruleContract?.clauses||!rule.provenance?.sourceId)continue;
+        if(!wanted.has(rule.id)||rule.kind!=='DETACHMENT_RULE'||!rule.ruleContract?.clauses||!getRecordedSourceIdentity(rule,{book:input.value}))continue;
         if(result.has(rule.id)&&JSON.stringify(result.get(rule.id))!==JSON.stringify(rule))ambiguous.add(rule.id);
         else result.set(rule.id,rule);
       }
@@ -36,7 +37,7 @@ export function projectDetachmentFields(card,rows,sources=new Map()){
   const fields=new Map(),clauses=[];
   for(const row of rows){
     const rule=sources.get(row.ruleId),matches=rule?.ruleContract?.clauses.filter(clause=>clause.id===row.clauseId)||[];
-    const clause=matches.length===1&&JSON.stringify(rule.provenance)===JSON.stringify(row.sourceProvenance)?matches[0]:null;
+    const clause=matches.length===1&&sameSourceEvidence(rule,row,{otherSlot:'sourceProvenance'})?matches[0]:null;
     let selected=[];
     if(clause){
       for(const sourcePath of clause.sourceFields||[]){
@@ -116,7 +117,7 @@ export function validateDetachmentTextPresentation(cards,unit,effective,row,orig
     JSON.stringify(row.recipientInstanceIds)===JSON.stringify(expectedRecipients)&&
     verified.length===1&&JSON.stringify(row.recipientModelScopeIds)===JSON.stringify(verified[0].recipientModelScopeIds)&&
     JSON.stringify(row.detachmentText)===JSON.stringify(verified[0].detachmentText)&&
-    JSON.stringify(row.sourceProvenance)===JSON.stringify(verified[0].sourceProvenance)&&
+    sameSourceEvidence(row,verified[0],{slot:'sourceProvenance'})&&
     JSON.stringify(row.sourceOwnerChain)===JSON.stringify(verified[0].sourceOwnerChain)&&
     ['recipientId','sourceInstanceId','sourceModelScopeId','sourceDetachmentId','sourceParentId'].every(key=>row[key]===verified[0][key])&&
     ['UNIT','MODEL'].includes(text.recipientSubject)&&Array.isArray(row.recipientModelScopeIds)&&
@@ -197,7 +198,7 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
       value.unitScope!=='FORMED'||identity(value)!==expected);
   }
   if(group){
-    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.recipientId,row.sourceProvenance,row.sourceOwnerChain]);
+    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.recipientId,sourceSnapshot(row,{slot:'sourceProvenance'}),row.sourceOwnerChain]);
     const sources=components.flatMap(component=>component.card.rosterDetachmentTexts||[])
       .filter(row=>row.detachmentText.recipientSubject==='UNIT');
     for(const component of components){
@@ -230,10 +231,10 @@ export function projectPersonalBook(payload, state) {
   // this adds a reference, never an equipment selection or an effect.
   for(const unit of state.units)for(const selection of [...(unit.selections||[]),
     ...(unit.modelRows||[]).flatMap(row=>[...(row.selections||[]),...(row.loadouts||[]).flatMap(loadout=>loadout.selections||[])])]){
-    const origin=cards.get(selection.sourceEquipmentIdentity),proof=selection.sourceEquipmentProvenance;
+    const origin=cards.get(selection.sourceEquipmentIdentity),proof=sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'});
     if(selection.physicalQuantity>0&&origin&&proof&&
         selection.canonicalEquipmentIds?.some(id=>allowedIds.has(id)&&cards.get(id)?.contextId===unit.canonicalUnitId)&&
-        ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===origin.provenance?.[key]))visit(origin.id);
+        ['sourceId','sourceEntityId','document','sha256','pointer'].every(key=>typeof proof[key]==='string'&&proof[key]===sourceSnapshot(origin)?.[key]))visit(origin.id);
   }
   for (const id of [...detachments,...enhancements,...units]) assert(allowedIds.has(id),'Unresolved personal book identity: '+id);
   const copies = new Map();
@@ -508,9 +509,9 @@ export function projectInstanceCards(cards, unit, effective) {
       const rule=cards.get(row.ruleId),owner=cards.get(rule?.parentId);
       return row.sourceInstanceId===null&&row.sourceModelScopeId===null&&row.recipient?.from==='ROSTER_UNITS'&&
         rule?.kind==='DETACHMENT_RULE'&&owner?.kind==='DETACHMENT'&&rule.identity?.canonicalId===row.ruleId&&owner.identity?.canonicalId===rule.parentId&&typeof rule.identity?.registryId==='string'&&rule.identity.registryId===owner.identity?.registryId&&
-        JSON.stringify(row.sourceProvenance)===JSON.stringify(rule.provenance)&&row.recipientInstanceIds?.includes(unit.instanceId);
+        sameSourceEvidence(row,rule,{slot:'sourceProvenance',otherSlot:'provenance'})&&row.recipientInstanceIds?.includes(unit.instanceId);
     };
-    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.recipientId===row.policy.recipientId&&row.recipient?.id===row.recipientId&&hasSource(row)&&row.sourceProvenance?.sourceId&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
+    assert(policies.every(row=>row.execution==='CONDITIONAL_TEXT_ONLY'&&row.state==='UNKNOWN'&&row.recipientId===row.policy.recipientId&&row.recipient?.id===row.recipientId&&hasSource(row)&&getRecordedSourceIdentity(row,{slot:'sourceProvenance'})&&Array.isArray(row.recipientInstanceIds)),'Unresolved conditional policy presentation');
     root.rosterConditionalPolicies=clone(policies);
   }
   root.rosterUnitAbilities=clone(effective.unitAbilities||[]);

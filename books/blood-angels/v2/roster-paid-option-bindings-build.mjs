@@ -1,9 +1,11 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Reuse proven central SM purchase identities through closed BA membership.
  * No BA numeric owner, aliases or duplicate MFM records are created. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createSpaceMarinesPaidOptionBindings} from '../../space-marines/v2/roster-paid-option-bindings-build.mjs';
-export function createBloodAngelsPaidOptionBindings({book=JSON.parse(fs.readFileSync(new URL('./generated/mixed-owner-book.json',import.meta.url),'utf8'))}={}){
+export function createBloodAngelsPaidOptionBindings({book=parseProducerJSON(fs.readFileSync(new URL('./generated/mixed-owner-book.json',import.meta.url),'utf8'))}={}){
+  book=prepareSourceProducer(book);
  assert.equal(book.bookId,'blood-angels');
  const index=new Map(book.entities.map(e=>[e.id,e]));
  const admitted=new Set(book.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id));

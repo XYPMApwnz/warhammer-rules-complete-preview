@@ -4,12 +4,16 @@ import copy
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from urllib.parse import urlparse
 from lxml import html
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 SOURCE = 'books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25'
 SOURCE_ID = 'am-waha-11e-2026-09-25'
 sha = lambda value: hashlib.sha256(value).hexdigest().upper()
@@ -363,8 +367,7 @@ def main():
     target = HERE/'generated'
     if not args.check:
         target.mkdir(exist_ok=True)
-    for name, value in output.items():
-        data = (json.dumps(value, indent=2, ensure_ascii=False)+'\n').encode('utf8')
+    for name, data in serialized_source_outputs(output, ROOT).items():
         file = target/(name+'.json')
         if args.check:
             assert file.read_bytes() == data, 'Non-deterministic generated projection: '+name
