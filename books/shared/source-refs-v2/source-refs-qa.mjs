@@ -9,8 +9,10 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {SOURCE_SCHEMA,compileBookSourceRefs,registerBookSources,sourceDeclarationView,sourceSnapshot,readSourceRefs} from './source-refs.mjs';
 import {loadSourceRegistry} from './source-registry.mjs';
+import {checkSourceClosureTree} from './source-closure-qa.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url)),base='75d322e4e3274f14d7e2a81abace3ba63c784ec5';
+assert.equal(checkSourceClosureTree(root).status,'PASS','Serialized closure precedes compiler/reader cache warmup');
 const bookIds=['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids'];
 const registry=loadSourceRegistry(root),cmp=(a,b)=>a<b?-1:a>b?1:0,clone=structuredClone;
 assert.deepEqual(readSourceRefs({id:'source-free-record',data:{text:'No source declaration'}}),[],'Source-free records terminate without inventing evidence');

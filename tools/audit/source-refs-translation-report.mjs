@@ -10,9 +10,11 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {SOURCE_SCHEMA,compileBookSourceRefs,registerBookSources,sourceDeclarationView,readSourceRefs,sourceSnapshot,getSourceBindings} from '../../books/shared/source-refs-v2/source-refs.mjs';
 import {loadSourceRegistry} from '../../books/shared/source-refs-v2/source-registry.mjs';
+import {assertSourceReferenceClosure} from '../../books/shared/source-refs-v2/source-closure.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url)),base='75d322e4e3274f14d7e2a81abace3ba63c784ec5';
 const registry=loadSourceRegistry(root);
+const sourceCatalog=JSON.parse(fs.readFileSync(path.join(root,'books/shared/source-refs-v2/source-catalog.json'),'utf8'));
 const books=['adeptus-mechanicus','blood-angels','chaos-space-marines','dark-angels','death-guard','emperors-children','space-marines','tau-empire','tyranids'];
 const args=process.argv.slice(2),mode=args[0],options={};assert.ok(['--write','--check'].includes(mode),'Use --write or --check');
 for(let i=1;i<args.length;i+=2){assert.ok(['--package','--parity'].includes(args[i])&&args[i+1]&&!options[args[i]],'Invalid measurement option');options[args[i]]=args[i+1];}
@@ -67,8 +69,12 @@ const bookRows=books.map(bookId=>({bookId,artifacts:0,entityOccurrences:0,source
 const artifacts=[],unresolved=[],multiDocument=[],metadataOnly=[],sourceShapes=new Map(),formCounts=new Map(),multiDocumentRules=new Map();
 for(const file of files){
  const bookId=file.split('/')[1],aggregate=bookRows.find(row=>row.bookId===bookId),baseline=git('show',`${base}:${file}`),current=fileBytes(file);
- const before=JSON.parse(baseline),compiled=compileBookSourceRefs(before,{registry}),after=JSON.parse(current);registerBookSources(after);
+ const before=JSON.parse(baseline),after=JSON.parse(current);
+ // Validate actual serialized closure before a fresh compilation can populate
+ // reader pools and conceal a missing published reference.
+ assertSourceReferenceClosure(after,{catalog:sourceCatalog,bookId,label:file});registerBookSources(after);
  const inverse=sourceDeclarationView(after,{book:after});assert.equal(JSON.stringify(inverse),JSON.stringify(before),'All-entity/all-field inverse mismatch: '+file);
+ const compiled=compileBookSourceRefs(before,{registry});
  assert.equal(JSON.stringify(sourceDeclarationView(compiled,{book:compiled})),JSON.stringify(before),'Fresh compiler inverse mismatch: '+file);
  assert.deepEqual(bindingInventory(after),bindingInventory(compiled),'Normalized source binding inventory mismatch: '+file);
  const oldStrata=stratagemRows(before,stratagemIds(before)),newStrata=stratagemRows(after,stratagemIds(before));

@@ -34,7 +34,11 @@ export function externalizeSources(value,{tables,bookId=value.bookId||value.book
    if(collect&&shared)tables.bindings[id]=bindingTuple(bindings);
    if(collect&&shared||tables?.bindings?.[id]||catalogValue('bindings',id))node.sourceBindings=id;
   }
-  for(const [key,child]of Object.entries(node))if(!compactKeys.has(key)&&key!=='fieldProvenance')walk(child);
+  // sourceBindings can also be an ordinary factual container (for example
+  // presentation instructions). Only a recognized codec binding is metadata.
+  for(const [key,child]of Object.entries(node))if(!catalogKeys.includes(key)&&
+    !['sourceRefs','sourceOwnership','sourceSchema'].includes(key)&&
+    !(bindings&&(key==='sourceBindings'||key==='fieldProvenance')))walk(child);
  }
  walk(value);
  const retained=Object.fromEntries(Object.entries(refs).filter(([id])=>!encoded.has(id)));

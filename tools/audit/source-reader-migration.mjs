@@ -20,7 +20,7 @@ const files=git('diff','--name-only',base,'--','*.mjs','*.py').toString('utf8').
  .filter(file=>knownAtBase.has(file)).sort(cmp);
 const legacy=/\b(?:provenance|sourceProvenance|effectProvenance|mfmProvenance|sourceEvidence|fieldProvenance|currentness|sourceId|sourcePath|corpusDocument|sourceLocator)\b/;
 const serialization=/\b(?:JSON\.parse|JSON\.stringify|json\.dumps|serialize\(|read_text\(|write_text\(|readFileSync\(|writeFileSync\()/;
-const apiModules=['books/shared/source-refs-v2/source-refs.mjs','books/shared/source-refs-v2/source-registry.mjs','books/shared/source-refs-v2/source-serialization.mjs','books/shared/source-refs-v2/producer-io.mjs','tests/helpers/source-refs-fixtures.mjs'];
+const apiModules=['books/shared/source-refs-v2/source-refs.mjs','books/shared/source-refs-v2/source-registry.mjs','books/shared/source-refs-v2/source-serialization.mjs','books/shared/source-refs-v2/source-closure.mjs','books/shared/source-refs-v2/source-closure-qa.mjs','books/shared/source-refs-v2/producer-io.mjs','tests/helpers/source-refs-fixtures.mjs'];
 const apiDefinitions=[];
 for(const file of apiModules){const text=read(file);for(const match of text.matchAll(/export\s+(?:async\s+)?(?:function|const)\s+([A-Za-z_$][\w$]*)/g))
  apiDefinitions.push({api:match[1],path:file,line:text.slice(0,match.index).split('\n').length});}

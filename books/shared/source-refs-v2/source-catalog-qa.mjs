@@ -40,19 +40,22 @@ const documentId=actual.sourceRefs[0].documentId,bindingId=actual.sourceBindings
 assert.ok(typeof bindingId==='string');
 let passed=false;
 try{
- for(const [name,mutate]of [
+ for(const [name,mutate,mutateRecord]of [
   ['document hash changed',catalog=>{const table=Object.values(catalog.documents).find(table=>table[documentId]);table[documentId].sha256='0'.repeat(64);} ],
   ['binding tuple changed',catalog=>{catalog.bindings[bindingId][0].push('unaccepted-field');}],
-  ['layout changed',catalog=>{catalog.layouts[catalog.bindings[bindingId][1][0][1]].type='UNACCEPTED';}]
+  ['layout changed',catalog=>{catalog.layouts[catalog.bindings[bindingId][1][0][1]].type='UNACCEPTED';}],
+  ['document entry deleted',catalog=>{for(const table of Object.values(catalog.documents))delete table[documentId];}],
+  ['reference entry absent on cold load',()=>{},record=>{record.sourceRefs[0]={ref:record.sourceRefs[0].referenceId};}]
  ]){
   const folder=path.join(scratch,String(controls.length));fs.mkdirSync(folder);
   for(const file of ['source-refs.mjs','source-catalog.mjs'])fs.copyFileSync(path.join(here,file),path.join(folder,file));
   const catalog=structuredClone(baseCatalog);mutate(catalog);
   fs.writeFileSync(path.join(folder,'source-catalog.json'),JSON.stringify(catalog));
-  fs.writeFileSync(path.join(folder,'record.json'),JSON.stringify(actual));
+  const record=structuredClone(actual);mutateRecord?.(record);
+  fs.writeFileSync(path.join(folder,'record.json'),JSON.stringify(record));
   const script=`import fs from 'node:fs';import {readSourceRefs,sourceSnapshot} from ${JSON.stringify(pathToFileURL(path.join(folder,'source-refs.mjs')).href)};const record=JSON.parse(fs.readFileSync(${JSON.stringify(path.join(folder,'record.json'))}));readSourceRefs(record);sourceSnapshot(record);`;
   const result=spawnSync(process.execPath,['--input-type=module','-e',script],{encoding:'utf8'});
-  assert.notEqual(result.status,0,name+' must reject a cold load');assert.match(result.stderr,/Source catalog content changed|Source reference content changed/);
+  assert.notEqual(result.status,0,name+' must reject a cold load');assert.match(result.stderr,/Source catalog content changed|Source reference content changed|Missing source (?:documents|refs) entry/);
   controls.push({name,status:'REJECTED'});
  }
  passed=true;

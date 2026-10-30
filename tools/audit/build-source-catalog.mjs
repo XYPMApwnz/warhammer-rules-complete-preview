@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import {compileBookSourceRefs,sourceDeclarationView} from '../../books/shared/source-refs-v2/source-refs.mjs';
 import {externalizeSources,compactSourceJSON} from '../../books/shared/source-refs-v2/source-serialization.mjs';
 import {loadSourceRegistry} from '../../books/shared/source-refs-v2/source-registry.mjs';
+import {assertSourceReferenceClosure} from '../../books/shared/source-refs-v2/source-closure.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url)),base='75d322e4e3274f14d7e2a81abace3ba63c784ec5';
 const mode=process.argv[2];assert.ok(['--write','--check'].includes(mode));
 const git=(...args)=>execFileSync('git',args,{cwd:root,maxBuffer:128*1024*1024});
@@ -28,5 +29,10 @@ for(const file of files){
 }
 const catalog=path.join(root,'books/shared/source-refs-v2/source-catalog.json'),catalogBytes=JSON.stringify(tables)+'\n';
 if(mode==='--write')fs.writeFileSync(catalog,catalogBytes);else assert.equal(fs.readFileSync(catalog,'utf8'),catalogBytes,'Shared source catalog changed');
-for(const [file,output]of outputs){externalizeSources(output,{tables,bookId:file.split('/')[1]});const text=compactSourceJSON(output),target=path.join(root,file);if(mode==='--write')fs.writeFileSync(target,text);else assert.equal(fs.readFileSync(target,'utf8'),text,'Serialized source output changed: '+file);}
+for(const [file,output]of outputs){
+ externalizeSources(output,{tables,bookId:file.split('/')[1]});
+ assertSourceReferenceClosure(output,{catalog:tables,bookId:file.split('/')[1],label:file});
+ const text=compactSourceJSON(output),target=path.join(root,file);
+ if(mode==='--write')fs.writeFileSync(target,text);else assert.equal(fs.readFileSync(target,'utf8'),text,'Serialized source output changed: '+file);
+}
 console.log(JSON.stringify({status:'PASS',artifacts:outputs.length,catalogBytes:Buffer.byteLength(catalogBytes),documentsByBook:Object.fromEntries(Object.entries(tables.documents).map(([id,table])=>[id,Object.keys(table).length])),bindings:Object.keys(tables.bindings).length}));

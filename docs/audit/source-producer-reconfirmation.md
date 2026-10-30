@@ -57,7 +57,7 @@ All 19 SM generated JSON artifacts pass exact inverse compact UTF-8 serializatio
 
 The exact artifact-byte SHA computation and `UNREVIEWED_SOURCE_REVISION` comparison statements are unchanged. Only three recorded artifact hash values in two review files were updated.
 
-Implementation commit: **PENDING_FINAL_FEATURE_COMMIT**. The root agent must add the actual commit reference after that commit exists.
+Implementation commit: [c73bd5396aa358d97603650ebd28a4886b61cf6b](https://github.com/XYPMApwnz/warhammer-rules-complete-preview/commit/c73bd5396aa358d97603650ebd28a4886b61cf6b). This commit contains the serialization-only producer change and its lossless source-reference migration.
 
 ## Shared serialization bridge
 

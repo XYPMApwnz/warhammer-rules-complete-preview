@@ -8,9 +8,10 @@
     "publication": "Feature branch only; no source/release/main fast-forward or publication authorized."
   },
   "commitReference": {
-    "status": "PENDING_FINAL_FEATURE_COMMIT",
-    "sha": null,
-    "note": "The root agent must record the resulting implementation commit after it exists; this file does not claim an absent commit."
+    "status": "RECORDED",
+    "sha": "c73bd5396aa358d97603650ebd28a4886b61cf6b",
+    "url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/commit/c73bd5396aa358d97603650ebd28a4886b61cf6b",
+    "note": "Implementation commit containing the serialization-only producer change and its lossless source-reference migration."
   },
   "producer": {
     "path": "books/space-marines/v2/build.py",
@@ -33,7 +34,7 @@
       },
       "sharedCatalog": {
         "path": "books/shared/source-refs-v2/source-catalog.json",
-        "sha256": "8591b7904796abbfda9481df098ed4d700c1fddbd20ebb436a2e3ca32d60f0c4"
+        "sha256": "ed9cd49443e02fa347f8f395d0a6580a0763b9bce9f89c8123efe1a80e213135"
       }
     }
   },
