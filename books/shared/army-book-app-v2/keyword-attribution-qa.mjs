@@ -19,9 +19,9 @@ function fixture(nested){
  const f=createSyntheticPersonalFixture('keyword-source-'+nested,nested),{id}=f;
  for(const entity of f.model.entities.filter(e=>e.kind==='DATASHEET'))Object.assign(entity.data,{title:entity.data.name,sectionIds:[],ruleReferenceIds:[],weaponIds:[],wargearOptionIds:[]});
  const rule=f.model.entities.find(e=>e.id===id('equipment-rule'));
- rule.provenance={sourceId:id('source')};
- const effect={id:id('effect'),operation:'GRANT_UNIT_KEYWORD',keyword:'GRANTED',targetSubject:'UNIT',unitScope:'PHYSICAL'};
- rule.ruleContract={clauses:[{id:'grant',rosterEffects:[effect]}]};
+ sourceFixture(rule).provenance={sourceId:id('source')};
+ const effect={id:id('effect'),operation:'GRANT_UNIT_KEYWORD',keyword:'GRANTED',recipientId:'keyword-recipient'};
+ rule.ruleContract={clauses:[{id:'grant',recipientStatus:'RECORDED',recipients:[{id:'keyword-recipient',who:'UNIT',side:'FRIENDLY',from:'SOURCE_UNIT',scope:'PHYSICAL',how:'ROSTER'}],rosterEffects:[effect]}]};
  const make=(unit,effective)=>({...clone(unit),intrinsicKeywords:['INFANTRY','SYNTHETIC'],keywords:[...effective.keywords],weapons:[],applied:[],conditional:[],
   profiles:effective.profiles.map(p=>({...clone(p),canonicalProfileId:p.id,profile:clone(f.model.entities.find(e=>e.id===p.id).data),intrinsicKeywords:[...p.keywords],weapons:[]}))});
  const raw=make(f.unit,f.effective),peer=make(f.duplicate.unit,f.duplicate.effective);
@@ -47,14 +47,15 @@ for(const nested of [false,true]){
  f.raw.keywords=f.raw.keywords.filter(word=>word!=='GRANTED');
  assert.equal(projectEffectiveInstance(f.model,f.projection,f.raw.instanceId).keywordSources,undefined);checks++;
  for(const alter of [x=>x.trace.effectId='missing',x=>x.trace.clauseId='missing',x=>x.trace.targetInstanceId=x.peer.instanceId,
-  x=>x.effect.referencedRuleId='missing',x=>{x.effect.referencedRuleId=x.rule.id;x.effect.provenance={canonicalRuleId:'contradiction'};}]){
+  x=>x.effect.referencedRuleId='missing',x=>{x.effect.referencedRuleId=x.rule.id;sourceFixture(x.effect).provenance={canonicalRuleId:'contradiction'};}]){
   const bad=fixture(nested);alter(bad);
   assert.throws(()=>projectEffectiveInstance(bad.model,bad.projection,bad.raw.instanceId),/keyword grant/);mutations++;
  }
 }
 {
  const f=fixture(true),profile=f.raw.profiles[0];
- Object.assign(f.effect,{operation:'GRANT_MODEL_KEYWORD',targetSubject:'MODEL'});delete f.effect.unitScope;
+ f.effect.operation='GRANT_MODEL_KEYWORD';
+ Object.assign(f.rule.ruleContract.clauses[0].recipients[0],{who:'MODEL',from:'SOURCE_UNIT_MODELS'});delete f.rule.ruleContract.clauses[0].recipients[0].scope;
  Object.assign(f.trace,{operation:f.effect.operation,targetCompositionId:profile.scopeId,targetProfileId:profile.canonicalProfileId,targetModelInstanceId:profile.modelInstanceId});
  profile.keywords.push('GRANTED');
  const effective=projectEffectiveInstance(f.model,f.projection,f.raw.instanceId);

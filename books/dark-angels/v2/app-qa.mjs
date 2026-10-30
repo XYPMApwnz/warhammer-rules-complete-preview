@@ -12,9 +12,9 @@ const facts=read('./generated/effective.json'),sm=read('../../space-marines/v2/g
 const before=JSON.stringify([facts,sm]),payload=buildApp(),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const membership=read('./inherited-sm-references.json'),checks=[];
 const check=(id,fn)=>{fn();checks.push({id,status:'PASS'});};
-check('standard-eight-book-registration-and-existing-assets',()=>{
- assert.equal(armyBooks.length,8);assert.equal(new Set(armyBooks.map(book=>book.id)).size,8);
- assert.equal(armyBooks.at(-1),registration);assert.equal(registration.id,'dark-angels');assert.equal(payload.book.id,registration.id);
+check('standard-nine-book-registration-and-existing-assets',()=>{
+ assert.deepEqual(armyBooks.map(book=>book.id),['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
+ assert.equal(armyBooks.find(book=>book.id==='dark-angels'),registration);assert.equal(registration.id,'dark-angels');assert.equal(payload.book.id,registration.id);
  assert.ok(fs.statSync(fileURLToPath(registration.home.cover)).size>0);
  assert.ok(fs.statSync(new URL(payload.bookPresentation.coverImage,registration.assetBaseURL)).size>0);
  assert.ok(registration.styles.every(url=>fs.statSync(fileURLToPath(url)).size>0));

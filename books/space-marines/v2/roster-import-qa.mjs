@@ -1,10 +1,14 @@
+import {serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
+import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
+const progress=qaProgress('SM roster');
 import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Independent physical-input oracle, plus accepted MFM capture comparisons.
  * These texts are constructed diagnostic New Recruit-compatible fixtures. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
-import {buildSpaceMarinesImportBook,writeSpaceMarinesImportBook} from './roster-import-build.mjs';
+import {buildSpaceMarinesImportBook} from './roster-import-build.mjs';
 import {createSpaceMarinesRosterImport,createSpaceMarinesRosterService} from './roster-import.mjs';
 import {formRoster,predicateContext,selections} from '../../shared/roster-v2/context.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
@@ -14,8 +18,9 @@ import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(row=>[row.id,row]));
-const book=buildSpaceMarinesImportBook(),sourceMfm=read('../../../mfm/sources/v1.6/space-marines.json');
-const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
+const built=buildSpaceMarinesContracts();progress('contracts built');
+const book=buildSpaceMarinesImportBook({built}),sourceMfm=read('../../../mfm/sources/v1.6/space-marines.json');
+const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const DEFAULT='detachment-sm-6341f5a9b9584677',CAPTAIN='unit-sm-99eb03d4f2d448e2',INTERCESSORS='unit-sm-59162946fee84360';
 const DAINAL_UNIT='unit-sm-c7226873c51d43c0',CATO='unit-sm-02d5dee4717544ad',MARNEUS='unit-sm-1af70808102d4286',VICTRIX='unit-sm-f169827c554c4eee';
 const header=ids=>'+ FACTION KEYWORD: Space Marines\n'+(ids||[DEFAULT]).map(id=>'+ DETACHMENT: '+index.get(id).data.title+'\n').join('');
@@ -49,7 +54,9 @@ function pricedFixture(unitId,options={}){
   return fixture(unitId,{...options,extraModels:raw.pointSchedules[0].entries[0].minModels-input.total});
 }
 const physical=[],blocked=[];let inputModelCount=0;
+let physicalProgress=0;
 for(const unit of facts.entities.filter(row=>row.kind==='DATASHEET')){
+ progress('physical',++physicalProgress+'/85');
   const input=fixture(unit.id),service=createSpaceMarinesRosterService(book),result=service.import(header()+input.text);
   if(unit.id===DAINAL_UNIT){assert.equal(result.status,'NEEDS_BINDINGS');blocked.push({unitId:unit.id,status:result.status,needs:result.needsBindings});continue;}
   assert.equal(result.status,'READY',unit.id+' '+JSON.stringify({needs:result.needsBindings,errors:result.errors}));
@@ -112,7 +119,9 @@ assert.equal(paidResults.length,8);
 // Every source-backed assignment can be represented, without executing unknown
 // battle conditions. Fixture recipient discovery is not a new eligibility oracle.
 const assignmentResults=[],schema=createSpaceMarinesRuleSchema();
+let enhancementProgress=0;
 for(const binding of book.importBindings.enhancements){
+ progress('enhancements',++enhancementProgress+'/56');
   let chosen=null;
   for(const source of facts.entities.filter(row=>row.kind==='DATASHEET'&&row.id!==DAINAL_UNIT)){
     const candidate=fixture(source.id,{gear:false});
@@ -169,8 +178,9 @@ const unknown=active.import(header()+'1x Astraeus (9999 pts)\n');assert.equal(un
 assert.equal(book.importBindings.referenceOnly.length,21);
 const unknownInput=active.import(header()+'1x Thunderhawk Gunship (9999 pts)\n');assert.equal(unknownInput.status,'NEEDS_BINDINGS');
 
-const original=JSON.stringify(book);assert.deepEqual(buildSpaceMarinesImportBook(),book);assert.equal(JSON.stringify(book),original);
-writeSpaceMarinesImportBook({check:true});
+const original=JSON.stringify(book);assert.deepEqual(buildSpaceMarinesImportBook({built}),book);assert.equal(JSON.stringify(book),original);
+assert.equal(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'),serializeSourceJSON(book),'Stale Space Marines native import view');
+progress.close();
 console.log(JSON.stringify({status:'PASS',physicalSourceUnits:84,sourceMappingBlockedUnits:blocked,constructedInputModels:inputModelCount,
   physical:physical,detachments:21,paidOptionControls:paidResults,assignments:assignmentResults,cato:catoResults,
   repeatedUnits:true,quantityParity:true,sourceReplacementsNoDefaultGear:true,atomicImport:true,replacementConfirmation:true,

@@ -1,3 +1,5 @@
+import {buildBloodAngelsContracts} from './rule-contract-build.mjs';
+import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
 import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Source/input-first acceptance of constructed text through the real shared
@@ -65,10 +67,12 @@ const sourceBase=(id,count,copy=1)=>{
 };
 
 export function runBloodAngelsRosterQA({onlyGroups=null}={}){
- const produced=buildBloodAngelsRosterBook(),book=produced.book||produced,index=new Map(book.entities.map(e=>[e.id,e]));
- const before=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(c=>[c.id,c]));
+ const progress=qaProgress('BA roster');
+ const built=buildBloodAngelsContracts();progress('contracts built');
+ const produced=buildBloodAngelsRosterBook({built}),book=produced.book||produced,index=new Map(book.entities.map(e=>[e.id,e]));
+ const before=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(c=>[c.id,c]));
  const checks=[],physical=[],weaponEvidence=[],assignments=[],paidEvidence=[],mutations=[];
- const check=(id,fn)=>{if(onlyGroups&&!onlyGroups.includes(id))return;fn();checks.push({id,status:'PASS'});process.stderr.write(id+' PASS\n');};
+ const check=(id,fn)=>{progress(id,checks.length);if(onlyGroups&&!onlyGroups.includes(id))return;fn();checks.push({id,status:'PASS'});process.stderr.write(id+' PASS\n');};
  const header=(dets=[DEFAULT])=>'+ FACTION KEYWORD: Blood Angels\n'+dets.map(id=>'+ DETACHMENT: '+sources.get(id).data.title+'\n').join('');
  const fixture=(id,{weapon,unitGear='',modelGear='',optional=true}={})=>{
   const unit=sources.get(id),members=[...sources.values()].filter(e=>e.kind==='COMPOSITION_MEMBER'&&e.parentId===id&&(optional||e.data.quantity.min>0));assert.ok(members.length);
@@ -318,6 +322,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  });
  assert.equal(JSON.stringify([...sources.values()]),before,'Importer mutated accepted facts');
  if(onlyGroups)assert.deepEqual(checks.map(c=>c.id).sort(),[...onlyGroups].sort(),'Unknown targeted QA group');
+ progress.close();
  return {status:'PASS',validationScope:onlyGroups?{mode:'TARGETED_GROUPS',groups:onlyGroups}:{mode:'FULL_DEFAULT'},checks,physical,weaponEvidence,assignments,paidEvidence,mutations,
   counts:{bareDatasheetsImportable:physical.length,totalDatasheets:81,modelProfiles:profileIds.size,physicalModelOccurrences:modelOccurrences,explicitWeaponProfiles:weaponEvidence.length,weaponPermissionAmbiguitiesNotProven:2,paidOptions:7,sourceAssignmentItems:40,baLeaderEdges:12,baSupportEdges:8,incomingSmEdges:3},
   limitations:{fixtures:'CONSTRUCTED_PHYSICAL_DIAGNOSTICS_NOT_ARMY_LEGALITY',realNewRecruitExportTested:false,browserVerified:false,weaponPermissionAliases:'NOT_PROVEN',chapterKeywords:'NO_AUTOMATIC_BLOOD_ANGELS',blackRagePositions:'NOT_PROVEN',mfmReferenceOnly:10}};

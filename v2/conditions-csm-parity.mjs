@@ -14,6 +14,8 @@ const source=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const argv=process.argv.slice(2),argument=name=>argv.includes(name)?argv[argv.indexOf(name)+1]:undefined;
 const root=path.resolve(argument('--root')||source),output=argument('--out'),fixtureFile=argument('--fixtures');
 const prepare=argument('--write-fixtures');
+const exactOutput=argument('--exact-out'),isolationOutput=argument('--isolation-out'),isolationResults=[];
+if(exactOutput)fs.writeFileSync(exactOutput,'');
 assert.ok(prepare||output,'Use --out JSON or --write-fixtures JSON');
 const {translateFieldArguments,conditionIdentity,findConditionValue}=await import(new URL('../books/shared/rule-contract-v2/conditions.mjs',import.meta.url));
 const stable=value=>JSON.stringify(canonical(value));
@@ -129,7 +131,7 @@ function normalizeProjection(projection){
   const value=clone(projection);walk(value,node=>{node.arguments=normalizedNode(node).arguments;});return canonical(value);
 }
 function start(id){active=id;stage='INITIALIZATION';}
-function capture(id,projection,state){scenarios.push({id,projection:normalizeProjection(projection),state:canonical(state)});}
+function capture(id,projection,state){if(exactOutput)fs.appendFileSync(exactOutput,JSON.stringify({bookId:'chaos-space-marines',id,projection,state})+'\n');scenarios.push({id,projection:normalizeProjection(projection),state:canonical(state)});}
 
 let fixtures;
 if(fixtureFile)fixtures=JSON.parse(fs.readFileSync(fixtureFile,'utf8'));
@@ -143,6 +145,8 @@ if(prepare){fs.writeFileSync(prepare,JSON.stringify(fixtures,null,2)+'\n');conso
 for(const fixture of fixtures){
   start('import/'+fixture.id);
   const imported=createCSMRosterImport(importBook).import(fixture.text);
+  const importedBytes=JSON.stringify(imported);
+  if(exactOutput)fs.appendFileSync(exactOutput,JSON.stringify({bookId:'chaos-space-marines',id:active+'/import',result:imported})+'\n');
   assert.equal(imported.status,'READY','Canonical text import failed: '+fixture.id);
   const state=imported.roster;state.rosterId='conditions-csm/'+fixture.id;
   const sourceRule=book.entities.find(entity=>entity.id===fixture.owner);
@@ -153,6 +157,17 @@ for(const fixture of fixtures){
     raw.enhancementAssignments=[{enhancementId:sourceRule.id,modelScopeId:candidates[0].scopeId}];
   }
   const service=createCSMRosterRuntime(book,importBook,attachmentBindings);service.load(state);
+  if(isolationOutput&&!isolationResults.length){
+    const originalBook=JSON.stringify(book),originalImporter=JSON.stringify(importBook),twin=createCSMRosterRuntime(book,importBook,attachmentBindings);
+    assert.equal(JSON.stringify(createCSMRosterImport(importBook).import(fixture.text)),importedBytes);
+    twin.load(clone(state));const before=JSON.stringify({state:twin.snapshot(),projection:twin.projection});
+    service.load({...clone(state),rosterId:state.rosterId+'::isolation'});
+    assert.equal(JSON.stringify(book),originalBook);assert.equal(JSON.stringify(importBook),originalImporter);
+    assert.equal(JSON.stringify({state:twin.snapshot(),projection:twin.projection}),before);
+    assert.equal(JSON.stringify(createCSMRosterImport(importBook).import(fixture.text)),importedBytes);
+    twin.load(clone(state));assert.equal(JSON.stringify({state:twin.snapshot(),projection:twin.projection}),before);
+    isolationResults.push({bookId:'chaos-space-marines',status:'PASS',reimportStatus:'READY'});service.load(state);
+  }
   capture(active+'/unattached',service.projection,service.snapshot());
   for(const [index,edge]of fixture.attachments.entries()){
     stage='ATTACHMENT';service.attach(service.state.units[edge.bodyguardOrdinal-1].instanceId,service.state.units[edge.leaderOrdinal-1].instanceId);
@@ -218,4 +233,5 @@ const report={schema:'conditions-csm-parity/v2',status:'PASS',fixtureCount:fixtu
   conditions:[...catalog.values()].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0),contexts:[...contexts.values()].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0),
   events:eventRows.sort((a,b)=>{const x=stable(a),y=stable(b);return x<y?-1:x>y?1:0;}),scenarios:scenarios.sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0)};
 fs.writeFileSync(output,JSON.stringify(report)+'\n');
+if(isolationOutput)fs.writeFileSync(isolationOutput,JSON.stringify(isolationResults,null,2)+'\n');
 console.log(JSON.stringify({status:'PASS',fixtureCount:fixtures.length,scenarioCount:scenarios.length,conditionCount:catalog.size,eventCount:eventRows.length,observedCalls,fieldCoverage:report.fieldCoverage,output}));

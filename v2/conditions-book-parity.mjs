@@ -14,6 +14,8 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 const source=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const argv=process.argv.slice(2),argument=name=>argv.includes(name)?argv[argv.indexOf(name)+1]:undefined;
 const root=path.resolve(argument('--root')||source),output=argument('--out'),fixtureFile=argument('--fixtures'),prepare=argument('--write-fixtures');
+const exactOutput=argument('--exact-out'),isolationOutput=argument('--isolation-out'),isolatedBooks=new Set(),isolationResults=[];
+if(exactOutput)fs.writeFileSync(exactOutput,'');
 assert.ok(prepare||output,'Use --out JSON or --write-fixtures JSON');
 const {translateFieldArguments,findConditionValue}=await import(new URL('../books/shared/rule-contract-v2/conditions.mjs',import.meta.url));
 const clone=structuredClone,canonical=value=>value instanceof Set?[...value].sort():Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?
@@ -184,6 +186,7 @@ function capture(service,label){
   if(service.related)service.related(unit.instanceId);
   if(service.effective)effective.push({instanceId:unit.instanceId,view:service.effective(unit.instanceId)});
  }
+ if(exactOutput)fs.appendFileSync(exactOutput,JSON.stringify({bookId,id:active+'/'+label,state,projection,effective})+'\n');
  scenarios.push({bookId,id:active+'/'+label,state:canonical(state),projection:normalize(projection),effective:normalize(effective)});
  catalogSweep(service);
 }
@@ -211,8 +214,20 @@ function operations(service,fixture){
 for(const fixture of fixtures){
  selectBook(fixture.bookId);active=fixture.bookId+'/'+fixture.id;frame='imported';stage='INITIALIZATION';
  const service=await createService(bookId),result=service.import(fixture.text,fixture.bindings||{});
+ if(exactOutput)fs.appendFileSync(exactOutput,JSON.stringify({bookId,id:active+'/import',result})+'\n');
  if(result.status!=='READY'){
   scenarios.push({bookId,id:active+'/import',importResult:normalize({status:result.status,needsBindings:result.needsBindings,errors:result.errors})});continue;
+ }
+ if(isolationOutput&&!isolatedBooks.has(bookId)){
+  const bookBefore=JSON.stringify(book),saved=service.snapshot(),twin=await createService(bookId),twinResult=twin.import(fixture.text,fixture.bindings||{});
+  assert.equal(twinResult.status,'READY');
+  const twinBefore=JSON.stringify({state:twin.snapshot(),projection:twin.projection});
+  service.load({...saved,rosterId:saved.rosterId+'::isolation'});
+  assert.equal(JSON.stringify(book),bookBefore,'Roster mutation changed book');
+  assert.equal(JSON.stringify({state:twin.snapshot(),projection:twin.projection}),twinBefore,'Roster mutation changed other import');
+  const repeated=twin.import(fixture.text,fixture.bindings||{});
+  assert.equal(JSON.stringify({state:twin.snapshot(),projection:twin.projection}),twinBefore,'Repeated import changed unchanged roster');
+  isolationResults.push({bookId,status:'PASS',reimportStatus:repeated.status});isolatedBooks.add(bookId);service.load(saved);
  }
  capture(service,'imported');operations(service,fixture);
 }
@@ -255,4 +270,5 @@ const report={schema:'conditions-book-parity/v1',status:'PASS',fixtureCount:fixt
   withoutPhysicalContext:[...catalog].filter(([key,row])=>row.bookId===id&&!observed.has(key)).map(([,row])=>row.id).sort()})),
  events:[...events.values()].sort((a,b)=>cmp(stable(a),stable(b))),scenarios:scenarios.sort((a,b)=>cmp(a.bookId,b.bookId)||cmp(a.id,b.id))};
 fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');
+if(isolationOutput)fs.writeFileSync(isolationOutput,JSON.stringify(isolationResults,null,2)+'\n');
 console.log(JSON.stringify({status:'PASS',fixtureCount:report.fixtureCount,scenarioCount:report.scenarioCount,conditionCount:catalog.size,eventCount:events.size,coverage:report.coverage,output}));

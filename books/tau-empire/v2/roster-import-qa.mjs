@@ -1,3 +1,5 @@
+import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
+const progress=qaProgress('Tau roster');
 import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Stage 4: independent input-quantity oracle over the existing shared importer.
@@ -29,6 +31,7 @@ const records={schema:'tau-empire-v2-physical-import-qa/v1',expectedAuthority:'A
  checks:[],negativeControls:[],mutations:[],runtimeCases:[],fixtures:[],limitations:[],REAL_NEW_RECRUIT_EXPORT_TESTED:'NO',frontendVerified:false};
 let checks=0;
 function test(id,fn){
+ progress(id,checks);
  try{fn();records.checks.push({id,status:'PASS'});console.log(id+' PASS');}catch(error){
   records.checks.push({id,status:'FAIL',message:error.message,stack:error.stack});
   console.error(id+': '+error.stack);
@@ -1200,5 +1203,6 @@ if(evidenceIndex!==-1){
  for(const fixture of records.fixtures)fs.writeFileSync(path.join(directory,fixture.id+'.txt'),fixture.text);
  fs.writeFileSync(path.join(directory,'roster-import-qa.json'),JSON.stringify(records,null,2)+'\n');
 }
+progress.close();
 console.log(JSON.stringify({...records,fixtures:records.fixtures.map(f=>({id:f.id,physicalUnits:f.expected.length}))}));
 if(records.status==='FAIL')process.exitCode=1;

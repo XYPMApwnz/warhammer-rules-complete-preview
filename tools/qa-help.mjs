@@ -5,6 +5,8 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const scripts=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).scripts||{};
 const descriptions={
+  'qa:quick':'Sequential shared gates; select native books with -- --books=am,dg',
+  'qa:pre-ff':'Sequential nine-book, shared, browser, package and source gates',
   'qa:sm':'Space Marines source conformance and local semantic QA',
   'qa:da':'Dark Angels dependency-overlay and Enhancement QA',
   'qa:ba':'Blood Angels dependency-overlay and Enhancement QA',

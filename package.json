@@ -48,7 +48,7 @@
     "qa:dg": "node books/death-guard/v2/app-qa.mjs && node books/death-guard/v2/roster-import-qa.mjs",
     "qa:am": "node books/adeptus-mechanicus/v2/app-qa.mjs && node books/adeptus-mechanicus/v2/roster-import-qa.mjs",
     "qa:tau:leading": "node tests/tau-leading-state-qa.mjs && node tests/browser/tau-leading-state.mjs",
-    "qa:effects": "node tests/helpers/run-qa-suite.mjs books/shared/rule-contract-v2/recipients-qa.mjs books/shared/roster-v2/numeric-effects-qa.mjs books/shared/roster-v2/keyword-effects-qa.mjs books/shared/roster-v2/ability-effects-qa.mjs books/shared/roster-v2/weapon-contribution-effects-qa.mjs books/shared/roster-v2/advance-roll-effects-qa.mjs v2/source-effect-regression-qa.mjs v2/detachment-source-binding-qa.mjs",
+    "qa:effects": "node tests/helpers/run-qa-suite.mjs books/shared/rule-contract-v2/recipients-qa.mjs books/shared/roster-v2/numeric-effects-qa.mjs books/shared/roster-v2/keyword-effects-qa.mjs books/shared/roster-v2/ability-effects-qa.mjs books/shared/roster-v2/weapon-contribution-effects-qa.mjs books/shared/roster-v2/advance-roll-effects-qa.mjs v2/source-effect-regression-qa.mjs v2/detachment-source-binding-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs",
     "qa:points": "node tests/mfm-numeric-ownership-qa.mjs && node books/space-marines/v2/mfm-build-qa.mjs && node books/space-marines/v2/roster-paid-options-qa.mjs",
     "qa:invulnerable": "node tests/invulnerable-source-qa.mjs && node tests/browser/source-invulnerable-presentation.mjs",
     "qa:am:v2:glossary": "node books/adeptus-mechanicus/v2/app-build.mjs --check && node books/adeptus-mechanicus/v2/glossary-qa.mjs",
@@ -139,6 +139,8 @@
     "qa:roster": "node tests/helpers/run-qa-suite.mjs books/shared/roster-v2/import-service-qa.mjs books/shared/roster-v2/import-selections-qa.mjs books/shared/roster-v2/attachment-service-qa.mjs books/shared/roster-v2/attachment-conditions-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs v2/detachment-recipient-qa.mjs v2/card-recipient-qa.mjs",
     "qa:glossary": "node v2/glossary-core-navigation-qa.mjs && node glossary/v2/tests/ability-category-qa.mjs && node glossary/v2/tests/v2-owner-parity-qa.mjs",
     "test:preview": "npm run publication:check && npm run wiring:check && npm run cache:check && npm run qa:integration && npm run qa:publication && node v2/core-reader-qa.mjs && node v2/glossary-core-navigation-qa.mjs",
-    "test:full": "npm run test:preview && npm run qa:effects && npm run qa:points && npm run qa:roster"
+    "test:full": "npm run test:preview && npm run qa:effects && npm run qa:points && npm run qa:roster",
+    "qa:quick": "node tools/qa-queue.mjs quick",
+    "qa:pre-ff": "node tools/qa-queue.mjs pre-ff"
   }
 }

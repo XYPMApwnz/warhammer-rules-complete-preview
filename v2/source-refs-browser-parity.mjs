@@ -68,6 +68,7 @@ const prefix='/source-refs-parity/',mime={'.html':'text/html','.mjs':'text/javas
 const manifestFile=path.join(root,fs.existsSync(path.join(root,'PAGES_RUNTIME_MANIFEST.json'))?'PAGES_RUNTIME_MANIFEST.json':'tools/pages-runtime-manifest.json');
 const allowed=new Set(JSON.parse(fs.readFileSync(manifestFile,'utf8')).files.map(row=>row.path));
 const errors=[],missing=[],requests=[],snapshots=[],textCatalog=new Map(),tableChecks=[],screenshots=[],importObservations=[];
+const importTimings=[],timingOutput=value('--timing-out');
 const completedNoospheric=new Set();
 const resume=value('--resume');
 if(resume){
@@ -248,7 +249,10 @@ try{
    for(const fixture of onlyNoospheric?[]:fixtures.cases.filter(row=>selected(row)&&!completed.has(viewport+'/'+row.bookId+'/'+row.id))){
     active=viewport+'/'+fixture.bookId+'/'+fixture.id;
     await page.evaluate(()=>localStorage.clear());await book(page,fixture.bookId);
-    if(!await imported(page,fixture)){console.log('CAPTURED IMPORT REJECTION/PENDING '+active);if(importObservations.length%10===0)checkpoint();continue;}
+    const importStarted=performance.now(),accepted=await imported(page,fixture);
+    importTimings.push({bookId:fixture.bookId,id:fixture.id,viewport,accepted,elapsedMs:performance.now()-importStarted});
+    if(timingOutput)fs.writeFileSync(timingOutput,JSON.stringify(importTimings,null,2)+'\n');
+    if(!accepted){console.log('CAPTURED IMPORT REJECTION/PENDING '+active);if(importObservations.length%10===0)checkpoint();continue;}
     await capture(page,viewport,fixture.bookId+'/'+fixture.id,'imported');await operations(page,fixture,viewport,fixture.bookId+'/'+fixture.id);
     console.log('CAPTURED '+active);
     if(importObservations.length%10===0)checkpoint();
