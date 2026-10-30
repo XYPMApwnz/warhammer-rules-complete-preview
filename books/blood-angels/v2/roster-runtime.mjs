@@ -1,3 +1,4 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native snapshot adapter to the existing shared runtime; no importer or
  * attachment permissions are invented here. Rebind physical conditions on load. */
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -6,7 +7,7 @@ import {changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {createPhysicalEquipmentConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
 const clone=structuredClone;
 export function createBloodAngelsRosterRuntime(built){
- const template=clone(built.book||built);let active=null,boundSchema=null;
+ const template=cloneSourceBook(built.book||built);let active=null,boundSchema=null;
  if(template.bookId!=='blood-angels')throw new TypeError('Wrong native roster book');
  const ready=()=>{if(!active)throw new TypeError('No physical roster');return active;};
  const service={

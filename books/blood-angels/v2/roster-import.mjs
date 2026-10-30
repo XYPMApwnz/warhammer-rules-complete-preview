@@ -1,3 +1,4 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native New Recruit boundary over the established shared parser, physical
  * import service, attachment graph and runtime commit. No army legality rules. */
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
@@ -10,6 +11,8 @@ import {createBloodAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {projectBloodAngelsPaidOptions} from './roster-paid-options.mjs';
 import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
+const runtimeProofs=new WeakMap();
+const validatedSnapshot=value=>{const snapshot=structuredClone(value),proof=runtimeProofs.get(value);if(proof)runtimeProofs.set(snapshot,proof);return snapshot;};
 const clone=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
 const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value==='object'
@@ -32,7 +35,8 @@ const sourcePredicate=(binding,index)=>{
 export function createBloodAngelsRosterImport(book){
   const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(book.bookId==='blood-angels'&&metadata?.schema==='blood-angels-v2/import-bindings/v1','Invalid native BA import domain');
-  const shared=()=>createRosterImportService(book,metadata),schema=createBloodAngelsRuleSchema();
+  let sharedImport;
+  const shared=()=>sharedImport??=createRosterImportService(book,metadata),schema=createBloodAngelsRuleSchema();
   shared();let saved=null;
   function bind(input,{draft,bindings={}}={}){
     let state=clone(input);const needs=[],errors=[];
@@ -140,7 +144,7 @@ export function createBloodAngelsRosterImport(book){
         }
       }
       checked(state,'mfmDetachmentRecordIds',state.detachmentIds.map(id=>book.mfmImportReferences.partitions.detachmentBindings.find(row=>row.entityId===id)?.mfmRecordId));
-      if(!errors.length&&!needs.length)createBloodAngelsRosterRuntime(book).load(state);
+      if(!errors.length&&!needs.length){const verified=createBloodAngelsRosterRuntime(book);verified.load(state);runtimeProofs.set(state,verified);}
     }catch(caught){error('INVALID_PHYSICAL_STATE','roster',caught.message);}
     return {state,needs,errors};
   }
@@ -166,10 +170,10 @@ export function createBloodAngelsRosterImport(book){
       if(result.status!=='READY')return {...result,legality:'NOT_ASSESSED'};
       const bound=bind(result.roster,{draft:result.draft,bindings}),status=bound.errors.length?'INVALID':bound.needs.length?'NEEDS_BINDINGS':'READY';
       if(status==='READY')saved=bound.state;
-      return {...result,status,roster:status==='READY'?clone(saved):null,...(status==='READY'?{}:{candidateRoster:bound.state}),
+      return {...result,status,roster:status==='READY'?validatedSnapshot(saved):null,...(status==='READY'?{}:{candidateRoster:bound.state}),
         needsBindings:[...result.needsBindings,...bound.needs],errors:[...result.errors,...bound.errors],legality:'NOT_ASSESSED'};
     },
-    load(snapshot){const result=bind(snapshot);requireValue(!result.needs.length&&!result.errors.length,JSON.stringify(result));saved=result.state;return clone(saved);},
+    load(snapshot){const result=bind(snapshot);requireValue(!result.needs.length&&!result.errors.length,JSON.stringify(result));saved=result.state;return validatedSnapshot(saved);},
     snapshot(){requireValue(saved,'No imported native roster');return clone(saved);}};
 }
 
@@ -209,17 +213,21 @@ export function createBloodAngelsRosterService(book){
         const bindings=clone(choices);bindings.modelBearers??={};
         for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){const [unit,id]=JSON.parse(key);(bindings.modelBearers[unit]??={})[id]=value;}
         delete bindings.enhancementBearers;
-        let result=createBloodAngelsRosterImport(book).import(text,bindings);
+        let result=imports.import(text,bindings);
         if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&runtime.state&&
           result.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER')&&physicalInput(result.candidateRoster)===physicalInput(runtime.state)){
           for(const unit of runtime.state.units)if(unit.enhancementAssignments?.length)bindings.modelBearers[unit.instanceId]=Object.fromEntries(unit.enhancementAssignments.map(row=>[row.enhancementId,row.modelScopeId]));
-          result=createBloodAngelsRosterImport(book).import(text,bindings);
+          result=imports.import(text,bindings);
         }
-        const committed=commitRosterImport(result,runtime.state,service.load,options);
+        // Only this synchronous import owns the candidate. A retained attachment
+        // graph changes its bytes and takes the ordinary validated load path.
+        const proof=runtimeProofs.get(result.roster),candidateBytes=proof?JSON.stringify(result.roster):null;
+        const load=candidate=>{if(proof&&JSON.stringify(candidate)===candidateBytes){projectBloodAngelsRosterPoints(book,candidate);runtime=proof;return service.state;}return service.load(candidate);};
+        const committed=commitRosterImport(result,runtime.state,load,options);
         return {...committed,...(committed.status==='READY'?{points:service.points}:{})};
       }catch(caught){return {status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'};}
     },
-    load(snapshot){const verified=createBloodAngelsRosterImport(book).load(snapshot),next=createBloodAngelsRosterRuntime(book);next.load(verified);
+    load(snapshot){const verified=imports.load(snapshot),proof=runtimeProofs.get(verified),next=proof||createBloodAngelsRosterRuntime(book);if(!proof)next.load(verified);
       projectBloodAngelsRosterPoints(book,verified);runtime=next;return service.state;},
     snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),context:(...args)=>runtime.context(...args),
     related:(...args)=>runtime.related(...args),candidates:id=>runtime.candidates(id),

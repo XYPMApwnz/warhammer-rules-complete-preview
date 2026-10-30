@@ -61,7 +61,10 @@ export function conditionSchemaSpec(args,schema){
 }
 /** Returns a new book; callers must propagate its top-level schema and plan. */
 export function compileBookConditions(inputBook){
- const book=clone(inputBook);
+ return compileOwnedBookConditions(clone(inputBook));
+}
+/** Internal handoff of a fresh scratch graph; public compilers still clone. */
+export function compileOwnedBookConditions(book){
  requireValue(Array.isArray(book.entities),'missing condition entity collection');
  const legacyStratagemKeys=stratagemFields(book);
  for(const entity of book.entities)if(!excluded(entity))visitFields(entity.ruleContract,node=>{
@@ -84,7 +87,11 @@ export function compileBookConditions(inputBook){
 }
 /** Complete temporary producer view. No runtime lookup uses this inverse. */
 export function conditionDeclarationView(inputBook){
- const book=clone(inputBook),legacyStratagemKeys=stratagemFields(book);
+ return ownedConditionDeclarationView(clone(inputBook));
+}
+/** The source inverse has already allocated this private scratch graph. */
+export function ownedConditionDeclarationView(book){
+ const legacyStratagemKeys=stratagemFields(book);
  for(const entity of book.entities||[])if(!excluded(entity))visitFields(entity.ruleContract,node=>{
   if(isCanonicalCondition(node.arguments))node.arguments=declarationFieldArguments(node.arguments,{book});
   else requireValue(!conditionSpec(node.arguments),'malformed canonical condition in producer view');

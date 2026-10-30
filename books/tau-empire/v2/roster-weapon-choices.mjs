@@ -1,4 +1,4 @@
-import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {finalizeOwnedRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** T'au-owned decisions over existing physical selections; no weapon IDs or
  * infantry instances are invented to split aggregate inventory. */
@@ -127,7 +127,7 @@ export function bindTauPrototypeChoices(book,state){
       ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,sourceEvidence:sourceSnapshot(rule,{book:result})}},{book:result})}));
     rule.ruleContract.clauses.push(clause);
   }
-  return finalizeRecipientBook(result);
+  return finalizeOwnedRecipientBook(result);
 }
 
 export function tauWeaponSelectionResolver(book,state){

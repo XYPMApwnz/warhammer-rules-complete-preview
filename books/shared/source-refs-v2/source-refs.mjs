@@ -31,7 +31,7 @@ function referenceFields(value) {
   if (!Object.keys(value).some(key => documentKeys.has(key) && typeof value[key] === 'string') && !sourceIdDocument(value)) return [];
   return Object.keys(value).filter(key => documentKeys.has(key) || key === 'sourceId' || /sha256$/i.test(key) || own(locatorKinds, key) || currentnessKeys.has(key) || key === 'effectiveFrom' || key === 'authority' || key === 'authorityLevel');
 }
-const clone = value => value === undefined ? undefined : structuredClone(value);
+const clone = value => {const type=typeof value;return value===null||type!=='object'&&type!=='function'&&type!=='symbol'?value:structuredClone(value);};
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const bindingsFor = record => {
@@ -133,10 +133,14 @@ function resolveIdentity(registry, document, recordedSourceId) {
   return { sourceId: null, status: 'UNRESOLVED_SOURCE', reason: candidates.length ? 'AMBIGUOUS_DOCUMENT' : 'UNREGISTERED_DOCUMENT', ...(candidates.length ? { candidates } : {}) };
 }
 export function compileBookSourceRefs(input, { registry } = {}) {
+  return compileOwnedBookSourceRefs(clone(input),{registry});
+}
+/** Internal handoff: the caller owns this fresh scratch graph exclusively. */
+export function compileOwnedBookSourceRefs(input, { registry } = {}) {
   registry ||= defaultRegistry;
-  if (!input || typeof input !== 'object') return clone(input);
-  if (input.sourceSchema === SOURCE_SCHEMA) { const output = clone(input); registerBookSources(output); return output; }
-  const output = clone(input), excluded = stratagemIds(output);
+  if (!input || typeof input !== 'object') return input;
+  if (input.sourceSchema === SOURCE_SCHEMA) { registerBookSources(input); return input; }
+  const output = input, excluded = stratagemIds(output);
   const catalogs = { refs: {}, layouts: {}, contexts: {} };
   function intern(kind, value) { const id = idFor(kind, value); publish(kind, id, value); catalogs[kind][id] = value; return id; }
   function binding(kind, value, path = []) { return { type: 'VALUE', pool: kind, id: intern(kind, value), path }; }
@@ -371,14 +375,20 @@ function validateBindings(record, book) {
 export function sourceDeclarationView(input, { book } = {}) {
   return catalogRead(()=>sourceDeclarationViewChecked(input,{book}));
 }
-function sourceDeclarationViewChecked(input, { book } = {}) {
+/** Internal handoff: ordinary nodes already belong to this scratch graph. */
+export function ownedSourceDeclarationView(input, {book}={}){
+  return catalogRead(()=>sourceDeclarationViewChecked(input,{book},true));
+}
+function sourceDeclarationViewChecked(input, { book } = {}, owned=false) {
   const context = contextFor(input, book) || input;
   function visit(value) {
     if (!value || typeof value !== 'object') return clone(value);
-    if (Array.isArray(value)) return value.map(visit);
+    if(owned&&Object.isFrozen(value))return sourceDeclarationViewChecked(value,{book:context});
+    if (Array.isArray(value)) {if(!owned)return value.map(visit);for(let i=0;i<value.length;i++)if(i in value)value[i]=visit(value[i]);return value;}
     const local = value.sourceSchema === SOURCE_SCHEMA ? value : context;
     const bindings = bindingsFor(value);
     if (bindings) validateBindings(value, local);
+    if(owned&&plain(value)&&!bindings&&value.sourceSchema!==SOURCE_SCHEMA){for(const key of Object.keys(value))value[key]=visit(value[key]);return value;}
     const metadata = new Set(value.sourceSchema === SOURCE_SCHEMA ? sourceBundleKeys : bindings ? ['sourceRefs', 'sourceBindings', 'sourceOwnership'] : []);
     const result = {};
     const reference = bindings?.recordReference ? decode(lookup('layouts', bindings.recordReference.layout, local), bindings.recordReference, value, local) : undefined;

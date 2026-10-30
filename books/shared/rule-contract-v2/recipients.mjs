@@ -1,7 +1,7 @@
 /** Lossless producer translation of declared recipient addresses.
  * This module never interprets source prose or selects physical roster units.
  */
-import {conditionDeclarationView} from './conditions-build.mjs';
+import {ownedConditionDeclarationView} from './conditions-build.mjs';
 import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 const clone=structuredClone;
 const own=(value,key)=>Object.hasOwn(value,key);
@@ -190,7 +190,10 @@ function translatedRole(role,clause){
 
 /** Compile a fully lowered rule. The caller retains the original facts. */
 export function compileRuleRecipients(book,inputRule,options={}){
- const rule=clone(inputRule),contract=rule.ruleContract;if(!contract||excludedStratagem(rule))return rule;
+ return compileRuleRecipientsCore(book,inputRule,clone(inputRule),options);
+}
+function compileRuleRecipientsCore(book,inputRule,rule,options){
+ const contract=rule.ruleContract;if(!contract||excludedStratagem(rule))return rule;
  requireValue(Array.isArray(contract.clauses),'malformed producer clause list');
  requireValue(new Set(contract.clauses.map(clause=>clause.id)).size===contract.clauses.length,'duplicate producer clause identity');
  if(own(contract,'duration')&&!Array.isArray(contract.duration))requireValue(contract.duration&&typeof contract.duration==='object'&&
@@ -302,8 +305,14 @@ export function compileRuleRecipients(book,inputRule,options={}){
 
 /** One producer boundary after every book-owned lowering/overlay is complete. */
 export function compileBookRecipients(inputBook,options={}){
- const book=clone(inputBook);
- book.entities=book.entities.map(rule=>compileRuleRecipients(book,rule,options));
+ return compileOwnedBookRecipients(clone(inputBook),options);
+}
+/** Internal handoff of a fresh scratch graph; public compilers still clone. */
+export function compileOwnedBookRecipients(book,options={}){
+ // The book is already isolated. Preserve an original contract for source/F1
+ // evidence while retaining owned immutable facts outside that contract.
+ book.entities=book.entities.map(inputRule=>compileRuleRecipientsCore(book,inputRule,
+  inputRule.ruleContract&&!excludedStratagem(inputRule)?{...inputRule,ruleContract:clone(inputRule.ruleContract)}:inputRule,options));
  if(options.validate!==false)validateBookRecipients(book);
  return book;
 }
@@ -314,7 +323,7 @@ export function compileBookRecipients(inputBook,options={}){
 export function recipientDeclarationView(inputBook){
  const sourceView=sourceDeclarationView(inputBook);
  validateBookRecipients(sourceView);
- const book=sourceView.conditionSchema?conditionDeclarationView(sourceView):clone(sourceView);
+ const book=sourceView.conditionSchema?ownedConditionDeclarationView(sourceView):sourceView;
  for(const rule of book.entities){
   const contract=rule.ruleContract;if(!contract||excludedStratagem(rule))continue;
   const roleIds=(clause,ids)=>ids.map(id=>{

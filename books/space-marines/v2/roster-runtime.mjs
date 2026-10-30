@@ -1,3 +1,4 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Browser-native book bindings around the existing physical roster/runtime.
  * Source readers and MFM producers remain outside the runtime dependency graph.
  */
@@ -11,7 +12,7 @@ import {bindSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
 export function createSpaceMarinesRosterRuntime(built){
-  const template=clone(built.book||built),consumed=built.consumed||template.mfmImportReferences;
+  const template=cloneSourceBook(built.book||built),consumed=built.consumed||template.mfmImportReferences;
   requireValue(template.bookId==='space-marines'&&consumed?.relationDeclarations&&consumed.nativePoints,'Missing native MFM runtime bindings');
   const index=new Map(template.entities.map(entity=>[entity.id,entity]));
   let active=null,boundBook=null;
@@ -21,7 +22,7 @@ export function createSpaceMarinesRosterRuntime(built){
     get catalog(){return active?.catalog||template.entities.map(entity=>({id:entity.id,kind:entity.kind,parentId:entity.parentId,title:entity.data.title||entity.data.name||entity.id}));},
     load(snapshot){
       requireValue(snapshot?.bookId==='space-marines','Wrong physical book');
-      let nextBook=clone(template);const ids=snapshot.units.map(unit=>unit.canonicalUnitId);
+      let nextBook=cloneSourceBook(template);const ids=snapshot.units.map(unit=>unit.canonicalUnitId);
       // Existing MFM ARMY_UNIT_PRESENT declarations are resolved from the whole
       // physical army, independently of attachments. No faction/name heuristic.
       nextBook.rosterAttachmentPolicies=consumed.relationDeclarations.flatMap(declaration=>{

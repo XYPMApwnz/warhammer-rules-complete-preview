@@ -4,7 +4,7 @@
  */
 import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
-import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {finalizeOwnedRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const clone=structuredClone;
@@ -72,5 +72,5 @@ export function bindSpaceMarinesStaticModels(book,state){
       contract.clauses.push(clause);
     }
   }
-  return finalizeRecipientBook(result);
+  return finalizeOwnedRecipientBook(result);
 }

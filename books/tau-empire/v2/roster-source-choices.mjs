@@ -1,4 +1,4 @@
-import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {finalizeOwnedRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
@@ -177,7 +177,7 @@ export function bindTauShieldModels(book,state){
       local.ruleContract.clauses.push(clause);
     }
   }
-  return finalizeRecipientBook(result);
+  return finalizeOwnedRecipientBook(result);
 }
 
 /** Lower validated decisions to existing SOURCE and TARGET FIELD conditions.
@@ -192,7 +192,7 @@ export function bindTauStudentPairs(book,state) {
   const template=contract.clauses.find(clause=>clause.rosterClassificationNote?.sourceChoice===rule.id);
   requireValue(template?.rosterClassification==='DISPLAY_ONLY'&&template.rosterEffects.length===0,
     'Student requires the original canonical display clause before physical lowering');
-  if(!state.detachmentIds.includes(rule.parentId))return finalizeRecipientBook(result);
+  if(!state.detachmentIds.includes(rule.parentId))return finalizeOwnedRecipientBook(result);
   const sources=state.units.filter(unit=>unit.enhancementIds.includes(rule.id)).sort((a,b)=>a.instanceId.localeCompare(b.instanceId));
   for(const source of sources)for(const decision of decisionRows(source))for(const recipient of [...decision.recipientInstanceIds].sort()){
     const pair={sourceInstanceId:source.instanceId,recipientInstanceId:recipient,sourceModelScopeId:decision.sourceModelScopeId};
@@ -211,7 +211,7 @@ export function bindTauStudentPairs(book,state) {
         sourceEvidence:sourceSnapshot(rule,{book:result}),physicalSourcePair:clone(pair)}},{book:result})}];
     contract.clauses.push(clause);
   }
-  return finalizeRecipientBook(result);
+  return finalizeOwnedRecipientBook(result);
 }
 
 function physicalInput(state) {

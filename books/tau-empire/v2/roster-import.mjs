@@ -1,3 +1,4 @@
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
@@ -14,7 +15,7 @@ const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
 /** T’au physical bindings around the existing parser/resolver. No legality
  * caps, weapon replacements, default loadouts or guessed MODEL bearers. */
 export function createTauRosterImport(input){
-  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const book=cloneSourceBook(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
   requireValue(book.bookId==='tau-empire'&&metadata?.schema==='tau-empire-v2/import-bindings/v1','Invalid T’au import domain');
   for(const binding of metadata.compositions){
     const source=index.get(binding.id);
@@ -26,7 +27,8 @@ export function createTauRosterImport(input){
     requireValue(source?.kind==='ENHANCEMENT'&&source.parentId===binding.detachmentId&&
       source.data.scope===binding.scope&&source.data.eligibilityText===binding.eligibilityText,'Foreign Enhancement source');
   }
-  const shared=()=>createRosterImportService(book,metadata);
+  let sharedImport;
+  const shared=()=>sharedImport??=createRosterImportService(book,metadata);
   // Construct once up front: malformed source mappings are rejected before any
   // input can reach READY. Later attempts use isolated shared import state.
   shared();let saved=null;
