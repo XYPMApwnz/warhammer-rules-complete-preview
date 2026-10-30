@@ -1,3 +1,4 @@
+import {prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** Book-owned lowering of reviewed typed clauses. No source sentence is parsed
@@ -22,6 +23,7 @@ export function executableClauses(built) {
 }
 
 export function buildCSMRosterEffectBook(built=buildCSMContracts({recipientStage:'DECLARATION'})) {
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
   const before=JSON.stringify(built);
   // Reopen a canonical public result only as an explicit producer scratch view.
   const lowering=built.book.entities.some(entity=>entity.ruleContract?.clauses?.some(clause=>Array.isArray(clause.recipients)))

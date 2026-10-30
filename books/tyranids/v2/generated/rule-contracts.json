@@ -10,7 +10,6 @@
       "schema": "rule-contract/v2",
       "ruleId": "detachment-subterranean-assault:rule",
       "ownerId": "detachment-subterranean-assault",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DETACHMENT_RULE",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -225,22 +224,10 @@
                 ]
               ],
               "lifetime": "WHILE_DETACHMENT_SELECTED",
-              "provenance": {
-                "canonicalRuleId": "detachment-subterranean-assault:rule",
-                "canonicalOwnerId": "detachment-subterranean-assault",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-subterranean-assault:rule",
-                  "pointer": "#Surprise-Assault",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-76db6009ada3926f","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Surprise-Assault"}]}],
+              "sourceBindings": "bindings-c86c0cd53188d86f",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-subterranean-assault:rule","canonicalOwnerId":"detachment-subterranean-assault","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -361,26 +348,13 @@
         }
       ],
       "detachmentId": "detachment-subterranean-assault",
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-subterranean-assault:rule",
-          "pointer": "#Surprise-Assault",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-76db6009ada3926f","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Surprise-Assault"}]}],
+      "sourceBindings": "bindings-f1584b7d0165a475"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-broodlord:section:1",
       "ownerId": "unit-broodlord",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DATASHEET_ABILITY",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -574,22 +548,10 @@
                 ]
               ],
               "lifetime": "WHILE_LEADING",
-              "provenance": {
-                "canonicalRuleId": "datasheet-broodlord:section:1",
-                "canonicalOwnerId": "unit-broodlord",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Broodlord.html",
-                  "sha256": "13ABF21F7C27FC1FFAA45D86688B80D16C13118143E49AF0DCE3A9BCAC03F3C5",
-                  "sourceEntityId": "datasheet-broodlord:section:1",
-                  "pointer": "/datasheets/2/sections/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-b03f9c5d671ed447","referenceId":"refs-41c0b8ad45fa5389","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-cde3bddbf65e5aa1","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/2/sections/0"}]}],
+              "sourceBindings": "bindings-e91b79b33ddcc8bf",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"datasheet-broodlord:section:1","canonicalOwnerId":"unit-broodlord","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -697,26 +659,13 @@
           "recipientStatus": "NOT_RECORDED"
         }
       ],
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Broodlord.html",
-          "sha256": "13ABF21F7C27FC1FFAA45D86688B80D16C13118143E49AF0DCE3A9BCAC03F3C5",
-          "sourceEntityId": "datasheet-broodlord:section:1",
-          "pointer": "/datasheets/2/sections/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-b03f9c5d671ed447","referenceId":"refs-41c0b8ad45fa5389","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-cde3bddbf65e5aa1","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/2/sections/0"}]}],
+      "sourceBindings": "bindings-70c291165b92b826"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-winged-tyranid-prime:section:1",
       "ownerId": "unit-winged-tyranid-prime",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DATASHEET_ABILITY",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -910,22 +859,10 @@
                 ]
               ],
               "lifetime": "WHILE_LEADING",
-              "provenance": {
-                "canonicalRuleId": "datasheet-winged-tyranid-prime:section:1",
-                "canonicalOwnerId": "unit-winged-tyranid-prime",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Tyranid-Prime.html",
-                  "sha256": "C2EF18BD580219B4CF287F2FC525CD7CF76FF710219C8C982AAAF8602B337302",
-                  "sourceEntityId": "datasheet-winged-tyranid-prime:section:1",
-                  "pointer": "/datasheets/50/sections/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-61dd06ec6b64ee28","referenceId":"refs-f7d69c2cdff239b6","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-c51cd7fa9a3f70c2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/50/sections/0"}]}],
+              "sourceBindings": "bindings-ada9d639293a9873",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"datasheet-winged-tyranid-prime:section:1","canonicalOwnerId":"unit-winged-tyranid-prime","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -1033,26 +970,13 @@
           "recipientStatus": "NOT_RECORDED"
         }
       ],
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Winged-Tyranid-Prime.html",
-          "sha256": "C2EF18BD580219B4CF287F2FC525CD7CF76FF710219C8C982AAAF8602B337302",
-          "sourceEntityId": "datasheet-winged-tyranid-prime:section:1",
-          "pointer": "/datasheets/50/sections/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-61dd06ec6b64ee28","referenceId":"refs-f7d69c2cdff239b6","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-c51cd7fa9a3f70c2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/50/sections/0"}]}],
+      "sourceBindings": "bindings-8d15926d68600ab3"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
       "ownerId": "unit-tyranid-prime-with-lash-whip",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DATASHEET_ABILITY",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -1209,22 +1133,10 @@
                 ]
               ],
               "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
-              "provenance": {
-                "canonicalRuleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
-                "canonicalOwnerId": "unit-tyranid-prime-with-lash-whip",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Prime-with-Lash-Whip.html",
-                  "sha256": "F3EB275FB9251AB2785C758E0DAF8BF4DB4D2AC23AE7F9C74291FBE5434120D9",
-                  "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:1",
-                  "pointer": "/datasheets/41/sections/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-ae011b2245fb9792","referenceId":"refs-4d9ccee64d8c6324","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d991499c9dfb6b6e","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/41/sections/0"}]}],
+              "sourceBindings": "bindings-e6c8da905f3f4618",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"datasheet-tyranid-prime-with-lash-whip:section:1","canonicalOwnerId":"unit-tyranid-prime-with-lash-whip","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -1332,26 +1244,13 @@
           "recipientStatus": "NOT_RECORDED"
         }
       ],
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyranid-Prime-with-Lash-Whip.html",
-          "sha256": "F3EB275FB9251AB2785C758E0DAF8BF4DB4D2AC23AE7F9C74291FBE5434120D9",
-          "sourceEntityId": "datasheet-tyranid-prime-with-lash-whip:section:1",
-          "pointer": "/datasheets/41/sections/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-ae011b2245fb9792","referenceId":"refs-4d9ccee64d8c6324","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d991499c9dfb6b6e","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/41/sections/0"}]}],
+      "sourceBindings": "bindings-66329f3b5e769de5"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-hyperadapted-raveners:section:1",
       "ownerId": "unit-hyperadapted-raveners",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DATASHEET_ABILITY",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -1508,22 +1407,10 @@
                 ]
               ],
               "lifetime": "WHILE_SOURCE_UNIT_PRESENT",
-              "provenance": {
-                "canonicalRuleId": "datasheet-hyperadapted-raveners:section:1",
-                "canonicalOwnerId": "unit-hyperadapted-raveners",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hyperadapted-Raveners.html",
-                  "sha256": "210E59BD33700D849DF1D04E09CAD56381D049F43D88DF7FF3A29C7E2B5D0E2D",
-                  "sourceEntityId": "datasheet-hyperadapted-raveners:section:1",
-                  "pointer": "/datasheets/16/sections/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-dbdcfc945f1a5bf6","referenceId":"refs-dd763284544b70b0","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fd4039109d7ed5e8","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/16/sections/0"}]}],
+              "sourceBindings": "bindings-af64e20296765710",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"datasheet-hyperadapted-raveners:section:1","canonicalOwnerId":"unit-hyperadapted-raveners","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -1631,26 +1518,13 @@
           "recipientStatus": "NOT_RECORDED"
         }
       ],
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hyperadapted-Raveners.html",
-          "sha256": "210E59BD33700D849DF1D04E09CAD56381D049F43D88DF7FF3A29C7E2B5D0E2D",
-          "sourceEntityId": "datasheet-hyperadapted-raveners:section:1",
-          "pointer": "/datasheets/16/sections/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-dbdcfc945f1a5bf6","referenceId":"refs-dd763284544b70b0","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fd4039109d7ed5e8","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/16/sections/0"}]}],
+      "sourceBindings": "bindings-9ffe48b64cc3f0d0"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-subterranean-assault:enhancement:4",
       "ownerId": "detachment-subterranean-assault",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -1794,22 +1668,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
-                "canonicalOwnerId": "detachment-subterranean-assault",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
-                  "pointer": "/detachments/0/enhancements/3",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d5e4439d3d32330b","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/0/enhancements/3"}]}],
+              "sourceBindings": "bindings-8e78d3508f1a591e",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-subterranean-assault:enhancement:4","canonicalOwnerId":"detachment-subterranean-assault","canonicalClauseId":"roster-known"}}
             },
             {
               "id": "detachment-subterranean-assault:enhancement:4::roster-known/effect-2",
@@ -1831,22 +1693,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
-                "canonicalOwnerId": "detachment-subterranean-assault",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
-                  "pointer": "/detachments/0/enhancements/3",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/2"
+              "recipientId": "roster-known::recipient/effect/2",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d5e4439d3d32330b","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/0/enhancements/3"}]}],
+              "sourceBindings": "bindings-0b6f22661db354e0",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-subterranean-assault:enhancement:4","canonicalOwnerId":"detachment-subterranean-assault","canonicalClauseId":"roster-known"}}
             },
             {
               "id": "detachment-subterranean-assault:enhancement:4::roster-known/effect-3",
@@ -1868,22 +1718,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-subterranean-assault:enhancement:4",
-                "canonicalOwnerId": "detachment-subterranean-assault",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
-                  "pointer": "/detachments/0/enhancements/3",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/3"
+              "recipientId": "roster-known::recipient/effect/3",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d5e4439d3d32330b","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/0/enhancements/3"}]}],
+              "sourceBindings": "bindings-0b6f22661db354e0",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-subterranean-assault:enhancement:4","canonicalOwnerId":"detachment-subterranean-assault","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -1961,44 +1799,16 @@
         "enhancementId": "mfm-enhancement-9a68ea9bc16d40a0",
         "detachmentId": "mfm-detachment-9c631e715294b06e",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "SUBTERRANEAN ASSAULT",
-            "sourceTitle": "Trygon Prime"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-0acf72c814d819e6","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"SUBTERRANEAN ASSAULT","sourceTitle":"Trygon Prime"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-subterranean-assault:enhancement:4",
-          "pointer": "/detachments/0/enhancements/3",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d5e4439d3d32330b","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/0/enhancements/3"}]}],
+      "sourceBindings": "bindings-935439bb7ec91813"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-invasion-fleet:enhancement:4",
       "ownerId": "detachment-invasion-fleet",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -2145,22 +1955,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-invasion-fleet:enhancement:4",
-                "canonicalOwnerId": "detachment-invasion-fleet",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-invasion-fleet:enhancement:4",
-                  "pointer": "/detachments/1/enhancements/3",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-2c910ac4db5a5012","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/1/enhancements/3"}]}],
+              "sourceBindings": "bindings-d74551936ad99a67",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-invasion-fleet:enhancement:4","canonicalOwnerId":"detachment-invasion-fleet","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -2291,44 +2089,16 @@
         "enhancementId": "mfm-enhancement-c2e9ac508fcfe8bf",
         "detachmentId": "mfm-detachment-9e48327b304dba7e",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "INVASION FLEET",
-            "sourceTitle": "Adaptive Biology"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-d2c5c9eb84adf4d3","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"INVASION FLEET","sourceTitle":"Adaptive Biology"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-invasion-fleet:enhancement:4",
-          "pointer": "/detachments/1/enhancements/3",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-2c910ac4db5a5012","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/1/enhancements/3"}]}],
+      "sourceBindings": "bindings-c9a239fca073e286"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-assimilation-swarm:enhancement:4",
       "ownerId": "detachment-assimilation-swarm",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -2475,22 +2245,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-assimilation-swarm:enhancement:4",
-                "canonicalOwnerId": "detachment-assimilation-swarm",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-assimilation-swarm:enhancement:4",
-                  "pointer": "/detachments/3/enhancements/3",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-54526bde0981d9a0","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/3/enhancements/3"}]}],
+              "sourceBindings": "bindings-5f635a90ad7ea410",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-assimilation-swarm:enhancement:4","canonicalOwnerId":"detachment-assimilation-swarm","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -2621,44 +2379,16 @@
         "enhancementId": "mfm-enhancement-caa10c57ea9054f2",
         "detachmentId": "mfm-detachment-3fc01675a2e1861a",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "ASSIMILATION SWARM",
-            "sourceTitle": "Parasitic Biomorphology"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-c3cc7346374b1a62","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"ASSIMILATION SWARM","sourceTitle":"Parasitic Biomorphology"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-assimilation-swarm:enhancement:4",
-          "pointer": "/detachments/3/enhancements/3",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-54526bde0981d9a0","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/3/enhancements/3"}]}],
+      "sourceBindings": "bindings-b0b76716799564a0"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-crusher-stampede:enhancement:1",
       "ownerId": "detachment-crusher-stampede",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -2832,22 +2562,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-crusher-stampede:enhancement:1",
-                "canonicalOwnerId": "detachment-crusher-stampede",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-crusher-stampede:enhancement:1",
-                  "pointer": "/detachments/4/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-daee723825003b70","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/4/enhancements/0"}]}],
+              "sourceBindings": "bindings-37e6a0559f1f6bc9",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-crusher-stampede:enhancement:1","canonicalOwnerId":"detachment-crusher-stampede","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -2925,44 +2643,16 @@
         "enhancementId": "mfm-enhancement-1248f6cfd2d3969c",
         "detachmentId": "mfm-detachment-631799715e9b611c",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "CRUSHER STAMPEDE",
-            "sourceTitle": "Ominous Presence"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-28c923b1c0ddb083","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"CRUSHER STAMPEDE","sourceTitle":"Ominous Presence"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-crusher-stampede:enhancement:1",
-          "pointer": "/detachments/4/enhancements/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-daee723825003b70","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/4/enhancements/0"}]}],
+      "sourceBindings": "bindings-a547e78cd9c6d86a"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-unending-swarm:enhancement:1",
       "ownerId": "detachment-unending-swarm",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -3127,22 +2817,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-unending-swarm:enhancement:1",
-                "canonicalOwnerId": "detachment-unending-swarm",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-unending-swarm:enhancement:1",
-                  "pointer": "/detachments/6/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-80385b9e8fd081b2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/6/enhancements/0"}]}],
+              "sourceBindings": "bindings-55059df411cae86a",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-unending-swarm:enhancement:1","canonicalOwnerId":"detachment-unending-swarm","canonicalClauseId":"roster-known"}}
             },
             {
               "id": "detachment-unending-swarm:enhancement:1::roster-known/effect-1/formed",
@@ -3182,22 +2860,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-unending-swarm:enhancement:1",
-                "canonicalOwnerId": "detachment-unending-swarm",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-unending-swarm:enhancement:1",
-                  "pointer": "/detachments/6/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/2"
+              "recipientId": "roster-known::recipient/effect/2",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-80385b9e8fd081b2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/6/enhancements/0"}]}],
+              "sourceBindings": "bindings-55059df411cae86a",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-unending-swarm:enhancement:1","canonicalOwnerId":"detachment-unending-swarm","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -3268,44 +2934,16 @@
         "enhancementId": "mfm-enhancement-c2a6b0857c4e0c1b",
         "detachmentId": "mfm-detachment-f8188b1403ca9370",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "UNENDING SWARM",
-            "sourceTitle": "Relentless Hunger"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-cbe7ef2f85902439","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"UNENDING SWARM","sourceTitle":"Relentless Hunger"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-unending-swarm:enhancement:1",
-          "pointer": "/detachments/6/enhancements/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-80385b9e8fd081b2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/6/enhancements/0"}]}],
+      "sourceBindings": "bindings-333221f7e36c5ffd"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-ambush-predators:enhancement:2",
       "ownerId": "detachment-ambush-predators",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -3441,22 +3079,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-ambush-predators:enhancement:2",
-                "canonicalOwnerId": "detachment-ambush-predators",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-ambush-predators:enhancement:2",
-                  "pointer": "/detachments/7/enhancements/1",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d59a8af074f26abe","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/7/enhancements/1"}]}],
+              "sourceBindings": "bindings-2314137d8647627d",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-ambush-predators:enhancement:2","canonicalOwnerId":"detachment-ambush-predators","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -3516,44 +3142,16 @@
         "enhancementId": "mfm-enhancement-c0fc40c99132a777",
         "detachmentId": "mfm-detachment-b3975b6c6d229449",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "AMBUSH PREDATORS",
-            "sourceTitle": "Cryptophotaic Camouflage (Upgrade)"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-ab64d45b0fd63713","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"AMBUSH PREDATORS","sourceTitle":"Cryptophotaic Camouflage (Upgrade)"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-ambush-predators:enhancement:2",
-          "pointer": "/detachments/7/enhancements/1",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d59a8af074f26abe","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/7/enhancements/1"}]}],
+      "sourceBindings": "bindings-0db7b133601136ff"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-talons-of-the-norn-queen:enhancement:1",
       "ownerId": "detachment-talons-of-the-norn-queen",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -3688,22 +3286,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-talons-of-the-norn-queen:enhancement:1",
-                "canonicalOwnerId": "detachment-talons-of-the-norn-queen",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:1",
-                  "pointer": "/detachments/8/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-08b4b29cc7b519f4","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/8/enhancements/0"}]}],
+              "sourceBindings": "bindings-3643fc8798c84587",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-talons-of-the-norn-queen:enhancement:1","canonicalOwnerId":"detachment-talons-of-the-norn-queen","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -3763,44 +3349,16 @@
         "enhancementId": "mfm-enhancement-3049adc48fce11c5",
         "detachmentId": "mfm-detachment-d88527bfa05bf302",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "TALONS OF THE NORN QUEEN",
-            "sourceTitle": "Destabilising Predation (Upgrade)"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-d571c9a4347f9024","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"TALONS OF THE NORN QUEEN","sourceTitle":"Destabilising Predation (Upgrade)"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:1",
-          "pointer": "/detachments/8/enhancements/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-08b4b29cc7b519f4","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/8/enhancements/0"}]}],
+      "sourceBindings": "bindings-94dc0b4bb09955ab"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-talons-of-the-norn-queen:enhancement:2",
       "ownerId": "detachment-talons-of-the-norn-queen",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -3936,22 +3494,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-talons-of-the-norn-queen:enhancement:2",
-                "canonicalOwnerId": "detachment-talons-of-the-norn-queen",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:2",
-                  "pointer": "/detachments/8/enhancements/1",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-6b8dfeeb7a861d29","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/8/enhancements/1"}]}],
+              "sourceBindings": "bindings-d4a19aa5a17f6059",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-talons-of-the-norn-queen:enhancement:2","canonicalOwnerId":"detachment-talons-of-the-norn-queen","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -4011,44 +3557,16 @@
         "enhancementId": "mfm-enhancement-adc6c3810004b913",
         "detachmentId": "mfm-detachment-d88527bfa05bf302",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "TALONS OF THE NORN QUEEN",
-            "sourceTitle": "Synaptoprescience (Upgrade)"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-7d7a28c569ac4ddd","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"TALONS OF THE NORN QUEEN","sourceTitle":"Synaptoprescience (Upgrade)"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-talons-of-the-norn-queen:enhancement:2",
-          "pointer": "/detachments/8/enhancements/1",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-6b8dfeeb7a861d29","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/8/enhancements/1"}]}],
+      "sourceBindings": "bindings-5fac4ebb8db1dddb"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "datasheet-tyrant-guard:section:1",
       "ownerId": "unit-tyrant-guard",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DATASHEET_ABILITY",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -4242,22 +3760,10 @@
                 ]
               ],
               "lifetime": "WHILE_ATTACHED",
-              "provenance": {
-                "canonicalRuleId": "datasheet-tyrant-guard:section:1",
-                "canonicalOwnerId": "unit-tyrant-guard",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html",
-                  "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E",
-                  "sourceEntityId": "datasheet-tyrant-guard:section:1",
-                  "pointer": "/datasheets/46/sections/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-de888a2ba8ecda87","referenceId":"refs-b9a1282b06e21951","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-2069d267923d8fd1","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/46/sections/0"}]}],
+              "sourceBindings": "bindings-0f6219c2adb5e04a",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"datasheet-tyrant-guard:section:1","canonicalOwnerId":"unit-tyrant-guard","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -4302,26 +3808,13 @@
           "recipientStatus": "RECORDED"
         }
       ],
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Tyrant-Guard.html",
-          "sha256": "350CDCE36F9D4E9DE22B95AFBCF331B91A63E22E12C2D2A6926600B3F8D7330E",
-          "sourceEntityId": "datasheet-tyrant-guard:section:1",
-          "pointer": "/datasheets/46/sections/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-de888a2ba8ecda87","referenceId":"refs-b9a1282b06e21951","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-2069d267923d8fd1","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/46/sections/0"}]}],
+      "sourceBindings": "bindings-83aa64f8f4f90b32"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-warrior-bioform-onslaught:enhancement:1",
       "ownerId": "detachment-warrior-bioform-onslaught",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -4496,22 +3989,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-warrior-bioform-onslaught:enhancement:1",
-                "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:1",
-                  "pointer": "//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-8cfc308759e015cd","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]"}]}],
+              "sourceBindings": "bindings-5abb48a7ab97f0b7",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-warrior-bioform-onslaught:enhancement:1","canonicalOwnerId":"detachment-warrior-bioform-onslaught","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -4670,44 +4151,16 @@
         "enhancementId": "mfm-enhancement-42c3c463d3b8603e",
         "detachmentId": "mfm-detachment-e5a448802d1107e5",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "WARRIOR BIOFORM ONSLAUGHT",
-            "sourceTitle": "Elevated Might"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-b26b171129615ced","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"WARRIOR BIOFORM ONSLAUGHT","sourceTitle":"Elevated Might"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-warrior-bioform-onslaught:enhancement:1",
-          "pointer": "//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-8cfc308759e015cd","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"//div[@data-f='TY:4001']//td[ul[@class='EnhancementsPts']/li/span[1][normalize-space(.)='Elevated Might']]"}]}],
+      "sourceBindings": "bindings-fc1fc03a9099633e"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-synaptic-nexus:enhancement:1",
       "ownerId": "detachment-synaptic-nexus",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -4891,22 +4344,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-synaptic-nexus:enhancement:1",
-                "canonicalOwnerId": "detachment-synaptic-nexus",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
-                  "pointer": "/detachments/2/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fef4375a8d8569ae","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/2/enhancements/0"}]}],
+              "sourceBindings": "bindings-667f560433246ec8",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-synaptic-nexus:enhancement:1","canonicalOwnerId":"detachment-synaptic-nexus","canonicalClauseId":"roster-known"}}
             },
             {
               "id": "detachment-synaptic-nexus:enhancement:1::roster-known/effect-2",
@@ -4937,22 +4378,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-synaptic-nexus:enhancement:1",
-                "canonicalOwnerId": "detachment-synaptic-nexus",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
-                  "pointer": "/detachments/2/enhancements/0",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/2"
+              "recipientId": "roster-known::recipient/effect/2",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fef4375a8d8569ae","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/2/enhancements/0"}]}],
+              "sourceBindings": "bindings-667f560433246ec8",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-synaptic-nexus:enhancement:1","canonicalOwnerId":"detachment-synaptic-nexus","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -5037,44 +4466,16 @@
         "enhancementId": "mfm-enhancement-22a08f8fd174d51e",
         "detachmentId": "mfm-detachment-7a3e42d67ed28570",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "SYNAPTIC NEXUS",
-            "sourceTitle": "Power of the Hive Mind"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-e5bb90d218fede8c","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"SYNAPTIC NEXUS","sourceTitle":"Power of the Hive Mind"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-synaptic-nexus:enhancement:1",
-          "pointer": "/detachments/2/enhancements/0",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fef4375a8d8569ae","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/2/enhancements/0"}]}],
+      "sourceBindings": "bindings-c58257c357af3999"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-vanguard-onslaught:enhancement:2",
       "ownerId": "detachment-vanguard-onslaught",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "ENHANCEMENT",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -5221,22 +4622,10 @@
                 ]
               ],
               "lifetime": "WHILE_ASSIGNED",
-              "provenance": {
-                "canonicalRuleId": "detachment-vanguard-onslaught:enhancement:2",
-                "canonicalOwnerId": "detachment-vanguard-onslaught",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-vanguard-onslaught:enhancement:2",
-                  "pointer": "/detachments/5/enhancements/1",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-34ac24ca0a09c7fc","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/5/enhancements/1"}]}],
+              "sourceBindings": "bindings-ccce2f6633d171d8",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-vanguard-onslaught:enhancement:2","canonicalOwnerId":"detachment-vanguard-onslaught","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -5301,44 +4690,16 @@
         "enhancementId": "mfm-enhancement-c9482c48c415f783",
         "detachmentId": "mfm-detachment-fc0063b26987572c",
         "qualifierIds": [],
-        "provenance": {
-          "observedAt": "2026-10-14",
-          "verifiedAt": "2026-10-14",
-          "effectiveDate": null,
-          "sourceId": "tyranids-mfm-v1.6",
-          "sourceVersion": "v1.6",
-          "currentness": "CURRENT",
-          "currentnessCutoff": "2026-10-14",
-          "sourceCaptureSha256": "3667D51FAE5940B386E1C06416B39DBDB3C3790F4BFEBAE267864D167B6A7AE8",
-          "authority": "OFFICIAL_GAMES_WORKSHOP_LIVE_MFM",
-          "sourceLocator": {
-            "partition": "detachments.enhancements",
-            "factionId": "tyranids",
-            "detachmentSourceTitle": "VANGUARD ONSLAUGHT",
-            "sourceTitle": "Chameleonic"
-          }
-        }
+        "sourceRefs": [{"documentId":"documents-5596e1837e83af71","referenceId":"refs-14a5739ea97fd414","locators":[{"kind":"TEXT_LOCATION","value":{"partition":"detachments.enhancements","factionId":"tyranids","detachmentSourceTitle":"VANGUARD ONSLAUGHT","sourceTitle":"Chameleonic"}}]}],
+        "sourceBindings": "bindings-4926d54b906382f1"
       },
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-vanguard-onslaught:enhancement:2",
-          "pointer": "/detachments/5/enhancements/1",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-34ac24ca0a09c7fc","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/5/enhancements/1"}]}],
+      "sourceBindings": "bindings-f3ffa2d158c65de3"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-ambush-predators:rule",
       "ownerId": "detachment-ambush-predators",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DETACHMENT_RULE",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "BATTLE",
@@ -5592,22 +4953,10 @@
                 ]
               ],
               "lifetime": "WHILE_DETACHMENT_SELECTED",
-              "provenance": {
-                "canonicalRuleId": "detachment-ambush-predators:rule",
-                "canonicalOwnerId": "detachment-ambush-predators",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-ambush-predators:rule",
-                  "pointer": "#Mindhunger",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-b2d6d2b7a4eff237","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Mindhunger"}]}],
+              "sourceBindings": "bindings-9c2eae9898d58b12",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-ambush-predators:rule","canonicalOwnerId":"detachment-ambush-predators","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -5740,26 +5089,13 @@
         }
       ],
       "detachmentId": "detachment-ambush-predators",
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-ambush-predators:rule",
-          "pointer": "#Mindhunger",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-b2d6d2b7a4eff237","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Mindhunger"}]}],
+      "sourceBindings": "bindings-ba4aa414534c28b6"
     },
     {
       "schema": "rule-contract/v2",
       "ruleId": "detachment-warrior-bioform-onslaught:rule",
       "ownerId": "detachment-warrior-bioform-onslaught",
-      "sourceId": "tyranids-waha-11e-2026-09-27",
       "kind": "DETACHMENT_RULE",
       "executionMode": "DECLARATIVE_APPLICABILITY",
       "contextLevel": "ROSTER",
@@ -5968,22 +5304,10 @@
                 ]
               ],
               "lifetime": "WHILE_DETACHMENT_SELECTED",
-              "provenance": {
-                "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
-                "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
-                  "pointer": "#Leader-beasts",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/1"
+              "recipientId": "roster-known::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-51cc7172ca1924b6","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Leader-beasts"}]}],
+              "sourceBindings": "bindings-5fbb5712d000451c",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-warrior-bioform-onslaught:rule","canonicalOwnerId":"detachment-warrior-bioform-onslaught","canonicalClauseId":"roster-known"}}
             },
             {
               "id": "detachment-warrior-bioform-onslaught:rule::roster-known/effect-2",
@@ -6039,22 +5363,10 @@
                 ]
               ],
               "lifetime": "WHILE_DETACHMENT_SELECTED",
-              "provenance": {
-                "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
-                "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
-                "canonicalClauseId": "roster-known",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
-                  "pointer": "#Leader-beasts",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "roster-known::recipient/effect/2"
+              "recipientId": "roster-known::recipient/effect/2",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-51cc7172ca1924b6","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Leader-beasts"}]}],
+              "sourceBindings": "bindings-5fbb5712d000451c",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-warrior-bioform-onslaught:rule","canonicalOwnerId":"detachment-warrior-bioform-onslaught","canonicalClauseId":"roster-known"}}
             }
           ],
           "recipients": [
@@ -6248,22 +5560,10 @@
                 ]
               ],
               "lifetime": "WHILE_DETACHMENT_SELECTED",
-              "provenance": {
-                "canonicalRuleId": "detachment-warrior-bioform-onslaught:rule",
-                "canonicalOwnerId": "detachment-warrior-bioform-onslaught",
-                "canonicalClauseId": "invulnerable-save",
-                "sourceEvidence": {
-                  "sourceId": "tyranids-waha-11e-2026-09-27",
-                  "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-                  "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-                  "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
-                  "pointer": "#Leader-beasts",
-                  "authority": "ACCEPTED_SECONDARY",
-                  "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-                  "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-                }
-              },
-              "recipientId": "invulnerable-save::recipient/effect/1"
+              "recipientId": "invulnerable-save::recipient/effect/1",
+              "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-51cc7172ca1924b6","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Leader-beasts"}]}],
+              "sourceBindings": "bindings-69bb4452d9aad434",
+              "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-warrior-bioform-onslaught:rule","canonicalOwnerId":"detachment-warrior-bioform-onslaught","canonicalClauseId":"invulnerable-save"}}
             }
           ],
           "recipients": [
@@ -6474,20 +5774,8 @@
         }
       ],
       "detachmentId": "detachment-warrior-bioform-onslaught",
-      "currentness": {
-        "acceptedBaseHead": "c0ac0d890973d1dc5a8f9979bbb614ee8ebee7e2",
-        "factualOwner": {
-          "sourceId": "tyranids-waha-11e-2026-09-27",
-          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-          "sourceEntityId": "detachment-warrior-bioform-onslaught:rule",
-          "pointer": "#Leader-beasts",
-          "authority": "ACCEPTED_SECONDARY",
-          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-        },
-        "currentOfficialSource": "gw-tyranids-faction-pack-v1.3-2026-10-14"
-      }
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-51cc7172ca1924b6","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"#Leader-beasts"}]}],
+      "sourceBindings": "bindings-60c47f733e67e335"
     }
   ],
   "deferred": [
@@ -6501,17 +5789,9 @@
         "entityId": "datasheet-old-one-eye:section:1"
       },
       "sourceText": "Alpha Leader: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll.\nUnstoppable Monster: At the start of each player’s Command phase, this model regains up to D3 lost wounds.",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Old-One-Eye.html",
-        "sha256": "52DAE0B473118569CE5D4E594F6B5A35FA394491A35C176BE95B89FD695C3427",
-        "sourceEntityId": "datasheet-old-one-eye:section:1",
-        "pointer": "/datasheets/26/sections/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-1150f446218dfc44","referenceId":"refs-00d8dd665487bee2","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-62a1ed0dead416df","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/26/sections/0"}]}],
+      "sourceBindings": "bindings-c9077a95e06af4d3"
     },
     {
       "id": "datasheet-neurotyrant:section:1",
@@ -6523,17 +5803,9 @@
         "entityId": "datasheet-neurotyrant:section:1"
       },
       "sourceText": "Node Lash (Psychic): While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Hit roll. If the target is Battle-shocked, add 1 to the Wound roll as well.\nPsychic Terror (Psychic): If one or more models from your army with this ability are on the battlefield when you unleash the Shadow in the Warp, subtract 1 from the Battle-shock test each enemy unit on the battlefield must take as a result.\nNeuroloids: In your Command phase, you can select up to two friendly TYRANIDS units within 18\" of this model’s unit. Until the start of your next Command phase, the selected units are always considered to be within Synapse Range of your army.\nDesigner’s Note: Place a Neuroloid token next to each selected unit to remind you.",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Neurotyrant.html",
-        "sha256": "719796D1EF82BBED9291C5C511899FF9323F2A2A635A42E85438E7CF04AE2C55",
-        "sourceEntityId": "datasheet-neurotyrant:section:1",
-        "pointer": "/datasheets/23/sections/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-d505b84a80f41756","referenceId":"refs-b6901dc63fa121f8","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-f5a4ae0c56483992","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/23/sections/0"}]}],
+      "sourceBindings": "bindings-de41c5531a21471b"
     },
     {
       "id": "datasheet-hive-tyrant:section:1",
@@ -6545,17 +5817,9 @@
         "entityId": "datasheet-hive-tyrant:section:1"
       },
       "sourceText": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.\nOnslaught (Aura, Psychic): While a friendly TYRANIDS unit is within 6\" of this model, ranged weapons equipped by models in that unit have the [ASSAULT] and [LETHAL HITS] abilities.",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Hive-Tyrant.html",
-        "sha256": "E0E77C9E44C31B95CB3C6539C5A0B7BEE54C772C85E0ADAA35FE8227D2FC215E",
-        "sourceEntityId": "datasheet-hive-tyrant:section:1",
-        "pointer": "/datasheets/14/sections/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-412a09124f613030","referenceId":"refs-7286a5a2aa64f2ce","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-623f6e22fdabe6ca","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/14/sections/0"}]}],
+      "sourceBindings": "bindings-d4bfa7e7d6c52345"
     },
     {
       "id": "detachment-ambush-predators:enhancement:1",
@@ -6567,19 +5831,11 @@
         "entityId": "detachment-ambush-predators:enhancement:1"
       },
       "sourceText": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only. In your opponent’s Movement phase, when an enemy unit ends a move within 8\" of this unit, this unit can make a normal move of up to D3+3\".",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-        "sourceEntityId": "detachment-ambush-predators:enhancement:1",
-        "pointer": "/detachments/7/enhancements/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
       "executable": false,
       "scope": "UNIT",
-      "itemKind": "UPGRADE"
+      "itemKind": "UPGRADE",
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-454b491f14d2f753","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/7/enhancements/0"}]}],
+      "sourceBindings": "bindings-45f14631a3083657"
     },
     {
       "id": "army-rule-synapse",
@@ -6599,29 +5855,13 @@
             "path": "/text"
           },
           "sourceText": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army:\n- Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6.\n- Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
-          "provenance": {
-            "sourceId": "tyranids-waha-11e-2026-09-27",
-            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-            "sourceEntityId": "army-rule-synapse:definition",
-            "pointer": "/armyRules/0/components/0",
-            "authority": "ACCEPTED_SECONDARY",
-            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-          }
+          "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-089f7a7b2eb715a7","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/armyRules/0/components/0"}]}],
+          "sourceBindings": "bindings-507e355311d85a1d"
         }
       ],
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-        "sourceEntityId": "army-rule-synapse",
-        "pointer": "/armyRules/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-bb95857d770516e7","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/armyRules/0"}]}],
+      "sourceBindings": "bindings-76f1e9faed4027ca"
     },
     {
       "id": "army-rule-shadow-in-the-warp",
@@ -6641,29 +5881,13 @@
             "path": "/text"
           },
           "sourceText": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
-          "provenance": {
-            "sourceId": "tyranids-waha-11e-2026-09-27",
-            "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-            "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-            "sourceEntityId": "army-rule-shadow-in-the-warp:definition",
-            "pointer": "/armyRules/1/components/0",
-            "authority": "ACCEPTED_SECONDARY",
-            "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-            "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-          }
+          "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-fa6ce01250de144e","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/armyRules/1/components/0"}]}],
+          "sourceBindings": "bindings-ec8f5592e09c406a"
         }
       ],
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-        "sourceEntityId": "army-rule-shadow-in-the-warp",
-        "pointer": "/armyRules/1",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-9175d9764aede102","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/armyRules/1"}]}],
+      "sourceBindings": "bindings-e3373f117b5e1957"
     },
     {
       "id": "datasheet-venomthropes:section:1",
@@ -6675,17 +5899,9 @@
         "entityId": "datasheet-venomthropes:section:1"
       },
       "sourceText": "Foul Spores (Aura): Friendly TYRANIDS units within 6\" of this unit have Stealth.",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Venomthropes.html",
-        "sha256": "6E38BD27149968C68E2FC58687CBC8CC16A8F1423FB3F9EB7CD4E5BCCB596C94",
-        "sourceEntityId": "datasheet-venomthropes:section:1",
-        "pointer": "/datasheets/47/sections/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
-      "executable": false
+      "executable": false,
+      "sourceRefs": [{"documentId":"documents-4ab0e4f7aef67135","referenceId":"refs-8fc4aa63f8de8663","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-b3a9670a1ec68698","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/47/sections/0"}]}],
+      "sourceBindings": "bindings-1d148b0643e1465a"
     },
     {
       "id": "detachment-assimilation-swarm:enhancement:1",
@@ -6697,19 +5913,11 @@
         "entityId": "detachment-assimilation-swarm:enhancement:1"
       },
       "sourceText": "TYRANIDS model only (excluding MONSTERS models). The bearer’s unit can be regenerated up to twice per phase, instead of once.",
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
-        "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
-        "sourceEntityId": "detachment-assimilation-swarm:enhancement:1",
-        "pointer": "/detachments/3/enhancements/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      },
       "executable": false,
       "scope": "MODEL",
-      "itemKind": "ENHANCEMENT"
+      "itemKind": "ENHANCEMENT",
+      "sourceRefs": [{"documentId":"documents-4710f8837dfa3e59","referenceId":"refs-c5e265dfa6ad7c67","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-0af11f8b77ccbe8f","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/detachments/3/enhancements/0"}]}],
+      "sourceBindings": "bindings-d8d1f7eda9b012a5"
     }
   ],
   "nativeReferenceSemantics": {
@@ -6727,16 +5935,8 @@
       "compositionMemberIds": [
         "datasheet-old-one-eye:section:2:member:1"
       ],
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Old-One-Eye.html",
-        "sha256": "52DAE0B473118569CE5D4E594F6B5A35FA394491A35C176BE95B89FD695C3427",
-        "sourceEntityId": "datasheet-old-one-eye:rule-reference:1",
-        "pointer": "/datasheets/26/ruleReferences/0",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      }
+      "sourceRefs": [{"documentId":"documents-1150f446218dfc44","referenceId":"refs-00d8dd665487bee2","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-cbb32629b1ace543","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/26/ruleReferences/0"}]}],
+      "sourceBindings": "bindings-f6110237a46f2b6b"
     },
     "datasheet-psychophage:rule-reference:2": {
       "abilities": [
@@ -6752,16 +5952,8 @@
       "compositionMemberIds": [
         "datasheet-psychophage:section:2:member:1"
       ],
-      "provenance": {
-        "sourceId": "tyranids-waha-11e-2026-09-27",
-        "document": "books/tyranids/sources/waha-11e-current-2026-09-27/Psychophage.html",
-        "sha256": "577FDAE9B63CCA2F4EECB85DE783DB5EE111A14F6C5CE9E3BE6D003BC08AF4C9",
-        "sourceEntityId": "datasheet-psychophage:rule-reference:2",
-        "pointer": "/datasheets/28/ruleReferences/1",
-        "authority": "ACCEPTED_SECONDARY",
-        "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
-        "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
-      }
+      "sourceRefs": [{"documentId":"documents-b3f2309864cfbecc","referenceId":"refs-489e98249c5a1a72","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-5c963d5814173f58","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/28/ruleReferences/1"}]}],
+      "sourceBindings": "bindings-0f5750308cfc0c44"
     }
   },
   "attachmentPolicies": [
@@ -7360,5 +6552,6 @@
         "leaderTargetIds": []
       }
     ]
-  }
+  },
+  "sourceSchema": "source-refs/v1"
 }

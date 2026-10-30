@@ -1,0 +1,2595 @@
+{
+  "schema": "source-reference-closure-repair/v1",
+  "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+  "priorImplementation": "c73bd5396aa358d97603650ebd28a4886b61cf6b",
+  "status": "COMPLETE_WITH_BASELINE_FAILURES",
+  "rootCause": "externalizeSources skipped every field named sourceBindings, including the ordinary referenceMetadata.sourceBindings factual container. Its descendants kept raw refs while the catalog was removed. A preceding baseline compilation populated process-wide reader pools and concealed this in the old inverse report.",
+  "failure": {
+    "referenceId": "refs-de28c919d99659e1",
+    "path": "/referenceMetadata/sourceBindings/instructionBindings/0/sourceRefs/0/ref",
+    "firstObserved": "books/chaos-space-marines/v2/app-qa.mjs"
+  },
+  "repair": "The common serializer skips sourceBindings only when it is an actual codec binding. Existing offline CSM producers regenerated the four affected outputs; the common catalog pass now validates serialized closure before writing. No guard in source-refs.mjs was changed.",
+  "artifacts": [
+    {
+      "path": "books/chaos-space-marines/v2/generated/base.json",
+      "beforeSha256": "b9dadb91c93040ffd5bb35b0846bc0b4a63ad1bf0e063637eec8092a68fe904d",
+      "afterSha256": "f656e75cddb1da7378a82b49fd12c3cc4fc6c256fc950fcd51d46f33977bc9c4",
+      "rawReferenceRecordsBefore": 71,
+      "rawReferenceRecordsAfter": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/effective.json",
+      "beforeSha256": "062fb03cc2ff108d6a8a4b43c7cf393b55a2dcf402ade096ac9ee73b09eaf057",
+      "afterSha256": "2b9024f4d81a8c7ffac9d753fa6648e77077d4ba17a0ca2c2507e64fe1fcf8c3",
+      "rawReferenceRecordsBefore": 71,
+      "rawReferenceRecordsAfter": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "beforeSha256": "fbb39ed8809b2d5340b953e8f1cf08f29937e78e6d6584080bc783011265548c",
+      "afterSha256": "aa1fbea270271a0b36b7bc032ab97ccbfd383ddc21dbbaff3fb373e7495fb163",
+      "rawReferenceRecordsBefore": 71,
+      "rawReferenceRecordsAfter": 0
+    },
+    {
+      "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "beforeSha256": "bd4c7367f603f0eda39f141ab887e65774cd9e8806f7a1320f6d12ee18e14cf4",
+      "afterSha256": "05900f55f2eb5fef3ec485330646997e089ac654e26aadfbfc25cde438d16375",
+      "rawReferenceRecordsBefore": 71,
+      "rawReferenceRecordsAfter": 0
+    }
+  ],
+  "generated": {
+    "status": "PASS",
+    "scope": "ALL_GENERATED",
+    "books": 9,
+    "files": 97,
+    "generatedFiles": 97,
+    "records": 96733,
+    "references": 102933,
+    "controls": [
+      {
+        "bookId": "adeptus-mechanicus",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "blood-angels",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "chaos-space-marines",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "dark-angels",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "death-guard",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "emperors-children",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "space-marines",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "tau-empire",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "tyranids",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 447,
+        "references": 245,
+        "fieldReferences": 3,
+        "bindings": 447,
+        "layouts": 558,
+        "contexts": 2860
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/base.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 573,
+        "references": 579,
+        "fieldReferences": 3,
+        "bindings": 573,
+        "layouts": 576,
+        "contexts": 151
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/effective.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 573,
+        "references": 579,
+        "fieldReferences": 3,
+        "bindings": 573,
+        "layouts": 576,
+        "contexts": 151
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/factual-census.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 732,
+        "references": 736,
+        "fieldReferences": 3,
+        "bindings": 732,
+        "layouts": 889,
+        "contexts": 335
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/rule-contract-census.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 154,
+        "references": 157,
+        "fieldReferences": 0,
+        "bindings": 154,
+        "layouts": 308,
+        "contexts": 154
+      },
+      {
+        "path": "books/blood-angels/v2/generated/app-presentation.json",
+        "bookId": "blood-angels",
+        "records": 2171,
+        "references": 1972,
+        "fieldReferences": 2,
+        "bindings": 2171,
+        "layouts": 3862,
+        "contexts": 7505
+      },
+      {
+        "path": "books/blood-angels/v2/generated/base.json",
+        "bookId": "blood-angels",
+        "records": 522,
+        "references": 522,
+        "fieldReferences": 0,
+        "bindings": 522,
+        "layouts": 522,
+        "contexts": 578
+      },
+      {
+        "path": "books/blood-angels/v2/generated/effective.json",
+        "bookId": "blood-angels",
+        "records": 522,
+        "references": 522,
+        "fieldReferences": 0,
+        "bindings": 522,
+        "layouts": 522,
+        "contexts": 578
+      },
+      {
+        "path": "books/blood-angels/v2/generated/factual-census.json",
+        "bookId": "blood-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/v2/generated/gameplay-presentation.json",
+        "bookId": "blood-angels",
+        "records": 2167,
+        "references": 1967,
+        "fieldReferences": 2,
+        "bindings": 2167,
+        "layouts": 3853,
+        "contexts": 7489
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mfm-coverage.json",
+        "bookId": "blood-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mfm-presentation.json",
+        "bookId": "blood-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mixed-owner-book.json",
+        "bookId": "blood-angels",
+        "records": 1969,
+        "references": 1970,
+        "fieldReferences": 2,
+        "bindings": 1969,
+        "layouts": 1971,
+        "contexts": 4398
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mixed-owner-coverage.json",
+        "bookId": "blood-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mixed-owner-points.json",
+        "bookId": "blood-angels",
+        "records": 11,
+        "references": 11,
+        "fieldReferences": 0,
+        "bindings": 11,
+        "layouts": 11,
+        "contexts": 88
+      },
+      {
+        "path": "books/blood-angels/v2/generated/mixed-owner-presentation.json",
+        "bookId": "blood-angels",
+        "records": 1796,
+        "references": 1845,
+        "fieldReferences": 2,
+        "bindings": 1796,
+        "layouts": 3482,
+        "contexts": 4814
+      },
+      {
+        "path": "books/blood-angels/v2/generated/native-mfm-book.json",
+        "bookId": "blood-angels",
+        "records": 547,
+        "references": 547,
+        "fieldReferences": 0,
+        "bindings": 547,
+        "layouts": 547,
+        "contexts": 678
+      },
+      {
+        "path": "books/blood-angels/v2/generated/roster-import.json",
+        "bookId": "blood-angels",
+        "records": 2943,
+        "references": 2944,
+        "fieldReferences": 2,
+        "bindings": 2943,
+        "layouts": 3232,
+        "contexts": 7941
+      },
+      {
+        "path": "books/blood-angels/v2/generated/roster-runtime.json",
+        "bookId": "blood-angels",
+        "records": 2397,
+        "references": 2391,
+        "fieldReferences": 2,
+        "bindings": 2397,
+        "layouts": 2679,
+        "contexts": 6046
+      },
+      {
+        "path": "books/blood-angels/v2/generated/rule-contracts.json",
+        "bookId": "blood-angels",
+        "records": 29,
+        "references": 29,
+        "fieldReferences": 0,
+        "bindings": 29,
+        "layouts": 29,
+        "contexts": 58
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+        "bookId": "chaos-space-marines",
+        "records": 4033,
+        "references": 4160,
+        "fieldReferences": 0,
+        "bindings": 4033,
+        "layouts": 4033,
+        "contexts": 6657
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/base.json",
+        "bookId": "chaos-space-marines",
+        "records": 2543,
+        "references": 2558,
+        "fieldReferences": 0,
+        "bindings": 2543,
+        "layouts": 2543,
+        "contexts": 2627
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/effective.json",
+        "bookId": "chaos-space-marines",
+        "records": 2497,
+        "references": 2682,
+        "fieldReferences": 0,
+        "bindings": 2497,
+        "layouts": 2497,
+        "contexts": 2751
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/factual-census.json",
+        "bookId": "chaos-space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+        "bookId": "chaos-space-marines",
+        "records": 2497,
+        "references": 2682,
+        "fieldReferences": 0,
+        "bindings": 2497,
+        "layouts": 2497,
+        "contexts": 4495
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+        "bookId": "chaos-space-marines",
+        "records": 2798,
+        "references": 3036,
+        "fieldReferences": 0,
+        "bindings": 2798,
+        "layouts": 3020,
+        "contexts": 7564
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+        "bookId": "chaos-space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+        "bookId": "chaos-space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json",
+        "bookId": "chaos-space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/rule-contracts.json",
+        "bookId": "chaos-space-marines",
+        "records": 222,
+        "references": 249,
+        "fieldReferences": 0,
+        "bindings": 222,
+        "layouts": 444,
+        "contexts": 693
+      },
+      {
+        "path": "books/dark-angels/v2/generated/app-presentation.json",
+        "bookId": "dark-angels",
+        "records": 2196,
+        "references": 1997,
+        "fieldReferences": 2,
+        "bindings": 2196,
+        "layouts": 3908,
+        "contexts": 7563
+      },
+      {
+        "path": "books/dark-angels/v2/generated/base.json",
+        "bookId": "dark-angels",
+        "records": 544,
+        "references": 544,
+        "fieldReferences": 0,
+        "bindings": 544,
+        "layouts": 544,
+        "contexts": 616
+      },
+      {
+        "path": "books/dark-angels/v2/generated/effective.json",
+        "bookId": "dark-angels",
+        "records": 544,
+        "references": 544,
+        "fieldReferences": 0,
+        "bindings": 544,
+        "layouts": 544,
+        "contexts": 616
+      },
+      {
+        "path": "books/dark-angels/v2/generated/factual-census.json",
+        "bookId": "dark-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/dark-angels/v2/generated/gameplay-presentation.json",
+        "bookId": "dark-angels",
+        "records": 2192,
+        "references": 1992,
+        "fieldReferences": 2,
+        "bindings": 2192,
+        "layouts": 3899,
+        "contexts": 7547
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mfm-coverage.json",
+        "bookId": "dark-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mfm-presentation.json",
+        "bookId": "dark-angels",
+        "records": 1,
+        "references": 1,
+        "fieldReferences": 0,
+        "bindings": 1,
+        "layouts": 1,
+        "contexts": 4
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mixed-owner-book.json",
+        "bookId": "dark-angels",
+        "records": 1994,
+        "references": 1995,
+        "fieldReferences": 2,
+        "bindings": 1994,
+        "layouts": 1996,
+        "contexts": 4448
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mixed-owner-coverage.json",
+        "bookId": "dark-angels",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mixed-owner-points.json",
+        "bookId": "dark-angels",
+        "records": 12,
+        "references": 12,
+        "fieldReferences": 0,
+        "bindings": 12,
+        "layouts": 12,
+        "contexts": 92
+      },
+      {
+        "path": "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+        "bookId": "dark-angels",
+        "records": 1821,
+        "references": 1870,
+        "fieldReferences": 2,
+        "bindings": 1821,
+        "layouts": 3528,
+        "contexts": 4872
+      },
+      {
+        "path": "books/dark-angels/v2/generated/native-mfm-book.json",
+        "bookId": "dark-angels",
+        "records": 572,
+        "references": 572,
+        "fieldReferences": 0,
+        "bindings": 572,
+        "layouts": 572,
+        "contexts": 728
+      },
+      {
+        "path": "books/dark-angels/v2/generated/roster-import.json",
+        "bookId": "dark-angels",
+        "records": 3077,
+        "references": 3081,
+        "fieldReferences": 2,
+        "bindings": 3077,
+        "layouts": 3353,
+        "contexts": 8221
+      },
+      {
+        "path": "books/dark-angels/v2/generated/roster-runtime.json",
+        "bookId": "dark-angels",
+        "records": 2498,
+        "references": 2494,
+        "fieldReferences": 2,
+        "bindings": 2498,
+        "layouts": 2766,
+        "contexts": 6280
+      },
+      {
+        "path": "books/dark-angels/v2/generated/rule-contracts.json",
+        "bookId": "dark-angels",
+        "records": 33,
+        "references": 33,
+        "fieldReferences": 0,
+        "bindings": 33,
+        "layouts": 33,
+        "contexts": 64
+      },
+      {
+        "path": "books/death-guard/v2/generated/app-presentation.json",
+        "bookId": "death-guard",
+        "records": 450,
+        "references": 260,
+        "fieldReferences": 22,
+        "bindings": 450,
+        "layouts": 550,
+        "contexts": 3038
+      },
+      {
+        "path": "books/death-guard/v2/generated/base.json",
+        "bookId": "death-guard",
+        "records": 498,
+        "references": 508,
+        "fieldReferences": 4,
+        "bindings": 498,
+        "layouts": 499,
+        "contexts": 1007
+      },
+      {
+        "path": "books/death-guard/v2/generated/comparison.json",
+        "bookId": "death-guard",
+        "records": 43,
+        "references": 43,
+        "fieldReferences": 0,
+        "bindings": 43,
+        "layouts": 43,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/compatibility-v2.json",
+        "bookId": "death-guard",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/effective.json",
+        "bookId": "death-guard",
+        "records": 728,
+        "references": 802,
+        "fieldReferences": 93,
+        "bindings": 728,
+        "layouts": 792,
+        "contexts": 1682
+      },
+      {
+        "path": "books/death-guard/v2/generated/glossary-v2.json",
+        "bookId": "death-guard",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/related-rules-v2.json",
+        "bookId": "death-guard",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/roster-contract-closure.json",
+        "bookId": "death-guard",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/rule-contract-closure.json",
+        "bookId": "death-guard",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+        "bookId": "death-guard",
+        "records": 922,
+        "references": 802,
+        "fieldReferences": 93,
+        "bindings": 922,
+        "layouts": 1180,
+        "contexts": 2287
+      },
+      {
+        "path": "books/emperors-children/v2/generated/app-presentation.json",
+        "bookId": "emperors-children",
+        "records": 956,
+        "references": 1410,
+        "fieldReferences": 195,
+        "bindings": 956,
+        "layouts": 1547,
+        "contexts": 3808
+      },
+      {
+        "path": "books/emperors-children/v2/generated/base.json",
+        "bookId": "emperors-children",
+        "records": 437,
+        "references": 840,
+        "fieldReferences": 0,
+        "bindings": 437,
+        "layouts": 437,
+        "contexts": 473
+      },
+      {
+        "path": "books/emperors-children/v2/generated/effective.json",
+        "bookId": "emperors-children",
+        "records": 437,
+        "references": 897,
+        "fieldReferences": 171,
+        "bindings": 437,
+        "layouts": 480,
+        "contexts": 701
+      },
+      {
+        "path": "books/emperors-children/v2/generated/factual-census.json",
+        "bookId": "emperors-children",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/emperors-children/v2/generated/roster-attachments.json",
+        "bookId": "emperors-children",
+        "records": 776,
+        "references": 1698,
+        "fieldReferences": 171,
+        "bindings": 776,
+        "layouts": 845,
+        "contexts": 1746
+      },
+      {
+        "path": "books/emperors-children/v2/generated/roster-import.json",
+        "bookId": "emperors-children",
+        "records": 604,
+        "references": 1298,
+        "fieldReferences": 171,
+        "bindings": 604,
+        "layouts": 647,
+        "contexts": 1153
+      },
+      {
+        "path": "books/emperors-children/v2/generated/rule-contracts.json",
+        "bookId": "emperors-children",
+        "records": 172,
+        "references": 400,
+        "fieldReferences": 0,
+        "bindings": 172,
+        "layouts": 198,
+        "contexts": 593
+      },
+      {
+        "path": "books/space-marines/v2/generated/app-presentation.json",
+        "bookId": "space-marines",
+        "records": 2510,
+        "references": 2344,
+        "fieldReferences": 5,
+        "bindings": 2510,
+        "layouts": 4328,
+        "contexts": 7107
+      },
+      {
+        "path": "books/space-marines/v2/generated/base.json",
+        "bookId": "space-marines",
+        "records": 1985,
+        "references": 1985,
+        "fieldReferences": 0,
+        "bindings": 1985,
+        "layouts": 1985,
+        "contexts": 3260
+      },
+      {
+        "path": "books/space-marines/v2/generated/book-presentation.json",
+        "bookId": "space-marines",
+        "records": 2091,
+        "references": 2096,
+        "fieldReferences": 5,
+        "bindings": 2091,
+        "layouts": 3827,
+        "contexts": 3482
+      },
+      {
+        "path": "books/space-marines/v2/generated/cross-owner-references.json",
+        "bookId": "space-marines",
+        "records": 4,
+        "references": 4,
+        "fieldReferences": 0,
+        "bindings": 4,
+        "layouts": 4,
+        "contexts": 8
+      },
+      {
+        "path": "books/space-marines/v2/generated/datasheet-presentation.json",
+        "bookId": "space-marines",
+        "records": 1879,
+        "references": 1884,
+        "fieldReferences": 5,
+        "bindings": 1879,
+        "layouts": 3403,
+        "contexts": 3058
+      },
+      {
+        "path": "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+        "bookId": "space-marines",
+        "records": 363,
+        "references": 365,
+        "fieldReferences": 0,
+        "bindings": 363,
+        "layouts": 373,
+        "contexts": 32
+      },
+      {
+        "path": "books/space-marines/v2/generated/deathwatch-presentation.json",
+        "bookId": "space-marines",
+        "records": 363,
+        "references": 363,
+        "fieldReferences": 0,
+        "bindings": 363,
+        "layouts": 371,
+        "contexts": 16
+      },
+      {
+        "path": "books/space-marines/v2/generated/effective.json",
+        "bookId": "space-marines",
+        "records": 1990,
+        "references": 1995,
+        "fieldReferences": 5,
+        "bindings": 1990,
+        "layouts": 1995,
+        "contexts": 3280
+      },
+      {
+        "path": "books/space-marines/v2/generated/factual-census.json",
+        "bookId": "space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/space-marines/v2/generated/gameplay-presentation.json",
+        "bookId": "space-marines",
+        "records": 2506,
+        "references": 2339,
+        "fieldReferences": 5,
+        "bindings": 2506,
+        "layouts": 4319,
+        "contexts": 7091
+      },
+      {
+        "path": "books/space-marines/v2/generated/mfm-coverage.json",
+        "bookId": "space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/space-marines/v2/generated/mfm-presentation.json",
+        "bookId": "space-marines",
+        "records": 2133,
+        "references": 2215,
+        "fieldReferences": 5,
+        "bindings": 2133,
+        "layouts": 3946,
+        "contexts": 4408
+      },
+      {
+        "path": "books/space-marines/v2/generated/native-book.json",
+        "bookId": "space-marines",
+        "records": 1991,
+        "references": 1995,
+        "fieldReferences": 5,
+        "bindings": 1991,
+        "layouts": 1996,
+        "contexts": 3282
+      },
+      {
+        "path": "books/space-marines/v2/generated/native-datasheets.json",
+        "bookId": "space-marines",
+        "records": 1885,
+        "references": 1889,
+        "fieldReferences": 5,
+        "bindings": 1885,
+        "layouts": 1890,
+        "contexts": 3070
+      },
+      {
+        "path": "books/space-marines/v2/generated/native-mfm-book.json",
+        "bookId": "space-marines",
+        "records": 2254,
+        "references": 2258,
+        "fieldReferences": 5,
+        "bindings": 2254,
+        "layouts": 2259,
+        "contexts": 5360
+      },
+      {
+        "path": "books/space-marines/v2/generated/roster-import.json",
+        "bookId": "space-marines",
+        "records": 3274,
+        "references": 3287,
+        "fieldReferences": 5,
+        "bindings": 3274,
+        "layouts": 3593,
+        "contexts": 10103
+      },
+      {
+        "path": "books/space-marines/v2/generated/roster-runtime.json",
+        "bookId": "space-marines",
+        "records": 2725,
+        "references": 2730,
+        "fieldReferences": 5,
+        "bindings": 2725,
+        "layouts": 3036,
+        "contexts": 7277
+      },
+      {
+        "path": "books/space-marines/v2/generated/rule-contracts.json",
+        "bookId": "space-marines",
+        "records": 547,
+        "references": 557,
+        "fieldReferences": 0,
+        "bindings": 547,
+        "layouts": 853,
+        "contexts": 2029
+      },
+      {
+        "path": "books/space-marines/v2/generated/source-ledger-coverage.json",
+        "bookId": "space-marines",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/tau-empire/v2/generated/app-presentation.json",
+        "bookId": "tau-empire",
+        "records": 1147,
+        "references": 972,
+        "fieldReferences": 62,
+        "bindings": 1147,
+        "layouts": 1953,
+        "contexts": 4409
+      },
+      {
+        "path": "books/tau-empire/v2/generated/base.json",
+        "bookId": "tau-empire",
+        "records": 1426,
+        "references": 1426,
+        "fieldReferences": 0,
+        "bindings": 1426,
+        "layouts": 1426,
+        "contexts": 2139
+      },
+      {
+        "path": "books/tau-empire/v2/generated/effective.json",
+        "bookId": "tau-empire",
+        "records": 1455,
+        "references": 1489,
+        "fieldReferences": 50,
+        "bindings": 1455,
+        "layouts": 1487,
+        "contexts": 2218
+      },
+      {
+        "path": "books/tau-empire/v2/generated/factual-census.json",
+        "bookId": "tau-empire",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/tau-empire/v2/generated/roster-import.json",
+        "bookId": "tau-empire",
+        "records": 2374,
+        "references": 2408,
+        "fieldReferences": 50,
+        "bindings": 2374,
+        "layouts": 2516,
+        "contexts": 3860
+      },
+      {
+        "path": "books/tau-empire/v2/generated/rule-contracts.json",
+        "bookId": "tau-empire",
+        "records": 842,
+        "references": 844,
+        "fieldReferences": 0,
+        "bindings": 842,
+        "layouts": 1245,
+        "contexts": 2051
+      },
+      {
+        "path": "books/tyranids/v2/generated/app-presentation.json",
+        "bookId": "tyranids",
+        "records": 1149,
+        "references": 1723,
+        "fieldReferences": 4,
+        "bindings": 1149,
+        "layouts": 1961,
+        "contexts": 4474
+      },
+      {
+        "path": "books/tyranids/v2/generated/base.json",
+        "bookId": "tyranids",
+        "records": 1356,
+        "references": 2035,
+        "fieldReferences": 0,
+        "bindings": 1356,
+        "layouts": 1356,
+        "contexts": 2092
+      },
+      {
+        "path": "books/tyranids/v2/generated/effective.json",
+        "bookId": "tyranids",
+        "records": 1378,
+        "references": 2062,
+        "fieldReferences": 4,
+        "bindings": 1378,
+        "layouts": 1382,
+        "contexts": 2146
+      },
+      {
+        "path": "books/tyranids/v2/generated/factual-census.json",
+        "bookId": "tyranids",
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/tyranids/v2/generated/roster-import.json",
+        "bookId": "tyranids",
+        "records": 1666,
+        "references": 2485,
+        "fieldReferences": 4,
+        "bindings": 1666,
+        "layouts": 1670,
+        "contexts": 2902
+      },
+      {
+        "path": "books/tyranids/v2/generated/roster-runtime.json",
+        "bookId": "tyranids",
+        "records": 1723,
+        "references": 2584,
+        "fieldReferences": 4,
+        "bindings": 1723,
+        "layouts": 1746,
+        "contexts": 3178
+      },
+      {
+        "path": "books/tyranids/v2/generated/rule-contracts.json",
+        "bookId": "tyranids",
+        "records": 67,
+        "references": 123,
+        "fieldReferences": 0,
+        "bindings": 67,
+        "layouts": 86,
+        "contexts": 288
+      }
+    ]
+  },
+  "package": {
+    "status": "PASS",
+    "scope": "PUBLISHED_PACKAGE",
+    "books": 9,
+    "files": 34,
+    "generatedFiles": 21,
+    "records": 37352,
+    "references": 40218,
+    "controls": [
+      {
+        "bookId": "adeptus-mechanicus",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "blood-angels",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "chaos-space-marines",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "dark-angels",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "death-guard",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "emperors-children",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "space-marines",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "tau-empire",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      },
+      {
+        "bookId": "tyranids",
+        "mutation": "delete referenced document from its own table",
+        "status": "REJECTED"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "books/adeptus-mechanicus/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 447,
+        "references": 245,
+        "fieldReferences": 3,
+        "bindings": 447,
+        "layouts": 558,
+        "contexts": 2860
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/effective.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 573,
+        "references": 579,
+        "fieldReferences": 3,
+        "bindings": 573,
+        "layouts": 576,
+        "contexts": 151
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+        "bookId": "adeptus-mechanicus",
+        "records": 732,
+        "references": 736,
+        "fieldReferences": 3,
+        "bindings": 732,
+        "layouts": 889,
+        "contexts": 335
+      },
+      {
+        "path": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/blood-angels/v2/generated/app-presentation.json",
+        "bookId": "blood-angels",
+        "records": 2171,
+        "references": 1972,
+        "fieldReferences": 2,
+        "bindings": 2171,
+        "layouts": 3862,
+        "contexts": 7505
+      },
+      {
+        "path": "books/blood-angels/v2/generated/roster-import.json",
+        "bookId": "blood-angels",
+        "records": 2943,
+        "references": 2944,
+        "fieldReferences": 2,
+        "bindings": 2943,
+        "layouts": 3232,
+        "contexts": 7941
+      },
+      {
+        "path": "books/chaos-space-marines/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/app-presentation.json",
+        "bookId": "chaos-space-marines",
+        "records": 4033,
+        "references": 4160,
+        "fieldReferences": 0,
+        "bindings": 4033,
+        "layouts": 4033,
+        "contexts": 6657
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/roster-import.json",
+        "bookId": "chaos-space-marines",
+        "records": 2497,
+        "references": 2682,
+        "fieldReferences": 0,
+        "bindings": 2497,
+        "layouts": 2497,
+        "contexts": 4495
+      },
+      {
+        "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+        "bookId": "chaos-space-marines",
+        "records": 2798,
+        "references": 3036,
+        "fieldReferences": 0,
+        "bindings": 2798,
+        "layouts": 3020,
+        "contexts": 7564
+      },
+      {
+        "path": "books/chaos-space-marines/v2/roster-attachment-bindings.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/core-rules/reader/search-index.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/dark-angels/v2/generated/app-presentation.json",
+        "bookId": "dark-angels",
+        "records": 2196,
+        "references": 1997,
+        "fieldReferences": 2,
+        "bindings": 2196,
+        "layouts": 3908,
+        "contexts": 7563
+      },
+      {
+        "path": "books/dark-angels/v2/generated/roster-import.json",
+        "bookId": "dark-angels",
+        "records": 3077,
+        "references": 3081,
+        "fieldReferences": 2,
+        "bindings": 3077,
+        "layouts": 3353,
+        "contexts": 8221
+      },
+      {
+        "path": "books/death-guard/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/death-guard/v2/generated/app-presentation.json",
+        "bookId": "death-guard",
+        "records": 450,
+        "references": 260,
+        "fieldReferences": 22,
+        "bindings": 450,
+        "layouts": 550,
+        "contexts": 3038
+      },
+      {
+        "path": "books/death-guard/v2/generated/rule-contract-effective.json",
+        "bookId": "death-guard",
+        "records": 922,
+        "references": 802,
+        "fieldReferences": 93,
+        "bindings": 922,
+        "layouts": 1180,
+        "contexts": 2287
+      },
+      {
+        "path": "books/emperors-children/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/emperors-children/v2/generated/app-presentation.json",
+        "bookId": "emperors-children",
+        "records": 956,
+        "references": 1410,
+        "fieldReferences": 195,
+        "bindings": 956,
+        "layouts": 1547,
+        "contexts": 3808
+      },
+      {
+        "path": "books/emperors-children/v2/generated/roster-attachments.json",
+        "bookId": "emperors-children",
+        "records": 776,
+        "references": 1698,
+        "fieldReferences": 171,
+        "bindings": 776,
+        "layouts": 845,
+        "contexts": 1746
+      },
+      {
+        "path": "books/emperors-children/v2/generated/roster-import.json",
+        "bookId": "emperors-children",
+        "records": 604,
+        "references": 1298,
+        "fieldReferences": 171,
+        "bindings": 604,
+        "layouts": 647,
+        "contexts": 1153
+      },
+      {
+        "path": "books/space-marines/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/space-marines/v2/generated/app-presentation.json",
+        "bookId": "space-marines",
+        "records": 2510,
+        "references": 2344,
+        "fieldReferences": 5,
+        "bindings": 2510,
+        "layouts": 4328,
+        "contexts": 7107
+      },
+      {
+        "path": "books/space-marines/v2/generated/roster-import.json",
+        "bookId": "space-marines",
+        "records": 3274,
+        "references": 3287,
+        "fieldReferences": 5,
+        "bindings": 3274,
+        "layouts": 3593,
+        "contexts": 10103
+      },
+      {
+        "path": "books/tau-empire/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/tau-empire/v2/generated/app-presentation.json",
+        "bookId": "tau-empire",
+        "records": 1147,
+        "references": 972,
+        "fieldReferences": 62,
+        "bindings": 1147,
+        "layouts": 1953,
+        "contexts": 4409
+      },
+      {
+        "path": "books/tau-empire/v2/generated/roster-import.json",
+        "bookId": "tau-empire",
+        "records": 2374,
+        "references": 2408,
+        "fieldReferences": 50,
+        "bindings": 2374,
+        "layouts": 2516,
+        "contexts": 3860
+      },
+      {
+        "path": "books/tyranids/generated/compatible-rules.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      },
+      {
+        "path": "books/tyranids/v2/generated/app-presentation.json",
+        "bookId": "tyranids",
+        "records": 1149,
+        "references": 1723,
+        "fieldReferences": 4,
+        "bindings": 1149,
+        "layouts": 1961,
+        "contexts": 4474
+      },
+      {
+        "path": "books/tyranids/v2/generated/roster-runtime.json",
+        "bookId": "tyranids",
+        "records": 1723,
+        "references": 2584,
+        "fieldReferences": 4,
+        "bindings": 1723,
+        "layouts": 1746,
+        "contexts": 3178
+      },
+      {
+        "path": "glossary/v2/generated/index.en.json",
+        "bookId": null,
+        "records": 0,
+        "references": 0,
+        "fieldReferences": 0,
+        "bindings": 0,
+        "layouts": 0,
+        "contexts": 0
+      }
+    ]
+  },
+  "inverse": {
+    "status": "PASS",
+    "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
+    "books": [
+      {
+        "bookId": "adeptus-mechanicus",
+        "artifacts": 8,
+        "entities": 3650,
+        "sourceSlots": 2907
+      },
+      {
+        "bookId": "blood-angels",
+        "artifacts": 15,
+        "entities": 12282,
+        "sourceSlots": 20710
+      },
+      {
+        "bookId": "chaos-space-marines",
+        "artifacts": 10,
+        "entities": 13316,
+        "sourceSlots": 15034
+      },
+      {
+        "bookId": "dark-angels",
+        "artifacts": 15,
+        "entities": 12474,
+        "sourceSlots": 21156
+      },
+      {
+        "bookId": "death-guard",
+        "artifacts": 10,
+        "entities": 2717,
+        "sourceSlots": 3064
+      },
+      {
+        "bookId": "emperors-children",
+        "artifacts": 7,
+        "entities": 3231,
+        "sourceSlots": 4154
+      },
+      {
+        "bookId": "space-marines",
+        "artifacts": 19,
+        "entities": 25916,
+        "sourceSlots": 38178
+      },
+      {
+        "bookId": "tau-empire",
+        "artifacts": 6,
+        "entities": 3552,
+        "sourceSlots": 8627
+      },
+      {
+        "bookId": "tyranids",
+        "artifacts": 7,
+        "entities": 4272,
+        "sourceSlots": 8201
+      }
+    ],
+    "artifacts": 97,
+    "entityOccurrences": 81410,
+    "sourceSlots": 122031,
+    "fieldMaps": 20997,
+    "currentnessSlots": 3283,
+    "stratagemRecords": 38136,
+    "referenceOccurrences": 103842,
+    "unresolvedReferenceOccurrences": 89096,
+    "documentHashAssociations": "PASS",
+    "csmPactboundEvidence": {
+      "references": 5,
+      "documents": 2
+    },
+    "ecNonStratagemEntityDocumentCorpusPairs": 402,
+    "omissionControls": {
+      "csmCaptureReferences": 681,
+      "csmDocumentPathAliases": 34,
+      "ecRecipientReferences": 1,
+      "ecDocumentEvidence": 2,
+      "tyranidSuppressionProof": 1,
+      "deathGuardTableOccurrences": 4
+    },
+    "negativeControls": [
+      {
+        "name": "unknown source reference",
+        "status": "REJECTED"
+      },
+      {
+        "name": "document hash changed behind content ID",
+        "status": "REJECTED"
+      },
+      {
+        "name": "legacy provenance shadow",
+        "status": "REJECTED"
+      },
+      {
+        "name": "canonical ownership changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "field source map changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "currentness shadow",
+        "status": "REJECTED"
+      }
+    ]
+  },
+  "catalogNegative": {
+    "status": "PASS",
+    "controls": [
+      {
+        "name": "locator changed after first read",
+        "status": "REJECTED"
+      },
+      {
+        "name": "unregistered document pointer",
+        "status": "REJECTED"
+      },
+      {
+        "name": "reference content anchor removed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "binding identity replaced",
+        "status": "REJECTED"
+      },
+      {
+        "name": "legacy proof shadow after cache",
+        "status": "REJECTED"
+      },
+      {
+        "name": "mutable shared locator denied",
+        "status": "REJECTED"
+      },
+      {
+        "name": "immutable value cannot alias a different content identity",
+        "status": "REJECTED"
+      },
+      {
+        "name": "document hash changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "binding tuple changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "layout changed",
+        "status": "REJECTED"
+      },
+      {
+        "name": "document entry deleted",
+        "status": "REJECTED"
+      },
+      {
+        "name": "reference entry absent on cold load",
+        "status": "REJECTED"
+      }
+    ],
+    "sharedSourceMetadata": true,
+    "mutableFactsIsolated": true
+  },
+  "oracles": {
+    "schema": "source-oracle-negative-proof/v1",
+    "status": "PASS",
+    "oracles": [
+      {
+        "path": "books/adeptus-mechanicus/v2/app-fact-oracle.mjs",
+        "positive": "PASS",
+        "facts": 3148
+      },
+      {
+        "path": "books/death-guard/v2/app-fact-oracle.mjs",
+        "positive": "PASS",
+        "facts": 3658
+      },
+      {
+        "path": "books/space-marines/v2/roster-source-review.mjs",
+        "positive": "PASS"
+      },
+      {
+        "path": "books/shared/roster-v2/source-completeness.mjs",
+        "positive": "PROVEN",
+        "semanticStatus": "PARTIAL"
+      }
+    ],
+    "controls": [
+      {
+        "oracle": "AM application oracle",
+        "mutation": "missing sourceId",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "AM application oracle",
+        "mutation": "missing sourcePath",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "DG application oracle",
+        "mutation": "missing qualification source proof",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "SM physical source review",
+        "mutation": "changed sha256",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "SM physical source review",
+        "mutation": "changed pointer",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "Independent source completeness",
+        "mutation": "changed sourceId",
+        "status": "REJECTED"
+      },
+      {
+        "oracle": "Independent source completeness",
+        "mutation": "changed sha256",
+        "status": "REJECTED"
+      }
+    ]
+  },
+  "performance": {
+    "schema": "source-refs-corrected-performance/v1",
+    "scope": "Five fresh sequential baseline/feature pairs through the actual existing CSM Living Carapace recipe",
+    "medians": {
+      "baseline": 481.49399999999997,
+      "feature": 523.2662000000003
+    },
+    "changePercent": 8.67553905136933,
+    "targetPercent": 10,
+    "status": "PASS",
+    "samples": {
+      "baseline": [
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 29.009
+            },
+            {
+              "stage": "read-json",
+              "ms": 116.5379
+            },
+            {
+              "stage": "create-importer",
+              "ms": 30.811799999999977
+            },
+            {
+              "stage": "import-text",
+              "ms": 17.26309999999998
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.2119000000000142
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 134.41140000000001
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 100.86509999999998
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 25.403200000000027
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.8922999999999774
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.6589000000000169
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 6.677200000000028
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.1351000000000226
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 3.88779999999997
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.6159000000000106
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 3.6709999999999923
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 0.8266000000000417
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 3.8970999999999663
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 0.7186999999999557
+            }
+          ],
+          "totalMs": 481.49399999999997,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 26.8779
+            },
+            {
+              "stage": "read-json",
+              "ms": 118.5002
+            },
+            {
+              "stage": "create-importer",
+              "ms": 28.801299999999998
+            },
+            {
+              "stage": "import-text",
+              "ms": 18.826099999999997
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.3233999999999924
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 135.427
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 98.58250000000004
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 25.306899999999985
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.9198000000000093
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.6681000000000381
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 6.510899999999992
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.0353999999999814
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 3.7018999999999664
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.6047000000000367
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 3.491899999999987
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 0.8163999999999874
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 3.47969999999998
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 0.6427999999999656
+            }
+          ],
+          "totalMs": 478.51689999999996,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 76.1229
+            },
+            {
+              "stage": "read-json",
+              "ms": 114.48089999999999
+            },
+            {
+              "stage": "create-importer",
+              "ms": 29.27770000000001
+            },
+            {
+              "stage": "import-text",
+              "ms": 18.350100000000026
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.4633000000000038
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 135.8483
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 100.53270000000003
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 25.46070000000003
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.8740000000000236
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.6589999999999918
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 6.4184999999999945
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.0550000000000637
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 4.020800000000008
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.63149999999996
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 3.555400000000077
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 0.8715000000000828
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 3.9354999999999336
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 0.6643000000000256
+            }
+          ],
+          "totalMs": 527.2221000000002,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 27.239
+            },
+            {
+              "stage": "read-json",
+              "ms": 116.91290000000001
+            },
+            {
+              "stage": "create-importer",
+              "ms": 28.38900000000001
+            },
+            {
+              "stage": "import-text",
+              "ms": 18.390000000000015
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.4202000000000226
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 134.5886
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 102.67740000000003
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 25.07420000000002
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 3.1598000000000184
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.6642999999999688
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 6.546799999999962
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 1.9130999999999858
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 4.5625
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.6264999999999645
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 3.7257999999999925
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 0.998299999999972
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 3.5774999999999864
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 0.6716000000000122
+            }
+          ],
+          "totalMs": 481.1375,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 28.078300000000002
+            },
+            {
+              "stage": "read-json",
+              "ms": 119.54799999999999
+            },
+            {
+              "stage": "create-importer",
+              "ms": 33.122299999999996
+            },
+            {
+              "stage": "import-text",
+              "ms": 17.836600000000004
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.246799999999979
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 136.725
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 101.41450000000003
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 25.84530000000001
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 3.2556999999999903
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.7253000000000043
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 6.691599999999994
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 1.9464999999999577
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 3.8804000000000087
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.6928000000000338
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 3.574200000000019
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 0.9174000000000433
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 4.250200000000007
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 0.6820000000000164
+            }
+          ],
+          "totalMs": 490.4329000000001,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        }
+      ],
+      "feature": [
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 67.5712
+            },
+            {
+              "stage": "read-json",
+              "ms": 113.99390000000001
+            },
+            {
+              "stage": "create-importer",
+              "ms": 36.8964
+            },
+            {
+              "stage": "import-text",
+              "ms": 14.664600000000007
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.6175999999999817
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 123.85949999999997
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 118.86520000000002
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 11.280699999999968
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.9446000000000367
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.9899000000000342
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 8.69259999999997
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.483600000000024
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 5.502900000000068
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 1.0095000000000027
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 5.3349000000000615
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 1.2426000000000386
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 5.263400000000047
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 1.0530999999999722
+            }
+          ],
+          "totalMs": 523.2662000000003,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 65.58409999999999
+            },
+            {
+              "stage": "read-json",
+              "ms": 114.76779999999998
+            },
+            {
+              "stage": "create-importer",
+              "ms": 38.3879
+            },
+            {
+              "stage": "import-text",
+              "ms": 14.732100000000031
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.4572999999999752
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 120.08750000000003
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 114.76670000000001
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 10.838599999999985
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.9016000000000304
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.974899999999991
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 9.242000000000019
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.3174999999999955
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 5.174099999999953
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 0.9781999999999016
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 5.091800000000035
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 1.1891000000000531
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 5.766399999999976
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 1.0307000000000244
+            }
+          ],
+          "totalMs": 515.2882999999999,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 65.1414
+            },
+            {
+              "stage": "read-json",
+              "ms": 114.0309
+            },
+            {
+              "stage": "create-importer",
+              "ms": 38.655400000000014
+            },
+            {
+              "stage": "import-text",
+              "ms": 14.663000000000011
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.648300000000006
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 125.88299999999998
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 116.73230000000001
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 10.915799999999933
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.90300000000002
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.8188000000000102
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 9.114399999999932
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.344600000000014
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 5.272199999999998
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 1.0161000000000513
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 4.852600000000052
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 1.2601999999999407
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 4.760699999999929
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 1.1924000000000206
+            }
+          ],
+          "totalMs": 521.2050999999999,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 66.2037
+            },
+            {
+              "stage": "read-json",
+              "ms": 115.96749999999999
+            },
+            {
+              "stage": "create-importer",
+              "ms": 38.73819999999998
+            },
+            {
+              "stage": "import-text",
+              "ms": 13.88639999999998
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.5973999999999933
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 125.68719999999996
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 118.60410000000002
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 11.285000000000025
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.9535999999999376
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.8397999999999683
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 8.692900000000009
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.334600000000023
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 5.0400999999999385
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 1.0154999999999745
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 5.368100000000027
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 1.1911000000000058
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 5.127099999999928
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 1.0552000000000135
+            }
+          ],
+          "totalMs": 525.5874999999997,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "fixtureId": "detachment-creations-of-bile:enhancement:2::roster-clause-1",
+          "timings": [
+            {
+              "stage": "module-imports",
+              "ms": 67.8406
+            },
+            {
+              "stage": "read-json",
+              "ms": 114.1983
+            },
+            {
+              "stage": "create-importer",
+              "ms": 37.54990000000001
+            },
+            {
+              "stage": "import-text",
+              "ms": 15.030100000000033
+            },
+            {
+              "stage": "explicit-fixture-bearer",
+              "ms": 1.866299999999967
+            },
+            {
+              "stage": "create-runtime",
+              "ms": 128.06259999999997
+            },
+            {
+              "stage": "runtime-load",
+              "ms": 117.00620000000004
+            },
+            {
+              "stage": "normalize-effective-book",
+              "ms": 10.6995
+            },
+            {
+              "stage": "prepare-presentation-cards",
+              "ms": 2.956099999999992
+            },
+            {
+              "stage": "personal-book-projection",
+              "ms": 0.8184999999999718
+            },
+            {
+              "stage": "effective/parsed-unit-1",
+              "ms": 8.791000000000054
+            },
+            {
+              "stage": "personal-instance/parsed-unit-1",
+              "ms": 2.3558000000000447
+            },
+            {
+              "stage": "effective/parsed-unit-2",
+              "ms": 5.276399999999967
+            },
+            {
+              "stage": "personal-instance/parsed-unit-2",
+              "ms": 1.0353999999999814
+            },
+            {
+              "stage": "effective/parsed-unit-3",
+              "ms": 5.174200000000042
+            },
+            {
+              "stage": "personal-instance/parsed-unit-3",
+              "ms": 1.2667000000000144
+            },
+            {
+              "stage": "effective/parsed-unit-4",
+              "ms": 4.980000000000018
+            },
+            {
+              "stage": "personal-instance/parsed-unit-4",
+              "ms": 1.1607999999999947
+            }
+          ],
+          "totalMs": 526.0684000000001,
+          "units": 4,
+          "personalInstances": 4,
+          "effectiveProfiles": [
+            1,
+            1,
+            2,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 432,
+    "runtimeBytes": 270069141,
+    "baselineRuntimeBytes": 271531285,
+    "delta": -1462144,
+    "contentSha256": "5254a31e4f800ed8edef0e3901eb0fa3e0b4bd7fbab8824302c35b2053681766",
+    "cacheRevision": "3f00868743b0aca0"
+  },
+  "mandatoryCoverage": [
+    {
+      "path": "tests/integration-qa.mjs",
+      "coverage": "All 97 generated JSON artifacts and nine own-table deletion controls"
+    },
+    {
+      "path": "tools/pages-runtime-package-qa.mjs",
+      "coverage": "Every published JSON input and nine own-table deletion controls, within the existing freshness check"
+    }
+  ],
+  "cleanup": {
+    "status": "BLOCKED_BY_AUTOMATIC_REVIEW",
+    "path": "books/chaos-space-marines/v2/__pycache__",
+    "reason": "Remove-Item was rejected with blocked by policy. The untracked producer cache is retained and excluded from Git; no alternate removal attempted."
+  },
+  "finalValidation": "docs/audit/source-refs-final-validation.json"
+}

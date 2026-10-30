@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Reviewed source joins for physical import. The factual owner stays unchanged.
  * These four explicit corrections are not aliases, new sources or gameplay rules.
  */
@@ -33,7 +34,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.equal(row.sourceEntityId,entity.sourceEntityId,'Source occurrence changed');
   assert.equal(row.kind,entity.kind,'Source kind changed');
   assert.equal(row.parentId,entity.parentId,'Source parent changed');
-  assert.deepEqual(row.source,entity.provenance,'Source provenance changed');
+  assert.deepEqual(row.source,sourceSnapshot(entity, {book:facts}),'Source provenance changed');
   const accepted=enrollment.find(a=>a.path===row.source.document);
   assert.ok(accepted,'Unaccepted source document');assert.equal(accepted.sha256,row.source.sha256,'Source SHA changed');
   if(!rawSeen.has(accepted.path)){
@@ -76,7 +77,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   sameSet(row.sourceProof.map(p=>p.canonicalId),[memberId,profileId,...sectionIds],'Source proof coverage changed');
   row.sourceProof.forEach(proof);
   const context=row.context;assert.equal(context.unitSourceId,owner.sourceEntityId);
-  assert.equal(context.unitPointer,owner.provenance.pointer);assert.equal(context.unitHeader,owner.data.title);
+  assert.equal(context.unitPointer,sourceSnapshot(owner, {book:facts}).pointer);assert.equal(context.unitHeader,owner.data.title);
   assert.equal(context.profileCount,2);sameSet(context.profileRoleSet,['SERGEANT','ORDINARY_VETERAN'],'Role context changed');
   sameSet(context.compositionMemberIds,owner.data.compositionMemberIds,'Composition context changed');
   assert.equal(context.statsAreCorroborationNotIdentityKey,true);
@@ -89,7 +90,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.equal(profile.data.name,physicalRole);assert.equal(member.data.name,physicalRole+' with Jump Pack');
   return {memberId,profileId,evidence:[{entityId:memberId,path:['text']},{entityId:profileId,path:['name']},
    {entityId:vanguard,path:['title']},...sectionIds.map(entityId=>({entityId,path:['text']}))],
-   provenance:{...structuredClone(member.provenance),reviewId:row.id,reviewType:row.type}};
+   provenance:{...structuredClone(sourceSnapshot(member, {book:facts})),reviewId:row.id,reviewType:row.type}};
  });
  const scopeCorrections=scopes.map(row=>{
   const entity=proof(row.sourceProof),id=entity.id;
@@ -104,7 +105,7 @@ export function validateSpaceMarinesRosterCorrections(review,{facts=read('./gene
   assert.ok(row.sourceProof.selectedSourceText.includes('ADEPTUS ASTARTES unit only.'),'Reviewed source UNIT requirement missing');
   assert.equal(row.globalAliasesAdded,false);assert.equal(row.executableBindingChangeAuthorizedByThisEvidence,false);
   return {entityId:id,previousScope:'MODEL',scope:'UNIT',evidence:[{entityId:id,path:['text']},
-   {entityId:id,path:['eligibilityText']}],provenance:{...structuredClone(entity.provenance),reviewId:row.id,reviewType:row.type}};
+   {entityId:id,path:['eligibilityText']}],provenance:{...structuredClone(sourceSnapshot(entity, {book:facts})),reviewId:row.id,reviewType:row.type}};
  });
  assert.equal(review.unresolved.length,1);const unresolved=review.unresolved[0];
  assert.equal(unresolved.canonicalId,dainal);assert.equal(unresolved.status,'NOT_PROVEN','Dainal cannot be silently resolved');

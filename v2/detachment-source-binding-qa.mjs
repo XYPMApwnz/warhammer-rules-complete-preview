@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** Independent F1 proof boundaries through real native import adapters.
  * Runtime rows retain exact source provenance; presentation binds canonical
  * rule/parent cards and physical membership, without comparing optional card
@@ -28,7 +30,7 @@ import {projectEffectiveInstance} from '../books/shared/roster-v2/effective-inst
 import {prepareRosterPresentationCards,projectFormedUnitCards,validateDetachmentTextPresentation,groupDetachmentTextRows} from '../books/shared/army-book-app-v2/personal.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url)),clone=structuredClone;
-const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
+const read=relative=>parseSourceFixtureJSON(fs.readFileSync(path.join(root,relative),'utf8'));
 const runtimeFiles={
   'adeptus-mechanicus':'roster-runtime','death-guard':'rule-contract-effective','chaos-space-marines':'roster-runtime',
   'emperors-children':'roster-attachments','blood-angels':'roster-runtime','dark-angels':'roster-runtime',
@@ -91,9 +93,9 @@ for(const id of Object.keys(runtimeFiles)){
   const {book,cards}=input(id),rules=book.entities.filter(rule=>rule.kind==='DETACHMENT_RULE');
   const rows=rules.map(rule=>{const card=cards.get(rule.id),parent=cards.get(rule.parentId),chain=independentChain(book,rule);
     assert.deepEqual(detachmentOwnerChain(book,rule),chain,id+': independently walked ownership');
-    return {ruleId:rule.id,runtimeParentId:rule.parentId,runtimeSourceId:rule.provenance?.sourceId||null,
+    return {ruleId:rule.id,runtimeParentId:rule.parentId,runtimeSourceId:sourceSnapshot(rule)?.sourceId||null,
       cardPresent:Boolean(card),cardKind:card?.kind||null,cardParentId:card?.parentId||null,
-      cardProvenancePresent:Boolean(card?.provenance),runtimeCardProvenanceEqual:same(rule.provenance,card?.provenance),
+      cardProvenancePresent:Boolean(sourceSnapshot(card)),runtimeCardProvenanceEqual:same(sourceSnapshot(rule),sourceSnapshot(card)),
       cardIdentityPresent:Boolean(card?.identity),parentKind:parent?.kind||null,
       ownerChain:chain,canonicalParentBound:!!chain&&chain.every(link=>{const node=cards.get(link.id);return node?.id===link.id&&node.kind===link.kind&&(node.parentId||null)===link.parentId;}),
       f1Clauses:(rule.ruleContract?.clauses||[]).filter(clause=>detachmentTextDeclaration(book,rule,clause)).map(clause=>clause.id)};
@@ -128,7 +130,7 @@ for(const spec of specs){
   if(!exactText)exactText=canonicalClause.evidence.quote;
   exactText+=sourceFields.flatMap(value=>Array.isArray(value)?value.filter(table=>Array.isArray(table?.rows)):[]).map(table=>'\n'+table.rows.map(item=>item.join(' · ')).join('\n')).join('');
   assert.equal(row.detachmentText.text,exactText,'Displayed clause text is exact canonical source');
-  assert.deepEqual(row.sourceProvenance,book.entities.find(entity=>entity.id===spec.rule).provenance);
+  assert.deepEqual(sourceSnapshot(row,{slot:'sourceProvenance'}),sourceSnapshot(book.entities.find(entity=>entity.id===spec.rule)));
   const effective=service.effective(spec.instance),projected=effective.conditional.find(item=>item.detachmentText&&item.ruleId===spec.rule&&item.clauseId===spec.clause);
   assert.ok(projected,spec.book+': native effective adapter lost F1 source binding');
   assert.doesNotThrow(()=>projectEffectiveInstance(viewBook,projection,spec.instance),'The exact public view adapter must pass before testing its missing-proof mutant');
@@ -136,7 +138,7 @@ for(const spec of specs){
   const view=projectFormedUnitCards(cards,service,spec.instance);
   assert.ok(view.components.some(component=>component.card.rosterDetachmentTexts?.some(item=>item.ruleId===spec.rule&&item.clauseId===spec.clause)),spec.book+': actual personal view lost F1 rule');
   assert.ok(view.components.every(component=>(component.card.rosterConditionalPolicies||[]).every(item=>!item.detachmentText)),'New text must not masquerade as an existing typed conditional policy');
-  const stripped=clone(cards);for(const card of stripped.values()){delete card.provenance;delete card.identity;}
+  const stripped=clone(cards);for(const card of stripped.values()){delete sourceFixture(card).provenance;delete card.identity;}
   assert.doesNotThrow(()=>validateDetachmentTextPresentation(stripped,snapshot.units.find(item=>item.instanceId===spec.instance),effective,projected),
     'Optional presentation decoration is not runtime proof');
 
@@ -152,11 +154,11 @@ for(const spec of specs){
     ['wrong-owner-chain-kind',poison=>{poison.sourceOwnerChain[0].kind='ENHANCEMENT';}],
     ['wrong-owner-chain-parent',poison=>{poison.sourceOwnerChain[0].parentId='foreign-owner';}],
     ['wrong-source-parent',poison=>poison.sourceParentId='foreign-detachment'],
-    ['tampered-source-provenance',poison=>poison.sourceProvenance={...poison.sourceProvenance,sourceId:'foreign-source'}],
-    ['empty-source-id',poison=>{poison.sourceProvenance.sourceId='';}],
-    ['missing-source-id',poison=>{delete poison.sourceProvenance.sourceId;}],
+    ['tampered-source-provenance',poison=>sourceFixture(poison).sourceProvenance={...sourceSnapshot(poison,{slot:'sourceProvenance'}),sourceId:'foreign-source'}],
+    ['empty-source-id',poison=>{sourceFixture(poison).sourceProvenance.sourceId='';}],
+    ['missing-source-id',poison=>{delete sourceFixture(poison).sourceProvenance.sourceId;}],
     ['changed-canonical-text',poison=>{poison.detachmentText.text+=' Invented source sentence.';}],
-    ['missing-source-provenance',poison=>{delete poison.sourceProvenance;}],
+    ['missing-source-provenance',poison=>{delete sourceFixture(poison).sourceProvenance;}],
     ['unselected-detachment',(_poison,altered)=>{altered.detachmentIds=[];}],
     ['foreign-recipient',poison=>{poison.recipientInstanceIds=['foreign-physical-unit'];}],
     ['missing-recipient',poison=>{delete poison.recipientInstanceIds;}],
@@ -180,7 +182,7 @@ for(const spec of specs){
 
   // projectEffectiveInstance remains the public downstream projection: corrupt
   // runtime proof must fail there too, before a renderer sees the row.
-  const altered=clone(projection);delete rowFor(altered,spec.instance,spec.rule,spec.clause).sourceProvenance;
+  const altered=clone(projection);delete sourceFixture(rowFor(altered,spec.instance,spec.rule,spec.clause)).sourceProvenance;
   reject(spec.book+'/effective/missing-source-proof',()=>projectEffectiveInstance(viewBook,altered,spec.instance));
   const beforeLoad=clone(service.projection),saved=service.snapshot();service.load(clone(saved));assert.deepEqual(service.projection,beforeLoad,'Recompute retained all physical values and F1 proof');
   const restored=serviceFor(spec.book,book);restored.load(clone(saved));assert.deepEqual(restored.projection,beforeLoad,'Load recomputes exactly the same source-bound rows');

@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
@@ -7,7 +8,7 @@ import {lexicalDraft, importNewRecruit} from '../../shared/roster-v2/import.mjs'
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, '../../..');
-const book = JSON.parse(fs.readFileSync(path.join(directory, 'generated/rule-contract-effective.json'), 'utf8'));
+const book = parseSourceFixtureJSON(fs.readFileSync(path.join(directory, 'generated/rule-contract-effective.json'), 'utf8'));
 const detachmentId = 'detachment-virulent-vectorium';
 const bindingsFor = units => ({detachmentId, units, selections: {}, enhancements: {}});
 const run = (text, bindings, rosterId = 'import-control') => importNewRecruit(text, {parse, bindings, book, rosterId});

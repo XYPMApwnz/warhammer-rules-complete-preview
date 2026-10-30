@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Bounded presentation parity and fail-closed controls; no source re-audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +7,7 @@ import {buildECContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildECContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));

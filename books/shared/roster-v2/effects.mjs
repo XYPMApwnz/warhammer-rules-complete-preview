@@ -3,6 +3,7 @@ import {formRoster, predicateContext, refreshFormedKeywords, selections} from '.
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
 import {resolveExecutionEffect,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
+import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
 // Current Core 02.02.01: threshold/AP improvements are signed arithmetic;
@@ -228,7 +229,7 @@ function partitionWeapons(book,state,projection,resolveWeaponPartitions){
     const unit=projection.units.find(unit=>unit.instanceId===request.unitInstanceId),rule=records.get(request.sourceRuleId);
     const assignment=unit?.enhancementAssignments?.find(row=>row.enhancementId===request.sourceRuleId);
     const model=unit?.profiles.find(row=>row.scopeId===assignment?.modelScopeId);
-    if(rule?.kind!=='ENHANCEMENT'||!rule.provenance?.sourceId||!unit?.enhancementIds.includes(rule.id)||
+    if(rule?.kind!=='ENHANCEMENT'||!getRecordedSourceIdentity(rule,{book})||!unit?.enhancementIds.includes(rule.id)||
       !state.detachmentIds.includes(rule.parentId)||model?.quantity!==1||
       request.scopeId!==model.scopeId&&!(request.scopeId===null&&unit.startingStrength===1))
       throw new TypeError('Unconfirmed projection partition source/owner');
@@ -245,7 +246,7 @@ function partitionWeapons(book,state,projection,resolveWeaponPartitions){
     seen.add(marker);
     const parent=matches[0],parts=['selected','remainder'].map(role=>({...structuredClone(parent),physicalQuantity:1,
       selectionKey:weaponPartitionKey(request,role),quantityPartition:{role,originalQuantity:2,sourceSelectionKey:parent.selectionKey,
-        sourceRuleId:rule.id,sourceProvenance:structuredClone(rule.provenance),sourceSelection:structuredClone(selection)}}));
+        sourceRuleId:rule.id,...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'}),sourceSelection:structuredClone(selection)}}));
     if(parts.reduce((sum,row)=>sum+row.physicalQuantity,0)!==parent.physicalQuantity||
       parts.some(part=>container.weapons.some(row=>row.selectionKey===part.selectionKey)))
       throw new TypeError('Duplicated or non-conserving projection partition');

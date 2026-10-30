@@ -4,6 +4,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildPagesRuntimePackage,validateRuntimeManifest} from './pages-runtime-package.mjs';
+import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';
 
 const args=process.argv.slice(2),value=key=>args[args.indexOf(key)+1];
 const sourceRoot=value('--source'),published=value('--published'),work=value('--work');
@@ -15,7 +16,10 @@ const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8')),results=[];
 const check=(name,fn)=>{fn();results.push({name,status:'PASS'});console.log(name+' PASS');};
 const clone=()=>structuredClone(manifest);
 let first,second;
-check('published-output-verbatim-and-fresh',()=>{first=buildPagesRuntimePackage({sourceRoot,outRoot:published,check:true});});
+check('published-output-verbatim-and-fresh',()=>{
+  first=buildPagesRuntimePackage({sourceRoot,outRoot:published,check:true});
+  assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');
+});
 const rebuilt=path.join(work,'rebuilt');
 check('independent-deterministic-build',()=>{
   second=buildPagesRuntimePackage({sourceRoot,outRoot:rebuilt});

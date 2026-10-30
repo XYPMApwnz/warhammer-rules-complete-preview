@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ import {summarizeCompatibility} from '../../shared/rule-contract-v2/compatibilit
 import {buildPresentationReferences} from './presentation-reference-build.mjs';
 import {buildRosterRuntimeBook,writeRosterRuntime} from './roster-build.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 export function readAppInputs() {
   const built=buildAdMechContracts();
   assert.equal(built.blockedIds.size,0,'Incomplete current Rule Contracts');
@@ -48,6 +49,7 @@ function bindPoints(model,catalog,bindings) {
   return {mfm,records};
 }
 export function buildRelatedRules(model,evaluator) {
+  model=prepareSourceProducer(model);
   const compiler=createAdMechCompatibilityCompiler(model,evaluator),kinds=['STRATAGEM','ENHANCEMENT'];
   const base=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true});
   const selected=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true,contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId})});
@@ -64,11 +66,12 @@ export function buildRelatedRules(model,evaluator) {
       enhancements:model.entities.filter(entity=>entity.kind==='ENHANCEMENT').length,rows:rows.length,allDetachments:all,selectedDetachment:chosen},rows};
 }
 export function buildApp(inputs=readAppInputs()) {
+  inputs={...inputs,model:prepareSourceProducer(inputs.model)};
   const {model}=inputs, {mfm,records}=bindPoints(model,inputs.mfmCatalog.catalog,inputs.mfmBindings);
   // This view adds presentation ownership bindings only. Canonical data and
   // Rule Contracts are not flattened, interpreted or changed.
   const view={...model,mfm,currentness:{currentness:'CURRENT',lastReconciledSource:'GW Faction Pack v1.4'}};
-  const payload=projectArmyBook(view,records,{title:'Adeptus Mechanicus',edition:'11th Edition'});
+  const payload=prepareSourceProducer(projectArmyBook(view,records,{title:'Adeptus Mechanicus',edition:'11th Edition'}));
   const cards=new Map(payload.cards.map(card=>[card.id,card]));
   payload.groups.find(group=>group.id==='introduction').itemIds=model.entities.filter(entity=>entity.kind==='BOOK_USAGE').map(entity=>entity.id);
   payload.groups.find(group=>group.id==='updates').itemIds.push(...model.entities.filter(entity=>entity.kind==='SOURCE_UPDATE_REFERENCE').map(entity=>entity.id));
@@ -86,7 +89,7 @@ export function buildApp(inputs=readAppInputs()) {
   const reference=buildPresentationReferences({model,cards:payload.cards,coreCatalog:inputs.coreCatalog});
   payload.cards.push(...reference.coreCards);payload.datasheetPresentation.referenceBindings=reference.referenceBindings;
   payload.glossary=reference.glossaryIndex;
-  payload.bookPresentation=projectBookPresentation(view,records);
+  payload.bookPresentation=prepareSourceProducer(projectBookPresentation(view,records));
   payload.bookPresentation.coverImage='../assets/mechanicus-cover-800.webp';
   payload.bookPresentation.records['book-introduction']={id:'book-introduction',kind:'BOOK_USAGE',provenance:model.entities.find(entity=>entity.id==='book-introduction').provenance};
   payload.relatedRules=buildRelatedRules(model,inputs.evaluator);
@@ -96,13 +99,13 @@ export function buildApp(inputs=readAppInputs()) {
     if(effect.operation==='CONTRIBUTE_WEAPON_PROFILE')cards.get(effect.weaponProfileId).weaponMode=effect.weaponMode;
   }
   payload.ruleContractIds=model.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
-  return payload;
+  return finalizeSourceOutput(payload);
 }
 export function writeApp({check=false}={}) {
   assertBookSourceReview('adeptus-mechanicus',{executionBook:buildRosterRuntimeBook()});
   writeRosterRuntime({check});
   const payload=buildApp(),outputs=new Map([
-    ['./generated/app-presentation.json',JSON.stringify(payload,null,2)+'\n']]);
+    ['./generated/app-presentation.json',serializeSourceJSON(payload)]]);
   for(const [name,value]of outputs){const location=new URL(name,import.meta.url);if(check)assert.equal(fs.readFileSync(location,'utf8'),value,'Stale Army Book projection: '+name);else fs.writeFileSync(location,value);}
   return payload;
 }

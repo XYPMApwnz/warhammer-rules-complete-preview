@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -12,12 +13,13 @@ import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-co
 import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone,at=(value,path)=>path.reduce((v,key)=>v?.[key],value);
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 /** Disposable contract view, like EC/Tyranids. No parser, importer or execution code. */
 export function buildTauContracts({facts=read('./generated/effective.json'),inputs=declarations,
   review=read('./rule-clause-review.json'),pendingInputs=pendingPhysicalBindings,recipientStage='CANONICAL'}={}){
+  facts=prepareSourceProducer(facts);
   assert.ok(['CANONICAL','DECLARATION'].includes(recipientStage),'Unknown recipient producer stage');
   const original=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(book.bookId,'tau-empire');assert.equal(index.size,book.entities.length,'Duplicate canonical owner');
@@ -209,7 +211,7 @@ export function buildTauContracts({facts=read('./generated/effective.json'),inpu
 }
 
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const {artifact}=buildTauContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=JSON.stringify(artifact,null,2)+'\n';
+  const {artifact}=buildTauContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=serializeSourceJSON(artifact);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale T’au rule contracts');
   else fs.writeFileSync(target,bytes);
   console.log(JSON.stringify({status:'PASS',contracts:artifact.contracts.length,nativeBindings:artifact.nativeBindings.length,

@@ -10,6 +10,7 @@ import copy
 import hashlib
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 from lxml import html
@@ -17,6 +18,9 @@ import pdfplumber
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 SOURCE = 'books/tyranids/sources/waha-11e-current-2026-09-27'
 HUB = SOURCE + '/tyranids.html'
 BOOK = 'tyranids'
@@ -420,13 +424,13 @@ def main():
     outputs = build()
     if not args.check:
         (HERE/'generated').mkdir(exist_ok=True)
-    for name, value in outputs.items():
+    for name, value in serialized_source_outputs(outputs, ROOT).items():
         target = HERE/'generated'/(name+'.json')
         if args.check:
-            if not target.exists() or target.read_bytes() != serialize(value):
+            if not target.exists() or target.read_bytes() != value:
                 raise ValueError('Stale factual output '+name)
         else:
-            target.write_bytes(serialize(value))
+            target.write_bytes(value)
     print(json.dumps(outputs['factual-census']))
 
 

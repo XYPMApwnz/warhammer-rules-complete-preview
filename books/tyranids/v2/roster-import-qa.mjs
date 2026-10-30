@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {buildTyranidsImportBook} from './roster-import-build.mjs';
@@ -7,7 +9,7 @@ import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 
 // Constructed source-backed New Recruit TEXT fixtures, not captured exports.
 // The accepted factual owner, not import metadata, supplies the inventory.
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),source=read('./roster-import-source-bindings.json');
 const mfm=read('../../../mfm/sources/v1.6/tyranids.json'),book=buildTyranidsImportBook();
 const original=structuredClone(book),records=new Map(facts.entities.map(e=>[e.id,e]));
@@ -233,7 +235,7 @@ check(()=>{
 check(()=>{
   for(const [unitId,reference]of [['unit-old-one-eye','datasheet-old-one-eye:rule-reference:1'],
     ['unit-psychophage','datasheet-psychophage:rule-reference:2']]){
-    assert.deepEqual(book.rosterReferenceSemantics[reference],facts.rosterReferenceSemantics[reference]);
+    assert.deepEqual(sourceDeclarationView(book.rosterReferenceSemantics[reference],{book}),sourceDeclarationView(facts.rosterReferenceSemantics[reference],{book:facts}));
     const state=ready(basic(unitId)).roster,out=formRoster(book,state).units[0];
     assert.ok(state.units[0].modelRows[0].sourceRuleReferenceIds.includes(reference));
     assert.deepEqual(out.profiles[0].abilities,[{name:'Feel No Pain',value:5}]);
@@ -251,7 +253,10 @@ check(()=>{
     assert.deepEqual(u.applied,[]);assert.deepEqual(u.metrics,{});assert.ok(u.profiles.every(p=>p.abilities.length===0));
   }
   for(const e of facts.entities){const actual=book.entities.find(a=>a.id===e.id);assert.ok(actual,e.id);
-    assert.deepEqual(actual.data,e.data);assert.deepEqual(actual.provenance,e.provenance);assert.equal(actual.parentId,e.parentId);}
+    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}
+  const sourceMismatch=structuredClone(book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1']);
+  sourceFixture(sourceMismatch,{book}).provenance.sha256='changed-source-hash';
+  assert.throws(()=>assert.deepEqual(sourceDeclarationView(sourceMismatch,{book}),sourceDeclarationView(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:facts})),'Import source equality must reject a changed hash');
   const transports=book.entities.filter(e=>e.kind==='DATASHEET_SECTION'&&e.data.title==='TRANSPORT');
   assert.deepEqual(transports.map(e=>e.parentId).sort(),['unit-harridan','unit-hierophant','unit-tyrannocyte']);
   assert.ok(transports.every(e=>e.data.executable===false&&e.data.declaration.conditionalOnly));

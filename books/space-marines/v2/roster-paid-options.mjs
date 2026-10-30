@@ -1,3 +1,4 @@
+import {sourceSnapshot,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Browser-native projection of source-verified book-owned bindings. The producer owns proof checks and the central MFM owns prices. */
 const clone=structuredClone;
 const assert={equal:(a,b,message)=>{if(a!==b)throw new TypeError(message||"Wrong physical book");},ok:(value,message)=>{if(!value)throw new TypeError(message);}};
@@ -40,7 +41,7 @@ export function projectSpaceMarinesPaidOptions(state,{bindings}={}){
     const equipment=selection.canonicalEquipmentIds?.filter(id=>binding.equipmentIds.includes(id))||[];
     if(equipment.some(id=>!selection.canonicalFieldPaths?.[id]?.includes('/text')))unresolved.push({reason:'PAID_EQUIPMENT_FIELD_NOT_PROVEN',costRecordId:binding.costRecordId,selectionKey:selection.selectionKey,scope});
     if(selection.canonicalProfileIds?.some(id=>!binding.profileIds.includes(id)))unresolved.push({reason:'MIXED_WEAPON_SELECTION_PHYSICAL_QUANTITY_NOT_PROVEN',costRecordId:binding.costRecordId,selectionKey:selection.selectionKey,scope});
-    proof.push({selectionKey:selection.selectionKey,physicalQuantity:selection.physicalQuantity,scope,canonicalProfileIds:clone(selection.canonicalProfileIds||[]),canonicalEquipmentIds:clone(equipment),selectionProvenance:clone(selection.provenance||null)});
+    proof.push({selectionKey:selection.selectionKey,physicalQuantity:selection.physicalQuantity,scope,canonicalProfileIds:clone(selection.canonicalProfileIds||[]),canonicalEquipmentIds:clone(equipment),...copySourceEvidence({provenance:sourceSnapshot(selection)||null},{targetSlot:'selectionProvenance'})});
    }
    // Alternative profiles in one selection share its physical quantity. When
    // split over selections, a physical weapon correlation was not established.
@@ -51,7 +52,7 @@ export function projectSpaceMarinesPaidOptions(state,{bindings}={}){
    }
    const quantity=proof.reduce((sum,row)=>sum+(Number.isInteger(row.physicalQuantity)&&row.physicalQuantity>=0?row.physicalQuantity:0),0);
    return {costRecordId:binding.costRecordId,label:binding.label,ownerUnitId:binding.ownerUnitId,unitInstanceId:unit.instanceId,
-    quantity,value:binding.value,points:quantity*binding.value,selections:proof,provenance:clone(binding.provenance),sourceProvenance:clone(binding.sourceProvenance)};
+    quantity,value:binding.value,points:quantity*binding.value,selections:proof,...mergeSourceEvidence(copySourceEvidence(binding),copySourceEvidence(binding,{slot:'sourceProvenance'}))};
   });
   const knownPaidPoints=options.reduce((sum,row)=>sum+row.points,0);
   units.push({unitInstanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,status:unresolved.length?'UNRESOLVED':'RESOLVED',knownPaidPoints,totalPaidPoints:unresolved.length?null:knownPaidPoints,options,unresolved});

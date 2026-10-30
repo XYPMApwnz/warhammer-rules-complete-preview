@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {armyBooks} from '../../../v2/army-books.mjs';
 import {resolveExecutionEffect} from './recipient-execution.mjs';
+import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const reviewPath='books/shared/roster-v2/source-completeness-review.json';
@@ -18,7 +19,7 @@ const fail=(code,detail)=>{throw new Error(code+': '+detail);};
 const requireValue=(condition,code,detail)=>{if(!condition)fail(code,detail);};
 const classifications=new Set(['EXECUTABLE_REQUIRED','BATTLE_DEPENDENT','CAPABILITY_MISSING','SOURCE_AMBIGUOUS','UNVERIFIED','NOT_AN_EFFECT']);
 const historicalCensus=read('books/shared/roster-v2/source-effect-coverage-baseline.json');
-export const canonicalBlockFingerprint=entity=>reviewFingerprint(entity);
+export const canonicalBlockFingerprint=entity=>reviewFingerprint(sourceDeclarationView(entity));
 const provenanceSourceIds=provenance=>{
   const ids=new Set(),visit=value=>{
     if(Array.isArray(value))value.forEach(visit);
@@ -33,6 +34,7 @@ const provenanceSourceIds=provenance=>{
 /** Enrollment plus actual enrolled/provenance artifacts, not stored SHA claims.
  * No captures, baseline refreshes, source edits or network requests occur here. */
 export function captureSourceReview(bookId,facts=read(`books/${bookId}/v2/generated/effective.json`)) {
+  facts=sourceDeclarationView(facts);
   const enrollmentPath=`books/${bookId}/v2/sources/${bookId==='death-guard'?'source-enrollment':'enrollment'}.json`;
   const enrollment=read(enrollmentPath),files=new Set([enrollmentPath]);
   const visit=value=>{
@@ -109,11 +111,12 @@ export function assertSourceCompletenessGate({review,books,expectations,register
   const statuses={},allClauses=[],seenClauses=new Set(),bookIds=new Set(books.map(book=>book.bookId));
   let blockCount=0;
   for(const input of books){
+    const facts=sourceDeclarationView(input.facts);
     const reviewed=review.books[input.bookId];requireValue(reviewed,'UNREVIEWED_ARMY_BOOK',input.bookId);
     requireValue(stableJson(reviewed.sourceReview)===stableJson(input.sourceReview),'UNREVIEWED_SOURCE_REVISION',input.bookId);
     const blocks=new Map(reviewed.blocks.map(block=>[block.canonicalId,block])),current=new Set();
     requireValue(blocks.size===reviewed.blocks.length,'DUPLICATE_SOURCE_BLOCK',input.bookId);
-    for(const entity of input.facts.entities){
+    for(const entity of facts.entities){
       requireValue(!current.has(entity.id),'DUPLICATE_SOURCE_BLOCK',input.bookId+'/'+entity.id);current.add(entity.id);
       const block=blocks.get(entity.id);requireValue(block,'UNREVIEWED_SOURCE_RULE',input.bookId+'/'+entity.id);
       requireValue(block.kind===entity.kind&&block.owner===(entity.parentId??entity.ownerId??null),

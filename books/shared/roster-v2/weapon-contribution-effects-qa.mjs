@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Independent synthetic guards: canonical weapon contributions are references,
  * never imported equipment ownership or a second weapon-fact catalog. */
 import assert from 'node:assert/strict';
@@ -38,7 +39,7 @@ export function fixture({mixed=false,quantity=1}={}) {
   const ownerRole={id:'owner',subject:'MODEL',allegiance:'FRIENDLY',selector:atom('MODEL_ID','MODEL',{id:id('eligible')}),conditions:[]};
   const enhancement={id:id('gift'),parentId:id('detachment'),kind:'ENHANCEMENT',provenance:{sourceId:id('source')},
     data:{title:'Synthetic bearer gift',text:evidence.quote,weaponIds:[id('gift-weapon')]}};
-  enhancement.ruleContract={schema:'rule-contract/v2',ruleId:enhancement.id,ownerId:enhancement.parentId,sourceId:enhancement.provenance.sourceId,
+  enhancement.ruleContract={schema:'rule-contract/v2',ruleId:enhancement.id,ownerId:enhancement.parentId,sourceId:sourceSnapshot(enhancement).sourceId,
     kind:'ENHANCEMENT',executionMode:'DECLARATIVE_APPLICABILITY',contextLevel:'ROSTER',detachmentId:id('detachment'),roles:[ownerRole],conditions:[],
     assignment:{ownerRoleId:'owner',selector:clone(ownerRole.selector)},sourceFields:[['text']],
     clauses:[{id:'gift/clause',roles:[],conditions:[],sourceFields:[['text']],rosterClassification:'ROSTER_EXECUTABLE',rosterEffects:[effect]}]};

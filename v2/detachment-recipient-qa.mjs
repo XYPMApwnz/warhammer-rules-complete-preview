@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** Independent F1 source -> physical recipient -> effective/personal projection controls.
  * Constructed physical snapshots do not claim a real New Recruit export or battle simulation.
  * All mutations below are disposable in-memory inputs; accepted facts stay unchanged. */
@@ -22,7 +24,7 @@ import {createTauRuleSchema} from '../books/tau-empire/v2/rule-contract-schema.m
 import {createTyranidsRuleSchema} from '../books/tyranids/v2/roster-source-choices.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url)),clone=structuredClone;
-const read=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
+const read=relative=>parseSourceFixtureJSON(fs.readFileSync(path.join(root,relative),'utf8'));
 const normalize=value=>String(value).replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim();
 const files={
  'adeptus-mechanicus':'roster-runtime','death-guard':'rule-contract-effective','chaos-space-marines':'roster-runtime',
@@ -64,7 +66,7 @@ for(const expected of sources)check('source/'+expected.id,()=>{
   decodeSourceText(raw.toString('utf8').replace(/<[^>]*>/g,' '));
  assert.ok(normalize(text).includes(normalize(expected.quote)),'Exact accepted recipient quote absent');
  const record=entity(books.get(expected.book),expected.id);
- assert.ok(record.provenance?.sourceId,'Canonical source identity missing');
+ assert.ok(sourceSnapshot(record)?.sourceId,'Canonical source identity missing');
  assert.ok(normalize(JSON.stringify(record.data)).includes(normalize(expected.quote).replace(/"/g,'\\"'))||
   Object.values(record.data).some(value=>typeof value==='string'&&normalize(value).includes(normalize(expected.quote))), 'Runtime rule lost accepted recipient quote');
  sourceProof.push({...expected});
@@ -138,7 +140,7 @@ function expectForge(book,snapshot,projection){
   assert.deepEqual(row.recipientModelScopeIds,wanted,'Physical MODEL receiver mismatch');
   const projected=effective(book,projection,id).conditional.find(item=>item.ruleId===forge&&item.clauseId==='baffling-data-screed');
   assert.deepEqual(projected.recipientModelScopeIds,wanted);
-  assert.deepEqual(row.sourceProvenance,entity(book,forge).provenance);
+  assert.deepEqual(sourceSnapshot(row,{slot:'sourceProvenance'}),sourceSnapshot(entity(book,forge)));
  }
  for(const id of ['rangers','unled-rangers'])assert.equal(textRows(projection,id,forge).length,0,'Formed UNIT keyword leaked to Bodyguard MODEL');
  const view=personal(book,snapshot,projection,'rangers');
@@ -184,7 +186,7 @@ check('AM/Halo/UNIT-selection-eligible-not-selected',()=>{
  for(const [name,mutate]of [
   ['recipient',row=>row.recipientInstanceIds=['priest']],
   ['clause',row=>row.clauseId='foreign-clause'],
-  ['provenance',row=>row.sourceProvenance.sourceId='foreign-source'],
+  ['provenance',row=>sourceFixture(row).sourceProvenance.sourceId='foreign-source'],
   ['physical-source',row=>row.sourceInstanceId='foreign-physical-source'],
   ['physical-source-model',row=>row.sourceModelScopeId='foreign-physical-model'],
   ['owner',row=>row.sourceOwnerChain.at(-1).id='foreign-owner'],
@@ -260,14 +262,14 @@ for(const [name,mutate]of [
  ['recipient-selector',candidate=>{clause(candidate,forge,'baffling-data-screed').roles.find(role=>role.id==='recipient').selector.arguments.keyword='RANGERS';}],
  ['UNIT-MODEL-filter',candidate=>{const role=clause(candidate,forge,'baffling-data-screed').roles.find(role=>role.id==='recipient');role.subject='UNIT';role.selector.subject='UNIT';role.selector.predicate='UNIT_KEYWORD';}],
  ['missing-proven-selector',candidate=>{const role=clause(candidate,forge,'baffling-data-screed').roles.find(role=>role.id==='recipient');role.selector={predicate:'ALWAYS',subject:'MODEL',contextLevel:'STATIC',arguments:{},evidence:clone(role.selector.evidence)};}],
- ['missing-source-provenance',candidate=>{delete entity(candidate,forge).provenance.sourceId;}],
+ ['missing-source-provenance',candidate=>{delete sourceFixture(entity(candidate,forge)).provenance.sourceId;}],
  ['formed-keyword-leakage',candidate=>{for(const binding of candidate.rosterProfileBindings.filter(binding=>binding.unitId===rangers))binding.intrinsicKeywords.push('TECH-PRIEST');}]
 ])rejected(name,()=>{const candidate=clone(am);mutate(candidate);expectForge(candidate,amAttached,execute(candidate,amAttached));});
 rejected('selected-detachment-filter',()=>expectForge(am,wrongDetachment(am,amAttached),execute(am,wrongDetachment(am,amAttached))));
 for(const [name,mutate]of [
  ['MODEL-scope-tamper',row=>row.recipientModelScopeIds.push('rangers/physical-row-0/PROFILE/physical-row-0')],
  ['recipient-instance-tamper',row=>row.recipientInstanceIds.push('rangers')],
- ['source-provenance-tamper',row=>row.sourceProvenance.sourceId='unaccepted-source'],
+ ['source-provenance-tamper',row=>sourceFixture(row).sourceProvenance.sourceId='unaccepted-source'],
  ['status-tamper',row=>row.detachmentText.kind='ELIGIBLE_FOR_SELECTION']
 ])rejected(name,()=>{
  const altered=clone(amProjection),row=textRows(altered,'priest',forge,'baffling-data-screed')[0];mutate(row);effective(am,altered,'priest');
@@ -278,7 +280,7 @@ check('unknown-ROSTER-prerequisite-is-not-proof',()=>{
  entry.conditions.push({predicate:'FIELD',subject:'MODEL',contextLevel:'ROSTER',roleId:'recipient',arguments:{key:'f1UnknownRecipientPermission',equals:true},evidence:clone(entry.evidence)});
  const projection=execute(candidate,amAttached);assert.equal(textRows(projection,'priest',forge,'baffling-data-screed').length,0,'UNKNOWN roster prerequisite treated as TRUE');
  rejected('unknown-roster-condition',()=>expectForge(candidate,amAttached,projection));
- assert.ok(record.provenance.sourceId);
+ assert.ok(sourceSnapshot(record).sourceId);
 });
 check('nested-ROSTER-prerequisite-for-foreign-role-is-not-recipient-proof',()=>{
  const candidate=clone(am),entry=clause(candidate,forge,'baffling-data-screed');

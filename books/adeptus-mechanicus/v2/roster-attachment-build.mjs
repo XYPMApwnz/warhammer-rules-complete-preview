@@ -1,3 +1,4 @@
+import {prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 const requireValue=(condition,message)=>{if(!condition)throw new TypeError(message);};
 // Exact accepted native occurrences, not a label-based ability normalizer.
 // Keep the occurrence ID so baseline presentation and source provenance survive
@@ -10,6 +11,7 @@ const nativeFnp=new Map(['fulgurite-electro-priests','corpuscarii-electro-priest
 /** Ephemeral canonical shape/reference adapter, not a factual owner. Source
  * grammar stays book-owned; runtime receives only typed roles and exact IDs. */
 export function buildRosterAttachmentInputs(canonical,bindings) {
+  canonical=prepareSourceProducer(canonical);
   const book=structuredClone(canonical),records=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(records.size===book.entities.length&&bindings?.schema==='roster-v2/attachment-bindings','Invalid attachment inputs');
   book.rosterProfileBindings=[];book.rosterReferenceSemantics={};const nativeSeen=new Set();

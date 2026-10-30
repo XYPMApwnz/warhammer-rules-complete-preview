@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -12,7 +13,7 @@ import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-cor
 import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const copy=structuredClone;
 const at=(value,path)=>path.slice(1).split('/').reduce((item,key)=>item?.[key],value);
 
@@ -23,7 +24,7 @@ export function buildTauImportBook(){
   const index=new Map(book.entities.map(e=>[e.id,e]));
   const bytes=fs.readFileSync(new URL('../../../'+source.exportSource.document,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(),source.exportSource.sha256);
-  const vocabulary=JSON.parse(bytes);
+  const vocabulary=parseProducerJSON(bytes);
   for(const binding of [...source.unitAliases,...source.compositionAliases,...source.weaponAliases])
     for(const proof of binding.exportEvidence||[]){
       const item=at(vocabulary,proof.path);assert.equal(item?.id,proof.entryId);assert.equal(item.name,proof.label);
@@ -147,7 +148,7 @@ export function buildTauImportBook(){
   return book;
 }
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const target=new URL('./generated/roster-import.json',import.meta.url),bytes=JSON.stringify(buildTauImportBook(),null,2)+'\n';
+  const target=new URL('./generated/roster-import.json',import.meta.url),bytes=serializeSourceJSON(buildTauImportBook());
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale T’au import view');
   else fs.writeFileSync(target,bytes);
   console.log('T’au import view: PASS (43 datasheets; physical/runtime blockers explicitly retained)');

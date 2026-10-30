@@ -1,3 +1,4 @@
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Physical purchase bridges; central MFM remains the sole numeric owner. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-cata
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
 import {createSpaceMarinesPaidOptionBindings} from '../../space-marines/v2/roster-paid-option-bindings-build.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const clone=structuredClone;
 const cyclone={costRecordId:'mfm-paid-upgrade-3c211afc5aea6e89',ownerUnitId:'unit-da-9f8f2ccbdb7d4c72857c',
  equipmentIds:[],profileIds:['weapon-da-9dbed74da29b40e0a872','weapon-da-f42a813127b24522bedd'],
@@ -17,6 +18,7 @@ const cyclone={costRecordId:'mfm-paid-upgrade-3c211afc5aea6e89',ownerUnitId:'uni
 
 export function createDarkAngelsPaidOptionBindings({book=read('./generated/mixed-owner-book.json'),
  facts=read('./generated/effective.json'),catalog=createEffectiveMfmCatalog().catalog}={}){
+  book=prepareSourceProducer(book);
  assert.equal(book.bookId,'dark-angels');
  const admitted=new Set(book.entities.filter(row=>row.kind==='DATASHEET').map(row=>row.id));
  const shared=createSpaceMarinesPaidOptionBindings({catalog}).filter(row=>admitted.has(row.ownerUnitId));

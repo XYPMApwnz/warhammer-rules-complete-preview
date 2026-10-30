@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -14,10 +15,11 @@ import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-f
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 
 const clone=structuredClone,sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 
 /** Book-owned lowering over the existing import/factual owner. No new facts. */
 export function buildTyranidsContracts({facts=read('./generated/effective.json'),inputs=declarations}={}){
+  facts=prepareSourceProducer(facts);
   const before=JSON.stringify(facts),book=buildTyranidsImportBook(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(inputs.length,19,'Bounded reviewed executable inventory: eighteen owners plus explicit Surprise Assault choice');
   assert.equal(new Set(inputs.map(d=>d.id)).size,19,'Duplicate semantic owner');
@@ -170,7 +172,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input changed');
   const artifact={schema:'tyranids-v2-rule-contracts/v1',authority:'BOOK_OWNED_DERIVED_OVERLAY',
-    factualFingerprint:sha(JSON.stringify(facts)),importFingerprint:sha(JSON.stringify(buildTyranidsImportBook(facts))),
+    factualFingerprint:sha(JSON.stringify(facts)),importFingerprint:sha(JSON.stringify(prepareSourceProducer(buildTyranidsImportBook(facts)))),
     declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
     currentOfficialSource,contracts,deferred,nativeReferenceSemantics:clone(book.rosterReferenceSemantics),
     attachmentPolicies:clone(book.rosterAttachmentPolicies),compatibilityFeasibility:clone(book.compatibilityFeasibility)};
@@ -178,7 +180,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
 }
 
 if(process.argv[1]&&fileURLToPath(import.meta.url)===fs.realpathSync(process.argv[1])){
-  const {artifact}=buildTyranidsContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=JSON.stringify(artifact,null,2)+'\n';
+  const {artifact}=buildTyranidsContracts(),target=new URL('./generated/rule-contracts.json',import.meta.url),bytes=serializeSourceJSON(artifact);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale Tyranids Rule Contracts');
   else fs.writeFileSync(target,bytes);
   console.log(JSON.stringify({status:'PASS',contracts:artifact.contracts.length,deferred:artifact.deferred.length,

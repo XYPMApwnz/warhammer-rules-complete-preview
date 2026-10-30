@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Source/input-first acceptance of constructed text through the real shared
  * physical importer. These fixtures are not authentic New Recruit exports or
  * source-valid complete armies; no browser acceptance is claimed. */
@@ -18,7 +20,7 @@ import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs
 import {projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
 
-const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8')),clone=structuredClone;
+const read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8')),clone=structuredClone;
 const own=read('./generated/effective.json'),sm=read('../../space-marines/v2/generated/effective.json'),ledger=read('./inherited-sm-references.json');
 const accepted=new Set(ledger.references.map(r=>r.canonicalId));
 const sourceUnits=[...own.entities.filter(e=>e.kind==='DATASHEET'),...sm.entities.filter(e=>e.kind==='DATASHEET'&&accepted.has(e.id))];
@@ -83,7 +85,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    assert.equal(service.points.units[0].basePoints,sourceBase(unit.id,input.count),'Official MFM tier parity '+unit.id);
    for(const [n,row]of actual.modelRows.entries()){const expected=input.rows[n];assert.equal(row.quantity,expected.quantity);assert.equal(row.compositionMemberId,expected.id);
     assert.equal(row.canonicalProfileId,expected.profileId,'Independent source composition/profile mapping');assert.equal(row.selections.length,0,'Omitted equipment was invented');profileIds.add(row.canonicalProfileId);}
-   assert.deepEqual(index.get(unit.id).provenance,unit.provenance);assert.equal(index.get(unit.id).bookId,unit.bookId);
+   assert.deepEqual(sourceSnapshot(index.get(unit.id)),sourceSnapshot(unit));assert.equal(index.get(unit.id).bookId,unit.bookId);
    const effective=service.effective(actual.instanceId),variants=projectInstanceCards(cards,actual,effective);assert.ok(variants.get(unit.id)?.length);assert.equal(projectPersonalBook(payload,service.state).instances.length,1);
    physical.push({canonicalId:unit.id,owner:unit.bookId,models:input.count,status:'PASS',scope:'EXPLICIT_COMPOSITION_OMITTED_LOADOUT_UNKNOWN'});modelOccurrences+=input.count;
   }
@@ -147,7 +149,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  check('7-paid-options-official-prices-physical-counts-and-total-parity',()=>{
   assert.deepEqual(book.mfmPhysicalPaidOptions.map(r=>r.costRecordId).sort(),PAID.map(r=>r[0]).sort());
   for(const [id,owner,label,price]of PAID){const binding=book.mfmPhysicalPaidOptions.find(r=>r.costRecordId===id);assert.equal(binding.value,price);
-   assert.equal(binding.provenance.sourceLocator.sourceTitle,owner);assert.equal(binding.provenance.sourceLocator.sourceLabel,label);assert.equal(binding.provenance.sourceId,'space-marines-mfm-v1.6');
+   assert.equal(sourceSnapshot(binding).sourceLocator.sourceTitle,owner);assert.equal(sourceSnapshot(binding).sourceLocator.sourceLabel,label);assert.equal(sourceSnapshot(binding).sourceId,'space-marines-mfm-v1.6');
    const service=createBloodAngelsRosterService(book),bare=fixture(binding.ownerUnitId);ready(service,header()+bare.text);
    assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
    // Redemptor RAW proves Heavy Onslaught OR Macro; an independent Icarus
@@ -253,7 +255,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
   const present=(service,id,rule,sourceId=id)=>{
    const effective=service.effective(id),raw=service.state.units.find(u=>u.instanceId===id),variants=projectInstanceCards(cards,raw,effective);
    assert.ok(variants.get(raw.canonicalUnitId)?.length);assert.ok(effective.applied.some(t=>t.ruleId===rule&&t.sourceInstanceId===sourceId),'Imported source trace absent '+rule+' on '+id+' from '+sourceId);
-   assert.ok(cards.has(rule));assert.deepEqual(cards.get(rule).provenance,sources.get(rule).provenance);
+   assert.ok(cards.has(rule));assert.deepEqual(sourceSnapshot(cards.get(rule)),sourceSnapshot(sources.get(rule)));
    assert.equal(projectPersonalBook(payload,service.state).instances.length,service.state.units.length);
    return {effective,variants};
   };

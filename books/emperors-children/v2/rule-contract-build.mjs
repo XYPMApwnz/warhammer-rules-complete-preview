@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 /** EC-owned bounded Rule Contract overlay. No importer, service or UI wiring.
  * The shared engine consumes a disposable view of the existing factual owner. */
@@ -21,7 +22,7 @@ import {aegisBinding,bindShiningAegis} from './rule-contract-aegis-bindings.mjs'
 import {instrumentBindings,bindInstruments} from './rule-contract-instrument-bindings.mjs';
 
 const directory=path.dirname(fileURLToPath(import.meta.url));
-const read=file=>JSON.parse(fs.readFileSync(path.join(directory,file),'utf8'));
+const read=file=>parseProducerJSON(fs.readFileSync(path.join(directory,file),'utf8'));
 const clone=structuredClone;
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex').toUpperCase();
 const all=args=>args.length===1?args[0]:{op:'ALL',args};
@@ -29,6 +30,7 @@ const at=(value,field)=>field.reduce((value,key)=>value?.[key],value);
 const subject=binding=>['SOURCE_UNIT','ROSTER_UNITS'].includes(binding)?'UNIT':'MODEL';
 
 export function buildECContracts({facts=read('generated/effective.json'),inputs=declarations,permissionInputs=permissionDeclarations,formationInputs=formationBindings,finalInputs=finalBindings,aegisInputs=[aegisBinding],instrumentInputs=formationInputs.length?instrumentBindings:[]}={}) {
+  facts=prepareSourceProducer(facts);
   const before=JSON.stringify(facts),book=clone(facts),index=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(index.size,book.entities.length,'Duplicate canonical identity');
   assert.equal(inputs.length,10,'Only the reviewed ten-rule scope is implemented');
@@ -221,7 +223,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href) {
-  const {artifact}=buildECContracts(),file=path.join(directory,'generated/rule-contracts.json'),bytes=JSON.stringify(artifact,null,2)+'\n';
+  const {artifact}=buildECContracts(),file=path.join(directory,'generated/rule-contracts.json'),bytes=serializeSourceJSON(artifact);
   if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),bytes,'Stale EC Rule Contract output');
   else fs.writeFileSync(file,bytes);
   console.log(JSON.stringify({status:'PASS',contracts:artifact.contracts.length,

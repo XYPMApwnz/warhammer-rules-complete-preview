@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Accepted-source oracle -> native text import -> shared executor -> production
  * personal cards. Threshold is a passive attack rule, never a BS/WS change. */
 import assert from 'node:assert/strict';
@@ -14,7 +15,7 @@ import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '.
 import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 
 const clone=structuredClone,ruleId='detachment-cult-of-the-arkifane:enhancement:3';
-export const criticalHitThresholdExpectation=JSON.parse(fs.readFileSync(new URL('./critical-hit-source-expectations.json',import.meta.url),'utf8')).cases[0];
+export const criticalHitThresholdExpectation=parseSourceFixtureJSON(fs.readFileSync(new URL('./critical-hit-source-expectations.json',import.meta.url),'utf8')).cases[0];
 const source=fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-29/chaos-space-marines.html',import.meta.url));
 assert.equal(createHash('sha256').update(source).digest('hex'),'54e028296c063629f43e82a9aba26943568dee3ae819e36620f72dec47529c4e');
 const raw=source.toString('utf8').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ');
@@ -22,8 +23,8 @@ const accepted=criticalHitThresholdExpectation.source.quote;
 assert.ok(raw.includes(accepted),'Independent accepted source restriction/threshold changed');
 const expectedThreshold=Number(accepted.match(/unmodified Hit roll of (\d)\+/)[1]);
 const book=buildCSMRosterRuntimeBook(),importBook=buildCSMImportBook();
-const bindings=JSON.parse(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'));
-const payload=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
+const bindings=parseSourceFixtureJSON(fs.readFileSync(new URL('./roster-attachment-bindings.json',import.meta.url),'utf8'));
+const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
 const fixture=buildImportedEffectFixtures(book).find(row=>row.owner===ruleId);
 assert.ok(fixture,'Reviewed source has no executable import fixture');

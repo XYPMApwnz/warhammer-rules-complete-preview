@@ -8888,6 +8888,41 @@
       ]
     },
     {
+      "path": "books/shared/source-refs-v2/source-catalog.json",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/source-refs-v2/source-catalog.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-catalog.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/source-refs-v2/source-refs.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/source-refs-v2/source-refs.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "shared-source-reference-reader"
+        }
+      ]
+    },
+    {
       "path": "books/shared/stratagem-presentation.mjs",
       "reasons": [
         {

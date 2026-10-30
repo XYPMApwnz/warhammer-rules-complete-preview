@@ -2,6 +2,7 @@
  * This module never interprets source prose or selects physical roster units.
  */
 import {conditionDeclarationView} from './conditions-build.mjs';
+import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 const clone=structuredClone;
 const own=(value,key)=>Object.hasOwn(value,key);
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -311,8 +312,9 @@ export function compileBookRecipients(inputBook,options={}){
  * Redundant scalar/plural producer aliases are represented by one exact set.
  */
 export function recipientDeclarationView(inputBook){
- validateBookRecipients(inputBook);
- const book=inputBook.conditionSchema?conditionDeclarationView(inputBook):clone(inputBook);
+ const sourceView=sourceDeclarationView(inputBook);
+ validateBookRecipients(sourceView);
+ const book=sourceView.conditionSchema?conditionDeclarationView(sourceView):clone(sourceView);
  for(const rule of book.entities){
   const contract=rule.ruleContract;if(!contract||excludedStratagem(rule))continue;
   const roleIds=(clause,ids)=>ids.map(id=>{

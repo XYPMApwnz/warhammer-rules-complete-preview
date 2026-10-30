@@ -1,4 +1,5 @@
 import {createLifecycle} from './lifecycle.mjs';
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
   const points=service?.points;
@@ -470,7 +471,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
           const change = el('div'); change.dataset.appliedField = record.field;
           change.append(el('p', 'v2-roster-hint', record.field), structuredValue(record.before), el('span', '', ' → '), structuredValue(record.after)); item.append(change);
         }
-        const provenance = record.source || record.provenance || Object.fromEntries(['clauseId', 'effectId', 'sourceInstanceId', 'targetInstanceId', 'targetModelInstanceId', 'targetProfileId', 'targetCompositionId', 'targetWeaponProfileId', 'operation', 'sourceFields', 'lifetime'].filter(key => record[key] !== undefined).map(key => [key, record[key]]));
+        const provenance = record.source || sourceSnapshot(record) || Object.fromEntries(['clauseId', 'effectId', 'sourceInstanceId', 'targetInstanceId', 'targetModelInstanceId', 'targetProfileId', 'targetCompositionId', 'targetWeaponProfileId', 'operation', 'sourceFields', 'lifetime'].filter(key => record[key] !== undefined).map(key => [key, record[key]]));
         if (Object.keys(provenance).length) {
           const details = el('details', 'v2-roster-provenance');
           details.append(el('summary', '', 'Effect provenance'));

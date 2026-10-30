@@ -1,3 +1,4 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -12,7 +13,7 @@ import {compareV1Facts,loadV1ComparisonModel} from './compare-v1.mjs';
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory,'../../..');
-const read = file => JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+const read = file => parseProducerJSON(fs.readFileSync(path.join(root,file),'utf8'));
 const sha = value => createHash('sha256').update(value).digest('hex').toUpperCase();
 const corpusPath = 'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json';
 const hubPath = 'books/death-guard/v2/sources/accepted-waha-pages/death-guard.html';
@@ -70,7 +71,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const outputDir = path.join(directory,'generated');
   if (!check) fs.mkdirSync(outputDir,{recursive:true});
   for (const [name,value] of Object.entries(result)) {
-    const file = path.join(outputDir,`${name}.json`), text = JSON.stringify(value,null,2)+'\n';
+    const file = path.join(outputDir,`${name}.json`), text = serializeSourceJSON(value);
     if (check) assert.equal(fs.readFileSync(file,'utf8'),text,`${name}: deterministic output drift`); else fs.writeFileSync(file,text);
   }
   console.log(JSON.stringify({canonicalEntities:result.base.entities.length,overlayOperations:result.effective.appliedOverlays.length,

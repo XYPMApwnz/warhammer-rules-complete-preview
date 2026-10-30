@@ -6,11 +6,12 @@ import {changeAttachment,predicateContext} from '../../shared/roster-v2/context.
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 
 /** Compose native import + attachment state with the existing interpreter.
  * All rebuilds start from immutable canonical inputs. No presentation is mounted. */
 export function createCSMRosterRuntime(runtimeBook,importBook,bindings) {
-  const book=structuredClone(runtimeBook),attachments=createCSMRosterAttachments(importBook,bindings),importer=createCSMRosterImport(importBook);
+  const book=cloneSourceBook(runtimeBook),attachments=createCSMRosterAttachments(importBook,bindings),importer=createCSMRosterImport(importBook);
   const validationBook=buildCSMAttachmentInputs(importBook,bindings).book;
   const schema=createRuleContractSchema(book.rosterSchema);
   validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);

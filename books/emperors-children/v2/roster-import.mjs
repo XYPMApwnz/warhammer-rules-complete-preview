@@ -2,6 +2,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 const clone=structuredClone,bladeId='detachment-carnival-of-excess:enhancement:3';
 const reject=(ok,message)=>{if(!ok)throw new TypeError(message);};
 
@@ -12,7 +13,7 @@ export function withECImportBindings(book,importBook) {
   const records=new Map(book.entities.map(e=>[e.id,e])),source=new Map(importBook.entities.map(e=>[e.id,e]));
   for(const binding of importBook.importBindings.equipmentSelections)for(const proof of binding.evidence){
     const current=records.get(proof.entityId),original=source.get(proof.entityId);
-    reject(current?.parentId===binding.ownerId&&current.provenance?.sourceId===original?.provenance?.sourceId,'Foreign equipment binding owner');
+    reject(current?.parentId===binding.ownerId&&getRecordedSourceIdentity(current,{book})===getRecordedSourceIdentity(original,{book:importBook}),'Foreign equipment binding owner');
     const at=e=>proof.path.slice(1).split('/').reduce((v,k)=>v?.[k],e?.data);
     reject(typeof at(current)==='string'&&at(current)===at(original),'Stale import equipment evidence');
   }

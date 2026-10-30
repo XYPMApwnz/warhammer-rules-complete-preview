@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Independent source/input parity through the real shared import boundary.
  * All input texts are constructed, not authentic New Recruit exports. */
 import fs from 'node:fs';
@@ -11,7 +13,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
-const read=path=>JSON.parse(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
+const read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
 const book=buildDarkAngelsImportBook(),index=new Map(book.entities.map(row=>[row.id,row]));
 const sources=new Map([...read('./generated/effective.json').entities,...read('../../space-marines/v2/generated/effective.json').entities].map(row=>[row.id,row]));
 const originalSources=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
@@ -59,7 +61,7 @@ check('83-source-datasheets-113-profile-occurrences-and-native-projections',()=>
    assert.equal(row.canonicalProfileId,proof.profileId);profileIds.add(row.canonicalProfileId);
    assert.equal(row.selections.length,0,'An omitted loadout became invented equipment');
   }
-  assert.equal(index.get(unit.id).bookId,sources.get(unit.id).bookId);assert.deepEqual(index.get(unit.id).provenance,sources.get(unit.id).provenance);
+  assert.equal(index.get(unit.id).bookId,sources.get(unit.id).bookId);assert.deepEqual(sourceSnapshot(index.get(unit.id)),sourceSnapshot(sources.get(unit.id)));
   const effective=service.effective(actual.instanceId),variants=projectInstanceCards(cards,actual,effective);
   assert.ok(variants.get(unit.id)?.length);assert.equal(projectPersonalBook(payload,service.state).instances.length,1);
   if([ID.azrael,ID.command].includes(unit.id)){

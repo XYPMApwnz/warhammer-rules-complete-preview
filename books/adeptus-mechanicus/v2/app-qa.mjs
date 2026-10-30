@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {compileBookSourceRefs,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -155,6 +157,14 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   assert.throws(()=>verifyMfmBindings(badPoints));mutations.push('wrong Enhancement cost owner');
   assert.equal(hash(inputs.model),canonicalHash,'Presentation mutated canonical facts/contracts');
   const sample=enumerateExpectedFacts(inputs.model)[0];
+  const canonicalSourceBook=compileBookSourceRefs(inputs.model);
+  assert.deepEqual(enumerateExpectedFacts(canonicalSourceBook),enumerateExpectedFacts(inputs.model),'Source encoding changed independent fact enumeration');
+  for(const key of ['sourceId','sourcePath']){
+    const severed=sourceDeclarationView(canonicalSourceBook);
+    delete severed.entities.find(entity=>entity.id===sample.entityId).provenance[key];
+    assert.throws(()=>enumerateExpectedFacts(compileBookSourceRefs(severed)),/Severed source evidence/,'Canonical source '+key+' guard weakened');
+    mutations.push('canonical source '+key+' severed');
+  }
   for(const [name,mutate]of [
     ['source fact dropped',p=>{const card=p.cards.find(card=>card.fields.some(field=>field.id===sample.id));card.fields=card.fields.filter(field=>field.id!==sample.id);}],
     ['source value changed',p=>p.cards.flatMap(card=>card.fields).find(field=>field.id===sample.id).value='POISON'],
@@ -176,12 +186,12 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   mutations.push('poisoned generated compatibility ignored');
   const unclassified=structuredClone(inputs.model);unclassified.entities[0].data.unrecognizedFutureFact='POISON';
   assert.throws(()=>enumerateExpectedFacts(unclassified));mutations.push('unknown canonical field fails closed');
-  const census=JSON.parse(fs.readFileSync(new URL('./generated/factual-census.json',import.meta.url),'utf8'));
+  const census=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/factual-census.json',import.meta.url),'utf8'));
   assert.equal(census.sourceFactsTotal,6484);assert.equal(census.sourceFactsBound,6484);assert.equal(census.sourceFactsMissing,0);
   assert.equal(Object.values(census.factPartitions).reduce((sum,count)=>sum+count,0),6484,'Independent accepted source partition accounting');
-  const contracts=JSON.parse(fs.readFileSync(new URL('./generated/rule-contract-census.json',import.meta.url),'utf8'));
+  const contracts=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/rule-contract-census.json',import.meta.url),'utf8'));
   assert.equal(contracts.valid,205);assert.equal(contracts.invalidContracts,0);assert.equal(contracts.unboundSourceRules,0);assert.equal(contracts.blockedOwners,0);
-  const generated=JSON.parse(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
+  const generated=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url),'utf8'));
   assert.equal(hash(generated),hash(payload),'Disposable application output stale');
   console.log(JSON.stringify({status:'PASS',...result,...compatibility,sourceFacts:6484,contracts:205,mutations,...runIsolationQA()},null,2));
 }

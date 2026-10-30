@@ -9,6 +9,7 @@ import copy
 import hashlib
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 from lxml import html
@@ -17,6 +18,9 @@ from detachment_rules import read_named_rules, validate_named_rules
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 BOOK = 'emperors-children'
 SOURCE = 'books/emperors-children/sources/waha-11e-current-2026-09-28'
 read = lambda path: json.loads(Path(path).read_text(encoding='utf-8'))
@@ -355,8 +359,7 @@ def main():
     outputs = build()
     if not args.check:
         (HERE/'generated').mkdir(exist_ok=True)
-    for name, value in outputs.items():
-        serialized = (json.dumps(value, ensure_ascii=False, indent=2)+'\n').encode()
+    for name, serialized in serialized_source_outputs(outputs, ROOT).items():
         target = HERE/'generated'/(name+'.json')
         if args.check:
             if not target.exists() or target.read_bytes() != serialized:

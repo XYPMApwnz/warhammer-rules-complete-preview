@@ -1,3 +1,4 @@
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Actual V1 book templates adapted to canonical V2 fields. Presentation only. */
 import {hasSourceTableLayout, renderSourceTable} from './source-table.mjs';
 const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RULE_COMPONENT',
@@ -25,7 +26,7 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
   };
   const sourceFooter=(card,node)=>{
     const metadata=records[card.id]||card;
-    const sources=[metadata.provenance,...Object.values(metadata.fieldProvenance||{})].filter(Boolean);
+    const sources=[sourceSnapshot(metadata,{book:payload}),...Object.values(sourceSnapshot(metadata,{book:payload,slot:'fieldProvenance'})||{})].filter(Boolean);
     const ids=[...new Set(sources.flatMap(source=>[source.sourceId||source.base?.sourceId]).filter(Boolean))];
     if(!ids.length)return;
     node.dataset.sourceIds=JSON.stringify(ids);

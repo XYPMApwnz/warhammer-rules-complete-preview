@@ -1,3 +1,4 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native vocabulary/physical bindings over the closed DA consumer projection.
  * Common facts and reviewed import joins retain their Space Marines owner. */
 import fs from 'node:fs';
@@ -13,6 +14,7 @@ import {buildDetachmentReferences} from './detachment-reference-build.mjs';
 const clone=structuredClone;
 const evidence=(entityId,path)=>({entityId,path});
 export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={}){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
  const book=clone(built.book),before=JSON.stringify(built.book),index=new Map(book.entities.map(entity=>[entity.id,entity]));
  const admitted=new Set(index.keys()),sm=buildSpaceMarinesImportBook({built:built.sm}).importBindings;
  const compositions=clone(sm.compositions.filter(row=>admitted.has(row.ownerId)));
@@ -95,7 +97,7 @@ export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={})
  return book;
 }
 export function writeDarkAngelsImportBook({check=false}={}){
- const book=buildDarkAngelsImportBook(),target=new URL('./generated/roster-import.json',import.meta.url),bytes=JSON.stringify(book,null,2)+'\n';
+ const book=buildDarkAngelsImportBook(),target=new URL('./generated/roster-import.json',import.meta.url),bytes=serializeSourceJSON(book);
  if(check)assert.equal(fs.readFileSync(target,'utf8'),bytes,'Stale DA import output');else fs.writeFileSync(target,bytes);
  return {status:'PASS',datasheets:83,compositions:book.importBindings.compositions.length,
   unresolvedCompositions:book.importBindings.unresolvedCompositions.length,paidOptions:8,relations:book.rosterRelationReview.coverage,

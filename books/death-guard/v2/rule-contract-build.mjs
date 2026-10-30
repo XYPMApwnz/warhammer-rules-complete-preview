@@ -1,4 +1,6 @@
+import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createDGCompatibilityCompiler} from './rule-contract-context.mjs';
 import {mergeContractDeclarations,bindCanonicalContract} from '../../shared/rule-contract-v2/bindings.mjs';
 import fs from 'node:fs';
@@ -16,7 +18,7 @@ import {validatePredicate} from './rule-contract-schema.mjs';
 import {buildCompatibilityFeasibility} from './feasibility-build.mjs';
 const directory=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(directory,'../../..');
-const addresses=JSON.parse(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
+const addresses=parseProducerJSON(fs.readFileSync(path.join(directory,'rule-source-addresses.json'),'utf8'));
 const kinds=new Set(['ARMY_RULE','ARMY_RULE_COMPONENT','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE','WARGEAR_OPTION','WARGEAR_FOOTNOTE','WEAPON_PROFILE_SELECTION','SOURCE_ERRATUM','BOOK_USAGE_RULES','STRATAGEM','ENHANCEMENT','DETACHMENT_RULE']);
 const ruleKind = entity => ['ARMY_RULE','ARMY_RULE_COMPONENT'].includes(entity.kind)?'ARMY_RULE':entity.kind==='SUPPLEMENTAL_DATASHEET_RULE'||entity.kind==='DATASHEET_SECTION'&&entity.data.title==='ABILITIES'?'DATASHEET_ABILITY':entity.kind==='SOURCE_ERRATUM'?'FAQ_ERRATA_RULE':['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'].includes(entity.kind)?entity.kind:'OTHER_RULE';
 const factFields=entity=>['text','lines','blocks','clauses','instruction','title','componentIds'].filter(key=>Object.hasOwn(entity.data,key)).map(key=>[key]);
@@ -71,7 +73,7 @@ export function buildRuleContractV2() {
     if (/\bDeadly Demise\b/.test(label)) abilities.push({name:'Deadly Demise'});
     const fnp=label.match(/\bFeel No Pain ([2-6])\+/);
     if (fnp) abilities.push({name:'Feel No Pain',value:Number(fnp[1])});
-    extended.rosterReferenceSemantics[reference.id]={abilities,sourceFields:[['label']],sourceId:reference.provenance.sourceId};
+    extended.rosterReferenceSemantics[reference.id]={abilities,sourceFields:[['label']],sourceId:getRecordedSourceIdentity(reference,{book:extended})};
   }
   extended.rosterAttachmentPolicies=model.mfm.relations.filter(r=>r.role==='leader').map(relation=>{
     const exception=model.mfm.relations.find(r=>r.role==='support'&&r.sourceId===relation.sourceId&&r.targetId===relation.targetId);
@@ -93,7 +95,7 @@ export function entityContext(model,unit,subject,detachmentId,profileId) {
 }
 export function compileCompatibility(model) {
   validateContracts(model);
-  const core=JSON.parse(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'),'utf8'));
+  const core=parseProducerJSON(fs.readFileSync(path.join(root,'books/core-rules/content/core-rules.digital-11e.json'),'utf8'));
   assert.ok(core.records.find(record=>record.code==='02.05.01')?.text.includes('A model only has its own keywords.'),'Accepted MODEL keyword semantics changed; source review required');
   assert.ok(core.records.find(record=>record.code==='19.03')?.text.includes('An attached unit has all of the keywords of all of its component units.'),'Accepted formed UNIT keyword semantics changed; source review required');
   const compiled=createDGCompatibilityCompiler(model).compileRows({kinds:['STRATAGEM','ENHANCEMENT','DETACHMENT_RULE'],
@@ -107,7 +109,7 @@ export function previousAmbiguityDomain(model) {
   const byAddress=new Map(addresses.bindings.map(binding=>[binding.publisherReferenceId,binding.ruleId]));
   assert.equal(byAddress.size,addresses.bindings.length,'Duplicate publisher address');
   const rows=[];
-  const corpus=JSON.parse(fs.readFileSync(path.join(root,'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json'),'utf8'));
+  const corpus=parseProducerJSON(fs.readFileSync(path.join(root,'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json'),'utf8'));
   for(const binding of addresses.bindings) {
     const entity=model.entities.find(entity=>entity.id===binding.ruleId);
     assert.ok(entity,'Unresolved source binding');
@@ -153,7 +155,7 @@ export function summarize(model,projection,domain) {
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const model=buildRuleContractV2(),compatibility=compileCompatibility(model),closure=summarize(model,compatibility,previousAmbiguityDomain(model));
   for(const [name,value]of Object.entries({'rule-contract-effective':model,'compatibility-v2':compatibility,'rule-contract-closure':closure})) {
-    const file=path.join(directory,'generated',name+'.json'),text=JSON.stringify(value,null,2)+'\n';
+    const file=path.join(directory,'generated',name+'.json'),text=serializeSourceJSON(value);
     if(process.argv.includes('--check'))assert.equal(fs.readFileSync(file,'utf8'),text,'Deterministic Rule Contract projection drift: '+name);else fs.writeFileSync(file,text);
   }
   console.log(JSON.stringify({rulesTotal:closure.rulesTotal,counts:closure.counts,relations:closure.relations,outcomes:closure.outcomes},null,2));

@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
@@ -5,7 +6,7 @@ import {buildCSMContracts} from './rule-contract-build.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {createReferenceContract} from '../../shared/army-book-app-v2/reference-contract.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildCSMContracts(),facts=built.facts,payload=read('./generated/app-presentation.json');
 const index=new Map(facts.entities.map(e=>[e.id,e])),cards=new Map(payload.cards.map(c=>[c.id,c]));
 assert.equal(cards.size,payload.cards.length);

@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** One independently reviewed source obligation, two exact native occurrences.
  * Numeric overrides/suppression below are disposable QA inputs to the existing
  * executor, never new gameplay facts or claimed UI controls. */
@@ -12,7 +14,7 @@ import {projectFormedUnitCards,prepareRosterPresentationCards} from '../../share
 import {compileBookRecipients,recipientDeclarationView,resolveRecipient} from '../../shared/rule-contract-v2/recipients.mjs';
 import {producerDetachmentTextDeclaration} from '../../shared/roster-v2/conditional-policy.mjs';
 
-const read=file=>JSON.parse(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
+const read=file=>parseSourceFixtureJSON(fs.readFileSync(new URL(file,import.meta.url),'utf8'));
 export const nativeFnpExpectation=read('./native-fnp-source-expectations.json');
 const expectation=nativeFnpExpectation,book=read('./generated/roster-runtime.json'),facts=read('./generated/effective.json'),
   metadata=read('./roster-import-aliases.json'),payload=read('./generated/app-presentation.json'),clone=structuredClone;
@@ -30,10 +32,10 @@ function sourceCheck(candidate=book){
     assert.ok(visible.includes(source.quote),'Expected exact source clause absent from raw');
     const entity=candidate.entities.find(e=>e.id===source.canonicalId);
     assert.equal(entity.parentId,source.ownerId,'SOURCE OWNER');
-    assert.deepEqual(entity.provenance,facts.entities.find(e=>e.id===source.canonicalId).provenance);
-    assert.ok(entity.provenance.sourceId&&entity.provenance.sourcePath&&entity.provenance.pointer);
-    const accepted=JSON.parse(fs.readFileSync(new URL(entity.provenance.sourcePath,root),'utf8'));
-    const occurrence=entity.provenance.pointer.slice(1).split('/').reduce((o,k)=>o[k],accepted);
+    assert.deepEqual(sourceSnapshot(entity),sourceSnapshot(facts.entities.find(e=>e.id===source.canonicalId)));
+    assert.ok(sourceSnapshot(entity).sourceId&&sourceSnapshot(entity).sourcePath&&sourceSnapshot(entity).pointer);
+    const accepted=parseSourceFixtureJSON(fs.readFileSync(new URL(sourceSnapshot(entity).sourcePath,root),'utf8'));
+    const occurrence=sourceSnapshot(entity).pointer.slice(1).split('/').reduce((o,k)=>o[k],accepted);
     if(source.entryId){
       const group=entity.data.groups.find(g=>g.label==='CORE ABILITIES'),entry=group.entries.find(e=>e.id===source.entryId);
       assert.equal(entry.label,source.quote);assert.ok(occurrence.label.includes('CORE ABILITIES'+source.quote));
@@ -83,7 +85,7 @@ for(const body of [fixture.fulgurite,fixture.corpuscarii]){
   assert.ok(grant.before.some(a=>a.id===native.entryId&&a.value===5),'Native occurrence provenance lost during override');
   assert.ok(grant.after.some(a=>a.name==='Feel No Pain'&&a.value===4));
   assert.ok(input(service,body).references.some(r=>r.runtimeEntryId===native.entryId&&r.canonicalId==='core-feel-no-pain'&&r.parameters.value===5),'Native canonical reference/provenance removed');
-  assert.equal(byId.get(grant.ruleId).provenance.sourceId,'am-waha-11e-2026-09-25');
+  assert.equal(sourceSnapshot(byId.get(grant.ruleId)).sourceId,'am-waha-11e-2026-09-25');
   assert.deepEqual(characteristics(service),initialProfiles,'FNP changed Save, Invulnerable Save or other characteristics');
   for(const u of service.projection.units){const prior=baseline.find(x=>x.id===u.instanceId);assert.equal(u.profiles.length,prior.modelBags.length);}
   const saved=service.snapshot();service.load(JSON.parse(JSON.stringify(saved)));verify(service,attachedValues(body));

@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 /** Independent physical-input oracle, plus accepted MFM capture comparisons.
  * These texts are constructed diagnostic New Recruit-compatible fixtures. */
 import fs from 'node:fs';
@@ -11,7 +12,7 @@ import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-cont
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(row=>[row.id,row]));
 const book=buildSpaceMarinesImportBook(),sourceMfm=read('../../../mfm/sources/v1.6/space-marines.json');
 const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));

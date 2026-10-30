@@ -1,3 +1,4 @@
+import {getSourceContext,copySourceEvidence,mergeSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {projectConditionalRow} from './conditional-policy.mjs';
 import {resolveExecutionEffect} from './recipient-execution.mjs';
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
@@ -16,12 +17,12 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     const effect=clause?.rosterEffects.find(value=>value.id===row.effectId);
     if(!effect||effect.operation!==row.operation||row.operation==='MODIFY_STAT'&&row.field!==({BS:'skill',WS:'skill'}[effect.field]||effect.field))
       throw new TypeError('Unresolved executed effect attribution');
-    const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+    const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;
     const origin=records.get(canonicalRuleId);
-    if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+    if(!origin||effect.referencedRuleId&&getSourceContext(effect,{book}).canonicalRuleId&&effect.referencedRuleId!==getSourceContext(effect,{book}).canonicalRuleId)
       throw new TypeError('Unresolved canonical effect origin');
     return {...clone(row),canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
-      provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{}),
+      ...mergeSourceEvidence(copySourceEvidence(origin,{book}),copySourceEvidence(effect,{book,targetSlot:'effectProvenance'})),
       ...(row.operation==='GRANT_WEAPON_ABILITY'?{ability:effect.ability}:{})};
   };
   // Resolve only recorded keyword grants. The final keyword bags remain the
@@ -37,14 +38,14 @@ export function projectEffectiveInstance(book,projection,instanceId) {
           row.operation==='GRANT_MODEL_KEYWORD'&&!model)
         throw new TypeError('Unresolved typed keyword grant provenance');
       if(!(model?.keywords||member.keywords).includes(effect.keyword))return []; // A later removal is not a current grant.
-      const canonicalRuleId=effect.referencedRuleId||effect.provenance?.canonicalRuleId||row.ruleId;
+      const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;
       const origin=records.get(canonicalRuleId);
-      if(!origin||effect.referencedRuleId&&effect.provenance?.canonicalRuleId&&effect.referencedRuleId!==effect.provenance.canonicalRuleId)
+      if(!origin||effect.referencedRuleId&&getSourceContext(effect,{book}).canonicalRuleId&&effect.referencedRuleId!==getSourceContext(effect,{book}).canonicalRuleId)
         throw new TypeError('Unresolved canonical keyword grant origin');
       return [{...clone(row),keyword:effect.keyword,subject:effect.targetSubject,
         unitScope:effect.targetSubject==='UNIT'?(effect.unitScope||'FORMED'):null,
         canonicalRuleId,label:origin.displayName||name(canonicalRuleId),
-        provenance:clone(origin.provenance||{}),...(effect.provenance?{effectProvenance:clone(effect.provenance)}:{})}];
+        ...mergeSourceEvidence(copySourceEvidence(origin,{book}),copySourceEvidence(effect,{book,targetSlot:'effectProvenance'}))}];
     }));
   // UNIT modifiers stay on the UNIT. Preserve the executor's final value
   // and resolve its exact typed source; presentation must not recalculate it.
@@ -57,7 +58,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
     if(!effect||effect.operation!=='MODIFY_RULE_METRIC'||effect.field!==row.field||effect.targetSubject!=='UNIT'||
         !(effect.field==='detectionRange'&&effect.unitScope===undefined||['PHYSICAL','FORMED'].includes(effect.unitScope))||row.targetInstanceId!==instanceId||row.targetModelInstanceId)
       throw new TypeError('Unresolved typed UNIT metric provenance');
-    return {...clone(row),unitScope:effect.unitScope,label:rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
+    return {...clone(row),unitScope:effect.unitScope,label:rule.displayName||name(row.ruleId),...copySourceEvidence(rule,{book})};
   });
   for(const field of Object.keys(unitMetrics))if(!unitMetricSources.some(source=>source.field===field))throw new TypeError('Missing computed UNIT metric provenance');
   // Check the executor's recorded state transitions, without recalculating a
@@ -123,7 +124,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
         const rule=records.get(row.ruleId),effect=rule?.ruleContract?.clauses.find(c=>c.id===row.clauseId)?.rosterEffects.find(e=>e.id===row.effectId);
         if(effect?.operation!=='MODIFY_RULE_METRIC'||effect.field!=='criticalHitThreshold'||effect.mode!=='SET'||row.targetInstanceId!==instanceId)
           throw new TypeError('Unresolved Critical Hit threshold provenance');
-        return {...clone(row),value:effect.value,label:effect.label||rule.displayName||name(row.ruleId),provenance:clone(rule.provenance||{})};
+        return {...clone(row),value:effect.value,label:effect.label||rule.displayName||name(row.ruleId),...copySourceEvidence(rule,{book})};
       });
       if(w.data.criticalHitThreshold!==undefined && (!sources.length||Math.min(6,...sources.map(s=>s.value))!==w.data.criticalHitThreshold))
         throw new TypeError('Missing or inconsistent Critical Hit threshold sources');

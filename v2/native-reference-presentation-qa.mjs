@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** Native-reference visibility guard over accepted source occurrences, runtime
  * registration and the production presenter. This is metadata/presentation
  * coverage, not automatic execution of conditional Core rules. */
@@ -10,7 +12,7 @@ import {createCSMBrowserRoster} from '../books/chaos-space-marines/v2/roster-boo
 import {buildPresentationReferences} from '../books/chaos-space-marines/v2/presentation-reference-build.mjs';
 import {createEffectiveCoreCatalog} from '../books/core-rules/content/effective-core-catalog.mjs';
 
-const root=new URL('../',import.meta.url),read=path=>JSON.parse(fs.readFileSync(new URL(path,root),'utf8')),
+const root=new URL('../',import.meta.url),read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,root),'utf8')),
   clone=structuredClone,dd='core-deadly-demise',fnp='core-feel-no-pain',
   rows=plan=>[...plan.core,...plan.profiles.flatMap(profile=>profile.abilities)],
   books=[['death-guard','2026-09-25','rule-contract-effective',19],
@@ -52,13 +54,13 @@ function sourceExpectations(faction,date,book) {
       const entity=book.entities.find(value=>value.id===reference.sourceId);
       assert.ok(entity,`Accepted source occurrence missing: ${reference.sourceId}`);
       const owner=book.entities.find(value=>value.kind==='DATASHEET'&&
-        [value.sourceEntityId,value.provenance?.sourceId,value.provenance?.sourceRecordId,value.provenance?.sourceEntityId].includes(sheet.sourceId))||
-        book.entities.find(value=>value.kind==='DATASHEET'&&value.provenance?.pointer===`/datasheets/${corpus.datasheets.indexOf(sheet)}`);
+        [value.sourceEntityId,sourceSnapshot(value)?.sourceId,sourceSnapshot(value)?.sourceRecordId,sourceSnapshot(value)?.sourceEntityId].includes(sheet.sourceId))||
+        book.entities.find(value=>value.kind==='DATASHEET'&&sourceSnapshot(value)?.pointer===`/datasheets/${corpus.datasheets.indexOf(sheet)}`);
       assert.ok(owner,`Accepted source owner missing: ${sheet.sourceId}`);
       assert.equal(entity.parentId||entity.ownerId,owner.id,'Wrong source owner');
-      let evidence=entity.provenance?.sourceEvidence?.find(value=>/\.html$/.test(value.document||''));
+      let evidence=sourceSnapshot(entity)?.sourceEvidence?.find(value=>/\.html$/.test(value.document||''));
       if(faction==='chaos-space-marines')assert.ok(evidence,'CSM accepted raw source evidence missing');
-      if(!evidence&&entity.provenance?.document?.endsWith('.html'))evidence={document:entity.provenance.document,sha256:entity.provenance.sha256};
+      if(!evidence&&sourceSnapshot(entity)?.document?.endsWith('.html'))evidence={document:sourceSnapshot(entity).document,sha256:sourceSnapshot(entity).sha256};
       if(!evidence&&faction==='adeptus-mechanicus') {
         const page=corpus.pages.find(value=>value.url===sheet.url);
         assert.ok(page,'Accepted raw source page locator missing');
@@ -193,7 +195,7 @@ catches('wrong-owner',()=>{
   sourceExpectations('chaos-space-marines','2026-09-29',changed);
 });
 catches('csm-raw-provenance-removed',()=>{
-  const changed=clone(book);changed.entities.find(value=>value.id===expectation.referenceId).provenance.sourceEvidence=[];
+  const changed=clone(book);sourceFixture(changed.entities.find(value=>value.id===expectation.referenceId)).provenance.sourceEvidence=[];
   sourceExpectations('chaos-space-marines','2026-09-29',changed);
 });
 catches('wrong-dd-parameter',()=>{const changed=clone(input);changed.references.find(value=>value.canonicalId===dd).parameters={value:99};assertVisible(changed,expectation);});

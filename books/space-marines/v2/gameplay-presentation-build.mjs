@@ -1,3 +1,4 @@
+import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Isolated native gameplay presentation. Existing projectors and presenters
  * consume it; this is not an application registration or import adapter. */
 import fs from 'node:fs';
@@ -20,8 +21,9 @@ const textReferences={
 };
 
 export function buildGameplayPresentation(built=buildSpaceMarinesContracts()){
+  built={...built,book:prepareSourceProducer(built.book),...(built.facts?{facts:prepareSourceProducer(built.facts)}:{}),...(built.native?{native:{...built.native,model:prepareSourceProducer(built.native.model),payload:prepareSourceProducer(built.native.payload)}}:{})};
   const payload=structuredClone(built.native.payload),before=JSON.stringify(built.book);
-  const glossary=buildGlossary({model:built.book,coreCatalog:createEffectiveCoreCatalog()});
+  const glossary=prepareSourceProducer(buildGlossary({model:built.book,coreCatalog:createEffectiveCoreCatalog()}));
   payload.cards.push(...glossary.coreCards);payload.factManifest.push(...glossary.coreFactManifest);
   payload.glossary=glossary.index;
   const cards=new Map(payload.cards.map(card=>[card.id,card])),fields={};
@@ -56,7 +58,7 @@ export function buildGameplayPresentation(built=buildSpaceMarinesContracts()){
 
 export function writeGameplayPresentation({check=false}={}){
   const payload=buildGameplayPresentation(),path=new URL('./generated/gameplay-presentation.json',import.meta.url);
-  const bytes=JSON.stringify(payload,null,2)+'\n';
+  const bytes=serializeSourceJSON(payload);
   if(check)assert.equal(fs.readFileSync(path,'utf8'),bytes,'Stale native gameplay presentation');else fs.writeFileSync(path,bytes);
   return payload;
 }

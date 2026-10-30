@@ -1,3 +1,5 @@
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
+import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Bounded presentation parity and fail-closed controls; no source re-audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,7 +8,7 @@ import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
-const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildTyranidsContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
 const cards=new Map(payload.cards.map(card=>[card.id,card]));
@@ -21,7 +23,7 @@ export function assertPresentationParity(candidate){
   for(const entity of facts.entities){
     const card=candidate.cards.find(card=>card.id===entity.id);assert.ok(card,'Missing factual card '+entity.id);
     assert.equal(card.parentId,entity.parentId,'Changed canonical owner '+entity.id);
-    assert.deepEqual(card.provenance,entity.provenance,'Changed provenance '+entity.id);
+    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Changed provenance '+entity.id);
   }
   for(const card of candidate.cards)for(const field of card.fields){
     if(!index.has(field.source.entityId)&&!field.source.entityId.startsWith('mfm-'))continue;
@@ -79,10 +81,13 @@ for(const id of ['faq-biovores-seed-spore-mines-hidden-v1.3','tyranids-source-co
 }
 for(const id of ['datasheet-old-one-eye:rule-reference:1','datasheet-psychophage:rule-reference:2']){
  const source=facts.rosterReferenceSemantics[id];assert.ok(source,'Missing native FNP MODEL semantics');
- assert.deepEqual(source,built.book.rosterReferenceSemantics[id]);
+ assert.deepEqual(sourceDeclarationView(source,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics[id],{book:built.book}));
 }
 assert.equal(JSON.stringify(built),before,'Presentation mutated source owner');
 let mutations=0;
+const changedFnp=structuredClone(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1']);
+sourceFixture(changedFnp,{book:facts}).provenance.sha256='changed-source-hash';
+assert.throws(()=>assert.deepEqual(sourceDeclarationView(changedFnp,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:built.book})),'FNP source equality must still reject a changed recorded hash');mutations++;
 const mismatch=structuredClone(payload);mismatch.cards.find(card=>card.id==='datasheet-psychophage:profile:1').fields.find(field=>field.source.path==='/stats/W').value='2';
 assert.throws(()=>assertPresentationParity(mismatch),/Factual presentation mismatch/);mutations++;
 const missing=structuredClone(payload);missing.cards.find(card=>card.id==='datasheet-broodlord:section:1').fields=missing.cards.find(card=>card.id==='datasheet-broodlord:section:1').fields.filter(field=>field.source.path!=='/blocks/0/text');

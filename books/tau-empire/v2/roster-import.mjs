@@ -6,6 +6,7 @@ import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
   tauSourceChoiceContext,preserveTauSourceChoices,bindTauStudentPairs,bindTauShieldModels} from './roster-source-choices.mjs';
 import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from './roster-weapon-choices.mjs';
+import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -35,6 +36,14 @@ export function createTauRosterImport(input){
     const checked=(object,key,value)=>{
       if(Object.hasOwn(object,key)&&!same(object[key],value))error('CONFLICTING_SOURCE_BINDING',key,'Stored physical/source binding changed');
       else object[key]=copy(value);
+    };
+    const checkedSource=(object,key,source)=>{
+      if((Object.hasOwn(object,key)||object.sourceBindings?.[key])&&!sameSourceEvidence(object,source,{book,slot:key,otherSlot:'provenance'}))
+        error('CONFLICTING_SOURCE_BINDING',key,'Stored physical/source binding changed');
+      else {
+        const prior=Object.keys(object.sourceBindings||{}).filter(slot=>!slot.startsWith('$')).map(slot=>copySourceEvidence(object,{book,slot}));
+        delete object[key];Object.assign(object,mergeSourceEvidence(...prior,copySourceEvidence(source,{book,targetSlot:key})));
+      }
     };
     if(draft){
       state.importEvidence=copy(draft.metadata);
@@ -84,7 +93,7 @@ export function createTauRosterImport(input){
           error('WRONG_PROVIDED_WEAPON',selection.selectionKey,'Equipment does not provide this canonical weapon');
         else selection.canonicalProfileIds=copy(provided);
         checked(selection,'sourceEquipmentIdentity',binding.genericEquipmentId||binding.canonicalEquipmentIds[0]);
-        checked(selection,'sourceEquipmentProvenance',index.get(binding.genericEquipmentId||binding.canonicalEquipmentIds[0]).provenance);
+        checkedSource(selection,'sourceEquipmentProvenance',index.get(binding.genericEquipmentId||binding.canonicalEquipmentIds[0]));
       }
       const mfm=book.mfmImportReferences.partitions;
       checked(unit,'mfmUnitRecordId',mfm.unitBindings.find(row=>row.entityId===unit.canonicalUnitId)?.mfmRecordId);

@@ -18,6 +18,8 @@ from lxml import html
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+sys.path.insert(0, str(ROOT/'books/shared/tools'))
+from source_refs_output import serialized_source_outputs
 BOOK = 'dark-angels'
 RAW = 'books/dark-angels/v2/sources/raw/'
 HUB = RAW+'wahapedia-dark-angels-main.html'
@@ -427,9 +429,8 @@ def main():
     parser.add_argument('--check',action='store_true')
     args=parser.parse_args()
     documents=build()
-    for name,value in documents.items():
+    for name,expected in serialized_source_outputs(documents, ROOT).items():
         path=HERE/'generated'/(name+'.json')
-        expected=serialize(value)
         if args.check:
             if not path.exists() or path.read_bytes()!=expected:
                 raise ValueError('Stale/non-deterministic factual output: '+name)

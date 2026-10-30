@@ -4,6 +4,7 @@
  * Addresses identify fields within their existing canonical owner, never a new
  * gameplay entity. Unknown fields fail closed instead of silently disappearing.
  */
+import {sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 const fail = message => { throw new Error(`Army Book App V2 fact oracle: ${message}`); };
 export const factPointer = path => '/' + path.map(key => String(key).replace(/~/g, '~0').replace(/\//g, '~1')).join('/');
 export const factIdentity = (entityId, path) => `${entityId}::${factPointer(path)}`;
@@ -123,6 +124,11 @@ const visiblePatterns = specifications => patterns(specifications.map(specificat
  */
 export function enumerateExpectedFacts(model, mfmRecords) {
   if (!Array.isArray(model?.entities) || !(mfmRecords instanceof Map)) fail('canonical model and Map of owned MFM records required');
+  // Compare the exact accepted declaration at this independent oracle boundary.
+  // Only source encoding is inverted; all factual fields and closed shapes stay
+  // subject to the original fail-closed enumeration below.
+  model=sourceDeclarationView(model);
+  mfmRecords=new Map([...mfmRecords].map(([id,record])=>[id,sourceDeclarationView(record)]));
   const facts = [], exclusions = [], identities = new Set(), entities = new Map();
   const add = (entityId, path, value, contextId, extras = {}) => {
     const id = factIdentity(entityId, path);

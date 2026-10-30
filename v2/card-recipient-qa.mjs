@@ -1,3 +1,4 @@
+import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** F2: exact physical carrier counts through the real import/attachment and
  * presentation path. Synthetic controls are physical records, not new effects. */
 import assert from 'node:assert/strict';
@@ -12,7 +13,7 @@ import {prepareRosterPresentationCards,projectFormedUnitCards,projectDetachmentF
 import {countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey} from '../books/shared/army-book-app-v2/effective-datasheet-presentation.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
-const read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
+const read=file=>parseSourceFixtureJSON(fs.readFileSync(path.join(root,file),'utf8'));
 const book=read('books/death-guard/v2/generated/rule-contract-effective.json');
 const payload=read('books/death-guard/v2/generated/app-presentation.json');
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);

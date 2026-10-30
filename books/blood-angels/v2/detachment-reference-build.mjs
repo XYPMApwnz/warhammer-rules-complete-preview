@@ -1,3 +1,4 @@
+import {prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Book-owned reviewed consumer permission over existing canonical references. */
 import {buildNativeMfmBook} from '../../space-marines/v2/mfm-build.mjs';
 import {buildDetachmentReferences as buildReferences,appendDetachmentReferencePresentation as appendPresentation} from '../../shared/roster-v2/detachment-reference-build.mjs';
@@ -9,6 +10,7 @@ const permission={
  scope:'DEATHWATCH ALLIES; exception to Space Marine Chapters; 500 point cap; Warlord and KILL TEAM Enhancement restrictions remain source text'
 };
 export function buildDetachmentReferences(native=buildNativeMfmBook()){
+  native={...native,model:prepareSourceProducer(native.model),payload:prepareSourceProducer(native.payload)};
  return buildReferences(native,permission);
 }
 export function appendDetachmentReferencePresentation(payload){
