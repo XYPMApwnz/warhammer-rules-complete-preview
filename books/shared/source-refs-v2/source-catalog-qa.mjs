@@ -55,7 +55,10 @@ try{
   fs.writeFileSync(path.join(folder,'record.json'),JSON.stringify(record));
   const script=`import fs from 'node:fs';import {readSourceRefs,sourceSnapshot} from ${JSON.stringify(pathToFileURL(path.join(folder,'source-refs.mjs')).href)};const record=JSON.parse(fs.readFileSync(${JSON.stringify(path.join(folder,'record.json'))}));readSourceRefs(record);sourceSnapshot(record);`;
   const result=spawnSync(process.execPath,['--input-type=module','-e',script],{encoding:'utf8'});
-  assert.notEqual(result.status,0,name+' must reject a cold load');assert.match(result.stderr,/Source catalog content changed|Source reference content changed|Missing source (?:documents|refs) entry/);
+  const expectedError=name==='document entry deleted'?/Missing source documents entry/:
+    name==='reference entry absent on cold load'?/Missing source refs entry/:
+    /Source catalog content changed|Source reference content changed/;
+  assert.notEqual(result.status,0,name+' must reject a cold load');assert.match(result.stderr,expectedError);
   controls.push({name,status:'REJECTED'});
  }
  passed=true;

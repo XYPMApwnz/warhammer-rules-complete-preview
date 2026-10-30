@@ -1,6 +1,6 @@
 # Source reference closure repair
 
-Implementation: `c73bd5396aa358d97603650ebd28a4886b61cf6b`; migration base: `75d322e4e3274f14d7e2a81abace3ba63c784ec5`. Full QA is pending; the results below are targeted controls.
+Implementation: `c73bd5396aa358d97603650ebd28a4886b61cf6b`; migration base: `75d322e4e3274f14d7e2a81abace3ba63c784ec5`. Full QA completed; see [the final validation report](source-refs-final-validation.md) for actual classifications. The controls below are the targeted repair proof.
 
 ## Cause and repair
 

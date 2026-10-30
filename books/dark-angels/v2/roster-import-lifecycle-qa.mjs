@@ -1,6 +1,8 @@
 /** Focused source/input ownership and persistence regressions, constructed NR. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
+import {sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {buildDarkAngelsImportBook} from './roster-import-build.mjs';
 import {createDarkAngelsRosterService} from './roster-import.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
@@ -23,7 +25,7 @@ check('unit-paid-inventory-never-guesses-model-bearer',()=>{
  assert.ok(service.projection.units[0].profiles.every(model=>model.profile.stats.W==='3'));
  assert.ok(!service.projection.units[0].applied.some(trace=>trace.ruleId===shieldRule));
  const selection=service.state.units[0].selections[0];assert.equal(selection.sourceEquipmentIdentity,shieldRule);
- assert.deepEqual(selection.sourceEquipmentProvenance,index.get(shieldRule).provenance);assert.equal(selection.physicalQuantity,1);
+ assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(index.get(shieldRule)));assert.equal(selection.physicalQuantity,1);
 });
 check('confirmed-model-equipment-effect-isolated-from-other-models-and-unit-copy',()=>{
  const service=createDarkAngelsRosterService(book),text=header+unitText(shieldUnit,{modelGear:'1x Storm Shield'})+unitText(shieldUnit,{unitGear:'1x Storm Shield'});
@@ -82,7 +84,7 @@ check('quantity-identity-and-owner-mutations-cannot-replace-saved-roster',()=>{
  for(const corrupt of [
   value=>{value.units[0].modelRows[0].selections[0].physicalQuantity+=1;},
   value=>{value.units[0].modelRows[0].selections[0].sourceEquipmentIdentity='wrong-id';},
-  value=>{value.units[0].modelRows[0].selections[0].sourceEquipmentProvenance.sha256='00';},
+  value=>{sourceFixture(value.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sha256='00';},
   value=>{value.units[0].modelRows[0].selections[0].canonicalFieldPaths[shieldRule]=['/wrong'];},
   value=>{value.units[0].modelRows[0].selections.push(clone(value.units[0].modelRows[0].selections[0]));},
   value=>{value.units[0].mfmUnitRecordId='foreign-price';},

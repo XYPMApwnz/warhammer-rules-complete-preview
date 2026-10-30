@@ -1,5 +1,7 @@
 # Source references
 
+Runtime proofs can name a binding slot such as `sourceEquipmentProvenance` without recreating that legacy object field. `copySourceEvidence` writes the slot into the common binding tuple; consumers read it with `sourceSnapshot(record, {slot})`. Test mutations republish named slots through the same source format, retaining their strict source comparison.
+
 `books/shared/source-refs-v2/source-refs.mjs` supplies one source-reference format for all nine V2 books. This format records provenance already accepted by the book producers; it does not create source facts, infer recipients, or translate rule text. Stratagem declarations remain in their existing format.
 
 Published records have `sourceRefs: [{documentId, referenceId, locators, ...}]`. `documentId` addresses one document table per book in `books/shared/source-refs-v2/source-catalog.json`. A document row stores the registered `sourceId`, document path, paired document hash, authority and recorded currentness. Locators, fragment hashes and document/corpus role stay on the individual reference. `referenceId` authenticates that complete document/locator association; changing a locator cannot silently create accepted evidence. A document and its corpus remain separate references with their own hashes. An unregistered or ambiguous document is explicitly `UNRESOLVED_SOURCE`. Captured or canonical entity IDs retain their identity meaning in typed contexts; an unknown entity ID alone does not create an unresolved document reference.

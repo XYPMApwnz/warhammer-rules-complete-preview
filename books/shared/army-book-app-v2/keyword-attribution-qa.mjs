@@ -3,6 +3,8 @@
  * existing source-owned contracts and constructed physical selections. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {projectEffectiveInstance} from '../roster-v2/effective-instance.mjs';
 import {projectInstanceCards,projectPersonalBook} from './personal.mjs';
 import {createSyntheticPersonalFixture} from './personal-datasheet-qa.mjs';
@@ -11,7 +13,7 @@ import {createAdMechRosterRuntime} from '../../adeptus-mechanicus/v2/roster-runt
 import {createSpaceMarinesRosterRuntime} from '../../space-marines/v2/roster-runtime.mjs';
 import {createTauBrowserRoster} from '../../tau-empire/v2/roster-boot.mjs';
 import {createTyranidsBrowserRoster} from '../../tyranids/v2/roster-boot.mjs';
-const clone=structuredClone,read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
+const clone=structuredClone,read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8'));
 let checks=0,mutations=0;
 function fixture(nested){
  const f=createSyntheticPersonalFixture('keyword-source-'+nested,nested),{id}=f;
@@ -102,10 +104,10 @@ function native(runtime,book,payload,s,keyword,origin){
  assert.equal(runtime.import(`+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Marker Drone\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit\n`).status,'READY');
  const e=native(runtime,b,p,runtime.snapshot(),'MARKERLIGHT','drone-marker-drone');
  assert.notEqual(e.keywordSources[0].canonicalRuleId,e.keywordSources[0].ruleId,'Canonical grant definition, not equipment-selection permission');
- assert.ok(e.keywordSources[0].effectProvenance.sourceEvidence);checks++;
+ assert.ok(sourceSnapshot(e.keywordSources[0],{slot:'effectProvenance'}).sourceEvidence);checks++;
  const snapshot=runtime.snapshot();
  assert.ok(projectPersonalBook(p,snapshot).allowedIds.has('drone-marker-drone'),'Canonical equipment source is readable without bypassing reference guards');checks++;
- for(const alter of [s=>s.physicalQuantity=0,s=>s.sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){
+ for(const alter of [s=>s.physicalQuantity=0,s=>sourceFixture(s).sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){
   const bad=clone(snapshot),selection=bad.units[0].modelRows[0].selections[0];alter(selection);
   assert.ok(!projectPersonalBook(p,bad).allowedIds.has('drone-marker-drone'));mutations++;
  }

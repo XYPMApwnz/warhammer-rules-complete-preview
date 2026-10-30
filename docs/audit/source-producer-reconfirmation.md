@@ -70,3 +70,7 @@ Implementation commit: [c73bd5396aa358d97603650ebd28a4886b61cf6b](https://github
 - All 19 native SM generated JSON outputs are final: 16 contain regenerated sourceRefs and 3 require no source binding migration. Every inverse field/string/order matches base. Final QA results are reported separately.
 - This is an automatic static all-field/inverse proof and producer diff review, not a new semantic audit or browser attestation. No QA suites were executed for this reconfirmation.
 - BA and DA review files were scanned. They contain no separate pin for this SM producer; the SM source-review also contains a historical Deathwatch copy, which is updated to the identical producer bytes without changing Deathwatch data or scope.
+
+## Serialization closure follow-up
+
+The [common serializer fix](https://github.com/XYPMApwnz/warhammer-rules-complete-preview/commit/2c6d6716eb97394c91ddde4efc462f3ae507eed2) traverses ordinary factual sourceBindings containers and validates table closure independently of warm reader pools. The pinned SM producer remains f887c2e4; no additional pinned producer changed. Current shared serializer SHA-256: `4c1a0d5600fe22154b863dd46a1c6883ef14827653413b6c51c96620d161c620`; closure validator SHA-256: `77a67efd8e515abf394847aefb3ddf8996dcc752cd738b7a11acccb00c88f684`.

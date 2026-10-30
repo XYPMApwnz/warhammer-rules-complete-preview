@@ -18,7 +18,7 @@ const lines=text=>text.split('\n').map(line=>line.endsWith('\r')?line.slice(0,-1
 const knownAtBase=new Set(git('ls-tree','-r','--name-only',base).toString('utf8').trim().split('\n'));
 const files=git('diff','--name-only',base,'--','*.mjs','*.py').toString('utf8').trim().split('\n')
  .filter(file=>knownAtBase.has(file)).sort(cmp);
-const legacy=/\b(?:provenance|sourceProvenance|effectProvenance|mfmProvenance|sourceEvidence|fieldProvenance|currentness|sourceId|sourcePath|corpusDocument|sourceLocator)\b/;
+const legacy=/\b(?:provenance|sourceProvenance|effectProvenance|mfmProvenance|sourceEquipmentProvenance|suppressionProvenance|sourceEvidence|fieldProvenance|currentness|sourceId|sourcePath|corpusDocument|sourceLocator)\b/;
 const serialization=/\b(?:JSON\.parse|JSON\.stringify|json\.dumps|serialize\(|read_text\(|write_text\(|readFileSync\(|writeFileSync\()/;
 const apiModules=['books/shared/source-refs-v2/source-refs.mjs','books/shared/source-refs-v2/source-registry.mjs','books/shared/source-refs-v2/source-serialization.mjs','books/shared/source-refs-v2/source-closure.mjs','books/shared/source-refs-v2/source-closure-qa.mjs','books/shared/source-refs-v2/producer-io.mjs','tests/helpers/source-refs-fixtures.mjs'];
 const apiDefinitions=[];

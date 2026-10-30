@@ -29,7 +29,7 @@ const records={schema:'tau-empire-v2-physical-import-qa/v1',expectedAuthority:'A
  checks:[],negativeControls:[],mutations:[],runtimeCases:[],fixtures:[],limitations:[],REAL_NEW_RECRUIT_EXPORT_TESTED:'NO',frontendVerified:false};
 let checks=0;
 function test(id,fn){
- try{fn();records.checks.push({id,status:'PASS'});}catch(error){
+ try{fn();records.checks.push({id,status:'PASS'});console.log(id+' PASS');}catch(error){
   records.checks.push({id,status:'FAIL',message:error.message,stack:error.stack});
   console.error(id+': '+error.stack);
  }checks++;
@@ -206,7 +206,7 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
    const text=header()+equipped+fixture(id).text,service=make(),state=ready(text,{},service).roster,run=runtime(state);
    const inventory=selections(state.units[0]).filter(selection=>selection.sourceEquipmentIdentity===markerId);
    assert.equal(inventory.length,1);assert.equal(inventory[0].physicalQuantity,1);
-   assert.deepEqual(inventory[0].sourceEquipmentProvenance,sourceSnapshot(source),'One generic source provenance');
+   assert.deepEqual(sourceSnapshot(inventory[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(source),'One generic source provenance');
    assert.ok(inventory[0].canonicalEquipmentIds.includes(occurrence.optionId),'Physical equipment uses correct local source occurrence');
    if(!known)assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown bearer remains unknown');
    assertMarkerOnly(run.projection,state.units[0].instanceId,baseline);
@@ -279,7 +279,7 @@ test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
   const local=book.entities.find(entity=>entity.id===occurrence.optionId);
   assert.equal(local.ruleContract.canonicalRuleReferences.filter(id=>id===shieldId).length,1);
   for(const selection of selections(state.units[0]).filter(row=>row.sourceEquipmentIdentity===shieldId))
-   assert.deepEqual(selection.sourceEquipmentProvenance,sourceSnapshot(root));
+   assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(root));
   if(!known)assert.ok(state.units[0].modelRows.every(model=>model.selections.length===0),'Unknown bearer is never invented');
   const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(rule=>(rule.ruleContract?.clauses||[])
    .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({rule,clause,effect})))).filter(({effect})=>sourceSnapshot(effect)?.canonicalRuleId===shieldId);
@@ -431,7 +431,7 @@ test('all39-common-drone-and-tidewall-source-inventory-occurrences',()=>{
    assert.equal(chosen.length,1,'One exact UNIT-level equipment selection');assert.equal(chosen[0].physicalQuantity,2);
    assert.ok(chosen[0].canonicalEquipmentIds.includes(source.id),'Accepted Datasheet option remains physical UNIT owner');
    assert.equal(chosen[0].sourceEquipmentIdentity,equipment.id,'One generic drone factual identity');
-   assert.deepEqual(chosen[0].sourceEquipmentProvenance,sourceSnapshot(equipment),'Generic drone provenance retained');
+   assert.deepEqual(sourceSnapshot(chosen[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(equipment),'Generic drone provenance retained');
    assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown MODEL bearer never invented');
    assert.deepEqual(make().load(state),state,'Aggregate equipment inventory reload');count++;
   }
@@ -449,7 +449,7 @@ test('equipment-identity-provenance-owner-and-quantity-mutations',()=>{
  const text=header()+gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Gun Drone',2),service=make();
  const state=ready(text,{},service).roster;
  for(const [id,mutate]of [
-  ['equipment-wrong-source-id',s=>s.units[0].modelRows[0].selections[0].sourceEquipmentProvenance.sourceId='wrong-source'],
+  ['equipment-wrong-source-id',s=>sourceFixture(s.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sourceId='wrong-source'],
   ['equipment-wrong-identity',s=>s.units[0].modelRows[0].selections[0].sourceEquipmentIdentity='drone-missile-drone'],
   ['equipment-wrong-physical-owner',s=>s.units[0].modelRows[0].selections[0].canonicalEquipmentIds=['datasheet-pathfinder-team:wargear:2']],
   ['equipment-wrong-provided-weapon',s=>s.units[0].modelRows[0].selections[0].canonicalProfileIds=['datasheet-commander-in-coldstar-battlesuit:weapon:1']],

@@ -3,16 +3,16 @@
   "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
   "scope": "Every changed existing .mjs/.py file compared with the accepted Translate-2 base. New migration modules/tests are listed separately and are not disguised as pre-existing reader changes.",
   "summary": {
-    "changedExistingCodeFiles": 151,
+    "changedExistingCodeFiles": 155,
     "byRole": {
       "BUILDER": 67,
       "ORACLE_OR_SOURCE_GUARD": 4,
       "RUNTIME_CONSUMER": 40,
-      "TEST_ORACLE_OR_SCENARIO": 40
+      "TEST_ORACLE_OR_SCENARIO": 44
     },
-    "oldSourceSites": 196,
-    "oldJSONBoundaries": 167,
-    "addedCommonAPISites": 808,
+    "oldSourceSites": 202,
+    "oldJSONBoundaries": 168,
+    "addedCommonAPISites": 835,
     "withoutCommonAPIIdentifier": []
   },
   "apiDefinitions": [
@@ -35,6 +35,21 @@
       "api": "serializeSourceJSON",
       "path": "books/shared/source-refs-v2/producer-io.mjs",
       "line": 20
+    },
+    {
+      "api": "sourceBookIds",
+      "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+      "line": 9
+    },
+    {
+      "api": "checkSourceClosureTree",
+      "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+      "line": 10
+    },
+    {
+      "api": "assertSourceReferenceClosure",
+      "path": "books/shared/source-refs-v2/source-closure.mjs",
+      "line": 7
     },
     {
       "api": "SOURCE_SCHEMA",
@@ -169,12 +184,12 @@
     {
       "api": "parseSourceFixtureJSON",
       "path": "tests/helpers/source-refs-fixtures.mjs",
-      "line": 9
+      "line": 10
     },
     {
       "api": "sourceFixture",
       "path": "tests/helpers/source-refs-fixtures.mjs",
-      "line": 10
+      "line": 11
     }
   ],
   "files": [
@@ -440,7 +455,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -500,7 +515,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -510,7 +525,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -520,7 +535,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -675,7 +690,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -695,7 +710,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -725,7 +740,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -1027,7 +1042,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -1047,7 +1062,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -1522,7 +1537,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -1542,7 +1557,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -2617,7 +2632,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -2637,7 +2652,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3035,7 +3050,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3045,7 +3060,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -3150,7 +3165,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3160,7 +3175,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3170,7 +3185,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3180,7 +3195,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -3564,7 +3579,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3574,7 +3589,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -3584,7 +3599,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -4119,7 +4134,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -4139,7 +4154,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -5003,6 +5018,91 @@
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
     },
     {
+      "path": "books/dark-angels/v2/roster-import-lifecycle-qa.mjs",
+      "role": "TEST_ORACLE_OR_SCENARIO",
+      "baseSha256": "022454b596ed6a931162be55623cb1fd73ccdfd846ddcd486054d347d809eb3a",
+      "featureSha256": "1fdc9c06ef3fdd9aede853dd96f8ff11a3722d1eca34793dfd91c30d23c35476",
+      "diffSha256": "fd2e14179ee79709207372ace6d3104106e033c172db8b8ea3ef25cb5808c0f9",
+      "oldSourceReadOrDeclarationSites": [
+        {
+          "line": 26,
+          "text": " assert.deepEqual(selection.sourceEquipmentProvenance,index.get(shieldRule).provenance);assert.equal(selection.physicalQuantity,1);",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        },
+        {
+          "line": 85,
+          "text": "  value=>{value.units[0].modelRows[0].selections[0].sourceEquipmentProvenance.sha256='00';},",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        }
+      ],
+      "oldJSONBoundarySites": [],
+      "addedCommonAPISites": [
+        {
+          "line": 4,
+          "text": "import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';",
+          "api": "sourceSnapshot",
+          "definition": {
+            "api": "sourceSnapshot",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 311
+          }
+        },
+        {
+          "line": 5,
+          "text": "import {sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        },
+        {
+          "line": 28,
+          "text": " assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(index.get(shieldRule)));assert.equal(selection.physicalQuantity,1);",
+          "api": "sourceSnapshot",
+          "definition": {
+            "api": "sourceSnapshot",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 311
+          }
+        },
+        {
+          "line": 87,
+          "text": "  value=>{sourceFixture(value.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sha256='00';},",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        }
+      ],
+      "currentCommonAPICalls": [
+        {
+          "api": "sourceSnapshot",
+          "line": 28,
+          "text": " assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(index.get(shieldRule)));assert.equal(selection.physicalQuantity,1);"
+        },
+        {
+          "api": "sourceFixture",
+          "line": 87,
+          "text": "  value=>{sourceFixture(value.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sha256='00';},"
+        }
+      ],
+      "addedVerificationSites": [
+        {
+          "line": 28,
+          "text": " assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(index.get(shieldRule)));assert.equal(selection.physicalQuantity,1);"
+        }
+      ],
+      "addedLines": 4,
+      "removedLines": 2,
+      "classification": "COMMON_SOURCE_API_ADAPTATION",
+      "structuralAdaptation": null,
+      "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
+    },
+    {
       "path": "books/dark-angels/v2/roster-import-qa.mjs",
       "role": "TEST_ORACLE_OR_SCENARIO",
       "baseSha256": "64cc96aaa4e9f21af052874ae442c8857205f690103cc8cd3b1ea22459cdcfbd",
@@ -5030,7 +5130,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -5050,7 +5150,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -5854,7 +5954,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -5914,7 +6014,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -6066,7 +6166,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -6076,7 +6176,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -6561,7 +6661,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -6571,7 +6671,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -6937,7 +7037,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -6947,7 +7047,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -7363,7 +7463,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -7393,7 +7493,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -7403,7 +7503,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -8052,6 +8152,122 @@
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
     },
     {
+      "path": "books/shared/army-book-app-v2/keyword-attribution-qa.mjs",
+      "role": "TEST_ORACLE_OR_SCENARIO",
+      "baseSha256": "bd3a34e5f1b6491c65c6876d60797b36faf7dfb4e625ad22daa5c3b39f4d712e",
+      "featureSha256": "7afec11bad975c81dfa69c739f96b9573dd7e18ba7ec4754a8f141b48d178f61",
+      "diffSha256": "4e24fe732ee03e86bf4d5642c7dff99a81a542b34b990150e8e3536f0e61af08",
+      "oldSourceReadOrDeclarationSites": [
+        {
+          "line": 105,
+          "text": " assert.ok(e.keywordSources[0].effectProvenance.sourceEvidence);checks++;",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        },
+        {
+          "line": 108,
+          "text": " for(const alter of [s=>s.physicalQuantity=0,s=>s.sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        }
+      ],
+      "oldJSONBoundarySites": [
+        {
+          "line": 14,
+          "text": "const clone=structuredClone,read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url),'utf8'));",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        }
+      ],
+      "addedCommonAPISites": [
+        {
+          "line": 6,
+          "text": "import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';",
+          "api": "sourceSnapshot",
+          "definition": {
+            "api": "sourceSnapshot",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 311
+          }
+        },
+        {
+          "line": 7,
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "api": "parseSourceFixtureJSON",
+          "definition": {
+            "api": "parseSourceFixtureJSON",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 10
+          }
+        },
+        {
+          "line": 7,
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        },
+        {
+          "line": 16,
+          "text": "const clone=structuredClone,read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8'));",
+          "api": "parseSourceFixtureJSON",
+          "definition": {
+            "api": "parseSourceFixtureJSON",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 10
+          }
+        },
+        {
+          "line": 107,
+          "text": " assert.ok(sourceSnapshot(e.keywordSources[0],{slot:'effectProvenance'}).sourceEvidence);checks++;",
+          "api": "sourceSnapshot",
+          "definition": {
+            "api": "sourceSnapshot",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 311
+          }
+        },
+        {
+          "line": 110,
+          "text": " for(const alter of [s=>s.physicalQuantity=0,s=>sourceFixture(s).sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        }
+      ],
+      "currentCommonAPICalls": [
+        {
+          "api": "parseSourceFixtureJSON",
+          "line": 16,
+          "text": "const clone=structuredClone,read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8'));"
+        },
+        {
+          "api": "sourceSnapshot",
+          "line": 107,
+          "text": " assert.ok(sourceSnapshot(e.keywordSources[0],{slot:'effectProvenance'}).sourceEvidence);checks++;"
+        },
+        {
+          "api": "sourceFixture",
+          "line": 110,
+          "text": " for(const alter of [s=>s.physicalQuantity=0,s=>sourceFixture(s).sourceEquipmentProvenance.sha256='foreign',s=>s.canonicalEquipmentIds=['missing'],s=>s.sourceEquipmentIdentity='drone-shield-drone']){"
+        }
+      ],
+      "addedVerificationSites": [
+        {
+          "line": 107,
+          "text": " assert.ok(sourceSnapshot(e.keywordSources[0],{slot:'effectProvenance'}).sourceEvidence);checks++;"
+        }
+      ],
+      "addedLines": 5,
+      "removedLines": 3,
+      "classification": "COMMON_SOURCE_API_ADAPTATION",
+      "structuralAdaptation": null,
+      "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
+    },
+    {
       "path": "books/shared/army-book-app-v2/navigation-v1.mjs",
       "role": "RUNTIME_CONSUMER",
       "baseSha256": "24542a5ae56baf0bd710484a9bb275400e2755b7515d78f5ebc129d951eb283e",
@@ -8206,6 +8422,11 @@
         {
           "line": 200,
           "text": "    const identity=row=>JSON.stringify([row.ruleId,row.clauseId,row.detachmentText.recipientId,row.sourceProvenance,row.sourceOwnerChain]);",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        },
+        {
+          "line": 233,
+          "text": "    const origin=cards.get(selection.sourceEquipmentIdentity),proof=selection.sourceEquipmentProvenance;",
           "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
         },
         {
@@ -10365,7 +10586,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -10375,7 +10596,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -10405,7 +10626,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -10455,7 +10676,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -11182,7 +11403,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -11192,7 +11413,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -12128,7 +12349,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -12148,7 +12369,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -12364,8 +12585,8 @@
       "path": "books/tau-empire/v2/roster-import-qa.mjs",
       "role": "TEST_ORACLE_OR_SCENARIO",
       "baseSha256": "35bee718caa71314237c0689899fcec5d9cfd7c4cbd65de8b0f7ccb4ec2ef5b1",
-      "featureSha256": "9df5ae6b307f141fe51706e779a0eb87001076f5d0e1854c44d4666476b3dd79",
-      "diffSha256": "edb109541112bc689f1789d5f9b51b10b9cc44f8d204f0e2826c1355db477e65",
+      "featureSha256": "bed293225345659afb447faf9223060c8ec812eb488dba5b3b79bc5450b19093",
+      "diffSha256": "7be773fc0b83f90a7a6cb51ae1bb2887aaac58e931558cec8766873465e12072",
       "oldSourceReadOrDeclarationSites": [
         {
           "line": 83,
@@ -12438,6 +12659,11 @@
           "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
         },
         {
+          "line": 450,
+          "text": "  ['equipment-wrong-source-id',s=>s.units[0].modelRows[0].selections[0].sourceEquipmentProvenance.sourceId='wrong-source'],",
+          "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
+        },
+        {
           "line": 664,
           "text": "  assert.deepEqual(proof.sourceProvenance,index.get(ruleId).provenance);",
           "revision": "75d322e4e3274f14d7e2a81abace3ba63c784ec5"
@@ -12493,7 +12719,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -12503,7 +12729,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -12523,7 +12749,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -12578,7 +12804,7 @@
         },
         {
           "line": 209,
-          "text": "   assert.deepEqual(inventory[0].sourceEquipmentProvenance,sourceSnapshot(source),'One generic source provenance');",
+          "text": "   assert.deepEqual(sourceSnapshot(inventory[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(source),'One generic source provenance');",
           "api": "sourceSnapshot",
           "definition": {
             "api": "sourceSnapshot",
@@ -12588,7 +12814,7 @@
         },
         {
           "line": 282,
-          "text": "   assert.deepEqual(selection.sourceEquipmentProvenance,sourceSnapshot(root));",
+          "text": "   assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(root));",
           "api": "sourceSnapshot",
           "definition": {
             "api": "sourceSnapshot",
@@ -12643,7 +12869,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -12658,12 +12884,22 @@
         },
         {
           "line": 434,
-          "text": "   assert.deepEqual(chosen[0].sourceEquipmentProvenance,sourceSnapshot(equipment),'Generic drone provenance retained');",
+          "text": "   assert.deepEqual(sourceSnapshot(chosen[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(equipment),'Generic drone provenance retained');",
           "api": "sourceSnapshot",
           "definition": {
             "api": "sourceSnapshot",
             "path": "books/shared/source-refs-v2/source-refs.mjs",
             "line": 311
+          }
+        },
+        {
+          "line": 452,
+          "text": "  ['equipment-wrong-source-id',s=>sourceFixture(s.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sourceId='wrong-source'],",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
           }
         },
         {
@@ -12713,7 +12949,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -12733,7 +12969,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         }
       ],
@@ -12771,12 +13007,12 @@
         {
           "api": "sourceSnapshot",
           "line": 209,
-          "text": "   assert.deepEqual(inventory[0].sourceEquipmentProvenance,sourceSnapshot(source),'One generic source provenance');"
+          "text": "   assert.deepEqual(sourceSnapshot(inventory[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(source),'One generic source provenance');"
         },
         {
           "api": "sourceSnapshot",
           "line": 282,
-          "text": "   assert.deepEqual(selection.sourceEquipmentProvenance,sourceSnapshot(root));"
+          "text": "   assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(root));"
         },
         {
           "api": "sourceSnapshot",
@@ -12811,7 +13047,12 @@
         {
           "api": "sourceSnapshot",
           "line": 434,
-          "text": "   assert.deepEqual(chosen[0].sourceEquipmentProvenance,sourceSnapshot(equipment),'Generic drone provenance retained');"
+          "text": "   assert.deepEqual(sourceSnapshot(chosen[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(equipment),'Generic drone provenance retained');"
+        },
+        {
+          "api": "sourceFixture",
+          "line": 452,
+          "text": "  ['equipment-wrong-source-id',s=>sourceFixture(s.units[0].modelRows[0].selections[0]).sourceEquipmentProvenance.sourceId='wrong-source'],"
         },
         {
           "api": "sourceSnapshot",
@@ -12868,11 +13109,11 @@
         },
         {
           "line": 209,
-          "text": "   assert.deepEqual(inventory[0].sourceEquipmentProvenance,sourceSnapshot(source),'One generic source provenance');"
+          "text": "   assert.deepEqual(sourceSnapshot(inventory[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(source),'One generic source provenance');"
         },
         {
           "line": 282,
-          "text": "   assert.deepEqual(selection.sourceEquipmentProvenance,sourceSnapshot(root));"
+          "text": "   assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(root));"
         },
         {
           "line": 287,
@@ -12892,7 +13133,7 @@
         },
         {
           "line": 434,
-          "text": "   assert.deepEqual(chosen[0].sourceEquipmentProvenance,sourceSnapshot(equipment),'Generic drone provenance retained');"
+          "text": "   assert.deepEqual(sourceSnapshot(chosen[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(equipment),'Generic drone provenance retained');"
         },
         {
           "line": 666,
@@ -12911,8 +13152,8 @@
           "text": "  assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(index.get(markerId)),'Reference retains exact source provenance');"
         }
       ],
-      "addedLines": 24,
-      "removedLines": 22,
+      "addedLines": 26,
+      "removedLines": 24,
       "classification": "COMMON_SOURCE_API_ADAPTATION",
       "structuralAdaptation": null,
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
@@ -13829,8 +14070,8 @@
       "path": "books/tyranids/v2/app-qa.mjs",
       "role": "TEST_ORACLE_OR_SCENARIO",
       "baseSha256": "f059ac0145e2b120f94a12a8cddb5b887e01bfccd319102242a269155098d4ce",
-      "featureSha256": "17dcfbb18858f7a139c73c7a883dc70dd7cf79105a7243d6b8c8d289f46e7fd3",
-      "diffSha256": "5c2d073e1972033e6c17f74e8e2d672494cd1bcbfb1571e2e6bea41d89e0b1b3",
+      "featureSha256": "4df13504b5e943388a79505e86167f38134aed5fa5972301efedcde2b48ebb0f",
+      "diffSha256": "b0a559d23a1f966c0c1b415d0e6cedb855d47a0b1d79b33b41cde1ca7db8f5d6",
       "oldSourceReadOrDeclarationSites": [
         {
           "line": 24,
@@ -13848,17 +14089,37 @@
       "addedCommonAPISites": [
         {
           "line": 1,
-          "text": "import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
           "api": "parseSourceFixtureJSON",
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
+          }
+        },
+        {
+          "line": 1,
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
           }
         },
         {
           "line": 2,
-          "text": "import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';",
+          "text": "import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
+        },
+        {
+          "line": 2,
+          "text": "import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';",
           "api": "sourceSnapshot",
           "definition": {
             "api": "sourceSnapshot",
@@ -13873,7 +14134,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -13884,6 +14145,36 @@
             "api": "sourceSnapshot",
             "path": "books/shared/source-refs-v2/source-refs.mjs",
             "line": 311
+          }
+        },
+        {
+          "line": 84,
+          "text": " assert.deepEqual(sourceDeclarationView(source,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics[id],{book:built.book}));",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
+        },
+        {
+          "line": 89,
+          "text": "sourceFixture(changedFnp,{book:facts}).provenance.sha256='changed-source-hash';",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        },
+        {
+          "line": 90,
+          "text": "assert.throws(()=>assert.deepEqual(sourceDeclarationView(changedFnp,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:built.book})),'FNP source equality must still reject a changed recorded hash');mutations++;",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
           }
         }
       ],
@@ -13897,16 +14188,39 @@
           "api": "sourceSnapshot",
           "line": 26,
           "text": "    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Changed provenance '+entity.id);"
+        },
+        {
+          "api": "sourceDeclarationView",
+          "line": 84,
+          "text": " assert.deepEqual(sourceDeclarationView(source,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics[id],{book:built.book}));"
+        },
+        {
+          "api": "sourceFixture",
+          "line": 89,
+          "text": "sourceFixture(changedFnp,{book:facts}).provenance.sha256='changed-source-hash';"
+        },
+        {
+          "api": "sourceDeclarationView",
+          "line": 90,
+          "text": "assert.throws(()=>assert.deepEqual(sourceDeclarationView(changedFnp,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:built.book})),'FNP source equality must still reject a changed recorded hash');mutations++;"
         }
       ],
       "addedVerificationSites": [
         {
           "line": 26,
           "text": "    assert.deepEqual(sourceSnapshot(card),sourceSnapshot(entity),'Changed provenance '+entity.id);"
+        },
+        {
+          "line": 84,
+          "text": " assert.deepEqual(sourceDeclarationView(source,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics[id],{book:built.book}));"
+        },
+        {
+          "line": 90,
+          "text": "assert.throws(()=>assert.deepEqual(sourceDeclarationView(changedFnp,{book:facts}),sourceDeclarationView(built.book.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:built.book})),'FNP source equality must still reject a changed recorded hash');mutations++;"
         }
       ],
-      "addedLines": 4,
-      "removedLines": 2,
+      "addedLines": 8,
+      "removedLines": 3,
       "classification": "COMMON_SOURCE_API_ADAPTATION",
       "structuralAdaptation": null,
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
@@ -14095,8 +14409,8 @@
       "path": "books/tyranids/v2/roster-import-qa.mjs",
       "role": "TEST_ORACLE_OR_SCENARIO",
       "baseSha256": "8aaa8d8c8d4f6ea0f4db8f913bf874bda2f955b2abd221b43f9cc373c5994a5a",
-      "featureSha256": "0e034d2639eac97a958bde1af875bba2c8311b750facae2395a7646b2bcb90aa",
-      "diffSha256": "32ea309fe274309e34b09a53044f62a489e219ad057d1c1efd7c857b50fb5aab",
+      "featureSha256": "0b9c8dfc994665a2a9e1d0e4eb0330768cd12a015f9dcbf17447afcacf5add5b",
+      "diffSha256": "05d06343a32425ca65762e0b295e6557baf917ee25d59b3977a4a0ad5ab03775",
       "oldSourceReadOrDeclarationSites": [
         {
           "line": 254,
@@ -14114,55 +14428,153 @@
       "addedCommonAPISites": [
         {
           "line": 1,
-          "text": "import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
           "api": "parseSourceFixtureJSON",
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
-          "line": 11,
-          "text": "const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));",
-          "api": "parseSourceFixtureJSON",
+          "line": 1,
+          "text": "import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';",
+          "api": "sourceFixture",
           "definition": {
-            "api": "parseSourceFixtureJSON",
+            "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 11
           }
         },
         {
-          "line": 255,
-          "text": "    assert.deepEqual(actual.data,e.data);assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}",
+          "line": 2,
+          "text": "import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
+        },
+        {
+          "line": 2,
+          "text": "import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';",
           "api": "sourceSnapshot",
           "definition": {
             "api": "sourceSnapshot",
             "path": "books/shared/source-refs-v2/source-refs.mjs",
             "line": 311
           }
+        },
+        {
+          "line": 12,
+          "text": "const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));",
+          "api": "parseSourceFixtureJSON",
+          "definition": {
+            "api": "parseSourceFixtureJSON",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 10
+          }
+        },
+        {
+          "line": 238,
+          "text": "    assert.deepEqual(sourceDeclarationView(book.rosterReferenceSemantics[reference],{book}),sourceDeclarationView(facts.rosterReferenceSemantics[reference],{book:facts}));",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
+        },
+        {
+          "line": 256,
+          "text": "    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
+        },
+        {
+          "line": 256,
+          "text": "    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}",
+          "api": "sourceSnapshot",
+          "definition": {
+            "api": "sourceSnapshot",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 311
+          }
+        },
+        {
+          "line": 258,
+          "text": "  sourceFixture(sourceMismatch,{book}).provenance.sha256='changed-source-hash';",
+          "api": "sourceFixture",
+          "definition": {
+            "api": "sourceFixture",
+            "path": "tests/helpers/source-refs-fixtures.mjs",
+            "line": 11
+          }
+        },
+        {
+          "line": 259,
+          "text": "  assert.throws(()=>assert.deepEqual(sourceDeclarationView(sourceMismatch,{book}),sourceDeclarationView(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:facts})),'Import source equality must reject a changed hash');",
+          "api": "sourceDeclarationView",
+          "definition": {
+            "api": "sourceDeclarationView",
+            "path": "books/shared/source-refs-v2/source-refs.mjs",
+            "line": 371
+          }
         }
       ],
       "currentCommonAPICalls": [
         {
           "api": "parseSourceFixtureJSON",
-          "line": 11,
+          "line": 12,
           "text": "const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));"
         },
         {
+          "api": "sourceDeclarationView",
+          "line": 238,
+          "text": "    assert.deepEqual(sourceDeclarationView(book.rosterReferenceSemantics[reference],{book}),sourceDeclarationView(facts.rosterReferenceSemantics[reference],{book:facts}));"
+        },
+        {
+          "api": "sourceDeclarationView",
+          "line": 256,
+          "text": "    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}"
+        },
+        {
           "api": "sourceSnapshot",
-          "line": 255,
-          "text": "    assert.deepEqual(actual.data,e.data);assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}"
+          "line": 256,
+          "text": "    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}"
+        },
+        {
+          "api": "sourceFixture",
+          "line": 258,
+          "text": "  sourceFixture(sourceMismatch,{book}).provenance.sha256='changed-source-hash';"
+        },
+        {
+          "api": "sourceDeclarationView",
+          "line": 259,
+          "text": "  assert.throws(()=>assert.deepEqual(sourceDeclarationView(sourceMismatch,{book}),sourceDeclarationView(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:facts})),'Import source equality must reject a changed hash');"
         }
       ],
       "addedVerificationSites": [
         {
-          "line": 255,
-          "text": "    assert.deepEqual(actual.data,e.data);assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}"
+          "line": 238,
+          "text": "    assert.deepEqual(sourceDeclarationView(book.rosterReferenceSemantics[reference],{book}),sourceDeclarationView(facts.rosterReferenceSemantics[reference],{book:facts}));"
+        },
+        {
+          "line": 256,
+          "text": "    assert.deepEqual(sourceDeclarationView(actual.data,{book}),sourceDeclarationView(e.data,{book:facts}));assert.deepEqual(sourceSnapshot(actual),sourceSnapshot(e));assert.equal(actual.parentId,e.parentId);}"
+        },
+        {
+          "line": 259,
+          "text": "  assert.throws(()=>assert.deepEqual(sourceDeclarationView(sourceMismatch,{book}),sourceDeclarationView(facts.rosterReferenceSemantics['datasheet-old-one-eye:rule-reference:1'],{book:facts})),'Import source equality must reject a changed hash');"
         }
       ],
-      "addedLines": 3,
-      "removedLines": 2,
+      "addedLines": 8,
+      "removedLines": 3,
       "classification": "COMMON_SOURCE_API_ADAPTATION",
       "structuralAdaptation": null,
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
@@ -14376,7 +14788,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14386,7 +14798,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -14406,7 +14818,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14416,7 +14828,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14446,7 +14858,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         }
       ],
@@ -14671,7 +15083,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14691,7 +15103,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14825,6 +15237,99 @@
       "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
     },
     {
+      "path": "tests/integration-qa.mjs",
+      "role": "TEST_ORACLE_OR_SCENARIO",
+      "baseSha256": "cd780b6a4e591c1a4b5f0eef04860057f7e3d27b27cc7e654f851ad3dfd08f42",
+      "featureSha256": "26f6453e8de351fcfd8760a743dc14c26974e8d03533a99041214826846d22fb",
+      "diffSha256": "1c758d2f031fcb47f985cf100cfa806add9f38e16025e0c41866533035a11297",
+      "oldSourceReadOrDeclarationSites": [],
+      "oldJSONBoundarySites": [],
+      "addedCommonAPISites": [
+        {
+          "line": 11,
+          "text": "import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';",
+          "api": "checkSourceClosureTree",
+          "definition": {
+            "api": "checkSourceClosureTree",
+            "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+            "line": 10
+          }
+        },
+        {
+          "line": 14,
+          "text": "const sourceClosure=checkSourceClosureTree(root);",
+          "api": "checkSourceClosureTree",
+          "definition": {
+            "api": "checkSourceClosureTree",
+            "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+            "line": 10
+          }
+        }
+      ],
+      "currentCommonAPICalls": [
+        {
+          "api": "checkSourceClosureTree",
+          "line": 14,
+          "text": "const sourceClosure=checkSourceClosureTree(root);"
+        }
+      ],
+      "addedVerificationSites": [],
+      "addedLines": 3,
+      "removedLines": 0,
+      "classification": "COMMON_SOURCE_API_ADAPTATION",
+      "structuralAdaptation": null,
+      "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
+    },
+    {
+      "path": "tools/pages-runtime-package-qa.mjs",
+      "role": "TEST_ORACLE_OR_SCENARIO",
+      "baseSha256": "1b027d59811f2e20449bff666cd93160357d1cbcc0d2eedeef5121442f2a1278",
+      "featureSha256": "46e7cf46018a998ad50e7c954ac3553e599bd2a9b845b658a59c9770de0cf013",
+      "diffSha256": "abac090821a1cb9f81f48c1b2012794e6667f1959f4408e6e3eeda135a0a2518",
+      "oldSourceReadOrDeclarationSites": [],
+      "oldJSONBoundarySites": [],
+      "addedCommonAPISites": [
+        {
+          "line": 7,
+          "text": "import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';",
+          "api": "checkSourceClosureTree",
+          "definition": {
+            "api": "checkSourceClosureTree",
+            "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+            "line": 10
+          }
+        },
+        {
+          "line": 21,
+          "text": "  assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');",
+          "api": "checkSourceClosureTree",
+          "definition": {
+            "api": "checkSourceClosureTree",
+            "path": "books/shared/source-refs-v2/source-closure-qa.mjs",
+            "line": 10
+          }
+        }
+      ],
+      "currentCommonAPICalls": [
+        {
+          "api": "checkSourceClosureTree",
+          "line": 21,
+          "text": "  assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');"
+        }
+      ],
+      "addedVerificationSites": [
+        {
+          "line": 21,
+          "text": "  assert.equal(checkSourceClosureTree(published,{packaged:true}).status,'PASS');"
+        }
+      ],
+      "addedLines": 5,
+      "removedLines": 1,
+      "classification": "COMMON_SOURCE_API_ADAPTATION",
+      "structuralAdaptation": null,
+      "verification": "STATIC_DIFF_AND_VERIFIED_FILE_LINES_ONLY"
+    },
+    {
       "path": "v2/aggregate-physical-inventory-qa.mjs",
       "role": "TEST_ORACLE_OR_SCENARIO",
       "baseSha256": "3317a972ec00b91e8e0a81e80614669a17c6d16e54e1c4000826fbc3faa20223",
@@ -14846,7 +15351,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14856,7 +15361,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -14912,7 +15417,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14932,7 +15437,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14942,7 +15447,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14962,7 +15467,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -14972,7 +15477,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -15041,7 +15546,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15051,7 +15556,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -15097,7 +15602,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15127,7 +15632,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15228,7 +15733,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15238,7 +15743,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15258,7 +15763,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15288,7 +15793,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15298,7 +15803,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15308,7 +15813,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15447,7 +15952,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15457,7 +15962,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15477,7 +15982,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15517,7 +16022,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15527,7 +16032,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15547,7 +16052,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15557,7 +16062,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15567,7 +16072,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15577,7 +16082,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         }
       ],
@@ -15677,7 +16182,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15687,7 +16192,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15697,7 +16202,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],
@@ -15768,7 +16273,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15778,7 +16283,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         },
         {
@@ -15798,7 +16303,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15848,7 +16353,7 @@
           "definition": {
             "api": "sourceFixture",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 10
+            "line": 11
           }
         }
       ],
@@ -15944,7 +16449,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         },
         {
@@ -15954,7 +16459,7 @@
           "definition": {
             "api": "parseSourceFixtureJSON",
             "path": "tests/helpers/source-refs-fixtures.mjs",
-            "line": 9
+            "line": 10
           }
         }
       ],

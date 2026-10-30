@@ -111,6 +111,7 @@ for(const file of files){
  aggregate.artifacts++;aggregate.stratagemRecords+=stats.stratagemRecords;aggregate.baselineBytes+=baseline.length;aggregate.featureBytes+=current.length;
  assert.ok(stats.sourceSlots===0||stats.translatedSlots===0||after.sourceSchema===SOURCE_SCHEMA,'Missing source schema: '+file);
  artifacts.push(stats);
+ console.error('AUDIT_VERIFIED '+file);
 }
 assert.deepEqual([...new Set(files.map(file=>file.split('/')[1]))].sort(cmp),books.slice().sort(cmp),'Missing book');
 assert.ok(bookRows.every(row=>row.translatedSlots>0),'Every book must contain actual normalized source bindings before publishing the migration report');
@@ -131,7 +132,7 @@ function measurement(option,key){
 const report={schema:'source-refs-translation-3/v1',base,sourceSchema:SOURCE_SCHEMA,bookIds:books,excludedBookIds:['orks'],excludedEntityKinds:['STRATAGEM'],
  scope:'Lossless source-reference encoding only; canonical identity, recipient/condition/evidence semantics, accepted source facts and stratagems are unchanged.',
  summary:{artifacts:artifacts.length,entities:bookRows.reduce((n,row)=>n+row.entityOccurrences,0),sourceSlots:bookRows.reduce((n,row)=>n+row.sourceSlots,0),translatedSlots:bookRows.reduce((n,row)=>n+row.translatedSlots,0),referenceOccurrences:bookRows.reduce((n,row)=>n+row.referenceOccurrences,0),multiDocumentSlots:multiDocument.length,unresolvedReferences:unresolved.length,metadataOnlySlots:metadataOnly.length,stratagemRecords:bookRows.reduce((n,row)=>n+row.stratagemRecords,0),baselineGeneratedBytes:bookRows.reduce((n,row)=>n+row.baselineBytes,0),featureGeneratedBytes:bookRows.reduce((n,row)=>n+row.featureBytes,0)},
- staticChecks:{everyEntityAndFieldInverse:'PASS',everyOriginalSourceSlotInverse:'PASS',freshCompilerBindingInventory:'PASS',documentHashAssociations:'PASS',stratagemSerialization:'PASS',verification:'STATIC_DATA_ONLY'},
+ staticChecks:{serializedReferenceClosure:'PASS',everyEntityAndFieldInverse:'PASS',everyOriginalSourceSlotInverse:'PASS',freshCompilerBindingInventory:'PASS',documentHashAssociations:'PASS',stratagemSerialization:'PASS',verification:'STATIC_DATA_ONLY'},
  books:bookRows,artifacts,oldToNewForms:[...formCounts].sort(([a],[b])=>cmp(a,b)).map(([key,count])=>({bookId:key.split('/')[0],oldSlot:key.split('/')[1],count,newForm:key.endsWith('/recordReference')?'sourceRefs + sourceBindings.recordReference; fields[] restores flat document declarations':'sourceRefs + sourceBindings; fieldProvenance retains its field map'})),sourceShapes:[...sourceShapes].sort(([a],[b])=>cmp(a,b)).map(([shape,count])=>({shape,count})),multiDocument,unresolved,metadataOnly,
  formatRationale:[
   {field:'sourceRefs + shared document tables',reason:'Published references carry documentId, referenceId and literal locators. One table per book in source-catalog.json stores document identity/hash/authority/currentness; the reference content ID protects the complete association. Scratch/unpublished metadata may use inline catalogs.'},

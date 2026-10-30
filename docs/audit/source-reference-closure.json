@@ -2,7 +2,7 @@
   "schema": "source-reference-closure-repair/v1",
   "base": "75d322e4e3274f14d7e2a81abace3ba63c784ec5",
   "priorImplementation": "c73bd5396aa358d97603650ebd28a4886b61cf6b",
-  "status": "TARGETED_CHECKS_PASS_FULL_QA_PENDING",
+  "status": "COMPLETE_WITH_BASELINE_FAILURES",
   "rootCause": "externalizeSources skipped every field named sourceBindings, including the ordinary referenceMetadata.sourceBindings factual container. Its descendants kept raw refs while the catalog was removed. A preceding baseline compilation populated process-wide reader pools and concealed this in the old inverse report.",
   "failure": {
     "referenceId": "refs-de28c919d99659e1",
@@ -2590,5 +2590,6 @@
     "status": "BLOCKED_BY_AUTOMATIC_REVIEW",
     "path": "books/chaos-space-marines/v2/__pycache__",
     "reason": "Remove-Item was rejected with blocked by policy. The untracked producer cache is retained and excluded from Git; no alternate removal attempted."
-  }
+  },
+  "finalValidation": "docs/audit/source-refs-final-validation.json"
 }

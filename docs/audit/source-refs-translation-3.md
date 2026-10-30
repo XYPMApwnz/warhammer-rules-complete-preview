@@ -10,7 +10,7 @@ All nine books are included; Orks and all stratagem subtrees are excluded. Every
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | adeptus-mechanicus | 8 | 3344 | 2907 | 2907 | 2298 | 15 | 157 | 21743338 | 21556769 |
 | blood-angels | 15 | 11706 | 20710 | 20710 | 14724 | 4 | 13384 | 59212145 | 56597485 |
-| chaos-space-marines | 10 | 12665 | 15034 | 15034 | 15369 | 953 | 13903 | 50550156 | 48515734 |
+| chaos-space-marines | 10 | 12665 | 15034 | 15034 | 15369 | 953 | 13903 | 50550156 | 48507930 |
 | dark-angels | 15 | 11898 | 21156 | 21156 | 15139 | 4 | 13768 | 60406679 | 57734342 |
 | death-guard | 10 | 2492 | 3064 | 3064 | 2487 | 14 | 828 | 14591887 | 14352315 |
 | emperors-children | 7 | 2925 | 4154 | 4154 | 7017 | 2758 | 6757 | 15140635 | 14058948 |
@@ -18,7 +18,7 @@ All nine books are included; Orks and all stratagem subtrees are excluded. Every
 | tau-empire | 6 | 3397 | 8627 | 8627 | 7484 | 16 | 6628 | 15015477 | 14434708 |
 | tyranids | 7 | 3966 | 8201 | 8201 | 11014 | 3860 | 6784 | 14741197 | 13708079 |
 
-Static checks: `{"everyEntityAndFieldInverse":"PASS","everyOriginalSourceSlotInverse":"PASS","freshCompilerBindingInventory":"PASS","documentHashAssociations":"PASS","stratagemSerialization":"PASS","verification":"STATIC_DATA_ONLY"}`. Counts include repeated artifact representations. Source slots are inventoried from a fresh compilation of every baseline artifact with the repository registry, then compared to actual generated bindings. Complete per-artifact hashes, shapes, document bindings, metadata-only slots and unresolved document identities are in the companion JSON.
+Static checks: `{"serializedReferenceClosure":"PASS","everyEntityAndFieldInverse":"PASS","everyOriginalSourceSlotInverse":"PASS","freshCompilerBindingInventory":"PASS","documentHashAssociations":"PASS","stratagemSerialization":"PASS","verification":"STATIC_DATA_ONLY"}`. Counts include repeated artifact representations. Source slots are inventoried from a fresh compilation of every baseline artifact with the repository registry, then compared to actual generated bindings. Complete per-artifact hashes, shapes, document bindings, metadata-only slots and unresolved document identities are in the companion JSON.
 
 ## Old form to common form
 
@@ -112,9 +112,9 @@ Object currentness declarations use the same source binding mechanism. UI curren
 
 ## Actual execution measurements
 
-Browser: `{"status":"MEASURED","scope":"SELECTED_FIXTURES","selectedBookIds":["emperors-children","tau-empire","tyranids"],"counts":{"books":3,"sourceFixtures":171,"savedSnapshotFixtures":0,"acceptedImports":146,"rejectedOrPendingImports":2,"scenarioViews":414,"cardViews":2322,"uniqueTextBytes":1737264},"zeroDifference":true,"observationsSha256":"dfe226a1762dc67e1502a11ce32de1c492a0be03b9bd6f63eec687e7bae9d013"}`.
+Browser: `{"status":"MEASURED","scope":"FULL_CORPUS","selectedBookIds":null,"counts":{"books":9,"sourceFixtures":171,"savedSnapshotFixtures":0,"acceptedImports":330,"rejectedOrPendingImports":14,"scenarioViews":1142,"cardViews":8502,"uniqueTextBytes":8077834},"zeroDifference":true,"observationsSha256":"2d24c19efb5ec5d11cb61d294d279fe0fcf2cf675a8712fa09915281b0f4cf99"}`.
 
-Package: `{"status":"PENDING_FINAL_FULL_QA","baseline":{"files":429,"bytes":271531285,"contentSha256":"92c07f6abd5222f455c68a611acae9a4f8e83547448c5bb873df244300833c1e","cacheRevision":"90a31a5d4781b6a2"},"feature":{"files":432,"bytes":270049414,"contentSha256":"80dcbec62a7954230b49aa1afb2c613faa1a474be4d744e39a217fe2899380e6","cacheRevision":"8312260aa5c2fd6b"},"packagingDeterminism":{"status":"NOT_RUN_FINAL"}}`.
+Package: `{"status":"FINAL_EXECUTION","baseline":{"files":429,"bytes":271531285,"contentSha256":"92c07f6abd5222f455c68a611acae9a4f8e83547448c5bb873df244300833c1e","cacheRevision":"90a31a5d4781b6a2"},"feature":{"files":432,"bytes":270069141,"contentSha256":"5254a31e4f800ed8edef0e3901eb0fa3e0b4bd7fbab8824302c35b2053681766","cacheRevision":"3f00868743b0aca0"},"packagingDeterminism":{"status":"PASS","checks":14,"contentSha256":"5254a31e4f800ed8edef0e3901eb0fa3e0b4bd7fbab8824302c35b2053681766"}}`.
 
 These saved measurements are attestations from separate executions. Regeneration recomputes static parity; it does not rerun the browser or packaging checks.
 

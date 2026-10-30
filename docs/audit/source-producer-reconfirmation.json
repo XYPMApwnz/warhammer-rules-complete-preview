@@ -35,6 +35,14 @@
       "sharedCatalog": {
         "path": "books/shared/source-refs-v2/source-catalog.json",
         "sha256": "ed9cd49443e02fa347f8f395d0a6580a0763b9bce9f89c8123efe1a80e213135"
+      },
+      "serializationModule": {
+        "path": "books/shared/source-refs-v2/source-serialization.mjs",
+        "sha256": "4c1a0d5600fe22154b863dd46a1c6883ef14827653413b6c51c96620d161c620"
+      },
+      "closureValidator": {
+        "path": "books/shared/source-refs-v2/source-closure.mjs",
+        "sha256": "77a67efd8e515abf394847aefb3ddf8996dcc752cd738b7a11acccb00c88f684"
       }
     }
   },
@@ -451,5 +459,10 @@
     "All 19 native SM generated JSON outputs are final: 16 contain regenerated sourceRefs and 3 require no source binding migration. Every inverse field/string/order matches base. Final QA results are reported separately.",
     "This is an automatic static all-field/inverse proof and producer diff review, not a new semantic audit or browser attestation. No QA suites were executed for this reconfirmation.",
     "BA and DA review files were scanned. They contain no separate pin for this SM producer; the SM source-review also contains a historical Deathwatch copy, which is updated to the identical producer bytes without changing Deathwatch data or scope."
-  ]
+  ],
+  "serializationFollowup": {
+    "commit": "2c6d6716eb97394c91ddde4efc462f3ae507eed2",
+    "url": "https://github.com/XYPMApwnz/warhammer-rules-complete-preview/commit/2c6d6716eb97394c91ddde4efc462f3ae507eed2",
+    "scope": "Common nested-metadata traversal and independent closure validation; no further change to the pinned SM producer."
+  }
 }

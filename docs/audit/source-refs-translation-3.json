@@ -31,11 +31,12 @@
     "metadataOnlySlots": 27317,
     "stratagemRecords": 38136,
     "baselineGeneratedBytes": 349922341,
-    "featureGeneratedBytes": 336457119,
+    "featureGeneratedBytes": 336449315,
     "multiDocumentRuleEntities": 68,
     "unresolvedDocumentIdentities": 250
   },
   "staticChecks": {
+    "serializedReferenceClosure": "PASS",
     "everyEntityAndFieldInverse": "PASS",
     "everyOriginalSourceSlotInverse": "PASS",
     "freshCompilerBindingInventory": "PASS",
@@ -78,7 +79,7 @@
       "translatedSlots": 15034,
       "stratagemRecords": 6231,
       "baselineBytes": 50550156,
-      "featureBytes": 48515734,
+      "featureBytes": 48507930,
       "referenceOccurrences": 15369,
       "multiDocumentSlots": 953,
       "unresolvedReferences": 13903
@@ -526,9 +527,9 @@
     {
       "path": "books/chaos-space-marines/v2/generated/base.json",
       "baselineSha256": "25af873a55da1d793149e5efd0a2911cada0a94c4a3ba6018c4adc4874f22585",
-      "featureSha256": "b9dadb91c93040ffd5bb35b0846bc0b4a63ad1bf0e063637eec8092a68fe904d",
+      "featureSha256": "f656e75cddb1da7378a82b49fd12c3cc4fc6c256fc950fcd51d46f33977bc9c4",
       "baselineBytes": 3009248,
-      "featureBytes": 3087974,
+      "featureBytes": 3086023,
       "exactInverse": "PASS",
       "stratagemSerialization": "PASS",
       "sourceSchema": "source-refs/v1",
@@ -541,9 +542,9 @@
     {
       "path": "books/chaos-space-marines/v2/generated/effective.json",
       "baselineSha256": "f78de07f9c276255b365b8d3b12e6244cc319b9229b194e4322574ecb7e82adb",
-      "featureSha256": "062fb03cc2ff108d6a8a4b43c7cf393b55a2dcf402ade096ac9ee73b09eaf057",
+      "featureSha256": "2b9024f4d81a8c7ffac9d753fa6648e77077d4ba17a0ca2c2507e64fe1fcf8c3",
       "baselineBytes": 3203017,
-      "featureBytes": 3237909,
+      "featureBytes": 3235958,
       "exactInverse": "PASS",
       "stratagemSerialization": "PASS",
       "sourceSchema": "source-refs/v1",
@@ -571,9 +572,9 @@
     {
       "path": "books/chaos-space-marines/v2/generated/roster-import.json",
       "baselineSha256": "8c621ad41e17bd05bc146095b268f40dcf9521a93aeb15b9dad6f6c4c804f58f",
-      "featureSha256": "fbb39ed8809b2d5340b953e8f1cf08f29937e78e6d6584080bc783011265548c",
+      "featureSha256": "aa1fbea270271a0b36b7bc032ab97ccbfd383ddc21dbbaff3fb373e7495fb163",
       "baselineBytes": 3550204,
-      "featureBytes": 3065402,
+      "featureBytes": 3063451,
       "exactInverse": "PASS",
       "stratagemSerialization": "PASS",
       "sourceSchema": "source-refs/v1",
@@ -586,9 +587,9 @@
     {
       "path": "books/chaos-space-marines/v2/generated/roster-runtime.json",
       "baselineSha256": "9bf187357690f4b133727412d472f05ad643a4eab7a7ad6fbaf7475188b99e8a",
-      "featureSha256": "bd4c7367f603f0eda39f141ab887e65774cd9e8806f7a1320f6d12ee18e14cf4",
+      "featureSha256": "05900f55f2eb5fef3ec485330646997e089ac654e26aadfbfc25cde438d16375",
       "baselineBytes": 8458678,
-      "featureBytes": 7651722,
+      "featureBytes": 7649771,
       "exactInverse": "PASS",
       "stratagemSerialization": "PASS",
       "sourceSchema": "source-refs/v1",
@@ -1582918,7 +1582919,7 @@
     }
   },
   "packageMeasurements": {
-    "status": "PENDING_FINAL_FULL_QA",
+    "status": "FINAL_EXECUTION",
     "baseline": {
       "files": 429,
       "bytes": 271531285,
@@ -1582927,34 +1582928,32 @@
     },
     "feature": {
       "files": 432,
-      "bytes": 270049414,
-      "contentSha256": "80dcbec62a7954230b49aa1afb2c613faa1a474be4d744e39a217fe2899380e6",
-      "cacheRevision": "8312260aa5c2fd6b"
+      "bytes": 270069141,
+      "contentSha256": "5254a31e4f800ed8edef0e3901eb0fa3e0b4bd7fbab8824302c35b2053681766",
+      "cacheRevision": "3f00868743b0aca0"
     },
     "packagingDeterminism": {
-      "status": "NOT_RUN_FINAL"
+      "status": "PASS",
+      "checks": 14,
+      "contentSha256": "5254a31e4f800ed8edef0e3901eb0fa3e0b4bd7fbab8824302c35b2053681766"
     }
   },
   "browserMeasurements": {
     "status": "MEASURED",
-    "scope": "SELECTED_FIXTURES",
-    "selectedBookIds": [
-      "emperors-children",
-      "tau-empire",
-      "tyranids"
-    ],
+    "scope": "FULL_CORPUS",
+    "selectedBookIds": null,
     "counts": {
-      "books": 3,
+      "books": 9,
       "sourceFixtures": 171,
       "savedSnapshotFixtures": 0,
-      "acceptedImports": 146,
-      "rejectedOrPendingImports": 2,
-      "scenarioViews": 414,
-      "cardViews": 2322,
-      "uniqueTextBytes": 1737264
+      "acceptedImports": 330,
+      "rejectedOrPendingImports": 14,
+      "scenarioViews": 1142,
+      "cardViews": 8502,
+      "uniqueTextBytes": 8077834
     },
     "zeroDifference": true,
-    "observationsSha256": "dfe226a1762dc67e1502a11ce32de1c492a0be03b9bd6f63eec687e7bae9d013"
+    "observationsSha256": "2d24c19efb5ec5d11cb61d294d279fe0fcf2cf675a8712fa09915281b0f4cf99"
   },
   "baselineSourceChecks": [
     {
