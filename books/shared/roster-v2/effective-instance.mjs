@@ -2,11 +2,12 @@ import {getSourceContext,copySourceEvidence,mergeSourceEvidence} from '../source
 import {projectConditionalRow} from './conditional-policy.mjs';
 import {resolveExecutionEffect} from './recipient-execution.mjs';
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
+import {projectAttachedRuleTexts} from './attached-rule-text.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
  * This does not evaluate rules or combine component inventories. */
 const clone=value=>structuredClone(value);
 const fields=value=>Object.entries(value).map(([label,value])=>({label,value}));
-export function projectEffectiveInstance(book,projection,instanceId) {
+export function projectEffectiveInstance(book,projection,instanceId,context={}) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const unit = projection?.units.find(u=>u.instanceId === instanceId);
   if (!unit) throw new TypeError('Unresolved physical instance');
@@ -102,6 +103,7 @@ export function projectEffectiveInstance(book,projection,instanceId) {
   });
   const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+    attachedRuleTexts:projectAttachedRuleTexts(book,projection,instanceId,{...context,records}),
     ...(keywordSources.length?{keywordSources}:{}),
     ...(unit.applied.some(row=>row.operation==='MODIFY_STAT')?{statSources:unit.applied.filter(row=>row.operation==='MODIFY_STAT').map(effectSource)}:{}),
     enhancements,

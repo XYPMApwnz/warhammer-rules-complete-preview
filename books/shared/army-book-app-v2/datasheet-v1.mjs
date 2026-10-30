@@ -4,7 +4,7 @@ import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './nor
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
 import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
-import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields} from './personal.mjs';
+import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields,validateAttachedRuleTextPresentation} from './personal.mjs';
 const sectionRoles = new Map([
   ['ABILITIES','abilities'],['WARGEAR ABILITIES','wargear-abilities'],
   ['UNIT COMPOSITION','composition'],['WARGEAR OPTIONS','wargear'],
@@ -519,6 +519,23 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       unitModifiers.append(node);
     }
     if(unitModifiers)root.append(unitModifiers);
+    if(card.rosterAttachedRuleTexts?.length){
+      const section=part('attached-rules','Attached unit rules');
+      const current=roster.effective(instanceId),unit=roster.state.units.find(value=>value.instanceId===instanceId);
+      for(const row of card.rosterAttachedRuleTexts){
+        const canonicalText=validateAttachedRuleTextPresentation(cards,unit,current,row);
+        const sourceUnit=roster.state.units.find(value=>value.instanceId===row.sourceInstanceId);
+        if(sourceUnit?.canonicalUnitId!==row.sourceUnitId||cards.get(row.ruleId).kind==='ENHANCEMENT'&&!sourceUnit.enhancementIds.includes(row.ruleId))
+          throw new TypeError('Unresolved attached rule physical source');
+        const node=el('article','ds-attached-rule');node.dataset.attachedRuleId=row.ruleId;
+        node.dataset.sourceInstanceId=row.sourceInstanceId;
+        node.append(el('h5','',row.title));
+        const text=el('p','',canonicalText);text.dataset.attachedRuleText='';node.append(text);
+        const source=el('p','','Source: '+row.sourceLabel+' · ');
+        source.append(anchor(row.title,row.ruleId,true));node.append(source);section.append(node);
+      }
+      root.append(section);
+    }
     if(card.rosterConditionalPolicies?.length||card.rosterDetachmentTexts?.length){
       const section=part('conditional-policies','Conditional mechanics');
       const labels={QUALIFIED_FNP:'Qualified Feel No Pain',REROLL:'Reroll permission',INCOMING_MODIFIER:'Incoming attack modifier',IGNORE_MODIFIERS:'Optional ignore-modifier permission',STRATAGEM_TARGET_RESTRICTION:'Stratagem targeting restriction',ATTACK_TARGET_RESTRICTION:'Attack target restriction',ACTION_CP_MODIFIER:'Conditional action CP modifier'};

@@ -42,7 +42,10 @@ export function createECRosterAttachments(book,schema) {
     reattach:(bodyguardId,participantId)=>service.load(changeAttachment(book,attachments.state,policies,'REATTACH',participantId,bodyguardId)),
     context:(instanceId,subject='UNIT',scopeId)=>predicateContext(attachments.state,projection,instanceId,subject,scopeId),
     modelScopes:instanceId=>attachments.modelScopes(instanceId),
-    effective:instanceId=>projectEffectiveInstance(book,projection,instanceId)
+    effective(instanceId){
+      const state=attachments.state,evaluator=createFormationContext(book,state,schema);
+      return projectEffectiveInstance(book,projection,instanceId,{state,evaluatePredicate:evaluator.evaluatePredicate});
+    }
   };
   return service;
 }

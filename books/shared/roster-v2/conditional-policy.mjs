@@ -2,7 +2,7 @@
  * they never resolve a roll, select a battle target or mutate characteristics. */
 import {predicateContext,withRosterDetachments} from './context.mjs';
 import {createRuleContractSchema,predicateTypes} from '../rule-contract-v2/schema.mjs';
-import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
+import {resolveRecipient,presentationRecipientLinks} from '../rule-contract-v2/recipients.mjs';
 import {getRecordedSourceIdentity,sameSourceEvidence,copySourceEvidence,sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
 const clone=structuredClone;
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -181,7 +181,7 @@ export function detachmentTextDeclaration(book,rule,clause){
  const source=detachmentTextSource(book,rule,clause);if(!source)return null;
  const ids=clause.f1RecipientIds;if(!Array.isArray(ids)||!ids.length)return null;
  requireValue(clause.recipientStatus==='RECORDED'&&uniqueStrings(ids),'Unresolved textual Detachment recipient declaration');
- const recipients=ids.map(id=>resolveRecipient(rule,clause,id));
+ const recipients=presentationRecipientLinks(rule,clause,{consumer:'F1'}).map(link=>link.recipient);
  for(const recipient of recipients){
   const role=(clause.roles||[]).find(role=>role.id===recipient.roleId);
   requireValue(role&&recipient.side==='FRIENDLY'&&['MODEL','UNIT'].includes(recipient.who)&&

@@ -53,6 +53,63 @@ export function resolveRecipient(rule,clause,id){
  return matches[0];
 }
 
+/** Derived presentation addresses share the canonical recipient graph with F1.
+ * These links do not add declarations or make an orphan recipient legitimate.
+ * Keep each backing channel: two paths to one recipient can have different
+ * conditions, and an unproved path must not invalidate an independent proof.
+ */
+export function presentationRecipientLinks(rule,clause,{consumer='ATTACHED'}={}){
+ requireValue(['ATTACHED','F1'].includes(consumer),'unknown presentation consumer');
+ requireValue(rule?.ruleContract?.clauses?.includes(clause),'foreign presentation clause');
+ if(excludedStratagem(rule))return [];
+ if(consumer==='F1'&&own(clause,'f1RecipientIds'))
+  requireValue(clause.recipientStatus==='RECORDED','unresolved F1 presentation recipient status');
+ if(clause.recipientStatus!=='RECORDED')return [];
+ const links=[],roles=roleIndex(rule,clause);
+ const add=(id,path,backing={})=>{
+  const recipient=resolveRecipient(rule,clause,id);
+  if(!['MODEL','UNIT'].includes(recipient.who))return;
+  const role=recipient.roleId?roles.get(recipient.roleId):undefined;
+  links.push({ruleId:rule.id,clauseId:clause.id,recipient,consumer,path,...(role?{role}:{}),...backing});
+ };
+ if(consumer==='F1'){
+  const ids=clause.f1RecipientIds;
+  if(ids===undefined)return [];
+  requireValue(Array.isArray(ids)&&new Set(ids).size===ids.length,'invalid F1 presentation recipient list');
+  for(const id of ids){
+   const recipient=resolveRecipient(rule,clause,id);
+   requireValue(recipient.roleId&&['MODEL','UNIT'].includes(recipient.who)&&
+    ['CONDITIONAL','ABILITY_PRESENT','ELIGIBLE_FOR_SELECTION','SELECTED'].includes(recipient.textKind),'unproved F1 presentation recipient');
+   add(id,'F1');
+  }
+  return links;
+ }
+ for(const effect of array(clause.rosterEffects))for(const id of idsOf(effect))add(id,'ROSTER_EFFECT',{effect});
+ for(const effect of array(clause.semanticEffects))for(const id of idsOf(effect))add(id,'SEMANTIC_EFFECT',{effect});
+ if(clause.effect)for(const id of idsOf(clause.effect))add(id,'DECLARATION_EFFECT',{effect:clause.effect});
+ if(clause.conditionalPolicy)for(const id of idsOf(clause.conditionalPolicy))add(id,'POLICY',{policy:clause.conditionalPolicy});
+ if(clause.rosterReferenceBinding){
+  const reference=clause.rosterReferenceBinding;
+  add(reference.standaloneRecipientId,'REFERENCE',{reference,referenceBranch:'standalone'});
+  add(reference.attachedRecipientId,'REFERENCE',{reference,referenceBranch:'attached'});
+ }
+ for(const id of idsOf(clause))add(id,'CLAUSE');
+ for(const recipient of array(clause.recipients))if(recipient.roleId&&explicitRolePurposes.has(recipient.purpose))add(recipient.id,'ROLE');
+ return links;
+}
+
+/** Validate a derived link against its exact canonical rule, clause and channel.
+ * This is deliberately separate from orphan admission: presentation never
+ * supplies missing effect/participant declarations to the canonical validator.
+ */
+export function validatePresentationRecipientLink(rule,clause,link){
+ requireValue(link&&typeof link==='object'&&!Array.isArray(link),'malformed presentation recipient link');
+ requireValue(['ATTACHED','F1'].includes(link.consumer),'unknown presentation consumer');
+ const expected=presentationRecipientLinks(rule,clause,{consumer:link.consumer});
+ requireValue(expected.some(candidate=>same(candidate,link)),'presentation recipient backing drift');
+ return {status:'PASS'};
+}
+
 function validateRecipient(recipient,rule,clause){
  requireValue(recipient&&typeof recipient==='object'&&!Array.isArray(recipient),'malformed recipient');
  requireValue(Object.keys(recipient).every(key=>RECIPIENT_FIELDS.has(key)),'unknown recipient field');

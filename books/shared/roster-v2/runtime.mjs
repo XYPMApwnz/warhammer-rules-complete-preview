@@ -61,7 +61,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
     reattach(leaderId,bodyguardId){ return service.load(changeAttachment(book,state,policies,'REATTACH',leaderId,bodyguardId)); },
     candidates(leaderId){ return state.units.filter(u=>attachmentCheck(book,state,policies,leaderId,u.instanceId).valid).map(u=>({instanceId:u.instanceId,canonicalUnitId:u.canonicalUnitId,title:records.get(u.canonicalUnitId).data.title})); },
     context(instanceId,subject='UNIT',modelId,extra){ return predicateContext(state,projection,instanceId,subject,modelId,extra); },
-    effective(instanceId) { return projectEffectiveInstance(book,projection,instanceId); },
+    effective(instanceId) { return projectEffectiveInstance(book,projection,instanceId,{state,evaluatePredicate}); },
     related(instanceId,detachmentId=null) {
       return projectRosterRelated({book,state,projection,context:service.context,evaluateRole,publicResult},instanceId,detachmentId);
     }

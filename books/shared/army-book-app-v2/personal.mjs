@@ -140,6 +140,31 @@ export function validateComponentDetachmentText(cards,roster,unit,effective,row)
   }
   throw new TypeError('Missing current textual Detachment UNIT proof');
 }
+/** The current runtime proof must address the same canonical source field on
+ * the displayed card. Different named blocks in ABILITIES are never aliases. */
+export function validateAttachedRuleTextPresentation(cards,unit,effective,row){
+  assert(row&&row.recipientInstanceId===unit.instanceId&&effective.instanceId===unit.instanceId&&
+    effective.canonicalUnitId===unit.canonicalUnitId&&row.sourceInstanceId!==unit.instanceId&&
+    effective.formedUnit?.memberInstanceIds.includes(row.sourceInstanceId)&&
+    effective.formedUnit.memberInstanceIds.includes(unit.instanceId)&&
+    (effective.attachedRuleTexts||[]).some(value=>JSON.stringify(value)===JSON.stringify(row)),
+    'Unresolved attached rule component proof');
+  const chain=row.sourceOwnerChain,card=cards.get(row.ruleId);
+  assert(Array.isArray(chain)&&chain.length>1&&chain[0].id===row.ruleId&&new Set(chain.map(item=>item.id)).size===chain.length&&
+    chain.every((item,index)=>{const current=cards.get(item.id);return current?.id===item.id&&
+      (current.parentId||null)===item.parentId&&(index===chain.length-1||item.parentId===chain[index+1].id);}),
+    'Unresolved attached rule card ownership');
+  const owner=cards.get(chain.at(-1).id);
+  assert(card?.kind!=='STRATAGEM'&&(card.kind==='ENHANCEMENT'?owner?.kind==='DETACHMENT':owner?.kind==='DATASHEET'&&owner.id===row.sourceUnitId),
+    'Foreign attached rule source owner');
+  const pointer='/'+row.sourcePath.map(key=>String(key).replaceAll('~','~0').replaceAll('/','~1')).join('/');
+  const fields=(card.fields||[]).filter(field=>(field.source?.path===pointer||field.presentationPath===pointer)&&typeof field.value==='string');
+  assert(fields.length===1&&(fields[0].value===row.text||fields[0].value===row.title+': '+row.text)&&
+    getRecordedSourceIdentity(row,{slot:'sourceProvenance'})&&row.proofs?.length,
+    'Unresolved attached rule canonical text');
+  return fields[0].value;
+}
+
 /** Book-owned canonical profile bindings apply only to physical views. The
  * normal book map and every factual field/address remain unchanged. */
 export function prepareRosterPresentationCards(cards,presentation) {
@@ -500,6 +525,10 @@ export function projectInstanceCards(cards, unit, effective) {
     root.keywordGroups=groups;
   }
   const texts=(effective.conditional||[]).filter(row=>row.detachmentText);
+  if(effective.attachedRuleTexts?.length){
+    for(const row of effective.attachedRuleTexts)validateAttachedRuleTextPresentation(cards,unit,effective,row);
+    root.rosterAttachedRuleTexts=clone(effective.attachedRuleTexts);
+  }
   for(const row of texts)validateDetachmentTextPresentation(cards,unit,effective,row);
   if(texts.length)root.rosterDetachmentTexts=clone(texts);
   const policies=(effective.conditional||[]).filter(row=>row.policy);

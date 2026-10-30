@@ -188,7 +188,7 @@ function validateEffectOperations(book,validatePredicate,evaluatePredicate,effec
   return true;
 }
 const leaves = node => node.op ? node.args.flatMap(leaves) : [node];
-function equipmentSatisfied(book, unit, requirement) {
+export function equipmentSatisfied(book, unit, requirement) {
   const selected = selections(unit), records = new Map(book.entities.map(e=>[e.id,e]));
   if (!selected.length && unit.equipmentContextKnown !== true) return undefined;
   if (requirement.kind === 'EQUIPMENT_PRESENT') {

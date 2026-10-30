@@ -30,7 +30,11 @@ export function createCSMBrowserRoster(book,importBook,bindings) {
     detach:runtime.detach,reattach:(leaderId,bodyguardId)=>runtime.reattach(bodyguardId,leaderId),
     candidates(leaderId){return runtime.state.units.filter(unit=>runtime.candidates(unit.instanceId)
       .some(candidate=>candidate.instanceId===leaderId)).map(unit=>({instanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId}));},
-    effective:id=>projectEffectiveInstance(viewBook,runtime.projection,id),
+    effective(id){
+      const state=runtime.state,projection=runtime.projection;
+      const evaluator=createCSMRosterEffectContext(book,state,{abilityProjection:projection});
+      return projectEffectiveInstance(viewBook,projection,id,{state,evaluatePredicate:evaluator.evaluatePredicate});
+    },
     related(instanceId,detachmentId=null){
       const state=runtime.state,projection=runtime.projection;
       const evaluator=createCSMRosterEffectContext(book,state,{abilityProjection:projection});
