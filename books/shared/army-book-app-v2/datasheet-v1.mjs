@@ -49,6 +49,25 @@ const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
+/** Two source representations, one physical datasheet. An explicit section
+ * identity and a unique whole paragraph prove the overlap, never a title match
+ * alone. Keep the aggregate prose and canonical links to each typed ability. */
+export function groupedAbilitySources(children){
+  const groups=new Map();
+  for(const ability of children){
+    const section=single(ability,'section'),text=ability.fields.find(field=>field.source?.path==='/text');
+    if(!section||typeof text?.value!=='string'||!text.value.length)continue;
+    const matches=children.filter(card=>card.id!==ability.id&&card.kind==='DATASHEET_SECTION'&&card.parentId===ability.parentId&&
+      card.fields.some(field=>field.presentation==='heading'&&field.value===section.value)&&
+      card.fields.some(field=>/^\/blocks\/\d+\/text$/.test(layoutPath(field)||'')&&typeof field.value==='string'&&
+        field.value.indexOf(text.value)>=0&&field.value.indexOf(text.value)===field.value.lastIndexOf(text.value)&&
+        (field.value.indexOf(text.value)===0||field.value[field.value.indexOf(text.value)-1]==='\n')&&
+        (field.value.indexOf(text.value)+text.value.length===field.value.length||field.value[field.value.indexOf(text.value)+text.value.length]==='\n')));
+    if(matches.length===1){const id=matches[0].id;if(!groups.has(id))groups.set(id,[]);groups.get(id).push(ability);}
+  }
+  return groups;
+}
+
 /** A metric can yield its display to source prose only on this physical card.
  * A source link, truncated equipment caption or another component is not text.
  * Keep the metric if any canonical source field cannot be proved inline. */
@@ -370,7 +389,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(popup){row.append(table);for(const key of Object.keys(fieldLabels)){const note=modifierSourceNote(card,single(card,key),instanceId);if(note)row.append(note);}}
     return row;
   };
-  const renderSection=(card,{instanceId,inDialog=false}={})=>{
+  const renderSection=(card,{instanceId,inDialog=false,omitSourceHeading=false}={})=>{
     const role=config.sectionRoles[card.id] || 'additional';
     const section=identity(el('section','unit-part'),card,instanceId);section.dataset.datasheetSection=role;
     section.id='ds-'+domKey(JSON.stringify([card.id,instanceId || null,card.scopeId || null]));
@@ -380,6 +399,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const content=el(role==='abilities'||role==='wargear-abilities'?'article':'div',role==='abilities'||role==='wargear-abilities'?'ability':'content-block');
       identity(content,card,instanceId);content.dataset.sourceFieldPath=field.source.path;
       const value=factValue('p',field);
+      // Flat source sections include their heading in /text as well as /title.
+      // Split that exact display prefix only; retain the source field identity.
+      if(omitSourceHeading&&title&&field.source?.path==='/text'&&typeof field.value==='string'&&field.value.startsWith(title.value+'\n'))
+        value.textContent=field.value.slice(title.value.length+1);
       if(role==='abilities'||role==='wargear-abilities'){
         // Split a display caption, retaining exactly the same factual string.
         const text=value.textContent,colon=text.indexOf(':');
@@ -462,6 +485,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
     const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set();
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
+    const groupedSources=groupedAbilitySources(children),groupedIds=new Set([...groupedSources.values()].flat().map(card=>card.id));
     const abilityPresentation=instanceId?projectAbilityPresentation({instanceId,
       profiles:children.filter(child=>child.kind==='PROFILE').map(child=>({id:child.id,scopeId:child.scopeId,
         quantity:child.rosterQuantity,abilities:child.effectiveAbilities||child.rosterAbilities||[],
@@ -600,6 +624,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
             for(const field of plan.fields.filter(field=>field.kind==='TEXT')){
               const text=el('div','');text.id=ids.get(field.id);text.dataset.detachmentFieldText='';
               text.dataset.sourceFieldPath=JSON.stringify(field.sourcePath);
+              if(field.sourceRange)text.dataset.sourceRange=JSON.stringify(field.sourceRange);
               let offset=0;
               for(const table of plan.fields.filter(table=>table.kind==='TABLE'&&table.anchor?.fieldId===field.id)
                 .sort((a,b)=>a.anchor.offset-b.anchor.offset)){
@@ -638,9 +663,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
         node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:sourceSnapshot(row,{slot:'sourceProvenance'})});
-        node.append(el('h5','',labels[row.policy.kind]),el('p','','Conditional — Not automatically resolved'));
+        node.append(el('h5','',labels[row.policy.kind]));
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));node.append(source);
-        node.append(el('p','',row.recipient.how==='AURA'?`Recipient unresolved; requires measured ${row.recipient.aura.range} inch range and matching ${row.recipient.aura.unitKeyword} UNIT.`:'Applies to: '+row.recipientLabels.join('; ')));
+        if(row.recipient.how!=='AURA')node.append(el('p','','Applies to: '+row.recipientLabels.join('; ')));
         if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
         if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
         node.append(el('p','',row.policy.contextQuote));section.append(node);
@@ -795,7 +820,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }
     }
     const rendered=new Set(children.filter(c=>['PROFILE','WEAPON_PROFILE','WEAPON_PROFILE_SELECTION','RULE_REFERENCE','MFM_UNIT_POINTS'].includes(c.kind)).map(c=>c.id));
+    for(const id of groupedIds)rendered.add(id);
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){
+      if(groupedIds.has(child.id))continue;
       const section=renderSection(child,{instanceId,inDialog}),items=[...section.querySelector('.ability-list').children];
       const titleField=child.fields.find(f=>f.presentation==='heading');if(titleField){const caption=factValue('span',titleField);caption.textContent='Abilities';abilities.querySelector('h4').replaceChildren(caption);}
       items.forEach(item=>abilityList.append(item));
@@ -934,7 +961,16 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           }
         }
         root.append(composition);
-      }else root.append(renderSection(child,{instanceId,inDialog}));
+      }else {
+        const section=renderSection(child,{instanceId,inDialog,omitSourceHeading:groupedSources.has(child.id)});
+        if(groupedSources.has(child.id)){
+          const source=el('p','ds-section-sources','Source: ');
+          groupedSources.get(child.id).forEach((ability,index)=>{if(index)source.append(document.createTextNode('; '));
+            const link=scopedAnchor(ability.title,ability,instanceId,'/text');link.dataset.representedAbilityId=ability.id;source.append(link);});
+          section.append(source);
+        }
+        root.append(section);
+      }
     }
     for(const child of children.filter(c=>c.kind==='MFM_PAID_UPGRADE')){
       if(optionCosts.some(binding=>binding.costRecordId===child.id))continue;
@@ -957,7 +993,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       fields.forEach((field,index)=>{if(index)line.append(document.createTextNode(', '));line.append(keywordValue(field));});keywords.append(line);
     }root.append(keywords);
     const sections=[...root.children].filter(n=>n.classList.contains('unit-part'));
-    for(const section of sections){const tab=el('button','local-tab',section.querySelector('h4')?.textContent || 'Section');tab.type='button';tab.dataset.datasheetTarget=section.id;listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
+    for(const section of sections){const label=section.querySelector('h4')?.textContent || 'Section';
+      const tab=el('button','local-tab',section.dataset.datasheetSection==='damaged'||label.includes('DAMAGED:')?'Damaged profile':label);
+      tab.type='button';tab.dataset.datasheetTarget=section.id;listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);}
     if(instanceId){const u=roster.state.units.find(u=>u.instanceId===instanceId),context=el('div','ds-roster-context');
       const assigned=roster.state.attachments.find(a=>a.leaderInstanceId===instanceId),members=roster.state.attachments.filter(a=>a.bodyguardInstanceId===instanceId);
       const name=id=>{const unit=roster.state.units.find(u=>u.instanceId===id),copies=roster.state.units.filter(u=>u.canonicalUnitId===unit.canonicalUnitId);return cards.get(unit.canonicalUnitId).title+(copies.length>1?` #${copies.findIndex(u=>u.instanceId===id)+1}`:'');};

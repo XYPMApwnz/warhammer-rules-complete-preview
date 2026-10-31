@@ -98,7 +98,6 @@ function expected(e,s){const state=s.snapshot(),base=service(e,baseBooks.get(e.i
  return {rows,base,ids};
 }
 function expectedPresentation(e,s,expectedRows){return expectedRows.map(u=>{
- const group=s.effective(u.id).formedUnit,groupIds=group?.memberInstanceIds||[u.id];
  const abilities=[];
  if(e.abilityId){
   const unitAbility=u.abilities.find(a=>a.canonicalId===e.abilityId);
@@ -108,12 +107,19 @@ function expectedPresentation(e,s,expectedRows){return expectedRows.map(u=>{
  }
  return {id:u.id,profiles:u.profiles.map(p=>({id:p.id,scope:p.scope,stats:p.stats})),
   weapons:u.weapons.map(w=>({id:w.id,scope:w.scope,strength:w.data.strength,ap:w.data.ap})),
-  keywords:sorted(expectedRows.filter(x=>groupIds.includes(x.id)).flatMap(x=>x.keywords)),abilityRows:abilities};
+  keywords:sorted(u.keywords),abilityRows:abilities};
 });}
 function verify(e,s,{candidate=book,active=true,observation=null}={}){
  sourceCheck(e,candidate);bindingCheck(e,candidate);
  const expectedResult=expected(e,s),observed={runtime:runtimeRows(s),presentation:presentationRows(s,e)},wanted={runtime:expectedResult.rows,presentation:expectedPresentation(e,s,expectedResult.rows)};
  assert.deepEqual(observation||observed,wanted,'SOURCE -> EXECUTOR -> PRESENTATION '+e.id);
+ // The formed union remains an execution context. Only each component's own
+ // source-derived keyword bag belongs on that component's physical card.
+ for(const unit of expectedResult.rows){
+  const view=s.effective(unit.id),members=view.formedUnit?.memberInstanceIds||[unit.id];
+  assert.deepEqual(sorted(view.keywords),sorted(expectedResult.rows.filter(row=>members.includes(row.id)).flatMap(row=>row.keywords)),'FORMED keyword context unchanged');
+  assert.deepEqual(sorted(view.physicalKeywords),unit.keywords,'Physical keyword snapshot preserves every source-derived grant');
+ }
  const applied=s.projection.units.flatMap(u=>u.applied).filter(a=>a.ruleId===e.source.canonicalId&&e.expectedOperations.some(op=>op.operation===a.operation&&(op.field===undefined||op.field===a.field)));
  if(active){assert.ok(applied.length,'EXECUTOR RESULT REQUIRED');
   const expectedOperation=clone(e.expectedOperations[0]);if(e.id==='tyr-leader-keywords')delete expectedOperation.keyword;
@@ -204,6 +210,16 @@ for(const e of sevenEffectsExpectations){
  else {const w=row.weapons.find(w=>e.id==='tyr-power'?w.id===e.psychicProfileId:true);w.ap=baseline.find(u=>u.id===affected).weapons.find(x=>x.id===w.id&&x.scope===w.scope).data.ap;}
  assert.throws(()=>verify(e,s,{observation:mutated}),/SOURCE -> EXECUTOR -> PRESENTATION/,'Missing presentation escaped comparator');
  mutations.push({id:e.id,mutation:'missing-production-presentation-result'});
+ const foreign=result.wanted.presentation.find(row=>{
+  const members=s.effective(row.id).formedUnit?.memberInstanceIds||[];
+  return result.wanted.runtime.some(other=>members.includes(other.id)&&other.keywords.some(keyword=>!row.keywords.includes(keyword)));
+ });
+ if(foreign){
+  const leaked=clone(result.observed),members=s.effective(foreign.id).formedUnit.memberInstanceIds;
+  leaked.presentation.find(row=>row.id===foreign.id).keywords=sorted(result.wanted.runtime.filter(row=>members.includes(row.id)).flatMap(row=>row.keywords));
+  assert.throws(()=>verify(e,s,{observation:leaked}),/SOURCE -> EXECUTOR -> PRESENTATION/,'Foreign component keywords escaped the physical-card comparator');
+  mutations.push({id:e.id,mutation:'foreign-component-keywords-on-physical-card'});
+ }
 }
 export const sevenEffectsGuardResult={status:'PASS',obligations:7,scenarios,mutations:mutations.length,mutationResults:mutations,
  negativeControls,

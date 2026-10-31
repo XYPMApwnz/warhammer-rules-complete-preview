@@ -7,8 +7,7 @@ export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
  * This never adds facts to the roster, executes clauses or changes F1 rows.
  * Missing/ambiguous metadata simply leaves table placement unproved. */
 export async function loadDetachmentPresentationSources({payload,assetBaseURL,fetch:read}){
-  const result=new Map(),wanted=new Set(payload.cards.filter(card=>card.kind==='DETACHMENT_RULE'&&
-    card.fields.some(field=>field.presentation==='table-cell')).map(card=>card.id));
+  const result=new Map(),wanted=new Set(payload.cards.filter(card=>card.kind==='DETACHMENT_RULE').map(card=>card.id));
   if(!wanted.size||!assetBaseURL||!read)return result;
   try{
     const root=new URL('../../../',import.meta.url),base=new URL('generated/',assetBaseURL);
@@ -33,6 +32,38 @@ export async function loadDetachmentPresentationSources({payload,assetBaseURL,fe
 }
 /** Field identity, not flattened text, owns display deduplication. Native row
  * proof is validated separately and is never rewritten by this display plan. */
+/** Clip only an independently source-bound complete paragraph. Every nonblank
+ * line in the shared field must be covered by unambiguous, non-overlapping
+ * clause evidence. Uncovered mode headings, partial quotes and choice/table
+ * declarations retain their entire canonical field; no prose interpretation. */
+export function detachmentClauseSpan(rule,clause,path,rows){
+  if(rows.some(row=>row.detachmentText.kind==='ELIGIBLE_FOR_SELECTION'||row.detachmentText.kind==='SELECTED'||
+    row.detachmentText.tableOptions?.length||row.detachmentText.tableOption))return null;
+  // Shared-recipient rules keep their complete explanation, including modes.
+  // Only separately recorded recipient selectors can require clause-local text.
+  const selectors=new Set(rule.ruleContract.clauses.flatMap(clause=>(clause.recipients||[])
+    .filter(recipient=>recipient.side==='FRIENDLY'&&recipient.selector)
+    .map(recipient=>JSON.stringify([recipient.who,recipient.selector]))));
+  if(selectors.size<2)return null;
+  const text=path.reduce((value,key)=>value?.[key],rule.data);
+  if(typeof text!=='string')return null;
+  const spans=[];
+  for(const candidate of rule.ruleContract.clauses){
+    if(!(candidate.sourceFields||[]).some(field=>JSON.stringify(field)===JSON.stringify(path)))continue;
+    const quote=candidate.evidence?.quote;
+    if(JSON.stringify(candidate.evidence?.field)!==JSON.stringify(path)||typeof quote!=='string'||!quote.length)return null;
+    const start=text.indexOf(quote),end=start+quote.length;
+    if(start<0||start!==text.lastIndexOf(quote))return null;
+    const lineStart=text.lastIndexOf('\n',start-1)+1,prefix=text.slice(lineStart,start);
+    if(!['','- ','• '].includes(prefix)||end!==text.length&&text[end]!=='\n')return null;
+    spans.push({clauseId:candidate.id,start:lineStart,end});
+  }
+  spans.sort((a,b)=>a.start-b.start||a.end-b.end);
+  let end=0;
+  for(const span of spans){if(span.start<end||text.slice(end,span.start).trim())return null;end=span.end;}
+  if(text.slice(end).trim())return null;
+  return spans.find(span=>span.clauseId===clause.id)||null;
+}
 export function projectDetachmentFields(card,rows,sources=new Map()){
   const fields=new Map(),clauses=[];
   for(const row of rows){
@@ -71,6 +102,12 @@ export function projectDetachmentFields(card,rows,sources=new Map()){
         if(prefixes.length===1)selected=[{id:JSON.stringify([row.ruleId,prefixes[0].source.path]),kind:'TEXT',sourcePath:prefixes[0].source.path,text:prefixes[0].value},...[...tables.values()]];
       }
     }
+    if(clause)selected=selected.map(field=>{
+      if(field.kind!=='TEXT'||!Array.isArray(field.sourcePath))return field;
+      const span=detachmentClauseSpan(rule,clause,field.sourcePath,rows);
+      return span?{...field,id:JSON.stringify([field.id,span.start,span.end]),
+        text:field.text.slice(span.start,span.end),sourceRange:{start:span.start,end:span.end}}:field;
+    });
     const tables=selected.filter(field=>field.kind==='TABLE'),quote=clause?.evidence?.quote;
     const anchors=selected.filter(field=>field.kind==='TEXT'&&JSON.stringify(field.sourcePath)===JSON.stringify(clause?.evidence?.field)&&
       typeof quote==='string'&&quote.length&&field.text.indexOf(quote)>=0&&field.text.indexOf(quote)===field.text.lastIndexOf(quote));
@@ -494,7 +531,8 @@ export function projectInstanceCards(cards, unit, effective) {
     return sources.length?{keywordSources:clone(sources)}:{};
   };
   root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-  effective.keywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
+  const physicalKeywords=effective.physicalKeywords||effective.keywords;
+  physicalKeywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
     label:'Keywords',type:'tokens',value:keyword,contextId:root.contextId,
     source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true,...keywordAttribution(keyword)}));
   if(root.keywordGroups) {
@@ -513,7 +551,7 @@ export function projectInstanceCards(cards, unit, effective) {
     };
     // Replace, rather than repeat, the temporary flat UNIT keyword overlay.
     root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-    add('Keywords',effective.keywords.filter(keyword=>!faction.has(keyword)),'unit');
+    add('Keywords',physicalKeywords.filter(keyword=>!faction.has(keyword)),'unit');
     if(effective.profiles.length>1)for(const [index,profile]of effective.profiles.entries()) {
       const canonicalName=profileName(profile.id),scope=scopeCaptions.get(profile.scopeId);
       const name=scope?.canonicalLabelIncluded?scope.label:
