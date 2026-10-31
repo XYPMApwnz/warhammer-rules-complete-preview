@@ -66,7 +66,7 @@ async function assertFeature(page){
   const rows=await forgeRows(page);assert.equal(rows.length,1);
   assert.equal(rows[0].instance,'parsed-unit-1');assert.equal(rows[0].subject,'MODEL');
   assert.deepEqual(rows[0].recipients,['parsed-unit-1']);assert.match(rows[0].text,/Baffling Data Screed/);
-  assert.match(rows[0].text,/Not automatically calculated/);
+  assert.doesNotMatch(rows[0].text,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
   assert.equal(await page.locator('main .unit-card[data-roster-instance-id="parsed-unit-2"] .ds-conditional-policy[data-recipient-subject="MODEL"]').count(),0);
 }
 

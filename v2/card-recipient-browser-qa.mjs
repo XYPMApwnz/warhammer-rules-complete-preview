@@ -153,8 +153,8 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
     assert.deepEqual(row.models,proof.recipientModelScopeIds);assert.equal(row.classification,'BATTLE_ONLY');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');
     assert.equal(row.status,proof.detachmentText.kind);if(status)assert.equal(row.status,status);if(subject)assert.equal(row.subject,subject);
     if(recipients)assert.deepEqual(row.instances.toSorted(),[...recipients].toSorted());
-    assert.ok(row.links.includes(ruleId),'Each clause keeps source links');assert.match(row.body,/Not automatically calculated/);
-    if(row.status==='ELIGIBLE_FOR_SELECTION'){assert.match(row.body,/Selection not recorded/);assert.doesNotMatch(row.body,/Effect applied|Selection recorded|Selected —/);}
+    assert.ok(row.links.includes(ruleId),'Each clause keeps source links');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+    if(row.status==='ELIGIBLE_FOR_SELECTION')assert.doesNotMatch(row.body,/Effect applied|Selection recorded|Selected —/);
     assert.equal(row.applies.length,1,'Each clause has its own recipient/status annotation');
     if(localLabel)assert.ok(row.applies[0].toLowerCase().includes(localLabel.toLowerCase()),'Recipient caption names this component');
     assert.ok(!physical.applied.some(effect=>effect.ruleId===ruleId&&effect.clauseId===row.source.clauseId),'This text-only clause is never executed; independent roster clauses of the same rule retain existing effects');

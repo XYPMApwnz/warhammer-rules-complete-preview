@@ -206,7 +206,7 @@ if(prepareOnly){
         assert.equal(rows[0].proof.clauseId,leadId);assert.equal(rows[0].subject,'MODEL');assert.deepEqual(rows[0].instances,['parsed-unit-1']);
         assert.deepEqual(rows[0].models,[dominus.scopeId]);assert.equal(rows[0].clauseText,leading);
         assert.equal(rows[0].options.length,fixture.variant==='valid'?1:0);if(fixture.variant==='valid'){
-          assert.deepEqual(rows[0].options,[{text:optionText,tableId,rowIndex:0,clauseId:childId}]);assert.match(rows[0].text,/Selection not recorded/);
+          assert.deepEqual(rows[0].options,[{text:optionText,tableId,rowIndex:0,clauseId:childId}]);assert.doesNotMatch(rows[0].text,/Selection not recorded|Not automatically calculated|Conditional rule|model count unresolved/);
         }
         assertNoInternalIds(await page.locator('main').innerText());
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'No horizontal overflow');

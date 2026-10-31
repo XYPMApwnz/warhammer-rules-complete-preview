@@ -49,6 +49,38 @@ const pointerKey=field=>layoutPath(field)?.slice(1).split('/')[0];
 const single=(card,key)=>card.fields.find(f=>layoutPath(f)==='/'+key);
 const domKey=value=>encodeURIComponent(value).replace(/%/g,'_');
 
+/** A metric can yield its display to source prose only on this physical card.
+ * A source link, truncated equipment caption or another component is not text.
+ * Keep the metric if any canonical source field cannot be proved inline. */
+export function hasInlineUnitMetricSource(root,source,cards){
+  const rule=cards.get(source.ruleId);
+  if(!rule||!Array.isArray(source.sourceFields)||!source.sourceFields.length)return false;
+  const local=node=>!node.closest('a,dialog,[hidden],details:not([open])');
+  return source.sourceFields.every(path=>{
+    if(!Array.isArray(path))return false;
+    const pointer='/'+path.map(key=>String(key).replaceAll('~','~0').replaceAll('/','~1')).join('/');
+    const fields=rule.fields.filter(field=>typeof field.value==='string'&&
+      (field.source?.path===pointer||field.presentationPath===pointer));
+    if(fields.length!==1)return false;
+    const field=fields[0];
+    if(source.sourceInstanceId===root.dataset.rosterInstanceId&&
+      [...root.querySelectorAll('[data-fact-id]')].some(node=>node.dataset.factId===field.id&&
+        local(node)&&node.textContent===field.value))return true;
+    for(const block of root.querySelectorAll('[data-detachment-rule-id]')){
+      if(block.dataset.detachmentRuleId!==source.ruleId)continue;
+      if([...block.querySelectorAll('[data-detachment-field-text]')].some(node=>local(node)&&
+        node.dataset.sourceFieldPath===JSON.stringify(path)&&node.textContent===field.value))return true;
+    }
+    for(const block of root.querySelectorAll('[data-attached-rule-id]')){
+      if(block.dataset.attachedRuleId!==source.ruleId||block.dataset.sourceInstanceId!==source.sourceInstanceId||
+        block.dataset.sourceFieldPath!==JSON.stringify(path))continue;
+      const text=block.querySelector('[data-attached-rule-text]'),prefix=block.querySelector('h5')?.textContent+':';
+      if(text&&local(text)&&text.textContent===(field.value.startsWith(prefix)?field.value.slice(prefix.length):field.value))return true;
+    }
+    return false;
+  });
+}
+
 export function createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL,related,roster,navigateSection,renderCanonicalRule,presentationRuleSources=new Map()}) {
   const listen=(node,type,callback)=>lifecycle?lifecycle.listen(node,type,callback):node.addEventListener(type,callback);
   const config=payload.datasheetPresentation;
@@ -196,7 +228,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     return node;
   };
-  const metricNode=field=>{const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));return metric;};
+  const metricNode=(field,members=[])=>{
+    const metric=el('p','ds-effective-metric');metric.append(el('b','',field.label+': '),factValue('span',field));
+    metric.dataset.profileMetric=field.source.path.slice('/rosterMetrics/'.length);
+    metric.dataset.metricProfiles=JSON.stringify(members.map(card=>({id:card.id,scopeId:card.scopeId||null})));
+    return metric;
+  };
   const keywordValue=field=>{
     const value=factValue('span',field);
     if(!field.keywordSources?.length)return value;
@@ -241,7 +278,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const ability of abilityPresentation){const pill=el('div','ds-granted-ability');pill.append(effectiveAbilityNode(ability));box.append(pill);}
     }else for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterAbilities/'))){const pill=el('div','ds-granted-ability');if(field.value?.value!==undefined)pill.append(el('b','',field.label.replace(/:\s*$/,'')+' '));pill.append(factValue('span',field));box.append(pill);used.add(field.id);}
     for(const field of card.fields.filter(f=>f.source?.path.startsWith('/rosterMetrics/')&&!sharedMetricFields.has(f.id))){
-      box.append(metricNode(field));
+      box.append(metricNode(field,[card]));
     }
     for(const id of card.children || []){
       const child=cards.get(id);
@@ -518,7 +555,6 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }
       unitModifiers.append(node);
     }
-    if(unitModifiers)root.append(unitModifiers);
     if(card.rosterAttachedRuleTexts?.length){
       const section=part('attached-rules','Attached unit rules');
       const current=roster.effective(instanceId),unit=roster.state.units.find(value=>value.instanceId===instanceId);
@@ -529,8 +565,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           throw new TypeError('Unresolved attached rule physical source');
         const node=el('article','ds-attached-rule');node.dataset.attachedRuleId=row.ruleId;
         node.dataset.sourceInstanceId=row.sourceInstanceId;
+        node.dataset.sourceFieldPath=JSON.stringify(row.sourcePath);
         node.append(el('h5','',row.title));
-        const text=el('p','',canonicalText);text.dataset.attachedRuleText='';node.append(text);
+        const prefix=row.title+':';
+        const text=el('p','',canonicalText.startsWith(prefix)?canonicalText.slice(prefix.length):canonicalText);text.dataset.attachedRuleText='';node.append(text);
         const source=el('p','','Source: '+row.sourceLabel+' · ');
         source.append(anchor(row.title,row.ruleId,true));node.append(source);section.append(node);
       }
@@ -579,12 +617,10 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);node.dataset.selectionStatus=text.kind;
           node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:sourceSnapshot(row,{slot:'sourceProvenance'})});
           node.dataset.rosterClassification=text.classification;
-          node.append(el('p','',text.kind==='ABILITY_PRESENT'?'Ability available — Not automatically calculated':
-            text.kind==='ELIGIBLE_FOR_SELECTION'?'Eligible for selection — Selection not recorded — Not automatically calculated':'Conditional rule — Not automatically calculated'));
           const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel));node.append(source);
           const profiles=physicalProfiles(instanceId).filter(profile=>text.recipientSubject==='UNIT'||row.recipientModelScopeIds.includes(profile.scopeId));
           const recipients=formatPhysicalCarriers(countPhysicalCarriers(profiles));
-          node.append(el('p','','Applies to: '+(recipients.join('; ')||cards.get(physicalUnit.canonicalUnitId).title+' · model count unresolved')));
+          node.append(el('p','','Applies to: '+(recipients.join('; ')||cards.get(physicalUnit.canonicalUnitId).title)));
           const clause=group.plan.clauses.find(clause=>clause.row===row),refs=clause.fieldIds.map(id=>group.ids.get(id));
           node.dataset.detachmentClauseFieldRefs=JSON.stringify(refs);node.dataset.detachmentClauseTextRef=refs[0];
           node.setAttribute('aria-describedby',refs.join(' '));
@@ -640,7 +676,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           // Only share a breakdown when it is also identical for all scopes.
           [...line.children].forEach((stat,index)=>{if(scopedBreakdowns.includes(pointerKey(profileStatFields(child)[index])))stat.querySelector('.ds-modifier-breakdown')?.remove();});wrapper.append(line);
           for(const annotation of sharedAnnotations){
-            const node=metricNode(annotation.field);node.dataset.profileAnnotationIdentity=annotation.identity;
+            const node=metricNode(annotation.field,annotation.members.map(member=>member.card));node.dataset.profileAnnotationIdentity=annotation.identity;
             node.dataset.recipientScopes=JSON.stringify(annotation.members.map(({card})=>[card.id,card.scopeId||null]));wrapper.append(node);
           }
         }else line.remove();
@@ -935,6 +971,27 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const member of members)context.append(el('p','',`${['SUPPORT','SUPPORT_EXCEPTION'].includes(member.role)?'Supported by':'Led by'} ${name(member.leaderInstanceId)}`));
       // Detachment selection lives in roster navigation, not repeated on each unit.
       head.after(context);
+    }
+    if(instanceId&&root.querySelector('[data-profile-metric]')){
+      const applied=roster.effective(instanceId).applied;
+      for(const node of root.querySelectorAll('[data-profile-metric]')){
+        const profiles=JSON.parse(node.dataset.metricProfiles);
+        if(profiles.length&&profiles.every(profile=>{
+          const sources=applied.filter(source=>source.operation==='MODIFY_RULE_METRIC'&&source.field===node.dataset.profileMetric&&
+            source.targetInstanceId===instanceId&&(!source.targetProfileId||source.targetProfileId===profile.id)&&
+            (!source.targetCompositionId||source.targetCompositionId===profile.scopeId));
+          return sources.length&&sources.every(source=>hasInlineUnitMetricSource(root,source,cards));
+        }))node.remove();
+      }
+    }
+    if(unitModifiers){
+      // Inspect the completed component, including native selected equipment,
+      // Enhancements and source-validated F1/O-1 text. Do not alter metric data.
+      for(const node of [...unitModifiers.querySelectorAll('[data-unit-metric]')]){
+        const metric=card.rosterUnitMetrics.find(value=>value.key===node.dataset.unitMetric);
+        if(metric.sources.every(source=>hasInlineUnitMetricSource(root,source,cards)))node.remove();
+      }
+      if(unitModifiers.childElementCount>1)nav.after(unitModifiers);
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;

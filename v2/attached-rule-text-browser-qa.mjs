@@ -156,7 +156,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
     assert.ok(row.visible,'Rule is actually rendered');
     const body=c.quote?.startsWith(c.rule+':')?c.quote.slice(c.rule.length+1).trim():c.quote;
     assert.equal(row.ruleId,c.canonical.ruleId,'Exact canonical rule identity');
-    assert.equal(row.text,c.canonical.text,'Visible original source field is byte-for-byte identical');
+    const prefix=row.title+':';
+    const expectedBody=c.canonical.text.startsWith(prefix)?c.canonical.text.slice(prefix.length):c.canonical.text;
+    assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
+    assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
     if(c.quote)assert.ok(norm(row.text).includes(norm(body)),'Full independent accepted source text, including conditions');
     assert.ok(norm(row.content).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
     assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');

@@ -137,7 +137,7 @@ async function assertModelText(page,instance,profile,label,stage,{absent=false}=
     assert.equal(row.subject,'MODEL');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');assert.equal(row.classification,'BATTLE_ONLY');
     assert.deepEqual(row.instances,[instance]);assert.deepEqual(row.models,[model.scope]);
     assert.equal(row.selectionStatus,'ABILITY_PRESENT');assert.equal(row.visible,true);
-    assert.match(row.text,/Baffling Data Screed/);assert.match(row.text,/Not automatically calculated/i);
+    assert.match(row.text,/Baffling Data Screed/);assert.doesNotMatch(row.text,/Not automatically calculated|model count unresolved/i);
     assert.doesNotMatch(row.text,/Selection not recorded/);
     assert.equal(row.applies.length,1);assert.ok(row.applies[0].includes(label),stage+': visible recipient label');
     assert.doesNotMatch(row.applies[0],/Skitarii Rangers|Combat Servitor|Gun Servitor/);
@@ -160,7 +160,7 @@ async function assertEligibility(page,instance,ruleId,clauseId,{wanted,quote,lab
   await guide(page,instance);const found=await rows(page,ruleId,clauseId);assert.equal(found.length,wanted?1:0,stage+': eligibility count');
   if(wanted){const row=found[0];assert.equal(row.subject,'UNIT');assert.equal(row.selectionStatus,'ELIGIBLE_FOR_SELECTION');
     assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');assert.equal(row.classification,'BATTLE_ONLY');assert.deepEqual(row.models,[]);assert.deepEqual(row.instances,[instance]);
-    assert.equal(row.visible,true);assert.match(row.text,/Selection not recorded/);assert.match(row.text,/Not automatically calculated|Not automatically resolved/i);
+    assert.equal(row.visible,true);assert.doesNotMatch(row.text,/Selection not recorded|Not automatically calculated|Not automatically resolved|model count unresolved/i);
     assert.ok(norm(row.text).includes(norm(quote)));assert.ok(row.applies.some(text=>text.includes(label)));
     assert.ok(row.sourceLinks.includes(ruleId));
     const runtime=await observation(page),unit=runtime.find(unit=>unit.id===instance);
@@ -254,7 +254,7 @@ try{
           assert.deepEqual(row.models.toSorted(),unit.models.map(model=>model.scope).toSorted());
           assert.ok(row.models.length);assert.ok(row.visible);assert.ok(row.sourceLinks.includes(veteranRule));
           assert.ok(norm(row.text).includes('makes an attack that targets your focus of hatred, you can re-roll the Hit roll.'));
-          assert.match(row.text,/Not automatically calculated/);
+          assert.doesNotMatch(row.text,/Not automatically calculated|Selection not recorded|model count unresolved/);
         }
         assert.equal(runtime.find(unit=>unit.id===daemonkin.source).metrics.chargeRoll.modifier,1,'Existing actual Daemonkin charge modifier retained');
         assert.equal(runtime.find(unit=>unit.id===daemonkin.bodyguard).metrics.chargeRoll.modifier,1,'Existing actual attached charge recipient retained');
@@ -275,7 +275,7 @@ try{
         '1x Heretic Astartes Daemon Prince (100 pts): Infernal cannon, Hellforged weapons\nDaemonic Allegiance: Khorne\n';
       await imported(page,text,[...csmUnits,'unit-cultist-mob','unit-heretic-astartes-daemon-prince']);
       await guide(page,'parsed-unit-1');const found=await rows(page,rule,'source-clause-1-1');assert.equal(found.length,1,'One source-first lead group');
-      assert.equal(found[0].selectionStatus,'ELIGIBLE_FOR_SELECTION');assert.match(found[0].text,/Selection not recorded/);assert.doesNotMatch(found[0].text,/Ability available|Effect applied|Selected —/);
+      assert.equal(found[0].selectionStatus,'ELIGIBLE_FOR_SELECTION');assert.doesNotMatch(found[0].text,/Selection not recorded|Not automatically calculated|Ability available|Effect applied|Selected —|model count unresolved/);
       // Option count and canonical cells are read from the verified projection;
       // renderer evidence must retain every source option inside its lead group.
       const options=await page.evaluate(({rule})=>window.ArmyBookAppV2.roster.projection.units[0].conditional.find(row=>row.ruleId===rule&&row.clauseId==='source-clause-1-1').detachmentText.tableOptions,{rule});
@@ -289,7 +289,7 @@ try{
       assert.ok(fixture);await imported(page,fixture.text.replace('Carnival of Excess','Mercurial Host'),['unit-noise-marines','unit-tormentors']);
       for(const instance of ['parsed-unit-1','parsed-unit-2']){await guide(page,instance);const found=await rows(page,'detachment-mercurial-host:rule','advance-roll');
         assert.equal(found.length,1);assert.equal(found[0].subject,'UNIT');assert.deepEqual(found[0].instances,[instance]);assert.equal(found[0].classification,'BATTLE_ONLY');
-        assert.match(found[0].text,/Not automatically calculated/);assert.ok(found[0].sourceLinks.includes('detachment-mercurial-host:rule'));
+        assert.doesNotMatch(found[0].text,/Not automatically calculated|Selection not recorded|model count unresolved/);assert.ok(found[0].sourceLinks.includes('detachment-mercurial-host:rule'));
         results.push({device,stage:'EC native '+instance,rows:found,status:'PASS'});}
       await shot(page,device,'ec-native-source-binding');
     });
@@ -322,7 +322,7 @@ try{
       for(const physical of state.units){await guide(page,physical.instanceId);
         const expected=await page.evaluate(instance=>{const unit=window.ArmyBookAppV2.roster.projection.units.find(unit=>unit.instanceId===instance);return {
           f1:unit.conditional.filter(row=>row.detachmentText),typed:unit.conditional.filter(row=>row.policy).map(row=>({ruleId:row.ruleId,clauseId:row.clauseId,kind:row.policy.kind,payload:row.policy.payload}))};},physical.instanceId);
-        for(const row of expected.f1){const found=await rows(page,row.ruleId,row.clauseId);assert.ok(found.some(item=>item.cardInstance===physical.instanceId));for(const shown of found){assert.equal(shown.classification,'BATTLE_ONLY');assert.match(shown.text,/Not automatically calculated|Selection not recorded/);}}
+        for(const row of expected.f1){const found=await rows(page,row.ruleId,row.clauseId);assert.ok(found.some(item=>item.cardInstance===physical.instanceId));for(const shown of found){assert.equal(shown.classification,'BATTLE_ONLY');assert.doesNotMatch(shown.text,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);}}
         if(!expected.f1.length)assert.equal(await page.locator('main .unit-card[data-roster-instance-id="'+physical.instanceId+'"] .ds-conditional-policy[data-selection-status]').count(),0,'No unsupported F1 appears without eligible source clauses');
         for(const typed of expected.typed)assert.ok((await rows(page,typed.ruleId,typed.clauseId)).length,'Existing typed source remains visible');
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
