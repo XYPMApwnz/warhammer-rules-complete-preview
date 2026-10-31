@@ -4,7 +4,6 @@ import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
  */
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {changeAttachment} from '../../shared/roster-v2/context.mjs';
-import {createPhysicalEquipmentConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {bindSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
@@ -48,7 +47,8 @@ export function createSpaceMarinesRosterRuntime(built){
       });
       nextBook.compatibilityFeasibility=buildAttachmentFeasibility(nextBook,composition);
       nextBook=bindSpaceMarinesStaticModels(nextBook,snapshot);
-      const schema=createSpaceMarinesRuleSchema({bindContext:createPhysicalEquipmentConditionContext(nextBook,snapshot,{equipmentMode:'POSITIVE_SELECTION',clearUnrequestedEquipment:false})});
+      const schema=createSpaceMarinesRuleSchema({book:nextBook,state:snapshot,conditionInputs:[
+        {key:'equipmentBearerSatisfied',arguments:{quantityProof:'POSITIVE_SELECTION'},clearUnrequestedEquipment:false}]});
       const next=createRosterRuntime(nextBook,schema);next.load(snapshot);
       active=next;boundBook=nextBook;return service.state;
     },

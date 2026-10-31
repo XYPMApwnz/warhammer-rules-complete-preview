@@ -31,9 +31,8 @@ const state={schema:'roster-v2/roster',bookId:'space-marines',rosterId:'physical
     {leaderInstanceId:'captain-a',bodyguardInstanceId:'body-a',role:'LEADER'},
     {leaderInstanceId:'kaius-b',bodyguardInstanceId:'body-b',role:'SUPPORT'},
     {leaderInstanceId:'captain-b',bodyguardInstanceId:'body-b',role:'LEADER'}],warlordInstanceId:null};
-const schema=createSpaceMarinesRuleSchema({bindContext:context=>context?{...context,roster:{...context.roster,
-  physicalUnitInstanceId:context.instanceId||'',
-  physicalModelScopeId:context.subject==='MODEL'?context.modelScopeId||'':''}}:context});
+const schema=createSpaceMarinesRuleSchema({book,state,conditionInputs:[
+  {key:'equipmentBearerSatisfied',arguments:{quantityProof:'POSITIVE_SELECTION'},clearUnrequestedEquipment:false}]});
 const evaluator=withRosterDetachments(schema);
 function run(snapshot,mutate){
   const derived=bindSpaceMarinesStaticModels(book,snapshot);mutate?.(derived);

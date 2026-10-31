@@ -2,8 +2,7 @@
  * attachment permissions are invented here. Rebind physical conditions on load. */
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
-import {changeAttachment} from '../../shared/roster-v2/context.mjs';
-import {createPhysicalEquipmentConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
+import {changeAttachment,formRoster} from '../../shared/roster-v2/context.mjs';
 const clone=structuredClone;
 export function createDarkAngelsRosterRuntime(built){
  const template=clone(built.book||built);let active=null,boundSchema=null;
@@ -13,7 +12,12 @@ export function createDarkAngelsRosterRuntime(built){
   get book(){return clone(template);},get state(){return active?.state||null;},get projection(){return active?.projection||null;},
   get catalog(){return active?.catalog||template.entities.map(entity=>({id:entity.id,kind:entity.kind,parentId:entity.parentId,title:entity.data.title||entity.data.name||entity.id}));},
   load(snapshot){
-   const state=clone(snapshot),schema=createDarkAngelsRuleSchema({state,book:template,bindContext:createPhysicalEquipmentConditionContext(template,state,{equipmentMode:'POSITIVE_SELECTION',clearUnrequestedEquipment:true})});
+   const state=clone(snapshot);
+   // The former equipment binder formed the roster before chapter validation.
+   // Keep that pure preflight order so rejected snapshots retain their diagnostic.
+   formRoster(template,state);
+   const schema=createDarkAngelsRuleSchema({state,book:template,conditionInputs:[
+    {key:'equipmentBearerSatisfied',arguments:{quantityProof:'POSITIVE_SELECTION'},clearUnrequestedEquipment:true}]});
    const next=createRosterRuntime(template,schema);next.load(state);active=next;boundSchema=schema;return active.state;
   },
   snapshot(){return ready().snapshot();},effective(id){return ready().effective(id);},

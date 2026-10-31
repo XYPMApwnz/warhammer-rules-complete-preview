@@ -156,6 +156,18 @@ async function imported(page,fixture){
 async function capture(page,viewport,id,frame,{onlyUnits=false}={}){
  await page.evaluate(()=>window.ArmyBookAppV2.openPersonalGuide());
  await page.locator('main').waitFor();
+ await stableCardLayout(page);
+ const guide=await page.locator('main').evaluate(main=>{
+  const copy=main.cloneNode(true);
+  // The two real servers may have different ephemeral ports. Retain every
+  // local route path, query, hash and target attribute; remove only its origin.
+  for(const link of copy.querySelectorAll('a[href]')){
+   const url=new URL(link.getAttribute('href'),location.href);
+   if(url.origin===location.origin)link.setAttribute('href',url.pathname+url.search+url.hash);
+  }
+  return {textContent:main.textContent,innerText:main.innerText,dom:copy.innerHTML};
+ });
+ const personalGuide={textContent:intern(guide.textContent),innerText:intern(guide.innerText),dom:intern(guide.dom)};
  const state=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
  const targets=onlyUnits?[]:await page.locator('main a[data-target-id]').evaluateAll(nodes=>[...new Set(nodes.map(node=>node.dataset.targetId))].filter(id=>id&&!id.startsWith('roster-unit/')));
  const cards=[];
@@ -169,7 +181,7 @@ async function capture(page,viewport,id,frame,{onlyUnits=false}={}){
    appliesTo:[...main.querySelectorAll('p,small')].map(node=>node.innerText).filter(text=>/^Applies to:/.test(text))}));
   cards.push({target,textContent:intern(text.textContent),innerText:intern(text.innerText),sourceLabels:text.sources,appliesToLabels:text.appliesTo});
  }
- snapshots.push({viewport,id,frame,bookId:state.bookId,cards});
+ snapshots.push({viewport,id,frame,bookId:state.bookId,personalGuide,cards});
  return state;
 }
 async function sourceTable(page,viewport,phase){
@@ -257,7 +269,7 @@ try{
     console.log('CAPTURED '+active);
     if(importObservations.length%10===0)checkpoint();
    }
-   for(const fixture of onlyNoospheric?[]:fixtures.snapshots||[]){
+   for(const fixture of onlyNoospheric?[]:(fixtures.snapshots||[]).filter(selected)){
     active=viewport+'/saved/'+fixture.bookId+'/'+fixture.id;
     await page.evaluate(()=>localStorage.clear());await book(page,fixture.bookId);
     await page.evaluate(state=>window.ArmyBookAppV2.roster.load(state),fixture.state);
