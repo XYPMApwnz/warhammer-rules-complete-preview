@@ -1,6 +1,6 @@
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
-import {createSelectedSourceChoiceConditionContext,withDefaultConditionValue} from '../../shared/roster-v2/physical-condition-context.mjs';
+import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 import {getRecordedSourceIdentity,sameSourceEvidence,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 export const surpriseRuleId='detachment-subterranean-assault:rule';
@@ -77,18 +77,21 @@ export function setTyranidsSourceChoice(book,snapshot,instanceId,ruleId,optionId
 
 /** One verified decision supplies a scalar FIELD to the existing evaluator.
  * Absence means no selection; Enhancement, SYNAPSE and names are irrelevant. */
-export function tyranidsSourceChoiceContext(book,state) {
+const sourceChoiceInput=()=>({key:'selectedSourceChoice',arguments:{ruleId:surpriseRuleId},selectionField,defaultValue:''});
+export function tyranidsSourceChoiceInputs(book,state) {
   validateTyranidsSourceChoices(book,state);
-  return createSelectedSourceChoiceConditionContext(state,{selectionField,ruleId:surpriseRuleId});
+  return [sourceChoiceInput()];
 }
 
-export function createTyranidsRuleSchema({bindContext=context=>context}={}) {
+export function tyranidsSourceChoiceContext(book,state) {
+  return createTyranidsRuleSchema({book,state,inputs:tyranidsSourceChoiceInputs(book,state)}).bindContext;
+}
+
+export function createTyranidsRuleSchema({book,state,inputs=[sourceChoiceInput()]}={}) {
   const kernel=createRuleContractSchema({stateFields:{attached:{contextLevel:'ROSTER',valueType:'boolean'},
     battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},
     [trygonChoiceField]:{contextLevel:'ROSTER',valueType:'string'}}});
-  const bind=context=>bindContext(withDefaultConditionValue(context,{key:'selectedSourceChoice',ruleId:surpriseRuleId},''));
-  return {...kernel,evaluatePredicate:(node,context)=>kernel.evaluatePredicate(node,bind(context)),
-    evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bind(context))};
+  return createRosterConditionBinding({book,state,schema:kernel,inputs});
 }
 
 /** Same exact export namespace and physical input permit retaining a player's

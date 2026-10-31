@@ -1,16 +1,15 @@
 import {createTyranidsRosterImport} from './roster-import.mjs';
 import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
-import {createTyranidsRuleSchema,tyranidsSourceChoiceContext,preserveTyranidsSourceChoices,
+import {createTyranidsRuleSchema,tyranidsSourceChoiceInputs,preserveTyranidsSourceChoices,
   setTyranidsSourceChoice,surpriseRuleId,trygonCharacterOptionId} from './roster-source-choices.mjs';
 
 /** Browser adapter for the existing Tyranids import and shared effect owners.
  * The generated input is the same contract-bearing book used by focused QA. */
 export function createTyranidsBrowserRoster(book) {
   if(book.bookId!=='tyranids')throw new TypeError('Foreign Tyranids roster input');
-  let choiceContext=context=>context;
-  const schema=createTyranidsRuleSchema({bindContext:context=>choiceContext(context)});
-  const runtime=createRosterRuntime(book,schema),importer=createTyranidsRosterImport(book);
+  let schema=createTyranidsRuleSchema(),runtime=createRosterRuntime(book,schema);
+  const importer=createTyranidsRosterImport(book);
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const service={
     catalog:runtime.catalog,
@@ -45,11 +44,12 @@ export function createTyranidsBrowserRoster(book) {
       const imported=structuredClone(snapshot),attachments=imported.attachments;
       imported.attachments=[];
       const verified=importer.load(imported);verified.attachments=attachments;
-      const previousContext=choiceContext;
-      choiceContext=tyranidsSourceChoiceContext(book,verified);
-      try{return runtime.load(verified);}catch(error){choiceContext=previousContext;throw error;}
+      const nextSchema=createTyranidsRuleSchema({book,state:verified,inputs:tyranidsSourceChoiceInputs(book,verified)});
+      const next=createRosterRuntime(book,nextSchema),result=next.load(verified);
+      // Publish both only after validation and effect execution succeed.
+      runtime=next;schema=nextSchema;return result;
     },
-    snapshot:runtime.snapshot,context:(...args)=>choiceContext(runtime.context(...args)),
+    snapshot:()=>runtime.snapshot(),context:(...args)=>schema.bindContext(runtime.context(...args)),
     sourceChoices(instanceId){
       const unit=runtime.state?.units.find(u=>u.instanceId===instanceId);
       if(unit?.canonicalUnitId!=='unit-trygon'||!runtime.state.detachmentIds.includes(records.get(surpriseRuleId).parentId))return [];
@@ -65,8 +65,9 @@ export function createTyranidsBrowserRoster(book) {
       if(!unit)throw new TypeError('Unresolved physical instance');
       return unit.profiles.map(profile=>({scopeId:profile.scopeId,canonicalProfileId:profile.canonicalProfileId,quantity:profile.quantity}));
     },
-    attach:runtime.attach,detach:runtime.detach,reattach:runtime.reattach,candidates:runtime.candidates,
-    effective:runtime.effective,
+    attach:(...args)=>runtime.attach(...args),detach:(...args)=>runtime.detach(...args),
+    reattach:(...args)=>runtime.reattach(...args),candidates:(...args)=>runtime.candidates(...args),
+    effective:(...args)=>runtime.effective(...args),
     related(instanceId,detachmentId=null){
       const rows=runtime.related(instanceId,detachmentId),state=runtime.state;
       const known=new Set(rows.map(row=>row.ruleId));

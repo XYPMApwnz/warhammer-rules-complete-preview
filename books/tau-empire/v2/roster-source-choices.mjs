@@ -3,7 +3,7 @@ import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
-import {createSourceEquipmentConditionContext} from '../../shared/roster-v2/physical-condition-context.mjs';
+import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {tauPrototypeField,tauPrototypeDecisions,validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
@@ -124,9 +124,13 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
   return validateTauSourceChoices(book,state);
 }
 
-export function tauSourceChoiceContext(book,state) {
+export function tauSourceChoiceInputs(book,state) {
   validateTauSourceChoices(book,state);
-  return createSourceEquipmentConditionContext(state,{sourceEquipmentIdentity:'drone-marker-drone'});
+  return [{key:'sourceEquipmentSelected',arguments:{sourceEquipmentIdentity:'drone-marker-drone'},physicalIdentity:true}];
+}
+
+export function tauSourceChoiceContext(book,state) {
+  return createTauRuleSchema({book,state,inputs:tauSourceChoiceInputs(book,state)}).bindContext;
 }
 
 /** Bind inventory counts to the existing MODEL scopes, not canonical profile

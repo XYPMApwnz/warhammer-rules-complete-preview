@@ -15,7 +15,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
-import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,bindTauShieldModels} from './roster-source-choices.mjs';
+import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,tauSourceChoiceInputs,bindTauShieldModels} from './roster-source-choices.mjs';
 import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -229,7 +229,7 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
     owner.data.keywords=owner.data.keywords.filter(keyword=>keyword!=='MARKERLIGHT');
     for(const profile of probe.rosterProfileBindings.filter(binding=>binding.unitId===id))
      profile.intrinsicKeywords=profile.intrinsicKeywords.filter(keyword=>keyword!=='MARKERLIGHT');
-    const diagnostic=createRosterRuntime(probe,createTauRuleSchema({bindContext:tauSourceChoiceContext(probe,state)}));diagnostic.load(state);
+    const diagnostic=createRosterRuntime(probe,createTauRuleSchema({book:probe,state,inputs:tauSourceChoiceInputs(probe,state)}));diagnostic.load(state);
     assert.deepEqual(diagnostic.projection.units.map(unit=>unit.keywords.includes('MARKERLIGHT')),[true,false],
      'Every accepted local Marker binding executes, independently of pre-existing native keyword');
    }
@@ -361,7 +361,14 @@ test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
  const state=ready(header()+broadsideInput([2,1,0])+broadsideInput([0,0,0])).roster,bound=bindTauShieldModels(book,state);
  const enrich=tauSourceChoiceContext(bound,state),expected=[[10,9,8],[8,8,8]];
  const clauses=domain=>domain.entities.flatMap(entity=>entity.ruleContract?.clauses||[]).filter(clause=>clause.physicalShieldSelection);
- const execute=(domain,bind=enrich)=>{const service=createRosterRuntime(domain,createTauRuleSchema({bindContext:bind}));service.load(state);return service.projection;};
+ const execute=(domain,bind=enrich)=>{
+  const schema=createTauRuleSchema();
+  // Keep the original unmutated input proof while mutating the execution book.
+  // Deliberately corrupted physical context is also a test-only boundary.
+  const evaluator={...schema,evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bind(context)),
+   evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bind(context))};
+  const service=createRosterRuntime(domain,evaluator);service.load(state);return service.projection;
+ };
  const verify=(domain,bind=enrich)=>{
   const owned=clauses(domain);assert.equal(owned.length,2);assert.equal(new Set(owned.map(row=>row.id)).size,2);
   for(const clause of owned)for(const effect of clause.rosterEffects){
@@ -761,7 +768,7 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
    actualStrengthDeltas:projectedWeapons(projection.units[0]).map(row=>Number(row.data.strength)-Number(weapon.data.strength)),
    aggregate:'PROJECTION_PARTITION_PASS',persistence:'PASS',recompute:'PASS'});
   if(i===0){
-   const paired=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(paired,valid)});
+   const paired=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({book:paired,state:valid,inputs:tauSourceChoiceInputs(paired,valid)});
    const resolver=tauWeaponSelectionResolver(paired,valid);
    const diagnostic=resolve=>{const rt=createRosterRuntime(paired,{...schema,
     resolveWeaponSelection:context=>context.rule.id===ruleId?resolve(context):undefined});rt.load(valid);return rt.projection;};
@@ -832,7 +839,7 @@ test('stage4g-projection-partition-lifecycle-negative-and-mutation-controls',()=
   const changed=ready(text.replaceAll('2x '+weapon.data.name,'1x '+weapon.data.name),{},service).roster;
   assert.equal(tauPrototypeDecisions(changed.units[0]).length,0,'Changed import clears stale parent decision');
   assertPrototypeProjection(projectionOf(changed),formRoster(book,changed),null,{});
-  const bound=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(bound,valid)});
+  const bound=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({book:bound,state:valid,inputs:tauSourceChoiceInputs(bound,valid)});
   const resolve=tauWeaponSelectionResolver(bound,valid),partition=tauWeaponPartitionResolver(bound,valid),requests=partition();
   const diagnostic=(hook=partition,resolver=resolve)=>{
    const rt=createRosterRuntime(bound,{...schema,resolveWeaponSelection:resolver,resolveWeaponPartitions:hook});rt.load(valid);return rt;
@@ -979,7 +986,7 @@ test('student-multiple-physical-source-provenance-remains-explicit',()=>{
 });
 
 test('stage4b-independent-marker-and-student-mutation-controls',()=>{
- const diagnostic=(domain,state)=>{const service=createRosterRuntime(domain,createTauRuleSchema({bindContext:tauSourceChoiceContext(domain,state)}));service.load(state);return service.projection;};
+ const diagnostic=(domain,state)=>{const service=createRosterRuntime(domain,createTauRuleSchema({book:domain,state,inputs:tauSourceChoiceInputs(domain,state)}));service.load(state);return service.projection;};
  const id='unit-commander-in-coldstar-battlesuit',text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture(id).text;
  const state=ready(text).roster,baseline=projectionOf(ready(header()+fixture(id).text+fixture(id).text).roster);
  const local=markerOccurrences.find(row=>row.unitId===id).optionId;
