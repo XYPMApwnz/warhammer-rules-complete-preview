@@ -38,7 +38,9 @@ ${detachment?'+ DETACHMENT: '+detachment+'\n':''}7x Plague Marines (125 pts)
 • 1x Plague Champion: Boltgun, Plague knives
 5x Blightlord Terminators (185 pts)`;
 const books='(?:adeptus-mechanicus|death-guard|chaos-space-marines|emperors-children|blood-angels|dark-angels|space-marines|tau-empire|tyranids)';
-const runtimePaths=new Set(JSON.parse(fs.readFileSync(path.join(repo,'tools/pages-runtime-manifest.json'),'utf8')).files.map(row=>'/'+row.path));
+const inventory=path.join(repo,fs.existsSync(path.join(repo,'tools/pages-runtime-manifest.json'))?
+  'tools/pages-runtime-manifest.json':'PAGES_RUNTIME_MANIFEST.json');
+const runtimePaths=new Set(JSON.parse(fs.readFileSync(inventory,'utf8')).files.map(row=>'/'+row.path));
 const allowed=address=>!/(?:\/sources\/|-qa\.|-fixtures\.)/.test(address)&&(
   runtimePaths.has(address)||isApplicationTestDependency(address)||new RegExp('^/books/'+books+'/v2/[\\w./-]+\\.(?:mjs|js|json|css)$').test(address)||
   new RegExp('^/books/'+books+'/assets/[\\w./-]+\\.(?:png|webp|jpe?g|svg)$').test(address)||
@@ -286,7 +288,7 @@ try{
       await guide(page,'parsed-unit-1');results.push({device,stage:name,lead:found,options,negatives:detachment==='Creations of Bile'?['DAMNED Cultist Mob','non-INFANTRY Daemon Prince']:['non-INFANTRY Daemon Prince'],status:'PASS'});await shot(page,device,name.includes('Creations')?'csm-creations-table-selection':'csm-huron-table-selection');
     });
     await run('emperors-children','EC native fixture',async page=>{
-      const fixture=JSON.parse(fs.readFileSync(path.join(repo,'books/emperors-children/v2/roster-import-fixtures.json'),'utf8')).fixtures.find(row=>row.id==='bsdata-model-variants');
+      const fixture=JSON.parse(fs.readFileSync(path.join(sourceRepo,'books/emperors-children/v2/roster-import-fixtures.json'),'utf8')).fixtures.find(row=>row.id==='bsdata-model-variants');
       assert.ok(fixture);await imported(page,fixture.text.replace('Carnival of Excess','Mercurial Host'),['unit-noise-marines','unit-tormentors']);
       for(const instance of ['parsed-unit-1','parsed-unit-2']){await guide(page,instance);const found=await rows(page,'detachment-mercurial-host:rule','advance-roll');
         assert.equal(found.length,1);assert.equal(found[0].subject,'UNIT');assert.deepEqual(found[0].instances,[instance]);assert.equal(found[0].classification,'BATTLE_ONLY');
@@ -295,7 +297,7 @@ try{
       await shot(page,device,'ec-native-source-binding');
     });
     await run(dg,'DG Omega',async page=>{
-      const text=fs.readFileSync(path.join(repo,'books/death-guard/v2/fixtures/omega-megaroster.txt'),'utf8');await imported(page,text,38);
+      const text=fs.readFileSync(path.join(sourceRepo,'books/death-guard/v2/fixtures/omega-megaroster.txt'),'utf8');await imported(page,text,38);
       await assertEligibility(page,'parsed-unit-1',fly,'selected-infiltrators',{wanted:true,quote:'you can select up to two friendly PLAGUE MARINES units',label:'Plague Marine',stage:device+' Omega standalone PM'});
       await attach(page,'parsed-unit-27','parsed-unit-1');await guide(page,'parsed-unit-1');
       const attached=await rows(page,fly,'selected-infiltrators');assert.ok(attached.length);for(const row of attached){assert.equal(row.subject,'UNIT');assert.deepEqual(row.instances.toSorted(),['parsed-unit-1','parsed-unit-27'].toSorted());assert.equal(row.selectionStatus,'ELIGIBLE_FOR_SELECTION');}
@@ -319,7 +321,7 @@ try{
       {book:'tyranids',name:'tyranids existing fixture',text:tyrText,count:3}
     ];
     for(const fixture of broadFixtures)await run(fixture.book,fixture.name,async page=>{
-      const state=await imported(page,fixture.file?fs.readFileSync(path.join(repo,fixture.file),'utf8'):fixture.text,fixture.count),evidence=[];
+      const state=await imported(page,fixture.file?fs.readFileSync(path.join(sourceRepo,fixture.file),'utf8'):fixture.text,fixture.count),evidence=[];
       for(const physical of state.units){await guide(page,physical.instanceId);
         const expected=await page.evaluate(instance=>{const unit=window.ArmyBookAppV2.roster.projection.units.find(unit=>unit.instanceId===instance);return {
           f1:unit.conditional.filter(row=>row.detachmentText),typed:unit.conditional.filter(row=>row.policy).map(row=>({ruleId:row.ruleId,clauseId:row.clauseId,kind:row.policy.kind,payload:row.policy.payload}))};},physical.instanceId);

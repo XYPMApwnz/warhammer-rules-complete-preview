@@ -8,7 +8,13 @@ import {createTyranidsRuleSchema,tyranidsSourceChoiceInputs,preserveTyranidsSour
  * The generated input is the same contract-bearing book used by focused QA. */
 export function createTyranidsBrowserRoster(book) {
   if(book.bookId!=='tyranids')throw new TypeError('Foreign Tyranids roster input');
-  let schema=createTyranidsRuleSchema(),runtime=createRosterRuntime(book,schema);
+  let schema=createTyranidsRuleSchema();
+  // Source registration, effect validation and the catalog depend on the book,
+  // not on a newly loaded roster. Keep their runtime; delegate only the current
+  // physical condition inputs through the source-owned schema.
+  const runtime=createRosterRuntime(book,{...schema,
+    evaluatePredicate:(...args)=>schema.evaluatePredicate(...args),
+    evaluateRole:(...args)=>schema.evaluateRole(...args)});
   const importer=createTyranidsRosterImport(book);
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const service={
@@ -45,9 +51,10 @@ export function createTyranidsBrowserRoster(book) {
       imported.attachments=[];
       const verified=importer.load(imported);verified.attachments=attachments;
       const nextSchema=createTyranidsRuleSchema({book,state:verified,inputs:tyranidsSourceChoiceInputs(book,verified)});
-      const next=createRosterRuntime(book,nextSchema),result=next.load(verified);
-      // Publish both only after validation and effect execution succeed.
-      runtime=next;schema=nextSchema;return result;
+      const previousSchema=schema;schema=nextSchema;
+      // The shared runtime publishes state/projection only after validation and
+      // execution succeed. Restore its matching condition context on failure.
+      try{return runtime.load(verified);}catch(error){schema=previousSchema;throw error;}
     },
     snapshot:()=>runtime.snapshot(),context:(...args)=>schema.bindContext(runtime.context(...args)),
     sourceChoices(instanceId){

@@ -35,8 +35,10 @@ node('tests/source-book-clone-qa.mjs',['--root='+root]);
 if(!fs.existsSync(path.join(root,'tests/source-book-clone-qa.mjs')))jobs.at(-1).args[0]=path.join(harnessRoot,'tests/source-book-clone-qa.mjs');
 node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
- expand(pkg.scripts['test:browser']);
+ // Worker-enabled presentation QA needs a version-consistent publication,
+ // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
+ expand(pkg.scripts['test:browser']);
  node('tools/pages-runtime-package-qa.mjs',['--source',root,'--published',path.join(work,'runtime'),'--work',path.join(work,'packaging')]);
  for(const f of ['tests/source-enrollment-qa.mjs','books/shared/tools/source-freshness.mjs','tests/source-ingestion-contract-qa.mjs','books/shared/army-book-app-v2/keyword-attribution-qa.mjs'])node(f);
 }
@@ -47,8 +49,11 @@ for(const [i,job]of jobs.entries()){
  console.log(`[qa-queue] ${i+1}/${jobs.length} START ${job.id}`);
  const profile=option('--profile')==='true'&&/books\/(space-marines|tau-empire|blood-angels)\/v2\/roster/.test(job.id);
  const childEvidence=path.join(out,String(i+1).padStart(2,'0')+'-'+path.basename(job.id).replace(/[^\w.-]/g,'_')+'-evidence');
+ const publishedRoot=path.join(work,'runtime');
+ const browserRoots=mode!=='pre-ff'?{}:job.id==='v2/detachment-recipient-browser-qa.mjs'?{F1_BROWSER_ROOT:publishedRoot}:
+  job.id==='v2/card-recipient-browser-qa.mjs'?{F2_BROWSER_ROOT:publishedRoot}:{};
  const child=spawn(job.command,profile?['--cpu-prof','--cpu-prof-interval=10000','--cpu-prof-dir='+out,...job.args]:job.args,{cwd:root,
-  env:{...qaTempEnvironment(),QA_EVIDENCE_DIR:childEvidence},stdio:['ignore','pipe','pipe']});
+  env:{...qaTempEnvironment(),...browserRoots,QA_EVIDENCE_DIR:childEvidence},stdio:['ignore','pipe','pipe']});
  const unregister=registerQaCleanup(()=>new Promise(resolve=>{if(child.exitCode!==null)return resolve();child.once('close',resolve);child.kill('SIGTERM');}));
  for(const stream of [child.stdout,child.stderr])stream.on('data',chunk=>{fs.writeSync(fd,chunk);process.stdout.write(chunk);});
  const timer=setInterval(()=>console.log(`[qa-queue] RUNNING ${job.id} ${Math.round((Date.now()-begin)/1000)}s`),30000);

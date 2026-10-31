@@ -5,6 +5,8 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {createTyranidsBrowserRoster,createBrowserRoster} from './roster-boot.mjs';
+import {setTyranidsSourceChoice} from './roster-source-choices.mjs';
+import {findConditionValue} from '../../shared/rule-contract-v2/conditions.mjs';
 import {resolveImportedPoints} from './roster-points.mjs';
 import {prepareRosterPresentationCards,projectInstanceCards,projectPersonalBook,projectFormedUnitCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {assertSourceEffectExpectation} from '../../shared/roster-v2/source-effect-expectations-qa.mjs';
@@ -116,6 +118,17 @@ function verifyChoice(s,candidate=book,{presentationLost=false}={}) {
 }
 selected.setSourceChoice('parsed-unit-1',ruleId,optionId);verifyChoice(selected);
 const selectedSnapshot=selected.snapshot(),selectedProjection=selected.projection;
+// A source-valid new choice reaches the late attachment validator. Failure
+// must restore both the physical state and its enriched condition context.
+const selectedContext=selected.context('parsed-unit-1','UNIT');
+assert.equal(findConditionValue(selectedContext.roster,{key:'selectedSourceChoice',ruleId}).value,optionId);
+const lateFailure=setTyranidsSourceChoice(book,selectedSnapshot,'parsed-unit-1',ruleId,null);
+lateFailure.attachments=[{leaderInstanceId:'parsed-unit-1',bodyguardInstanceId:'parsed-unit-2',role:'LEADER'}];
+assert.throws(()=>selected.load(lateFailure),/attachment|Leader|leader/i);
+assert.deepEqual(selected.snapshot(),selectedSnapshot,'Late failure restores physical roster');
+assert.deepEqual(selected.projection,selectedProjection,'Late failure restores execution projection');
+assert.deepEqual(selected.context('parsed-unit-1','UNIT'),selectedContext,'Late failure restores enriched context');
+console.log('Tyranids late-load rollback and enriched context: PASS');
 const modelFacts=unit=>unit.profiles.map(p=>({profile:p.profile,keywords:p.keywords,abilities:p.abilities,weapons:p.weapons.map(w=>w.data)}));
 assert.deepEqual(modelFacts(selectedProjection.units[0]),modelFacts(choiceBaseline.units[0]),'UNIT choice does not change MODEL or weapon facts');
 assert.deepEqual(selectedProjection.units[1],choiceBaseline.units[1],'Independent Trygon unchanged');
