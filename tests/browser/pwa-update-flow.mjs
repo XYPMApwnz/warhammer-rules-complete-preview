@@ -1,3 +1,4 @@
+import {createQaEvidenceDir,createQaTempDir} from '../helpers/qa-temp.mjs';
 /** Real native V2 A/B publication transport, actual updater and persisted roster.
  * A newline-only change in the external B fixture exercises changed-data hashes;
  * migration internals, quota and copy retry are covered by minimal-pwa-cache-qa. */
@@ -11,9 +12,10 @@ import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
 import {writeCacheRevision,readCacheRevision} from '../../tools/cache-revision.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
 
-const source=fileURLToPath(new URL('../../',import.meta.url)),out=path.resolve(process.env.WH_PWA_QA_OUT||fs.mkdtempSync(path.join(os.tmpdir(),'wh-v2-update-')));
+const source=fileURLToPath(new URL('../../',import.meta.url)),out=path.resolve(process.env.WH_PWA_QA_OUT||createQaEvidenceDir('wh-v2-update-'));
 fs.mkdirSync(out,{recursive:true});
-const A=path.join(out,'A'),B=path.join(out,'B');
+const workspace=createQaTempDir('wh-pwa-update-work-');
+const A=path.join(workspace,'A'),B=path.join(workspace,'B');
 const publication=buildPagesRuntimePackage({sourceRoot:source,outRoot:A});
 fs.cpSync(A,B,{recursive:true});
 fs.appendFileSync(path.join(B,'books/tyranids/v2/generated/app-presentation.json'),'\n');

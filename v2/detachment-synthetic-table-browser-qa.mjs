@@ -1,3 +1,4 @@
+import {createQaTempDir,createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** Non-CSM F1 table fixture through the real native application.
  * Synthetic declarations exist only in external runtime-package copies. The
@@ -6,7 +7,8 @@ import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs'
  * The default invocation builds a fresh external runtime package and fixtures,
  * then runs every desktop/mobile case. Optional --prepare-only can use an
  * explicit F1_SYNTHETIC_TABLE_PACKAGE; --run-prepared requires an explicit
- * F1_SYNTHETIC_TABLE_OUT containing the earlier fixture manifest.
+ * F1_SYNTHETIC_TABLE_OUT containing the earlier fixture manifest. Preparation
+ * across processes requires KEEP_QA_TMP=1 to retain its owned package copies.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -27,13 +29,14 @@ const repo=fileURLToPath(new URL('../',import.meta.url));
 const runPrepared=process.argv.includes('--run-prepared'),prepareOnly=process.argv.includes('--prepare-only');
 assert.ok(!(runPrepared&&prepareOnly),'Choose only one optional preparation mode');
 if(runPrepared)assert.ok(process.env.F1_SYNTHETIC_TABLE_OUT,'--run-prepared requires F1_SYNTHETIC_TABLE_OUT');
-const workspace=runPrepared?null:fs.mkdtempSync(path.join(os.tmpdir(),'wh-f1-synthetic-table-'));
+const workspace=runPrepared?null:createQaTempDir('wh-f1-synthetic-table-');
 const outputHint=process.env.F1_SYNTHETIC_TABLE_OUT?path.resolve(process.env.F1_SYNTHETIC_TABLE_OUT):null;
 if(outputHint)assert.ok(outputHint!==path.resolve(repo)&&!outputHint.startsWith(path.resolve(repo)+path.sep),'Fixture output must be outside the repository');
 // An optional evidence destination is a parent for fresh default runs, so
 // repeated mandatory invocations cannot accidentally reuse prior fixtures.
 if(outputHint&&!runPrepared&&!prepareOnly)fs.mkdirSync(outputHint,{recursive:true});
-const out=outputHint?(!runPrepared&&!prepareOnly?fs.mkdtempSync(path.join(outputHint,'run-')):outputHint):path.join(workspace,'fixtures');
+const out=outputHint?(!runPrepared&&!prepareOnly?createQaEvidenceDir('run-',outputHint):outputHint):
+  process.env.QA_EVIDENCE_DIR?createQaEvidenceDir('f1-table-fixtures-'):path.join(workspace,'fixtures');
 const preparedManifest=runPrepared?parseSourceFixtureJSON(fs.readFileSync(path.join(out,'FIXTURES.json'),'utf8')):null;
 const source=path.resolve(preparedManifest?.source||(prepareOnly&&process.env.F1_SYNTHETIC_TABLE_PACKAGE)||path.join(workspace,'runtime'));
 assert.ok(!out.startsWith(path.resolve(repo)+path.sep)&&out!==path.resolve(repo),'Fixture output must be outside the repository');
@@ -109,7 +112,7 @@ function prepare(){
   const records=projectBookPresentation({...projectionModel,entities:[rule,table]},new Map()).records;
   const fixtures=[];
   for(const variant of variants){
-    const root=path.join(out,'fixture-'+variant);assert.ok(!fs.existsSync(root),'Fixture directory already exists: '+root);
+    const root=path.join(workspace,'fixture-'+variant);assert.ok(!fs.existsSync(root),'Fixture directory already exists: '+root);
     fs.cpSync(source,root,{recursive:true});
     const fixtureBook=clone(book),fixturePayload=clone(payload);
     fixtureBook.entities[fixtureBook.entities.findIndex(entity=>entity.id===ownerId)]=clone(parent);

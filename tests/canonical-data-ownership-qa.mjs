@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -32,7 +33,7 @@ const extractor=path.join(repo,'books','shared','tools','extract-bsdata-11e.mjs'
 const ecConfig=readJson(path.join(ecRoot,'sources','bsdata-extract.config.json'));
 assert.equal(ecConfig.writePolicy?.mode,'candidate-only');
 
-const fixtureRoot=fs.mkdtempSync(path.join(os.tmpdir(),'canonical-ownership-'));
+const fixtureRoot=createQaTempDir('canonical-ownership-');
 try{
   const configPath=path.join(fixtureRoot,'ec-config.json');
   fs.writeFileSync(configPath,JSON.stringify({
@@ -92,7 +93,7 @@ try{
   assert.match(builder,/readJson\(config\.sources\.codexDatasheets\)/);
   assert.deepEqual({ec:hash(ecCanonical),sm:hash(smCanonical)},before);
 }finally{
-  fs.rmSync(fixtureRoot,{recursive:true,force:true});
+  cleanupQaTempDir(fixtureRoot);
 }
 
 console.log('Canonical data ownership QA passed');

@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -18,5 +19,5 @@ check('report proves complete faction and Core coverage',report.summary.datashee
 check('different units keep different rule lists',snapshot.units['unit-plague-marines'].includes('stratagem-creeping-blight')&&!snapshot.units['unit-mortarion'].includes('stratagem-creeping-blight'));
 const broken=buildImport({book,datasheetHtmlByUnit:new Map(),retrievedAt:'2026-08-01'});
 check('malformed input fail-closes',broken.ok===false&&broken.report.summary.unresolved>0);
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'wahapedia-import-'));const snapshotPath=path.join(temp,'snapshot.json'),reportPath=path.join(temp,'report.json');fs.writeFileSync(snapshotPath,'old\n');applyImportResult({result:broken,snapshotPath,reportPath});check('failed apply preserves snapshot bytes',fs.readFileSync(snapshotPath,'utf8')==='old\n');fs.rmSync(temp,{recursive:true,force:true});
+const temp=createQaTempDir('wahapedia-import-');const snapshotPath=path.join(temp,'snapshot.json'),reportPath=path.join(temp,'report.json');fs.writeFileSync(snapshotPath,'old\n');applyImportResult({result:broken,snapshotPath,reportPath});check('failed apply preserves snapshot bytes',fs.readFileSync(snapshotPath,'utf8')==='old\n');cleanupQaTempDir(temp);
 if(failures.length){console.error(failures.join('\n'));process.exitCode=1;}else console.log('Wahapedia compatible-rules importer QA passed.');

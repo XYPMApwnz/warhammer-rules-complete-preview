@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../helpers/qa-temp.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -18,7 +19,7 @@ const chaosIconId=chaosIconIds[0],chaosIconAbility=legionaries.gameSelections.wa
 assert.ok(chaosIconAbility?.legacyIds?.includes('unit-legionaries-wargear-ability-chaos-icon'),'Chaos Icon canonical ability must preserve its historical compatibility identity');
 const fixture=(id,detachmentId,units,attachments={})=>createRosterFixture({catalog,pointsCatalog,id,detachmentId,units,attachments,factionPrefix:'Chaos - '}).record;
 const types={'.css':'text/css','.html':'text/html','.js':'text/javascript','.json':'application/json','.mjs':'text/javascript','.png':'image/png','.webp':'image/webp'};
-const screenshotDir=path.join(os.tmpdir(),`csm-real-front-${process.pid}`);
+const screenshotDir=createQaEvidenceDir('csm-real-front-');
 fs.mkdirSync(screenshotDir,{recursive:true});
 const screenshots=[];
 const server=http.createServer((request,response)=>{const pathname=decodeURIComponent(new URL(request.url,'http://127.0.0.1').pathname),file=path.resolve(root,pathname.replace(/^\/+/, '')||'index.html');if(file!==root&&!file.startsWith(`${root}${path.sep}`)){response.writeHead(403).end();return;}try{const stat=fs.statSync(file),target=stat.isDirectory()?path.join(file,'index.html'):file;response.writeHead(200,{'content-type':types[path.extname(target)]||'application/octet-stream'});fs.createReadStream(target).pipe(response);}catch{response.writeHead(404).end();}});

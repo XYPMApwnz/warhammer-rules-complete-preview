@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real-browser normal-book and synthetic presentation invariants. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,7 +12,7 @@ import {buildApp as buildDg} from '../../death-guard/v2/app-build.mjs';
 import {buildApp as buildAm} from '../../adeptus-mechanicus/v2/app-build.mjs';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'normal-datasheet-parity-'));
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('normal-datasheet-parity-');
 fs.mkdirSync(out,{recursive:true});
 const {chromium}=createRequire(import.meta.url)('playwright');
 const payloads=new Map([['death-guard',buildDg()],['adeptus-mechanicus',buildAm()]]);
@@ -30,7 +32,7 @@ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const installedChrome='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installedChrome)?installedChrome:undefined);
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const errors=[],results=[];
 const priority=new Set(['unit-lord-of-contagion','unit-deathshroud-terminators','unit-plague-marines','unit-great-unclean-one','unit-defiler','unit-helbrute','unit-ironstrider-ballistarii','unit-skorpius-disintegrator','unit-servitor-battleclade','unit-tech-priest-dominus']);
 const wait=async page=>{

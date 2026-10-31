@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** SHOW-2 uses normal imports, attachments, Effective Datasheets and Guide.
  * Constructed New Recruit inputs; browser evaluation only reads state and DOM. */
 import assert from 'node:assert/strict';
@@ -12,7 +13,7 @@ import {displayDuplicateCensus} from './card-display-2-qa.mjs';
 
 const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
 const repo=path.resolve(option('--root')||fileURLToPath(new URL('../',import.meta.url)));
-const out=path.resolve(option('--out')||fs.mkdtempSync(path.join(os.tmpdir(),'wh-card-display-2-')));
+const out=path.resolve(option('--out')||createQaEvidenceDir('wh-card-display-2-'));
 assert.ok(out!==repo&&!out.startsWith(repo+path.sep));fs.mkdirSync(out,{recursive:true});
 const baseline=process.argv.includes('--baseline'),read=file=>JSON.parse(fs.readFileSync(path.join(repo,file),'utf8'));
 const census=displayDuplicateCensus(pathToFileURL(repo+path.sep));

@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
 const progress=qaProgress('Tau roster');
 import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
@@ -72,6 +74,12 @@ function assertPhysical(actual,expected){
  }
 }
 function runtime(state){const service=createTauRosterRuntime(book);service.load(state);return service;}
+// Immediate observations share only the native service shell. Every invocation
+// still calls the real load(), which builds and executes a fresh inner runtime;
+// its projection getter returns a clone. Retained/mutating services stay fresh.
+let projectionRuntime,snapshotImporter;
+function projectionOf(state){projectionRuntime??=createTauRosterRuntime(book);projectionRuntime.load(state);return projectionRuntime.projection;}
+function loadSnapshot(state){snapshotImporter??=createTauRosterImport(book);return snapshotImporter.load(state);}
 
 test('facts-and-source-ownership',()=>{
  assert.equal(units.length,43);assert.equal(detachments.length,7);assert.equal(enhancements.length,23);
@@ -98,7 +106,7 @@ test('all-43-datasheets-physical-input-parity',()=>{
  const cases=units.map(unit=>fixture(unit.id)),text=header()+cases.map(c=>c.text).join('\n'),service=make(),state=ready(text,{},service).roster;
  assert.equal(state.units.length,43);assert.equal(new Set(state.units.map(u=>u.instanceId)).size,43);
  state.units.forEach((unit,i)=>assertPhysical(unit,cases[i].expected));
- assert.deepEqual(make().load(service.snapshot()),state,'Snapshot/load');
+ assert.deepEqual(loadSnapshot(service.snapshot()),state,'Snapshot/load');
  assert.deepEqual(ready(text).roster,state,'Reimport deterministic physical identity');
  records.fixtures.push({id:'all43',text,expected:cases.map(c=>c.expected)});
 });
@@ -113,7 +121,7 @@ test('all56-source-composition-declarations-including-optional-models',()=>{
 test('all-detachments-without-collapsing-physical-instances',()=>{
  const text=header(detachments.map(d=>d.data.title))+fixture('unit-devilfish').text;
  const state=ready(text).roster;assert.deepEqual([...state.detachmentIds].sort(),detachments.map(d=>d.id).sort());
- assert.equal(state.detachments.length,7);assert.deepEqual(make().load(state),state);
+ assert.equal(state.detachments.length,7);assert.deepEqual(loadSnapshot(state),state);
 });
 
 test('same-datasheet-different-input-quantities-loadouts',()=>{
@@ -122,13 +130,13 @@ test('same-datasheet-different-input-quantities-loadouts',()=>{
   const text=header()+first.text+second.text,service=make(),state=ready(text,{},service).roster;
   assertPhysical(state.units[0],first.expected);assertPhysical(state.units[1],second.expected);
   assert.notEqual(state.units[0].instanceId,state.units[1].instanceId);
-  const derived=runtime(state).projection;
+  const derived=projectionOf(state);
   for(const [i,u]of derived.units.entries()){
    const selected=selections(state.units[i]).flatMap(s=>s.canonicalProfileIds);
    const profiles=[...u.weapons,...u.profiles.flatMap(p=>p.weapons)];
    assert.deepEqual([...new Set(profiles.map(w=>w.canonicalProfileId))].sort(),[...new Set(selected)].sort(),'Effective includes only selected weapon facts');
   }
-  assert.deepEqual(make().load(service.snapshot()),state);
+  assert.deepEqual(loadSnapshot(service.snapshot()),state);
   records.fixtures.push({id:'repeated-'+id,text,expected:[first.expected,second.expected]});
  }
 });
@@ -139,7 +147,7 @@ test('repeated-datasheets-different-physical-model-counts',()=>{
  assertPhysical(state.units[0],first.expected);assertPhysical(state.units[1],second.expected);
  assert.deepEqual(state.units.map(u=>u.startingStrength),[1,2]);
  assert.notEqual(state.units[0].instanceId,state.units[1].instanceId);
- assert.deepEqual(make().load(state),state);
+ assert.deepEqual(loadSnapshot(state),state);
  records.fixtures.push({id:'same-datasheet-model-counts',text,expected:[first.expected,second.expected]});
 });
 
@@ -151,7 +159,7 @@ const projectedWeapons=unit=>[...unit.weapons,...unit.profiles.flatMap(profile=>
 test('drone-inventory-known-and-unknown-physical-bearers',()=>{
  const unitId='unit-crisis-fireknife-battlesuits',base=fixture(unitId);
  const aggregate=header()+fixture(unitId,{equipment:'2x Shield Drone, 1x Marker Drone'}).text+base.text;
- const service=make(),state=ready(aggregate,{},service).roster,derived=runtime(state).projection;
+ const service=make(),state=ready(aggregate,{},service).roster,derived=projectionOf(state);
  assert.equal(state.units[0].modelRows.reduce((n,row)=>n+row.quantity,0),3,'Drone tokens are not MODEL rows');
  assert.equal(state.units[0].selections.filter(s=>s.physicalQuantity===2).length,1,'Known UNIT equipment count retained once');
  assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown bearer is not invented');
@@ -162,9 +170,9 @@ test('drone-inventory-known-and-unknown-physical-bearers',()=>{
  records.runtimeCases.push({id:'marker-drone-unit-grant',source:'drone-marker-drone',expected:'MARKERLIGHT only selected physical UNIT',
   actual:markerPresent?'MARKERLIGHT':'NO_GRANT',status:markerPresent?'PASS':'FAIL'});
  assert.ok(!derived.units[1].keywords.includes('MARKERLIGHT'),'Marker Drone never leaks to independent duplicate');
- assert.deepEqual(make().load(service.snapshot()),state);
+ assert.deepEqual(loadSnapshot(service.snapshot()),state);
  const known=header()+gearOnFirstModel(unitId,'Shield Drone',2)+base.text;
- const knownState=ready(known).roster,knownDerived=runtime(knownState).projection;
+ const knownState=ready(known).roster,knownDerived=projectionOf(knownState);
  assert.equal(knownState.units[0].modelRows[0].selections[0].physicalQuantity,2);
  const actualW=Number(knownDerived.units[0].profiles[0].profile.stats.W);
  assert.equal(actualW,baseline+2,'Two known Shield Drones increase only their confirmed MODEL scope by two');
@@ -172,7 +180,7 @@ test('drone-inventory-known-and-unknown-physical-bearers',()=>{
   status:actualW===baseline+2?'PASS':'FAIL'});
  assert.ok(knownDerived.units[0].profiles.slice(1).every(p=>Number(p.profile.stats.W)===baseline),'Bodyguard peers keep ordinary W');
  assert.ok(knownDerived.units[1].profiles.every(p=>Number(p.profile.stats.W)===baseline),'Independent instance W unchanged');
- assert.deepEqual(runtime(knownState).projection,knownDerived,'Recompute never stacks Shield W');
+ assert.deepEqual(projectionOf(knownState),knownDerived,'Recompute never stacks Shield W');
  records.fixtures.push({id:'unknown-drone-bearer',text:aggregate,expected:[base.expected,base.expected]});
 });
 
@@ -203,7 +211,7 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
   assert.equal(sourceSnapshot(effect).physicalEquipmentReference.entityId,occurrence.optionId,'Every occurrence retains its physical source option identity');
   assert.deepEqual(sourceSnapshot(effect).physicalEquipmentReference.provenance,sourceSnapshot(local),'Every occurrence retains local source provenance');
   const id=occurrence.unitId,plain=header()+fixture(id).text+fixture(id).text;
-  const baseline=runtime(ready(plain).roster).projection;
+  const baseline=projectionOf(ready(plain).roster);
   for(const known of [false,true]){
    const equipped=known?gearOnFirstModel(id,'Marker Drone',1):fixture(id,{equipment:'1x Marker Drone'}).text;
    const text=header()+equipped+fixture(id).text,service=make(),state=ready(text,{},service).roster,run=runtime(state);
@@ -226,7 +234,7 @@ test('stage4b-all-source-backed-marker-occurrences-known-unknown-bearers',()=>{
      'Every accepted local Marker binding executes, independently of pre-existing native keyword');
    }
    const saved=run.snapshot(),effective=clone(run.projection);
-   assert.deepEqual(runtime(saved).projection,effective,'Marker projection survives snapshot/load');
+   assert.deepEqual(projectionOf(saved),effective,'Marker projection survives snapshot/load');
    assert.deepEqual(ready(text,{},service).roster,state,'Marker reimport does not duplicate inventory');
    run.load(saved);assert.deepEqual(run.projection,effective,'Marker recompute idempotent');
    run.load(ready(plain,{},service).roster);
@@ -241,7 +249,7 @@ test('stage4b-marker-shared-option-types-and-formed-physical-scope',()=>{
  const id='unit-commander-in-coldstar-battlesuit',base=fixture(id);
  for(const other of ['Shield Drone','Gun Drone']){
   const text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture(id,{equipment:'1x '+other}).text+base.text;
-  const state=ready(text).roster,projection=runtime(state).projection;
+  const state=ready(text).roster,projection=projectionOf(state);
   assert.deepEqual(projection.units.map(unit=>unit.keywords.includes('MARKERLIGHT')),[true,false,false],'Only exact generic identity grants keyword despite shared local option');
   assert.deepEqual(state.units.slice(0,2).map(unit=>unit.selections[0].canonicalEquipmentIds),[state.units[0].selections[0].canonicalEquipmentIds,state.units[0].selections[0].canonicalEquipmentIds],'Control items actually share local option identity');
   assert.equal(markerGrants(projection.units[0]).length,1,'One grant only');
@@ -290,7 +298,7 @@ test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
   if(known){const {rule,clause,effect}=effects[0];assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(root));
    assert.equal(effect.value,2);assert.equal(resolveRecipient(rule,clause,effect.recipientId).from,'SOURCE_UNIT_MODELS');
    assert.equal(sourceSnapshot(effect).physicalEquipmentReference.entityId,occurrence.optionId);}
-  assert.deepEqual(runtime(JSON.parse(JSON.stringify(run.snapshot()))).projection,run.projection,'Shield scope and quantity persist');
+  assert.deepEqual(projectionOf(JSON.parse(JSON.stringify(run.snapshot()))),run.projection,'Shield scope and quantity persist');
   records.shieldSourceCoverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',quantity:2,status:'PASS'});
  }
 });
@@ -310,7 +318,7 @@ test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
  assert.deepEqual(shieldW(same.projection),[[10,10]],'Four total Drones give +2 each, never +4 each');
  const separateInput=header()+broadsideInput([2,0,0]).replace('2x Shield Drone','1x Shield Drone, 1x Shield Drone');
  const separate=ready(separateInput).roster;
- assert.equal(shieldCount(separate.units[0]),2);assert.deepEqual(shieldW(runtime(separate).projection),[[10,8,8]],'Two explicit selections contribute once each');
+ assert.equal(shieldCount(separate.units[0]),2);assert.deepEqual(shieldW(projectionOf(separate)),[[10,8,8]],'Two explicit selections contribute once each');
  const homogeneous=ready(header()+'3x Broadside Battlesuits (100 pts)\n• 1x Broadside Shas’vre\n• 2x Broadside Shas’ui: 2x Shield Drone\n').roster;
  const grouped=runtime(homogeneous);
  assert.deepEqual(shieldW(grouped.projection),[[8,10]],'Explicit homogeneous per-model loadout remains per model, not group total');
@@ -318,7 +326,7 @@ test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
  const saved=JSON.parse(JSON.stringify(run.snapshot())),projection=clone(run.projection);
  run.load(saved);assert.deepEqual(run.projection,projection,'Shield recompute idempotent');
  service.load(saved);assert.deepEqual(ready(text,{},service).roster,saved,'Same-input reimport exact physical inventory');
- assert.deepEqual(runtime(service.snapshot()).projection,projection);
+ assert.deepEqual(projectionOf(service.snapshot()),projection);
  for(const counts of [[0,0,0],[1,0,2],[2,1,0]]){
   const next=ready(header()+broadsideInput(counts),{},service).roster;run.load(next);
   assert.deepEqual(shieldW(run.projection),[counts.map(count=>8+count)],'Remove/reselect/loadout changes recompute from input counts');
@@ -342,7 +350,7 @@ test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
  const mixedText=header()+gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Shield Drone',2)
   .replace('2x Shield Drone','2x Shield Drone, 1x Gun Drone, 1x Marker Drone')+
   gearOnFirstModel('unit-commander-in-coldstar-battlesuit','Marker Drone',1).replace('1x Marker Drone','1x Marker Drone, 1x Gun Drone');
- const mixed=ready(mixedText).roster,mixedBase=shieldW(formRoster(book,mixed)),mixedProjection=runtime(mixed).projection;
+ const mixed=ready(mixedText).roster,mixedBase=shieldW(formRoster(book,mixed)),mixedProjection=projectionOf(mixed);
  mixedBase[0][0]+=2;assert.deepEqual(shieldW(mixedProjection),mixedBase,'Only Shield identity affects W despite shared option ID');
  assert.ok(mixedProjection.units.every(unit=>unit.keywords.includes('MARKERLIGHT')),'Marker binding retained');
  records.shieldPhysicalResults={broadsideExpected:[[10,9,8],[8,10,9],[8,8,8]],broadsideActual:shieldW(projection),sameProfileFourDrones:[10,10],
@@ -391,7 +399,7 @@ test('gun-missile-recon-mv15-source-weapons-counted-once',()=>{
  ];
  for(const c of cases){
   const text=header()+gearOnFirstModel(c.unit,c.label,c.qty)+fixture(c.unit).text;
-  const state=ready(text).roster,projection=runtime(state).projection;
+  const state=ready(text).roster,projection=projectionOf(state);
   const inventory=selections(state.units[0]).filter(s=>s.canonicalEquipmentIds.length);
   assert.equal(inventory.length,1,'Equipment counted once');assert.equal(inventory[0].physicalQuantity,c.qty);
   const weapons=projectedWeapons(projection.units[0]).filter(w=>w.canonicalProfileId===c.weapon);
@@ -401,7 +409,7 @@ test('gun-missile-recon-mv15-source-weapons-counted-once',()=>{
    reason:weapons.length===1&&expectedWeaponQty===c.qty?null:'Provided weapon requires safe physical loadout binding; source item quantity remains independent of executable weapon projection'});
   assert.ok(!projectedWeapons(projection.units[1]).some(w=>w.canonicalProfileId===c.weapon),'Unselected duplicate receives no drone weapon');
   assert.equal(state.units[0].startingStrength,fixture(c.unit).expected.models,'No fake drone MODEL');
-  assert.deepEqual(make().load(state),state,'Equipment + weapon quantities survive save/load');
+  assert.deepEqual(loadSnapshot(state),state,'Equipment + weapon quantities survive save/load');
   assert.ok(inventory[0].sourceReferences?.length,'Canonical equipment source references retained');
   for(const proof of inventory[0].sourceReferences){assert.ok(index.has(proof.entityId),'Reference resolves exact factual owner');assert.ok(sourceSnapshot(index.get(proof.entityId)).sha256);}
   records.fixtures.push({id:'drone-'+c.label.toLowerCase().replaceAll(' ','-'),text,expected:[{unit:c.unit,equipment:c.label,quantity:c.qty,weapon:c.weapon}]});
@@ -436,7 +444,7 @@ test('all39-common-drone-and-tidewall-source-inventory-occurrences',()=>{
    assert.equal(chosen[0].sourceEquipmentIdentity,equipment.id,'One generic drone factual identity');
    assert.deepEqual(sourceSnapshot(chosen[0],{slot:'sourceEquipmentProvenance'}),sourceSnapshot(equipment),'Generic drone provenance retained');
    assert.ok(state.units[0].modelRows.every(row=>row.selections.length===0),'Unknown MODEL bearer never invented');
-   assert.deepEqual(make().load(state),state,'Aggregate equipment inventory reload');count++;
+   assert.deepEqual(loadSnapshot(state),state,'Aggregate equipment inventory reload');count++;
   }
  }
  assert.equal(count,39);records.commonDroneOccurrences=count;
@@ -444,7 +452,7 @@ test('all39-common-drone-and-tidewall-source-inventory-occurrences',()=>{
  const state=ready(text).roster;assert.equal(state.units[0].selections[0].physicalQuantity,1);
  assert.deepEqual(state.units[0].selections[0].canonicalEquipmentIds,['datasheet-tidewall-shieldline:wargear:1']);
  assert.ok(index.get('datasheet-tidewall-shieldline:section:1').data.blocks.some(b=>b.text.includes('Wounds characteristic of 15')));
- assert.equal(runtime(state).projection.units[0].profiles[0].profile.stats.W,'15','Existing Tidewall platform numeric effect reaches imported equipped MODEL');
+ assert.equal(projectionOf(state).units[0].profiles[0].profile.stats.W,'15','Existing Tidewall platform numeric effect reaches imported equipped MODEL');
  records.totalEquipmentOccurrences=count+19+1;
 });
 
@@ -473,7 +481,7 @@ test('existing-source-equipment-effects-through-real-import-boundary',()=>{
   const weaponLabels=[ranged,melee].filter(Boolean).map(id=>'1x '+index.get(id).data.name),gear=[sourceItem,...weaponLabels].join(', ');
   const plain=weaponLabels.length?gearOnFirstModel(e.unit,weaponLabels.join(', '),1).replace(': 1x 1x ',': 1x '):fixture(e.unit).text;
   const equipped=gearOnFirstModel(e.unit,gear,1),text=header()+equipped+plain;
-  const state=ready(text).roster,actual=runtime(state).projection,before=runtime(ready(header()+plain+plain).roster).projection;
+  const state=ready(text).roster,actual=projectionOf(state),before=projectionOf(ready(header()+plain+plain).roster);
   const selected=actual.units[0],baseline=before.units[0];
   for(const operation of e.expectedOperations){
    if(operation.operation==='MODIFY_STAT'&&['M','W','INSV'].includes(operation.field)){
@@ -493,7 +501,7 @@ test('existing-source-equipment-effects-through-real-import-boundary',()=>{
    }
   }
   assert.deepEqual(observable(actual.units[1]),observable(before.units[1]),e.id+' no independent-instance leak');
-  assert.deepEqual(runtime(state).projection,actual,e.id+' stable recompute');
+  assert.deepEqual(projectionOf(state),actual,e.id+' stable recompute');
   records.runtimeCases.push({id:'imported-'+e.id,source:e.source,expected:e.expectedOperations,actual:'Shared executor matches independent source expectation after real import',status:'PASS'});
  }
 });
@@ -597,12 +605,12 @@ test('all23-enhancements-canonical-owner-and-persisted-physical-scope',()=>{
   assert.deepEqual(state.units[0].enhancementIds,[enhancement.id]);
   assert.equal(state.units[0].enhancementAssignments.length,enhancement.data.scope==='UNIT'?0:1,'Physical bearer scope');
   if(result.status==='READY'){
-   assert.deepEqual(make().load(service.snapshot()),state);
-   const effective=runtime(state).projection,plain=header([index.get(enhancement.parentId).data.title])+fixture(id).text;
+   assert.deepEqual(loadSnapshot(service.snapshot()),state);
+   const effective=projectionOf(state),plain=header([index.get(enhancement.parentId).data.title])+fixture(id).text;
    const removed=ready(plain,{},service).roster;assert.deepEqual(removed.units[0].enhancementIds,[]);assert.deepEqual(removed.units[0].enhancementAssignments,[]);
-   assert.deepEqual(runtime(removed).projection,runtime(ready(plain).roster).projection,'Removal recomputes plain roster');
+   assert.deepEqual(projectionOf(removed),projectionOf(ready(plain).roster),'Removal recomputes plain roster');
    const reselected=ready(text,{},service).roster;assert.deepEqual(reselected,state,'Enhancement reselect preserves exact owner');
-   assert.deepEqual(runtime(reselected).projection,effective,'Enhancement reselect/recompute never stacks');
+   assert.deepEqual(projectionOf(reselected),effective,'Enhancement reselect/recompute never stacks');
   }
   else {assert.ok(result.needsBindings.length);records.limitations.push({canonicalId:enhancement.id,status:'NEEDS_BINDINGS',needs:result.needsBindings});}
  }
@@ -614,7 +622,7 @@ test('prototype-exact-physical-weapon-dependencies-stay-explicit',()=>{
   const source=index.get(id),weaponId=oracle.eligibleWeaponIds[i].find(id=>index.get(id).parentId==='unit-commander-in-coldstar-battlesuit');
   const weapon=index.get(weaponId),text=header(['Experimental Prototype Cadre'])+
    gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,2)+'Enhancement: '+source.data.title+'\n';
-  const state=ready(text).roster,projection=runtime(state).projection;
+  const state=ready(text).roster,projection=projectionOf(state);
   const selected=projectedWeapons(projection.units[0]).filter(w=>w.canonicalProfileId===weaponId);
   assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,2,'Both INPUT copies retained without invented per-gun ownership');
   for(const field of Object.keys(oracle.expectedDeltas[i]))assert.equal(selected[0].data[field],weapon.data[field],'No unresolved one-weapon delta broadcast to duplicates');
@@ -715,11 +723,11 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
   assert.ok(effects.every(effect=>sourceSnapshot(effect).canonicalRuleId===ruleId&&sourceSnapshot(effect).canonicalOwnerId===rule.parentId&&
    JSON.stringify(sourceSnapshot(effect).sourceEvidence)===JSON.stringify(sourceSnapshot(rule))),'Derived effects preserve original factual owner and provenance');
   const saved=JSON.parse(JSON.stringify(run.snapshot())),projection=clone(run.projection);
-  assert.deepEqual(runtime(saved).projection,projection,'Snapshot JSON/load retains exact weapon selection');
+  assert.deepEqual(projectionOf(saved),projection,'Snapshot JSON/load retains exact weapon selection');
   run.load(saved);assert.deepEqual(run.projection,projection,'Recompute does not accumulate modifiers');
   service.load(saved);const reimport=ready(text,{},service).roster;
   assert.deepEqual(reimport,saved,'Identical input reimport preserves validated exact source decision');
-  assert.deepEqual(runtime(reimport).projection,projection);
+  assert.deepEqual(projectionOf(reimport),projection);
   run.setPrototypeChoice(physical.instanceId,ruleId,second);assertPrototypeProjection(run.projection,base,second,prototypeOracle.expectedDeltas[i]);
   run.setPrototypeChoice(physical.instanceId,ruleId,null);assertPrototypeProjection(run.projection,base,null,{});
   run.setPrototypeChoice(physical.instanceId,ruleId,first);
@@ -743,7 +751,7 @@ test('stage4c-three-prototypes-exact-separate-input-selections-and-persistence',
   const changedText=text.replace('1x '+weapon.data.name+', 1x '+weapon.data.name,'1x '+weapon.data.name);
   const changed=ready(changedText,{},service).roster;
   assert.equal(tauPrototypeDecisions(changed.units[0]).length,0,'Changed input cannot inherit a positional source choice');
-  assertPrototypeProjection(runtime(changed).projection,formRoster(book,changed),null,{});
+  assertPrototypeProjection(projectionOf(changed),formRoster(book,changed),null,{});
   const aggregate=ready(header(['Experimental Prototype Cadre'])+gearOnFirstModel('unit-commander-in-coldstar-battlesuit',weapon.data.name,2)+'Enhancement: '+rule.data.title+'\n').roster;
   const aggregateBase=formRoster(book,aggregate),aggregateWeapon=projectedWeapons(aggregateBase.units[0])[0],aggregateRun=runtime(aggregate);
   const aggregateReference=weaponReference(aggregateBase.units[0],aggregateWeapon);
@@ -823,7 +831,7 @@ test('stage4g-projection-partition-lifecycle-negative-and-mutation-controls',()=
     assert.deepEqual(run.snapshot(),valid);assert.deepEqual(run.projection,projection,'Atomic rejected partition edit');});
   const changed=ready(text.replaceAll('2x '+weapon.data.name,'1x '+weapon.data.name),{},service).roster;
   assert.equal(tauPrototypeDecisions(changed.units[0]).length,0,'Changed import clears stale parent decision');
-  assertPrototypeProjection(runtime(changed).projection,formRoster(book,changed),null,{});
+  assertPrototypeProjection(projectionOf(changed),formRoster(book,changed),null,{});
   const bound=bindTauPrototypeChoices(book,valid),schema=createTauRuleSchema({bindContext:tauSourceChoiceContext(bound,valid)});
   const resolve=tauWeaponSelectionResolver(bound,valid),partition=tauWeaponPartitionResolver(bound,valid),requests=partition();
   const diagnostic=(hook=partition,resolver=resolve)=>{
@@ -889,7 +897,7 @@ test('student-of-kauyon-exact-three-physical-unit-recipients',()=>{
  assert.ok(baseline.units.every(u=>!hasDeepStrike(u)),'No automatic roster-wide Deep Strike before decision');
  run.setStudentChoice('parsed-unit-1',['parsed-unit-2','parsed-unit-3','parsed-unit-4']);
  for(const unit of run.projection.units)assert.equal(hasDeepStrike(unit),['parsed-unit-2','parsed-unit-3','parsed-unit-4'].includes(unit.instanceId),'Exactly chosen physical UNIT');
- const saved=run.snapshot();assert.deepEqual(runtime(saved).projection,run.projection,'Recipient choices survive persistence');
+ const saved=run.snapshot();assert.deepEqual(projectionOf(saved),run.projection,'Recipient choices survive persistence');
  const before=clone(run.projection);run.load(saved);assert.deepEqual(run.projection,before,'Recompute no duplicates');
  run.setStudentChoice('parsed-unit-1',[]);
  // A cleared selection may retain its explicit empty field in a snapshot.
@@ -938,15 +946,15 @@ test('student-multiple-physical-source-provenance-remains-explicit',()=>{
  const service=make(),state=ready(text,{},service).roster,run=runtime(state);
  let inventory=setTauStudentChoice(book,state,'parsed-unit-1',['parsed-unit-3']);
  inventory=setTauStudentChoice(book,inventory,'parsed-unit-2',['parsed-unit-4']);
- assert.deepEqual(make().load(inventory),inventory,'Distinct source decisions save as physical inventory');
+ assert.deepEqual(loadSnapshot(inventory),inventory,'Distinct source decisions save as physical inventory');
  run.load(inventory);
  assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-4']});
  const saved=run.snapshot(),effective=clone(run.projection);
  negative('student-source-removed-with-stale-choice',()=>{const bad=clone(saved);bad.units[0].enhancementIds=[];bad.units[0].enhancementAssignments=[];bad.units[0].mfmEnhancementRecordIds=[];assert.throws(()=>run.load(bad),/Student of Kauyon requires/);assert.deepEqual(run.snapshot(),saved,'Stale source edit is rejected atomically');});
- assert.deepEqual(runtime(saved).projection,effective,'Multiple-source grants survive snapshot/load');
+ assert.deepEqual(projectionOf(saved),effective,'Multiple-source grants survive snapshot/load');
  run.load(saved);assert.deepEqual(run.projection,effective,'Recompute never accumulates source grants');
  service.load(saved);assert.deepEqual(ready(text,{},service).roster,saved,'Same-input reimport preserves exact source choices');
- assert.deepEqual(runtime(service.snapshot()).projection,effective,'Reimport preserves exact computed provenance');
+ assert.deepEqual(projectionOf(service.snapshot()),effective,'Reimport preserves exact computed provenance');
  run.setStudentChoice('parsed-unit-2',['parsed-unit-3']);
  assertStudentPairs(run.projection,{'parsed-unit-1':['parsed-unit-3'],'parsed-unit-2':['parsed-unit-3']});
  run.setStudentChoice('parsed-unit-1',[]);
@@ -973,7 +981,7 @@ test('student-multiple-physical-source-provenance-remains-explicit',()=>{
 test('stage4b-independent-marker-and-student-mutation-controls',()=>{
  const diagnostic=(domain,state)=>{const service=createRosterRuntime(domain,createTauRuleSchema({bindContext:tauSourceChoiceContext(domain,state)}));service.load(state);return service.projection;};
  const id='unit-commander-in-coldstar-battlesuit',text=header()+fixture(id,{equipment:'1x Marker Drone'}).text+fixture(id).text;
- const state=ready(text).roster,baseline=runtime(ready(header()+fixture(id).text+fixture(id).text).roster).projection;
+ const state=ready(text).roster,baseline=projectionOf(ready(header()+fixture(id).text+fixture(id).text).roster);
  const local=markerOccurrences.find(row=>row.unitId===id).optionId;
  const assertMarkerDomain=domain=>{
   const rule=domain.entities.find(entity=>entity.id===local),clause=rule.ruleContract.clauses.find(clause=>clause.id==='marker-drone-physical-unit');
@@ -1034,14 +1042,14 @@ test('native-core-reference-bags-preserved-through-import',()=>{
 
 test('negative-invalid-import-never-replaces-valid-saved-state',()=>{
  const service=make(),text=header()+fixture('unit-cadre-fireblade',{weapons:true}).text;
- const valid=ready(text,{},service).roster,beforeProjection=runtime(valid).projection;
+ const valid=ready(text,{},service).roster,beforeProjection=projectionOf(valid);
  for(const [id,bad,bindings]of [
   ['foreign-faction',text.replace('T’au Empire','Death Guard'),{}],
   ['unknown-unit',header()+'1x Imaginary tau warrior (100 pts)\n',{}],
   ['unknown-weapon',text.replace(index.get(index.get('unit-cadre-fireblade').data.weaponIds[0]).data.name,'Imaginary plasma knife'),{}],
   ['wrong-canonical-selection',text,{selections:{'parsed-unit-1/model-row/1/selection/1':{canonicalProfileIds:['datasheet-devilfish:weapon:1'],canonicalEquipmentIds:[]}}}],
   ['unsupported-physical-weapon-instance-choice',text,{weaponChoices:{'parsed-unit-1':'foreign-weapon-occurrence'}}]
- ])negative(id,()=>{const out=service.import(bad,bindings);assert.notEqual(out.status,'READY');assert.deepEqual(service.state,valid);assert.deepEqual(runtime(service.state).projection,beforeProjection,'Rejected import never applies effects to saved roster');});
+ ])negative(id,()=>{const out=service.import(bad,bindings);assert.notEqual(out.status,'READY');assert.deepEqual(service.state,valid);assert.deepEqual(projectionOf(service.state),beforeProjection,'Rejected import never applies effects to saved roster');});
  for(const [id,mutate]of [
   ['wrong-model-owner',state=>state.units[0].modelRows[0].canonicalProfileId='datasheet-devilfish:profile:1'],
   ['wrong-composition-owner',state=>state.units[0].modelRows[0].compositionMemberId='datasheet-devilfish:composition:1'],
@@ -1134,7 +1142,7 @@ async function prototypePresenterAcceptance(){
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));let browser;
  const results=[],errors=[];
  try{
-  browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+  browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
   for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
    const page=await browser.newPage({viewport});page.on('pageerror',error=>errors.push(error.message));
    page.on('requestfailed',request=>errors.push(request.url()+': '+request.failure()?.errorText));
@@ -1198,8 +1206,8 @@ records.runtimeDenominator={total:records.runtimeCases.length,pass:records.runti
 records.status=records.checks.some(row=>row.status==='FAIL')?'FAIL':records.runtimeDenominator.blocked?'PASS_WITH_BLOCKED_REQUIREMENTS':'PASS';records.checkCount=checks;
 records.physicalDatasheets=43;records.detachments=7;records.enhancements=23;
 const evidenceIndex=process.argv.indexOf('--evidence');
-if(evidenceIndex!==-1){
- const directory=path.resolve(process.argv[evidenceIndex+1]);fs.mkdirSync(directory,{recursive:true});
+if(evidenceIndex!==-1||process.env.QA_EVIDENCE_DIR){
+ const directory=evidenceIndex!==-1?path.resolve(process.argv[evidenceIndex+1]):createQaEvidenceDir('tau-roster-');fs.mkdirSync(directory,{recursive:true});
  for(const fixture of records.fixtures)fs.writeFileSync(path.join(directory,fixture.id+'.txt'),fixture.text);
  fs.writeFileSync(path.join(directory,'roster-import-qa.json'),JSON.stringify(records,null,2)+'\n');
 }

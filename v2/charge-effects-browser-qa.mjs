@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** Main Unified V2, real application bytes and visible player actions only.
  * These source-backed New Recruit fixtures are constructed, not real exports. */
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ import {chargeFixtures} from './charge-qa-fixtures.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.CHARGE_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'wh-charge-browser-'));
+const out=process.env.CHARGE_V2_SCREENSHOTS||createQaEvidenceDir('wh-charge-browser-');
 fs.mkdirSync(out,{recursive:true});
 const requirements=JSON.parse(fs.readFileSync(new URL('../books/shared/roster-v2/charge-source-expectations.json',import.meta.url),'utf8')).cases;
 const sourceBooks=new Map();

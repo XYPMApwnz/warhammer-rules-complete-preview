@@ -1,3 +1,4 @@
+import {getQaTmpRoot} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -29,7 +30,7 @@ await managed.close();
 const executablePath=chromium.executablePath();
 assert.equal(resolveChromiumLaunchOptions({[BROWSER_EXECUTABLE_ENV]:executablePath}).executablePath,path.resolve(executablePath),'explicit browser override must be accepted');
 
-const missing=path.join(os.tmpdir(),'qa-h1-missing-browser-executable');
+const missing=path.join(getQaTmpRoot(),'qa-h1-missing-browser-executable');
 assert.throws(()=>resolveChromiumLaunchOptions({[BROWSER_EXECUTABLE_ENV]:missing}),new RegExp(`${BROWSER_EXECUTABLE_ENV} does not point to a readable browser executable`),'invalid override must fail clearly');
 
 console.log('QA-H1 portability QA: PASS (LF/CRLF extraction, managed Chromium default, explicit override, invalid override).');

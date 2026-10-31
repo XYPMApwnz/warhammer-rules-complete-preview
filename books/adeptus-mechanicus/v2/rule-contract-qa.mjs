@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from '../../../tests/helpers/qa-temp.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
@@ -200,7 +201,7 @@ negative(()=>buildAdMechContracts({book:poisonedSource}),'Accepted source contra
 
 // Closed-input execution is stronger than naming a zero-read counter: no DG,
 // V1 AM source/contracts/runtime or old generated answers exist in this tree.
-const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'am-contract-closed-'));
+const temporary=createQaTempDir('am-contract-closed-');
 try {
   const root=path.resolve(directory,'../../..');
   const files=[...declarationFiles,'contract-composition-bindings.json','generated/effective.json',
@@ -210,7 +211,7 @@ try {
   for(const name of files){const destination=path.join(temporary,name);fs.mkdirSync(path.dirname(destination),{recursive:true});fs.copyFileSync(path.join(root,name),destination);}
   execFileSync(process.execPath,[path.join(temporary,'books/adeptus-mechanicus/v2/rule-contract-build.mjs')],{encoding:'utf8'});
   for(const [name,value]of Object.entries(artifacts(built,compiled)))equivalent(JSON.parse(fs.readFileSync(path.join(temporary,'books/adeptus-mechanicus/v2/generated/'+name+'.json'),'utf8')),value,'Legacy/DG disconnect changed output');
-} finally {fs.rmSync(temporary,{recursive:true,force:true});}
+} finally {cleanupQaTempDir(temporary);}
 console.log(JSON.stringify({status:'PASS',owners:expected.length,validContracts:built.schema.evaluator.validateContracts(built.book).rules,
   blockedOwners:built.blockedIds.size,stratagems:51,profiles:35,compatibility:compiled.summary,controls,mutations,
   legacyContractReads:0,closedInputIsolation:'PASS',effectsRuntimeStarted:false}));

@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Stages 5/6: real application bytes and ordinary visible UI actions.
  * evaluate calls inspect state, source payload and rendered DOM only. No state,
  * storage, DOM, CSS or computed-value injection is permitted by this QA. */
@@ -10,7 +12,7 @@ import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.TAU_V2_BROWSER_EVIDENCE||'E:/Warhammer/qa-artifacts/recovery-tau-v2-stage5-20261019';
+const out=process.env.TAU_V2_BROWSER_EVIDENCE||createQaEvidenceDir('app-browser-qa-');
 const previous=process.env.TAU_V2_STAGE4G_EVIDENCE||'E:/Warhammer/qa-artifacts/recovery-tau-v2-stage4g-final-20261019';
 const requestedGroups=process.env.TAU_V2_BROWSER_GROUPS?.split(',');
 const mainApplication=process.env.TAU_V2_BROWSER_MAIN==='1';
@@ -136,7 +138,7 @@ async function assertPrototype(page,index,selected){
   return rows;
 }
 try{
-  browser=await playwright.chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+  browser=await launchQaBrowser(playwright.chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
   result.browserVersion=browser.version();result.playwrightVersion=playwrightRequire('playwright/package.json').version;
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]){
     const context=await browser.newContext({viewport,reducedMotion:'reduce',acceptDownloads:true}),page=await context.newPage();

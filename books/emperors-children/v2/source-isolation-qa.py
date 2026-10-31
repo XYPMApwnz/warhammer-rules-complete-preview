@@ -2,8 +2,12 @@
 import copy
 import json
 import shutil
-import tempfile
+import sys
 from pathlib import Path
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir, qa_tmp_root
 from build import ROOT, SOURCE, build, read, verify_sources
 
 
@@ -13,9 +17,8 @@ def main():
     enrollment = read(here/'sources/enrollment.json')
     checks = []
     # Temporary files remain outside the repository; no current worktree bytes change.
-    temporary_root = (ROOT.parent/'qa-artifacts').resolve()
-    temporary_root.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix='ec-source-only-', dir=temporary_root) as directory:
+    temporary_root = qa_tmp_root()
+    with create_qa_temp_dir('ec-source-only-') as directory:
         isolated = Path(directory).resolve()
         if isolated == Path(isolated.anchor) or isolated.parent != temporary_root or not isolated.name.startswith('ec-source-only-'):
             raise ValueError('Unsafe temporary isolation path')

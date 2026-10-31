@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Focused UI acceptance against unchanged working-tree application bytes.
  * Static-byte transport exercises the browser, not live hosting. */
 import assert from 'node:assert/strict';
@@ -8,9 +10,9 @@ import {createRequire} from 'node:module';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
-const browser=await chromium.launch({headless:true,
+const browser=await launchQaBrowser(chromium,{headless:true,
   executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
-const evidence=process.env.AM_V14_SCREENSHOTS||'E:/Warhammer/qa-artifacts/am-official-v1.4-20261014';
+const evidence=process.env.AM_V14_SCREENSHOTS||createQaEvidenceDir('official-v1.4-browser-qa-');
 fs.mkdirSync(evidence,{recursive:true});
 const origin='http://am-official-v14.test';
 const chant='detachment-luminen-auto-choir:stratagem:2',guided='detachment-haloscreed-battle-clade:stratagem:5';

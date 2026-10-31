@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -14,7 +15,7 @@ const server=http.createServer((request,response)=>{
   response.setHeader('content-type',mime[path.extname(file)]||'application/octet-stream');fs.createReadStream(file).pipe(response);
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const base=`http://127.0.0.1:${server.address().port}`,browser=await chromium.launch({channel:'chrome',headless:true});
+const base=`http://127.0.0.1:${server.address().port}`,browser=await launchQaBrowser(chromium,{channel:'chrome',headless:true});
 const unit='Chaos Lord with Jump Pack',cardId='unit-chaos-lord-with-jump-pack',route='chaos-lord-with-jump-pack';
 const nightmare={detachment:'Nightmare Hunt',ruleId:'enhancement-nightmare-hunt-warp-fuelled-thrusters',text:/opponent.s Fight phase/i};
 const dread={detachment:'Dread Talons',ruleId:'enhancement-dread-talons-warp-fuelled-thrusters',text:/opponent.s turn/i};

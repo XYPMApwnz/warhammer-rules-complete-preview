@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -33,7 +34,7 @@ function assertDeathGuardWargearEnrollment(){
     'DG wargear bytes must remain the accepted c111b854 contract');
   assert.equal(declaration.active,true);assert.equal(declaration.lifecycle,'ACCEPTED_SOURCE');
   for(const consumer of ['CANONICAL_BUILD','EFFECTIVE_MODEL','CERTIFICATION_QA'])assert(declaration.consumers.includes(consumer));
-  const scoped=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-dg-wargear-enrollment-'));
+  const scoped=createQaTempDir('warhammer-dg-wargear-enrollment-');
   const write=(relative,value)=>{const file=path.join(scoped,relative);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,stable(value));};
   try{
     write('books/publication-inventory.json',{schema:publication.schema,books:[{
@@ -57,12 +58,12 @@ function assertDeathGuardWargearEnrollment(){
     mutate(configPath,value=>delete value.sources.wargearOptionContracts,/active source has no declared consumer graph reference/);
     console.log(JSON.stringify({check:'dg-wargear-source-enrollment',status:'PASS',scope:'SINGLE_SOURCE_FIXTURE',negativeControls:5,
       fullRepositoryEnrollment:'NOT_ASSESSED_BY_THIS_FIXTURE'}));
-  }finally{fs.rmSync(scoped,{recursive:true,force:true});}
+  }finally{cleanupQaTempDir(scoped);}
 }
 assertDeathGuardWargearEnrollment();
 if(process.argv.includes('--dg-wargear-only'))process.exit(0);
 
-const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-source-enrollment-'));
+const fixture=createQaTempDir('warhammer-source-enrollment-');
 
 try{
   copy(root,fixture,'books/publication-inventory.json');
@@ -158,4 +159,4 @@ try{
   assert(csm.layers.some(source=>source.sourceId==='csm-codex-secondary-consensus'));
   assert.equal(csm.secondaryConsensus.sourceId,'csm-codex-secondary-consensus');
   console.log(`Source enrollment QA passed: ${declaredPublicActive} public owners, 3 Orks freshness owners, exact manifest/status/classification equality and 15 adversarial controls.`);
-}finally{fs.rmSync(fixture,{recursive:true,force:true});}
+}finally{cleanupQaTempDir(fixture);}

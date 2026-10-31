@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {assertQaTempPath,cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-child')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -125,7 +127,7 @@ check('lost existence/cardinality bindings are detected by expected outcomes',()
   assert.throws(()=>assert.equal(evaluate(collapsed,merged),'FALSE'));
 });
 if(!process.argv.includes('--isolated-child')) {
-  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'required-recipients-qa-'));
+  const temporary=createQaTempDir('required-recipients-qa-');
   try {
     for(const folder of ['roster-v2','rule-contract-v2'])fs.mkdirSync(path.join(temporary,folder));
     for(const file of ['roster-v2/required-recipients-qa.mjs','roster-v2/compatibility-feasibility.mjs','roster-v2/compatibility-context.mjs',
@@ -134,8 +136,8 @@ if(!process.argv.includes('--isolated-child')) {
     const child=JSON.parse(execFileSync(process.execPath,[path.join(temporary,'roster-v2/required-recipients-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));
     assert.equal(child.status,'PASS');
   } finally {
-    assert.equal(path.dirname(path.resolve(temporary)),path.resolve(os.tmpdir()));
-    fs.rmSync(temporary,{recursive:true,force:true});
+    assert.ok(assertQaTempPath(temporary));
+    cleanupQaTempDir(temporary);
   }
 }
 console.log(JSON.stringify({status:'PASS',sharedGuardsRunWithoutBookData:'PASS',checks}));

@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real accepted DG/AM payloads, independent browser resource ownership instrumentation. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -155,7 +156,7 @@ const origin=`http://127.0.0.1:${server.address().port}`;
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 try{
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['phone',{width:390,height:844}]]){
     const context=await browser.newContext({viewport,serviceWorkers:'block'});

@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** SM5B-UI-POINTS-UNRESOLVED regression. Constructed New Recruit INPUT,
  * ordinary main V2 UI actions; evaluate is read-only and never changes state.
  * Source: accepted SM MFM v1.6, Impulsor / per Orbital Comms Array (10 pts).
@@ -10,7 +12,7 @@ import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.SM_POINTS_BROWSER_OUT||path.join(repo,'tmp/sm-unresolved-points-browser');
+const out=process.env.SM_POINTS_BROWSER_OUT||createQaEvidenceDir('sm-points-browser-');
 fs.mkdirSync(out,{recursive:true});
 const baseline=process.argv.includes('--baseline');
 const header='+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n';
@@ -34,7 +36,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 let page,device;
 const ready=()=>page.evaluate(async()=>{await window.WarhammerAppV2?.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
 async function roster(){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready();await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}

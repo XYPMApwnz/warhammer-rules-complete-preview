@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 /** F2: exact physical carrier counts through the real import/attachment and
  * presentation path. Synthetic controls are physical records, not new effects. */
@@ -237,7 +238,7 @@ check('Independent clause/effect/operation/physical source contributions cannot 
 
 // Run a mutant of this very production helper, not a separate test algorithm.
 // Restoring caption deduplication must fail the fixed real-roster expectation.
-const directory=fs.mkdtempSync(path.join(os.tmpdir(),'wh-f2-carrier-qa-'));
+const directory=createQaEvidenceDir('wh-f2-carrier-qa-');
 const helper=path.join(root,'books/shared/army-book-app-v2/effective-datasheet-presentation.mjs');
 const source=fs.readFileSync(helper,'utf8');
 const target='else if(!duplicate&&group.quantity!==null)group.quantity+=quantity;';

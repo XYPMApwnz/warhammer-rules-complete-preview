@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {assertQaTempPath,cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-child')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -69,12 +71,12 @@ check('wrong role/subject/context/evidence and cycles fail closed',()=>{
   assert.throws(()=>assert.equal(evaluate(dropped,[]),'FALSE'));
 });
 if(!process.argv.includes('--isolated-child')) {
-  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'dependent-roles-qa-'));
+  const temporary=createQaTempDir('dependent-roles-qa-');
   try {
     for(const folder of ['roster-v2','rule-contract-v2'])fs.mkdirSync(path.join(temporary,folder));
     for(const file of ['roster-v2/dependent-roles-qa.mjs','roster-v2/compatibility-feasibility.mjs','roster-v2/compatibility-context.mjs',
       'rule-contract-v2/schema.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/recipients.mjs'])fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(temporary,file));
     assert.equal(JSON.parse(execFileSync(process.execPath,[path.join(temporary,'roster-v2/dependent-roles-qa.mjs'),'--isolated-child'],{encoding:'utf8'})).status,'PASS');
-  } finally {assert.equal(path.dirname(path.resolve(temporary)),path.resolve(os.tmpdir()));fs.rmSync(temporary,{recursive:true,force:true});}
+  } finally {assert.ok(assertQaTempPath(temporary));cleanupQaTempDir(temporary);}
 }
 console.log(JSON.stringify({status:'PASS',sharedGuardsRunWithoutBookData:'PASS',checks}));

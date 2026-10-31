@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -8,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const relativeRoot=path.join('books','adeptus-mechanicus');
 const canonical=path.join(root,relativeRoot,'content','adeptus-mechanicus-codex-datasheets.en.json');
-const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'am-datasheet-owner-'));
+const fixture=createQaTempDir('am-datasheet-owner-');
 const fixtureRoot=path.join(fixture,relativeRoot);
 const copy=relative=>{
   const source=path.join(root,relativeRoot,relative),target=path.join(fixtureRoot,relative);
@@ -66,7 +67,7 @@ try{
     'AM Datasheet producer retained facts from a poisoned previous output'),assert.AssertionError,
     'Source ownership assertion must reject a producer that consumes previous generated facts');
 }finally{
-  fs.rmSync(fixture,{recursive:true,force:true});
+  cleanupQaTempDir(fixture);
 }
 
 console.log('AM Datasheet source ownership QA passed: absent and poisoned previous outputs reconstruct identically; previous-output ownership mutation detected.');

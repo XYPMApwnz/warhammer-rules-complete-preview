@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real application bytes and UI actions; no DOM or runtime-state injection.
  * The static-byte transport verifies UI acceptance, not live hosting. */
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ const files=['books/adeptus-mechanicus/v2/roster-import.mjs','books/adeptus-mech
   'books/adeptus-mechanicus/v2/roster-attachments.mjs','books/shared/roster-v2/context.mjs','books/shared/army-book-app-v2/datasheet-v1.mjs'];
 const oldBytes=new Map(files.map(file=>['/'+file,execFileSync('git',['show',baseline+':'+file],{cwd:repo})]));
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const errors=[],missing=[],results=[];
 const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.html':'text/html','.css':'text/css',
   '.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg','.woff2':'font/woff2'};

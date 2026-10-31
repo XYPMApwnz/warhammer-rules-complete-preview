@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** Core-aware reference navigation stays optional: metadata failure cannot disable Glossary. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,7 +10,7 @@ import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {encodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.WH_CORE_NAV_BROWSER_EVIDENCE||fs.mkdtempSync(path.join(os.tmpdir(),'core-glossary-navigation-'));
+const out=process.env.WH_CORE_NAV_BROWSER_EVIDENCE||createQaEvidenceDir('core-glossary-navigation-');
 fs.mkdirSync(out,{recursive:true});
 const corpus=JSON.parse(fs.readFileSync(path.join(repo,'glossary/v2/generated/index.en.json'),'utf8'));
 const placements=JSON.parse(fs.readFileSync(path.join(repo,'books/core-rules/reader/search-index.json'),'utf8'));

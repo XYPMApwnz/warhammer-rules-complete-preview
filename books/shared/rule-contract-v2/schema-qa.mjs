@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {createQaTempDir,cleanupQaTempDir}=process.argv.includes('--isolated')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -188,7 +190,7 @@ check('malformed predicates fail closed instead of becoming UNKNOWN',()=>{
 // Run the same guard with only the shared schema and recipient modules present. This catches accidental
 // factual imports without depending on real book data or its regression QA.
 if(!process.argv.includes('--isolated')) {
-  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'rule-contract-kernel-'));
+  const directory=createQaTempDir('rule-contract-kernel-');
   const files=['schema.mjs','recipients.mjs','schema-qa.mjs'];
   try {
     for(const file of files)fs.copyFileSync(new URL(file,import.meta.url),path.join(directory,file));
@@ -196,8 +198,7 @@ if(!process.argv.includes('--isolated')) {
     assert.equal(JSON.parse(output).status,'PASS');
     checks.push('guards run with no book files present');
   } finally {
-    for(const file of files)if(fs.existsSync(path.join(directory,file)))fs.unlinkSync(path.join(directory,file));
-    fs.rmdirSync(directory);
+    cleanupQaTempDir(directory);
   }
 }
 console.log(JSON.stringify({status:'PASS',sharedGuards:checks.length,checks}));

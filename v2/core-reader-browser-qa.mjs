@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,7 +11,7 @@ import {encodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 const repo=fileURLToPath(new URL('../',import.meta.url)),reader=path.join(repo,'books/core-rules/reader');
 const routes=fs.readdirSync(reader).filter(file=>file.endsWith('.html'));
 const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg'};
-const errors=[],missing=[],results=[],screenshots=fs.mkdtempSync(path.join(os.tmpdir(),'core-v2-mount-'));
+const errors=[],missing=[],results=[],screenshots=createQaEvidenceDir('core-v2-mount-');
 const server=createServer((request,response)=>{try{
   const pathname=new URL(request.url,'http://local').pathname;
   if(pathname==='/favicon.ico'){response.writeHead(204).end();return;}

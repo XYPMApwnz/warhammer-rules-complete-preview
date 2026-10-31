@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Registry isolation and real shell hosting with synthetic book inputs only. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -85,7 +86,7 @@ const origin=`http://127.0.0.1:${server.address().port}`;
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const ready=async page=>{await page.waitForFunction(()=>Boolean(window.synthetic?.app));await page.evaluate(()=>window.synthetic.app.ready);
   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));};
 const neutralNavigation=async page=>assert.deepEqual(await page.locator('[data-v2-primary-nav] a[aria-current]').evaluateAll(nodes=>nodes.map(node=>({color:getComputedStyle(node).color,background:getComputedStyle(node).backgroundColor}))),

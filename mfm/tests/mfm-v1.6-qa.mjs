@@ -1,3 +1,4 @@
+import {createQaTempDir,getQaTmpRoot,cleanupQaTempDir} from '../../tests/helpers/qa-temp.mjs';
 /** Current source acceptance, historical compatibility and unchanged semantics. */
 import assert from 'node:assert/strict';
 import os from 'node:os';import {execFileSync} from 'node:child_process';
@@ -224,7 +225,7 @@ console.log(JSON.stringify({stage2B:'PASS',conditionalSource:'Cato Sicarius / Ca
 
 // End-to-end producer probes use an isolated frozen-source fixture. No accepted input is edited.
 // sourceRegistryPath reuses verifyFrozenSource's existing registry injection, including exact hashes.
-const fixtureRoot=fs.mkdtempSync(path.join(os.tmpdir(),'sm-mfm-compat-'));
+const fixtureRoot=createQaTempDir('sm-mfm-compat-');
 try{
   const fixtureRegistry=read('books/source-ingestion-contract.json'),selectedSources=new Set([...currentRegistry.factionBindings,...(currentRegistry.historicalSourceBindings??[]),...currentRegistry.crossFactionUnitDependencies].map(b=>b.sourceId));
   fixtureRegistry.sources=fixtureRegistry.sources.filter(s=>selectedSources.has(s.sourceId));
@@ -258,9 +259,9 @@ try{
   for(const oldCutoff of ['2026-09-22','2026-09-30','2026-10-14'])assert.equal(createEffectiveMfmCatalog({canonicalFacts:current,asOf:oldCutoff}).catalog.currentnessCutoff,oldCutoff);
   console.log(JSON.stringify({stage2BProducer:'PASS',isolatedFrozenFixture:true,conditionalRoles:'PRESERVED_THROUGH_PRODUCER_AND_PROJECTION',sourceDates:'20_OCT_OBSERVATION_14_OCT_DOWNLOAD_LIST',mutations:compatibilityMutations,deterministic:true}));
 }finally{
-  const safe=path.resolve(fixtureRoot),prefix=path.resolve(os.tmpdir())+path.sep;
-  assert.ok(safe.startsWith(prefix)&&path.basename(safe).startsWith('sm-mfm-compat-'));
-  fs.rmSync(safe,{recursive:true,force:true});
+  const safe=path.resolve(fixtureRoot),prefix=path.resolve(getQaTmpRoot())+path.sep;
+  assert.ok(safe.startsWith(prefix)&&path.basename(path.dirname(safe)).startsWith('sm-mfm-compat-'));
+  cleanupQaTempDir(safe);
 }
 
 // Stage 4A: enrolled native source facts, exact CURRENT/HISTORICAL separation.

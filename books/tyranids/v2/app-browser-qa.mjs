@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Isolated real application bytes. All changes use visible UI controls.
  * evaluate calls inspect state/geometry only. No fake DOM or storage writes. */
 import assert from 'node:assert/strict';
@@ -11,7 +13,7 @@ import {buildTyranidsImportBook} from './roster-import-build.mjs';
 import {createTyranidsRosterImport} from './roster-import.mjs';
 const importBook=buildTyranidsImportBook();
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.TYRANIDS_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/tyranids-v2-isolated-browser';
+const out=process.env.TYRANIDS_V2_SCREENSHOTS||createQaEvidenceDir('app-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const entry='/v2/app.html';
 const allowed=url=>/^\/books\/tyranids\/v2\/[\w./-]+\.(?:html|mjs|json|css)$/.test(url)||
@@ -29,7 +31,7 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 async function ready(page){await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(l=>!!l.sheet));}
 async function geometry(page){assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'Page overflow');assert.deepEqual(await page.locator('.ds-selected-loadout > li').evaluateAll(nodes=>nodes.map(n=>n.textContent.trim()).filter(t=>/^\d+\s*×\s*$/.test(t))),[],'Blank inventory');}
 async function roster(page){await page.locator('[data-v2-primary-nav] [data-v2-destination="ROSTER"]').click();await ready(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).waitFor();}

@@ -1,3 +1,4 @@
+import {assertQaTempPath,cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -109,8 +110,8 @@ amShadow.detachments[0].dp=987654;amShadow.detachments[0].disposition='D1_AM_DIS
 assert.equal((await renderStructuredEffectiveBook(amProbe.context,amShadow)).readerSource,amBaseline,'AM compatibility aliases changed canonical publication');
 
 async function sharedAuthorityProbe(bookId,{dependency=false}={}){
-  const configPath=path.join(root,'books',bookId,'book.config.json'),context=createCanonicalBuildContext({configPath,args:[]}),temporaryBase=path.resolve(process.env.TEMP||process.env.TMP||root),temporary=fs.mkdtempSync(path.join(temporaryBase,`d1-${bookId}-`)),nativeClone=globalThis.structuredClone;
-  assert.ok(path.resolve(temporary).startsWith(`${temporaryBase}${path.sep}`),`${bookId}: temporary output escaped its declared root`);
+  const configPath=path.join(root,'books',bookId,'book.config.json'),context=createCanonicalBuildContext({configPath,args:[]}),temporary=createQaTempDir(`d1-${bookId}-`),nativeClone=globalThis.structuredClone;
+  assert.ok(assertQaTempPath(temporary),`${bookId}: temporary output escaped its declared root`);
   context.root=temporary;
   const modelPoint=123456,shadowPoint=987654,modelDetachmentPoints=234567,shadowDetachmentPoints=876543,modelRule='D1_MODEL_ARMY_RULE_MARKER',shadowRule='D1_SHADOW_ARMY_RULE_POISON',modelCatalog='D1 Model Roster Enhancement',shadowCatalog='D1 Shadow Roster Enhancement Poison';
   let intercepted=false,targetUnitId='';
@@ -143,7 +144,7 @@ async function sharedAuthorityProbe(bookId,{dependency=false}={}){
     assert.match(outputs,new RegExp(modelCatalog),`${bookId}: model roster Enhancement was not published`);
     for(const poison of [shadowPoint,shadowDetachmentPoints,shadowRule,shadowCatalog])assert.doesNotMatch(outputs,new RegExp(String(poison)),`${bookId}: pre-model shadow fact influenced publication`);
     return {targetUnitId,digest:digest(outputs)};
-  }finally{fs.rmSync(temporary,{recursive:true,force:true});}
+  }finally{cleanupQaTempDir(temporary);}
 }
 const tyranidsPublication=await sharedAuthorityProbe('tyranids'),tyranidsPublicationAgain=await sharedAuthorityProbe('tyranids');
 assert.equal(tyranidsPublicationAgain.digest,tyranidsPublication.digest,'shared effective publication is not deterministic');

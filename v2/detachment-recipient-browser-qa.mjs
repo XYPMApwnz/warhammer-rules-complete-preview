@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** F1: source-backed text-only Detachment recipients in the real main app.
  * Constructed New Recruit input and normal import/attachment/Guide controls.
  * Browser evaluation reads evidence only; it never patches state or the DOM. */
@@ -12,7 +13,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 import {chargeFixtures} from './charge-qa-fixtures.mjs';
 
 const repo=path.resolve(process.env.F1_BROWSER_ROOT||fileURLToPath(new URL('../',import.meta.url)));
-const out=path.resolve(process.env.F1_BROWSER_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'wh-f1-recipients-browser-')));
+const out=path.resolve(process.env.F1_BROWSER_SCREENSHOTS||createQaEvidenceDir('wh-f1-recipients-browser-'));
 const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 assert.ok(out!==sourceRepo&&!out.startsWith(sourceRepo+path.sep),'Browser evidence must be outside the repository');
 fs.mkdirSync(out,{recursive:true});

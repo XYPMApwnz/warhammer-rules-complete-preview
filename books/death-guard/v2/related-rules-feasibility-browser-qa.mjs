@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -21,7 +22,7 @@ const server=http.createServer((request,response)=>{
   response.end(address===data?JSON.stringify(payload):fs.readFileSync(path.join(root,address.slice(1))));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const mobile='detachment-champions-of-contagion:stratagem:5',champions='detachment-champions-of-contagion';
 const source=JSON.parse(fs.readFileSync(new URL('../sources/waha-11e-current-2026-09-25/corpus.json',import.meta.url),'utf8'));
 const mfm=JSON.parse(fs.readFileSync(new URL('../sources/official-mfm-v1.5.json',import.meta.url),'utf8'));

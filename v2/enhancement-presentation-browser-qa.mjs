@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Focused selected-rule regression through the real main application.
  * Constructed New Recruit grammar; all changes use ordinary player controls.
  * DOM reads are assertions only. No state, style or runtime-output injection. */
@@ -12,7 +14,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
 const fixtures=JSON.parse(fs.readFileSync(new URL('./enhancement-presentation-fixtures.json',import.meta.url),'utf8'));
-const out=process.env.ENHANCEMENT_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/recovery-v2-enhancement-text-fix-78522fcf-20261018/persistent-browser';
+const out=process.env.ENHANCEMENT_V2_SCREENSHOTS||createQaEvidenceDir('enhancement-presentation-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const require=createRequire(import.meta.url);
 let playwright,playwrightVersion;
@@ -105,7 +107,7 @@ const origin='http://127.0.0.1:'+server.address().port;
 const executable=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe';
 let browser;
 try{
-  browser=await playwright.chromium.launch({headless:true,...(fs.existsSync(executable)?{executablePath:executable}:{})});
+  browser=await launchQaBrowser(playwright.chromium,{headless:true,...(fs.existsSync(executable)?{executablePath:executable}:{})});
   for(const [device,viewport]of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]])for(const c of fixtures.cases){
     const context=await browser.newContext({viewport}),page=await context.newPage();
     page.on('pageerror',error=>errors.push({case:c.name,device,error:error.message}));

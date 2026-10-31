@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 import {sourceSnapshot} from '../books/shared/source-refs-v2/source-refs.mjs';
 /** F2: the real Personal Guide, physical components and source-bound clauses.
@@ -14,7 +15,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 
 const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const repo=path.resolve(process.env.F2_BROWSER_ROOT||sourceRepo);
-const out=fs.mkdtempSync(path.join(os.tmpdir(),'wh-f2-card-recipients-browser-'));
+const out=createQaEvidenceDir('wh-f2-card-recipients-browser-');
 const results=[],screenshots=[],errors=[],missing=[],requestFailures=[],consoleMessages=[];
 const runtimeSourceBooks=new Map();
 function runtimeSourceBook(bookId){

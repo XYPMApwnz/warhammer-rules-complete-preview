@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {allowApplicationTestDependencies} from '../../shared/application-v2/browser-test-dependencies.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -73,9 +75,9 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
-const evidence=process.env.ARMY_APP_V2_SCREENSHOTS || fs.mkdtempSync(path.join(os.tmpdir(),'dg-roster-browser-v2-'));
+const evidence=process.env.ARMY_APP_V2_SCREENSHOTS || createQaEvidenceDir('dg-roster-browser-v2-');
 fs.mkdirSync(evidence,{recursive:true});
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 let activePage,activeStep='startup';
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const descendants=id=>{

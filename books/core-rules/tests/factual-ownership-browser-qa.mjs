@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -10,7 +11,7 @@ import {createEffectiveCoreCatalog} from '../content/effective-core-catalog.mjs'
 const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const readerRoot=path.join(repoRoot,'books/core-rules/reader');
 const catalog=createEffectiveCoreCatalog();
-const screenshots=fs.mkdtempSync(path.join(os.tmpdir(),'core-factual-ownership-browser-'));
+const screenshots=createQaEvidenceDir('core-factual-ownership-browser-');
 const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.jpg':'image/jpeg','.webp':'image/webp'};
 const server=createServer((request,response)=>{try{
   const url=new URL(request.url,'http://localhost');

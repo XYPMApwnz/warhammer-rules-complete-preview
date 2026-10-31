@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** Presentation-only checks through native imports and real player controls.
  * Canonical source fields, not source links, must replace metric annotations. */
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ import {chargeFixtures} from './charge-qa-fixtures.mjs';
 
 const repo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
-const out=path.resolve(option('--out')||fs.mkdtempSync(path.join(os.tmpdir(),'wh-card-display-')));
+const out=path.resolve(option('--out')||createQaEvidenceDir('wh-card-display-'));
 assert.ok(out!==repo&&!out.startsWith(repo+path.sep));fs.mkdirSync(out,{recursive:true});
 const inputs={'adeptus-mechanicus':'roster-runtime','blood-angels':'roster-runtime','chaos-space-marines':'roster-runtime',
   'dark-angels':'roster-runtime','death-guard':'rule-contract-effective','emperors-children':'roster-attachments',

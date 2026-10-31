@@ -1,3 +1,4 @@
+import {createQaEvidenceDir,createQaTempDir} from '../helpers/qa-temp.mjs';
 /** Native V2, real publication package and real New Recruit export. No source-server fallback. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,9 +10,9 @@ import {buildPagesRuntimePackage} from '../../tools/pages-runtime-package.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
 
 const source=fileURLToPath(new URL('../../',import.meta.url));
-const out=path.resolve(process.env.WH_PWA_QA_OUT||fs.mkdtempSync(path.join(os.tmpdir(),'wh-v2-cold-')));
+const out=path.resolve(process.env.WH_PWA_QA_OUT||createQaEvidenceDir('wh-v2-cold-'));
 fs.mkdirSync(out,{recursive:true});
-const root=path.join(out,'runtime');
+const root=path.join(createQaTempDir('wh-pwa-cold-work-'),'runtime');
 const publication=buildPagesRuntimePackage({sourceRoot:source,outRoot:root});
 const prefix='/warhammer-rules-complete-preview/',requests=[],report={publication,mutation:process.env.WH_PWA_QA_MUTATION||null,results:[]};
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};

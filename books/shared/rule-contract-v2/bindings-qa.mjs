@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-child')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -154,13 +156,13 @@ mutations.push('duplicate semantic owner');
 // Execute from a directory containing only the shared kernel, binder and this QA.
 // No book data, declarations or repository imports can satisfy these guards.
 if (!process.argv.includes('--isolated-child')) {
-  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'typed-bindings-qa-'));
+  const directory=createQaTempDir('typed-bindings-qa-');
   try {
     for (const file of ['schema.mjs','recipients.mjs','bindings.mjs','bindings-qa.mjs'])
       fs.copyFileSync(new URL(file,import.meta.url),path.join(directory,file));
     const result=JSON.parse(execFileSync(process.execPath,[path.join(directory,'bindings-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));
     assert.equal(result.status,'PASS');
-  } finally {fs.rmSync(directory,{recursive:true,force:true});}
+  } finally {cleanupQaTempDir(directory);}
 }
 console.log(JSON.stringify({status:'PASS',sharedGuardGroups:checks.length,mutationsDetected:mutations.length,
   sharedGuardsRunWithoutBookData:'PASS',checks,mutations},null,2));

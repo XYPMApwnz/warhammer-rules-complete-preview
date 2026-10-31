@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 import {armyBooks} from './army-books.mjs';
 /** Fresh real-browser global Glossary smoke; no standalone viewer runtime is served. */
 import assert from 'node:assert/strict';
@@ -91,8 +93,8 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=origin+'/v2/app.h
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
-const screenshots=process.env.V2_GLOSSARY_SCREENSHOTS||'E:/Warhammer/qa-artifacts/mega-glossary-v2';fs.mkdirSync(screenshots,{recursive:true});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
+const screenshots=process.env.V2_GLOSSARY_SCREENSHOTS||createQaEvidenceDir('glossary-browser-qa-');fs.mkdirSync(screenshots,{recursive:true});
 const ready=async page=>{
   try{await page.waitForFunction(()=>Boolean(window.WarhammerAppV2));}catch(error){console.error('GLOSSARY_BROWSER_READINESS',JSON.stringify({url:page.url(),requests,forbidden,errors,page:await page.evaluate(()=>({url:location.href,title:document.title,body:document.body?.innerText,revision:document.querySelector('meta[name=\"wh-runtime-revision\"]')?.content,pwa:!!window.WHOfflineStatus})).catch(()=>null)}));throw error;}await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});
   await page.waitForFunction(()=>[...document.querySelectorAll('link[rel="stylesheet"]')].every(link=>Boolean(link.sheet)));

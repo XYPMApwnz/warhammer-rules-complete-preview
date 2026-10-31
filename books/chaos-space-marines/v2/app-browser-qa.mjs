@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Current canonical CSM source facts are the independent normal-book oracle. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -26,8 +28,8 @@ const server=http.createServer((req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const origin=`http://127.0.0.1:${server.address().port}`,url=origin+'/v2/app.html?v2=ARMY_BOOK&registry=chaos-space-marines';
-const out=path.join(root,'tmp/chaos-space-marines-v2-army-book');fs.mkdirSync(out,{recursive:true});
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const out=createQaEvidenceDir('csm-app-browser-');fs.mkdirSync(out,{recursive:true});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const expectedFactIds=entity=>{
   const keys={MODEL_PROFILE:['stats'],WEAPON_PROFILE:['name','range','attacks','skill','strength','ap','damage','abilities'],
     DATASHEET_ABILITY:['text'],EQUIPMENT_ABILITY:['text'],WARGEAR_OPTION:['text'],UNIT_COMPOSITION:['equipmentAndRules'],

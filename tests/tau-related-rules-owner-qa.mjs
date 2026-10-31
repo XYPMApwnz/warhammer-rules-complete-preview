@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -63,7 +64,7 @@ assert.throws(mutation(value=>value.enhancements[0].sourceRefs=[]),/no source lo
 assert.throws(mutation(value=>value.enhancements[0].assignment.maxOwners=1),/conflicting owner\/assignment contract/);
 
 const makeBundle=()=>{
-  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'tau-related-rules-owner-'));
+  const temp=createQaTempDir('tau-related-rules-owner-');
   for(const relative of ['sources/tau-empire-related-rules-contracts.v1.json',...Object.values(accepted.sourceBindings).map(item=>item.path)]){
     const source=path.join(bookRoot,...relative.split('/'));
     const destination=path.join(temp,...relative.split('/'));
@@ -99,10 +100,10 @@ try{
     fs.appendFileSync(path.join(contractBundle,'sources','tau-empire-related-rules-contracts.v1.json'),'\n');
     assert.throws(()=>buildRelatedRules({bookRoot:contractBundle}),/accepted contract artifact hash mismatch/,'changed contract bytes must fail closed');
   }finally{
-    fs.rmSync(contractBundle,{recursive:true,force:true});
+    cleanupQaTempDir(contractBundle);
   }
 }finally{
-  for(const temp of [absentBundle,poisonedBundle])if(temp)fs.rmSync(temp,{recursive:true,force:true});
+  for(const temp of [absentBundle,poisonedBundle])if(temp)cleanupQaTempDir(temp);
 }
 
 console.log('PASS T’au accepted Related Rules owner: 7 Stratagems, 23 Enhancements, absent and poisoned prior output ignored.');

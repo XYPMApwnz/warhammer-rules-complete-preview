@@ -3,15 +3,19 @@ import copy
 import importlib.util
 import json
 import shutil
-import tempfile
+import sys
 from pathlib import Path
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]/'tests/helpers'))
+from qa_temp import create_qa_temp_dir
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 enrollment = json.loads((HERE/'sources/enrollment.json').read_text('utf8'))
 relative = HERE.relative_to(ROOT)
 
-with tempfile.TemporaryDirectory(prefix='am-v2-source-isolation-') as directory:
+with create_qa_temp_dir('am-v2-source-isolation-') as directory:
     isolated = Path(directory)
     paths = [item['path'] for item in enrollment['artifacts']]
     paths += [str(relative/name) for name in ('build.py','profile-bindings.json','weapon-selection-bindings.json','update-bindings.json','source-adjudications.json','sources/enrollment.json','sources/title-adjudication.json')]

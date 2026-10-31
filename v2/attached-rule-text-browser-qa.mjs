@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 /** O-1: independent accepted-source text checks through normal player controls.
  * These are constructed New Recruit-compatible inputs, not real user exports.
  * Browser evaluation only reads state/DOM; it never injects roster or UI state. */
@@ -12,7 +13,7 @@ import {isApplicationTestDependency} from '../books/shared/application-v2/browse
 
 const repo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
-const out=path.resolve(option('--out')||fs.mkdtempSync(path.join(os.tmpdir(),'wh-o1-browser-')));
+const out=path.resolve(option('--out')||createQaEvidenceDir('wh-o1-browser-'));
 assert.ok(out!==repo&&!out.startsWith(repo+path.sep),'Keep browser evidence outside the repository');
 fs.mkdirSync(out,{recursive:true});
 const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").trim();

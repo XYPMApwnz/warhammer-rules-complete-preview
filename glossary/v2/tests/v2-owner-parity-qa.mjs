@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir,getQaTmpRoot} from '../../../tests/helpers/qa-temp.mjs';
 /** Bounded V2 factual-owner parity; this is not a new independent source audit. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -380,15 +381,15 @@ assertV2ArmyBookParity(changedECInputs.armyModels,{published:bookId=>changedECIn
 rejected(()=>assertGlossaryV2Parity(index,changedECInputs),'fresh EC source/Army Book cannot leave old Glossary');
 const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const artifacts=['index.en.json','index.en.js'].map(name=>path.join(repo,'glossary/v2/generated',name));
-const beforeHashes=artifacts.map(digest),temporary=fs.mkdtempSync(path.join(os.tmpdir(),'v2-glossary-stale-'));
+const beforeHashes=artifacts.map(digest),temporary=createQaTempDir('v2-glossary-stale-');
 try{
   const stale=structuredClone(index);stale.entries.find(record=>record.sourceOwner.bookId==='emperors-children'&&record.sourceOwner.canonicalId==='datasheet-noise-marines:profile:1').facts.canonicalData.stats.W='2';
   const publicationFile=path.join(temporary,'stale-index.json');fs.writeFileSync(publicationFile,JSON.stringify(stale));
   let error;try{execFileSync(process.execPath,['glossary/v2/tools/build-glossary-v2.mjs','--core-only','--check','--publication='+publicationFile],{cwd:repo,encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:16*1024*1024});}catch(cause){error=cause;}
   assert.ok(error&&error.status!==0&&/Stale non-Core factual publication/.test(error.stderr||''),'Scoped CLI failed to reject stale Army publication');mutations++;
 }finally{
-  assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir())+path.sep),'Unexpected temporary cleanup path');
-  fs.rmSync(temporary,{recursive:true,force:true});
+  assert.ok(path.resolve(temporary).startsWith(path.resolve(getQaTmpRoot())+path.sep),'Unexpected temporary cleanup path');
+  cleanupQaTempDir(temporary);
 }
 assert.deepEqual(artifacts.map(digest),beforeHashes,'Scoped --check modified generated publications');
 console.log(JSON.stringify({status:'PASS',armyBooks:V2_ARMY_BOOK_IDS,canonicalOwners:canonicalFacts,dgFieldProvenance:75,pbcFAQOwnerAndNamedPopup:true,csmOfficialProfiles:Object.keys(csmExpected).length,ecOfficialModels:Object.keys(ecModels).length,ecOfficialWeapons:Object.keys(ecWeapons).length,mfmRecords:augmented.size,sourceOwnedDependencies:dependencyPoints.length,coreRecords:expectedCore.length,missionRecords:expectedMissionIds.size,mutationControls:mutations}));

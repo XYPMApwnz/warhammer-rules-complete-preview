@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {chromium} from 'playwright';
+import {launchQaBrowser} from './qa-browser.cjs';
+export {launchQaBrowser};
 
 export const BROWSER_EXECUTABLE_ENV='WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH';
 
@@ -17,5 +19,5 @@ export function resolveChromiumLaunchOptions(env=process.env){
 }
 
 export function launchChromium({env=process.env,launchOptions={}}={}){
-  return chromium.launch({...launchOptions,...resolveChromiumLaunchOptions(env)});
+  return launchQaBrowser(chromium,{...launchOptions,...resolveChromiumLaunchOptions(env)});
 }

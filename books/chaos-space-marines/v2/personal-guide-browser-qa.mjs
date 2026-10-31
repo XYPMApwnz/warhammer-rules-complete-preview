@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Actual registered CSM application: no fixture payload or presentation adapter. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.CSM_PERSONAL_SCREENSHOTS||'E:/Warhammer/qa-artifacts/csm-personal-guide-14916f21';
+const out=process.env.CSM_PERSONAL_SCREENSHOTS||createQaEvidenceDir('personal-guide-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const attachmentFixtures=read('./roster-attachment-fixtures.json').fixtures;
@@ -29,7 +31,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin='http://127.0.0.1:'+server.address().port;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const ready=async page=>{
   await page.waitForFunction(()=>!!window.WarhammerAppV2);
   await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});

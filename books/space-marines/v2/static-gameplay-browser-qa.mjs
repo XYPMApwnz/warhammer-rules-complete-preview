@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Focused isolated SM consumer of the existing V2 reader/import UI.
  * Constructed source-backed INPUT; no application registration or state injection.
  */
@@ -11,7 +13,7 @@ import {buildSpaceMarinesImportBook} from './roster-import-build.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.SM_STATIC_BROWSER_OUT||'E:/Warhammer/qa-artifacts/recovery-sm-v2-stage4d-20261020/browser';fs.mkdirSync(out,{recursive:true});
+const out=process.env.SM_STATIC_BROWSER_OUT||createQaEvidenceDir('static-gameplay-browser-qa-');fs.mkdirSync(out,{recursive:true});
 const book=buildSpaceMarinesImportBook(),payload=buildGameplayPresentation(),index=new Map(book.entities.map(row=>[row.id,row]));
 const ids=['unit-sm-55f195878fab446f','unit-sm-4ff82a9b79db48da','unit-sm-8ef63e7da6444869','unit-sm-e595c56eab2f493b'];
 const input='+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Shadowmark Talon\n'+ids.map(id=>{
@@ -39,7 +41,7 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 try{
  for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
   const context=await browser.newContext({viewport}),page=await context.newPage();page.setDefaultTimeout(20000);

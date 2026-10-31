@@ -1,3 +1,4 @@
+import {createQaTempDir} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -11,7 +12,7 @@ const repoRoot=path.resolve(coreRoot,'..','..');
 const windowValue=(file,key)=>{const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(file,'utf8'),sandbox,{filename:file});return sandbox.window[key];};
 
 function fixture(){
-  const root=fs.mkdtempSync(path.join(os.tmpdir(),'core-reader-propagation-'));
+  const root=createQaTempDir('core-reader-propagation-');
   const stagedCore=path.join(root,'books','core-rules');
   fs.mkdirSync(path.join(stagedCore,'reader'),{recursive:true});
   fs.mkdirSync(path.join(root,'books','shared'),{recursive:true});

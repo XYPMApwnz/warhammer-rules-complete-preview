@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -11,7 +13,7 @@ import {createRequire} from 'node:module';
 // rather than accepting shared class names as proof of presentation parity.
 const baseline=process.env.ARMY_THEME_BASE||'1be5802405c92d4295a3caa9ede6e97f649d42a0';
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'army-theme-'));
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('army-theme-');
 fs.mkdirSync(out,{recursive:true});
 const changed=new Set(execFileSync('git',['diff','--name-only','--diff-filter=M',baseline,'--'],{cwd:repo,encoding:'utf8'}).trim().split(/\r?\n/));
 const originals=new Map([...changed].filter(name=>name&&!name.endsWith('theme-browser-qa.mjs')).map(name=>[name,
@@ -30,7 +32,7 @@ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
 const {PNG}=createRequire(import.meta.url)('pngjs');
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 const amText=`+ FACTION KEYWORD: Imperium - Adeptus Mechanicus
 + DETACHMENT: Haloscreed Battle Clade, Lords of the Forge
 Char1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe

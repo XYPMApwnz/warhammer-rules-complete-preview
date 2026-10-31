@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Independent full-payload integration checks for the unified V2 entry point. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -142,7 +143,7 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=origin+'/v2/app.h
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const screenshot=async(page,name)=>{if(process.env.V2_SHELL_SCREENSHOTS){fs.mkdirSync(process.env.V2_SHELL_SCREENSHOTS,{recursive:true});
   await page.screenshot({path:path.join(process.env.V2_SHELL_SCREENSHOTS,name+'.png'),fullPage:false});}};
 try{

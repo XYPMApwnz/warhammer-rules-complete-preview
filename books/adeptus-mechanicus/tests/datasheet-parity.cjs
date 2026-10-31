@@ -1,3 +1,4 @@
+const {launchQaBrowser}=require('../../../tests/helpers/qa-browser.cjs');
 const assert=require('node:assert/strict');
 const path=require('node:path');
 
@@ -20,7 +21,7 @@ async function main(){
   const pack=require(path.resolve(__dirname,'..','content','adeptus-mechanicus-rules.en.json')).datasheets;
   const packIds=new Set(pack.map(unit=>unit.id));
   const units=codex.filter(unit=>unit.status==='Codex transcription'&&!packIds.has(unit.id));
-  const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTABLE,headless:true});
+  const browser=await launchQaBrowser(chromium,{executablePath:process.env.BROWSER_EXECUTABLE,headless:true});
   const indexPage=await browser.newPage();
   await indexPage.goto('https://wahapedia.ru/wh40k11ed/factions/adeptus-mechanicus/',{waitUntil:'domcontentloaded',timeout:60000});
   const links=await indexPage.locator('a[href*="/factions/adeptus-mechanicus/"]').evaluateAll(nodes=>Object.fromEntries(nodes.map(node=>[node.textContent.trim().toLowerCase(),node.href])));

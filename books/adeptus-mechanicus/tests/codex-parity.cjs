@@ -1,3 +1,4 @@
+const {launchQaBrowser}=require('../../../tests/helpers/qa-browser.cjs');
 const assert = require('node:assert/strict');
 const path = require('node:path');
 
@@ -7,7 +8,7 @@ const { chromium } = require('playwright');
 const source = require(path.resolve(__dirname, '..', 'content', 'adeptus-mechanicus-codex-detachments.en.json'));
 const parity = require(path.resolve(__dirname, '..', 'content', 'adeptus-mechanicus-codex-parity.en.json'));
 const prefixes = ['Cohort Cybernetica', 'Data-Psalm Conclave', 'Explorator Maniple', 'Rad-Zone Corps', 'Skitarii Hunter Cohort'];
-const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE, headless: true });
+const browser = await launchQaBrowser(chromium,{ executablePath: process.env.BROWSER_EXECUTABLE, headless: true });
 const page = await browser.newPage();
 await page.goto(source.source.referenceUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
 

@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -123,7 +124,7 @@ assert.throws(()=>requireSourceToolMode(['--check','--capture-update'],{toolName
 assert.throws(()=>requireSourceToolMode(['--capture-update'],{toolName:'probe'}),/candidate-dir/);
 assert.deepEqual(requireSourceToolMode(['--check'],{toolName:'probe'}),{kind:'verify'});
 
-const temp=fs.mkdtempSync(path.join(os.tmpdir(),'warhammer-source-contract-'));
+const temp=createQaTempDir('warhammer-source-contract-');
 try{
   const artifact=path.join(temp,'accepted.json');fs.writeFileSync(artifact,'{"ok":true}\r\n');
   const sourceRegistry={schema:'warhammer-source-ingestion/v1',sources:[{sourceId:'probe',artifacts:[{path:'accepted.json',normalization:'lf',sha256:sha256('{"ok":true}\n')}]}]};
@@ -185,7 +186,7 @@ try{
   assert.throws(()=>verifyCaptureManifest(trackedManifestPath,{repoRoot:trackedRoot}),/repository inputs differ from HEAD/);
   fs.writeFileSync(path.join(trackedRoot,'untracked.json'),'{}\n');
   assert.throws(()=>createCaptureSession({repoRoot:trackedRoot,sourceId:'untracked-probe',authority:'official',sourceType:'html',candidateDir:path.join(temp,'untracked-capture'),extractorPath:'extractor.mjs',localInputs:['untracked.json']}),/every repository input must be tracked/);
-}finally{fs.rmSync(temp,{recursive:true,force:true});}
+}finally{cleanupQaTempDir(temp);}
 
 assert.throws(()=>verifyBsdataSource({checkout:root,expectedCommit:'0'.repeat(40),inputFiles:[path.join(root,'package.json')]}),/does not match checkout HEAD/,'BSData commit mismatch must fail closed');
 

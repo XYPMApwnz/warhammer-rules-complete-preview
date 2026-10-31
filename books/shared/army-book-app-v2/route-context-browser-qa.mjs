@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {isApplicationTestDependency} from '../application-v2/browser-test-dependencies.mjs';
 /** Real links on both books; fresh tabs never receive originating history state. */
 import assert from 'node:assert/strict';
@@ -33,7 +34,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const cases=[
   {book:'adeptus-mechanicus',canonical:'unit-tech-priest-dominus',weapon:'datasheet-tech-priest-dominus:weapon:3',field:'skill',base:'3+',effective:'2+',text:
 `+ FACTION KEYWORD: Imperium - Adeptus Mechanicus

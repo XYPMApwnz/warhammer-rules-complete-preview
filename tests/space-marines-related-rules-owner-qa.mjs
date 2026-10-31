@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -61,7 +62,7 @@ const aggregateWriters=writerSources.filter(item=>item.source.includes("const ou
 assert.deepEqual(aggregateWriters.map(item=>item.name),['build-related-rules.mjs'],'final aggregate must have exactly one writer');
 
 const makeBundle=()=>{
-  const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sm-related-rules-owner-'));
+  const temp=createQaTempDir('sm-related-rules-owner-');
   const relatives=['sources/space-marines-related-rules-contracts.v1.json','content/space-marines-faction-pack-related-rules.component.json',...Object.values(artifact.sourceBindings).map(item=>item.path)];
   for(const relative of new Set(relatives)){
     const source=path.join(bookRoot,...relative.split('/')),destination=path.join(temp,...relative.split('/'));
@@ -83,7 +84,7 @@ try{
   fs.writeFileSync(poisonOutput,JSON.stringify({schema:1,faction:'Space Marines',sourceId:'poison',fakeTopLevel:true,stratagems:{'poisoned-pack':{},'poisoned-codex':{}},enhancements:{'poisoned-enhancement':{owner:{subject:'wrong'}}}},null,2));
   assert.deepEqual(buildRelatedRules({bookRoot:poisonBundle,authenticateRepository:false}),tracked,'poisoned prior aggregate influenced rebuild');
 }finally{
-  for(const temp of [absentBundle,poisonBundle])if(temp)fs.rmSync(temp,{recursive:true,force:true});
+  for(const temp of [absentBundle,poisonBundle])if(temp)cleanupQaTempDir(temp);
 }
 
 const buildInputs=loadRelatedRulesBuildInputs({bookRoot,authenticateRepository:false});

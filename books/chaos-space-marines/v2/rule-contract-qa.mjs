@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir,getQaTmpRoot} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -132,8 +133,8 @@ rejects(()=>{const changed=mutationInputs(),row=changed.flatMap(input=>input.own
 assert.ok(isDeepStrictEqual(compiled.projection,compileCSMContracts(buildCSMContracts()).projection),'Rebuild not deterministic');
 
 // Closed import/read set: no legacy CSM, other army facts or earlier QA artifacts.
-const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'csm-contract-source-only-'));
-assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir())+path.sep));
+const temporary=createQaTempDir('csm-contract-source-only-');
+assert.ok(path.resolve(temporary).startsWith(path.resolve(getQaTmpRoot())+path.sep));
 try {
   const files=[...declarationFiles.map(name=>'books/chaos-space-marines/v2/'+name),
     ...['rule-contract-build.mjs','rule-contract-context.mjs','identity-bindings.json','generated/effective.json'].map(name=>'books/chaos-space-marines/v2/'+name),
@@ -147,7 +148,7 @@ try {
     const built=buildCSMContracts(); console.log(JSON.stringify(artifacts(built,compileCSMContracts(built))));`;
   const result=JSON.parse(execFileSync(process.execPath,['--input-type=module','-e',script],{cwd:temporary,encoding:'utf8',maxBuffer:32*1024*1024}));
   assert.ok(isDeepStrictEqual(result,outputs),'Closed canonical-input contract build differs');
-} finally {fs.rmSync(temporary,{recursive:true,force:true});}
+} finally {cleanupQaTempDir(temporary);}
 
 for(const [name,value] of Object.entries(outputs))assert.equal(
   fs.readFileSync(path.join(directory,'generated',name+'.json'),'utf8'),JSON.stringify(value,null,2)+'\n',

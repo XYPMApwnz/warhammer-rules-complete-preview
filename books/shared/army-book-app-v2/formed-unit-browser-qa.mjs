@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real imported, source-legal formed units on the shared presentation surface.
  * CSM is rendered in a test-only harness: no Personal Guide is connected. */
 import assert from 'node:assert/strict';
@@ -9,7 +11,7 @@ import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
 
 const repo=fileURLToPath(new URL('../../../',import.meta.url));
-const out=process.env.ARMY_APP_V2_SCREENSHOTS||'E:/Warhammer/qa-artifacts/formed-units-9a952c7c';
+const out=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('formed-unit-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const read=name=>JSON.parse(fs.readFileSync(path.join(repo,name),'utf8'));
 const payloads=new Map(['death-guard','adeptus-mechanicus','chaos-space-marines'].map(army=>[army,read(`books/${army}/v2/generated/app-presentation.json`)]));
@@ -48,7 +50,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const errors=[],results=[],screenshots=[],normal=[];
 const ready=async page=>{await page.waitForFunction(()=>!!window.ArmyBookAppV2);if(await page.evaluate(()=>!!window.ArmyBookAppV2.rosterPanel))await page.evaluate(()=>window.ArmyBookAppV2.rosterPanel.ready);};
 const settle=async page=>{await page.evaluate(async()=>{

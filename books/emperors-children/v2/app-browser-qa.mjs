@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Real shared application and renderer; --unified uses production boot bytes.
  * Fixtures are constructed source-backed New Recruit grammar, not real exports.
  * Browser evaluate calls inspect only; all changes use visible player controls. */
@@ -15,7 +17,7 @@ const fixtures=JSON.parse(fs.readFileSync(new URL('./roster-import-fixtures.json
 assert.match(fixtures.captureStatus,/Constructed source-backed/);
 const fixture=id=>fixtures.fixtures.find(entry=>entry.id===id).text;
 const unified=process.argv.includes('--unified');
-const out=process.env.EC_V2_SCREENSHOTS||(unified?'E:/Warhammer/qa-artifacts/ec-v2-unified-browser':'E:/Warhammer/qa-artifacts/ec-v2-app-browser');
+const out=process.env.EC_V2_SCREENSHOTS||createQaEvidenceDir('ec-app-browser-');
 fs.mkdirSync(out,{recursive:true});
 const entry=unified?'/v2/app.html':'/ec-v2-test.html',bootstrap='/ec-v2-test-boot.mjs';
 const wrapper='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EC isolated shared V2 UI</title></head><body><script type="module" src="'+bootstrap+'"></script></body></html>';
@@ -49,7 +51,7 @@ const server=http.createServer((req,res)=>{
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 async function ready(page){
  await page.waitForFunction(()=>!!window.WarhammerAppV2);
  await page.evaluate(async()=>{await window.WarhammerAppV2.ready;await window.ArmyBookAppV2?.rosterPanel?.ready;});

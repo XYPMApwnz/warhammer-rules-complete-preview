@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 /** Actual shared app, synthetic canonical/effective inputs, no army data or writes. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -119,7 +120,7 @@ const base=`http://127.0.0.1:${server.address().port}/app.html`;
 const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
 const errors=[],results=[];
 const browserFailure=Promise.withResolvers();
 const failBrowser=error=>{errors.push(error.message);browserFailure.reject(error);};

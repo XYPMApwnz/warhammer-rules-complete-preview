@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Focused native/granted FNP player flow in the real main Unified V2 shell.
  * Constructed supported New Recruit text; no DOM, runtime or storage writes. */
 import assert from 'node:assert/strict';
@@ -10,7 +12,7 @@ import {nativeFnpFixture as fixture} from '../books/adeptus-mechanicus/v2/native
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.ADMECH_FNP_SCREENSHOTS||'E:/Warhammer/qa-artifacts/admech-fnp-fix-6e4aa58e-20261016/browser';
+const out=process.env.ADMECH_FNP_SCREENSHOTS||createQaEvidenceDir('admech-fnp-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const selectedDevice=process.env.ADMECH_FNP_BROWSER_DEVICE;
 assert.ok(!selectedDevice||['desktop','mobile'].includes(selectedDevice));
@@ -50,7 +52,7 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`,{chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const ids=[fixture.leader,fixture.fulgurite,fixture.corpuscarii,fixture.fulguriteDuplicate,fixture.corpuscariiDuplicate,fixture.unrelated];
 const native=[fixture.fulgurite,fixture.corpuscarii,fixture.fulguriteDuplicate,fixture.corpuscariiDuplicate];
 const canonicalProfiles={

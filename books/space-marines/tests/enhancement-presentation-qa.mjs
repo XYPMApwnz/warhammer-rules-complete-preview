@@ -1,3 +1,4 @@
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -8,7 +9,7 @@ import {chromium} from 'playwright';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..'),mime={'.css':'text/css','.html':'text/html','.js':'text/javascript','.json':'application/json','.mjs':'text/javascript'};
 const server=http.createServer((request,response)=>{const requested=decodeURIComponent(new URL(request.url,'http://localhost').pathname),file=path.resolve(root,`.${requested==='/'?'/index.html':requested}`);if(requested==='/favicon.ico'){response.writeHead(204).end();return;}if(!file.startsWith(root)||!fs.existsSync(file)||!fs.statSync(file).isFile()){response.writeHead(404).end('Not found');return;}response.setHeader('content-type',mime[path.extname(file)]||'application/octet-stream');fs.createReadStream(file).pipe(response);});
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const base=`http://127.0.0.1:${server.address().port}`,browser=await chromium.launch({channel:'chrome',headless:true}),normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(),slug=value=>normalize(value).replace(/ /g,'-');
+const base=`http://127.0.0.1:${server.address().port}`,browser=await launchQaBrowser(chromium,{channel:'chrome',headless:true}),normalize=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(),slug=value=>normalize(value).replace(/ /g,'-');
 const collisions=[
   ['Adamantine Mantle','Firestorm Assault Force','firestorm-assault-force-adamantine-mantle','adamantine-mantle','Captain',80,20],['Adamantine Mantle',"Forgefather's Seekers",'adamantine-mantle','firestorm-assault-force-adamantine-mantle','Captain',80,20],
   ['Forged in Battle','Firestorm Assault Force','firestorm-assault-force-forged-in-battle','forged-in-battle','Captain',80,15],['Forged in Battle',"Forgefather's Seekers",'forged-in-battle','firestorm-assault-force-forged-in-battle','Captain',80,15],

@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -14,7 +16,7 @@ const {chromium}=createRequire(import.meta.url)('playwright');
 const repo=path.resolve(fileURLToPath(new URL('../../../',import.meta.url)));
 const v1Path='/books/death-guard/reader.html?view=full#start';
 const v2Path='/v2/app.html?v2=ARMY_BOOK&book=death-guard&registry=death-guard#start';
-const evidence=process.env.ARMY_APP_V2_SCREENSHOTS||fs.mkdtempSync(path.join(os.tmpdir(),'dg-v1-navigation-browser-qa-'));
+const evidence=process.env.ARMY_APP_V2_SCREENSHOTS||createQaEvidenceDir('dg-v1-navigation-browser-qa-');
 fs.mkdirSync(evidence,{recursive:true});
 
 const mime={'.css':'text/css','.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.webmanifest':'application/manifest+json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
@@ -31,7 +33,7 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`;
-const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
+const browser=await launchQaBrowser(chromium,{headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE}:{})});
 
 const results=[];
 let activePage=null,step='startup';

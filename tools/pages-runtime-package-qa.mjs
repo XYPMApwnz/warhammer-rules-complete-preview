@@ -5,12 +5,14 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildPagesRuntimePackage,validateRuntimeManifest} from './pages-runtime-package.mjs';
 import {checkSourceClosureTree} from '../books/shared/source-refs-v2/source-closure-qa.mjs';
+import {createQaTempDir,createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 
 const args=process.argv.slice(2),value=key=>args[args.indexOf(key)+1];
-const sourceRoot=value('--source'),published=value('--published'),work=value('--work');
-if(!sourceRoot||!published||!work)throw new Error('--source, --published and --work are required');
-if(fs.existsSync(work))throw new Error('QA work directory must be new');
-fs.mkdirSync(work,{recursive:true});
+const sourceRoot=value('--source'),published=value('--published'),reportDirectory=value('--work');
+if(!sourceRoot||!published||!reportDirectory)throw new Error('--source, --published and --work are required');
+if(fs.existsSync(reportDirectory))throw new Error('QA work directory must be new');
+fs.mkdirSync(reportDirectory,{recursive:true});
+const work=createQaTempDir('wh-runtime-package-qa-');
 const manifestFile=new URL('./pages-runtime-manifest.json',import.meta.url);
 const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8')),results=[];
 const check=(name,fn)=>{fn();results.push({name,status:'PASS'});console.log(name+' PASS');};
@@ -59,5 +61,6 @@ check('reject-unlisted-published-file',()=>{
 });
 check('restored-negative-fixture-still-fresh',()=>buildPagesRuntimePackage({sourceRoot,outRoot:rebuilt,check:true}));
 const report={status:'PASS',checks:results.length,results,contentSha256:first.contentSha256,publishedBytes:first.publishedBytes,cacheRevision:first.cacheRevision,scope:'Runtime-only output boundary; browser QA is separate'};
-fs.writeFileSync(path.join(work,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync(path.join(reportDirectory,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');
+if(process.env.QA_EVIDENCE_DIR)fs.writeFileSync(path.join(createQaEvidenceDir('packaging-'),'RESULTS.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report));

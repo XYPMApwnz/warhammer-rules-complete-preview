@@ -1,3 +1,5 @@
+import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
 /** Focused player flows through unchanged main application HTTP bytes.
  * Constructed supported New Recruit text. All writes are ordinary visible UI
  * actions; evaluate is used only to inspect state, rendered facts and geometry. */
@@ -11,7 +13,7 @@ import {sevenEffectFixtures as fixtures} from '../books/tyranids/v2/seven-effect
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const repo=fileURLToPath(new URL('../',import.meta.url));
-const out=process.env.TYRANIDS_SEVEN_SCREENSHOTS||'E:/Warhammer/qa-artifacts/tyranids-seven-effects-4edfabbd-20261016/browser';
+const out=process.env.TYRANIDS_SEVEN_SCREENSHOTS||createQaEvidenceDir('tyranids-seven-effects-browser-qa-');
 fs.mkdirSync(out,{recursive:true});
 const requestedDevice=process.env.TYRANIDS_SEVEN_BROWSER_DEVICE;
 assert.ok(!requestedDevice||['desktop','mobile'].includes(requestedDevice));
@@ -49,7 +51,7 @@ const server=http.createServer((request,response)=>{
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`,{chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+const browser=await launchQaBrowser(chromium,{headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const snapshot=page=>page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
 async function ready(page){
   await page.waitForFunction(()=>!!window.WarhammerAppV2);

@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 /** Every executable clause enters through native text import and the production
  * browser service, then the same disposable personal views used by all books. */
 import assert from 'node:assert/strict';
@@ -224,7 +225,7 @@ export async function runPersonalGuideQA() {
   const artifact={schema:'csm-v2/shared-personal-guide-audit/v1',baseHead:'14916f21f04037cbc1663312354968fbf1138f08',
     status:'PASS',executableClauses:61,deferred:[deferredClause],classification:classCounts,darkPactsConditional:pacts.applicability,
     battleConditionalKinds:[...conditionalKinds].sort(),checks,matrix};
-  const directory=process.env.CSM_PERSONAL_QA_ARTIFACTS||'E:/Warhammer/qa-artifacts/csm-personal-guide-14916f21';
+  const directory=process.env.CSM_PERSONAL_QA_ARTIFACTS||createQaEvidenceDir('personal-guide-qa-');
   fs.mkdirSync(directory,{recursive:true});fs.writeFileSync(path.join(directory,'personal-guide-execution-matrix.json'),JSON.stringify(artifact,null,2)+'\n');
   console.log(JSON.stringify({...artifact,matrix:undefined,artifact:path.join(directory,'personal-guide-execution-matrix.json')}));
   return artifact;

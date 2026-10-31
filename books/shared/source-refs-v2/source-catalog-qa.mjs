@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir,getQaTmpRoot} from '../../../tests/helpers/qa-temp.mjs';
 /** Actual published-source metadata and cold-load tamper controls. No full QA. */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -34,7 +35,7 @@ const sourceIndex=book.entities.findIndex(entity=>typeof entity.sourceBindings==
 assert.ok(sourceIndex>=0);assert.equal(shared.entities[sourceIndex].sourceRefs,book.entities[sourceIndex].sourceRefs);
 assert.ok(Object.isFrozen(shared.entities[sourceIndex].sourceRefs));
 shared.entities[sourceIndex].data.__cloneProbe=true;assert.ok(!Object.hasOwn(book.entities[sourceIndex].data,'__cloneProbe'),'Mutable gameplay fields remain isolated');
-const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'wh-source-catalog-negative-'));
+const scratch=createQaTempDir('wh-source-catalog-negative-');
 const baseCatalog=JSON.parse(fs.readFileSync(path.join(here,'source-catalog.json')));
 const documentId=actual.sourceRefs[0].documentId,bindingId=actual.sourceBindings;
 assert.ok(typeof bindingId==='string');
@@ -63,7 +64,7 @@ try{
  }
  passed=true;
 }finally{
- if(passed){assert.ok(path.resolve(scratch).startsWith(path.resolve(os.tmpdir())+path.sep+'wh-source-catalog-negative-'));fs.rmSync(scratch,{recursive:true});}
+ if(passed){assert.ok(path.resolve(scratch).startsWith(path.resolve(getQaTmpRoot())+path.sep+'wh-source-catalog-negative-'));cleanupQaTempDir(scratch);}
  else console.error('Preserved failed control: '+scratch);
 }
 console.log(JSON.stringify({status:'PASS',controls,sharedSourceMetadata:true,mutableFactsIsolated:true}));

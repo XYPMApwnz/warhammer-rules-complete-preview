@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {assertQaTempPath,cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-mutant')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -147,7 +149,7 @@ check('G1 global Army Rule dispatch remains unresolved while existing Detachment
   f.rule.kind='DETACHMENT_RULE';const active=f.runtime();assert.equal(wounds(active),'4');assert.equal(wounds(active,'b'),'4');
 });
 check('runtime mutation broadening exact bearer binding is killed by focused QA',()=>{
-  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'model-owner-mutation-'));
+  const temporary=createQaTempDir('model-owner-mutation-');
   try {
     const root=path.dirname(fileURLToPath(import.meta.url));
     for(const directory of ['roster-v2','rule-contract-v2'])
@@ -155,11 +157,11 @@ check('runtime mutation broadening exact bearer binding is killed by focused QA'
     const target=path.join(temporary,'roster-v2','effects.mjs'),source=fs.readFileSync(target,'utf8');
     const exact='return [{unit:source,model:ownerModel}];';assert.ok(source.includes(exact));
     fs.writeFileSync(target,source.replace(exact,'return source.profiles.map(model=>({unit:source,model}));'));
-    const mutant=spawnSync(process.execPath,[path.join(temporary,'roster-v2','enhancement-owner-qa.mjs')],{encoding:'utf8',timeout:10000});
+    const mutant=spawnSync(process.execPath,[path.join(temporary,'roster-v2','enhancement-owner-qa.mjs'),'--isolated-mutant'],{encoding:'utf8',timeout:10000});
     assert.notEqual(mutant.status,0);assert.match(mutant.stderr,/Sibling must retain base Wounds/);
   } finally {
-    assert.equal(path.dirname(fs.realpathSync(temporary)),fs.realpathSync(os.tmpdir()));
-    fs.rmSync(temporary,{recursive:true,force:true});
+    assert.ok(assertQaTempPath(temporary));
+    cleanupQaTempDir(temporary);
   }
 });
 console.log(JSON.stringify({status:'PASS',checks:checks.length,names:checks,armyFactualReads:0,mutationRejected:true}));

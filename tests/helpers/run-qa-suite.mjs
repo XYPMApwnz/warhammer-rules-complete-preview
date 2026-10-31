@@ -3,6 +3,7 @@
 import {spawnSync} from 'node:child_process';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {qaTempEnvironment,cleanupQaRunTemps} from './qa-temp.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const entries=process.argv.slice(2),results=[];
@@ -16,7 +17,8 @@ for(const entry of entries){
     continue;
   }
   const args=npm?[process.env.npm_execpath,'run',entry.slice(4)]:[path.resolve(root,entry)];
-  const child=spawnSync(process.execPath,args,{cwd:root,stdio:'inherit'});
+  const child=spawnSync(process.execPath,args,{cwd:root,env:qaTempEnvironment(),stdio:'inherit'});
+  cleanupQaRunTemps();
   const passed=child.status===0&&!child.error;
   results.push({entry,status:passed?'PASS':'FAIL',exitCode:child.status,
     ...(child.signal?{signal:child.signal}:{}),...(child.error?{error:child.error.message}:{})});

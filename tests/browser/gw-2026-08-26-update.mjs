@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../helpers/qa-temp.mjs';
 import {launchChromium} from '../helpers/browser-launch.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,7 +8,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const screenshotDir=path.join(os.tmpdir(),'gw-2026-08-26','screens');
+const screenshotDir=createQaEvidenceDir('gw-2026-08-26-');
 fs.mkdirSync(screenshotDir,{recursive:true});
 const types={'.css':'text/css','.html':'text/html','.js':'text/javascript','.json':'application/json','.mjs':'text/javascript','.png':'image/png','.webp':'image/webp'};
 const server=http.createServer((request,response)=>{

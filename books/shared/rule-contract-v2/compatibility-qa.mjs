@@ -1,3 +1,5 @@
+// The isolated guard child allocates no temporary files and imports no repository helper.
+const {cleanupQaTempDir,createQaTempDir}=process.argv.includes('--isolated-child')?{}:await import('../../../tests/helpers/qa-temp.mjs');
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -181,7 +183,7 @@ check('generated results are disposable, poison-resistant and deterministic',()=
   assert.equal(baseline.authority,'DISPOSABLE_PROJECTION');
 });
 if (!process.argv.includes('--isolated-child')) {
-  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'compatibility-qa-'));
+  const directory=createQaTempDir('compatibility-qa-');
   try {
     for (const folder of ['rule-contract-v2','roster-v2']) fs.mkdirSync(path.join(directory,folder));
     for (const file of ['rule-contract-v2/schema.mjs','rule-contract-v2/recipients.mjs','rule-contract-v2/compatibility.mjs','rule-contract-v2/compatibility-qa.mjs',
@@ -189,6 +191,6 @@ if (!process.argv.includes('--isolated-child')) {
       fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(directory,file));
     const result=JSON.parse(execFileSync(process.execPath,[path.join(directory,'rule-contract-v2/compatibility-qa.mjs'),'--isolated-child'],{encoding:'utf8'}));
     assert.equal(result.status,'PASS');
-  } finally {fs.rmSync(directory,{recursive:true,force:true});}
+  } finally {cleanupQaTempDir(directory);}
 }
 console.log(JSON.stringify({status:'PASS',sharedGuardGroups:checks.length,sharedGuardsRunWithoutBookData:'PASS',checks},null,2));

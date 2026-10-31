@@ -1,3 +1,4 @@
+import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -15,7 +16,7 @@ const bindings=JSON.parse(fs.readFileSync(path.join(readerRoot,'presentation-bin
 const presentation=createReaderPresentation(catalog,bindings);
 const tableRules=catalog.mainRules.filter(record=>record.content?.some(block=>['matrix','comparison-table'].includes(block.type)));
 const html=fs.readdirSync(readerRoot).filter(file=>file.endsWith('.html')).map(file=>({file,text:fs.readFileSync(path.join(readerRoot,file),'utf8')}));
-const output=fs.mkdtempSync(path.join(os.tmpdir(),'core-reader-presentation-'));
+const output=createQaEvidenceDir('core-reader-presentation-');
 const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const server=createServer((request,response)=>{try{
   const file=path.resolve(repo,'.'+decodeURIComponent(new URL(request.url,'http://local').pathname));

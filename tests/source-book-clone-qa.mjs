@@ -1,3 +1,4 @@
+import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 /** Real nine-book byte equivalence, mutation isolation and a production mutant. */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -20,7 +21,7 @@ function isolation(cloner,input){
  assert.ok(bytes(second).equals(before),'Clone leaked into independent copy');
  assert.ok(bytes(cloner(input)).equals(before),'Clone changed repeated input');
 }
-const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'wh-source-clone-'));
+const temporary=createQaTempDir('wh-source-clone-');
 try{
  const source=fs.readFileSync(moduleFile,'utf8'),target=':copy(node[key]);';
  assert.equal(source.split(target).length,2,'Production clone mutation target changed');
@@ -35,4 +36,4 @@ try{
   results.push({bookId,bytes:'IDENTICAL',mutationIsolation:'PASS',intentionalLeak:'REJECTED'});
  }
  console.log(JSON.stringify({status:'PASS',books:results.length,results}));
-}finally{fs.rmSync(temporary,{recursive:true,force:true});}
+}finally{cleanupQaTempDir(temporary);}
