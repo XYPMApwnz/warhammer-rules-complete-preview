@@ -1,7 +1,7 @@
 /** Translate-2: real CSM import/execution A/B evidence, one process per root.
  * --root CHECKOUT_OR_RUNTIME_PACKAGE --out JSON [--fixtures SHARED_FIXTURE_JSON]
  * --write-fixtures JSON prepares the existing 61 text recipes once.
- * Hooks only observe lexical FIELD evaluation and execution-pass boundaries.
+ * Hooks only observe lexical FIELD/role evaluation and execution-pass boundaries.
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -28,6 +28,10 @@ function canonical(value){
 const hash=value=>createHash('sha256').update(stable(value)).digest('hex');
 const observerKey='__WH_CONDITIONS_CSM_OBSERVER__',stageKey='__WH_CONDITIONS_CSM_STAGE__',apiKey='__WH_CONDITIONS_CSM_API__';
 let active=null,stage='INITIALIZATION',book,entityHint=null;
+const roleObserverKey='__WH_CONDITIONS_CSM_ROLE_OBSERVER__';
+const roleEvents=new Map(),roleValues=[],roleValueIds=new Map(),roleSequence=createHash('sha256');
+let roleObservationCount=0;
+const internRole=value=>{const key=stable(value);if(!roleValueIds.has(key)){roleValueIds.set(key,roleValues.length);roleValues.push(value);}return roleValueIds.get(key);};
 const events=new Map(),contexts=new Map(),catalog=new Map(),expectedFields=new Set(),coveredFields=new Set(),scenarios=[],ownersByRawNode=new Map(),ownersByCanonicalNode=new Map();
 const relative=file=>pathToFileURL(path.join(root,file)).href;
 const schemaURL=relative('books/shared/rule-contract-v2/schema.mjs');
@@ -42,6 +46,9 @@ registerHooks({load(url,context,nextLoad){
     const signature=/function evaluatePredicate\(node,\s*context\)\s*\{/;
     assert.ok(signature.test(text),'Lexical schema predicate entry was not found');
     text=text.replace(signature,`function evaluatePredicate(node,context){const result=evaluatePredicateObservedBody(node,context);if(node?.predicate==='FIELD')globalThis.${observerKey}?.(node,context,result);return result;}\nfunction evaluatePredicateObservedBody(node,context){`);
+    const roleSignature=/function evaluateRole\(role,\s*conditions,\s*context\)\s*\{/;
+    assert.ok(roleSignature.test(text),'Lexical schema role entry was not found');
+    text=text.replace(roleSignature,`function evaluateRole(role,conditions,context){const result=evaluateRoleObservedBody(role,conditions,context);globalThis.${roleObserverKey}?.(role,conditions,context,result);return result;}\nfunction evaluateRoleObservedBody(role,conditions,context){`);
     schemaHooked=true;
   }
   if(stages.has(url)){
@@ -96,6 +103,14 @@ globalThis[observerKey]=(node,context,result)=>{
   const contextId=hash(contextValue);if(!contexts.has(contextId))contexts.set(contextId,{id:contextId,context:contextValue});
   const row={scenario:active,stage,conditionId:id,contextId,result},identity=stable(row);
   if(!events.has(identity))events.set(identity,{...row,observations:0});events.get(identity).observations++;
+};
+globalThis[roleObserverKey]=(role,conditions,context,result)=>{
+  if(!active)return;
+  const tuple=[internRole(canonical({bookId:'chaos-space-marines',scenario:active,stage})),internRole(normalizeProjection(role)),internRole(normalizeProjection(conditions)),
+    internRole(canonical({subject:context?.subject,instanceId:context?.instanceId,modelId:context?.modelId,modelScopeId:context?.modelScopeId,
+      modelInstanceId:context?.modelInstanceId,formedUnitId:context?.formedUnitId,unitId:context?.unitId})),result];
+  const identity=JSON.stringify(tuple);roleSequence.update(String(Buffer.byteLength(identity))+':'+identity);roleObservationCount++;
+  if(!roleEvents.has(identity))roleEvents.set(identity,{tuple,observations:0});roleEvents.get(identity).observations++;
 };
 globalThis[apiKey]=(executedBook,state,api,projection)=>{
   if(!active)return;
@@ -224,11 +239,14 @@ const detached=clone(scouts);detached.attachments=[];execute('scouts-detached',d
 
 active=null;assert.ok(schemaHooked&&effectsHooked,'Actual lexical and execution API boundaries were not observed');assert.equal(passBoundaries,2,'Both native execution-pass boundaries must be observed');
 const eventRows=[...events.values()];
+assert.ok(roleEvents.size>0,'No lexical role evaluations were observed');
 assert.ok(eventRows.length>0&&eventRows.some(event=>event.stage==='FIRST_PASS')&&eventRows.some(event=>event.stage==='SECOND_PASS'),'Both lexical evaluation passes must execute');
 const missingFields=[...expectedFields].filter(id=>!coveredFields.has(id));assert.deepEqual(missingFields,[],'Source FIELD catalog has no actual scenario evaluation');
 for(const entry of catalog.values())entry.owners=[...(ownersByCanonicalNode.get(stable(entry.node))||[])].sort();
 const observedCalls=eventRows.reduce((sum,event)=>sum+event.observations,0);
 const report={schema:'conditions-csm-parity/v2',status:'PASS',fixtureCount:fixtures.length,scenarioCount:scenarios.length,eventCount:eventRows.length,observedCalls,
+  roleObservations:{encoding:'interned-role-tuples/v1',tupleFields:['scenario','role','conditions','context','result'],values:roleValues,
+    events:[...roleEvents.values()].sort((a,b)=>{const x=stable(a.tuple),y=stable(b.tuple);return x<y?-1:x>y?1:0;}),count:roleObservationCount,sequenceSha256:roleSequence.digest('hex')},
   fieldCoverage:{expected:expectedFields.size,covered:[...expectedFields].filter(id=>coveredFields.has(id)).length,missing:missingFields},
   conditions:[...catalog.values()].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0),contexts:[...contexts.values()].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0),
   events:eventRows.sort((a,b)=>{const x=stable(a),y=stable(b);return x<y?-1:x>y?1:0;}),scenarios:scenarios.sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0)};

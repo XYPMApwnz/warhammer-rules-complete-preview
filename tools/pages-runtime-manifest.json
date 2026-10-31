@@ -8456,6 +8456,19 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/condition-computations.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/condition-binding.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/condition-context.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/condition-context.mjs",
       "reasons": [
         {

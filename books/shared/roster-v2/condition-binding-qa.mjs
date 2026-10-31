@@ -43,6 +43,30 @@ check('NONE preserves the kernel and does not add roster detachment behavior',()
   ctx.roster.detachmentIds=['detachment'];assert.equal(bound.evaluatePredicate(node,ctx),'UNKNOWN');
 });
 
+check('explicit roster Detachment wrapper preserves evaluator position and validates its switch',()=>{
+  const ctx=context();ctx.roster.detachmentIds=['detachment'];
+  const node={predicate:'DETACHMENT',subject:'MODEL',contextLevel:'ROSTER',arguments:{id:'detachment'}};
+  const bound=createRosterConditionBinding({schema,rosterDetachments:true});
+  assert.equal(bound.bindContext(ctx),ctx);
+  assert.equal(bound.evaluatePredicate(node,ctx),'TRUE');
+  assert.equal(bound.evaluatePredicate({...node,arguments:{id:'other'}},ctx),'FALSE');
+  assert.throws(()=>createRosterConditionBinding({schema,rosterDetachments:'true'}),/must be boolean/);
+});
+
+check('legacy context retains raw keys, skips context fields and deletes unknown values',()=>{
+  const legacy={...book,rosterSchema:{},rosterContextBindings:{
+    kept:{kind:'CONTEXT_FIELD'},mark:{kind:'SELECTED_MARK',markId:'mark-id'},
+    assigned:{kind:'ENHANCEMENT_ASSIGNED',ruleId:'enhancement-id'}}};
+  const legacyState=clone(state),ctx=context();ctx.roster={kept:true,mark:true,assigned:true};
+  // These FIELD predicates exercise the retained raw-key schema fallback.
+  legacy.rosterSchema={stateFields:Object.fromEntries(['kept','mark','assigned'].map(key=>[key,{contextLevel:'ROSTER',valueType:'boolean'}]))};
+  const bound=createRosterConditionContext(legacy,legacyState,{abilityProjection:{units:[]}});
+  assert.equal(bound.evaluatePredicate(field('kept'),ctx),'TRUE');
+  assert.equal(bound.evaluatePredicate(field('mark'),ctx),'UNKNOWN');
+  assert.equal(bound.evaluatePredicate(field('assigned'),ctx),'FALSE');
+  assert.deepEqual(ctx.roster,{kept:true,mark:true,assigned:true});
+});
+
 check('no physical state does not invent equipment or instance evidence',()=>{
   const bound=createRosterConditionBinding({book,schema,inputs:[equipmentInput()]});
   const ctx=context();assert.equal(bound.evaluatePredicate(equipment,ctx),'UNKNOWN');assert.deepEqual(ctx.roster,{});
@@ -185,6 +209,12 @@ check('equipped weapon choice then historical attachment preserves reviewed wrap
   assert.deepEqual(createRosterConditionBinding({book:ecBook,state:ecState,schema,inputs:[...inputs].reverse()}).bindContext(context()).roster,reference(context()).roster);
   assert.equal(condition(bound.bindContext(context()),'selectedUpgrade',choiceArgs).value,'blade-choice');
   assert.equal(condition(bound.bindContext(context()),'initialAttachmentBattleline').value,true);
+  const detachmentEligibilityBook=clone(ecBook);
+  detachmentEligibilityBook.entities.find(entity=>entity.id==='blade-rule').ruleContract.assignment.selector=
+    {predicate:'DETACHMENT',subject:'MODEL',contextLevel:'ROSTER',arguments:{id:'detachment'}};
+  for(const rosterDetachments of [false,true])assert.throws(()=>createRosterConditionBinding({
+    book:detachmentEligibilityBook,state:ecState,schema,inputs,rosterDetachments}),/bearer/,
+    'Equipped eligibility must keep the original schema even when final evaluation wraps Detachments');
   const missingHistory=clone(ecState);delete missingHistory.initialAttachmentStep;delete missingHistory.initialAttachments;
   assert.equal(condition(createRosterConditionBinding({book:ecBook,state:missingHistory,schema,inputs}).bindContext(context()),'initialAttachmentBattleline').present,false);
   const invalid=clone(ecState);invalid.initialAttachmentStep='WRONG';

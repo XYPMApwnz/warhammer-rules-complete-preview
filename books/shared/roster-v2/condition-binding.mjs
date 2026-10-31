@@ -3,8 +3,8 @@
  * Inputs are data; source owners still validate their selections and evidence.
  */
 import {conditionSpec,setConditionValue} from '../rule-contract-v2/conditions.mjs';
-import {formRoster} from './context.mjs';
-import {computeRosterCondition} from './condition-context.mjs';
+import {formRoster,withRosterDetachments} from './context.mjs';
+import {computeRosterCondition} from './condition-computations.mjs';
 import {createPhysicalEquipmentConditionContext,createVerifiedPhysicalConditionContext,
   createSourceEquipmentConditionContext,createSelectedSourceChoiceConditionContext,
   createEquippedWeaponChoiceConditionContext,createInitialAttachmentConditionContext,
@@ -30,13 +30,17 @@ const dataOnly=value=>{
  * receives no predicate. Computers must not turn that into per-leaf evaluation.
  * Explicit default values run before choices, and equipped choices before
  * historical attachment inputs. No-state contexts retain schema eligibility.
+ * Explicit roster Detachment evaluation wraps only the final evaluator;
+ * choice validation keeps the supplied schema and its original eligibility.
  */
-export function createRosterConditionBinding({book,state,schema,inputs=[],abilityProjection}={}){
+export function createRosterConditionBinding({book,state,schema,inputs=[],abilityProjection,rosterDetachments=false}={}){
   requireValue(typeof schema?.evaluatePredicate==='function'&&typeof schema?.evaluateRole==='function','missing evaluator');
+  requireValue(typeof rosterDetachments==='boolean','rosterDetachments must be boolean');
+  const kernel=rosterDetachments?withRosterDetachments(schema):schema;
   requireValue(Array.isArray(inputs),'inputs must be an array');
   dataOnly(inputs);
   const declarations=structuredClone(inputs);
-  if(!declarations.length)return {...schema,bindContext:identity};
+  if(!declarations.length)return {...kernel,bindContext:identity};
   const defaults=[],equipment=[],verified=[],choices=[],historical=[],computations=[];
   for(const input of declarations){
     requireValue(input&&typeof input==='object'&&!Array.isArray(input)&&conditionSpec(input),'unknown condition key');
@@ -108,7 +112,7 @@ export function createRosterConditionBinding({book,state,schema,inputs=[],abilit
     for(const bind of historical)context=bind(context);
     return compute(context);
   };
-  return {...schema,bindContext,
-    evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bindContext(context,node)),
-    evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bindContext(context))};
+  return {...kernel,bindContext,
+    evaluatePredicate:(node,context)=>kernel.evaluatePredicate(node,bindContext(context,node)),
+    evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bindContext(context))};
 }
