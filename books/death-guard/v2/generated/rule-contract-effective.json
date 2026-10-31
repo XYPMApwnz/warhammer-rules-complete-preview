@@ -106,15 +106,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Grotesque Regeneration: At the end of each phase, if a Beasts of Nurgle model in this unit has lost any wounds but is not destroyed, that model regains all of its lost wounds."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Grotesque Regeneration: At the end of each phase, if a Beasts of Nurgle model in this unit has lost any wounds but is not destroyed, that model regains all of its lost wounds."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Grotesque Regeneration: At the end of each phase, if a Beasts of Nurgle model in this unit has lost any wounds but is not destroyed, that model regains all of its lost wounds."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Grotesque Regeneration: At the end of each phase, if a Beasts of Nurgle model in this unit has lost any wounds but is not destroyed, that model regains all of its lost wounds."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -549,15 +610,76 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Extraction of Fresh Disease: The first time this model’s unit destroys an enemy unit as the result of a melee attack, until the end of the battle, add 6 to the Objective Control characteristic of this model."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Extraction of Fresh Disease: The first time this model’s unit destroys an enemy unit as the result of a melee attack, until the end of the battle, add 6 to the Objective Control characteristic of this model."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Extraction of Fresh Disease: The first time this model’s unit destroys an enemy unit as the result of a melee attack, until the end of the battle, add 6 to the Objective Control characteristic of this model."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Extraction of Fresh Disease: The first time this model’s unit destroys an enemy unit as the result of a melee attack, until the end of the battle, add 6 to the Objective Control characteristic of this model."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -2292,15 +2414,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -2999,15 +3182,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -3708,15 +3952,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -4784,15 +5089,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Death Guard Defenders: While this model is within 3\" of one or more friendly DEATH GUARD INFANTRY units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Death Guard Defenders: While this model is within 3\" of one or more friendly DEATH GUARD INFANTRY units, this model has the Lone Operative ability."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Death Guard Defenders: While this model is within 3\" of one or more friendly DEATH GUARD INFANTRY units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Death Guard Defenders: While this model is within 3\" of one or more friendly DEATH GUARD INFANTRY units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -5728,15 +6094,78 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Death Approaches: In your Movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Death Approaches: In your Movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Death Approaches: In your Movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Death Approaches: In your Movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-3",
@@ -6879,15 +7308,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -7069,15 +7561,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -7389,15 +7942,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Hovering Death: This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Hovering Death: This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Hovering Death: This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Hovering Death: This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -7973,15 +8587,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Blinding Spray: In the Fight phase, you can select one model from your army with this ability to use this ability. If you do, until the end of the phase, that model’s unit has the Fights First ability. Each model can only be selected for this ability once per battle."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Blinding Spray: In the Fight phase, you can select one model from your army with this ability to use this ability. If you do, until the end of the phase, that model’s unit has the Fights First ability. Each model can only be selected for this ability once per battle."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Blinding Spray: In the Fight phase, you can select one model from your army with this ability to use this ability. If you do, until the end of the phase, that model’s unit has the Fights First ability. Each model can only be selected for this ability once per battle."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Blinding Spray: In the Fight phase, you can select one model from your army with this ability to use this ability. If you do, until the end of the phase, that model’s unit has the Fights First ability. Each model can only be selected for this ability once per battle."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -8790,15 +9467,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -9604,15 +10342,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Diseased Malice: Each time this model makes an attack that targets an Afflicted unit, add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Diseased Malice: Each time this model makes an attack that targets an Afflicted unit, add 1 to the Wound roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Diseased Malice: Each time this model makes an attack that targets an Afflicted unit, add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Diseased Malice: Each time this model makes an attack that targets an Afflicted unit, add 1 to the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -10654,15 +11453,76 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Unholy Resilience: The first time a model with this ability is destroyed in a battle round, roll one D6 at the end of the phase. On a 2+, set that model back up on the battlefield, as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with 3 wounds remaining. Each model can only be set up in this way once per battle."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Unholy Resilience: The first time a model with this ability is destroyed in a battle round, roll one D6 at the end of the phase. On a 2+, set that model back up on the battlefield, as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with 3 wounds remaining. Each model can only be set up in this way once per battle."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Unholy Resilience: The first time a model with this ability is destroyed in a battle round, roll one D6 at the end of the phase. On a 2+, set that model back up on the battlefield, as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with 3 wounds remaining. Each model can only be set up in this way once per battle."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Unholy Resilience: The first time a model with this ability is destroyed in a battle round, roll one D6 at the end of the phase. On a 2+, set that model back up on the battlefield, as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with 3 wounds remaining. Each model can only be set up in this way once per battle."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -13200,15 +14060,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -13477,15 +14398,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tank Hunters: In your Shooting phase, each time a model in this unit makes an attack that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll and add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tank Hunters: In your Shooting phase, each time a model in this unit makes an attack that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll and add 1 to the Wound roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tank Hunters: In your Shooting phase, each time a model in this unit makes an attack that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll and add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tank Hunters: In your Shooting phase, each time a model in this unit makes an attack that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll and add 1 to the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -16358,15 +17340,76 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Inflamed Infections: At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time this model makes an attack that targets that unit, an unmodified Hit roll of 5+ scores a Critical Hit. If that unit is Below Half-strength, an unmodified Hit roll of 4+ scores a Critical Hit instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Inflamed Infections: At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time this model makes an attack that targets that unit, an unmodified Hit roll of 5+ scores a Critical Hit. If that unit is Below Half-strength, an unmodified Hit roll of 4+ scores a Critical Hit instead."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Inflamed Infections: At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time this model makes an attack that targets that unit, an unmodified Hit roll of 5+ scores a Critical Hit. If that unit is Below Half-strength, an unmodified Hit roll of 4+ scores a Critical Hit instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Inflamed Infections: At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time this model makes an attack that targets that unit, an unmodified Hit roll of 5+ scores a Critical Hit. If that unit is Below Half-strength, an unmodified Hit roll of 4+ scores a Critical Hit instead."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -17739,15 +18782,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -17931,15 +19035,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Curse of the Walking Pox: Each time a POXWALKER model in this unit makes an attack that destroys an enemy model (excluding MONSTER and VEHICLE models), after this unit has resolved its attacks, you can return one destroyed POXWALKER model to this unit.\nWhile TYPHUS is leading this unit, enemy models destroyed as a result of TYPHUS’ Eater Plague ability count as enemy models destroyed by an attack made by a POXWALKER model in this unit for the purposes of this ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Curse of the Walking Pox: Each time a POXWALKER model in this unit makes an attack that destroys an enemy model (excluding MONSTER and VEHICLE models), after this unit has resolved its attacks, you can return one destroyed POXWALKER model to this unit.\nWhile TYPHUS is leading this unit, enemy models destroyed as a result of TYPHUS’ Eater Plague ability count as enemy models destroyed by an attack made by a POXWALKER model in this unit for the purposes of this ability."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Curse of the Walking Pox: Each time a POXWALKER model in this unit makes an attack that destroys an enemy model (excluding MONSTER and VEHICLE models), after this unit has resolved its attacks, you can return one destroyed POXWALKER model to this unit.\nWhile TYPHUS is leading this unit, enemy models destroyed as a result of TYPHUS’ Eater Plague ability count as enemy models destroyed by an attack made by a POXWALKER model in this unit for the purposes of this ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Curse of the Walking Pox: Each time a POXWALKER model in this unit makes an attack that destroys an enemy model (excluding MONSTER and VEHICLE models), after this unit has resolved its attacks, you can return one destroyed POXWALKER model to this unit.\nWhile TYPHUS is leading this unit, enemy models destroyed as a result of TYPHUS’ Eater Plague ability count as enemy models destroyed by an attack made by a POXWALKER model in this unit for the purposes of this ability."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -18433,15 +19600,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires deployment/movement/attack state, remaining wounds or an activated battle ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -20714,6 +21942,31 @@
                     "quote": "a model in the bearer’s unit"
                   }
                 }
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll."
+                }
               }
             ],
             "conditions": [
@@ -20743,8 +21996,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "attack-reroll::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. While the bearer’s unit is within range of an objective marker you control, each time a model in the bearer’s unit makes an attack, you can re-roll the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -24313,6 +25593,13 @@
                     ],
                     "quote": "that unit"
                   }
+                },
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NOXIOUS BLIGHTBRINGER only. While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit, and each time that unit takes a Battle-shock or Leadership test, add 1 to that test."
                 }
               }
             ],
@@ -24344,8 +25631,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "test-modifier::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "NOXIOUS BLIGHTBRINGER only. While the bearer is leading a POXWALKERS unit, add 1 to the Objective Control characteristic of models in that unit, and each time that unit takes a Battle-shock or Leadership test, add 1 to that test."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -24546,6 +25860,13 @@
                     ],
                     "quote": "setting up that unit on the battlefield"
                   }
+                },
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. If the bearer is leading a POXWALKER unit, and is in Strategic Reserves, for the purposes of setting up that unit on the battlefield, treat the current battle round as the third battle round."
                 }
               }
             ],
@@ -24577,8 +25898,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "setup-round::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "setting up that unit on the battlefield"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. If the bearer is leading a POXWALKER unit, and is in Strategic Reserves, for the purposes of setting up that unit on the battlefield, treat the current battle round as the third battle round."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -28500,6 +29848,15 @@
                     ],
                     "quote": "PLAGUE LEGIONS"
                   }
+                },
+                "binding": "ROSTER_UNITS",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
                 }
               }
             ],
@@ -28547,8 +29904,38 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "deep-strike::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE LEGIONS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -28926,6 +30313,14 @@
                     ],
                     "quote": "each enemy unit"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "GREAT UNCLEAN ONE only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6\" of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test."
                 }
               }
             ],
@@ -28973,8 +30368,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "battle-shock::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "each enemy unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "GREAT UNCLEAN ONE only. In the Battle-shock step of your opponent’s Command phase, each enemy unit within 6\" of the bearer that is below its Starting Strength must take a Battle-shock test, subtracting 1 from that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -29134,6 +30556,14 @@
                     ],
                     "quote": "PLAGUE LEGIONS"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead)."
                 }
               }
             ],
@@ -29181,8 +30611,37 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "test-modifier::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "allegiance": "ANY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE LEGIONS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead)."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "recover-wounds",
@@ -29293,6 +30752,14 @@
                       }
                     }
                   ]
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead)."
                 }
               }
             ],
@@ -29340,8 +30807,56 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "return-models::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "allegiance": "ANY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "PLAGUE LEGIONS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "PLAGUE LEGIONS"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "BATTLELINE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "BATTLELINE"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. Each time a PLAGUE LEGIONS unit within 12\" of the bearer takes a Battle-shock test, add 1 to that test and, if that test is passed, one model in that unit regains up to D3 lost wounds (if that unit is a BATTLELINE unit and that test is passed, up to D3 destroyed models can be returned to that unit instead)."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -32344,6 +33859,14 @@
                     ],
                     "quote": "Afflicted enemy unit"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your opponent’s Command phase, roll 2D6 for each Afflicted enemy unit, subtracting 1 from the result if that unit is Below Half-strength. If the result is 6 or less, that enemy unit suffers D3 mortal wounds."
                 }
               }
             ],
@@ -32391,8 +33914,35 @@
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "damage::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Afflicted enemy unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your opponent’s Command phase, roll 2D6 for each Afflicted enemy unit, subtracting 1 from the result if that unit is Below Half-strength. If the result is 6 or less, that enemy unit suffers D3 mortal wounds."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -32521,6 +34071,14 @@
                     ],
                     "quote": "each enemy unit"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test."
                 }
               }
             ],
@@ -32552,8 +34110,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "battle-shock::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "each enemy unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. At the start of the Fight phase, each enemy unit within Engagement Range of the bearer’s unit must take a Battle-shock test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -32808,6 +34393,13 @@
                     ],
                     "quote": "that unit"
                   }
+                },
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit."
                 }
               }
             ],
@@ -32839,8 +34431,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "advance-reroll::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "FORMED_ATTACHED_UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "that unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. While the bearer is leading a unit, add 1\" to the Movement characteristic of models in that unit and you can re-roll Advance rolls made for that unit."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -33058,6 +34677,15 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
+                },
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
                 }
               }
             ],
@@ -33072,8 +34700,36 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "place-in-reserves::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "the bearer’s unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. Once per battle, at the end of your opponent’s turn, if the bearer’s unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -33281,6 +34937,31 @@
                     "roleId": "attacking-model"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                }
               }
             ],
             "conditions": [
@@ -33311,8 +34992,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "targeting-restriction::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TERMINATOR model only. While the bearer is leading a unit, models in that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -36083,6 +37791,14 @@
                     ],
                     "quote": "select a number of enemy units"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the battle round, select a number of enemy units more than 12\" away from every model from your army that is on the battlefield. Until the end of the battle round, those enemy units are Afflicted. The maximum number of units you can select in this way depends on the battle size, as shown below.\nBATTLE SIZEUNITSIncursion1Strike Force2Onslaught3"
                 }
               }
             ],
@@ -36148,8 +37864,35 @@
               "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "selected-enemies::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "select a number of enemy units"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the battle round, select a number of enemy units more than 12\" away from every model from your army that is on the battlefield. Until the end of the battle round, those enemy units are Afflicted. The maximum number of units you can select in this way depends on the battle size, as shown below.\nBATTLE SIZEUNITSIncursion1Strike Force2Onslaught3"
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -36276,6 +38019,31 @@
                     "quote": "Ranged weapons equipped by models in the bearer’s unit"
                   }
                 }
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit."
+                }
               }
             ],
             "conditions": [
@@ -36306,8 +38074,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "ignores-cover::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Ranged weapons equipped by models in the bearer’s unit have the [ignores cover] ability while targeting an Afflicted enemy unit."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -36480,6 +38275,14 @@
                     ],
                     "quote": "the bearer’s Plague Wind weapon"
                   }
+                },
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. At the start of your Shooting phase, until the end of the phase, add 12\" to the Range characteristics of the bearer’s Plague Wind weapon."
                 }
               }
             ],
@@ -36494,8 +38297,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "plague-wind-range::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "affected-model",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "the bearer’s Plague Wind weapon"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. At the start of your Shooting phase, until the end of the phase, add 12\" to the Range characteristics of the bearer’s Plague Wind weapon."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -36880,6 +38710,14 @@
                     ],
                     "quote": "the bearer has the Lone Operative ability"
                   }
+                },
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1."
                 }
               }
             ],
@@ -36894,8 +38732,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "lone-operative::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "affected-model",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "the bearer has the Lone Operative ability"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "vehicle-wound-reroll",
@@ -36936,6 +38801,15 @@
                       }
                     }
                   ]
+                },
+                "binding": "ROSTER_UNITS",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1."
                 }
               }
             ],
@@ -36983,8 +38857,57 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "vehicle-wound-reroll::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-vehicle",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "DEATH GUARD"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "DEATH GUARD"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "VEHICLE"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF VIRULENCE only. While the bearer is within 3\" of one or more friendly DEATH GUARD VEHICLE units, the bearer has the Lone Operative ability, and each time one of those VEHICLE units makes a ranged attack that targets an enemy unit visible to the bearer, re-roll a Wound roll of 1."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -40460,6 +42383,14 @@
                     ],
                     "quote": "while an enemy unit is Afflicted"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BIOLOGUS PUTRIFIER only. Once per battle, after the bearers unit has fought, if one or more CHARACTER models were destroyed as a result of those attacks, select one Plague. Until the end of the battle, while an enemy unit is Afflicted, that unit has the effect of the selected Plague in addition to any other."
                 }
               }
             ],
@@ -40491,8 +42422,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "additional-plague::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "while an enemy unit is Afflicted"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BIOLOGUS PUTRIFIER only. Once per battle, after the bearers unit has fought, if one or more CHARACTER models were destroyed as a result of those attacks, select one Plague. Until the end of the battle, while an enemy unit is Afflicted, that unit has the effect of the selected Plague in addition to any other."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -40659,6 +42617,14 @@
                     ],
                     "quote": "an enemy unit"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. While an enemy unit is enfeebled by the bearer’s Pestilent Fallout ability, that unit is also Afflicted."
                 }
               }
             ],
@@ -40690,8 +42656,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "afflicted::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "an enemy unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "MALIGNANT PLAGUECASTER only. While an enemy unit is enfeebled by the bearer’s Pestilent Fallout ability, that unit is also Afflicted."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -41052,6 +43045,14 @@
                     ],
                     "quote": "an enemy unit"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF POXES only. In the Declare Battle Formations step select one Plague. Until the end of the battle, while an enemy unit is within Contagion Range of the bearer, that enemy unit has the effect of that Plague in addition to any other."
                 }
               }
             ],
@@ -41083,8 +43084,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "additional-plague::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "an enemy unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "LORD OF POXES only. In the Declare Battle Formations step select one Plague. Until the end of the battle, while an enemy unit is within Contagion Range of the bearer, that enemy unit has the effect of that Plague in addition to any other."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -44633,6 +46661,15 @@
                     ],
                     "quote": "Attacks that target this unit"
                   }
+                },
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
                 }
               }
             ],
@@ -44664,8 +46701,36 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "wound-roll-modifier::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Attacks that target this unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -44931,6 +46996,14 @@
                     ],
                     "quote": "Enemy units"
                   }
+                },
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
                 }
               }
             ],
@@ -44962,8 +47035,35 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "additional-plague::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-enemy",
+                "side": "ENEMY",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Enemy units"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [

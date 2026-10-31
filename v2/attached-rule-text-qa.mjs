@@ -151,10 +151,11 @@ check('AM unrelated named ABILITIES block and NOT_RECORDED remain hidden',()=>{
   const marshal=fixture(book,am.at(-1));
   assert.doesNotMatch(view(book,attached(book,marshal.state),'body').rows.map(row=>row.text).join('\n'),/Control Edict|Servo-skull Uplink/);
 });
-check('DG personal ability and unrecorded sibling are not copied',()=>{
+check('DG recorded group rule transfers while personal and unrecorded siblings do not',()=>{
   const book=books.get('death-guard'),scenario=fixture(book,dg[2]),state=attached(book,scenario.state);
   assert.doesNotMatch(view(book,state,'body').rows.map(row=>row.text).join('\n'),/Unholy Resilience/);
-  assert.doesNotMatch(view(book,state,'leader').rows.map(row=>row.text).join('\n'),/Death Approaches|Icon of Despair/);
+  const leaderText=view(book,state,'leader').rows.map(row=>row.text).join('\n');
+  assert.match(leaderText,/Death Approaches/);assert.doesNotMatch(leaderText,/Icon of Despair/);
 });
 check('AM UNKNOWN roster prerequisite does not become TRUE',()=>{
   const book=books.get('adeptus-mechanicus');

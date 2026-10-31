@@ -45,6 +45,7 @@ scenario(dg,'Unclean Icon','Icon Bearer','Plague Marines');
 scenario(dg,'Vector of Disease','Lord of Contagion','Deathshroud Terminators',{negative:['Unholy Resilience']});
 scenario(dg,'Sickening Vitality','Noxious Blightbringer','Poxwalkers');
 scenario(dg,'Silent Bodyguard','Lord of Contagion','Deathshroud Terminators',{reverse:true});
+scenario(dg,'Death Approaches','Lord of Contagion','Deathshroud Terminators',{reverse:true});
 scenario(dg,'Witherbone Pipes','Noxious Blightbringer','Poxwalkers',{enhancement:true});
 scenario(dg,'Talisman of Burgeoning','Noxious Blightbringer','Poxwalkers',{enhancement:true});
 scenario(dg,'Vile Vigour','Lord of Contagion','Deathshroud Terminators',{enhancement:true});
