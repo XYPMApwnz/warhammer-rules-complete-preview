@@ -8443,6 +8443,19 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/condition-binding.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/adeptus-mechanicus/v2/roster-runtime.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/death-guard/v2/roster-boot.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/condition-context.mjs",
       "reasons": [
         {

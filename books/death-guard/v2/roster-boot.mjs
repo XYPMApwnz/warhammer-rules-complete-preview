@@ -1,4 +1,5 @@
 import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 import {evaluatePredicate,evaluateRole,validatePredicate,publicResult} from './rule-contract-schema.mjs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
 import {importNewRecruit} from '../../shared/roster-v2/import.mjs';
@@ -7,7 +8,8 @@ import {validateRoster} from '../../shared/roster-v2/context.mjs';
 import {inspectInstrumentSelections} from './instrument-selections.mjs';
 
 export function createDGRosterRuntime(book) {
-  const runtime=createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult});
+  const runtime=createRosterRuntime(book,{parse,...createRosterConditionBinding({book,
+    schema:{evaluatePredicate,evaluateRole,validatePredicate,publicResult}})});
   const metadata=buildImportBindings(book);
   const load=runtime.load;
   runtime.load=snapshot=>{

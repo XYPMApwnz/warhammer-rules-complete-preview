@@ -2,6 +2,7 @@
  * One isolated process per --root CHECKOUT_OR_RUNTIME_PACKAGE --out JSON.
  * Optional --fixtures JSON shares the exact recipes between both processes;
  * --write-fixtures JSON prepares those existing source-backed recipes once.
+ * Optional --books comma-separated canonical book IDs limits execution.
  * Loader hooks observe lexical evaluation and retain the real interpreter. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -24,19 +25,22 @@ const stable=value=>JSON.stringify(canonical(value)),hash=value=>createHash('sha
 const cmp=(a,b)=>a<b?-1:a>b?1:0,readSource=file=>fs.readFileSync(path.join(source,file),'utf8'),readJSON=file=>JSON.parse(readSource(file));
 const artifacts={'adeptus-mechanicus':'roster-runtime','blood-angels':'roster-import','dark-angels':'roster-import','death-guard':'rule-contract-effective',
  'emperors-children':'roster-attachments','space-marines':'roster-import','tau-empire':'roster-import','tyranids':'roster-runtime'};
+const selectedBooks=argument('--books')?.split(',')||Object.keys(artifacts);
+assert.ok(selectedBooks.length&&new Set(selectedBooks).size===selectedBooks.length&&selectedBooks.every(id=>Object.hasOwn(artifacts,id)),'Unknown or duplicate selected book');
+const selected=id=>selectedBooks.includes(id);
 
 function extractLiteral(code,start,end,result,bindings={}){
  const first=code.indexOf(start),last=code.indexOf(end,first);assert.ok(first>=0&&last>first,'Existing fixture source boundaries changed');
  return vm.runInNewContext(code.slice(first,last)+'\n'+result,{...bindings},{timeout:1000});
 }
 async function recipes(){
- const rows=[];const add=(bookId,id,text,extra={})=>rows.push({bookId,id,text,...extra});
- for(const bookId of ['adeptus-mechanicus','emperors-children'])for(const fixture of readJSON(`books/${bookId}/v2/roster-import-fixtures.json`).fixtures)
+ const rows=[];const add=(bookId,id,text,extra={})=>{if(selected(bookId))rows.push({bookId,id,text,...extra});};
+ for(const bookId of ['adeptus-mechanicus','emperors-children'].filter(selected))for(const fixture of readJSON(`books/${bookId}/v2/roster-import-fixtures.json`).fixtures)
   add(bookId,'native-json/'+fixture.id,fixture.text,{bindings:fixture.bindings||{}});
  for(const [bookId,files]of Object.entries({'space-marines':['newrecruit-v37.3-user-sm.txt'],'blood-angels':['newrecruit-v37.2-user-redemptor.txt'],
-  'dark-angels':['newrecruit-v37.3-user-da.txt','newrecruit-v37.3-user-da-10-models.txt']}))for(const file of files)add(bookId,'native-export/'+file,readSource(`books/${bookId}/v2/fixtures/${file}`));
- add('death-guard','F2/deathshroud',readSource('v2/fixtures/f2-deathshroud-newrecruit.txt'));
- add('death-guard','F1-F2/omega',readSource('books/death-guard/v2/fixtures/omega-megaroster.txt'),{omega:true});
+  'dark-angels':['newrecruit-v37.3-user-da.txt','newrecruit-v37.3-user-da-10-models.txt']}).filter(([id])=>selected(id)))for(const file of files)add(bookId,'native-export/'+file,readSource(`books/${bookId}/v2/fixtures/${file}`));
+ if(selected('death-guard'))add('death-guard','F2/deathshroud',readSource('v2/fixtures/f2-deathshroud-newrecruit.txt'));
+ if(selected('death-guard'))add('death-guard','F1-F2/omega',readSource('books/death-guard/v2/fixtures/omega-megaroster.txt'),{omega:true});
  const f1=readSource('v2/detachment-recipient-browser-qa.mjs');
  const literal=extractLiteral(f1,'const amRoster=','const books=', '({amRoster,dgRoster})');
  for(const detachment of ['Lords of the Forge','Haloscreed Battle Clade'])add('adeptus-mechanicus','F1/'+detachment,literal.amRoster(detachment));
@@ -46,12 +50,13 @@ async function recipes(){
  const f2=extractLiteral(readSource('v2/card-recipient-browser-qa.mjs'),'const constructed={','const ready=', 'constructed');
  add('adeptus-mechanicus','F2/AM-1',f2.am);add('death-guard','F2/DG-1',f2.dg);
  const {chargeFixtures}=await import(new URL('./charge-qa-fixtures.mjs',import.meta.url));
- for(const fixture of chargeFixtures.filter(row=>row.bookId!=='chaos-space-marines')){
+ for(const fixture of chargeFixtures.filter(row=>selected(row.bookId))){
   add(fixture.bookId,'charge/'+fixture.id,fixture.text);
   if(fixture.disabledText)add(fixture.bookId,'charge/'+fixture.id+'/disabled',fixture.disabledText);
  }
  // Reuse the exact accepted-fact fixture constructors, without importing their
  // QA module, invoking producers, or executing any test body.
+ if(selected('tyranids')){
  const tyrFacts=readJSON('books/tyranids/v2/generated/effective.json'),tyrCode=readSource('books/tyranids/v2/roster-ui-fixtures.mjs');
  const tyrBody=tyrCode.slice(tyrCode.indexOf('const norm='),tyrCode.indexOf('for(const fixture of fixtures)')).replaceAll('export ','');
  const tyr=vm.runInNewContext(tyrBody+'\n({fixtures,make})',{facts:tyrFacts,mfm:readJSON('mfm/sources/v1.6/tyranids.json'),
@@ -63,6 +68,8 @@ async function recipes(){
  for(const fixture of sevenRows)add('tyranids','seven-effects/'+fixture.id,fixture.text);
  add('tyranids','source-choice/trygon',tyr.make('Subterranean Assault',['unit-trygon','unit-trygon']),{sourceChoice:{source:'parsed-unit-1',
   ruleId:'detachment-subterranean-assault:rule',value:'detachment-subterranean-assault:rule::choice::trygon-character'}});
+ }
+ if(selected('tau-empire')){
  const tauFacts=readJSON('books/tau-empire/v2/generated/effective.json'),tauCode=readSource('books/tau-empire/v2/roster-import-qa.mjs');
  const tau=extractLiteral(tauCode,'function fixture(id,','function assertPhysical(', 'fixture',{index:new Map(tauFacts.entities.map(row=>[row.id,row])),
   members:id=>tauFacts.entities.filter(row=>row.kind==='COMPOSITION_MEMBER'&&row.parentId===id)});
@@ -73,26 +80,37 @@ async function recipes(){
   tau('unit-kroot-war-shaper',{enhancement:'Student of Kauyon'}).text+tau('unit-kroot-carnivores').text+tau('unit-kroot-farstalkers').text,
   {sourceChoices:[{source:'parsed-unit-1',ruleId:'detachment-auxiliary-cadre:enhancement:1',value:JSON.stringify(['parsed-unit-3'])},
    {source:'parsed-unit-2',ruleId:'detachment-auxiliary-cadre:enhancement:1',value:JSON.stringify(['parsed-unit-4'])}]});
+ }
+ if(selected('emperors-children')){
  const blade=readJSON('books/emperors-children/v2/roster-import-fixtures.json').fixtures.find(row=>row.id==='possessed-blade-missing-decision');
  add('emperors-children','source-choice/equipped-blade',blade.text,{bindings:{profiles:{'ec-weapon-choice/parsed-unit-1':'detachment-carnival-of-excess:enhancement:3::choice::datasheet-lord-exultant:weapon:7'}}});
+ }
  return rows.sort((a,b)=>cmp(a.bookId,b.bookId)||cmp(a.id,b.id));
 }
 
-const fixtures=fixtureFile?JSON.parse(fs.readFileSync(fixtureFile,'utf8')):await recipes();
-assert.deepEqual([...new Set(fixtures.map(row=>row.bookId))].sort(),Object.keys(artifacts).sort(),'Every non-CSM book needs real source-backed recipes');
+const fixtures=(fixtureFile?JSON.parse(fs.readFileSync(fixtureFile,'utf8')):await recipes()).filter(row=>selected(row.bookId));
+assert.deepEqual([...new Set(fixtures.map(row=>row.bookId))].sort(),selectedBooks.slice().sort(),'Every selected book needs real source-backed recipes');
 if(prepare){fs.writeFileSync(prepare,JSON.stringify(fixtures,null,2)+'\n');console.log(JSON.stringify({status:'PASS',fixtures:fixtures.length,output:prepare}));process.exit(0);}
 
 const relative=file=>pathToFileURL(path.join(root,file)).href,rootImport=file=>import(relative(file));
 const schemaURL=relative('books/shared/rule-contract-v2/schema.mjs'),runtimeURL=relative('books/shared/roster-v2/runtime.mjs'),formationURL=relative('books/emperors-children/v2/rule-contract-formation-context.mjs');
+const roleObserverKey='__WH_CONDITIONS_ROLE_OBSERVER__';
 const observerKey='__WH_CONDITIONS_BOOK_OBSERVER__',apiKey='__WH_CONDITIONS_BOOK_API__';
 let schemaHooked=false,runtimeHooked=false,formationHooked=false,active=null,stage='INITIALIZATION',frame='initialization',book,bookId,entityHint;
+// Intern repeated role/condition/context values without dropping any observed
+// argument. A length-delimited digest additionally preserves call order/count.
+const roleEvents=new Map(),roleValues=[],roleValueIds=new Map(),roleSequence=createHash('sha256');
+let roleObservationCount=0;
+const internRole=value=>{const key=stable(value);if(!roleValueIds.has(key)){roleValueIds.set(key,roleValues.length);roleValues.push(value);}return roleValueIds.get(key);};
 const events=new Map(),catalog=new Map(),scenarios=[],apis=new Map(),books=new Map(),rawOwners=new Map(),canonicalOwners=new Map();
 registerHooks({load(url,context,nextLoad){
  const loaded=nextLoad(url,context);if(![schemaURL,runtimeURL,formationURL].includes(url))return loaded;
  let text=typeof loaded.source==='string'?loaded.source:Buffer.from(loaded.source).toString('utf8');
  if(url===schemaURL){
   const signature=/function evaluatePredicate\(node,\s*context\)\s*\{/;assert.ok(signature.test(text),'Lexical schema predicate entry was not found');
-  text=text.replace(signature,`function evaluatePredicate(node,context){const result=evaluatePredicateObservedBody(node,context);if(node?.predicate==='FIELD')globalThis.${observerKey}?.(node,context,result);return result;}\nfunction evaluatePredicateObservedBody(node,context){`);schemaHooked=true;
+  text=text.replace(signature,`function evaluatePredicate(node,context){const result=evaluatePredicateObservedBody(node,context);if(node?.predicate==='FIELD')globalThis.${observerKey}?.(node,context,result);return result;}\nfunction evaluatePredicateObservedBody(node,context){`);
+  const roleSignature=/function evaluateRole\(role,\s*conditions,\s*context\)\s*\{/;assert.ok(roleSignature.test(text),'Lexical role evaluator entry was not found');
+  text=text.replace(roleSignature,`function evaluateRole(role,conditions,context){const result=evaluateRoleObservedBody(role,conditions,context);globalThis.${roleObserverKey}?.(role,conditions,context,result);return result;}\nfunction evaluateRoleObservedBody(role,conditions,context){`);schemaHooked=true;
  }
  if(url===runtimeURL){
   const signature='({evaluatePredicate,evaluateRole}=withRosterDetachments({evaluatePredicate,evaluateRole}));';assert.ok(text.includes(signature),'Actual roster interpreter API boundary was not found');
@@ -127,6 +145,14 @@ globalThis[observerKey]=(node,context,result)=>{
   modelId:context?.modelId,modelScopeId:context?.modelScopeId,modelInstanceId:context?.modelInstanceId,formedUnitId:context?.formedUnitId,
   unitId:context?.unitId,capabilities:context?.capabilities,keywords:context?.keywords,intrinsicKeywords:context?.intrinsicKeywords,owner:context?.owner,input}});
  const identity=stable(row);if(!events.has(identity))events.set(identity,{...row,observations:0});events.get(identity).observations++;
+};
+globalThis[roleObserverKey]=(role,conditions,context,result)=>{
+ if(!active)return;
+ const tuple=[internRole(canonical({bookId,scenario:active+'/'+frame,stage})),internRole(normalize(role)),internRole(normalize(conditions)),
+  internRole(canonical({subject:context?.subject,instanceId:context?.instanceId,modelId:context?.modelId,modelScopeId:context?.modelScopeId,
+   modelInstanceId:context?.modelInstanceId,formedUnitId:context?.formedUnitId,unitId:context?.unitId})),result];
+ const identity=JSON.stringify(tuple);roleSequence.update(String(Buffer.byteLength(identity))+':'+identity);roleObservationCount++;
+ if(!roleEvents.has(identity))roleEvents.set(identity,{tuple,observations:0});roleEvents.get(identity).observations++;
 };
 function normalize(value){const result=clone(value);walk(result,node=>{node.arguments=normalizedNode(node).arguments;});return canonical(result);}
 async function createService(id){
@@ -234,7 +260,7 @@ for(const fixture of fixtures){
 
 // Existing native typed-policy physical fixtures. Leader attachment witnesses
 // use recorded canonical relations, not labels or English rule interpretation.
-for(const id of ['blood-angels','dark-angels']){
+for(const id of ['blood-angels','dark-angels'].filter(selected)){
  selectBook(id);const records=new Map(book.entities.map(entity=>[entity.id,entity]));
  const candidates=new Map();
  for(const rule of book.entities.filter(entity=>entity.ruleContract?.clauses?.some(clause=>clause.conditionalPolicy))){
@@ -259,16 +285,19 @@ for(const id of ['blood-angels','dark-angels']){
  }
 }
 
-active=null;assert.ok(schemaHooked&&runtimeHooked&&formationHooked,'Every actual native evaluator boundary must be observed');
+active=null;assert.ok(schemaHooked&&runtimeHooked&&(!selected('emperors-children')||formationHooked),'Every actual native evaluator boundary must be observed');
 assert.ok(events.size>0,'No lexical FIELD evaluations were observed');
+assert.ok(roleEvents.size>0,'No lexical role evaluations were observed');
 for(const [key,row]of catalog)row.owners=[...(canonicalOwners.get(key)||[])].sort();
 const observed=new Set([...events.values()].map(row=>row.bookId+'/'+row.conditionId));
 const report={schema:'conditions-book-parity/v1',status:'PASS',fixtureCount:fixtures.length,scenarioCount:scenarios.length,eventCount:events.size,
  conditions:[...catalog.values()].sort((a,b)=>cmp(a.bookId,b.bookId)||cmp(a.id,b.id)),
- coverage:Object.keys(artifacts).map(id=>({bookId:id,conditions:[...catalog.values()].filter(row=>row.bookId===id).length,
+ coverage:selectedBooks.map(id=>({bookId:id,conditions:[...catalog.values()].filter(row=>row.bookId===id).length,
   observed:[...catalog.keys()].filter(key=>key.startsWith(id+'/')&&observed.has(key)).length,
   withoutPhysicalContext:[...catalog].filter(([key,row])=>row.bookId===id&&!observed.has(key)).map(([,row])=>row.id).sort()})),
+ roleObservations:{encoding:'interned-role-tuples/v1',tupleFields:['scenario','role','conditions','context','result'],values:roleValues,
+  events:[...roleEvents.values()].sort((a,b)=>cmp(stable(a.tuple),stable(b.tuple))),count:roleObservationCount,sequenceSha256:roleSequence.digest('hex')},
  events:[...events.values()].sort((a,b)=>cmp(stable(a),stable(b))),scenarios:scenarios.sort((a,b)=>cmp(a.bookId,b.bookId)||cmp(a.id,b.id))};
 fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');
 if(isolationOutput)fs.writeFileSync(isolationOutput,JSON.stringify(isolationResults,null,2)+'\n');
-console.log(JSON.stringify({status:'PASS',fixtureCount:report.fixtureCount,scenarioCount:report.scenarioCount,conditionCount:catalog.size,eventCount:events.size,coverage:report.coverage,output}));
+console.log(JSON.stringify({status:'PASS',fixtureCount:report.fixtureCount,scenarioCount:report.scenarioCount,conditionCount:catalog.size,eventCount:events.size,roleEventCount:roleEvents.size,roleObservationCount,coverage:report.coverage,output}));
