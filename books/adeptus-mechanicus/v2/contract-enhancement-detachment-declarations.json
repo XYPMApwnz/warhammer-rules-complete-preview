@@ -759,6 +759,54 @@
               },
               "conditions": [],
               "purpose": "OWNER"
+            },
+            {
+              "id": "textRecipientModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_MODEL",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                      "otherEntityId": "book-introduction"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TECH-PRIEST"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TECH-PRIEST"
+                    }
+                  }
+                ]
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time an attack is allocated to the bearer, change the Damage characteristic of that attack to 1."
+              }
             }
           ],
           "conditions": [
@@ -973,7 +1021,8 @@
               },
               "conditions": [],
               "purpose": "EFFECT_RECIPIENT",
-              "binding": "SOURCE_UNIT"
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -1765,6 +1814,32 @@
               "purpose": "TARGET",
               "binding": "ATTACK_TARGET",
               "actorRoleId": "led-model"
+            },
+            {
+              "id": "textRecipientModels",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_FORMED_MODELS",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+              }
             }
           ],
           "conditions": [
@@ -2723,7 +2798,8 @@
               },
               "conditions": [],
               "purpose": "EFFECT_RECIPIENT",
-              "binding": "SOURCE_UNIT"
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -2837,7 +2913,8 @@
               },
               "conditions": [],
               "purpose": "EFFECT_RECIPIENT",
-              "binding": "SOURCE_UNIT"
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -5004,7 +5081,8 @@
               },
               "conditions": [],
               "purpose": "EFFECT_RECIPIENT",
-              "binding": "SOURCE_UNIT"
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED"
             },
             {
               "id": "enemy-shooter",
@@ -8401,7 +8479,8 @@
                   "quote": "That unit"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -9044,7 +9123,8 @@
                   "quote": "The bearer’s unit has the Fights First ability."
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [],
@@ -10586,7 +10666,8 @@
                   "quote": "This unit has Stealth."
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [],
@@ -10811,7 +10892,8 @@
                   "quote": "This unit has Infiltrators"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [],
@@ -10996,7 +11078,8 @@
                   "quote": "This unit has Lone Operative 15\"."
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [],
@@ -11252,6 +11335,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              }
             }
           ],
           "conditions": [],
@@ -11436,7 +11546,8 @@
                   "quote": "all units from your army that have the Doctrina Imperatives ability"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -11606,6 +11717,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              }
             }
           ],
           "conditions": [],
@@ -11790,7 +11928,8 @@
                   "quote": "all units from your army that have the Doctrina Imperatives ability"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -12080,6 +12219,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+              }
             }
           ],
           "conditions": [],
@@ -12190,7 +12356,8 @@
                   "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [],
@@ -12391,6 +12558,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              }
             }
           ],
           "conditions": [],
@@ -12551,7 +12745,8 @@
                   "quote": "all units from your army that have the Doctrina Imperatives ability"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -12697,6 +12892,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+              }
             }
           ],
           "conditions": [],
@@ -12857,7 +13079,8 @@
                   "quote": "all units from your army that have the Doctrina Imperatives ability"
                 }
               },
-              "conditions": []
+              "conditions": [],
+              "scope": "FORMED"
             }
           ],
           "conditions": [
@@ -13123,6 +13346,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "formedTextUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+              }
             }
           ],
           "conditions": [],

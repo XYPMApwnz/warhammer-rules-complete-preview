@@ -144,12 +144,13 @@ for(const [bookId,entries]of [['death-guard',dg],['adeptus-mechanicus',am]]){
   });
 }
 
-check('AM unrelated named ABILITIES block and NOT_RECORDED remain hidden',()=>{
+check('AM newly recorded unit rules transfer while CP-only text remains hidden',()=>{
   const book=books.get('adeptus-mechanicus'),scenario=fixture(book,am[2]),state=attached(book,scenario.state);
   const text=view(book,state,'body').rows.map(row=>row.text).join('\n');
-  assert.match(text,/Galvanic Field/);assert.doesNotMatch(text,/Defend the Divine Work/);
+  assert.match(text,/Galvanic Field/);assert.match(text,/Defend the Divine Work/);
   const marshal=fixture(book,am.at(-1));
-  assert.doesNotMatch(view(book,attached(book,marshal.state),'body').rows.map(row=>row.text).join('\n'),/Control Edict|Servo-skull Uplink/);
+  const marshalText=view(book,attached(book,marshal.state),'body').rows.map(row=>row.text).join('\n');
+  assert.match(marshalText,/Control Edict/);assert.doesNotMatch(marshalText,/Servo-skull Uplink/);
 });
 check('DG recorded group rule transfers while personal and unrecorded siblings do not',()=>{
   const book=books.get('death-guard'),scenario=fixture(book,dg[2]),state=attached(book,scenario.state);
@@ -286,7 +287,7 @@ check('CSM proven range-origin keeps Tempting Addendum on the source group only'
   assert.equal(matching(result.attachedRuleTexts||[],scenario).length,0,'A distance without an explicit origin is not proof');
 });
 
-check('A sourceFields mutation cannot copy the neighboring NOT_RECORDED ability',()=>{
+check('A sourceFields mutation cannot copy a neighboring ability',()=>{
   const baseline=books.get('adeptus-mechanicus'),scenario=fixture(baseline,am[2]),state=attached(baseline,scenario.state);
   const projection=view(baseline,state,'body').projection,altered=clone(baseline),rule=entity(altered,scenario.rule.id);
   rule.ruleContract.clauses.find(clause=>clause.id==='block-1').sourceFields=[['blocks',1,'text']];

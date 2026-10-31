@@ -51,7 +51,9 @@ scenario(dg,'Talisman of Burgeoning','Noxious Blightbringer','Poxwalkers',{enhan
 scenario(dg,'Vile Vigour','Lord of Contagion','Deathshroud Terminators',{enhancement:true});
 scenario(am,'Robotic Bodyguard','Cybernetica Datasmith','Kastelan Robots',{reverse:true});
 scenario(am,'Lord of the Machine Cult','Tech-priest Dominus','Skitarii Rangers');
-scenario(am,'Galvanic Field','Tech-priest Manipulus','Skitarii Rangers',{negative:['Defend the Divine Work']});
+scenario(am,'Galvanic Field','Tech-priest Manipulus','Skitarii Rangers',{negative:[]});
+scenario(am,'Defend the Divine Work','Tech-priest Manipulus','Skitarii Rangers');
+scenario(am,'Control Edict','Skitarii Marshal','Skitarii Rangers',{negative:['Servo-skull Uplink']});
 scenario(am,'Seekers of Divine Arcana','Technoarcheologist','Skitarii Rangers');
 for(const [rule,leader,bodyguard]of [
   ['Transoracular Dyad Wafers','Cybernetica Datasmith','Kastelan Robots'],
@@ -65,7 +67,7 @@ for(const [rule,leader,bodyguard]of [
   ['Electromiasmic Brazier','Tech-priest Dominus','Skitarii Rangers'],
   ['Vingh’s Wafers of Dynamism','Cybernetica Datasmith','Kastelan Robots'],
   ['Explorator Dispensation','Skitarii Marshal','Skitarii Rangers']
-])scenario(am,rule,leader,bodyguard,{enhancement:true,negative:leader==='Skitarii Marshal'?['Control Edict']:[]});
+])scenario(am,rule,leader,bodyguard,{enhancement:true,negative:leader==='Skitarii Marshal'?['Servo-skull Uplink']:[]});
 
 // Cross-book fixtures use ordinary import controls and canonical source fields.
 // No roster state or presentation objects are injected into the browser.

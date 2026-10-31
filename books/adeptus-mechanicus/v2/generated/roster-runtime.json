@@ -1076,6 +1076,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-archaeopter-stratoraptor:profile:default"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Archaeopter Stratoraptor",
+                    "otherEntityId": "datasheet-archaeopter-stratoraptor:profile:default"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Strafing Run: Each time this model makes a ranged attack that targets an enemy unit (excluding units that can FLY), add 1 to the Hit roll."
+                }
               }
             ],
             "conditions": [],
@@ -1099,8 +1130,41 @@
               "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-archaeopter-stratoraptor:profile:default"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Archaeopter Stratoraptor",
+                    "otherEntityId": "datasheet-archaeopter-stratoraptor:profile:default"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Strafing Run: Each time this model makes a ranged attack that targets an enemy unit (excluding units that can FLY), add 1 to the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -1801,6 +1865,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Aerial Deployment: In your first Movement phase, this unit can make an ingress move."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Aerial Deployment: In your first Movement phase, this unit can make an ingress move."
+                }
               }
             ],
             "conditions": [
@@ -1861,8 +1956,41 @@
               "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Aerial Deployment: In your first Movement phase, this unit can make an ingress move."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Aerial Deployment: In your first Movement phase, this unit can make an ingress move."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -2813,6 +2941,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Canticles of the Omnissiah: At the start of your Command phase, select one of the abilities in the Canticles of the Omnissiah section. Until the start of your next Command phase, this model has that ability."
+                }
               }
             ],
             "conditions": [
@@ -2916,8 +3075,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Canticles of the Omnissiah: At the start of your Command phase, select one of the abilities in the Canticles of the Omnissiah section. Until the start of your next Command phase, this model has that ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -2967,6 +3159,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Mechanicus Bodyguard: While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -3009,8 +3232,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Mechanicus Bodyguard: While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-3",
@@ -3060,6 +3316,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Self-repair Mechanisms: At the start of your Command phase, this model regains up to D3 lost wounds."
+                }
               }
             ],
             "conditions": [
@@ -3163,8 +3450,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-3::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-belisarius-cawl:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-belisarius-cawl:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Belisarius Cawl"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Self-repair Mechanisms: At the start of your Command phase, this model regains up to D3 lost wounds."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -4338,8 +4658,63 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [],
+                "selector": {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "MONSTER"
+                          },
+                          "evidence": {
+                            "field": [
+                              "blocks",
+                              0,
+                              "text"
+                            ],
+                            "quote": "MONSTERS"
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "VEHICLE"
+                          },
+                          "evidence": {
+                            "field": [
+                              "blocks",
+                              0,
+                              "text"
+                            ],
+                            "quote": "VEHICLES"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -4679,6 +5054,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-kastelan-robots:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-kastelan-robots:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Kastelan Robots"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Battle Protocols: At the start of the battle, if this model is leading a KASTELAN ROBOTS unit, that unit enters Aegis Protocols (see below). In your Command phase, if this model is leading a KASTELAN ROBOTS unit, you can select one protocol from those listed below for that unit to enter. Once a unit enters a protocol, it remains in that protocol until it enters a different one.\n- Protector Protocol: Add 2 to the Attacks characteristic of ranged weapons equipped by KASTELAN ROBOT models in that unit.\n- Conqueror Protocol: Add 2 to the Attacks characteristic of melee weapons equipped by KASTELAN ROBOT models in that unit.\n- Aegis Protocol: Add 1 to the Toughness characteristic of KASTELAN ROBOT models in that unit."
+                }
               }
             ],
             "conditions": [
@@ -4737,8 +5143,41 @@
               "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "battle-protocols::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-kastelan-robots:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-kastelan-robots:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Kastelan Robots"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Battle Protocols: At the start of the battle, if this model is leading a KASTELAN ROBOTS unit, that unit enters Aegis Protocols (see below). In your Command phase, if this model is leading a KASTELAN ROBOTS unit, you can select one protocol from those listed below for that unit to enter. Once a unit enters a protocol, it remains in that protocol until it enters a different one.\n- Protector Protocol: Add 2 to the Attacks characteristic of ranged weapons equipped by KASTELAN ROBOT models in that unit.\n- Conqueror Protocol: Add 2 to the Attacks characteristic of melee weapons equipped by KASTELAN ROBOT models in that unit.\n- Aegis Protocol: Add 1 to the Toughness characteristic of KASTELAN ROBOT models in that unit."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "data-severed",
@@ -4788,6 +5227,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Data-severed: If there are no KASTELAN ROBOT models in this unit:\n- This unit loses VEHICLE.\n- This unit has INFANTRY."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Data-severed: If there are no KASTELAN ROBOT models in this unit:\n- This unit loses VEHICLE.\n- This unit has INFANTRY."
+                }
               }
             ],
             "conditions": [
@@ -4952,6 +5422,38 @@
                 "from": "SOURCE_UNIT",
                 "side": "FRIENDLY",
                 "how": "ROSTER"
+              },
+              {
+                "id": "data-severed::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Data-severed: If there are no KASTELAN ROBOT models in this unit:\n- This unit loses VEHICLE.\n- This unit has INFANTRY."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Data-severed: If there are no KASTELAN ROBOT models in this unit:\n- This unit loses VEHICLE.\n- This unit has INFANTRY."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -7320,6 +7822,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Elevated Strider: This unit is eligible to shoot in a turn in which it Fell Back or Advanced, and you can re-roll Desperate Escape tests taken for models in this unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Elevated Strider: This unit is eligible to shoot in a turn in which it Fell Back or Advanced, and you can re-roll Desperate Escape tests taken for models in this unit."
+                }
               }
             ],
             "conditions": [],
@@ -7343,8 +7876,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Elevated Strider: This unit is eligible to shoot in a turn in which it Fell Back or Advanced, and you can re-roll Desperate Escape tests taken for models in this unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Elevated Strider: This unit is eligible to shoot in a turn in which it Fell Back or Advanced, and you can re-roll Desperate Escape tests taken for models in this unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -8391,8 +8957,35 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Repulsor Grid: When an enemy unit targets this unit with ranged attacks, until that enemy unit has shot, when this unit makes a save roll:\n- On an unmodified 6, that enemy unit suffers 1 mortal wound after that enemy unit has shot."
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -9032,6 +9625,36 @@
                 ],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Breaching Command: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, you can re-roll the Hit roll instead."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Breaching Command: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, you can re-roll the Hit roll instead."
+                }
               }
             ],
             "conditions": [],
@@ -9055,8 +9678,40 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Breaching Command: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, you can re-roll the Hit roll instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Breaching Command: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, you can re-roll the Hit roll instead."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -9656,6 +10311,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Sentinel Directives: Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Sentinel Directives: Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem."
+                }
               }
             ],
             "conditions": [],
@@ -9679,8 +10365,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Sentinel Directives: Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Sentinel Directives: Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -10687,6 +11406,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-onager-dunecrawler:profile:default"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Onager Dunecrawler",
+                    "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this model makes a Normal, Advance or Fall Back move, it can move through friendly MONSTER and VEHICLE models and sections of terrain features that are 4\" or less in height."
+                }
               }
             ],
             "conditions": [],
@@ -10710,8 +11460,41 @@
               "reason": "Battle activation and resolution remain source-backed, nonexecuting clauses."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-onager-dunecrawler:profile:default"
+                  },
+                  "evidence": {
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Onager Dunecrawler",
+                    "otherEntityId": "datasheet-onager-dunecrawler:profile:default"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this model makes a Normal, Advance or Fall Back move, it can move through friendly MONSTER and VEHICLE models and sections of terrain features that are 4\" or less in height."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "data-tether-smoke-removal",
@@ -11095,6 +11878,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-onager-dunecrawler:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-onager-dunecrawler:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Onager Dunecrawler"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -11137,8 +11951,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-onager-dunecrawler:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-onager-dunecrawler:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Onager Dunecrawler"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -11703,6 +12550,37 @@
                 ],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Ride the Thermals: In your Shooting phase, after this unit has shot, if it is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to 6\".\n- Make a Normal move of up to 12\", provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units.\nIn either case, if it does, until the end of the turn, this unit is not eligible to declare a charge."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Ride the Thermals: In your Shooting phase, after this unit has shot, if it is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to 6\".\n- Make a Normal move of up to 12\", provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units.\nIn either case, if it does, until the end of the turn, this unit is not eligible to declare a charge."
+                }
               }
             ],
             "conditions": [
@@ -11824,8 +12702,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Ride the Thermals: In your Shooting phase, after this unit has shot, if it is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to 6\".\n- Make a Normal move of up to 12\", provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units.\nIn either case, if it does, until the end of the turn, this unit is not eligible to declare a charge."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Ride the Thermals: In your Shooting phase, after this unit has shot, if it is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to 6\".\n- Make a Normal move of up to 12\", provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units.\nIn either case, if it does, until the end of the turn, this unit is not eligible to declare a charge."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -12840,6 +13751,37 @@
                 ],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tactica Obliqua: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to D6\"\n- Make a Normal move of up to 6\" provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tactica Obliqua: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to D6\"\n- Make a Normal move of up to 6\" provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units."
+                }
               }
             ],
             "conditions": [
@@ -12943,8 +13885,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tactica Obliqua: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to D6\"\n- Make a Normal move of up to 6\" provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tactica Obliqua: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, it can do one of the following:\n- Make a Normal move of up to D6\"\n- Make a Normal move of up to 6\" provided every model in this unit ends that move wholly within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -13660,8 +14635,53 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinSourceEngagementRange",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "within Engagement Range"
+                    }
+                  }
+                ],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Line-breakers: Each time this unit ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each model in this unit that is within Engagement Range of that enemy unit, adding 2 to the result if this unit started its Charge move within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units. For each 4+, that enemy unit suffers 1 mortal wound."
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -15275,8 +16295,53 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinSourceEngagementRange",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "within Engagement Range"
+                    }
+                  }
+                ],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Voices in the Code: At the start of the Fight phase, each enemy unit within Engagement Range of one or more units with this ability must take a Battle-shock test."
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -15431,8 +16496,53 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinSource6",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "within 6\" of this unit"
+                    }
+                  }
+                ],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Neurostatic Interference (Aura): While an enemy unit is within 6\" of this unit, each time a Battle-shock or Leadership test is taken for that unit, subtract 1 from that test. While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, subtract 2 from that test instead."
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -16029,7 +17139,8 @@
                     "quote": "Sicarian Ruststalkers"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -16113,8 +17224,8 @@
                     "quote": "Sicarian Ruststalkers"
                   }
                 },
-                "how": "ROSTER",
-                "scope": "FORMED"
+                "scope": "FORMED",
+                "how": "ROSTER"
               },
               {
                 "id": "base-charge::recipient/role/1",
@@ -16138,7 +17249,8 @@
                     ],
                     "quote": "Sicarian Ruststalkers"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -16233,6 +17345,37 @@
                 ],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
+                }
               }
             ],
             "conditions": [],
@@ -16256,8 +17399,41 @@
               "reason": "The replacement +2 requires a friendly ADEPTUS MECHANICUS BATTLELINE unit within 6\". Preserve the source-dependent replacement without inferring battlefield range."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this unit is within 6\" of one or more friendly ADEPTUS MECHANICUS BATTLELINE units, add 2 to Advance and Charge rolls made for this unit instead."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -16601,6 +17777,36 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Control Edict: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Control Edict: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -16642,8 +17848,40 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Control Edict: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Control Edict: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -18493,6 +19731,37 @@
                 "conditions": [],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                }
               }
             ],
             "conditions": [
@@ -18644,6 +19913,38 @@
                     "quote": "Skitarii Rangers"
                   }
                 }
+              },
+              {
+                "id": "block-3::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -20102,8 +21403,60 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinSource3",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        0,
+                        "text"
+                      ],
+                      "quote": "within 3\" of this unit"
+                    }
+                  }
+                ],
+                "selector": {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "blocks",
+                          0,
+                          "text"
+                        ],
+                        "quote": "VEHICLE"
+                      }
+                    }
+                  ]
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -20274,6 +21627,37 @@
                 "conditions": [],
                 "required": false,
                 "optional": true
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                }
               }
             ],
             "conditions": [
@@ -20425,6 +21809,38 @@
                     "quote": "Skitarii Vanguard"
                   }
                 }
+              },
+              {
+                "id": "block-3::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Omnispex: Ranged weapons equipped by models in the bearer’s unit have the [IGNORES COVER] ability."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -21111,6 +22527,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-skorpius-disintegrator:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-skorpius-disintegrator:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Skorpius Disintegrator"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Blistering Salvoes: Each time this model makes an attack with a belleros energy cannon that targets an INFANTRY unit, add 1 to the Hit roll. Each time this model makes an attack with a ferrumite cannon that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll."
+                }
               }
             ],
             "conditions": [],
@@ -21134,8 +22581,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-skorpius-disintegrator:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-skorpius-disintegrator:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Skorpius Disintegrator"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Blistering Salvoes: Each time this model makes an attack with a belleros energy cannon that targets an INFANTRY unit, add 1 to the Hit roll. Each time this model makes an attack with a ferrumite cannon that targets a MONSTER or VEHICLE unit, add 1 to the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -21270,6 +22750,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-skorpius-disintegrator:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-skorpius-disintegrator:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Skorpius Disintegrator"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -21312,8 +22823,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-skorpius-disintegrator:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-skorpius-disintegrator:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Skorpius Disintegrator"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -22447,6 +23991,36 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Focused Hunters: At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Focused Hunters: At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -22507,8 +24081,40 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Focused Hunters: At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Focused Hunters: At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -22892,6 +24498,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Dynamic Efficiency: This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back, and you can re-roll Desperate Escape tests taken for models in this unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Dynamic Efficiency: This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back, and you can re-roll Desperate Escape tests taken for models in this unit."
+                }
               }
             ],
             "conditions": [],
@@ -22915,8 +24552,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "textRecipientUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Dynamic Efficiency: This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back, and you can re-roll Desperate Escape tests taken for models in this unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Dynamic Efficiency: This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back, and you can re-roll Desperate Escape tests taken for models in this unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -23598,8 +25268,35 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Dread Snipers: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. That unit must take a Battle-shock test."
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -23649,6 +25346,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-sydonian-skatros:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-sydonian-skatros:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Sydonian Skatros"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Achillan Eye: Each time this model makes an attack with a radium jezzail that targets an INFANTRY unit, you can re-roll the Wound roll. Each time this model makes an attack with a Skatros transuranic arquebus that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll."
+                }
               }
             ],
             "conditions": [],
@@ -23672,8 +25400,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-sydonian-skatros:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-sydonian-skatros:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Sydonian Skatros"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Achillan Eye: Each time this model makes an attack with a radium jezzail that targets an INFANTRY unit, you can re-roll the Wound roll. Each time this model makes an attack with a Skatros transuranic arquebus that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -25097,8 +26858,37 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [],
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "VEHICLE"
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -25964,6 +27754,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-tech-priest-enginseer:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-tech-priest-enginseer:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Tech-priest Enginseer"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Enginseer: While this model is within 3\" of one or more friendly ADEPTUS MECHANICUS VEHICLE units, unless it is leading a unit, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -26023,8 +27844,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-tech-priest-enginseer:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-tech-priest-enginseer:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Tech-priest Enginseer"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Enginseer: While this model is within 3\" of one or more friendly ADEPTUS MECHANICUS VEHICLE units, unless it is leading a unit, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -26296,6 +28150,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-tech-priest-enginseer:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-tech-priest-enginseer:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Tech-priest Enginseer"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Vengeance for the Omnissiah: If a friendly ADEPTUS MECHANICUS VEHICLE model is destroyed within 12\" of this model, until the end of the battle, this model’s Omnissian axe has an Attacks characteristic of 6."
+                }
               }
             ],
             "conditions": [],
@@ -26319,8 +28204,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-3::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-tech-priest-enginseer:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-tech-priest-enginseer:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Tech-priest Enginseer"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Vengeance for the Omnissiah: If a friendly ADEPTUS MECHANICUS VEHICLE model is destroyed within 12\" of this model, until the end of the battle, this model’s Omnissian axe has an Attacks characteristic of 6."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -27354,6 +29272,36 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Defend the Divine Work: Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, all models in this model’s unit have a 4+ invulnerable save."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Defend the Divine Work: Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, all models in this model’s unit have a 4+ invulnerable save."
+                }
               }
             ],
             "conditions": [
@@ -27414,8 +29362,40 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Defend the Divine Work: Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, all models in this model’s unit have a 4+ invulnerable save."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Defend the Divine Work: Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, all models in this model’s unit have a 4+ invulnerable save."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -28390,8 +30370,53 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "settingUpAsReinforcements",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        1,
+                        "text"
+                      ],
+                      "quote": "set up on the battlefield as Reinforcements"
+                    }
+                  }
+                ],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Enemy units"
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -29134,6 +31159,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-thulia-ghuld:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-thulia-ghuld:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Thulia Ghuld"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Rod of the War Forge: In your Command phase, select one of the abilities in the Icon of War section (see next page). Until the start of your next Command phase, this model has that ability."
+                }
               }
             ],
             "conditions": [
@@ -29219,8 +31275,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-thulia-ghuld:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-thulia-ghuld:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Thulia Ghuld"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Rod of the War Forge: In your Command phase, select one of the abilities in the Icon of War section (see next page). Until the start of your next Command phase, this model has that ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-2",
@@ -29270,6 +31359,37 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-thulia-ghuld:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-thulia-ghuld:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Thulia Ghuld"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Mechanicus Bodyguard: While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -29312,8 +31432,41 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "block-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "MODEL_ID",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "datasheet-thulia-ghuld:profile:default"
+                  },
+                  "evidence": {
+                    "otherEntityId": "datasheet-thulia-ghuld:profile:default",
+                    "field": [
+                      "name"
+                    ],
+                    "quote": "Thulia Ghuld"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Mechanicus Bodyguard: While this model is within 3\" of one or more other friendly ADEPTUS MECHANICUS units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "block-3",
@@ -29490,8 +31643,55 @@
               "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientIds": [
+              "block-3::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "block-3::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "enemy",
+                "side": "ENEMY",
+                "purpose": "TARGET",
+                "conditions": [
+                  {
+                    "predicate": "FIELD",
+                    "subject": "UNIT",
+                    "contextLevel": "BATTLE",
+                    "arguments": {
+                      "key": "withinSource12",
+                      "equals": true
+                    },
+                    "evidence": {
+                      "field": [
+                        "blocks",
+                        2,
+                        "text"
+                      ],
+                      "quote": "within 12\" of this model"
+                    }
+                  }
+                ],
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "VEHICLE"
+                  }
+                },
+                "binding": "INDEPENDENT_ENTITY"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "contextLevel": "BATTLE",
@@ -45712,7 +47912,8 @@
                     "quote": "That unit"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -45793,7 +47994,8 @@
                     ],
                     "quote": "That unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -46043,6 +48245,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
               }
             ],
             "conditions": [],
@@ -46171,6 +48400,34 @@
                     "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
                   }
                 }
+              },
+              {
+                "id": "protector-roster-characteristics::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -46263,7 +48520,8 @@
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -46365,7 +48623,8 @@
                     ],
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -46458,6 +48717,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
               }
             ],
             "conditions": [],
@@ -46586,6 +48872,34 @@
                     "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
                   }
                 }
+              },
+              {
+                "id": "conqueror-roster-characteristics::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -46678,7 +48992,8 @@
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -46780,7 +49095,8 @@
                     ],
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -47010,6 +49326,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                }
               }
             ],
             "conditions": [],
@@ -47083,6 +49426,34 @@
                     "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
                   }
                 }
+              },
+              {
+                "id": "ranged-range::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -47150,7 +49521,8 @@
                     "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -47190,7 +49562,8 @@
                     ],
                     "quote": "Add 6\" to the range characteristic of ranged weapons equipped by models in the bearer’s unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -50467,6 +52840,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
               }
             ],
             "conditions": [],
@@ -50595,6 +52995,34 @@
                     "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
                   }
                 }
+              },
+              {
+                "id": "protector-roster-characteristics::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -50663,7 +53091,8 @@
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -50765,7 +53194,8 @@
                     ],
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -50834,6 +53264,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                }
               }
             ],
             "conditions": [],
@@ -50962,6 +53419,34 @@
                     "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
                   }
                 }
+              },
+              {
+                "id": "conqueror-roster-characteristics::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The Conqueror Imperative and Protector Imperative are both active for the bearer’s unit."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -51030,7 +53515,8 @@
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -51132,7 +53618,8 @@
                     ],
                     "quote": "all units from your army that have the Doctrina Imperatives ability"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -51817,6 +54304,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "formedTextUnit",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+                }
               }
             ],
             "conditions": [],
@@ -51919,6 +54433,34 @@
                     "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit"
                   }
                 }
+              },
+              {
+                "id": "ranged-range-strength::recipient/role/2",
+                "who": "UNIT",
+                "roleId": "formedTextUnit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Add 6\" to the Range characteristic of ranged weapons equipped by models in the bearer’s unit, and add 1 to the Strength characteristic of those weapons."
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -55777,6 +58319,54 @@
                 },
                 "conditions": [],
                 "purpose": "OWNER"
+              },
+              {
+                "id": "textRecipientModel",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_MODEL",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "CHARACTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                        "otherEntityId": "book-introduction"
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TECH-PRIEST"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TECH-PRIEST"
+                      }
+                    }
+                  ]
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time an attack is allocated to the bearer, change the Damage characteristic of that attack to 1."
+                }
               }
             ],
             "conditions": [
@@ -55802,8 +58392,58 @@
               "reason": "Activation or resolution requires battle state; the declaration does not execute that action."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "allocated-attack-damage::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModel",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "CHARACTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "upgrade CHARACTERS using the Enhancements listed here",
+                        "otherEntityId": "book-introduction"
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TECH-PRIEST"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TECH-PRIEST"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time an attack is allocated to the bearer, change the Damage characteristic of that attack to 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-data-psalm-conclave",
@@ -56010,7 +58650,8 @@
                 },
                 "conditions": [],
                 "purpose": "EFFECT_RECIPIENT",
-                "binding": "SOURCE_UNIT"
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -56111,7 +58752,8 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -56312,7 +58954,8 @@
                     "quote": "The bearer’s unit has the Fights First ability."
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -56383,7 +59026,8 @@
                     ],
                     "quote": "The bearer’s unit has the Fights First ability."
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -60457,6 +63101,32 @@
                 "purpose": "TARGET",
                 "binding": "ATTACK_TARGET",
                 "actorRoleId": "led-model"
+              },
+              {
+                "id": "textRecipientModels",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "SOURCE_FORMED_MODELS",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+                  }
+                },
+                "conditions": [],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -60513,8 +63183,36 @@
               "reason": "Activation or resolution requires battle state; the declaration does not execute that action."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "acquisition-hit-roll::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "textRecipientModels",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "conditions": [],
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While the bearer is leading a unit, each time a model in that unit makes an attack that targets a unit within range of your Acquisition objective marker, add 1 to the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-explorator-maniple",
@@ -65469,7 +68167,8 @@
                 },
                 "conditions": [],
                 "purpose": "EFFECT_RECIPIENT",
-                "binding": "SOURCE_UNIT"
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -65570,7 +68269,8 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -65607,7 +68307,8 @@
                 },
                 "conditions": [],
                 "purpose": "EFFECT_RECIPIENT",
-                "binding": "SOURCE_UNIT"
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED"
               }
             ],
             "conditions": [
@@ -65653,7 +68354,8 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -78434,7 +81136,8 @@
                 },
                 "conditions": [],
                 "purpose": "EFFECT_RECIPIENT",
-                "binding": "SOURCE_UNIT"
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED"
               },
               {
                 "id": "enemy-shooter",
@@ -78499,7 +81202,8 @@
                     ],
                     "quote": "this unit"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -78700,7 +81404,8 @@
                     "quote": "This unit has Stealth."
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -78771,7 +81476,8 @@
                     ],
                     "quote": "This unit has Stealth."
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -82750,7 +85456,8 @@
                     "quote": "This unit has Infiltrators"
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -82821,7 +85528,8 @@
                     ],
                     "quote": "This unit has Infiltrators"
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
@@ -82983,7 +85691,8 @@
                     "quote": "This unit has Lone Operative 15\"."
                   }
                 },
-                "conditions": []
+                "conditions": [],
+                "scope": "FORMED"
               }
             ],
             "conditions": [],
@@ -83056,7 +85765,8 @@
                     ],
                     "quote": "This unit has Lone Operative 15\"."
                   }
-                }
+                },
+                "scope": "FORMED"
               }
             ],
             "recipientStatus": "RECORDED"
