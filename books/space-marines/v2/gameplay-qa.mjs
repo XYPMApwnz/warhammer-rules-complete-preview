@@ -3,7 +3,7 @@
  */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {buildSpaceMarinesRuntimeContracts as buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';

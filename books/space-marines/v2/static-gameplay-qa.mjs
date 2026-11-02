@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {buildSpaceMarinesRuntimeContracts as buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {declarations} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';

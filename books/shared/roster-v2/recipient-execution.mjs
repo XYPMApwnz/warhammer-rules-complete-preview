@@ -31,7 +31,7 @@ const at=(value,keys)=>keys.reduce((item,key)=>item?.[key],value);
  * inventory proof still belongs to the original row, while a loadout selection
  * belongs only to that loadout. Resolve recorded owners, never divide inventory
  * or infer ownership from a profile ID or the derived group's model count. */
-export function physicalSelectionOwner(unit,model,selection){
+export function physicalModelGroup(unit,model){
   const groups=[];
   for(const row of unit.modelRows){
     const allocated=(row.loadouts||[]).reduce((sum,loadout)=>sum+loadout.quantity,0);
@@ -44,7 +44,11 @@ export function physicalSelectionOwner(unit,model,selection){
   requirePhysical(groups.length===1&&model.unitInstanceId===unit.instanceId&&model.canonicalUnitId===unit.canonicalUnitId&&
     groups[0].row.canonicalProfileId===model.canonicalProfileId&&model.quantity===groups[0].quantity,
     'unresolved derived physical MODEL group');
-  const matches=groups[0].owners.flatMap(owner=>(owner.selections||[]).filter(record=>same(record,selection)).map(()=>owner));
+  return groups[0];
+}
+export function physicalSelectionOwner(unit,model,selection){
+  const group=physicalModelGroup(unit,model);
+  const matches=group.owners.flatMap(owner=>(owner.selections||[]).filter(record=>same(record,selection)).map(()=>owner));
   requirePhysical(matches.length>0,'selection has no recorded physical owner');
   requirePhysical(matches.length===1,'duplicate physical equipment selection');
   return matches[0];

@@ -4,6 +4,7 @@ import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
 import {resolveExecutionEffect,validatePhysicalSelectionEffect,resolvePhysicalSelectionEffects,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
 import {validatePhysicalChoiceEffect,resolvePhysicalChoices,weaponPartitionKey} from './physical-choice.mjs';
+import {validatePhysicalStaticModelEffect,resolvePhysicalStaticModelEffects} from './physical-static-model.mjs';
 export {weaponPartitionKey} from './physical-choice.mjs';
 import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 const clone = value => structuredClone(value);
@@ -80,6 +81,7 @@ function validateEffectOperations(book,validatePredicate,evaluatePredicate,effec
       ids.add(effect.id);
       validatePhysicalSelectionEffect(book,entity,clause,effect);
       validatePhysicalChoiceEffect(book,entity,clause,effect);
+      validatePhysicalStaticModelEffect(book,entity,clause,effect);
       // Root Army Rules have no physical source instance. Only actual global
       // executable clauses opt into dispatch; text/battle-only roots retain
       // their previous behaviour. Source-bound effects cannot use this path.
@@ -261,6 +263,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
   const physicalEffects=resolvePhysicalSelectionEffects(book,result);
   const {entries:choiceEffects,partitions:choicePartitions}=resolvePhysicalChoices(book,result);
+  const staticModelEffects=resolvePhysicalStaticModelEffects(book,result);
   // Explicit UNIT scope opts into UNIT presentation. Legacy unscoped range
   // contracts retain their existing MODEL mirrors until separately reviewed.
   const scopedDetectionUnits=new Set();
@@ -301,7 +304,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
         for (const effect of clause.rosterEffects) {
-          if(effect.physicalChoice)pending.push(...choiceEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source).map(entry=>({...entry,ownerModel})));
+          if(effect.physicalSource)pending.push(...staticModelEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source));
+          else if(effect.physicalChoice)pending.push(...choiceEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source).map(entry=>({...entry,ownerModel})));
           else if(effect.physicalSelection)pending.push(...physicalEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source));
           else pending.push({rule,clause,effect:resolveExecutionEffect(rule,clause,effect),source,ownerModel});
         }

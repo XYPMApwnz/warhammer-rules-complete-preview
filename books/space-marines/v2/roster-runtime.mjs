@@ -6,7 +6,6 @@ import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {buildAttachmentFeasibility} from '../../shared/roster-v2/compatibility-feasibility.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
-import {bindSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 
 const clone=structuredClone;
 const requireValue=(value,message)=>{if(!value)throw new TypeError(message);};
@@ -46,7 +45,6 @@ export function createSpaceMarinesRosterRuntime(built){
         return {...binding,maxModels:confirmed||unitMaximum};
       });
       nextBook.compatibilityFeasibility=buildAttachmentFeasibility(nextBook,composition);
-      nextBook=bindSpaceMarinesStaticModels(nextBook,snapshot);
       const schema=createSpaceMarinesRuleSchema({book:nextBook,state:snapshot,conditionInputs:[
         {key:'equipmentBearerSatisfied',arguments:{quantityProof:'POSITIVE_SELECTION'},clearUnrequestedEquipment:false}]});
       const next=createRosterRuntime(nextBook,schema);next.load(snapshot);

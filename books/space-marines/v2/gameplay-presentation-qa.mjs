@@ -2,7 +2,7 @@
  * and Personal projectors, not browser layout or a registered SM application. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {buildSpaceMarinesRuntimeContracts as buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {buildGameplayPresentation,writeGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {nativeAbilityReview} from './native-ability-bindings.mjs';

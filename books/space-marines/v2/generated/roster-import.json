@@ -18048,6 +18048,129 @@
             "rosterEffects": [],
             "recipients": [],
             "recipientStatus": "NOT_RECORDED"
+          },
+          {
+            "id": "ability-sm-c4061e257e81492f#text:0-116::static-model",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "UNIT",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "arguments": {},
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+."
+            },
+            "sourceText": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Static source operation requires one confirmed physical MODEL in its attached formation",
+              "canonicalClauseId": "ability-sm-c4061e257e81492f#text:0-116"
+            },
+            "rosterEffects": [
+              {
+                "id": "ability-sm-c4061e257e81492f#text:0-116::static-model/feel-no-pain",
+                "operation": "GRANT_MODEL_ABILITY",
+                "ability": {
+                  "name": "Feel No Pain",
+                  "value": 4
+                },
+                "lifetime": "WHILE_ATTACHED",
+                "physicalSource": {
+                  "kind": "STATIC_MODEL",
+                  "sourceProfileId": "model-sm-574846fb8e3e4e77",
+                  "canonicalClauseId": "ability-sm-c4061e257e81492f#text:0-116",
+                  "clauseIdPrefix": "::physical-static/",
+                  "effectIdSuffix": "/feel-no-pain",
+                  "excludeExactSourceModel": true
+                },
+                "conditions": [
+                  {
+                    "binding": "SOURCE",
+                    "predicate": {
+                      "predicate": "FIELD",
+                      "subject": "UNIT",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "attached",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+."
+                      }
+                    }
+                  },
+                  {
+                    "binding": "TARGET",
+                    "predicate": {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "CHARACTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+."
+                      }
+                    }
+                  }
+                ],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+."
+                },
+                "recipientId": "ability-sm-c4061e257e81492f#text:0-116::static-model::recipient/effect/1",
+                "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-cfc57acffa34750b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[18]/div[2]/div[2]/div[2]"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-68d4acb166248a9f","refs":[0,0,0,0],"contexts":["contexts-ed601361945cabed","contexts-0c507ee30b8e92ef","contexts-232d832937a5ef19","contexts-0bb8ca0cf1320f74","contexts-103a783d2bc6e303"]},"$schema":"source-refs/v1","$order":["id","operation","ability","lifetime","physicalSource","conditions","sourceFields","evidence","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"ability-sm-c4061e257e81492f","canonicalOwnerId":"unit-sm-3460439c3a774c66","canonicalClauseId":"ability-sm-c4061e257e81492f#text:0-116"}}
+              }
+            ],
+            "recipients": [
+              {
+                "id": "ability-sm-c4061e257e81492f#text:0-116::static-model::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_FORMED_MODELS",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-cfc57acffa34750b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[18]/div[2]/div[2]/div[2]"}]}],
@@ -116698,7 +116821,6 @@
     "physicalIdentityNamespace": "sm",
     "equipmentBearerMode": "POSITIVE_SELECTION"
   },
-  "conditionSchema": "conditions/v1",
   "rosterAttachmentPolicies": [],
   "mfmImportReferences": {
     "source": {
@@ -150863,7 +150985,9 @@
     "legality": "NOT_ASSESSED",
     "scope": "SELECTED_DETACHMENT_AND_RULE_REFERENCE_ONLY; NO_DEATHWATCH_UNITS_OR_ENHANCEMENT_ASSIGNMENTS"
   },
+  "conditionSchema": "conditions/v1",
   "sourceRefs": [],
-  "sourceBindings": "bindings-d686957a9e04b24c",
-  "sourceSchema": "source-refs/v1"
+  "sourceBindings": {"currentness":{"layout":"layouts-ad795d1677367c9a","refs":[],"contexts":["contexts-976f077039516c1e","contexts-a33e910e6f93fe0c"]},"$schema":"source-refs/v1","$order":["schema","bookId","edition","entities","sourceEnrollment","sourceAccounting","crossOwnerReferenceIds","mfmBoundary","sourceCompleteness","semanticCompleteness","gameplayContractsImplemented","rosterIntegrationImplemented","presentationImplemented","contentCertified","officialUpdates","currentness","mfm","rosterReviewedScopeCorrections","rosterPermanentDoctrineSources","rosterProfileBindings","rosterReferenceSemantics","rosterAbilityReferences","conditionBindingOptions","rosterAttachmentPolicies","mfmImportReferences","mfmPhysicalPaidOptions","importBindings","rosterEquipmentCaptionBindings","canonicalMembership","rosterDetachmentReferenceReview","conditionSchema"]},
+  "sourceSchema": "source-refs/v1",
+  "sourceContextCatalog": {"contexts-ed601361945cabed":{"kind":"IDENTITY","field":"canonicalRuleId","value":"ability-sm-c4061e257e81492f"},"contexts-0c507ee30b8e92ef":{"kind":"IDENTITY","field":"canonicalOwnerId","value":"unit-sm-3460439c3a774c66"},"contexts-232d832937a5ef19":{"kind":"IDENTITY","field":"canonicalClauseId","value":"ability-sm-c4061e257e81492f#text:0-116"}}
 }

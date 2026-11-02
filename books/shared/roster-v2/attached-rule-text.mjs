@@ -5,6 +5,7 @@ import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/so
 import {predicateContext} from './context.mjs';
 import {equipmentSatisfied} from './effects.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {resolvePhysicalStaticModelEffects} from './physical-static-model.mjs';
 
 const at=(value,path)=>path.reduce((item,key)=>item?.[key],value);
 const all=values=>values.includes('FALSE')?'FALSE':values.every(value=>value==='TRUE')?'TRUE':'UNKNOWN';
@@ -84,7 +85,7 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
   const group=projection.formedUnits.find(item=>item.formedUnitId===target?.formedUnitId);
   if(!group)return [];
   requireValue(records.size===book.entities.length,'Duplicate attached rule identity');
-  const rows=new Map(),chains=new Map();
+  const rows=new Map(),chains=new Map();let staticEntries;
   const chainFor=rule=>{if(!chains.has(rule.id))chains.set(rule.id,ownerChain(rule,records));return chains.get(rule.id);};
   for(const source of projection.units.filter(unit=>unit.instanceId!==instanceId&&group.memberInstanceIds.includes(unit.instanceId))){
     for(const rule of book.entities.filter(rule=>rule.ruleContract&&rule.kind!=='STRATAGEM'&&rule.ruleContract.kind!=='STRATAGEM'&&
@@ -104,9 +105,16 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
       }
       for(const clause of rule.ruleContract.clauses){
         if(clause.recipientStatus!=='RECORDED')continue;
+        const staticDeclaration=clause.rosterEffects?.find(effect=>effect.physicalSource);
+        const bound=staticDeclaration?(staticEntries??=resolvePhysicalStaticModelEffects(book,projection)).find(entry=>
+          entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===staticDeclaration&&entry.source===source):null;
+        if(staticDeclaration&&!bound)continue; // An unproved physical source cannot propagate text either.
         const roles=new Map([...(rule.ruleContract.roles||[]),...(clause.roles||[])].map(role=>[role.id,role]));
-        for(const link of presentationRecipientLinks(rule,clause)){
-          validatePresentationRecipientLink(rule,clause,link);
+        for(const canonicalLink of presentationRecipientLinks(rule,clause)){
+          validatePresentationRecipientLink(rule,clause,canonicalLink);
+          // Keep admission on the validated canonical recipient graph; apply
+          // the same regenerated physical gates used by the interpreter.
+          const link=bound&&canonicalLink.effect===staticDeclaration?{...canonicalLink,effect:bound.effect}:canonicalLink;
           const recipient=link.recipient;
           const origins=[...(recipient.conditions||[]),...(clause.conditions||[])].flatMap(leaves).filter(node=>
             node.predicate==='FIELD'&&node.contextLevel==='BATTLE'&&node.arguments?.from==='SOURCE_MODEL'&&
@@ -180,7 +188,8 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
             if(!row){row={ruleId:rule.id,sourceInstanceId:source.instanceId,sourceUnitId:source.canonicalUnitId,recipientInstanceId:instanceId,
               sourceOwnerChain:chainFor(rule),...block,sourceLabel:title(records.get(source.canonicalUnitId)),
               ...copySourceEvidence(rule,{book,targetSlot:'sourceProvenance'}),proofs:[]};rows.set(key,row);}
-            row.proofs.push({clauseId:clause.id,recipientId:recipient.id,path:link.path,
+            if(bound)requireValue(recipient.id===clause.id+'::recipient/effect/1','Unresolved static MODEL recipient trace alias');
+            row.proofs.push({clauseId:bound?.clause.id||clause.id,recipientId:bound?bound.clause.id+'::recipient/effect/1':recipient.id,path:link.path,
               relation:rangeOrigin?'RANGE_ORIGIN':'EFFECT_RECIPIENT',...(rangeOrigin?{anchorModelScopeId:ownerModel.scopeId}:{}),
               ...(link.effect?.id?{effectId:link.effect.id}:{}),modelScopeIds:matched.filter(Boolean)});
           }

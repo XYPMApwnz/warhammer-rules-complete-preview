@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {buildSpaceMarinesContracts} from './rule-contract-build.mjs';
+import {prepareSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesPaidOptionBindings} from './roster-paid-option-bindings-build.mjs';
 import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
@@ -141,7 +142,7 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
   assert.equal(JSON.stringify(built.book),original,'Import builder changed the gameplay factual view');
   assert.equal(new Set(book.entities.map(entity=>entity.id)).size,book.entities.length);
   assert.ok(same(book.importBindings.compositions.map(row=>row.id).sort(),[...compositions.map(row=>row.id)].sort()));
-  return book;
+  return prepareSpaceMarinesStaticModels(book);
 }
 
 export function writeSpaceMarinesImportBook({check=false}={}){

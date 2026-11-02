@@ -43,7 +43,7 @@
     "gw-update:check": "node tests/gw-2026-08-26-update-qa.mjs",
     "gw-update:browser": "node tests/browser/gw-2026-08-26-update.mjs",
     "qa:core": "node books/core-rules/tests/term-bindings-qa.mjs && node books/core-rules/tests/reader-presentation-qa.mjs && node books/core-rules/tests/fact-provenance-qa.mjs && node books/core-rules/tests/source-node-ingestion-qa.mjs && node books/shared/canonical-content-v2/tests/effective-content-qa.mjs && node books/core-rules/tests/core-waha-source-corpus-qa.mjs && node books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs && node books/core-rules/tests/core-waha-certification-qa.mjs && node books/core-rules/tests/effective-catalog-qa.mjs && node books/core-rules/tests/factual-ownership-qa.mjs && node glossary/v2/tests/core-projection-qa.mjs && node books/core-rules/tests/reader-propagation-qa.mjs && node books/core-rules/tests/currentness-qa.mjs && node books/core-rules/tests/qa.mjs && node tests/core-reader-popup-glossary-qa.mjs && node books/core-rules/tests/factual-ownership-browser-qa.mjs && node books/core-rules/tests/reader-presentation-browser-qa.mjs",
-    "qa:sm": "node books/space-marines/v2/app-qa.mjs && node books/space-marines/v2/roster-import-qa.mjs",
+    "qa:sm": "node books/space-marines/v2/app-qa.mjs && node books/space-marines/v2/roster-import-qa.mjs && node books/space-marines/v2/roster-static-model-bindings-qa.mjs",
     "qa:ba": "node books/blood-angels/v2/app-qa.mjs && node books/blood-angels/v2/roster-qa.mjs",
     "qa:dg": "node books/death-guard/v2/app-qa.mjs && node books/death-guard/v2/roster-import-qa.mjs",
     "qa:am": "node books/adeptus-mechanicus/v2/app-qa.mjs && node books/adeptus-mechanicus/v2/roster-import-qa.mjs",

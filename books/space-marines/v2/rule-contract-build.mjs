@@ -11,7 +11,7 @@ import {buildNativeMfmBook} from './mfm-build.mjs';
 import {declarations,enhancementEligibility,pendingPhysicalBindings,weaponQualifierBindings,permanentDoctrineSources} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {bindNativeAbilities,bindNativeBaseProfiles,bindNativeKeywords} from './native-ability-bindings.mjs';
-import {physicalStaticBindings} from './roster-static-model-bindings.mjs';
+import {physicalStaticBindings,prepareSpaceMarinesStaticModels} from './roster-static-model-bindings.mjs';
 import {readSpaceMarinesRosterCorrections} from './roster-source-review.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {bindCanonicalContract,bindDeclarationClauses} from '../../shared/rule-contract-v2/bindings.mjs';
@@ -171,6 +171,12 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
     physicalImportImplemented:true,realNewRecruitExportTested:false,frontendVerified:false};
   return {book,schema,artifact,native,consumed:native.consumed};
 }
+/** Runtime-specific producer view; BA/DA inherit only buildSpaceMarinesContracts. */
+export function buildSpaceMarinesRuntimeContracts(options){
+  const built=buildSpaceMarinesContracts(options);
+  return {...built,book:prepareSpaceMarinesStaticModels(built.book)};
+}
+
 export function writeSpaceMarinesContracts({check=false}={}){
   const result=buildSpaceMarinesContracts();
   for(const [name,value]of [['rule-contracts',result.artifact],['roster-runtime',result.book]]){
