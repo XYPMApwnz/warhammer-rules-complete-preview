@@ -1,3 +1,4 @@
+import {bindTauStudentPairs,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from '../../../tests/helpers/tau-physical-choice-oracle.mjs';
 import {createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 import {launchQaBrowser} from '../../../tests/helpers/qa-browser.cjs';
 import {qaProgress} from '../../../tests/helpers/qa-progress.mjs';
@@ -15,9 +16,9 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
-import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,tauSourceChoiceInputs} from './roster-source-choices.mjs';
+import {setTauStudentChoice,tauSourceChoiceContext,tauSourceChoiceInputs} from './roster-source-choices.mjs';
 import {resolvePhysicalSelectionEffects} from '../../shared/roster-v2/recipient-execution.mjs';
-import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
+import {setTauPrototypeChoice,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
@@ -76,7 +77,7 @@ function assertPhysical(actual,expected){
 }
 function runtime(state){const service=createTauRosterRuntime(book);service.load(state);return service;}
 // Immediate observations share only the native service shell. Every invocation
-// still calls the real load(), which builds and executes a fresh inner runtime;
+// still calls the real atomic load() over the immutable prepared book;
 // its projection getter returns a clone. Retained/mutating services stay fresh.
 let projectionRuntime,snapshotImporter;
 function projectionOf(state){projectionRuntime??=createTauRosterRuntime(book);projectionRuntime.load(state);return projectionRuntime.projection;}

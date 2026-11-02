@@ -1,9 +1,6 @@
-import {finalizeOwnedRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
-import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
 /** T'au-owned decisions over existing physical selections; no weapon IDs or
  * infantry instances are invented to split aggregate inventory. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
-import {weaponPartitionKey} from '../../shared/roster-v2/effects.mjs';
 import {pendingPhysicalBindings} from './rule-contract-declarations.mjs';
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
@@ -28,6 +25,24 @@ export function addTauPrototypeChoices(book){
       assert(!records.has(option.id),'Duplicate Prototype choice');
       book.entities.push(option);book.rosterSelectionOptions.push(option);
     }
+  }
+  return book;
+}
+
+/** Prepare canonical operations once. Physical selections never add clauses. */
+export function addTauPrototypeOperations(book){
+  for(const spec of pendingPhysicalBindings){
+    const rule=book.entities.find(entity=>entity.id===spec.ruleId),template=rule.ruleContract.clauses[0];
+    assert(rule.ruleContract.clauses.every(clause=>clause.rosterEffects.length===0),'Prototype requires the accepted non-executable template');
+    rule.ruleContract.clauses.push({...clone(template),id:template.id+'::physical-choice',rosterClassification:'ROSTER_EXECUTABLE',
+      rosterEffects:spec.operationSpecs.map((operation,index)=>({id:template.id+'::physical-choice/effect-'+(index+1),...clone(operation),
+        targetBinding:'SOURCE_MODEL',targetSubject:'MODEL',weaponIds:clone(spec.eligibleWeaponProfileIds),weaponMode:'ranged',
+        conditions:[],sourceFields:[['text']],evidence:{field:['text'],quote:rule.data.text},lifetime:'WHILE_ASSIGNED',
+        physicalChoice:{kind:'MODEL_WEAPON',selectionField:tauPrototypeField,selectionKey:'weapon-choice/'+rule.id,
+          optionIds:spec.eligibleWeaponProfileIds.map(id=>optionId(rule.id,id)),canonicalClauseId:template.id,
+          clauseIdPrefix:'::physical-source/',effectIdSuffix:'/effect-'+(index+1)},
+        ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,
+          sourceEvidence:sourceSnapshot(rule,{book})}},{book})}))});
   }
   return book;
 }
@@ -104,43 +119,4 @@ export function setTauPrototypeChoice(book,snapshot,sourceInstanceId,ruleId,refe
     container.selections.at(-1).sourceLoadoutEvidence=loadoutEvidence(model,unit);
   }
   validateTauPrototypeChoices(book,state);return state;
-}
-
-export function bindTauPrototypeChoices(book,state){
-  const choices=validateTauPrototypeChoices(book,state),result=recipientDeclarationView(book);
-  for(const spec of pendingPhysicalBindings){
-    const rule=result.entities.find(entity=>entity.id===spec.ruleId);
-    rule.ruleContract.clauses=rule.ruleContract.clauses.filter(clause=>!clause.physicalWeaponSource);
-    assert(rule.ruleContract.clauses.every(clause=>clause.rosterEffects.length===0),'Prototype canonical template must remain non-executable');
-  }
-  for(const choice of choices){
-    const rule=result.entities.find(entity=>entity.id===choice.ruleId),template=rule.ruleContract.clauses[0];
-    const clause=clone(template),proof={field:['text'],quote:rule.data.text};
-    clause.id=rule.id+'::physical-source/'+JSON.stringify(choice.unitInstanceId);clause.rosterClassification='ROSTER_EXECUTABLE';
-    clause.physicalWeaponSource=choice.unitInstanceId;
-    clause.rosterClassificationNote={reason:'Validated physical weapon choice; quantity-two partition exists only in the effective projection',canonicalClauseId:template.id};
-    clause.rosterEffects=choice.spec.operationSpecs.map((operation,index)=>({id:clause.id+'/effect-'+(index+1),...clone(operation),
-      targetBinding:'SOURCE_MODEL',targetSubject:'MODEL',weaponIds:[choice.reference.canonicalProfileId],weaponMode:'ranged',
-      conditions:[{binding:'SOURCE',predicate:{predicate:'FIELD',subject:'UNIT',contextLevel:'ROSTER',
-        arguments:{key:'tauPhysicalUnitInstanceId',equals:choice.unitInstanceId},evidence:clone(proof)}}],
-      sourceFields:[['text']],evidence:clone(proof),lifetime:'WHILE_ASSIGNED',
-      ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:template.id,sourceEvidence:sourceSnapshot(rule,{book:result})}},{book:result})}));
-    rule.ruleContract.clauses.push(clause);
-  }
-  return finalizeOwnedRecipientBook(result);
-}
-
-export function tauWeaponSelectionResolver(book,state){
-  const choices=validateTauPrototypeChoices(book,state);
-  return ({rule,source})=>pendingPhysicalBindings.some(spec=>spec.ruleId===rule.id)?
-    (()=>{const choice=choices.find(choice=>choice.ruleId===rule.id&&choice.unitInstanceId===source?.instanceId);
-      if(!choice)return null;
-      const reference=clone(choice.reference);
-      if(choice.aggregate)reference.selectionKey=weaponPartitionKey({...reference,sourceRuleId:choice.ruleId},'selected');
-      return reference;})():undefined;
-}
-
-export function tauWeaponPartitionResolver(book,state){
-  const choices=validateTauPrototypeChoices(book,state).filter(choice=>choice.aggregate);
-  return ()=>choices.map(choice=>({...clone(choice.reference),sourceRuleId:choice.ruleId}));
 }

@@ -31,7 +31,7 @@ const at=(value,keys)=>keys.reduce((item,key)=>item?.[key],value);
  * inventory proof still belongs to the original row, while a loadout selection
  * belongs only to that loadout. Resolve recorded owners, never divide inventory
  * or infer ownership from a profile ID or the derived group's model count. */
-function physicalSelectionOwner(unit,model,selection){
+export function physicalSelectionOwner(unit,model,selection){
   const groups=[];
   for(const row of unit.modelRows){
     const allocated=(row.loadouts||[]).reduce((sum,loadout)=>sum+loadout.quantity,0);

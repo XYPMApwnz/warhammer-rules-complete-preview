@@ -1,6 +1,7 @@
 import {getSourceContext,copySourceEvidence,mergeSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {projectConditionalRow} from './conditional-policy.mjs';
 import {resolveExecutionEffect,resolvePhysicalSelectionAttribution} from './recipient-execution.mjs';
+import {resolvePhysicalChoiceAttribution} from './physical-choice.mjs';
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 import {projectAttachedRuleTexts} from './attached-rule-text.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
@@ -16,9 +17,10 @@ export function projectEffectiveInstance(book,projection,instanceId,context={}) 
   const effectSource=row=>{
     const rule=records.get(row.ruleId),clause=rule?.ruleContract?.clauses.find(value=>value.id===row.clauseId);
     const declaration=clause?.rosterEffects.find(value=>value.id===row.effectId);
-    const effect=declaration?.physicalSelection?undefined:declaration||
+    const effect=declaration?.physicalSelection||declaration?.physicalChoice?undefined:declaration||
       (rule?.ruleContract?.clauses.some(item=>item.rosterEffects.some(effect=>effect.physicalSelection))?
-        resolvePhysicalSelectionAttribution(book,projection,row):undefined);
+        resolvePhysicalSelectionAttribution(book,projection,row):rule?.ruleContract?.clauses.some(item=>item.rosterEffects.some(effect=>effect.physicalChoice))?
+        resolvePhysicalChoiceAttribution(book,projection,row):undefined);
     if(!effect||effect.operation!==row.operation||row.operation==='MODIFY_STAT'&&row.field!==({BS:'skill',WS:'skill'}[effect.field]||effect.field))
       throw new TypeError('Unresolved executed effect attribution');
     const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;

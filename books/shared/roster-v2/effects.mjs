@@ -3,6 +3,8 @@ import {formRoster, predicateContext, refreshFormedKeywords, selections} from '.
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
 import {resolveExecutionEffect,validatePhysicalSelectionEffect,resolvePhysicalSelectionEffects,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
+import {validatePhysicalChoiceEffect,resolvePhysicalChoices,weaponPartitionKey} from './physical-choice.mjs';
+export {weaponPartitionKey} from './physical-choice.mjs';
 import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
@@ -77,6 +79,7 @@ function validateEffectOperations(book,validatePredicate,evaluatePredicate,effec
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
       ids.add(effect.id);
       validatePhysicalSelectionEffect(book,entity,clause,effect);
+      validatePhysicalChoiceEffect(book,entity,clause,effect);
       // Root Army Rules have no physical source instance. Only actual global
       // executable clauses opt into dispatch; text/battle-only roots retain
       // their previous behaviour. Source-bound effects cannot use this path.
@@ -212,15 +215,14 @@ function changeStat(before, effect) {
   throw new TypeError('Unsupported characteristic expression: ' + raw);
 }
 /** Logical addresses inside one disposable projection, never physical serial IDs. */
-export const weaponPartitionKey=(request,role)=>JSON.stringify(['weapon-quantity-portion',request.unitInstanceId,
-  request.scopeId,request.selectionKey,request.canonicalProfileId,request.sourceRuleId,role]);
 
 /** A book supplies a confirmed decision, not weapon values or replacement rows.
  * Only the derived inventory changes; the validated imported state stays intact. */
-function partitionWeapons(book,state,projection,resolveWeaponPartitions){
-  if(!resolveWeaponPartitions)return;
-  const requests=resolveWeaponPartitions({state:structuredClone(state),projection:structuredClone(projection)});
-  if(!Array.isArray(requests))throw new TypeError('Invalid projection weapon partitions');
+function partitionWeapons(book,state,projection,resolveWeaponPartitions,declared=[]){
+  if(!resolveWeaponPartitions&&!declared.length)return;
+  const supplied=resolveWeaponPartitions?resolveWeaponPartitions({state:structuredClone(state),projection:structuredClone(projection)}):[];
+  if(!Array.isArray(supplied))throw new TypeError('Invalid projection weapon partitions');
+  const requests=[...declared,...supplied];
   const records=new Map(book.entities.map(entity=>[entity.id,entity])),seen=new Set();
   for(const request of requests){
     if(!request||Array.isArray(request)||Object.keys(request).length!==5||
@@ -258,10 +260,11 @@ function partitionWeapons(book,state,projection,resolveWeaponPartitions){
 export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
   const physicalEffects=resolvePhysicalSelectionEffects(book,result);
+  const {entries:choiceEffects,partitions:choicePartitions}=resolvePhysicalChoices(book,result);
   // Explicit UNIT scope opts into UNIT presentation. Legacy unscoped range
   // contracts retain their existing MODEL mirrors until separately reviewed.
   const scopedDetectionUnits=new Set();
-  partitionWeapons(book,state,result,resolveWeaponPartitions);
+  partitionWeapons(book,state,result,resolveWeaponPartitions,choicePartitions);
   const pending = [];
   for (const rule of book.entities.filter(e=>e.ruleContract)) {
     if (rule.ruleContract.detachmentId && !state.detachmentIds.includes(rule.ruleContract.detachmentId)) continue;
@@ -298,7 +301,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
         for (const effect of clause.rosterEffects) {
-          if(effect.physicalSelection)pending.push(...physicalEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source));
+          if(effect.physicalChoice)pending.push(...choiceEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source).map(entry=>({...entry,ownerModel})));
+          else if(effect.physicalSelection)pending.push(...physicalEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source));
           else pending.push({rule,clause,effect:resolveExecutionEffect(rule,clause,effect),source,ownerModel});
         }
       }
@@ -549,7 +553,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       // Optional book-owned decisions narrow existing operations, never their
       // canonical eligibility. Undefined preserves all-matching modifiers;
       // null explicitly withholds a selected-weapon effect without fallback.
-      const choice=resolveWeaponSelection?.({rule,effect,source,ownerModel});
+      const choice=Object.hasOwn(item,'weaponChoice')?item.weaponChoice:resolveWeaponSelection?.({rule,effect,source,ownerModel});
       if(choice===null){
         unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:'Physical weapon selection unavailable'});
         target.unit=original;continue;

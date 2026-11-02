@@ -121,7 +121,7 @@
     "adeptus-mechanicus:build": "node books/adeptus-mechanicus/v2/app-build.mjs",
     "qa:tyranids": "node books/tyranids/v2/app-qa.mjs && node books/tyranids/v2/roster-import-qa.mjs",
     "tyranids:build": "node books/tyranids/v2/app-build.mjs",
-    "qa:tau": "node books/tau-empire/v2/app-qa.mjs && node books/tau-empire/v2/roster-import-qa.mjs",
+    "qa:tau": "node books/tau-empire/v2/app-qa.mjs && node books/tau-empire/v2/roster-import-qa.mjs && node books/tau-empire/v2/physical-choice-qa.mjs",
     "tau-empire:build": "node books/tau-empire/v2/app-build.mjs",
     "qa:csm": "node books/chaos-space-marines/v2/app-qa.mjs && node books/chaos-space-marines/v2/roster-import-qa.mjs",
     "chaos-space-marines:build": "node books/chaos-space-marines/v2/app-build.mjs",

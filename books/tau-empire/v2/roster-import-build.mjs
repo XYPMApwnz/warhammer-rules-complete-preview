@@ -8,7 +8,7 @@ import {buildTauContracts,createTauRuleSchema} from './rule-contract-build.mjs';
 import {enhancementEligibility} from './rule-contract-declarations.mjs';
 import {consumeMfm} from './mfm-boundary.mjs';
 import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs';
-import {addTauPrototypeChoices} from './roster-weapon-choices.mjs';
+import {addTauPrototypeChoices,addTauPrototypeOperations} from './roster-weapon-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
 import {copySourceEvidence,sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
@@ -132,6 +132,7 @@ export function buildTauImportBook(){
   }
   addTauSourceChoices(book);
   addTauPrototypeChoices(book);
+  addTauPrototypeOperations(book);
   // Lower only the independently validated physical recipient choice. The
   // existing executor performs the grant; the source decision stores no result.
   const rule=index.get(tauStudentRuleId),clause=rule.ruleContract.clauses.find(c=>c.sourceText===rule.data.text);
@@ -142,6 +143,16 @@ export function buildTauImportBook(){
   clause.rosterClassificationNote={reason:'Validated physical source/recipient pairs are lowered at the T’au runtime boundary; no battle simulation',
     sourceChoice:tauStudentRuleId};
   clause.rosterEffects=[];
+  // A single source-owned operation addresses saved physical pairs at execution;
+  // the canonical display clause and its identity remain unchanged.
+  rule.ruleContract.clauses.push({...copy(clause),id:clause.id+'::physical-choice',rosterClassification:'ROSTER_EXECUTABLE',
+    rosterEffects:[{id:clause.id+'::physical-choice/deep-strike',operation:'GRANT_ABILITY',
+      ability:{canonicalId:'core-deep-strike',parameters:{}},targetBinding:'ROSTER_UNITS',targetSubject:'UNIT',unitScope:'PHYSICAL',
+      conditions:[],sourceFields:[['text']],evidence:{field:['text'],quote:rule.data.text},lifetime:'WHILE_ASSIGNED',
+      physicalChoice:{kind:'UNIT_RECIPIENTS',selectionField:'selectedTauSourceChoiceIds',selectionKey:'source-choice/'+rule.id,
+        optionId:rule.id+'::choice::physical-recipients',canonicalClauseId:clause.id,clauseIdPrefix:'::physical-pair/',effectIdSuffix:'/deep-strike'},
+      ...copySourceEvidence({provenance:{canonicalRuleId:rule.id,canonicalOwnerId:rule.parentId,canonicalClauseId:clause.id,
+        sourceEvidence:sourceSnapshot(rule,{book})}},{book})}]});
   book.importReadiness={stage:4,status:'PARTIAL',frontendVerified:false,realNewRecruitExportTested:false,
     remainingBlockers:['EXACT_DUPLICATE_WEAPON_OCCURRENCE'],
     unprovenExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],markerOccurrenceCount:markerBindings.length,

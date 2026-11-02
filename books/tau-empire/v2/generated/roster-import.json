@@ -16543,6 +16543,116 @@
             "rosterEffects": [],
             "recipients": [],
             "recipientStatus": "NOT_RECORDED"
+          },
+          {
+            "id": "detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike::physical-choice",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "arguments": {
+                        "keyword": "KROOT"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "eligibilityText"
+                        ],
+                        "quote": "KROOT SHAPER model only."
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "arguments": {
+                        "keyword": "SHAPER"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "eligibilityText"
+                        ],
+                        "quote": "KROOT SHAPER model only."
+                      }
+                    }
+                  ]
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike."
+            },
+            "sourceText": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Validated physical source/recipient pairs are lowered at the T’au runtime boundary; no battle simulation",
+              "sourceChoice": "detachment-auxiliary-cadre:enhancement:1"
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike::physical-choice/deep-strike",
+                "operation": "GRANT_ABILITY",
+                "ability": {
+                  "canonicalId": "core-deep-strike",
+                  "parameters": {}
+                },
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "KROOT SHAPER model only. In the Declare Battle Formations step, you can select up to three friendly KROOT CARNIVORES/FARSTALKERS units. Those units have Deep Strike."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "UNIT_RECIPIENTS",
+                  "selectionField": "selectedTauSourceChoiceIds",
+                  "selectionKey": "source-choice/detachment-auxiliary-cadre:enhancement:1",
+                  "optionId": "detachment-auxiliary-cadre:enhancement:1::choice::physical-recipients",
+                  "canonicalClauseId": "detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike",
+                  "clauseIdPrefix": "::physical-pair/",
+                  "effectIdSuffix": "/deep-strike"
+                },
+                "recipientId": "detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike::physical-choice::recipient/effect/1",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-dd2a823a7492352e","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[15]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-bbb469a40ab86bca","contexts-05ac36b69e62eaac","contexts-590658be1617b780","contexts-0cf6fd891005fc11","contexts-eff76dae106521c8"]},"$schema":"source-refs/v1","$order":["id","operation","ability","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-auxiliary-cadre:enhancement:1","canonicalOwnerId":"detachment-auxiliary-cadre","canonicalClauseId":"detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike"}}
+              }
+            ],
+            "recipients": [
+              {
+                "id": "detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike::physical-choice::recipient/effect/1",
+                "who": "UNIT",
+                "from": "ROSTER_UNITS",
+                "side": "FRIENDLY",
+                "how": "ROSTER",
+                "scope": "PHYSICAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-auxiliary-cadre",
@@ -18525,6 +18635,214 @@
             "rosterEffects": [],
             "recipients": [],
             "recipientStatus": "NOT_RECORDED"
+          },
+          {
+            "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "BATTLESUIT"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "BATTLESUIT model only."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have: +2 S +1 AP and D."
+            },
+            "sourceText": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have: +2 S +1 AP and D.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Numeric changes are source-proven and supported by MODIFY_STAT, but the one-physical-weapon choice is not bound in Stage 3. Do not apply the modifier to all equal profiles or choose a weapon automatically.",
+              "reviewClassification": "SOURCE_CONFLICT / NOT_PROVEN",
+              "dependencies": [
+                "one-physical-weapon-choice"
+              ],
+              "reviewedRecipient": {
+                "scope": "MODEL / ONE PHYSICAL WEAPON",
+                "description": "One explicitly selected eligible weapon equipped by the physical bearer, not all copies",
+                "runtimeSelector": false
+              },
+              "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 2,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                  "datasheet-crisis-starscythe-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have: +2 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:1",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-crisis-starscythe-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-1"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2f2fc1f740244249","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-0a4a63694c8a4717","contexts-428f16bd76abb4ad","contexts-987b175b0e4db459","contexts-0cf6fd891005fc11","contexts-a69c7687ba92f40d"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:1","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                  "datasheet-crisis-starscythe-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have: +2 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:1",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-crisis-starscythe-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-2"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2f2fc1f740244249","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-0a4a63694c8a4717","contexts-428f16bd76abb4ad","contexts-987b175b0e4db459","contexts-0cf6fd891005fc11","contexts-a69c7687ba92f40d"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:1","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice/effect-3",
+                "operation": "MODIFY_STAT",
+                "field": "damage",
+                "mode": "ADD",
+                "value": 1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                  "datasheet-crisis-starscythe-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s T’au Flamer weapons. That weapon’s attacks have: +2 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:1",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:9",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:1::choice::weapon/datasheet-crisis-starscythe-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-3"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2f2fc1f740244249","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[1]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-0a4a63694c8a4717","contexts-428f16bd76abb4ad","contexts-987b175b0e4db459","contexts-0cf6fd891005fc11","contexts-a69c7687ba92f40d"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:1","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength"}}
+              }
+            ],
+            "recipients": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-experimental-prototype-cadre",
@@ -18826,6 +19144,264 @@
             "rosterEffects": [],
             "recipients": [],
             "recipientStatus": "NOT_RECORDED"
+          },
+          {
+            "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "BATTLESUIT"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "BATTLESUIT model only."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D."
+            },
+            "sourceText": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Numeric changes are source-proven and supported by MODIFY_STAT, but the one-physical-weapon choice is not bound in Stage 3. Do not apply the modifier to all equal profiles or choose a weapon automatically.",
+              "reviewClassification": "SOURCE_CONFLICT / NOT_PROVEN",
+              "dependencies": [
+                "one-physical-weapon-choice"
+              ],
+              "reviewedRecipient": {
+                "scope": "MODEL / ONE PHYSICAL WEAPON",
+                "description": "One explicitly selected eligible weapon equipped by the physical bearer, not all copies",
+                "runtimeSelector": false
+              },
+              "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 2,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                  "datasheet-crisis-fireknife-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:2",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-crisis-fireknife-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-1"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-b43118083757901a","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-4cff503ce1bcff58","contexts-428f16bd76abb4ad","contexts-09e276989ec9a532","contexts-0cf6fd891005fc11","contexts-3e54e4ded8671d42"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:2","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "attacks",
+                "mode": "ADD",
+                "value": 1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                  "datasheet-crisis-fireknife-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:2",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-crisis-fireknife-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-2"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-b43118083757901a","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-4cff503ce1bcff58","contexts-428f16bd76abb4ad","contexts-09e276989ec9a532","contexts-0cf6fd891005fc11","contexts-3e54e4ded8671d42"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:2","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice/effect-3",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                  "datasheet-crisis-fireknife-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:2",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-crisis-fireknife-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-3"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-b43118083757901a","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-4cff503ce1bcff58","contexts-428f16bd76abb4ad","contexts-09e276989ec9a532","contexts-0cf6fd891005fc11","contexts-3e54e4ded8671d42"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:2","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice/effect-4",
+                "operation": "MODIFY_STAT",
+                "field": "damage",
+                "mode": "ADD",
+                "value": 1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                  "datasheet-crisis-fireknife-battlesuits:weapon:2"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Plasma Rifle weapons. That weapon’s attacks have: +2 S +1 A, AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:2",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:8",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:7",
+                    "detachment-experimental-prototype-cadre:enhancement:2::choice::weapon/datasheet-crisis-fireknife-battlesuits:weapon:2"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-4"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/4",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-b43118083757901a","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[2]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-4cff503ce1bcff58","contexts-428f16bd76abb4ad","contexts-09e276989ec9a532","contexts-0cf6fd891005fc11","contexts-3e54e4ded8671d42"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:2","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"}}
+              }
+            ],
+            "recipients": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength::physical-choice::recipient/effect/4",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-experimental-prototype-cadre",
@@ -19071,6 +19647,208 @@
             "rosterEffects": [],
             "recipients": [],
             "recipientStatus": "NOT_RECORDED"
+          },
+          {
+            "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice",
+            "roles": [
+              {
+                "id": "owner",
+                "subject": "MODEL",
+                "purpose": "OWNER",
+                "allegiance": "FRIENDLY",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "arguments": {
+                    "keyword": "BATTLESUIT"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "eligibilityText"
+                    ],
+                    "quote": "BATTLESUIT model only."
+                  }
+                },
+                "conditions": []
+              }
+            ],
+            "conditions": [],
+            "sourceFields": [
+              [
+                "text"
+              ]
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have: +3 S +1 AP and D."
+            },
+            "sourceText": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have: +3 S +1 AP and D.",
+            "rosterClassification": "ROSTER_EXECUTABLE",
+            "rosterClassificationNote": {
+              "reason": "Numeric changes are source-proven and supported by MODIFY_STAT, but the one-physical-weapon choice is not bound in Stage 3. Do not apply the modifier to all equal profiles or choose a weapon automatically.",
+              "reviewClassification": "SOURCE_CONFLICT / NOT_PROVEN",
+              "dependencies": [
+                "one-physical-weapon-choice"
+              ],
+              "reviewedRecipient": {
+                "scope": "MODEL / ONE PHYSICAL WEAPON",
+                "description": "One explicitly selected eligible weapon equipped by the physical bearer, not all copies",
+                "runtimeSelector": false
+              },
+              "activationConditions": "Confirmed selection of this canonical Enhancement/Upgrade; BATTLESUIT model only. Correct source Detachment selected. Declare Battle Formations one-weapon choice confirmed."
+            },
+            "rosterEffects": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice/effect-1",
+                "operation": "MODIFY_STAT",
+                "field": "strength",
+                "mode": "ADD",
+                "value": 3,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have: +3 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:3",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-1"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2867123d1b35af6b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-e0ad2aeba2446efd","contexts-428f16bd76abb4ad","contexts-5ce5d759bdcbe01b","contexts-0cf6fd891005fc11","contexts-d0d912c598ee8ce7"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:3","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice/effect-2",
+                "operation": "MODIFY_STAT",
+                "field": "ap",
+                "mode": "ADD",
+                "value": -1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have: +3 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:3",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-2"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2867123d1b35af6b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-e0ad2aeba2446efd","contexts-428f16bd76abb4ad","contexts-5ce5d759bdcbe01b","contexts-0cf6fd891005fc11","contexts-d0d912c598ee8ce7"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:3","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength"}}
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice/effect-3",
+                "operation": "MODIFY_STAT",
+                "field": "damage",
+                "mode": "ADD",
+                "value": 1,
+                "weaponIds": [
+                  "datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                  "datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                ],
+                "weaponMode": "ranged",
+                "conditions": [],
+                "sourceFields": [
+                  [
+                    "text"
+                  ]
+                ],
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "BATTLESUIT model only. In the Declare Battle Formations step, select one of this model’s Airbursting Fragmentation Projector weapons. That weapon’s attacks have: +3 S +1 AP and D."
+                },
+                "lifetime": "WHILE_ASSIGNED",
+                "physicalChoice": {
+                  "kind": "MODEL_WEAPON",
+                  "selectionField": "selectedTauWeaponChoiceIds",
+                  "selectionKey": "weapon-choice/detachment-experimental-prototype-cadre:enhancement:3",
+                  "optionIds": [
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-coldstar-battlesuit:weapon:1",
+                    "detachment-experimental-prototype-cadre:enhancement:3::choice::weapon/datasheet-commander-in-enforcer-battlesuit:weapon:1"
+                  ],
+                  "canonicalClauseId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength",
+                  "clauseIdPrefix": "::physical-source/",
+                  "effectIdSuffix": "/effect-3"
+                },
+                "recipientId": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "sourceRefs": [{"documentId":"documents-f0001073d26cb685","referenceId":"refs-2867123d1b35af6b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[16]/div[3]/div[3]/div[3]/table/tbody[2]/tr/td"}]}],
+                "sourceBindings": {"provenance":{"layout":"layouts-e1f4f7f3bdc77543","refs":[0,0,0,0],"contexts":["contexts-e0ad2aeba2446efd","contexts-428f16bd76abb4ad","contexts-5ce5d759bdcbe01b","contexts-0cf6fd891005fc11","contexts-d0d912c598ee8ce7"]},"$schema":"source-refs/v1","$order":["id","operation","field","mode","value","weaponIds","weaponMode","conditions","sourceFields","evidence","lifetime","physicalChoice","provenance","recipientId"]},
+                "sourceOwnership": {"provenance":{"canonicalRuleId":"detachment-experimental-prototype-cadre:enhancement:3","canonicalOwnerId":"detachment-experimental-prototype-cadre","canonicalClauseId":"detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength"}}
+              }
+            ],
+            "recipients": [
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/1",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/2",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              },
+              {
+                "id": "detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength::physical-choice::recipient/effect/3",
+                "who": "MODEL",
+                "from": "SOURCE_MODEL",
+                "side": "FRIENDLY",
+                "how": "ROSTER"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-experimental-prototype-cadre",
@@ -74992,5 +75770,5 @@
   },
   "conditionSchema": "conditions/v1",
   "sourceSchema": "source-refs/v1",
-  "sourceContextCatalog": {"contexts-7133950cae12a70a":{"kind":"IDENTITY","field":"canonicalRuleId","value":"drone-shield-drone"},"contexts-6c60a77c0075f5e6":{"kind":"IDENTITY","field":"canonicalClauseId","value":"drone-shield-drone#wounds"}}
+  "sourceContextCatalog": {"contexts-bbb469a40ab86bca":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-auxiliary-cadre:enhancement:1"},"contexts-05ac36b69e62eaac":{"kind":"IDENTITY","field":"canonicalOwnerId","value":"detachment-auxiliary-cadre"},"contexts-590658be1617b780":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike"},"contexts-0a4a63694c8a4717":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:1"},"contexts-987b175b0e4db459":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength"},"contexts-4cff503ce1bcff58":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:2"},"contexts-09e276989ec9a532":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"},"contexts-e0ad2aeba2446efd":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:3"},"contexts-5ce5d759bdcbe01b":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength"},"contexts-7133950cae12a70a":{"kind":"IDENTITY","field":"canonicalRuleId","value":"drone-shield-drone"},"contexts-6c60a77c0075f5e6":{"kind":"IDENTITY","field":"canonicalClauseId","value":"drone-shield-drone#wounds"}}
 }

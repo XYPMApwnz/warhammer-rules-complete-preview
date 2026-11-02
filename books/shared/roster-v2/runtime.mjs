@@ -5,6 +5,7 @@ import {executeRosterEffects,validateRosterEffects} from './effects.mjs';
 import {validateCompatibilityFeasibility} from './compatibility-feasibility.mjs';
 import {projectRosterRelated} from './related.mjs';
 import {registerBookSources,cloneSourceBook} from '../source-refs-v2/source-refs.mjs';
+import {createRosterConditionBinding} from './condition-binding.mjs';
 const clone = value=>structuredClone(value);
 const ordered=value=>Array.isArray(value)?value.map(ordered):value&&typeof value==='object'
   ?Object.fromEntries(Object.keys(value).sort().map(key=>[key,ordered(value[key])])):value;
@@ -28,10 +29,12 @@ export function commitRosterImport(result,previous,load,{replaceExisting=false}=
 }
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
-export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection,resolveWeaponPartitions}) {
+export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection,resolveWeaponPartitions,conditionInputs}) {
   if(resolveWeaponSelection!==undefined && typeof resolveWeaponSelection!=='function')throw new TypeError('Invalid physical weapon selection resolver');
   if(resolveWeaponPartitions!==undefined && typeof resolveWeaponPartitions!=='function')throw new TypeError('Invalid projection weapon partition resolver');
-  ({evaluatePredicate,evaluateRole}=withRosterDetachments({evaluatePredicate,evaluateRole}));
+  if(conditionInputs!==undefined&&!Array.isArray(conditionInputs))throw new TypeError('Invalid runtime condition inputs');
+  const kernel={evaluatePredicate,evaluateRole},inputs=conditionInputs===undefined?undefined:clone(conditionInputs);
+  ({evaluatePredicate,evaluateRole}=withRosterDetachments(kernel));
   book=cloneSourceBook(book);
   registerBookSources(book);
   validateRosterEffects(book,validatePredicate,evaluatePredicate);
@@ -52,8 +55,12 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       return commitRosterImport(result,state,service.load,options);
     },
     load(snapshot) {
-      const verified=validateRoster(book,snapshot,policies), derived=executeRosterEffects(book,verified,{evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions});
-      state=verified;projection=derived;return service.state;
+      const verified=validateRoster(book,snapshot,policies);
+      const next=inputs===undefined?{evaluatePredicate,evaluateRole}:withRosterDetachments(createRosterConditionBinding({book,state:verified,schema:kernel,inputs}));
+      const derived=executeRosterEffects(book,verified,{evaluatePredicate:next.evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions});
+      // Publish the physical state, context computers and projection together.
+      // A failed computer/interpreter leaves the previous generation intact.
+      state=verified;projection=derived;({evaluatePredicate,evaluateRole}=next);return service.state;
     },
     snapshot(){ if (!state) throw new TypeError('No roster');return clone(state); },
     attach(leaderId,bodyguardId){ return service.load(changeAttachment(book,state,policies,'ATTACH',leaderId,bodyguardId)); },

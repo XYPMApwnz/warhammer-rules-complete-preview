@@ -5,8 +5,8 @@ import {validateRoster,formRoster,selections,changeAttachment} from '../../share
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
 import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {validateTauSourceChoices,validateTauAttachmentSourceConditions,setTauStudentChoice,
-  tauSourceChoiceInputs,preserveTauSourceChoices,bindTauStudentPairs} from './roster-source-choices.mjs';
-import {validateTauPrototypeChoices,setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver} from './roster-weapon-choices.mjs';
+  tauSourceChoiceInputs,preserveTauSourceChoices} from './roster-source-choices.mjs';
+import {validateTauPrototypeChoices,setTauPrototypeChoice} from './roster-weapon-choices.mjs';
 import {sameSourceEvidence,copySourceEvidence,mergeSourceEvidence} from '../../shared/source-refs-v2/source-refs.mjs';
 
 const copy=structuredClone,same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -143,7 +143,13 @@ export function createTauRosterImport(input){
     }catch(e){error('INVALID_PHYSICAL_STATE','roster',e.message);}
     return {state,needs,errors};
   }
+  function validate(snapshot){
+    const checked=bind(validateRoster(book,snapshot,book.rosterAttachmentPolicies));
+    requireValue(!checked.errors.length&&!checked.needs.length,JSON.stringify({errors:checked.errors,needs:checked.needs}));
+    return checked.state;
+  }
   return {get state(){return saved?copy(saved):null;},draft:text=>shared().draft(text),
+    validate,
     import(text,bindings={}){
       const unknown=Object.keys(bindings).filter(key=>!['units','profiles','detachments','detachmentId','selections','enhancements','modelBearers'].includes(key));
       if(unknown.length)return {status:'INVALID',roster:null,needsBindings:[],errors:unknown.map(key=>({code:'UNSUPPORTED_SOURCE_BINDING',key,
@@ -159,26 +165,20 @@ export function createTauRosterImport(input){
         needsBindings:[...result.needsBindings,...checked.needs],errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED'};
     },
     load(snapshot){
-      const checked=bind(validateRoster(book,snapshot,book.rosterAttachmentPolicies));
-      requireValue(!checked.errors.length&&!checked.needs.length,JSON.stringify({errors:checked.errors,needs:checked.needs}));
-      saved=checked.state;return copy(saved);
+      saved=validate(snapshot);return copy(saved);
     },snapshot(){requireValue(saved,'No imported T’au roster');return copy(saved);}};
 }
 
 /** Existing runtime owns execution and projection. This book boundary validates
  * physical source decisions before loading, so a rejected edit is atomic. */
 export function createTauRosterRuntime(book){
-  let runtime=createRosterRuntime(book,createTauRuleSchema());
+  const schema=createTauRuleSchema();schema.validateContracts(book);
+  const runtime=createRosterRuntime(book,{...schema,conditionInputs:tauSourceChoiceInputs(book)});
   const imports=createTauRosterImport(book);
   const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
     load(value){
       // Import validation also proves saved physical/source identity bindings.
-      const candidate=imports.load(value),boundBook=bindTauPrototypeChoices(bindTauStudentPairs(book,candidate),candidate);
-      const schema=createTauRuleSchema({book:boundBook,state:candidate,inputs:tauSourceChoiceInputs(boundBook,candidate)});
-      schema.validateContracts(boundBook);
-      const next=createRosterRuntime(boundBook,{...schema,resolveWeaponSelection:tauWeaponSelectionResolver(boundBook,candidate),
-        resolveWeaponPartitions:tauWeaponPartitionResolver(boundBook,candidate)});
-      const verified=next.load(candidate);runtime=next;return verified;
+      return runtime.load(imports.validate(value));
     },snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),related:(...args)=>runtime.related(...args),
     context:(...args)=>runtime.context(...args),
     attach:(leader,target)=>service.load(changeAttachment(book,runtime.snapshot(),book.rosterAttachmentPolicies,'ATTACH',leader,target)),
