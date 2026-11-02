@@ -27,6 +27,29 @@ const requirePhysical=(ok,message)=>{if(!ok)throw new TypeError('Physical select
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const at=(value,keys)=>keys.reduce((item,key)=>item?.[key],value);
 
+/** formRoster inherits row selections into every LOADOUT/PROFILE group. Their
+ * inventory proof still belongs to the original row, while a loadout selection
+ * belongs only to that loadout. Resolve recorded owners, never divide inventory
+ * or infer ownership from a profile ID or the derived group's model count. */
+function physicalSelectionOwner(unit,model,selection){
+  const groups=[];
+  for(const row of unit.modelRows){
+    const allocated=(row.loadouts||[]).reduce((sum,loadout)=>sum+loadout.quantity,0);
+    const remaining=row.quantity-allocated;
+    if(remaining>0&&model.scopeId===`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`)
+      groups.push({row,quantity:remaining,owners:[row]});
+    for(const loadout of row.loadouts||[])if(loadout.quantity>0&&model.scopeId===`${unit.instanceId}/${row.rowId}/LOADOUT/${loadout.loadoutId}`)
+      groups.push({row,quantity:loadout.quantity,owners:[row,loadout]});
+  }
+  requirePhysical(groups.length===1&&model.unitInstanceId===unit.instanceId&&model.canonicalUnitId===unit.canonicalUnitId&&
+    groups[0].row.canonicalProfileId===model.canonicalProfileId&&model.quantity===groups[0].quantity,
+    'unresolved derived physical MODEL group');
+  const matches=groups[0].owners.flatMap(owner=>(owner.selections||[]).filter(record=>same(record,selection)).map(()=>owner));
+  requirePhysical(matches.length>0,'selection has no recorded physical owner');
+  requirePhysical(matches.length===1,'duplicate physical equipment selection');
+  return matches[0];
+}
+
 /** A producer prepares the operation once. This descriptor only addresses an
  * existing physical equipment occurrence; it never supplies another recipient
  * format, an executable callback, or a saved computed result. */
@@ -78,8 +101,9 @@ export function resolvePhysicalSelectionEffects(book,projection){
       const quantity=selection.perModelQuantity,root=book.entities.find(entity=>entity.id===selection.sourceEquipmentIdentity);
       requirePhysical(Number.isSafeInteger(quantity)&&quantity>0&&sameSourceEvidence(selection,root,{book,slot:'sourceEquipmentProvenance',otherSlot:'provenance'}),
         'requires confirmed per-MODEL quantity and source evidence');
-      requirePhysical(Number.isSafeInteger(model.quantity)&&model.quantity>0&&selection.physicalQuantity===model.quantity*quantity&&
-        selection.quantityEvidence?.selectedQuantity===quantity&&selection.quantityEvidence.modelQuantity===model.quantity,
+      const owner=physicalSelectionOwner(unit,model,selection);
+      requirePhysical(Number.isSafeInteger(owner.quantity)&&owner.quantity>0&&selection.physicalQuantity===owner.quantity*quantity&&
+        selection.quantityEvidence?.selectedQuantity===quantity&&selection.quantityEvidence.modelQuantity===owner.quantity,
         'physical quantity contradicts MODEL selection evidence');
       requirePhysical(selection.canonicalEquipmentIds.length===1,'ambiguous equipment source occurrence');
       const matches=candidates.filter(item=>item.rule.id===selection.canonicalEquipmentIds[0]&&item.rule.parentId===unit.canonicalUnitId);

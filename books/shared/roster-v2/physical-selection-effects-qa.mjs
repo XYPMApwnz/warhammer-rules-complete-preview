@@ -31,7 +31,11 @@ const expectedErrors={
   'wrong physical operation':/Physical selection binding: unsupported physical operation/,
   'wrong physical recipient':/Recipient contract: unresolved or duplicate recipient ID/,
   'orphan recipient guard retained':/Recipient contract: orphan recipient declaration/,
-  'wrong same-profile target attribution':/Physical selection binding: unresolved executed MODEL attribution/
+  'wrong same-profile target attribution':/Physical selection binding: unresolved executed MODEL attribution/,
+  'inherited proof uses derived group quantity':/Physical selection binding: physical quantity contradicts MODEL selection evidence/,
+  'loadout proof uses whole row quantity':/Physical selection binding: physical quantity contradicts MODEL selection evidence/,
+  'forged derived group quantity':/Physical selection binding: unresolved derived physical MODEL group/,
+  'selection copied to unrelated derived group':/Physical selection binding: selection has no recorded physical owner/
 };
 const negative=(name,run)=>{
   const expected=expectedErrors[name];assert.ok(expected,'Every negative control needs an exact guard expectation');
@@ -93,6 +97,55 @@ check('repeat load is idempotent and source book byte-identical',()=>{
 check('explicit homogeneous group retains per-MODEL quantity',()=>{
   const grouped=clone(state);grouped.units[0].modelRows=[{rowId:'group',canonicalProfileId:id('profile'),quantity:3,selections:[equipment('group',2,3)],loadouts:[]}];
   assert.deepEqual(wounds(runtime(grouped).projection),[[10],[8,8,8]]);
+});
+const splitState=()=>{
+  const split=clone(state);
+  split.units[0].modelRows=[{rowId:'group',canonicalProfileId:id('profile'),quantity:3,
+    selections:[equipment('whole-row',1,3)],loadouts:[{loadoutId:'special',quantity:1,selections:[]}]}];
+  return split;
+};
+check('row quantity three splits into one and two without changing its inventory proof',()=>{
+  const split=splitState(),service=runtime(split),derived=service.projection;
+  assert.deepEqual(derived.units[0].profiles.map(model=>model.quantity),[1,2]);
+  assert.deepEqual(wounds(derived),[[9,9],[8,8,8]]);
+  assert.equal(service.snapshot().units[0].modelRows[0].selections[0].physicalQuantity,3);
+  const entries=resolvePhysicalSelectionEffects(book,derived);assert.equal(entries.length,2);
+  for(const entry of entries){
+    assert.equal(entry.effect.value,1);
+    assert.equal(entry.clause.id,local.id+'::equipment-instance/'+JSON.stringify(['alpha',entry.physicalTarget.model.scopeId,'whole-row']));
+    assert.equal(sourceSnapshot(entry.effect).physicalEquipmentReference.perModelQuantity,1);
+  }
+  const snapshot=service.snapshot();service.load(snapshot);assert.deepEqual(service.projection,derived);assert.deepEqual(service.snapshot(),snapshot);
+  assert.equal(service.effective('alpha').statSources.length,2);
+});
+check('inherited and loadout-local selections retain distinct original owners',()=>{
+  const split=splitState();split.units[0].modelRows[0].loadouts[0].selections=[equipment('loadout-only',1,1)];
+  assert.deepEqual(wounds(runtime(split).projection),[[10,9],[8,8,8]]);
+  split.units[0].modelRows[0].selections=[];
+  assert.deepEqual(wounds(runtime(split).projection),[[9,8],[8,8,8]]);
+});
+check('row selection survives full allocation and several derived loadout groups',()=>{
+  const split=splitState(),row=split.units[0].modelRows[0];
+  row.loadouts=[{loadoutId:'first',quantity:1,selections:[]},{loadoutId:'second',quantity:1,selections:[]}];
+  assert.deepEqual(wounds(runtime(split).projection),[[9,9,9],[8,8,8]]);
+  row.loadouts=[{loadoutId:'all',quantity:3,selections:[]}];
+  assert.deepEqual(wounds(runtime(split).projection),[[9],[8,8,8]]);
+});
+negative('inherited proof uses derived group quantity',()=>{
+  const split=splitState();split.units[0].modelRows[0].selections[0].quantityEvidence.modelQuantity=1;runtime(split);
+});
+negative('loadout proof uses whole row quantity',()=>{
+  const split=splitState(),loadout=split.units[0].modelRows[0].loadouts[0];
+  loadout.selections=[equipment('loadout-only',1,1)];loadout.selections[0].quantityEvidence.modelQuantity=3;runtime(split);
+});
+negative('forged derived group quantity',()=>{
+  const derived=formRoster(book,splitState());derived.units[0].profiles[1].quantity=1;resolvePhysicalSelectionEffects(book,derived);
+});
+negative('selection copied to unrelated derived group',()=>{
+  const split=splitState();split.units[0].modelRows[0].loadouts[0].selections=[equipment('loadout-only',1,1)];
+  const derived=formRoster(book,split);
+  derived.units[0].profiles[1].selections.push(clone(derived.units[0].profiles[0].selections.find(selection=>selection.selectionKey==='loadout-only')));
+  resolvePhysicalSelectionEffects(book,derived);
 });
 check('UNIT aggregate and absent selection never manufacture MODEL ownership',()=>{
   const aggregate=clone(state);aggregate.units[0].modelRows.forEach(row=>row.selections=[]);

@@ -357,6 +357,35 @@ test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
   groupedPerModelQuantity:'PASS',mixedDroneTypes:'PASS',attachmentIsolation:'PASS',persistence:'PASS',recompute:'PASS'};
 });
 
+test('stage4d-shield-row-selection-inherited-by-split-loadout-groups',()=>{
+ const text=header()+'3x Broadside Battlesuits (100 pts)\n• 1x Broadside Shas’vre\n• 2x Broadside Shas’ui: 1x Shield Drone\n1 with 1x Heavy rail rifle\n'+
+  '3x Broadside Battlesuits (100 pts)\n• 1x Broadside Shas’vre\n• 2x Broadside Shas’ui\n';
+ const importer=make(),state=ready(text,{},importer).roster,row=state.units[0].modelRows[1],selection=row.selections[0];
+ assert.equal(row.quantity,2);assert.equal(row.loadouts[0].quantity,1);
+ assert.equal(selection.physicalQuantity,2);assert.equal(selection.perModelQuantity,1);assert.equal(selection.quantityEvidence.modelQuantity,2);
+ const run=runtime(state),projection=run.projection,saved=run.snapshot();
+ assert.deepEqual(projection.units[0].profiles.map(model=>model.quantity),[1,1,1]);
+ assert.deepEqual(shieldW(projection),[[8,9,9],[8,8]],'Inherited row inventory is not divided or reassigned to the independent duplicate');
+ const view=run.effective(state.units[0].instanceId);assert.equal(view.statSources.length,2);
+ for(const model of projection.units[0].profiles.slice(1)){
+  const clauseId=selection.canonicalEquipmentIds[0]+'::shield-model/'+JSON.stringify([state.units[0].instanceId,model.scopeId,selection.selectionKey]);
+  const applied=view.statSources.find(effect=>effect.targetCompositionId===model.scopeId);assert.ok(applied);
+  assert.equal(applied.clauseId,clauseId);assert.equal(applied.effectId,clauseId+'/wounds');assert.equal(applied.canonicalRuleId,shieldId);
+  const source=sourceSnapshot(applied,{slot:'effectProvenance'});
+  assert.deepEqual(source.sourceEvidence,sourceSnapshot(index.get(shieldId)));
+  assert.equal(source.physicalEquipmentReference.modelScopeId,model.scopeId);assert.equal(source.physicalEquipmentReference.perModelQuantity,1);
+ }
+ run.load(saved);assert.deepEqual(run.projection,projection,'Repeated split load never stacks W');
+ importer.load(saved);assert.deepEqual(ready(text,{},importer).roster,saved,'Split inventory survives snapshot and same-input reimport');
+ negative('stage4d-split-inventory-proof-uses-original-row',()=>{
+  const bad=clone(saved);bad.units[0].modelRows[1].selections[0].quantityEvidence.modelQuantity=1;
+  assert.throws(()=>run.load(bad),/INPUT_QUANTITY_EVIDENCE_MISMATCH/);
+  assert.deepEqual(run.snapshot(),saved);assert.deepEqual(run.projection,projection);
+ });
+ records.fixtures.push({id:'shield-row-selection-split-loadout',text,expected:[{projectedW:[8,9,9]},{projectedW:[8,8]}]});
+ records.shieldSplitResults={id:'shield-row-selection-split-loadout',source:shieldId,status:'PASS',expected:'Original MODEL row inventory, exact derived scopes, unchanged sources/trace IDs'};
+});
+
 test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
  const state=ready(header()+broadsideInput([2,1,0])+broadsideInput([0,0,0])).roster,bound=clone(book);
  const enrich=tauSourceChoiceContext(bound,state),expected=[[10,9,8],[8,8,8]];
