@@ -47,19 +47,38 @@ export function createRosterConditionContext(book,state,{abilityProjection=formR
     evaluateRole:(role,conditions,context)=>kernel.evaluateRole(role,conditions,bind(context))};
 }
 
-/** Both passes rebuild the same canonical base; prerequisite ability grants
- * cannot enable themselves during the first pass.
+/** Prepare one complete generation without publishing it. Book-owned admission
+ * and typed context preparation remain callbacks, not a second interpreter.
+ * Only a recorded prerequisite ability dependency requests a preliminary pass.
  */
-export function evaluateRosterConditionDeclarations(book,input,{validationBook=book,validateSelections=()=>{}}={}){
+export function prepareRosterConditionExecution(book,input,{validationBook=book,validateSelections=()=>{},
+  createContext=createRosterConditionContext}={}){
+  if(typeof validateSelections!=='function'||typeof createContext!=='function')throw new TypeError('Invalid roster execution preparation');
   const state=validateRoster(validationBook,input,book.rosterAttachmentPolicies);
   validateSelections(book,state);
-  const dependencies=clone(book);
   const leaves=node=>node.op?node.args.flatMap(leaves):[node];
-  for(const rule of dependencies.entities)for(const clause of rule.ruleContract?.clauses||[]){
-    const depends=clause.rosterEffects.some(effect=>effect.conditions.some(condition=>
-      leaves(condition.predicate).some(node=>findRosterConditionComputation(book,node)?.kind==='LED_BODYGUARD_ABILITY')));
-    if(depends){clause.rosterEffects=[];clause.rosterClassification='DISPLAY_ONLY';}
+  const dependent=clause=>clause.rosterEffects.some(effect=>effect.conditions.some(condition=>
+    leaves(condition.predicate).some(node=>findRosterConditionComputation(book,node)?.kind==='LED_BODYGUARD_ABILITY')));
+  const twoPass=book.entities.some(rule=>rule.ruleContract?.clauses.some(dependent));
+  let first;
+  if(twoPass){
+    // Rebuild from this invocation's canonical base. Dependent grants cannot
+    // establish their own prerequisite, and no previous projection is input.
+    const dependencies=clone(book);
+    for(const rule of dependencies.entities)for(const clause of rule.ruleContract?.clauses||[])
+      if(dependent(clause)){clause.rosterEffects=[];clause.rosterClassification='DISPLAY_ONLY';}
+    first=executeRosterEffects(dependencies,state,createContext(book,state));
   }
-  const first=executeRosterEffects(dependencies,state,createRosterConditionContext(book,state));
-  return executeRosterEffects(book,state,createRosterConditionContext(book,state,{abilityProjection:first}));
+  const context=createContext(book,state,{abilityProjection:first});
+  const projection=executeRosterEffects(book,state,context);
+  if(projection.schema!=='roster-v2/effective'||projection.rosterId!==state.rosterId||projection.units.length!==state.units.length||
+    projection.units.some((unit,index)=>unit.instanceId!==state.units[index].instanceId||unit.canonicalUnitId!==state.units[index].canonicalUnitId)||
+    new Set(projection.units.map(unit=>unit.instanceId)).size!==state.units.length)
+    throw new TypeError('Invalid roster execution projection');
+  return {state,context,projection,passes:twoPass?2:1};
+}
+
+/** Compatibility API for callers that consume only the completed projection. */
+export function evaluateRosterConditionDeclarations(book,input,options){
+  return prepareRosterConditionExecution(book,input,options).projection;
 }

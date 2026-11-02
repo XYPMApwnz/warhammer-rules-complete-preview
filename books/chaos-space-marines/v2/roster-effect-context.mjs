@@ -1,6 +1,6 @@
 /** Native source-specific selection legality; condition computation is shared. */
 const assert={ok:(condition,message)=>{if(!condition)throw new TypeError(message);}};
-import {createRosterConditionContext,evaluateRosterConditionDeclarations} from '../../shared/roster-v2/condition-context.mjs';
+import {createRosterConditionContext,prepareRosterConditionExecution} from '../../shared/roster-v2/condition-context.mjs';
 
 function validateSelections(book,state) {
   const records=new Map(book.entities.map(e=>[e.id,e]));
@@ -44,6 +44,10 @@ function validateSelections(book,state) {
 
 export const createCSMRosterEffectContext=createRosterConditionContext;
 
-export function evaluateCSMRosterDeclarations(book,input,options={}){
-  return evaluateRosterConditionDeclarations(book,input,{...options,validateSelections});
+export function prepareCSMRosterDeclarations(book,input,options={}){
+  return prepareRosterConditionExecution(book,input,{...options,validateSelections});
+}
+
+export function evaluateCSMRosterDeclarations(book,input,options){
+  return prepareCSMRosterDeclarations(book,input,options).projection;
 }

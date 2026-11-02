@@ -1,7 +1,7 @@
 import {createCSMRosterAttachments} from './roster-attachments.mjs';
 import {createCSMRosterImport} from './roster-import.mjs';
 import {buildCSMAttachmentInputs} from './roster-attachment-build.mjs';
-import {evaluateCSMRosterDeclarations} from './roster-effect-context.mjs';
+import {prepareCSMRosterDeclarations} from './roster-effect-context.mjs';
 import {changeAttachment,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {validateRosterEffects} from '../../shared/roster-v2/effects.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
@@ -26,8 +26,8 @@ export function createCSMRosterRuntime(runtimeBook,importBook,bindings) {
       // Validate imported selection fields through their existing boundary as
       // well as the formed graph. Do not derive absent choices or history.
       importer.load({...structuredClone(snapshot),attachments:[]});
-      const next=evaluateCSMRosterDeclarations(book,snapshot,{validationBook});
-      attachments.load(snapshot);projection=next;return service.state;
+      const next=prepareCSMRosterDeclarations(book,snapshot,{validationBook});
+      attachments.load(next.state);projection=next.projection;return service.state;
     },
     snapshot:()=>attachments.snapshot(),
     candidates:bodyguardId=>attachments.candidates(bodyguardId),

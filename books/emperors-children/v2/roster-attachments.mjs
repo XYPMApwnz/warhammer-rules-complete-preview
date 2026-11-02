@@ -1,6 +1,6 @@
 import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
-import {validateRoster,changeAttachment,predicateContext} from '../../shared/roster-v2/context.mjs';
-import {executeRosterEffects} from '../../shared/roster-v2/effects.mjs';
+import {changeAttachment,predicateContext} from '../../shared/roster-v2/context.mjs';
+import {prepareRosterConditionExecution} from '../../shared/roster-v2/condition-context.mjs';
 import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instance.mjs';
 import {createECRosterImport} from './roster-import.mjs';
 import {createFormationContext} from './rule-contract-formation-context.mjs';
@@ -30,11 +30,11 @@ export function createECRosterAttachments(book,schema) {
       // Revalidate canonical import ownership independently of current edges.
       // Never write attachments back into the original import service/state.
       const original=clone(snapshot),imported=freshImport().load({...original,attachments:[]});
-      const state=validateRoster(book,{...imported,attachments:original.attachments},policies);
-      const context=createFormationContext(book,state,schema),next=executeRosterEffects(book,state,context);
+      const next=prepareRosterConditionExecution(book,{...imported,attachments:original.attachments},
+        {createContext:(book,state)=>createFormationContext(book,state,schema)});
       // Commit only after all validation/recompute succeeds, including any
       // explicitly supplied historical snapshot. Failure preserves prior state.
-      attachments.load(state);projection=next;return service.state;
+      attachments.load(next.state);projection=next.projection;return service.state;
     },
     candidates:bodyguardId=>attachments.candidates(bodyguardId),
     attach:(bodyguardId,participantId)=>service.load(changeAttachment(book,attachments.state,policies,'ATTACH',participantId,bodyguardId)),
