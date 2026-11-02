@@ -48,7 +48,7 @@
     "qa:dg": "node books/death-guard/v2/app-qa.mjs && node books/death-guard/v2/roster-import-qa.mjs",
     "qa:am": "node books/adeptus-mechanicus/v2/app-qa.mjs && node books/adeptus-mechanicus/v2/roster-import-qa.mjs",
     "qa:tau:leading": "node tests/tau-leading-state-qa.mjs && node tests/browser/tau-leading-state.mjs",
-    "qa:effects": "node tests/helpers/run-qa-suite.mjs books/shared/rule-contract-v2/recipients-qa.mjs books/shared/roster-v2/numeric-effects-qa.mjs books/shared/roster-v2/keyword-effects-qa.mjs books/shared/roster-v2/ability-effects-qa.mjs books/shared/roster-v2/weapon-contribution-effects-qa.mjs books/shared/roster-v2/advance-roll-effects-qa.mjs v2/source-effect-regression-qa.mjs v2/detachment-source-binding-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs",
+    "qa:effects": "node tests/helpers/run-qa-suite.mjs books/shared/rule-contract-v2/recipients-qa.mjs books/shared/roster-v2/physical-selection-effects-qa.mjs books/shared/roster-v2/numeric-effects-qa.mjs books/shared/roster-v2/keyword-effects-qa.mjs books/shared/roster-v2/ability-effects-qa.mjs books/shared/roster-v2/weapon-contribution-effects-qa.mjs books/shared/roster-v2/advance-roll-effects-qa.mjs v2/source-effect-regression-qa.mjs v2/detachment-source-binding-qa.mjs books/shared/roster-v2/reimport-attachments-qa.mjs",
     "qa:points": "node tests/mfm-numeric-ownership-qa.mjs && node books/space-marines/v2/mfm-build-qa.mjs && node books/space-marines/v2/roster-paid-options-qa.mjs",
     "qa:invulnerable": "node tests/invulnerable-source-qa.mjs && node tests/browser/source-invulnerable-presentation.mjs",
     "qa:am:v2:glossary": "node books/adeptus-mechanicus/v2/app-build.mjs --check && node books/adeptus-mechanicus/v2/glossary-qa.mjs",

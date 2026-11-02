@@ -1,4 +1,5 @@
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
+import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 
 const legacyAddressFields=['targetBinding','targetSubject','unitScope','recipientSelectors','containingUnitScope',
   'targetRoleId','recipientRoleId','recipientRoleIds','recipientIds'];
@@ -20,4 +21,94 @@ export function resolveExecutionEffect(rule,clause,effect) {
     ...(recipient.scope===undefined?{}:{unitScope:recipient.scope}),
     ...(recipient.recipientSelectors===undefined?{}:{recipientSelectors:recipient.recipientSelectors}),
     ...(recipient.containingUnitScope===undefined?{}:{containingUnitScope:recipient.containingUnitScope})};
+}
+
+const requirePhysical=(ok,message)=>{if(!ok)throw new TypeError('Physical selection binding: '+message);};
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const at=(value,keys)=>keys.reduce((item,key)=>item?.[key],value);
+
+/** A producer prepares the operation once. This descriptor only addresses an
+ * existing physical equipment occurrence; it never supplies another recipient
+ * format, an executable callback, or a saved computed result. */
+export function validatePhysicalSelectionEffect(book,rule,clause,effect){
+  const binding=effect.physicalSelection;if(binding===undefined)return;
+  requirePhysical(rule.kind!=='STRATAGEM'&&rule.ruleContract.kind!=='STRATAGEM','excluded rule kind');
+  requirePhysical(binding&&Object.getPrototypeOf(binding)===Object.prototype&&
+    Object.keys(binding).sort().join()===['clauseIdPrefix','effectIdSuffix','equipmentId','kind'].sort().join()&&
+    binding.kind==='MODEL_EQUIPMENT_QUANTITY','unknown descriptor');
+  requirePhysical(typeof binding.equipmentId==='string'&&binding.equipmentId&&
+    typeof binding.clauseIdPrefix==='string'&&binding.clauseIdPrefix&&
+    typeof binding.effectIdSuffix==='string'&&/^\/[\w-]+$/.test(binding.effectIdSuffix),'missing source/trace identity');
+  const root=book.entities.find(entity=>entity.id===binding.equipmentId),proof=effect.sourceRuleEvidence?.evidence;
+  requirePhysical(rule.kind==='WARGEAR_OPTION'&&root&&getRecordedSourceIdentity(root,{book})&&getRecordedSourceIdentity(rule,{book})&&
+    rule.ruleContract.canonicalRuleReferences?.includes(root.id)&&effect.referencedRuleId===root.id,'missing equipment source reference');
+  requirePhysical(proof?.otherEntityId===root.id&&Array.isArray(proof.field)&&typeof proof.quote==='string'&&proof.quote&&
+    typeof at(root.data,proof.field)==='string'&&at(root.data,proof.field).includes(proof.quote),'unproven equipment operation');
+  requirePhysical(effect.targetBinding==='SOURCE_UNIT_MODELS'&&effect.targetSubject==='MODEL'&&
+    effect.operation==='MODIFY_STAT'&&effect.mode==='ADD'&&Number.isSafeInteger(effect.value)&&effect.value>0&&
+    effect.lifetime==='WHILE_EQUIPPED'&&effect.conditions.length===0,'unsupported physical operation');
+  const origin=sourceSnapshot(effect,{book});
+  requirePhysical(origin?.canonicalRuleId===root.id&&origin.canonicalOwnerId===(root.parentId||book.bookId)&&
+    typeof origin.canonicalClauseId==='string'&&origin.canonicalClauseId&&same(origin.sourceEvidence,sourceSnapshot(root,{book}))&&
+    !Object.hasOwn(origin,'physicalEquipmentReference'),'unproven canonical equipment origin');
+}
+
+/** Resolve disposable pending entries, not clauses in a rewritten book. The
+ * canonical operation/recipient remain the producer's validated declaration.
+ * Physical trace aliases preserve existing saved evidence and presentation. */
+export function resolvePhysicalSelectionEffects(book,projection){
+  const declarations=[],byEquipment=new Map();
+  for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])for(const declaration of clause.rosterEffects||[]){
+    if(declaration.physicalSelection===undefined)continue;
+    const effect=resolveExecutionEffect(rule,clause,declaration);
+    validatePhysicalSelectionEffect(book,rule,clause,effect);
+    const item={rule,clause,declaration,effect},id=effect.physicalSelection.equipmentId;
+    declarations.push(item);if(!byEquipment.has(id))byEquipment.set(id,[]);byEquipment.get(id).push(item);
+  }
+  if(!declarations.length)return [];
+  const entries=[],seen=new Set();
+  for(const unit of projection.units){
+    for(const selection of unit.selections)if(byEquipment.has(selection.sourceEquipmentIdentity))
+      requirePhysical(selection.sourceModelScopeId===undefined,'UNIT inventory has no confirmed MODEL scope');
+    for(const model of unit.profiles)for(const selection of model.selections){
+      const candidates=byEquipment.get(selection.sourceEquipmentIdentity);
+      if(!candidates||selection.physicalQuantity===0)continue;
+      requirePhysical((selection.sourceModelScopeId===undefined||selection.sourceModelScopeId===model.scopeId)&&
+        (selection.sourceInstanceId===undefined||selection.sourceInstanceId===unit.instanceId),'foreign or stale physical MODEL scope');
+      const quantity=selection.perModelQuantity,root=book.entities.find(entity=>entity.id===selection.sourceEquipmentIdentity);
+      requirePhysical(Number.isSafeInteger(quantity)&&quantity>0&&sameSourceEvidence(selection,root,{book,slot:'sourceEquipmentProvenance',otherSlot:'provenance'}),
+        'requires confirmed per-MODEL quantity and source evidence');
+      requirePhysical(Number.isSafeInteger(model.quantity)&&model.quantity>0&&selection.physicalQuantity===model.quantity*quantity&&
+        selection.quantityEvidence?.selectedQuantity===quantity&&selection.quantityEvidence.modelQuantity===model.quantity,
+        'physical quantity contradicts MODEL selection evidence');
+      requirePhysical(selection.canonicalEquipmentIds.length===1,'ambiguous equipment source occurrence');
+      const matches=candidates.filter(item=>item.rule.id===selection.canonicalEquipmentIds[0]&&item.rule.parentId===unit.canonicalUnitId);
+      requirePhysical(matches.length===1,'missing or duplicate local equipment binding');
+      const {rule,clause,declaration,effect}=matches[0],binding=effect.physicalSelection;
+      requirePhysical(Number.isSafeInteger(effect.value*quantity),'unsafe physical effect quantity');
+      const identity=JSON.stringify([unit.instanceId,model.scopeId,selection.selectionKey]);
+      requirePhysical(!seen.has(identity),'duplicate physical equipment selection');seen.add(identity);
+      const clauseId=rule.id+binding.clauseIdPrefix+identity;
+      const origin=sourceSnapshot(effect,{book}),physicalEquipmentReference={entityId:rule.id,provenance:sourceSnapshot(rule,{book}),
+        unitInstanceId:unit.instanceId,modelScopeId:model.scopeId,selectionKey:selection.selectionKey,perModelQuantity:quantity};
+      const proof=effect.evidence;
+      const conditions=[['SOURCE','UNIT','physicalUnitInstanceId',unit.instanceId],['TARGET','MODEL','physicalModelScopeId',model.scopeId]]
+        .map(([binding,subject,key,equals])=>({binding,predicate:{predicate:'FIELD',subject,contextLevel:'ROSTER',arguments:{key,equals},evidence:structuredClone(proof)}}));
+      const {physicalSelection,...operation}=effect;
+      entries.push({rule,declarationClause:clause,declaration,clause:{...clause,id:clauseId},source:unit,physicalTarget:{unit,model},
+        effect:{...operation,id:clauseId+binding.effectIdSuffix,value:effect.value*quantity,conditions,
+          ...copySourceEvidence({provenance:{...origin,physicalEquipmentReference}},{book})}});
+    }
+  }
+  return entries;
+}
+
+/** Attribution accepts only an alias regenerated from the current physical
+ * projection. It never trusts an encoded ID or an applied-row source payload. */
+export function resolvePhysicalSelectionAttribution(book,projection,row){
+  const matches=resolvePhysicalSelectionEffects(book,projection).filter(entry=>entry.rule.id===row.ruleId&&entry.clause.id===row.clauseId&&
+    entry.effect.id===row.effectId&&entry.source.instanceId===row.sourceInstanceId&&entry.physicalTarget.unit.instanceId===row.targetInstanceId&&
+    entry.physicalTarget.model.scopeId===row.targetCompositionId&&entry.physicalTarget.model.canonicalProfileId===row.targetProfileId&&
+    entry.physicalTarget.model.modelInstanceId===row.targetModelInstanceId);
+  requirePhysical(matches.length===1,'unresolved executed MODEL attribution');return matches[0].effect;
 }

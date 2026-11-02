@@ -11,6 +11,7 @@ import {addTauSourceChoices,tauStudentRuleId} from './roster-source-choices.mjs'
 import {addTauPrototypeChoices} from './roster-weapon-choices.mjs';
 import {createEffectiveCoreCatalog} from '../../core-rules/content/effective-core-catalog.mjs';
 import {validateRosterEffects,validateRosterEffectDeclarations} from '../../shared/roster-v2/effects.mjs';
+import {copySourceEvidence,sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 import {bindCanonicalContract,bindDeclarationClauses,inspectDeclarationEvidence} from '../../shared/rule-contract-v2/bindings.mjs';
 
 const read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
@@ -108,7 +109,13 @@ export function buildTauImportBook(){
     contract.canonicalRuleReferences.push(shield.id);
     contract.clauses.push({id:'shield-drone-physical-model',roles:copy(contract.clauses[0].roles),conditions:[],
       sourceFields:[['text']],evidence:{field:['text'],quote:local.data.text},sourceText:shieldQuote,
-      rosterClassification:'DISPLAY_ONLY',rosterClassificationNote:{reason:'Requires a proven physical MODEL scope and per-model equipment quantity'},rosterEffects:[]});
+      rosterClassification:'ROSTER_EXECUTABLE',rosterClassificationNote:{reason:'Requires a proven physical MODEL scope and per-model equipment quantity'},
+      rosterEffects:[{id:'shield-drone-physical-model/wounds',operation:'MODIFY_STAT',field:'W',mode:'ADD',value:1,
+        targetBinding:'SOURCE_UNIT_MODELS',targetSubject:'MODEL',lifetime:'WHILE_EQUIPPED',conditions:[],
+        physicalSelection:{kind:'MODEL_EQUIPMENT_QUANTITY',equipmentId:shield.id,clauseIdPrefix:'::shield-model/',effectIdSuffix:'/wounds'},
+        sourceFields:[['text']],evidence:{field:['text'],quote:local.data.text},referencedRuleId:shield.id,sourceRuleEvidence,
+        ...copySourceEvidence({provenance:{canonicalRuleId:shield.id,canonicalOwnerId:shield.parentId||book.bookId,
+          canonicalClauseId:'drone-shield-drone#wounds',sourceEvidence:sourceSnapshot(shield,{book})}},{book})}]});
   }
   // The platform's selected item is an option, whereas its characteristic
   // declaration is an ordinary ability (not a wargear-ability inventory row).

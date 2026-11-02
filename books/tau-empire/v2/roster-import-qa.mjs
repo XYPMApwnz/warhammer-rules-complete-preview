@@ -15,7 +15,8 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
-import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,tauSourceChoiceInputs,bindTauShieldModels} from './roster-source-choices.mjs';
+import {setTauStudentChoice,bindTauStudentPairs,tauSourceChoiceContext,tauSourceChoiceInputs} from './roster-source-choices.mjs';
+import {resolvePhysicalSelectionEffects} from '../../shared/roster-v2/recipient-execution.mjs';
 import {setTauPrototypeChoice,bindTauPrototypeChoices,tauWeaponSelectionResolver,tauWeaponPartitionResolver,tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {createTauRuleSchema} from './rule-contract-build.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -292,11 +293,10 @@ test('stage4d-shield-all-source-occurrences-known-unknown-bearers',()=>{
   for(const selection of selections(state.units[0]).filter(row=>row.sourceEquipmentIdentity===shieldId))
    assert.deepEqual(sourceSnapshot(selection,{slot:'sourceEquipmentProvenance'}),sourceSnapshot(root));
   if(!known)assert.ok(state.units[0].modelRows.every(model=>model.selections.length===0),'Unknown bearer is never invented');
-  const bound=bindTauShieldModels(book,state),effects=bound.entities.flatMap(rule=>(rule.ruleContract?.clauses||[])
-   .flatMap(clause=>(clause.rosterEffects||[]).map(effect=>({rule,clause,effect})))).filter(({effect})=>sourceSnapshot(effect)?.canonicalRuleId===shieldId);
+  const effects=resolvePhysicalSelectionEffects(book,base);
   assert.equal(effects.length,known?1:0);
-  if(known){const {rule,clause,effect}=effects[0];assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(root));
-   assert.equal(effect.value,2);assert.equal(resolveRecipient(rule,clause,effect.recipientId).from,'SOURCE_UNIT_MODELS');
+  if(known){const {rule,declarationClause,effect}=effects[0];assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(root));
+   assert.equal(effect.value,2);assert.equal(resolveRecipient(rule,declarationClause,effect.recipientId).from,'SOURCE_UNIT_MODELS');
    assert.equal(sourceSnapshot(effect).physicalEquipmentReference.entityId,occurrence.optionId);}
   assert.deepEqual(projectionOf(JSON.parse(JSON.stringify(run.snapshot()))),run.projection,'Shield scope and quantity persist');
   records.shieldSourceCoverage.push({...occurrence,bearer:known?'KNOWN_MODEL':'UNKNOWN_MODEL',quantity:2,status:'PASS'});
@@ -358,36 +358,38 @@ test('stage4d-shield-physical-quantities-scopes-attachments-and-recompute',()=>{
 });
 
 test('stage4d-independent-shield-scope-quantity-and-provenance-mutations',()=>{
- const state=ready(header()+broadsideInput([2,1,0])+broadsideInput([0,0,0])).roster,bound=bindTauShieldModels(book,state);
+ const state=ready(header()+broadsideInput([2,1,0])+broadsideInput([0,0,0])).roster,bound=clone(book);
  const enrich=tauSourceChoiceContext(bound,state),expected=[[10,9,8],[8,8,8]];
- const clauses=domain=>domain.entities.flatMap(entity=>entity.ruleContract?.clauses||[]).filter(clause=>clause.physicalShieldSelection);
- const execute=(domain,bind=enrich)=>{
+ const clauses=domain=>domain.entities.flatMap(entity=>entity.ruleContract?.clauses||[]).filter(clause=>clause.rosterEffects.some(effect=>effect.physicalSelection));
+ const execute=(domain,bind=enrich,input=state)=>{
   const schema=createTauRuleSchema();
   // Keep the original unmutated input proof while mutating the execution book.
   // Deliberately corrupted physical context is also a test-only boundary.
   const evaluator={...schema,evaluatePredicate:(node,context)=>schema.evaluatePredicate(node,bind(context)),
    evaluateRole:(role,conditions,context)=>schema.evaluateRole(role,conditions,bind(context))};
-  const service=createRosterRuntime(domain,evaluator);service.load(state);return service.projection;
+  const service=createRosterRuntime(domain,evaluator);service.load(input);return service.projection;
  };
- const verify=(domain,bind=enrich)=>{
-  const owned=clauses(domain);assert.equal(owned.length,2);assert.equal(new Set(owned.map(row=>row.id)).size,2);
-  for(const clause of owned)for(const effect of clause.rosterEffects){
+ const verify=(domain,bind=enrich,input=state)=>{
+  const owned=resolvePhysicalSelectionEffects(domain,formRoster(domain,input));assert.equal(owned.length,2);assert.equal(new Set(owned.map(row=>row.clause.id)).size,2);
+  for(const {rule,effect} of owned){
    assert.equal(effect.referencedRuleId,shieldId);assert.deepEqual(sourceSnapshot(effect).sourceEvidence,sourceSnapshot(index.get(shieldId)));
-   const local=domain.entities.find(entity=>entity.ruleContract?.clauses.includes(clause));assert.ok(local.ruleContract.canonicalRuleReferences.includes(shieldId));
+   assert.ok(rule.ruleContract.canonicalRuleReferences.includes(shieldId));
   }
-  assert.deepEqual(shieldW(execute(domain,bind)),expected,'Independent input oracle catches missing effect, pooling and foreign recipients');
+  assert.deepEqual(shieldW(execute(domain,bind,input)),expected,'Independent input oracle catches missing effect, pooling and foreign recipients');
  };
  verify(bound);
  for(const [id,mutate]of [
-  ['missing-binding',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.physicalShieldSelection));local.ruleContract.clauses=local.ruleContract.clauses.filter(row=>!row.physicalShieldSelection);}],
+  ['missing-binding',domain=>{const local=domain.entities.find(entity=>entity.id===state.units[0].modelRows[0].selections[0].canonicalEquipmentIds[0]);local.ruleContract.clauses=local.ruleContract.clauses.filter(row=>!row.rosterEffects.some(effect=>effect.physicalSelection));}],
   ['pooled-unit-quantity',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].value=3)],
-  ['missing-target-scope',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions=clause.rosterEffects[0].conditions.filter(row=>row.binding!=='TARGET'))],
-  ['wrong-target-scope',domain=>clauses(domain)[0].rosterEffects[0].conditions.find(row=>row.binding==='TARGET').predicate.arguments.equals=formRoster(book,state).units[0].profiles[2].scopeId],
-  ['wrong-physical-source',domain=>clauses(domain).forEach(clause=>clause.rosterEffects[0].conditions.find(row=>row.binding==='SOURCE').predicate.arguments.equals='parsed-unit-2')],
+  ['missing-target-scope',domain=>clauses(domain).forEach(clause=>delete clause.rosterEffects[0].physicalSelection.kind)],
   ['wrong-generic-provenance',domain=>sourceFixture(clauses(domain)[0].rosterEffects[0]).provenance.sourceEvidence.sourceId='foreign'],
   ['removed-generic-reference',domain=>domain.entities.filter(entity=>entity.ruleContract).forEach(entity=>entity.ruleContract.canonicalRuleReferences=(entity.ruleContract.canonicalRuleReferences||[]).filter(id=>id!==shieldId))],
-  ['duplicate-contribution',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.physicalShieldSelection));local.ruleContract.clauses.push(clone(local.ruleContract.clauses.find(row=>row.physicalShieldSelection)));}]
+  ['duplicate-contribution',domain=>{const local=domain.entities.find(entity=>entity.ruleContract?.clauses.some(row=>row.rosterEffects.some(effect=>effect.physicalSelection)));local.ruleContract.clauses.push(clone(local.ruleContract.clauses.find(row=>row.rosterEffects.some(effect=>effect.physicalSelection))));}]
  ])mutation('stage4d-'+id,()=>{const bad=clone(bound);mutate(bad);assert.throws(()=>verify(bad));});
+ for(const [id,mutate]of [
+  ['wrong-target-scope',selection=>selection.sourceModelScopeId=formRoster(book,state).units[0].profiles[2].scopeId],
+  ['wrong-physical-source',selection=>selection.sourceInstanceId='parsed-unit-2']
+ ])mutation('stage4d-'+id,()=>{const bad=clone(state);mutate(bad.units[0].modelRows[0].selections[0]);assert.throws(()=>verify(bound,enrich,bad));});
  mutation('stage4d-lost-model-context-scope',()=>assert.throws(()=>verify(bound,context=>enrich(context?.subject==='MODEL'?{...context,modelScopeId:undefined}:context))));
  mutation('stage4d-canonical-profile-used-as-physical-scope',()=>{
   const first=formRoster(book,state).units[0].profiles[0].scopeId;

@@ -2,7 +2,7 @@ import {validateConditionalPolicy,validateConditionalPolicyDeclaration,appendCon
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
-import {resolveExecutionEffect,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
+import {resolveExecutionEffect,validatePhysicalSelectionEffect,resolvePhysicalSelectionEffects,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
 import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 const clone = value => structuredClone(value);
 const operations = new Set(['MODIFY_STAT','GRANT_WEAPON_ABILITY','GRANT_MODEL_ABILITY','GRANT_ABILITY','REMOVE_ABILITY','MODIFY_ABILITY_RANGE','GRANT_UNIT_KEYWORD','GRANT_MODEL_KEYWORD','REMOVE_KEYWORD','MODIFY_RULE_METRIC','CONTRIBUTE_WEAPON_PROFILE']);
@@ -76,6 +76,7 @@ function validateEffectOperations(book,validatePredicate,evaluatePredicate,effec
       const effect=effectView(entity,clause,declaration);
       if (!effect.id || ids.has(effect.id) || !operations.has(effect.operation) || bindingSubjects[effect.targetBinding] !== effect.targetSubject || !effect.lifetime) throw new TypeError('Malformed roster effect');
       ids.add(effect.id);
+      validatePhysicalSelectionEffect(book,entity,clause,effect);
       // Root Army Rules have no physical source instance. Only actual global
       // executable clauses opt into dispatch; text/battle-only roots retain
       // their previous behaviour. Source-bound effects cannot use this path.
@@ -256,6 +257,7 @@ function partitionWeapons(book,state,projection,resolveWeaponPartitions){
 /** Each clause is evaluated independently; no BATTLE action is ever executed. */
 export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeaponSelection,resolveWeaponPartitions}) {
   const result = formRoster(book,state), records = new Map(book.entities.map(e=>[e.id,e]));
+  const physicalEffects=resolvePhysicalSelectionEffects(book,result);
   // Explicit UNIT scope opts into UNIT presentation. Legacy unscoped range
   // contracts retain their existing MODEL mirrors until separately reviewed.
   const scopedDetectionUnits=new Set();
@@ -295,11 +297,15 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
         if (clause.rosterClassification === 'BATTLE_ONLY' && rule.kind!=='DETACHMENT_RULE') {
           for (const unit of source ? [source] : result.units) unit.conditional.push({ruleId:rule.id,clauseId:clause.id,state:'UNKNOWN',reason:clause.rosterClassificationNote.reason});
         }
-        for (const effect of clause.rosterEffects) pending.push({rule,clause,effect:resolveExecutionEffect(rule,clause,effect),source,ownerModel});
+        for (const effect of clause.rosterEffects) {
+          if(effect.physicalSelection)pending.push(...physicalEffects.filter(entry=>entry.rule===rule&&entry.declarationClause===clause&&entry.declaration===effect&&entry.source===source));
+          else pending.push({rule,clause,effect:resolveExecutionEffect(rule,clause,effect),source,ownerModel});
+        }
       }
     }
   }
-  const targets = ({source,effect,rule,ownerModel}) => {
+  const targets = ({source,effect,rule,ownerModel,physicalTarget}) => {
+    if(physicalTarget)return [physicalTarget];
     if (effect.targetBinding === 'ROSTER_UNITS') return result.units.map(unit=>({unit}));
     if (effect.targetBinding === 'ROSTER_MODELS') return result.units.flatMap(unit=>unit.profiles.map(model=>({unit,model})));
     if (!source) throw new TypeError('Missing source physical instance');
