@@ -3,9 +3,8 @@ import {formRoster,changeAttachment,selections} from '../../shared/roster-v2/con
 import {preserveTauSourceChoices,validateTauAttachmentSourceConditions,tauStudentRuleId,tauStudentOptionId,tauStudentField} from './roster-source-choices.mjs';
 import {tauPrototypeDecisions} from './roster-weapon-choices.mjs';
 import {pendingPhysicalBindings} from './rule-contract-declarations.mjs';
-import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterService,rosterImportBindings,rejectRosterImport} from '../../shared/roster-v2/runtime.mjs';
 
-const clone=structuredClone;
 const reference=(unit,weapon)=>({unitInstanceId:unit.instanceId,scopeId:weapon.scopeId??null,
   selectionKey:weapon.selectionKey,canonicalProfileId:weapon.canonicalProfileId});
 
@@ -15,30 +14,24 @@ export function createTauBrowserRoster(book){
   if(book.bookId!=='tau-empire')throw new TypeError('Foreign T’au roster input');
   const runtime=createTauRosterRuntime(book),importer=createTauRosterImport(book),records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const title=id=>records.get(id)?.data.title||records.get(id)?.data.name||id;
-  const service={
-    catalog:runtime.catalog,get state(){return runtime.state;},get projection(){return runtime.projection;},
-    get groups(){return runtime.projection?.formedUnits||[];},draft:importer.draft,
-    import(text,choices={},options){
-      const bindings=clone(choices);bindings.modelBearers??={};
-      for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){
-        const [unitId,ruleId]=JSON.parse(key);(bindings.modelBearers[unitId]??={})[ruleId]=value;
-      }
-      delete bindings.enhancementBearers;
+  const service=createRosterService({
+    runtime,draft:importer.draft,
+    importCandidate(text,choices={}){
+      const bindings=rosterImportBindings(choices);
       const result=importer.import(text,bindings);
       if(result.status==='READY'){
-        return commitRosterImport({...result,roster:preserveTauSourceChoices(book,result.roster,runtime.state)},runtime.state,service.load,options);
+        return {...result,roster:preserveTauSourceChoices(book,result.roster,runtime.state)};
       }
-      if(!result.candidateRoster)return result;
+      if(!result.candidateRoster)return rejectRosterImport(result);
       const physical=formRoster(book,result.candidateRoster);
-      return {...result,needsBindings:result.needsBindings.map(need=>{
+      return rejectRosterImport({...result,needsBindings:result.needsBindings.map(need=>{
         if(need.kind!=='ENHANCEMENT_MODEL_OWNER')return need;
         const unit=physical.units.find(unit=>unit.instanceId===need.key);
         return {...need,kind:'ENHANCEMENT_BEARER',key:JSON.stringify([need.key,need.rawLabel]),rawLabel:title(need.rawLabel),
           candidates:need.candidateIds.map(id=>({id,title:title(unit.profiles.find(model=>model.scopeId===id)?.canonicalProfileId)}))};
-      })};
+      })});
     },
-    load:snapshot=>runtime.load(snapshot),snapshot:()=>runtime.snapshot(),context:(...args)=>runtime.context(...args),
-    effective:id=>runtime.effective(id),
+    view:()=>({
     candidates(leaderId){
       const state=runtime.state;
       if(!state)return [];
@@ -47,7 +40,6 @@ export function createTauBrowserRoster(book){
           validateTauAttachmentSourceConditions(book,next);return true;}catch{return false;}
       }).map(unit=>({instanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,title:title(unit.canonicalUnitId)}));
     },
-    attach:(leader,target)=>runtime.attach(leader,target),detach:leader=>runtime.detach(leader),reattach:(leader,target)=>runtime.reattach(leader,target),
     sourceChoices(instanceId){
       const state=runtime.state,unit=state?.units.find(unit=>unit.instanceId===instanceId);
       if(!unit)return [];
@@ -93,7 +85,8 @@ export function createTauBrowserRoster(book){
           instanceId,ruleId:rule.id,detachmentId:rule.parentId,kind:rule.kind,state:'UNKNOWN',applicability:'CONDITIONAL'});
       return rows;
     }
-  };return service;
+    })
+  });return service;
 }
 
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}){
