@@ -74,3 +74,13 @@ Implementation commit: [c73bd5396aa358d97603650ebd28a4886b61cf6b](https://github
 ## Serialization closure follow-up
 
 The [common serializer fix](https://github.com/XYPMApwnz/warhammer-rules-complete-preview/commit/2c6d6716eb97394c91ddde4efc462f3ae507eed2) traverses ordinary factual sourceBindings containers and validates table closure independently of warm reader pools. The pinned SM producer remains f887c2e4; no additional pinned producer changed. Current shared serializer SHA-256: `4c1a0d5600fe22154b863dd46a1c6883ef14827653413b6c51c96620d161c620`; closure validator SHA-256: `77a67efd8e515abf394847aefb3ddf8996dcc752cd738b7a11acccb00c88f684`.
+
+## Accepted corpus artifacts stored with LF
+
+Norma-1 reconfirms these three artifacts from source `0c7dfdfcebd81fe585a669b789a5ad13da940476`. Their Git blobs are unchanged from the source commits listed below. Converting each LF blob to CRLF reproduces its previous accepted SHA-256 exactly. The new pins authenticate the tracked LF bytes using the existing strict byte verification.
+
+| Artifact | Source commit | Previous CRLF SHA-256 | Tracked LF SHA-256 |
+| --- | --- | --- | --- |
+| `books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json` | `1f78d606d4cc3719fb510171b13abfa353ca71e6` | `6c1ae25df0fcdcfe87e40764b71321b63c69c0fdb1a0af983ef8f0dcc7d1e582` | `8ddc937999e6e84ccb9f149f385a477d91191549639f472a1995006ba9ec0fcf` |
+| `books/adeptus-mechanicus/sources/waha-11e-current-2026-09-25/corpus.json` | `fba9214b16473e03ea4366d1e680042e8ae1191e` | `977dce523fe59b95bc3251c7d53145a0ffa7d14fbd670ce4091de5c6fd75454d` | `b779fbc93da3383aedae78a506750b6aced8c84b2566187f171dff717cc58d17` |
+| `books/tyranids/sources/waha-11e-current-2026-09-27/source-defects.json` | `cc04c1853fb68117ca43403a1a2f2ea88d2f20b0` | `94fa9a970978de9b97f6745911bd27c6a5221143a6e7b2eb21c6aa0bcf0133e9` | `018b6f6dce64429589437247443b536f3e7895608263ea4c89053640525f20ba` |
