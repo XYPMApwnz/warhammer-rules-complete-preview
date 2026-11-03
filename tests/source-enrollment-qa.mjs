@@ -68,6 +68,7 @@ const fixture=createQaTempDir('warhammer-source-enrollment-');
 try{
   copy(root,fixture,'books/publication-inventory.json');
   copy(root,fixture,'books/source-ingestion-contract.json');
+  copy(root,fixture,'mfm/content/mfm-v1.6-scoped.identity-registry.json');
   for(const book of publication.books){
     copy(root,fixture,book.config);
     copy(root,fixture,`books/${book.id}/sources/source-manifest.json`);
@@ -96,7 +97,7 @@ try{
   }
   assert(baseline.rows.filter(row=>row.status==='LEGACY_UNVERIFIABLE').every(row=>['UNKNOWN','UPDATE_AVAILABLE'].includes(row.upstreamCurrentness)));
   assert.equal(baseline.rows.find(row=>row.sourceId==='tau-mfm-v1.3').upstreamCurrentness,'UPDATE_AVAILABLE');
-  const currentMfm=baseline.rows.filter(row=>row.sourceId.endsWith('-mfm-v1.4'));
+  const currentMfm=baseline.rows.filter(row=>row.sourceId===row.book+'-mfm-v1.6');
   assert.equal(currentMfm.length,9);
   assert(currentMfm.every(row=>row.upstreamCurrentness==='CURRENT'));
 

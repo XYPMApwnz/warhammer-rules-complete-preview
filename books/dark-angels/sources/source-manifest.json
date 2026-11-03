@@ -144,9 +144,9 @@
     {
       "id": "dark-angels-mfm-v1.4",
       "sourceId": "dark-angels-mfm-v1.4",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.4 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.4",
@@ -174,6 +174,40 @@
         "books/dark-angels/sources/official-mfm-v1.4.json",
         "books/dark-angels/sources/official-mfm-v1.4.html",
         "books/dark-angels/sources/official-mfm-v1.4-legends.html"
+      ]
+    },
+    {
+      "id": "dark-angels-mfm-v1.6",
+      "sourceId": "dark-angels-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-21",
+      "capturedAt": "2026-10-21",
+      "currentnessCutoff": "2026-10-21",
+      "url": "https://mfm.warhammer-community.com/en/dark-angels",
+      "role": "current-mfm-source-capture",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/dark-angels.json",
+        "mfm/sources/v1.6/official-mfm-da-hydrated.html"
       ]
     }
   ],

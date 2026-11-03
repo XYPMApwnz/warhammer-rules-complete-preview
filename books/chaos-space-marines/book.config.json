@@ -69,13 +69,17 @@
     "codexParity": "content/chaos-space-marines-codex-parity.en.json",
     "effectContracts": "sources/chaos-space-marines-effect-contracts.v1.json",
     "wargearOptionContracts": "sources/chaos-space-marines-wargear-option-contracts.v1.json",
-    "mfmCurrentCapture": "sources/official-mfm-v1.5.json",
+    "mfmCurrentCapture": "../../mfm/sources/v1.6/chaos-space-marines.json",
     "wahaCurrentCorpus": "sources/waha-11e-current-2026-09-29/corpus.json",
     "mfmCrossFactionDependencies": [
       "sources/official-mfm-v1.5-khorne-berzerkers.json",
       "sources/official-mfm-v1.5-world-eaters-csm-dependency.html",
       "sources/official-mfm-v1.5-rubric-marines.json",
       "sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+    ],
+    "mfmAlliedCaptures": [
+      "../../mfm/sources/v1.6/csm-khorne-berzerkers.json",
+      "../../mfm/sources/v1.6/csm-rubric-marines.json"
     ]
   },
   "generatedOutputs": [

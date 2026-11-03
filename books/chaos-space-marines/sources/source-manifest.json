@@ -217,7 +217,8 @@
       "paths": [
         "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
         "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/source-defects.json"
-      ]
+      ],
+      "sourceId": "chaos-space-marines-waha-11e-current-2026-09-29"
     },
     {
       "id": "csm-allied-khorne-berzerkers-mfm-v1.5",
@@ -280,9 +281,9 @@
     {
       "id": "chaos-space-marines-mfm-v1.5",
       "sourceId": "chaos-space-marines-mfm-v1.5",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.5 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.5",
@@ -314,6 +315,102 @@
         "books/chaos-space-marines/sources/official-mfm-v1.5.html",
         "books/chaos-space-marines/sources/official-mfm-v1.5-legends.html"
       ]
+    },
+    {
+      "id": "chaos-space-marines-mfm-v1.6",
+      "sourceId": "chaos-space-marines-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/chaos-space-marines",
+      "role": "current-points-and-eligibility-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/chaos-space-marines.json",
+        "mfm/sources/v1.6/chaos-space-marines.html",
+        "mfm/sources/v1.6/chaos-space-marines-legends.html"
+      ]
+    },
+    {
+      "id": "csm-allied-khorne-berzerkers-mfm-v1.6",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/world-eaters",
+      "role": "current-cross-faction-unit-points-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/csm-khorne-berzerkers.json",
+        "mfm/sources/v1.6/csm-khorne-berzerkers.html"
+      ]
+    },
+    {
+      "id": "csm-allied-rubric-marines-mfm-v1.6",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/thousand-sons",
+      "role": "current-cross-faction-unit-points-owner",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL",
+        "POINTS_PROJECTION",
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/csm-rubric-marines.json",
+        "mfm/sources/v1.6/csm-rubric-marines.html"
+      ]
     }
   ],
   "gates": {
@@ -341,12 +438,12 @@
     "sourceFile": "codex-secondary-consensus.en.json",
     "sourceId": "csm-codex-secondary-consensus"
   },
-  "enrollmentScope": {
-    "scope": "PUBLIC_BOOK",
+  "enrollmentScope": "PUBLIC_BOOK",
+  "publishAsComplete": true,
+  "knownGaps": [],
+  "sourceCoverage": {
     "currentWahaCorpus": "books/chaos-space-marines/sources/waha-11e-current-2026-09-29/corpus.json",
     "currentNonLegendsDatasheets": 54,
     "legendsExcluded": 53
-  },
-  "publishAsComplete": true,
-  "knownGaps": []
+  }
 }

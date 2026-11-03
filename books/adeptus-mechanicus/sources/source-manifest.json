@@ -266,9 +266,9 @@
     {
       "id": "adeptus-mechanicus-mfm-v1.5",
       "sourceId": "adeptus-mechanicus-mfm-v1.5",
-      "active": true,
+      "active": false,
       "sourceType": "official-web-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "title": "Munitorum Field Manual v1.5 current official capture",
       "authority": "official-live-mfm",
       "version": "v1.5",
@@ -296,6 +296,41 @@
         "books/adeptus-mechanicus/sources/official-mfm-v1.5.json",
         "books/adeptus-mechanicus/sources/official-mfm-v1.5.html",
         "books/adeptus-mechanicus/sources/official-mfm-v1.5-legends.html"
+      ]
+    },
+    {
+      "id": "adeptus-mechanicus-mfm-v1.6",
+      "sourceId": "adeptus-mechanicus-mfm-v1.6",
+      "active": true,
+      "sourceType": "official-web-capture",
+      "lifecycle": "ACCEPTED_SOURCE",
+      "title": "Munitorum Field Manual v1.6 accepted official capture",
+      "authority": "official-live-mfm",
+      "version": "v1.6",
+      "updated": "2026-10-14",
+      "capturedAt": "2026-10-14",
+      "currentnessCutoff": "2026-10-14",
+      "url": "https://mfm.warhammer-community.com/en/adeptus-mechanicus",
+      "role": "current-mfm-source-capture",
+      "factsOwned": [
+        "unit-points",
+        "model-count-schedules",
+        "paid-wargear",
+        "enhancement-prices",
+        "leader-eligibility",
+        "support-eligibility",
+        "detachment-points",
+        "force-dispositions",
+        "qualifier-tags",
+        "legends-pricing"
+      ],
+      "consumers": [
+        "SOURCE_FRESHNESS"
+      ],
+      "paths": [
+        "mfm/sources/v1.6/adeptus-mechanicus.json",
+        "mfm/sources/v1.6/adeptus-mechanicus.html",
+        "mfm/sources/v1.6/adeptus-mechanicus-legends.html"
       ]
     }
   ],

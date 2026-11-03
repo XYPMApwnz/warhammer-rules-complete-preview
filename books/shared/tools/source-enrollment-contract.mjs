@@ -50,7 +50,21 @@ function strings(value,prefix=[],result=[]){
   return result;
 }
 
-function validateManifestSource({repo,book,source,generated}){
+function centralMfmBinding(repo,book,source,registration){
+  if(!source.paths.some(relative=>typeof relative==='string'&&relative.startsWith('mfm/sources/v1.6/')))return null;
+  const identityPath=path.join(repo,'mfm/content/mfm-v1.6-scoped.identity-registry.json');
+  const identities=JSON.parse(fs.readFileSync(identityPath,'utf8'));
+  const sourceId=sourceIdentity(source);
+  const binding=identities.factionBindings.find(row=>row.factionId===book&&row.sourceId===sourceId)
+    ??identities.crossFactionUnitDependencies.find(row=>row.consumerArmyBookId===book&&row.sourceId===sourceId);
+  if(!binding||registration?.sourceType!=='official-web-capture'||registration.acceptedRevision!=='v1.6'
+      ||!registration.artifacts.some(artifact=>artifact.path===binding.sourceCapturePath)){
+    throw new Error(`${book}/${sourceId}: central MFM source has no registered faction binding`);
+  }
+  return binding;
+}
+
+function validateManifestSource({repo,book,source,generated,registration,config,configPath}){
   const label=`${book}/${sourceIdentity(source)||'<missing>'}`;
   if(!source.id||typeof source.id!=='string')throw new Error(`${label}: source id is required`);
   if(typeof source.active!=='boolean')throw new Error(`${label}: active must be explicit`);
@@ -64,11 +78,21 @@ function validateManifestSource({repo,book,source,generated}){
   if(!Array.isArray(source.factsOwned)||!source.factsOwned.length||source.factsOwned.some(value=>typeof value!=='string'||!value))throw new Error(`${label}: factsOwned must be non-empty`);
   if(!Array.isArray(source.consumers)||!source.consumers.length||source.consumers.some(value=>!SOURCE_CONSUMERS.has(value)))throw new Error(`${label}: consumers are incomplete or unsupported`);
   if(!Array.isArray(source.paths)||!source.paths.length)throw new Error(`${label}: paths must be non-empty`);
+  const central=centralMfmBinding(repo,book,source,registration);
+  if(central){
+    const references=central.consumerArmyBookId?config.sources.mfmAlliedCaptures:[config.sources.mfmCurrentCapture];
+    const capture=path.resolve(repo,central.sourceCapturePath);
+    if(!Array.isArray(references)||!references.some(value=>typeof value==='string'
+        &&path.resolve(path.dirname(configPath),value)===capture)){
+      throw new Error(`${label}: central MFM capture has no configured consumer`);
+    }
+  }
   const seen=new Set();
   for(const [index,value] of source.paths.entries()){
     const relative=normalizeRelative(value,`${label}.paths[${index}]`);
     if(seen.has(relative))throw new Error(`${label}: duplicate path ${relative}`);seen.add(relative);
-    if(!relative.startsWith(`books/${book}/`))throw new Error(`${label}: source path is outside its book owner: ${relative}`);
+    if(!relative.startsWith(`books/${book}/`)&&!(central&&relative.startsWith('mfm/sources/v1.6/')
+      &&registration.artifacts.some(artifact=>artifact.path===relative)))throw new Error(`${label}: source path is outside its book owner: ${relative}`);
     const absolute=path.resolve(repo,...relative.split('/')),inside=path.relative(repo,absolute);
     if(inside.startsWith(`..${path.sep}`)||inside==='..'||path.isAbsolute(inside))throw new Error(`${label}: source path escapes repository: ${relative}`);
     if(!fs.existsSync(absolute)||!fs.statSync(absolute).isFile())throw new Error(`${label}: source path is missing: ${relative}`);
@@ -112,7 +136,7 @@ export function buildSourceEnrollment({repo=path.resolve(process.cwd()),includeF
     for(const source of all){
       const id=sourceIdentity(source);
       if(ids.has(id))throw new Error(`${book}: duplicate manifest source ${id}`);ids.add(id);
-      validateManifestSource({repo:root,book,source,generated});
+      validateManifestSource({repo:root,book,source,generated,registration:registered.get(registryKey(book,id)),config,configPath});
     }
     const active=activeRecords(manifest),activeIds=new Set(active.map(sourceIdentity));
     const pathOwners=new Map();
@@ -136,7 +160,9 @@ export function buildSourceEnrollment({repo=path.resolve(process.cwd()),includeF
     const graphFiles=consumerGraphFiles(path.join(root,'books',book),excluded);
     for(const source of active){
       const own=new Set(source.paths.map(relative=>toPosix(path.resolve(root,...relative.split('/')))));
-      const needles=[sourceIdentity(source),source.id,...source.paths.flatMap(relative=>[relative.slice(`books/${book}/`.length),path.posix.basename(relative)])].filter(Boolean);
+      const needles=[sourceIdentity(source),source.id,...source.paths.flatMap(relative=>relative.startsWith(`books/${book}/`)
+        ?[relative.slice(`books/${book}/`.length),path.posix.basename(relative)]
+        :[relative])].filter(Boolean);
       const referenced=graphFiles.some(file=>!own.has(toPosix(file))&&needles.some(needle=>fs.readFileSync(file,'utf8').includes(needle)));
       if(!referenced)throw new Error(`${book}/${sourceIdentity(source)}: active source has no declared consumer graph reference`);
     }
