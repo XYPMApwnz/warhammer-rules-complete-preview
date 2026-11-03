@@ -122,30 +122,39 @@
     })().catch(error=>{if(!quiet)setUpdateState('failed');throw error;}).finally(()=>{checkPromise=null;});
     return checkPromise;
   }
-  async function checkRunningVersion({startedOnline}={}){
+  async function checkRunningVersion(){
     if(!v2Bootstrap)return true;
-    if(startedOnline===true&&!navigator.onLine){reloadRequired=true;setUpdateState('changed');return false;}
-    if(reloadRequired){setUpdateState('changed');return false;}
-    let current;
-    if(!navigator.onLine){
-      try{current=await readRevision(navigator.serviceWorker.controller||registration?.active);}catch{return false;}
-      if(current!==expectedRevision){reloadRequired=true;showAvailable(current);setUpdateState('changed');return false;}
-      return true;
+    if(reloadRequired||reloaded){setUpdateState('changed');return false;}
+    let current,offlinePackage;
+    if(navigator.onLine){
+      try{
+        const oracle=new URL('./glossary/generated/cache-revision.js',new URL(swUrl,location.href));
+        oracle.searchParams.set('version-check',Date.now().toString(36)+'-'+Math.random().toString(36).slice(2));
+        const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);
+        try{
+          const response=await fetch(oracle,{cache:'no-store',signal:controller.signal});
+          if(response.ok)current=(await response.text()).match(/WH40K_CACHE_REVISION\s*=\s*["']([a-f0-9]{16})["']/)?.[1];
+        }finally{clearTimeout(timer);}
+      }catch{/* Verify the installed publication when the network oracle is unavailable. */}
     }
-    try{
-      const oracle=new URL('./glossary/generated/cache-revision.js',new URL(swUrl,location.href));
-      oracle.searchParams.set('version-check',Date.now().toString(36)+'-'+Math.random().toString(36).slice(2));
-      const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);
-      let response;try{response=await fetch(oracle,{cache:'no-store',signal:controller.signal});if(!response.ok)throw new Error('Version check unavailable');
-      current=(await response.text()).match(/WH40K_CACHE_REVISION\s*=\s*["']([a-f0-9]{16})["']/)?.[1];}finally{clearTimeout(timer);}
-      if(!current)throw new Error('Invalid version response');
-    }catch{
-      if(navigator.onLine){if(startedOnline!==undefined){reloadRequired=true;setUpdateState('changed');}else setUpdateState('failed');return false;}
-      // Offline use is bound to the installed worker; it only falls back to
-      // cached bytes matching its immutable publication integrity inventory.
-      try{current=await readRevision(navigator.serviceWorker.controller||registration?.active);}catch{return false;}
+    if(!current){
+      current=undefined;
+      const worker=navigator.serviceWorker.controller||registration?.active;
+      try{
+        offlinePackage=await request(worker,QUERY);
+        if(worker===(navigator.serviceWorker.controller||registration?.active)
+            &&offlinePackage?.type===MESSAGE&&/^[a-f0-9]{16}$/.test(offlinePackage.revision)){
+          current=offlinePackage.revision;
+        }
+      }catch{/* An unavailable worker cannot prove compatibility. */}
     }
+    if(reloadRequired||reloaded){setUpdateState('changed');return false;}
+    if(!current){setUpdateState('failed');return false;}
     if(current!==expectedRevision){reloadRequired=true;showAvailable(current);setUpdateState('changed');return false;}
+    if(offlinePackage&&(offlinePackage.status!=='ready'||!Number.isSafeInteger(offlinePackage.total)
+        ||offlinePackage.total<=0||offlinePackage.completed!==offlinePackage.total)){
+      setUpdateState('failed');return false;
+    }
     return true;
   }
   async function installUpdate(){

@@ -167,4 +167,51 @@ await test('Core glossary destination SHA failure prevents old-cache deletion',a
  const w=worker({assets:{...assets,[coreGlossary]:glossaryAsset}});await w.cache(old).put(base+coreGlossary,new Response(glossaryBody));w.behavior.corrupt=true;
  assert.equal((await w.migrate()).status,'failed');assert.ok(w.stores.has(old));w.behavior.corrupt=false;assert.equal((await w.migrate()).status,'complete');assert.equal(w.stores.has(old),false);
 });
+const offlineStatusSource=fs.readFileSync(new URL('../books/shared/offline-status.js',import.meta.url),'utf8');
+function versionGuard({network,revision='aaaaaaaaaaaaaaaa',workerAvailable=true,packageStatus='ready',online=true}){
+ const statusNode={},action={},available={},row={},listeners={};
+ const panel={dataset:{state:'idle'},querySelector:selector=>({
+  '[data-pwa-update-status]':statusNode,'[data-pwa-update-action]':action,
+  '[data-pwa-available-version]':available,'[data-pwa-available-row]':row
+ })[selector]};
+ action.addEventListener=()=>{};
+ const controller=workerAvailable?{postMessage(message,[reply]){
+  assert.equal(message.type,'WH_OFFLINE_PACKAGE_STATUS_QUERY');
+  reply.postMessage({type:'WH_OFFLINE_PACKAGE_STATUS',revision,status:packageStatus,total:4,completed:packageStatus==='ready'?4:3});
+ }}:null;
+ const navigator={onLine:online,serviceWorker:{controller,getRegistration:()=>new Promise(()=>{}),addEventListener:(type,listener)=>listeners[type]=listener}};
+ const window={WHPwaExpectedRevision:'aaaaaaaaaaaaaaaa'};
+ const document={currentScript:{dataset:{serviceWorker:'../service-worker.js'},hasAttribute:()=>true},
+  body:{},querySelector:()=>panel};
+ vm.runInNewContext(offlineStatusSource,{window,document,navigator,location:new URL(base+'v2/app.html'),URL,
+  AbortController,MessageChannel,MutationObserver:class{observe(){}},console,fetch:(_,options)=>network(options,navigator),
+  setTimeout:(callback,ms)=>setTimeout(callback,ms===5000?0:ms),clearTimeout});
+ return {check:options=>window.WHOfflineStatus.checkRunningVersion(options),panel,available,listeners};
+}
+const unavailable=async()=>{throw new TypeError('Network unavailable');};
+const newRevision=async()=>new Response("self.WH40K_CACHE_REVISION='bbbbbbbbbbbbbbbb';");
+for(const [name,settings,expected,state] of [
+ ['fetch rejected, installed revision compatible',{network:unavailable},true,'idle'],
+ ['fetch timeout, installed revision compatible',{network:({signal})=>new Promise((_,reject)=>signal.addEventListener('abort',()=>reject(signal.reason),{once:true}))},true,'idle'],
+ ['HTTP non-200, installed revision compatible',{network:async()=>new Response('Unavailable',{status:503})},true,'idle'],
+ ['network lost during online transition',{network:async(_,navigator)=>{navigator.onLine=false;return unavailable();}},true,'idle'],
+ ['transition already offline',{network:()=>assert.fail('Offline transition must not call fetch'),online:false},true,'idle'],
+ ['installed revision mismatch',{network:unavailable,revision:'bbbbbbbbbbbbbbbb'},false,'changed'],
+ ['worker unavailable',{network:unavailable,workerAvailable:false},false,'failed'],
+ ['installed publication incomplete',{network:unavailable,packageStatus:'error'},false,'failed'],
+ ['confirmed server revision mismatch',{network:newRevision},false,'changed']
+]){
+ await test('Version guard: '+name,async()=>{
+  const guard=versionGuard(settings);
+  assert.equal(await guard.check({startedOnline:true}),expected);
+  assert.equal(guard.panel.dataset.state,state);
+  if(state==='changed')assert.equal(guard.available.textContent,'bbbbbbbbbbbbbbbb');
+ });
+}
+await test('Version guard: integrity rejection stays latched after network failure',async()=>{
+ const guard=versionGuard({network:unavailable});
+ guard.listeners.message({data:{type:'WH_PWA_DATA_CHANGED'}});
+ assert.equal(await guard.check(),false);
+ assert.equal(guard.panel.dataset.state,'changed');
+});
 console.log(JSON.stringify({status:'PASS',checks:results.length,results},null,2));
