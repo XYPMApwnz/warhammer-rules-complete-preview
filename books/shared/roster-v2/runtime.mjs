@@ -29,8 +29,14 @@ export function commitRosterImport(result,previous,load,{replaceExisting=false}=
 }
 
 const rosterServices=new WeakSet();
+const terminalImport=Symbol('native import rejection');
 /** Observable contract membership without adding fields to snapshots or views. */
 export const isSharedRosterService=service=>rosterServices.has(service);
+/** Preserve native early rejection, including its existing error boundary. */
+export function rejectRosterImport(result){
+  if(result?.status==='READY')throw new TypeError('READY imports require the canonical commit');
+  return {[terminalImport]:result};
+}
 
 /** The UI's explicit bearer choices address native MODEL bindings. */
 export function rosterImportBindings(choices) {
@@ -67,7 +73,9 @@ export function createRosterService({runtime,draft=runtime.draft,importCandidate
     draft,
     import(text,choices,options){
       const commit=()=>{
-        const result=importCandidate(text,choices,current),prepared=prepareImport?.(result);
+        const result=importCandidate(text,choices,current);
+        if(result&&terminalImport in result)return result[terminalImport];
+        const prepared=prepareImport?.(result);
         const load=candidate=>{
           const next=prepared?.(candidate);
           if(next){current=next;return service.state;}

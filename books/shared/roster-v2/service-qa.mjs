@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {createRosterService,isSharedRosterService,rosterImportBindings,retainRosterBearerBindings} from './runtime.mjs';
+import {createRosterService,isSharedRosterService,rosterImportBindings,retainRosterBearerBindings,rejectRosterImport} from './runtime.mjs';
 
 // This fixture tests orchestration, not a replacement gameplay interpreter.
 const candidate={bookId:'service-fixture',rosterId:'same',units:[],attachments:[]};
@@ -49,8 +49,11 @@ const caught=createRosterService({runtime:owner(),importCandidate(){throw new Er
 assert.deepEqual(caught.import('bad'),{status:'INVALID',message:'Native import error'});
 const thrown=createRosterService({runtime:owner(),importCandidate(){throw new Error('Native import error');}});
 assert.throws(()=>thrown.import('bad'),/Native import error/);
+assert.throws(()=>rejectRosterImport({status:'READY',roster:candidate}),/require the canonical commit/);
+const terminal=createRosterService({runtime:owner(),importCandidate:()=>rejectRosterImport({status:'INVALID',errors:['Native rejection']})});
+assert.deepEqual(terminal.import('bad',{}, {replaceExisting:'invalid'}),{status:'INVALID',errors:['Native rejection']});
 console.log(JSON.stringify({status:'PASS',checks:['shared contract membership','pending admission',
   'replacement confirmation','prepared-generation rollback','attachment argument direction',
   'UNKNOWN preservation','explicit bearer mapping','source-qualified retry',
   'validated runtime reuse','retained graph invalidates import proof','owner view cannot bypass lifecycle',
-  'owner-specific return-versus-throw errors']}));
+  'owner-specific return-versus-throw errors','native early rejection boundary','READY cannot bypass commit']}));

@@ -1,4 +1,4 @@
-import {createRosterRuntime,commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterRuntime,createRosterService} from '../../shared/roster-v2/runtime.mjs';
 import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
 import {parse} from '../../shared/roster-v2/parser.mjs';
@@ -30,12 +30,8 @@ export function createAdMechRosterRuntime(book,metadata,{evaluator=createRuleCon
     }
     return load(restored);
   };
-  runtime.draft=text=>importer.draft(text);
-  runtime.import=(text,bindings,options)=>{
-    const result=importer.import(text,bindings);
-    return commitRosterImport(result,runtime.state,runtime.load,options);
-  };
-  return runtime;
+  return createRosterService({runtime,draft:text=>importer.draft(text),
+    importCandidate:(text,bindings)=>importer.import(text,bindings)});
 }
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
   const readJson=async path=>{
