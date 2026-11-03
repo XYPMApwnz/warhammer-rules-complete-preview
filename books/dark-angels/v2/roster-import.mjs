@@ -4,7 +4,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
-import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterService,rosterImportBindings,retainRosterBearerBindings} from '../../shared/roster-v2/runtime.mjs';
 import {createDarkAngelsRosterRuntime} from './roster-runtime.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {projectDarkAngelsPaidOptions} from './roster-paid-options.mjs';
@@ -187,31 +187,27 @@ export function projectDarkAngelsRosterPoints(book,state){
 }
 
 export function createDarkAngelsRosterService(book){
-  let runtime=createDarkAngelsRosterRuntime(book);const imports=createDarkAngelsRosterImport(book);
-  const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
-    get groups(){return runtime.projection?.formedUnits||[];},get points(){return runtime.state?projectDarkAngelsRosterPoints(book,runtime.state):null;},
-    get chapterContexts(){return runtime.state?runtime.state.units.map(unit=>runtime.chapterContext(unit.instanceId)):[];},
-    draft:imports.draft,
-    import(text,choices={},options){
-      try{
-        const bindings=clone(choices);bindings.modelBearers??={};
-        for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){const [unit,id]=JSON.parse(key);(bindings.modelBearers[unit]??={})[id]=value;}
-        delete bindings.enhancementBearers;
-        let result=createDarkAngelsRosterImport(book).import(text,bindings);
-        if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&runtime.state&&
-          result.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER')&&physicalInput(result.candidateRoster)===physicalInput(runtime.state)){
-          for(const unit of runtime.state.units)if(unit.enhancementAssignments?.length)bindings.modelBearers[unit.instanceId]=Object.fromEntries(unit.enhancementAssignments.map(row=>[row.enhancementId,row.modelScopeId]));
-          result=createDarkAngelsRosterImport(book).import(text,bindings);
-        }
-        const committed=commitRosterImport(result,runtime.state,service.load,options);
-        return {...committed,...(committed.status==='READY'?{points:service.points,chapterContexts:service.chapterContexts}:{})};
-      }catch(caught){return {status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'};}
+  const runtime=createDarkAngelsRosterRuntime(book),imports=createDarkAngelsRosterImport(book);
+  return createRosterService({
+    runtime,draft:imports.draft,
+    importCandidate(text,choices={},current){
+      const bindings=rosterImportBindings(choices);
+      let result=createDarkAngelsRosterImport(book).import(text,bindings);
+      if(retainRosterBearerBindings(result,current.state,bindings,physicalInput))
+        result=createDarkAngelsRosterImport(book).import(text,bindings);
+      return result;
     },
-    load(snapshot){const verified=createDarkAngelsRosterImport(book).load(snapshot),next=createDarkAngelsRosterRuntime(book);next.load(verified);
-      projectDarkAngelsRosterPoints(book,verified);runtime=next;return service.state;},
-    snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),context:(...args)=>runtime.context(...args),
-    related:(...args)=>runtime.related(...args),candidates:id=>runtime.candidates(id),chapterContext:id=>runtime.chapterContext(id),
-    attach:(...args)=>runtime.attach(...args),detach:id=>runtime.detach(id),reattach:(...args)=>runtime.reattach(...args),
-    recompute:()=>service.load(runtime.snapshot())};
-  return service;
+    prepareRuntime(snapshot){
+      const verified=createDarkAngelsRosterImport(book).load(snapshot),next=createDarkAngelsRosterRuntime(book);next.load(verified);
+      projectDarkAngelsRosterPoints(book,verified);return next;
+    },
+    decorateImport:(result,service)=>({...result,...(result.status==='READY'?{points:service.points,chapterContexts:service.chapterContexts}:{})}),
+    importError:caught=>({status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'}),
+    view:(current,service)=>({
+      get points(){return current().state?projectDarkAngelsRosterPoints(book,current().state):null;},
+      get chapterContexts(){return current().state?current().state.units.map(unit=>current().chapterContext(unit.instanceId)):[];},
+      chapterContext:id=>current().chapterContext(id),
+      recompute:()=>service.load(service.snapshot())
+    })
+  });
 }

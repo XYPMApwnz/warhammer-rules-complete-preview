@@ -27,6 +27,79 @@ export function commitRosterImport(result,previous,load,{replaceExisting=false}=
   }
   return {...result,roster:load(candidate)};
 }
+
+const rosterServices=new WeakSet();
+/** Observable contract membership without adding fields to snapshots or views. */
+export const isSharedRosterService=service=>rosterServices.has(service);
+
+/** The UI's explicit bearer choices address native MODEL bindings. */
+export function rosterImportBindings(choices) {
+  const bindings=clone(choices);bindings.modelBearers??={};
+  for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){
+    const [unit,id]=JSON.parse(key);(bindings.modelBearers[unit]??={})[id]=value;
+  }
+  delete bindings.enhancementBearers;
+  return bindings;
+}
+
+/** Retry only the existing physical-input identity proof supplied by the owner. */
+export function retainRosterBearerBindings(result,previous,bindings,physicalInput) {
+  if(result.status!=='NEEDS_BINDINGS'||!result.candidateRoster||!previous||
+    !result.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER')||
+    physicalInput(result.candidateRoster)!==physicalInput(previous))return false;
+  for(const unit of previous.units)if(unit.enhancementAssignments?.length)
+    bindings.modelBearers[unit.instanceId]=Object.fromEntries(unit.enhancementAssignments.map(row=>[row.enhancementId,row.modelScopeId]));
+  return true;
+}
+
+/** Service lifecycle only. Native owners still admit snapshots, prepare source
+ * contexts and execute with their existing runtime. A prepared runtime is
+ * published only after its owner has completed all validation and calculation.
+ * Import proofs are scoped to this call; retained graphs use ordinary load. */
+export function createRosterService({runtime,draft=runtime.draft,importCandidate,
+  prepareRuntime,loadSnapshot,prepareImport,decorateImport=result=>result,importError,view}) {
+  let current=runtime;
+  const service={
+    get catalog(){return current.catalog;},
+    get state(){return current.state;},
+    get projection(){return current.projection;},
+    get groups(){return 'groups' in current?current.groups:current.projection?.formedUnits||[];},
+    draft,
+    import(text,choices,options){
+      const commit=()=>{
+        const result=importCandidate(text,choices,current),prepared=prepareImport?.(result);
+        const load=candidate=>{
+          const next=prepared?.(candidate);
+          if(next){current=next;return service.state;}
+          return service.load(candidate);
+        };
+        return decorateImport(commitRosterImport(result,current.state,load,options),service);
+      };
+      if(!importError)return commit();
+      try{return commit();}catch(error){return importError(error);}
+    },
+    load(snapshot){
+      if(prepareRuntime){const next=prepareRuntime(snapshot);current=next;return service.state;}
+      return loadSnapshot?loadSnapshot(snapshot):current.load(snapshot);
+    },
+    snapshot:()=>current.snapshot(),
+    candidates:(...args)=>current.candidates(...args),
+    attach:(...args)=>current.attach(...args),
+    detach:(...args)=>current.detach(...args),
+    reattach:(...args)=>current.reattach(...args),
+    context:(...args)=>current.context(...args),
+    effective:(...args)=>current.effective(...args),
+    related:(...args)=>current.related(...args)
+  };
+  if(view){
+    const descriptors=Object.getOwnPropertyDescriptors(view(()=>current,service));
+    if(['state','projection','draft','import','load','snapshot'].some(key=>key in descriptors))
+      throw new TypeError('Owner view cannot replace the shared service lifecycle');
+    Object.defineProperties(service,descriptors);
+  }
+  rosterServices.add(service);
+  return service;
+}
 const atoms = (value,path=[]) => value && typeof value==='object' ? Object.entries(value).flatMap(([key,child])=>atoms(child,[...path,key])) : [{path:'/'+path.map(p=>String(p).replaceAll('~','~0').replaceAll('/','~1')).join('/'),label:path.join(' / '),value}];
 /** Browser/Node runtime consumes the same canonical snapshot and existing evaluator. */
 export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,validatePredicate,publicResult,resolveWeaponSelection,resolveWeaponPartitions,conditionInputs}) {

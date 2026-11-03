@@ -5,7 +5,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
-import {commitRosterImport} from '../../shared/roster-v2/runtime.mjs';
+import {createRosterService,rosterImportBindings,retainRosterBearerBindings} from '../../shared/roster-v2/runtime.mjs';
 import {createBloodAngelsRosterRuntime} from './roster-runtime.mjs';
 import {createBloodAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {projectBloodAngelsPaidOptions} from './roster-paid-options.mjs';
@@ -204,34 +204,32 @@ export function projectBloodAngelsRosterPoints(book,state){
 }
 
 export function createBloodAngelsRosterService(book){
-  let runtime=createBloodAngelsRosterRuntime(book);const imports=createBloodAngelsRosterImport(book);
-  const service={get catalog(){return runtime.catalog;},get state(){return runtime.state;},get projection(){return runtime.projection;},
-    get groups(){return runtime.projection?.formedUnits||[];},get points(){return runtime.state?projectBloodAngelsRosterPoints(book,runtime.state):null;},
-    draft:imports.draft,
-    import(text,choices={},options){
-      try{
-        const bindings=clone(choices);bindings.modelBearers??={};
-        for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){const [unit,id]=JSON.parse(key);(bindings.modelBearers[unit]??={})[id]=value;}
-        delete bindings.enhancementBearers;
-        let result=imports.import(text,bindings);
-        if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&runtime.state&&
-          result.needsBindings.every(need=>need.kind==='ENHANCEMENT_BEARER')&&physicalInput(result.candidateRoster)===physicalInput(runtime.state)){
-          for(const unit of runtime.state.units)if(unit.enhancementAssignments?.length)bindings.modelBearers[unit.instanceId]=Object.fromEntries(unit.enhancementAssignments.map(row=>[row.enhancementId,row.modelScopeId]));
-          result=imports.import(text,bindings);
-        }
-        // Only this synchronous import owns the candidate. A retained attachment
-        // graph changes its bytes and takes the ordinary validated load path.
-        const proof=runtimeProofs.get(result.roster),candidateBytes=proof?JSON.stringify(result.roster):null;
-        const load=candidate=>{if(proof&&JSON.stringify(candidate)===candidateBytes){projectBloodAngelsRosterPoints(book,candidate);runtime=proof;return service.state;}return service.load(candidate);};
-        const committed=commitRosterImport(result,runtime.state,load,options);
-        return {...committed,...(committed.status==='READY'?{points:service.points}:{})};
-      }catch(caught){return {status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'};}
+  const runtime=createBloodAngelsRosterRuntime(book),imports=createBloodAngelsRosterImport(book);
+  return createRosterService({
+    runtime,draft:imports.draft,
+    importCandidate(text,choices={},current){
+      const bindings=rosterImportBindings(choices);
+      let result=imports.import(text,bindings);
+      if(retainRosterBearerBindings(result,current.state,bindings,physicalInput))
+        result=imports.import(text,bindings);
+      return result;
     },
-    load(snapshot){const verified=imports.load(snapshot),proof=runtimeProofs.get(verified),next=proof||createBloodAngelsRosterRuntime(book);if(!proof)next.load(verified);
-      projectBloodAngelsRosterPoints(book,verified);runtime=next;return service.state;},
-    snapshot:()=>runtime.snapshot(),effective:id=>runtime.effective(id),context:(...args)=>runtime.context(...args),
-    related:(...args)=>runtime.related(...args),candidates:id=>runtime.candidates(id),
-    attach:(...args)=>runtime.attach(...args),detach:id=>runtime.detach(id),reattach:(...args)=>runtime.reattach(...args),
-    recompute:()=>service.load(runtime.snapshot())};
-  return service;
+    prepareImport(result){
+      const proof=runtimeProofs.get(result.roster),candidateBytes=proof?JSON.stringify(result.roster):null;
+      return proof?candidate=>{
+        if(JSON.stringify(candidate)!==candidateBytes)return null;
+        projectBloodAngelsRosterPoints(book,candidate);return proof;
+      }:null;
+    },
+    prepareRuntime(snapshot){
+      const verified=imports.load(snapshot),proof=runtimeProofs.get(verified),next=proof||createBloodAngelsRosterRuntime(book);if(!proof)next.load(verified);
+      projectBloodAngelsRosterPoints(book,verified);return next;
+    },
+    decorateImport:(result,service)=>({...result,...(result.status==='READY'?{points:service.points}:{})}),
+    importError:caught=>({status:'INVALID',roster:null,needsBindings:[],errors:[{code:'INVALID_IMPORT_COMMIT',key:'roster',message:caught.message}],legality:'NOT_ASSESSED'}),
+    view:(current,service)=>({
+      get points(){return current().state?projectBloodAngelsRosterPoints(book,current().state):null;},
+      recompute:()=>service.load(service.snapshot())
+    })
+  });
 }
