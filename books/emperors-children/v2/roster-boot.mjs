@@ -1,4 +1,6 @@
 import {createECRosterAttachments} from './roster-attachments.mjs';
+import {createECRosterImport} from './roster-import.mjs';
+import {createRosterService} from '../../shared/roster-v2/runtime.mjs';
 import {createECRuleSchema,bladeId} from './rule-contract-schema.mjs';
 import {createFormationContext} from './rule-contract-formation-context.mjs';
 import {projectRosterRelated} from '../../shared/roster-v2/related.mjs';
@@ -12,17 +14,16 @@ export function createECBrowserRoster(book) {
   const schema=createECRuleSchema(),runtime=createECRosterAttachments(book,schema),records=new Map(book.entities.map(e=>[e.id,e]));
   const catalog=book.entities.map(e=>({id:e.id,kind:e.kind,parentId:e.parentId,
     title:e.kind==='UPGRADE_OPTION'?records.get(e.data.weaponProfileId)?.data.name||e.data.text:e.data.title||e.data.name||e.id}));
-  const service={
-    catalog,get state(){return runtime.state;},get projection(){return runtime.projection;},get groups(){return runtime.groups;},
-    get adjudications(){return runtime.adjudications;},draft:runtime.draft,load:runtime.load,snapshot:runtime.snapshot,
-    import(text,choices={},options) {
+  const service=createRosterService({
+    runtime,draft:runtime.draft,
+    importCandidate(text,choices={}) {
       const bindings=clone(choices);bindings.weaponChoices??={};bindings.modelBearers??={};
       for(const [key,value]of Object.entries(bindings.profiles||{}))if(key.startsWith('ec-weapon-choice/')){
         bindings.weaponChoices[key.slice('ec-weapon-choice/'.length)]=value;delete bindings.profiles[key];}
       for(const [key,value]of Object.entries(bindings.enhancementBearers||{})){
         const [unitId,enhancementId]=JSON.parse(key);(bindings.modelBearers[unitId]??={})[enhancementId]=value;}
       delete bindings.enhancementBearers;
-      const result=runtime.import(text,bindings,options),candidate=result.candidateRoster;
+      const result=createECRosterImport(book).import(text,bindings),candidate=result.candidateRoster;
       if(result.status!=='NEEDS_BINDINGS'||!candidate)return result;
       const physical=formRoster(book,candidate);
       return {...result,needsBindings:result.needsBindings.map(need=>{
@@ -44,7 +45,9 @@ export function createECBrowserRoster(book) {
         return need;
       })};
     },
-    context:runtime.context,modelScopes:runtime.modelScopes,
+    decorateImport:result=>({...result,legality:'NOT_ASSESSED',attachmentAdjudications:runtime.adjudications}),
+    view:()=>({
+    catalog,get adjudications(){return runtime.adjudications;},modelScopes:runtime.modelScopes,
     attach:(leader,bodyguard)=>runtime.attach(bodyguard,leader),detach:runtime.detach,
     reattach:(leader,bodyguard)=>runtime.reattach(bodyguard,leader),
     candidates(leader){return runtime.state.units.filter(u=>runtime.candidates(u.instanceId).some(c=>c.instanceId===leader))
@@ -64,7 +67,8 @@ export function createECBrowserRoster(book) {
           instanceId,ruleId:rule.id,detachmentId:rule.parentId,kind:rule.kind,state:'UNKNOWN',applicability:'CONDITIONAL'});
       return rows;
     }
-  };
+    })
+  });
   return service;
 }
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
