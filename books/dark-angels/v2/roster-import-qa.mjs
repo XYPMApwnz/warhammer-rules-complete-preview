@@ -220,7 +220,7 @@ check('browser-native-runtime-closure-and-source-immutability',()=>{
 });
 console.log(JSON.stringify({status:'PASS',checks,physical,weaponEvidence,assignmentEvidence,
  counts:{datasheetsImportable:physical.length,totalDatasheets:83,modelProfiles:profileIds.size,physicalModels:inputModelCount,
-  weaponProfiles:weaponEvidence.length,detachments:18,enhancementAssignments:assignmentEvidence.filter(row=>row.scope==='MODEL').length,
+  weaponProfiles:weaponEvidence.length,detachments:book.entities.filter(row=>row.kind==='DETACHMENT').length,enhancementAssignments:assignmentEvidence.filter(row=>row.scope==='MODEL').length,
   upgradeAssignments:assignmentEvidence.filter(row=>row.scope==='UNIT').length,chapterConditions:26,paidOptions:8},
  limitations:{fixtures:'CONSTRUCTED_NEW_RECRUIT_COMPATIBLE',realNewRecruitExportTested:false,browserVerified:false,
   genericOnlyChapter:'NOT_PROVEN',lazarus:'SEVEN_SOURCE_PROVEN_NATIVE_PERMISSIONS',mfmRelationReferences:'10_REFERENCE_ONLY_UNCHANGED'}},null,2));

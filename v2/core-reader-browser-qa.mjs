@@ -24,6 +24,25 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=`${origin}/v2/app
 const core={destination:'CORE_RULES',registryId:'core-rules'};
 const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(()=>window.WarhammerAppV2.ready);};
 const child=async page=>(await page.locator('iframe.v2-core-reader').elementHandle()).contentFrame();
+async function assertCorePopup(tab,href,readerPath){
+  const target=new URL(href);
+  const section=target.searchParams.get('section');
+  const readerURL=new URL(readerPath,target.origin);
+  readerURL.hash=section;
+  const proof=await tab.waitForFunction(({href,readerURL,section})=>{
+    if(location.href!==href)return false;
+    const frames=document.querySelectorAll('iframe');
+    if(frames.length!==1||!frames[0].matches('iframe.v2-core-reader[title="Core Rules reader"]'))return false;
+    const frame=frames[0],doc=frame.contentDocument;
+    if(frame.closest('.v2-core-host')?.hidden||!doc||doc.readyState!=='complete'
+        ||doc.URL!==readerURL||!doc.querySelector('main.main')||!frame.contentWindow.WH40K_GLOSSARY)return false;
+    return {url:location.href,path:location.pathname,frameURL:doc.URL,
+      sections:[...doc.querySelectorAll('[id]')].filter(node=>node.id===section).length};
+  },{href:target.href,readerURL:readerURL.href,section});
+  try{
+    assert.deepEqual(await proof.jsonValue(),{url:target.href,path:'/v2/app.html',frameURL:readerURL.href,sections:1});
+  }finally{await proof.dispose();}
+}
 const navigate=async(page,route)=>{await page.evaluate(route=>window.WarhammerAppV2.navigate(route),route);await ready(page);};
 try{
   for(const width of [1440,390]){
@@ -71,8 +90,7 @@ try{
     const sectionLink=frame.locator('.on-page a').first(),sectionURL=await sectionLink.getAttribute('href');
     assert.equal(new URL(sectionURL).pathname,'/v2/app.html');assert(new URL(sectionURL).searchParams.get('section'));
     if(width===390)await frame.locator('#navButton').click();
-    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await sectionTab.waitForURL(sectionURL);await ready(sectionTab);
-    assert.equal(new URL(sectionTab.url()).pathname,'/v2/app.html');await sectionTab.close();
+    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await assertCorePopup(sectionTab,sectionURL,new URL(frame.url()).pathname);await sectionTab.close();
     if(width===390)await frame.locator('#navButton').click();
     await sectionLink.click();await ready(page);frame=await child(page);
     await frame.locator('.on-page a').first().evaluate(link=>{
@@ -89,7 +107,8 @@ try{
     const fullRule=frame.locator('#termRule');await fullRule.waitFor({state:'visible'});
     const fullRuleURL=await fullRule.getAttribute('href');
     assert.equal(new URL(fullRuleURL).hash,'#core-blast','Full rule link lost canonical identity');
-    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await native.waitForURL(fullRuleURL);await ready(native);assert.equal(new URL(native.url()).pathname,'/v2/app.html');assert.equal(await (await child(native)).locator('#rule-24-05').count(),1);await native.close();
+    assert.equal(new URL(fullRuleURL).searchParams.get('section'),'rule-24-05');
+    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await assertCorePopup(native,fullRuleURL,'/books/core-rules/reader/core-abilities.html');await native.close();
     await frame.locator('[data-term="core-blast"]').first().click();
     await fullRule.click();await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('chapter')==='monsters-vehicles');await ready(page);frame=await child(page);
