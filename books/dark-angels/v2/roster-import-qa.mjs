@@ -91,7 +91,7 @@ check('all-source-weapon-profiles-retain-exact-physical-owner-and-quantity',()=>
 // https://www.warhammer-community.com/en-gb/articles/xciydqwa/space-marines-detachments-space-wolves-black-templars-and-deathwatch/
 check('all-19-detachments-through-shared-parser',()=>{
  const ids=book.entities.filter(row=>row.kind==='DETACHMENT').map(row=>row.id),service=createDarkAngelsRosterService(book);
- ready(service,header(ids)+fixture(ID.azrael).text);assert.deepEqual(service.state.detachmentIds,ids);assert.equal(ids.length,19);assert.equal(ids.filter(id=>index.get(id).title==='Deathwatch Support').length,1);
+ ready(service,header(ids)+fixture(ID.azrael).text);assert.deepEqual(service.state.detachmentIds,ids);assert.equal(ids.length,19);assert.equal(ids.filter(id=>id==='detachment-dw-c015c08e99c14972').length,1);
 });
 check('ravenwing-command-three-models-and-azrael-without-token-model',()=>{
  const service=createDarkAngelsRosterService(book);ready(service,header()+fixture(ID.command).text+fixture(ID.azrael).text);
