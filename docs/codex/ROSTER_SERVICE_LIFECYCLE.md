@@ -90,6 +90,11 @@ are unchanged. Existing source-owned Stratagem rows in related results are retai
   permits paragraph multisets only within corresponding blocks, preserving block
   order, exact text and duplicate counts; it never permits discarding game facts,
   physical recipients, source references or traces.
+- The browser tool's explicit `--timing-only` scope measures real UI imports
+  without card capture or backup work; it does not certify rendered cards.
+  `--trace-service-calls` additionally records Chromium precise coverage to
+  compare native construction/validation/execution counts. Instrumented timings
+  are diagnostic only; normal latency uses separate uninstrumented repetitions.
 
 Final local gate: `npm run qa:quick -- --books=sm,ba,da,am,dg,tau,tyranids,csm,ec`.
 The full pre-FF queue remains a separate explicitly authorized review gate.

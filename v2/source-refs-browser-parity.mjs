@@ -16,6 +16,10 @@ const argv=process.argv.slice(2),values=name=>argv.flatMap((value,index)=>value=
 const root=path.resolve(value('--root')||source),output=value('--out'),prepare=value('--write-fixtures'),comparison=value('--compare');
 const onlyNoospheric=argv.includes('--only-noospheric');
 const verifyServiceStorage=argv.includes('--verify-service-storage');
+// Explicit performance scope: real UI import only, never card certification.
+const timingOnly=argv.includes('--timing-only');
+const traceServiceCalls=argv.includes('--trace-service-calls');
+assert.ok(!timingOnly||!verifyServiceStorage,'Import timing and storage verification are separate scopes');
 const selectedCases=values('--case'),selectedBooks=value('--books')?.split(',')||[];
 const skipNoospheric=argv.includes('--skip-noospheric');
 assert.ok(output||prepare,'Use --out JSON or --write-fixtures JSON');
@@ -69,10 +73,11 @@ const prefix='/source-refs-parity/',mime={'.html':'text/html','.mjs':'text/javas
 const manifestFile=path.join(root,fs.existsSync(path.join(root,'PAGES_RUNTIME_MANIFEST.json'))?'PAGES_RUNTIME_MANIFEST.json':'tools/pages-runtime-manifest.json');
 const allowed=new Set(JSON.parse(fs.readFileSync(manifestFile,'utf8')).files.map(row=>row.path));
 const errors=[],missing=[],requests=[],snapshots=[],textCatalog=new Map(),tableChecks=[],screenshots=[],importObservations=[],storageChecks=[];
-const importTimings=[],timingOutput=value('--timing-out');
+const importTimings=[],timingOutput=value('--timing-out'),serviceCallCoverage=[];
 const completedNoospheric=new Set();
 const resume=value('--resume');
 if(resume){
+ assert.ok(!verifyServiceStorage&&!timingOnly,'Storage and timing verification require fresh observations');
  const saved=JSON.parse(fs.readFileSync(resume,'utf8'));assert.equal(saved.schema,'source-refs-browser-parity/v1');assert.ok(saved.observations,'Resume requires actual completed text observations');
  assert.deepEqual(saved.errors,[],'Do not resume a checkpoint with application exceptions');assert.deepEqual(saved.missing,[],'Do not resume missing runtime resources');
  if(saved.fixtureSha256)assert.equal(saved.fixtureSha256,sha(fs.readFileSync(value('--fixtures'))),'Resume fixtures changed');
@@ -259,9 +264,9 @@ function firstDifference(a,b,p=''){
  for(const key of ak){const found=firstDifference(a[key],b[key],p+'/'+key);if(found)return found;}return null;
 }
 const networkFailures=[];let diagnosticPage=null;
-const report={schema:'source-refs-browser-parity/v1',status:'RUNNING',scope:onlyNoospheric?'NOOSPHERIC_DIAGNOSTIC':'FULL_CORPUS',fixtureSha256:sha(fs.readFileSync(value('--fixtures'))),runtimeManifestSha256:sha(fs.readFileSync(manifestFile)),...(resume?{resumedObservations:resume}:{}),transport:'Normal localhost Service Worker; no cache injection or mocked renderer',observations:null,errors,missing,screenshots,networkFailures};
+const report={schema:'source-refs-browser-parity/v1',status:'RUNNING',scope:timingOnly?'UI_IMPORT_TIMING':onlyNoospheric?'NOOSPHERIC_DIAGNOSTIC':'FULL_CORPUS',fixtureSha256:sha(fs.readFileSync(value('--fixtures'))),runtimeManifestSha256:sha(fs.readFileSync(manifestFile)),...(resume?{resumedObservations:resume}:{}),transport:'Normal localhost Service Worker; no cache injection or mocked renderer',observations:null,errors,missing,screenshots,networkFailures};
 function checkpoint(){
- if(selectedBooks.length||selectedCases.length){report.scope='SELECTED_FIXTURES';report.selectedBookIds=selectedBooks;report.selectedCaseIds=selectedCases;report.selectedFixtures=fixtures.cases.filter(selected).length;}
+ if(selectedBooks.length||selectedCases.length){report.scope=timingOnly?'UI_IMPORT_TIMING':'SELECTED_FIXTURES';report.selectedBookIds=selectedBooks;report.selectedCaseIds=selectedCases;report.selectedFixtures=fixtures.cases.filter(selected).length;}
  report.observations={imports:importObservations,snapshots:[...snapshots].sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts:Object.fromEntries([...textCatalog].sort(([a],[b])=>cmp(a,b))),tableChecks,...(verifyServiceStorage?{storageChecks}:{})};
  report.counts={books:new Set(snapshots.map(row=>row.bookId)).size,sourceFixtures:fixtures.cases.length,savedSnapshotFixtures:(fixtures.snapshots||[]).length,acceptedImports:importObservations.filter(row=>row.accepted).length,rejectedOrPendingImports:importObservations.filter(row=>!row.accepted).length,scenarioViews:snapshots.length,cardViews:snapshots.reduce((n,row)=>n+row.cards.length,0),uniqueTextBytes:[...textCatalog.values()].reduce((n,text)=>n+Buffer.byteLength(text,'utf8'),0)};
  report.partialSnapshotCount=snapshots.length;fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
@@ -281,22 +286,26 @@ try{
    for(const fixture of onlyNoospheric?[]:fixtures.cases.filter(row=>selected(row)&&!completed.has(viewport+'/'+row.bookId+'/'+row.id))){
     active=viewport+'/'+fixture.bookId+'/'+fixture.id;
     await page.evaluate(()=>localStorage.clear());await book(page,fixture.bookId);
+    let recorder;
+    if(traceServiceCalls){recorder=await context.newCDPSession(page);await recorder.send('Profiler.enable');await recorder.send('Profiler.startPreciseCoverage',{callCount:true,detailed:false});}
     const importStarted=performance.now(),accepted=await imported(page,fixture);
     importTimings.push({bookId:fixture.bookId,id:fixture.id,viewport,accepted,elapsedMs:performance.now()-importStarted});
+    if(recorder){const coverage=await recorder.send('Profiler.takePreciseCoverage');serviceCallCoverage.push({bookId:fixture.bookId,id:fixture.id,viewport,result:coverage.result});await recorder.send('Profiler.stopPreciseCoverage');await recorder.detach();fs.writeFileSync(out+'.calls.json',JSON.stringify(serviceCallCoverage,null,2)+'\n');}
     if(timingOutput)fs.writeFileSync(timingOutput,JSON.stringify(importTimings,null,2)+'\n');
+    if(timingOnly){assert.equal(accepted,true,'A timing fixture must reach READY');console.log('TIMED '+active);checkpoint();continue;}
     if(!accepted){console.log('CAPTURED IMPORT REJECTION/PENDING '+active);if(importObservations.length%10===0)checkpoint();continue;}
     await capture(page,viewport,fixture.bookId+'/'+fixture.id,'imported');await operations(page,fixture,viewport,fixture.bookId+'/'+fixture.id);
     if(verifyServiceStorage)await storageRoundTrip(page,fixture,viewport,fixture.bookId+'/'+fixture.id);
     console.log('CAPTURED '+active);
     if(importObservations.length%10===0)checkpoint();
    }
-   for(const fixture of onlyNoospheric?[]:(fixtures.snapshots||[]).filter(selected)){
+   for(const fixture of onlyNoospheric||timingOnly?[]:(fixtures.snapshots||[]).filter(selected)){
     active=viewport+'/saved/'+fixture.bookId+'/'+fixture.id;
     await page.evaluate(()=>localStorage.clear());await book(page,fixture.bookId);
     await page.evaluate(state=>window.ArmyBookAppV2.roster.load(state),fixture.state);
     await capture(page,viewport,'saved/'+fixture.bookId+'/'+fixture.id,'loaded-saved-state');console.log('CAPTURED '+active);
    }
-   if(skipNoospheric||completedNoospheric.has(viewport))continue;
+   if(timingOnly||skipNoospheric||completedNoospheric.has(viewport))continue;
    const noosphere=fixtures.cases.find(row=>row.bookId==='adeptus-mechanicus'&&row.id==='F2/AM-1');assert.ok(noosphere,'Existing AM-1 text fixture is required');
    active=viewport+'/Noospheric/online';await page.evaluate(()=>localStorage.clear());await book(page,noosphere.bookId);assert.equal(await imported(page,noosphere),true,'The reviewed AM-1 scenario must import to show Noospheric Transference');
    const onlineState=await capture(page,viewport,'Noospheric/normal-worker','online',{onlyUnits:true});const onlineTable=await sourceTable(page,viewport,'ONLINE');
@@ -313,6 +322,7 @@ try{
   }catch(error){try{report.failurePage=await page.evaluate(()=>({url:location.href,title:document.title,text:document.querySelector('main')?.innerText||document.body.innerText}));console.error('FAILURE_PAGE '+JSON.stringify(report.failurePage));}catch{}throw error;}finally{await context.close();}
  }
  assert.deepEqual(errors,[],'No application exception is allowed');assert.deepEqual(missing,[],'Every real runtime resource must resolve');
+ if(verifyServiceStorage)assert.equal(storageChecks.length,importObservations.filter(row=>row.accepted).length,'Every accepted import requires its complete storage proof');
  const texts=Object.fromEntries([...textCatalog].sort(([a],[b])=>cmp(a,b)));
  report.observations={imports:importObservations,snapshots:snapshots.sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts,tableChecks,...(verifyServiceStorage?{storageChecks}:{})};
  report.counts={books:new Set(snapshots.map(row=>row.bookId)).size,sourceFixtures:fixtures.cases.length,savedSnapshotFixtures:(fixtures.snapshots||[]).length,acceptedImports:importObservations.filter(row=>row.accepted).length,rejectedOrPendingImports:importObservations.filter(row=>!row.accepted).length,scenarioViews:snapshots.length,cardViews:snapshots.reduce((n,row)=>n+row.cards.length,0),uniqueTextBytes:[...textCatalog.values()].reduce((n,text)=>n+Buffer.byteLength(text,'utf8'),0)};
