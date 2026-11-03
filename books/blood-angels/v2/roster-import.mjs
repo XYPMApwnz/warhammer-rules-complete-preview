@@ -210,7 +210,7 @@ export function createBloodAngelsRosterService(book){
     importCandidate(text,choices={},current){
       const bindings=rosterImportBindings(choices);
       let result=imports.import(text,bindings);
-      if(retainRosterBearerBindings(result,current.state,bindings,physicalInput))
+      if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&retainRosterBearerBindings(result,current.state,bindings,physicalInput))
         result=imports.import(text,bindings);
       return result;
     },

@@ -4,17 +4,18 @@ import {createRosterService,isSharedRosterService,rosterImportBindings,retainRos
 // This fixture tests orchestration, not a replacement gameplay interpreter.
 const candidate={bookId:'service-fixture',rosterId:'same',units:[],attachments:[]};
 let generation=0,preparedLoads=0,proofLoads=0;
-const owner=(state=null)=>({catalog:[],get state(){return structuredClone(state);},
-  get projection(){return state?{generation}:null;},
-  load(next){if(next.reject)throw new TypeError('Owner admission rejected');state=structuredClone(next);generation++;return this.state;},
+const owner=(state=null)=>{let publishedGeneration=generation;return {catalog:[],get state(){return structuredClone(state);},
+  get projection(){return state?{generation:publishedGeneration}:null;},
+  load(next){if(next.reject)throw new TypeError('Owner admission rejected');state=structuredClone(next);publishedGeneration=++generation;return this.state;},
   snapshot(){return structuredClone(state);},draft:text=>({text}),context:(...args)=>args,
   effective:id=>({id}),related:id=>[{id,state:'UNKNOWN'}],candidates:id=>[id],
-  attach:(...args)=>args,detach:(...args)=>args,reattach:(...args)=>args});
+  attach:(...args)=>args,detach:(...args)=>args,reattach:(...args)=>args};};
 const first=owner();
 const service=createRosterService({runtime:first,
   importCandidate:(text,choices)=>text==='pending'?{status:'NEEDS_BINDINGS',roster:null}:
     {status:'READY',roster:{...candidate,rosterId:text==='changed'?'changed':'same'}},
-  prepareRuntime(snapshot){preparedLoads++;const next=owner();next.load(snapshot);return next;},
+  prepareRuntime(snapshot){preparedLoads++;const next=owner();next.load(snapshot);
+    if(snapshot.rejectAfterPreparation)throw new TypeError('Owner post-calculation rejection');return next;},
   view:(current,service)=>({recompute:()=>service.load(service.snapshot())})});
 assert(isSharedRosterService(service));assert(!isSharedRosterService(first));
 assert.deepEqual(service.draft('raw'),{text:'raw'});
@@ -23,6 +24,8 @@ assert.equal(service.import('same').status,'READY');assert.equal(preparedLoads,1
 const before=service.snapshot(),projection=service.projection;
 assert.equal(service.import('changed').status,'REPLACEMENT_REQUIRED');assert.deepEqual(service.snapshot(),before);
 assert.throws(()=>service.load({...candidate,reject:true}),/Owner admission rejected/);
+assert.deepEqual(service.snapshot(),before);assert.deepEqual(service.projection,projection);
+assert.throws(()=>service.load({...candidate,rejectAfterPreparation:true}),/post-calculation rejection/);
 assert.deepEqual(service.snapshot(),before);assert.deepEqual(service.projection,projection);
 assert.equal(service.import('changed',{}, {replaceExisting:true}).status,'READY');
 assert.equal(service.state.rosterId,'changed');
@@ -53,7 +56,7 @@ assert.throws(()=>rejectRosterImport({status:'READY',roster:candidate}),/require
 const terminal=createRosterService({runtime:owner(),importCandidate:()=>rejectRosterImport({status:'INVALID',errors:['Native rejection']})});
 assert.deepEqual(terminal.import('bad',{}, {replaceExisting:'invalid'}),{status:'INVALID',errors:['Native rejection']});
 console.log(JSON.stringify({status:'PASS',checks:['shared contract membership','pending admission',
-  'replacement confirmation','prepared-generation rollback','attachment argument direction',
+  'replacement confirmation','prepared-generation rollback','post-calculation rollback','attachment argument direction',
   'UNKNOWN preservation','explicit bearer mapping','source-qualified retry',
   'validated runtime reuse','retained graph invalidates import proof','owner view cannot bypass lifecycle',
   'owner-specific return-versus-throw errors','native early rejection boundary','READY cannot bypass commit']}));

@@ -193,7 +193,7 @@ export function createDarkAngelsRosterService(book){
     importCandidate(text,choices={},current){
       const bindings=rosterImportBindings(choices);
       let result=createDarkAngelsRosterImport(book).import(text,bindings);
-      if(retainRosterBearerBindings(result,current.state,bindings,physicalInput))
+      if(result.status==='NEEDS_BINDINGS'&&result.candidateRoster&&retainRosterBearerBindings(result,current.state,bindings,physicalInput))
         result=createDarkAngelsRosterImport(book).import(text,bindings);
       return result;
     },

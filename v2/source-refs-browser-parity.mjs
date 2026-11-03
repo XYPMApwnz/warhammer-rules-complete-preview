@@ -15,6 +15,7 @@ const source=fileURLToPath(new URL('../',import.meta.url));
 const argv=process.argv.slice(2),values=name=>argv.flatMap((value,index)=>value===name?[argv[index+1]]:[]),value=name=>values(name)[0];
 const root=path.resolve(value('--root')||source),output=value('--out'),prepare=value('--write-fixtures'),comparison=value('--compare');
 const onlyNoospheric=argv.includes('--only-noospheric');
+const verifyServiceStorage=argv.includes('--verify-service-storage');
 const selectedCases=values('--case'),selectedBooks=value('--books')?.split(',')||[];
 const skipNoospheric=argv.includes('--skip-noospheric');
 assert.ok(output||prepare,'Use --out JSON or --write-fixtures JSON');
@@ -67,7 +68,7 @@ const out=path.resolve(output),shots=out.replace(/\.json$/i,'')+'-screenshots';f
 const prefix='/source-refs-parity/',mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.webmanifest':'application/manifest+json','.woff2':'font/woff2'};
 const manifestFile=path.join(root,fs.existsSync(path.join(root,'PAGES_RUNTIME_MANIFEST.json'))?'PAGES_RUNTIME_MANIFEST.json':'tools/pages-runtime-manifest.json');
 const allowed=new Set(JSON.parse(fs.readFileSync(manifestFile,'utf8')).files.map(row=>row.path));
-const errors=[],missing=[],requests=[],snapshots=[],textCatalog=new Map(),tableChecks=[],screenshots=[],importObservations=[];
+const errors=[],missing=[],requests=[],snapshots=[],textCatalog=new Map(),tableChecks=[],screenshots=[],importObservations=[],storageChecks=[];
 const importTimings=[],timingOutput=value('--timing-out');
 const completedNoospheric=new Set();
 const resume=value('--resume');
@@ -232,6 +233,25 @@ async function operations(page,fixture,viewport,id){
  await page.evaluate(()=>{const s=window.ArmyBookAppV2.roster;s.load(s.snapshot());});await capture(page,viewport,id,'reload');
  assert.equal(state.bookId,fixture.bookId);
 }
+/** Exercise the existing backup UI and its real persistence/restore owner. */
+async function storageRoundTrip(page,fixture,viewport,id){
+ const expected=await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot());
+ await roster(page);
+ await page.getByText('Backup and restore',{exact:true}).click();
+ const [download]=await Promise.all([page.waitForEvent('download'),page.locator('[data-roster-action="export-backup"]').click()]);
+ const bytes=fs.readFileSync(await download.path());
+ assert.deepEqual(JSON.parse(bytes),expected,'Exported backup changed the current physical snapshot');
+ await page.getByLabel('Restore a V2 roster backup',{exact:true}).setInputFiles({name:'existing-roster-backup.json',mimeType:'application/json',buffer:bytes});
+ await poll(page,()=>!document.querySelector('.v2-roster[aria-busy="true"]')&&document.querySelector('.v2-roster-status')?.textContent==='Roster backup restored.');
+ const stored=await page.evaluate(bookId=>JSON.parse(localStorage.getItem('army-book-app-v2:roster:'+bookId)),fixture.bookId);
+ assert.deepEqual(stored,expected,'Restore UI did not persist the exact snapshot');
+ await book(page,fixture.bookId);
+ await poll(page,()=>!!window.ArmyBookAppV2?.roster?.state);
+ assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.snapshot()),expected,'Fresh page did not restore the same saved roster');
+ storageChecks.push({viewport,id,backupSha256:sha(bytes),snapshot:expected});
+ await capture(page,viewport,id,'backup-storage-reload');
+ await download.delete();
+}
 function firstDifference(a,b,p=''){
  if(Object.is(a,b))return null;
  if(!a||!b||typeof a!=='object'||typeof b!=='object')return {path:p,before:a,after:b};
@@ -242,7 +262,7 @@ const networkFailures=[];let diagnosticPage=null;
 const report={schema:'source-refs-browser-parity/v1',status:'RUNNING',scope:onlyNoospheric?'NOOSPHERIC_DIAGNOSTIC':'FULL_CORPUS',fixtureSha256:sha(fs.readFileSync(value('--fixtures'))),runtimeManifestSha256:sha(fs.readFileSync(manifestFile)),...(resume?{resumedObservations:resume}:{}),transport:'Normal localhost Service Worker; no cache injection or mocked renderer',observations:null,errors,missing,screenshots,networkFailures};
 function checkpoint(){
  if(selectedBooks.length||selectedCases.length){report.scope='SELECTED_FIXTURES';report.selectedBookIds=selectedBooks;report.selectedCaseIds=selectedCases;report.selectedFixtures=fixtures.cases.filter(selected).length;}
- report.observations={imports:importObservations,snapshots:[...snapshots].sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts:Object.fromEntries([...textCatalog].sort(([a],[b])=>cmp(a,b))),tableChecks};
+ report.observations={imports:importObservations,snapshots:[...snapshots].sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts:Object.fromEntries([...textCatalog].sort(([a],[b])=>cmp(a,b))),tableChecks,...(verifyServiceStorage?{storageChecks}:{})};
  report.counts={books:new Set(snapshots.map(row=>row.bookId)).size,sourceFixtures:fixtures.cases.length,savedSnapshotFixtures:(fixtures.snapshots||[]).length,acceptedImports:importObservations.filter(row=>row.accepted).length,rejectedOrPendingImports:importObservations.filter(row=>!row.accepted).length,scenarioViews:snapshots.length,cardViews:snapshots.reduce((n,row)=>n+row.cards.length,0),uniqueTextBytes:[...textCatalog.values()].reduce((n,text)=>n+Buffer.byteLength(text,'utf8'),0)};
  report.partialSnapshotCount=snapshots.length;fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');
 }
@@ -266,6 +286,7 @@ try{
     if(timingOutput)fs.writeFileSync(timingOutput,JSON.stringify(importTimings,null,2)+'\n');
     if(!accepted){console.log('CAPTURED IMPORT REJECTION/PENDING '+active);if(importObservations.length%10===0)checkpoint();continue;}
     await capture(page,viewport,fixture.bookId+'/'+fixture.id,'imported');await operations(page,fixture,viewport,fixture.bookId+'/'+fixture.id);
+    if(verifyServiceStorage)await storageRoundTrip(page,fixture,viewport,fixture.bookId+'/'+fixture.id);
     console.log('CAPTURED '+active);
     if(importObservations.length%10===0)checkpoint();
    }
@@ -293,7 +314,7 @@ try{
  }
  assert.deepEqual(errors,[],'No application exception is allowed');assert.deepEqual(missing,[],'Every real runtime resource must resolve');
  const texts=Object.fromEntries([...textCatalog].sort(([a],[b])=>cmp(a,b)));
- report.observations={imports:importObservations,snapshots:snapshots.sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts,tableChecks};
+ report.observations={imports:importObservations,snapshots:snapshots.sort((a,b)=>cmp(a.viewport,b.viewport)||cmp(a.bookId,b.bookId)||cmp(a.id,b.id)||cmp(a.frame,b.frame)),texts,tableChecks,...(verifyServiceStorage?{storageChecks}:{})};
  report.counts={books:new Set(snapshots.map(row=>row.bookId)).size,sourceFixtures:fixtures.cases.length,savedSnapshotFixtures:(fixtures.snapshots||[]).length,acceptedImports:importObservations.filter(row=>row.accepted).length,rejectedOrPendingImports:importObservations.filter(row=>!row.accepted).length,scenarioViews:snapshots.length,cardViews:snapshots.reduce((n,row)=>n+row.cards.length,0),uniqueTextBytes:[...textCatalog.values()].reduce((n,text)=>n+Buffer.byteLength(text,'utf8'),0)};
  if(comparison){const baseline=JSON.parse(fs.readFileSync(comparison,'utf8'));assert.equal(baseline.status,'PASS');const difference=firstDifference(baseline.observations,report.observations);assert.equal(difference,null,'Exact rendered byte parity failed: '+JSON.stringify(difference));report.comparison={status:'PASS',zeroDifference:true};}
  report.status=onlyNoospheric?'DIAGNOSTIC_PASS':'PASS';console.log(JSON.stringify({status:report.status,...report.counts,comparison:report.comparison||null,output:out}));
