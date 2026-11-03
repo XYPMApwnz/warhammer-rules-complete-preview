@@ -20,7 +20,8 @@ const normalizeRelative=(value,label)=>{
 const sourceRecords=manifest=>[...(manifest.layers||[]),...(manifest.sources||[])];
 const activeRecords=manifest=>sourceRecords(manifest).filter(source=>source.active!==false);
 const registryKey=(book,id)=>`${book}\0${id}`;
-const sourceIdentity=source=>source.sourceId||source.id;
+// An ingestion alias must not replace the identity used by presentation producers.
+const sourceIdentity=source=>source.ingestionSourceId||source.sourceId||source.id;
 
 function generatedPaths(config,repo){
   const result=new Set();
