@@ -71,7 +71,7 @@ try{
     const sectionLink=frame.locator('.on-page a').first(),sectionURL=await sectionLink.getAttribute('href');
     assert.equal(new URL(sectionURL).pathname,'/v2/app.html');assert(new URL(sectionURL).searchParams.get('section'));
     if(width===390)await frame.locator('#navButton').click();
-    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await ready(sectionTab);
+    const sectionOpening=context.waitForEvent('page');await sectionLink.click({modifiers:['Control']});const sectionTab=await sectionOpening;await sectionTab.waitForURL(url=>url.pathname==='/v2/app.html');await ready(sectionTab);
     assert.equal(new URL(sectionTab.url()).pathname,'/v2/app.html');await sectionTab.close();
     if(width===390)await frame.locator('#navButton').click();
     await sectionLink.click();await ready(page);frame=await child(page);
@@ -88,7 +88,7 @@ try{
     await frame.locator('[data-term="core-blast"]').first().click();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast');
     const fullRule=frame.locator('#termRule');await fullRule.waitFor({state:'visible'});
     assert.equal(new URL(await fullRule.getAttribute('href')).hash,'#core-blast','Full rule link lost canonical identity');
-    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await ready(native);assert.equal(new URL(native.url()).pathname,'/v2/app.html');assert.equal(await (await child(native)).locator('#rule-24-05').count(),1);await native.close();
+    const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await native.waitForURL(url=>url.pathname==='/v2/app.html');await ready(native);assert.equal(new URL(native.url()).pathname,'/v2/app.html');assert.equal(await (await child(native)).locator('#rule-24-05').count(),1);await native.close();
     await frame.locator('[data-term="core-blast"]').first().click();
     await fullRule.click();await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('chapter')==='monsters-vehicles');await ready(page);frame=await child(page);
