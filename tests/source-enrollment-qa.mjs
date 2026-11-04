@@ -91,12 +91,36 @@ try{
   assert.deepEqual(baseline.freshnessOnlyBooks.map(book=>book.book),['orks']);
   assert.equal(baseline.freshnessOnlyBooks[0].active,3);
   assert.equal(baseline.rows.length,declaredPublicActive+baseline.freshnessOnlyBooks.reduce((sum,book)=>sum+book.active,0));
+  const registeredBookSources=registry.sources.filter(source=>source.book!=='shared');
+  const declarations=new Map(publication.books.flatMap(book=>{
+    const config=json(book.config),manifest=json(path.posix.join(path.posix.dirname(book.config),config.sources.manifest));
+    return [...(manifest.layers||[]),...(manifest.sources||[])].map(row=>[`${book.id}\0${row.ingestionSourceId||row.sourceId||row.id}`,row]);
+  }));
+  const declarationFor=source=>declarations.get(`${source.book}\0${source.sourceId}`);
+  const historicalBookSources=registeredBookSources.filter(source=>declarationFor(source)?.active===false);
+  assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),[
+    'adeptus-mechanicus-mfm-v1.4','adeptus-mechanicus-mfm-v1.5',
+    'blood-angels-mfm-v1.4',
+    'chaos-space-marines-mfm-v1.4','chaos-space-marines-mfm-v1.5','csm-mfm-v1.3',
+    'dark-angels-mfm-v1.4',
+    'death-guard-mfm-v1.3-capture-2026-08-27','death-guard-mfm-v1.4','death-guard-mfm-v1.5',
+    'emperors-children-mfm-v1.3','emperors-children-mfm-v1.4','emperors-children-mfm-v1.5',
+    'space-marines-mfm-v1.4',
+    'tau-empire-mfm-v1.4','tau-empire-mfm-v1.5','tau-mfm-v1.3',
+    'tyranids-mfm-v1.3','tyranids-mfm-v1.4','tyranids-mfm-v1.5'
+  ]);
+  for(const source of historicalBookSources){
+    assert.equal(declarationFor(source).lifecycle,'HISTORICAL_EVIDENCE',source.sourceId);
+    assert(!baseline.rows.some(row=>row.book===source.book&&row.sourceId===source.sourceId),source.sourceId);
+  }
   for(const status of ['SOURCE_LIMITED','LEGACY_UNVERIFIABLE']){
-    const expected=registry.sources.filter(source=>source.book!=='orks'&&source.book!=='shared'&&source.status===status).length;
+    const expected=registeredBookSources.filter(source=>source.book!=='orks'&&source.status===status&&declarationFor(source)?.active===true).length;
     assert.equal(baseline.rows.filter(row=>row.status===status&&row.book!=='orks').length,expected);
   }
   assert(baseline.rows.filter(row=>row.status==='LEGACY_UNVERIFIABLE').every(row=>['UNKNOWN','UPDATE_AVAILABLE'].includes(row.upstreamCurrentness)));
-  assert.equal(baseline.rows.find(row=>row.sourceId==='tau-mfm-v1.3').upstreamCurrentness,'UPDATE_AVAILABLE');
+  const tauHistorical=declarations.get('tau-empire\0tau-mfm-v1.3');
+  assert.equal(tauHistorical?.active,false);
+  assert.equal(tauHistorical.lifecycle,'HISTORICAL_EVIDENCE');
   const currentMfm=baseline.rows.filter(row=>row.sourceId===row.book+'-mfm-v1.6');
   assert.equal(currentMfm.length,9);
   assert(currentMfm.every(row=>row.upstreamCurrentness==='CURRENT'));
@@ -142,8 +166,10 @@ try{
   mutate('books/source-ingestion-contract.json',value=>value.sources.find(source=>source.sourceId==='tau-codex-wargear').artifacts[0].sha256='0'.repeat(64),/hash mismatch/);
   mutate('books/source-ingestion-contract.json',value=>value.sources.find(source=>source.sourceId==='tau-codex-wargear').book='tyranids',/registered sources are not actively declared|active manifest sources are not registered/);
   mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').paths=['../outside.json'],/normalized repository-relative path/);
-  fs.writeFileSync(path.join(fixture,'books/tau-empire/reader.html'),'poison');
-  mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').paths=['books/tau-empire/reader.html'],/generated output is mislabeled as accepted source/);
+  const generatedArtifact='books/tau-empire/generated/compatible-rules.json';
+  fs.mkdirSync(path.dirname(path.join(fixture,generatedArtifact)),{recursive:true});
+  fs.writeFileSync(path.join(fixture,generatedArtifact),'poison');
+  mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').paths.push(generatedArtifact),/generated output is mislabeled as accepted source/);
   mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').consumers=[],/consumers are incomplete/);
   mutate('books/source-ingestion-contract.json',value=>{const source=value.sources.find(source=>source.sourceId==='tau-codex-wargear');source.status='VERIFIED_CURRENT';source.upstreamCurrentness='CURRENT';},/CURRENT requires a verified upstream observation/);
   mutate(manifest('dark-angels'),value=>value.sourceDependencies=[],/source dependency set does not match book config/);

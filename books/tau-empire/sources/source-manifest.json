@@ -198,7 +198,7 @@
       "sourceId": "tau-mfm-v1.3",
       "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "factsOwned": [
         "points",
         "costs"
@@ -470,6 +470,24 @@
         "mfm/sources/v1.6/tau-empire.json",
         "mfm/sources/v1.6/tau-empire.html",
         "mfm/sources/v1.6/tau-empire-legends.html"
+      ]
+    },
+    {
+      "id": "tau-empire-wargear-option-contracts",
+      "sourceId": "tau-empire-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/tau-empire/sources/tau-empire-wargear-option-contracts.v1.json"
       ]
     }
   ],

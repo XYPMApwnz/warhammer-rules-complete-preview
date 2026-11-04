@@ -498,6 +498,24 @@
         "mfm/sources/v1.6/tyranids.html",
         "mfm/sources/v1.6/tyranids-legends.html"
       ]
+    },
+    {
+      "id": "tyranids-wargear-option-contracts",
+      "sourceId": "tyranids-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/tyranids/sources/tyranids-wargear-option-contracts.v1.json"
+      ]
     }
   ],
   "knownGaps": [

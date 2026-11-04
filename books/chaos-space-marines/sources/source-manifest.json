@@ -78,7 +78,7 @@
       "sourceId": "csm-mfm-v1.3",
       "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "factsOwned": [
         "points",
         "costs"
@@ -410,6 +410,24 @@
       "paths": [
         "mfm/sources/v1.6/csm-rubric-marines.json",
         "mfm/sources/v1.6/csm-rubric-marines.html"
+      ]
+    },
+    {
+      "id": "chaos-space-marines-wargear-option-contracts",
+      "sourceId": "chaos-space-marines-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/chaos-space-marines/sources/chaos-space-marines-wargear-option-contracts.v1.json"
       ]
     }
   ],

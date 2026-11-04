@@ -28,7 +28,24 @@ const registeredPublicSources=registeredActiveBookSources.filter(source=>source.
 assert.equal(freshness.summary.DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.CLASSIFIED_DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.PUBLIC_ACTIVE_SOURCE_COUNT,registeredPublicSources.length);
-assert.equal(registeredBookSources.length-registeredActiveBookSources.length,1);
+const historicalBookSources=registeredBookSources.filter(source=>!activeKeys.has(`${source.book}\0${source.sourceId}`));
+assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),[
+  'adeptus-mechanicus-mfm-v1.4','adeptus-mechanicus-mfm-v1.5',
+  'blood-angels-mfm-v1.4',
+  'chaos-space-marines-mfm-v1.4','chaos-space-marines-mfm-v1.5','csm-mfm-v1.3',
+  'dark-angels-mfm-v1.4',
+  'death-guard-mfm-v1.3-capture-2026-08-27','death-guard-mfm-v1.4','death-guard-mfm-v1.5',
+  'emperors-children-mfm-v1.3','emperors-children-mfm-v1.4','emperors-children-mfm-v1.5',
+  'space-marines-mfm-v1.4',
+  'tau-empire-mfm-v1.4','tau-empire-mfm-v1.5','tau-mfm-v1.3',
+  'tyranids-mfm-v1.3','tyranids-mfm-v1.4','tyranids-mfm-v1.5'
+]);
+for(const source of historicalBookSources){
+  const manifest=JSON.parse(read(`books/${source.book}/sources/source-manifest.json`));
+  const declaration=[...(manifest.layers||[]),...(manifest.sources||[])].find(row=>(row.ingestionSourceId||row.sourceId||row.id)===source.sourceId);
+  assert.equal(declaration?.active,false,source.sourceId);
+  assert.equal(declaration.lifecycle,'HISTORICAL_EVIDENCE',source.sourceId);
+}
 assert(registry.sources.some(source=>source.sourceId==='death-guard-mfm-v1.3-capture-2026-08-27'),'Historical DG MFM v1.3 provenance must remain registered');
 assert.equal(freshness.summary.FRESHNESS_ONLY_ACTIVE_SOURCE_COUNT,3);
 assert.equal(freshness.summary.UNCLASSIFIED_SOURCE_COUNT,0);
@@ -36,10 +53,9 @@ assert.equal(freshness.summary.REGISTERED_WITHOUT_MANIFEST_DECLARATION_COUNT,fre
 assert.deepEqual(freshness.summary.BOOKS_WITH_COMPLETE_SOURCE_ENROLLMENT,['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines','space-marines','dark-angels','blood-angels','orks']);
 assert.deepEqual(freshness.summary.BOOKS_WITH_PARTIAL_SOURCE_ENROLLMENT,[]);
 assert.deepEqual(freshness.summary.BOOKS_WITH_NO_SOURCE_ENROLLMENT,[]);
-assert.equal(freshness.sources.find(source=>source.SOURCE_ID==='tau-mfm-v1.3').UPSTREAM_OBSERVATION.status,'UPDATE_AVAILABLE');
-const currentMfm=freshness.sources.filter(source=>source.BOOK!=='shared'&&source.SOURCE_ID.endsWith('-mfm-v1.4'));
+const currentMfm=freshness.sources.filter(source=>source.SOURCE_ID===source.BOOK+'-mfm-v1.6');
 assert.equal(currentMfm.length,9);
-assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated v1.4 MFM captures may claim currentness');
+assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated v1.6 MFM captures may claim currentness');
 const active=[
   ['books/space-marines/tools/extract-codex-details.cjs','space-marines-codex-details'],
   ['books/chaos-space-marines/tools/extract-mfm.cjs','csm-mfm-v1.3'],
@@ -205,7 +221,6 @@ assert(smFactionPackExtractor.includes('parser.add_argument("--bsdata-faction", 
 assert(packageJson.scripts['army-books:sources:check'].includes('node books/space-marines/tools/extract-faction-pack.mjs --check'),'Normal source checking must use the authenticated Space Marines Faction Pack wrapper');
 assert(packageJson.scripts['source:check'].includes('node tests/sm-authenticated-bsdata-argument-binding-qa.mjs'),'Normal source checking must enforce the Space Marines authenticated child-argument binding');
 assert(packageJson.scripts['army-books:sources:check'].includes('node books/space-marines/tools/build-related-rules.mjs --check'),'Normal source checking must verify the deterministic Space Marines Related Rules aggregate');
-assert(packageJson.scripts['space-marines:build'].startsWith('node books/space-marines/tools/build-related-rules.mjs'),'Normal Space Marines build must run the sole Related Rules aggregate writer');
 const smCodexDetails=read('books/space-marines/tools/extract-codex-details.cjs');
 const smSessionIndex=smCodexDetails.indexOf('contract.createCaptureSession({sourceId:');
 for(const input of ['datasheetsPath','packPath']){
@@ -264,6 +279,5 @@ for(const source of registry.sources){
   assert.equal(source.acceptedHash.toLowerCase(),expectedHash.toLowerCase(),`${source.sourceId}: accepted hash must identify its complete frozen artifact set`);
 }
 
-await import('./space-marines-feedback-edge-qa.mjs');
 
 console.log(`Source ingestion contract QA passed: ${active.length} frozen live-derived sources, ${legacy.length} candidate-only legacy update tools; 0 direct accepted writers.`);

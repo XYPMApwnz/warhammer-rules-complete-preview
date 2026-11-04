@@ -85,7 +85,7 @@
       "sourceId": "emperors-children-mfm-v1.3",
       "active": false,
       "sourceType": "official-json-capture",
-      "lifecycle": "ACCEPTED_SOURCE",
+      "lifecycle": "HISTORICAL_EVIDENCE",
       "factsOwned": [
         "points",
         "costs"
@@ -369,6 +369,42 @@
       "paths": [
         "mfm/sources/v1.6/emperors-children.json",
         "mfm/sources/v1.6/emperors-children.html"
+      ]
+    },
+    {
+      "id": "emperors-children-wargear-option-contracts",
+      "sourceId": "emperors-children-wargear-option-contracts",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Wargear option contracts",
+      "factsOwned": [
+        "wargear-option-legality"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/emperors-children/sources/emperors-children-wargear-option-contracts.v1.json"
+      ]
+    },
+    {
+      "id": "emperors-children-codex-wargear",
+      "sourceId": "emperors-children-codex-wargear",
+      "active": true,
+      "lifecycle": "ACCEPTED_SOURCE",
+      "sourceType": "structured-contract",
+      "title": "Canonical codex wargear projection",
+      "factsOwned": [
+        "canonical-wargear-options"
+      ],
+      "consumers": [
+        "CANONICAL_BUILD",
+        "EFFECTIVE_MODEL"
+      ],
+      "paths": [
+        "books/emperors-children/content/emperors-children-codex-wargear.en.json"
       ]
     }
   ],
