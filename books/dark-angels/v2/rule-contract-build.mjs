@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../space-marines/v2/reviewed-text-recipients.mjs';
 /** Book-owned DA declarations over the existing closed mixed-owner view.
  * Army applicability is derived separately from intrinsic physical Chapter. */
 import fs from 'node:fs';
@@ -147,6 +148,7 @@ export function buildDarkAngelsContracts({inputs=declarations,review=read('./rul
  assert.equal(executed.length,inputs.length,'Orphan DA lowering');
  const physicalChapterCoverage=bindDarkAngelsChapterSources(book);
  book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
+ recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
  finalizeRecipientBook(book);
  const schema=createDarkAngelsRuleSchema({book});schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
  assert.equal(JSON.stringify(facts),original);
