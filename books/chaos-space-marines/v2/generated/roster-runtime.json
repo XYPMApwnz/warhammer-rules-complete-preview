@@ -91035,6 +91035,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Veterans of the Long War: Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Veterans of the Long War: Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+                }
               }
             ],
             "conditions": [
@@ -91067,8 +91092,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Veterans of the Long War: Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Veterans of the Long War: Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-afb36f57f7c4b99d","referenceId":"refs-73511066be714572","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -91271,6 +91323,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                }
               }
             ],
             "conditions": [
@@ -91336,8 +91414,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-afb36f57f7c4b99d","referenceId":"refs-dbbdee51c2009fc1","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -93552,6 +93658,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Formidably Resilient: Each time an attack is allocated to this model, halve the Damage characteristic of that attack."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Formidably Resilient: Each time an attack is allocated to this model, halve the Damage characteristic of that attack."
+                }
               }
             ],
             "conditions": [
@@ -93584,8 +93715,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Formidably Resilient: Each time an attack is allocated to this model, halve the Damage characteristic of that attack."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Formidably Resilient: Each time an attack is allocated to this model, halve the Damage characteristic of that attack."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-e97b46b726cdb4a9","referenceId":"refs-82fd2d7d6267de55","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -94737,6 +94895,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cruel Hunter: While this model is leading a unit, each time that unit Piles In or Consolidates, each model in that unit can move up to 6\" instead of up to 3\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cruel Hunter: While this model is leading a unit, each time that unit Piles In or Consolidates, each model in that unit can move up to 6\" instead of up to 3\"."
+                }
               }
             ],
             "conditions": [
@@ -94784,8 +94967,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cruel Hunter: While this model is leading a unit, each time that unit Piles In or Consolidates, each model in that unit can move up to 6\" instead of up to 3\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cruel Hunter: While this model is leading a unit, each time that unit Piles In or Consolidates, each model in that unit can move up to 6\" instead of up to 3\"."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-9f927659677a5301","referenceId":"refs-1ee5c4035f364e35","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -95610,6 +95820,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Fiery Faith: While this model is leading a unit, you can re-roll Leadership tests taken for that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Fiery Faith: While this model is leading a unit, you can re-roll Leadership tests taken for that unit."
+                }
               }
             ],
             "conditions": [
@@ -95657,8 +95893,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Fiery Faith: While this model is leading a unit, you can re-roll Leadership tests taken for that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Fiery Faith: While this model is leading a unit, you can re-roll Leadership tests taken for that unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-d133ab395e0fff2f","referenceId":"refs-ac304a50abf22948","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -96836,6 +97100,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Dark Zealotry: While this unit is leading a unit and contains a DARK APOSTLE model, each time a model in that unit makes a melee attack, add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Dark Zealotry: While this unit is leading a unit and contains a DARK APOSTLE model, each time a model in that unit makes a melee attack, add 1 to the Wound roll."
+                }
               }
             ],
             "conditions": [
@@ -96900,8 +97189,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Dark Zealotry: While this unit is leading a unit and contains a DARK APOSTLE model, each time a model in that unit makes a melee attack, add 1 to the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Dark Zealotry: While this unit is leading a unit and contains a DARK APOSTLE model, each time a model in that unit makes a melee attack, add 1 to the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-bf6fac29f064dd37","referenceId":"refs-6e43724c8ebd8698","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -99398,6 +99714,32 @@
                 "compositionMemberIds": [
                   "datasheet-dark-commune:section:2:member:3"
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                }
               }
             ],
             "conditions": [
@@ -99472,8 +99814,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-8e49de2e9c73b72c","referenceId":"refs-ad7a96d18c9dd3b9","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 3"}]}],
@@ -100851,6 +101221,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Ascended Daemon: Each time this model shoot or fights, while resolving those attacks, you can re-roll one Hit roll and you can re-roll one Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Ascended Daemon: Each time this model shoot or fights, while resolving those attacks, you can re-roll one Hit roll and you can re-roll one Wound roll."
+                }
               }
             ],
             "conditions": [
@@ -100883,8 +101278,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Ascended Daemon: Each time this model shoot or fights, while resolving those attacks, you can re-roll one Hit roll and you can re-roll one Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Ascended Daemon: Each time this model shoot or fights, while resolving those attacks, you can re-roll one Hit roll and you can re-roll one Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-1138488ff08e4cfd","referenceId":"refs-96c0f0d1d15ad271","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -101135,6 +101557,31 @@
                     "roleId": "nearbyInfantry"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Lord of Chaos: While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Lord of Chaos: While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -101167,8 +101614,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Lord of Chaos: While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Lord of Chaos: While this model is within 3\" of one or more friendly HERETIC ASTARTES INFANTRY units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-1138488ff08e4cfd","referenceId":"refs-0dca671474710ad0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 3"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-de0f354d49e69693","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 38 right; normalized column span [1316, 1508]; block official-update-27"}]}],
@@ -108982,6 +109456,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp-sighted Butcher: While this model is leading a unit, each time a model in that unit makes a melee attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that unit is Below Half-strength, you can re-roll the Wound roll as well."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp-sighted Butcher: While this model is leading a unit, each time a model in that unit makes a melee attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that unit is Below Half-strength, you can re-roll the Wound roll as well."
+                }
               }
             ],
             "conditions": [
@@ -109029,8 +109528,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp-sighted Butcher: While this model is leading a unit, each time a model in that unit makes a melee attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that unit is Below Half-strength, you can re-roll the Wound roll as well."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp-sighted Butcher: While this model is leading a unit, each time a model in that unit makes a melee attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that unit is Below Half-strength, you can re-roll the Wound roll as well."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-66576483693a552d","referenceId":"refs-9ce9f36a82901fe2","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -112063,6 +112589,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raider’s Due: When this unit declares a charge, If an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raider’s Due: When this unit declares a charge, If an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units."
+                }
               }
             ],
             "conditions": [
@@ -112095,8 +112647,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raider’s Due: When this unit declares a charge, If an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raider’s Due: When this unit declares a charge, If an enemy unit within range of an objective is within 12\" of this unit, you can use this ability. If you do:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with one or more of those enemy units."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-60c0976a4b77c28c","referenceId":"refs-d6d89aa051aefeb8","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -113016,6 +113596,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Prescience (Psychic): While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Prescience (Psychic): While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -113063,8 +113669,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Prescience (Psychic): While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Prescience (Psychic): While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-e745993284d27e80","referenceId":"refs-e679829322a1a087","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -114305,6 +114939,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warptime (Psychic): While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warptime (Psychic): While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit."
+                }
               }
             ],
             "conditions": [
@@ -114352,8 +115012,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warptime (Psychic): While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warptime (Psychic): While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-a3294e3c035c5d40","referenceId":"refs-c46d37a926cfc917","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -114885,6 +115573,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Familiar: Once per battle, when an attack is allocated to the bearer, you can change the Damage characteristic to 0."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Familiar: Once per battle, when an attack is allocated to the bearer, you can change the Damage characteristic to 0."
+                }
               }
             ],
             "conditions": [
@@ -114950,8 +115663,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Familiar: Once per battle, when an attack is allocated to the bearer, you can change the Damage characteristic to 0."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Familiar: Once per battle, when an attack is allocated to the bearer, you can change the Damage characteristic to 0."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-a3294e3c035c5d40","referenceId":"refs-780c24572483bf45","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 3"}]}],
@@ -117429,6 +118169,31 @@
                     "roleId": "nearbyVehicle"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warpsmith: While this model is within 3\" of one or more friendly HERETIC ASTARTES VEHICLE units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warpsmith: While this model is within 3\" of one or more friendly HERETIC ASTARTES VEHICLE units, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -117461,8 +118226,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warpsmith: While this model is within 3\" of one or more friendly HERETIC ASTARTES VEHICLE units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warpsmith: While this model is within 3\" of one or more friendly HERETIC ASTARTES VEHICLE units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-14f8ed98bf336f82","referenceId":"refs-36c5f9d569d488bd","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -119155,6 +119947,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Self Repair: At the start of your Command phase, this model regains 1 lost wound."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Self Repair: At the start of your Command phase, this model regains 1 lost wound."
+                }
               }
             ],
             "conditions": [
@@ -119187,8 +120004,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Self Repair: At the start of your Command phase, this model regains 1 lost wound."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Self Repair: At the start of your Command phase, this model regains 1 lost wound."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-ed9ffffb9ba268f9","referenceId":"refs-1c46e0c64659be6e","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -122566,6 +123410,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Guns Blazing: Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Guns Blazing: Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+                }
               }
             ],
             "conditions": [
@@ -122598,8 +123467,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Guns Blazing: Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Guns Blazing: Once per turn, in your opponent's Shooting phase, when an enemy unit makes a ranged attack that targets a friendly HERETIC ASTARTES unit within 3\" of this model, after that enemy unit has shot, this model can shoot as if it were your Shooting phase, but it must target only that enemy unit when doing so, and can only do so if that enemy unit is an eligible target."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-38690a5223ec9fc6","referenceId":"refs-59583f9872f4554a","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -123982,6 +124878,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Surgeon Acolyte: Once per turn, when an attack is allocated to a model in this unit, if this unit contains FABIUS BILE, you can change the Damage characteristic of that attack to 0."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Surgeon Acolyte: Once per turn, when an attack is allocated to a model in this unit, if this unit contains FABIUS BILE, you can change the Damage characteristic of that attack to 0."
+                }
               }
             ],
             "conditions": [
@@ -124014,8 +124935,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Surgeon Acolyte: Once per turn, when an attack is allocated to a model in this unit, if this unit contains FABIUS BILE, you can change the Damage characteristic of that attack to 0."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Surgeon Acolyte: Once per turn, when an attack is allocated to a model in this unit, if this unit contains FABIUS BILE, you can change the Damage characteristic of that attack to 0."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-369b52b9f03185c1","referenceId":"refs-ca2c842bf750e9bd","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -126782,6 +127730,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Hamadrya’s Knowledge (Psychic): Once per battle round, when an enemy unit ends a Normal, Advance or Fall Back move within 8\" of this model’s unit, if this model’s unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to D3+3\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Hamadrya’s Knowledge (Psychic): Once per battle round, when an enemy unit ends a Normal, Advance or Fall Back move within 8\" of this model’s unit, if this model’s unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to D3+3\"."
+                }
               }
             ],
             "conditions": [
@@ -126814,8 +127788,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Hamadrya’s Knowledge (Psychic): Once per battle round, when an enemy unit ends a Normal, Advance or Fall Back move within 8\" of this model’s unit, if this model’s unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to D3+3\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Hamadrya’s Knowledge (Psychic): Once per battle round, when an enemy unit ends a Normal, Advance or Fall Back move within 8\" of this model’s unit, if this model’s unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to D3+3\"."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-6bf2888da4d33c49","referenceId":"refs-0719d18725e13565","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -127805,6 +128807,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Headlong Destruction: Each time a model in this unit makes an attack that targets the closest eligible enemy unit, improve the Armour Penetration characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Headlong Destruction: Each time a model in this unit makes an attack that targets the closest eligible enemy unit, improve the Armour Penetration characteristic of that attack by 1."
+                }
               }
             ],
             "conditions": [
@@ -127837,8 +128864,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Headlong Destruction: Each time a model in this unit makes an attack that targets the closest eligible enemy unit, improve the Armour Penetration characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Headlong Destruction: Each time a model in this unit makes an attack that targets the closest eligible enemy unit, improve the Armour Penetration characteristic of that attack by 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-27596c6d70c8ce43","referenceId":"refs-701d29e4e9986134","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -128003,6 +129057,31 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Architect of Ruin: At the start of the battle, select one unit in your opponent’s army to be this model’s hated foe. Each time this model makes an attack that targets its hated foe, you can re-roll the Wound roll. Each time this model’s hated foe is destroyed, you can select a new unit from your opponent’s army to be its hated foe."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Architect of Ruin: At the start of the battle, select one unit in your opponent’s army to be this model’s hated foe. Each time this model makes an attack that targets its hated foe, you can re-roll the Wound roll. Each time this model’s hated foe is destroyed, you can select a new unit from your opponent’s army to be its hated foe."
+                }
               }
             ],
             "conditions": [
@@ -128035,8 +129114,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Architect of Ruin: At the start of the battle, select one unit in your opponent’s army to be this model’s hated foe. Each time this model makes an attack that targets its hated foe, you can re-roll the Wound roll. Each time this model’s hated foe is destroyed, you can select a new unit from your opponent’s army to be its hated foe."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Architect of Ruin: At the start of the battle, select one unit in your opponent’s army to be this model’s hated foe. Each time this model makes an attack that targets its hated foe, you can re-roll the Wound roll. Each time this model’s hated foe is destroyed, you can select a new unit from your opponent’s army to be its hated foe."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-27596c6d70c8ce43","referenceId":"refs-9b725c934e94f7e7","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -131793,6 +132899,31 @@
                     "roleId": "nearbyVehicle"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Indentured Daemon Engines: While this model is within 3\" of one or more friendly DAEMON VEHICLE units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Indentured Daemon Engines: While this model is within 3\" of one or more friendly DAEMON VEHICLE units, this model has the Lone Operative ability."
+                }
               }
             ],
             "conditions": [
@@ -131825,8 +132956,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Indentured Daemon Engines: While this model is within 3\" of one or more friendly DAEMON VEHICLE units, this model has the Lone Operative ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Indentured Daemon Engines: While this model is within 3\" of one or more friendly DAEMON VEHICLE units, this model has the Lone Operative ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5f5ebcb12f880a25","referenceId":"refs-0403c5164dc1e1a0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 3"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-347cbe98bf1affe0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 39 left; normalized column span [0, 864]; block official-update-30"}]}],
@@ -132031,6 +133189,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -132068,8 +133255,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5f5ebcb12f880a25","referenceId":"refs-38cf7ab5b6cf9f03","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -132660,6 +133878,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Accursed Horde: In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Accursed Horde: In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\"."
+                }
               }
             ],
             "conditions": [
@@ -132692,8 +133936,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Accursed Horde: In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Accursed Horde: In your opponent's Shooting phase, when an enemy unit has shot, if a model from this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6\"."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-d9cdd47f9dd85493","referenceId":"refs-9146d362fdd9fc34","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-4b403083e9b90953","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 38 right; normalized column span [0, 233]; block official-update-20"}]}],
@@ -134505,6 +135777,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chosen Marauders: This unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chosen Marauders: This unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back."
+                }
               }
             ],
             "conditions": [
@@ -134537,8 +135835,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chosen Marauders: This unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chosen Marauders: This unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-1d670cd4be8762d0","referenceId":"refs-5aa2d4397fd955ef","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -134741,6 +136067,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                }
               }
             ],
             "conditions": [
@@ -134806,8 +136158,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-1d670cd4be8762d0","referenceId":"refs-d5edbf226a40a97c","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -135590,6 +136970,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Bestial Raiders: If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Bestial Raiders: If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is."
+                }
               }
             ],
             "conditions": [
@@ -135622,8 +137028,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Bestial Raiders: If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Bestial Raiders: If this unit starts the game in Strategic Reserves, it can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. If this unit is in Strategic Reserves, for the purposes of setting up this unit on the battlefield, treat the current battle round number as being one higher than it actually is."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-381a64c55e08e55b","referenceId":"refs-98e8071c33010e34","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -136648,6 +138082,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Stabilisation Talons: Each time a model in this unit makes an attack with a ranged weapon, you can ignore any or all modifiers to the Hit roll and any or all modifiers to the Ballistic Skill characteristic of that weapon."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Stabilisation Talons: Each time a model in this unit makes an attack with a ranged weapon, you can ignore any or all modifiers to the Hit roll and any or all modifiers to the Ballistic Skill characteristic of that weapon."
+                }
               }
             ],
             "conditions": [
@@ -136680,8 +138139,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Stabilisation Talons: Each time a model in this unit makes an attack with a ranged weapon, you can ignore any or all modifiers to the Hit roll and any or all modifiers to the Ballistic Skill characteristic of that weapon."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Stabilisation Talons: Each time a model in this unit makes an attack with a ranged weapon, you can ignore any or all modifiers to the Hit roll and any or all modifiers to the Ballistic Skill characteristic of that weapon."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-a4b5faa567cfb0b1","referenceId":"refs-1d0f911cad6587b6","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -138356,6 +139842,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Visions of Suffering (Psychic): Each time a model in this unit makes an attack that targets an enemy unit that is below its Starting Strength, add 1 to the Hit roll. If that enemy unit is Below Half-strength, add 1 to the Wound roll as well."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Visions of Suffering (Psychic): Each time a model in this unit makes an attack that targets an enemy unit that is below its Starting Strength, add 1 to the Hit roll. If that enemy unit is Below Half-strength, add 1 to the Wound roll as well."
+                }
               }
             ],
             "conditions": [
@@ -138388,8 +139899,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Visions of Suffering (Psychic): Each time a model in this unit makes an attack that targets an enemy unit that is below its Starting Strength, add 1 to the Hit roll. If that enemy unit is Below Half-strength, add 1 to the Wound roll as well."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Visions of Suffering (Psychic): Each time a model in this unit makes an attack that targets an enemy unit that is below its Starting Strength, add 1 to the Hit roll. If that enemy unit is Below Half-strength, add 1 to the Wound roll as well."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-2900d9f42517bb18","referenceId":"refs-3db41cbdc47012e7","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -139915,6 +141453,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp Rift Firepower (Once per battle, per unit): In your Shooting phase, when this unit is selected to shoot, you can use this ability. If you do, this unit's ranged attacks have [INDIRECT FIRE]."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp Rift Firepower (Once per battle, per unit): In your Shooting phase, when this unit is selected to shoot, you can use this ability. If you do, this unit's ranged attacks have [INDIRECT FIRE]."
+                }
               }
             ],
             "conditions": [
@@ -139947,8 +141511,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp Rift Firepower (Once per battle, per unit): In your Shooting phase, when this unit is selected to shoot, you can use this ability. If you do, this unit's ranged attacks have [INDIRECT FIRE]."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp Rift Firepower (Once per battle, per unit): In your Shooting phase, when this unit is selected to shoot, you can use this ability. If you do, this unit's ranged attacks have [INDIRECT FIRE]."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-18199267311c666f","referenceId":"refs-4545feee10f385a0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-ad829a8e809a327a","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 38 right; normalized column span [2294, 2544]; block official-update-29"}]}],
@@ -140814,6 +142406,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                }
               }
             ],
             "conditions": [
@@ -140879,8 +142497,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-151c4d470eea812f","referenceId":"refs-dde7a739d74df5fb","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -144357,6 +146003,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Twisted Defence Force: While this unit is within range of an objective, this unit has +1 Sv against ranged attacks."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Twisted Defence Force: While this unit is within range of an objective, this unit has +1 Sv against ranged attacks."
+                }
               }
             ],
             "conditions": [
@@ -144389,8 +146061,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Twisted Defence Force: While this unit is within range of an objective, this unit has +1 Sv against ranged attacks."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Twisted Defence Force: While this unit is within range of an objective, this unit has +1 Sv against ranged attacks."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-069970cb8f7539f3","referenceId":"refs-fe58d6f21c036564","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-bc49578c3d7e55d0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 39 left; normalized column span [1607, 1766]; block official-update-34"}]}],
@@ -145009,6 +146709,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp Strike: At the end of the Fight phase, if this unit destroyed one or more enemy units this phase and is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield and place it into Strategic Reserves."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp Strike: At the end of the Fight phase, if this unit destroyed one or more enemy units this phase and is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield and place it into Strategic Reserves."
+                }
               }
             ],
             "conditions": [
@@ -145041,8 +146767,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Warp Strike: At the end of the Fight phase, if this unit destroyed one or more enemy units this phase and is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield and place it into Strategic Reserves."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Warp Strike: At the end of the Fight phase, if this unit destroyed one or more enemy units this phase and is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield and place it into Strategic Reserves."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-8e34e2877f4ab857","referenceId":"refs-4b1c32d2cb4ed240","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-67b85b389ae4e226","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 39 left; normalized column span [865, 1146]; block official-update-31"}]}],
@@ -146062,6 +147816,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Outmanoeuvre: Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Outmanoeuvre: Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1."
+                }
               }
             ],
             "conditions": [
@@ -146094,8 +147873,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Outmanoeuvre: Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Outmanoeuvre: Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength characteristic of that attack by 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-a5ebc78475753c4c","referenceId":"refs-09330ed17ce3e0db","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -146298,6 +148104,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                }
               }
             ],
             "conditions": [
@@ -146363,8 +148195,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-a5ebc78475753c4c","referenceId":"refs-ae3f3fea90e9caa0","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 2"}]}],
@@ -147316,6 +149176,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -147353,8 +149242,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-f23507b49b697672","referenceId":"refs-7b930ed36ae400a9","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-5 WOUNDS REMAINING"}]}],
@@ -148102,6 +150022,31 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Annihilator: Each time a ranged attack made by this model is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Annihilator: Each time a ranged attack made by this model is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+                }
               }
             ],
             "conditions": [
@@ -148134,8 +150079,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Annihilator: Each time a ranged attack made by this model is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Annihilator: Each time a ranged attack made by this model is allocated to a MONSTER or VEHICLE model, you can re-roll the Damage roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-9cc6a3afdc051ab7","referenceId":"refs-ca9f4acab335ad90","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]},{"documentId":"documents-f3950bbee9b703a6","referenceId":"refs-006e5c742aeb2082","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"PDF page 38 right; normalized column span [1056, 1238]; block official-update-25"}]}],
@@ -148337,6 +150309,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -148374,8 +150375,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-9cc6a3afdc051ab7","referenceId":"refs-46a07003fb9e1451","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -149098,6 +151130,31 @@
                   "roleId": "enemy"
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Destructor: Each time a ranged attack made by this model targets an enemy INFANTRY unit, improve the Armour Penetration characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Destructor: Each time a ranged attack made by this model targets an enemy INFANTRY unit, improve the Armour Penetration characteristic of that attack by 1."
+                }
               }
             ],
             "conditions": [
@@ -149130,8 +151187,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Destructor: Each time a ranged attack made by this model targets an enemy INFANTRY unit, improve the Armour Penetration characteristic of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Destructor: Each time a ranged attack made by this model targets an enemy INFANTRY unit, improve the Armour Penetration characteristic of that attack by 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-06a1e90849b746b2","referenceId":"refs-416cb795d7dee995","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -149333,6 +151417,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -149370,8 +151483,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-06a1e90849b746b2","referenceId":"refs-3c7b3234ba23f694","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -150550,6 +152694,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Siege Shield: When making ranged attacks with its demolisher cannon, this model can target enemy units within Engagement Range of it (provided no other friendly units are also within Engagement Range of that enemy unit). In addition, when making ranged attacks, this model does not suffer the penalty to its Hit rolls for being within Engagement Range of one or more enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Siege Shield: When making ranged attacks with its demolisher cannon, this model can target enemy units within Engagement Range of it (provided no other friendly units are also within Engagement Range of that enemy unit). In addition, when making ranged attacks, this model does not suffer the penalty to its Hit rolls for being within Engagement Range of one or more enemy units."
+                }
               }
             ],
             "conditions": [
@@ -150582,8 +152751,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Siege Shield: When making ranged attacks with its demolisher cannon, this model can target enemy units within Engagement Range of it (provided no other friendly units are also within Engagement Range of that enemy unit). In addition, when making ranged attacks, this model does not suffer the penalty to its Hit rolls for being within Engagement Range of one or more enemy units."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Siege Shield: When making ranged attacks with its demolisher cannon, this model can target enemy units within Engagement Range of it (provided no other friendly units are also within Engagement Range of that enemy unit). In addition, when making ranged attacks, this model does not suffer the penalty to its Hit rolls for being within Engagement Range of one or more enemy units."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-035abf8f89e91bb3","referenceId":"refs-f9312f8a0a148034","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -150785,6 +152981,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -150822,8 +153047,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-035abf8f89e91bb3","referenceId":"refs-bc2c483f9f2bc48d","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -151669,6 +153925,32 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                }
               }
             ],
             "conditions": [
@@ -151701,8 +153983,36 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-96bcd26a200d10c8","referenceId":"refs-93b9af53368feb4f","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -152152,6 +154462,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -152189,8 +154528,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-96bcd26a200d10c8","referenceId":"refs-590f81043902b0c4","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-6 WOUNDS REMAINING"}]}],
@@ -153101,6 +155471,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -153138,8 +155537,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-d74362a7598614b5","referenceId":"refs-a0d9d257780e0c9b","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -155113,6 +157543,31 @@
                   "roleId": "enemy"
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Airborne Predator: Each time this model makes an attack that targets a unit that can FLY, add 1 to the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Airborne Predator: Each time this model makes an attack that targets a unit that can FLY, add 1 to the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -155145,8 +157600,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Airborne Predator: Each time this model makes an attack that targets a unit that can FLY, add 1 to the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Airborne Predator: Each time this model makes an attack that targets a unit that can FLY, add 1 to the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-383759ed2777b2f9","referenceId":"refs-387f01343bc13ece","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -155349,6 +157831,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -155386,8 +157897,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-383759ed2777b2f9","referenceId":"refs-fa873199f96995cf","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],
@@ -156366,6 +158908,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-8 wounds remaining, subtract 4 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-8 wounds remaining, subtract 4 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -156403,8 +158974,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-8 wounds remaining, subtract 4 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-8 wounds remaining, subtract 4 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-4101a8e90cebb2c5","referenceId":"refs-e9cad07dfe0cc26f","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-8 WOUNDS REMAINING"}]}],
@@ -157062,6 +159664,31 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Siege Crawler: You can ignore any or all modifiers to this model’s Move characteristic and to Advance and Charge rolls made for it."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Siege Crawler: You can ignore any or all modifiers to this model’s Move characteristic and to Advance and Charge rolls made for it."
+                }
               }
             ],
             "conditions": [
@@ -157094,8 +159721,35 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Siege Crawler: You can ignore any or all modifiers to this model’s Move characteristic and to Advance and Charge rolls made for it."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Siege Crawler: You can ignore any or all modifiers to this model’s Move characteristic and to Advance and Charge rolls made for it."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-fd6c2e7179611f9b","referenceId":"refs-2e6cb9388916b0b4","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"ABILITIES block 1"}]}],
@@ -157298,6 +159952,35 @@
                     "roleId": "source"
                   }
                 ]
+              },
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -157335,8 +160018,39 @@
             "rosterClassificationNote": {
               "reason": "BATTLE_ONLY"
             },
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_MODEL",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-fd6c2e7179611f9b","referenceId":"refs-3c1c46311ec53c65","documentRole":"DOCUMENT","locators":[{"kind":"TEXT_LOCATION","value":"DAMAGED: 1-4 WOUNDS REMAINING"}]}],

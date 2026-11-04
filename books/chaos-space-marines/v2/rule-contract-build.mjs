@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
 import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -103,6 +104,7 @@ export function buildCSMContracts({facts=readJson('generated/effective.json'),in
     entity.ruleContract=bindCanonicalContract({entity,bookId:book.bookId,schema:'rule-contract/v2',declaration,index,
       currentness:{acceptedBaseHead:facts.acceptedBaseHead,sourceEvidence:entity.provenance.sourceEvidence}});
   }
+  recordReviewedTextRecipients(book,readJson('recipient-declarations.json'));
   const valid=schema.evaluator.validateContractDeclarations(book);
   assert.equal(valid.rules,declarations.size);
   rejectPairwiseAuthority(book);
