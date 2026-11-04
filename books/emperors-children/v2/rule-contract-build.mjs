@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
 /** EC-owned bounded Rule Contract overlay. No importer, service or UI wiring.
  * The shared engine consumes a disposable view of the existing factual owner. */
 import fs from 'node:fs';
@@ -194,6 +195,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
       .reduce((n,member)=>n+member.data.quantity.max,0)})));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  recordReviewedTextRecipients(book,read('recipient-declarations.json'));
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
   book.conditionBindingOptions={...book.conditionBindingOptions,selectedUpgradeMode:'VALIDATED_EQUIPPED_WEAPON'};

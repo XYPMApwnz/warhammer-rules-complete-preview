@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -166,6 +167,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),maxModels:book.importBindings.compositions
     .filter(c=>c.profileId===binding.profileId).reduce((sum,c)=>sum+c.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
   finalizeRecipientBook(book);

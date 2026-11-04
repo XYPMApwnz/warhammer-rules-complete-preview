@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -194,6 +195,7 @@ export function buildTauContracts({facts=read('./generated/effective.json'),inpu
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),
     maxModels:facts.entities.filter(e=>e.kind==='COMPOSITION_MEMBER'&&e.data.modelProfileId===binding.profileId).reduce((n,e)=>n+e.data.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
   if(recipientStage==='CANONICAL'){
     book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'tau'};

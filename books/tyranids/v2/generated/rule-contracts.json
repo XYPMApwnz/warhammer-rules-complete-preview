@@ -924,6 +924,35 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+              }
             }
           ],
           "conditions": [
@@ -966,8 +995,39 @@
             "reason": "Preserved sibling ability requires battle timing, distance or player action."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "conditional-block-1::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-61dd06ec6b64ee28","referenceId":"refs-f7d69c2cdff239b6","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-c51cd7fa9a3f70c2","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/50/sections/0"}]}],
@@ -1198,6 +1258,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+              }
             }
           ],
           "conditions": [
@@ -1240,8 +1330,40 @@
             "reason": "Preserved sibling ability requires battle timing, distance or player action."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "conditional-block-1::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-ae011b2245fb9792","referenceId":"refs-4d9ccee64d8c6324","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-d991499c9dfb6b6e","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/41/sections/0"}]}],
@@ -2021,6 +2143,31 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+              }
             }
           ],
           "conditions": [
@@ -2057,8 +2204,35 @@
             "reason": "Requires battle timing/state; no automatic activation."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "battle-dependent::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-invasion-fleet",
@@ -2311,6 +2485,31 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+              }
             }
           ],
           "conditions": [
@@ -2347,8 +2546,35 @@
             "reason": "Requires battle timing/state; no automatic activation."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "battle-dependent::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-assimilation-swarm",
@@ -4069,6 +4295,31 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+              }
             }
           ],
           "conditions": [
@@ -4105,8 +4356,35 @@
             "reason": "Requires battle timing/state; no automatic activation."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "battle-dependent::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "This model’s melee attacks:\n- Can re-roll wound rolls."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-warrior-bioform-onslaught",

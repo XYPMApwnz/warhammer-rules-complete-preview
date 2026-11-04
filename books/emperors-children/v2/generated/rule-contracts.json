@@ -3048,6 +3048,31 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+              }
             }
           ],
           "conditions": [
@@ -3084,8 +3109,35 @@
             "reason": "Requires an actual melee attack targeting a CHARACTER unit; no battle state is simulated."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "character-attack::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_MODEL",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-slaaneshs-chosen",
