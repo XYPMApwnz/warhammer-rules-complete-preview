@@ -1,5 +1,6 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
+import {recordReviewedTextRecipients} from './reviewed-text-recipients.mjs';
 /** Book-owned typed declarations over native source facts. Shared V2 validators
  * and executor own behaviour. No importer, V1 dependency or source interpreter.
  */
@@ -163,6 +164,7 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   }
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
   book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
+  recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   finalizeRecipientBook(book);
  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');
