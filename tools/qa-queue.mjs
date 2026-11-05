@@ -35,6 +35,7 @@ node('tests/source-book-clone-qa.mjs',['--root='+root]);
 if(!fs.existsSync(path.join(root,'tests/source-book-clone-qa.mjs')))jobs.at(-1).args[0]=path.join(harnessRoot,'tests/source-book-clone-qa.mjs');
 node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
+ expand(pkg.scripts['glossary:check']);
  // Worker-enabled presentation QA needs a version-consistent publication,
  // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);

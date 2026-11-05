@@ -6,7 +6,10 @@ Run `npm run qa:help` for the command list. Begin with minimum QA, add dependent
 shared effects/roster/integration and workflow checks. Without `--books`, only
 the shared gates run. `npm run qa:pre-ff` runs all nine books, the shared gates,
 the existing browser suite, runtime packaging/determinism and the three source
-gates, plus keyword attribution. Both queues run sequentially, deduplicate leaf
+gates, plus keyword attribution and the full `glossary:check` producer gate.
+`qa:glossary` starts with strict cross-owner admission and published-reference
+negative controls before the other glossary checks.
+Both queues run sequentially, deduplicate leaf
 commands and retain every exit status and log even after a failure. The final
 exit code remains nonzero if any check failed; historical failures are not PASS.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card

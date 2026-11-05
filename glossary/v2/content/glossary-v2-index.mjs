@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveCoreCatalog} from '../../../books/core-rules/content/effective-core-catalog.mjs';
-import {loadV2ArmyModels,assertV2ArmyBookParity,V2_ARMY_BOOK_IDS,V2_FACTUAL_INTERFACES} from './army-v2-projection.mjs';
+import {loadV2ArmyModels,assertV2ArmyBookParity,V2_ARMY_BOOK_IDS,V2_FACTUAL_INTERFACES,V2_REFERENCE_FACTUAL_INTERFACES} from './army-v2-projection.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {createEffectiveMissionCatalog,MISSION_SCOPES} from '../../../missions/content/effective-mission-catalog.mjs';
 
@@ -12,6 +12,7 @@ const BOOK_IDS=V2_ARMY_BOOK_IDS;
 const FACTUAL_INPUTS=Object.freeze([
   'books/core-rules/content/effective-core-catalog.mjs',
   ...Object.values(V2_FACTUAL_INTERFACES),
+  ...Object.values(V2_REFERENCE_FACTUAL_INTERFACES),
   'mfm/content/effective-mfm-catalog.mjs',
   'missions/content/effective-mission-catalog.mjs'
 ]);
@@ -140,8 +141,13 @@ function addArmyEntries(entries,models){
   const lookups={unit:new Map(),detachment:new Map(),enhancement:new Map(),armyRule:new Map(),mfm:new Map()};
   for(const model of models){
     if(!BOOK_IDS.includes(model.book.id)||!model.factualInterface||!Array.isArray(model.entities))throw new Error('Non-V2 factual owner');
-    const book=model.book.id,records=new Map(model.entities.map(e=>[e.id,e])),ownerOf=e=>e.parentId||e.ownerId;
-    const sourceRows=model.entities.filter(entity=>{
+    const book=model.book.id,ownerOf=e=>e.parentId||e.ownerId;
+    const newReferenceOwners=(model.referenceEntities||[]).filter(entity=>![...entries.values()].some(entry=>entry.domain==='ARMY'&&entry.sourceOwner.bookId===entity.bookId&&entry.sourceOwner.canonicalId===entity.id));
+    if(newReferenceOwners.length)assert.ok(model.referenceFactualInterface,'Missing cross-owner factual interface');
+    const newReferenceIds=new Set(newReferenceOwners.map(entity=>entity.id));
+    const projectedEntities=[...model.entities,...newReferenceOwners],records=new Map(projectedEntities.map(e=>[e.id,e]));
+    assert.equal(records.size,projectedEntities.length,'Duplicate projected canonical owner');
+    const sourceRows=projectedEntities.filter(entity=>{
       if(mfmOwnedKinds.has(entity.kind))return false;
       if(entity.data.status!=='SUPERSEDED')return true;
       const owner=records.get(ownerOf(entity));
@@ -151,16 +157,8 @@ function addArmyEntries(entries,models){
       return false;
     });
     const entryByCanonical=new Map();
-    const inheritedEntries=new Map((model.referenceEntities||[]).map(entity=>{
-      const entry=[...entries.values()].find(candidate=>candidate.domain==='ARMY'&&candidate.sourceOwner.bookId===entity.bookId&&candidate.sourceOwner.canonicalId===entity.id);
-      assert.ok(entry,'Missing admitted inherited factual owner '+entity.id);
-      assert.deepEqual(entry.facts.canonicalData,entity.data,'Inherited factual identity changed');
-      const context={effectiveBookId:book,sourceBookId:entity.bookId,...(entity.parentId?{parentUnitId:entity.parentId}:{})};
-      if(!entry.contexts.some(existing=>JSON.stringify(existing)===JSON.stringify(context)))entry.contexts.push(context);
-      return [entity.id,entry];
-    }));
     const label=e=>e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||(types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null)||e.id;
-    const children=e=>model.entities.filter(child=>ownerOf(child)===e.id);
+    const children=e=>projectedEntities.filter(child=>ownerOf(child)===e.id);
     const blockText=(e,seen=new Set())=>{
       if(!e||seen.has(e.id))return'';seen=new Set([...seen,e.id]);
       const data=e.data,parts=data.blocks||data.clauses||data.equipmentAndRules||[];
@@ -179,6 +177,9 @@ function addArmyEntries(entries,models){
       return stats;
     };
     for(const entity of sourceRows){
+      const sourceBook=newReferenceIds.has(entity.id)?entity.bookId:book;
+      const factualInterface=newReferenceIds.has(entity.id)?model.referenceFactualInterface:model.factualInterface;
+      assert.equal(typeof sourceBook,'string','Missing canonical source book');
       const type=entity.kind==='DATASHEET_ABILITY'&&entity.data.wargearAbility===true?'WARGEAR_ABILITY':types[entity.kind]||entity.kind,parent=ownerOf(entity),parentId=records.has(parent)?parent:null,data=clone(entity.data);
       const facts={...data,id:entity.id,title:label(entity),canonicalData:clone(entity.data)};
       // Existing native sources may store the complete Stratagem as one text
@@ -226,17 +227,25 @@ function addArmyEntries(entries,models){
         facts.referenceSections=sections.filter(e=>roles[e.id]!=='composition'&&roles[e.id]!=='abilities').map(e=>({title:label(e),lines:[blockText(e)].filter(Boolean)}));
       }
       if(type==='DETACHMENT')facts.detachmentRules=children(entity).filter(e=>e.kind==='DETACHMENT_RULE').map(e=>({id:e.id,title:label(e),...clone(e.data)}));
-      const id=entryId('army',book,type.toLowerCase(),...(parentId?[parentId]:[]),entity.id);
-      const entry=createEntry({id,domain:'ARMY',recordType:type,label:label(entity),canonicalId:entity.id,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,provenance:clone(entity.provenance),currentness:{publicationState:'CURRENT'},sourceOwner:{domain:'ARMY',bookId:book,canonicalId:entity.id,interface:model.factualInterface},facts});
+      const id=entryId('army',sourceBook,type.toLowerCase(),...(parentId?[parentId]:[]),entity.id);
+      const entry=createEntry({id,domain:'ARMY',recordType:type,label:label(entity),canonicalId:entity.id,parent:parentId?{domain:'ARMY',canonicalId:parentId}:null,provenance:clone(entity.provenance),currentness:{publicationState:'CURRENT'},sourceOwner:{domain:'ARMY',bookId:sourceBook,canonicalId:entity.id,interface:factualInterface},facts});
       if(entity.fieldProvenance)entry.fieldProvenance=clone(entity.fieldProvenance);
       Object.assign(entry.presentation,abilityPresentation(entity,model));
-      entry.contexts=[{effectiveBookId:book,sourceBookId:book,...(parentId?{parentUnitId:parentId}:{})}];
+      entry.contexts=[{effectiveBookId:book,sourceBookId:sourceBook,...(parentId?{parentUnitId:parentId}:{})}];
       upsertEntry(entries,entry);entryByCanonical.set(entity.id,entry);
       if(type==='UNIT')lookups.unit.set(book+'::'+entity.id,entry);
       if(type==='DETACHMENT')lookups.detachment.set(book+'::'+entity.id,entry);
       if(type==='ENHANCEMENT')lookups.enhancement.set(book+'::'+parentId+'::'+entity.id,entry);
       if(type==='ARMY_RULE')lookups.armyRule.set(book+'::'+entity.id,entry);
     }
+    const inheritedEntries=new Map((model.referenceEntities||[]).map(entity=>{
+      const entry=[...entries.values()].find(candidate=>candidate.domain==='ARMY'&&candidate.sourceOwner.bookId===entity.bookId&&candidate.sourceOwner.canonicalId===entity.id);
+      assert.ok(entry,'Missing admitted inherited factual owner '+entity.id);
+      assert.deepEqual(entry.facts.canonicalData,entity.data,'Inherited factual identity changed');
+      const context={effectiveBookId:book,sourceBookId:entity.bookId,...(entity.parentId?{parentUnitId:entity.parentId}:{})};
+      if(!entry.contexts.some(existing=>JSON.stringify(existing)===JSON.stringify(context)))entry.contexts.push(context);
+      return [entity.id,entry];
+    }));
     for(const entity of sourceRows){
       const entry=entryByCanonical.get(entity.id),refs=[];
       const visit=(value,path=[])=>{if(typeof value==='string'){const own=entryByCanonical.get(value)||inheritedEntries.get(value),core=entries.get(entryId('core',value));if(own&&own!==entry)refs.push({domain:'ARMY',id:own.id,canonicalId:value,relationType:path.join('/')});else if(core)refs.push({domain:'CORE',id:core.id,canonicalId:value,relationType:path.join('/')});}else if(Array.isArray(value))value.forEach((v,i)=>visit(v,[...path,i]));else if(value&&typeof value==='object')Object.entries(value).forEach(([k,v])=>visit(v,[...path,k]));};
