@@ -212,12 +212,11 @@ try{
       await link.click({modifiers:['Control']});
       const tab=await opening;
       await tab.bringToFront();
-      // A new Page can precede its document. Start application readiness only
-      // after this exact source-bound destination has loaded its modules.
-      await tab.waitForURL(href,{waitUntil:'domcontentloaded'});
+      // The Page event can precede the actual document. Use the exact native
+      // route and document load, then keep the original bounded app predicate.
+      // app.html already guards boot.mjs with WHOfflineStatus.ready.
+      await tab.waitForURL(href,{waitUntil:'load'});
       assert.equal(tab.url(),href,'Native new tab lost the exact reference route');
-      await tab.waitForFunction(()=>Boolean(window.WHOfflineStatus));
-      await tab.evaluate(()=>window.WHOfflineStatus.ready);
       await ready(tab);await active(tab,book);await fact(tab,c);
       await tab.reload();await ready(tab);await fact(tab,c);await tab.close();
       await page.goto(href);await ready(page);await active(page,book);await fact(page,c);await page.reload();await ready(page);await fact(page,c);
