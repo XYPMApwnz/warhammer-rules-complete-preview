@@ -1616,15 +1616,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -11978,15 +12039,78 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -12358,15 +12482,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -12803,15 +12988,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -14855,15 +15101,78 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -16982,15 +17291,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -17004,15 +17376,78 @@
                 1
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-2::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      1,
+                      "text"
+                    ],
+                    "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],
@@ -17318,15 +17753,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -19895,15 +20393,76 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -20293,15 +20852,78 @@
                 0
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-1::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      0,
+                      "text"
+                    ],
+                    "quote": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "source-clause-2",
@@ -38522,6 +39144,15 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
+                },
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP."
                 }
               }
             ],
@@ -38536,8 +39167,36 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "fire-overwatch::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "the bearer’s unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [
@@ -42857,6 +43516,15 @@
                     ],
                     "quote": "the bearer’s unit"
                   }
+                },
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1)."
                 }
               }
             ],
@@ -42871,8 +43539,36 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "return-models::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "affected-unit",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "the bearer’s unit"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1)."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [

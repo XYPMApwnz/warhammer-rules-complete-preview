@@ -2161,6 +2161,396 @@
       "clauseIds": [
         "detection-range"
       ]
+    },
+    {
+      "id": "recipient-gaps-v1:07",
+      "book": "death-guard",
+      "rule": "Blistering Fusillade",
+      "leader": "Lord of Contagion",
+      "bodyguard": "Blightlord Terminators",
+      "owner": "Blightlord Terminators",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Contagion (0 pts)\n5x Blightlord Terminators (0 pts)\n5x Blightlord Terminators (0 pts)",
+      "quote": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+      "canonical": {
+        "ruleId": "datasheet-blightlord-terminators:section:1",
+        "text": "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:08",
+      "book": "death-guard",
+      "rule": "Icon of Despair (Aura)",
+      "leader": "Lord of Contagion",
+      "bodyguard": "Deathshroud Terminators",
+      "owner": "Deathshroud Terminators",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Contagion (0 pts)\n3x Deathshroud Terminators (0 pts): 1x Icon of Despair\n3x Deathshroud Terminators (0 pts)",
+      "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+      "canonical": {
+        "ruleId": "datasheet-deathshroud-terminators:section:1",
+        "text": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+        "sourcePath": [
+          "blocks",
+          2,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-3"
+      ],
+      "visibilityReason": "Deferred: the existing mandatory attached-rule-text QA explicitly excludes this text; changing that QA is outside the allowed file list."
+    },
+    {
+      "id": "recipient-gaps-v1:09",
+      "book": "death-guard",
+      "rule": "Shroud of Disease",
+      "leader": "Lord of Poxes",
+      "bodyguard": "Plague Marines",
+      "owner": "Lord of Poxes",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Poxes (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\".",
+      "canonical": {
+        "ruleId": "datasheet-lord-of-poxes:section:1",
+        "text": "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\".",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-2"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:10",
+      "book": "death-guard",
+      "rule": "Virulent Aura",
+      "leader": "Lord of Virulence",
+      "bodyguard": "Blightlord Terminators",
+      "owner": "Lord of Virulence",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Virulence (0 pts)\n5x Blightlord Terminators (0 pts)\n5x Blightlord Terminators (0 pts)",
+      "quote": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll.",
+      "canonical": {
+        "ruleId": "datasheet-lord-of-virulence:section:1",
+        "text": "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:11",
+      "book": "death-guard",
+      "rule": "Gift of Contagion (Psychic)",
+      "leader": "Malignant Plaguecaster",
+      "bodyguard": "Plague Marines",
+      "owner": "Malignant Plaguecaster",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [
+        "Pestilent Fallout (Psychic)"
+      ],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Malignant Plaguecaster (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability.",
+      "canonical": {
+        "ruleId": "datasheet-malignant-plaguecaster:section:1",
+        "text": "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:12",
+      "book": "death-guard",
+      "rule": "Tocsin of Misery (Aura)",
+      "leader": "Noxious Blightbringer",
+      "bodyguard": "Plague Marines",
+      "owner": "Noxious Blightbringer",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Noxious Blightbringer (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit.",
+      "canonical": {
+        "ruleId": "datasheet-noxious-blightbringer:section:1",
+        "text": "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-2"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:13",
+      "book": "death-guard",
+      "rule": "Infused with the Blessings of Nurgle",
+      "leader": "Biologus Putrifier",
+      "bodyguard": "Plague Marines",
+      "owner": "Plague Marines",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Biologus Putrifier (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted.",
+      "canonical": {
+        "ruleId": "datasheet-plague-marines:section:1",
+        "text": "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:14",
+      "book": "death-guard",
+      "rule": "Icon of Despair (Aura)",
+      "leader": "Biologus Putrifier",
+      "bodyguard": "Plague Marines",
+      "owner": "Plague Marines",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Biologus Putrifier (0 pts)\n7x Plague Marines (0 pts): 1x Icon of Despair\n7x Plague Marines (0 pts)",
+      "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+      "canonical": {
+        "ruleId": "datasheet-plague-marines:section:1",
+        "text": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-2"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:15",
+      "book": "death-guard",
+      "rule": "Tainted Narthecium",
+      "leader": "Plague Surgeon",
+      "bodyguard": "Plague Marines",
+      "owner": "Plague Surgeon",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Plague Surgeon (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit.",
+      "canonical": {
+        "ruleId": "datasheet-plague-surgeon:section:1",
+        "text": "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:16",
+      "book": "death-guard",
+      "rule": "Malicious Calculations",
+      "leader": "Tallyman",
+      "bodyguard": "Plague Marines",
+      "owner": "Tallyman",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Tallyman (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll.",
+      "canonical": {
+        "ruleId": "datasheet-tallyman:section:1",
+        "text": "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:17",
+      "book": "death-guard",
+      "rule": "The Destroyer Hive",
+      "leader": "Typhus",
+      "bodyguard": "Poxwalkers",
+      "owner": "Typhus",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Typhus (0 pts)\n20x Poxwalkers (0 pts)\n20x Poxwalkers (0 pts)",
+      "quote": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll.",
+      "canonical": {
+        "ruleId": "datasheet-typhus:section:1",
+        "text": "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:18",
+      "book": "death-guard",
+      "rule": "Sorrowsyphon",
+      "leader": "Malignant Plaguecaster",
+      "bodyguard": "Poxwalkers",
+      "owner": "Malignant Plaguecaster",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Shamblerot Vectorium\n1x Malignant Plaguecaster (0 pts)\nEnhancement: Sorrowsyphon\n20x Poxwalkers (0 pts)\n20x Poxwalkers (0 pts)",
+      "quote": "MALIGNANT PLAGUECASTER only. While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon. Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed.",
+      "canonical": {
+        "ruleId": "detachment-shamblerot-vectorium:enhancement:3",
+        "text": "MALIGNANT PLAGUECASTER only. While the bearer is leading a POXWALKERS unit, add 1 to the Damage characteristic of the bearer’s Plague Wind weapon. Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed.",
+        "sourcePath": [
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "bodyguard-destruction"
+      ],
+      "visibilityReason": "Existing memberOfBearerUnit MODEL selector has no computer; adding a recipient does not resolve its ROSTER gate."
+    },
+    {
+      "id": "recipient-gaps-v1:19",
+      "book": "death-guard",
+      "rule": "Shriekworm Familiar",
+      "leader": "Biologus Putrifier",
+      "bodyguard": "Plague Marines",
+      "owner": "Biologus Putrifier",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Mortarion's Hammer\n1x Biologus Putrifier (0 pts)\nEnhancement: Shriekworm Familiar\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP.",
+      "canonical": {
+        "ruleId": "detachment-mortarions-hammer:enhancement:3",
+        "text": "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP.",
+        "sourcePath": [
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "fire-overwatch"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:20",
+      "book": "death-guard",
+      "rule": "Needle of Nurgle",
+      "leader": "Plague Surgeon",
+      "bodyguard": "Plague Marines",
+      "owner": "Plague Surgeon",
+      "ownerInstance": "parsed-unit-1",
+      "target": "parsed-unit-2",
+      "reverse": false,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Champions of Contagion\n1x Plague Surgeon (0 pts)\nEnhancement: Needle of Nurgle\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts)",
+      "quote": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1).",
+      "canonical": {
+        "ruleId": "detachment-champions-of-contagion:enhancement:3",
+        "text": "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1).",
+        "sourcePath": [
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "return-models"
+      ]
     }
   ],
   "deferredScopes": [

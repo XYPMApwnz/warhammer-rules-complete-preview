@@ -134,6 +134,43 @@ adopt("detachment-paragons-of-putrescence:enhancement:1","wound-roll-modifier",t
 adopt("detachment-paragons-of-putrescence:enhancement:2","additional-plague",text,
   "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.","affected-enemy",
   {"subject": "UNIT", "scope": "FORMED"});
+declare("datasheet-blightlord-terminators:section:1","source-clause-1",b(0),
+  "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+  {"id":"text-recipient","subject":"MODEL","allegiance":"FRIENDLY","binding":"SOURCE_FORMED_MODELS"});
+declare("datasheet-lord-of-poxes:section:1","source-clause-2",b(1),
+  "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\".",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+declare("datasheet-lord-of-virulence:section:1","source-clause-1",b(0),
+  "Virulent Aura: While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll.",
+  {"id":"text-recipient","subject":"MODEL","allegiance":"FRIENDLY","binding":"SOURCE_FORMED_MODELS"});
+declare("datasheet-malignant-plaguecaster:section:1","source-clause-1",b(0),
+  "Gift of Contagion (Psychic): While this model is leading a unit, each time a model in that unit makes an attack that targets a unit that is Afflicted, that attack has the [SUSTAINED HITS 1] ability.",
+  {"id":"text-recipient","subject":"MODEL","allegiance":"FRIENDLY","binding":"SOURCE_FORMED_MODELS"});
+declare("datasheet-noxious-blightbringer:section:1","source-clause-2",b(1),
+  "Tocsin of Misery (Aura): In the Battle-shock step of your opponent’s Command phase, if an enemy unit that is below its Starting Strength is within 9\" of this model, that enemy unit must take a Battle-shock test, subtracting 1 from that test if it is a PSYKER unit.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+declare("datasheet-plague-marines:section:1","source-clause-1",b(0),
+  "Infused with the Blessings of Nurgle: In your Shooting phase, each time this unit is selected to shoot, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is Afflicted.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+declare("datasheet-plague-marines:section:1","source-clause-2",b(1),
+  "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+declare("datasheet-plague-surgeon:section:1","source-clause-1",b(0),
+  "Tainted Narthecium: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model to that unit.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+declare("datasheet-tallyman:section:1","source-clause-1",b(0),
+  "Malicious Calculations: While this model is leading a unit, each time a model in that unit makes an attack, you can ignore any or all modifiers to that attack’s Ballistic Skill or Weapon Skill characteristics and/or any or all modifiers to the Hit roll.",
+  {"id":"text-recipient","subject":"MODEL","allegiance":"FRIENDLY","binding":"SOURCE_FORMED_MODELS"});
+declare("datasheet-typhus:section:1","source-clause-1",b(0),
+  "The Destroyer Hive: While this model is leading a unit, each time a melee attack targets that unit, subtract 1 from the Hit roll.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+adopt("detachment-mortarions-hammer:enhancement:3","fire-overwatch",text,
+  "DEATH GUARD model only. Once per battle round, you can target the bearer’s unit with the Fire Overwatch Stratagem for 0CP.","affected-unit",
+  {"subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+adopt("detachment-champions-of-contagion:enhancement:3","return-models",text,
+  "PLAGUE SURGEON only. Each time the bearer uses its Tainted Narthecium ability, you can return up to D3 destroyed models to the bearer’s unit (instead of 1).","affected-unit",
+  {"subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
+
 const valueAt=(entity,field)=>field.reduce((value,key)=>value?.[key],entity.data);
 
 /** Called only on the book-owned declaration scratch, before common finalize. */
