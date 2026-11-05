@@ -1951,6 +1951,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "textRecipientModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Broad-spectrum Targeting Augurs: Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding MONSTER and VEHICLE units), that attack has the [SUSTAINED HITS 1] ability."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Broad-spectrum Targeting Augurs: Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding MONSTER and VEHICLE units), that attack has the [SUSTAINED HITS 1] ability."
+              }
             }
           ],
           "conditions": [],
@@ -2215,6 +2245,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "textRecipientModel",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Monocular Targeting Helms: Each time a model in this unit makes an attack with a neutron fusil against a MONSTER or VEHICLE unit, that attack has the [IGNORES COVER] ability."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Monocular Targeting Helms: Each time a model in this unit makes an attack with a neutron fusil against a MONSTER or VEHICLE unit, that attack has the [IGNORES COVER] ability."
+              }
             }
           ],
           "conditions": [],
@@ -5918,6 +5978,37 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "textRecipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Objective Scouted: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Objective Scouted: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+              }
             }
           ],
           "conditions": [
@@ -6052,6 +6143,37 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "textRecipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+              }
             }
           ],
           "conditions": [],
@@ -6510,6 +6632,37 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "textRecipientUnit",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+                }
+              },
+              "conditions": [],
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP."
+              }
             }
           ],
           "conditions": [],

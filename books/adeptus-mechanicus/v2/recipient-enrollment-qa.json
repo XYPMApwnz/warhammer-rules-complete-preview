@@ -2415,6 +2415,175 @@
       "clauseIds": [
         "block-3"
       ]
+    },
+    {
+      "id": "recipient-gaps-v1:01",
+      "book": "adeptus-mechanicus",
+      "rule": "Broad-spectrum Targeting Augurs",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Hastarii Exterminators",
+      "owner": "Hastarii Exterminators",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n5x Hastarii Exterminators (0 pts)\n5x Hastarii Exterminators (0 pts)",
+      "quote": "Broad-spectrum Targeting Augurs: Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding MONSTER and VEHICLE units), that attack has the [SUSTAINED HITS 1] ability.",
+      "canonical": {
+        "ruleId": "datasheet-hastarii-exterminators:section:1",
+        "text": "Broad-spectrum Targeting Augurs: Each time a model in this unit makes an attack with an eradication caster that targets a unit (excluding MONSTER and VEHICLE units), that attack has the [SUSTAINED HITS 1] ability.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:02",
+      "book": "adeptus-mechanicus",
+      "rule": "Monocular Targeting Helms",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Hastarii Fusiliers",
+      "owner": "Hastarii Fusiliers",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n5x Hastarii Fusiliers (0 pts)\n5x Hastarii Fusiliers (0 pts)",
+      "quote": "Monocular Targeting Helms: Each time a model in this unit makes an attack with a neutron fusil against a MONSTER or VEHICLE unit, that attack has the [IGNORES COVER] ability.",
+      "canonical": {
+        "ruleId": "datasheet-hastarii-fusiliers:section:1",
+        "text": "Monocular Targeting Helms: Each time a model in this unit makes an attack with a neutron fusil against a MONSTER or VEHICLE unit, that attack has the [IGNORES COVER] ability.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:03",
+      "book": "adeptus-mechanicus",
+      "rule": "Network Override",
+      "leader": "Tech-priest Dominus",
+      "bodyguard": "Servitor Battleclade",
+      "owner": "Servitor Battleclade",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Tech-priest Dominus (0 pts)\n9x Servitor Battleclade (0 pts)\n• 1x Servitor Underseer\n• 2x Gun Servitor\n• 6x Combat Servitor\n9x Servitor Battleclade (0 pts)\n• 1x Servitor Underseer\n• 2x Gun Servitor\n• 6x Combat Servitor",
+      "quote": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action.",
+      "canonical": {
+        "ruleId": "datasheet-servitor-battleclade:section:1",
+        "text": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-1"
+      ],
+      "visibilityReason": "Existing containsTechPriestModel ROSTER condition has no computer; O-1 fails closed."
+    },
+    {
+      "id": "recipient-gaps-v1:04",
+      "book": "adeptus-mechanicus",
+      "rule": "Objective Scouted",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Skitarii Rangers",
+      "owner": "Skitarii Rangers",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n10x Skitarii Rangers (0 pts): 1x Enhanced data-tether\n10x Skitarii Rangers (0 pts)",
+      "quote": "Objective Scouted: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+      "canonical": {
+        "ruleId": "datasheet-skitarii-rangers:section:1",
+        "text": "Objective Scouted: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+        "sourcePath": [
+          "blocks",
+          0,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-1"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:05",
+      "book": "adeptus-mechanicus",
+      "rule": "Enhanced data-tether",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Skitarii Rangers",
+      "owner": "Skitarii Rangers",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n10x Skitarii Rangers (0 pts): 1x Enhanced data-tether\n10x Skitarii Rangers (0 pts)",
+      "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "canonical": {
+        "ruleId": "datasheet-skitarii-rangers:section:1",
+        "text": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-2"
+      ]
+    },
+    {
+      "id": "recipient-gaps-v1:06",
+      "book": "adeptus-mechanicus",
+      "rule": "Enhanced data-tether",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Skitarii Vanguard",
+      "owner": "Skitarii Vanguard",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": true,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n10x Skitarii Vanguard (0 pts): 1x Enhanced data-tether\n10x Skitarii Vanguard (0 pts)",
+      "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "canonical": {
+        "ruleId": "datasheet-skitarii-vanguard:section:1",
+        "text": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-2"
+      ]
     }
   ]
 }
