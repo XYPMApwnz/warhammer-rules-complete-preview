@@ -1,11 +1,10 @@
-import {launchQaBrowser} from '../tests/helpers/qa-browser.cjs';
+import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 /** Independent full-payload integration checks for the unified V2 entry point. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {createRequire} from 'node:module';
 import {decodeRoute} from '../books/shared/army-book-app-v2/route-context.mjs';
 import {armyBooks} from './army-books.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
@@ -140,10 +139,7 @@ async function released(page){
 
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const origin=`http://127.0.0.1:${server.address().port}`,entry=origin+'/v2/app.html';
-const installed='C:/Program Files/Google/Chrome/Application/chrome.exe';
-const executablePath=process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||(fs.existsSync(installed)?installed:undefined);
-const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await launchQaBrowser(chromium,{headless:true,...(executablePath?{executablePath}:{})});
+const browser=await launchChromium();
 const screenshot=async(page,name)=>{if(process.env.V2_SHELL_SCREENSHOTS){fs.mkdirSync(process.env.V2_SHELL_SCREENSHOTS,{recursive:true});
   await page.screenshot({path:path.join(process.env.V2_SHELL_SCREENSHOTS,name+'.png'),fullPage:false});}};
 try{

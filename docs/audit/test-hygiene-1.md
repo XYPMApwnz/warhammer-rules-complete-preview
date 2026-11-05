@@ -216,3 +216,7 @@ The primary full-run result remains NOT_COMPLETED for Shell; post-correction tar
 ## Owner discovery addendum
 
 The static deleted-path filter and 60-second discovery cap were requested after the inventory completed. No completed discovery run was repeated. All 123 removed tests had already failed within 1.922 seconds, so every deletion also satisfies the new cap. Long-running and incomplete files remain retained as non-dead; the five historical TIMEOUT records preserve the original exploratory limit instead of pretending they used a different timeout. Any future discovery first selects static references to Git-deleted paths and aborts after 60 seconds without deleting a surviving test.
+
+## Browser environment correction
+
+The first bounded correction passed once and then reproduced the original 15-second application readiness timeout on system Google Chrome 154.0.8037.58 (shell-bounded-results.json). Shell was forcing that undeclared local executable and the legacy PLAYWRIGHT_CHROMIUM_EXECUTABLE variable, unlike Core/F1/F2. It now uses the existing launchChromium helper, the Playwright-managed 151.0.7922.34 browser family and the standard WH_PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH override. No new browser framework, application shim or service-worker mock is introduced. All original assertions and the 15-second app predicate remain. Final targeted results are stored separately in shell-standard-results.json. This configuration mismatch is proven; it is not presented as conclusive proof of the internal cause of the earlier pending browser Promise.
