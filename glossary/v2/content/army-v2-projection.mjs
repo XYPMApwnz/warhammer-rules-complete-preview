@@ -32,9 +32,12 @@ import {buildBloodAngelsMixedBook} from '../../../books/blood-angels/v2/book-bui
 import {consumeMfm as consumeBAMfm} from '../../../books/blood-angels/v2/mfm-boundary.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {assertSourceCompletenessGate,loadSourceCompletenessInputs} from '../../../books/shared/roster-v2/source-completeness.mjs';
+import {parseProducerJSON,prepareSourceProducer} from '../../../books/shared/source-refs-v2/producer-io.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
-const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
+// Compare the same producer declaration view for persisted and freshly built
+// sourceRefs. All factual, ownership and publication assertions remain strict.
+const read=relative=>parseProducerJSON(fs.readFileSync(path.join(repo,relative),'utf8'));
 const sameProjection=(actual,expected,message)=>assert.ok(JSON.stringify(actual)===JSON.stringify(expected),message);
 export const V2_ARMY_BOOK_IDS=Object.freeze(['death-guard','adeptus-mechanicus','chaos-space-marines','emperors-children','tyranids','tau-empire','space-marines','dark-angels','blood-angels']);
 export const V2_FACTUAL_INTERFACES=Object.freeze({
@@ -83,7 +86,7 @@ export function assertV2ArmyBookParity(models,{published=bookId=>read(`books/${b
     const referenced=new Map((model.referenceEntities||[]).map(entity=>[entity.id,entity]));
     if(referenced.size){
       assert.ok(['dark-angels','blood-angels'].includes(model.book.id),'Unreviewed mixed-owner consumer');
-      const membership=(model.book.id==='dark-angels'?buildDarkAngelsMixedBook():buildBloodAngelsMixedBook()).canonicalEntities.filter(entity=>entity.bookId!==model.book.id);
+      const membership=prepareSourceProducer(model.book.id==='dark-angels'?buildDarkAngelsMixedBook():buildBloodAngelsMixedBook()).canonicalEntities.filter(entity=>entity.bookId!==model.book.id);
       assert.deepEqual([...referenced.values()],membership,'Unreviewed mixed-owner reference admission');
       const source=models.find(owner=>owner.book.id==='space-marines');
       for(const entity of referenced.values())assert.deepEqual(entity,source.entities.find(record=>record.id===entity.id),'Inherited canonical owner changed');
@@ -126,9 +129,9 @@ export function assertV2ArmyBookParity(models,{published=bookId=>read(`books/${b
     }
     // Native layout-only addresses are checked against their existing producer,
     // never treated as additions to the canonical factual owner.
-    const nativeLayout=model.book.id==='space-marines'?new Map(buildSMNativeMfmBook().model.entities.map(entity=>[entity.id,entity])):
-      model.book.id==='dark-angels'?new Map(buildDarkAngelsMixedBook().book.entities.map(entity=>[entity.id,entity])):
-      model.book.id==='blood-angels'?new Map(buildBloodAngelsMixedBook().book.entities.map(entity=>[entity.id,entity])):null;
+    const nativeLayout=model.book.id==='space-marines'?new Map(prepareSourceProducer(buildSMNativeMfmBook().model).entities.map(entity=>[entity.id,entity])):
+      model.book.id==='dark-angels'?new Map(prepareSourceProducer(buildDarkAngelsMixedBook().book).entities.map(entity=>[entity.id,entity])):
+      model.book.id==='blood-angels'?new Map(prepareSourceProducer(buildBloodAngelsMixedBook().book).entities.map(entity=>[entity.id,entity])):null;
     for(const field of model.appPayload.factManifest.filter(field=>field.ownerType==='CANONICAL_V2')) {
       const owner=entities.get(field.entityId)||referenced.get(field.entityId)||presentationEntities.get(field.entityId);
       assert.ok(owner,`${model.book.id}: Army Book field has no canonical factual owner ${field.entityId}`);
@@ -217,7 +220,7 @@ function mfmIdentityBindings(model,{factualModel}={}) {
 export function loadV2ArmyModels(options={}) {
   assertSourceCompletenessGate(loadSourceCompletenessInputs());
   const dg=assertV2ArmyFactualFreshness(options);
-  const dgContract=buildRuleContractV2();
+  const dgContract=prepareSourceProducer(buildRuleContractV2());
   sameProjection(read('books/death-guard/v2/generated/rule-contract-effective.json'),dgContract,'Stale Death Guard contract projection');
   const dgInputs=readDGAppInputs(),ids=new Set();
   for(const key of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'])for(const binding of dgContract.mfm[key])ids.add(binding.mfmRecordId);
@@ -227,16 +230,16 @@ export function loadV2ArmyModels(options={}) {
   const am=read('books/adeptus-mechanicus/v2/generated/effective.json'),amInputs=readAdMechAppInputs();
   const csm=read('books/chaos-space-marines/v2/generated/effective.json'),csmBuilt=buildCSMContracts({facts:csm});
   const ec=read('books/emperors-children/v2/generated/effective.json'),ecBuilt=buildECContracts({facts:ec});
-  sameProjection(read('books/emperors-children/v2/generated/rule-contracts.json'),ecBuilt.artifact,'Stale EC contract projection');
+  sameProjection(read('books/emperors-children/v2/generated/rule-contracts.json'),prepareSourceProducer(ecBuilt.artifact),'Stale EC contract projection');
   const tyr=read('books/tyranids/v2/generated/effective.json'),tyrBuilt=buildTyranidsContracts({facts:tyr});
-  sameProjection(read('books/tyranids/v2/generated/rule-contracts.json'),tyrBuilt.artifact,'Stale Tyranids contract projection');
-  const tau=read('books/tau-empire/v2/generated/effective.json'),tauBuilt=buildTauImportBook();
+  sameProjection(read('books/tyranids/v2/generated/rule-contracts.json'),prepareSourceProducer(tyrBuilt.artifact),'Stale Tyranids contract projection');
+  const tau=read('books/tau-empire/v2/generated/effective.json'),tauBuilt=prepareSourceProducer(buildTauImportBook());
   sameProjection(read('books/tau-empire/v2/generated/roster-import.json'),tauBuilt,'Stale T’au import projection');
   const tauApp=buildTauApp(tauBuilt);tauApp.sourceCompleteness=assertTauAppSourceReview(tauBuilt);
   const sm=read('books/space-marines/v2/generated/effective.json');
   const da=read('books/dark-angels/v2/generated/effective.json'),daMixed=buildDarkAngelsMixedBook();
   const ba=read('books/blood-angels/v2/generated/effective.json'),baMixed=buildBloodAngelsMixedBook();
-  const models=[
+  const models=prepareSourceProducer([
     {book:{id:'death-guard'},entities:dg.entities,appPayload:buildDGApp({...dgInputs,model:dgContract,records})},
     {book:{id:'adeptus-mechanicus'},entities:am.entities,appPayload:buildAdMechApp(amInputs)},
     {book:{id:'chaos-space-marines'},entities:csm.entities,appPayload:buildCSMApp(csmBuilt,{relatedRules:read('books/chaos-space-marines/v2/generated/app-presentation.json').relatedRules})},
@@ -246,7 +249,7 @@ export function loadV2ArmyModels(options={}) {
     {book:{id:'space-marines'},entities:sm.entities,appPayload:buildSMApp()},
     {book:{id:'dark-angels'},entities:da.entities,referenceEntities:daMixed.canonicalEntities.filter(entity=>entity.bookId!=='dark-angels'),appPayload:buildDAApp()},
     {book:{id:'blood-angels'},entities:ba.entities,referenceEntities:baMixed.canonicalEntities.filter(entity=>entity.bookId!=='blood-angels'),appPayload:buildBAApp()}
-  ].map(model=>({...model,factualInterface:V2_FACTUAL_INTERFACES[model.book.id],mfmIdentityBindings:mfmIdentityBindings(model,{factualModel:dg})}));
+  ].map(model=>({...model,factualInterface:V2_FACTUAL_INTERFACES[model.book.id],mfmIdentityBindings:mfmIdentityBindings(model,{factualModel:dg})})));
   assertV2ArmyBookParity(models);
   return models;
 }
