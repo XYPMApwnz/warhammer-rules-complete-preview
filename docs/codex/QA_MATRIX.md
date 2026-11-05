@@ -12,6 +12,12 @@ exit code remains nonzero if any check failed; historical failures are not PASS.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card
 parity is a separate review tool and is not included in either queue.
 
+Python-based tests resolve their interpreter through `tests/helpers/qa-python.cjs`:
+an explicit CLI override, then `QA_PYTHON` (or a preserved caller-specific legacy
+environment key), then the current user's Codex runtime, then `python` on PATH.
+An invalid explicit override is not silently replaced. This is test infrastructure;
+factual producers keep their existing interpreter configuration.
+
 For independent unified V2 certification of Core, DG, AdMech and CSM, follow the [authoritative certification requirements](../PROJECT_SOURCE_OF_TRUTH.md#independent-v2-certification-requirements). The targeted suites below provide regression evidence; a green suite alone does not establish `CONTENT_CERTIFIED` or `USER_PATH_CERTIFIED`.
 
 | Change area | Minimum QA | Dependent QA | Release-only QA |

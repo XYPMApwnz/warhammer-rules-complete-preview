@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Focused source/native physical projection checks; constructed diagnostic rows. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -18,7 +19,7 @@ assert.equal(JSON.stringify(native),initial,'Factual/presentation owner mutated'
 assert.equal(result.review.length,232);assert.equal(result.bindings.length,73);assert.equal(result.unsupported.length,159);
 assert.equal(base.bindings.length,36);assert.equal(base.unsupported.length,1);
 // Independently read accepted source DOM for all source clauses/tooltip pointers.
-const python='C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython();
 const script=`import json,sys,hashlib\nfrom lxml import html\nf=json.load(sys.stdin); t=html.parse(f['raw']); out=[]\nfor r in f['records']:\n n=t.xpath(r['sourcePointer'])[0];out.append({'id':r['id'],'text':' '.join(n.text_content().split()),'tooltip':n.get('data-tooltip-content')})\nprint(json.dumps(out))`;
 const raw=fileURLToPath(new URL('./sources/raw/wahapedia-datasheets-probe.html',import.meta.url));
 const parsed=spawnSync(python,['-X','utf8','-c',script],{input:JSON.stringify({raw,records:nativeAbilityReview}),encoding:'utf8'});

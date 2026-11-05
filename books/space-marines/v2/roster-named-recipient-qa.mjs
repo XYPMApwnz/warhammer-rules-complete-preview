@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Three reproduced named-recipient joins, reviewed against accepted source URIs. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -39,7 +40,7 @@ function validate(candidate,eligibility=enhancementEligibility){
 validate(review);
 // No runtime-derived EXPECTED: source link destinations and source-owned profiles
 // are independently extracted before testing the existing compiled predicates.
-const python=process.env.CODEX_PYTHON||'C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython({envKeys:['CODEX_PYTHON']});
 const script=String.raw`
 import json,sys,hashlib
 from pathlib import Path

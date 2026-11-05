@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../tests/helpers/qa-python.cjs';
 /** Offline clean-tree producer rebuild, followed by the normal browser path.
  * No commits, branch updates or writes to the real Git index are performed.
  * Evidence is retained only through QA_EVIDENCE_DIR (see qa-temp helper). */
@@ -31,7 +32,7 @@ try{
   [process.execPath,['books/death-guard/v2/build.mjs']],
   [process.execPath,['books/death-guard/v2/rule-contract-build.mjs']],
   [process.execPath,['books/death-guard/v2/app-build.mjs']],
-  [option('--python')||path.join(process.env.USERPROFILE,'.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'),['books/adeptus-mechanicus/v2/build.py']],
+  [resolveQaPython({override:option('--python')}),['books/adeptus-mechanicus/v2/build.py']],
   [process.execPath,['books/adeptus-mechanicus/v2/rule-contract-build.mjs']],
   [process.execPath,['books/adeptus-mechanicus/v2/app-build.mjs']]
  ])run(command,args);

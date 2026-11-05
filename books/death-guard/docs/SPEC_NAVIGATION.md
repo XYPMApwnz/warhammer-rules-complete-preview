@@ -51,14 +51,14 @@ Scroll-follow is enabled for the continuous book document. Focused canonical
 or physical-instance cards retain their explicit selection: scrolling above
 that card must not select a book chapter absent from the current document.
 
-Acceptance: run `v2/navigation-v1-qa.mjs` to detect drift in 34 reused V1
-methods and any change to the accepted datasheet/physical renderer or stylesheet.
-Run `v2/navigation-v1-browser-qa.mjs` with the real V1 reader and V2 side by side
-at 1440×1000 and 390×844: compare computed Contents/current-row styling, nested
-DOM, accordion, controlled scrolling/cancellation, exact targets, history/reload,
-drawer/focus/backdrop/resize and physical roster groups. Preserve the 3654-fact
-V2 browser census and all 22 visible roster-effect controls. No change to
-Related Rules applicability or Glossary record resolution is permitted.
+Retired comparative acceptance: `v2/navigation-v1-qa.mjs` was removed in test
+hygiene part 1. `v2/navigation-v1-browser-qa.mjs` still exists, but its real-V1
+side-by-side requirement is retired and is not current V2 acceptance. The old
+34-method, 3654-fact and 22-control figures describe historical evidence only.
+Current native navigation must preserve Contents, exact targets, history,
+focus, responsive geometry, physical roster groups, Related Rules applicability
+and Glossary resolution; consult the current repository QA matrix. This note
+does not claim that a replacement covers every historical assertion.
 
 ## Specification update rule
 

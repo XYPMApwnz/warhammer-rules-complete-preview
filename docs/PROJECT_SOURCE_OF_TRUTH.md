@@ -99,7 +99,7 @@ Source-backed behavioral requirements:
 
 - Belicosa-class Capacitor Vanes propagates its accepted weapon changes across the attached physical unit and remains isolated from another copy.
 - Helix Gauntlet grants the accepted Feel No Pain effect to the attached group, including the attached Librarian, and disappears from that character after detach.
-- Negative controls in `attached-unit-wide-effect-scope-qa.mjs`, `physical-unit-game-effects-qa.mjs` and `tests/browser/attached-unit-wide-effects.mjs` prevent over-propagation and cross-instance leakage.
+- The former controls in `attached-unit-wide-effect-scope-qa.mjs`, `physical-unit-game-effects-qa.mjs` and `tests/browser/attached-unit-wide-effects.mjs` are retired (removed in test hygiene part 1). Preventing over-propagation and cross-instance leakage remains mandatory; those removed checks are historical evidence, not current executable acceptance or a fresh coverage claim.
 
 ## 9. Attachment-group constraint model
 

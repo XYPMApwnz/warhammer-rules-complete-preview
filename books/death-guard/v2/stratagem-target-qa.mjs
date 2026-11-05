@@ -1,6 +1,6 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
@@ -12,8 +12,7 @@ const directory=path.dirname(fileURLToPath(import.meta.url));
 let sourceCensus;
 export function targetSourceCensus() {
   if (!sourceCensus) {
-    const bundled=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-    const python=process.env.PYTHON||(fs.existsSync(bundled)?bundled:'python3');
+    const python=resolveQaPython();
     // Re-derive expectations from accepted DOM/PDF, never from production
     // declarations or a generated condition inventory. The JSON is QA only.
     sourceCensus=JSON.parse(execFileSync(python,['-X','utf8',path.join(directory,'stratagem-target-source-qa.py')],{encoding:'utf8'}));

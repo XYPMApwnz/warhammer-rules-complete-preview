@@ -1,8 +1,8 @@
+import {resolveQaPython} from './helpers/qa-python.cjs';
 import {cleanupQaTempDir,createQaTempDir} from './helpers/qa-temp.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -13,8 +13,7 @@ const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).diges
 const run=(command,args)=>spawnSync(command,args,{cwd:repo,encoding:'utf8'});
 const output=result=>`${result.stdout||''}\n${result.stderr||''}`;
 const rejected=(result,pattern)=>{assert.notEqual(result.status,0,output(result));assert.match(output(result),pattern);};
-const bundledPython=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-const python=process.env.PYTHON||(fs.existsSync(bundledPython)?bundledPython:'python');
+const python=resolveQaPython();
 const runPython=args=>run(python,['-B',...args]);
 
 const ecRoot=path.join(repo,'books','emperors-children');

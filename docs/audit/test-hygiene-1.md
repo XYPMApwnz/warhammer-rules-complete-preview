@@ -1,5 +1,10 @@
 # Test hygiene, part 1
 
+Retirement index: every test path in the removed-file and previous-command
+tables is retired. Those paths and commands preserve the deletion evidence;
+they are not current executable instructions. Historical results remain scoped
+to their recorded revision.
+
 Baseline: 8e9a95289168048086639ba8099f2e686023de9b. Windows execution evidence is stored outside the repository at E:/Warhammer/qa-evidence/test-hygiene-1.
 
 A 180-second per-file exploratory cap records TIMEOUT as incomplete coverage. Timeouts, assertion failures, external prerequisites and never-tracked missing inputs are retained. The initial incorrect Windows Path batch is archived and excluded from final counts.

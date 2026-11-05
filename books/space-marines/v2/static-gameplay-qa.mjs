@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Independent source-literal Stage 4D expectations. No browser/real export claim. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -43,7 +44,7 @@ for(const test of review.cases){
 
 // Review pins point to accepted RAW, not generated runtime contracts.
 const rawProofs=[...new Map([...review.cases,...review.physicalCases].map(row=>[row.ruleId,row.sourceProof]))].map(([,proof])=>proof).filter(proof=>proof.selectedHtmlSha256);
-const python=process.env.CODEX_PYTHON||'C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython({envKeys:['CODEX_PYTHON']});
 const raw=spawnSync(python,['-X','utf8','-c',String.raw`
 import json,sys,hashlib
 from pathlib import Path

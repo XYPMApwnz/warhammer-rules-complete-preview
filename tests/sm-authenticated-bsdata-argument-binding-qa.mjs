@@ -1,6 +1,6 @@
+import {resolveQaPython} from './helpers/qa-python.cjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {
@@ -53,8 +53,7 @@ const configuredLibrary=fs.realpathSync.native(authenticatedInputPaths.library);
 assert.equal(fs.realpathSync.native(childInvocation.args[childInvocation.args.indexOf('--bsdata-faction')+1]),configuredFaction);
 assert.equal(fs.realpathSync.native(childInvocation.args[childInvocation.args.indexOf('--bsdata-library')+1]),configuredLibrary);
 
-const bundledPython=path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-const python=process.env.PYTHON||(fs.existsSync(bundledPython)?bundledPython:'python');
+const python=resolveQaPython();
 const parser=[
   'import argparse,json',
   'p=argparse.ArgumentParser()',

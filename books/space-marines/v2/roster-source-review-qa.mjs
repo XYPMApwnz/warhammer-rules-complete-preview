@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 /** Targeted accepted-source adjudication; no source refresh and no runtime oracle. */
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ for(const row of [...result.modelMappings,...result.scopeCorrections]){
 // Independent RAW/XPath check. Source section records identify their heading;
 // their adjacent body is checked separately, rather than treating a heading as
 // evidence for the entire composition/replacement paragraph.
-const python=process.env.CODEX_PYTHON||'C:/Users/denis/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
+const python=resolveQaPython({envKeys:['CODEX_PYTHON']});
 const script=String.raw`
 import json,sys,hashlib
 from pathlib import Path

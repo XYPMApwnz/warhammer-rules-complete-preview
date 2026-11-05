@@ -1,3 +1,4 @@
+import {resolveQaPython} from '../../tests/helpers/qa-python.cjs';
 import {createQaTempDir,getQaTmpRoot,cleanupQaTempDir} from '../../tests/helpers/qa-temp.mjs';
 /** Current source acceptance, historical compatibility and unchanged semantics. */
 import assert from 'node:assert/strict';
@@ -121,7 +122,7 @@ const locator=sourceBindings.find(s=>s.sourceEntityId===ruleIdentity.sourceEntit
 const enrollment=read('books/space-marines/v2/sources/enrollment.json');
 const rawArtifact=enrollment.artifacts.find(a=>a.path===locator.document);
 assert.equal(sha(fs.readFileSync(path.join(root,locator.document))),rawArtifact.sha256);
-const python=process.env.PYTHON||(process.platform==='win32'?path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'):'python3');
+const python=resolveQaPython();
 const rawProof=JSON.parse(execFileSync(python,['-X','utf8','-c',
   'import sys,json;from lxml import html;t=html.parse(sys.argv[1]);n=t.xpath(sys.argv[2])[0];print(json.dumps({"text":" ".join("".join(n.itertext()).split()),"owner":n.getparent().getparent().getparent().xpath(".//a[@id]")[0].get("id") if n.getparent().getparent().getparent().xpath(".//a[@id]") else None}))',
   path.join(root,locator.document),locator.pointer],{encoding:'utf8'}));

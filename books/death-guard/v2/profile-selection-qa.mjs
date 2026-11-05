@@ -1,6 +1,6 @@
+import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -25,8 +25,7 @@ function inspectAcceptedSource() {
   const sha256 = createHash('sha256').update(bytes).digest('hex').toUpperCase();
   const enrollment = readJson('books/death-guard/v2/sources/source-enrollment.json');
   assert.equal(enrollment.sources.find(source => source.id === sourceId)?.sha256,sha256,'Pinned PDF source integrity');
-  const bundled = path.join(os.homedir(),'.cache','codex-runtimes','codex-primary-runtime','dependencies','python','python.exe');
-  const python = process.env.PYTHON || (fs.existsSync(bundled) ? bundled : 'python3');
+  const python=resolveQaPython();
   const script = `import json,pdfplumber,sys
 with pdfplumber.open(sys.argv[1]) as pdf:
  p=pdf.pages[4]

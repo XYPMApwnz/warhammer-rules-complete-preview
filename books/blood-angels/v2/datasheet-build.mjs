@@ -1,4 +1,4 @@
-import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
+import {parseProducerJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Isolated native V2 datasheet view. Facts remain in the Stage 2A foundation.
  * Same disposable PROFILE/layout adaptation used by Tyranids/T'au app-build.
  * No legacy Army builder, MFM lookup, roster engine or executable rules.
@@ -120,10 +120,8 @@ export function writeNativeDatasheets({check=false}={}){
     assert.equal(checked.status,0,checked.stderr||checked.stdout||'Mixed-owner datasheet check failed');
     return result;
   }
-  for(const [name,value] of [['native-datasheets',result.model],['datasheet-presentation',result.payload]]){
-    const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=serializeSourceJSON(value);
-    fs.writeFileSync(file,bytes);
-  }
+  // The mixed-owner producer consumes this adapter in memory. The former
+  // standalone JSON pair has no consumer and must not be emitted by this CLI.
   return result;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
