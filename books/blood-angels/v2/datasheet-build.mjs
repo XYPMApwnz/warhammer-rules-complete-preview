@@ -4,6 +4,7 @@ import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../..
  * No legacy Army builder, MFM lookup, roster engine or executable rules.
  */
 import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
@@ -111,9 +112,17 @@ export function buildNativeDatasheets({facts=read('./generated/effective.json'),
 
 export function writeNativeDatasheets({check=false}={}){
   const result=buildNativeDatasheets();
+  if(check){
+    // The standalone adapter is consumed in memory. Its tracked publication
+    // is the mixed-owner book, rather than the retired standalone JSON pair.
+    const checked=spawnSync(process.execPath,[fileURLToPath(new URL('./book-build.mjs',import.meta.url)),'--check'],
+      {encoding:'utf8'});
+    assert.equal(checked.status,0,checked.stderr||checked.stdout||'Mixed-owner datasheet check failed');
+    return result;
+  }
   for(const [name,value] of [['native-datasheets',result.model],['datasheet-presentation',result.payload]]){
     const file=new URL(`./generated/${name}.json`,import.meta.url),bytes=serializeSourceJSON(value);
-    if(check)assert.equal(fs.readFileSync(file,'utf8'),bytes,`Stale native output: ${name}`);else fs.writeFileSync(file,bytes);
+    fs.writeFileSync(file,bytes);
   }
   return result;
 }

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {parseProducerJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {buildSpaceMarinesRuntimeContracts as buildSpaceMarinesContracts} from './rule-contract-build.mjs';
 import {declarations} from './rule-contract-declarations.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
@@ -15,7 +16,7 @@ import {formRoster} from '../../shared/roster-v2/context.mjs';
 import {projectInstanceCards,projectPersonalBook,projectFormedUnitCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 
-const clone=structuredClone,read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
+const clone=structuredClone,read=name=>parseProducerJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const review=read('./static-gameplay-review.json'),ledger=read('./rule-clause-review.json'),facts=read('./generated/effective.json');
 const sourceIndex=new Map(facts.entities.map(row=>[row.id,row])),built=buildSpaceMarinesContracts(),book=built.book;

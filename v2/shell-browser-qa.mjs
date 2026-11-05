@@ -208,7 +208,18 @@ try{
       await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});await page.waitForSelector('main .unit-card');
       await page.goForward();await page.waitForSelector('dialog[open]');await fact(page,c,true);
       await page.goBack();await page.waitForSelector('dialog[open]',{state:'hidden'});
-      const opening=context.waitForEvent('page');await link.click({modifiers:['Control']});const tab=await opening;await ready(tab);await active(tab,book);await fact(tab,c);await tab.reload();await ready(tab);await fact(tab,c);await tab.close();
+      const opening=context.waitForEvent('page');
+      await link.click({modifiers:['Control']});
+      const tab=await opening;
+      await tab.bringToFront();
+      // A new Page can precede its document. Start application readiness only
+      // after this exact source-bound destination has loaded its modules.
+      await tab.waitForURL(href,{waitUntil:'domcontentloaded'});
+      assert.equal(tab.url(),href,'Native new tab lost the exact reference route');
+      await tab.waitForFunction(()=>Boolean(window.WHOfflineStatus));
+      await tab.evaluate(()=>window.WHOfflineStatus.ready);
+      await ready(tab);await active(tab,book);await fact(tab,c);
+      await tab.reload();await ready(tab);await fact(tab,c);await tab.close();
       await page.goto(href);await ready(page);await active(page,book);await fact(page,c);await page.reload();await ready(page);await fact(page,c);
       await page.evaluate(()=>window.ArmyBookAppV2.openGlossary());await page.waitForSelector('.v2-glossary-result');
       const glossary=page.locator('.v2-glossary-result').first();
