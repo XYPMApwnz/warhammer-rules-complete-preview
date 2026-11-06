@@ -187,6 +187,33 @@ export function validateRoster(book, state, policies) {
 export function selections(unit) {
   return [...(unit.selections || []), ...(unit.modelRows || []).flatMap(row => [...(row.selections || []), ...(row.loadouts || []).flatMap(loadout => loadout.selections || [])])];
 }
+/** Read the exact selected source occurrences of one physical UNIT. Positive
+ * UNIT, MODEL-row and loadout quantities share this presentation predicate;
+ * equipment names, recipients and other formed components are not evidence. */
+export function createSelectedSourceFieldPredicate(unit) {
+  const selected=selections(unit).filter(selection=>selection.physicalQuantity>0);
+  const fields=new Set(selected
+    .flatMap(selection=>(selection.sourceReferences||[]).map(reference=>JSON.stringify([reference.entityId,reference.path]))));
+  const items=new Set(selected.flatMap(selection=>[...(selection.canonicalEquipmentIds||[]),...(selection.canonicalProfileIds||[])]));
+  return (entityId,sourcePath,equipmentIds=[],memberIds=[])=>{
+    if(memberIds.length){
+      const modelRows=(unit.modelRows||[]).filter(row=>row.quantity>0&&memberIds.includes(row.compositionMemberId||row.canonicalProfileId));
+      return createSelectedSourceFieldPredicate({modelRows})(entityId,sourcePath,equipmentIds);
+    }
+    return typeof entityId==='string'&&typeof sourcePath==='string'&&fields.has(JSON.stringify([entityId,sourcePath]))||equipmentIds.some(id=>items.has(id));
+  };
+}
+/** Optional blocks require their exact occurrence. Standalone equipment
+ * abilities may instead cite an already declared canonical equipment owner. */
+export function sourceEquipmentSelected(rule,sourcePath,selectedField,clause) {
+  const path=sourcePath[0]==='blocks'?['blocks',sourcePath[1],'text']:sourcePath;
+  if(rule.data.blocks?.[path[1]]?.wargearAbility===true&&path[0]==='blocks')
+    return selectedField(rule.id,'/'+path.join('/'));
+  if(rule.data.wargearAbility!==true)return true;
+  const clauses=clause?[clause]:rule.ruleContract?.clauses||[];
+  const equipmentIds=clauses.map(value=>value.canonicalEquipmentRequirement?.entityId).filter(Boolean);
+  return selectedField(rule.id,'/'+path.join('/'),equipmentIds.length?equipmentIds:[rule.id]);
+}
 export function attachmentCheck(book, state, policies, leaderInstanceId, bodyguardInstanceId) {
   const bad = reason => ({valid:false, reason});
   const source = state.units.find(u => u.instanceId === leaderInstanceId), target = state.units.find(u => u.instanceId === bodyguardInstanceId);

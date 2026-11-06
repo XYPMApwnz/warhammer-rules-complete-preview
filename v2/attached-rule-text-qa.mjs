@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
-import {validateRoster,changeAttachment} from '../books/shared/roster-v2/context.mjs';
+import {validateRoster,changeAttachment,createSelectedSourceFieldPredicate,sourceEquipmentSelected} from '../books/shared/roster-v2/context.mjs';
 import {executeRosterEffects} from '../books/shared/roster-v2/effects.mjs';
 import {createRosterConditionContext} from '../books/shared/roster-v2/condition-context.mjs';
 import {projectEffectiveInstance} from '../books/shared/roster-v2/effective-instance.mjs';
@@ -16,6 +16,7 @@ import {normalizeCSMEffectiveBook} from '../books/chaos-space-marines/v2/roster-
 import {createSpaceMarinesRosterRuntime} from '../books/space-marines/v2/roster-runtime.mjs';
 import {createBloodAngelsRosterRuntime} from '../books/blood-angels/v2/roster-runtime.mjs';
 import {createDarkAngelsRosterRuntime} from '../books/dark-angels/v2/roster-runtime.mjs';
+import {createDarkAngelsRosterService} from '../books/dark-angels/v2/roster-import.mjs';
 import {createCSMBrowserRoster} from '../books/chaos-space-marines/v2/roster-boot.mjs';
 import {createECBrowserRoster} from '../books/emperors-children/v2/roster-boot.mjs';
 import {createTauBrowserRoster} from '../books/tau-empire/v2/roster-boot.mjs';
@@ -352,6 +353,79 @@ check('Mixed Boolean roster/BATTLE conditions retain FALSE and UNKNOWN roster ga
     const evaluator=createRosterConditionContext(book,state);
     const rows=projectEffectiveInstance(book,projection,'body',{state,evaluatePredicate:evaluator.evaluatePredicate}).attachedRuleTexts||[];
     assert.equal(matching(rows,scenario).length,expected,name);
+  }
+});
+
+check('One selected source predicate covers occurrences and declared standalone equipment owners',()=>{
+  const selection={physicalQuantity:1,canonicalEquipmentIds:['item'],sourceReferences:[{entityId:'section',path:'/blocks/2/text'}]};
+  for(const unit of [{selections:[selection]},{modelRows:[{canonicalProfileId:'member',quantity:1,selections:[selection]}]},
+    {modelRows:[{canonicalProfileId:'member',quantity:1,selections:[],loadouts:[{quantity:1,selections:[selection]}]}]}]){
+    const selected=createSelectedSourceFieldPredicate(unit);
+    assert.equal(selected('section','/blocks/2/text'),true);
+    assert.equal(selected('other','/blocks/2/text'),false);
+    assert.equal(selected('section','/blocks/1/text'),false);
+    assert.equal(sourceEquipmentSelected({id:'ability',data:{wargearAbility:true},ruleContract:{clauses:[{canonicalEquipmentRequirement:{entityId:'item'}}]}},['text'],selected),true);
+  }
+  const zero=createSelectedSourceFieldPredicate({selections:[{...selection,physicalQuantity:0}]});
+  assert.equal(zero('section','/blocks/2/text'),false);assert.equal(zero(undefined,undefined,['item']),false);
+  const bare=createSelectedSourceFieldPredicate({selections:[{...selection,sourceReferences:[]}]});
+  assert.equal(bare('section','/blocks/2/text'),false,'A selected section ID cannot substitute for the exact optional block');
+  const scoped=createSelectedSourceFieldPredicate({modelRows:[{canonicalProfileId:'actual-member',quantity:1,selections:[selection]}]});
+  assert.equal(scoped(undefined,undefined,['item'],['actual-member']),true);
+  assert.equal(scoped(undefined,undefined,['item'],['foreign-member']),false);
+});
+check('Optional ROLE text uses the source UNIT, MODEL row or loadout; never an independent duplicate',()=>{
+  const book=books.get('death-guard'),scenario=fixture(book,['Icon of Despair (Aura)','lord-of-contagion','deathshroud-terminators',null,true]);
+  const base=attached(book,scenario.state),path='/blocks/2/text';
+  const selection={selectionKey:'qa-icon',canonicalProfileIds:[],canonicalEquipmentIds:[scenario.rule.id],physicalQuantity:1,
+    canonicalFieldPaths:{[scenario.rule.id]:[path]},sourceReferences:[{entityId:scenario.rule.id,path}]};
+  const count=state=>matching(view(book,state,'leader').rows,scenario).length;
+  assert.equal(count(base),0);
+  for(const location of ['unit','model','loadout']){
+    const state=clone(base),source=state.units.find(unit=>unit.instanceId==='body');
+    if(location==='unit')source.selections.push(clone(selection));
+    else if(location==='model')source.modelRows[0].selections.push(clone(selection));
+    else source.modelRows[0].loadouts.push({loadoutId:'qa-icon',quantity:1,selections:[clone(selection)]});
+    assert.equal(count(state),1,location);
+  }
+  const other=clone(base);other.units.find(unit=>unit.instanceId==='control').selections.push(clone(selection));assert.equal(count(other),0);
+  const zero=clone(base);zero.units.find(unit=>unit.instanceId==='body').selections.push({...clone(selection),physicalQuantity:0});assert.equal(count(zero),0);
+});
+check('Optional ROSTER_EFFECT source text shares the selection gate without changing execution',()=>{
+  const original=books.get('death-guard'),book=clone(original),scenario=fixture(book,dg[2]);
+  entity(book,scenario.rule.id).data.blocks[0].wargearAbility=true;
+  const state=attached(book,scenario.state),plain=view(book,state,'body');
+  assert.equal(matching(plain.rows,scenario).length,0);
+  const source=state.units.find(unit=>unit.instanceId==='leader'),path='/blocks/0/text';
+  source.selections.push({selectionKey:'qa-optional-effect',canonicalProfileIds:[],canonicalEquipmentIds:[scenario.rule.id],physicalQuantity:1,
+    canonicalFieldPaths:{[scenario.rule.id]:[path]},sourceReferences:[{entityId:scenario.rule.id,path}]});
+  const selected=view(book,state,'body');assert.equal(matching(selected.rows,scenario).length,1);
+  for(const unit of selected.projection.units){
+    const before=plain.projection.units.find(prior=>prior.instanceId===unit.instanceId);
+    for(const key of ['profiles','weapons','applied','conditional','metrics','keywords','abilities'])
+      assert.deepEqual(unit[key],before[key],'Optional text does not change executed '+key);
+  }
+});
+check('Optional POLICY text is gated before either policy or attached text is displayed',()=>{
+  const book=read('books/dark-angels/v2/generated/roster-import.json');
+  const rule=entity(book,'ability-da-4c9ca538c02844aa9c2a'),gear=entity(book,'ability-da-67e5af94e8b44695865b');
+  // Mutate only this test input: reuse a real typed policy and a real selected
+  // item. The source text, typed policy, effects and native importer stay exact.
+  rule.data.wargearAbility=true;
+  for(const clause of rule.ruleContract.clauses.filter(clause=>clause.conditionalPolicy))
+    clause.canonicalEquipmentRequirement={entityId:gear.id,field:['text'],evidence:{otherEntityId:gear.id,field:['text'],quote:gear.data.text}};
+  const leader=entity(book,book.rosterAttachmentPolicies.find(policy=>policy.targetId===rule.parentId).sourceId);
+  const body=entity(book,rule.parentId),members=book.importBindings.compositions.filter(member=>member.ownerId===body.id);
+  for(const selected of [false,true]){
+    const text=['+ FACTION KEYWORD: Dark Angels','+ DETACHMENT: Wrath of the Rock',`1x ${title(leader)} (0 pts)`,
+      `${members.reduce((n,m)=>n+m.quantity.min,0)}x ${title(body)} (0 pts)${selected?': 1x Watcher in the Dark':''}`,
+      ...members.map(member=>`• ${member.quantity.min}x ${entity(book,member.id).data.name}`)].join('\n');
+    const runtime=createDarkAngelsRosterService(book),imported=runtime.import(text);
+    assert.equal(imported.status,'READY','Policy fixture must reach the real interpreter');runtime.attach('parsed-unit-1','parsed-unit-2');
+    assert.equal(runtime.projection.units.find(unit=>unit.instanceId==='parsed-unit-1').conditional.filter(row=>row.ruleId===rule.id).length,2,'Original interpreter rows remain intact');
+    const effective=runtime.effective('parsed-unit-1');
+    assert.equal(effective.conditional.filter(row=>row.ruleId===rule.id).length,selected?2:0,'Typed-policy text uses the same source selection');
+    if(!selected)assert.equal(effective.attachedRuleTexts.filter(row=>row.ruleId===rule.id).length,0,'The alternate POLICY link cannot leak the text');
   }
 });
 

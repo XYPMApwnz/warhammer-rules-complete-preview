@@ -504,7 +504,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     const optionCosts=normal?.optionCosts.filter(binding=>binding.unitId===card.id)||[];
     const boundAbilities=(config.normal?.boundAbilities||[]).filter(binding=>binding.unitId===card.id);
     const inventory=new Set([...children.filter(child=>child.kind==='WEAPON_PROFILE').map(child=>child.id),...(card.rosterEquipmentIds||[])]);
-    const availableBoundAbilities=boundAbilities.filter(binding=>!instanceId||inventory.has(binding.itemId));
+    const availableBoundAbilities=boundAbilities.filter(binding=>!instanceId||
+      (card.rosterOptionalEquipmentSources?.find(source=>source.ruleId===binding.ruleId)?.selected??inventory.has(binding.itemId)));
     const appendOptionCost=(node,itemId)=>{
       for(const cost of optionCosts.filter(binding=>binding.itemId===itemId)){
         const label=el('small','ds-option-cost');label.dataset.costRecordId=cost.costRecordId;

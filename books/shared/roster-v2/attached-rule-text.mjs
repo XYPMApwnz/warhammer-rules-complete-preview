@@ -2,7 +2,7 @@
  * physical attachment group. This does not execute an effect or infer a fact. */
 import {presentationRecipientLinks,validatePresentationRecipientLink,validateRuleRecipients} from '../rule-contract-v2/recipients.mjs';
 import {getRecordedSourceIdentity,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
-import {predicateContext} from './context.mjs';
+import {predicateContext,createSelectedSourceFieldPredicate,sourceEquipmentSelected} from './context.mjs';
 import {equipmentSatisfied} from './effects.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {resolvePhysicalStaticModelEffects} from './physical-static-model.mjs';
@@ -18,11 +18,11 @@ const allowed=value=>value===battle||value==='TRUE';
 
 /** Omit BATTLE-only subtrees, preserving the ROSTER Boolean structure.
  * ANY(UNKNOWN, BATTLE) must not acquire a true roster witness. */
-function textGate(node,fallback,resolveRole,evaluatePredicate){
+function textGate(node,fallback,resolveRole,evaluatePredicate,sourceEquipment){
   if(!node||typeof node!=='object')return 'INVALID';
   if(node.op){
     if(!['ALL','ANY','NOT'].includes(node.op)||!Array.isArray(node.args)||!node.args.length||node.op==='NOT'&&node.args.length!==1)return 'INVALID';
-    const values=node.args.map(child=>textGate(child,fallback,resolveRole,evaluatePredicate)).filter(value=>value!==battle);
+    const values=node.args.map(child=>textGate(child,fallback,resolveRole,evaluatePredicate,sourceEquipment)).filter(value=>value!==battle);
     if(!values.length)return battle;
     if(values.includes('INVALID'))return 'INVALID';
     if(node.op==='ALL')return all(values);
@@ -30,6 +30,8 @@ function textGate(node,fallback,resolveRole,evaluatePredicate){
     return values[0]==='TRUE'?'FALSE':values[0]==='FALSE'?'TRUE':values[0];
   }
   if(node.contextLevel==='BATTLE')return battle;
+  const selectedEquipment=sourceEquipment?.(node);
+  if(selectedEquipment!==undefined)return selectedEquipment;
   const ctx=node.roleId?resolveRole(node.roleId):fallback;
   if(!ctx)return 'UNKNOWN';
   const actual=node.subject==='ROSTER'?{...ctx,subject:'ROSTER'}:ctx;
@@ -88,6 +90,9 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
   const rows=new Map(),chains=new Map();let staticEntries;
   const chainFor=rule=>{if(!chains.has(rule.id))chains.set(rule.id,ownerChain(rule,records));return chains.get(rule.id);};
   for(const source of projection.units.filter(unit=>unit.instanceId!==instanceId&&group.memberInstanceIds.includes(unit.instanceId))){
+    const physicalSource=state.units.find(unit=>unit.instanceId===source.instanceId);
+    if(!physicalSource)continue;
+    const selectedSourceField=createSelectedSourceFieldPredicate(physicalSource);
     for(const rule of book.entities.filter(rule=>rule.ruleContract&&rule.kind!=='STRATAGEM'&&rule.ruleContract.kind!=='STRATAGEM'&&
       (rule.kind==='ENHANCEMENT'?source.enhancementIds.includes(rule.id):chainFor(rule)?.at(-1)?.id===source.canonicalUnitId))){
       if(!getRecordedSourceIdentity(rule,{book}))continue;
@@ -143,7 +148,26 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
               }
               return null;
             };
-            const evaluate=(node,fallback)=>textGate(node,fallback,resolveRole,evaluatePredicate);
+            // A source-written equipment prerequisite can be proved at UNIT
+            // inventory scope without inventing a particular MODEL bearer.
+            // Keep unrelated or incomplete MODEL prerequisites unresolved.
+            const equipmentCondition=node=>{
+              const requirement=clause.canonicalEquipmentRequirement,role=roles.get(node.roleId);
+              const matches=leaf=>leaf.predicate==='FIELD'&&leaf.subject==='MODEL'&&leaf.contextLevel==='ROSTER'&&
+                leaf.arguments?.key==='equipmentSelected'&&leaf.arguments.equals===true&&leaf.arguments.equipmentId===requirement?.entityId&&
+                leaf.roleId===node.roleId&&leaf.evidence?.otherEntityId===requirement?.entityId&&
+                JSON.stringify(leaf.evidence?.field)===JSON.stringify(requirement?.field)&&leaf.evidence?.quote===requirement?.evidence?.quote;
+              const member=leaf=>leaf.predicate==='FIELD'&&leaf.subject==='MODEL'&&leaf.contextLevel==='ROSTER'&&
+                leaf.arguments?.key==='compositionMemberId'&&role?.compositionMemberIds?.includes(leaf.arguments.equals)&&
+                leaf.roleId===node.roleId&&leaf.evidence?.otherEntityId===leaf.arguments.equals;
+              if(rule.data.wargearAbility!==true||!requirement||!matches(node)&&!member(node)||role?.subject!=='MODEL'||role.binding!=='SOURCE_MODEL'||
+                leaves(role.selector).some(leaf=>leaf.contextLevel!=='STATIC')||
+                (role.conditions||[]).flatMap(leaves).some(leaf=>leaf.contextLevel!=='BATTLE'&&!matches(leaf)&&!member(leaf)))return undefined;
+              if(!source.profiles.some(profile=>profile.quantity>0&&evaluatePredicate(role.selector,context(source,'MODEL',profile))==='TRUE'))return 'UNKNOWN';
+              if(member(node))return selectedSourceField(undefined,undefined,[requirement.entityId],[node.arguments.equals])?'TRUE':'UNKNOWN';
+              return selectedSourceField(undefined,undefined,[requirement.entityId])?'TRUE':'FALSE';
+            };
+            const evaluate=(node,fallback)=>textGate(node,fallback,resolveRole,evaluatePredicate,equipmentCondition);
             const roleGate=(roleId,seen=new Set())=>{
               if(seen.has(roleId))return false;
               seen=new Set([...seen,roleId]);const role=roles.get(roleId),ctx=resolveRole(roleId);
@@ -179,6 +203,7 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
           }
           if(!matched.length)continue;
           for(const block of sourceBlocks(rule,clause,link)){
+            if(!sourceEquipmentSelected(rule,block.sourcePath,selectedSourceField,clause))continue;
             // A typed policy is already rendered in full. An ability anchor
             // alone does not prove that its complete source text is visible.
             if((target.conditional||[]).some(row=>row.policy&&row.ruleId===rule.id&&row.sourceInstanceId===source.instanceId&&

@@ -4,6 +4,7 @@ import {resolveExecutionEffect,resolvePhysicalSelectionAttribution} from './reci
 import {resolvePhysicalChoiceAttribution} from './physical-choice.mjs';
 import {resolveRecipient} from '../rule-contract-v2/recipients.mjs';
 import {projectAttachedRuleTexts} from './attached-rule-text.mjs';
+import {createSelectedSourceFieldPredicate,sourceEquipmentSelected} from './context.mjs';
 /** Presentation snapshot of one physical component from an existing projection.
  * This does not evaluate rules or combine component inventories. */
 const clone=value=>structuredClone(value);
@@ -107,7 +108,29 @@ export function projectEffectiveInstance(book,projection,instanceId,context={}) 
       modelScopeId:model?.scopeId||null,grantedRules};
   });
   const weapons=[...unit.weapons,...unit.profiles.flatMap(m=>m.weapons.map(w=>({...w,modelInstanceId:m.modelInstanceId})))];
+  const sourceUnit=context.state?.units.find(source=>source.instanceId===instanceId)||unit;
+  const selectedSourceField=createSelectedSourceFieldPredicate(sourceUnit);
+  // Bridge only non-executable formed-recipient text whose optional flag is
+  // absent from the owner's published card. Other native equipment rendering
+  // retains its existing inventory/effect path.
+  const optionalEquipmentSources=book.entities.filter(rule=>rule.parentId===unit.canonicalUnitId&&rule.data.wargearAbility===true&&typeof rule.data.text==='string'&&
+    rule.ruleContract?.clauses.some(clause=>!clause.rosterEffects?.length&&clause.recipients?.some(recipient=>
+      recipient.from==='SOURCE_FORMED_MODELS'||recipient.who==='UNIT'&&recipient.scope==='FORMED')))
+    .map(rule=>({ruleId:rule.id,selected:sourceEquipmentSelected(rule,['text'],selectedSourceField)}));
+  // Validate the original policy row before applying a read-only source gate.
+  // Execution retains its conditional rows and never gains equipment facts.
+  const conditional=unit.conditional.map(row=>({...projectConditionalRow(book,projection,unit,row),label:name(row.ruleId)})).filter(row=>{
+    if(!row.policy)return true;
+    const rule=records.get(row.ruleId),clause=rule.ruleContract.clauses.find(value=>value.id===row.clauseId);
+    const optional=rule.data.wargearAbility===true||(clause.sourceFields||[]).some(path=>path[0]==='blocks'&&rule.data.blocks?.[path[1]]?.wargearAbility===true);
+    if(!optional)return true;
+    const source=context.state?.units.find(source=>source.instanceId===row.sourceInstanceId)||projection.units.find(source=>source.instanceId===row.sourceInstanceId);
+    if(!source)return false;
+    const selected=createSelectedSourceFieldPredicate(source);
+    return (clause.sourceFields||[]).some(path=>sourceEquipmentSelected(rule,path,selected,clause));
+  });
   return {instanceId,canonicalUnitId:unit.canonicalUnitId,title:canonical.data.title,startingStrength:unit.startingStrength,
+    ...(optionalEquipmentSources.length?{optionalEquipmentSources}:{}),
     attachedRuleTexts:projectAttachedRuleTexts(book,projection,instanceId,{...context,records}),
     ...(keywordSources.length?{keywordSources}:{}),
     ...(unit.applied.some(row=>row.operation==='MODIFY_STAT')?{statSources:unit.applied.filter(row=>row.operation==='MODIFY_STAT').map(effectSource)}:{}),
@@ -175,5 +198,5 @@ export function projectEffectiveInstance(book,projection,instanceId,context={}) 
             abilityRangeField:'/'+binding.field.join('/'),parameters:clone(ability.parameters),ownerInstanceId:instanceId}];
         });
       }),
-    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional:unit.conditional.map(row=>({...projectConditionalRow(book,projection,unit,row),label:name(row.ruleId)}))};
+    applied:unit.applied.map(row=>({...clone(row),label:name(row.ruleId)})),conditional};
 }

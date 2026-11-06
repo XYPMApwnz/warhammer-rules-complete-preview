@@ -1,5 +1,6 @@
 /** Disposable presentation views. Roster services own eligibility and effects. */
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {createSelectedSourceFieldPredicate} from '../roster-v2/context.mjs';
 const clone = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
@@ -509,13 +510,17 @@ export function projectInstanceCards(cards, unit, effective) {
     projected.fields=projected.fields.filter(field=>cards.get(field.source?.entityId)?.kind!=='UPGRADE_OPTION'||optionIds.has(field.source.entityId));
     variants.set(id,projected.fields.some(field=>field.presentation!=='heading')?[projected]:[]);
   }
-  const selectedSourceFields=new Set(selections.filter(selection=>selection.physicalQuantity>0)
-    .flatMap(selection=>(selection.sourceReferences || []).map(ref=>JSON.stringify([ref.entityId,ref.path]))));
+  const selectedSourceField=createSelectedSourceFieldPredicate(unit);
+  if(effective.optionalEquipmentSources?.length){
+    root.rosterOptionalEquipmentSources=clone(effective.optionalEquipmentSources);
+    for(const source of effective.optionalEquipmentSources)
+      if(!source.selected&&root.children.includes(source.ruleId))variants.set(source.ruleId,[]);
+  }
   for (const id of root.children) {
     const section=cards.get(id);if (section?.kind!=='DATASHEET_SECTION') continue;
     const optionalBlocks=(section.fields || []).filter(field=>field.value===true && /^\/blocks\/\d+\/wargearAbility$/.test(field.source?.path || ''));
     if (!optionalBlocks.length) continue;
-    const omitted=optionalBlocks.filter(field=>!selectedSourceFields.has(JSON.stringify([id,field.source.path.replace(/wargearAbility$/,'text')]))).map(field=>field.source.path.replace(/wargearAbility$/,''));
+    const omitted=optionalBlocks.filter(field=>!selectedSourceField(id,field.source.path.replace(/wargearAbility$/,'text'))).map(field=>field.source.path.replace(/wargearAbility$/,''));
     const projected=annotate(section);projected.fields=projected.fields.filter(field=>!omitted.some(prefix=>field.source?.path.startsWith(prefix)));
     variants.set(id,projected.fields.some(field=>field.presentation!=='heading')?[projected]:[]);
   }

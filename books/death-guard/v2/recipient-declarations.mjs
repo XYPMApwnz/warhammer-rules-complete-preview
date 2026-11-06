@@ -137,6 +137,9 @@ adopt("detachment-paragons-of-putrescence:enhancement:2","additional-plague",tex
 declare("datasheet-blightlord-terminators:section:1","source-clause-1",b(0),
   "Blistering Fusillade: If this unit has a Starting Strength of 5 or more, or if a CHARACTER is leading this unit, then each time a model in this unit makes a ranged attack that targets an Afflicted unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
   {"id":"text-recipient","subject":"MODEL","allegiance":"FRIENDLY","binding":"SOURCE_FORMED_MODELS"});
+declare("datasheet-deathshroud-terminators:section:1","source-clause-3",b(2),
+  "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+  {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});
 declare("datasheet-lord-of-poxes:section:1","source-clause-2",b(1),
   "Shroud of Disease: While this model is leading a unit, that unit cannot be targeted by ranged attacks unless the attacking model is within 18\".",
   {"id":"text-recipient","subject":"UNIT","allegiance":"FRIENDLY","binding":"SOURCE_UNIT","scope":"FORMED"});

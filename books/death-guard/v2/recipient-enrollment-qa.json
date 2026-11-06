@@ -2201,7 +2201,7 @@
       "target": "parsed-unit-1",
       "reverse": true,
       "skipAttach": false,
-      "expectedAttached": false,
+      "expectedAttached": true,
       "negative": [],
       "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Contagion (0 pts)\n3x Deathshroud Terminators (0 pts): 1x Icon of Despair\n3x Deathshroud Terminators (0 pts)",
       "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
@@ -2217,7 +2217,7 @@
       "clauseIds": [
         "source-clause-3"
       ],
-      "visibilityReason": "Deferred: the existing mandatory attached-rule-text QA explicitly excludes this text; changing that QA is outside the allowed file list."
+      "expectedOwner": true
     },
     {
       "id": "recipient-gaps-v1:09",
@@ -2387,7 +2387,8 @@
       },
       "clauseIds": [
         "source-clause-2"
-      ]
+      ],
+      "expectedOwner": true
     },
     {
       "id": "recipient-gaps-v1:15",
@@ -2551,6 +2552,64 @@
       "clauseIds": [
         "return-models"
       ]
+    },
+    {
+      "id": "equipment-v2-absent:08",
+      "book": "death-guard",
+      "rule": "Icon of Despair (Aura)",
+      "leader": "Lord of Contagion",
+      "bodyguard": "Deathshroud Terminators",
+      "owner": "Deathshroud Terminators",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Lord of Contagion (0 pts)\n3x Deathshroud Terminators (0 pts)\n3x Deathshroud Terminators (0 pts): 1x Icon of Despair",
+      "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+      "canonical": {
+        "ruleId": "datasheet-deathshroud-terminators:section:1",
+        "text": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+        "sourcePath": [
+          "blocks",
+          2,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-3"
+      ],
+      "expectedOwner": false
+    },
+    {
+      "id": "equipment-v2-absent:14",
+      "book": "death-guard",
+      "rule": "Icon of Despair (Aura)",
+      "leader": "Biologus Putrifier",
+      "bodyguard": "Plague Marines",
+      "owner": "Plague Marines",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n1x Biologus Putrifier (0 pts)\n7x Plague Marines (0 pts)\n7x Plague Marines (0 pts): 1x Icon of Despair",
+      "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+      "canonical": {
+        "ruleId": "datasheet-plague-marines:section:1",
+        "text": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "source-clause-2"
+      ],
+      "expectedOwner": false
     }
   ],
   "deferredScopes": [

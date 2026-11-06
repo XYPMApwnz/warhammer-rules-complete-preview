@@ -16,7 +16,9 @@ const out=path.resolve(option('--out')||createQaEvidenceDir('wh-dg-am-enrollment
 assert.ok(out!==repo&&!out.startsWith(repo+path.sep),'Keep browser evidence outside the repository');
 fs.mkdirSync(out,{recursive:true});
 const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").trim();
-const fixtures=['death-guard','adeptus-mechanicus'].flatMap(book=>{const file=path.join(repo,'books',book,'v2/recipient-enrollment-qa.json');return fs.existsSync(file)?[JSON.parse(fs.readFileSync(file,'utf8'))]:[];});
+const fixtures=option('--fixtures')?JSON.parse(fs.readFileSync(option('--fixtures'),'utf8')):
+  ['death-guard','adeptus-mechanicus'].flatMap(book=>{const file=path.join(repo,'books',book,'v2/recipient-enrollment-qa.json');return fs.existsSync(file)?[JSON.parse(fs.readFileSync(file,'utf8'))]:[];});
+if(process.argv.includes('--equipment-only'))fixtures.push(...JSON.parse(fs.readFileSync(new URL('./fixtures/source-equipment-entity-browser.json',import.meta.url),'utf8')));
 const cases=fixtures.flatMap(fixture=>fixture.browserCases);
 const runtimePaths=new Set(JSON.parse(fs.readFileSync(path.join(repo,'tools/pages-runtime-manifest.json'),'utf8')).files.map(row=>'/'+row.path));
 const allowed=address=>!/(?:\/sources\/|-qa\.|-fixtures\.)/.test(address)&&(
@@ -115,7 +117,8 @@ const snapshots=[];
 let browser,completed=false;
 try{
   browser=await launchChromium();
-  const selected=cases.filter(c=>(!option('--case')||option('--case').split('|').some(filter=>norm(c.rule).toLowerCase().includes(norm(filter).toLowerCase())))&&
+  const selected=cases.filter(c=>(!process.argv.includes('--equipment-only')||typeof c.expectedOwner==='boolean')&&
+    (!option('--case')||option('--case').split('|').some(filter=>norm(c.rule).toLowerCase().includes(norm(filter).toLowerCase())))&&
     (!option('--books')||option('--books').split(',').includes(c.book)));
   assert.ok(selected.length,'Case filter must select at least one case');
   console.log('DG/AM enrollment browser evidence: '+out);
@@ -148,7 +151,7 @@ try{
           const ownerText=await page.locator('main .unit-card[data-roster-instance-id="'+first.ownerInstance+'"]').innerText();
           for(const c of group){
             const original=c.canonical.text.startsWith(c.rule+':')?c.canonical.text.slice(c.rule.length+1):c.canonical.text;
-            assert.ok(norm(ownerText).includes(norm(original)),'Original source text remains on owner card');
+            assert.equal(norm(ownerText).includes(norm(original)),c.expectedOwner??true,'Owner uses the same physical equipment source gate');
           }
           const before=await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection));
           for(const mode of ['Effective','Guide']){

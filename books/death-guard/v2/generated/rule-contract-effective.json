@@ -6240,15 +6240,78 @@
                 2
               ]
             ],
-            "roles": [],
+            "roles": [
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                }
+              }
+            ],
             "conditions": [],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
               "reason": "Requires battle resolution, a battlefield range or a dynamic state; a classification-only label is not an executable predicate."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "source-clause-3::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "blocks",
+                      2,
+                      "text"
+                    ],
+                    "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    2,
+                    "text"
+                  ],
+                  "quote": "Icon of Despair (Aura): While an enemy unit is within 6\" of the bearer, worsen the Leadership characteristic of models in that unit by 1."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [],

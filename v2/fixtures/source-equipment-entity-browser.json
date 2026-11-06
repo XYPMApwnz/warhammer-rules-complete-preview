@@ -1,0 +1,394 @@
+[
+  {
+    "bookId": "chaos-space-marines",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "equipment-entity-v2:datasheet-legionaries:section:1:block:1:text:absent",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Legionaries",
+        "owner": "Legionaries",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-legionaries:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-legionaries:section:1:block:1:text:selected",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Legionaries",
+        "owner": "Legionaries",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Legionaries (0 pts)\n• 1x Aspiring Champion: 1x Chaos icon\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-legionaries:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-dark-commune:section:1:block:2:text:absent",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Dark Commune",
+        "bodyguard": "Cultist Mob",
+        "owner": "Dark Commune",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n5x Dark Commune (0 pts)\n• 1x Cult Demagogue\n• 1x Mindwitch\n• 1x Iconarch\n• 2x Blessed Blades\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-dark-commune:section:1:block:2:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-dark-commune:section:1:block:2:text:selected",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Dark Commune",
+        "bodyguard": "Cultist Mob",
+        "owner": "Dark Commune",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n5x Dark Commune (0 pts)\n• 1x Cult Demagogue\n• 1x Mindwitch\n• 1x Iconarch: 1x Chaos icon\n• 2x Blessed Blades\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-dark-commune:section:1:block:2:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-chosen:section:1:block:1:text:absent",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Chosen",
+        "owner": "Chosen",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Chosen (0 pts)\n• 1x Chosen Champion\n• 4x Chosen\n5x Chosen (0 pts)\n• 1x Chosen Champion\n• 4x Chosen",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-chosen:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-chosen:section:1:block:1:text:selected",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Chosen",
+        "owner": "Chosen",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Chosen (0 pts)\n• 1x Chosen Champion: 1x Chaos icon\n• 4x Chosen\n5x Chosen (0 pts)\n• 1x Chosen Champion\n• 4x Chosen",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-chosen:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-possessed:section:1:block:1:text:absent",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Master Of Possession",
+        "bodyguard": "Possessed",
+        "owner": "Possessed",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Master Of Possession (0 pts)\n• 1x Master of Possession\n5x Possessed (0 pts)\n• 1x Possessed Champion\n• 4x Possessed\n5x Possessed (0 pts)\n• 1x Possessed Champion\n• 4x Possessed",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-possessed:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-possessed:section:1:block:1:text:selected",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Master Of Possession",
+        "bodyguard": "Possessed",
+        "owner": "Possessed",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Master Of Possession (0 pts)\n• 1x Master of Possession\n5x Possessed (0 pts)\n• 1x Possessed Champion: 1x Chaos icon\n• 4x Possessed\n5x Possessed (0 pts)\n• 1x Possessed Champion\n• 4x Possessed",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-possessed:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-chaos-bikers:section:1:block:1:text:absent",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Chaos Bikers",
+        "owner": "Chaos Bikers",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": true,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n3x Chaos Bikers (0 pts)\n• 1x Biker Champion\n• 2x Chaos Bikers\n3x Chaos Bikers (0 pts)\n• 1x Biker Champion\n• 2x Chaos Bikers",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-chaos-bikers:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "visibilityReason": "N/A: accepted native policies have no Leader attachment for this UNIT. No relationship is invented."
+      },
+      {
+        "id": "equipment-entity-v2:datasheet-chaos-bikers:section:1:block:1:text:selected",
+        "book": "chaos-space-marines",
+        "rule": "Chaos Icon",
+        "leader": "Chaos Lord",
+        "bodyguard": "Chaos Bikers",
+        "owner": "Chaos Bikers",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": true,
+        "expectedAttached": false,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: chaos-space-marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n3x Chaos Bikers (0 pts)\n• 1x Biker Champion: 1x Chaos icon\n• 2x Chaos Bikers\n3x Chaos Bikers (0 pts)\n• 1x Biker Champion\n• 2x Chaos Bikers",
+        "quote": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+        "canonical": {
+          "ruleId": "datasheet-chaos-bikers:section:1:block:1:text",
+          "text": "Chaos Icon: Each time the bearer’s unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "visibilityReason": "N/A: accepted native policies have no Leader attachment for this UNIT. No relationship is invented."
+      }
+    ]
+  },
+  {
+    "bookId": "dark-angels",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "equipment-entity-v2:ability-da-67e5af94e8b44695865b:absent",
+        "book": "dark-angels",
+        "rule": "Watcher in the Dark",
+        "leader": "Belial",
+        "bodyguard": "Deathwing Terminator Squad",
+        "owner": "Deathwing Terminator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: dark-angels\n+ DETACHMENT: Wrath of the Rock\n1x Belial (0 pts)\n5x Deathwing Terminator Squad (0 pts)\n• 1x Deathwing Sergeant\n• 4x Deathwing Terminators\n5x Deathwing Terminator Squad (0 pts)\n• 1x Deathwing Sergeant\n• 4x Deathwing Terminators",
+        "quote": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+        "canonical": {
+          "ruleId": "ability-da-67e5af94e8b44695865b",
+          "text": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-67e5af94e8b44695865b/text/178:295"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:ability-da-67e5af94e8b44695865b:selected",
+        "book": "dark-angels",
+        "rule": "Watcher in the Dark",
+        "leader": "Belial",
+        "bodyguard": "Deathwing Terminator Squad",
+        "owner": "Deathwing Terminator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: dark-angels\n+ DETACHMENT: Wrath of the Rock\n1x Belial (0 pts)\n5x Deathwing Terminator Squad (0 pts): 1x Watcher in the Dark\n• 1x Deathwing Sergeant\n• 4x Deathwing Terminators\n5x Deathwing Terminator Squad (0 pts)\n• 1x Deathwing Sergeant\n• 4x Deathwing Terminators",
+        "quote": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+        "canonical": {
+          "ruleId": "ability-da-67e5af94e8b44695865b",
+          "text": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-67e5af94e8b44695865b/text/178:295"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:ability-da-9bd770df552c413daeca:absent",
+        "book": "dark-angels",
+        "rule": "Watcher in the Dark",
+        "leader": "Belial",
+        "bodyguard": "Deathwing Knights",
+        "owner": "Deathwing Knights",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "expectedOwner": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: dark-angels\n+ DETACHMENT: Wrath of the Rock\n1x Belial (0 pts)\n5x Deathwing Knights (0 pts)\n• 1x Knight Master\n• 4x Deathwing Knights\n5x Deathwing Knights (0 pts)\n• 1x Knight Master\n• 4x Deathwing Knights",
+        "quote": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+        "canonical": {
+          "ruleId": "ability-da-9bd770df552c413daeca",
+          "text": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-9bd770df552c413daeca/text/178:295"
+        ]
+      },
+      {
+        "id": "equipment-entity-v2:ability-da-9bd770df552c413daeca:selected",
+        "book": "dark-angels",
+        "rule": "Watcher in the Dark",
+        "leader": "Belial",
+        "bodyguard": "Deathwing Knights",
+        "owner": "Deathwing Knights",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "expectedOwner": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: dark-angels\n+ DETACHMENT: Wrath of the Rock\n1x Belial (0 pts)\n5x Deathwing Knights (0 pts): 1x Watcher in the Dark\n• 1x Knight Master\n• 4x Deathwing Knights\n5x Deathwing Knights (0 pts)\n• 1x Knight Master\n• 4x Deathwing Knights",
+        "quote": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+        "canonical": {
+          "ruleId": "ability-da-9bd770df552c413daeca",
+          "text": "Watcher in the Dark: Once per battle, in any phase, just after a mortal wound is allocated to an ADEPTUS ASTARTES model in this unit, this unit can summon a Watcher in the Dark. When it does, until the end of the phase, models in this unit have the Feel No Pain 4+ ability against mortal wounds.\nDesigner’s Note: Place a Watcher in the Dark token next to the unit, removing it when this ability has been used.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-9bd770df552c413daeca/text/178:295"
+        ]
+      }
+    ]
+  }
+]

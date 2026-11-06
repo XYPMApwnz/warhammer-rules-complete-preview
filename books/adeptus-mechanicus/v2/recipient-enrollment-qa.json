@@ -2555,7 +2555,8 @@
       },
       "clauseIds": [
         "block-2"
-      ]
+      ],
+      "expectedOwner": true
     },
     {
       "id": "recipient-gaps-v1:06",
@@ -2583,7 +2584,66 @@
       },
       "clauseIds": [
         "block-2"
-      ]
+      ],
+      "expectedOwner": true
+    },
+    {
+      "id": "equipment-v2-absent:05",
+      "book": "adeptus-mechanicus",
+      "rule": "Enhanced data-tether",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Skitarii Rangers",
+      "owner": "Skitarii Rangers",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n10x Skitarii Rangers (0 pts)\n10x Skitarii Rangers (0 pts): 1x Enhanced data-tether",
+      "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "canonical": {
+        "ruleId": "datasheet-skitarii-rangers:section:1",
+        "text": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-2"
+      ],
+      "expectedOwner": false
+    },
+    {
+      "id": "equipment-v2-absent:06",
+      "book": "adeptus-mechanicus",
+      "rule": "Enhanced data-tether",
+      "leader": "Skitarii Marshal",
+      "bodyguard": "Skitarii Vanguard",
+      "owner": "Skitarii Vanguard",
+      "ownerInstance": "parsed-unit-2",
+      "target": "parsed-unit-1",
+      "reverse": true,
+      "skipAttach": false,
+      "expectedAttached": false,
+      "negative": [],
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Skitarii Marshal (0 pts)\n10x Skitarii Vanguard (0 pts)\n10x Skitarii Vanguard (0 pts): 1x Enhanced data-tether",
+      "quote": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+      "canonical": {
+        "ruleId": "datasheet-skitarii-vanguard:section:1",
+        "text": "Enhanced data-tether: Each time you select the bearer’s unit as the target of a Stratagem, roll one D6: on a 5+, you gain 1CP.",
+        "sourcePath": [
+          "blocks",
+          1,
+          "text"
+        ]
+      },
+      "clauseIds": [
+        "block-2"
+      ],
+      "expectedOwner": false
     }
   ]
 }
