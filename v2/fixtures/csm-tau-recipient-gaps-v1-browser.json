@@ -1,0 +1,610 @@
+[
+  {
+    "bookId": "chaos-space-marines",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "csm-tau-gaps-v1:csm:01",
+        "book": "chaos-space-marines",
+        "rule": "For the Dark Gods",
+        "leader": "Cultist Firebrand",
+        "bodyguard": "Cultist Mob",
+        "owner": "Cultist Mob",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Cultist Firebrand (0 pts)\n• 1x Cultist Firebrand\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists\n10x Cultist Mob (0 pts)\n• 1x Cultist Champion\n• 9x Chaos Cultists\n",
+        "quote": "For the Dark Gods: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+        "canonical": {
+          "ruleId": "datasheet-cultist-mob:section:1:block:0:text",
+          "text": "For the Dark Gods: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:02",
+        "book": "chaos-space-marines",
+        "rule": "Malign Sacrifice",
+        "leader": "Dark Apostle",
+        "bodyguard": "Legionaries",
+        "owner": "Dark Apostle",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n3x Dark Apostle (0 pts)\n• 1x Dark Apostle\n• 2x Dark Disciples\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Malign Sacrifice: At the start of the Fight phase, if this unit contains one or more Dark Disciple models, you can select one of those models and one enemy unit within Engagement Range of this unit, then roll one D6: on a 2-5, that enemy unit suffers 1 mortal wound; on a 6, that enemy unit suffers D3 mortal wounds. That Dark Disciple model is then destroyed.",
+        "canonical": {
+          "ruleId": "datasheet-dark-apostle:section:1:block:2:text",
+          "text": "Malign Sacrifice: At the start of the Fight phase, if this unit contains one or more Dark Disciple models, you can select one of those models and one enemy unit within Engagement Range of this unit, then roll one D6: on a 2-5, that enemy unit suffers 1 mortal wound; on a 6, that enemy unit suffers D3 mortal wounds. That Dark Disciple model is then destroyed.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "deferredReason": "Existing ROSTER sourceProfilePresent parameter tuple has no recorded computation; shared computation changes are outside this task."
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:03",
+        "book": "chaos-space-marines",
+        "rule": "Sacrificial Dagger",
+        "leader": "Master Of Possession",
+        "bodyguard": "Possessed",
+        "owner": "Master Of Possession",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Master Of Possession (0 pts)\n• 1x Master of Possession\n5x Possessed (0 pts)\n• 1x Possessed Champion\n• 4x Possessed\n5x Possessed (0 pts)\n• 1x Possessed Champion\n• 4x Possessed\n",
+        "quote": "Sacrificial Dagger: Once per phase, when this model is selected to shoot or fight, it can use this ability. If it does, this model’s unit suffers 1 mortal wound and, until the end of the phase, each time this model makes a Psychic Attack, add 1 to the Hit roll and add 1 to the Wound roll.",
+        "canonical": {
+          "ruleId": "datasheet-master-of-possession:section:1:block:1:text",
+          "text": "Sacrificial Dagger: Once per phase, when this model is selected to shoot or fight, it can use this ability. If it does, this model’s unit suffers 1 mortal wound and, until the end of the phase, each time this model makes a Psychic Attack, add 1 to the Hit roll and add 1 to the Wound roll.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:04",
+        "book": "chaos-space-marines",
+        "rule": "Brutal Example",
+        "leader": "Traitor Enforcer",
+        "bodyguard": "Traitor Guardsmen Squad",
+        "owner": "Traitor Enforcer",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n2x Traitor Enforcer (0 pts)\n• 1x Traitor Enforcer\n• 1x Traitor Ogryn\n10x Traitor Guardsmen Squad (0 pts)\n• 1x Traitor Sergeant\n• 9x Traitor Guardsmen\n10x Traitor Guardsmen Squad (0 pts)\n• 1x Traitor Sergeant\n• 9x Traitor Guardsmen\n",
+        "quote": "Brutal Example: Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this turn. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
+        "canonical": {
+          "ruleId": "datasheet-traitor-enforcer:section:1:block:0:text",
+          "text": "Brutal Example: Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this turn. Each time you use this ability, one Bodyguard model in that unit is destroyed.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "deferredReason": "Existing ROSTER sourceProfilePresent parameter tuple has no recorded computation; shared computation changes are outside this task."
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:05",
+        "book": "chaos-space-marines",
+        "rule": "Dark Destiny",
+        "leader": "Abaddon The Despoiler",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Abaddon The Despoiler",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Abaddon The Despoiler (0 pts)\n• 1x Abaddon the Despoiler\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Dark Destiny: Each time this model’s unit makes a Dark Pact and does not fail the resulting leadership roll, if the result of that roll was 7+, you gain 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-abaddon-the-despoiler:section:1:block:1:text",
+          "text": "Dark Destiny: Each time this model’s unit makes a Dark Pact and does not fail the resulting leadership roll, if the result of that roll was 7+, you gain 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:06",
+        "book": "chaos-space-marines",
+        "rule": "Paragon of Hatred (Aura)",
+        "leader": "Abaddon The Despoiler",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Abaddon The Despoiler",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Abaddon The Despoiler (0 pts)\n• 1x Abaddon the Despoiler\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Paragon of Hatred (Aura): While a friendly HERETIC ASTARTES unit is within 6\" (excluding DAMNED units) of this model, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
+        "canonical": {
+          "ruleId": "datasheet-abaddon-the-despoiler:section:5:block:0:text",
+          "text": "Paragon of Hatred (Aura): While a friendly HERETIC ASTARTES unit is within 6\" (excluding DAMNED units) of this model, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:07",
+        "book": "chaos-space-marines",
+        "rule": "Mark of Chaos Ascendant (Aura)",
+        "leader": "Abaddon The Despoiler",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Abaddon The Despoiler",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Abaddon The Despoiler (0 pts)\n• 1x Abaddon the Despoiler\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Mark of Chaos Ascendant (Aura): While a friendly HERETIC ASTARTES INFANTRY or HERETIC ASTARTES MOUNTED unit (excluding DAMNED units) is within 6\" of this model, models in that unit have a 4+ invulnerable save.",
+        "canonical": {
+          "ruleId": "datasheet-abaddon-the-despoiler:section:5:block:1:text",
+          "text": "Mark of Chaos Ascendant (Aura): While a friendly HERETIC ASTARTES INFANTRY or HERETIC ASTARTES MOUNTED unit (excluding DAMNED units) is within 6\" of this model, models in that unit have a 4+ invulnerable save.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:08",
+        "book": "chaos-space-marines",
+        "rule": "Lord of the Traitor Legions (Aura)",
+        "leader": "Abaddon The Despoiler",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Abaddon The Despoiler",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Abaddon The Despoiler (0 pts)\n• 1x Abaddon the Despoiler\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Lord of the Traitor Legions (Aura): While a friendly HERETIC ASTARTES unit (excluding DAMNED units) is within 6\" of this model, you can re-roll Leadership and Battle-shock tests taken for that unit.",
+        "canonical": {
+          "ruleId": "datasheet-abaddon-the-despoiler:section:5:block:2:text",
+          "text": "Lord of the Traitor Legions (Aura): While a friendly HERETIC ASTARTES unit (excluding DAMNED units) is within 6\" of this model, you can re-roll Leadership and Battle-shock tests taken for that unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:09",
+        "book": "chaos-space-marines",
+        "rule": "Head Taker",
+        "leader": "Haarken Worldclaimer",
+        "bodyguard": "Raptors",
+        "owner": "Haarken Worldclaimer",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Haarken Worldclaimer (0 pts)\n• 1x Haarken Worldclaimer\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n",
+        "quote": "Head Taker: While this model is leading a unit, each time this model’s unit ends a Charge move, select one enemy unit within Engagement Range of this model’s unit and roll one D6 for each model in this models unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers 1 mortal wound.",
+        "canonical": {
+          "ruleId": "datasheet-haarken-worldclaimer:section:1:block:0:text",
+          "text": "Head Taker: While this model is leading a unit, each time this model’s unit ends a Charge move, select one enemy unit within Engagement Range of this model’s unit and roll one D6 for each model in this models unit that is within Engagement Range of that enemy unit: for each 4+, that enemy unit suffers 1 mortal wound.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:10",
+        "book": "chaos-space-marines",
+        "rule": "Herald of the Apocalypse (Aura)",
+        "leader": "Haarken Worldclaimer",
+        "bodyguard": "Raptors",
+        "owner": "Haarken Worldclaimer",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Haarken Worldclaimer (0 pts)\n• 1x Haarken Worldclaimer\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n",
+        "quote": "Herald of the Apocalypse (Aura): While an enemy unit is within 6\" of this model, in the Battle-shock step of your opponent’s Command phase, if that enemy unit is below its Starting Strength, it must take a Battle-shock test. This ability cannot cause a unit to take two Battle-shock tests in the same phase.",
+        "canonical": {
+          "ruleId": "datasheet-haarken-worldclaimer:section:1:block:1:text",
+          "text": "Herald of the Apocalypse (Aura): While an enemy unit is within 6\" of this model, in the Battle-shock step of your opponent’s Command phase, if that enemy unit is below its Starting Strength, it must take a Battle-shock test. This ability cannot cause a unit to take two Battle-shock tests in the same phase.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:11",
+        "book": "chaos-space-marines",
+        "rule": "Lord of Badab (Aura)",
+        "leader": "Huron Blackheart",
+        "bodyguard": "Legionaries",
+        "owner": "Huron Blackheart",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Huron Blackheart (0 pts)\n• 1x Huron Blackheart\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Lord of Badab (Aura): While a friendly HERETIC ASTARTES INFANTRY unit (excluding Battle-shocked units and DAMNED units) is within 6\" of this model, add 1 to the Objective Control characteristic of models in that unit.",
+        "canonical": {
+          "ruleId": "datasheet-huron-blackheart:section:1:block:0:text",
+          "text": "Lord of Badab (Aura): While a friendly HERETIC ASTARTES INFANTRY unit (excluding Battle-shocked units and DAMNED units) is within 6\" of this model, add 1 to the Objective Control characteristic of models in that unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:12",
+        "book": "chaos-space-marines",
+        "rule": "Choice Samples",
+        "leader": "Masters of the Maelstrom",
+        "bodyguard": "Legionaries",
+        "owner": "Masters of the Maelstrom",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n5x Masters of the Maelstrom (0 pts)\n• 1x Garreon the Corpsemaster\n• 1x Garlon Souleater\n• 1x Katar Garrix\n• 1x Captain Sargotta\n• 1x The Enforcer\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Choice Samples: While this unit’s Garreon the Corpsemaster is on the battlefield, in your Command phase, select one of the following: you can return 1 destroyed model (excluding CHARACTER models) to this unit, or, if one or more HERETIC ASTARTES INFANTRY units from your army are below Starting Strength and within 3\" of this unit, you gain 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-masters-of-the-maelstrom:section:1:block:0:text",
+          "text": "Choice Samples: While this unit’s Garreon the Corpsemaster is on the battlefield, in your Command phase, select one of the following: you can return 1 destroyed model (excluding CHARACTER models) to this unit, or, if one or more HERETIC ASTARTES INFANTRY units from your army are below Starting Strength and within 3\" of this unit, you gain 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:13",
+        "book": "chaos-space-marines",
+        "rule": "Fleet Command",
+        "leader": "Masters of the Maelstrom",
+        "bodyguard": "Legionaries",
+        "owner": "Masters of the Maelstrom",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n5x Masters of the Maelstrom (0 pts)\n• 1x Garreon the Corpsemaster\n• 1x Garlon Souleater\n• 1x Katar Garrix\n• 1x Captain Sargotta\n• 1x The Enforcer\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Fleet Command: After both players have deployed their armies, if this unit is on the battlefield (or any TRANSPORT it is embarked within is on the battlefield) select up to three HERETIC ASTARTES units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+        "canonical": {
+          "ruleId": "datasheet-masters-of-the-maelstrom:section:1:block:1:text",
+          "text": "Fleet Command: After both players have deployed their armies, if this unit is on the battlefield (or any TRANSPORT it is embarked within is on the battlefield) select up to three HERETIC ASTARTES units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:14",
+        "book": "chaos-space-marines",
+        "rule": "Plunder",
+        "leader": "Masters of the Maelstrom",
+        "bodyguard": "Legionaries",
+        "owner": "Masters of the Maelstrom",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n5x Masters of the Maelstrom (0 pts)\n• 1x Garreon the Corpsemaster\n• 1x Garlon Souleater\n• 1x Katar Garrix\n• 1x Captain Sargotta\n• 1x The Enforcer\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Plunder: Once per battle, after this unit ends a Normal move, you can select one visible enemy unit within 12\" of it and roll one D6: on a 2+, that enemy unit suffers D3+1 mortal wounds.",
+        "canonical": {
+          "ruleId": "datasheet-masters-of-the-maelstrom:section:1:block:2:text",
+          "text": "Plunder: Once per battle, after this unit ends a Normal move, you can select one visible enemy unit within 12\" of it and roll one D6: on a 2+, that enemy unit suffers D3+1 mortal wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:15",
+        "book": "chaos-space-marines",
+        "rule": "Crushing Charge",
+        "leader": "Kravek Morne",
+        "bodyguard": "Mutilators",
+        "owner": "Mutilators",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Kravek Morne (0 pts)\n• 1x Kravek Morne\n3x Mutilators (0 pts)\n• 3x Mutilators\n3x Mutilators (0 pts)\n• 3x Mutilators\n",
+        "quote": "Crushing Charge: You can re-roll charge rolls made for this unit, and each time this unit makes a Charge move, select one enemy unit and roll one D6 for each model in this unit that is within Engagement Range of that unit: for each 4+, that enemy unit suffers D3 mortal wounds.",
+        "canonical": {
+          "ruleId": "datasheet-mutilators:section:1:block:0:text",
+          "text": "Crushing Charge: You can re-roll charge rolls made for this unit, and each time this unit makes a Charge move, select one enemy unit and roll one D6 for each model in this unit that is within Engagement Range of that unit: for each 4+, that enemy unit suffers D3 mortal wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:16",
+        "book": "chaos-space-marines",
+        "rule": "Voice Eater",
+        "leader": "Chaos Lord",
+        "bodyguard": "Nemesis Claw",
+        "owner": "Nemesis Claw",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Nemesis Claw (0 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Voice eater, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n5x Nemesis Claw (0 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n",
+        "quote": "Voice Eater: Enemy units (excluding MONSTERS and VEHICLES) cannot be targeted with Stratagems while they are within Engagement Range of the bearer’s unit.",
+        "canonical": {
+          "ruleId": "datasheet-nemesis-claw:section:1:block:1:text",
+          "text": "Voice Eater: Enemy units (excluding MONSTERS and VEHICLES) cannot be targeted with Stratagems while they are within Engagement Range of the bearer’s unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:16:absent",
+        "book": "chaos-space-marines",
+        "rule": "Voice Eater",
+        "leader": "Chaos Lord",
+        "bodyguard": "Nemesis Claw",
+        "owner": "Nemesis Claw",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Nemesis Claw (0 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n5x Nemesis Claw (0 pts)\n• 1x Visionary: Bolt pistol, Nostraman chainblade\n• 1x Legionaries: Bolt pistol, Close combat weapon, Astartes chainsword\n• 3x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n",
+        "quote": "Voice Eater: Enemy units (excluding MONSTERS and VEHICLES) cannot be targeted with Stratagems while they are within Engagement Range of the bearer’s unit.",
+        "canonical": {
+          "ruleId": "datasheet-nemesis-claw:section:1:block:1:text",
+          "text": "Voice Eater: Enemy units (excluding MONSTERS and VEHICLES) cannot be targeted with Stratagems while they are within Engagement Range of the bearer’s unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:17",
+        "book": "chaos-space-marines",
+        "rule": "Fearsome (Aura)",
+        "leader": "Haarken Worldclaimer",
+        "bodyguard": "Raptors",
+        "owner": "Raptors",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Haarken Worldclaimer (0 pts)\n• 1x Haarken Worldclaimer\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n",
+        "quote": "Fearsome (Aura): While an enemy unit is within 6\" of this unit, each time that enemy unit takes a Battle-shock or Leadership test, subtract 1 from the result.",
+        "canonical": {
+          "ruleId": "datasheet-raptors:section:1:block:0:text",
+          "text": "Fearsome (Aura): While an enemy unit is within 6\" of this unit, each time that enemy unit takes a Battle-shock or Leadership test, subtract 1 from the result.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:18",
+        "book": "chaos-space-marines",
+        "rule": "Terrifying Assault",
+        "leader": "Haarken Worldclaimer",
+        "bodyguard": "Raptors",
+        "owner": "Raptors",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Haarken Worldclaimer (0 pts)\n• 1x Haarken Worldclaimer\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n",
+        "quote": "Terrifying Assault: At the start of the Fight phase, each enemy unit within Engagement Range of one or more units with this ability must take a Battle-shock test.",
+        "canonical": {
+          "ruleId": "datasheet-raptors:section:1:block:1:text",
+          "text": "Terrifying Assault: At the start of the Fight phase, each enemy unit within Engagement Range of one or more units with this ability must take a Battle-shock test.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:19",
+        "book": "chaos-space-marines",
+        "rule": "Lord of Chaos",
+        "leader": "Chaos Lord",
+        "bodyguard": "Legionaries",
+        "owner": "Chaos Lord",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord (0 pts)\n• 1x Chaos Lord\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n5x Legionaries (0 pts)\n• 1x Aspiring Champion\n• 4x Legionaries\n",
+        "quote": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-chaos-lord:section:1:block:0:text",
+          "text": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:20",
+        "book": "chaos-space-marines",
+        "rule": "Lord of Chaos",
+        "leader": "Chaos Lord In Terminator Armour",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Chaos Lord In Terminator Armour",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord In Terminator Armour (0 pts)\n• 1x Chaos Lord in Terminator Armour\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-chaos-lord-in-terminator-armour:section:1:block:0:text",
+          "text": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:21",
+        "book": "chaos-space-marines",
+        "rule": "Lord of Chaos",
+        "leader": "Chaos Lord with Jump Pack",
+        "bodyguard": "Raptors",
+        "owner": "Chaos Lord with Jump Pack",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Chaos Lord with Jump Pack (0 pts)\n• 1x Chaos Lord\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n5x Raptors (0 pts)\n• 1x Raptor Champion\n• 4x Raptors\n",
+        "quote": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-chaos-lord-with-jump-pack:section:1:block:0:text",
+          "text": "Lord of Chaos: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:csm:22",
+        "book": "chaos-space-marines",
+        "rule": "Death Hex (Psychic)",
+        "leader": "Sorcerer In Terminator Armour",
+        "bodyguard": "Chaos Terminator Squad",
+        "owner": "Sorcerer In Terminator Armour",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n+ DETACHMENT: Veterans of the Long War\n1x Sorcerer In Terminator Armour (0 pts)\n• 1x Sorcerer in Terminator Armour\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n5x Chaos Terminator Squad (0 pts)\n• 1x Terminator Champion\n• 4x Chaos Terminators\n",
+        "quote": "Death Hex (Psychic): At the start of your Shooting phase, one PSYKER with this ability can use it. If it does, select one enemy unit within 12\" of and visible to that PSYKER and roll one D6: on a 1, that PSYKER’s unit suffers D3 mortal wounds; on a 2+, until the start of your next Movement phase, each time an attack targets that enemy unit, improve the Armour Penetration characteristic of that attack by 1.",
+        "canonical": {
+          "ruleId": "datasheet-sorcerer-in-terminator-armour:section:1:block:1:text",
+          "text": "Death Hex (Psychic): At the start of your Shooting phase, one PSYKER with this ability can use it. If it does, select one enemy unit within 12\" of and visible to that PSYKER and roll one D6: on a 1, that PSYKER’s unit suffers D3 mortal wounds; on a 2+, until the start of your next Movement phase, each time an attack targets that enemy unit, improve the Armour Penetration characteristic of that attack by 1.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "source-clause"
+        ]
+      }
+    ]
+  }
+]
