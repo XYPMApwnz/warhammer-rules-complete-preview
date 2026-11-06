@@ -3699,6 +3699,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                }
               }
             ],
             "conditions": [],
@@ -3720,8 +3746,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "review/ability-da-65465326750b4266a189/text/0:173::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/ability-da-65465326750b4266a189/text/174:239",
@@ -3744,6 +3798,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                }
               }
             ],
             "conditions": [],
@@ -3765,8 +3845,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "review/ability-da-65465326750b4266a189/text/174:239::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5373fd24b1db2b10","referenceId":"refs-41dcbf901f840520","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[6]/div[4]/div[2]/div[2]/div[2]"}]}],
@@ -5569,6 +5677,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds."
+                }
               }
             ],
             "conditions": [],
@@ -5590,8 +5724,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "review/ability-da-8be1a0eb6522479d895b/text/0:112::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5373fd24b1db2b10","referenceId":"refs-cb318f3b4a68c9ed","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[12]/div[6]/div[2]/div[2]/div[4]"}]}],
@@ -37545,6 +37707,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                }
               }
             ],
             "conditions": [],
@@ -37566,8 +37754,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "review/enhancement-da-468d9a93dc9a47f2a229/text/28:56::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/enhancement-da-468d9a93dc9a47f2a229/text/57:142",
@@ -37592,6 +37808,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                }
               }
             ],
             "conditions": [],
@@ -37613,8 +37855,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "review/enhancement-da-468d9a93dc9a47f2a229/text/57:142::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-da-5a438082b8a74f8e8e08",

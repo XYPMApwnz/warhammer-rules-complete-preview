@@ -24,7 +24,9 @@
   {
     "ruleId": "ability-da-2817fd8763554077aa05",
     "clauseId": "review/ability-da-2817fd8763554077aa05/text/166:204",
-    "field": ["text"],
+    "field": [
+      "text"
+    ],
     "quote": "- On a 1, this unit is battle-shocked.",
     "subject": "UNIT",
     "binding": "SOURCE_UNIT",
@@ -104,6 +106,28 @@
     "scope": "FORMED"
   },
   {
+    "ruleId": "ability-da-65465326750b4266a189",
+    "clauseId": "review/ability-da-65465326750b4266a189/text/0:173",
+    "field": [
+      "text"
+    ],
+    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "ability-da-65465326750b4266a189",
+    "clauseId": "review/ability-da-65465326750b4266a189/text/174:239",
+    "field": [
+      "text"
+    ],
+    "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
     "ruleId": "ability-da-67e5af94e8b44695865b",
     "clauseId": "review/ability-da-67e5af94e8b44695865b/text/178:295",
     "field": [
@@ -162,6 +186,17 @@
       "text"
     ],
     "quote": "Emnity for the Unworthy: This unit’s attacks that target a CHARACTER unit have +1 to hit rolls.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "ability-da-8be1a0eb6522479d895b",
+    "clauseId": "review/ability-da-8be1a0eb6522479d895b/text/0:112",
+    "field": [
+      "text"
+    ],
+    "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds.",
     "subject": "UNIT",
     "binding": "SOURCE_UNIT",
     "scope": "FORMED"
@@ -238,6 +273,28 @@
       "text"
     ],
     "quote": "In your first Movement phase, this unit can make an ingress move.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "enhancement-da-468d9a93dc9a47f2a229",
+    "clauseId": "review/enhancement-da-468d9a93dc9a47f2a229/text/28:56",
+    "field": [
+      "text"
+    ],
+    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "enhancement-da-468d9a93dc9a47f2a229",
+    "clauseId": "review/enhancement-da-468d9a93dc9a47f2a229/text/57:142",
+    "field": [
+      "text"
+    ],
+    "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
     "subject": "UNIT",
     "binding": "SOURCE_UNIT",
     "scope": "FORMED"

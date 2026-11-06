@@ -771,5 +771,145 @@
         ]
       }
     ]
+  },
+  {
+    "bookId": "dark-angels",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "sm-da-gaps-v1:27",
+        "book": "dark-angels",
+        "rule": "Cut Off Their Escape",
+        "leader": "Sammael",
+        "bodyguard": "Outrider Squad",
+        "owner": "Sammael",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Wrath of the Rock\n1x Sammael (0 pts)\n• 1x Sammael\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n",
+        "quote": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls.",
+        "canonical": {
+          "ruleId": "ability-da-65465326750b4266a189",
+          "text": "Cut Off Their Escape: When an enemy unit engaged with this unit (excluding MONSTER/VEHICLE units) makes a fall-back move, that enemy unit must use the desperate escape mode. If that enemy unit is battle-shocked, -1 from those hazard rolls.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-65465326750b4266a189/text/0:173",
+          "review/ability-da-65465326750b4266a189/text/174:239"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:28",
+        "book": "dark-angels",
+        "rule": "Narthecium",
+        "leader": "Ravenwing Command Squad",
+        "bodyguard": "Outrider Squad",
+        "owner": "Ravenwing Command Squad",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Wrath of the Rock\n3x Ravenwing Command Squad (0 pts)\n• 1x Ravenwing Champion\n• 1x Ravenwing Apothecary\n• 1x Ravenwing Ancient\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n",
+        "quote": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds.",
+        "canonical": {
+          "ruleId": "ability-da-8be1a0eb6522479d895b",
+          "text": "Narthecium: While this unit contains a Ravenwing Apothecary, in your Command phase, this unit heals D3+1 wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/ability-da-8be1a0eb6522479d895b/text/0:112"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:29",
+        "book": "dark-angels",
+        "rule": "Tempered in Battle (Aura)",
+        "leader": "Ancient",
+        "bodyguard": "Intercessor Squad",
+        "owner": "Ancient",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Wrath of the Rock\n1x Ancient (0 pts)\n• 1x Ancient\nEnhancement: Tempered in Battle (Aura)\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n",
+        "quote": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
+        "canonical": {
+          "ruleId": "enhancement-da-468d9a93dc9a47f2a229",
+          "text": "- Tempered in Battle (Aura)\nADEPTUS ASTARTES model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "review/enhancement-da-468d9a93dc9a47f2a229/text/28:56",
+          "review/enhancement-da-468d9a93dc9a47f2a229/text/57:142"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:inherited:dark-angels",
+        "book": "dark-angels",
+        "rule": "Raise the Banner",
+        "leader": "Ancient",
+        "bodyguard": "Intercessor Squad",
+        "owner": "Ancient",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Wrath of the Rock\n1x Ancient (0 pts)\n• 1x Ancient\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-2743f7d90c6649fb",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": []
+      }
+    ]
+  },
+  {
+    "bookId": "blood-angels",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "sm-da-gaps-v1:inherited:blood-angels",
+        "book": "blood-angels",
+        "rule": "Raise the Banner",
+        "leader": "Ancient",
+        "bodyguard": "Intercessor Squad",
+        "owner": "Ancient",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Blood Angels\n+ DETACHMENT: Angelic Inheritors\n1x Ancient (0 pts)\n• 1x Ancient\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n5x Intercessor Squad (0 pts)\n• 4x Intercessor\n• 1x Intercessor Sergeant\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-2743f7d90c6649fb",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": []
+      }
+    ]
   }
 ]
