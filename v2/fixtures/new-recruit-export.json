@@ -1,0 +1,163 @@
+{
+  "schema": "new-recruit-export-qa/v1",
+  "baseline": "6fdb77a320b3907e206e08f9c4a6167c12593eb7",
+  "factions": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "sourceFixture": "F1/Haloscreed Battle Clade",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon",
+      "bindings": {},
+      "shortLabel": "Adeptus Mechanicus",
+      "catalogue": "Imperium - Adeptus Mechanicus",
+      "catalogueEvidence": {
+        "document": "books/adeptus-mechanicus/sources/bsdata-adeptus-mechanicus-11e.json",
+        "path": "/catalogue/name"
+      },
+      "factionGate": false,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "blood-angels",
+      "sourceFixture": "native-export/newrecruit-v37.2-user-redemptor.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Blood Angels\n+ DETACHMENT: Angelic Inheritors, Encarmine Speartip, Wrath of the Doomed, Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Legacy of the Angel)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 180pts\n+\n+ NUMBER OF UNITS: 1\n+ SECONDARY: - Bring It Down: (1x2)\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n1x Redemptor Dreadnought (180 pts): Icarus Rocket Pod, Redemptor Fist, Macro Plasma Incinerator, Onslaught gatling cannon, Storm Bolters\n\nCreated with newrecruit.eu v37.2\n",
+      "bindings": {},
+      "shortLabel": "Blood Angels",
+      "catalogue": "Imperium - Adeptus Astartes - Blood Angels",
+      "catalogueEvidence": {
+        "document": "books/blood-angels/sources/bsdata-blood-angels-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "blood angels",
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes blood angels"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "sourceFixture": "F1-F2/csm-daemonkin",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Veterans of the Long War\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\nCreated with newrecruit.eu",
+      "bindings": {},
+      "shortLabel": "Chaos Space Marines",
+      "catalogue": "Chaos - Chaos Space Marines",
+      "catalogueEvidence": {
+        "document": "books/chaos-space-marines/sources/bsdata-chaos-space-marines-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": false,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "dark-angels",
+      "sourceFixture": "native-export/newrecruit-v37.3-user-da-10-models.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Dark Angels\n+ DETACHMENT: Darkflight Pursuit, Inner Circle Task Force, Wrath of the Rock, Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Black-winged Vigilance)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 400pts\n+\n+ NUMBER OF UNITS: 1\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n10x Deathwing Terminator Squad (400 pts)\n• 9x Deathwing Terminator\n    7 with Power fist, Storm bolter\n    2 with Power fist, Cyclone missile launcher, Storm bolter\n• 1x Deathwing Sergeant: Power fist, Storm bolter\n\nCreated with newrecruit.eu v37.3\n",
+      "bindings": {},
+      "shortLabel": "Dark Angels",
+      "catalogue": "Imperium - Adeptus Astartes - Dark Angels",
+      "catalogueEvidence": {
+        "document": "books/dark-angels/sources/bsdata-dark-angels-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "dark angels",
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes dark angels"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "death-guard",
+      "sourceFixture": "F1-F2/omega",
+      "text": "+ FACTION KEYWORD: Chaos - Death Guard\n+ DETACHMENT: Virulent Vectorium\n+ DETACHMENT: Shamblerot Vectorium\n+ DETACHMENT: Tallyband Summoners\n+ DETACHMENT: Death Lord’s Chosen\n+ DETACHMENT: Mortarion’s Hammer\n+ DETACHMENT: Champions of Contagion\n+ DETACHMENT: Paragons of Putrescence\n+ DETACHMENT: Contagion Engines\n+ DETACHMENT: Flyblown Host\n5x Plague Marines (0 pts)\nEnhancement: Plagueveil\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Meltagun, Plague knives\n• 1x Plague Marine: Blight launcher, Plague knives\n• 1x Plague Marine: Boltgun, Plague knives, Icon of Despair\n• 1x Plague Marine: Boltgun, Plague knives\n10x Plague Marines (0 pts)\n• 1x Plague Champion: Plasma pistol, Power fist\n• 2x Plague Marine: Heavy plague weapon, Plague knives\n• 2x Plague Marine: Bubotic weapons, Plague knives\n• 1x Plague Marine: Plague spewer, Plague knives\n• 1x Plague Marine: Plasma gun, Plague knives\n• 3x Plague Marine: Boltgun, Plague knives\n5x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Plague belcher, Plague knives\n• 1x Plague Marine: Blight launcher, Plague knives\n• 2x Plague Marine: Boltgun, Plague knives\n5x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Plasma gun, Plague knives\n• 1x Plague Marine: Plague spewer, Plague knives\n• 2x Plague Marine: Boltgun, Plague knives\n10x Plague Marines (0 pts)\n• 1x Plague Champion: Boltgun, Plague knives\n• 1x Plague Marine: Boltgun, Plague knives, Icon of Despair\n• 8x Plague Marine: Boltgun, Plague knives\n3x Deathshroud Terminators (0 pts)\n• 1x Deathshroud Champion: Manreaper, 2x Plaguespurt gauntlet, Icon of Despair\n• 2x Deathshroud Terminator: Manreaper, Plaguespurt gauntlet\n6x Deathshroud Terminators (0 pts)\n• 1x Deathshroud Champion: Manreaper, Plaguespurt gauntlet\n• 5x Deathshroud Terminator: Manreaper, Plaguespurt gauntlet\n5x Blightlord Terminators (0 pts)\n• 1x Blightlord Champion: Combi-bolter, Bubotic blade\n• 1x Blightlord Terminator: Blight launcher, Bubotic blade\n• 1x Blightlord Terminator: Reaper autocannon, Bubotic blade\n• 1x Blightlord Terminator: Flail of corruption\n• 1x Blightlord Terminator: Combi-weapon, Bubotic blade\n3x Blightlord Terminators (0 pts)\n• 1x Blightlord Champion: Combi-bolter, Bubotic blade\n• 1x Blightlord Terminator: Plague spewer, Close combat weapon\n• 1x Blightlord Terminator: Combi-weapon, Bubotic blade\n1x Helbrute (0 pts)\nEnhancement: Lancet of the Worldsore\n• 1x Helbrute: Multi-melta, Helbrute fist, Close combat weapon\n1x Helbrute (0 pts)\n• 1x Helbrute: Twin lascannon, Power scourge, Close combat weapon\n1x Helbrute (0 pts)\n• 1x Helbrute: 2x Helbrute fist, Heavy flamer, Close combat weapon\n1x Plagueburst Crawler (0 pts)\n• 1x Plagueburst Crawler: 2x Entropy cannon, Heavy slugger, Plagueburst mortar, Armoured tracks\n1x Plagueburst Crawler (0 pts)\n• 1x Plagueburst Crawler: 2x Plaguespitter, Rothail volley gun, Plagueburst mortar, Armoured tracks\n1x Foetid Bloat-drone (0 pts)\n• 1x Foetid Bloat-drone: Fleshmower, Plague probe\n1x Foetid Bloat-drone (0 pts)\n• 1x Foetid Bloat-drone: 2x Plaguespitter, Plague probe\n1x Myphitic Blight-hauler (0 pts)\n• 1x Myphitic Blight-hauler: Bile spurt, Missile launcher, Multi-melta, Gnashing maw\n2x Myphitic Blight-hauler (0 pts)\n• 2x Myphitic Blight-hauler: Bile spurt, Missile launcher, Multi-melta, Gnashing maw\n1x Chaos Rhino (0 pts)\n• 1x Chaos Rhino: Combi-bolter, Combi-weapon, Havoc launcher, Armoured tracks\n1x Chaos Rhino (0 pts)\n• 1x Chaos Rhino: Havoc launcher, Armoured tracks\n10x Plaguebearers (0 pts)\n• 1x Plagueridden: Plaguesword\n• 1x Plaguebearer: Plaguesword, Instrument of Chaos\n• 1x Plaguebearer: Plaguesword, Daemonic Icon\n• 7x Plaguebearer: Plaguesword\n10x Plaguebearers (0 pts): 1x Daemonic Icon\n• 1x Plagueridden: Plaguesword\n• 9x Plaguebearer: Plaguesword\n3x Plague Drones (0 pts)\n• 1x Plaguebringer: Death’s heads, Foul mouthparts, Plaguesword\n• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Instrument of Chaos\n• 1x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword, Daemonic Icon\n6x Plague Drones (0 pts): 1x Instrument of Chaos\n• 1x Plaguebringer: Death’s heads, Foul mouthparts, Plaguesword\n• 5x Plague Drone: Death’s heads, Foul mouthparts, Plaguesword\n20x Poxwalkers (0 pts)\n• 20x Poxwalker: Improvised weapon\n10x Poxwalkers (0 pts)\n• 10x Poxwalker: Improvised weapon\n1x Biologus Putrifier (0 pts)\n• 1x Biologus Putrifier: Hyper blight grenades, Injector pistol, Plague knives\n1x Biologus Putrifier (0 pts)\nEnhancement: Rejuvenating Swarm\n• 1x Biologus Putrifier: Hyper blight grenades, Injector pistol, Plague knives\n1x Noxious Blightbringer (0 pts)\nEnhancement: Revolting Regeneration\n• 1x Noxious Blightbringer: Plasma pistol, Cursed plague bell\n1x Noxious Blightbringer (0 pts)\nEnhancement: Witherbone Pipes\n• 1x Noxious Blightbringer: Plasma pistol, Cursed plague bell\n1x Malignant Plaguecaster (0 pts)\nEnhancement: Furnace of Plagues\n• 1x Malignant Plaguecaster: Bolt pistol, Plague Wind, Corrupted staff\n1x Malignant Plaguecaster (0 pts)\nEnhancement: Sorrowsyphon\n• 1x Malignant Plaguecaster: Bolt pistol, Plague Wind, Corrupted staff\n1x Lord of Contagion (0 pts)\nEnhancement: Vile Vigour\n• 1x Lord of Contagion: Manreaper\n1x Lord of Contagion (0 pts)\nEnhancement: Fell Harvester\n• 1x Lord of Contagion: Manreaper\n1x Lord of Virulence (0 pts)\nEnhancement: Tendrilous Emissions\n• 1x Lord of Virulence: Twin plague spewer, Power fist\n1x Lord of Poxes (0 pts)\nEnhancement: Cornucophagus\n• 1x Lord of Poxes: Plasma pistol, Great plague blade\n1x Icon Bearer (0 pts)\n• 1x Icon Bearer: Boltgun, Plague knife\n1x Plague Surgeon (0 pts)\nEnhancement: Needle of Nurgle\n• 1x Plague Surgeon: Bolt pistol, Balesword",
+      "bindings": {},
+      "shortLabel": "Death Guard",
+      "catalogue": "Chaos - Death Guard",
+      "catalogueEvidence": {
+        "authority": "OWNER_PROVIDED_TASK",
+        "note": "No captured DG BSData catalogue is stored in Git; this ungated header is explicitly provided in the task."
+      },
+      "factionGate": false,
+      "legacyLabels": [],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "emperors-children",
+      "sourceFixture": "charge/ec-daemonettes",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws, Instrument of Chaos\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws",
+      "bindings": {},
+      "shortLabel": "Emperor's Children",
+      "catalogue": "Chaos - Emperor's Children",
+      "catalogueEvidence": {
+        "document": "books/emperors-children/sources/bsdata-emperors-children-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "emperors children",
+        "chaos emperors children"
+      ],
+      "normalizedEmptyAccepted": false
+    },
+    {
+      "bookId": "space-marines",
+      "sourceFixture": "native-export/newrecruit-v37.3-user-sm.txt",
+      "text": "+++++++++++++++++++++++++++++++++++++++++++++++\n+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Assault Brethren, Deathwatch Support, Devastator Brethren, Gauntlet Task Force, Gladius Task Force, Gravis Linebreaker Force, Gravis Siege Force, Ironclad Champions, Ironstorm Spearhead, Phobos Shadow Force, Phobos Shock Force, Stormlance Task Force, Tactical Brethren, Tacticus Attack Force, Tacticus Firestorm Force, Terminator Storm Force (Assault Mastery)\n+ FORCE DISPOSITION: Disruption\n+ TOTAL ARMY POINTS: 490pts\n+\n+ NUMBER OF UNITS: 3\n+ SECONDARY: - Bring It Down: (1x2) + (2x4)\n+++++++++++++++++++++++++++++++++++++++++++++++\n\n2x Invader ATVs (130 pts): 2 with Armoured Impact, Bolt pistol, Twin Bolt Rifle, Onslaught gatling cannon\n1x Redemptor Dreadnought (170 pts): Redemptor Fist, Heavy Onslaught Gatling Cannon, Heavy Flamer, Fragstorm Grenade Launchers\n1x Repulsor (190 pts): Armoured Hull, Defensive Array, Hunter-slayer missile, Twin heavy bolter, Heavy Onslaught Gatling Cannon\n\nCreated with newrecruit.eu v37.3",
+      "bindings": {},
+      "shortLabel": "Space Marines",
+      "catalogue": "Imperium - Adeptus Astartes - Space Marines",
+      "catalogueEvidence": {
+        "document": "books/space-marines/sources/bsdata-space-marines-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "space marines",
+        "adeptus astartes",
+        "imperium adeptus astartes space marines"
+      ],
+      "normalizedEmptyAccepted": true
+    },
+    {
+      "bookId": "tau-empire",
+      "sourceFixture": "F1/broad-fixture",
+      "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n+ DETACHMENT: Kroot Hunting Pack\n1x Darkstrider (100 pts)\n• 1x Darkstrider: 1x Shade\n1x Commander In Coldstar Battlesuit (100 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Plasma rifle\nEnhancement: Precision of the Patient Hunter\n3x Crisis Fireknife Battlesuits (100 pts)\n• 1x Crisis Fireknife Shas’vre: 1x Plasma rifle\n• 2x Crisis Fireknife Shas’ui: 1x Plasma rifle\n10x Kroot Carnivores (100 pts)\n• 1x Long-quill: 1x Kroot rifle\n• 9x Kroot Carnivores: 1x Kroot rifle\n",
+      "bindings": {},
+      "shortLabel": "T’au Empire",
+      "catalogue": "Xenos - T'au Empire",
+      "catalogueEvidence": {
+        "document": "books/tau-empire/sources/bsdata-tau-empire-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "tau empire"
+      ],
+      "normalizedEmptyAccepted": false
+    },
+    {
+      "bookId": "tyranids",
+      "sourceFixture": "F1/broad-fixture",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Acid spray, Stinger salvoes, Powerful limbs\n1x Tyrannofex (190 pts)\n• 1x Tyrannofex: Rupture cannon, Stinger salvoes, Powerful limbs\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Fleshborer hive, Stinger salvoes, Powerful limbs\n",
+      "bindings": {},
+      "shortLabel": "Tyranids",
+      "catalogue": "Xenos - Tyranids",
+      "catalogueEvidence": {
+        "document": "books/tyranids/sources/bsdata-tyranids-11e.json",
+        "path": "/documents/0/data/catalogue/name"
+      },
+      "factionGate": true,
+      "legacyLabels": [
+        "tyranids"
+      ],
+      "normalizedEmptyAccepted": false
+    }
+  ],
+  "compactEquipment": []
+}

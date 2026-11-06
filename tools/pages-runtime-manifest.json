@@ -8658,6 +8658,38 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/export-faction.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tau-empire/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tyranids/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/emperors-children/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/space-marines/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/dark-angels/v2/roster-import.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/blood-angels/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/roster-v2/import-service.mjs",
       "reasons": [
         {

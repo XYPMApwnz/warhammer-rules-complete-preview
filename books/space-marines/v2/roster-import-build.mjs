@@ -138,7 +138,8 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
   book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
   book.rosterDetachmentReferenceReview=clone(allied.review);
   // Exact lexical export domain; never a Chapter keyword grant.
-  book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Space Marines'];
+  book.importBindings.factionIdentityLabels=['Space Marines','Adeptus Astartes','Imperium - Adeptus Astartes - Space Marines'];
+  book.importBindings.allowNormalizedEmptyFaction=true;
   assert.equal(JSON.stringify(built.book),original,'Import builder changed the gameplay factual view');
   assert.equal(new Set(book.entities.map(entity=>entity.id)).size,book.entities.length);
   assert.ok(same(book.importBindings.compositions.map(row=>row.id).sort(),[...compositions.map(row=>row.id)].sort()));

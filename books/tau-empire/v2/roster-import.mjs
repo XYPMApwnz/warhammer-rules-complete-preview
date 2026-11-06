@@ -1,5 +1,6 @@
 import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -17,6 +18,7 @@ const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
 export function createTauRosterImport(input){
   const book=cloneSourceBook(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
   requireValue(book.bookId==='tau-empire'&&metadata?.schema==='tau-empire-v2/import-bindings/v1','Invalid T’au import domain');
+  const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
     const source=index.get(binding.id);
     requireValue(source?.parentId===binding.ownerId&&source.data.modelProfileId===binding.profileId&&
@@ -49,7 +51,7 @@ export function createTauRosterImport(input){
     };
     if(draft){
       state.importEvidence=copy(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&normalizeImportLabel(draft.metadata.faction)!==normalizeImportLabel('T’au Empire'))
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export names a different faction');
     }
     if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||Array.isArray(bindings.modelBearers)||typeof bindings.modelBearers!=='object'))

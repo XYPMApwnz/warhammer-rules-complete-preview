@@ -104,7 +104,8 @@ export function buildBloodAngelsRosterBook({built=buildBloodAngelsContracts()}={
  book.rosterDetachmentReferenceReview=clone(allied.review);
  // Exact exported faction path is lexical army-domain evidence only. It is
  // never a grant of BLOOD ANGELS to an inherited physical UNIT or MODEL.
- book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Blood Angels'];
+ book.importBindings.factionIdentityLabels=['Blood Angels','Space Marines','Adeptus Astartes','Imperium - Adeptus Astartes - Blood Angels'];
+ book.importBindings.allowNormalizedEmptyFaction=true;
  assert.equal(JSON.stringify(built.book),before,'Import bindings changed the canonical consumer');
  return book;
 }

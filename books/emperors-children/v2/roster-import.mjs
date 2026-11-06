@@ -1,4 +1,5 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
@@ -26,13 +27,14 @@ export function withECImportBindings(book,importBook) {
 export function createECRosterImport(book) {
   const metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
   reject(book.bookId==='emperors-children'&&metadata?.schema==='ec-v2/import-bindings/v1','Invalid EC import input');
+  const acceptsFaction=createExportFactionCheck(metadata);
   const base=()=>createRosterImportService(book,metadata),schema=createRuleContractSchema();let saved=null;
   function bind(roster,{draft,bindings={}}={}) {
     const state=clone(roster),needs=[],errors=[];
     const need=(kind,key,rawLabel,candidates=[])=>needs.push({kind,key,rawLabel,candidateIds:candidates});
     const error=(code,key,message)=>errors.push({code,key,message});
     if(draft){state.importEvidence=clone(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&!['emperors children','chaos emperors children'].includes(normalizeImportLabel(draft.metadata.faction)))
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export identifies another army');}
     const detachmentRecords=state.detachmentIds.map(id=>book.mfmImportReferences.detachmentBindings.find(b=>b.entityId===id)?.mfmRecordId);
     if(state.mfmDetachmentRecordIds&&JSON.stringify(state.mfmDetachmentRecordIds)!==JSON.stringify(detachmentRecords))error('FOREIGN_MFM_OWNER','detachments','Wrong central Detachment references');

@@ -102,7 +102,7 @@ export function buildTyranidsImportBook(facts=read('./generated/effective.json')
   });
   for(const profile of book.entities)if(profile.kind==='MODEL_PROFILE')profile.kind='PROFILE';
   book.importSourceEvidence=copy(source.exportSource);
-  book.importBindings={schema:'tyranids-v2/import-bindings/v1',identityAliases,weaponSelections,
+  book.importBindings={schema:'tyranids-v2/import-bindings/v1',factionIdentityLabels:['Tyranids',exportDocument.documents[0].data.catalogue.name],identityAliases,weaponSelections,
     equipmentSelections:copy(source.equipmentSelections),compositions,enhancements,nativeReferenceBindings,
     paidSelectionGroups:[{unitId:'unit-tyrannofex',optionProfileIds:['datasheet-tyrannofex:weapon:1',
       'datasheet-tyrannofex:weapon:2','datasheet-tyrannofex:weapon:3'],

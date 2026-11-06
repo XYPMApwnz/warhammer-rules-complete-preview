@@ -56,7 +56,7 @@ export function buildTauImportBook(){
     assert.ok(text.toLowerCase().includes(weapon.data.name.toLowerCase()),'Provided drone weapon missing in accepted source block');
     const unit=index.get(binding.ownerId);if(!unit.data.weaponIds.includes(id))unit.data.weaponIds.push(id);
   }
-  book.importBindings={schema:'tau-empire-v2/import-bindings/v1',identityAliases,compositions,
+  book.importBindings={schema:'tau-empire-v2/import-bindings/v1',factionIdentityLabels:['T’au Empire',vocabulary.documents[0].data.catalogue.name],identityAliases,compositions,
     weaponSelections:[...copy(source.weaponSelections),...copy(source.weaponAliases)],equipmentSelections,enhancements,
     nativeReferenceBindings:book.entities.filter(e=>e.kind==='RULE_REFERENCE').map(e=>({id:e.id,ownerId:e.parentId,
       label:e.data.label,recipient:copy(e.data.recipient),provenance:copy(e.provenance)})),

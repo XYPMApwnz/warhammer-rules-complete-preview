@@ -57,7 +57,7 @@ export function buildECImportBindings(book,bsdata,contractArtifact) {
   }
   const selectionOptions=clone(contractArtifact.selectionOptions);
   assert.equal(selectionOptions.length,39);
-  return {schema:'ec-v2/import-bindings/v1',identityAliases,weaponSelections,equipmentSelections,compositions,enhancements,
+  return {schema:'ec-v2/import-bindings/v1',factionIdentityLabels:["Emperor's Children",data.name],identityAliases,weaponSelections,equipmentSelections,compositions,enhancements,
     weaponChoices:selectionOptions.map(o=>({id:o.id,...o.data,provenance:o.provenance})),
     legality:'NOT_ASSESSED',defaults:'Only explicit exported selections; omitted loadouts remain unknown'};
 }

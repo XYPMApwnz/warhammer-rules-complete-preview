@@ -1,4 +1,5 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {createRosterAttachmentService} from '../../shared/roster-v2/attachment-service.mjs';
@@ -13,6 +14,7 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 export function createTyranidsRosterImport(input){
   const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
   requireValue(book.bookId==='tyranids'&&metadata?.schema==='tyranids-v2/import-bindings/v1','Invalid Tyranids import domain');
+  const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
     const fact=index.get(binding.id);
     requireValue(fact?.kind==='COMPOSITION_MEMBER'&&fact.parentId===binding.ownerId&&fact.data.modelProfileId===binding.profileId&&
@@ -68,7 +70,7 @@ export function createTyranidsRosterImport(input){
     };
     if(draft){
       state.importEvidence=copy(draft.metadata);
-      if(draft.metadata.faction&&draft.metadata.faction!=='—'&&normalizeImportLabel(draft.metadata.faction)!=='tyranids')
+      if(!acceptsFaction(draft.metadata.faction))
         error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different faction');
     }
     if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||typeof bindings.modelBearers!=='object'||Array.isArray(bindings.modelBearers)))

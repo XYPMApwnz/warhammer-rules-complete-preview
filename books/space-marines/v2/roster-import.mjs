@@ -2,6 +2,7 @@ import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native New Recruit boundary over the established shared parser, physical
  * import service, attachment graph and runtime commit. No army legality rules. */
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
@@ -35,6 +36,7 @@ const sourcePredicate=(binding,index)=>{
 export function createSpaceMarinesRosterImport(book){
   const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireValue(book.bookId==='space-marines'&&metadata?.schema==='space-marines-v2/import-bindings/v1','Invalid native SM import domain');
+  const acceptsFaction=createExportFactionCheck(metadata);
   let sharedImport;
   const shared=()=>sharedImport??=createRosterImportService(book,metadata),schema=createSpaceMarinesRuleSchema();
   shared();let saved=null;
@@ -57,9 +59,7 @@ export function createSpaceMarinesRosterImport(book){
       const graph=state.attachments;state=validateRoster(book,{...state,attachments:[]},[]);state.attachments=graph;
       if(draft){
         state.importEvidence=clone(draft.metadata);
-        const faction=normalizeImportLabel(draft.metadata.faction);
-        const declaredFaction=(metadata.factionIdentityLabels||[]).some(label=>normalizeImportLabel(label)===faction);
-        if(faction&&faction!=='space marines'&&faction!=='adeptus astartes'&&!declaredFaction)error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
+        if(!acceptsFaction(draft.metadata.faction))error('FOREIGN_FACTION_EXPORT','faction','Export identifies a different Army Book');
       }
       if(bindings.modelBearers!==undefined&&(!bindings.modelBearers||typeof bindings.modelBearers!=='object'||Array.isArray(bindings.modelBearers)))
         error('INVALID_MODEL_BINDINGS','modelBearers','Expected physical UNIT/Enhancement/MODEL dictionary');

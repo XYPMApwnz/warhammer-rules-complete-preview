@@ -92,7 +92,8 @@ export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={})
  book.mfmImportReferences.nativePoints.detachments.push(clone(allied.points));
  book.rosterDetachmentReferenceReview=clone(allied.review);
  // Exact exported army label is not a physical Chapter keyword grant.
- book.importBindings.factionIdentityLabels=['Imperium - Adeptus Astartes - Dark Angels'];
+ book.importBindings.factionIdentityLabels=['Dark Angels','Space Marines','Adeptus Astartes','Imperium - Adeptus Astartes - Dark Angels'];
+ book.importBindings.allowNormalizedEmptyFaction=true;
  assert.equal(JSON.stringify(built.book),before,'Import bindings changed the canonical consumer');
  return book;
 }
