@@ -606,5 +606,649 @@
         ]
       }
     ]
+  },
+  {
+    "bookId": "tau-empire",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "csm-tau-gaps-v1:tau:01",
+        "book": "tau-empire",
+        "rule": "DS8 Support Turret",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Breacher Team",
+        "owner": "Breacher Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\n10x Breacher Team (0 pts)\n• 1x Breacher Fire Warrior Shas’ui\n• 9x Breacher Fire Warriors\n10x Breacher Team (0 pts)\n• 1x Breacher Fire Warrior Shas’ui\n• 9x Breacher Fire Warriors\n",
+        "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+        "canonical": {
+          "ruleId": "datasheet-breacher-team:section:1",
+          "text": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-breacher-team:section:1#ability-2-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:02",
+        "book": "tau-empire",
+        "rule": "Suppression Volley",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Strike Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+        "canonical": {
+          "ruleId": "datasheet-strike-team:section:1",
+          "text": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-strike-team:section:1#ability-1-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:03",
+        "book": "tau-empire",
+        "rule": "DS8 Support Turret",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Strike Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+        "canonical": {
+          "ruleId": "datasheet-strike-team:section:1",
+          "text": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-strike-team:section:1#ability-2-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:04",
+        "book": "tau-empire",
+        "rule": "Battlesuit Support System",
+        "leader": "Commander In Coldstar Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Coldstar Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit: 1x Battlesuit Support System\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+        "canonical": {
+          "ruleId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+          "text": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-in-coldstar-battlesuit:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:04:absent",
+        "book": "tau-empire",
+        "rule": "Battlesuit Support System",
+        "leader": "Commander In Coldstar Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Coldstar Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Coldstar Battlesuit (0 pts)\n• 1x Commander in Coldstar Battlesuit\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+        "canonical": {
+          "ruleId": "datasheet-commander-in-coldstar-battlesuit:section:1",
+          "text": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-in-coldstar-battlesuit:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:05",
+        "book": "tau-empire",
+        "rule": "Enforcer Commander",
+        "leader": "Commander In Enforcer Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Enforcer Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1.",
+        "canonical": {
+          "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+          "text": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-in-enforcer-battlesuit:section:1#ability-1-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:06",
+        "book": "tau-empire",
+        "rule": "Battlesuit Support System",
+        "leader": "Commander In Enforcer Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Enforcer Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit: 1x Battlesuit Support System\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+        "canonical": {
+          "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+          "text": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-in-enforcer-battlesuit:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:06:absent",
+        "book": "tau-empire",
+        "rule": "Battlesuit Support System",
+        "leader": "Commander In Enforcer Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Enforcer Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+        "canonical": {
+          "ruleId": "datasheet-commander-in-enforcer-battlesuit:section:1",
+          "text": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-in-enforcer-battlesuit:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:07",
+        "book": "tau-empire",
+        "rule": "Kroot Ambush",
+        "leader": "Kroot Trail Shaper",
+        "bodyguard": "Kroot Carnivores",
+        "owner": "Kroot Trail Shaper",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Kroot Trail Shaper (0 pts)\n• 1x Kroot Trail Shaper\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n",
+        "quote": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+        "canonical": {
+          "ruleId": "datasheet-kroot-trail-shaper:section:1",
+          "text": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-kroot-trail-shaper:section:1#ability-2-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:08",
+        "book": "tau-empire",
+        "rule": "Way of the Short Blade",
+        "leader": "Commander Farsight",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander Farsight",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander Farsight (0 pts)\n• 1x Commander Farsight\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll.",
+        "canonical": {
+          "ruleId": "datasheet-commander-farsight:section:1",
+          "text": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-farsight:section:1#ability-1-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:09",
+        "book": "tau-empire",
+        "rule": "Puretide's Teachings",
+        "leader": "Commander Farsight",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander Farsight",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander Farsight (0 pts)\n• 1x Commander Farsight\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-commander-farsight:section:1",
+          "text": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-commander-farsight:section:1#ability-2-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:10",
+        "book": "tau-empire",
+        "rule": "Structural Analyser",
+        "leader": "Darkstrider",
+        "bodyguard": "Pathfinder Team",
+        "owner": "Darkstrider",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Darkstrider (0 pts)\n• 1x Darkstrider\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n",
+        "quote": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll.",
+        "canonical": {
+          "ruleId": "datasheet-darkstrider:section:1",
+          "text": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-darkstrider:section:1#ability-1-wound-roll"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:11",
+        "book": "tau-empire",
+        "rule": "Fieldcraft",
+        "leader": "Kroot War Shaper",
+        "bodyguard": "Kroot Carnivores",
+        "owner": "Kroot Carnivores",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Kroot War Shaper (0 pts)\n• 1x Kroot War Shaper\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n",
+        "quote": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+        "canonical": {
+          "ruleId": "datasheet-kroot-carnivores:section:1",
+          "text": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-kroot-carnivores:section:1#ability-1-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:12",
+        "book": "tau-empire",
+        "rule": "Grav-inhibitor Drone",
+        "leader": "Darkstrider",
+        "bodyguard": "Pathfinder Team",
+        "owner": "Pathfinder Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Darkstrider (0 pts)\n• 1x Darkstrider\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui: 1x Grav-inhibitor Drone\n• 9x Pathfinders\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n",
+        "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
+        "canonical": {
+          "ruleId": "datasheet-pathfinder-team:section:1",
+          "text": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-pathfinder-team:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:12:absent",
+        "book": "tau-empire",
+        "rule": "Grav-inhibitor Drone",
+        "leader": "Darkstrider",
+        "bodyguard": "Pathfinder Team",
+        "owner": "Pathfinder Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Darkstrider (0 pts)\n• 1x Darkstrider\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n",
+        "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
+        "canonical": {
+          "ruleId": "datasheet-pathfinder-team:section:1",
+          "text": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll).",
+          "sourcePath": [
+            "blocks",
+            1,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-pathfinder-team:section:1#ability-2-conditional"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:13",
+        "book": "tau-empire",
+        "rule": "Fireknife",
+        "leader": "Commander In Enforcer Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Crisis Fireknife Battlesuits",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead.",
+        "canonical": {
+          "ruleId": "datasheet-crisis-fireknife-battlesuits:section:1",
+          "text": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-crisis-fireknife-battlesuits:section:1#ability-1-reroll-ones"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:14",
+        "book": "tau-empire",
+        "rule": "War Leader",
+        "leader": "Kroot War Shaper",
+        "bodyguard": "Kroot Carnivores",
+        "owner": "Kroot War Shaper",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Kroot War Shaper (0 pts)\n• 1x Kroot War Shaper\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n10x Kroot Carnivores (0 pts)\n• 1x Long-quill\n• 9x Kroot Carnivores\n",
+        "quote": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+        "canonical": {
+          "ruleId": "datasheet-kroot-war-shaper:section:1",
+          "text": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+          "sourcePath": [
+            "blocks",
+            0,
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "datasheet-kroot-war-shaper:section:1#ability-1-conditional"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:15",
+        "book": "tau-empire",
+        "rule": "Coordinated Exploitation",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Cadre Fireblade",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\nEnhancement: Coordinated Exploitation\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+        "canonical": {
+          "ruleId": "detachment-montka:enhancement:1",
+          "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-montka:enhancement:1#conditional-complete"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:16",
+        "book": "tau-empire",
+        "rule": "Exemplar of the Mont’ka",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Cadre Fireblade",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\nEnhancement: Exemplar of the Mont’ka\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well.",
+        "canonical": {
+          "ruleId": "detachment-montka:enhancement:2",
+          "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-montka:enhancement:2#conditional-complete"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:17",
+        "book": "tau-empire",
+        "rule": "Puretide Engram Neurochip",
+        "leader": "Commander In Enforcer Battlesuit",
+        "bodyguard": "Crisis Fireknife Battlesuits",
+        "owner": "Commander In Enforcer Battlesuit",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Retaliation Cadre\n1x Commander In Enforcer Battlesuit (0 pts)\n• 1x Commander in Enforcer Battlesuit\nEnhancement: Puretide Engram Neurochip\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n3x Crisis Fireknife Battlesuits (0 pts)\n• 1x Crisis Fireknife Shas’vre\n• 2x Crisis Fireknife Shas’ui\n",
+        "quote": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+        "canonical": {
+          "ruleId": "detachment-retaliation-cadre:enhancement:3",
+          "text": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-retaliation-cadre:enhancement:3#conditional-complete"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:18",
+        "book": "tau-empire",
+        "rule": "Exemplar of the Kauyon",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Cadre Fireblade",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\nEnhancement: Exemplar of the Kauyon\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third.",
+        "canonical": {
+          "ruleId": "detachment-kauyon:enhancement:1",
+          "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-kauyon:enhancement:1#conditional-complete"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:19",
+        "book": "tau-empire",
+        "rule": "Through Unity, Devastation",
+        "leader": "Cadre Fireblade",
+        "bodyguard": "Strike Team",
+        "owner": "Cadre Fireblade",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Kauyon\n1x Cadre Fireblade (0 pts)\n• 1x Cadre Fireblade\nEnhancement: Through Unity, Devastation\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n10x Strike Team (0 pts)\n• 1x Fire Warrior Shas’ui\n• 9x Fire Warriors\n",
+        "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+        "canonical": {
+          "ruleId": "detachment-kauyon:enhancement:4",
+          "text": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-kauyon:enhancement:4#conditional-complete"
+        ]
+      },
+      {
+        "id": "csm-tau-gaps-v1:tau:20",
+        "book": "tau-empire",
+        "rule": "Unmasking Suite",
+        "leader": "Darkstrider",
+        "bodyguard": "Pathfinder Team",
+        "owner": "Pathfinder Team",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Advanced Acquisition Cadre\n1x Darkstrider (0 pts)\n• 1x Darkstrider\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\nEnhancement: Unmasking Suite\n10x Pathfinder Team (0 pts)\n• 1x Pathfinder Shas’ui\n• 9x Pathfinders\n",
+        "quote": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
+        "canonical": {
+          "ruleId": "detachment-advanced-acquisition-cadre:enhancement:2",
+          "text": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "detachment-advanced-acquisition-cadre:enhancement:2#conditional-complete"
+        ]
+      }
+    ]
   }
 ]

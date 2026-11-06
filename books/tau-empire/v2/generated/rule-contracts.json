@@ -532,6 +532,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+              }
             }
           ],
           "conditions": [
@@ -595,8 +625,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-breacher-team:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-a946cb87f3a0bf1b","referenceId":"refs-f13dd56c74168c2e","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]"}]}],
@@ -669,6 +731,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+              }
             }
           ],
           "conditions": [
@@ -732,8 +824,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-strike-team:section:1#ability-1-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Suppression Volley: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the start of your next turn, while this unit is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-strike-team:section:1#ability-2-conditional",
@@ -758,6 +882,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+              }
             }
           ],
           "conditions": [
@@ -821,8 +975,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-strike-team:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "DS8 Support Turret: In your Movement phase, if this unit Remains Stationary, until the start of your next Movement phase, its Fire Warrior Shas’ui model is equipped with the support turret missile system weapon.\nDesigner’s Note: Place a Support Turret token next to this unit to remind you."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-4920ca49d5ee70bd","referenceId":"refs-9bc311be9d5401c0","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]"}]}],
@@ -1378,6 +1564,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+              }
             }
           ],
           "conditions": [
@@ -1441,8 +1657,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-commander-in-coldstar-battlesuit:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "shield-generator",
@@ -1735,6 +1983,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
+              }
             }
           ],
           "conditions": [
@@ -1798,8 +2076,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-commander-in-enforcer-battlesuit:section:1#ability-1-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Enforcer Commander: While this model is leading a unit, each time a ranged attack targets that unit, worsen the Armour Penetration characteristic of that attack by 1."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-commander-in-enforcer-battlesuit:section:1#ability-2-conditional",
@@ -1824,6 +2134,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+              }
             }
           ],
           "conditions": [
@@ -1887,8 +2227,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-commander-in-enforcer-battlesuit:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Battlesuit Support System: The bearer’s unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "shield-generator",
@@ -3596,6 +3968,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+              }
             }
           ],
           "conditions": [
@@ -3659,8 +4061,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-kroot-trail-shaper:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-a42684fede706b88","referenceId":"refs-0f82ccb553d6d1ad","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]"}]}],
@@ -3733,6 +4167,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+              }
             }
           ],
           "conditions": [
@@ -3796,8 +4260,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-kroot-war-shaper:section:1#ability-1-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "War Leader: Once per battle round, one unit from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-kroot-war-shaper:section:1#ability-2-conditional",
@@ -4091,6 +4587,35 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
+              }
             }
           ],
           "conditions": [
@@ -4154,8 +4679,39 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-commander-farsight:section:1#ability-1-conditional::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Way of the Short Blade: While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-commander-farsight:section:1#ability-2-conditional",
@@ -4180,6 +4736,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+              }
             }
           ],
           "conditions": [
@@ -4243,8 +4829,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-commander-farsight:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Puretide's Teachings: Once per battle round, you can target this model’s unit with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-f203fe1c28ab4ac4","referenceId":"refs-2c71b0dbc7b8fe99","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]"}]}],
@@ -4791,6 +5409,35 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll."
+              }
             }
           ],
           "conditions": [],
@@ -4823,8 +5470,39 @@
             "activationConditions": "Retain the exact source activation; never substitute BS/WS, Strength, or a global save for this mechanism."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-darkstrider:section:1#ability-1-wound-roll::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Structural Analyser: While this model is leading a unit, each time a model in that unit makes a ranged attack, add 1 to the Wound roll."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-darkstrider:section:1#ability-2-conditional",
@@ -5488,6 +6166,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+              }
             }
           ],
           "conditions": [
@@ -5551,8 +6259,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-kroot-carnivores:section:1#ability-1-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Fieldcraft: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "sourceRefs": [{"documentId":"documents-5a9ea387d17676a3","referenceId":"refs-f16e461cc7f14f36","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]"}]}],
@@ -6101,6 +6841,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
+              }
             }
           ],
           "conditions": [
@@ -6164,8 +6934,40 @@
             "activationConditions": "All timing, distance, eligibility, choices and lifetime clauses in the complete source field: Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-pathfinder-team:section:1#ability-2-conditional::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  1,
+                  "text"
+                ],
+                "quote": "Grav-inhibitor Drone: Subtract 2 from Charge rolls made for any enemy unit that declares a charge against the bearer’s unit (this is not cumulative with any other reductions to that Charge roll)."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "pulse-accelerator-drone",
@@ -7346,6 +8148,35 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
+              }
             }
           ],
           "conditions": [],
@@ -7378,8 +8209,39 @@
             "activationConditions": "Retain the exact source activation; never substitute BS/WS, Strength, or a global save for this mechanism."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "datasheet-crisis-fireknife-battlesuits:section:1#ability-1-reroll-ones::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_FORMED_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Fireknife: Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
+              }
+            }
+          ],
+          "recipientStatus": "RECORDED"
         },
         {
           "id": "datasheet-crisis-fireknife-battlesuits:section:1#ability-1-target-starting-strength",
@@ -14975,6 +15837,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit."
+              }
             }
           ],
           "conditions": [
@@ -15019,8 +15907,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-montka:enhancement:1#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -15234,6 +16150,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well."
+              }
             }
           ],
           "conditions": [
@@ -15278,8 +16220,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-montka:enhancement:2#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Killing Blow Detachment rule applies to that unit during the fourth battle round as well."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-montka",
@@ -16178,6 +17148,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP."
+              }
             }
           ],
           "conditions": [
@@ -16222,8 +17218,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-retaliation-cadre:enhancement:3#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-retaliation-cadre",
@@ -16654,6 +17678,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third."
+              }
             }
           ],
           "conditions": [
@@ -16698,8 +17748,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-kauyon:enhancement:1#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, the Patient Hunter Detachment rule applies to that unit from the second battle round onwards instead of from the third."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -17331,6 +18409,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit."
+              }
             }
           ],
           "conditions": [
@@ -17375,8 +18479,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-kauyon:enhancement:4#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-kauyon",
@@ -19751,6 +20883,32 @@
                 ]
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot."
+              }
             }
           ],
           "conditions": [
@@ -19795,8 +20953,36 @@
             "activationConditions": "All source timing, target, distance, trigger, choice and lifetime conditions must remain explicit; no battle state is assumed."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipients": [
+            {
+              "id": "detachment-advanced-acquisition-cadre:enhancement:2#conditional-complete::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "GHOSTKEEL BATTLESUIT/PATHFINDER TEAM/STEALTH BATTLESUITS unit only. When this unit is selected to shoot, you can select one enemy unit within 24\" of this unit. That enemy unit has +9\" detection range until this unit has shot."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-advanced-acquisition-cadre",
