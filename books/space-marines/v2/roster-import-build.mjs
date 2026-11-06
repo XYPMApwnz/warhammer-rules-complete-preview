@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Source-owned import vocabulary over the existing physical V2 contract.
  * These names address existing records; they create no models, default weapons,
@@ -119,6 +121,7 @@ export function buildSpaceMarinesImportBook({built=buildSpaceMarinesContracts(),
   book.mfmImportReferences=clone(Object.fromEntries(['source','partitions','relationDeclarations','nativePoints','referenceOnlyUnits','referenceOnlyOwners']
     .map(key=>[key,built.consumed[key]])));
   book.mfmPhysicalPaidOptions=createSpaceMarinesPaidOptionBindings();
+  appendModelNameAliases(identityAliases,modelNames,compositions);
   book.importBindings={schema:'space-marines-v2/import-bindings/v1',identityAliases,compositions,unresolvedCompositions,
     weaponSelections,equipmentSelections,enhancements,
     nativeReferenceBindings:book.entities.filter(entity=>entity.kind==='RULE_REFERENCE').map(entity=>({id:entity.id,ownerId:entity.parentId,

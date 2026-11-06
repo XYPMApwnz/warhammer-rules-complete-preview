@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 /** Import vocabulary and ownership references, never new factual owners. */
 import assert from 'node:assert/strict';
 const clone=structuredClone;
@@ -57,6 +59,7 @@ export function buildECImportBindings(book,bsdata,contractArtifact) {
   }
   const selectionOptions=clone(contractArtifact.selectionOptions);
   assert.equal(selectionOptions.length,39);
+  appendModelNameAliases(identityAliases,modelNames,compositions);
   return {schema:'ec-v2/import-bindings/v1',factionIdentityLabels:["Emperor's Children",data.name],identityAliases,weaponSelections,equipmentSelections,compositions,enhancements,
     weaponChoices:selectionOptions.map(o=>({id:o.id,...o.data,provenance:o.provenance})),
     legality:'NOT_ASSESSED',defaults:'Only explicit exported selections; omitted loadouts remain unknown'};

@@ -68411,6 +68411,74 @@
           "entityId": "datasheet-taunar-supremacy-armour:composition:1",
           "path": "/name"
         }
+      },
+      {
+        "canonicalId": "datasheet-strike-team:profile:1",
+        "labels": [
+          "Fire Warrior"
+        ],
+        "evidence": {
+          "entityId": "datasheet-strike-team:composition:2",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "cc51-5731-3dce-1d45",
+          "name": "Fire Warrior w/ pulse carbine",
+          "kind": "MODEL",
+          "sourceRefs": [{"ref":"refs-f87fa05b8eb9801b"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
+      },
+      {
+        "canonicalId": "datasheet-kroot-carnivores:profile:1",
+        "labels": [
+          "Kroot Carnivore"
+        ],
+        "evidence": {
+          "entityId": "datasheet-kroot-carnivores:composition:2",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "28df-9a4e-649-f27f",
+          "name": "Kroot Carnivore w/ tanglebomb launcher",
+          "kind": "MODEL",
+          "sourceRefs": [{"ref":"refs-d73ec4c948d35d51"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
+      },
+      {
+        "canonicalId": "datasheet-krootox-riders:profile:1",
+        "labels": [
+          "Krootox Rider"
+        ],
+        "evidence": {
+          "entityId": "datasheet-krootox-riders:composition:1",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "a3cd-29ef-8419-fde6",
+          "name": "Krootox Rider w/ repeater cannon",
+          "kind": "MODEL",
+          "sourceRefs": [{"ref":"refs-a4d2f1ff9bc078b7"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
+      },
+      {
+        "canonicalId": "datasheet-broadside-battlesuits:profile:1",
+        "labels": [
+          "Broadside Shas’ui (0-2)"
+        ],
+        "evidence": {
+          "entityId": "datasheet-broadside-battlesuits:composition:2",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "2295-bb6d-9a9a-ff6",
+          "name": "Broadside Shas’ui (0-2)",
+          "kind": "MODEL_GROUP",
+          "sourceRefs": [{"ref":"refs-ad17c21d1437ce29"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
       }
     ],
     "compositions": [
@@ -68475,12 +68543,16 @@
         "labels": [
           "Fire Warriors",
           "Fire Warrior w/ pulse carbine",
-          "Fire Warrior w/ pulse rifle"
+          "Fire Warrior w/ pulse rifle",
+          "Fire Warrior"
         ],
         "evidence": {
           "entityId": "datasheet-strike-team:composition:2",
           "path": "/name"
-        }
+        },
+        "bsdataModelNameLabels": [
+          "Fire Warrior"
+        ]
       },
       {
         "id": "datasheet-cadre-fireblade:composition:1",
@@ -68752,12 +68824,16 @@
         },
         "labels": [
           "Kroot Carnivores",
-          "Kroot Carnivore w/ tanglebomb launcher"
+          "Kroot Carnivore w/ tanglebomb launcher",
+          "Kroot Carnivore"
         ],
         "evidence": {
           "entityId": "datasheet-kroot-carnivores:composition:2",
           "path": "/name"
-        }
+        },
+        "bsdataModelNameLabels": [
+          "Kroot Carnivore"
+        ]
       },
       {
         "id": "datasheet-kroot-farstalkers:composition:1",
@@ -68944,12 +69020,16 @@
           "max": 2
         },
         "labels": [
-          "Broadside Shas’ui"
+          "Broadside Shas’ui",
+          "Broadside Shas’ui (0-2)"
         ],
         "evidence": {
           "entityId": "datasheet-broadside-battlesuits:composition:2",
           "path": "/name"
-        }
+        },
+        "bsdataModelNameLabels": [
+          "Broadside Shas’ui (0-2)"
+        ]
       },
       {
         "id": "datasheet-crisis-fireknife-battlesuits:composition:1",
@@ -69122,12 +69202,16 @@
         "labels": [
           "Krootox Riders",
           "Krootox Rider w/ repeater cannon",
-          "Krootox Rider w/ tanglecannon"
+          "Krootox Rider w/ tanglecannon",
+          "Krootox Rider"
         ],
         "evidence": {
           "entityId": "datasheet-krootox-riders:composition:1",
           "path": "/name"
-        }
+        },
+        "bsdataModelNameLabels": [
+          "Krootox Rider"
+        ]
       },
       {
         "id": "datasheet-piranhas:composition:1",
@@ -79590,5 +79674,7 @@
   },
   "conditionSchema": "conditions/v1",
   "sourceSchema": "source-refs/v1",
+  "sourceRefCatalog": {"refs-f87fa05b8eb9801b":{"document":"books/tau-empire/sources/bsdata-tau-empire-11e.json","documentRole":"DOCUMENT","sourceId":"tau-codex-transcription","sha256":"a864213d5354661e5913bd31051e4094848b0359edba2fc200ed2cb2c2589a8f","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/20/selectionEntryGroups/0/selectionEntries/0"}]},"refs-d73ec4c948d35d51":{"document":"books/tau-empire/sources/bsdata-tau-empire-11e.json","documentRole":"DOCUMENT","sourceId":"tau-codex-transcription","sha256":"a864213d5354661e5913bd31051e4094848b0359edba2fc200ed2cb2c2589a8f","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/23/selectionEntryGroups/0/selectionEntries/1"}]},"refs-a4d2f1ff9bc078b7":{"document":"books/tau-empire/sources/bsdata-tau-empire-11e.json","documentRole":"DOCUMENT","sourceId":"tau-codex-transcription","sha256":"a864213d5354661e5913bd31051e4094848b0359edba2fc200ed2cb2c2589a8f","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/24/selectionEntryGroups/0/selectionEntries/0"}]},"refs-ad17c21d1437ce29":{"document":"books/tau-empire/sources/bsdata-tau-empire-11e.json","documentRole":"DOCUMENT","sourceId":"tau-codex-transcription","sha256":"a864213d5354661e5913bd31051e4094848b0359edba2fc200ed2cb2c2589a8f","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/39/selectionEntryGroups/0"}]}},
+  "sourceLayoutCatalog": {"layouts-30a8cde49ae5aa0a":{"type":"OBJECT","entries":[["document",{"type":"VALUE","pool":"refs","index":0,"path":["document"]}],["sha256",{"type":"VALUE","pool":"refs","index":1,"path":["sha256"]}],["path",{"type":"VALUE","pool":"refs","index":2,"path":["locators",0,"value"]}]]}},
   "sourceContextCatalog": {"contexts-bbb469a40ab86bca":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-auxiliary-cadre:enhancement:1"},"contexts-05ac36b69e62eaac":{"kind":"IDENTITY","field":"canonicalOwnerId","value":"detachment-auxiliary-cadre"},"contexts-590658be1617b780":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-auxiliary-cadre:enhancement:1#chosen-units-deep-strike"},"contexts-0a4a63694c8a4717":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:1"},"contexts-987b175b0e4db459":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:1#selected-weapon-strength"},"contexts-4cff503ce1bcff58":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:2"},"contexts-09e276989ec9a532":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:2#selected-weapon-strength"},"contexts-e0ad2aeba2446efd":{"kind":"IDENTITY","field":"canonicalRuleId","value":"detachment-experimental-prototype-cadre:enhancement:3"},"contexts-5ce5d759bdcbe01b":{"kind":"IDENTITY","field":"canonicalClauseId","value":"detachment-experimental-prototype-cadre:enhancement:3#selected-weapon-strength"},"contexts-7133950cae12a70a":{"kind":"IDENTITY","field":"canonicalRuleId","value":"drone-shield-drone"},"contexts-6c60a77c0075f5e6":{"kind":"IDENTITY","field":"canonicalClauseId","value":"drone-shield-drone#wounds"}}
 }

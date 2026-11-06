@@ -69710,6 +69710,23 @@
           "sourceRefs": [{"documentId":"documents-8ef6b78f4dd5d6b3","referenceId":"refs-4789d62f2916b2ab","documentRole":"DOCUMENT","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntryGroups/0/selectionEntries/8"}]}],
           "sourceBindings": "bindings-da6f0e83a9beb607"
         }
+      },
+      {
+        "canonicalId": "datasheet-chaos-terminators:profile:1",
+        "labels": [
+          "Terminators"
+        ],
+        "evidence": {
+          "entityId": "datasheet-chaos-terminators:section:2:member:2",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "7059-5f21-88e3-3c6b",
+          "name": "4 Terminators",
+          "kind": "MODEL_GROUP",
+          "sourceRefs": [{"ref":"refs-ddf6dc8516b9271d"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
       }
     ],
     "weaponSelections": [
@@ -70518,7 +70535,8 @@
           "Heavy weapon",
           "Power fist and combi-bolter",
           "Chainfist and combi-weapon",
-          "Paired accursed weapons"
+          "Paired accursed weapons",
+          "Terminators"
         ],
         "evidence": {
           "entityId": "datasheet-chaos-terminators:section:2:member:2",
@@ -70573,6 +70591,9 @@
             "sourceRefs": [{"documentId":"documents-8ef6b78f4dd5d6b3","referenceId":"refs-fc4343860a655588","documentRole":"DOCUMENT","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/20/selectionEntryGroups/0/selectionEntries/7"}]}],
             "sourceBindings": "bindings-a771fbbb01854c09"
           }
+        ],
+        "bsdataModelNameLabels": [
+          "Terminators"
         ]
       },
       {
@@ -73449,5 +73470,7 @@
       }
     ]
   },
-  "sourceSchema": "source-refs/v1"
+  "sourceSchema": "source-refs/v1",
+  "sourceRefCatalog": {"refs-ddf6dc8516b9271d":{"document":"books/emperors-children/sources/bsdata-emperors-children-11e.json","documentRole":"DOCUMENT","sourceId":"emperors-children-codex-transcription","sha256":"ea84e5f66b27aa462e08c6ed230b31b7700a47d8518e6f77889244d8ce84100a","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/20/selectionEntryGroups/0"}]}},
+  "sourceLayoutCatalog": {"layouts-30a8cde49ae5aa0a":{"type":"OBJECT","entries":[["document",{"type":"VALUE","pool":"refs","index":0,"path":["document"]}],["sha256",{"type":"VALUE","pool":"refs","index":1,"path":["sha256"]}],["path",{"type":"VALUE","pool":"refs","index":2,"path":["locators",0,"value"]}]]}}
 }

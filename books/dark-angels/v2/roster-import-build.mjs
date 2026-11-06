@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native vocabulary/physical bindings over the closed DA consumer projection.
  * Common facts and reviewed import joins retain their Space Marines owner. */
@@ -72,6 +74,7 @@ export function buildDarkAngelsImportBook({built=buildDarkAngelsContracts()}={})
   partitions:Object.fromEntries(['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'].map(key=>[key,clone(book.mfm[key])])),
   nativePoints:clone(built.native.points),referenceOnlyRelationTargets:clone(built.native.consumed.referenceOnlyRelationTargets)};
  book.mfmPhysicalPaidOptions=createDarkAngelsPaidOptionBindings({book});
+  appendModelNameAliases(identityAliases,modelNames,compositions);
  book.importBindings={schema:'dark-angels-v2/import-bindings/v1',identityAliases,compositions,unresolvedCompositions,
   weaponSelections,equipmentSelections,enhancements,
   nativeReferenceBindings:book.entities.filter(row=>row.kind==='RULE_REFERENCE').map(row=>({id:row.id,ownerId:row.parentId,

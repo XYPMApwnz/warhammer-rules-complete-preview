@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import fs from 'node:fs';
@@ -56,6 +58,7 @@ export function buildTauImportBook(){
     assert.ok(text.toLowerCase().includes(weapon.data.name.toLowerCase()),'Provided drone weapon missing in accepted source block');
     const unit=index.get(binding.ownerId);if(!unit.data.weaponIds.includes(id))unit.data.weaponIds.push(id);
   }
+  appendModelNameAliases(identityAliases,modelNames,compositions);
   book.importBindings={schema:'tau-empire-v2/import-bindings/v1',factionIdentityLabels:['T’au Empire',vocabulary.documents[0].data.catalogue.name],identityAliases,compositions,
     weaponSelections:[...copy(source.weaponSelections),...copy(source.weaponAliases)],equipmentSelections,enhancements,
     nativeReferenceBindings:book.entities.filter(e=>e.kind==='RULE_REFERENCE').map(e=>({id:e.id,ownerId:e.parentId,

@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -102,6 +104,7 @@ export function buildTyranidsImportBook(facts=read('./generated/effective.json')
   });
   for(const profile of book.entities)if(profile.kind==='MODEL_PROFILE')profile.kind='PROFILE';
   book.importSourceEvidence=copy(source.exportSource);
+  appendModelNameAliases(identityAliases,modelNames,compositions);
   book.importBindings={schema:'tyranids-v2/import-bindings/v1',factionIdentityLabels:['Tyranids',exportDocument.documents[0].data.catalogue.name],identityAliases,weaponSelections,
     equipmentSelections:copy(source.equipmentSelections),compositions,enhancements,nativeReferenceBindings,
     paidSelectionGroups:[{unitId:'unit-tyrannofex',optionProfileIds:['datasheet-tyrannofex:weapon:1',

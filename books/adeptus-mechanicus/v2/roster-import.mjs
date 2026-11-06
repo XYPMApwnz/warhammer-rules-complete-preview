@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 
@@ -34,7 +36,7 @@ export function withEquipmentCaptionBindings(book) {
 export function createAdMechRosterImport(book,metadata) {
   if (metadata?.schema!=='roster-v2/import-aliases') throw new TypeError('Invalid import metadata');
   const input=withEquipmentCaptionBindings(book);
-  return createRosterImportService(input,{identityAliases:metadata.aliases,weaponSelections:metadata.weaponSelections,
+  return createRosterImportService(input,{identityAliases:appendModelNameAliases([...metadata.aliases],modelNames),weaponSelections:metadata.weaponSelections,
     equipmentSelections:input.rosterEquipmentCaptionBindings});
 }
 

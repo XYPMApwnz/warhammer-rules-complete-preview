@@ -1,0 +1,38 @@
+{
+  "schema": "new-recruit-model-source-joins/v1",
+  "joins": [
+    {
+      "sourceId": "8331-d762-2987-76a",
+      "sourceName": "Cultist w/ autopistol and brutal assault weapon",
+      "canonicalId": "datasheet-cultist-mob:section:2:member:2",
+      "evidence": {
+        "entityId": "datasheet-cultist-mob:section:2:member:2",
+        "path": "/composition/name"
+      },
+      "canonicalName": "Chaos Cultists",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "ed6c-21b8-8674-16b5",
+      "sourceName": "9 Beastmen",
+      "canonicalId": "datasheet-fellgor-beastmen:section:2:member:2",
+      "evidence": {
+        "entityId": "datasheet-fellgor-beastmen:section:2:member:2",
+        "path": "/composition/name"
+      },
+      "canonicalName": "Fellgor Beastmen",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    },
+    {
+      "sourceId": "cf84-bb8c-bc0c-3380",
+      "sourceName": "2-5 Bikers",
+      "canonicalId": "datasheet-chaos-bikers:section:2:member:2",
+      "evidence": {
+        "entityId": "datasheet-chaos-bikers:section:2:member:2",
+        "path": "/composition/name"
+      },
+      "canonicalName": "Chaos Bikers",
+      "review": "Source model/group and canonical composition identify the same physical member; no profile statistics or equipment are transferred."
+    }
+  ]
+}

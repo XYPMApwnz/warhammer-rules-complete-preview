@@ -1,3 +1,5 @@
+import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native vocabulary/physical bindings over the closed BA consumer projection.
  * Common facts and reviewed import joins retain their Space Marines owner. */
@@ -82,6 +84,7 @@ export function buildBloodAngelsRosterBook({built=buildBloodAngelsContracts()}={
   partitions:Object.fromEntries(['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings'].map(key=>[key,clone(book.mfm[key])])),
   nativePoints:clone(built.native.points),referenceOnlyRelationTargets:clone(built.native.consumed.referenceOnlyRelationTargets)};
  book.mfmPhysicalPaidOptions=createBloodAngelsPaidOptionBindings({book});
+  appendModelNameAliases(identityAliases,modelNames,compositions);
  book.importBindings={schema:'blood-angels-v2/import-bindings/v1',identityAliases,compositions,unresolvedCompositions,
   weaponSelections,equipmentSelections,enhancements,unsupportedSelectionBindings,
   nativeReferenceBindings:book.entities.filter(row=>row.kind==='RULE_REFERENCE').map(row=>({id:row.id,ownerId:row.parentId,

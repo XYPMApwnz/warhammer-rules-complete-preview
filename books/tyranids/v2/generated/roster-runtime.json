@@ -38081,6 +38081,23 @@
           "entityId": "detachment-talons-of-the-norn-queen:enhancement:2",
           "path": "/title"
         }
+      },
+      {
+        "canonicalId": "datasheet-termagants:profile:1",
+        "labels": [
+          "Termagant"
+        ],
+        "evidence": {
+          "entityId": "datasheet-termagants:section:2:member:1",
+          "path": "/name"
+        },
+        "bsdataEvidence": {
+          "entryId": "cde6-f48d-6461-14c6",
+          "name": "Termagant w/ Shardlauncher",
+          "kind": "MODEL",
+          "sourceRefs": [{"ref":"refs-cf56f64de1f0b6c1"}],
+          "sourceBindings": {"recordReference":{"layout":"layouts-30a8cde49ae5aa0a","refs":[0,0,0],"contexts":[],"fields":["document","sha256","path"]},"$schema":"source-refs/v1","$order":["document","sha256","path","entryId","name","kind"]}
+        }
       }
     ],
     "weaponSelections": [
@@ -41201,7 +41218,8 @@
           "Termagants",
           "Termagant w/ Shardlauncher",
           "Termagant w/ Spike rifle",
-          "Termagant w/ Strangleweb"
+          "Termagant w/ Strangleweb",
+          "Termagant"
         ],
         "allowedProfileIds": [
           "datasheet-termagants:weapon:1",
@@ -41235,6 +41253,9 @@
             "sourceRefs": [{"documentId":"documents-ee30dac02c8a55b6","referenceId":"refs-60b1971fb75225b9","documentRole":"DOCUMENT","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/6/selectionEntryGroups/0/selectionEntries/3"}]}],
             "sourceBindings": "bindings-a771fbbb01854c09"
           }
+        ],
+        "bsdataModelNameLabels": [
+          "Termagant"
         ]
       },
       {
@@ -46386,5 +46407,7 @@
     ]
   },
   "conditionSchema": "conditions/v1",
-  "sourceSchema": "source-refs/v1"
+  "sourceSchema": "source-refs/v1",
+  "sourceRefCatalog": {"refs-cf56f64de1f0b6c1":{"document":"books/tyranids/sources/bsdata-tyranids-11e.json","documentRole":"DOCUMENT","sourceId":"tyranids-codex-transcription","sha256":"1b3bd7f1f5df6c0e6a62d2937c16cf9281050a04216f29b354754334ec0e8907","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/6/selectionEntryGroups/0/selectionEntries/1"}]}},
+  "sourceLayoutCatalog": {"layouts-30a8cde49ae5aa0a":{"type":"OBJECT","entries":[["document",{"type":"VALUE","pool":"refs","index":0,"path":["document"]}],["sha256",{"type":"VALUE","pool":"refs","index":1,"path":["sha256"]}],["path",{"type":"VALUE","pool":"refs","index":2,"path":["locators",0,"value"]}]]}}
 }

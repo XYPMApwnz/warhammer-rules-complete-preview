@@ -1158,6 +1158,15 @@
       ]
     },
     {
+      "path": "books/adeptus-mechanicus/v2/model-name-aliases.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/adeptus-mechanicus/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/adeptus-mechanicus/v2/registration.mjs",
       "reasons": [
         {
@@ -1505,6 +1514,15 @@
       "reasons": [
         {
           "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/v2/model-name-aliases.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/chaos-space-marines/v2/roster-import-bindings.mjs"
         }
       ]
     },
@@ -8758,6 +8776,15 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/model-name-aliases.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/chaos-space-marines/v2/roster-import-bindings.mjs"
         }
       ]
     },

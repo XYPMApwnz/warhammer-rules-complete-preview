@@ -1,0 +1,24 @@
+{
+  "schema": "new-recruit-model-aliases/v1",
+  "bookId": "emperors-children",
+  "identityAliases": [
+    {
+      "canonicalId": "datasheet-chaos-terminators:profile:1",
+      "labels": [
+        "Terminators"
+      ],
+      "evidence": {
+        "entityId": "datasheet-chaos-terminators:section:2:member:2",
+        "path": "/name"
+      },
+      "bsdataEvidence": {
+        "document": "books/emperors-children/sources/bsdata-emperors-children-11e.json",
+        "sha256": "ea84e5f66b27aa462e08c6ed230b31b7700a47d8518e6f77889244d8ce84100a",
+        "path": "/documents/0/data/catalogue/sharedSelectionEntries/20/selectionEntryGroups/0",
+        "entryId": "7059-5f21-88e3-3c6b",
+        "name": "4 Terminators",
+        "kind": "MODEL_GROUP"
+      }
+    }
+  ]
+}
