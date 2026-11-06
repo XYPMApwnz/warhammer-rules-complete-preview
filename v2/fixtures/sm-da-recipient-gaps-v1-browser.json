@@ -1,0 +1,775 @@
+[
+  {
+    "bookId": "space-marines",
+    "records": [],
+    "browserCases": [
+      {
+        "id": "sm-da-gaps-v1:01",
+        "book": "space-marines",
+        "rule": "Omni-scramblers",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Infiltrator Squad",
+        "owner": "Infiltrator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n",
+        "quote": "Omni-scramblers: In your Shooting phase, you can select one visible enemy unit within 18\" of this unit. That unit is detected:\n- While a unit is detected, that unit has +3\" detection range.",
+        "canonical": {
+          "ruleId": "ability-sm-022ef427b01e4c7b",
+          "text": "Omni-scramblers: In your Shooting phase, you can select one visible enemy unit within 18\" of this unit. That unit is detected:\n- While a unit is detected, that unit has +3\" detection range.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-022ef427b01e4c7b#text:0-103",
+          "ability-sm-022ef427b01e4c7b#text:104-126",
+          "ability-sm-022ef427b01e4c7b#text:127-189"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:02",
+        "book": "space-marines",
+        "rule": "Raise the Banner",
+        "leader": "Captain",
+        "bodyguard": "Company Heroes",
+        "owner": "Company Heroes",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n4x Company Heroes (0 pts)\n• 1x Ancient\n• 1x Company Champion\n• 1x Company Veteran with Bolt Rifle\n• 1x Company Veteran with Heavy Bolter\n4x Company Heroes (0 pts)\n• 1x Ancient\n• 1x Company Champion\n• 1x Company Veteran with Bolt Rifle\n• 1x Company Veteran with Heavy Bolter\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-0b388f007b4646fe",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-0b388f007b4646fe#text:0-121"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:03",
+        "book": "space-marines",
+        "rule": "Honour or Death",
+        "leader": "Cato Sicarius",
+        "bodyguard": "Victrix Honour Guard",
+        "owner": "Cato Sicarius",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Cato Sicarius (0 pts)\n• 1x Cato Sicarius\n1x Victrix Honour Guard (0 pts)\n• 1x Victrix Honour Guard\n1x Victrix Honour Guard (0 pts)\n• 1x Victrix Honour Guard\n",
+        "quote": "Honour or Death: When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+        "canonical": {
+          "ruleId": "ability-sm-1368d302be2a4449",
+          "text": "Honour or Death: When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-1368d302be2a4449#text:0-101"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:04",
+        "book": "space-marines",
+        "rule": "Terror Troops (Aura)",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Reiver Squad",
+        "owner": "Reiver Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n",
+        "quote": "Terror Troops (Aura): While an enemy model is within 3\" of this unit, that enemy model has -1 OC.",
+        "canonical": {
+          "ruleId": "ability-sm-2247cd3f894f4825",
+          "text": "Terror Troops (Aura): While an enemy model is within 3\" of this unit, that enemy model has -1 OC.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-2247cd3f894f4825#text:0-97"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:05",
+        "book": "space-marines",
+        "rule": "Raise the Banner",
+        "leader": "Ancient",
+        "bodyguard": "Intercessor Squad",
+        "owner": "Ancient",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Ancient (0 pts)\n• 1x Ancient\n5x Intercessor Squad (0 pts)\n• 1x Intercessor Sergeant\n• 4x Intercessor\n5x Intercessor Squad (0 pts)\n• 1x Intercessor Sergeant\n• 4x Intercessor\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-2743f7d90c6649fb",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-2743f7d90c6649fb#text:0-121"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:06",
+        "book": "space-marines",
+        "rule": "Raise the Banner",
+        "leader": "Bladeguard Ancient",
+        "bodyguard": "Bladeguard Veteran Squad",
+        "owner": "Bladeguard Ancient",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Bladeguard Ancient (0 pts)\n• 1x Bladeguard Ancient\n3x Bladeguard Veteran Squad (0 pts)\n• 1x Bladeguard Veteran Sergeant\n• 2x Bladeguard Veteran\n3x Bladeguard Veteran Squad (0 pts)\n• 1x Bladeguard Veteran Sergeant\n• 2x Bladeguard Veteran\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-32ef85e542eb4c62",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-32ef85e542eb4c62#text:0-121"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:07",
+        "book": "space-marines",
+        "rule": "Signum Array",
+        "leader": "Tor Garadon",
+        "bodyguard": "Heavy Intercessor Squad",
+        "owner": "Tor Garadon",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Tor Garadon (0 pts)\n• 1x Tor Garadon\n5x Heavy Intercessor Squad (0 pts)\n• 1x Heavy Intercessor Sergeant\n• 4x Heavy Intercessor\n5x Heavy Intercessor Squad (0 pts)\n• 1x Heavy Intercessor Sergeant\n• 4x Heavy Intercessor\n",
+        "quote": "Signum Array: In your Shooting phase, you can select one visible enemy unit within 18\" of this unit. That enemy unit cannot have the benefit of cover.",
+        "canonical": {
+          "ruleId": "ability-sm-4983e78b40b44984",
+          "text": "Signum Array: In your Shooting phase, you can select one visible enemy unit within 18\" of this unit. That enemy unit cannot have the benefit of cover.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-4983e78b40b44984#text:0-100",
+          "ability-sm-4983e78b40b44984#text:101-150"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:08",
+        "book": "space-marines",
+        "rule": "Haywire Mine (Once per battle, per unit)",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Incursor Squad",
+        "owner": "Incursor Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Incursor Squad (0 pts)\n• 1x Incursor Sergeant\n• 4x Incursor\n5x Incursor Squad (0 pts)\n• 1x Incursor Sergeant\n• 4x Incursor\n",
+        "quote": "Haywire Mine (Once per battle, per unit): In your Shooting phase, you can select one visible enemy unit within 6\" of this unit and roll one D6. On a 2+:\n- That enemy unit suffers D3 mortal wounds.\n- Or: If that enemy unit is a VEHICLE unit, that enemy unit suffers 2D3 mortal wounds.",
+        "canonical": {
+          "ruleId": "ability-sm-59302e8505a64fb9",
+          "text": "Haywire Mine (Once per battle, per unit): In your Shooting phase, you can select one visible enemy unit within 6\" of this unit and roll one D6. On a 2+:\n- That enemy unit suffers D3 mortal wounds.\n- Or: If that enemy unit is a VEHICLE unit, that enemy unit suffers 2D3 mortal wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-59302e8505a64fb9#text:0-143",
+          "ability-sm-59302e8505a64fb9#text:144-152",
+          "ability-sm-59302e8505a64fb9#text:153-196",
+          "ability-sm-59302e8505a64fb9#text:197-283"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:09",
+        "book": "space-marines",
+        "rule": "Overlapping Destruction",
+        "leader": "Captain In Gravis Armour",
+        "bodyguard": "Eradicator Squad with Heavy Bolters",
+        "owner": "Eradicator Squad with Heavy Bolters",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Gravis Armour (0 pts)\n• 1x Captain in Gravis Armour\n3x Eradicator Squad with Heavy Bolters (0 pts)\n• 1x Eradicator Sergeant\n• 2x Eradicator\n3x Eradicator Squad with Heavy Bolters (0 pts)\n• 1x Eradicator Sergeant\n• 2x Eradicator\n",
+        "quote": "Overlapping Destruction: In your Shooting phase, you can select one enemy unit. This unit’s Heavy Bolter weapons that target that enemy unit have [BLAST 1].",
+        "canonical": {
+          "ruleId": "ability-sm-5bc9f13380dc4437",
+          "text": "Overlapping Destruction: In your Shooting phase, you can select one enemy unit. This unit’s Heavy Bolter weapons that target that enemy unit have [BLAST 1].",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-5bc9f13380dc4437#text:0-79",
+          "ability-sm-5bc9f13380dc4437#text:80-156"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:11",
+        "book": "space-marines",
+        "rule": "Terminatus Assault",
+        "leader": "Captain In Terminator Armour",
+        "bodyguard": "Terminator Assault Squad",
+        "owner": "Terminator Assault Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Terminator Armour (0 pts)\n• 1x Captain in Terminator Armour\n5x Terminator Assault Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n5x Terminator Assault Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n",
+        "quote": "Terminatus Assault: If this unit made a charge move this turn, this unit’s:\n- Lightning Claws weapons have [Sustained Hits 1: non-Monster/Vehicle].\n- Thunder Hammer weapons have [Sustained Hits 1: Monster/Vehicle].",
+        "canonical": {
+          "ruleId": "ability-sm-646ddebc78db43aa",
+          "text": "Terminatus Assault: If this unit made a charge move this turn, this unit’s:\n- Lightning Claws weapons have [Sustained Hits 1: non-Monster/Vehicle].\n- Thunder Hammer weapons have [Sustained Hits 1: Monster/Vehicle].",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-646ddebc78db43aa#text:0-75",
+          "ability-sm-646ddebc78db43aa#text:76-147",
+          "ability-sm-646ddebc78db43aa#text:148-214"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:12",
+        "book": "space-marines",
+        "rule": "Grapnel Launchers",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Reiver Squad",
+        "owner": "Reiver Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Reiver Squad (0 pts): 5x Grapnel Launchers\n• 1x Reiver Sergeant\n• 4x Reiver\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n",
+        "quote": "Grapnel Launchers: When this unit makes a move, this unit can:\n- Move through all types of model.\n- Ignore all vertical distance for the purposes of how far this unit has moved.",
+        "canonical": {
+          "ruleId": "ability-sm-801f058790ba4ed4",
+          "text": "Grapnel Launchers: When this unit makes a move, this unit can:\n- Move through all types of model.\n- Ignore all vertical distance for the purposes of how far this unit has moved.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-801f058790ba4ed4#text:0-62",
+          "ability-sm-801f058790ba4ed4#text:63-97",
+          "ability-sm-801f058790ba4ed4#text:98-177"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "sm-da-gaps-v1:12:absent",
+        "book": "space-marines",
+        "rule": "Grapnel Launchers",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Reiver Squad",
+        "owner": "Reiver Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n",
+        "quote": "Grapnel Launchers: When this unit makes a move, this unit can:\n- Move through all types of model.\n- Ignore all vertical distance for the purposes of how far this unit has moved.",
+        "canonical": {
+          "ruleId": "ability-sm-801f058790ba4ed4",
+          "text": "Grapnel Launchers: When this unit makes a move, this unit can:\n- Move through all types of model.\n- Ignore all vertical distance for the purposes of how far this unit has moved.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-801f058790ba4ed4#text:0-62",
+          "ability-sm-801f058790ba4ed4#text:63-97",
+          "ability-sm-801f058790ba4ed4#text:98-177"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "sm-da-gaps-v1:13",
+        "book": "space-marines",
+        "rule": "Fearsome Assault",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Reiver Squad",
+        "owner": "Reiver Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n5x Reiver Squad (0 pts)\n• 1x Reiver Sergeant\n• 4x Reiver\n",
+        "quote": "Fearsome Assault: At the start of the Fight phase, each enemy unit engaged with a unit with this ability makes a battle-shock roll, with -1 to that battle-shock roll.",
+        "canonical": {
+          "ruleId": "ability-sm-9d5ab45e2d8f4669",
+          "text": "Fearsome Assault: At the start of the Fight phase, each enemy unit engaged with a unit with this ability makes a battle-shock roll, with -1 to that battle-shock roll.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-9d5ab45e2d8f4669#text:0-166"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:14",
+        "book": "space-marines",
+        "rule": "Lord of the Pyroclasts",
+        "leader": "Adrax Agatone",
+        "bodyguard": "Infernus Squad",
+        "owner": "Adrax Agatone",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Adrax Agatone (0 pts)\n• 1x Adrax Agatone\n5x Infernus Squad (0 pts)\n• 1x Infernus Sergeant\n• 4x Infernus Marine\n5x Infernus Squad (0 pts)\n• 1x Infernus Sergeant\n• 4x Infernus Marine\n",
+        "quote": "Lord of the Pyroclasts: While an enemy unit is engaged with this unit, that enemy unit has -1 OC.",
+        "canonical": {
+          "ruleId": "ability-sm-9d633bee85544e03",
+          "text": "Lord of the Pyroclasts: While an enemy unit is engaged with this unit, that enemy unit has -1 OC.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-9d633bee85544e03#text:0-97"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:15",
+        "book": "space-marines",
+        "rule": "Rites of Thermal Appeasement",
+        "leader": "Captain",
+        "bodyguard": "Hellblaster Squad",
+        "owner": "Hellblaster Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n5x Hellblaster Squad (0 pts)\n• 1x Hellblaster Sergeant\n• 4x Hellblaster\n5x Hellblaster Squad (0 pts)\n• 1x Hellblaster Sergeant\n• 4x Hellblaster\n",
+        "quote": "Rites of Thermal Appeasement: This unit has +1 to hazard rolls made for its Plasma Incinerator and Plasma Pistol weapons.",
+        "canonical": {
+          "ruleId": "ability-sm-a6dca5d8dbbd4f80",
+          "text": "Rites of Thermal Appeasement: This unit has +1 to hazard rolls made for its Plasma Incinerator and Plasma Pistol weapons.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-a6dca5d8dbbd4f80#text:0-121"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:16",
+        "book": "space-marines",
+        "rule": "Raise the Banner",
+        "leader": "Ancient In Terminator Armour",
+        "bodyguard": "Terminator Squad",
+        "owner": "Ancient In Terminator Armour",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Ancient In Terminator Armour (0 pts)\n• 1x Ancient in Terminator Armour\n5x Terminator Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n5x Terminator Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n",
+        "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+        "canonical": {
+          "ruleId": "ability-sm-bee76d4d4aba454d",
+          "text": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-bee76d4d4aba454d#text:0-121"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:17",
+        "book": "space-marines",
+        "rule": "Hammer of Wrath",
+        "leader": "Captain With Jump Pack",
+        "bodyguard": "Assault Intercessors With Jump Packs",
+        "owner": "Assault Intercessors With Jump Packs",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain With Jump Pack (0 pts)\n• 1x Captain with Jump Pack\n5x Assault Intercessors With Jump Packs (0 pts)\n• 1x Assault Intercessor Sergeant with Jump Pack\n• 4x Assault Intercessor with Jump Pack\n5x Assault Intercessors With Jump Packs (0 pts)\n• 1x Assault Intercessor Sergeant with Jump Pack\n• 4x Assault Intercessor with Jump Pack\n",
+        "quote": "Hammer of Wrath: When this unit ends a charge move, you can select one enemy unit engaged with this unit. For each model in this unit engaged with that enemy unit, roll one D6:\n- On a 4+, that enemy unit suffers 1 mortal wound.",
+        "canonical": {
+          "ruleId": "ability-sm-c13c2cc4e60d47d7",
+          "text": "Hammer of Wrath: When this unit ends a charge move, you can select one enemy unit engaged with this unit. For each model in this unit engaged with that enemy unit, roll one D6:\n- On a 4+, that enemy unit suffers 1 mortal wound.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-c13c2cc4e60d47d7#text:0-105",
+          "ability-sm-c13c2cc4e60d47d7#text:106-176",
+          "ability-sm-c13c2cc4e60d47d7#text:177-227"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:18",
+        "book": "space-marines",
+        "rule": "Banner of Macragge",
+        "leader": "Captain",
+        "bodyguard": "Victrix Honour Guard",
+        "owner": "Victrix Honour Guard",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n1x Victrix Honour Guard (0 pts): 1x Banner of Macragge\n• 1x Victrix Honour Guard\n1x Victrix Honour Guard (0 pts)\n• 1x Victrix Honour Guard\n",
+        "quote": "Banner of Macragge:\n- At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.\n- (Once per battle, per army) When this unit is selected to fight, you can use this ability. If you do, this unit’s melee attacks have +1 A and S.",
+        "canonical": {
+          "ruleId": "ability-sm-c227c53a84a34dc1",
+          "text": "Banner of Macragge:\n- At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.\n- (Once per battle, per army) When this unit is selected to fight, you can use this ability. If you do, this unit’s melee attacks have +1 A and S.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-c227c53a84a34dc1#text:20-125",
+          "ability-sm-c227c53a84a34dc1#text:126-218",
+          "ability-sm-c227c53a84a34dc1#text:219-272"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "sm-da-gaps-v1:18:absent",
+        "book": "space-marines",
+        "rule": "Banner of Macragge",
+        "leader": "Captain",
+        "bodyguard": "Victrix Honour Guard",
+        "owner": "Victrix Honour Guard",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n1x Victrix Honour Guard (0 pts)\n• 1x Victrix Honour Guard\n1x Victrix Honour Guard (0 pts)\n• 1x Victrix Honour Guard\n",
+        "quote": "Banner of Macragge:\n- At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.\n- (Once per battle, per army) When this unit is selected to fight, you can use this ability. If you do, this unit’s melee attacks have +1 A and S.",
+        "canonical": {
+          "ruleId": "ability-sm-c227c53a84a34dc1",
+          "text": "Banner of Macragge:\n- At the end of your Movement phase, if this unit is controlling an objective, that objective is secured.\n- (Once per battle, per army) When this unit is selected to fight, you can use this ability. If you do, this unit’s melee attacks have +1 A and S.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-c227c53a84a34dc1#text:20-125",
+          "ability-sm-c227c53a84a34dc1#text:126-218",
+          "ability-sm-c227c53a84a34dc1#text:219-272"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "sm-da-gaps-v1:19",
+        "book": "space-marines",
+        "rule": "Veteran Bodyguard",
+        "leader": "Kaius Konorius",
+        "bodyguard": "Sternguard Veteran Squad",
+        "owner": "Kaius Konorius",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Kaius Konorius (0 pts)\n• 1x Kaius Konorius\n5x Sternguard Veteran Squad (0 pts)\n• 1x Sternguard Veteran Sergeant\n• 4x Sternguard Veteran\n5x Sternguard Veteran Squad (0 pts)\n• 1x Sternguard Veteran Sergeant\n• 4x Sternguard Veteran\n",
+        "quote": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+.",
+        "canonical": {
+          "ruleId": "ability-sm-c4061e257e81492f",
+          "text": "Veteran Bodyguard: While this model is attached to a unit, other CHARACTER models in this unit have Feel No Pain 4+.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-c4061e257e81492f#text:0-116"
+        ],
+        "deferredReason": "Existing I-2 static MODEL recipient excludes the exact source MODEL and requires CHARACTER; a broad template role would be copied into the derived executable clause."
+      },
+      {
+        "id": "sm-da-gaps-v1:20",
+        "book": "space-marines",
+        "rule": "Full-throttle Assault",
+        "leader": "Chaplain On Bike",
+        "bodyguard": "Outrider Squad",
+        "owner": "Outrider Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Chaplain On Bike (0 pts)\n• 1x Chaplain on Bike\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n3x Outrider Squad (0 pts)\n• 1x Outrider Sergeant\n• 2x Outrider\n",
+        "quote": "Full-throttle Assault: If this unit made a charge move this turn, this unit’s:\n- Thunder Hammer weapons have +1 to hit rolls and [Sustained Hits 1].\n- Other melee weapons have +1 D and [Sustained Hits 1].",
+        "canonical": {
+          "ruleId": "ability-sm-c8d57fe4071d462a",
+          "text": "Full-throttle Assault: If this unit made a charge move this turn, this unit’s:\n- Thunder Hammer weapons have +1 to hit rolls and [Sustained Hits 1].\n- Other melee weapons have +1 D and [Sustained Hits 1].",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-c8d57fe4071d462a#text:0-78",
+          "ability-sm-c8d57fe4071d462a#text:79-148",
+          "ability-sm-c8d57fe4071d462a#text:149-204"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:21",
+        "book": "space-marines",
+        "rule": "Teleport Homer (Once per battle, per unit)",
+        "leader": "Captain In Terminator Armour",
+        "bodyguard": "Terminator Squad",
+        "owner": "Terminator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Terminator Armour (0 pts)\n• 1x Captain in Terminator Armour\n5x Terminator Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n5x Terminator Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n",
+        "quote": "Teleport Homer (Once per battle, per unit): At the start of the battle, you can set up one Teleport Homer token for this unit on the battlefield. If you do:\n- When you target this unit with the Rapid Ingress stratagem, you can use that Teleport Homer token. If you do, that use is -1 CP, but when resolving that stratagem, this unit must be set up within 3\" of that Teleport Homer token and not within 8\" of an enemy unit. That Teleport Homer token is then removed from the battlefield.\n- If an enemy unit ends a move within 1\" of that Teleport Homer token, that Teleport Homer token is removed from the battlefield.",
+        "canonical": {
+          "ruleId": "ability-sm-d039c5e501d140e6",
+          "text": "Teleport Homer (Once per battle, per unit): At the start of the battle, you can set up one Teleport Homer token for this unit on the battlefield. If you do:\n- When you target this unit with the Rapid Ingress stratagem, you can use that Teleport Homer token. If you do, that use is -1 CP, but when resolving that stratagem, this unit must be set up within 3\" of that Teleport Homer token and not within 8\" of an enemy unit. That Teleport Homer token is then removed from the battlefield.\n- If an enemy unit ends a move within 1\" of that Teleport Homer token, that Teleport Homer token is removed from the battlefield.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-d039c5e501d140e6#text:0-145",
+          "ability-sm-d039c5e501d140e6#text:157-257",
+          "ability-sm-d039c5e501d140e6#text:258-422",
+          "ability-sm-d039c5e501d140e6#text:423-486",
+          "ability-sm-d039c5e501d140e6#text:487-616"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:22",
+        "book": "space-marines",
+        "rule": "Driven from Cover",
+        "leader": "Captain",
+        "bodyguard": "Infernus Squad",
+        "owner": "Infernus Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain (0 pts)\n• 1x Captain\n5x Infernus Squad (0 pts)\n• 1x Infernus Sergeant\n• 4x Infernus Marine\n5x Infernus Squad (0 pts)\n• 1x Infernus Sergeant\n• 4x Infernus Marine\n",
+        "quote": "Driven from Cover: In your Shooting phase, when this unit has shot, select one enemy unit hit by those attacks. Friendly ADEPTUS ASTARTES units’ ranged attacks that target that enemy unit have [IGNORES COVER].",
+        "canonical": {
+          "ruleId": "ability-sm-ddf866d2fc594e1e",
+          "text": "Driven from Cover: In your Shooting phase, when this unit has shot, select one enemy unit hit by those attacks. Friendly ADEPTUS ASTARTES units’ ranged attacks that target that enemy unit have [IGNORES COVER].",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-ddf866d2fc594e1e#text:0-111",
+          "ability-sm-ddf866d2fc594e1e#text:112-209"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:23",
+        "book": "space-marines",
+        "rule": "Helix Gauntlet",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Infiltrator Squad",
+        "owner": "Infiltrator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Infiltrator Squad (0 pts): 1x Helix Gauntlet\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n",
+        "quote": "Helix Gauntlet: In your Command phase, this unit heals D3 wounds.",
+        "canonical": {
+          "ruleId": "ability-sm-ece9a939dcf642bf",
+          "text": "Helix Gauntlet: In your Command phase, this unit heals D3 wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-ece9a939dcf642bf#text:0-65"
+        ],
+        "expectedOwner": true
+      },
+      {
+        "id": "sm-da-gaps-v1:23:absent",
+        "book": "space-marines",
+        "rule": "Helix Gauntlet",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Infiltrator Squad",
+        "owner": "Infiltrator Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": false,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n",
+        "quote": "Helix Gauntlet: In your Command phase, this unit heals D3 wounds.",
+        "canonical": {
+          "ruleId": "ability-sm-ece9a939dcf642bf",
+          "text": "Helix Gauntlet: In your Command phase, this unit heals D3 wounds.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-ece9a939dcf642bf#text:0-65"
+        ],
+        "expectedOwner": false
+      },
+      {
+        "id": "sm-da-gaps-v1:24",
+        "book": "space-marines",
+        "rule": "Teleport Homer (Once per battle, per unit)",
+        "leader": "Captain In Terminator Armour",
+        "bodyguard": "Terminator Assault Squad",
+        "owner": "Terminator Assault Squad",
+        "ownerInstance": "parsed-unit-2",
+        "target": "parsed-unit-1",
+        "reverse": true,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Captain In Terminator Armour (0 pts)\n• 1x Captain in Terminator Armour\n5x Terminator Assault Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n5x Terminator Assault Squad (0 pts)\n• 1x Terminator Sergeant\n• 4x Terminator\n",
+        "quote": "Teleport Homer (Once per battle, per unit): At the start of the battle, you can set up one Teleport Homer token for this unit on the battlefield. If you do:\n- When you target this unit with the Rapid Ingress stratagem, you can use that Teleport Homer token. If you do, that use is -1 CP, but when resolving that stratagem, this unit must be set up within 3\" of that Teleport Homer token and not within 8\" of an enemy unit. That Teleport Homer token is then removed from the battlefield.\n- If an enemy unit ends a move within 1\" of that Teleport Homer token, that Teleport Homer token is removed from the battlefield.",
+        "canonical": {
+          "ruleId": "ability-sm-f62ebe4003a44752",
+          "text": "Teleport Homer (Once per battle, per unit): At the start of the battle, you can set up one Teleport Homer token for this unit on the battlefield. If you do:\n- When you target this unit with the Rapid Ingress stratagem, you can use that Teleport Homer token. If you do, that use is -1 CP, but when resolving that stratagem, this unit must be set up within 3\" of that Teleport Homer token and not within 8\" of an enemy unit. That Teleport Homer token is then removed from the battlefield.\n- If an enemy unit ends a move within 1\" of that Teleport Homer token, that Teleport Homer token is removed from the battlefield.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "ability-sm-f62ebe4003a44752#text:0-145",
+          "ability-sm-f62ebe4003a44752#text:157-257",
+          "ability-sm-f62ebe4003a44752#text:258-422",
+          "ability-sm-f62ebe4003a44752#text:423-486",
+          "ability-sm-f62ebe4003a44752#text:487-616"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:25",
+        "book": "space-marines",
+        "rule": "Coronal Susurrant",
+        "leader": "Captain In Phobos Armour",
+        "bodyguard": "Infiltrator Squad",
+        "owner": "Captain In Phobos Armour",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Shadowmark Talon\n1x Captain In Phobos Armour (0 pts)\n• 1x Captain in Phobos Armour\nEnhancement: Coronal Susurrant\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n5x Infiltrator Squad (0 pts)\n• 1x Infiltrator Sergeant\n• 4x Infiltrator\n",
+        "quote": "- Coronal Susurrant\nPHOBOS model only. Each enemy unit (excluding MONSTER/VEHICLE units) engaged with this unit cannot be targeted by controlling player stratagems.",
+        "canonical": {
+          "ruleId": "enhancement-sm-0dc5fa69dcde4daf",
+          "text": "- Coronal Susurrant\nPHOBOS model only. Each enemy unit (excluding MONSTER/VEHICLE units) engaged with this unit cannot be targeted by controlling player stratagems.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "enhancement-sm-0dc5fa69dcde4daf#text:20-38",
+          "enhancement-sm-0dc5fa69dcde4daf#text:39-164"
+        ]
+      },
+      {
+        "id": "sm-da-gaps-v1:26",
+        "book": "space-marines",
+        "rule": "Tempered in Battle (Aura)",
+        "leader": "Captain",
+        "bodyguard": "Intercessor Squad",
+        "owner": "Captain",
+        "ownerInstance": "parsed-unit-1",
+        "target": "parsed-unit-2",
+        "reverse": false,
+        "skipAttach": false,
+        "expectedAttached": true,
+        "negative": [],
+        "text": "+ FACTION KEYWORD: Imperium - Adeptus Astartes - Space Marines\n+ DETACHMENT: Tacticus Firestorm Force\n1x Captain (0 pts)\n• 1x Captain\nEnhancement: Tempered in Battle (Aura)\n5x Intercessor Squad (0 pts)\n• 1x Intercessor Sergeant\n• 4x Intercessor\n5x Intercessor Squad (0 pts)\n• 1x Intercessor Sergeant\n• 4x Intercessor\n",
+        "quote": "- Tempered in Battle (Aura)\nTACTICUS model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
+        "canonical": {
+          "ruleId": "enhancement-sm-2e55051da6594198",
+          "text": "- Tempered in Battle (Aura)\nTACTICUS model only. Friendly ADEPTUS ASTARTES units within 6\" of this model can re-roll leadership rolls.",
+          "sourcePath": [
+            "text"
+          ]
+        },
+        "clauseIds": [
+          "enhancement-sm-2e55051da6594198#text:28-48",
+          "enhancement-sm-2e55051da6594198#text:49-134"
+        ]
+      }
+    ]
+  }
+]
