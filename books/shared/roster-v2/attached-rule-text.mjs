@@ -126,9 +126,13 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
             node.arguments.ruleId===rule.id&&Number.isFinite(node.arguments.inches)&&node.arguments.inches>0);
           const rangeOrigin=origins.length>0&&ownerRole?.subject==='MODEL'&&ownerModel?.quantity===1;
           if(!rangeOrigin&&(recipient.side==='ENEMY'||recipient.how==='AURA'||recipient.how==='IN_BATTLE'))continue;
+          // Text on another attached component treats an unscoped source UNIT
+          // as the formation. Keep the recorded recipient and execution scope
+          // untouched; this fallback never admits an explicit PHYSICAL scope.
+          const textUnitScope=recipient.who==='UNIT'&&recipient.from==='SOURCE_UNIT'&&recipient.scope===undefined?'FORMED':recipient.scope;
           const eligible=rangeOrigin||recipient.from==='SOURCE_FORMED_MODELS'||
             recipient.from==='LEADERS_OF_SOURCE'&&group.bodyguardInstanceId===source.instanceId&&group.leaderInstanceIds.includes(instanceId)||
-            recipient.who==='UNIT'&&recipient.scope==='FORMED'&&(recipient.from==='SOURCE_UNIT'||
+            recipient.who==='UNIT'&&textUnitScope==='FORMED'&&(recipient.from==='SOURCE_UNIT'||
               recipient.from===undefined&&link.role?.subject==='FORMED_ATTACHED_UNIT'&&recipient.side==='FRIENDLY');
           if(!eligible||link.referenceBranch==='standalone')continue;
           const candidates=rangeOrigin?[null]:recipient.who==='MODEL'?target.profiles:[null];

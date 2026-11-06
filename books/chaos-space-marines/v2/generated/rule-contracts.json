@@ -34347,7 +34347,8 @@
                 }
               },
               "conditions": [],
-              "binding": "SOURCE_UNIT"
+              "binding": "SOURCE_UNIT",
+              "scope": "PHYSICAL"
             },
             {
               "id": "enemy-recipient-1",
@@ -34439,7 +34440,8 @@
                   ],
                   "quote": "At the start of the Fight phase, each enemy unit within Engagement Range of the bearer must take a Battle-shock test, subtracting 1 from the result."
                 }
-              }
+              },
+              "scope": "PHYSICAL"
             }
           ],
           "recipientStatus": "RECORDED"
