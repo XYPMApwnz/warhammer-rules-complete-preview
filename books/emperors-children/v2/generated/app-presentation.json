@@ -103439,6 +103439,20 @@
     "authority": "DISPOSABLE_PROJECTION",
     "entries": [
       {
+        "targetId": "army-rule-pact-of-excess:definition",
+        "label": "Pact of Excess",
+        "category": "ARMY_RULE_COMPONENT",
+        "contextLabel": "Pact of Excess",
+        "aliases": []
+      },
+      {
+        "targetId": "army-rule-thrill-seekers:definition",
+        "label": "Thrill Seekers",
+        "category": "ARMY_RULE_COMPONENT",
+        "contextLabel": "Thrill Seekers",
+        "aliases": []
+      },
+      {
         "targetId": "core-abilities",
         "label": "Abilities",
         "category": "CORE_MAIN_RULE",
@@ -106052,6 +106066,19 @@
         ]
       },
       {
+        "targetId": "datasheet-chaos-land-raider:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Land Raider",
+        "aliases": [
+          {
+            "label": "Assault Ramp",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
         "targetId": "datasheet-chaos-land-raider:section:2",
         "label": "TRANSPORT",
         "category": "DATASHEET_SECTION",
@@ -106059,10 +106086,139 @@
         "aliases": []
       },
       {
+        "targetId": "datasheet-chaos-land-raider:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Land Raider",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-chaos-land-raider:section:4",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Land Raider",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-chaos-rhino:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Rhino",
+        "aliases": [
+          {
+            "label": "Assault Vehicle",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
         "targetId": "datasheet-chaos-rhino:section:2",
         "label": "TRANSPORT",
         "category": "DATASHEET_SECTION",
         "contextLabel": "Chaos Rhino",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-chaos-rhino:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Rhino",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-chaos-spawn:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Spawn",
+        "aliases": [
+          {
+            "label": "Scuttling Horrors",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-chaos-spawn:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Spawn",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-chaos-terminators:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Terminators",
+        "aliases": [
+          {
+            "label": "Lethal Obsession",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-chaos-terminators:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Chaos Terminators",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Daemon Prince of Slaanesh with Wings",
+        "aliases": [
+          {
+            "label": "Daemonic Destruction",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Stimulated by Pain",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Daemon Prince of Slaanesh with Wings",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-daemon-prince-of-slaanesh:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Daemon Prince of Slaanesh",
+        "aliases": [
+          {
+            "label": "Ecstatic Death",
+            "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Excessive Vigour (Aura)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Lord of Excess",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-daemon-prince-of-slaanesh:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Daemon Prince of Slaanesh",
         "aliases": []
       },
       {
@@ -106084,6 +106240,205 @@
           {
             "label": "Instrument of Chaos",
             "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-daemonettes:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Daemonettes",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-defiler:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Defiler",
+        "aliases": [
+          {
+            "label": "Revel in Desecration",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Scuttling Walker",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-defiler:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Defiler",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-defiler:section:3",
+        "label": "DAMAGED: 1-6 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Defiler",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-fiends:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fiends",
+        "aliases": [
+          {
+            "label": "Soporific Musk",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-fiends:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fiends",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-flawless-blades:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Flawless Blades",
+        "aliases": [
+          {
+            "label": "Daemonic Patrons",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-flawless-blades:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Flawless Blades",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-fulgrim:section:1",
+        "label": "SUPREME COMMANDER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fulgrim",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-fulgrim:section:2",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fulgrim",
+        "aliases": [
+          {
+            "label": "Daemon Primarch of Slaanesh",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Daemonic Poisons",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-fulgrim:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fulgrim",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-fulgrim:section:4",
+        "label": "DAMAGED: 1-6 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fulgrim",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-fulgrim:section:5",
+        "label": "DAEMON PRIMARCH OF SLAANESH",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Fulgrim",
+        "aliases": [
+          {
+            "label": "Beguiling Form",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Daemonic Speed",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Enthralling Hypnosis (Aura)",
+            "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-heldrake:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Heldrake",
+        "aliases": [
+          {
+            "label": "Airborne Predator",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-heldrake:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Heldrake",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-heldrake:section:3",
+        "label": "DAMAGED: 1-4 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Heldrake",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-infractors:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Infractors",
+        "aliases": [
+          {
+            "label": "Excessive Assault",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Icon of Excess",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-infractors:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Infractors",
+        "aliases": [
+          {
+            "label": "The Obsessionist is equipped with",
+            "fieldPath": "/blocks/0/text",
             "presentationOnly": true
           }
         ]
@@ -106112,6 +106467,20 @@
         ]
       },
       {
+        "targetId": "datasheet-keeper-of-secrets:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Keeper of Secrets",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-keeper-of-secrets:section:3",
+        "label": "DAMAGED: 1-6 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Keeper of Secrets",
+        "aliases": []
+      },
+      {
         "targetId": "datasheet-lord-exultant:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -106128,6 +106497,20 @@
             "presentationOnly": true
           }
         ]
+      },
+      {
+        "targetId": "datasheet-lord-exultant:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lord Exultant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-lord-exultant:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lord Exultant",
+        "aliases": []
       },
       {
         "targetId": "datasheet-lord-exultant:section:4",
@@ -106155,6 +106538,99 @@
         ]
       },
       {
+        "targetId": "datasheet-lord-kakophonist:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lord Kakophonist",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-lord-kakophonist:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lord Kakophonist",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-lucius-the-eternal:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lucius the Eternal",
+        "aliases": [
+          {
+            "label": "A Challenge Worthy of Skill",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Duellist’s Hubris",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-lucius-the-eternal:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lucius the Eternal",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-lucius-the-eternal:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lucius the Eternal",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-maulerfiend:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maulerfiend",
+        "aliases": [
+          {
+            "label": "Glutton for Punishment",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-maulerfiend:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maulerfiend",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-maulerfiend:section:3",
+        "label": "DAMAGED: 1-4 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maulerfiend",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-noise-marines:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Noise Marines",
+        "aliases": [
+          {
+            "label": "Terrifying Crescendo",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-noise-marines:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Noise Marines",
+        "aliases": []
+      },
+      {
         "targetId": "datasheet-seekers:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -106178,6 +106654,108 @@
         ]
       },
       {
+        "targetId": "datasheet-seekers:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Seekers",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-shalaxi-helbane:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Shalaxi Helbane",
+        "aliases": [
+          {
+            "label": "Monarch of the Hunt",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "No Prey Can Evade",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-shalaxi-helbane:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Shalaxi Helbane",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-shalaxi-helbane:section:3",
+        "label": "DAMAGED: 1-7 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Shalaxi Helbane",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-sorcerer:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Sorcerer",
+        "aliases": [
+          {
+            "label": "Warped Interference (Psychic)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Wracking Agonies (Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-sorcerer:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Sorcerer",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-sorcerer:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Sorcerer",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tormentors:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tormentors",
+        "aliases": [
+          {
+            "label": "Icon of Excess",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Objective Defiled",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tormentors:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tormentors",
+        "aliases": [
+          {
+            "label": "The Obsessionist is equipped with",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
         "targetId": "detachment-carnival-of-excess",
         "label": "Carnival of Excess",
         "category": "DETACHMENT",
@@ -106192,9 +106770,30 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-carnival-of-excess:enhancement:2",
+        "label": "Dark Blessings",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Carnival of Excess",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-carnival-of-excess:enhancement:3",
         "label": "Possessed Blade",
         "category": "ENHANCEMENT",
+        "contextLabel": "Carnival of Excess",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-carnival-of-excess:enhancement:4",
+        "label": "Warp Walker",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Carnival of Excess",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-carnival-of-excess:rule",
+        "label": "Daemonic Empowerment",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Carnival of Excess",
         "aliases": []
       },
@@ -106206,10 +106805,45 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-coterie-of-the-conceited:enhancement:1",
+        "label": "Pledge of Eternal Servitude",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Coterie of the Conceited",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-coterie-of-the-conceited:enhancement:2",
         "label": "Pledge of Dark Glory",
         "category": "ENHANCEMENT",
         "contextLabel": "Coterie of the Conceited",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-coterie-of-the-conceited:enhancement:3",
+        "label": "Pledge of Mortal Pain",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Coterie of the Conceited",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-coterie-of-the-conceited:enhancement:4",
+        "label": "Pledge of Unholy Fortune",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Coterie of the Conceited",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-coterie-of-the-conceited:rule",
+        "label": "Pledges to the Dark Prince",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Coterie of the Conceited",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-coterie-of-the-conceited:rule:table:2",
+        "label": "Structured Rule Table",
+        "category": "STRUCTURED_RULE_TABLE",
+        "contextLabel": "Pledges to the Dark Prince",
         "aliases": []
       },
       {
@@ -106234,9 +106868,30 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-court-of-the-phoenician:enhancement:3",
+        "label": "Soulstain Made Manifest",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Court of the Phoenician",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-court-of-the-phoenician:enhancement:4",
         "label": "Spiritsliver",
         "category": "ENHANCEMENT",
+        "contextLabel": "Court of the Phoenician",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-court-of-the-phoenician:rule",
+        "label": "Sensational Performance",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Court of the Phoenician",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
+        "label": "Master of the Pageant",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Court of the Phoenician",
         "aliases": []
       },
@@ -106262,6 +106917,13 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-elegant-brutes:rule",
+        "label": "Eager to Kill",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Elegant Brutes",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-frenzied-host",
         "label": "Frenzied Host",
         "category": "DETACHMENT",
@@ -106283,10 +106945,38 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-frenzied-host:rule",
+        "label": "Frantic Focus",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Frenzied Host",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-mercurial-host",
         "label": "Mercurial Host",
         "category": "DETACHMENT",
         "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-mercurial-host:enhancement:1",
+        "label": "Steeped in Suffering",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Mercurial Host",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-mercurial-host:enhancement:2",
+        "label": "Intoxicating Musk",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Mercurial Host",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-mercurial-host:enhancement:3",
+        "label": "Tactical Perfection",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Mercurial Host",
         "aliases": []
       },
       {
@@ -106318,9 +107008,30 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-peerless-bladesmen:enhancement:2",
+        "label": "Blinding Speed",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Peerless Bladesmen",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-peerless-bladesmen:enhancement:3",
         "label": "Distortion",
         "category": "ENHANCEMENT",
+        "contextLabel": "Peerless Bladesmen",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-peerless-bladesmen:enhancement:4",
+        "label": "Rise to the Challenge",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Peerless Bladesmen",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-peerless-bladesmen:rule",
+        "label": "Exquisite Swordsmanship",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Peerless Bladesmen",
         "aliases": []
       },
@@ -106332,6 +107043,41 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-rapid-evisceration:enhancement:1",
+        "label": "Sublime Prescience",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Rapid Evisceration",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-rapid-evisceration:enhancement:2",
+        "label": "Spearhead Striker",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Rapid Evisceration",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-rapid-evisceration:enhancement:3",
+        "label": "Accomplished Tactician",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Rapid Evisceration",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-rapid-evisceration:enhancement:4",
+        "label": "Heretek Adept",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Rapid Evisceration",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-rapid-evisceration:rule",
+        "label": "Mechanised Murder",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Rapid Evisceration",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-slaaneshs-chosen",
         "label": "Slaanesh's Chosen",
         "category": "DETACHMENT",
@@ -106339,9 +107085,37 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-slaaneshs-chosen:enhancement:1",
+        "label": "Eager to Prove",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Slaanesh's Chosen",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-slaaneshs-chosen:enhancement:2",
+        "label": "Repulsed by Weakness",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Slaanesh's Chosen",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-slaaneshs-chosen:enhancement:3",
+        "label": "Proud and Vainglorious",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Slaanesh's Chosen",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-slaaneshs-chosen:enhancement:4",
         "label": "Slayer of Champions",
         "category": "ENHANCEMENT",
+        "contextLabel": "Slaanesh's Chosen",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-slaaneshs-chosen:rule",
+        "label": "Internal Rivalries",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Slaanesh's Chosen",
         "aliases": []
       },
@@ -109398,32 +110172,116 @@
     "coverImage": "../assets/emperors-children-cover-800.webp"
   },
   "ruleContractIds": [
+    "army-rule-thrill-seekers:definition",
+    "army-rule-pact-of-excess:definition",
+    "detachment-coterie-of-the-conceited:rule",
+    "detachment-coterie-of-the-conceited:rule:table:2",
+    "detachment-coterie-of-the-conceited:enhancement:1",
     "detachment-coterie-of-the-conceited:enhancement:2",
+    "detachment-coterie-of-the-conceited:enhancement:3",
+    "detachment-coterie-of-the-conceited:enhancement:4",
+    "detachment-carnival-of-excess:rule",
     "detachment-carnival-of-excess:enhancement:1",
+    "detachment-carnival-of-excess:enhancement:2",
     "detachment-carnival-of-excess:enhancement:3",
+    "detachment-carnival-of-excess:enhancement:4",
+    "detachment-rapid-evisceration:rule",
+    "detachment-rapid-evisceration:enhancement:1",
+    "detachment-rapid-evisceration:enhancement:2",
+    "detachment-rapid-evisceration:enhancement:3",
+    "detachment-rapid-evisceration:enhancement:4",
+    "detachment-peerless-bladesmen:rule",
     "detachment-peerless-bladesmen:enhancement:1",
+    "detachment-peerless-bladesmen:enhancement:2",
     "detachment-peerless-bladesmen:enhancement:3",
+    "detachment-peerless-bladesmen:enhancement:4",
+    "detachment-court-of-the-phoenician:rule",
     "detachment-court-of-the-phoenician:enhancement:1",
     "detachment-court-of-the-phoenician:enhancement:2",
+    "detachment-court-of-the-phoenician:enhancement:3",
     "detachment-court-of-the-phoenician:enhancement:4",
+    "detachment-slaaneshs-chosen:rule",
+    "detachment-slaaneshs-chosen:enhancement:1",
+    "detachment-slaaneshs-chosen:enhancement:2",
+    "detachment-slaaneshs-chosen:enhancement:3",
     "detachment-slaaneshs-chosen:enhancement:4",
     "detachment-mercurial-host:rule",
+    "detachment-mercurial-host:enhancement:1",
+    "detachment-mercurial-host:enhancement:2",
+    "detachment-mercurial-host:enhancement:3",
     "detachment-mercurial-host:enhancement:4",
     "detachment-spectacle-of-slaughter:rule",
     "detachment-spectacle-of-slaughter:enhancement:1",
     "detachment-spectacle-of-slaughter:enhancement:2",
+    "detachment-frenzied-host:rule",
     "detachment-frenzied-host:enhancement:1",
     "detachment-frenzied-host:enhancement:2",
+    "detachment-elegant-brutes:rule",
     "detachment-elegant-brutes:enhancement:1",
     "detachment-elegant-brutes:enhancement:2",
+    "datasheet-noise-marines:section:1",
+    "datasheet-noise-marines:section:2",
+    "datasheet-tormentors:section:1",
+    "datasheet-tormentors:section:2",
+    "datasheet-chaos-rhino:section:1",
     "datasheet-chaos-rhino:section:2",
+    "datasheet-chaos-rhino:section:3",
     "datasheet-keeper-of-secrets:section:1",
+    "datasheet-keeper-of-secrets:section:2",
+    "datasheet-keeper-of-secrets:section:3",
     "datasheet-daemonettes:section:1",
+    "datasheet-daemonettes:section:2",
     "datasheet-seekers:section:1",
+    "datasheet-seekers:section:2",
+    "datasheet-shalaxi-helbane:section:1",
+    "datasheet-shalaxi-helbane:section:2",
+    "datasheet-shalaxi-helbane:section:3",
+    "datasheet-fulgrim:section:1",
+    "datasheet-fulgrim:section:2",
+    "datasheet-fulgrim:section:3",
+    "datasheet-fulgrim:section:4",
+    "datasheet-fulgrim:section:5",
+    "datasheet-flawless-blades:section:1",
+    "datasheet-flawless-blades:section:2",
     "datasheet-lord-exultant:section:1",
+    "datasheet-lord-exultant:section:2",
+    "datasheet-lord-exultant:section:3",
     "datasheet-lord-exultant:section:4",
+    "datasheet-daemon-prince-of-slaanesh:section:1",
+    "datasheet-daemon-prince-of-slaanesh:section:2",
+    "datasheet-chaos-terminators:section:1",
+    "datasheet-chaos-terminators:section:2",
     "datasheet-lord-kakophonist:section:1",
-    "datasheet-chaos-land-raider:section:2"
+    "datasheet-lord-kakophonist:section:2",
+    "datasheet-lord-kakophonist:section:3",
+    "datasheet-chaos-spawn:section:1",
+    "datasheet-chaos-spawn:section:2",
+    "datasheet-daemon-prince-of-slaanesh-with-wings:section:1",
+    "datasheet-daemon-prince-of-slaanesh-with-wings:section:2",
+    "datasheet-infractors:section:1",
+    "datasheet-infractors:section:2",
+    "datasheet-lucius-the-eternal:section:1",
+    "datasheet-lucius-the-eternal:section:2",
+    "datasheet-lucius-the-eternal:section:3",
+    "datasheet-sorcerer:section:1",
+    "datasheet-sorcerer:section:2",
+    "datasheet-sorcerer:section:3",
+    "datasheet-chaos-land-raider:section:1",
+    "datasheet-chaos-land-raider:section:2",
+    "datasheet-chaos-land-raider:section:3",
+    "datasheet-chaos-land-raider:section:4",
+    "datasheet-heldrake:section:1",
+    "datasheet-heldrake:section:2",
+    "datasheet-heldrake:section:3",
+    "datasheet-defiler:section:1",
+    "datasheet-defiler:section:2",
+    "datasheet-defiler:section:3",
+    "datasheet-maulerfiend:section:1",
+    "datasheet-maulerfiend:section:2",
+    "datasheet-maulerfiend:section:3",
+    "datasheet-fiends:section:1",
+    "datasheet-fiends:section:2",
+    "detachment-court-of-the-phoenician:rule:master-of-the-pageant"
   ],
   "relatedRules": {
     "schema": "army-book-related-rules/v2",

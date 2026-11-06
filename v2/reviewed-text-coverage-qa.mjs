@@ -11,8 +11,9 @@ const review=read('text-rule-review.json'),baseline=read('text-rule-baseline.jso
 const producer=await import(new URL('rule-contract-build.mjs',base));
 const built=bookId==='tyranids'?producer.buildTyranidsContracts():producer.buildECContracts();
 const {book,contracts,schema}=built;
-const published=parseProducerJSON(serializeSourceJSON(built.artifact));
+const encoded=serializeSourceJSON(built.artifact),published=parseProducerJSON(encoded),raw=JSON.parse(encoded);
 const publishedContracts=new Map(published.contracts.map(c=>[c.ruleId,c]));
+const rawContracts=new Map(raw.contracts.map(c=>[c.ruleId,c]));
 const old=new Map(baseline.contracts.map(c=>[c.ruleId,c])),index=new Map(book.entities.map(e=>[e.id,e]));
 const hash=value=>textCoverageHash(JSON.stringify(value));
 const fields=reviewedTextFields(book);
@@ -26,7 +27,8 @@ for(const {entity,field,text}of fields){
 const appended=[];
 for(const [id,prior]of old){
  const current=publishedContracts.get(id);
- if(hash(current)===prior.sha256)continue;
+ for(const clause of prior.clauses)assert.equal(hash(rawContracts.get(id).clauses.find(c=>c.id===clause.id)),clause.rawSha256,'Published source-refs clause bytes changed '+id+'/'+clause.id);
+ if(hash(current)===prior.sha256){assert.equal(hash(rawContracts.get(id)),prior.rawSha256,'Published original contract bytes changed');continue;}
  assert.equal(bookId,'emperors-children','Existing Tyranids contract changed');
  assert.equal(hash(Object.fromEntries(Object.entries(current).filter(([k])=>!['clauses','sourceFields'].includes(k)))),prior.withoutClausesAndFieldsSha256,
   'Existing contract participant, condition, source or metadata changed');
@@ -107,5 +109,6 @@ rejected(r=>r.records.find(c=>!c.preserveExisting).classification='ROSTER_EXECUT
 rejected(r=>{const id=Object.keys(r.enhancementOwners)[0];delete r.enhancementOwners[id];},/owner eligibility/);
 rejected(r=>r.records[0].ruleId='unreviewed-foreign-owner',/Unresolved/);
 rejected(r=>r.records.find(c=>c.preserveExisting).preserveExisting=false,/explicit source review/);
+rejected(r=>r.records.find(c=>!c.preserveExisting).preserveExisting=true,/Preserved contract/);
 console.log(JSON.stringify({status:'PASS',bookId,coverage:{enhancements:34,detachmentRules:11,armyRules:2,abilities:abilities.length},
  contracts:contracts.length,protectedContracts:old.size,addedClauses,appended,carrierChecks,negativeControls:controls}));

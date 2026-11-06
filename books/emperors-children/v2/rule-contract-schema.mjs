@@ -8,4 +8,4 @@ export const finalStateFields={[bladeField]:{contextLevel:'ROSTER',valueType:'st
 export const formationStateFields={attached:{contextLevel:'ROSTER',valueType:'boolean'},
   equipmentRequirementSatisfied:{contextLevel:'ROSTER',valueType:'boolean'},
   lordOfHostDeclaredBattleline:{contextLevel:'ROSTER',valueType:'boolean'}};
-export function createECRuleSchema(){return createRuleContractSchema({stateFields:{meleeAttackTargetsCharacter:{contextLevel:'BATTLE',valueType:'boolean'},...permissionStateFields,...formationStateFields,...finalStateFields}});}
+export function createECRuleSchema(){return createRuleContractSchema({stateFields:{meleeAttackTargetsCharacter:{contextLevel:'BATTLE',valueType:'boolean'},battleConditionSatisfied:{contextLevel:'BATTLE',valueType:'boolean'},...permissionStateFields,...formationStateFields,...finalStateFields}});}

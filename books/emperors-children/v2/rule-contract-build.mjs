@@ -1,6 +1,7 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
+import {appendReviewedTextCoverage} from '../../shared/rule-contract-v2/reviewed-text-coverage.mjs';
 /** EC-owned bounded Rule Contract overlay. No importer, service or UI wiring.
  * The shared engine consumes a disposable view of the existing factual owner. */
 import fs from 'node:fs';
@@ -195,6 +196,8 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     maxModels:unit.data.compositionMemberIds.map(id=>index.get(id)).filter(member=>member.data.modelProfileId===profileId)
       .reduce((n,member)=>n+member.data.quantity.max,0)})));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  const textCoverage=appendReviewedTextCoverage({book,facts,review:read('text-rule-review.json'),contracts,
+    currentness:{acceptedBaseHead:'c0fab930a4f45ba05c33b66834fbf979518d91ef',currentOfficialSource:'gw-ec-faction-pack-v1.3-2026-09-30'}});
   recordReviewedTextRecipients(book,read('recipient-declarations.json'));
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
@@ -210,7 +213,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
     remainingLegacyContracts:'NOT_MIGRATED_OR_CLASSIFIED_BY_THIS_BUILD'};
   return {book,schema,contracts,scope,
     artifact:{schema:'ec-v2-rule-contract-foundation/v1',authority:'BOOK_OWNED_DERIVED_CONTRACT_OVERLAY',
-      scope,
+      scope,textCoverage,
       sourceFingerprint:sha(JSON.stringify(facts)),declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
       permissionDeclarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-permission-declarations.mjs',import.meta.url))),
       formationBindingFingerprint:sha(fs.readFileSync(new URL('./rule-contract-formation-bindings.mjs',import.meta.url))),

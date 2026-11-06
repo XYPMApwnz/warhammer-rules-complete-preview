@@ -1,0 +1,2184 @@
+{
+  "schema": "reviewed-rule-text-coverage/v1",
+  "bookId": "emperors-children",
+  "acceptedBaseHead": "c0fab930a4f45ba05c33b66834fbf979518d91ef",
+  "factualFingerprint": "29895fe342212362921ac116b82894506ee866e82885d9843509cc96f8678f09",
+  "enhancementOwners": {
+    "detachment-coterie-of-the-conceited:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-coterie-of-the-conceited:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-coterie-of-the-conceited:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-carnival-of-excess:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-carnival-of-excess:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN or KEEPER OF SECRETS model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "KEEPER OF SECRETS"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN or KEEPER OF SECRETS model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN or KEEPER OF SECRETS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-rapid-evisceration:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-rapid-evisceration:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-rapid-evisceration:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-rapid-evisceration:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-peerless-bladesmen:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-peerless-bladesmen:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN INFANTRY model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-court-of-the-phoenician:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-slaaneshs-chosen:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-slaaneshs-chosen:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-slaaneshs-chosen:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-mercurial-host:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-mercurial-host:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-mercurial-host:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "EMPEROR’S CHILDREN model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "text"
+        ],
+        "quote": "EMPEROR’S CHILDREN model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    }
+  },
+  "records": [
+    {
+      "ruleId": "army-rule-thrill-seekers:definition",
+      "field": [
+        "text"
+      ],
+      "quote": "If your Army Faction is EMPEROR’S CHILDREN, this unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back, but when doing so:\n- It cannot target a unit it was within Engagement Range of at the start of the turn.\n- It cannot target a unit that was the target of another units charge or attack this phase.",
+      "sourceFieldSha256": "7d1c74e1ef31404c226f0c88be5feaf5aa960427e8366830218af866e5359b99",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit this-unit permission; Army Faction is a condition and restrictions remain literal text."
+    },
+    {
+      "ruleId": "army-rule-pact-of-excess:definition",
+      "field": [
+        "text"
+      ],
+      "quote": "When mustering your army, unless specifically stated otherwise, you cannot select LEGIONS OF EXCESS as your Army Faction.",
+      "sourceFieldSha256": "79bbb982a7e2ebad61258da7b729468c474aa853c5a2dfe5b64cc6259c2d2a54",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "At the start of the battle round, if your WARLORD is on the battlefield, you must pledge a number to Slaanesh representing how many enemy units will be destroyed this battle round. At the end of the battle round, if the number of enemy units destroyed this battle round is greater than or equal to your pledge, you gain a number of Pact points equal to your pledge. Otherwise, you do not gain any Pact points this battle round and your WARLORD model suffers D3 mortal wounds.\nEMPEROR’S CHILDREN units from your army gain a bonus depending on how many Pact points you have gained during the battle, as shown below (these are all cumulative).",
+      "sourceFieldSha256": "bb5c8596e827249829a18d9dbddf51cd70a1fe8816e9bb3bcc7b3d0362fbe204",
+      "classification": "BATTLE_ONLY",
+      "reason": "Whole-army rule plus external WARLORD/Pact counters; table bonuses are separately stored canonical fields."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        0,
+        0
+      ],
+      "quote": "PACT POINTS",
+      "sourceFieldSha256": "1d817d77d0db7152964588ee9f91985d5f7296c3b6822fd48da1aed392539168",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        0,
+        1
+      ],
+      "quote": "BONUS",
+      "sourceFieldSha256": "0506554273b67c8bc8a6dfb2d9a150c25d5e98440128d9a7b5c3d025efac2099",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        1,
+        0
+      ],
+      "quote": "1+",
+      "sourceFieldSha256": "dd5862237d2dda48a843f52f9459959ea8d6dc7d335812b02cfbcdcf368fec0d",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        1,
+        1
+      ],
+      "quote": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1.",
+      "sourceFieldSha256": "0e4c7609c0e1c31d639421072d3914785ed3ba4790112f757517c3a20fb05be5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Separate table entity is referenced by detachment rule; text says this unit but is a whole-army conditional bonus. Retain parent source linkage, owner only; do not create SOURCE_UNIT roster selector."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        2,
+        0
+      ],
+      "quote": "3+",
+      "sourceFieldSha256": "a38d780c0b08f82e6fe874db42898b3221dada7b51518daaf8b84045b25d59f4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        2,
+        1
+      ],
+      "quote": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1.",
+      "sourceFieldSha256": "27b8b99f5bc4daa4b5bf122b722e13a6e59372681e2ddb314a94a851825aafcb",
+      "classification": "BATTLE_ONLY",
+      "reason": "Separate table entity is referenced by detachment rule; text says this unit but is a whole-army conditional bonus. Retain parent source linkage, owner only; do not create SOURCE_UNIT roster selector."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        3,
+        0
+      ],
+      "quote": "5+",
+      "sourceFieldSha256": "fa676de88a05809b730ed2380fd0080f5742632b2b78848443b3428670a8b893",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        3,
+        1
+      ],
+      "quote": "Melee weapons equipped by models in this unit have the [LETHAL HITS] and [SUSTAINED HITS 1] abilities.",
+      "sourceFieldSha256": "4131e9afd23eb350a503d10b44e6dfd019fad7349f33decdc52516cbd973082a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Separate table entity is referenced by detachment rule; text says this unit but is a whole-army conditional bonus. Retain parent source linkage, owner only; do not create SOURCE_UNIT roster selector."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        4,
+        0
+      ],
+      "quote": "7+",
+      "sourceFieldSha256": "102bb1af08e6d89acfa5806d60821b2bf10dfbe5c8ed766bf09eafa406902f00",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:rule:table:2",
+      "field": [
+        "rows",
+        4,
+        1
+      ],
+      "quote": "Each time a model in this unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+.",
+      "sourceFieldSha256": "fd3037ee8a9555f6d1759b7ddf26fff5f747dd6b2d7c6bee9b6916398f4341d8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Separate table entity is referenced by detachment rule; text says this unit but is a whole-army conditional bonus. Retain parent source linkage, owner only; do not create SOURCE_UNIT roster selector."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. The first time the bearer is destroyed, take a Leadership test for the bearer at the end of the phase. If that test is passed, set the bearer back up on the battlefield, as close as possible to where it was destroyed and not within Engagement Range of one or more enemy units, with D6 wounds remaining (up to its Wounds characteristic).",
+      "sourceFieldSha256": "a76efbe14c45407b77367a8044d1a3aa3970399c539fcc9d3e135ab7cf4285fc",
+      "classification": "BATTLE_ONLY",
+      "reason": "Resurrection concerns the bearer alone."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. While the bearer is leading a unit, improve the Leadership and Objective Control characteristics of models in that unit by 1.",
+      "sourceFieldSha256": "4bcb79bfe460eebf7e28a098960cc5ae4a8bc80d28c68225ee69c9a481dff95e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. At the start of your Shooting phase, select one enemy unit within 12\" of and visible to the bearer. That unit must take a Leadership test, subtracting 2 from the result if it is Battle-shocked: if failed, that enemy unit suffers 3 mortal wounds.",
+      "sourceFieldSha256": "d1b66a902ddacd23abd45922d61d7512c507ccbd494e75e437721e4935847e56",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy target receives the test and mortal wounds; bearer is only the origin."
+    },
+    {
+      "ruleId": "detachment-coterie-of-the-conceited:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Once per turn, just after making a Hit roll, a Wound roll or a saving throw for a model in the bearer’s unit, if the bearer is not Battle-shocked, it can use this Enhancement. If it does, treat the result as an unmodified roll of 6 instead.",
+      "sourceFieldSha256": "9e186e1bbfb98c36099dba9f84315d04846a917e93aa3c2e4fdc3c820b94a818",
+      "classification": "BATTLE_ONLY",
+      "reason": "Changes a roll for a model in the bearer’s unit."
+    },
+    {
+      "ruleId": "detachment-carnival-of-excess:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "- While an EMPEROR’S CHILDREN unit from your army is within 6\" of one or more friendly LEGIONS OF EXCESS units, it is Empowered.\n- While a LEGIONS OF EXCESS unit from your army is within 6\" of one or more friendly EMPEROR’S CHILDREN units, it is Empowered.\nWhile a unit from your army is Empowered, weapons equipped by models in that unit have the [sustained hits 1] ability. If such a weapon already has that ability, each time an attack is made with that weapon, an unmodified Hit roll of 5+ scores a Critical Hit.\nLEGIONS OF EXCESS\nYou can include LEGIONS OF EXCESS units in your army, even though they do not have the EMPEROR’S CHILDREN Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo LEGIONS OF EXCESS models from your army can be your WARLORD.",
+      "sourceFieldSha256": "c406144430ecd601cd2a70750febf365df37be001c175564667aa897a812ec6a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide mutual proximity empowerment and army-construction permission; no universal SOURCE_UNIT recipient."
+    },
+    {
+      "ruleId": "detachment-carnival-of-excess:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. When you target this unit with the Heroic Intervention stratagem, that use is -1 CP.",
+      "sourceFieldSha256": "fa2b090474ddfafe176210b00eb01072746af8089ad3cea29ad93267ad8d1429",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-carnival-of-excess:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Once per battle, just after an enemy unit has selected its targets, the bearer can use this Enhancement. If it does, until the end of the phase, the bearer has a 3+ invulnerable save.",
+      "sourceFieldSha256": "ac32254624b9bf97d86e7c1ad8b0e30d5ab53343a54cad70a3b48592d2dadab8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only the bearer receives the save."
+    },
+    {
+      "ruleId": "detachment-carnival-of-excess:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. At the start of the battle, select one melee weapon equipped by the bearer; add 1 to the Attacks characteristic of that weapon. In addition, each time the bearer is selected to fight, it can use this Enhancement. If it does, while resolving those attacks, add 1 to the Damage characteristic of that weapon and that weapon has the [devastating wounds] and [hazardous] abilities.",
+      "sourceFieldSha256": "45f5e6ad7af233af8bc5e70fc71913e9d14ccd693c925e01ef76bc9714c9e028",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-carnival-of-excess:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN or KEEPER OF SECRETS model only. Each time the bearer’s unit Advances, do not make an Advance roll. Instead, until the end of the phase, add 6\" to the Move characteristic of models in that unit. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "sourceFieldSha256": "a40d969e076a047f198ebdafd9b78d9fd960cf266666fbae2da93b4b79890b73",
+      "classification": "BATTLE_ONLY",
+      "reason": "Bearer’s unit and its models receive both movement benefits."
+    },
+    {
+      "ruleId": "detachment-rapid-evisceration:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Each time an EMPEROR’S CHILDREN model from your army makes an attack, if it is a TRANSPORT model or disembarked from a TRANSPORT this turn, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
+      "sourceFieldSha256": "4c91317c8cbd67c0e43fb54bcc2afd6df188f2f150df5f954a9d0cb8e0e0a634",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide conditional model attack rule."
+    },
+    {
+      "ruleId": "detachment-rapid-evisceration:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Once per turn, in your Movement phase, the bearer can use this Enhancement. If it does, select one friendly EMPEROR’S CHILDREN TRANSPORT that is in Strategic Reserves. Until the end of the phase, for the purposes of setting up that TRANSPORT on the battlefield, treat the current battle round number as being one higher than it actually is.",
+      "sourceFieldSha256": "ef732df0444619b333a0bfafdf0251b0d96bdbcde43a5b0c812639c949e35da8",
+      "classification": "BATTLE_ONLY",
+      "reason": "External selected transport, not source-unit recipient."
+    },
+    {
+      "ruleId": "detachment-rapid-evisceration:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Each time the bearer disembarks from a TRANSPORT, until the end of the turn, you can re-roll Charge rolls made for the bearer’s unit and enemy units cannot use the Fire Overwatch Stratagem to shoot at the bearer’s unit.",
+      "sourceFieldSha256": "4cf92c8276e30e3eefaab02d8f2304e5f3da0fe292d93115bbd248aa27601d33",
+      "classification": "BATTLE_ONLY",
+      "reason": "Both charge reroll and overwatch protection apply to bearer’s unit."
+    },
+    {
+      "ruleId": "detachment-rapid-evisceration:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Once per turn, in your opponent’s Shooting phase, just after an enemy unit has shot, you can select one friendly EMPEROR’S CHILDREN unit within 9\" of the bearer that was hit by one or more of those attacks, then select one friendly TRANSPORT that unit is wholly within 6\" of and is able to embark within. That EMPEROR’S CHILDREN unit can embark within that Transport.",
+      "sourceFieldSha256": "6a377ba491b2c9b204b4364cd654b3a76a4987e06a202ae3d3658d7d1297c80e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Two selected external friendly units; no guaranteed source-unit recipient."
+    },
+    {
+      "ruleId": "detachment-rapid-evisceration:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Once per battle round, when a saving throw is failed for a friendly EMPEROR’S CHILDREN VEHICLE model within 6\" of the bearer, you can change the Damage characteristic of that attack to 0.",
+      "sourceFieldSha256": "4a25671bdbf97c67996207ad4eb4a3036fc79b502950e3c9c0b627b807a4f68b",
+      "classification": "BATTLE_ONLY",
+      "reason": "External vehicle selected by event; source bearer itself does not receive this protection."
+    },
+    {
+      "ruleId": "detachment-peerless-bladesmen:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Each time an EMPEROR’S CHILDREN unit from your army is selected to fight, if it made a Charge move this turn, select one of the abilities below. While resolving those attacks, melee weapons equipped by models in that unit have that ability:\n- [LETHAL HITS]\n- [SUSTAINED HITS 1]",
+      "sourceFieldSha256": "5456ed8b03a5762f0c9c535e6b64ff2776119634860ce3d6e388f5084fee4361",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide rule with battle-time choice; source-unit binding would be invented."
+    },
+    {
+      "ruleId": "detachment-peerless-bladesmen:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+      "sourceFieldSha256": "bc450d12fb31ce3a67abefe00e75293d1a68263b6d6b3729e3a6c31b68a34f73",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-peerless-bladesmen:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Once per battle, at the start of the Fight phase, the bearer can use this Enhancement. If it does, until the end of the phase, models in the bearer’s unit have the Fights First ability.",
+      "sourceFieldSha256": "f3e2602011fae3669cc82012e718310a6eea00ce3e3e9a4d0fd11fab83111141",
+      "classification": "BATTLE_ONLY",
+      "reason": "Formation receives Fights First."
+    },
+    {
+      "ruleId": "detachment-peerless-bladesmen:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Add 1 to the Attacks and Damage characteristics of melee weapons equipped by the bearer.",
+      "sourceFieldSha256": "6ef737d95a57e7da92be6ff571748908eeea8bed07463c11663e69f09627e08c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-peerless-bladesmen:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN INFANTRY model only. Once per battle, at the end of the Fight phase, if the bearer is within Engagement Range of three or more enemy models, it can use this Enhancement. If it does, the bearer can fight one additional time. When doing so, you can select one ability using the Exquisite Swordsmanship Detachment rule to apply to those attacks.",
+      "sourceFieldSha256": "fea1ce53a9ec31c9e3d055b492c80441c357514d2d9d6cedbd4c2a7855071684",
+      "classification": "BATTLE_ONLY",
+      "reason": "Additional fight belongs only to bearer."
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN units from your army have the following ability:\nSensational Performance: Each time this unit is selected to fight, if this unit made a Charge move this turn, it can use this ability. If it does, until the end of the phase:\n- This unit cannot target a unit it was within Engagement Range of at the start of the turn.\n- This unit cannot target a unit that was the target of another unit’s attack this phase.\n- Improve the Strength and Armour Penetration characteristics of this unit’s melee weapons by 1.",
+      "sourceFieldSha256": "0d6dc0cf5888a47fe7b05bbe2d12b8bc3d8634d49a7e8628641fd3897c54cc0d",
+      "classification": "BATTLE_ONLY",
+      "reason": "Whole-army grant; nested this-unit text does not identify canonical owner as recipient."
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a melee attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and any or all modifiers to the Hit roll and Wound roll.",
+      "sourceFieldSha256": "17c8f671662650fbef53dddb46785e0132b2f6ada36b7786dc471ae792885094",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "LORD EXULTANT model only. Add 1\" to the Move characteristic of the bearer.",
+      "sourceFieldSha256": "49359a36fc736e56bd966c16c897cf86a2b4bba9e45899d032aa3d19e9b63176",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. At the start of the Fight phase, you can select one enemy unit within Engagement Range of the bearer; that unit must take a Battle-shock test, subtracting 1 from the result.",
+      "sourceFieldSha256": "783e96dd7980e447caeb2803bdf6985fc227b66fd6d0ce5c04827c5b0904997f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy is recipient of Battle-shock test."
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN DAEMON PRINCE model only. Add 1 to the Strength and Attacks characteristics of the bearer’s melee weapons.",
+      "sourceFieldSha256": "b211519e71a063d388feacef1d9546fbc06840139e152ff56d3618c60fbe4d88",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-slaaneshs-chosen:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN CHARACTER units from your army can ignore any or all modifiers to their Move characteristic and any or all modifiers to Advance and Charge rolls made for them.\nAt the start of the battle, your WARLORD’s unit is your army’s Favoured Champions. The first time in each player’s turn that an EMPEROR’S CHILDREN CHARACTER unit from your army destroys an enemy unit, after resolving all of its attacks, that CHARACTER unit becomes your army’s new Favoured Champions, replacing the old one.\nEach time a model in your army’s Favoured Champions unit makes an attack, you can re-roll the Wound roll.",
+      "sourceFieldSha256": "f0056334191f6a2bddb9b3929e9c0efbfda491581e2c8e7f16952b0c6aa4f17e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Whole-army rule; Favoured Champions is changing external selection."
+    },
+    {
+      "ruleId": "detachment-slaaneshs-chosen:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. You can re-roll Charge rolls made for the bearer’s unit. While the bearer’s unit is your army’s Favoured Champions, add 2\" to the Move characteristic of models in that unit.",
+      "sourceFieldSha256": "68b5f0b05ae3c17214bc7be9695eebe1281217fd222437719b5b268a3440da82",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reroll and conditional Move bonus concern bearer’s unit."
+    },
+    {
+      "ruleId": "detachment-slaaneshs-chosen:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of the bearer’s unit Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if the bearer’s unit is your army’s Favoured Champions, subtract 1 from each of those Desperate Escape tests.",
+      "sourceFieldSha256": "b50cdd30e0c434fcd18fe61d86b62e5c714452a1fa7dc08ba5b3420751b50c21",
+      "classification": "BATTLE_ONLY",
+      "reason": "Bearer’s unit is range/condition origin; enemy models receive effects."
+    },
+    {
+      "ruleId": "detachment-slaaneshs-chosen:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. You can re-roll Battle-shock and Leadership tests taken for the bearer’s unit. While the bearer’s unit is your army’s Favoured Champions, add 1 to the Objective Control characteristic of models in that unit.",
+      "sourceFieldSha256": "74c7203686682abccbd2bb0ceb3dd675ffe35d96e98ffdc0c21ab24c10c5c36c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Tests and conditional OC bonus concern bearer’s unit."
+    },
+    {
+      "ruleId": "detachment-slaaneshs-chosen:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. The bearer’s melee weapons have the [PRECISION] ability, and each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+      "sourceFieldSha256": "1d38c96e29154103815ace2fd1089243c3c7f0e4d68eec0c773a86422885150f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-mercurial-host:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "You can re-roll Advance rolls made for EMPEROR’S CHILDREN units from your army.",
+      "sourceFieldSha256": "3c4de6e10b335a7443e4ce561471eff0e006ce21d077306a5f43b6dcf18a436b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-mercurial-host:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes an attack that targets an enemy unit below its Starting Strength, add 1 to the Hit roll. If that target is also Below Half-strength, add 1 to the Wound roll as well.",
+      "sourceFieldSha256": "cafd1b72835243f3e19a26973e2a712095505dd7395c30b34103b3a7d818256b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Hit and Wound benefits attach to every model in bearer’s formed unit; enemy strength stays battle-only."
+    },
+    {
+      "ruleId": "detachment-mercurial-host:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Each time a melee attack targets the bearer’s unit, if the Strength characteristic of that attack is greater than the Toughness characteristic of that unit, subtract 1 from the Wound roll.",
+      "sourceFieldSha256": "90b3ba620caf66bc35603d693a3e9506b58dd516567d770e4570a7b89694caad",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source formation receives defensive benefit; comparison stays battle-only."
+    },
+    {
+      "ruleId": "detachment-mercurial-host:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. After both players have deployed their armies, select up to two EMPEROR’S CHILDREN units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "sourceFieldSha256": "6391627548034b5745e76789e0692cbc7678b25544c1b81f420e1fd196e1d475",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected external units; never promise propagation to bearer’s attached unit."
+    },
+    {
+      "ruleId": "detachment-mercurial-host:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN model only. Each time a model in the bearer’s unit makes a Normal, Advance or Fall Back move, it can move through enemy models. When doing so, it can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "sourceFieldSha256": "28d4ef43994c2010269d50ce08b093568f0d21bc35f72e915b2228564b3abde4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-spectacle-of-slaughter:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Friendly FLAWLESS BLADES units have Fights First",
+      "sourceFieldSha256": "07c582b84da9a4ef8325df83bdfaf13d0386cefe526c15f2f66a6c330f692329",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-spectacle-of-slaughter:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "FLAWLESS BLADES unit only. This unit has +2\" M.",
+      "sourceFieldSha256": "d2e8dd1a064d191f60397494ef4ae069f1795952f6cacbb790b0e0e7da7b1846",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-spectacle-of-slaughter:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "FLAWLESS BLADES unit only. Enemy units cannot target this unit with snap shooting attacks.",
+      "sourceFieldSha256": "d634acebd4dda927047f1282794c1419b290df0e37075248354115eee74660f0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-frenzied-host:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "When a friendly EMPEROR’S CHILDREN BATTLELINE unit is selected to make an advance/fall-back move, that unit’s BATTLELINE models’ attacks have [SUSTAINED HITS 1] until the end of the turn.\nThis detachment has the HOST tag and cannot be taken with another HOST detachment.",
+      "sourceFieldSha256": "237920f6bfc120efd308f4d5403d278e47446a467afe64ef005aa25783b5b1f2",
+      "classification": "BATTLE_ONLY",
+      "reason": "Conditional generic friendly unit; also includes HOST construction restriction."
+    },
+    {
+      "ruleId": "detachment-frenzied-host:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "LORD EXULTANT model only. This model’s melee attacks have +1 S.",
+      "sourceFieldSha256": "947e79ec6a521e7c603e69f534dd0fe0bcc4e92cefb3a5105e2eaaea60592f09",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-frenzied-host:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "LORD EXULTANT model only. This unit’s ranged attacks have +1 AP.",
+      "sourceFieldSha256": "df2f16995a2631e871d020e122d43add9b924fcc6ab531890d1e1d675df8e273",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-elegant-brutes:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "When a friendly EMPEROR’S CHILDREN TERMINATOR unit is set up, that unit has +1 to charge rolls until the end of the turn.",
+      "sourceFieldSha256": "0eebcdaf93ef87ca7e5f523d00993d52cbde5f62f742b4e9f84e50b412f15e7c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Conditional generic friendly unit; no guaranteed local source unit."
+    },
+    {
+      "ruleId": "detachment-elegant-brutes:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "LORD KAKOPHONIST model only.\n▪ This model has Deep Strike.\n▪ This unit’s ranged attacks have [IGNORES COVER].",
+      "sourceFieldSha256": "34018bbb27803c447ca3232e410ab4be9b91e2e0012ac564497ed42df8e86b09",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-elegant-brutes:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "EMPEROR’S CHILDREN TERMINATOR SQUAD unit only. This unit’s attacks have [SUSTAINED HITS 1].",
+      "sourceFieldSha256": "1573c654a8cc61721b03f1654478d03dc51a7f354feceded2e73565f465572f2",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-noise-marines:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Terrifying Crescendo: In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next Shooting phase, each time a Battle-shock or Leadership test is taken for that enemy unit, subtract 1 from that test.",
+      "sourceFieldSha256": "0b89164356cff658ff4d94d2890167fd6689b2730f95e3456c2ed7d68f3d63e5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only enemy test modifier."
+    },
+    {
+      "ruleId": "datasheet-noise-marines:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: sonic blaster; close combat weapon.",
+      "sourceFieldSha256": "c51592575beafa0bd840a1ce385b3bb47d95f7df23ccfc065dc14990507f8cd7",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tormentors:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Objective Defiled: At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
+      "sourceFieldSha256": "3059f04277f025c17b5463d5ebf32b26d2c1487fbd8748725d39f0af164d1383",
+      "classification": "BATTLE_ONLY",
+      "reason": "Ambiguous recipient: this unit is only the condition, while objective marker control is the effect. Conservatively owner-only; do not infer scope from this-unit trigger alone."
+    },
+    {
+      "ruleId": "datasheet-tormentors:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Icon of Excess: At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
+      "sourceFieldSha256": "cc6d2f19ed58a689649203fdb9fefca7643cf624ff908ad4289dd689ce7e78c9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Bearer’s formed unit explicitly takes the test; CP award remains battle-only."
+    },
+    {
+      "ruleId": "datasheet-tormentors:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "The Obsessionist is equipped with: bolt pistol; power sword.\nEvery Tormentor is equipped with: boltgun; close combat weapon.",
+      "sourceFieldSha256": "63590d36ca675273316ae01492832b9b92a29827aabae74528815fe3fe874c5d",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Assault Vehicle: Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
+      "sourceFieldSha256": "438e5ec503928a369b8aad17f70db90b7815a20d6c03d56e276f4207ca283349",
+      "classification": "BATTLE_ONLY",
+      "reason": "External passenger units benefit; transport is origin."
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model has a transport capacity of 12 EMPEROR’S CHILDREN INFANTRY models (excluding TERMINATOR and FLAWLESS BLADE models).",
+      "sourceFieldSha256": "f3360bdf9b3ee6831c614a5ef084284c3291548cdd78089dbca882219061843b",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-chaos-rhino:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: combi-bolter; armoured tracks.",
+      "sourceFieldSha256": "de5b4031097f64907e9fff520cb5bf429e06b64e332654471b568ca50b828f53",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-keeper-of-secrets:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Daemon Lord of Slaanesh (Aura): While a friendly LEGIONS OF EXCESS unit is within 6\" of this model, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
+      "sourceFieldSha256": "71eb18b135b3eae4d06839f88db78810bec0b77b57af37e06dfb6d9855173be7",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reviewed friendly aura; use FORMED per requested display scope, preserve range/keyword conditions as text.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-keeper-of-secrets:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Mesmerising Form: Each time an attack targets this model, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "e7ef8e7b0622187710fbf49ba13435dda910a7a8a4ee9f0563c850dc18bc62d5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model receives defensive benefit.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-keeper-of-secrets:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Shining Aegis: The bearer has a Save characteristic of 3+.",
+      "sourceFieldSha256": "c08452c936118c9ed1bbfb7c8a6dfa0a27ac1e72e6529339547eacd384590048",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-keeper-of-secrets:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: Phantasmagoria; snapping claws; witstealer sword.",
+      "sourceFieldSha256": "8cdbf716347f5d2049d7ec02ad79ea15d38fbca029dd4e82d2d1c2fefb95225a",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-keeper-of-secrets:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "71948d8060f431f4de130073abbd83174c6addb173602f9fb658047124bc4407",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-daemonettes:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Horrifying Beauty: At the start of the Fight phase, each enemy unit within Engagement Range of one or more units from your army with this ability must take a Battle-shock test, subtracting 1 from the result if that enemy unit is Below Half-strength.",
+      "sourceFieldSha256": "e82d110d4e38396dab7e0acbee797bba3c1cc97e93e6143d0f9ccd74f716586e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy test effect only.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-daemonettes:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+.",
+      "sourceFieldSha256": "ad1b9cb27f510cbb52d934e1121b09d39bdef3bdfe71e0910d2d3d6cabe9c082",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-daemonettes:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+      "sourceFieldSha256": "9c67caeb04d271a399eaf0c053797025d8b93ecd7a8a7d4ff0f1606445750107",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-daemonettes:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: slashing claws.",
+      "sourceFieldSha256": "23fb0152b20d652fa441cbdacd2afa74125da5bd3be21ee1685929a43664dd26",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-seekers:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Unholy Speed: You can re-roll Advance and Charge rolls made for this unit.",
+      "sourceFieldSha256": "4c21eeb35c553f332f4edb94ddb7337953af195507cc1c66b2edd722c5fde63e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit local unit.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-seekers:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Daemonic Icon: Models in the bearer’s unit have a Leadership characteristic of 6+.",
+      "sourceFieldSha256": "ad1b9cb27f510cbb52d934e1121b09d39bdef3bdfe71e0910d2d3d6cabe9c082",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-seekers:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Instrument of Chaos: Add 1 to Charge rolls made for the bearer’s unit.",
+      "sourceFieldSha256": "9c67caeb04d271a399eaf0c053797025d8b93ecd7a8a7d4ff0f1606445750107",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-seekers:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: lashing tongue; slashing claws.",
+      "sourceFieldSha256": "7c9586721c70c77f02f5dcd9c5cbc225a5d8e3beb43d046f7bbbd7bf6e1b246c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-shalaxi-helbane:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "No Prey Can Evade: You can re-roll Advance and Charge rolls made for this model.",
+      "sourceFieldSha256": "fa73614ee6c31a1d003743606202ce57138b3a15cd924d2a107373f3c0572aac",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source model."
+    },
+    {
+      "ruleId": "datasheet-shalaxi-helbane:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Monarch of the Hunt: At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry.",
+      "sourceFieldSha256": "83e4c828919be487cd48512f3555fe0c366c3049f2a8218288fe71c1f965a826",
+      "classification": "BATTLE_ONLY",
+      "reason": "Quarry selection is external condition, rerolls apply only source model’s attacks."
+    },
+    {
+      "ruleId": "datasheet-shalaxi-helbane:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: lash of Slaanesh; Pavane of Slaanesh; snapping claws; Soulpiercer.",
+      "sourceFieldSha256": "3f5cd9094f096c22592172a4629a6a1d66b3be432c94258f7e323748d238f3a6",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-shalaxi-helbane:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-7 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "089ffb06909084116b5c10f3d3d276f7a003f70043f23a443305f2d2ed7f7bf8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "If this model is in your army, it must be your WARLORD.",
+      "sourceFieldSha256": "f0333b23d7f88f33685205e100af9c8c818e5ef91a94b173891b18b2dcaa9d29",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Daemonic Poisons: In your Shooting phase and the Fight phase, after this model has finished making its attacks, select one enemy unit hit by one or more of those attacks. Until the end of the battle, that enemy unit is poisoned. At the start of each player’s Command phase, roll one D6 for each poisoned enemy unit on the battlefield: on a 4+,that enemy unit suffers D3 mortal wounds.",
+      "sourceFieldSha256": "565cdae4fb69c437de84a809f81bf927e2b44b6f26e3334649c12ff7f379f440",
+      "classification": "BATTLE_ONLY",
+      "reason": "Poison effect belongs to selected enemy."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:2",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Daemon Primarch of Slaanesh: At the start of your opponent’s Command phase, select one of the abilities in the Daemon Primarch of Slaanesh section. Until the start of your opponent’s next Command phase, this model has that ability.",
+      "sourceFieldSha256": "ac4c54cad1386a0b6c73e23a597b68125ec08f1b270a446f057a426f593afdcb",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected ability is granted only source model."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: malefic lash; daemonic blades; serpentine tail.",
+      "sourceFieldSha256": "2e4a55826e23eedd86a421b069bd007ffd7bdb70c6546542aaa3f31aabcfd717",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:4",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "71948d8060f431f4de130073abbd83174c6addb173602f9fb658047124bc4407",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:5",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Beguiling Form: Each time a model makes an attack that targets this model, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "5b15813c4476c9a34c1f5a8140753474c562a70909a39897d5cd45036d2f93d9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model receives defensive benefit."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:5",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Daemonic Speed: This model has the Fights First ability.",
+      "sourceFieldSha256": "06f7002def15ae6b0413f7c0c106ecffdbf91b2859c54d41d0964e76b77d6b96",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source model."
+    },
+    {
+      "ruleId": "datasheet-fulgrim:section:5",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Enthralling Hypnosis (Aura): While an enemy unit is within 6\" of this model, each time that unit is selected to Fall Back, it must take a Leadership test. If that test is failed, that unit must Remain Stationary this phase instead.",
+      "sourceFieldSha256": "a3a6eb63c394089db7a0406c1307e4f42e26a5ff4c785e9717cda840a108d233",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy aura, no friendly recipient."
+    },
+    {
+      "ruleId": "datasheet-flawless-blades:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Daemonic Patrons: Each time this unit is selected to fight, it can call upon daemonic patrons. If it does, until the end of the phase, each time a model in this unit makes an attack, an unmodified Wound roll of 3+ scores a Critical Wound. At the end of the Fight phase, if this unit called upon daemonic patrons this phase and no enemy models were destroyed by attacks made by models in this unit this phase, one model in this unit is destroyed.",
+      "sourceFieldSha256": "fe58275223510f628e9ebdd5aa40704156760b2f855ac233f309f2eaa36764f3",
+      "classification": "BATTLE_ONLY",
+      "reason": "Benefits and failure cost apply models in source unit."
+    },
+    {
+      "ruleId": "datasheet-flawless-blades:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: bolt pistol; blissblade.",
+      "sourceFieldSha256": "a055362257b81e8c0c6cd5ace7c34dff621602fe50d7cf146e62fbfc3d527808",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lord-exultant:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Perfectionists: While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability.",
+      "sourceFieldSha256": "7f4df4b446b5347c1b94c698ae9a077e90a539dd0916972f4044fc147efedf3c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-lord-exultant:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Euphoric Strikes: Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and improve the Armour Penetration characteristic of those weapons by 1.",
+      "sourceFieldSha256": "6a335b8abcae7d9900a0c66f062efa55288903f101ebfac56844d93d319a6f90",
+      "classification": "BATTLE_ONLY",
+      "reason": "Model-only attack buff; must not propagate to Infractors.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-lord-exultant:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: bolt pistol; plasma pistol; Phoenix power spear; close combat weapon.",
+      "sourceFieldSha256": "73f69f602de2ea94567f37bfdb69309f81d409a77134483bcd05cf5dbc7bf153",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lord-exultant:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- INFRACTORS\n- TORMENTORS",
+      "sourceFieldSha256": "92aa8285c3eeb97b52badfe6cbc732b54f67254793ae7fda4cdd9facd0b754b4",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lord-exultant:section:4",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "If this model is attached to an EMPEROR’S CHILDREN BATTLELINE unit during the Declare Battle Formations step, this model has the Infiltrators and Scouts 6\" abilities.",
+      "sourceFieldSha256": "e3cc6b39a341f6a69dc6729f26ef76315ab8f2bff5d25829a4f8ed5970bed57b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Lord of Excess: While this model is within 3\" of one or more friendly SLAANESH INFANTRY units, this model has the Lone Operative ability.",
+      "sourceFieldSha256": "ce0d1a831d9dc510285f22c265c56e2d4d4a189f37a2cdde3f68f1d56a72b768",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly infantry is proximity condition; source model alone benefits."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Excessive Vigour (Aura): While a friendly SLAANESH unit is within 6\" of this model, if that unit made a Charge move this turn, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1.",
+      "sourceFieldSha256": "f3ae2eb958cefc8b4128621efefbdd36a2c46e02c4378655364d427f9bbf1e7b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reviewed friendly aura; requested FORMED display scope, with charge/range conditions literal."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Ecstatic Death: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 2+, do not remove it from play. This model can fight after the attacking unit has finished making its attacks, and is then removed from play.",
+      "sourceFieldSha256": "88271096a6c9087dee47df4794ca8ff16cc0311a625a11eb8ae6106aba092a24",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source model receives fight-on-death."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: infernal cannon; hellforged weapons.",
+      "sourceFieldSha256": "48ab28883555cb4c3fb39c819fa7b38fde1ef7e15f6f593ba2d6fdb343f213ad",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-chaos-terminators:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Lethal Obsession: In your Shooting phase, after this unit has shot, you can use this ability. If you do, select one enemy unit hit by those ranged attacks. Until the end of the turn, when this unit declares a charge:\n- This unit can re-roll that charge roll.\n- This unit must end that charge move engaged with that enemy unit.",
+      "sourceFieldSha256": "adfcf07718edfdf3a8383edda231cdf22315dd511f62edbae8ee895e8c5d3ed4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy selection sets charge restriction but local source unit receives charge reroll."
+    },
+    {
+      "ruleId": "datasheet-chaos-terminators:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: combi-bolter; accursed weapon.",
+      "sourceFieldSha256": "9c970c330e9d435151736d903bacd012ed9871cc2fe53d544b945b0e5e3eea61",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lord-kakophonist:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Obsessive Annunciation: While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+      "sourceFieldSha256": "5778e82207d5d96da45500863f03358cd130a6bb1261a0477e78e1706a868583",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source battle timing, choice, attack or distance requires actual play; preserve the complete paragraph without execution.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-lord-kakophonist:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Doom Siren: In your Shooting phase, after this model’s unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks and roll three D6: for each 4+, that enemy unit suffers 1 mortal wound. If an enemy unit suffers one or more mortal wounds as a result of this ability, it must take a Battle-shock test.",
+      "sourceFieldSha256": "133e3064001706457b95b03f552e4aa8dd22fc09581cd28e7bee3a51f6a51e21",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly unit shot is trigger; selected enemy alone suffers effects.",
+      "appendToExisting": true
+    },
+    {
+      "ruleId": "datasheet-lord-kakophonist:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: screamer pistol; power sword.",
+      "sourceFieldSha256": "dddeda894108e11d31181ca09eefc8eaec4eb9064810eb7e365931944f22503c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lord-kakophonist:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- CHAOS TERMINATORS\n- NOISE MARINES",
+      "sourceFieldSha256": "702d5448d09db5df29980fb6d214ab14bb1ee2b2331e1f1dace55f2d54be4d90",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-chaos-spawn:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Scuttling Horrors: In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to 6\".",
+      "sourceFieldSha256": "fa0bfe6a136f4bc926c6706092249c3c75384676bffaa26c85beeb36d62c0a00",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit local unit reactive move."
+    },
+    {
+      "ruleId": "datasheet-chaos-spawn:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: hideous mutations.",
+      "sourceFieldSha256": "b90210eaf08bc18e49dbee610e2bc3367e35e9bbd31c2635e919ece0cea7334c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Daemonic Destruction: Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6 for each of this model’s remaining wounds: for each 4+, that enemy unit suffers 1 mortal wound (to a maximum of 6 mortal wounds).",
+      "sourceFieldSha256": "3df4bd45dd65f1604179a0da020534583ab9728edbee04972db84b8b0b061837",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source model charge is trigger; selected enemy takes mortal wounds."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Stimulated by Pain: Each time an attack is allocated to this model, subtract 1 from the Damage characteristic of that attack.",
+      "sourceFieldSha256": "5e6cc9e161a544bd06d8983dcf193ad1a4fb43a1a3037b86e0a95447360f197e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model receives damage reduction."
+    },
+    {
+      "ruleId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: infernal cannon; hellforged weapons.",
+      "sourceFieldSha256": "48ab28883555cb4c3fb39c819fa7b38fde1ef7e15f6f593ba2d6fdb343f213ad",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-infractors:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Excessive Assault: Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead.",
+      "sourceFieldSha256": "29d041c4e01c68fc22d2b75c5e21361b23f84c8dc4e5d31adba307926be6b6d8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Every model in source formation receives attack reroll."
+    },
+    {
+      "ruleId": "datasheet-infractors:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Icon of Excess: At the end of your Shooting phase or the Fight phase, if the bearer’s unit destroyed one or more enemy units that phase, the bearer’s unit takes a Leadership test. If that test is passed, you gain 1CP.",
+      "sourceFieldSha256": "cc6d2f19ed58a689649203fdb9fefca7643cf624ff908ad4289dd689ce7e78c9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Bearer’s formed unit explicitly takes the test; CP award remains battle-only."
+    },
+    {
+      "ruleId": "datasheet-infractors:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "The Obsessionist is equipped with: bolt pistol; power sword.\nEvery Infractor is equipped with: bolt pistol; duelling sabre.",
+      "sourceFieldSha256": "b9a76efd7d678bfc4ec1f0f73fa0878e30ef38d5d80ce8d5ff674c49620f33b2",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lucius-the-eternal:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "A Challenge Worthy of Skill: Each time this model makes an attack that targets a CHARACTER, MONSTER or WALKER unit, you can re-roll the Hit roll and you can re-roll the Wound roll.",
+      "sourceFieldSha256": "0790cb5ffa6e5f9b560ba64bac765464b43f6624e4dbdc37f8fd5f2890a6c5c5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model attacks receive rerolls."
+    },
+    {
+      "ruleId": "datasheet-lucius-the-eternal:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Duellist’s Hubris: At the start of the Fight phase; if this model is not leading a unit, until the end of the phase, it has the Fights First ability.",
+      "sourceFieldSha256": "7d2d1975cdb291d02e26a26af0047d53247dccda8f176ce41cb1890dd9f14aa8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model receives Fights First; retain negative leading condition."
+    },
+    {
+      "ruleId": "datasheet-lucius-the-eternal:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: Blade of the Laer; Lash of Torment.",
+      "sourceFieldSha256": "00947b2d4f9a9ca14c023e515a101b58958710dc33fe70385efcd844c10fb514",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lucius-the-eternal:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- FLAWLESS BLADES",
+      "sourceFieldSha256": "d1b3a1214be3379d62e83fecbd34e185e9713435e6337304b6207e8a7207e2ec",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-sorcerer:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Warped Interference (Psychic): While this model is leading a unit, each time a ranged attack targets that unit, models in it have the Benefit of Cover against that attack.",
+      "sourceFieldSha256": "7903688ab8ca8cec6ab5a0d9f3266726c87d4cd6543950ec2328f62ede4caffc",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit while-leading local formation; this is new text-only leader-ability fixture candidate.",
+      "leadingEvidence": "While this model is leading a unit"
+    },
+    {
+      "ruleId": "datasheet-sorcerer:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Wracking Agonies (Psychic): In your Shooting phase, after this model has shot, select one INFANTRY unit hit by one or more of those attacks made with its Agonising Energies. Until the start of your next turn, that unit is wracked with agonies. While a unit is wracked with agonies, subtract 2\" from its Move characteristic and subtract 2 from Charge rolls made for it.",
+      "sourceFieldSha256": "fc8a793271bb9ff1ff47a27186edac48a3dcf72c4ee4fe3b84d9509e8f73ff9e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Hit enemy unit receives Move and Charge penalty."
+    },
+    {
+      "ruleId": "datasheet-sorcerer:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: Agonising Energies; bolt pistol; force weapon.",
+      "sourceFieldSha256": "c33fd17b4a5247c4493f61aaa141d5eb8cdb5c427b22e7daa3dc1f17beb6e171",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-sorcerer:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- INFRACTORS\n- NOISE MARINES\n- TORMENTORS",
+      "sourceFieldSha256": "41cbf7f221791b776768bd9dcc64126a279dbea734e5b1b990b27c3f1f216b9b",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Assault Ramp: Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
+      "sourceFieldSha256": "fdb5bd667e53c2bd119de9c01c1146d3849b2d20c191257af93bd676c023cae5",
+      "classification": "BATTLE_ONLY",
+      "reason": "External passengers are recipients; transport remains source owner."
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model has a transport capacity of 14 EMPEROR’S CHILDREN INFANTRY models. Each TERMINATOR and FLAWLESS BLADE model takes up the space of 2 models.",
+      "sourceFieldSha256": "5aaeb306a25e62d4568f5bd01ff50b3c69dbe61cb077b80dc6862852cfa42588",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: 2 soulshatter lascannons; twin heavy bolter; armoured tracks.",
+      "sourceFieldSha256": "2e59aed62904b816c48caf75e1755e6f550cafdebcbdc2854b41dd64f4d175f5",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-chaos-land-raider:section:4",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-heldrake:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Airborne Predator: Each time this model ends a Normal move, you can select one enemy unit that it moved over during that move and roll two D6, adding 1 to each result if that enemy unit can FLY: for each 4+, that enemy unit suffers D3 mortal wounds.",
+      "sourceFieldSha256": "f69e859f1e799514922ad6bedafd58054dfd512545a620f547fff18cc133a246",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy takes damage."
+    },
+    {
+      "ruleId": "datasheet-heldrake:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: Hades autocannon; Heldrake claws.",
+      "sourceFieldSha256": "a05c6edce2b90cc31d7a8b3979f3842497aab25a6e57b18794b91afef5b3d36e",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-heldrake:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "469029fe0d7496cef75f811b81a4666d3dbac2cfc23c873451981d27e7490f35",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-defiler:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "sourceFieldSha256": "9cdc400731e2295eae748d14ec964aede87a0c159d516e08413b085c72e42885",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source-unit movement permission."
+    },
+    {
+      "ruleId": "datasheet-defiler:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Revel in Desecration: Each time this model makes an attack that targets an enemy unit that is not below Half-strength, add 1 to the Hit roll.",
+      "sourceFieldSha256": "ffc0adc3ba7170af0c2fcc7de41dbc71ce3f93163f41defa59205fa6c70ad6eb",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model attacks receive hit bonus."
+    },
+    {
+      "ruleId": "datasheet-defiler:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: 1 Hades battle cannon; 2 excruciator cannons; 1 heavy missile launcher; 1 heavy baleflamer; 1 shearing claws",
+      "sourceFieldSha256": "92f7868488b73319f0e855b163e20bc4c0004d8e79de01fe14a1e5a2e5b24293",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-defiler:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "71948d8060f431f4de130073abbd83174c6addb173602f9fb658047124bc4407",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-maulerfiend:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Glutton for Punishment: Each time this model makes an attack, if it is below its Starting Strength, add 1 to the Hit roll. If this model is also Below Half-strength, add 1 to the Wound roll as well.",
+      "sourceFieldSha256": "e1dce1421487a4f54aedcd68c86c61f73d4e487d0610b79d208d6e1eb1fcbbc1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Only source model attacks receive bonuses."
+    },
+    {
+      "ruleId": "datasheet-maulerfiend:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model is equipped with: lasher tendrils; Maulerfiend fists.",
+      "sourceFieldSha256": "d72afa5d68a0373fccae6e166e81d0536673a04cf99b9b2b1ae8cdb6dd467819",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-maulerfiend:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "469029fe0d7496cef75f811b81a4666d3dbac2cfc23c873451981d27e7490f35",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit damaged source-model attack penalty; wounds threshold stays literal battle text."
+    },
+    {
+      "ruleId": "datasheet-fiends:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Soporific Musk: Each time an enemy unit (excluding MONSTERS and VEHICLES) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests.",
+      "sourceFieldSha256": "8133af815d91691532e7cf392de0560bb8cc222237813b132cd74b55c7116e7b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy-only effect; source-unit proximity does not prove friendly recipient."
+    },
+    {
+      "ruleId": "datasheet-fiends:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Every model is equipped with: barbed tail and dissecting claws.",
+      "sourceFieldSha256": "d5a600c2d8689ca4c487a6040890b867a94349ac861d2efe30831a1cc129481c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "detachment-court-of-the-phoenician:rule:master-of-the-pageant",
+      "field": [
+        "text"
+      ],
+      "quote": "Once per battle round, when you target a Fulgrim unit from your army with the Sinuous Breach or Prideful Superiority Stratagem, you can reduce the CP cost of that use of that Stratagem by 1CP.",
+      "sourceFieldSha256": "9d0b6cfdd8dd47155a2925a047ddeb07100f5ac4b130b61b0aa5234141586a28",
+      "classification": "BATTLE_ONLY",
+      "reason": "External specified unit and Stratagem context."
+    }
+  ]
+}

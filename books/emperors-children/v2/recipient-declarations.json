@@ -1,3 +1,562 @@
 [
-  {"ruleId":"detachment-slaaneshs-chosen:enhancement:4","clauseId":"character-attack","field":["text"],"quote":"each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1.","subject":"MODEL","binding":"SOURCE_MODEL"}
+  {
+    "ruleId": "detachment-slaaneshs-chosen:enhancement:4",
+    "clauseId": "character-attack",
+    "field": [
+      "text"
+    ],
+    "quote": "each time the bearer makes a melee attack that targets a CHARACTER unit, improve the Strength and Armour Penetration characteristics of that attack by 1.",
+    "subject": "MODEL",
+    "binding": "SOURCE_MODEL"
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:enhancement:1",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "set the bearer back up on the battlefield",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:enhancement:4",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "for a model in the bearer’s unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "the bearer has a 3+ invulnerable save",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:enhancement:4",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "add 6\" to the Move characteristic of models in that unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "you can re-roll Charge rolls made for the bearer’s unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "models in the bearer’s unit have the Fights First ability",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:enhancement:4",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "the bearer can fight one additional time",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:enhancement:1",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "You can re-roll Charge rolls made for the bearer’s unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "You can re-roll Battle-shock and Leadership tests taken for the bearer’s unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-mercurial-host:enhancement:1",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "Each time a model in the bearer’s unit makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "detachment-mercurial-host:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "quote": "Each time a melee attack targets the bearer’s unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-tormentors:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "the bearer’s unit takes a Leadership test",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-keeper-of-secrets:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-shalaxi-helbane:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "made for this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-shalaxi-helbane:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Each time this model makes a melee attack that targets its quarry",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-shalaxi-helbane:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-fulgrim:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "it must be your WARLORD",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-fulgrim:section:2",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "this model has that ability",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-fulgrim:section:4",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-fulgrim:section:5",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "attack that targets this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-fulgrim:section:5",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "This model has the Fights First ability",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-flawless-blades:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time a model in this unit makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "this model has the Lone Operative ability",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "While a friendly SLAANESH unit is within 6\" of this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-daemon-prince-of-slaanesh:section:1",
+    "clauseId": "text-coverage:/blocks/2/text",
+    "field": [
+      "blocks",
+      2,
+      "text"
+    ],
+    "quote": "This model can fight after the attacking unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-chaos-terminators:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "This unit can re-roll that charge roll",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-chaos-spawn:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "this unit can make a Normal move of up to 6\"",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-daemon-prince-of-slaanesh-with-wings:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Each time an attack is allocated to this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-infractors:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "Each time a model in this unit targets an enemy unit with a melee attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-infractors:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "the bearer’s unit takes a Leadership test",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-lucius-the-eternal:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "Each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-lucius-the-eternal:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "if this model is not leading a unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-sorcerer:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "While this model is leading a unit, each time a ranged attack targets that unit, models in it have the Benefit of Cover",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-chaos-land-raider:section:4",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-heldrake:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-defiler:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "Each time this unit makes a Normal, Advance or Fall Back move",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-defiler:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-defiler:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-maulerfiend:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "Each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-maulerfiend:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "each time this model makes an attack",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-keeper-of-secrets:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "While a friendly LEGIONS OF EXCESS unit is within 6\" of this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-keeper-of-secrets:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Each time an attack targets this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  },
+  {
+    "ruleId": "datasheet-seekers:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "quote": "You can re-roll Advance and Charge rolls made for this unit",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-lord-exultant:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "melee weapons equipped by this model",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL"
+  }
 ]

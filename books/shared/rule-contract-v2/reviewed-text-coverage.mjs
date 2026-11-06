@@ -43,7 +43,9 @@ export function appendReviewedTextCoverage({book,facts,review,contracts,currentn
   assert.equal(row.sourceFieldSha256,textCoverageHash(source.text),'Reviewed paragraph fingerprint changed');
   assert(['BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(row.classification)&&row.reason?.trim(),'Unclassified source text');
   if(row.preserveExisting){
-   assert(existing.has(row.ruleId),'Preserved contract is missing');continue;
+   const prior=existing.get(row.ruleId);assert(prior,'Preserved contract is missing');
+   assert(prior.clauses.some(clause=>clause.sourceFields.some(field=>JSON.stringify(field)===JSON.stringify(row.field))),
+    'Preserved contract does not cover this source paragraph');continue;
   }
   if(existing.has(row.ruleId))assert.equal(row.appendToExisting,true,'Changing an existing contract requires explicit source review');
   else assert(!row.appendToExisting,'Append target has no existing contract');
