@@ -130,7 +130,7 @@ export function createRosterRuntime(book,{parse,evaluatePredicate,evaluateRole,v
       ...(e.kind==='PROFILE'?{fields:atoms(e.data)}:{}),...(['WARGEAR_OPTION','WARGEAR_FOOTNOTE','DATASHEET_SECTION','SUPPLEMENTAL_DATASHEET_RULE'].includes(e.kind)?{fields:atoms(e.data)}:{})})),
     get state(){ return state ? clone(state) : null; },
     get projection(){ return projection ? clone(projection) : null; },
-    draft:text=>lexicalDraft(text,parse),
+    draft:text=>lexicalDraft(text,parse,book),
     import(text,bindings,options) {
       const result=importNewRecruit(text,{parse,bindings,book});
       return commitRosterImport(result,state,service.load,options);

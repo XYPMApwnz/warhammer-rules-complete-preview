@@ -1,0 +1,262 @@
+{
+  "schema": "new-recruit-plain-header-qa/v1",
+  "baseline": "70be7d9d37a71b7ab91d79d3effd7019bb3b619a",
+  "owner": {
+    "file": "new-recruit-v37.15-owner-death-guard.txt",
+    "encoding": "UTF-8 without BOM; LF; final newline",
+    "sha256": "2db0c83b5c2f0e422719a14261a1470ceb2e974e91ff6aff791f974cfe518940",
+    "expectedBaselinePlusImportSha256": "fff95ded6bc1b9cdaae779984eef71ceead81e6ca589a4573797556a74356ccd",
+    "expectedBaselinePlusObservationSha256": "401302e4e7fee2f24643ab4d6762b69437a6fffb591261ea26921676783e6b36",
+    "expectedBaselinePlusNamespace": "import-df2d1338f2c7e524"
+  },
+  "derived": [
+    {
+      "bookId": "adeptus-mechanicus",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "F1/Haloscreed Battle Clade",
+      "plusText": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon",
+      "plainText": "Derived header regression (20000 Points)\n\nAdeptus Mechanicus\nHaloscreed Battle Clade (1 Detachment Point)\n\nChar1: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\nChar2: 1x Tech-priest Dominus (100 pts): Volkite blaster, Macrostubber, Omnissian axe\n9x Servitor Battleclade (110 pts)\n• 1x Servitor Underseer: Mechanicus pistol, Dataspikes\n• 2x Gun Servitor: 2 with Heavy arc rifle, Servo-claw\n• 6x Combat Servitor: 6 with Phosphor blaster, Servo-claw\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon\n10x Skitarii Rangers (85 pts): 10x Galvanic rifle, 10x Close combat weapon",
+      "bindings": {},
+      "faction": "Adeptus Mechanicus",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Haloscreed Battle Clade",
+      "expectedDetachmentIds": [
+        "detachment-haloscreed-battle-clade"
+      ],
+      "expectedBaselineNamespace": "import-484af4b46707d7ad",
+      "expectedBaselineImportEvidence": null,
+      "expectedBaselineObservationSha256": "4aa0353fac7b9c03999eb67c9a95227d91b53500dd21d4c446ed312d8e835ef7",
+      "expectedBaselineImportSha256": "852efe01ae4267538c1b0fbe3aa845218f78b72892f5f52d201cdde66e15a02b"
+    },
+    {
+      "bookId": "blood-angels",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "i2c/blood-angels",
+      "plusText": "+ FACTION KEYWORD: Blood Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "plainText": "Derived header regression (20000 Points)\n\nBlood Angels\nGladius Task Force (1 Detachment Point)\n\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "bindings": {},
+      "faction": "Blood Angels",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Gladius Task Force",
+      "expectedDetachmentIds": [
+        "detachment-sm-6341f5a9b9584677"
+      ],
+      "expectedBaselineNamespace": "import-2e82b075eab78de5",
+      "expectedBaselineImportEvidence": {
+        "faction": "Blood Angels",
+        "detachment": "Gladius Task Force",
+        "detachments": [
+          {
+            "label": "Gladius Task Force",
+            "name": "Gladius Task Force",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 19998
+      },
+      "expectedBaselineObservationSha256": "504040488701272bd19ed4861c24928a4ea6c5b9d977cb4c1b047c3081f05974",
+      "expectedBaselineImportSha256": "e46a122c5e827dc31c11b58eecf84b7c8a32d6b4ea7230b75e767cc913cf34f4"
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "F1-F2/csm-daemonkin",
+      "plusText": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Veterans of the Long War\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\nCreated with newrecruit.eu",
+      "plainText": "Derived header regression (20000 Points)\n\nChaos Space Marines\nVeterans of the Long War (1 Detachment Point)\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n1x Master of Possession (65 pts)\n• 1x Master of Possession: Bolt pistol, Rite of Possession, Staff of possession\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n5x Legionaries (95 pts)\n• 1x Aspiring Champion: Bolt pistol, Boltgun, Close combat weapon\n• 4x Legionaries: Bolt pistol, Boltgun, Close combat weapon\n\n1x Chaos Lord (95 pts)\n• 1x Chaos Lord: Plasma pistol, Daemon hammer\n\nCreated with newrecruit.eu",
+      "bindings": {},
+      "faction": "Chaos Space Marines",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Veterans of the Long War",
+      "expectedDetachmentIds": [
+        "detachment-veterans-of-the-long-war"
+      ],
+      "expectedBaselineNamespace": "import-c2516a32d55efc90",
+      "expectedBaselineImportEvidence": null,
+      "expectedBaselineObservationSha256": "86bf693b1a228902e9ba6784d897fc086bb75da79f723e63c677b0db343c718b",
+      "expectedBaselineImportSha256": "fe26f3bc5168c38837d0eb78b79509fe61441c51ae53432b20e3a0efc3812d20"
+    },
+    {
+      "bookId": "dark-angels",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "i2c/dark-angels",
+      "plusText": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Gladius Task Force\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "plainText": "Derived header regression (20000 Points)\n\nDark Angels\nGladius Task Force (1 Detachment Point)\n\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "bindings": {},
+      "faction": "Dark Angels",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Gladius Task Force",
+      "expectedDetachmentIds": [
+        "detachment-sm-6341f5a9b9584677"
+      ],
+      "expectedBaselineNamespace": "import-6ad9e2be07d3d037",
+      "expectedBaselineImportEvidence": {
+        "faction": "Dark Angels",
+        "detachment": "Gladius Task Force",
+        "detachments": [
+          {
+            "label": "Gladius Task Force",
+            "name": "Gladius Task Force",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 19998
+      },
+      "expectedBaselineObservationSha256": "7518b5b8b2b5dde69d603b4c5e6f8dc2a93e467091e028acb4887128c0d75a6d",
+      "expectedBaselineImportSha256": "6074bbd1c0e75306583735b83022162b67843d7b5342261f1fc6adbf8f655f6a"
+    },
+    {
+      "bookId": "emperors-children",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "charge/ec-daemonettes",
+      "plusText": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Carnival of Excess\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws, Instrument of Chaos\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws",
+      "plainText": "Derived header regression (20000 Points)\n\nEmperor's Children\nCarnival of Excess (1 Detachment Point)\n\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws, Instrument of Chaos\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws\n• 7x Daemonette: Slashing claws\n10x Daemonettes (100 pts)\n• 1x Alluress: Slashing claws\n• 1x Daemonette: Slashing claws\n• 1x Daemonette: Slashing claws, Daemonic icon\n• 7x Daemonette: Slashing claws",
+      "bindings": {},
+      "faction": "Emperor's Children",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Carnival of Excess",
+      "expectedDetachmentIds": [
+        "detachment-carnival-of-excess"
+      ],
+      "expectedBaselineNamespace": "import-c740a4de9644c023",
+      "expectedBaselineImportEvidence": {
+        "faction": "Chaos - Emperor's Children",
+        "detachment": "Carnival of Excess",
+        "detachments": [
+          {
+            "label": "Carnival of Excess",
+            "name": "Carnival of Excess",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 300
+      },
+      "expectedBaselineObservationSha256": "c88a5efd9574826c8f7d28f3717b9df11812ea47ded15b1f371dadf92d169f06",
+      "expectedBaselineImportSha256": "4fb2262937cbb94b069e4566daa8c4164f2f217132769ecab085837100df894a"
+    },
+    {
+      "bookId": "space-marines",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "i2c/single-source",
+      "plusText": "+ FACTION KEYWORD: Space Marines\n+ DETACHMENT: Gladius Task Force\n1x Kaius Konorius (9999 pts)\n• 1x Kaius Konorius\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "plainText": "Derived header regression (20000 Points)\n\nSpace Marines\nGladius Task Force (1 Detachment Point)\n\n1x Kaius Konorius (9999 pts)\n• 1x Kaius Konorius\n1x Captain (9999 pts)\n• 1x Captain\n5x Assault Intercessor Squad (9999 pts)\n• 4x Assault Intercessor\n• 1x Assault Intercessor Sergeant\n",
+      "bindings": {},
+      "faction": "Space Marines",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Gladius Task Force",
+      "expectedDetachmentIds": [
+        "detachment-sm-6341f5a9b9584677"
+      ],
+      "expectedBaselineNamespace": "import-c8d53890a006b412",
+      "expectedBaselineImportEvidence": {
+        "faction": "Space Marines",
+        "detachment": "Gladius Task Force",
+        "detachments": [
+          {
+            "label": "Gladius Task Force",
+            "name": "Gladius Task Force",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 29997
+      },
+      "expectedBaselineObservationSha256": "15dde27c4ec130b19d431573fe7b4aa433b75c3e67b77b16fdcdd4697706f429",
+      "expectedBaselineImportSha256": "eaedc3258398ead6a9fc2dda31f1d022741c4c8c1a4eeab32c54d1c6fe06a758"
+    },
+    {
+      "bookId": "tau-empire",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "native-unit/unit-ax-1-0-tiger-shark",
+      "plusText": "+ FACTION KEYWORD: T’au Empire\n+ DETACHMENT: Mont'ka\n1x AX-1-0 Tiger Shark (100 pts)\n• 1x AX-1-0 Tiger Shark\n",
+      "plainText": "Derived header regression (20000 Points)\n\nT’au Empire\nMont'ka (1 Detachment Point)\n\n1x AX-1-0 Tiger Shark (100 pts)\n• 1x AX-1-0 Tiger Shark\n",
+      "bindings": {},
+      "faction": "T’au Empire",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Mont'ka",
+      "expectedDetachmentIds": [
+        "detachment-montka"
+      ],
+      "expectedBaselineNamespace": "import-c4f5c4149508a32c",
+      "expectedBaselineImportEvidence": {
+        "faction": "T’au Empire",
+        "detachment": "Mont'ka",
+        "detachments": [
+          {
+            "label": "Mont'ka",
+            "name": "Mont'ka",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 100
+      },
+      "expectedBaselineObservationSha256": "8267e93dd88c0313142663279e92fd3ec06ecc223e4d40c96cdb59bc6b7cde01",
+      "expectedBaselineImportSha256": "67e26fd4329cf44a28636611a92a57be37969affc77bb3fddea8579fdfa1425a"
+    },
+    {
+      "bookId": "tyranids",
+      "kind": "DERIVED_NOT_REAL_EXPORT",
+      "sourceFixtureId": "F1/broad-fixture",
+      "plusText": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Invasion Fleet\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Acid spray, Stinger salvoes, Powerful limbs\n1x Tyrannofex (190 pts)\n• 1x Tyrannofex: Rupture cannon, Stinger salvoes, Powerful limbs\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Fleshborer hive, Stinger salvoes, Powerful limbs\n",
+      "plainText": "Derived header regression (20000 Points)\n\nTyranids\nInvasion Fleet (1 Detachment Point)\n\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Acid spray, Stinger salvoes, Powerful limbs\n1x Tyrannofex (190 pts)\n• 1x Tyrannofex: Rupture cannon, Stinger salvoes, Powerful limbs\n1x Tyrannofex (180 pts)\n• 1x Tyrannofex: Fleshborer hive, Stinger salvoes, Powerful limbs\n",
+      "bindings": {},
+      "faction": "Tyranids",
+      "listName": "Derived header regression",
+      "pointsLimit": 20000,
+      "detachmentName": "Invasion Fleet",
+      "expectedDetachmentIds": [
+        "detachment-invasion-fleet"
+      ],
+      "expectedBaselineNamespace": "import-966710e18dd1fb78",
+      "expectedBaselineImportEvidence": {
+        "faction": "Tyranids",
+        "detachment": "Invasion Fleet",
+        "detachments": [
+          {
+            "label": "Invasion Fleet",
+            "name": "Invasion Fleet",
+            "rule": "",
+            "disposition": "—"
+          }
+        ],
+        "disposition": "—",
+        "declared": 0,
+        "battleSize": "—",
+        "pointsLimit": null,
+        "unitLineTotal": 550
+      },
+      "expectedBaselineObservationSha256": "b197971cdf934bcf43eda055ffd2ad0d6b666a01ced8e0500eb80c53054bdd3b",
+      "expectedBaselineImportSha256": "e9d54e4545c99ee607df074cbeff884593cce8c2e7a4191059ec3a1f07afc765"
+    }
+  ]
+}

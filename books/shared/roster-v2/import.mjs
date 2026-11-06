@@ -135,10 +135,40 @@ function rawSelections(value, key, scope, modelQuantity) {
   });
 }
 
-export function lexicalDraft(rawText, parse) {
+/** Only a unique complete cover of source-declared names can split an
+ * unlabelled caption. Whole names (including internal commas/and) win first.
+ * Unknown or ambiguous text stays intact for normal canonical admission. */
+function plainDetachmentLabels(label,book) {
+  const known=new Set((book?.entities||[]).filter(entity=>entity.kind==='DETACHMENT').flatMap(named).map(value=>entryLabel('DETACHMENT',value)).filter(Boolean));
+  if(known.has(entryLabel('DETACHMENT',label)))return [label];
+  const separators=[...label.matchAll(/,\s*(?:and\b\s*)?|\s+and\s+/gi)],memo=new Map();
+  function covers(start){
+    if(memo.has(start))return memo.get(start);
+    const tail=label.slice(start).trim(),found=[];
+    if(known.has(entryLabel('DETACHMENT',tail)))found.push([tail]);
+    for(const separator of separators){
+      if(separator.index<start)continue;
+      const head=label.slice(start,separator.index).trim();
+      if(!known.has(entryLabel('DETACHMENT',head)))continue;
+      for(const rest of covers(separator.index+separator[0].length)){
+        found.push([head,...rest]);if(found.length===2)break;
+      }
+      if(found.length===2)break;
+    }
+    memo.set(start,found);return found;
+  }
+  const matches=covers(0);return matches.length===1?matches[0]:[label];
+}
+
+export function lexicalDraft(rawText, parse, book) {
   if (typeof parse !== 'function') throw new TypeError('An independent lexical parse function is required');
   const sourceText = String(rawText ?? ''), parsed = parse(sourceText);
   if (!parsed || !Array.isArray(parsed.units)) throw new TypeError('Malformed lexical parser result');
+  if(parsed.plainHeader&&book){
+    const labels=plainDetachmentLabels(parsed.detachments[0].label,book);
+    parsed.detachments=labels.map(label=>({label,name:label,rule:'',disposition:'—'}));
+    parsed.detachment=labels[0];
+  }
   const units = parsed.units.map((raw, i) => {
     const id = `parsed-unit-${i + 1}`;
     if (raw.id && raw.id !== id) throw new TypeError('Lexical physical unit identity changed');
@@ -159,7 +189,7 @@ export function lexicalDraft(rawText, parse) {
   });
   const enhancements = (parsed.enhancements || []).map((item, i) => ({...clone(item), key: `enhancement/${i + 1}`}));
   const metadata = {};
-  for (const key of ['faction', 'detachment', 'detachments', 'disposition', 'declared', 'battleSize', 'pointsLimit', 'unitLineTotal']) {
+  for (const key of ['faction', 'detachment', 'detachments', 'disposition', 'declared', 'battleSize', 'pointsLimit', 'unitLineTotal', 'plainHeader']) {
     if (parsed[key] !== undefined) metadata[key] = clone(parsed[key]);
   }
   const importedDetachments = parsed.detachments ?? (parsed.detachment && parsed.detachment !== '—' ? [{label:parsed.detachment}] : []);
@@ -188,7 +218,7 @@ function fieldExists(data, pointer) {
 export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[]} = {}) {
   const errors = [], needsBindings = [], resolutions = [];
   let draft;
-  try { draft = lexicalDraft(rawText, parse); }
+  try { draft = lexicalDraft(rawText, parse, book); }
   catch (error) { return {schema: 'roster-v2/import-result', status: 'INVALID', draft: null,
     roster: null, needsBindings, errors: [{code: 'INVALID_LEXICAL_INPUT', key: 'input', message: error.message}]}; }
   const issue = (code, key, message) => errors.push({code, key, message});
