@@ -8895,6 +8895,22 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/singleton-model-import.mjs",
+      "reasons": [
+        {
+          "kind": "native-v2-reviewed-runtime"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/import-service.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/tau-empire/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/rule-contract-v2/conditions-build.mjs",
       "reasons": [
         {

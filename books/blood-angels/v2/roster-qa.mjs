@@ -304,11 +304,20 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    assert.equal(trace(peer,rule).length,0);stableProjection(service);
   }
   {const rule='ability-ba-da87d6022de8416d9040',service=createBloodAngelsRosterService(book);assert.ok(sources.get(rule).data.text.includes('This model has +1 W.'));
-   ready(service,header()+fixture(ID.jumpCaptain,{modelGear:'1x Relic Shield, 1x Chainsword'}).text+fixture(ID.jumpCaptain,{unitGear:'1x Relic Shield',weapon:'Chainsword'}).text);
-   const selected=unit(service,'parsed-unit-1'),unknown=unit(service,'parsed-unit-2'),display=present(service,selected.instanceId,rule);
-   for(const p of selected.profiles){const expected=String(Number(sources.get(p.canonicalProfileId).data.stats.W)+1);assert.equal(String(p.profile.stats.W),expected);
-    assert.ok(display.variants.get(p.canonicalProfileId).find(c=>c.scopeId===p.scopeId).fields.some(f=>f.source?.path==='/stats/W'&&String(f.value)===expected));}
-   assert.equal(trace(unknown,rule).length,0);for(const p of unknown.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(service);
+   ready(service,header()+fixture(ID.jumpCaptain,{modelGear:'1x Relic Shield, 1x Chainsword'}).text+fixture(ID.jumpCaptain,{unitGear:'1x Relic Shield',weapon:'Chainsword'}).text+fixture(ID.jumpCaptain,{weapon:'Chainsword'}).text);
+   // Both spellings prove the same sole physical MODEL. Absence and pooled
+   // equipment on multiple MODELs remain independent negative controls.
+   for(const id of ['parsed-unit-1','parsed-unit-2']){
+    const selected=unit(service,id),display=present(service,id,rule);assert.equal(trace(selected,rule).length,1);
+    for(const p of selected.profiles){const expected=String(Number(sources.get(p.canonicalProfileId).data.stats.W)+1);assert.equal(String(p.profile.stats.W),expected);
+     assert.ok(display.variants.get(p.canonicalProfileId).find(c=>c.scopeId===p.scopeId).fields.some(f=>f.source?.path==='/stats/W'&&String(f.value)===expected));}
+   }
+   const absent=unit(service,'parsed-unit-3');assert.equal(trace(absent,rule).length,0);
+   for(const p of absent.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(service);
+   const many=createBloodAngelsRosterService(book),name=sources.get(ID.jumpCaptain).data.title;
+   ready(many,header()+'2x '+name+' (9999 pts): 1x Relic Shield\n• 1x '+name+': 1x Chainsword\n• 1x '+name+': 1x Chainsword\n');
+   const unbound=unit(many,'parsed-unit-1');assert.equal(trace(unbound,rule).length,0);
+   for(const p of unbound.profiles)assert.equal(p.profile.stats.W,sources.get(p.canonicalProfileId).data.stats.W);stableProjection(many);
   }
   {const rule='enhancement-ba-c6832a51a86e4ae784ba',source=sources.get(rule),name=sources.get(ID.dcCaptain).data.title,weapon='Master-crafted Chainsword';assert.ok(source.data.text.includes('This model’s melee attacks have +2 A.'));
    const text=header([source.parentId])+'2x '+name+' (9999 pts)\n• 1x '+name+': 1x '+weapon+'\n• 1x '+name+': 1x '+weapon+'\nEnhancement: '+source.data.title+'\n'+fixture(ID.dcCaptain,{weapon}).text;

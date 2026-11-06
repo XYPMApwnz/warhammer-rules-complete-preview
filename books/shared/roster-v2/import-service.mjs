@@ -1,6 +1,7 @@
 import {parse as parseText} from './parser.mjs';
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster} from './context.mjs';
+import {bindSingletonModelEquipment} from './singleton-model-import.mjs';
 import {getRecordedSourceIdentity,registerBookSources,cloneSourceBook} from '../source-refs-v2/source-refs.mjs';
 
 const copy=value=>structuredClone(value);
@@ -80,7 +81,10 @@ export function createRosterImportService(book,{parse=parseText,identityAliases=
     draft:text=>lexicalDraft(text,parse),
     import(text,bindings) {
       const result=importNewRecruit(text,{parse,bindings,book:view,weaponSelections:declaredSelections,equipmentSelections:equipment,optionSelections:options,deferredUnits:deferred});
-      if (result.status==='READY') service.load(result.roster);
+      if (result.status==='READY') {
+        bindSingletonModelEquipment(result.roster,equipment);
+        service.load(result.roster);
+      }
       return result;
     },
     load(snapshot) {

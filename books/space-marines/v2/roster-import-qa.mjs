@@ -102,7 +102,18 @@ for(const [n,binding]of book.mfmPhysicalPaidOptions.entries()){
   assert.equal(one.points.units[0].paid.totalPaidPoints,paidSourceExpected[n]);
   assert.equal(one.points.units[0].basePoints,expectedBase(binding.ownerUnitId,clean.total));
   assert.equal(one.points.totalPoints,expectedBase(binding.ownerUnitId,clean.total)+paidSourceExpected[n]);
-  assert.ok(one.points.units[0].paid.options[0].selections.every(row=>row.scope.modelScopeId===null),'UNIT inventory acquired a fabricated MODEL');
+  const scopes=one.points.units[0].paid.options[0].selections.map(row=>row.scope);
+  // Orbital Comms Array is a paid equipment ability on the sole physical
+  // Impulsor MODEL. The owner's singleton import rule now proves that bearer;
+  // no multi-MODEL inventory or paid weapon acquires an inferred MODEL.
+  if(binding.ownerUnitId==='unit-sm-4fce70f042cc4e5d'&&binding.equipmentIds.includes('ability-sm-7d0c729bd52143f9')){
+    assert.equal(clean.total,1);assert.equal(exact.state.units[0].modelRows.length,1);
+    const unit=exact.state.units[0],row=unit.modelRows[0];assert.equal(row.quantity,1);
+    assert.deepEqual(scopes,[{kind:'MODEL',unitInstanceId:unit.instanceId,modelScopeId:`${unit.instanceId}/${row.rowId}/PROFILE/${row.rowId}`}]);
+    const occurrence=row.selections.find(item=>item.canonicalEquipmentIds.includes('ability-sm-7d0c729bd52143f9'));
+    assert.equal(occurrence.quantityEvidence.scope,'UNIT','Original lexical evidence remains UNIT-origin');
+    assert.equal(occurrence.quantityEvidence.modelQuantity,1);assert.equal(occurrence.perModelQuantity,1);
+  }else assert.ok(scopes.every(scope=>scope.modelScopeId===null),'UNIT inventory acquired a fabricated MODEL');
   const nonPaid=index.get(binding.ownerUnitId).data.weaponIds.find(id=>!binding.profileIds.includes(id)&&!index.get(id).data.name.includes(','));
   const noPaid=pricedFixture(binding.ownerUnitId,{gear:false,unitEquipment:'1x '+index.get(nonPaid).data.name});
   const pair=createSpaceMarinesRosterService(book);ready(pair,header()+clean.text+noPaid.text);

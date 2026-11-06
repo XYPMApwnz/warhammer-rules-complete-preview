@@ -1,6 +1,7 @@
 import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
+import {resolveSingletonCompositionMember} from '../../shared/roster-v2/singleton-model-import.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,changeAttachment} from '../../shared/roster-v2/context.mjs';
 import {createRosterRuntime} from '../../shared/roster-v2/runtime.mjs';
@@ -73,9 +74,13 @@ export function createTauRosterImport(input){
         }
       for(const row of unit.modelRows){
         const rawRow=raw?.modelRows.find(item=>item.key===row.rowId);
-        const matches=draft?(raw.modelRows.length?members.filter(member=>member.labels.some(label=>
+        let matches=draft?(raw.modelRows.length?members.filter(member=>member.labels.some(label=>
           normalizeImportLabel(label)===normalizeImportLabel(rawRow?.name))):members.filter(member=>member.profileId===row.canonicalProfileId)):
           members.filter(member=>member.id===row.compositionMemberId);
+        if(draft&&!raw.modelRows.length&&matches.length>1){
+          const proven=resolveSingletonCompositionMember(unit,row,members);
+          if(proven)matches=[proven];
+        }
         if(matches.length!==1){needs.push({kind:'COMPOSITION_MEMBER',key:row.rowId,candidateIds:matches.map(m=>m.id)});continue;}
         const member=matches[0];checked(row,'compositionMemberId',member.id);
         if(row.canonicalProfileId!==member.profileId)error('WRONG_MODEL_PROFILE',row.rowId,'Source composition/profile differ');

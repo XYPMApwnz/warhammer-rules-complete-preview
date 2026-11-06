@@ -148,7 +148,15 @@ check('paid-option-import-numeric-totals-known-unknown-and-alternative-family',(
   ready(service,header()+without.text);assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
   const input=fixture(binding.ownerUnitId,{unitGear:'2x '+label}),result=ready(service,header()+input.text,{}, {replaceExisting:true});
   const option=result.points.units[0].paid.options.find(row=>row.costRecordId===binding.costRecordId);
-  assert.equal(option.quantity,2);assert.equal(option.points,2*binding.value);assert.equal(service.state.units[0].selections.length,1);
+  assert.equal(option.quantity,2);assert.equal(option.points,2*binding.value);
+  const unit=service.state.units[0];
+  if(binding.ownerUnitId==='unit-sm-4fce70f042cc4e5d'&&binding.equipmentIds.includes('ability-sm-7d0c729bd52143f9')){
+   assert.equal(unit.startingStrength,1);assert.equal(unit.modelRows.length,1);assert.equal(unit.modelRows[0].quantity,1);
+   assert.equal(unit.selections.length,0);
+   const selected=unit.modelRows[0].selections.filter(row=>row.canonicalEquipmentIds.includes('ability-sm-7d0c729bd52143f9'));
+   assert.equal(selected.length,1);assert.equal(selected[0].physicalQuantity,2);assert.equal(selected[0].perModelQuantity,2);
+   assert.equal(selected[0].quantityEvidence.scope,'UNIT');assert.equal(selected[0].quantityEvidence.modelQuantity,1);
+  }else assert.equal(unit.selections.length,1);
   assert.equal(result.points.units[0].totalPoints,result.points.units[0].basePoints+2*binding.value);
   const snapshot=service.snapshot();ready(service,header()+input.text);assert.deepEqual(service.snapshot(),snapshot);
   service.recompute();assert.equal(service.points.units[0].paid.options.find(row=>row.costRecordId===binding.costRecordId).quantity,2);
