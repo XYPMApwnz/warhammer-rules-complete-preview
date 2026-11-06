@@ -1,0 +1,3325 @@
+{
+  "schema": "reviewed-rule-text-coverage/v1",
+  "bookId": "tyranids",
+  "acceptedBaseHead": "c0fab930a4f45ba05c33b66834fbf979518d91ef",
+  "factualFingerprint": "e50c4d2e756fa3c1602507ed90068243b04a5039a9753e17d5c10504bdab6dd7",
+  "enhancementOwners": {
+    "detachment-subterranean-assault:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-subterranean-assault:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-subterranean-assault:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS model with the Deep Strike ability only."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-gargoyles:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-hyperadapted-raveners:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-hyperadapted-raveners:profile:2"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-mawloc:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-mucolid-spores:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-parasite-of-mortrex:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-raveners:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-ripper-swarms:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-spore-mines:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-the-red-terror:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-trygon:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-tyrannocyte:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-winged-hive-tyrant:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              },
+              {
+                "predicate": "MODEL_ID",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "id": "datasheet-winged-tyranid-prime:profile:1"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model with the Deep Strike ability only."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model with the Deep Strike ability only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-invasion-fleet:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-invasion-fleet:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-invasion-fleet:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-synaptic-nexus:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS SYNAPSE model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-synaptic-nexus:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS SYNAPSE model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-synaptic-nexus:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS SYNAPSE model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS SYNAPSE model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-assimilation-swarm:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS model only (excluding MONSTERS models)."
+            }
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "eligibilityText"
+                  ],
+                  "quote": "TYRANIDS model only (excluding MONSTERS models)."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only (excluding MONSTERS models)."
+      },
+      "reviewNote": "Preserve the existing import producer conservative MONSTER exclusion; source plural remains an unresolved recipient-review ambiguity."
+    },
+    "detachment-assimilation-swarm:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-assimilation-swarm:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-crusher-stampede:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS MONSTER model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-crusher-stampede:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS MONSTER model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-crusher-stampede:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "TYRANIDS MONSTER model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS MONSTER model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-vanguard-onslaught:enhancement:1": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-vanguard-onslaught:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "VANGUARD INVADER"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "VANGUARD INVADER model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "VANGUARD INVADER model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-vanguard-onslaught:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-unending-swarm:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-unending-swarm:enhancement:3": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-unending-swarm:enhancement:4": {
+      "subject": "MODEL",
+      "selector": {
+        "predicate": "MODEL_KEYWORD",
+        "subject": "MODEL",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "eligibilityText"
+          ],
+          "quote": "TYRANIDS model only."
+        }
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "TYRANIDS model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-ambush-predators:enhancement:1": {
+      "subject": "UNIT",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-lictor"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-neurolictor"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only."
+            }
+          },
+          {
+            "predicate": "UNIT_ID",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "id": "unit-von-ryans-leapers"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    },
+    "detachment-warrior-bioform-onslaught:enhancement:2": {
+      "subject": "MODEL",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "WINGED TYRANID PRIME"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANID PRIME WITH LASH WHIP"
+            },
+            "evidence": {
+              "field": [
+                "eligibilityText"
+              ],
+              "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only."
+            }
+          }
+        ]
+      },
+      "restriction": {
+        "field": [
+          "eligibilityText"
+        ],
+        "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only."
+      },
+      "reviewNote": "Exact source carrier restriction; physical model context excludes attached-component keywords."
+    }
+  },
+  "records": [
+    {
+      "ruleId": "army-rule-synapse:definition",
+      "field": [
+        "text"
+      ],
+      "quote": "If your Army Faction is TYRANIDS, while a TYRANIDS unit from your army is within 6\" of one or more friendly SYNAPSE models, that TYRANIDS unit is said to be within Synapse Range of that model and of your army. While a TYRANIDS unit from your army is within Synapse Range of your army:\n- Each time that unit takes a Battle-shock test, take that test on 3D6 instead of 2D6.\n- Each time a model in that unit makes a melee attack, add 1 to the Strength characteristic of that attack.",
+      "sourceFieldSha256": "ef4256c6daa810c2660da129fe7362be5ea8b863b93f7610393302f3a6fa205f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "army-rule-shadow-in-the-warp:definition",
+      "field": [
+        "text"
+      ],
+      "quote": "If your Army Faction is TYRANIDS, once per battle, in either player’s Command phase, if one or more units from your army with this ability are on the battlefield, you can unleash the Shadow in the Warp. When you do, each enemy unit on the battlefield must take a Battle-shock test. Each time an enemy unit takes such a Battle-shock test, if it is within 6\" of one or more SYNAPSE units from your army, subtract 1 from that test.",
+      "sourceFieldSha256": "2f4f454929f2dc78de804b9665a2b88a7ad077983d1776903651358a939e1ab5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-subterranean-assault:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Each time a TYRANIDS model from your army makes an attack, re-roll a Hit roll of 1.\nEach time a BURROWER unit from your army is set up on the battlefield from Reserves, place a circular 40mm Tunnel Marker anywhere on the battlefield within 1\" of that unit and more than 3\" horizontally away from all enemy units.\nIn the Reinforcements step of your Movement phase, when you set up a unit on the battlefield from Reserves, you can set that unit up wholly within 9\" of one of your Tunnel Markers and more than 6\" horizontally away from any enemy units.\nIf an enemy model (excluding AIRCRAFT) ends any kind of move within 3\" of one of your Tunnel Markers, that Tunnel Marker is removed from the battlefield.\nKEYWORDS\nMAWLOC and TRYGON units from your army have the BURROWER keyword.\nIn the Muster Armies step, you can select up to 2 TRYGON models from your army. The selected units gain the CHARACTER keyword.\nDesigner’s Note: This means that the selected models can be given Enhancements and one of them can be selected as your WARLORD.",
+      "sourceFieldSha256": "7dafda097ece3e819d04224d0c371b37352daac5344b28bd39d70a6f6877a931",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-subterranean-assault:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Once per battle, you can target the bearer’s unit with the Rapid Ingress stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
+      "sourceFieldSha256": "e017abbd94e461286704a2215087c95138688a57e2f7d598366710994c530576",
+      "classification": "BATTLE_ONLY",
+      "reason": "Permission expressly targets the bearer’s unit, including its attached formation."
+    },
+    {
+      "ruleId": "detachment-subterranean-assault:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. After both players have deployed their armies, select up to three friendly TYRANIDS units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "sourceFieldSha256": "9e983ee10c368e73f3af21eacc0be6b908b49e1d13c183967980d38d857ec5a5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects up to three external friendly units for redeployment; selection is not source-unit evidence."
+    },
+    {
+      "ruleId": "detachment-subterranean-assault:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model with the Deep Strike ability only. The bearer’s unit can be set up using the Deep Strike ability in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules.",
+      "sourceFieldSha256": "a2ab3d0c396483ea9f52bac52cbe1c4520b9e7068eef24eba7ff1f79479a2306",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reserve arrival permission belongs to the bearer’s whole unit."
+    },
+    {
+      "ruleId": "detachment-subterranean-assault:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TRYGON model only. The bearer gains the SYNAPSE keyword. Improve the Strength and Weapon Skill characteristics of melee weapons equipped by the bearer by 1.",
+      "sourceFieldSha256": "9fdb9d25c83876618783828baa3b2ef94688f1141ab3e99785455cd9d717f23b",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-invasion-fleet:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "At the start of the first battle round, select one of the following Hyper-adaptations to be active for TYRANIDS units from your army until the end of the battle:\nSwarming InstinctsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets an INFANTRY or SWARM unit, that attack has the [SUSTAINED HITS 1] ability.Hyper-aggressionEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a MONSTER or VEHICLE unit, that attack has the [LETHAL HITS] ability.Hive PredatorsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a CHARACTER unit, on a Critical Hit, that attack has the [PRECISION] ability.",
+      "sourceFieldSha256": "2ffb0251ce350ece770cf6ab24b5fea57e6e0d59cef79a113a858085a3234d14",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-invasion-fleet:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. After both players have deployed their armies, select up to three TYRANIDS units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves.",
+      "sourceFieldSha256": "8120d46d3350928f69f2934c891455c8a51788eadb1c396011e9f523bb623132",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects up to three army units for redeployment; no fixed source-unit recipient."
+    },
+    {
+      "ruleId": "detachment-invasion-fleet:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Once per turn, you can re-roll one Hit roll, one Wound roll, one Damage roll, one Advance roll, one Charge roll or one saving throw made for the bearer.",
+      "sourceFieldSha256": "cf6a4c9bf726e26dcedf495c502c27b1f47d4c2ccb77f8c10bb12289aad544a1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reroll permission is limited to rolls made for the bearer."
+    },
+    {
+      "ruleId": "detachment-invasion-fleet:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. While a friendly TYRANIDS unit is within 9\" of the bearer, that unit is within Synapse Range of your army.",
+      "sourceFieldSha256": "c48971ec4b25081c009f04dcb11747fbb1b4ae2b0e40c02f902f61152325c0dc",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly-unit aura may affect a formed friendly unit; no range or keyword evaluation is introduced."
+    },
+    {
+      "ruleId": "detachment-invasion-fleet:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. The bearer has the Feel No Pain 5+ ability. At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead.",
+      "sourceFieldSha256": "437aed2fd0a8b819d956068abc4e8fb229f159ef33435707cf5070440bbfcd84",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-synaptic-nexus:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "At the start of the battle round, you can select one of the Synaptic Imperatives shown below. Until the end of the battle round, that Synaptic Imperative is active for your army and while a TYRANIDS unit from your army is within Synapse Range of your army, it will benefit from it. Each Synaptic Imperative can only be selected once per battle.\n- Synaptic Augmentation: While this unit is within Synapse Range of your army, models in this unit have a 5+ invulnerable save.\n- Surging Vitality: While this unit is within Synapse Range of your army, add 1 to Advance and Charge rolls made for this unit.\n- Goaded to Slaughter: While this unit is within Synapse Range of your army, each time a model in this unit makes a melee attack, add 1 to the Hit roll.",
+      "sourceFieldSha256": "be75abba3ae3895033f6bff5b647d2151d32b84f7cdccbc2de25a0f78410d0c0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-synaptic-nexus:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS PSYKER model only. Improve the Strength and Armour Penetration characteristics of psychic weapons equipped by the bearer by 1.",
+      "sourceFieldSha256": "c616b26eb2e4f77bcb4cf68a495ec044f5fc2f409145c704efa1310c66d38005",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-synaptic-nexus:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS SYNAPSE model only. Enemy units that arrive on the battlefield from Reserves cannot be set up within 12\" of the bearer. In addition, once per battle, during the first or second battle round, when your opponent declares that a unit will arrive on the battlefield from Strategic Reserves, the bearer can use this Enhancement. If it does, roll one D6: on a 4+, that enemy unit cannot arrive on the battlefield this turn.",
+      "sourceFieldSha256": "1d1777e27f6a1a012adb4e7d3bfb6d1a7ad8f7321e4df020df9a31cdd2ad165a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reserves exclusion and optional delay affect enemy units; bearer is an anchor and actor."
+    },
+    {
+      "ruleId": "detachment-synaptic-nexus:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS SYNAPSE model only. Each time an attack is allocated to the bearer, subtract 1 from the Damage characteristic of that attack.",
+      "sourceFieldSha256": "7eb1a9e6aceb435b5905448570ff867f298ac01311891a02af126547723edf1f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage reduction protects only the bearer, not attached Bodyguard models."
+    },
+    {
+      "ruleId": "detachment-synaptic-nexus:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS SYNAPSE model only. While an enemy unit is within 9\" of the bearer, worsen that units Leadership characteristic by 1.",
+      "sourceFieldSha256": "749e3d3720edeabdc71d7325727a3726c0e925f64322cfb01f5a6a1844c9a5f4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Leadership aura; no friendly source-unit recipient."
+    },
+    {
+      "ruleId": "detachment-assimilation-swarm:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "In your Command phase, each HARVESTER unit from your army can Regenerate one friendly TYRANIDS unit that is within 6\" of it. A unit can only be regenerated once per phase. Each time a unit regenerates, do one of the following:\n- One model in that unit regains up to D3+1 lost wounds.\n- One destroyed INFANTRY model (excluding CHARACTERS) is returned to that unit with its full wounds remaining. If that unit is an ENDLESS MULTITUDE unit, up to 3 destroyed models are returned instead.",
+      "sourceFieldSha256": "8b296d25129ee4cbf077fb82ca64ab677b46e58078e5f6c2c68ad8b8d4e49724",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-assimilation-swarm:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only (excluding MONSTERS models). The bearer’s unit can be regenerated up to twice per phase, instead of once.",
+      "sourceFieldSha256": "9a34f859a7b43907017a4029a25babcc0bb736f79efb44cc3406f08ddfc7b243",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source issue regenerating-monstrosity-legacy-assertion: accepted exclusion says MONSTERS; correction to MONSTER is not proven. Keep source conflict unrecorded despite clear local-unit wording."
+    },
+    {
+      "ruleId": "detachment-assimilation-swarm:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. While the bearer is within 6\" of one or more friendly HARVESTER units, when you target this unit with the Heroic Intervention stratagem, that use is -1 CP. In addition, while the bearer is within 6\" of one or more friendly HARVESTER units, models in the bearer’s unit have the Fights First ability.",
+      "sourceFieldSha256": "5480712759c11bc8b20f4d62e1cd5258e132dbfa8da92d5ff0fa443f04c7363e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Both Heroic Intervention permission and Fights First are expressly local-unit effects; proximity remains text."
+    },
+    {
+      "ruleId": "detachment-assimilation-swarm:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. While a friendly HARVESTER model is within 12\" of the bearer, when using the Feed the Swarm ability, that HARVESTER model can Regenerate one friendly TYRANIDS unit that is within 9\" of it, instead of one within 6\".",
+      "sourceFieldSha256": "a6ce69e38e44377042737d8a404b598b58715078fb1b71c5cec794ddfd61a978",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly aura has formed-unit presentation scope; HARVESTER restriction and regeneration target remain source text, never an executable local grant."
+    },
+    {
+      "ruleId": "detachment-assimilation-swarm:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Add 1 to the Strength characteristic of melee weapons equipped by models in the bearer’s unit. The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit.",
+      "sourceFieldSha256": "3967dfa642135653a842ccc46b36256ac547a3c864f3d9a7397ef982878ba281",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-crusher-stampede:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength. In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit.",
+      "sourceFieldSha256": "a423c12f5e0ed04063500e65bf7a0444818249038da2508e5f64237a3cd22cd8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-crusher-stampede:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS MONSTER model only. Add 3 to the bearer’s Objective Control characteristic.",
+      "sourceFieldSha256": "c18095d5c87c437c7cc227b0ee5a45d4472a5cbcd72653dd131e52fa2031ca2f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-crusher-stampede:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS MONSTER model only. If the bearer is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 3+, do not remove it from play. It can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.",
+      "sourceFieldSha256": "be1a6a42baa8f8a5ba374a457c364751bebe42c5d9e25c348e2d287232f2a090",
+      "classification": "BATTLE_ONLY",
+      "reason": "Fight-on-death is limited to the destroyed bearer."
+    },
+    {
+      "ruleId": "detachment-crusher-stampede:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS MONSTER model only. Once per battle, when a Psychic Attack is allocated to the bearer, it can use this ability. If it does, until the end of the phase, the bearer has the Feel No Pain 5+ ability against Psychic Attacks.",
+      "sourceFieldSha256": "b46da58b163a6218203989baecab3586424fb0bef798eb65fc9a0384369b3b2d",
+      "classification": "BATTLE_ONLY",
+      "reason": "The temporary defense belongs solely to the bearer."
+    },
+    {
+      "ruleId": "detachment-crusher-stampede:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS MONSTER model only. Each time the bearer makes a melee attack that targets a MONSTER or VEHICLE unit, add 1 to the Wound roll.",
+      "sourceFieldSha256": "50880acd6acd23ab34fefca81eb1fa97897c24530a9395faf4692109c11e119f",
+      "classification": "BATTLE_ONLY",
+      "reason": "The conditional attack modifier belongs solely to the bearer."
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS units with this ability are eligible to charge in a turn in which they Fell Back. VANGUARD INVADER units with this ability are eligible to charge in a turn in which they Advanced.",
+      "sourceFieldSha256": "dd41a1972cd26d0ac7c4f059783a32b7e6ad5b3655bfda46b06e4817a995591f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:rule:vanguard-prime",
+      "field": [
+        "text"
+      ],
+      "quote": "DEATHLEAPER loses the Hunter Organism rule and can be your WARLORD.",
+      "sourceFieldSha256": "c14526a0327a1f10f2bc6323351fb3008b78b7b633ff708bd267edd4d9d3a01f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. While the bearer is on the battlefield, each time your opponent sets up a Reserves unit on the battlefield, roll one D6: on a 2+, that unit must take a Battle-shock test.",
+      "sourceFieldSha256": "af18ec9ec6d0be89744b7330ce3f11a2731b1ffd8cfe40a4cd21f587ecf7c7fd",
+      "classification": "BATTLE_ONLY",
+      "reason": "Opponent Reserves unit takes a test; bearer battlefield presence is only trigger/anchor."
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "VANGUARD INVADER model only. This unit has Stealth.",
+      "sourceFieldSha256": "22bda6f53ccc27c845ae0ba4a4739cb41cbbdf2fbab12dbc5e010f781c283322",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "VANGUARD INVADER model only. At the start of the battle, select one enemy unit. Each time the bearer makes an attack that targets that enemy unit, add 1 to the Hit roll and add 1 to the Wound roll.",
+      "sourceFieldSha256": "e75e9546ab4b937b110f431e00d9113e1b23fdc0db79c148776f73e664d57681",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy is the attack target; the beneficiary is expressly the bearer."
+    },
+    {
+      "ruleId": "detachment-vanguard-onslaught:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. After both players have deployed their armies, you can select up to three VANGUARD INVADER units from your army and redeploy all of those units. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "sourceFieldSha256": "51f3056bd41ccfe6c940dfe864b57bb274c31e63a74746a0917ec7ecd93fe110",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects up to three external VANGUARD INVADER units to redeploy."
+    },
+    {
+      "ruleId": "detachment-unending-swarm:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model from a friendly ENDLESS MULTITUDE unit was destroyed as a result of those attacks, that friendly unit can make a surge move of up to D6\".",
+      "sourceFieldSha256": "d72635808b0f1156e7f64a1ce0405cb6c49901ac7b375a2e788417b696a49cab",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-unending-swarm:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Add 2\" to the Move characteristic of models in the bearer’s unit.",
+      "sourceFieldSha256": "170374f251a5f20c91bec1f7a6a54c920d627408aa326010a1f4f2ef3f772138",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-unending-swarm:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. At the start of the first battle round, select up to three friendly ENDLESS MULTITUDE units within 9\" of the bearer. Until the end of the battle round, each time a ranged attack targets one of those units, models in that unit have the Benefit of Cover against that attack.",
+      "sourceFieldSha256": "cc1ac25bf20bb0a447a6ef2217ec786f9153c440a2229a1d80bb28835b1dfa18",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects up to three friendly ENDLESS MULTITUDE units; source recipient is not established."
+    },
+    {
+      "ruleId": "detachment-unending-swarm:enhancement:3",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Each time a model in the bearer’s unit makes an attack, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1.",
+      "sourceFieldSha256": "25f0db419ad627cb79a85f15b71973f493ba48d55c3c801ffdb83c4cd53bf108",
+      "classification": "BATTLE_ONLY",
+      "reason": "Attacking models in the bearer’s unit includes attached Bodyguards; Broodlord with Genestealers is the required positive."
+    },
+    {
+      "ruleId": "detachment-unending-swarm:enhancement:4",
+      "field": [
+        "text"
+      ],
+      "quote": "TYRANIDS model only. Each time the bearer’s unit Piles In or Consolidates, models in this unit can move an additional 3\".",
+      "sourceFieldSha256": "fb807ace4892b2738f68de2662116ec97a5ef9b3b85ae914ea76da1d3e55adb5",
+      "classification": "BATTLE_ONLY",
+      "reason": "Additional movement belongs to all models in the bearer’s formed unit."
+    },
+    {
+      "ruleId": "detachment-ambush-predators:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "- Friendly DEATHLEAPER/LICTOR/NEUROLICTOR units have Deep Strike.\n- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1.",
+      "sourceFieldSha256": "baf57433da6812ddb56f39d39c27112bd1fd3831a6fcaca1cf55606803e15dd0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-ambush-predators:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "NEUROLICTOR/LICTOR/VON RYAN’S LEAPERS unit only. In your opponent’s Movement phase, when an enemy unit ends a move within 8\" of this unit, this unit can make a normal move of up to D3+3\".",
+      "sourceFieldSha256": "26c0d8d1e306d41618423437502db56c122dad86f74032037abdf7caaf91c51d",
+      "classification": "BATTLE_ONLY",
+      "reason": "Unit upgrade explicitly grants movement to this unit, without resolving its battle trigger."
+    },
+    {
+      "ruleId": "detachment-ambush-predators:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "VON RYAN’S LEAPERS unit only. This unit has -3\" detection range.",
+      "sourceFieldSha256": "fafa0d1faf8df9a17defddd8eac1b8d2236db76535d9cfe9f04c091626eb2086",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-talons-of-the-norn-queen:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "Friendly NORN EMISSARY/NORN ASSIMILATOR units have the following ability:\nProtean Purpose: (Once per battle, per unit) In your Command phase, you can use this ability. If you do, this unit can make a selection for its Singular Purpose ability (this replaces the previous selection).",
+      "sourceFieldSha256": "46e6e49750aad8d3910a8222dd0a682c986f69886f208a7d97e732fc0652c85f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit."
+    },
+    {
+      "ruleId": "detachment-talons-of-the-norn-queen:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "NORN EMISSARY unit only. This unit’s ranged attacks have [ANTI-CHARACTER 2+].",
+      "sourceFieldSha256": "089426780b91e3148dddf6504f809dbc08af1fd8dd051e43f6374f9bb90b4789",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-talons-of-the-norn-queen:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "NORN ASSIMILATOR unit only. This unit has 4+ InSv.",
+      "sourceFieldSha256": "aabb3d7915d6d8adea3c9442478f4714c019fb97b884f44698627c9368c04306",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-warrior-bioform-onslaught:rule",
+      "field": [
+        "text"
+      ],
+      "quote": "- Friendly TYRANID WARRIORS WITH RANGED BIO-WEAPONS/TYRANID WARRIORS WITH MELEE BIO-WEAPONS units have:\n- TYRANID WARRIORS.\n- BATTLELINE.\n- TYRANID WARRIORS/TYRANID PRIME WITH LASH WHIP/WINGED TYRANID PRIME models from your army have 5+ InSv.",
+      "sourceFieldSha256": "31804e6983eca123e66e00768a2f6aa2e5888081f2d5248c7f983ccf3c5543ff",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-warrior-bioform-onslaught:enhancement:1",
+      "field": [
+        "text"
+      ],
+      "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This model’s melee attacks:\n- Can re-roll wound rolls.\n- Have +1 AP.",
+      "sourceFieldSha256": "8397577becd60d2afa8c725d919f7b09c9c85a7ec1b07dc6ae8c216045cd60e3",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "detachment-warrior-bioform-onslaught:enhancement:2",
+      "field": [
+        "text"
+      ],
+      "quote": "WINGED TYRANID PRIME/TYRANID PRIME WITH LASH WHIP model only. This unit’s melee attacks have +1 to hit rolls.",
+      "sourceFieldSha256": "903abda1fe4db12a0e7bd92440b81149d18f9c596678e0a32bba7f11e12db06a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Bearer is model-scoped but recipient is expressly this unit; no model-only downgrade."
+    },
+    {
+      "ruleId": "datasheet-barbgaunts:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Disruption Bombardment: In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the end of your opponent’s next turn, that enemy unit is disrupted. While a unit is disrupted, subtract 2 from its Move characteristic and subtract 2 from Advance and Charge rolls made for it.",
+      "sourceFieldSha256": "90f652c73ce9e17d6bea11bf282967ef7e245c176373865bd925b89c99593848",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy INFANTRY is disrupted; source unit is only trigger."
+    },
+    {
+      "ruleId": "datasheet-barbgaunts:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 5-10 Barbgaunts\nEvery model is equipped with: barblauncher; chitinous claws and teeth.",
+      "sourceFieldSha256": "814306fc4960978c6c7288a034d4121442dfa9a325735117b3baf75d62a020df",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-biovores:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Seed Spore Mines: Once per turn, in your Shooting phase, when selected to shoot, one unit with this ability can use it instead of making any attacks with its ranged weapons. If it does, you can add one new SPORE MINES unit to your army and set it up anywhere on the battlefield that is wholly within 48\" of this unit and more than 8\" horizontally away from all enemy units. That SPORE MINES unit contains 1 model for each model in this unit.",
+      "sourceFieldSha256": "cc51ed36d6b4153f8f15d3636f34b523b8d6074a5dec56f6ed9aea980e371110",
+      "classification": "BATTLE_ONLY",
+      "reason": "Creates a new external SPORE MINES unit; source shooting activation is not a local benefit."
+    },
+    {
+      "ruleId": "datasheet-biovores:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-3 Biovores\nEvery model is equipped with: Spore Mine launcher; chitin-barbed limbs.",
+      "sourceFieldSha256": "45fcd1d03cc4eecbfda0ac89aeaab5fb2ffcdcd27b660d62de413a4fffbc358c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-broodlord:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Vicious Insight: While this model is leading a unit, weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+      "sourceFieldSha256": "035bdeae83dc0a4143530ed09e69568f9f11adee7f3674a6bc82792bc6f472a2",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-broodlord:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Hypnotic Gaze (Psychic): At the start of the Fight phase, select one enemy unit within Engagement Range of this model. Until the end of the phase, each time a model in that unit makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "109cbdf84a14c87553834e06dbcb1772988ef36f8a3c2293e352b5be3e6c1658",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-broodlord:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Broodlord\nThis model is equipped with: Broodlord claws and talons.",
+      "sourceFieldSha256": "869cdd14a5aad8c3bcf2e078b568bb8aef75e66c1def12369cd12d922fdc6e97",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-broodlord:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- GENESTEALERS",
+      "sourceFieldSha256": "d03293c8e5c182de6bf5510c9314c6f70dda5f6bf7cbabb190f84d228853152d",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-carnifexes:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Blistering Assault: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit lost a wound as a result of those attacks, this unit can make a surge move of up to D6+2\".",
+      "sourceFieldSha256": "7fe4f16fa73eb579a8149c6d909ae9267e6d7f1d8352f48b866135e3af5bbe65",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source-unit movement."
+    },
+    {
+      "ruleId": "datasheet-carnifexes:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-2 Carnifexes\nEvery model is equipped with: Carnifex scything talons; Carnifex extra scything talons; chitinous claws and teeth.",
+      "sourceFieldSha256": "8271c4a3890d87063fde2a88c78265f7548c8e2497ff9f9f8ecd561094113a9e",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-deathleaper:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Feeder Tendrils: Each time this model destroys an enemy CHARACTER model, you gain 1CP.",
+      "sourceFieldSha256": "b6344ff9a2a569eace4dfece99fa3529f935944fb71ebbb93ab2d0c885bdf2e0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Benefit is player CP; source model is the trigger, not a UNIT recipient."
+    },
+    {
+      "ruleId": "datasheet-deathleaper:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Fear of the Unseen (Aura): While an enemy unit is within 6\" of this model, worsen the Leadership characteristic of models in that unit by 1. In addition, in the Battle-shock step of your opponent’s Command phase, if such an enemy unit is below its Starting Strength, it must take a Battle-shock test.",
+      "sourceFieldSha256": "2f9b2829f537b4c50be85437b96a9d314fed68b2f08c369c66fd74d587d340c1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Aura affects enemy Leadership and Battle-shock only."
+    },
+    {
+      "ruleId": "datasheet-deathleaper:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Deathleaper – EPIC HERO\nThis model is equipped with: Lictor claws and talons.",
+      "sourceFieldSha256": "4d7846734acb03e92b418b0fae609ee553ea1625647bea45537868ac4b4e1a05",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-deathleaper:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model cannot be your WARLORD.",
+      "sourceFieldSha256": "68f9f2b4114e7651ffa6f574d7fca75f35602236e3b1921225a33ec03423b752",
+      "classification": "BATTLE_ONLY",
+      "reason": "Warlord prohibition concerns this physical model only."
+    },
+    {
+      "ruleId": "datasheet-exocrine:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Symbiotic Targeting: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly TYRANIDS model makes an attack that targets that unit, re-roll a Hit roll of 1.",
+      "sourceFieldSha256": "0b81ac08cbc361dd2c5c143148c98c280c1fd2f6df60289c550d11a01ab587c6",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects an enemy target and benefits attacks from friendly army models; no fixed source-unit recipient."
+    },
+    {
+      "ruleId": "datasheet-exocrine:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Exocrine\nThis model is equipped with: bio-plasmic cannon; powerful limbs.",
+      "sourceFieldSha256": "2d1d84fdaf4a877778feaa505d6de72295ba32fa4f8e806e0fe285d451b25833",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-exocrine:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-gargoyles:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Winged Swarm: In your Shooting phase, after this unit has shot, if it is not within Engagement Range of any enemy units, it can make a Normal move of up to 6\". If it does, until the end of the turn, this unit is not eligible to declare a charge.",
+      "sourceFieldSha256": "4178c3b6ac3d2cb504aeb9473a265ff25d53a61264c1e3a6581f76dff0e8a288",
+      "classification": "BATTLE_ONLY",
+      "reason": "The preceding subject is this unit; movement and charge restriction apply to that unit."
+    },
+    {
+      "ruleId": "datasheet-gargoyles:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 10-20 Gargoyles\nEvery model is equipped with: fleshborer; blinding venom.",
+      "sourceFieldSha256": "6d6500d0bae40c98835b6e02169d0e99aab5f15212e6bf20caaa50b6884de609",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-genestealers:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Vanguard Predator: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target is within range of one or more objective markers, re-roll a Wound roll of 1 as well.",
+      "sourceFieldSha256": "b0e26f0b360fe774f286c927026c5668acf786fd80d476e67b7bc6d0e8da7586",
+      "classification": "BATTLE_ONLY",
+      "reason": "Attack rerolls apply to models in the source unit, including a joined Leader."
+    },
+    {
+      "ruleId": "datasheet-genestealers:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 5-10 Genestealers\nEvery model is equipped with: Genestealer claws and talons.",
+      "sourceFieldSha256": "2b8794ff8ec37fe3fbe1f01911bdb7d41c769e9bdf61bf80dd26f14e216dab77",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-harpy:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Spore Mine Cysts: At the end of your opponent’s Fight phase, you can do one of the following:\n- Select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit and roll six D6 for that unit: for each 3+, that unit suffers 1 mortal wound.\n- Add a new SPORE MINES unit containing D3 models to your army and set it up anywhere on the battlefield that is within 6\" of this model and more than 8\" horizontally away from all enemy units. You cannot select this option for more than one model per turn.",
+      "sourceFieldSha256": "4d1d8c0272ff0c2103c43f451dafcf53124f80879e5e06ee7016315fa2dc29b1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Optional branches select an enemy unit or create a new SPORE MINES unit; neither is fixed local recipient."
+    },
+    {
+      "ruleId": "datasheet-harpy:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Harpy\nThis model is equipped with: stinger salvoes; twin stranglethorn cannon; scything wings.",
+      "sourceFieldSha256": "7c72a58e3672c6621807c8bb65f3de3a98060be9cd5ae8962b3a96a862d15676",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-harpy:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "469029fe0d7496cef75f811b81a4666d3dbac2cfc23c873451981d27e7490f35",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-harridan:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Frenzied Metabolism: Each time this model is selected to shoot, you can use this ability. If you do, until the end of the phase, each time this model makes an attack, add 1 to the Wound roll. After resolving those attacks, roll one D6: on a 2+, this model suffers D3 mortal wounds.",
+      "sourceFieldSha256": "6c2e6789b5dab86972d2bc3f20987282cd9bb0e8d925cf73c710d5b53856f213",
+      "classification": "BATTLE_ONLY",
+      "reason": "Buff and subsequent mortal wounds both concern this model."
+    },
+    {
+      "ruleId": "datasheet-harridan:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model has a transport capacity of 20 Gargoyles models and 1 Winged Tyranid Prime model.",
+      "sourceFieldSha256": "bfa0b2898a6abe4dbbdb742daa1bb350a65c50e996615862707cdc592010f37e",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-harridan:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Harridan\nThis model is equipped with: 2 dire bio-cannons; gargantuan scything talons.",
+      "sourceFieldSha256": "5bc63215124fa0328f1502b05ed966e8b605f6c0c06ef621fca5c8573a058c10",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-harridan:section:4",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-10 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "2dab0691c702eca78b436765fc6fc8ed16f75f649f95f5ad3306c38c1683ef97",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-haruspex:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Grisly Spectacle: Each time this model is selected to fight, after resolving its attacks, if one or more enemy units were destroyed by those attacks, each enemy unit within 6\" of this model must take a Battle-shock test.",
+      "sourceFieldSha256": "17987b942f6a0126221fd0e72956fcdc1e59cdd661f310eca4c162f9c768b487",
+      "classification": "BATTLE_ONLY",
+      "reason": "Battle-shock affects enemy units; source model only triggers/anchors it."
+    },
+    {
+      "ruleId": "datasheet-haruspex:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Haruspex\nThis model is equipped with: grasping tongue; ravenous maw; shovelling claws.",
+      "sourceFieldSha256": "960dfbd39bf721838b5ce61654f0a143a98aaf4797faca08856637180c371c80",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-haruspex:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-hierophant:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Apex-beast: Each time this model makes an attack that targets a unit that is Battle-shocked, add 1 to the Hit roll.",
+      "sourceFieldSha256": "bfd347d4fa2f8dd08ec53afd1b7de1b59d6dfd49f3787c6153bcb2e7ae54ca56",
+      "classification": "BATTLE_ONLY",
+      "reason": "Attack modifier is model-only."
+    },
+    {
+      "ruleId": "datasheet-hierophant:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Stalking Forward: Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding TITANIC models) and terrain features that are 4\" or less in height as if they were not there.",
+      "sourceFieldSha256": "59150920cb7a175e8153ba2719162a4b76df8471b5a7bc7d2c38a5d974a3e759",
+      "classification": "BATTLE_ONLY",
+      "reason": "Movement permission is model-only."
+    },
+    {
+      "ruleId": "datasheet-hierophant:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model has a transport capacity of 20 TYRANIDS INFANTRY models. Each model with a Wounds characteristic of more than 1 takes up the space of 3 models. This model cannot transport models that can Fly.",
+      "sourceFieldSha256": "390bde3081103dbf11eb89bc3f19074de04284a59e41e9c303b266a88bcb5cdc",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hierophant:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Hierophant\nThis model is equipped with: bio-plasma torrent; 2 dire bio-cannons; lashwhip pods; titanic scything talons.",
+      "sourceFieldSha256": "8c6be30fe5c430a6e7251454467fdbcfe68bef451f5edc4ea808d078f3795fe8",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hierophant:section:4",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-10 wounds remaining, subtract 6 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "3d7a7a0e19f01b58955c1e67c25f8d4d02687cfc019c46d213854ca59f0a0cb7",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-hive-crone:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Airborne Predator: Each time this model makes a ranged attack that targets a unit that can FLY, add 1 to the Hit roll.",
+      "sourceFieldSha256": "cd7ef29a12dd4ec9e8015847d281ff5fc4c9c6a16c9a68c4efcd4b6e472a7a24",
+      "classification": "BATTLE_ONLY",
+      "reason": "Attack modifier is model-only."
+    },
+    {
+      "ruleId": "datasheet-hive-crone:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Hive Crone\nThis model is equipped with: drool cannon; stinger salvoes; tentaclids; scything wings; thorax spur.",
+      "sourceFieldSha256": "445d85fdf482abdfa0dbeee46dba6c8d0bef5fbafd19d19f179e0810e72380df",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hive-crone:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "469029fe0d7496cef75f811b81a4666d3dbac2cfc23c873451981d27e7490f35",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-hive-guard:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Defensive Stance: Each time you target this unit with the Fire Overwatch Stratagem, while resolving that Stratagem, hits are scored on unmodified Hit rolls of 5+, or unmodified Hit rolls of 4+ instead if this unit is within range of an objective marker.",
+      "sourceFieldSha256": "f60d98f270c70ce1bcde4d054396c4ebae264342c5900cf915a80dadafcbd857",
+      "classification": "BATTLE_ONLY",
+      "reason": "Stratagem permission applies expressly to the source unit."
+    },
+    {
+      "ruleId": "datasheet-hive-guard:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 3-6 Hive Guard\nEvery model is equipped with: shockcannon; chitinous claws and teeth.",
+      "sourceFieldSha256": "14a8dfadc2625f9c7e18bfbe4fc32a68293a300505547acc15ffe20cbbaae80c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hive-tyrant:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+      "sourceFieldSha256": "36162293f805f8c9c244c7aa19b85483ad69298b11e24d14bba057cc55d5cbe1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly Stratagem target within 12 inches is external and selected by actual use; this is not an automatic friendly aura."
+    },
+    {
+      "ruleId": "datasheet-hive-tyrant:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Onslaught (Aura, Psychic): While a friendly TYRANIDS unit is within 6\" of this model, ranged weapons equipped by models in that unit have the [ASSAULT] and [LETHAL HITS] abilities.",
+      "sourceFieldSha256": "d58071768c1e64386d28f93a12a2d2e14f2b39d119a419d099808245d9defc94",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly-unit aura; no assumed proximity or unconditional ASSAULT/LETHAL HITS lowering."
+    },
+    {
+      "ruleId": "datasheet-hive-tyrant:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Hive Tyrant\nThis model is equipped with: monstrous bonesword and lash whip; monstrous scything talons.",
+      "sourceFieldSha256": "99ebbc34bab51d763a653e4130eec7a47ef19925f2b7ad5a8881aeb89ea05598",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hive-tyrant:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- TYRANT GUARD",
+      "sourceFieldSha256": "c84077cdc5f08e5732747c295013dafe0f85b7d410b17f9d558b47788df2c20f",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hormagaunts:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Bounding Leap: This unit is eligible to declare a charge in a turn in which it Advanced.",
+      "sourceFieldSha256": "a66a27321b00bcde8dae571c78b9a640a98fd25c987e4e4b1f1bbb8be4935d9c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Charge permission is source-unit scoped."
+    },
+    {
+      "ruleId": "datasheet-hormagaunts:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 10-20 Hormagaunts\nEvery model is equipped with: Hormagaunt talons.",
+      "sourceFieldSha256": "b841a155e683a4c19b3d87b5d4b6379577aa384f04224b5cd0142756d9cc4bc5",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hyperadapted-raveners:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Alpha Invader: Weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability.",
+      "sourceFieldSha256": "ccd73361e57453c764c33aaf29ae4d86bac0ea5e6ce2fd250f7c82b85c78e1ac",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-hyperadapted-raveners:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Hypersensory Array: Once per battle round, you can target this unit with the Rapid Ingress/Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+      "sourceFieldSha256": "afbf91eb03b3031e7589a3f1ee5150acf5c40585e8396ca94ad120e69506d3cf",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-hyperadapted-raveners:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Ravener Prime\n- 4 Raveners\nThe Ravener Prime is equipped with: Prime claws and talons.\n3 Raveners are equipped with: Ravener heavy claws and talons.\n1 Ravener is equipped with: venom bolt; Ravener heavy claws and talons.",
+      "sourceFieldSha256": "ff2ecac1ef16d674a3d558330d13130213274c4c078eabf2564aa02954b88ae2",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-hyperadapted-raveners:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- RAVENERS",
+      "sourceFieldSha256": "d46c21ff3955956e60568a0abe06e6daef0ee7f960f7fa40d1d9f98eb9e071fb",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-lictor:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Feeder Tendrils: Each time this model destroys an enemy CHARACTER model, you gain 1CP.",
+      "sourceFieldSha256": "b6344ff9a2a569eace4dfece99fa3529f935944fb71ebbb93ab2d0c885bdf2e0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Player receives CP; no local UNIT benefit."
+    },
+    {
+      "ruleId": "datasheet-lictor:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Pheromone Trail: Once per battle round, you can target one model with this ability with the Rapid Ingress Stratagem for 0CP.",
+      "sourceFieldSha256": "13b828a13d21398e7c6af129bea4799854e387a7b28c4f6bdadbf1cdf309eaf3",
+      "classification": "BATTLE_ONLY",
+      "reason": "May target one model with this ability, not necessarily this particular source model; no static source-only selection."
+    },
+    {
+      "ruleId": "datasheet-lictor:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Lictor\nThis model is equipped with: Lictor claws and talons.",
+      "sourceFieldSha256": "910bfb831474935019b210042628768f07e8c0904c865b8b1413b36fc966a4d2",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-maleceptor:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Encephalic Diffusion (Aura, Psychic): While an enemy unit is within 6\" of this model, each time a model in that unit makes an attack, subtract 1 from the Hit roll, and, if that enemy unit is Below Half-strength, subtract 1 from the Wound roll as well.",
+      "sourceFieldSha256": "8db5001b14f724231529ea09a0cb08c5a9900f19dc72be45b85e96c69e2d4ff3",
+      "classification": "BATTLE_ONLY",
+      "reason": "Aura modifies enemy attacks; source model is only anchor."
+    },
+    {
+      "ruleId": "datasheet-maleceptor:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Maleceptor\nThis model is equipped with: psychic overload; massive scything talons.",
+      "sourceFieldSha256": "92fb94fa37d3ed5f0c12d6732ecb3932b31b074324e3af0cf2dbc888cb9deb62",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-maleceptor:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-mawloc:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Terror From The Deep: Each time this model is set up on the battlefield using the Deep Strike ability, roll one D6 for each enemy unit within 12\" of this model: on a 2-4, that unit suffers D3 mortal wounds; on a 5+, that unit suffers 3 mortal wounds and must take a Battle-shock test.",
+      "sourceFieldSha256": "70f0e4e73eb407de7aa663db6eb9b3f014a5459560f23dbadd621f092058e464",
+      "classification": "BATTLE_ONLY",
+      "reason": "Deep Strike triggers damage and Battle-shock to enemy units."
+    },
+    {
+      "ruleId": "datasheet-mawloc:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Mawloc\nThis model is equipped with: distensible jaw; Mawloc scything talons.",
+      "sourceFieldSha256": "904970be092dcae58c9e8c86d720e970f73ba775d6470854a7383ab99bb93a64",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-mawloc:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-mucolid-spores:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Bio-minefield: Enemy units cannot start or end an Advance move within 6\" of this unit.",
+      "sourceFieldSha256": "d762eb3e2895077737cb95f4baa424003a8668b1e2c490e12e28ba446477097c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Advance prohibition affects enemy units."
+    },
+    {
+      "ruleId": "datasheet-mucolid-spores:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Floating Death: Each time this unit or an enemy unit ends a move, for each model in this unit that is within 3\" of one or more enemy units, select one of those enemy units. That model in this unit is destroyed, then roll one D6: on a 2-5, that enemy unit suffers D3 mortal wounds; on a 6, that enemy unit suffers D6 mortal wounds.",
+      "sourceFieldSha256": "0061115263655dd1a4cf64120ed9f21d381065e07f9612b219adb2d24c9b8ac7",
+      "classification": "BATTLE_ONLY",
+      "reason": "Full block combines self-destruction of selected source models and damage to selected enemy units; a single UNIT role would blur different recipients. No clause split in this task."
+    },
+    {
+      "ruleId": "datasheet-mucolid-spores:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-2 Mucolid Spores\nEvery model is equipped with: nothing.",
+      "sourceFieldSha256": "d35b1446f898c863cbf494753632cbdec04d045f758d394776b65b95d612fcb7",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-neurogaunts:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Neurocytes: While this unit is within Synapse Range of a friendly TYRANIDS unit (excluding NEUROGAUNT units), it has the SYNAPSE keyword.",
+      "sourceFieldSha256": "1dc53fa47b694d3f8b9d22b5af46abc63e106a584cc831f597989aa44c609c76",
+      "classification": "BATTLE_ONLY",
+      "reason": "Temporary keyword belongs to this unit; current Synapse Range remains unknown."
+    },
+    {
+      "ruleId": "datasheet-neurogaunts:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-2 Neurogaunt Nodebeasts*\n- 10-20 Neurogaunts\nEvery model is equipped with: chitinous claws and teeth.\n*This unit can only contain 2 Neurogaunt Nodebeasts if it contains 20 Neurogaunts.",
+      "sourceFieldSha256": "abcc28dff8abff40d8df9eb51553e4493af5e23f33d177f3880debaa294b2cac",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-neurolictor:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Feeder Tendrils: Each time this model destroys an enemy CHARACTER model, you gain 1CP.",
+      "sourceFieldSha256": "b6344ff9a2a569eace4dfece99fa3529f935944fb71ebbb93ab2d0c885bdf2e0",
+      "classification": "BATTLE_ONLY",
+      "reason": "Player receives CP; no local UNIT benefit."
+    },
+    {
+      "ruleId": "datasheet-neurolictor:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Neural Disruption: In your Command phase, select one enemy unit within 12\" of this model. That unit must take a Battle-shock test.",
+      "sourceFieldSha256": "68c2dcd0a497f53d3b955923415743209657f3fffdd57586597927705fc8dd28",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects one enemy unit for Battle-shock."
+    },
+    {
+      "ruleId": "datasheet-neurolictor:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Psychological Saboteur (Aura): While an enemy unit is within 12\" of this model, if that unit is Battle-shocked:\n- Each time a model in that unit makes an attack, subtract 1 from the Hit roll.\n- Each time a friendly TYRANIDS model makes an attack that targets that unit, add 1 to the Wound roll.",
+      "sourceFieldSha256": "265c9334601cd3df8072da16822ad03428a7db3d50e4d63f5ff19e0f67636268",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy debuff and friendly army attack bonus share enemy target; no fixed friendly source-unit recipient."
+    },
+    {
+      "ruleId": "datasheet-neurolictor:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Neurolictor\nThis model is equipped with: piercing claws and talons.",
+      "sourceFieldSha256": "e91608a2bba504d9558dc4163b02daba033ba06f126ef34bb5ad1c2f61a67e1a",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-neurotyrant:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Node Lash (Psychic): While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Hit roll. If the target is Battle-shocked, add 1 to the Wound roll as well.",
+      "sourceFieldSha256": "a6a3c64fd911e2d4967ee1dae5a11b1725b9918e6aa6f01f9c6a62d2b0009361",
+      "classification": "BATTLE_ONLY",
+      "reason": "While-leading effect explicitly reaches models in the formed unit, including Neurogaunts/Tyrant Guard/Zoanthropes when attached.",
+      "leadingEvidence": "While this model is leading a unit"
+    },
+    {
+      "ruleId": "datasheet-neurotyrant:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Psychic Terror (Psychic): If one or more models from your army with this ability are on the battlefield when you unleash the Shadow in the Warp, subtract 1 from the Battle-shock test each enemy unit on the battlefield must take as a result.",
+      "sourceFieldSha256": "4d57be724446a387bbe2253f221b40e392854c4f0484f1fb9cf29a821f146d4a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Shadow in the Warp tests concern enemy units across battlefield."
+    },
+    {
+      "ruleId": "datasheet-neurotyrant:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Neuroloids: In your Command phase, you can select up to two friendly TYRANIDS units within 18\" of this model’s unit. Until the start of your next Command phase, the selected units are always considered to be within Synapse Range of your army.\nDesigner’s Note: Place a Neuroloid token next to each selected unit to remind you.",
+      "sourceFieldSha256": "bf262c4f1fc0eb08ea311aaf6625b62eef493c556649d77f1e71d1701b1756ec",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects up to two external friendly units; source model unit is merely distance anchor."
+    },
+    {
+      "ruleId": "datasheet-neurotyrant:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Neurotyrant\nThis model is equipped with: Psychic Scream; Neurotyrant claws and lashes.",
+      "sourceFieldSha256": "c05d910e03963ded82097f4e5e1f705d6b04a7dd4bd31c0ef8d3d5c329986704",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-neurotyrant:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- NEUROGAUNTS\n- TYRANT GUARD\n- ZOANTHROPES",
+      "sourceFieldSha256": "c2cd5fab5fcd38f794a70636990e1171d7bd92208dd98711439858dbea30b8a0",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-norn-assimilator:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Singular Purpose: At the start of the first battle round, select one of the following:\n- Select one enemy unit. Until the end of the battle, each time this model makes an attack that targets that unit, you can re-roll the Hit roll and you can re-roll the Wound roll.\n- Select one objective marker. Until the end of the battle, while this model is within range of that objective marker, it has the Feel No Pain 5+ ability and an Objective Control characteristic of 15.",
+      "sourceFieldSha256": "3e7c36414b9eeef7d1897c5950b2f4da7c16d987ff0d2af8ea5b61731f6822c4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Both optional branches benefit this model; selected enemy/objective is a condition, not a recipient."
+    },
+    {
+      "ruleId": "datasheet-norn-assimilator:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Harpoon Barbs: Once per turn, when an enemy unit within Engagement Range of this model is selected to Fall Back, roll one D6: on a 2+, that unit suffers D6 mortal wounds.",
+      "sourceFieldSha256": "1f1b4d35e4dd92e453200f48319af3439516c993a9b46bf6a9de405a6d28d8b8",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy unit suffers mortal wounds on Fall Back."
+    },
+    {
+      "ruleId": "datasheet-norn-assimilator:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Norn Assimilator\nThis model is equipped with: toxinjector harpoon; monstrous scything talons.",
+      "sourceFieldSha256": "cbf3b542a2faf68a7410ef0c8193d2b0efe9ae30ae664a36401f0dc7c63bbf13",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-norn-assimilator:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-norn-emissary:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Singular Purpose: At the start of the first battle round, select one of the following:\n- Select one enemy unit. Until the end of the battle, each time this model makes an attack that targets that unit, you can re-roll the Hit roll and you can re-roll the Wound roll.\n- Select one objective marker. Until the end of the battle, while this model is within range of that objective marker, it has the Feel No Pain 5+ ability and an Objective Control characteristic of 15.",
+      "sourceFieldSha256": "3e7c36414b9eeef7d1897c5950b2f4da7c16d987ff0d2af8ea5b61731f6822c4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Both optional branches benefit this model; selected enemy/objective is a condition, not a recipient."
+    },
+    {
+      "ruleId": "datasheet-norn-emissary:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Unnatural Resilience: This model has the Feel No Pain 4+ ability against mortal wounds.",
+      "sourceFieldSha256": "42f3f1f14aaaef0e3e0e8dcbf3c7234608768272637b64e063209924d4e3c3ba",
+      "classification": "BATTLE_ONLY",
+      "reason": "Defense expressly belongs to this model."
+    },
+    {
+      "ruleId": "datasheet-norn-emissary:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Norn Emissary\nThis model is equipped with: Psychic Tendril; monstrous scything talons; monstrous rending claws.",
+      "sourceFieldSha256": "461ac08a8fa77e6d54b4b844122a9eb4a40a6df49dbdb07f5939368e60c56009",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-norn-emissary:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-old-one-eye:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Alpha Leader: While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll.",
+      "sourceFieldSha256": "9f6e9a5c888315b2b3e19e8ce07b8118d69b70ba3a8ce3a1d8ea4fe7632b33f6",
+      "classification": "BATTLE_ONLY",
+      "reason": "Conditional reroll belongs to all attacking models in the led unit.",
+      "leadingEvidence": "While this model is leading a unit"
+    },
+    {
+      "ruleId": "datasheet-old-one-eye:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Unstoppable Monster: At the start of each player’s Command phase, this model regains up to D3 lost wounds.",
+      "sourceFieldSha256": "a1aa92abadbbeb8e0f46bbe82d3da0af65d748731d4b6374ca18c7976d986168",
+      "classification": "BATTLE_ONLY",
+      "reason": "Regeneration belongs solely to Old One Eye, even while leading Carnifexes."
+    },
+    {
+      "ruleId": "datasheet-old-one-eye:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Old One Eye – EPIC HERO\nThis model is equipped with: Old One Eye’s claws and talons.",
+      "sourceFieldSha256": "905ca17445d8f1229d65a691c67a9b200c47cbfccd72ee2080aa7354ce12c241",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-old-one-eye:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- CARNIFEXES",
+      "sourceFieldSha256": "7c7ada48d8e38e17acd369c0b97352e470e14ca30fd38f610985f87975514434",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-parasite-of-mortrex:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Parasitic Infection: Each time an INFANTRY model is destroyed by an attack made with this model’s barbed ovipositor, after this model has finished making its attacks, you can add one new Ripper Swarms unit to your army consisting of D3 models and set it up within 3\" of this model. If you do, that RIPPER SWARMS unit can be set up within Engagement Range of the destroyed model’s unit (but not within Engagement Range of any other enemy units).",
+      "sourceFieldSha256": "51b5a8fdcf53cd091b3f70ecbab17a3ae300a3d6504ea083fe51716a9e931c57",
+      "classification": "BATTLE_ONLY",
+      "reason": "Creates a new external RIPPER SWARMS unit."
+    },
+    {
+      "ruleId": "datasheet-parasite-of-mortrex:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "It Itches!: At the start of the Fight phase, select one enemy unit within Engagement Range of this model. That enemy unit must take a Battle-shock test.",
+      "sourceFieldSha256": "486ae4648e5251ad708d1c06fd97462ce81f0bbda7e42068e8666277081d4176",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects an enemy unit for Battle-shock."
+    },
+    {
+      "ruleId": "datasheet-parasite-of-mortrex:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Parasite of Mortrex\nThis model is equipped with: barbed ovipositor; clawed limbs.",
+      "sourceFieldSha256": "0ad55aea45951d63cc0330309cba0e965b90cbd3f5383e2f6641f5c1ec08de2c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-psychophage:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Bio-stimulus: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the turn, each time a friendly TYRANIDS unit makes a melee attack that targets that enemy unit, improve the Armour Penetration characteristic of that attack by 1. The same enemy unit can only be affected by this ability once per turn.",
+      "sourceFieldSha256": "d1b8af28840f15e000cb1bc4ba3c629408908dfa19d04dc67523339a192d0407",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy is marked for friendly army attacks; no fixed local recipient."
+    },
+    {
+      "ruleId": "datasheet-psychophage:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Feeding Frenzy: Each time this model makes a melee attack that targets a unit that is below its Starting Strength, add 1 to the Hit roll. If that target is also Below Half-strength, add 1 to the Wound roll as well.",
+      "sourceFieldSha256": "f1fb85e41c058b425e6b242769919947dd84ba16cd471b6d6c0a5209afcf0f59",
+      "classification": "BATTLE_ONLY",
+      "reason": "Attack modifiers belong only to this model."
+    },
+    {
+      "ruleId": "datasheet-psychophage:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Psychophage\nThis model is equipped with: psychoclastic torrent; talons and betentacled maw.",
+      "sourceFieldSha256": "c5a36545d08711b32c3b84822372ba7a75aa917554db0dc62600a313fbb161fb",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-pyrovores:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Burning Spray: In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, that enemy unit cannot have the Benefit of Cover.",
+      "sourceFieldSha256": "05e07b4e0d75a221412be953d836278d0ee66f787a8dc0bb317c7fcff90c7077",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected enemy loses cover."
+    },
+    {
+      "ruleId": "datasheet-pyrovores:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-3 Pyrovores\nEvery model is equipped with: flamespurt; chitin-barbed limbs.",
+      "sourceFieldSha256": "d9e326c11cd088b8912349b6261173bcc2d491059929f04b16ca3f278312c070",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-raveners:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Death From Below: At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves.",
+      "sourceFieldSha256": "9006b5d8546fd1dd422bcbae430e58b37a77ed672baf0ba2d4d86e14a1e24b99",
+      "classification": "BATTLE_ONLY",
+      "reason": "The subject is this unit, so an attached formation is the presentation recipient."
+    },
+    {
+      "ruleId": "datasheet-raveners:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 5 Raveners\nEvery model is equipped with: Ravener claws and talons.",
+      "sourceFieldSha256": "63e73bcaf44a8d9c93f605d3c1a3d9ac316ff1c09e6a13e8a0a26128202c8166",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-ripper-swarms:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Chitinous Horrors (Aura): While an enemy unit is within Engagement Range of this unit, halve the Objective Control characteristic of models in that enemy unit.",
+      "sourceFieldSha256": "93e89c757050a6b4f36b5c170d2d53b2ff49bdd3778b07923408bc85c3892296",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Objective Control aura only."
+    },
+    {
+      "ruleId": "datasheet-ripper-swarms:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1-3 Ripper Swarms\nEvery model is equipped with: chitinous claws and teeth.",
+      "sourceFieldSha256": "122a428f93487c9457ebcd402b77206eaf9373f8a830d4d162c5a3ff835d1629",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-screamer-killer:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Death Scream: In your Shooting phase, after this model has shot, select one unit hit by one or more of those attacks. That unit must take a Battle-shock test, subtracting 1 from that test.",
+      "sourceFieldSha256": "c88402c85f0e5fc4636837b862481b9fa694ae918ad28b55cdc3160e5c22c75a",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selected attack target takes Battle-shock; no source-unit recipient."
+    },
+    {
+      "ruleId": "datasheet-screamer-killer:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Screamer-Killer\nThis model is equipped with: bio-plasmic scream; Screamer-Killer talons.",
+      "sourceFieldSha256": "57bed3d1352657bc265e2b66a481cc9fec4fbe1111cfbc7c067cfcf556b08ae7",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-spore-mines:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Bio-minefield: Enemy units cannot start or end an Advance move within 6\" of this unit.",
+      "sourceFieldSha256": "d762eb3e2895077737cb95f4baa424003a8668b1e2c490e12e28ba446477097c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Advance prohibition affects enemy units."
+    },
+    {
+      "ruleId": "datasheet-spore-mines:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Floating Death: Each time this unit or an enemy unit ends a move, for each model in this unit that is within 3\" of one or more enemy units, select one of those enemy units. That model in this unit is destroyed, then roll one D6: on a 2-5, that enemy unit suffers 1 mortal wound; on a 6, that enemy unit suffers D3 mortal wounds.",
+      "sourceFieldSha256": "b344d60b405a69650cc36acb0f5e0cc5e5812fecb58e1e3c32553b3ba3361495",
+      "classification": "BATTLE_ONLY",
+      "reason": "Full block combines self-destruction of selected source models and damage to selected enemy units; leave mixed recipient block unrecorded."
+    },
+    {
+      "ruleId": "datasheet-spore-mines:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 3-6 Spore Mines\nEvery model is equipped with: nothing.",
+      "sourceFieldSha256": "b9a4d4a462181bcf452f9e0472402c057fb0a2d8bb9795c23b20ca56c72a9626",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-sporocyst:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Seed Mucolids: Once per turn, in your Shooting phase, when selected to shoot, one unit with this ability can use it instead of making any attacks with its ranged weapons. If it does, you can add one new MUCOLID SPORES unit containing 1 model to your army and set it up anywhere on the battlefield that is wholly within 18\" of this model and more than 8\" horizontally away from all enemy units.",
+      "sourceFieldSha256": "50bcf1569c7af52c613fc96454fcae99179c60df7065be889778f44f2d1c9463",
+      "classification": "BATTLE_ONLY",
+      "reason": "Creates a new external MUCOLID SPORES unit."
+    },
+    {
+      "ruleId": "datasheet-sporocyst:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Hive Defences: You can target this model with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this turn. This model can only be targeted with that Stratagem once per turn.",
+      "sourceFieldSha256": "595fa89589741cbd3c984056367b5f53644493148d28d7908d598717da466a3f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Permission expressly targets this model."
+    },
+    {
+      "ruleId": "datasheet-sporocyst:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Sporocyst\nThis model is equipped with: Sporocyst bio-weapons; flensing whips.",
+      "sourceFieldSha256": "d137dce81ae9668fa8cde0bc575d569259007a24d42c7a3013e40582d13128c0",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-termagants:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Skulking Horrors: In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".",
+      "sourceFieldSha256": "b0cb19a816ad95474f3b5d8f5994a1b0fdae041c4352cf6974e506713b209025",
+      "classification": "BATTLE_ONLY",
+      "reason": "Reactive movement explicitly belongs to this unit."
+    },
+    {
+      "ruleId": "datasheet-termagants:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 10-20 Termagants\nEvery model is equipped with: fleshborer; chitinous claws and teeth.",
+      "sourceFieldSha256": "1b61b8c18b9af706cb6b5c124d89e8faa40ef4f724ef6a8188989d6e9fb0d743",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tervigon:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Spawn Termagants: In your Command phase, you can select one friendly TERMAGANTS unit within 6\" of this model and return up to D3+3 destroyed models to that unit. A TERMAGANTS unit cannot be selected for this ability more than once per phase.",
+      "sourceFieldSha256": "76e4e805cce74bee2ab373ae2d01990d7a88d5b09c328303c7581611135e1198",
+      "classification": "BATTLE_ONLY",
+      "reason": "Selects one external friendly TERMAGANTS unit; no static source recipient."
+    },
+    {
+      "ruleId": "datasheet-tervigon:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Brood Progenitor (Aura, Psychic): While a friendly TERMAGANTS unit is within 6\" of this model, ranged weapons equipped by models in that unit have the [LETHAL HITS] ability.",
+      "sourceFieldSha256": "4fe3cd4193ad51c6f1806c1ba6a160bf082f575b51c066ec4d92e78a55f3cbcf",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly-unit aura; TERMAGANTS and proximity are preserved in text, not evaluated."
+    },
+    {
+      "ruleId": "datasheet-tervigon:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tervigon\nThis model is equipped with: stinger salvoes; massive scything talons.",
+      "sourceFieldSha256": "6f122d8a8266d719dee7a9c48c34ecdd4b710c0ca2e2e2406b721d5080cbbd0b",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tervigon:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-the-red-terror:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Swallow Whole: Each time an attack with this model’s gaping maw targets an INFANTRY, MOUNTED or BEASTS unit, each successful unmodified Wound roll is a Critical Wound. Each time an INFANTRY, MOUNTED or BEASTS model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds.",
+      "sourceFieldSha256": "6f073f9b0363bddc074f88c14d8622b4c38fe6474c4964f5627f838b49ac135c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Weapon-specific critical wounds and healing both concern this model."
+    },
+    {
+      "ruleId": "datasheet-the-red-terror:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Subterranean Hunter: At the end of the Fight phase, if this unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves.",
+      "sourceFieldSha256": "aef323c6772da6cdc876230d31b7467511f6ca6246df5ebd931eeb9466e0d4e6",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source-unit reserve movement."
+    },
+    {
+      "ruleId": "datasheet-the-red-terror:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 The Red Terror – EPIC HERO\nThis model is equipped with: scything talons, gaping maw.",
+      "sourceFieldSha256": "46ac7b588eaa4bc7642182b4e644cd5c85e2a4aef7fcadf5f109a96580222eed",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-the-swarmlord:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Hive Commander: At the start of your Command phase, if this model is on the battlefield, you gain 1CP.",
+      "sourceFieldSha256": "9223b400739f684b443f42be845c874fd8ff7b546013b348b0a94c6c63b5b4b4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Player CP benefit only; source model battlefield presence triggers it."
+    },
+    {
+      "ruleId": "datasheet-the-swarmlord:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Malign Presence: Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
+      "sourceFieldSha256": "925aa8af0c74bde9c4cf079acdef1151c7c85e3a1ec884425e057b93a0e634ca",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy Stratagem use incurs increased cost; source model only anchors distance."
+    },
+    {
+      "ruleId": "datasheet-the-swarmlord:section:1",
+      "field": [
+        "blocks",
+        2,
+        "text"
+      ],
+      "quote": "Domination of the Hive Mind (Aura): While a friendly TYRANIDS unit is within 9\" of this model, that unit is within your army’s Synapse Range.",
+      "sourceFieldSha256": "fae780768b23895eb3f13568421648e5ba4c371a3d599fb109ca37bfcf4fe47e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly-unit Synapse aura; no range or Synapse condition is computed."
+    },
+    {
+      "ruleId": "datasheet-the-swarmlord:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Swarmlord – EPIC HERO\nThis model is equipped with: Synaptic pulse; bone sabres.",
+      "sourceFieldSha256": "dcd53537509453e04d559c0fc3662e4fffb5d0e7665ceb366f45a10cb1559a80",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-the-swarmlord:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following unit:\n- TYRANT GUARD",
+      "sourceFieldSha256": "c84077cdc5f08e5732747c295013dafe0f85b7d410b17f9d558b47788df2c20f",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-toxicrene:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Grasping Tendrils: Each time an enemy unit (excluding TITANIC units) within Engagement Range of one or more units from your army with this ability is selected to Fall Back, you can roll one D6: on a 3+, that enemy unit must Remain Stationary instead.",
+      "sourceFieldSha256": "eecc0a73e1190daef478e622b02985937efc91982933bbb090d4b9bfe660b9a9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy movement restriction or mortal wounds only."
+    },
+    {
+      "ruleId": "datasheet-toxicrene:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Hypertoxic Miasma (Aura): At the end of your Movement phase, roll one D6 for each enemy unit within 6\" of this model: on a 2-3, that unit suffers 1 mortal wound; on a 4-5, that unit suffers D3 mortal wounds; on a 6, that unit suffers D6 mortal wounds.",
+      "sourceFieldSha256": "4a50f532d3eb36f86beee642fcdb7d77c4f9bb3fa5047f9ce6579c5ec6d2cda9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Enemy movement restriction or mortal wounds only."
+    },
+    {
+      "ruleId": "datasheet-toxicrene:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Toxicrene\nThis model is equipped with: massive toxic lashes.",
+      "sourceFieldSha256": "07d8ed08c4c044e3f9e422d9ad849acacc11e43806d85c4c0997c12ea648d637",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-trygon:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Subterranean Tunnels: In your Movement phase, when this model is set up on the battlefield using the Deep Strike ability, it can use a subterranean tunnel. If it does, this model can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy units, but until the end of the turn, it is not eligible to declare a charge.",
+      "sourceFieldSha256": "71ca2b661cf266419d2687305e6173b6ba9edebede10e8286c91ca239a116d44",
+      "classification": "BATTLE_ONLY",
+      "reason": "Arrival permission and charge restriction expressly concern this model."
+    },
+    {
+      "ruleId": "datasheet-trygon:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Trygon\nThis model is equipped with: bio-electric pulse; Trygon scything talons.",
+      "sourceFieldSha256": "a728c4cc0293f3864d17c21a0b4b56a5cb90358062d523ed3567f10eeab04960",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-trygon:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Alpha Warrior: Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability.",
+      "sourceFieldSha256": "c837118dad8e5b6c2c8c2d2c5fb1761684f7e470073efd14d84f23ea06d72f63",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”.",
+      "sourceFieldSha256": "c46fe0ff84e909e4a99c3efdd38d653db963abd4c022c7f4e822aea16f1a7084",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tyranid Prime with Lash Whip\nThis model is equipped with: 1 rending claw; 1 lash whip; 1 scything talons.",
+      "sourceFieldSha256": "19a6f1d6a074043212b6179301ed4e04ff20ef21710210c5bc20a881e969aaec",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- HORMAGAUNTS\n- TERMAGANTS\n- TYRANID WARRIORS WITH MELEE BIO-WEAPONS\n- TYRANID WARRIORS WITH RANGED BIO-WEAPONS",
+      "sourceFieldSha256": "354d5952989f29738ac5c7f020d66c6d9e596af0a75b23bf17b3946187871d27",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Adaptive Instincts (Once per turn, per unit): In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following:\n- This unit’s melee attacks have +1 S.\n- Or: This unit has +1 T.",
+      "sourceFieldSha256": "a4d860714cc8310da873c23b04c0a749ac55fbf0e32a772282e470b4122e231e",
+      "classification": "BATTLE_ONLY",
+      "reason": "Both choices concern this unit, never just an attached Prime."
+    },
+    {
+      "ruleId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tyranid Prime\n- 2-5 Tyranid Warriors\nEvery model is equipped with: Tyranid Warrior claws and talons.",
+      "sourceFieldSha256": "eb4c18da1e139fe0254918bfd11a440c522bc14244c80c3b1705c32f7bf888b2",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Adaptable Predators: This unit is eligible to shoot and declare a charge in a turn in which it Fell Back.",
+      "sourceFieldSha256": "acbb2f11b9bd6ed3b8a41898423508a6acc00ac4c6525e51e84fbb920fd5fd8f",
+      "classification": "BATTLE_ONLY",
+      "reason": "Explicit source-unit fall-back permissions."
+    },
+    {
+      "ruleId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tyranid Prime\n- 2-5 Tyranid Warriors\nEvery model is equipped with: devourer; Tyranid Warrior claws and talons.",
+      "sourceFieldSha256": "42ea53421cddf2826daf044f9ade4f9aad49de4a4dde42785295c2407ab3753f",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyrannocyte:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Aerial Seeding: This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model must immediately disembark after it has been set up on the battlefield, and they must be set up more than 8\" away from all enemy models. After this model has been set up on the battlefield, no units can embark within it.",
+      "sourceFieldSha256": "a8111c55cb9aaf017606d0fd5e0e4baa9f44759321921585e2e86c366c9c64b1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Block combines model-only arrival and restrictions for external embarked units. A single source-unit role cannot represent all relationships."
+    },
+    {
+      "ruleId": "datasheet-tyrannocyte:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model has a transport capacity of 20 TYRANIDS INFANTRY models, or 1 TYRANIDS MONSTER model with a Wounds characteristic of 12 or less. Each INFANTRY model with a Wounds characteristic of more than 1 takes up the space of 3 models.",
+      "sourceFieldSha256": "470cf12f4b2c427d9e641da5527ccfd47f0b12a62eb9442bca05beb6db83ead4",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyrannocyte:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tyrannocyte\nThis model is equipped with: Tyrannocyte bio-weapons; flensing whips.",
+      "sourceFieldSha256": "9119e44d0168f14f0b426b3b63fafbd1c7fa5e88770285d601683449f61981fe",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyrannofex:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Resilient Organism: Once per battle, when an attack is allocated to this model, you can change the Damage characteristic of that attack to 0.",
+      "sourceFieldSha256": "57806637446e3ab0ccfe1211d029776cc033eeb85c8d7aa75c1ed6d03d51b90c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Single-use defense protects only this model."
+    },
+    {
+      "ruleId": "datasheet-tyrannofex:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Tyrannofex\nThis model is equipped with: fleshborer hive; stinger salvoes; powerful limbs.",
+      "sourceFieldSha256": "9c3ec93bc3807ec01f4497dcf69c87d2c46587ec429385512dfe3228c6f66760",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-tyrannofex:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "sourceFieldSha256": "59b4c593cb8789fd63d439ef34e0d7a8bdf8bad93af9ffb954d98ecc0b0b7bb4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Damage bracket and modifiers concern only this physical model; current wound state remains source text."
+    },
+    {
+      "ruleId": "datasheet-tyrant-guard:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Guardian Organism: While a CHARACTER model is leading this unit, that CHARACTER has the Feel No Pain 5+ ability.",
+      "sourceFieldSha256": "0095fe787e0545fd402d3394e07bf87cd59f8231420d53c0636ff0a121a3e70c",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-tyrant-guard:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 3-6 Tyrant Guard\nEvery model is equipped with: scything talons and rending claws.",
+      "sourceFieldSha256": "e61c671df0201b7b23ac506a6eb76a82740d5b018cfb860089d2c17f83ece065",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-venomthropes:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Foul Spores (Aura): Friendly TYRANIDS units within 6\" of this unit have Stealth.",
+      "sourceFieldSha256": "7f75b950a796e684fcb519cf0ea8d2e5cf26bff2756e935c2fff3c5d31c255b1",
+      "classification": "BATTLE_ONLY",
+      "reason": "Source conflict tyranids-source-conflict-foul-spores: official update and FAQ contradictory. Do not establish a new aura recipient."
+    },
+    {
+      "ruleId": "datasheet-venomthropes:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 3-6 Venomthropes\nEvery model is equipped with: toxic lashes.",
+      "sourceFieldSha256": "d1f2320531b9805c3d736fa42ca3cb80c4ce94b3038cdfc6d534bd76d130b14c",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-von-ryans-leapers:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Pouncing Leap: You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:\n- That use is -1 CP.\n- That use does not prevent any uses of that stratagem on other units this phase.",
+      "sourceFieldSha256": "622ea2aa1e88fb665c93aa0c1657c70c878af0ed23a59d74ba1d4e225ae5ec85",
+      "classification": "BATTLE_ONLY",
+      "reason": "Permission expressly targets this unit."
+    },
+    {
+      "ruleId": "datasheet-von-ryans-leapers:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 3-6 Von Ryan’s Leapers\nEvery model is equipped with: Leaper’s talons.",
+      "sourceFieldSha256": "efc213d06332dd41670ce118e305c1bba466db6e98187000bb844e3431978844",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-winged-hive-tyrant:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+      "sourceFieldSha256": "36162293f805f8c9c244c7aa19b85483ad69298b11e24d14bba057cc55d5cbe1",
+      "classification": "BATTLE_ONLY",
+      "reason": "External friendly Stratagem target; no automatic friendly aura."
+    },
+    {
+      "ruleId": "datasheet-winged-hive-tyrant:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Paroxysm (Psychic): At the start of the Fight phase, you can select one enemy unit within 12\" of and visible to this model and roll one D6: on a 1, this PSYKER suffers D3 mortal wounds; on a 2+, until the end of the phase, subtract 1 from the Attacks characteristic of weapons equipped by models in that unit.",
+      "sourceFieldSha256": "2f2c8a46b139b65ad97f505bcaf65f5df69cba558e68bac7e4966b0e6ea5cad7",
+      "classification": "BATTLE_ONLY",
+      "reason": "Block combines self mortal wounds and enemy weapon attack reduction; leave mixed sides and scopes unrecorded."
+    },
+    {
+      "ruleId": "datasheet-winged-hive-tyrant:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Winged Hive Tyrant\nThis model is equipped with: monstrous bonesword and lash whip; Tyrant talons.",
+      "sourceFieldSha256": "4e7369aa4d1b3e5900392baca2883efe2355dd96ba634ee5b727c525e51a6cb6",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-winged-tyranid-prime:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Alpha Warrior: While this model is leading a unit, weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability.",
+      "sourceFieldSha256": "6104f20f2bf271ca3fe64cc8b3018e057f7289ddbd4f77a05c61573010a9a609",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-winged-tyranid-prime:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.",
+      "sourceFieldSha256": "1a5eef3b2c1f1ad0cf485fc41ff5534e7d3a7d069508c96ea686ff5fe1613382",
+      "classification": "BATTLE_ONLY",
+      "reason": "Existing canonical contract and all clauses must remain byte-equivalent.",
+      "preserveExisting": true
+    },
+    {
+      "ruleId": "datasheet-winged-tyranid-prime:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Winged Tyranid Prime\nThis model is equipped with: Prime talons.",
+      "sourceFieldSha256": "f1f80cb919a636d3fdc997ffe93a2397a4fd75eca5f47af3c7acf95ef20b944a",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-winged-tyranid-prime:section:3",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "This model can be attached to the following units:\n- GARGOYLES\n- TYRANID WARRIORS WITH MELEE BIO-WEAPONS\n- TYRANID WARRIORS WITH RANGED BIO-WEAPONS",
+      "sourceFieldSha256": "8b01b1a5ac60bd28667703c80dc6f591cf526f9c773658a253ba78adf84a10ef",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    },
+    {
+      "ruleId": "datasheet-zoanthropes:section:1",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "Spirit Leech (Aura, Psychic): While an enemy unit is within 6\" of this unit, if this unit contains a Neurothrope, each time that enemy unit fails a Battle-shock test, it suffers D3 mortal wounds and one model in this unit regains up to D3 lost wounds.",
+      "sourceFieldSha256": "211465619075552940ea22486c31af4ea3f52521fd4c86d1e4ed6d1acc753bd9",
+      "classification": "BATTLE_ONLY",
+      "reason": "Block combines enemy mortal wounds and local-unit healing; a single friendly source-unit role is incomplete."
+    },
+    {
+      "ruleId": "datasheet-zoanthropes:section:1",
+      "field": [
+        "blocks",
+        1,
+        "text"
+      ],
+      "quote": "Warp Field (Aura, Psychic): While a friendly TYRANIDS unit is within 6\" of this unit, models in that unit have a 6+ invulnerable save.",
+      "sourceFieldSha256": "ba49cf237fd827066ae32e50c3bfe5e57814d8ba9f54aef29f1c125ac15504a4",
+      "classification": "BATTLE_ONLY",
+      "reason": "Friendly-unit defensive aura may concern a formed unit; no save is automatically applied."
+    },
+    {
+      "ruleId": "datasheet-zoanthropes:section:2",
+      "field": [
+        "blocks",
+        0,
+        "text"
+      ],
+      "quote": "- 1 Neurothrope\n- 2-5 Zoanthropes\nEvery model is equipped with: Warp Blast; chitinous claws and teeth.",
+      "sourceFieldSha256": "4b500ad583e8efbe030fd2221ca8c95754701c134fd43a726af0f1e388e1a8d1",
+      "classification": "DISPLAY_ONLY",
+      "reason": "Static source composition, attachment, transport or army-construction declaration. No roster operation is introduced."
+    }
+  ]
+}

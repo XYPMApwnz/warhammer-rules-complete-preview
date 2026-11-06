@@ -109,7 +109,7 @@
     "qa:shared:v2:source-completeness": "node v2/source-completeness-qa.mjs",
     "death-guard:build": "node books/death-guard/v2/app-build.mjs",
     "adeptus-mechanicus:build": "node books/adeptus-mechanicus/v2/app-build.mjs",
-    "qa:tyranids": "node books/tyranids/v2/app-qa.mjs && node books/tyranids/v2/roster-import-qa.mjs && node v2/new-recruit-export-qa.mjs --book=tyranids && node v2/new-recruit-plain-header-qa.mjs --book=tyranids && node books/shared/tools/build-new-recruit-model-names.mjs --book=tyranids --check && node v2/new-recruit-model-names-qa.mjs --book=tyranids",
+    "qa:tyranids": "node books/tyranids/v2/app-qa.mjs && node books/tyranids/v2/roster-import-qa.mjs && node v2/new-recruit-export-qa.mjs --book=tyranids && node v2/new-recruit-plain-header-qa.mjs --book=tyranids && node books/shared/tools/build-new-recruit-model-names.mjs --book=tyranids --check && node v2/new-recruit-model-names-qa.mjs --book=tyranids && node v2/reviewed-text-coverage-qa.mjs --book=tyranids",
     "tyranids:build": "node books/tyranids/v2/app-build.mjs",
     "qa:tau": "node books/tau-empire/v2/app-qa.mjs && node books/tau-empire/v2/roster-import-qa.mjs && node books/tau-empire/v2/physical-choice-qa.mjs && node v2/new-recruit-export-qa.mjs --book=tau-empire && node v2/new-recruit-plain-header-qa.mjs --book=tau-empire && node books/shared/tools/build-new-recruit-model-names.mjs --book=tau-empire --check && node v2/new-recruit-model-names-qa.mjs --book=tau-empire",
     "tau-empire:build": "node books/tau-empire/v2/app-build.mjs",

@@ -1,6 +1,7 @@
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
+import {appendReviewedTextCoverage} from '../../shared/rule-contract-v2/reviewed-text-coverage.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -167,6 +168,8 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   const composition=book.rosterProfileBindings.map(binding=>({...clone(binding),maxModels:book.importBindings.compositions
     .filter(c=>c.profileId===binding.profileId).reduce((sum,c)=>sum+c.quantity.max,0)}));
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
+  const textCoverage=appendReviewedTextCoverage({book,facts,review:read('./text-rule-review.json'),contracts,
+    currentness:{acceptedBaseHead:'c0fab930a4f45ba05c33b66834fbf979518d91ef',currentOfficialSource}});
   recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
@@ -176,7 +179,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   const artifact={schema:'tyranids-v2-rule-contracts/v1',authority:'BOOK_OWNED_DERIVED_OVERLAY',
     factualFingerprint:sha(JSON.stringify(facts)),importFingerprint:sha(JSON.stringify(prepareSourceProducer(buildTyranidsImportBook(facts)))),
     declarationFingerprint:sha(fs.readFileSync(new URL('./rule-contract-declarations.mjs',import.meta.url))),
-    currentOfficialSource,contracts,deferred,nativeReferenceSemantics:clone(book.rosterReferenceSemantics),
+    currentOfficialSource,contracts,deferred,textCoverage,nativeReferenceSemantics:clone(book.rosterReferenceSemantics),
     attachmentPolicies:clone(book.rosterAttachmentPolicies),compatibilityFeasibility:clone(book.compatibilityFeasibility)};
   return {book,schema,contracts,deferred,artifact};
 }

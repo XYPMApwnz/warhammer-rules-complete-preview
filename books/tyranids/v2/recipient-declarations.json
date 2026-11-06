@@ -1,7 +1,807 @@
 [
-  {"ruleId":"datasheet-tyranid-prime-with-lash-whip:section:1","clauseId":"conditional-block-1","field":["blocks",1,"text"],"quote":"Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”.","subject":"UNIT","binding":"SOURCE_UNIT","scope":"FORMED"},
-  {"ruleId":"datasheet-winged-tyranid-prime:section:1","clauseId":"conditional-block-1","field":["blocks",1,"text"],"quote":"Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.","subject":"MODEL","binding":"SOURCE_MODEL"},
-  {"ruleId":"detachment-assimilation-swarm:enhancement:4","clauseId":"battle-dependent","field":["text"],"quote":"The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit.","subject":"MODEL","binding":"SOURCE_FORMED_MODELS"},
-  {"ruleId":"detachment-invasion-fleet:enhancement:4","clauseId":"battle-dependent","field":["text"],"quote":"At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead.","subject":"MODEL","binding":"SOURCE_MODEL"},
-  {"ruleId":"detachment-warrior-bioform-onslaught:enhancement:1","clauseId":"battle-dependent","field":["text"],"quote":"This model’s melee attacks:\n- Can re-roll wound rolls.","subject":"MODEL","binding":"SOURCE_MODEL"}
+  {
+    "ruleId": "datasheet-tyranid-prime-with-lash-whip:section:1",
+    "clauseId": "conditional-block-1",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Aggressive Leader-beast: In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed by those attacks, this unit can make a surge move of up to D6”.",
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED"
+  },
+  {
+    "ruleId": "datasheet-winged-tyranid-prime:section:1",
+    "clauseId": "conditional-block-1",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "quote": "Death Blow: If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 4+, do not remove it from play. The destroyed model can fight after the attacking model’s unit has finished making its attacks, and is then removed from play.",
+    "subject": "MODEL",
+    "binding": "SOURCE_MODEL"
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:enhancement:4",
+    "clauseId": "battle-dependent",
+    "field": [
+      "text"
+    ],
+    "quote": "The first time the bearer’s unit destroys an enemy unit in the Fight phase while the bearer is within 6\" of one or more friendly HARVESTER units, until the end of the battle, add 1 to the Attacks characteristic of melee weapons equipped by models in the bearer’s unit.",
+    "subject": "MODEL",
+    "binding": "SOURCE_FORMED_MODELS"
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:enhancement:4",
+    "clauseId": "battle-dependent",
+    "field": [
+      "text"
+    ],
+    "quote": "At the start of any turn, if the bearer has fewer than its starting number of wounds remaining, until the end of the battle, it has the Feel No Pain 4+ ability instead.",
+    "subject": "MODEL",
+    "binding": "SOURCE_MODEL"
+  },
+  {
+    "ruleId": "detachment-warrior-bioform-onslaught:enhancement:1",
+    "clauseId": "battle-dependent",
+    "field": [
+      "text"
+    ],
+    "quote": "This model’s melee attacks:\n- Can re-roll wound rolls.",
+    "subject": "MODEL",
+    "binding": "SOURCE_MODEL"
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:enhancement:1",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "target the bearer’s unit"
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "The bearer’s unit can be set up"
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "made for the bearer"
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly TYRANIDS unit is within 9\" of the bearer, that unit"
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time an attack is allocated to the bearer"
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "models in the bearer’s unit have the Fights First ability"
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly HARVESTER model is within 12\" of the bearer"
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "If the bearer is destroyed by a melee attack"
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "the bearer has the Feel No Pain 5+ ability against Psychic Attacks"
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:enhancement:4",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time the bearer makes a melee attack"
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time the bearer makes an attack that targets that enemy unit"
+  },
+  {
+    "ruleId": "detachment-unending-swarm:enhancement:3",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "Each time a model in the bearer’s unit makes an attack"
+  },
+  {
+    "ruleId": "detachment-unending-swarm:enhancement:4",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "Each time the bearer’s unit Piles In or Consolidates, models in this unit"
+  },
+  {
+    "ruleId": "detachment-ambush-predators:enhancement:1",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "this unit can make a normal move"
+  },
+  {
+    "ruleId": "detachment-warrior-bioform-onslaught:enhancement:2",
+    "clauseId": "text-coverage:/text",
+    "field": [
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "This unit’s melee attacks have +1 to hit rolls"
+  },
+  {
+    "ruleId": "datasheet-carnifexes:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "this unit can make a surge move"
+  },
+  {
+    "ruleId": "datasheet-deathleaper:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "This model cannot be your WARLORD."
+  },
+  {
+    "ruleId": "datasheet-exocrine:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-gargoyles:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "it can make a Normal move of up to 6\""
+  },
+  {
+    "ruleId": "datasheet-genestealers:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "Each time a model in this unit makes an attack"
+  },
+  {
+    "ruleId": "datasheet-harpy:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-harridan:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "each time this model makes an attack"
+  },
+  {
+    "ruleId": "datasheet-harridan:section:4",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-haruspex:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-hierophant:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time this model makes an attack"
+  },
+  {
+    "ruleId": "datasheet-hierophant:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time this model makes a Normal, Advance or Fall Back move"
+  },
+  {
+    "ruleId": "datasheet-hierophant:section:4",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-hive-crone:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time this model makes a ranged attack"
+  },
+  {
+    "ruleId": "datasheet-hive-crone:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-hive-guard:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "Each time you target this unit with the Fire Overwatch Stratagem"
+  },
+  {
+    "ruleId": "datasheet-hive-tyrant:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly TYRANIDS unit is within 6\" of this model"
+  },
+  {
+    "ruleId": "datasheet-hormagaunts:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "This unit is eligible to declare a charge"
+  },
+  {
+    "ruleId": "datasheet-maleceptor:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-mawloc:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-neurogaunts:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While this unit is within Synapse Range"
+  },
+  {
+    "ruleId": "datasheet-neurotyrant:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While this model is leading a unit, each time a model in that unit makes an attack"
+  },
+  {
+    "ruleId": "datasheet-norn-assimilator:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "each time this model makes an attack"
+  },
+  {
+    "ruleId": "datasheet-norn-assimilator:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-norn-emissary:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "each time this model makes an attack"
+  },
+  {
+    "ruleId": "datasheet-norn-emissary:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "This model has the Feel No Pain 4+ ability against mortal wounds"
+  },
+  {
+    "ruleId": "datasheet-norn-emissary:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-old-one-eye:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While this model is leading a unit, each time a model in that unit makes an attack"
+  },
+  {
+    "ruleId": "datasheet-old-one-eye:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model regains up to D3 lost wounds"
+  },
+  {
+    "ruleId": "datasheet-psychophage:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "Each time this model makes a melee attack"
+  },
+  {
+    "ruleId": "datasheet-raveners:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "you can remove it from the battlefield and place it into Strategic Reserves"
+  },
+  {
+    "ruleId": "datasheet-sporocyst:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "You can target this model with the Fire Overwatch Stratagem for 0CP"
+  },
+  {
+    "ruleId": "datasheet-termagants:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "this unit can make a Normal move of up to D6\""
+  },
+  {
+    "ruleId": "datasheet-tervigon:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly TERMAGANTS unit is within 6\" of this model"
+  },
+  {
+    "ruleId": "datasheet-tervigon:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-the-red-terror:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model regains up to D3+2 lost wounds"
+  },
+  {
+    "ruleId": "datasheet-the-red-terror:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "you can remove it from the battlefield and place it into Strategic Reserves"
+  },
+  {
+    "ruleId": "datasheet-the-swarmlord:section:1",
+    "clauseId": "text-coverage:/blocks/2/text",
+    "field": [
+      "blocks",
+      2,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly TYRANIDS unit is within 9\" of this model"
+  },
+  {
+    "ruleId": "datasheet-trygon:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model can be set up anywhere on the battlefield"
+  },
+  {
+    "ruleId": "datasheet-trygon:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "This unit’s melee attacks have +1 S."
+  },
+  {
+    "ruleId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "This unit is eligible to shoot and declare a charge"
+  },
+  {
+    "ruleId": "datasheet-tyrannofex:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "when an attack is allocated to this model"
+  },
+  {
+    "ruleId": "datasheet-tyrannofex:section:3",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "PHYSICAL",
+    "quote": "this model"
+  },
+  {
+    "ruleId": "datasheet-von-ryans-leapers:section:1",
+    "clauseId": "text-coverage:/blocks/0/text",
+    "field": [
+      "blocks",
+      0,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "You can target this unit with the Heroic Intervention stratagem"
+  },
+  {
+    "ruleId": "datasheet-zoanthropes:section:1",
+    "clauseId": "text-coverage:/blocks/1/text",
+    "field": [
+      "blocks",
+      1,
+      "text"
+    ],
+    "subject": "UNIT",
+    "binding": "SOURCE_UNIT",
+    "scope": "FORMED",
+    "quote": "While a friendly TYRANIDS unit is within 6\" of this unit"
+  }
 ]

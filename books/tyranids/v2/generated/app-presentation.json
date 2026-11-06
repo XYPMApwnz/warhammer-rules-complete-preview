@@ -156418,6 +156418,20 @@
     "authority": "DISPOSABLE_PROJECTION",
     "entries": [
       {
+        "targetId": "army-rule-shadow-in-the-warp:definition",
+        "label": "Shadow in the Warp",
+        "category": "ARMY_RULE_COMPONENT",
+        "contextLabel": "Shadow in the Warp",
+        "aliases": []
+      },
+      {
+        "targetId": "army-rule-synapse:definition",
+        "label": "Synapse",
+        "category": "ARMY_RULE_COMPONENT",
+        "contextLabel": "Synapse",
+        "aliases": []
+      },
+      {
         "targetId": "core-abilities",
         "label": "Abilities",
         "category": "CORE_MAIN_RULE",
@@ -159031,6 +159045,46 @@
         ]
       },
       {
+        "targetId": "datasheet-barbgaunts:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Barbgaunts",
+        "aliases": [
+          {
+            "label": "Disruption Bombardment",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-barbgaunts:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Barbgaunts",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-biovores:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Biovores",
+        "aliases": [
+          {
+            "label": "Seed Spore Mines",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-biovores:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Biovores",
+        "aliases": []
+      },
+      {
         "targetId": "datasheet-broodlord:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -159047,6 +159101,365 @@
             "presentationOnly": true
           }
         ]
+      },
+      {
+        "targetId": "datasheet-broodlord:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Broodlord",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-broodlord:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Broodlord",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-carnifexes:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Carnifexes",
+        "aliases": [
+          {
+            "label": "Blistering Assault",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-carnifexes:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Carnifexes",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-deathleaper:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Deathleaper",
+        "aliases": [
+          {
+            "label": "Fear of the Unseen (Aura)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Feeder Tendrils",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-deathleaper:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Deathleaper",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-deathleaper:section:3",
+        "label": "HUNTER ORGANISM",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Deathleaper",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-exocrine:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Exocrine",
+        "aliases": [
+          {
+            "label": "Symbiotic Targeting",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-exocrine:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Exocrine",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-exocrine:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Exocrine",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-gargoyles:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Gargoyles",
+        "aliases": [
+          {
+            "label": "Winged Swarm",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-gargoyles:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Gargoyles",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-genestealers:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Genestealers",
+        "aliases": [
+          {
+            "label": "Vanguard Predator",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-genestealers:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Genestealers",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-harpy:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harpy",
+        "aliases": [
+          {
+            "label": "Spore Mine Cysts",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-harpy:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harpy",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-harpy:section:3",
+        "label": "DAMAGED: 1-4 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harpy",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-harridan:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harridan",
+        "aliases": [
+          {
+            "label": "Frenzied Metabolism",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-harridan:section:2",
+        "label": "TRANSPORT",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harridan",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-harridan:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harridan",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-harridan:section:4",
+        "label": "DAMAGED: 1-10 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Harridan",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-haruspex:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Haruspex",
+        "aliases": [
+          {
+            "label": "Grisly Spectacle",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-haruspex:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Haruspex",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-haruspex:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Haruspex",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hierophant:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hierophant",
+        "aliases": [
+          {
+            "label": "Apex-beast",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Stalking Forward",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-hierophant:section:2",
+        "label": "TRANSPORT",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hierophant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hierophant:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hierophant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hierophant:section:4",
+        "label": "DAMAGED: 1-10 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hierophant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hive-crone:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Crone",
+        "aliases": [
+          {
+            "label": "Airborne Predator",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-hive-crone:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Crone",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hive-crone:section:3",
+        "label": "DAMAGED: 1-4 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Crone",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hive-guard:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Guard",
+        "aliases": [
+          {
+            "label": "Defensive Stance",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-hive-guard:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Guard",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hive-tyrant:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Tyrant",
+        "aliases": [
+          {
+            "label": "Onslaught (Aura, Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Will of the Hive Mind",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-hive-tyrant:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Tyrant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hive-tyrant:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hive Tyrant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hormagaunts:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hormagaunts",
+        "aliases": [
+          {
+            "label": "Bounding Leap",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-hormagaunts:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hormagaunts",
+        "aliases": []
       },
       {
         "targetId": "datasheet-hyperadapted-raveners:section:1",
@@ -159067,6 +159480,653 @@
         ]
       },
       {
+        "targetId": "datasheet-hyperadapted-raveners:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hyperadapted Raveners",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-hyperadapted-raveners:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Hyperadapted Raveners",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-lictor:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lictor",
+        "aliases": [
+          {
+            "label": "Feeder Tendrils",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Pheromone Trail",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-lictor:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Lictor",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-maleceptor:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maleceptor",
+        "aliases": [
+          {
+            "label": "Encephalic Diffusion (Aura, Psychic)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-maleceptor:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maleceptor",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-maleceptor:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Maleceptor",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-mawloc:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Mawloc",
+        "aliases": [
+          {
+            "label": "Terror From The Deep",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-mawloc:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Mawloc",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-mawloc:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Mawloc",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-mucolid-spores:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Mucolid Spores",
+        "aliases": [
+          {
+            "label": "Bio-minefield",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Floating Death",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-mucolid-spores:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Mucolid Spores",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-neurogaunts:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurogaunts",
+        "aliases": [
+          {
+            "label": "Neurocytes",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-neurogaunts:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurogaunts",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-neurolictor:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurolictor",
+        "aliases": [
+          {
+            "label": "Feeder Tendrils",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Neural Disruption",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Psychological Saboteur (Aura)",
+            "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-neurolictor:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurolictor",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-neurotyrant:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurotyrant",
+        "aliases": [
+          {
+            "label": "Neuroloids",
+            "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Node Lash (Psychic)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Psychic Terror (Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-neurotyrant:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurotyrant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-neurotyrant:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Neurotyrant",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-norn-assimilator:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Assimilator",
+        "aliases": [
+          {
+            "label": "Harpoon Barbs",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Singular Purpose",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-norn-assimilator:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Assimilator",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-norn-assimilator:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Assimilator",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-norn-emissary:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Emissary",
+        "aliases": [
+          {
+            "label": "Singular Purpose",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Unnatural Resilience",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-norn-emissary:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Emissary",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-norn-emissary:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Norn Emissary",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-old-one-eye:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Old One Eye",
+        "aliases": [
+          {
+            "label": "Alpha Leader",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Unstoppable Monster",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-old-one-eye:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Old One Eye",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-old-one-eye:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Old One Eye",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-parasite-of-mortrex:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Parasite Of Mortrex",
+        "aliases": [
+          {
+            "label": "It Itches!",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Parasitic Infection",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-parasite-of-mortrex:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Parasite Of Mortrex",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-psychophage:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Psychophage",
+        "aliases": [
+          {
+            "label": "Bio-stimulus",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Feeding Frenzy",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-psychophage:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Psychophage",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-pyrovores:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Pyrovores",
+        "aliases": [
+          {
+            "label": "Burning Spray",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-pyrovores:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Pyrovores",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-raveners:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Raveners",
+        "aliases": [
+          {
+            "label": "Death From Below",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-raveners:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Raveners",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-ripper-swarms:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Ripper Swarms",
+        "aliases": [
+          {
+            "label": "Chitinous Horrors (Aura)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-ripper-swarms:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Ripper Swarms",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-screamer-killer:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Screamer-killer",
+        "aliases": [
+          {
+            "label": "Death Scream",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-screamer-killer:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Screamer-killer",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-spore-mines:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Spore Mines",
+        "aliases": [
+          {
+            "label": "Bio-minefield",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Floating Death",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-spore-mines:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Spore Mines",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-sporocyst:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Sporocyst",
+        "aliases": [
+          {
+            "label": "Hive Defences",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Seed Mucolids",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-sporocyst:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Sporocyst",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-termagants:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Termagants",
+        "aliases": [
+          {
+            "label": "Skulking Horrors",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-termagants:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Termagants",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tervigon:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tervigon",
+        "aliases": [
+          {
+            "label": "Brood Progenitor (Aura, Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Spawn Termagants",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tervigon:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tervigon",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tervigon:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tervigon",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-the-red-terror:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "The Red Terror",
+        "aliases": [
+          {
+            "label": "Subterranean Hunter",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Swallow Whole",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-the-red-terror:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "The Red Terror",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-the-swarmlord:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "The Swarmlord",
+        "aliases": [
+          {
+            "label": "Domination of the Hive Mind (Aura)",
+            "fieldPath": "/blocks/2/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Hive Commander",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Malign Presence",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-the-swarmlord:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "The Swarmlord",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-the-swarmlord:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "The Swarmlord",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-toxicrene:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Toxicrene",
+        "aliases": [
+          {
+            "label": "Grasping Tendrils",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Hypertoxic Miasma (Aura)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-toxicrene:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Toxicrene",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-trygon:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Trygon",
+        "aliases": [
+          {
+            "label": "Subterranean Tunnels",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-trygon:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Trygon",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-trygon:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Trygon",
+        "aliases": []
+      },
+      {
         "targetId": "datasheet-tyranid-prime-with-lash-whip:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -159085,6 +160145,114 @@
         ]
       },
       {
+        "targetId": "datasheet-tyranid-prime-with-lash-whip:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Prime with Lash Whip",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyranid-prime-with-lash-whip:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Prime with Lash Whip",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Warriors With Melee Bio-weapons",
+        "aliases": [
+          {
+            "label": "Adaptive Instincts (Once per turn, per unit)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Warriors With Melee Bio-weapons",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Warriors With Ranged Bio-weapons",
+        "aliases": [
+          {
+            "label": "Adaptable Predators",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyranid Warriors With Ranged Bio-weapons",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyrannocyte:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannocyte",
+        "aliases": [
+          {
+            "label": "Aerial Seeding",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tyrannocyte:section:2",
+        "label": "TRANSPORT",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannocyte",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyrannocyte:section:3",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannocyte",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyrannofex:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannofex",
+        "aliases": [
+          {
+            "label": "Resilient Organism",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-tyrannofex:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannofex",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-tyrannofex:section:3",
+        "label": "DAMAGED: 1-5 WOUNDS REMAINING",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrannofex",
+        "aliases": []
+      },
+      {
         "targetId": "datasheet-tyrant-guard:section:1",
         "label": "ABILITIES",
         "category": "DATASHEET_SECTION",
@@ -159096,6 +160264,78 @@
             "presentationOnly": true
           }
         ]
+      },
+      {
+        "targetId": "datasheet-tyrant-guard:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Tyrant Guard",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-venomthropes:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Venomthropes",
+        "aliases": [
+          {
+            "label": "Foul Spores (Aura)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-venomthropes:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Venomthropes",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-von-ryans-leapers:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Von Ryan’s Leapers",
+        "aliases": [
+          {
+            "label": "Pouncing Leap",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-von-ryans-leapers:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Von Ryan’s Leapers",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-winged-hive-tyrant:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Winged Hive Tyrant",
+        "aliases": [
+          {
+            "label": "Paroxysm (Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Will of the Hive Mind",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-winged-hive-tyrant:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Winged Hive Tyrant",
+        "aliases": []
       },
       {
         "targetId": "datasheet-winged-tyranid-prime:section:1",
@@ -159116,10 +160356,56 @@
         ]
       },
       {
+        "targetId": "datasheet-winged-tyranid-prime:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Winged Tyranid Prime",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-winged-tyranid-prime:section:3",
+        "label": "LEADER",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Winged Tyranid Prime",
+        "aliases": []
+      },
+      {
+        "targetId": "datasheet-zoanthropes:section:1",
+        "label": "ABILITIES",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Zoanthropes",
+        "aliases": [
+          {
+            "label": "Spirit Leech (Aura, Psychic)",
+            "fieldPath": "/blocks/0/text",
+            "presentationOnly": true
+          },
+          {
+            "label": "Warp Field (Aura, Psychic)",
+            "fieldPath": "/blocks/1/text",
+            "presentationOnly": true
+          }
+        ]
+      },
+      {
+        "targetId": "datasheet-zoanthropes:section:2",
+        "label": "UNIT COMPOSITION",
+        "category": "DATASHEET_SECTION",
+        "contextLabel": "Zoanthropes",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-ambush-predators",
         "label": "Ambush Predators",
         "category": "DETACHMENT",
         "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-ambush-predators:enhancement:1",
+        "label": "Encircling Horrors",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Ambush Predators",
         "aliases": []
       },
       {
@@ -159144,9 +160430,37 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-assimilation-swarm:enhancement:1",
+        "label": "Regenerating Monstrosity",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Assimilation Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-assimilation-swarm:enhancement:2",
+        "label": "Instinctive Defence",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Assimilation Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-assimilation-swarm:enhancement:3",
+        "label": "Biophagic Flow (Aura)",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Assimilation Swarm",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-assimilation-swarm:enhancement:4",
         "label": "Parasitic Biomorphology",
         "category": "ENHANCEMENT",
+        "contextLabel": "Assimilation Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-assimilation-swarm:rule",
+        "label": "Feed the Swarm",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Assimilation Swarm",
         "aliases": []
       },
@@ -159165,10 +160479,59 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-crusher-stampede:enhancement:2",
+        "label": "Enraged Reserves",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Crusher Stampede",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-crusher-stampede:enhancement:3",
+        "label": "Null Nodules",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Crusher Stampede",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-crusher-stampede:enhancement:4",
+        "label": "Monstrous Nemesis",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Crusher Stampede",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-crusher-stampede:rule",
+        "label": "Enraged Behemoths",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Crusher Stampede",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-invasion-fleet",
         "label": "Invasion Fleet",
         "category": "DETACHMENT",
         "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-invasion-fleet:enhancement:1",
+        "label": "Alien Cunning",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Invasion Fleet",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-invasion-fleet:enhancement:2",
+        "label": "Perfectly Adapted",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Invasion Fleet",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-invasion-fleet:enhancement:3",
+        "label": "Synaptic Linchpin",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Invasion Fleet",
         "aliases": []
       },
       {
@@ -159179,10 +160542,38 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-invasion-fleet:rule",
+        "label": "Hyper-adaptations",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Invasion Fleet",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-subterranean-assault",
         "label": "Subterranean Assault",
         "category": "DETACHMENT",
         "contextLabel": "Army Book",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-subterranean-assault:enhancement:1",
+        "label": "Synaptic Strategy",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Subterranean Assault",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-subterranean-assault:enhancement:2",
+        "label": "Tremor Senses",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Subterranean Assault",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-subterranean-assault:enhancement:3",
+        "label": "Vanguard Intellect",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Subterranean Assault",
         "aliases": []
       },
       {
@@ -159214,6 +160605,34 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-synaptic-nexus:enhancement:2",
+        "label": "Psychostatic Disruption",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Synaptic Nexus",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-synaptic-nexus:enhancement:3",
+        "label": "Synaptic Control",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Synaptic Nexus",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-synaptic-nexus:enhancement:4",
+        "label": "The Dirgeheart of Kharis (Aura)",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Synaptic Nexus",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-synaptic-nexus:rule",
+        "label": "Synaptic Imperatives",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Synaptic Nexus",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-talons-of-the-norn-queen",
         "label": "Talons of the Norn Queen",
         "category": "DETACHMENT",
@@ -159235,6 +160654,13 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-talons-of-the-norn-queen:rule",
+        "label": "Higher Imperatives",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Talons of the Norn Queen",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-unending-swarm",
         "label": "Unending Swarm",
         "category": "DETACHMENT",
@@ -159249,6 +160675,34 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-unending-swarm:enhancement:2",
+        "label": "Naturalised Camouflage",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Unending Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-unending-swarm:enhancement:3",
+        "label": "Piercing Talons",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Unending Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-unending-swarm:enhancement:4",
+        "label": "Adrenalised Onslaught",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Unending Swarm",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-unending-swarm:rule",
+        "label": "Insurmountable Odds",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Unending Swarm",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-vanguard-onslaught",
         "label": "Vanguard Onslaught",
         "category": "DETACHMENT",
@@ -159256,9 +160710,44 @@
         "aliases": []
       },
       {
+        "targetId": "detachment-vanguard-onslaught:enhancement:1",
+        "label": "Hunting Grounds",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
         "targetId": "detachment-vanguard-onslaught:enhancement:2",
         "label": "Chameleonic",
         "category": "ENHANCEMENT",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-vanguard-onslaught:enhancement:3",
+        "label": "Stalker",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-vanguard-onslaught:enhancement:4",
+        "label": "Neuronode",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-vanguard-onslaught:rule",
+        "label": "Questing Tendrils",
+        "category": "DETACHMENT_RULE",
+        "contextLabel": "Vanguard Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-vanguard-onslaught:rule:vanguard-prime",
+        "label": "Vanguard Prime",
+        "category": "DETACHMENT_RULE",
         "contextLabel": "Vanguard Onslaught",
         "aliases": []
       },
@@ -159272,6 +160761,13 @@
       {
         "targetId": "detachment-warrior-bioform-onslaught:enhancement:1",
         "label": "Elevated Might",
+        "category": "ENHANCEMENT",
+        "contextLabel": "Warrior Bioform Onslaught",
+        "aliases": []
+      },
+      {
+        "targetId": "detachment-warrior-bioform-onslaught:enhancement:2",
+        "label": "Ocular Adaptation",
         "category": "ENHANCEMENT",
         "contextLabel": "Warrior Bioform Onslaught",
         "aliases": []
@@ -162082,25 +163578,182 @@
     "coverImage": "../../../assets/tyranids-cover-800.webp"
   },
   "ruleContractIds": [
+    "army-rule-synapse:definition",
+    "army-rule-shadow-in-the-warp:definition",
     "detachment-subterranean-assault:rule",
+    "detachment-subterranean-assault:enhancement:1",
+    "detachment-subterranean-assault:enhancement:2",
+    "detachment-subterranean-assault:enhancement:3",
     "detachment-subterranean-assault:enhancement:4",
+    "detachment-invasion-fleet:rule",
+    "detachment-invasion-fleet:enhancement:1",
+    "detachment-invasion-fleet:enhancement:2",
+    "detachment-invasion-fleet:enhancement:3",
     "detachment-invasion-fleet:enhancement:4",
+    "detachment-synaptic-nexus:rule",
     "detachment-synaptic-nexus:enhancement:1",
+    "detachment-synaptic-nexus:enhancement:2",
+    "detachment-synaptic-nexus:enhancement:3",
+    "detachment-synaptic-nexus:enhancement:4",
+    "detachment-assimilation-swarm:rule",
+    "detachment-assimilation-swarm:enhancement:1",
+    "detachment-assimilation-swarm:enhancement:2",
+    "detachment-assimilation-swarm:enhancement:3",
     "detachment-assimilation-swarm:enhancement:4",
+    "detachment-crusher-stampede:rule",
     "detachment-crusher-stampede:enhancement:1",
+    "detachment-crusher-stampede:enhancement:2",
+    "detachment-crusher-stampede:enhancement:3",
+    "detachment-crusher-stampede:enhancement:4",
+    "detachment-vanguard-onslaught:rule",
+    "detachment-vanguard-onslaught:rule:vanguard-prime",
+    "detachment-vanguard-onslaught:enhancement:1",
     "detachment-vanguard-onslaught:enhancement:2",
+    "detachment-vanguard-onslaught:enhancement:3",
+    "detachment-vanguard-onslaught:enhancement:4",
+    "detachment-unending-swarm:rule",
     "detachment-unending-swarm:enhancement:1",
+    "detachment-unending-swarm:enhancement:2",
+    "detachment-unending-swarm:enhancement:3",
+    "detachment-unending-swarm:enhancement:4",
     "detachment-ambush-predators:rule",
+    "detachment-ambush-predators:enhancement:1",
     "detachment-ambush-predators:enhancement:2",
+    "detachment-talons-of-the-norn-queen:rule",
     "detachment-talons-of-the-norn-queen:enhancement:1",
     "detachment-talons-of-the-norn-queen:enhancement:2",
     "detachment-warrior-bioform-onslaught:rule",
     "detachment-warrior-bioform-onslaught:enhancement:1",
+    "detachment-warrior-bioform-onslaught:enhancement:2",
+    "datasheet-barbgaunts:section:1",
+    "datasheet-barbgaunts:section:2",
+    "datasheet-biovores:section:1",
+    "datasheet-biovores:section:2",
     "datasheet-broodlord:section:1",
+    "datasheet-broodlord:section:2",
+    "datasheet-broodlord:section:3",
+    "datasheet-carnifexes:section:1",
+    "datasheet-carnifexes:section:2",
+    "datasheet-deathleaper:section:1",
+    "datasheet-deathleaper:section:2",
+    "datasheet-deathleaper:section:3",
+    "datasheet-exocrine:section:1",
+    "datasheet-exocrine:section:2",
+    "datasheet-exocrine:section:3",
+    "datasheet-gargoyles:section:1",
+    "datasheet-gargoyles:section:2",
+    "datasheet-genestealers:section:1",
+    "datasheet-genestealers:section:2",
+    "datasheet-harpy:section:1",
+    "datasheet-harpy:section:2",
+    "datasheet-harpy:section:3",
+    "datasheet-harridan:section:1",
+    "datasheet-harridan:section:2",
+    "datasheet-harridan:section:3",
+    "datasheet-harridan:section:4",
+    "datasheet-haruspex:section:1",
+    "datasheet-haruspex:section:2",
+    "datasheet-haruspex:section:3",
+    "datasheet-hierophant:section:1",
+    "datasheet-hierophant:section:2",
+    "datasheet-hierophant:section:3",
+    "datasheet-hierophant:section:4",
+    "datasheet-hive-crone:section:1",
+    "datasheet-hive-crone:section:2",
+    "datasheet-hive-crone:section:3",
+    "datasheet-hive-guard:section:1",
+    "datasheet-hive-guard:section:2",
+    "datasheet-hive-tyrant:section:1",
+    "datasheet-hive-tyrant:section:2",
+    "datasheet-hive-tyrant:section:3",
+    "datasheet-hormagaunts:section:1",
+    "datasheet-hormagaunts:section:2",
     "datasheet-hyperadapted-raveners:section:1",
+    "datasheet-hyperadapted-raveners:section:2",
+    "datasheet-hyperadapted-raveners:section:3",
+    "datasheet-lictor:section:1",
+    "datasheet-lictor:section:2",
+    "datasheet-maleceptor:section:1",
+    "datasheet-maleceptor:section:2",
+    "datasheet-maleceptor:section:3",
+    "datasheet-mawloc:section:1",
+    "datasheet-mawloc:section:2",
+    "datasheet-mawloc:section:3",
+    "datasheet-mucolid-spores:section:1",
+    "datasheet-mucolid-spores:section:2",
+    "datasheet-neurogaunts:section:1",
+    "datasheet-neurogaunts:section:2",
+    "datasheet-neurolictor:section:1",
+    "datasheet-neurolictor:section:2",
+    "datasheet-neurotyrant:section:1",
+    "datasheet-neurotyrant:section:2",
+    "datasheet-neurotyrant:section:3",
+    "datasheet-norn-assimilator:section:1",
+    "datasheet-norn-assimilator:section:2",
+    "datasheet-norn-assimilator:section:3",
+    "datasheet-norn-emissary:section:1",
+    "datasheet-norn-emissary:section:2",
+    "datasheet-norn-emissary:section:3",
+    "datasheet-old-one-eye:section:1",
+    "datasheet-old-one-eye:section:2",
+    "datasheet-old-one-eye:section:3",
+    "datasheet-parasite-of-mortrex:section:1",
+    "datasheet-parasite-of-mortrex:section:2",
+    "datasheet-psychophage:section:1",
+    "datasheet-psychophage:section:2",
+    "datasheet-pyrovores:section:1",
+    "datasheet-pyrovores:section:2",
+    "datasheet-raveners:section:1",
+    "datasheet-raveners:section:2",
+    "datasheet-ripper-swarms:section:1",
+    "datasheet-ripper-swarms:section:2",
+    "datasheet-screamer-killer:section:1",
+    "datasheet-screamer-killer:section:2",
+    "datasheet-spore-mines:section:1",
+    "datasheet-spore-mines:section:2",
+    "datasheet-sporocyst:section:1",
+    "datasheet-sporocyst:section:2",
+    "datasheet-termagants:section:1",
+    "datasheet-termagants:section:2",
+    "datasheet-tervigon:section:1",
+    "datasheet-tervigon:section:2",
+    "datasheet-tervigon:section:3",
+    "datasheet-the-red-terror:section:1",
+    "datasheet-the-red-terror:section:2",
+    "datasheet-the-swarmlord:section:1",
+    "datasheet-the-swarmlord:section:2",
+    "datasheet-the-swarmlord:section:3",
+    "datasheet-toxicrene:section:1",
+    "datasheet-toxicrene:section:2",
+    "datasheet-trygon:section:1",
+    "datasheet-trygon:section:2",
+    "datasheet-trygon:section:3",
     "datasheet-tyranid-prime-with-lash-whip:section:1",
+    "datasheet-tyranid-prime-with-lash-whip:section:2",
+    "datasheet-tyranid-prime-with-lash-whip:section:3",
+    "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+    "datasheet-tyranid-warriors-with-melee-bio-weapons:section:2",
+    "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:1",
+    "datasheet-tyranid-warriors-with-ranged-bio-weapons:section:2",
+    "datasheet-tyrannocyte:section:1",
+    "datasheet-tyrannocyte:section:2",
+    "datasheet-tyrannocyte:section:3",
+    "datasheet-tyrannofex:section:1",
+    "datasheet-tyrannofex:section:2",
+    "datasheet-tyrannofex:section:3",
     "datasheet-tyrant-guard:section:1",
-    "datasheet-winged-tyranid-prime:section:1"
+    "datasheet-tyrant-guard:section:2",
+    "datasheet-venomthropes:section:1",
+    "datasheet-venomthropes:section:2",
+    "datasheet-von-ryans-leapers:section:1",
+    "datasheet-von-ryans-leapers:section:2",
+    "datasheet-winged-hive-tyrant:section:1",
+    "datasheet-winged-hive-tyrant:section:2",
+    "datasheet-winged-tyranid-prime:section:1",
+    "datasheet-winged-tyranid-prime:section:2",
+    "datasheet-winged-tyranid-prime:section:3",
+    "datasheet-zoanthropes:section:1",
+    "datasheet-zoanthropes:section:2"
   ],
   "relatedRules": {
     "schema": "army-book-related-rules/v2",
