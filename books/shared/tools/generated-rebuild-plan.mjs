@@ -42,8 +42,6 @@ export function generatedRebuildPlan(tracked) {
   for(const book of BOOKS){
     if(book!=='death-guard')external(book,'books/shared/tools/build-new-recruit-model-names.mjs',
       [`books/${book}/v2/model-name-aliases.json`],[`--book=${book}`,'--write']);
-    const compatible=`books/${book}/generated/compatible-rules.json`;
-    if(tracked.includes(compatible))external(book,`books/${book}/tools/build-compatible-rules.mjs`,[compatible]);
   }
   external('space-marines','books/space-marines/tools/build-related-rules.mjs',
     ['books/space-marines/content/space-marines-related-rules.en.json']);
