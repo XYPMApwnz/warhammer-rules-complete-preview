@@ -66,8 +66,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/sources/tyranids-faction-pack-v1.2.pdf",
@@ -129,8 +128,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION",
-        "COMPATIBLE_RULES"
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/tyranids/sources/bsdata-tyranids-11e.json",
@@ -217,8 +215,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/content/tyranids-codex-parity.en.json"
@@ -236,8 +233,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/tyranids/content/tyranids-related-rules.en.json"
@@ -257,72 +253,6 @@
       ],
       "paths": [
         "books/tyranids/mobile/related-rules.inc"
-      ]
-    },
-    {
-      "id": "wahapedia-compatible-rules",
-      "title": "Frozen Wahapedia Compatible Rules comparison",
-      "edition": "11th Edition",
-      "version": "1",
-      "publicationDate": null,
-      "effectiveDate": null,
-      "retrievedAt": "2026-08-02",
-      "frozenAt": "2026-08-02",
-      "localPath": "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json",
-      "url": "https://wahapedia.ru/wh40k11ed/factions/tyranids/",
-      "sha256": "C4D145163ED8F311DB04BED57F65003D1940EC4B53AE5BD6C25A9A97B17D516A",
-      "authority": "secondary",
-      "role": "compatible-rules-comparison",
-      "scope": [
-        "rule-to-unit-associations",
-        "compatible-rules-candidates"
-      ],
-      "coverage": {
-        "matrixRows": 1947,
-        "conditionalRows": 90,
-        "unresolvedRows": 0
-      },
-      "knownGaps": [
-        "This snapshot does not provide all-content Wahapedia parity for every rule-bearing layer."
-      ],
-      "supersedes": [],
-      "language": "en",
-      "affectedRecords": [
-        "compatible-rules-correction-ledger.json",
-        "generated/compatible-rules.json"
-      ],
-      "affectedOutputs": [
-        "mobile/related-rules.inc",
-        "reader.html"
-      ],
-      "sourceId": "tyranids-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "tyranids-compatible-rules-corrections",
-      "sourceId": "tyranids-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tyranids/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {

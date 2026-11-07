@@ -14,8 +14,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/adeptus-mechanicus/sources/adeptus-mechanicus-faction-pack-v1.2.pdf",
@@ -37,8 +36,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION",
-        "COMPATIBLE_RULES"
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/adeptus-mechanicus/sources/bsdata-adeptus-mechanicus-11e.json",
@@ -77,8 +75,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-detachments.en.json"
@@ -133,38 +130,6 @@
       ],
       "paths": [
         "books/adeptus-mechanicus/mobile/related-rules.inc"
-      ]
-    },
-    {
-      "id": "adeptus-mechanicus-compatible-rules-snapshot",
-      "sourceId": "adeptus-mechanicus-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/adeptus-mechanicus/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "adeptus-mechanicus-compatible-rules-corrections",
-      "sourceId": "adeptus-mechanicus-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/adeptus-mechanicus/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {

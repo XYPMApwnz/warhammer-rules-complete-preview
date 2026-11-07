@@ -20,7 +20,6 @@
     "warpstrike-champions|akshur-s-binding-runes": "enhancement-akshurs-binding-runes"
   },
   "sharedArmyBookApp": true,
-  "compatibleRulesMatrix": true,
   "classifiedAbilityPresentation": true,
   "glossaryV2CompatibilityTerms": true,
   "rosterCatalog": {
@@ -88,16 +87,6 @@
       "producer": "books/shared/tools/build-army-book.mjs",
       "paths": [
         "mobile/related-rules.inc"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/chaos-space-marines/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
       ],
       "required": true,
       "tracked": true,

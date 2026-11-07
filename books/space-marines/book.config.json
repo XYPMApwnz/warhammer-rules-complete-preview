@@ -24,7 +24,6 @@
     "inferExactWargearAbilitySelections": true
   },
   "sharedArmyBookApp": true,
-  "compatibleRulesMatrix": true,
   "detachmentQualifiedEnhancementPoints": true,
   "includeCoreStratagems": true,
   "legacyRelatedRuleAttributes": false,
@@ -105,16 +104,6 @@
   },
   "mobileRelatedRulesSource": false,
   "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/space-marines/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
     {
       "class": "DERIVED_SOURCE_PROJECTION",
       "producer": "books/space-marines/tools/extract-faction-pack.py",

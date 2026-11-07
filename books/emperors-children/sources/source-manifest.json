@@ -23,8 +23,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/emperors-children/sources/emperors-children-faction-pack-v1.2.pdf",
@@ -52,8 +51,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION",
-        "COMPATIBLE_RULES"
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/emperors-children/sources/bsdata-emperors-children-11e.json",
@@ -117,8 +115,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/emperors-children/content/emperors-children-codex-parity.en.json"
@@ -135,8 +132,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/emperors-children/content/emperors-children-related-rules.en.json"
@@ -153,43 +149,10 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/emperors-children/sources/enhancement-owner-matrix.json"
-      ]
-    },
-    {
-      "id": "emperors-children-compatible-rules-snapshot",
-      "sourceId": "emperors-children-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/emperors-children/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "emperors-children-compatible-rules-corrections",
-      "sourceId": "emperors-children-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/emperors-children/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {

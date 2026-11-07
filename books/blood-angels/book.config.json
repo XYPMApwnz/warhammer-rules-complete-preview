@@ -26,7 +26,6 @@
     "inferCanonicalDetachmentRuleIds": true
   },
   "sharedArmyBookApp": true,
-  "compatibleRulesMatrix": true,
   "customApp": true,
   "legacyRelatedRuleAttributes": false,
   "renderSupportRelations": true,
@@ -147,16 +146,6 @@
       "producer": "books/shared/tools/build-army-book.mjs",
       "paths": [
         "mobile/related-rules.inc"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/blood-angels/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
       ],
       "required": true,
       "tracked": true,

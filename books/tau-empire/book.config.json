@@ -61,7 +61,6 @@
     "projectStatProfiles": true,
     "preserveMultipartStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,
   "assetVersions": {
     "app": 13,
@@ -101,16 +100,6 @@
   },
   "generatedOutputs": [
     {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/tau-empire/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
       "class": "DERIVED_SOURCE_PROJECTION",
       "producer": "books/tau-empire/tools/build-related-rules.mjs",
       "paths": [
@@ -119,16 +108,6 @@
       "required": true,
       "tracked": true,
       "lifecycle": "EXPLICIT_SOURCE_UPDATE_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/tau-empire/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
     }
   ],
   "glossaryV2CompatibilityTerms": true

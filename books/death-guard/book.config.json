@@ -59,28 +59,7 @@
     "mode": "authoritative-runtime-source",
     "path": "mobile/related-rules.inc"
   },
-  "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/death-guard/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/death-guard/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
-    }
-  ],
+  "generatedOutputs": [],
   "rosterCatalog": {
     "enforceCompositionConstraints": true,
     "weaponFamilyMemberships": [

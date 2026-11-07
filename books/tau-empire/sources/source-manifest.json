@@ -43,8 +43,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
@@ -109,8 +108,7 @@
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
         "POINTS_PROJECTION",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/bsdata-tau-empire-11e.json",
@@ -153,8 +151,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/content/tau-empire-codex-parity.en.json"
@@ -243,43 +240,10 @@
         "enhancement-ownership"
       ],
       "consumers": [
-        "RELATED_RULES",
-        "COMPATIBLE_RULES"
+        "RELATED_RULES"
       ],
       "paths": [
         "books/tau-empire/sources/tau-empire-related-rules-contracts.v1.json"
-      ]
-    },
-    {
-      "id": "tau-compatible-rules-snapshot",
-      "sourceId": "tau-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tau-empire/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "tau-compatible-rules-corrections",
-      "sourceId": "tau-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/tau-empire/sources/compatible-rules-correction-ledger.json"
       ]
     },
     {

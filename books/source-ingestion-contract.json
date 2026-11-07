@@ -104,50 +104,6 @@
     },
     {
       "book": "adeptus-mechanicus",
-      "sourceId": "adeptus-mechanicus-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "9db49911faf2b1e9e9251ea90a21fb2e5a32105a9b635cb5d98cba4acc0bd044",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/adeptus-mechanicus/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "9db49911faf2b1e9e9251ea90a21fb2e5a32105a9b635cb5d98cba4acc0bd044"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "adeptus-mechanicus",
-      "sourceId": "adeptus-mechanicus-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08",
-      "acceptedHash": "a2ed9b5f1be1300ff6ae16eb6f20dd29560f22019b367e469dea25d1069dbd30",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/adeptus-mechanicus/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "a2ed9b5f1be1300ff6ae16eb6f20dd29560f22019b367e469dea25d1069dbd30"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "adeptus-mechanicus",
       "sourceId": "adeptus-mechanicus-attachment-group-constraints",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
@@ -717,50 +673,6 @@
     },
     {
       "book": "death-guard",
-      "sourceId": "death-guard-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "a45758a5893ad3c3e83a5a9c62283c5e10a046083cf105b9478c9f89e5f2bf7b",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/death-guard/scripts/related-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "a45758a5893ad3c3e83a5a9c62283c5e10a046083cf105b9478c9f89e5f2bf7b"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "death-guard",
-      "sourceId": "death-guard-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08",
-      "acceptedHash": "4d8a9ec918f5c8dbe0ba99655fab17b1e5b6b92ff7a8220d0014b88cbd083af8",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/death-guard/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "4d8a9ec918f5c8dbe0ba99655fab17b1e5b6b92ff7a8220d0014b88cbd083af8"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "death-guard",
       "sourceId": "death-guard-effect-contracts",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
@@ -988,50 +900,6 @@
         }
       ],
       "notes": "Enrolled factual owner for datasheets, profiles, points-structure."
-    },
-    {
-      "book": "emperors-children",
-      "sourceId": "emperors-children-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "editorial-review-2026-08-02",
-      "acceptedHash": "6ad3e75ec5712f876eacc15733d10cb14d4320a41078ad7fa239707f16676259",
-      "lastChecked": "2026-08-02",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "USER_ACCEPTED_EDITORIAL_DECISION",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/emperors-children/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "6ad3e75ec5712f876eacc15733d10cb14d4320a41078ad7fa239707f16676259"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "emperors-children",
-      "sourceId": "emperors-children-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-09",
-      "acceptedHash": "dbb1551a036284f27f221bb10c2b62e7197293b327c66863df6cb977fd2d2802",
-      "lastChecked": "2026-08-09",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/emperors-children/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "dbb1551a036284f27f221bb10c2b62e7197293b327c66863df6cb977fd2d2802"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
     },
     {
       "book": "emperors-children",
@@ -1516,50 +1384,6 @@
     },
     {
       "book": "tau-empire",
-      "sourceId": "tau-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "editorial-review-2026-08-02",
-      "acceptedHash": "68153d9cfb0b9d92faaaa68e4ad76cac80c726eca5225e3e955a4c78a5f96f96",
-      "lastChecked": "2026-08-02",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "USER_ACCEPTED_EDITORIAL_DECISION",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/tau-empire/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "68153d9cfb0b9d92faaaa68e4ad76cac80c726eca5225e3e955a4c78a5f96f96"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "tau-empire",
-      "sourceId": "tau-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-02",
-      "acceptedHash": "66fe9c38dcf13cc29c1949063cb47a307aec3efc2a6b4c4c2e38b40623de74da",
-      "lastChecked": "2026-09-28",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/tau-empire/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "66fe9c38dcf13cc29c1949063cb47a307aec3efc2a6b4c4c2e38b40623de74da"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
-    },
-    {
-      "book": "tau-empire",
       "sourceId": "tau-empire-attachment-group-constraints",
       "authority": "structured-contract",
       "sourceType": "structured-contract",
@@ -1792,50 +1616,6 @@
         }
       ],
       "notes": "Enrolled factual owner for wargear, composition."
-    },
-    {
-      "book": "tyranids",
-      "sourceId": "tyranids-compatible-rules-corrections",
-      "authority": "structured-contract",
-      "sourceType": "structured-contract",
-      "acceptedRevision": "accepted-2026-09-14",
-      "acceptedHash": "f1cde8e14c35c5cfa7f0f9e35cbff7cd665ec1fe13f91b2f7847f1db9f3e9cb0",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "N/A",
-      "status": "VERIFIED_FROZEN",
-      "rawOrigin": "REPOSITORY_ARTIFACT",
-      "reproducible": "repository-artifact",
-      "artifacts": [
-        {
-          "path": "books/tyranids/sources/compatible-rules-correction-ledger.json",
-          "normalization": "lf",
-          "sha256": "f1cde8e14c35c5cfa7f0f9e35cbff7cd665ec1fe13f91b2f7847f1db9f3e9cb0"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-adjudication."
-    },
-    {
-      "book": "tyranids",
-      "sourceId": "tyranids-compatible-rules-snapshot",
-      "authority": "legacy-normalized-secondary",
-      "sourceType": "legacy-normalized-secondary",
-      "acceptedRevision": "legacy-normalized-2026-08-13",
-      "acceptedHash": "49e8915077224c22713afac75a183bed316e4115c158068382a658bd9a4bee25",
-      "lastChecked": "2026-09-14",
-      "upstreamUpdateKnown": false,
-      "upstreamCurrentness": "UNKNOWN",
-      "status": "LEGACY_UNVERIFIABLE",
-      "rawOrigin": "UNAVAILABLE",
-      "reproducible": "normalized-artifacts-only",
-      "artifacts": [
-        {
-          "path": "books/tyranids/sources/wahapedia-compatible-rules.snapshot.json",
-          "normalization": "lf",
-          "sha256": "49e8915077224c22713afac75a183bed316e4115c158068382a658bd9a4bee25"
-        }
-      ],
-      "notes": "Enrolled factual owner for compatible-rule-associations."
     },
     {
       "book": "tyranids",

@@ -43,7 +43,6 @@
     "projectStatProfiles": true,
     "preserveMultipartStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "customApp": true,
   "dedicatedMobile": true,
   "sharedArmyBookApp": true,
@@ -123,16 +122,6 @@
   },
   "generatedOutputs": [
     {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/emperors-children/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
       "class": "DERIVED_SOURCE_PROJECTION",
       "producer": "books/emperors-children/tools/build-bsdata-enhancement-index.mjs",
       "paths": [
@@ -141,16 +130,6 @@
       "required": true,
       "tracked": true,
       "lifecycle": "EXPLICIT_SOURCE_UPDATE_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/emperors-children/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
     }
   ],
   "glossaryV2CompatibilityTerms": true

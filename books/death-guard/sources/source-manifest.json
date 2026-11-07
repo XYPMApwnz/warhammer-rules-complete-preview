@@ -76,8 +76,7 @@
       "consumers": [
         "CANONICAL_BUILD",
         "EFFECTIVE_MODEL",
-        "POINTS_PROJECTION",
-        "COMPATIBLE_RULES"
+        "POINTS_PROJECTION"
       ],
       "paths": [
         "books/death-guard/content/death-guard-rules.en.json",
@@ -137,38 +136,6 @@
       ]
     },
     {
-      "id": "death-guard-compatible-rules-snapshot",
-      "sourceId": "death-guard-compatible-rules-snapshot",
-      "active": true,
-      "sourceType": "legacy-normalized-secondary",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-associations"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/death-guard/sources/wahapedia-compatible-rules.snapshot.json"
-      ]
-    },
-    {
-      "id": "death-guard-compatible-rules-corrections",
-      "sourceId": "death-guard-compatible-rules-corrections",
-      "active": true,
-      "sourceType": "structured-contract",
-      "lifecycle": "ACCEPTED_SOURCE",
-      "factsOwned": [
-        "compatible-rule-adjudication"
-      ],
-      "consumers": [
-        "COMPATIBLE_RULES"
-      ],
-      "paths": [
-        "books/death-guard/scripts/related-rules-correction-ledger.json"
-      ]
-    },
-    {
       "id": "death-guard-enhancement-owner-matrix",
       "sourceId": "death-guard-enhancement-owner-matrix",
       "active": true,
@@ -179,8 +146,7 @@
       ],
       "consumers": [
         "CANONICAL_BUILD",
-        "EFFECTIVE_MODEL",
-        "COMPATIBLE_RULES"
+        "EFFECTIVE_MODEL"
       ],
       "paths": [
         "books/death-guard/sources/enhancement-owner-matrix.json"

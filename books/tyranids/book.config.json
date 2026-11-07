@@ -62,7 +62,6 @@
     "enforceCompositionConstraints": true,
     "projectStatProfiles": true
   },
-  "compatibleRulesMatrix": true,
   "legacyRelatedRuleAttributes": false,
   "assetVersions": {
     "app": 11,
@@ -93,27 +92,6 @@
     "mode": "authoritative-runtime-source",
     "path": "mobile/related-rules.inc"
   },
-  "generatedOutputs": [
-    {
-      "class": "COMPATIBLE_RULES_MATRIX",
-      "producer": "books/tyranids/tools/build-compatible-rules.mjs",
-      "paths": [
-        "generated/compatible-rules.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "NORMAL_BUILD_OUTPUT"
-    },
-    {
-      "class": "QA_CAPTURE_REPORT",
-      "producer": "books/tyranids/tools/import-wahapedia-compatible-rules.mjs",
-      "paths": [
-        "reports/compatible-rules-import-report.json"
-      ],
-      "required": true,
-      "tracked": true,
-      "lifecycle": "QA_CAPTURE_OUTPUT"
-    }
-  ],
+  "generatedOutputs": [],
   "glossaryV2CompatibilityTerms": true
 }
