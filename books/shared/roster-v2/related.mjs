@@ -16,7 +16,7 @@ export function projectRosterRelated({book,state,projection,context,evaluateRole
       candidate.profiles.map(m=>context(candidate.instanceId,'MODEL',m.scopeId)):
       [context(candidate.instanceId,role.subject)]).filter(Boolean).map(context=>enhancementOwnerContext(contract,context));
     const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-      return any(roleContexts(unit,role).map(context=>!enhancementBearerEligible(contract,role,context)?'FALSE':evaluateCompatibilityRole(contract,role,context,
+      return any(roleContexts(unit,role).map(context=>!enhancementBearerEligible(contract,role,context,unit)?'FALSE':evaluateCompatibilityRole(contract,role,context,
         {evaluateRole,contextsForRole:primary=>projection.units.flatMap(candidate=>roleContexts(candidate,primary))})));
     });
     const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,

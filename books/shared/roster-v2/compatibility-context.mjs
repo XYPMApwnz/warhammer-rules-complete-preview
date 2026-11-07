@@ -12,7 +12,13 @@ export function enhancementOwnerContext(contract, context) {
 }
 
 /** The general MODEL Enhancement bearer rule, for related queries only. */
-export function enhancementBearerEligible(contract,role,context){
- return contract.kind!=='ENHANCEMENT'||role.id!==contract.roles[0]?.id||role.subject!=='MODEL'||
-  context.intrinsicKeywords?.has('CHARACTER')===true;
+export function enhancementBearerEligible(contract,role,context,physicalUnit=null){
+ if(contract.kind!=='ENHANCEMENT'||role.id!==contract.roles[0]?.id||role.subject!=='MODEL')return true;
+ if(context.owner?.keywords?.has('CHARACTER'))return true;
+ // A confirmed CHARACTER grant to an exact one-MODEL physical UNIT also
+ // belongs to that MODEL; never borrow a formation's or sibling MODEL's bag.
+ return Boolean(physicalUnit&&physicalUnit.instanceId===context.instanceId&&
+  physicalUnit.canonicalUnitId===context.owner?.unitId&&
+  physicalUnit.profiles.reduce((count,model)=>count+model.quantity,0)===1&&
+  physicalUnit.keywords.includes('CHARACTER'));
 }
