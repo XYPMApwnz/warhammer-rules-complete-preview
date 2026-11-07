@@ -166,7 +166,7 @@ try{
   mutate('books/source-ingestion-contract.json',value=>value.sources.find(source=>source.sourceId==='tau-codex-wargear').artifacts[0].sha256='0'.repeat(64),/hash mismatch/);
   mutate('books/source-ingestion-contract.json',value=>value.sources.find(source=>source.sourceId==='tau-codex-wargear').book='tyranids',/registered sources are not actively declared|active manifest sources are not registered/);
   mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').paths=['../outside.json'],/normalized repository-relative path/);
-  const generatedArtifact='books/tau-empire/generated/compatible-rules.json';
+  const generatedArtifact='books/tau-empire/content/tau-empire-related-rules.en.json';
   fs.mkdirSync(path.dirname(path.join(fixture,generatedArtifact)),{recursive:true});
   fs.writeFileSync(path.join(fixture,generatedArtifact),'poison');
   mutate(manifest('tau-empire'),value=>value.layers.find(source=>source.sourceId==='tau-codex-wargear').paths.push(generatedArtifact),/generated output is mislabeled as accepted source/);

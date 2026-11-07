@@ -10,8 +10,8 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 const temp=createQaTempDir('wh-generated-rebuild-controls-');
 const out=createQaEvidenceDir('wh-generated-rebuild-controls-evidence-');
 const module=new URL('../books/shared/tools/check-generated-rebuild.mjs',import.meta.url).href;
-const file='books/space-marines/generated/compatible-rules.json';
-const producer='books/space-marines/tools/build-compatible-rules.mjs';
+const file='books/core-rules/reader/search-index.json';
+const producer='books/core-rules/reader/build.mjs';
 const original=fs.readFileSync(path.join(root,file)),rows=[];
 let completed=false;
 try{
@@ -24,7 +24,7 @@ fs.appendFileSync(${JSON.stringify(file)},' ');
 `);
   for(const corrupt of [false,true]){
     const evidence=path.join(out,corrupt?'stale':'fresh');
-    const plan={files:[file],excluded:[],steps:[{book:'space-marines',producer:corrupt?corruptProducer:producer,args:[],runtime:'node',outputs:[file]}]};
+    const plan={files:[file],excluded:[],steps:[{book:'core',producer:corrupt?corruptProducer:producer,args:[],runtime:'node',outputs:[file]}]};
     const source=`import {checkGeneratedRebuild} from ${JSON.stringify(module)};await checkGeneratedRebuild(${JSON.stringify({root,out:evidence,plan})});`;
     const run=spawnSync(process.execPath,['--input-type=module','-e',source],{encoding:'utf8',env:qaTempEnvironment(),maxBuffer:16*1024*1024});
     assert(fs.existsSync(evidence),run.stderr);
