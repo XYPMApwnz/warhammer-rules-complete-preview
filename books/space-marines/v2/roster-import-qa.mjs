@@ -58,7 +58,6 @@ let physicalProgress=0;
 for(const unit of facts.entities.filter(row=>row.kind==='DATASHEET')){
  progress('physical',++physicalProgress+'/85');
   const input=fixture(unit.id),service=createSpaceMarinesRosterService(book),result=service.import(header()+input.text);
-  if(unit.id===DAINAL_UNIT){assert.equal(result.status,'NEEDS_BINDINGS');blocked.push({unitId:unit.id,status:result.status,needs:result.needsBindings});continue;}
   assert.equal(result.status,'READY',unit.id+' '+JSON.stringify({needs:result.needsBindings,errors:result.errors}));
   const actual=service.state.units[0];assert.equal(actual.canonicalUnitId,unit.id);assert.equal(actual.startingStrength,input.total);
   assert.equal(actual.modelRows.length,input.rows.length);
@@ -74,7 +73,7 @@ for(const unit of facts.entities.filter(row=>row.kind==='DATASHEET')){
   ready(service,header()+input.text);assert.deepEqual(service.snapshot(),snapshot);service.load(snapshot);assert.deepEqual(service.projection,projection);
   inputModelCount+=input.total;physical.push({unitId:unit.id,models:input.total,status:'PASS',points:result.points.status});
 }
-assert.equal(physical.length,84);assert.equal(blocked.length,1);
+assert.equal(physical.length,85);assert.equal(blocked.length,0);
 
 // All 21 existing Detachment identities pass through the real shared parser.
 const detachmentInput=fixture(INTERCESSORS),allDetachmentIds=facts.entities.filter(row=>row.kind==='DETACHMENT').map(row=>row.id);
@@ -192,7 +191,7 @@ const unknownInput=active.import(header()+'1x Thunderhawk Gunship (9999 pts)\n')
 const original=JSON.stringify(book);assert.deepEqual(buildSpaceMarinesImportBook({built}),book);assert.equal(JSON.stringify(book),original);
 assert.equal(fs.readFileSync(new URL('./generated/roster-import.json',import.meta.url),'utf8'),serializeSourceJSON(book),'Stale Space Marines native import view');
 progress.close();
-console.log(JSON.stringify({status:'PASS',physicalSourceUnits:84,sourceMappingBlockedUnits:blocked,constructedInputModels:inputModelCount,
+console.log(JSON.stringify({status:'PASS',physicalSourceUnits:physical.length,sourceMappingBlockedUnits:blocked,constructedInputModels:inputModelCount,
   physical:physical,detachments:21,paidOptionControls:paidResults,assignments:assignmentResults,cato:catoResults,
   repeatedUnits:true,quantityParity:true,sourceReplacementsNoDefaultGear:true,atomicImport:true,replacementConfirmation:true,
   snapshots:true,reimportAttachments:true,deterministic:true,realNewRecruitExportTested:false,browserAcceptance:'NOT_RUN'}));

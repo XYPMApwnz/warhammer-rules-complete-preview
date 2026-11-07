@@ -9449,6 +9449,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                }
               }
             ],
             "conditions": [],
@@ -9470,8 +9496,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "ability-sm-5f9181b4142f4205#text:0-121::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-c6d675b308e12f3b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[2]"}]}],

@@ -9449,6 +9449,32 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "binding": "SOURCE_UNIT",
+                "scope": "FORMED",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                }
               }
             ],
             "conditions": [],
@@ -9470,8 +9496,36 @@
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipients": [
+              {
+                "id": "ability-sm-5f9181b4142f4205#text:0-121::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "text-recipient",
+                "side": "FRIENDLY",
+                "from": "SOURCE_UNIT",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "ALWAYS",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {},
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Raise the Banner: At the end of your Movement phase, if this unit is controlling an objective, that objective is secured."
+                },
+                "scope": "FORMED"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-c6d675b308e12f3b","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[2]"}]}],
@@ -143924,12 +143978,22 @@
       {
         "canonicalId": "model-sm-1e6ba64c42ba4d79",
         "labels": [
-          "Dainal Komelius"
+          "Dainal Komelius",
+          "Dainal Kornelius"
         ],
         "evidence": {
           "entityId": "model-sm-1e6ba64c42ba4d79",
           "path": "/name"
-        }
+        },
+        "compositionEvidence": [
+          {
+            "memberId": "composition-sm-11f249c8e3af4b85",
+            "evidence": {
+              "entityId": "composition-sm-11f249c8e3af4b85",
+              "path": "/name"
+            }
+          }
+        ]
       },
       {
         "canonicalId": "model-sm-1eb8d9bcffb1480b",
@@ -147099,6 +147163,54 @@
         ]
       },
       {
+        "id": "composition-sm-11f249c8e3af4b85",
+        "ownerId": "unit-sm-c7226873c51d43c0",
+        "profileId": "model-sm-1e6ba64c42ba4d79",
+        "quantity": {
+          "min": 1,
+          "max": 1
+        },
+        "labels": [
+          "Dainal Kornelius"
+        ],
+        "evidence": {
+          "entityId": "composition-sm-11f249c8e3af4b85",
+          "path": "/name"
+        },
+        "reviewedMapping": {
+          "memberId": "composition-sm-11f249c8e3af4b85",
+          "profileId": "model-sm-1e6ba64c42ba4d79",
+          "evidence": [
+            {
+              "entityId": "composition-sm-11f249c8e3af4b85",
+              "path": [
+                "text"
+              ]
+            },
+            {
+              "entityId": "model-sm-1e6ba64c42ba4d79",
+              "path": [
+                "name"
+              ]
+            },
+            {
+              "entityId": "unit-sm-c7226873c51d43c0",
+              "path": [
+                "modelKeywordDeclarations"
+              ]
+            },
+            {
+              "entityId": "section-sm-507cbcfad6964570",
+              "path": [
+                "text"
+              ]
+            }
+          ],
+          "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-80d0d30500eac5ed","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[5]/ul[3]/li"}]}],
+          "sourceBindings": {"provenance":{"layout":"layouts-0371b087ae9990b5","refs":[0,0,0,0],"contexts":["contexts-0bb8ca0cf1320f74","contexts-6a8bfaa07d996d88","contexts-8e32532f80f4356f","contexts-ff62bafd48c64f43"]},"$schema":"source-refs/v1","$order":["memberId","profileId","evidence","provenance"]}
+        }
+      },
+      {
         "id": "composition-sm-132246949f9d419d",
         "ownerId": "unit-sm-a5c08f428c2648bb",
         "profileId": "model-sm-7ea7660b527f4c7d",
@@ -148981,17 +149093,7 @@
         }
       }
     ],
-    "unresolvedCompositions": [
-      {
-        "id": "composition-sm-11f249c8e3af4b85",
-        "ownerId": "unit-sm-c7226873c51d43c0",
-        "label": "Dainal Kornelius",
-        "status": "NOT_PROVEN",
-        "reason": "The source composition member has no independently confirmed MODEL profile binding.",
-        "sourceRefs": [{"documentId":"documents-5589f6ced0efb82a","referenceId":"refs-80d0d30500eac5ed","documentRole":"DOCUMENT","locators":[{"kind":"HTML_POINTER","value":"/html/body/div/div[1]/div[3]/div[2]/div[32]/div[2]/div[2]/div[5]/ul[3]/li"}]}],
-        "sourceBindings": "bindings-119a7d07bac72301"
-      }
-    ],
+    "unresolvedCompositions": [],
     "weaponSelections": [
       {
         "ownerId": "unit-sm-004d28cd5dca4a1e",
@@ -168663,5 +168765,5 @@
   "sourceSchema": "source-refs/v1",
   "sourceRefCatalog": {"refs-e1d9b0e6e749548e":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/28/selectionEntryGroups/0/selectionEntries/0"}]},"refs-651976686a4e3baa":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/30/selectionEntryGroups/0/selectionEntries/1"}]},"refs-dd0454dba990eb39":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/32/selectionEntryGroups/0/selectionEntries/0"}]},"refs-fad75d95d79e4b2b":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/56/selectionEntryGroups/0/selectionEntries/0"}]},"refs-136126deb9969894":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/59/selectionEntryGroups/0/selectionEntries/0"}]},"refs-c9b9abbac882a9ca":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/60/selectionEntryGroups/0/selectionEntries/0"}]},"refs-708e2e9d985ddc41":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/63/selectionEntryGroups/0/selectionEntries/0"}]},"refs-a8c310be74ea6816":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/64/selectionEntryGroups/0/selectionEntries/0"}]},"refs-04efbbc797d3c5ff":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/65/selectionEntryGroups/0/selectionEntries/0"}]},"refs-2fb40e9d768e268d":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/65/selectionEntryGroups/0/selectionEntries/2"}]},"refs-b378ff639df8957f":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/120/selectionEntryGroups/0/selectionEntries/0"}]},"refs-5b8cef70b8aeb376":{"document":"books/space-marines/sources/bsdata-space-marines-11e.json","documentRole":"DOCUMENT","sourceId":"space-marines-codex-transcription","sha256":"2c3427a887b90bebd652a37cc5fc0deaab4de000d15ae1e73edaf024ae0d4163","locators":[{"kind":"JSON_POINTER","value":"/documents/0/data/catalogue/sharedSelectionEntries/214/selectionEntryGroups/0/selectionEntries/1"}]}},
   "sourceLayoutCatalog": {"layouts-30a8cde49ae5aa0a":{"type":"OBJECT","entries":[["document",{"type":"VALUE","pool":"refs","index":0,"path":["document"]}],["sha256",{"type":"VALUE","pool":"refs","index":1,"path":["sha256"]}],["path",{"type":"VALUE","pool":"refs","index":2,"path":["locators",0,"value"]}]]}},
-  "sourceContextCatalog": {"contexts-ed601361945cabed":{"kind":"IDENTITY","field":"canonicalRuleId","value":"ability-sm-c4061e257e81492f"},"contexts-0c507ee30b8e92ef":{"kind":"IDENTITY","field":"canonicalOwnerId","value":"unit-sm-3460439c3a774c66"},"contexts-232d832937a5ef19":{"kind":"IDENTITY","field":"canonicalClauseId","value":"ability-sm-c4061e257e81492f#text:0-116"}}
+  "sourceContextCatalog": {"contexts-ed601361945cabed":{"kind":"IDENTITY","field":"canonicalRuleId","value":"ability-sm-c4061e257e81492f"},"contexts-0c507ee30b8e92ef":{"kind":"IDENTITY","field":"canonicalOwnerId","value":"unit-sm-3460439c3a774c66"},"contexts-232d832937a5ef19":{"kind":"IDENTITY","field":"canonicalClauseId","value":"ability-sm-c4061e257e81492f#text:0-116"},"contexts-8e32532f80f4356f":{"kind":"ATTRIBUTE","field":"reviewId","value":"sm-o3-reviewed-composition-sm-11f249c8e3af4b85"},"contexts-ff62bafd48c64f43":{"kind":"ATTRIBUTE","field":"reviewType","value":"SOURCE_CORROBORATED_COMPOSITION_PROFILE_BINDING"}}
 }

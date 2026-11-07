@@ -12,7 +12,8 @@ const facts=read('./generated/effective.json'),review=read('./roster-source-corr
 const original=JSON.stringify(facts),result=readSpaceMarinesRosterCorrections({facts});
 assert.deepEqual(result.modelMappings.map(r=>[r.memberId,r.profileId]),[
  ['composition-sm-b2e054ed2ab6473c','model-sm-55bf1242f2bb4dae'],
- ['composition-sm-dc1b983be26846bf','model-sm-eaba389795c342e3']]);
+ ['composition-sm-dc1b983be26846bf','model-sm-eaba389795c342e3'],
+ ['composition-sm-11f249c8e3af4b85','model-sm-1e6ba64c42ba4d79']]);
 assert.deepEqual(result.scopeCorrections.map(r=>[r.entityId,r.previousScope,r.scope]),[
  ['enhancement-sm-1599eafe5bab4e91','MODEL','UNIT'],['enhancement-sm-32c4e009e6c84003','MODEL','UNIT']]);
 for(const row of [...result.modelMappings,...result.scopeCorrections]){
@@ -62,6 +63,16 @@ for row in f['review']['corrections']:
   assert '1 Heavy Bolt Pistol; 1 Relic Blade.' in para and '1 Heavy Bolt Pistol; 1 Master-crafted Power Weapon.' in para
   gearhead=records['section-sm-c6194f07927c474c'][0];gearbody=gearhead.getnext();assert gearbody is not None
   assert unit in gearbody.iterancestors();assert 'Sergeant with Jump Pack can have their Relic Blade replaced' in norm(gearbody.text_content())
+ elif row['type']=='SOURCE_CORROBORATED_COMPOSITION_PROFILE_BINDING':
+  composition,tree=records[row['compositionId']];profile=records[row['modelProfileId']][0]
+  assert row['status']=='SOURCE_CONFIRMED' and row['preserveSourceLabels'] and not row['globalAliasesAdded']
+  assert norm(composition.text_content())=='1 Dainal Kornelius model'
+  assert 'Dainal Komelius' in norm(profile.text_content())
+  owners=composition.xpath('ancestor::div[contains(concat(" ",normalize-space(@class)," ")," datasheet ")]')
+  assert len(owners)==1 and owners[0] in profile.iterancestors()
+  heading=records['section-sm-507cbcfad6964570'][0];body=heading.getnext();assert body is not None
+  assert owners[0] in body.iterancestors()
+  assert row['context']['sourceLoadout'] in norm(body.text_content())
  else:
   node=records[row['canonicalId']][0];paragraphs=node.xpath('./p[not(contains(concat(" ",normalize-space(@class)," ")," legend2 "))]')
   assert len(paragraphs)==1;gameplay=norm(paragraphs[0].text_content())
@@ -71,10 +82,8 @@ for row in f['review']['corrections']:
   assert len(ancestors)==1;assert norm(ancestors[0].xpath('./h2')[0].text_content())=='Enhancements'
   if row['canonicalId']=='enhancement-sm-32c4e009e6c84003':assert 'This unit’s ranged weapons have [IGNORES COVER].' in gameplay
   else:assert 'that move does not prevent this unit from being eligible to start an action.' in gameplay
-unresolved=f['review']['unresolved'][0];assert unresolved['status']=='NOT_PROVEN'
-assert norm(records[unresolved['canonicalId']][0].text_content())=='1 Dainal Kornelius model'
-assert 'Dainal Komelius' in norm(records[unresolved['candidateModelProfileId']][0].text_content())
-print(json.dumps({'rawProofOccurrencesChecked':checks,'uniqueRawProofsChecked':len(records),'contextualRoleMappings':2,'unitScopeCorrections':2,'dainal':'NOT_PROVEN'}))
+assert f['review']['unresolved']==[]
+print(json.dumps({'rawProofOccurrencesChecked':checks,'uniqueRawProofsChecked':len(records),'contextualRoleMappings':3,'unitScopeCorrections':2,'dainal':'SOURCE_CONFIRMED'}))
 `;
 const parsed=spawnSync(python,['-X','utf8','-c',script],{input:JSON.stringify({root:fileURLToPath(new URL('../../../',import.meta.url)),review}),encoding:'utf8'});
 assert.equal(parsed.status,0,parsed.stderr);const source=JSON.parse(parsed.stdout);
@@ -94,7 +103,7 @@ reject(r=>r.corrections[2].new.scope='MODEL');
 reject(r=>r.corrections[2].unchanged.itemKind='UNIT_UPGRADE');
 reject(r=>r.corrections[2].unchanged.text+=' changed effect');
 reject(r=>r.corrections[3].executableBindingChangeAuthorizedByThisEvidence=true);
-reject(r=>r.unresolved[0].status='SOURCE_CONFIRMED');
+reject(r=>r.corrections[4].status='NOT_PROVEN');
 reject((r,f)=>f.entities.find(e=>e.id==='composition-sm-11f249c8e3af4b85').data.modelProfileId='model-sm-1e6ba64c42ba4d79');
 reject((r,f)=>f.entities.find(e=>e.id==='model-sm-55bf1242f2bb4dae').parentId='unit-sm-c7226873c51d43c0');
 reject((r,f)=>f.entities.find(e=>e.id==='model-sm-55bf1242f2bb4dae').data.stats.W='99');
