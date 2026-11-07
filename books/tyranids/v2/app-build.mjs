@@ -1,3 +1,5 @@
+import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
+import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable Tyranids presentation. Existing effective facts and central MFM own all values. */
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
@@ -150,10 +152,9 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   // A book view lacks physical assignments and battle context. Unbound rules
   // remain visible as conditional, never as a fabricated compatible result.
   const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:model.entities.filter(entity=>entity.kind==='DATASHEET').flatMap(unit=>model.entities.filter(entity=>['ENHANCEMENT','STRATAGEM'].includes(entity.kind)).map(rule=>({
-      unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,...clone(conditional),selectedDetachment:clone(conditional)})))};
+  payload.relatedRules=buildUnboundBookRelatedRules(built.book,createTyranidsRuleSchema(),{
+    unitIds:model.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id),
+    ruleIds:model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(e=>e.id)});
   payload.sourceEnrollment=read('./sources/enrollment.json');
   payload.deferredRules=clone(built.deferred);
   assert.equal(JSON.stringify(built.book),original,'Presentation changed its factual/contract owner');

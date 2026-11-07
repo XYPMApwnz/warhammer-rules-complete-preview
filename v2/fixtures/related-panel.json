@@ -1,0 +1,84 @@
+{
+  "baseline": "427796be5d29766acedc59338537f04667c0ba67",
+  "books": {
+    "adeptus-mechanicus": {
+      "otherPayloadSha256": "509a9bf8be857601f14a2e40f74b36c21b8560b95aa1f5c2556a864160f8de60",
+      "rowsSha256": "c62e5cbc447ce55ffdfba736a2e3321bb554b25d98eb4fa15f8ceec9d7286ef1",
+      "enhancements": 34,
+      "wholePayloadSha256": "51dd4bf1995cbf5566588faec62b3a0a077dad9b82cdb339fbcbc2625be789ac"
+    },
+    "blood-angels": {
+      "otherPayloadSha256": "0f128d2e3ef045f20c0c229c4b1b8f3c18381af85b6137224d895904e53f031c",
+      "rowsSha256": "46d114f90219238f075e2ccd583cca63bb57f43090bdfe0722ace3f68e01a2cb",
+      "enhancements": 40
+    },
+    "chaos-space-marines": {
+      "otherPayloadSha256": "9a280a185ef641ee7f53f62454262d4b9a7a0d2402ed386d5981516a5e82d72f",
+      "rowsSha256": "de5129c653af6fd5474e836bb96b916206f317b9536d54847523cb58335c4a63",
+      "enhancements": 62,
+      "wholePayloadSha256": "3aa6c90d9c8b617f7131548f6f7888d3a1c02df14546fca5f4b186419cd6eecf"
+    },
+    "dark-angels": {
+      "otherPayloadSha256": "500ca7100654448bab9a996d4f21bf3a4e1e189c0b57cec2a9eca9c5a01e3e85",
+      "rowsSha256": "55747c68b46d262a1c5dd8044c20461403696615504f3e5a2b5496774207a3a0",
+      "enhancements": 40
+    },
+    "death-guard": {
+      "otherPayloadSha256": "993c3fbe94f23ced3cbe5f68dadf3c8a792a089b0ca03a64d8eb319c853eba84",
+      "rowsSha256": "1624bb730dbf655c4f42276fda331da5fe6b2ca68df95c51a416bf50fd4e45cf",
+      "enhancements": 30,
+      "wholePayloadSha256": "7ce6848970e69a28a29a7bcff0bf7a582eaeca7e2f7aa12db224306071341e0f"
+    },
+    "emperors-children": {
+      "otherPayloadSha256": "dce8a64400452e9fe50aef2bc6cc36ec6abe115b12becf29abf20266c07b26ef",
+      "rowsSha256": "c6e68cab46881127d99b4d15420714972c5e5f657bd1c4640216b78585b95031",
+      "enhancements": 34
+    },
+    "space-marines": {
+      "otherPayloadSha256": "429c513b86b1f6c543fe08b7a0423c8ec6e56fb299ba91d9958e22d0d27371b4",
+      "rowsSha256": "9b9eaa6ceb9cd7c423c137e2caea37bb83e0b8c5242e4c3554818c00b200883d",
+      "enhancements": 56
+    },
+    "tau-empire": {
+      "otherPayloadSha256": "a697277ac996dc87107651aab82f6975703152dfcc50b492ca38f2c62d18bf89",
+      "rowsSha256": "00ad6589470488fce233dd5c86e28c0b39cd44204160c9c7378408f6b200580f",
+      "enhancements": 23
+    },
+    "tyranids": {
+      "otherPayloadSha256": "66dba368f78d15f45ac2d46c899aecc9bbc93f64708aca5006075add500eb348",
+      "rowsSha256": "ea37d4d153919fc45dc1ae4e81d908c43a446556df1e0d68ccf567de51812bc2",
+      "enhancements": 34
+    }
+  },
+  "noEnhancements": [
+    [
+      "tyranids",
+      "unit-genestealers"
+    ],
+    [
+      "emperors-children",
+      "unit-infractors"
+    ]
+  ],
+  "enhancements": [
+    {
+      "bookId": "tyranids",
+      "unitId": "unit-broodlord",
+      "ruleId": "detachment-unending-swarm:enhancement:3",
+      "expected": "CONDITIONAL"
+    },
+    {
+      "bookId": "tyranids",
+      "unitId": "unit-neurotyrant",
+      "ruleId": "detachment-synaptic-nexus:enhancement:3",
+      "expected": "CONDITIONAL"
+    },
+    {
+      "bookId": "emperors-children",
+      "unitId": "unit-lord-exultant",
+      "ruleId": "detachment-mercurial-host:enhancement:1",
+      "expected": "CONDITIONAL"
+    }
+  ],
+  "stratagems": []
+}

@@ -1,3 +1,4 @@
+import {buildBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable normal-book projection. The canonical catalog remains the sole factual owner. */
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
@@ -207,16 +208,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   payload.groups.find(g=>g.id==='updates').itemIds=facts.entities.filter(e=>['FAQ','OFFICIAL_UPDATE','ERRATA'].includes(e.kind)&&!e.factOwnerId).map(e=>e.id);
   payload.groups=payload.groups.filter(group=>group.itemIds.length);
   if(relatedRules){assert.equal(relatedRules.authority,'DISPOSABLE_PROJECTION');payload.relatedRules=relatedRules;}else{
-  const compiler=createCSMCompatibilityCompiler(built,built.schema.evaluator),kinds=['STRATAGEM','ENHANCEMENT'];
-  const base=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true});
-  const selected=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true,contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId})});
-  const chosen=new Map(selected.rows.map(row=>[row.unitId+'\0'+row.ruleId,row]));
-  const ruleIndex=new Map(built.book.entities.map(e=>[e.id,e]));
-  const result=row=>({state:row.state,applicability:row.applicability,roles:row.roles});
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:base.rows.map(row=>({unitId:row.unitId,ruleId:row.ruleId,kind:ruleIndex.get(row.ruleId).kind,detachmentId:ruleIndex.get(row.ruleId).ruleContract.detachmentId,
-      ...result(row),selectedDetachment:result(chosen.get(row.unitId+'\0'+row.ruleId))}))};
+  payload.relatedRules=buildBookRelatedRules({book:built.book,compiler:createCSMCompatibilityCompiler(built,built.schema.evaluator)});
   }
   assert.ok(payload.relatedRules.rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'));
   payload.ruleContractIds=built.book.entities.filter(e=>e.ruleContract).map(e=>e.id);

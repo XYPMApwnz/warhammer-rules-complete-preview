@@ -1,3 +1,4 @@
+import {assertRelatedPanelSnapshot} from '../../../tests/helpers/related-panel-assertions.mjs';
 import {parseSourceFixtureJSON,sourceFixture} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {sourceSnapshot,sourceDeclarationView} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Focused application assembly guard. Independent source identities and values
@@ -107,8 +108,9 @@ assert.equal(payload.groups.find(group=>group.id==='source-conditions').itemIds.
 assert.equal(payload.relatedRules.rows.length,85*(47+9+84));
 for(const row of payload.relatedRules.rows){
   assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);
-  assert.equal(row.state,'UNKNOWN');assert.equal(row.selectedDetachment.state,'UNKNOWN');
+  
 }
+assertRelatedPanelSnapshot(payload);
 const costCards=payload.cards.filter(card=>card.kind==='MFM_PAID_UPGRADE');assert.equal(costCards.length,8);
 for(const card of costCards)assert.ok(card.fields.some(field=>field.source.path==='/value'&&Number.isFinite(field.value)));
 assert.equal(payload.book.mfmVersion,'v1.6');
@@ -127,3 +129,4 @@ console.log(JSON.stringify({status:'PASS',nativeCardsUnchanged:original.size,can
   paidOptions:8,relatedRules:payload.relatedRules.rows.length,coverAssets:2,sourceCompleteness:'PARTIAL',
   semanticCompleteness:'NOT_PROVEN',realNewRecruitExportTested:false,
   appSha256:crypto.createHash('sha256').update(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url))).digest('hex')}));
+

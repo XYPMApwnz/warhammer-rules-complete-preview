@@ -1,3 +1,4 @@
+import {buildBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
@@ -24,28 +25,9 @@ export function evaluateRelatedRule(model,unit,rule,detachmentId) {
  */
 export function buildRelatedRules(model) {
   model=prepareSourceProducer(model);
-  const compiler=createDGCompatibilityCompiler(model),kinds=['STRATAGEM','ENHANCEMENT'];
-  const base=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true});
-  const selectedRows=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true,contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId})});
-  const selectedById=new Map(selectedRows.rows.map(row=>[`${row.unitId}\0${row.ruleId}`,row]));
-  const byId=new Map(model.entities.map(entity=>[entity.id,entity]));
-  const units=model.entities.filter(entity=>entity.kind==='DATASHEET');
-  const rules=model.entities.filter(entity=>kinds.includes(entity.ruleContract?.kind));
-  const rows=base.rows.map(row=>{
-    const rule=byId.get(row.ruleId),detachmentId=rule.ruleContract.detachmentId;
-    const selected=selectedById.get(`${row.unitId}\0${row.ruleId}`);
-    assert.ok(selected,'Missing canonical selected-context projection');
-    assert.equal(byId.get(detachmentId)?.kind,'DETACHMENT','Unresolved parent Detachment: '+rule.id);
-    return {unitId:row.unitId,ruleId:rule.id,detachmentId,kind:rule.ruleContract.kind,
-      ...relatedEvaluation({state:row.state,applicability:row.applicability,roles:row.roles}),
-      selectedDetachment:relatedEvaluation({state:selected.state,applicability:selected.applicability,roles:selected.roles})};
-  });
-  const all=summarize(rows),selected=summarize(rows.map(row=>row.selectedDetachment));
-  assert.equal(all.INVALID+selected.INVALID,0,'Invalid applicability contract/context');
-  return {schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',queryPurpose:'TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY',
-    contextPolicy:{allDetachments:'UNSPECIFIED_DETACHMENT',selectedDetachment:'EXPLICIT_CANONICAL_ID',roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},
-    coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    summary:{units:units.length,stratagems:rules.filter(rule=>rule.ruleContract.kind==='STRATAGEM').length,enhancements:rules.filter(rule=>rule.ruleContract.kind==='ENHANCEMENT').length,rows:rows.length,allDetachments:all,selectedDetachment:selected},rows};
+  return buildBookRelatedRules({book:model,compiler:createDGCompatibilityCompiler(model),format:{
+    detachmentBeforeKind:true,roleSummary:true,summary:true,queryPurpose:'TARGET_ELIGIBILITY_WITH_REQUIRED_RECIPIENT_FEASIBILITY',
+    contextPolicy:{allDetachments:'UNSPECIFIED_DETACHMENT',selectedDetachment:'EXPLICIT_CANONICAL_ID',roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'}}});
 }
 
 export function writeRelatedRules({check=false,model}={}) {

@@ -1,3 +1,4 @@
+import {assertRelatedPanelSnapshot} from '../../../tests/helpers/related-panel-assertions.mjs';
 import {parseSourceFixtureJSON} from '../../../tests/helpers/source-refs-fixtures.mjs';
 import {sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 /** Native application wiring only; no browser or full semantic certification. */
@@ -35,8 +36,9 @@ check('exact-source-owned-corpus-and-inherited-identities',()=>{
 check('all-reference-and-related-rule-targets-resolve',()=>{
  for(const card of payload.cards)for(const id of [...card.children||[],...(card.links||[]).map(link=>link.targetId),...(card.fields||[]).flatMap(field=>field.targetIds||[])])assert.ok(cards.has(id),'Missing target '+id);
  assert.equal(payload.relatedRules.rows.length,83*100);
- for(const row of payload.relatedRules.rows){assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);assert.equal(row.state,'UNKNOWN');}
+ for(const row of payload.relatedRules.rows){assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);}
 });
+assertRelatedPanelSnapshot(payload);
 check('limitations-and-source-review-stay-honest',()=>{
  const result=assertDarkAngelsAppSourceReview();assert.equal(result.status,'PARTIAL');assert.equal(result.classifications.UNVERIFIED,320);
  assert.equal(result.semanticCompleteness,'NOT_PROVEN');assert.equal(payload.rulePresentationLimitations.realNewRecruitExportTested,false);
@@ -49,3 +51,4 @@ check('limitations-and-source-review-stay-honest',()=>{
 });
 console.log(JSON.stringify({status:'PASS',checks,coverage:{datasheets:83,owned:16,inherited:67,armyRules:5,detachments:18,enhancements:30,upgrades:10,stratagems:60},
  sourceCompleteness:'PARTIAL',semanticCompleteness:'NOT_PROVEN',realNewRecruitExportTested:false,browserVerified:false},null,2));
+

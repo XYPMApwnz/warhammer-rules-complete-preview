@@ -1,3 +1,4 @@
+import {buildBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import fs from 'node:fs';
@@ -50,20 +51,9 @@ function bindPoints(model,catalog,bindings) {
 }
 export function buildRelatedRules(model,evaluator) {
   model=prepareSourceProducer(model);
-  const compiler=createAdMechCompatibilityCompiler(model,evaluator),kinds=['STRATAGEM','ENHANCEMENT'];
-  const base=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true});
-  const selected=compiler.compileRows({kinds,order:'UNIT_RULE',sort:true,contextForRule:rule=>({detachmentId:rule.ruleContract.detachmentId})});
-  const byId=new Map(selected.rows.map(row=>[row.unitId+'\0'+row.ruleId,row]));
-  const rules=new Map(model.entities.filter(entity=>entity.ruleContract).map(entity=>[entity.id,entity]));
-  const result=row=>({state:row.state,applicability:row.applicability,roles:row.roles});
-  const rows=base.rows.map(row=>({unitId:row.unitId,ruleId:row.ruleId,detachmentId:rules.get(row.ruleId).ruleContract.detachmentId,
-    kind:rules.get(row.ruleId).kind,...result(row),selectedDetachment:result(byId.get(row.unitId+'\0'+row.ruleId))}));
-  const all=summarizeCompatibility(rows),chosen=summarizeCompatibility(rows.map(row=>row.selectedDetachment));assert.equal(all.INVALID+chosen.INVALID,0);
-  return {schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{allDetachments:'UNSPECIFIED_DETACHMENT',selectedDetachment:'EXPLICIT_CANONICAL_ID',roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},
-    coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',summary:{units:model.entities.filter(entity=>entity.kind==='DATASHEET').length,
-      stratagems:model.entities.filter(entity=>entity.kind==='STRATAGEM').length,
-      enhancements:model.entities.filter(entity=>entity.kind==='ENHANCEMENT').length,rows:rows.length,allDetachments:all,selectedDetachment:chosen},rows};
+  return buildBookRelatedRules({book:model,compiler:createAdMechCompatibilityCompiler(model,evaluator),format:{
+    detachmentBeforeKind:true,summary:true,
+    contextPolicy:{allDetachments:'UNSPECIFIED_DETACHMENT',selectedDetachment:'EXPLICIT_CANONICAL_ID',roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'}}});
 }
 export function buildApp(inputs=readAppInputs()) {
   inputs={...inputs,model:prepareSourceProducer(inputs.model)};

@@ -1,3 +1,5 @@
+import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
+import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Application metadata over the existing native mixed-owner projection. */
 import fs from 'node:fs';
@@ -15,15 +17,12 @@ export function assertDarkAngelsAppSourceReview(executionBook=buildDarkAngelsImp
   ],expectations:[],registeredBookIds:[],checkAllRegistrations:false});
 }
 export function buildApp(){
-  const payload=prepareSourceProducer(buildGameplayPresentation()),conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
+  const payload=prepareSourceProducer(buildGameplayPresentation());
   payload.bookPresentation.coverImage='../assets/dark-angels-cover-800.webp';
   // Related cards preserve their source-owned Detachment, never guessed eligibility.
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:payload.cards.filter(card=>card.kind==='DATASHEET').flatMap(unit=>
-      payload.cards.filter(card=>['ENHANCEMENT','STRATAGEM'].includes(card.kind)).map(rule=>({
-        unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,
-        ...clone(conditional),selectedDetachment:clone(conditional)})))};
+  payload.relatedRules=buildUnboundBookRelatedRules(buildDarkAngelsImportBook(),createDarkAngelsRuleSchema(),{
+    unitIds:payload.cards.filter(card=>card.kind==='DATASHEET').map(card=>card.id),
+    ruleIds:payload.cards.filter(card=>['ENHANCEMENT','STRATAGEM'].includes(card.kind)).map(card=>card.id)});
   payload.sourceCompleteness=assertDarkAngelsAppSourceReview();
   payload.rulePresentationLimitations={...payload.rulePresentationLimitations,
     scope:'STAGE_4A_NATIVE_MIXED_OWNER_APPLICATION',runtime:'EXISTING_PHYSICAL_IMPORT_AND_TYPED_EFFECTS',

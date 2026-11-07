@@ -1,3 +1,5 @@
+import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
+import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Native application projection over the existing factual, MFM and gameplay
  * producers. This module owns layout metadata only; no facts or calculations. */
@@ -20,16 +22,12 @@ export function assertSpaceMarinesAppSourceReview(executionBook=buildSpaceMarine
 
 export function buildApp(){
   const payload=prepareSourceProducer(buildGameplayPresentation()),facts=read('./generated/effective.json');
-  const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.bookPresentation.coverImage='../assets/space-marines-cover-800.webp';
   // The established related-rule index retains canonical Detachment ownership.
   // UNKNOWN is deliberately not an eligibility or battle-state assertion.
-  payload.relatedRules={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION',
-    contextPolicy:{roster:'UNKNOWN',battle:'UNKNOWN',formation:'UNKNOWN'},coreStratagemsStatus:'DEFERRED_NEEDS_CONTRACTS',
-    rows:facts.entities.filter(entity=>entity.kind==='DATASHEET').flatMap(unit=>
-      facts.entities.filter(entity=>['ENHANCEMENT','STRATAGEM'].includes(entity.kind)).map(rule=>({
-        unitId:unit.id,ruleId:rule.id,kind:rule.kind,detachmentId:rule.parentId,
-        ...clone(conditional),selectedDetachment:clone(conditional)})))};
+  payload.relatedRules=buildUnboundBookRelatedRules(buildSpaceMarinesImportBook(),createSpaceMarinesRuleSchema(),{
+    unitIds:payload.cards.filter(card=>card.kind==='DATASHEET').map(card=>card.id),
+    ruleIds:payload.cards.filter(card=>['ENHANCEMENT','STRATAGEM'].includes(card.kind)).map(card=>card.id)});
   payload.rulePresentationLimitations={...payload.rulePresentationLimitations,
     scope:'STAGE_5A_NATIVE_APPLICATION_PREVIEW',frontend:'REQUIRES_REAL_MAIN_APPLICATION_ACCEPTANCE',
     sourceCompleteness:'PARTIAL',semanticCompleteness:'NOT_PROVEN',realNewRecruitExportTested:false,
