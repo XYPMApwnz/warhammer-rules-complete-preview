@@ -7,6 +7,7 @@ import copy
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -452,8 +453,19 @@ def verify(base, effective):
 
 
 def main():
-    base = read(HERE/'generated/base.json')
-    effective = read(HERE/'generated/effective.json')
+    # Decode the published sourceRefs representation at its existing JS boundary.
+    # Raw captures and the independent source expectations keep their own shape.
+    decoder = """
+import fs from 'node:fs';
+import {parseProducerJSON} from './books/shared/source-refs-v2/producer-io.mjs';
+process.stdout.write(JSON.stringify(process.argv.slice(1).map(file =>
+    parseProducerJSON(fs.readFileSync(file, 'utf8')))));
+"""
+    decoded = subprocess.run(
+        ['node', '--input-type=module', '-e', decoder,
+         str(HERE/'generated/base.json'), str(HERE/'generated/effective.json')],
+        cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True, encoding='utf8')
+    base, effective = json.loads(decoded.stdout)
     result = verify(base, effective)
     mutations = [
         lambda m: m['entities'].pop(next(i for i,r in enumerate(m['entities']) if r['kind']=='DATASHEET')),
@@ -505,7 +517,7 @@ def main():
             continue
         raise AssertionError('Undetected factual mutation')
     result['mutationsDetected'] = len(mutations)
-    text = json.dumps(result, indent=2, sort_keys=True)+'\n'
+    text = json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False)+'\n'
     if '--write-census' in sys.argv:
         (HERE/'generated/factual-census.json').write_text(text,encoding='utf8',newline='\n')
     print(text)
