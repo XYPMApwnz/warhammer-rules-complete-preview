@@ -218,6 +218,22 @@
 .unit-card .weapon-row .ds-modifier-breakdown { font-size: 8px; }
 .unit-card .statline .ds-modifier-breakdown { margin-top: 4px; font-size: 8px; }
 
+/* A narrow two-column card must not clip the last weapon statistic. Keep the
+   weapon name flexible while reserving enough room for the full Range value. */
+@container (min-width: 761px) and (max-width: 900px) {
+  .unit-card .weapon-row {
+    grid-template-columns: minmax(0, 2.35fr) minmax(56px, .56fr) repeat(5, minmax(44px, .56fr));
+  }
+  .unit-card .weapon-row > div { padding-inline: 6px; font-size: 13px; }
+  .unit-card .weapon-row:not(.weapon-head) > div:first-child { font-size: 15px; }
+  .unit-card .weapon-head > div { font-size: 10px; }
+}
+.unit-card .weapon-row .ds-effective-value {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
 /* Personal-roster state remains part of the datasheet header rather than
    becoming a second card below the V1 presentation. */
 .unit-card .ds-roster-context {
@@ -595,3 +611,10 @@
 .unit-card .ds-option-cost { display: inline-block; margin-left: 8px; color: var(--ink); white-space: nowrap; }
 .unit-card .ds-bound-weapon-ability { padding: 10px; border-left: 2px solid var(--green); background: color-mix(in srgb,var(--green) 7%,transparent); }
 .unit-card .ds-bound-weapon-ability p { margin: 0; }
+.unit-card .ds-enhancement-restriction {
+  margin: 8px 0;
+  padding: 6px 9px;
+  border-left: 2px solid var(--green);
+  color: var(--muted);
+  font-size: 12px;
+}

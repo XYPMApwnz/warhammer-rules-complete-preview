@@ -78,7 +78,11 @@ async function inspect(page,c,mode,device,id){
     f1:[...node.querySelectorAll('[data-detachment-rule-id]')].map(row=>({id:row.dataset.detachmentRuleId,text:row.querySelector('.ds-detachment-fields')?.textContent,
       visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:row.innerText.includes('Source:')})),
     policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map(row=>({text:row.innerText,
-      identity:JSON.parse(row.dataset.policySource),canonicalText:row.querySelector('p:last-child')?.textContent,source:row.innerText.includes('Source:')}))
+      identity:JSON.parse(row.dataset.policySource),canonicalText:row.querySelector('p:last-child')?.textContent,
+      source:row.innerText.includes('Source:')||JSON.parse(row.dataset.policyAttributionRefs||'[]').some(id=>{
+        const caption=document.getElementById(id),ruleId=JSON.parse(row.dataset.policySource).ruleId;
+        return caption?.innerText.includes('Source:')&&[...caption.querySelectorAll('a[data-target-id]')].some(link=>link.dataset.targetId===ruleId);
+      })}))
   })));
   fs.writeFileSync(path.join(out,device+'-'+c.id+'-'+mode+'-'+id+'.json'),JSON.stringify(observed,null,2));
   for(const card of observed){

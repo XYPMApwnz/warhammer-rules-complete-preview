@@ -1,4 +1,5 @@
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {enhancementTextParts} from './cosmetics.mjs';
 /** Actual V1 book templates adapted to canonical V2 fields. Presentation only. */
 import {hasSourceTableLayout, renderSourceTable} from './source-table.mjs';
 const bookKinds = new Set(['BOOK_USAGE_RULES','BOOK_USAGE','ARMY_RULE','ARMY_RULE_COMPONENT',
@@ -49,7 +50,16 @@ export function createBookPresenter({document,payload,cards,el,factValue:makeFac
     return kept.length===lines.length?field:{...field,displayValue:kept.join('\n')};
   };
   const appendText=(node,card)=>{
-    for(const field of card.fields.filter(field=>layoutPath(field)==='/text'||layoutPath(field)==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(layoutPath(field)||'')))paragraph(node,textPresentation(card,field));
+    for(const field of card.fields.filter(field=>layoutPath(field)==='/text'||layoutPath(field)==='/semanticContent'||/^\/clauses\/\d+\/text$/.test(layoutPath(field)||''))){
+      const shown=textPresentation(card,field);
+      if(card.kind!=='ENHANCEMENT'){paragraph(node,shown);continue;}
+      const parts=enhancementTextParts(card.title,shown.displayValue??shown.value);
+      if(parts.body===shown.value&&shown.displayValue===undefined){paragraph(node,shown);continue;}
+      const copy=el('div','content-block');copy.dataset.enhancementText=field.id;
+      if(parts.upgrade&&!fieldAt(card,'/sourceTypeLabel')){const marker=el('p','ds-enhancement-restriction','UPGRADE');marker.dataset.enhancementUpgrade='';copy.append(marker);}
+      if(parts.restriction){const restriction=factValue('p',{...field,displayValue:parts.restriction});restriction.classList.add('ds-enhancement-restriction');restriction.dataset.enhancementRestriction='';copy.append(restriction);}
+      const body=factValue('p',{...shown,displayValue:parts.body});body.dataset.enhancementBody='';copy.append(body);node.append(copy);
+    }
     // Tables are already atomized into canonical fields. No source/title parsing.
     const groups=new Map();
     for(const field of card.fields.filter(field=>field.presentation==='table-cell')){

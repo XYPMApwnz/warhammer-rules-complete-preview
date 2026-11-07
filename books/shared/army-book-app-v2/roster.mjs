@@ -1,4 +1,5 @@
 import {createLifecycle} from './lifecycle.mjs';
+import {playerImportCopy,warlordDisplay} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
@@ -158,7 +159,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   for(const limitation of importLimitations){
     const notice=el('section','v2-roster-hint');
     notice.dataset.rosterImportLimitation=limitation.ownerId;notice.setAttribute('role','note');
-    notice.append(el('h3','',limitation.title),el('p','',limitation.message));
+    const message=playerImportCopy(limitation.message);
+    if(!message)continue;
+    notice.append(el('h3','',playerImportCopy(limitation.title)),el('p','',message));
     importPane.append(notice);
   }
   const rawLabel = el('label', 'v2-roster-field', 'New Recruit text export');
@@ -324,7 +327,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     } else {
       renderBindings(importResult.needsBindings || []);
       const errors = (importResult.errors || []).map(playerError).join(' ');
-      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>importLimitationForNeed(need,importLimitations)?.message).filter(Boolean))];
+      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>playerImportCopy(importLimitationForNeed(need,importLimitations)?.message)).filter(Boolean))];
       setStatus(errors || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
         'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.'), importResult.status === 'INVALID');
     }
@@ -360,7 +363,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       if (!candidates.length || ['SELECTION_QUANTITY', 'SELECTION_FIELD'].includes(need.kind)) {
         blocked = true;
         const limitation=importLimitationForNeed(need,importLimitations);
-        fieldset.append(el('p', 'v2-roster-hint', limitation?limitation.message+' No roster changes were saved.':need.reason==='DETACHMENT_MEMBERSHIP_NOT_PROVEN'?need.message:
+        fieldset.append(el('p', 'v2-roster-hint', limitation?playerImportCopy(limitation.message)+' No roster changes were saved.':need.reason==='DETACHMENT_MEMBERSHIP_NOT_PROVEN'?'This Detachment could not be matched to the rules in this Army Book. Check its name in the New Recruit export. No roster changes were saved.':
           'This imported entry could not be identified safely. Provide a corrected New Recruit export; roster composition and quantities cannot be changed here.'));
       } else {
         fieldset.append(el('p', 'v2-roster-hint', need.kind==='ENHANCEMENT_BEARER'
@@ -533,7 +536,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   }
   function instanceIdentity(unit) {
     const identity = el('dl', 'v2-roster-identity');
-    identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', unit.warlord === null || unit.warlord === undefined ? 'Unknown' : unit.warlord ? 'Yes' : 'No'));
+    identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', warlordDisplay(unit,service.state)));
     const enhancements = el('span');
     (unit.enhancementIds || []).forEach(id => enhancements.append(reference(id)));
     if (!unit.enhancementIds?.length) enhancements.textContent = 'None imported';

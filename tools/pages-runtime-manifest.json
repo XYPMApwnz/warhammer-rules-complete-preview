@@ -7821,6 +7821,23 @@
       ]
     },
     {
+      "path": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/roster.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/datasheet-v1.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/book-v1.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
       "reasons": [
         {
