@@ -1,0 +1,3544 @@
+[
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:1",
+    "title": "ADAPTIVE OPTIMISATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One MAWLOC or TRYGON unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MAWLOC"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One MAWLOC or TRYGON unit from your army."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRYGON"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One MAWLOC or TRYGON unit from your army."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One MAWLOC or TRYGON unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One MAWLOC or TRYGON unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:2",
+    "title": "REPLENISHING SWARMS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:3",
+    "title": "ENFILADING EMERGENCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:4",
+    "title": "TUNNEL NETWORK",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:5",
+    "title": "SWARMING ASSAULT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-subterranean-assault:stratagem:6",
+    "title": "RETREAT BELOW",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BURROWER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:1",
+    "title": "RAPID REGENERATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:2",
+    "title": "ADRENAL SURGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:3",
+    "title": "DEATH FRENZY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:4",
+    "title": "OVERRUN",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That TYRANIDS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That TYRANIDS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TYRANIDS unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:5",
+    "title": "PREDATORY IMPERATIVE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-invasion-fleet:stratagem:6",
+    "title": "ENDLESS SWARM",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:1",
+    "title": "THE SMOTHERING SHADOW",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "SYNAPSE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:2",
+    "title": "SYNAPTIC CHANNELLING",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SYNAPSE unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "SYNAPSE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One SYNAPSE unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SYNAPSE unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:3",
+    "title": "IRRESISTIBLE WILL",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "SYNAPSE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:4",
+    "title": "REINFORCED HIVE NODE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "SYNAPSE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:5",
+    "title": "IMPERATIVE DOMINANCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-synaptic-nexus:stratagem:6",
+    "title": "OVERRIDE INSTINCTS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:1",
+    "title": "BROODGUARD IMPULSE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "HARVESTER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:2",
+    "title": "RECLAIM BIOMASS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "HARVESTER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:3",
+    "title": "TYRANNOFORMED",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One HARVESTER unit from your army that is within range of an objective marker you control.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "HARVESTER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:4",
+    "title": "ABLATIVE CARAPACE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "HARVESTER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:5",
+    "title": "SECURE BIOMASS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-assimilation-swarm:stratagem:6",
+    "title": "RAPACIOUS HUNGER",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "TYRANIDS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:1",
+    "title": "CORROSIVE VISCERA",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "MODEL",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "MODEL",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:2",
+    "title": "RAMPAGING MONSTROSITIES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:3",
+    "title": "SAVAGE ROAR",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:4",
+    "title": "UNTRAMMELLED FEROCITY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:5",
+    "title": "SWARM-GUIDED SALVOES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-crusher-stampede:stratagem:6",
+    "title": "MASSIVE IMPACT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That TYRANIDS MONSTER model.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "MODEL",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANIDS MONSTER model."
+            }
+          },
+          {
+            "predicate": "MODEL_KEYWORD",
+            "subject": "MODEL",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "MONSTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANIDS MONSTER model."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "MODEL",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS MONSTER model."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TYRANIDS MONSTER model."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:1",
+    "title": "SURPRISE ASSAULT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That VANGUARD INVADER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "VANGUARD INVADER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That VANGUARD INVADER unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That VANGUARD INVADER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That VANGUARD INVADER unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:2",
+    "title": "ASSASSIN BEASTS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:3",
+    "title": "SEEDED BROODS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:4",
+    "title": "HYPERSENSORY SCILLIA",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+            }
+          },
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:5",
+    "title": "UNSEEN LURKERS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "VANGUARD INVADER"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-vanguard-onslaught:stratagem:6",
+    "title": "INVISIBLE HUNTER",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+            }
+          },
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:1",
+    "title": "SYNAPTIC GOADING",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That ENDLESS MULTITUDE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That ENDLESS MULTITUDE unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That ENDLESS MULTITUDE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That ENDLESS MULTITUDE unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:2",
+    "title": "UNENDING WAVES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:3",
+    "title": "TEEMING MASSES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:4",
+    "title": "SWARMING MASSES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:5",
+    "title": "BOUNDING ADVANCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One ENDLESS MULTITUDE unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One ENDLESS MULTITUDE unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ENDLESS MULTITUDE unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-unending-swarm:stratagem:6",
+    "title": "PRESERVATION IMPERATIVE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ENDLESS MULTITUDE"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-ambush-predators:stratagem:1",
+    "title": "COUNTERPREDATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATHLEAPER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NEUROLICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VON RYAN’S LEAPERS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-ambush-predators:stratagem:2",
+    "title": "HYPERSENSORY ADAPTATIONS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATHLEAPER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NEUROLICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VON RYAN’S LEAPERS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-ambush-predators:stratagem:3",
+    "title": "SCANNER GHEIST",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATHLEAPER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NEUROLICTOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-talons-of-the-norn-queen:stratagem:1",
+    "title": "CATALYTIC BIOFORTIFICATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That NORN ASSIMILATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "NORN ASSIMILATOR"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That NORN ASSIMILATOR unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That NORN ASSIMILATOR unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-talons-of-the-norn-queen:stratagem:2",
+    "title": "LESSER PREY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NORN ASSIMILATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NORN EMISSARY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-talons-of-the-norn-queen:stratagem:3",
+    "title": "TANGLESTRIKE ROUNDS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That NORN ASSIMILATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "NORN ASSIMILATOR"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That NORN ASSIMILATOR unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That NORN ASSIMILATOR unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-warrior-bioform-onslaught:stratagem:1",
+    "title": "ALIEN PHYSIOLOGY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That TYRANID WARRIORS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That TYRANID WARRIORS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TYRANID WARRIORS unit."
+      }
+    },
+    "reviewNote": "TARGET says TYRANID WARRIORS, but canonical unit keywords only contain full WITH MELEE/RANGED BIO-WEAPONS phrases. No proven accepted family alias found; do not create false NO_MATCH for all Warriors or silently invent a new keyword."
+  },
+  {
+    "ruleId": "detachment-warrior-bioform-onslaught:stratagem:2",
+    "title": "SYNAPTIC MICRONODES",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly TYRANID WARRIORS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One friendly TYRANID WARRIORS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly TYRANID WARRIORS unit."
+      }
+    },
+    "reviewNote": "TARGET says TYRANID WARRIORS, but canonical unit keywords only contain full WITH MELEE/RANGED BIO-WEAPONS phrases. No proven accepted family alias found; do not create false NO_MATCH for all Warriors or silently invent a new keyword."
+  },
+  {
+    "ruleId": "detachment-warrior-bioform-onslaught:stratagem:3",
+    "title": "PARASITIC PAYLOAD",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That TYRANID WARRIORS unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That TYRANID WARRIORS unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That TYRANID WARRIORS unit."
+      }
+    },
+    "reviewNote": "TARGET says TYRANID WARRIORS, but canonical unit keywords only contain full WITH MELEE/RANGED BIO-WEAPONS phrases. No proven accepted family alias found; do not create false NO_MATCH for all Warriors or silently invent a new keyword."
+  }
+]

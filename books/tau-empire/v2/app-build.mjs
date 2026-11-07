@@ -89,7 +89,6 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
   payload.bookPresentation=prepareSourceProducer(projectBookPresentation(model,records));
   payload.bookPresentation.coverImage='../assets/tau-empire-cover-800.webp';
   payload.ruleContractIds=book.entities.filter(e=>e.ruleContract).map(e=>e.id);
-  const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.relatedRules=buildUnboundBookRelatedRules(book,createTauRuleSchema(),{
     unitIds:model.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id),
     ruleIds:model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(e=>e.id)});

@@ -28357,6 +28357,5353 @@
       ],
       "sourceRefs": [{"documentId":"documents-9e9f635bceff0b1b","referenceId":"refs-6f0f058be6e482d5","documentRole":"DOCUMENT"},{"documentId":"documents-355cd8f2612c0dca","referenceId":"refs-3b79f108968f73a6","documentRole":"CORPUS","locators":[{"kind":"JSON_POINTER","value":"/datasheets/51/sections/1"}]}],
       "sourceBindings": {"sourceId":{"layout":"layouts-66c7c6e8a5d60174","refs":[],"contexts":["contexts-516d6be3faad8373"]},"currentness":{"layout":"layouts-90df2fbcd0559b3c","refs":[0,0,1,0,1,1],"contexts":["contexts-a110e4fc8fc654e2","contexts-9c49099577ad7d0d","contexts-516d6be3faad8373","contexts-91ddeabf18963897"]},"$schema":"source-refs/v1","$order":["schema","ruleId","ownerId","sourceId","kind","executionMode","contextLevel","roles","conditions","sourceFields","clauses","currentness"]}
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:1",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MAWLOC"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One MAWLOC or TRYGON unit from your army."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TRYGON"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One MAWLOC or TRYGON unit from your army."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One MAWLOC or TRYGON unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One MAWLOC or TRYGON unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:1",
+          "pointer": "/detachments/0/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:2",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army, wholly within 9\" of one or more Tunnel Markers you placed."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:2",
+          "pointer": "/detachments/0/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:3",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was set up as Reinforcements this turn."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:3",
+          "pointer": "/detachments/0/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:4",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is wholly within 9\" of one or more of your Tunnel Markers and not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:4",
+          "pointer": "/detachments/0/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:5",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that was set up as Reinforcements this turn."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:5",
+          "pointer": "/detachments/0/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-subterranean-assault:stratagem:6",
+      "ownerId": "detachment-subterranean-assault",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-subterranean-assault",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your opponent’s Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "BURROWER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit or up to two BURROWER units from your army that are not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-subterranean-assault:stratagem:6",
+          "pointer": "/detachments/0/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:1",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:1",
+          "pointer": "/detachments/1/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:2",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "2CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army and are eligible to fight, or one other TYRANIDS unit from your army that is eligible to fight."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:2",
+          "pointer": "/detachments/1/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:3",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:3",
+          "pointer": "/detachments/1/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:4",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just before a TYRANIDS unit from your army Consolidates."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANIDS unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That TYRANIDS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:4",
+          "pointer": "/detachments/1/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:5",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [
+        {
+          "label": "RESTRICTIONS",
+          "text": "You cannot select the same Hyper-adaptation you selected at the start of the first battle round."
+        }
+      ],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two TYRANIDS units from your army that are within Synapse Range of your army, or one other TYRANIDS unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:5",
+          "pointer": "/detachments/1/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-invasion-fleet:stratagem:6",
+      "ownerId": "detachment-invasion-fleet",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-invasion-fleet",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two ENDLESS MULTITUDE units from your army that are within Synapse Range of your army, or one other ENDLESS MULTITUDE unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-invasion-fleet:stratagem:6",
+          "pointer": "/detachments/1/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:1",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase, just after an enemy unit fails a Battle-shock test."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army within 12\" of that enemy unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:1",
+          "pointer": "/detachments/2/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:2",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One SYNAPSE unit from your army."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One SYNAPSE unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:2",
+          "pointer": "/detachments/2/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:3",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army that has not been selected to shoot or fight this phase, and one enemy unit within 24\" of and visible to the SYNAPSE unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:3",
+          "pointer": "/detachments/2/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:4",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "SYNAPSE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SYNAPSE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:4",
+          "pointer": "/detachments/2/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:5",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:5",
+          "pointer": "/detachments/2/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-synaptic-nexus:stratagem:6",
+      "ownerId": "detachment-synaptic-nexus",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-synaptic-nexus",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is within Synapse Range of your army and made a Fall Back move this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-synaptic-nexus:stratagem:6",
+          "pointer": "/detachments/2/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:1",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "HARVESTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:1",
+          "pointer": "/detachments/3/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:2",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase, when a TYRANIDS unit from your army is destroyed, before the last model in it is removed from play."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "HARVESTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that is within 6\" of that destroyed unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:2",
+          "pointer": "/detachments/3/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:3",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Command phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "HARVESTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that is within range of an objective marker you control."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:3",
+          "pointer": "/detachments/3/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:4",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "2CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "HARVESTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One HARVESTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:4",
+          "pointer": "/detachments/3/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:5",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:5",
+          "pointer": "/detachments/3/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-assimilation-swarm:stratagem:6",
+      "ownerId": "detachment-assimilation-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-assimilation-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TYRANIDS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that just destroyed an enemy unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-assimilation-swarm:stratagem:6",
+          "pointer": "/detachments/3/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:1",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after a TYRANIDS MONSTER model from your army with the Deadly Demise ability that cannot FLY is destroyed."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "MODEL",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS MONSTER model. You can use this Stratagem on that model even though it was just destroyed."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:1",
+          "pointer": "/detachments/4/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:2",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:2",
+          "pointer": "/detachments/4/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:3",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:3",
+          "pointer": "/detachments/4/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:4",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to move this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:4",
+          "pointer": "/detachments/4/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:5",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS MONSTER unit from your army that has not been selected to shoot this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:5",
+          "pointer": "/detachments/4/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-crusher-stampede:stratagem:6",
+      "ownerId": "detachment-crusher-stampede",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-crusher-stampede",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Charge phase, just after a TYRANIDS MONSTER model from your army ends a Charge move."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "MODEL",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That TYRANIDS MONSTER model."
+                }
+              },
+              {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MONSTER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That TYRANIDS MONSTER model."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "MODEL",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That TYRANIDS MONSTER model."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANIDS MONSTER model."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-crusher-stampede:stratagem:6",
+          "pointer": "/detachments/4/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:1",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase, just after a VANGUARD INVADER unit from your army has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That VANGUARD INVADER unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That VANGUARD INVADER unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That VANGUARD INVADER unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:1",
+          "pointer": "/detachments/5/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:2",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VANGUARD INVADER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One VANGUARD INVADER INFANTRY unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:2",
+          "pointer": "/detachments/5/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:3",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TYRANIDS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VANGUARD INVADER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One TYRANIDS unit from your army that is in Reserves, or up to two VANGUARD INVADER units from your army that are in Reserves."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:3",
+          "pointer": "/detachments/5/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:4",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "2CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, just after an enemy unit ends a Normal, Advance or Fall Back move."
+        }
+      ],
+      "duration": [],
+      "restrictions": [
+        {
+          "label": "RESTRICTIONS",
+          "text": "You cannot target units that are within Engagement Range of one or more enemy units."
+        }
+      ],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VANGUARD INVADER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+                }
+              },
+              {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "INFANTRY"
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two VANGUARD INVADER units from your army that are within 8\" of that enemy unit, or one other TYRANIDS INFANTRY unit from your army that is within 8\" of that enemy unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:4",
+          "pointer": "/detachments/5/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:5",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VANGUARD INVADER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One VANGUARD INVADER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:5",
+          "pointer": "/detachments/5/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-vanguard-onslaught:stratagem:6",
+      "ownerId": "detachment-vanguard-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-vanguard-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your opponent’s Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [
+        {
+          "label": "RESTRICTIONS",
+          "text": "The targeted units must be more than 3\" away from all enemy units."
+        }
+      ],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VANGUARD INVADER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+                }
+              },
+              {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TYRANIDS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "INFANTRY"
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        1,
+                        "text"
+                      ],
+                      "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Up to two VANGUARD INVADER units from your army, or one TYRANIDS INFANTRY unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-vanguard-onslaught:stratagem:6",
+          "pointer": "/detachments/5/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:1",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase, just before an ENDLESS MULTITUDE unit from your army that is within Synapse Range of your army makes a surge move."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That ENDLESS MULTITUDE unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That ENDLESS MULTITUDE unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That ENDLESS MULTITUDE unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:1",
+          "pointer": "/detachments/6/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:2",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "2CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [
+        {
+          "label": "RESTRICTIONS",
+          "text": "Any destroyed CHARACTER units that were attached to your unit are not returned. You can only use this Stratagem once per battle."
+        }
+      ],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was just destroyed. You can use this Stratagem on that unit even though it was just destroyed."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:2",
+          "pointer": "/detachments/6/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:3",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:3",
+          "pointer": "/detachments/6/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:4",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that has not been selected to shoot or fight this phase."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:4",
+          "pointer": "/detachments/6/stratagems/3",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:5",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One ENDLESS MULTITUDE unit from your army."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One ENDLESS MULTITUDE unit from your army."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:5",
+          "pointer": "/detachments/6/stratagems/4",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-unending-swarm:stratagem:6",
+      "ownerId": "detachment-unending-swarm",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-unending-swarm",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ENDLESS MULTITUDE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One ENDLESS MULTITUDE unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-unending-swarm:stratagem:6",
+          "pointer": "/detachments/6/stratagems/5",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-ambush-predators:stratagem:1",
+      "ownerId": "detachment-ambush-predators",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-ambush-predators",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, when a friendly DEATHLEAPER/LICTOR/ NEUROLICTOR/VON RYAN’S LEAPERS unit is selected to fight."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DEATHLEAPER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "NEUROLICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VON RYAN’S LEAPERS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-ambush-predators:stratagem:1",
+          "pointer": "/detachments/7/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-ambush-predators:stratagem:2",
+      "ownerId": "detachment-ambush-predators",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-ambush-predators",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DEATHLEAPER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "NEUROLICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VON RYAN’S LEAPERS"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly DEATHLEAPER/LICTOR/NEUROLICTOR/VON RYAN’S LEAPERS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-ambush-predators:stratagem:2",
+          "pointer": "/detachments/7/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-ambush-predators:stratagem:3",
+      "ownerId": "detachment-ambush-predators",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-ambush-predators",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your opponent’s Fight phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DEATHLEAPER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "LICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "NEUROLICTOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly unengaged DEATHLEAPER/LICTOR/ NEUROLICTOR unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-ambush-predators:stratagem:3",
+          "pointer": "/detachments/7/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-talons-of-the-norn-queen:stratagem:1",
+      "ownerId": "detachment-talons-of-the-norn-queen",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-talons-of-the-norn-queen",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Any phase, when a friendly NORN ASSIMILATOR unit suffers a mortal wound."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NORN ASSIMILATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That NORN ASSIMILATOR unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That NORN ASSIMILATOR unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:1",
+          "pointer": "/detachments/8/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-talons-of-the-norn-queen:stratagem:2",
+      "ownerId": "detachment-talons-of-the-norn-queen",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-talons-of-the-norn-queen",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Fight phase, when a friendly NORN ASSIMILATOR/NORN EMISSARY unit is selected to fight."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "NORN ASSIMILATOR"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "NORN EMISSARY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR/NORN EMISSARY unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:2",
+          "pointer": "/detachments/8/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-talons-of-the-norn-queen:stratagem:3",
+      "ownerId": "detachment-talons-of-the-norn-queen",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-talons-of-the-norn-queen",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly NORN ASSIMILATOR unit has shot."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "NORN ASSIMILATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That NORN ASSIMILATOR unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That NORN ASSIMILATOR unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That NORN ASSIMILATOR unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-talons-of-the-norn-queen:stratagem:3",
+          "pointer": "/detachments/8/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-warrior-bioform-onslaught:stratagem:1",
+      "ownerId": "detachment-warrior-bioform-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-warrior-bioform-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Shooting phase or the Fight phase, when an enemy unit targets a friendly TYRANID WARRIORS unit."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "FIELD",
+            "subject": "UNIT",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "battleConditionSatisfied",
+              "equals": true
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANID WARRIORS unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That TYRANID WARRIORS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:1",
+          "pointer": "/detachments/9/stratagems/0",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-warrior-bioform-onslaught:stratagem:2",
+      "ownerId": "detachment-warrior-bioform-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-warrior-bioform-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "End of your Movement phase."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "FIELD",
+            "subject": "UNIT",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "battleConditionSatisfied",
+              "equals": true
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly TYRANID WARRIORS unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "One friendly TYRANID WARRIORS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:2",
+          "pointer": "/detachments/9/stratagems/1",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
+    },
+    {
+      "schema": "rule-contract/v2",
+      "ruleId": "detachment-warrior-bioform-onslaught:stratagem:3",
+      "ownerId": "detachment-warrior-bioform-onslaught",
+      "sourceId": "tyranids-waha-11e-2026-09-27",
+      "kind": "STRATAGEM",
+      "executionMode": "BATTLE_ACTION",
+      "contextLevel": "BATTLE",
+      "detachmentId": "detachment-warrior-bioform-onslaught",
+      "cp": "1CP",
+      "timing": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly TYRANID WARRIORS unit is selected to shoot."
+        }
+      ],
+      "duration": [],
+      "restrictions": [],
+      "sourceFields": [
+        [
+          "lines",
+          1,
+          "text"
+        ]
+      ],
+      "roles": [
+        {
+          "id": "compatibility-target",
+          "subject": "UNIT",
+          "purpose": "TARGET",
+          "allegiance": "FRIENDLY",
+          "selector": {
+            "predicate": "FIELD",
+            "subject": "UNIT",
+            "contextLevel": "BATTLE",
+            "arguments": {
+              "key": "battleConditionSatisfied",
+              "equals": true
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That TYRANID WARRIORS unit."
+            }
+          },
+          "conditions": [
+            {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "lines",
+                  1,
+                  "text"
+                ],
+                "quote": "That TYRANID WARRIORS unit."
+              }
+            }
+          ],
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That TYRANID WARRIORS unit."
+          }
+        }
+      ],
+      "compatibilityRoleIds": [
+        "compatibility-target"
+      ],
+      "conditions": [],
+      "clauses": [],
+      "currentness": {
+        "acceptedBaseHead": "427796be5d29766acedc59338537f04667c0ba67",
+        "factualOwner": {
+          "sourceId": "tyranids-waha-11e-2026-09-27",
+          "document": "books/tyranids/sources/waha-11e-current-2026-09-27/tyranids.html",
+          "sha256": "1AE2583E28F7075D470C84D8EDDF6083B3FC0FD824BBD8A6E526C12AF329A8BD",
+          "sourceEntityId": "detachment-warrior-bioform-onslaught:stratagem:3",
+          "pointer": "/detachments/9/stratagems/2",
+          "authority": "ACCEPTED_SECONDARY",
+          "corpusDocument": "books/tyranids/sources/waha-11e-current-2026-09-27/corpus.json",
+          "corpusSha256": "79C7DDC234934A619D24AA486ACEA0AF149B6AB1C203B464BCEF12AF69D611F3"
+        }
+      }
     }
   ],
   "deferred": [

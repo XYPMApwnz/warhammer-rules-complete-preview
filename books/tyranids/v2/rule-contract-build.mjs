@@ -1,3 +1,4 @@
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
@@ -170,6 +171,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
   book.compatibilityFeasibility=buildAttachmentFeasibility(book,composition);
   const textCoverage=appendReviewedTextCoverage({book,facts,review:read('./text-rule-review.json'),contracts,
     currentness:{acceptedBaseHead:'c0fab930a4f45ba05c33b66834fbf979518d91ef',currentOfficialSource}});
+  recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
   recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);

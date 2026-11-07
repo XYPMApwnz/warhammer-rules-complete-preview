@@ -1,3 +1,4 @@
+import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from './reviewed-text-recipients.mjs';
@@ -164,6 +165,7 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   }
   assert.equal(executed.length,inputs.length,'Orphan executable declaration');
   book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
+  recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
   recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   finalizeRecipientBook(book);
  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);

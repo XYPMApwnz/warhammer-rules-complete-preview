@@ -1,0 +1,3740 @@
+[
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:1",
+    "title": "PROTECTION OF THE DARK PRINCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That EMPEROR’S CHILDREN unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:2",
+    "title": "UNSHAKEABLE OPPONENTS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:3",
+    "title": "EMBRACE THE PAIN",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:4",
+    "title": "MARTIAL PERFECTION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:5",
+    "title": "UNBOUND ARROGANCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That EMPEROR’S CHILDREN unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-coterie-of-the-conceited:stratagem:6",
+    "title": "ARMOUR OF ABHORRENCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:1",
+    "title": "SUSTAINED BY AGONY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That EMPEROR’S CHILDREN unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:2",
+    "title": "ECSTATIC SLAUGHTER",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That LEGIONS OF EXCESS unit and one friendly EMPEROR’S CHILDREN unit within 6\" of it that is not within Engagement Range of one or more enemy units.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "LEGIONS OF EXCESS"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That LEGIONS OF EXCESS unit and one friendly EMPEROR’S CHILDREN unit within 6\" of it that is not within Engagement Range of one or more enemy units."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That LEGIONS OF EXCESS unit and one friendly EMPEROR’S CHILDREN unit within 6\" of it that is not within Engagement Range of one or more enemy units."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That LEGIONS OF EXCESS unit and one friendly EMPEROR’S CHILDREN unit within 6\" of it that is not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That LEGIONS OF EXCESS unit and one friendly EMPEROR’S CHILDREN unit within 6\" of it that is not within Engagement Range of one or more enemy units."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:3",
+    "title": "VIOLENT CRESCENDO",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SLAANESH"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "BEAST"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              }
+            ]
+          },
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SLAANESH"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              }
+            ]
+          },
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "SLAANESH"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SLAANESH BEASTS, SLAANESH INFANTRY or SLAANESH MOUNTED unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:4",
+    "title": "SYCOPHANTIC SURGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One LEGIONS OF EXCESS unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "LEGIONS OF EXCESS"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One LEGIONS OF EXCESS unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One LEGIONS OF EXCESS unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One LEGIONS OF EXCESS unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:5",
+    "title": "UNCANNY REACTIONS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One SLAANESH unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "SLAANESH"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One SLAANESH unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One SLAANESH unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One SLAANESH unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-carnival-of-excess:stratagem:6",
+    "title": "DARK APPARITIONS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One DAEMONETTES unit from your army that is not within Engagement Range of one or more enemy units.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DAEMONETTES"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One DAEMONETTES unit from your army that is not within Engagement Range of one or more enemy units."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One DAEMONETTES unit from your army that is not within Engagement Range of one or more enemy units."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One DAEMONETTES unit from your army that is not within Engagement Range of one or more enemy units."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:1",
+    "title": "ONTO THE NEXT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that destroyed an enemy unit this phase, and one friendly TRANSPORT it is able to embark within.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN unit from your army that destroyed an enemy unit this phase, and one friendly TRANSPORT it is able to embark within."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRANSPORT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN unit from your army that destroyed an enemy unit this phase, and one friendly TRANSPORT it is able to embark within."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that destroyed an enemy unit this phase, and one friendly TRANSPORT it is able to embark within."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that destroyed an enemy unit this phase, and one friendly TRANSPORT it is able to embark within."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:2",
+    "title": "ADVANCE AND CLAIM",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that has one or more TORMENTORS units embarked within it (excluding Battle-shocked units).",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that has one or more TORMENTORS units embarked within it (excluding Battle-shocked units)."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRANSPORT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that has one or more TORMENTORS units embarked within it (excluding Battle-shocked units)."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that has one or more TORMENTORS units embarked within it (excluding Battle-shocked units)."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that has one or more TORMENTORS units embarked within it (excluding Battle-shocked units)."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:3",
+    "title": "DYNAMIC BREAKTHROUGH",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN VEHICLE unit from your army that has not been selected to move this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN VEHICLE unit from your army that has not been selected to move this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "VEHICLE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN VEHICLE unit from your army that has not been selected to move this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN VEHICLE unit from your army that has not been selected to move this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN VEHICLE unit from your army that has not been selected to move this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:4",
+    "title": "CEASELESS ONSLAUGHT",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that disembarked from a TRANSPORT that made a Normal move this turn."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:5",
+    "title": "REACTIVE DISEMBARKATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TRANSPORT"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-rapid-evisceration:stratagem:6",
+    "title": "OUTFLANKING STRIKE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "TRANSPORT"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+                }
+              }
+            ]
+          },
+          {
+            "op": "ALL",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "DEDICATED TRANSPORT"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN TRANSPORT from your army, or up to two EMPEROR’S CHILDREN DEDICATED TRANSPORTS from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:1",
+    "title": "DEFT PARRY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:2",
+    "title": "DEATH ECSTASY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:3",
+    "title": "INCESSANT VIOLENCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That EMPEROR’S CHILDREN unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:4",
+    "title": "CRUEL BLADESMAN",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move this turn and has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move this turn and has not been selected to fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move this turn and has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move this turn and has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:5",
+    "title": "TERRIFYING SPECTACLE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move in the previous turn and destroyed one or more enemy units in the previous Fight phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move in the previous turn and destroyed one or more enemy units in the previous Fight phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move in the previous turn and destroyed one or more enemy units in the previous Fight phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that made a Charge move in the previous turn and destroyed one or more enemy units in the previous Fight phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-peerless-bladesmen:stratagem:6",
+    "title": "CUT DOWN THE WEAK",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "op": "NOT",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "VEHICLE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "lines",
+                        1,
+                        "text"
+                      ],
+                      "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase."
+                    }
+                  }
+                ]
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "WALKER"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army (you can only select a VEHICLE if it is a WALKER) that is within 6\" of that enemy unit and would be eligible to declare a charge against that enemy unit if it were your Charge phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:1",
+    "title": "CONTEMPTUOUS DISREGARD",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:2",
+    "title": "PRIDEFUL SUPERIORITY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:3",
+    "title": "SINUOUS BREACH",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army that has not been selected to move or charge this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army that has not been selected to move or charge this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DAEMON"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army that has not been selected to move or charge this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army that has not been selected to move or charge this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army that has not been selected to move or charge this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:4",
+    "title": "CLOSE-QUARTERS EXCRUCIATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to shoot this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to shoot this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to shoot this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to shoot this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:5",
+    "title": "EUPHORIC INSPIRATION",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DAEMON"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN DAEMON unit from your army."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-court-of-the-phoenician:stratagem:6",
+    "title": "CATALYTIC STIMULUS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that lost one or more wounds as a result of those attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that lost one or more wounds as a result of those attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that lost one or more wounds as a result of those attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that lost one or more wounds as a result of those attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:1",
+    "title": "DEVOTED DUELLISTS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One or more EMPEROR’S CHILDREN CHARACTER units from your army that have not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One or more EMPEROR’S CHILDREN CHARACTER units from your army that have not been selected to fight this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One or more EMPEROR’S CHILDREN CHARACTER units from your army that have not been selected to fight this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One or more EMPEROR’S CHILDREN CHARACTER units from your army that have not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One or more EMPEROR’S CHILDREN CHARACTER units from your army that have not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:2",
+    "title": "BEAUTIFUL DEATH",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN CHARACTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN CHARACTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN CHARACTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN CHARACTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN CHARACTER unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:3",
+    "title": "HEIGHTENED JEALOUSY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "Your army’s Favoured Champions unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "FIELD",
+        "subject": "UNIT",
+        "contextLevel": "BATTLE",
+        "arguments": {
+          "key": "battleConditionSatisfied",
+          "equals": true
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "Your army’s Favoured Champions unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "Your army’s Favoured Champions unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "Your army’s Favoured Champions unit."
+      }
+    },
+    "reviewNote": "Favoured Champions is a dynamic battle-selected unit identity; TARGET supplies no static keyword, so keep it CONDITIONAL for all potential candidates."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:4",
+    "title": "DIABOLIC MAJESTY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That EMPEROR’S CHILDREN unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:5",
+    "title": "REFUSAL TO BE OUTDONE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN CHARACTER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-slaaneshs-chosen:stratagem:6",
+    "title": "VENGEFUL SURGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN CHARACTER unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "CHARACTER"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN CHARACTER unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:1",
+    "title": "VIOLENT EXCESS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that has not been selected to fight this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:2",
+    "title": "COMBAT STIMMS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:3",
+    "title": "HONOUR THE PRINCE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that has not been selected to move this phase.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that has not been selected to move this phase."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "INFANTRY"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that has not been selected to move this phase."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that has not been selected to move this phase."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN INFANTRY unit from your army that has not been selected to move this phase."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:4",
+    "title": "DARK VIGOUR",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move."
+            }
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "BEAST"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move."
+                }
+              }
+            ]
+          },
+          {
+            "op": "NOT",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "VEHICLE"
+                },
+                "evidence": {
+                  "field": [
+                    "lines",
+                    1,
+                    "text"
+                  ],
+                  "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army (excluding BEASTS and VEHICLES) that is within 8\" of the enemy unit that just ended that move."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:5",
+    "title": "CAPRICIOUS REACTIONS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that was selected as the target of one or more of the attacking unit’s attacks."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-mercurial-host:stratagem:6",
+    "title": "CRUEL RAIDERS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One EMPEROR’S CHILDREN unit from your army that is wholly within 9\" of one or more battlefield edges and not within 3\" horizontally of one or more enemy units.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "EMPEROR’S CHILDREN"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "One EMPEROR’S CHILDREN unit from your army that is wholly within 9\" of one or more battlefield edges and not within 3\" horizontally of one or more enemy units."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One EMPEROR’S CHILDREN unit from your army that is wholly within 9\" of one or more battlefield edges and not within 3\" horizontally of one or more enemy units."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One EMPEROR’S CHILDREN unit from your army that is wholly within 9\" of one or more battlefield edges and not within 3\" horizontally of one or more enemy units."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-spectacle-of-slaughter:stratagem:1",
+    "title": "HONOUR IS FOR FOOLS",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That FLAWLESS BLADES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "FLAWLESS BLADES"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That FLAWLESS BLADES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That FLAWLESS BLADES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That FLAWLESS BLADES unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-spectacle-of-slaughter:stratagem:2",
+    "title": "SINGLE-MINDED STRIKE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That FLAWLESS BLADES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "FLAWLESS BLADES"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That FLAWLESS BLADES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That FLAWLESS BLADES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That FLAWLESS BLADES unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-spectacle-of-slaughter:stratagem:3",
+    "title": "INTOXICATED BY TRIUMPH",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That FLAWLESS BLADES unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "FLAWLESS BLADES"
+        },
+        "evidence": {
+          "field": [
+            "lines",
+            1,
+            "text"
+          ],
+          "quote": "That FLAWLESS BLADES unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That FLAWLESS BLADES unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That FLAWLESS BLADES unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-frenzied-host:stratagem:1",
+    "title": "POSSESSIVE MANIA",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN BATTLELINE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLELINE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-frenzied-host:stratagem:2",
+    "title": "AGONISED CACOPHONY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly EMPEROR’S CHILDREN BATTLELINE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLELINE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly EMPEROR’S CHILDREN BATTLELINE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly EMPEROR’S CHILDREN BATTLELINE unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-frenzied-host:stratagem:3",
+    "title": "ABSOLUTE SENSORY OVERLOAD",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN BATTLELINE unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "BATTLELINE"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN BATTLELINE unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-elegant-brutes:stratagem:1",
+    "title": "DELIGHT IN AGONY",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN TERMINATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN TERMINATOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN TERMINATOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN TERMINATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN TERMINATOR unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-elegant-brutes:stratagem:2",
+    "title": "PSYCHEDELIC SOULFLAME",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "That EMPEROR’S CHILDREN TERMINATOR unit",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN TERMINATOR unit"
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "That EMPEROR’S CHILDREN TERMINATOR unit"
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "That EMPEROR’S CHILDREN TERMINATOR unit"
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "That EMPEROR’S CHILDREN TERMINATOR unit"
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  },
+  {
+    "ruleId": "detachment-elegant-brutes:stratagem:3",
+    "title": "WARP PLUNGE",
+    "field": [
+      "lines",
+      1,
+      "text"
+    ],
+    "quote": "One friendly unengaged EMPEROR’S CHILDREN TERMINATOR unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "EMPEROR’S CHILDREN"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly unengaged EMPEROR’S CHILDREN TERMINATOR unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "TERMINATOR"
+            },
+            "evidence": {
+              "field": [
+                "lines",
+                1,
+                "text"
+              ],
+              "quote": "One friendly unengaged EMPEROR’S CHILDREN TERMINATOR unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "lines",
+              1,
+              "text"
+            ],
+            "quote": "One friendly unengaged EMPEROR’S CHILDREN TERMINATOR unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "quote": "One friendly unengaged EMPEROR’S CHILDREN TERMINATOR unit."
+      }
+    },
+    "reviewNote": "Only literal TARGET identity/keywords; battle selection and all non-static qualifiers remain conditional."
+  }
+]

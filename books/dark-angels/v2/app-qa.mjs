@@ -51,4 +51,3 @@ check('limitations-and-source-review-stay-honest',()=>{
 });
 console.log(JSON.stringify({status:'PASS',checks,coverage:{datasheets:83,owned:16,inherited:67,armyRules:5,detachments:18,enhancements:30,upgrades:10,stratagems:60},
  sourceCompleteness:'PARTIAL',semanticCompleteness:'NOT_PROVEN',realNewRecruitExportTested:false,browserVerified:false},null,2));
-

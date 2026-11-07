@@ -10,3 +10,9 @@ export function enhancementOwnerContext(contract, context) {
   }
   return {...context, unitId:owner.unitId, keywords:owner.keywords, unknownKeywords:owner.unknownKeywords};
 }
+
+/** The general MODEL Enhancement bearer rule, for related queries only. */
+export function enhancementBearerEligible(contract,role,context){
+ return contract.kind!=='ENHANCEMENT'||role.id!==contract.roles[0]?.id||role.subject!=='MODEL'||
+  context.intrinsicKeywords?.has('CHARACTER')===true;
+}

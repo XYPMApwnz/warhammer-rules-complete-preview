@@ -5,6 +5,7 @@ import {prepareSourceProducer} from '../source-refs-v2/producer-io.mjs';
 import {createCompatibilityCompiler,summarizeCompatibility} from './compatibility.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
 
+import {enhancementBearerEligible} from '../roster-v2/compatibility-context.mjs';
 const clone=structuredClone;
 const unknown={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
 
@@ -58,19 +59,18 @@ export function createBookCompatibilityInputs(source){
 }
 
 export function createBookCompatibilityCompiler(source,evaluator){
- const inputs=createBookCompatibilityInputs(source),owners=new WeakSet(inputs.book.entities
-  .filter(e=>e.ruleContract?.kind==='ENHANCEMENT').flatMap(e=>e.ruleContract.roles.slice(0,1).filter(role=>role.subject==='MODEL')));
+ const inputs=createBookCompatibilityInputs(source),owners=new WeakMap(inputs.book.entities
+  .filter(e=>e.ruleContract?.kind==='ENHANCEMENT').map(e=>[e.ruleContract.roles[0],e.ruleContract]));
  // The existing general Enhancement rule: a MODEL bearer must be a CHARACTER.
  // UNIT upgrades keep their explicit UNIT selectors. No contract is rewritten.
- const bookEvaluator={...evaluator,evaluateRole:(role,conditions,context)=>owners.has(role)&&context.subject==='MODEL'&&
-  !context.intrinsicKeywords?.has('CHARACTER')?'FALSE':evaluator.evaluateRole(role,conditions,context)};
+ const bookEvaluator={...evaluator,evaluateRole:(role,conditions,context)=>owners.has(role)&&!enhancementBearerEligible(owners.get(role),role,context)?'FALSE':evaluator.evaluateRole(role,conditions,context)};
  return {book:inputs.book,compiler:createCompatibilityCompiler({...inputs,evaluator:bookEvaluator})};
 }
 
 export function buildUnboundBookRelatedRules(source,evaluator,{unitIds,ruleIds}={}){
  const {book,compiler}=createBookCompatibilityCompiler(source,evaluator);
  return buildBookRelatedRules({book,compiler,unitIds,ruleIds,format:{sort:false,roleSummary:true},unbound:true,
-  deferredRuleIds:book.entities.filter(e=>e.kind==='STRATAGEM').map(e=>e.id)});
+  deferredRuleIds:book.entities.filter(e=>e.kind==='STRATAGEM'&&!e.ruleContract?.compatibilityRoleIds?.length).map(e=>e.id)});
 }
 
 /** One Cartesian builder, preserving declared legacy wire formats. Fact adapters

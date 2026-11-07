@@ -65054,6 +65054,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "INFANTRY"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES INFANTRY unit."
+            }
           }
         ],
         "conditions": [],
@@ -65255,7 +65317,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -65322,6 +65387,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "DEATH COMPANY"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That DEATH COMPANY unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That DEATH COMPANY unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATH COMPANY unit."
+            }
           }
         ],
         "conditions": [],
@@ -65523,7 +65631,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -65604,6 +65715,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_ID",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "unit-ba-5981fb6513b9436487f0"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That SANGUINARY GUARD unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That SANGUINARY GUARD unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That SANGUINARY GUARD unit."
+            }
           }
         ],
         "conditions": [],
@@ -65848,7 +66002,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -65925,6 +66082,50 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "ENEMY",
+            "selector": {
+              "predicate": "FIELD",
+              "subject": "UNIT",
+              "contextLevel": "BATTLE",
+              "arguments": {
+                "key": "battleConditionSatisfied",
+                "equals": true
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That enemy unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That enemy unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That enemy unit."
+            }
           }
         ],
         "conditions": [],
@@ -66126,7 +66327,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -66193,6 +66397,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_ID",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "unit-ba-5981fb6513b9436487f0"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That SANGUINARY GUARD unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That SANGUINARY GUARD unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That SANGUINARY GUARD unit."
+            }
           }
         ],
         "conditions": [],
@@ -66394,7 +66641,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -66461,6 +66711,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -66662,7 +66955,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -66729,6 +67025,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DREADNOUGHT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATH COMPANY DREADNOUGHT unit."
+            }
           }
         ],
         "conditions": [],
@@ -66930,7 +67288,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -67007,6 +67368,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_ID",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "id": "unit-ba-5981fb6513b9436487f0"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That SANGUINARY GUARD unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That SANGUINARY GUARD unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That SANGUINARY GUARD unit."
+            }
           }
         ],
         "conditions": [],
@@ -67251,7 +67655,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -67318,6 +67725,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES CHARACTER unit."
+            }
           }
         ],
         "conditions": [],
@@ -67562,7 +68031,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -67629,6 +68101,87 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "JUMP PACK"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                      }
+                    }
+                  ]
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-ba-4ea9a8226a61470fa157"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly THE SANGUINOR/unengaged ADEPTUS ASTARTES JUMP PACK unit."
+            }
           }
         ],
         "conditions": [],
@@ -67830,7 +68383,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -67911,6 +68467,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -68155,7 +68754,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -68236,6 +68838,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "CHARACTER"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES CHARACTER unit."
+            }
           }
         ],
         "conditions": [],
@@ -68480,7 +69144,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "chapterContext": "NO_INFERRED_BA_CHAPTER"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -68546,6 +69213,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -68704,7 +69414,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -68770,6 +69483,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective."
+            }
           }
         ],
         "conditions": [],
@@ -68928,7 +69684,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -68994,6 +69753,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly TACTICUS unit that is within range of an objective and is eligible to fight."
+            }
           }
         ],
         "conditions": [],
@@ -69152,7 +69954,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -69218,6 +70023,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PHOBOS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-sm-3815e40077e44702"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
           }
         ],
         "conditions": [],
@@ -69505,7 +70372,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -69571,6 +70441,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
           }
         ],
         "conditions": [],
@@ -69729,7 +70661,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -69795,6 +70730,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -69953,7 +70931,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -70019,6 +71000,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -70177,7 +71201,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -70243,6 +71270,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -70401,7 +71471,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -70467,6 +71540,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -70711,7 +71827,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -70777,6 +71896,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PHOBOS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That PHOBOS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That PHOBOS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That PHOBOS unit."
+            }
           }
         ],
         "conditions": [],
@@ -71021,7 +72183,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -71087,6 +72252,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES TERMINATOR unit."
+            }
           }
         ],
         "conditions": [],
@@ -71245,7 +72472,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -71311,6 +72541,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That TACTICUS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That TACTICUS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That TACTICUS unit."
+            }
           }
         ],
         "conditions": [],
@@ -71469,7 +72742,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -71535,6 +72811,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -71693,7 +73012,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -71759,6 +73081,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "DREADNOUGHT"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That DREADNOUGHT unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That DREADNOUGHT unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DREADNOUGHT unit."
+            }
           }
         ],
         "conditions": [],
@@ -71917,7 +73282,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -71983,6 +73351,87 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                  }
+                },
+                {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "INFANTRY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MOUNTED"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
           }
         ],
         "conditions": [],
@@ -72227,7 +73676,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -72293,6 +73745,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -72537,7 +74032,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -72603,6 +74101,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -72761,7 +74302,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -72827,6 +74371,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PHOBOS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That PHOBOS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That PHOBOS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That PHOBOS unit."
+            }
           }
         ],
         "conditions": [],
@@ -73071,7 +74658,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -73137,6 +74727,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -73381,7 +75014,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -73447,6 +75083,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That TACTICUS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That TACTICUS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That TACTICUS unit."
+            }
           }
         ],
         "conditions": [],
@@ -73691,7 +75370,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -73757,6 +75439,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That TACTICUS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That TACTICUS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That TACTICUS unit."
+            }
           }
         ],
         "conditions": [],
@@ -74001,7 +75726,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -74067,6 +75795,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES VEHICLE unit."
+            }
           }
         ],
         "conditions": [],
@@ -74225,7 +76015,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -74291,6 +76084,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -74535,7 +76371,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -74601,6 +76440,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -74759,7 +76641,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -74825,6 +76710,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "TACTICUS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That TACTICUS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That TACTICUS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That TACTICUS unit."
+            }
           }
         ],
         "conditions": [],
@@ -75069,7 +76997,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -75135,6 +77066,87 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                  }
+                },
+                {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "INFANTRY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MOUNTED"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
           }
         ],
         "conditions": [],
@@ -75293,7 +77305,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -75359,6 +77374,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -75517,7 +77575,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -75583,6 +77644,120 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "VEHICLE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                  }
+                },
+                {
+                  "op": "NOT",
+                  "args": [
+                    {
+                      "op": "ANY",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "DEDICATED TRANSPORT"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "FLY"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                          }
+                        },
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "contextLevel": "STATIC",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES VEHICLE unit (excluding DEDICATED TRANSPORT/FLY/WALKER units)."
+            }
           }
         ],
         "conditions": [],
@@ -75870,7 +78045,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -75936,6 +78114,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -76137,7 +78358,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -76203,6 +78427,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "DREADNOUGHT"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That DREADNOUGHT unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That DREADNOUGHT unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DREADNOUGHT unit."
+            }
           }
         ],
         "conditions": [],
@@ -76447,7 +78714,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -76513,6 +78783,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PHOBOS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That PHOBOS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That PHOBOS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That PHOBOS unit."
+            }
           }
         ],
         "conditions": [],
@@ -76757,7 +79070,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -76823,6 +79139,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -77067,7 +79426,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -77133,6 +79495,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -77334,7 +79739,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -77400,6 +79808,87 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                  }
+                },
+                {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MOUNTED"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "SPEEDER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
           }
         ],
         "conditions": [],
@@ -77558,7 +80047,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -77624,6 +80116,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -77868,7 +80403,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -77934,6 +80472,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "DREADNOUGHT"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: One friendly DREADNOUGHT unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly DREADNOUGHT unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly DREADNOUGHT unit."
+            }
           }
         ],
         "conditions": [],
@@ -78092,7 +80673,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -78158,6 +80742,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -78359,7 +80986,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -78425,6 +81055,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "GRAVIS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: One friendly GRAVIS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly GRAVIS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly GRAVIS unit."
+            }
           }
         ],
         "conditions": [],
@@ -78626,7 +81299,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -78692,6 +81368,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
           }
         ],
         "conditions": [],
@@ -78936,7 +81674,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -79002,6 +81743,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -79160,7 +81944,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -79226,6 +82013,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "PHOBOS"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That PHOBOS unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That PHOBOS unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That PHOBOS unit."
+            }
           }
         ],
         "conditions": [],
@@ -79384,7 +82214,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -79450,6 +82283,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TRANSPORT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES TRANSPORT unit that has an ADEPTUS ASTARTES BATTLELINE unit embarked within it."
+            }
           }
         ],
         "conditions": [],
@@ -79651,7 +82546,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -79717,6 +82615,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ANY",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PHOBOS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "id": "unit-sm-3815e40077e44702"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged PHOBOS/SCOUT SQUAD unit."
+            }
           }
         ],
         "conditions": [],
@@ -79875,7 +82835,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -79941,6 +82904,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "INFANTRY"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly unengaged ADEPTUS ASTARTES INFANTRY unit that was eligible to fight this phase, is wholly within 6\" of a friendly TRANSPORT unit, and is eligible to embark within that TRANSPORT unit."
+            }
           }
         ],
         "conditions": [],
@@ -80099,7 +83124,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -80165,6 +83193,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TERMINATOR"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES TERMINATOR unit."
+            }
           }
         ],
         "conditions": [],
@@ -80323,7 +83413,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -80389,6 +83482,87 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                  }
+                },
+                {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MOUNTED"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "SPEEDER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES MOUNTED/SPEEDER unit."
+            }
           }
         ],
         "conditions": [],
@@ -80547,7 +83721,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -80613,6 +83790,49 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "predicate": "UNIT_KEYWORD",
+              "subject": "UNIT",
+              "contextLevel": "STATIC",
+              "arguments": {
+                "keyword": "ADEPTUS ASTARTES"
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "TARGET: That ADEPTUS ASTARTES unit."
+              }
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES unit."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES unit."
+            }
           }
         ],
         "conditions": [],
@@ -80857,7 +84077,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {
@@ -80923,6 +84146,68 @@
               }
             },
             "conditions": []
+          },
+          {
+            "id": "compatibility-target",
+            "subject": "UNIT",
+            "purpose": "TARGET",
+            "allegiance": "FRIENDLY",
+            "selector": {
+              "op": "ALL",
+              "args": [
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+                  }
+                },
+                {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "MOUNTED"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+                  }
+                }
+              ]
+            },
+            "conditions": [
+              {
+                "predicate": "FIELD",
+                "subject": "UNIT",
+                "contextLevel": "BATTLE",
+                "arguments": {
+                  "key": "battleConditionSatisfied",
+                  "equals": true
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+                }
+              }
+            ],
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly ADEPTUS ASTARTES MOUNTED unit that was eligible to fight this phase."
+            }
           }
         ],
         "conditions": [],
@@ -81167,7 +84452,10 @@
             "authority": "ACCEPTED_SECONDARY"
           },
           "nativeMfm": "v1.6"
-        }
+        },
+        "compatibilityRoleIds": [
+          "compatibility-target"
+        ]
       }
     },
     {

@@ -1,0 +1,778 @@
+[
+  {
+    "ruleId": "stratagem-da-179b16b4c70c48439873",
+    "title": "WE ARE VENGEANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That RAVENWING FLY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "RAVENWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That RAVENWING FLY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "FLY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That RAVENWING FLY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That RAVENWING FLY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That RAVENWING FLY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-1b368c0046154c54ac92",
+    "title": "INESCAPABLE JUSTICE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That Adeptus Astartes unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That Adeptus Astartes unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That Adeptus Astartes unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That Adeptus Astartes unit."
+      }
+    },
+    "reviewNote": "Canonical keyword casing differs from the literal TARGET; evidence retains exact original casing."
+  },
+  {
+    "ruleId": "stratagem-da-229bed1fc1b74811ac1c",
+    "title": "RELICS OF THE DARK AGE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "ADEPTUS ASTARTES"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "INFANTRY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That ADEPTUS ASTARTES INFANTRY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-472e0838465d430aa004",
+    "title": "KNIGHTS OF IRON",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That RAVENWING unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "RAVENWING"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That RAVENWING unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That RAVENWING unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That RAVENWING unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-4a60667baaa34b918799",
+    "title": "WINGS OF SHADOW",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That RAVENWING FLY/MOUNTED unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "RAVENWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That RAVENWING FLY/MOUNTED unit."
+            }
+          },
+          {
+            "op": "ANY",
+            "args": [
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "FLY"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That RAVENWING FLY/MOUNTED unit."
+                }
+              },
+              {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "MOUNTED"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TARGET: That RAVENWING FLY/MOUNTED unit."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That RAVENWING FLY/MOUNTED unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That RAVENWING FLY/MOUNTED unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-64050352fef948368a35",
+    "title": "LION'S WILL",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "ADEPTUS ASTARTES"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly ADEPTUS ASTARTES unit that is within range of an objective."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-8b2173f8b1794e4f87f5",
+    "title": "SKYBORNE SURVEILLANCE",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That RAVENWING FLY unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ALL",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "RAVENWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That RAVENWING FLY unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "FLY"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That RAVENWING FLY unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That RAVENWING FLY unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That RAVENWING FLY unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-8c0b5e9a64804c25bc14",
+    "title": "RELIC TELEPORTARIUM",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATHWING unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DEATHWING"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DEATHWING unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATHWING unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATHWING unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-8e0ebebec9304a22a165",
+    "title": "IN SACRIFICE, VICTORY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATHWING/RAVENWING unit. You can target that unit with this stratagem even though it is destroyed.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATHWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATHWING/RAVENWING unit. You can target that unit with this stratagem even though it is destroyed."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "RAVENWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: That DEATHWING/RAVENWING unit. You can target that unit with this stratagem even though it is destroyed."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATHWING/RAVENWING unit. You can target that unit with this stratagem even though it is destroyed."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATHWING/RAVENWING unit. You can target that unit with this stratagem even though it is destroyed."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-a17914173a8545d2bb74",
+    "title": "WRATH OF THE LION",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATHWING unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DEATHWING"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DEATHWING unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATHWING unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATHWING unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-ce5949fdefe44f9d95f5",
+    "title": "TACTICAL MASTERY",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: One friendly DEATHWING/RAVENWING unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "op": "ANY",
+        "args": [
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "DEATHWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly DEATHWING/RAVENWING unit."
+            }
+          },
+          {
+            "predicate": "UNIT_KEYWORD",
+            "subject": "UNIT",
+            "contextLevel": "STATIC",
+            "arguments": {
+              "keyword": "RAVENWING"
+            },
+            "evidence": {
+              "field": [
+                "text"
+              ],
+              "quote": "TARGET: One friendly DEATHWING/RAVENWING unit."
+            }
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: One friendly DEATHWING/RAVENWING unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: One friendly DEATHWING/RAVENWING unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  },
+  {
+    "ruleId": "stratagem-da-e5ebca92065c47b6b3fa",
+    "title": "DUTY UNTO DEATH",
+    "field": [
+      "text"
+    ],
+    "quote": "TARGET: That DEATHWING unit.",
+    "role": {
+      "id": "compatibility-target",
+      "subject": "UNIT",
+      "purpose": "TARGET",
+      "allegiance": "FRIENDLY",
+      "selector": {
+        "predicate": "UNIT_KEYWORD",
+        "subject": "UNIT",
+        "contextLevel": "STATIC",
+        "arguments": {
+          "keyword": "DEATHWING"
+        },
+        "evidence": {
+          "field": [
+            "text"
+          ],
+          "quote": "TARGET: That DEATHWING unit."
+        }
+      },
+      "conditions": [
+        {
+          "predicate": "FIELD",
+          "subject": "UNIT",
+          "contextLevel": "BATTLE",
+          "arguments": {
+            "key": "battleConditionSatisfied",
+            "equals": true
+          },
+          "evidence": {
+            "field": [
+              "text"
+            ],
+            "quote": "TARGET: That DEATHWING unit."
+          }
+        }
+      ],
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "TARGET: That DEATHWING unit."
+      }
+    },
+    "reviewNote": "Exact friendly TARGET keywords; timing, demonstratives, losses, engagements, objective ranges and other battle qualifiers remain unknown in book mode."
+  }
+]

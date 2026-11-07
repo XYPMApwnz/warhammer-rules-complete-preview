@@ -151,7 +151,6 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   payload.ruleContractIds=built.book.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
   // A book view lacks physical assignments and battle context. Unbound rules
   // remain visible as conditional, never as a fabricated compatible result.
-  const conditional={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
   payload.relatedRules=buildUnboundBookRelatedRules(built.book,createTyranidsRuleSchema(),{
     unitIds:model.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.id),
     ruleIds:model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(e=>e.id)});

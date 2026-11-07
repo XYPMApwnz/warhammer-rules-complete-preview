@@ -1,6 +1,6 @@
 /** Shared canonical roster compatibility view. No rule execution or inferred battle state. */
 import {evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
-import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {enhancementOwnerContext,enhancementBearerEligible} from './compatibility-context.mjs';
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function projectRosterRelated({book,state,projection,context,evaluateRole,publicResult},instanceId,detachmentId=null) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -16,7 +16,7 @@ export function projectRosterRelated({book,state,projection,context,evaluateRole
       candidate.profiles.map(m=>context(candidate.instanceId,'MODEL',m.scopeId)):
       [context(candidate.instanceId,role.subject)]).filter(Boolean).map(context=>enhancementOwnerContext(contract,context));
     const states=contract.roles.filter(role=>roleIds.includes(role.id)).map(role=>{
-      return any(roleContexts(unit,role).map(context=>evaluateCompatibilityRole(contract,role,context,
+      return any(roleContexts(unit,role).map(context=>!enhancementBearerEligible(contract,role,context)?'FALSE':evaluateCompatibilityRole(contract,role,context,
         {evaluateRole,contextsForRole:primary=>projection.units.flatMap(candidate=>roleContexts(candidate,primary))})));
     });
     const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,

@@ -1,6 +1,7 @@
 /** Book-only compatibility, factual byte boundaries and independent examples. */
 import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';
 import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
+import {assertRealTargetContracts} from '../tests/helpers/stratagem-target-assertions.mjs';
 import {assertRelatedPanelSnapshot,assertEnhancementExamples} from '../tests/helpers/related-panel-assertions.mjs';
 const bookId=process.argv.find(a=>a.startsWith('--book='))?.slice(7),phase=process.argv.find(a=>a.startsWith('--phase='))?.slice(8)||'enhancements';
 assert(['enhancements','all'].includes(phase));
@@ -9,6 +10,14 @@ const bytes=fs.readFileSync(new URL('../books/'+bookId+'/v2/generated/app-presen
 const hash=b=>createHash('sha256').update(b).digest('hex');
 assertRelatedPanelSnapshot(payload);assertEnhancementExamples(payload);
 const data=structuredClone(raw);delete data.relatedRules;
+if(expected.newStratagemContracts){
+ const ids=new Set(expected.newStratagemContracts);
+ assert.equal(ids.size,51,'Exact new TARGET owners');
+ assert.deepEqual(data.glossary.entries.filter(e=>ids.has(e.targetId)),expected.glossaryAdditions,'Exact permitted local glossary additions');
+ assert.deepEqual(data.ruleContractIds.filter(id=>ids.has(id)),expected.newStratagemContracts,'Exact permitted contract owner additions');
+ data.glossary.entries=data.glossary.entries.filter(e=>!ids.has(e.targetId));
+ data.ruleContractIds=data.ruleContractIds.filter(id=>!ids.has(id));
+}
 assert.equal(hash(JSON.stringify(data)),expected.otherPayloadSha256,'Data outside relatedRules changed');
 if(expected.wholePayloadSha256)assert.equal(hash(bytes),expected.wholePayloadSha256,'Protected AM/CSM/DG publication bytes changed');
 const cards=new Map(payload.cards.map(c=>[c.id,c])),keys=new Set();
@@ -16,7 +25,7 @@ for(const row of payload.relatedRules.rows){const key=row.unitId+'\0'+row.ruleId
  assert.equal(cards.get(row.unitId)?.kind,'DATASHEET');assert(['STRATAGEM','ENHANCEMENT'].includes(cards.get(row.ruleId)?.kind));
  assert.equal(cards.get(row.ruleId).parentId,row.detachmentId);assert(['TRUE','FALSE','UNKNOWN'].includes(row.state));
 }
-let controls=0;
+let controls=phase==='all'?assertRealTargetContracts(bookId,expected):0;
 if(fixture.noEnhancements.some(c=>c[0]===bookId)){
  const unit=fixture.noEnhancements.find(c=>c[0]===bookId)[1],bad=structuredClone(payload);
  bad.relatedRules.rows.find(r=>r.unitId===unit&&r.kind==='ENHANCEMENT').applicability='CONDITIONAL';
@@ -27,4 +36,4 @@ if(phase==='all')for(const c of fixture.stratagems.filter(c=>c.bookId===bookId))
  const row=payload.relatedRules.rows.find(r=>r.unitId===c.unitId&&r.ruleId===c.ruleId);assert(row,'Missing literal TARGET example');
  assert.equal(row.applicability,c.expected);assert.equal(row.selectedDetachment.applicability,c.expected);
 }
-console.log(JSON.stringify({status:'PASS',bookId,phase,rows:keys.size,negativeControls:controls,onlyRelatedRulesChanged:true}));
+console.log(JSON.stringify({status:'PASS',bookId,phase,rows:keys.size,negativeControls:controls,permittedDerivedChangesOnly:true}));
