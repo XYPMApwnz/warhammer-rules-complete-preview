@@ -24,7 +24,10 @@ if(!args.includes('--list')){
  fs.mkdirSync(out,{recursive:true});
 }
 const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'))),jobs=[],seen=new Set();
-function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(seen.has(id))return;seen.add(id);jobs.push({command:process.execPath,args:[file,...extra],id:file});}
+// Pre-FF rebuilds these exact outputs in generated:check; quick keeps its checks.
+const replacedModelChecks=new Set(Object.values(books).filter(book=>book!=='death-guard')
+ .map(book=>JSON.stringify(['books/shared/tools/build-new-recruit-model-names.mjs','--book='+book,'--check'])));
+function node(file,extra=[]){const id=JSON.stringify([file,...extra]);if(mode==='pre-ff'&&replacedModelChecks.has(id))return;if(seen.has(id))return;seen.add(id);jobs.push({command:process.execPath,args:[file,...extra],id:file});}
 function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens=part.trim().split(/\s+/);if(tokens[0]==='npm'&&tokens[1]==='run')expand(pkg.scripts[tokens[2]]);else if(tokens[0]==='node'&&tokens[1]==='tests/helpers/run-qa-suite.mjs')for(const entry of tokens.slice(2))entry.startsWith('npm:')?expand(pkg.scripts[entry.slice(4)]):node(entry);else if(tokens[0]==='node')node(tokens[1],tokens.slice(2));else throw Error('Unsupported QA entry: '+part);}}
 jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
 node('tests/qa-temp-qa.mjs');
@@ -35,7 +38,7 @@ node('tests/source-book-clone-qa.mjs',['--root='+root]);
 if(!fs.existsSync(path.join(root,'tests/source-book-clone-qa.mjs')))jobs.at(-1).args[0]=path.join(harnessRoot,'tests/source-book-clone-qa.mjs');
 node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
- expand(pkg.scripts['glossary:check']);
+ expand(pkg.scripts['generated:check']);
  // Worker-enabled presentation QA needs a version-consistent publication,
  // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
