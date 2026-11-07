@@ -1,3 +1,4 @@
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
 import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
@@ -204,6 +205,7 @@ export function buildECContracts({facts=read('generated/effective.json'),inputs=
   schema.validateContractDeclarations(book);
   validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
   book.conditionBindingOptions={...book.conditionBindingOptions,selectedUpgradeMode:'VALIDATED_EQUIPPED_WEAPON'};
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
   finalizeRecipientBook(book);
   schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),before,'Factual input mutated');

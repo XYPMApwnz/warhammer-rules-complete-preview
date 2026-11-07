@@ -1,3 +1,4 @@
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
 import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
@@ -167,6 +168,7 @@ export function buildSpaceMarinesContracts({facts=read('./generated/effective.js
   book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'sm',equipmentBearerMode:'POSITIVE_SELECTION'};
   recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
   recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
   finalizeRecipientBook(book);
  const schema=createSpaceMarinesRuleSchema();schema.validateContracts(book);validateRosterEffects(book,schema.validatePredicate,schema.evaluatePredicate);
   assert.equal(JSON.stringify(facts),original,'Canonical source mutated');

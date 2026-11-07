@@ -21928,13 +21928,13 @@
                 "text"
               ]
             ],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
+              "reason": "The friendly UNIT controls an objective; the objective is the result recipient. Do not turn the ACTOR into EFFECT_RECIPIENT."
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           },
           {
             "id": "objective-affliction",
@@ -21995,13 +21995,13 @@
                 "text"
               ]
             ],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
+              "reason": "Enemy-only affliction."
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "sourceFields": [
@@ -30258,6 +30258,33 @@
                     "quote": "PLAGUE LEGIONS"
                   }
                 }
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE LEGIONS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD."
+                }
               }
             ],
             "conditions": [
@@ -30285,11 +30312,44 @@
             ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "grant-nurgles-gift::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "grant-nurgles-gift::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "PLAGUE LEGIONS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "PLAGUE LEGIONS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "contagion-range",
@@ -30311,6 +30371,33 @@
                     ],
                     "quote": "DEATH GUARD"
                   }
+                }
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD."
                 }
               }
             ],
@@ -30339,11 +30426,44 @@
             ],
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "contagion-range::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "contagion-range::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "DEATH GUARD"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "DEATH GUARD"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a PLAGUE LEGIONS unit from your army is within 7\" of one or more DEATH GUARD units from your army, that PLAGUE LEGIONS unit has the Nurgle’s Gift ability.\nWhile a DEATH GUARD unit from your army is within 7\" of one or more PLAGUE LEGIONS units from your army, add 3\" to that DEATH GUARD units Contagion Range.\nPLAGUE LEGIONS\nYou can include PLAGUE LEGIONS units in your army, even though they do not have the DEATH GUARD Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo PLAGUE LEGIONS models from your army can be your WARLORD."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "include-plague-legions",
@@ -30376,7 +30496,7 @@
             ],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
+              "reason": "Army inclusion/points permission."
             },
             "rosterEffects": [],
             "recipients": [],
@@ -30413,7 +30533,7 @@
             ],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
+              "reason": "Army construction/Warlord restriction."
             },
             "rosterEffects": [],
             "recipients": [],
@@ -42916,13 +43036,13 @@
                 "text"
               ]
             ],
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Requires a battle phase, range, objective, selected pregame unit or another event context."
+              "reason": "Whole-army Plague replacement, no UNIT/MODEL recipient."
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "sourceFields": [
@@ -49603,7 +49723,7 @@
             ],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
+              "reason": "Detachment tag/exclusivity."
             },
             "rosterEffects": [],
             "recipients": [],
@@ -51596,7 +51716,7 @@
             ],
             "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Army inclusion, Warlord or Detachment-tag legality declaration."
+              "reason": "Detachment tag/exclusivity."
             },
             "rosterEffects": [],
             "recipients": [],

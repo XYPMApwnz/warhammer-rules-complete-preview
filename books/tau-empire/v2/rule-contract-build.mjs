@@ -1,3 +1,4 @@
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
 import {recordReviewedStratagemTargets} from '../../shared/rule-contract-v2/reviewed-stratagem-targets.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
@@ -199,6 +200,7 @@ export function buildTauContracts({facts=read('./generated/effective.json'),inpu
   recordReviewedStratagemTargets(book,read('./stratagem-target-declarations.json'),{contracts});
   recordReviewedTextRecipients(book,read('./recipient-declarations.json'));
   schema.validateContractDeclarations(book);validateRosterEffectDeclarations(book,schema.validatePredicate,schema.evaluatePredicate);
+  recordReviewedDetachmentRecipients(book,read('./detachment-recipient-declarations.json'));
   if(recipientStage==='CANONICAL'){
     book.conditionBindingOptions={...book.conditionBindingOptions,physicalIdentityNamespace:'tau'};
     finalizeRecipientBook(book);

@@ -1,0 +1,132 @@
+[
+  {
+    "ruleId": "detachment-rule-ba-10c56bef78b24440bb5f",
+    "clauseId": "review/detachment-rule-ba-10c56bef78b24440bb5f/text/121:255",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-ba-891412625ddf4fba9a95",
+    "clauseId": "review/detachment-rule-ba-891412625ddf4fba9a95/text/16:116",
+    "field": [
+      "text"
+    ],
+    "quote": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_ID",
+      "subject": "UNIT",
+      "arguments": {
+        "id": "unit-ba-5981fb6513b9436487f0"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Wrath of Angels\nThe tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-ba-891412625ddf4fba9a95",
+    "clauseId": "review/detachment-rule-ba-891412625ddf4fba9a95/text/117:251",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  },
+  {
+    "ruleId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+    "clauseId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/66:141",
+    "field": [
+      "text"
+    ],
+    "quote": "- At the start of each phase, the assault doctrine is active for this unit.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "DEATH COMPANY"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+    "clauseId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/142:208",
+    "field": [
+      "text"
+    ],
+    "quote": "- The devastator/tactical doctrine cannot be active for this unit.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "DEATH COMPANY"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+    "clauseId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/209:343",
+    "field": [
+      "text"
+    ],
+    "quote": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.",
+    "disposition": "RECORD",
+    "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
+    "subject": "UNIT",
+    "selector": {
+      "predicate": "UNIT_KEYWORD",
+      "subject": "UNIT",
+      "arguments": {
+        "keyword": "DEATH COMPANY"
+      },
+      "contextLevel": "STATIC",
+      "evidence": {
+        "field": [
+          "text"
+        ],
+        "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+      }
+    }
+  },
+  {
+    "ruleId": "detachment-rule-ba-c8ada324eb3f4ef39122",
+    "clauseId": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/344:478",
+    "field": [
+      "text"
+    ],
+    "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
+    "disposition": "NOT_APPLICABLE",
+    "reason": "Army composition restriction, not a UNIT effect recipient."
+  }
+]

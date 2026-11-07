@@ -39,6 +39,22 @@ const runtimeFiles={
 const results=[],mutations=[],census=[],typedControls=[],temporal=[],tableProofs=[],enhancementOwnerReachability=[];
 function independentChain(book,rule){const index=new Map(book.entities.map(entity=>[entity.id,entity])),seen=new Set(),chain=[];while(rule){assert.ok(!seen.has(rule.id),'Independent source ownership cycle');seen.add(rule.id);chain.push({id:rule.id,kind:rule.kind,parentId:rule.parentId||null});if(rule.kind==='DETACHMENT')return chain;rule=index.get(rule.parentId);}return null;}
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+function assertReviewedNestedText(book,rule,clause,row){
+  assert.equal(row.disposition,'RECORD');assert.equal(row.ruleId,rule.id);assert.equal(row.clauseId,clause.id);
+  assert.equal(rule.kind,'DETACHMENT_RULE');assert.equal(clause.rosterClassification,'BATTLE_ONLY');
+  assert.equal(clause.rosterEffects.length,0);assert.equal(clause.conditionalPolicy,undefined);
+  const evidence={field:row.field,quote:row.quote};
+  assert.ok(row.field.reduce((value,key)=>value?.[key],rule.data).includes(row.quote),'Nested review lost its literal source');
+  const selector=node=>node.op?{op:node.op,args:node.args.map(selector)}:
+    {...clone(node),subject:row.subject,contextLevel:'STATIC',evidence:clone(node.evidence||evidence)};
+  const roles=clause.roles.filter(role=>role.id==='detachment-text-recipient');assert.equal(roles.length,1);
+  assert.deepEqual(roles[0],{id:'detachment-text-recipient',subject:row.subject,allegiance:'FRIENDLY',purpose:'EFFECT_RECIPIENT',
+    binding:row.subject==='MODEL'?'ROSTER_MODELS':'ROSTER_UNITS',selector:selector(row.selector),evidence});
+  const declaration=detachmentTextDeclaration(book,rule,clause);assert.ok(declaration,'Reviewed nested clause requires canonical F1');
+  assert.equal(declaration.recipients.length,1);assert.equal(declaration.recipients[0].roleId,roles[0].id);
+  assert.deepEqual(clause.f1RecipientIds,[declaration.recipients[0].id]);assert.equal(clause.recipientStatus,'RECORDED');
+  assert.equal(clause.rosterClassificationNote.reason,row.reason);
+}
 const rowFor=(projection,instance,rule,clause)=>projection.units.find(unit=>unit.instanceId===instance)?.conditional
   .find(row=>row.detachmentText&&row.ruleId===rule&&row.clauseId===clause);
 const csmFixture=chargeFixtures.find(fixture=>fixture.id==='csm-daemonkin');
@@ -101,7 +117,25 @@ for(const id of Object.keys(runtimeFiles)){
       f1Clauses:(rule.ruleContract?.clauses||[]).filter(clause=>detachmentTextDeclaration(book,rule,clause)).map(clause=>clause.id)};
   });
   for(const row of rows.filter(row=>row.f1Clauses.length))assert.ok(row.canonicalParentBound,id+': F1 rule lacks canonical presentation ownership');
-  if(id==='space-marines'){for(const title of ['Unparalleled Tactician','Wrath of the First Khan','Defensive Mastery']){const nested=rules.find(rule=>rule.data.title===title);assert.ok(nested,title);const chain=independentChain(book,nested);assert.equal(chain.length,3,title+': nested ownership is retained');assert.ok((nested.ruleContract.clauses||[]).every(clause=>!detachmentTextDeclaration(book,nested,clause)),title+': DISPLAY/OWNER-only clause must not acquire F1');for(const bad of ['missing','cycle','duplicate']){const changed=clone(book),rule=changed.entities.find(item=>item.id===nested.id);if(bad==='missing')rule.parentId='nonexistent';if(bad==='cycle')changed.entities.find(item=>item.id===rule.parentId).parentId=rule.id;if(bad==='duplicate')changed.entities.push(clone(rule));assert.equal(detachmentOwnerChain(changed,rule),null);mutations.push(id+'/nested/'+title+'/'+bad);}}}
+  if(id==='space-marines'){
+    const reviewed=new Map(read('books/space-marines/v2/detachment-recipient-declarations.json')
+      .filter(row=>row.disposition==='RECORD').map(row=>[row.ruleId+'\0'+row.clauseId,row]));
+    for(const title of ['Unparalleled Tactician','Wrath of the First Khan','Defensive Mastery']){
+      const nested=rules.find(rule=>rule.data.title===title);assert.ok(nested,title);
+      const chain=independentChain(book,nested);assert.equal(chain.length,3,title+': nested ownership is retained');
+      for(const clause of nested.ruleContract.clauses||[]){
+        const row=reviewed.get(nested.id+'\0'+clause.id);
+        if(row)assertReviewedNestedText(book,nested,clause,row);
+        else assert.ok(!detachmentTextDeclaration(book,nested,clause),title+': unreviewed DISPLAY/OWNER-only clause must not acquire F1');
+      }
+      for(const bad of ['missing','cycle','duplicate']){
+        const changed=clone(book),rule=changed.entities.find(item=>item.id===nested.id);
+        if(bad==='missing')rule.parentId='nonexistent';if(bad==='cycle')changed.entities.find(item=>item.id===rule.parentId).parentId=rule.id;
+        if(bad==='duplicate')changed.entities.push(clone(rule));assert.equal(detachmentOwnerChain(changed,rule),null);
+        mutations.push(id+'/nested/'+title+'/'+bad);
+      }
+    }
+  }
   census.push({book:id,detachmentRules:rows.length,cardProvenanceDifferences:rows.filter(row=>!row.runtimeCardProvenanceEqual).length,
     cardsWithoutIdentity:rows.filter(row=>!row.cardIdentityPresent).length,rows});
 }

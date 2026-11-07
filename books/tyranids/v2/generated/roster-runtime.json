@@ -2801,6 +2801,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the first battle round, select one of the following Hyper-adaptations to be active for TYRANIDS units from your army until the end of the battle:\nSwarming InstinctsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets an INFANTRY or SWARM unit, that attack has the [SUSTAINED HITS 1] ability.Hyper-aggressionEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a MONSTER or VEHICLE unit, that attack has the [LETHAL HITS] ability.Hive PredatorsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a CHARACTER unit, on a Critical Hit, that attack has the [PRECISION] ability."
+                }
               }
             ],
             "conditions": [
@@ -2834,12 +2861,45 @@
             "sourceText": "At the start of the first battle round, select one of the following Hyper-adaptations to be active for TYRANIDS units from your army until the end of the battle:\nSwarming InstinctsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets an INFANTRY or SWARM unit, that attack has the [SUSTAINED HITS 1] ability.Hyper-aggressionEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a MONSTER or VEHICLE unit, that attack has the [LETHAL HITS] ability.Hive PredatorsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a CHARACTER unit, on a Critical Hit, that attack has the [PRECISION] ability.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the first battle round, select one of the following Hyper-adaptations to be active for TYRANIDS units from your army until the end of the battle:\nSwarming InstinctsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets an INFANTRY or SWARM unit, that attack has the [SUSTAINED HITS 1] ability.Hyper-aggressionEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a MONSTER or VEHICLE unit, that attack has the [LETHAL HITS] ability.Hive PredatorsEach time a TYRANIDS model with this Hyper-adaptation makes an attack that targets a CHARACTER unit, on a Critical Hit, that attack has the [PRECISION] ability."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-invasion-fleet",
@@ -4637,6 +4697,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the battle round, you can select one of the Synaptic Imperatives shown below. Until the end of the battle round, that Synaptic Imperative is active for your army and while a TYRANIDS unit from your army is within Synapse Range of your army, it will benefit from it. Each Synaptic Imperative can only be selected once per battle.\n- Synaptic Augmentation: While this unit is within Synapse Range of your army, models in this unit have a 5+ invulnerable save.\n- Surging Vitality: While this unit is within Synapse Range of your army, add 1 to Advance and Charge rolls made for this unit.\n- Goaded to Slaughter: While this unit is within Synapse Range of your army, each time a model in this unit makes a melee attack, add 1 to the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -4670,12 +4757,45 @@
             "sourceText": "At the start of the battle round, you can select one of the Synaptic Imperatives shown below. Until the end of the battle round, that Synaptic Imperative is active for your army and while a TYRANIDS unit from your army is within Synapse Range of your army, it will benefit from it. Each Synaptic Imperative can only be selected once per battle.\n- Synaptic Augmentation: While this unit is within Synapse Range of your army, models in this unit have a 5+ invulnerable save.\n- Surging Vitality: While this unit is within Synapse Range of your army, add 1 to Advance and Charge rolls made for this unit.\n- Goaded to Slaughter: While this unit is within Synapse Range of your army, each time a model in this unit makes a melee attack, add 1 to the Hit roll.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the start of the battle round, you can select one of the Synaptic Imperatives shown below. Until the end of the battle round, that Synaptic Imperative is active for your army and while a TYRANIDS unit from your army is within Synapse Range of your army, it will benefit from it. Each Synaptic Imperative can only be selected once per battle.\n- Synaptic Augmentation: While this unit is within Synapse Range of your army, models in this unit have a 5+ invulnerable save.\n- Surging Vitality: While this unit is within Synapse Range of your army, add 1 to Advance and Charge rolls made for this unit.\n- Goaded to Slaughter: While this unit is within Synapse Range of your army, each time a model in this unit makes a melee attack, add 1 to the Hit roll."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-synaptic-nexus",
@@ -6455,6 +6575,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your Command phase, each HARVESTER unit from your army can Regenerate one friendly TYRANIDS unit that is within 6\" of it. A unit can only be regenerated once per phase. Each time a unit regenerates, do one of the following:\n- One model in that unit regains up to D3+1 lost wounds.\n- One destroyed INFANTRY model (excluding CHARACTERS) is returned to that unit with its full wounds remaining. If that unit is an ENDLESS MULTITUDE unit, up to 3 destroyed models are returned instead."
+                }
               }
             ],
             "conditions": [
@@ -6488,12 +6635,45 @@
             "sourceText": "In your Command phase, each HARVESTER unit from your army can Regenerate one friendly TYRANIDS unit that is within 6\" of it. A unit can only be regenerated once per phase. Each time a unit regenerates, do one of the following:\n- One model in that unit regains up to D3+1 lost wounds.\n- One destroyed INFANTRY model (excluding CHARACTERS) is returned to that unit with its full wounds remaining. If that unit is an ENDLESS MULTITUDE unit, up to 3 destroyed models are returned instead.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your Command phase, each HARVESTER unit from your army can Regenerate one friendly TYRANIDS unit that is within 6\" of it. A unit can only be regenerated once per phase. Each time a unit regenerates, do one of the following:\n- One model in that unit regains up to D3+1 lost wounds.\n- One destroyed INFANTRY model (excluding CHARACTERS) is returned to that unit with its full wounds remaining. If that unit is an ENDLESS MULTITUDE unit, up to 3 destroyed models are returned instead."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-assimilation-swarm",
@@ -8288,6 +8468,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TYRANIDS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TYRANIDS"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MONSTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "MONSTER"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength. In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit."
+                }
               }
             ],
             "conditions": [
@@ -8321,12 +8547,64 @@
             "sourceText": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength. In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "The same source block also benefits a TYRANIDS MONSTER UNIT: add 2 to the Objective Control of models in that unit. Its proven UNIT recipient includes an attached component; the original first attack paragraph still explicitly limits that benefit to MONSTER models. Text only, no battle effect execution.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "TYRANIDS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "TYRANIDS"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "MONSTER"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "MONSTER"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a TYRANIDS MONSTER model from your army makes an attack, add 1 to the Hit roll if that model’s unit is below its Starting Strength, and add 1 to the Wound roll as well if that model’s unit is Below Half-strength. In addition, while a TYRANIDS MONSTER unit from your army (excluding Battle-shocked units) is at its Starting Strength, add 2 to the Objective Control characteristic of models in that unit."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-crusher-stampede",
@@ -10290,6 +10568,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS units with this ability are eligible to charge in a turn in which they Fell Back. VANGUARD INVADER units with this ability are eligible to charge in a turn in which they Advanced."
+                }
               }
             ],
             "conditions": [
@@ -10323,12 +10628,45 @@
             "sourceText": "TYRANIDS units with this ability are eligible to charge in a turn in which they Fell Back. VANGUARD INVADER units with this ability are eligible to charge in a turn in which they Advanced.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "TYRANIDS"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "TYRANIDS"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "TYRANIDS units with this ability are eligible to charge in a turn in which they Fell Back. VANGUARD INVADER units with this ability are eligible to charge in a turn in which they Advanced."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-vanguard-onslaught",
@@ -10437,14 +10775,14 @@
               "quote": "DEATHLEAPER loses the Hunter Organism rule and can be your WARLORD."
             },
             "sourceText": "DEATHLEAPER loses the Hunter Organism rule and can be your WARLORD.",
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "WARLORD eligibility is army construction. Hunter Organism removal is static rule metadata, not a battle-dependent F1 enrollment; preserve existing classification unless separately authorized.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-vanguard-onslaught",
@@ -12163,6 +12501,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ENDLESS MULTITUDE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "ENDLESS MULTITUDE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model from a friendly ENDLESS MULTITUDE unit was destroyed as a result of those attacks, that friendly unit can make a surge move of up to D6\"."
+                }
               }
             ],
             "conditions": [
@@ -12196,12 +12561,45 @@
             "sourceText": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model from a friendly ENDLESS MULTITUDE unit was destroyed as a result of those attacks, that friendly unit can make a surge move of up to D6\".",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "ENDLESS MULTITUDE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "ENDLESS MULTITUDE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model from a friendly ENDLESS MULTITUDE unit was destroyed as a result of those attacks, that friendly unit can make a surge move of up to D6\"."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-unending-swarm",
@@ -14214,6 +14612,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "LICTOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "LICTOR"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NEUROLICTOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NEUROLICTOR"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                }
               }
             ],
             "conditions": [
@@ -14247,11 +14691,63 @@
             "sourceText": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires battle timing/state; no automatic activation."
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "battle-dependent::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "battle-dependent::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "LICTOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "LICTOR"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NEUROLICTOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NEUROLICTOR"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Friendly LICTOR/NEUROLICTOR units’ attacks that target a CHARACTER unit can re-roll hit rolls of 1."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-ambush-predators",
@@ -15366,6 +15862,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NORN EMISSARY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NORN EMISSARY"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NORN ASSIMILATOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NORN ASSIMILATOR"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly NORN EMISSARY/NORN ASSIMILATOR units have the following ability:\nProtean Purpose: (Once per battle, per unit) In your Command phase, you can use this ability. If you do, this unit can make a selection for its Singular Purpose ability (this replaces the previous selection)."
+                }
               }
             ],
             "conditions": [
@@ -15399,12 +15941,64 @@
             "sourceText": "Friendly NORN EMISSARY/NORN ASSIMILATOR units have the following ability:\nProtean Purpose: (Once per battle, per unit) In your Command phase, you can use this ability. If you do, this unit can make a selection for its Singular Purpose ability (this replaces the previous selection).",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Army-wide, keyword-qualified or selected external units; quoted this-unit references do not make a detachment/army source physical unit.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "REVIEWED_TEXT_ONLY"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "text-coverage:/text::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "text-coverage:/text::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NORN EMISSARY"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NORN EMISSARY"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "NORN ASSIMILATOR"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "NORN ASSIMILATOR"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly NORN EMISSARY/NORN ASSIMILATOR units have the following ability:\nProtean Purpose: (Once per battle, per unit) In your Command phase, you can use this ability. If you do, this unit can make a selection for its Singular Purpose ability (this replaces the previous selection)."
+                },
+                "textKind": "ABILITY_PRESENT"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-talons-of-the-norn-queen",

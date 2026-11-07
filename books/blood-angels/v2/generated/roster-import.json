@@ -31105,14 +31105,14 @@
               "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
             },
             "sourceText": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Exact prohibition against other Chapters retained as source text, without an invented army legality validator.",
+              "reason": "Army composition restriction, not a UNIT effect recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-ba-23df164069854eb2996c",
@@ -31193,6 +31193,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "id": "unit-ba-5981fb6513b9436487f0"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Wrath of Angels\nThe tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine."
+                }
               }
             ],
             "conditions": [],
@@ -31208,14 +31235,47 @@
               "quote": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine."
             },
             "sourceText": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "review/detachment-rule-ba-891412625ddf4fba9a95/text/16:116::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "review/detachment-rule-ba-891412625ddf4fba9a95/text/16:116::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_ID",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "id": "unit-ba-5981fb6513b9436487f0"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Wrath of Angels\nThe tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "The tactical doctrine is active for SANGUINARY GUARD units in addition to any other combat doctrine."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/detachment-rule-ba-891412625ddf4fba9a95/text/117:251",
@@ -31253,14 +31313,14 @@
               "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
             },
             "sourceText": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Exact prohibition against other Chapters retained as source text, without an invented army legality validator.",
+              "reason": "Army composition restriction, not a UNIT effect recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-ba-9d0ce920555a44b68025",
@@ -31355,6 +31415,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- At the start of each phase, the assault doctrine is active for this unit."
+                }
               }
             ],
             "conditions": [],
@@ -31370,14 +31457,47 @@
               "quote": "- At the start of each phase, the assault doctrine is active for this unit."
             },
             "sourceText": "- At the start of each phase, the assault doctrine is active for this unit.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/66:141::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/66:141::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- At the start of each phase, the assault doctrine is active for this unit."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/142:208",
@@ -31400,6 +31520,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- The devastator/tactical doctrine cannot be active for this unit."
+                }
               }
             ],
             "conditions": [],
@@ -31415,14 +31562,47 @@
               "quote": "- The devastator/tactical doctrine cannot be active for this unit."
             },
             "sourceText": "- The devastator/tactical doctrine cannot be active for this unit.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/142:208::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/142:208::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- The devastator/tactical doctrine cannot be active for this unit."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/209:343",
@@ -31445,6 +31625,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine."
+                }
               }
             ],
             "conditions": [],
@@ -31460,14 +31667,47 @@
               "quote": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine."
             },
             "sourceText": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Requires exact selected Detachment, confirmed recipient predicates and complete semantics; partial doctrine/restriction fragments cannot certify the complete rule.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/209:343::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/209:343::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "DEATH COMPANY"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Sanguinius' Fury\nFriendly DEATH COMPANY units have the following:\n- At the start of each phase, the assault doctrine is active for this unit.\n- The devastator/tactical doctrine cannot be active for this unit.\nThis means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine.\nRestrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "This means that, regardless of any other rules, DEATH COMPANY units can never have an active doctrine other than the assault doctrine."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "review/detachment-rule-ba-c8ada324eb3f4ef39122/text/344:478",
@@ -31505,14 +31745,14 @@
               "quote": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter."
             },
             "sourceText": "Restrictions: Your army can include BLOOD ANGELS units, but it cannot include any ADEPTUS ASTARTES units drawn from any other Chapter.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Exact prohibition against other Chapters retained as source text, without an invented army legality validator.",
+              "reason": "Army composition restriction, not a UNIT effect recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-ba-b84a7700a71549e399ba",
@@ -31779,14 +32019,14 @@
               "quote": "You can select the devastator doctrine one additional time per battle."
             },
             "sourceText": "You can select the devastator doctrine one additional time per battle.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Army-wide extra doctrine availability; no UNIT recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-sm-bf8f2dd8d7dc4073",
@@ -31881,14 +32121,14 @@
               "quote": "You can select the tactical doctrine one additional time per battle."
             },
             "sourceText": "You can select the tactical doctrine one additional time per battle.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Army-wide extra doctrine availability; no UNIT recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-sm-0962d488a7b24d3b",
@@ -31968,6 +32208,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "TACTICUS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Codex Fire-patterns\nFriendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
+                }
               }
             ],
             "conditions": [],
@@ -31983,14 +32250,47 @@
               "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
             },
             "sourceText": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-3a97ffd48f0f4bf6#text:20-147::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "TACTICUS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Codex Fire-patterns\nFriendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly TACTICUS units’ [Rapid Fire] attacks benefit from [Rapid Fire] when targeting units up to that attack’s maximum range."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-bad922ba6ae84f44",
@@ -32271,6 +32571,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "PHOBOS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Vanguard Ambushers\nAt the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
+                }
               }
             ],
             "conditions": [],
@@ -32286,14 +32613,47 @@
               "quote": "At the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
             },
             "sourceText": "At the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-6e133b8acd6b4550#text:19-166::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-6e133b8acd6b4550#text:19-166::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "PHOBOS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Vanguard Ambushers\nAt the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "At the end of your Movement phase, if a friendly PHOBOS unit is hidden, that unit’s attacks can re-roll wound rolls of 1 until the end of the turn."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-9f9732252c304842",
@@ -32373,6 +32733,71 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:"
+                }
               }
             ],
             "conditions": [],
@@ -32388,14 +32813,85 @@
               "quote": "Friendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:"
             },
             "sourceText": "Friendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-8381795466754812#text:25-110::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-8381795466754812#text:25-110::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:"
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-8381795466754812#text:111-134",
@@ -32418,6 +32914,71 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Re-roll one hit roll."
+                }
               }
             ],
             "conditions": [],
@@ -32433,14 +32994,85 @@
               "quote": "- Re-roll one hit roll."
             },
             "sourceText": "- Re-roll one hit roll.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-8381795466754812#text:111-134::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-8381795466754812#text:111-134::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Re-roll one hit roll."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-8381795466754812#text:135-160",
@@ -32463,6 +33095,71 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Re-roll one wound roll."
+                }
               }
             ],
             "conditions": [],
@@ -32478,14 +33175,85 @@
               "quote": "- Re-roll one wound roll."
             },
             "sourceText": "- Re-roll one wound roll.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-8381795466754812#text:135-160::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-8381795466754812#text:135-160::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "VEHICLE"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                      }
+                    },
+                    {
+                      "op": "NOT",
+                      "args": [
+                        {
+                          "predicate": "UNIT_KEYWORD",
+                          "subject": "UNIT",
+                          "arguments": {
+                            "keyword": "WALKER"
+                          },
+                          "contextLevel": "STATIC",
+                          "evidence": {
+                            "field": [
+                              "text"
+                            ],
+                            "quote": "Ironstorm Auto-targeters\nFriendly ADEPTUS ASTARTES VEHICLE units’ (excluding WALKER units) ranged attacks can:\n- Re-roll one hit roll.\n- Re-roll one wound roll."
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Re-roll one wound roll."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-519d6649ea174733",
@@ -32580,14 +33348,14 @@
               "quote": "In your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks."
             },
             "sourceText": "In your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Enemy target selection/assailed state; friendly TRANSPORT is the actor, not the effect recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           },
           {
             "id": "detachment-rule-sm-8aba3398dfe14b66#text:154-208",
@@ -32625,14 +33393,14 @@
               "quote": "That enemy unit is assailed until the end of the turn:"
             },
             "sourceText": "That enemy unit is assailed until the end of the turn:",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Enemy target selection/assailed state; friendly TRANSPORT is the actor, not the effect recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           },
           {
             "id": "detachment-rule-sm-8aba3398dfe14b66#text:209-351",
@@ -32655,6 +33423,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Combined Deployment\nIn your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks. That enemy unit is assailed until the end of the turn:\n- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
+                }
               }
             ],
             "conditions": [],
@@ -32670,14 +33465,47 @@
               "quote": "- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
             },
             "sourceText": "- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1].",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-8aba3398dfe14b66#text:209-351::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-8aba3398dfe14b66#text:209-351::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "ADEPTUS ASTARTES"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Combined Deployment\nIn your Shooting phase, when a friendly ADEPTUS ASTARTES TRANSPORT unit has shot, you can select one enemy unit hit by those attacks. That enemy unit is assailed until the end of the turn:\n- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- While a unit is assailed, when an ADEPTUS ASTARTES unit that disembarked this turn targets that unit, those attacks have [Sustained Hits 1]."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-bfacdc12c8074440",
@@ -32757,6 +33585,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Indomitable Defence\nWhile a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
+                }
               }
             ],
             "conditions": [],
@@ -32772,14 +33627,47 @@
               "quote": "While a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
             },
             "sourceText": "While a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-93a70d72216b4f0c#text:20-171::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-93a70d72216b4f0c#text:20-171::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Indomitable Defence\nWhile a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "While a friendly GRAVIS unit is within range of an objective, attacks that target that unit with a S greater than that unit’s T have -1 to wound rolls."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-edbad6d9c5a44991",
@@ -32874,14 +33762,14 @@
               "quote": "You can select one combat doctrine one additional time per battle."
             },
             "sourceText": "You can select one combat doctrine one additional time per battle.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Army-wide extra doctrine availability; no UNIT recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-sm-6341f5a9b9584677",
@@ -32961,6 +33849,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "DREADNOUGHT"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                }
               }
             ],
             "conditions": [],
@@ -32976,14 +33910,66 @@
               "quote": "Friendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
             },
             "sourceText": "Friendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-bded7031de204fd4#text:19-90::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-bded7031de204fd4#text:19-90::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "ADEPTUS ASTARTES"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "DREADNOUGHT"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Enduring Vengeance\nFriendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly ADEPTUS ASTARTES DREADNOUGHT units can re-roll hit rolls of 1."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-bd39ee9e152742b9",
@@ -33063,6 +34049,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "TACTICUS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Wrath of the Chapter\nFriendly TACTICUS units can re-roll advance rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly TACTICUS units can re-roll advance rolls."
+                }
               }
             ],
             "conditions": [],
@@ -33078,14 +34091,47 @@
               "quote": "Friendly TACTICUS units can re-roll advance rolls."
             },
             "sourceText": "Friendly TACTICUS units can re-roll advance rolls.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-bff921aaeb624b43#text:21-71::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-bff921aaeb624b43#text:21-71::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "TACTICUS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Wrath of the Chapter\nFriendly TACTICUS units can re-roll advance rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly TACTICUS units can re-roll advance rolls."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-624df9cefb95455f",
@@ -33165,6 +34211,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:"
+                }
               }
             ],
             "conditions": [],
@@ -33180,14 +34253,47 @@
               "quote": "In a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:"
             },
             "sourceText": "In a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-d1b9f7be1db34a49#text:17-97::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-d1b9f7be1db34a49#text:17-97::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:"
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-d1b9f7be1db34a49#text:98-120",
@@ -33210,6 +34316,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Do not have [Heavy]."
+                }
               }
             ],
             "conditions": [],
@@ -33225,14 +34358,47 @@
               "quote": "- Do not have [Heavy]."
             },
             "sourceText": "- Do not have [Heavy].",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-d1b9f7be1db34a49#text:98-120::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-d1b9f7be1db34a49#text:98-120::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Do not have [Heavy]."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-d1b9f7be1db34a49#text:121-144",
@@ -33255,6 +34421,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Have +1 to hit rolls."
+                }
               }
             ],
             "conditions": [],
@@ -33270,14 +34463,47 @@
               "quote": "- Have +1 to hit rolls."
             },
             "sourceText": "- Have +1 to hit rolls.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-d1b9f7be1db34a49#text:121-144::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-d1b9f7be1db34a49#text:121-144::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "UNIT_KEYWORD",
+                  "subject": "UNIT",
+                  "arguments": {
+                    "keyword": "GRAVIS"
+                  },
+                  "contextLevel": "STATIC",
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "Walking Fortress\nIn a turn a friendly GRAVIS unit made a normal move, that unit’s ranged attacks:\n- Do not have [Heavy].\n- Have +1 to hit rolls."
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Have +1 to hit rolls."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-8f297dd604a24b1c",
@@ -33372,14 +34598,14 @@
               "quote": "You can select the assault doctrine one additional time per battle."
             },
             "sourceText": "You can select the assault doctrine one additional time per battle.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Army-wide extra doctrine availability; no UNIT recipient.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-sm-c8f2ae568f594e1b",
@@ -33459,6 +34685,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "When a friendly PHOBOS or SCOUT SQUAD unit has shot:"
+                }
               }
             ],
             "conditions": [],
@@ -33474,14 +34746,66 @@
               "quote": "When a friendly PHOBOS or SCOUT SQUAD unit has shot:"
             },
             "sourceText": "When a friendly PHOBOS or SCOUT SQUAD unit has shot:",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-f3f6dd9bf1b24f66#text:15-67::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:15-67::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "When a friendly PHOBOS or SCOUT SQUAD unit has shot:"
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:68-127",
@@ -33504,6 +34828,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Those attacks do not prevent that unit from being hidden."
+                }
               }
             ],
             "conditions": [],
@@ -33519,14 +34889,66 @@
               "quote": "- Those attacks do not prevent that unit from being hidden."
             },
             "sourceText": "- Those attacks do not prevent that unit from being hidden.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-f3f6dd9bf1b24f66#text:68-127::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:68-127::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Those attacks do not prevent that unit from being hidden."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:128-180",
@@ -33549,6 +34971,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Or: That unit can make a normal move of up to D6\"."
+                }
               }
             ],
             "conditions": [],
@@ -33564,14 +35032,66 @@
               "quote": "- Or: That unit can make a normal move of up to D6\"."
             },
             "sourceText": "- Or: That unit can make a normal move of up to D6\".",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-f3f6dd9bf1b24f66#text:128-180::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:128-180::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "- Or: That unit can make a normal move of up to D6\"."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:181-253",
@@ -33594,6 +35114,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "That unit is not eligible to declare a charge until the end of the turn."
+                }
               }
             ],
             "conditions": [],
@@ -33609,14 +35175,66 @@
               "quote": "That unit is not eligible to declare a charge until the end of the turn."
             },
             "sourceText": "That unit is not eligible to declare a charge until the end of the turn.",
-            "rosterClassification": "DISPLAY_ONLY",
+            "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Accepted source text is retained. This exact source clause has no independently verified executable binding in this review yet. TEXT_ONLY does not assert that the clause is conditional or that automation is out of product scope.",
+              "reason": "Explicit friendly UNIT recipient; battlefield qualifications remain in the exact source text.",
               "reviewClassification": "TEXT_ONLY_SOURCE_BACKED"
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-rule-sm-f3f6dd9bf1b24f66#text:181-253::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-rule-sm-f3f6dd9bf1b24f66#text:181-253::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "keyword": "PHOBOS"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "arguments": {
+                        "id": "unit-sm-3815e40077e44702"
+                      },
+                      "contextLevel": "STATIC",
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Shadow Masters\nWhen a friendly PHOBOS or SCOUT SQUAD unit has shot:\n- Those attacks do not prevent that unit from being hidden.\n- Or: That unit can make a normal move of up to D6\". That unit is not eligible to declare a charge until the end of the turn."
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "That unit is not eligible to declare a charge until the end of the turn."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-sm-a4f66339257d47b4",

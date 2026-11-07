@@ -1,3 +1,4 @@
+import {recordReviewedDetachmentRecipients} from '../../shared/rule-contract-v2/reviewed-detachment-recipients.mjs';
 import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recipientDeclarationView} from '../../shared/rule-contract-v2/recipients.mjs';
@@ -148,6 +149,7 @@ export function extendRosterContracts(model) {
   }
   assert.deepEqual(consumed,new Set(declarations.keys()),'Complete exact source roster clause identities');
   recordDeathGuardTextRecipients(extended);
+  recordReviewedDetachmentRecipients(extended,JSON.parse(fs.readFileSync(new URL('./detachment-recipient-declarations.json',import.meta.url),'utf8')));
   return finalizeRecipientBook(extended);
 }
 export function summarizeRosterContracts(model) {

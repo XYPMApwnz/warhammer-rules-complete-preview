@@ -438,6 +438,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability."
+                }
               }
             ],
             "conditions": [
@@ -471,7 +498,7 @@
             "sourceText": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -491,8 +518,41 @@
               "activationConditions": "All quoted source gates and exceptions: During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-montka:rule#battle-clause-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-montka:rule#battle-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-montka:rule#battle-clause-2",
@@ -515,6 +575,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
+                }
               }
             ],
             "conditions": [
@@ -548,7 +635,7 @@
             "sourceText": "During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -568,8 +655,41 @@
               "activationConditions": "All quoted source gates and exceptions: During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-montka:rule#battle-clause-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-montka:rule#battle-clause-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-montka",
@@ -4637,6 +4757,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "T’AU EMPIRE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "T’AU EMPIRE"
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "BATTLESUIT"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "BATTLESUIT"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well."
+                }
               }
             ],
             "conditions": [
@@ -4670,7 +4836,7 @@
             "sourceText": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -4690,8 +4856,60 @@
               "activationConditions": "All quoted source gates and exceptions: Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-retaliation-cadre:rule#conditional-complete::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-retaliation-cadre:rule#conditional-complete::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "T’AU EMPIRE"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "T’AU EMPIRE"
+                      }
+                    },
+                    {
+                      "predicate": "MODEL_KEYWORD",
+                      "subject": "MODEL",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "BATTLESUIT"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "BATTLESUIT"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-retaliation-cadre",
@@ -8877,6 +9095,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability."
+                }
               }
             ],
             "conditions": [
@@ -8910,7 +9155,7 @@
             "sourceText": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -8930,8 +9175,41 @@
               "activationConditions": "All quoted source gates and exceptions: During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-kauyon:rule#battle-clause-1::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-kauyon:rule#battle-clause-1::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-kauyon:rule#battle-clause-2",
@@ -8954,6 +9232,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
+                }
               }
             ],
             "conditions": [
@@ -8987,7 +9292,7 @@
             "sourceText": "During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -9007,8 +9312,41 @@
               "activationConditions": "All quoted source gates and exceptions: During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-kauyon:rule#battle-clause-2::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-kauyon:rule#battle-clause-2::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "T’AU EMPIRE"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "T’AU EMPIRE"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-kauyon",
@@ -13822,6 +14160,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "KROOT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "KROOT"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a KROOT model from your army makes an attack, add 1 to the Hit roll if the target of that attack is below its Starting Strength, and add 1 to the Wound roll as well if the target of that attack is Below Half-strength."
+                }
               }
             ],
             "conditions": [
@@ -13855,7 +14220,7 @@
             "sourceText": "Each time a KROOT model from your army makes an attack, add 1 to the Hit roll if the target of that attack is below its Starting Strength, and add 1 to the Wound roll as well if the target of that attack is Below Half-strength.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -13875,8 +14240,41 @@
               "activationConditions": "All quoted source gates and exceptions: Each time a KROOT model from your army makes an attack, add 1 to the Hit roll if the target of that attack is below its Starting Strength, and add 1 to the Wound roll as well if the target of that attack is Below Half-strength."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-kroot-hunting-pack:rule#conditional-complete::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-kroot-hunting-pack:rule#conditional-complete::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "KROOT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "KROOT"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time a KROOT model from your army makes an attack, add 1 to the Hit roll if the target of that attack is below its Starting Strength, and add 1 to the Wound roll as well if the target of that attack is Below Half-strength."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-kroot-hunting-pack",
@@ -13954,6 +14352,33 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "MODEL",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_MODELS",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "KROOT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "KROOT"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "KROOT models from your army have a 6+ invulnerable save against melee attacks and a 5+ invulnerable save against ranged attacks."
+                }
               }
             ],
             "conditions": [
@@ -13987,7 +14412,7 @@
             "sourceText": "KROOT models from your army have a 6+ invulnerable save against melee attacks and a 5+ invulnerable save against ranged attacks.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "Attack-type-dependent saves remain contextual. A scalar unconditional INSV5 would contradict source.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -14007,8 +14432,41 @@
               "activationConditions": "All quoted source gates and exceptions: KROOT models from your army have a 6+ invulnerable save against melee attacks and a 5+ invulnerable save against ranged attacks."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-kroot-hunting-pack:rule:skirmish-fighters#contextual-invulnerable::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-kroot-hunting-pack:rule:skirmish-fighters#contextual-invulnerable::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "predicate": "MODEL_KEYWORD",
+                  "subject": "MODEL",
+                  "contextLevel": "STATIC",
+                  "arguments": {
+                    "keyword": "KROOT"
+                  },
+                  "evidence": {
+                    "field": [
+                      "text"
+                    ],
+                    "quote": "KROOT"
+                  }
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "KROOT models from your army have a 6+ invulnerable save against melee attacks and a 5+ invulnerable save against ranged attacks."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-kroot-hunting-pack",
@@ -18240,6 +18698,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "KROOT"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "KROOT"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VESPID STINGWINGS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "VESPID STINGWINGS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range"
+                }
               }
             ],
             "conditions": [
@@ -18273,7 +18777,7 @@
             "sourceText": "Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -18293,8 +18797,60 @@
               "activationConditions": "All quoted source gates and exceptions: Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden. This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-auxiliary-cadre:rule#harnessed-alien-instincts::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-auxiliary-cadre:rule#harnessed-alien-instincts::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "KROOT"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "KROOT"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "VESPID STINGWINGS"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "VESPID STINGWINGS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range"
+                },
+                "textKind": "ABILITY_PRESENT"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-auxiliary-cadre:rule#localised-stealth-projectors",
@@ -18317,6 +18873,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-ghostkeel-battlesuit"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "GHOSTKEEL BATTLESUIT"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-stealth-battlesuits"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "STEALTH BATTLESUITS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden."
+                }
               }
             ],
             "conditions": [
@@ -18350,7 +18952,7 @@
             "sourceText": "Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -18370,8 +18972,60 @@
               "activationConditions": "All quoted source gates and exceptions: Friendly KROOT/VESPID STINGWINGS units have the following ability: Harnessed Alien Instincts: In your Shooting phase, this unit can select one visible enemy unit within 12\". That enemy unit is prey-marked: While a unit is prey-marked, that unit has +3\" detection range Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden. This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-auxiliary-cadre:rule#localised-stealth-projectors::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-auxiliary-cadre:rule#localised-stealth-projectors::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-ghostkeel-battlesuit"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "GHOSTKEEL BATTLESUIT"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-stealth-battlesuits"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "STEALTH BATTLESUITS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Friendly GHOSTKEEL BATTLESUIT/STEALTH BATTLESUITS units have the following ability: Localised Stealth Projectors (Aura): When a friendly KROOT/VESPID STINGWINGS unit within 6\" of this unit has shot, those attacks do not prevent that unit from being hidden."
+                },
+                "textKind": "ABILITY_PRESENT"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           },
           {
             "id": "detachment-auxiliary-cadre:rule#detachment-tag",
@@ -18425,9 +19079,9 @@
               "quote": "This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment."
             },
             "sourceText": "This detachment has the AUXILIARIES tag and cannot be taken with another AUXILIARIES detachment.",
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "AUXILIARIES co-selection restriction is declarative New Recruit construction information, not a new legality validator.",
+              "reason": "Detachment tag/exclusivity.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -18448,7 +19102,7 @@
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-auxiliary-cadre",
@@ -20632,9 +21286,9 @@
               "quote": " has the BATTLESUIT tag and cannot be taken with another BATTLESUIT detachment."
             },
             "sourceText": " has the BATTLESUIT tag and cannot be taken with another BATTLESUIT detachment.",
-            "rosterClassification": "BATTLE_ONLY",
+            "rosterClassification": "NOT_AN_EFFECT",
             "rosterClassificationNote": {
-              "reason": "Detachment tag/co-selection restriction is source text for New Recruit legality, not a runtime legality check.",
+              "reason": "Detachment tag/exclusivity.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -20655,7 +21309,7 @@
             },
             "rosterEffects": [],
             "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "recipientStatus": "NOT_APPLICABLE"
           }
         ],
         "detachmentId": "detachment-experimental-prototype-cadre",
@@ -22697,6 +23351,52 @@
                   }
                 },
                 "conditions": []
+              },
+              {
+                "id": "detachment-text-recipient",
+                "subject": "UNIT",
+                "allegiance": "FRIENDLY",
+                "purpose": "EFFECT_RECIPIENT",
+                "binding": "ROSTER_UNITS",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "PATHFINDER TEAM"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "PATHFINDER TEAM"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-stealth-battlesuits"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "STEALTH BATTLESUITS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden."
+                }
               }
             ],
             "conditions": [
@@ -22730,7 +23430,7 @@
             "sourceText": "In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden.",
             "rosterClassification": "BATTLE_ONLY",
             "rosterClassificationNote": {
-              "reason": "This clause depends on battlefield events, player choice or context not determined by the imported roster. Keep the complete conditional source text; do not project it as an unconditional roster result.",
+              "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
               "reviewClassification": "CONDITIONAL / DISPLAY",
               "dependencies": [],
               "reviewedRecipient": {
@@ -22750,8 +23450,60 @@
               "activationConditions": "All quoted source gates and exceptions: In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "f1RecipientIds": [
+              "detachment-advanced-acquisition-cadre:rule#conditional-complete::recipient/role/1"
+            ],
+            "recipients": [
+              {
+                "id": "detachment-advanced-acquisition-cadre:rule#conditional-complete::recipient/role/1",
+                "who": "UNIT",
+                "roleId": "detachment-text-recipient",
+                "side": "FRIENDLY",
+                "from": "ROSTER_UNITS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ANY",
+                  "args": [
+                    {
+                      "predicate": "UNIT_KEYWORD",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "keyword": "PATHFINDER TEAM"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "PATHFINDER TEAM"
+                      }
+                    },
+                    {
+                      "predicate": "UNIT_ID",
+                      "subject": "UNIT",
+                      "contextLevel": "STATIC",
+                      "arguments": {
+                        "id": "unit-stealth-battlesuits"
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "STEALTH BATTLESUITS"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "In your Shooting phase, when a friendly PATHFINDER TEAM/STEALTH BATTLESUITS unit is selected to shoot, those ranged attacks do not prevent your unit from being hidden."
+                },
+                "textKind": "CONDITIONAL"
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "detachmentId": "detachment-advanced-acquisition-cadre",

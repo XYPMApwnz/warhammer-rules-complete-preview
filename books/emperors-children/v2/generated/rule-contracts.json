@@ -14720,6 +14720,52 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "LEGIONS OF EXCESS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "LEGIONS OF EXCESS"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- While an EMPEROR’S CHILDREN unit from your army is within 6\" of one or more friendly LEGIONS OF EXCESS units, it is Empowered.\n- While a LEGIONS OF EXCESS unit from your army is within 6\" of one or more friendly EMPEROR’S CHILDREN units, it is Empowered.\nWhile a unit from your army is Empowered, weapons equipped by models in that unit have the [sustained hits 1] ability. If such a weapon already has that ability, each time an attack is made with that weapon, an unmodified Hit roll of 5+ scores a Critical Hit.\nLEGIONS OF EXCESS\nYou can include LEGIONS OF EXCESS units in your army, even though they do not have the EMPEROR’S CHILDREN Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo LEGIONS OF EXCESS models from your army can be your WARLORD."
+              }
             }
           ],
           "conditions": [
@@ -14753,12 +14799,64 @@
           "sourceText": "- While an EMPEROR’S CHILDREN unit from your army is within 6\" of one or more friendly LEGIONS OF EXCESS units, it is Empowered.\n- While a LEGIONS OF EXCESS unit from your army is within 6\" of one or more friendly EMPEROR’S CHILDREN units, it is Empowered.\nWhile a unit from your army is Empowered, weapons equipped by models in that unit have the [sustained hits 1] ability. If such a weapon already has that ability, each time an attack is made with that weapon, an unmodified Hit roll of 5+ scores a Critical Hit.\nLEGIONS OF EXCESS\nYou can include LEGIONS OF EXCESS units in your army, even though they do not have the EMPEROR’S CHILDREN Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo LEGIONS OF EXCESS models from your army can be your WARLORD.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Army-wide mutual proximity empowerment and army-construction permission; no universal SOURCE_UNIT recipient.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_UNITS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "op": "ANY",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "LEGIONS OF EXCESS"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "LEGIONS OF EXCESS"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "- While an EMPEROR’S CHILDREN unit from your army is within 6\" of one or more friendly LEGIONS OF EXCESS units, it is Empowered.\n- While a LEGIONS OF EXCESS unit from your army is within 6\" of one or more friendly EMPEROR’S CHILDREN units, it is Empowered.\nWhile a unit from your army is Empowered, weapons equipped by models in that unit have the [sustained hits 1] ability. If such a weapon already has that ability, each time an attack is made with that weapon, an unmodified Hit roll of 5+ scores a Critical Hit.\nLEGIONS OF EXCESS\nYou can include LEGIONS OF EXCESS units in your army, even though they do not have the EMPEROR’S CHILDREN Faction keyword. The combined points cost of such units you can include in your army is:\n- Incursion: Up to 500 pts\n- Strike Force: Up to 1000 pts\n- Onslaught: Up to 1500 pts\nNo LEGIONS OF EXCESS models from your army can be your WARLORD."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-carnival-of-excess",
@@ -15215,6 +15313,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_MODELS",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time an EMPEROR’S CHILDREN model from your army makes an attack, if it is a TRANSPORT model or disembarked from a TRANSPORT this turn, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
+              }
             }
           ],
           "conditions": [
@@ -15248,12 +15373,45 @@
           "sourceText": "Each time an EMPEROR’S CHILDREN model from your army makes an attack, if it is a TRANSPORT model or disembarked from a TRANSPORT this turn, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Army-wide conditional model attack rule.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "MODEL_KEYWORD",
+                "subject": "MODEL",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time an EMPEROR’S CHILDREN model from your army makes an attack, if it is a TRANSPORT model or disembarked from a TRANSPORT this turn, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-rapid-evisceration",
@@ -15942,6 +16100,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time an EMPEROR’S CHILDREN unit from your army is selected to fight, if it made a Charge move this turn, select one of the abilities below. While resolving those attacks, melee weapons equipped by models in that unit have that ability:\n- [LETHAL HITS]\n- [SUSTAINED HITS 1]"
+              }
             }
           ],
           "conditions": [
@@ -15975,12 +16160,45 @@
           "sourceText": "Each time an EMPEROR’S CHILDREN unit from your army is selected to fight, if it made a Charge move this turn, select one of the abilities below. While resolving those attacks, melee weapons equipped by models in that unit have that ability:\n- [LETHAL HITS]\n- [SUSTAINED HITS 1]",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Army-wide rule with battle-time choice; source-unit binding would be invented.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_UNITS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "Each time an EMPEROR’S CHILDREN unit from your army is selected to fight, if it made a Charge move this turn, select one of the abilities below. While resolving those attacks, melee weapons equipped by models in that unit have that ability:\n- [LETHAL HITS]\n- [SUSTAINED HITS 1]"
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-peerless-bladesmen",
@@ -16399,6 +16617,33 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN units from your army have the following ability:\nSensational Performance: Each time this unit is selected to fight, if this unit made a Charge move this turn, it can use this ability. If it does, until the end of the phase:\n- This unit cannot target a unit it was within Engagement Range of at the start of the turn.\n- This unit cannot target a unit that was the target of another unit’s attack this phase.\n- Improve the Strength and Armour Penetration characteristics of this unit’s melee weapons by 1."
+              }
             }
           ],
           "conditions": [
@@ -16432,12 +16677,45 @@
           "sourceText": "EMPEROR’S CHILDREN units from your army have the following ability:\nSensational Performance: Each time this unit is selected to fight, if this unit made a Charge move this turn, it can use this ability. If it does, until the end of the phase:\n- This unit cannot target a unit it was within Engagement Range of at the start of the turn.\n- This unit cannot target a unit that was the target of another unit’s attack this phase.\n- Improve the Strength and Armour Penetration characteristics of this unit’s melee weapons by 1.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Whole-army grant; nested this-unit text does not identify canonical owner as recipient.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_UNITS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "UNIT_KEYWORD",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {
+                  "keyword": "EMPEROR’S CHILDREN"
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "EMPEROR’S CHILDREN"
+                }
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN units from your army have the following ability:\nSensational Performance: Each time this unit is selected to fight, if this unit made a Charge move this turn, it can use this ability. If it does, until the end of the phase:\n- This unit cannot target a unit it was within Engagement Range of at the start of the turn.\n- This unit cannot target a unit that was the target of another unit’s attack this phase.\n- Improve the Strength and Armour Penetration characteristics of this unit’s melee weapons by 1."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-court-of-the-phoenician",
@@ -16605,6 +16883,52 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CHARACTER"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN CHARACTER units from your army can ignore any or all modifiers to their Move characteristic and any or all modifiers to Advance and Charge rolls made for them.\nAt the start of the battle, your WARLORD’s unit is your army’s Favoured Champions. The first time in each player’s turn that an EMPEROR’S CHILDREN CHARACTER unit from your army destroys an enemy unit, after resolving all of its attacks, that CHARACTER unit becomes your army’s new Favoured Champions, replacing the old one.\nEach time a model in your army’s Favoured Champions unit makes an attack, you can re-roll the Wound roll."
+              }
             }
           ],
           "conditions": [
@@ -16638,12 +16962,64 @@
           "sourceText": "EMPEROR’S CHILDREN CHARACTER units from your army can ignore any or all modifiers to their Move characteristic and any or all modifiers to Advance and Charge rolls made for them.\nAt the start of the battle, your WARLORD’s unit is your army’s Favoured Champions. The first time in each player’s turn that an EMPEROR’S CHILDREN CHARACTER unit from your army destroys an enemy unit, after resolving all of its attacks, that CHARACTER unit becomes your army’s new Favoured Champions, replacing the old one.\nEach time a model in your army’s Favoured Champions unit makes an attack, you can re-roll the Wound roll.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Whole-army rule; Favoured Champions is changing external selection.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_UNITS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "CHARACTER"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "CHARACTER"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "EMPEROR’S CHILDREN CHARACTER units from your army can ignore any or all modifiers to their Move characteristic and any or all modifiers to Advance and Charge rolls made for them.\nAt the start of the battle, your WARLORD’s unit is your army’s Favoured Champions. The first time in each player’s turn that an EMPEROR’S CHILDREN CHARACTER unit from your army destroys an enemy unit, after resolving all of its attacks, that CHARACTER unit becomes your army’s new Favoured Champions, replacing the old one.\nEach time a model in your army’s Favoured Champions unit makes an attack, you can re-roll the Wound roll."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-slaaneshs-chosen",
@@ -17552,6 +17928,52 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "MODEL",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_MODELS",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "BATTLELINE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "BATTLELINE"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When a friendly EMPEROR’S CHILDREN BATTLELINE unit is selected to make an advance/fall-back move, that unit’s BATTLELINE models’ attacks have [SUSTAINED HITS 1] until the end of the turn.\nThis detachment has the HOST tag and cannot be taken with another HOST detachment."
+              }
             }
           ],
           "conditions": [
@@ -17585,12 +18007,64 @@
           "sourceText": "When a friendly EMPEROR’S CHILDREN BATTLELINE unit is selected to make an advance/fall-back move, that unit’s BATTLELINE models’ attacks have [SUSTAINED HITS 1] until the end of the turn.\nThis detachment has the HOST tag and cannot be taken with another HOST detachment.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Conditional generic friendly unit; also includes HOST construction restriction.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "MODEL",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_MODELS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "MODEL_KEYWORD",
+                    "subject": "MODEL",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "BATTLELINE"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "BATTLELINE"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When a friendly EMPEROR’S CHILDREN BATTLELINE unit is selected to make an advance/fall-back move, that unit’s BATTLELINE models’ attacks have [SUSTAINED HITS 1] until the end of the turn.\nThis detachment has the HOST tag and cannot be taken with another HOST detachment."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-frenzied-host",
@@ -17653,6 +18127,52 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "detachment-text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "purpose": "EFFECT_RECIPIENT",
+              "binding": "ROSTER_UNITS",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TERMINATOR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TERMINATOR"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When a friendly EMPEROR’S CHILDREN TERMINATOR unit is set up, that unit has +1 to charge rolls until the end of the turn."
+              }
             }
           ],
           "conditions": [
@@ -17686,12 +18206,64 @@
           "sourceText": "When a friendly EMPEROR’S CHILDREN TERMINATOR unit is set up, that unit has +1 to charge rolls until the end of the turn.",
           "rosterClassification": "BATTLE_ONLY",
           "rosterClassificationNote": {
-            "reason": "Conditional generic friendly unit; no guaranteed local source unit.",
+            "reason": "Source explicitly identifies this friendly static recipient; preserve all battle conditions.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "f1RecipientIds": [
+            "text-coverage:/text::recipient/role/1"
+          ],
+          "recipients": [
+            {
+              "id": "text-coverage:/text::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "detachment-text-recipient",
+              "side": "FRIENDLY",
+              "from": "ROSTER_UNITS",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "op": "ALL",
+                "args": [
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "EMPEROR’S CHILDREN"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "EMPEROR’S CHILDREN"
+                    }
+                  },
+                  {
+                    "predicate": "UNIT_KEYWORD",
+                    "subject": "UNIT",
+                    "contextLevel": "STATIC",
+                    "arguments": {
+                      "keyword": "TERMINATOR"
+                    },
+                    "evidence": {
+                      "field": [
+                        "text"
+                      ],
+                      "quote": "TERMINATOR"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "field": [
+                  "text"
+                ],
+                "quote": "When a friendly EMPEROR’S CHILDREN TERMINATOR unit is set up, that unit has +1 to charge rolls until the end of the turn."
+              },
+              "textKind": "CONDITIONAL"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "detachmentId": "detachment-elegant-brutes",
@@ -26031,14 +26603,14 @@
             "quote": "Once per battle round, when you target a Fulgrim unit from your army with the Sinuous Breach or Prideful Superiority Stratagem, you can reduce the CP cost of that use of that Stratagem by 1CP."
           },
           "sourceText": "Once per battle round, when you target a Fulgrim unit from your army with the Sinuous Breach or Prideful Superiority Stratagem, you can reduce the CP cost of that use of that Stratagem by 1CP.",
-          "rosterClassification": "BATTLE_ONLY",
+          "rosterClassification": "NOT_AN_EFFECT",
           "rosterClassificationNote": {
-            "reason": "External specified unit and Stratagem context.",
+            "reason": "CP reduction; explicitly excluded by task.",
             "reviewClassification": "REVIEWED_TEXT_ONLY"
           },
           "rosterEffects": [],
           "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "recipientStatus": "NOT_APPLICABLE"
         }
       ],
       "detachmentId": "detachment-court-of-the-phoenician",

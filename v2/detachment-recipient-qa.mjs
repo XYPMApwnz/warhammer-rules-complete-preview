@@ -234,21 +234,24 @@ check('BA/existing-Legacy-HIT-WOUND-typed-policies-preserved',()=>{
  unchangedNumerics(book,snapshot,projection);scenarios.push({book:'blood-angels',ruleId:legacy,scope:'UNIT',kind:'EXISTING_TYPED_REROLL',positive:'Blood Angels Captain',negative:'Death Company Marines',wrongDetachment:true});
 });
 
-for(const id of ['space-marines','dark-angels','tau-empire','tyranids'])check(id+'/no-unproven-text-dispatch',()=>{
+for(const [id,count]of Object.entries({'space-marines':39,'dark-angels':18,'tau-empire':10,'tyranids':8}))check(id+'/reviewed-text-dispatch',()=>{
  const book=books.get(id),rules=book.entities.filter(record=>record.kind==='DETACHMENT_RULE');
- const declarations=rules.flatMap(rule=>(rule.ruleContract?.clauses||[]).filter(clause=>detachmentTextDeclaration(book,rule,clause)));
- assert.equal(declarations.length,0,'This book has newly exposed selector coverage requiring independent source review');
- const detachment=book.entities.find(record=>record.kind==='DETACHMENT'),canonical=book.entities.find(record=>record.kind==='DATASHEET');
- const projection=execute(book,state(book,detachment.id,[unit(book,canonical.id,'physical')]));
- assert.equal(projection.units.flatMap(unit=>unit.conditional).filter(row=>row.detachmentText).length,0);
- scenarios.push({book:id,scope:'N/A',kind:'NO_PROVEN_TEXT_SELECTOR',textRows:0,reason:'No source-bound recipient declaration in existing contracts; no coverage expansion'});
+ const declarations=rules.flatMap(rule=>(rule.ruleContract?.clauses||[]).flatMap(clause=>detachmentTextDeclaration(book,rule,clause)?[{rule,clause}]:[]));
+ assert.equal(declarations.length,count,'Exact source-reviewed O-3 declaration coverage');
+ for(const {rule,clause}of declarations){
+  assert.equal(clause.recipientStatus,'RECORDED');assert.equal(clause.rosterClassification,'BATTLE_ONLY');assert.equal(clause.rosterEffects.length,0);
+  const declaration=detachmentTextDeclaration(book,rule,clause);assert(declaration.recipients.every(recipient=>recipient.side==='FRIENDLY'));
+ }
+ scenarios.push({book:id,kind:'REVIEWED_TEXT_SELECTORS',clauses:count,sourceReview:'detachment-recipient-declarations.json'});
 });
 
 check('DG/legacy-source-selection-is-not-an-objective-or-created-unit-fallback',()=>{
  const book=books.get('death-guard');
  const declarations=book.entities.filter(rule=>rule.kind==='DETACHMENT_RULE').flatMap(rule=>(rule.ruleContract?.clauses||[])
   .filter(clause=>detachmentTextDeclaration(book,rule,clause)).map(clause=>rule.id+'/'+clause.id));
- assert.deepEqual(declarations,[fly+'/selected-infiltrators'],'Trigger, anchor or created-unit roles must not become recipients');
+ assert.deepEqual(declarations,['detachment-tallyband-summoners:rule/grant-nurgles-gift',
+  'detachment-tallyband-summoners:rule/contagion-range',fly+'/selected-infiltrators'],
+ 'Only reviewed result recipients are admitted; objective/creation actors remain excluded');
 });
 check('service-diagnostics-are-not-F1',()=>{
  for(const reason of ['Enhancement owner context unavailable','Roster recipient context unavailable','Roster context unavailable','Physical weapon selection unavailable']){

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {parseProducerJSON,prepareSourceProducer,serializeSourceJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 import {appendReviewedTextCoverage,reviewedTextFields,textFieldPointer,textCoverageHash} from '../books/shared/rule-contract-v2/reviewed-text-coverage.mjs';
+import {detachmentTextDeclaration} from '../books/shared/roster-v2/conditional-policy.mjs';
 
 const bookId=process.argv.find(arg=>arg.startsWith('--book='))?.slice(7);
 assert(['tyranids','emperors-children'].includes(bookId),'Explicit supported coverage book required');
@@ -16,6 +17,25 @@ const publishedContracts=new Map(published.contracts.map(c=>[c.ruleId,c]));
 const rawContracts=new Map(raw.contracts.map(c=>[c.ruleId,c]));
 const old=new Map(baseline.contracts.map(c=>[c.ruleId,c])),index=new Map(book.entities.map(e=>[e.id,e]));
 const hash=value=>textCoverageHash(JSON.stringify(value));
+const detachmentReview=new Map(read('detachment-recipient-declarations.json')
+ .filter(row=>row.disposition==='RECORD').map(row=>[row.ruleId+'\0'+row.clauseId,row]));
+function assertReviewedDetachmentText(rule,clause){
+ const row=detachmentReview.get(rule.id+'\0'+clause.id);assert(row,'Unreviewed Detachment F1 enrollment');
+ assert.equal(rule.kind,'DETACHMENT_RULE');assert.equal(clause.rosterClassification,'BATTLE_ONLY');
+ assert.equal(clause.rosterEffects.length,0);assert.equal(clause.conditionalPolicy,undefined);
+ const evidence={field:row.field,quote:row.quote};
+ assert(row.field.reduce((value,key)=>value?.[key],rule.data).includes(row.quote),'Literal Detachment review source changed');
+ const selector=node=>node.op?{op:node.op,args:node.args.map(selector)}:
+  {...structuredClone(node),subject:row.subject,contextLevel:'STATIC',evidence:structuredClone(node.evidence||evidence)};
+ const roles=clause.roles.filter(role=>role.id==='detachment-text-recipient');assert.equal(roles.length,1);
+ assert.deepEqual(roles[0],{id:'detachment-text-recipient',subject:row.subject,allegiance:'FRIENDLY',purpose:'EFFECT_RECIPIENT',
+  binding:row.subject==='MODEL'?'ROSTER_MODELS':'ROSTER_UNITS',selector:selector(row.selector),evidence});
+ const canonical=rule.ruleContract.clauses.find(value=>value.id===clause.id);
+ const declaration=detachmentTextDeclaration(book,rule,canonical);assert(declaration,'Reviewed Detachment lost canonical F1 admission');
+ assert.equal(declaration.recipients.length,1);assert.equal(declaration.recipients[0].roleId,roles[0].id);
+ assert.deepEqual(clause.f1RecipientIds,[declaration.recipients[0].id]);
+ assert.equal(clause.recipientStatus,'RECORDED');assert.equal(clause.rosterClassificationNote.reason,row.reason);
+}
 const fields=reviewedTextFields(book);
 assert.equal(review.records.length,fields.length);
 for(const {entity,field,text}of fields){
@@ -27,6 +47,7 @@ for(const {entity,field,text}of fields){
 const appended=[];
 for(const [id,prior]of old){
  const current=publishedContracts.get(id);
+ for(const clause of current.clauses)if(detachmentReview.has(id+'\0'+clause.id))assertReviewedDetachmentText(index.get(id),clause);
  for(const clause of prior.clauses)assert.equal(hash(rawContracts.get(id).clauses.find(c=>c.id===clause.id)),clause.rawSha256,'Published source-refs clause bytes changed '+id+'/'+clause.id);
  if(hash(current)===prior.sha256){assert.equal(hash(rawContracts.get(id)),prior.rawSha256,'Published original contract bytes changed');continue;}
  assert.equal(bookId,'emperors-children','Existing Tyranids contract changed');
@@ -41,7 +62,10 @@ let addedClauses=0;
 for(const contract of contracts)for(const clause of contract.clauses){
  if(old.get(contract.ruleId)?.clauses.some(c=>c.id===clause.id))continue;
  addedClauses++;assert.equal(clause.rosterEffects.length,0);assert(['BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(clause.rosterClassification));
- assert(!clause.conditionalPolicy&&!clause.f1RecipientIds?.length,'Text coverage introduced a policy/F1 path');
+ assert(!clause.conditionalPolicy,'Text coverage introduced a typed execution policy');
+ const reviewedDetachment=detachmentReview.has(contract.ruleId+'\0'+clause.id);
+ if(reviewedDetachment)assertReviewedDetachmentText(index.get(contract.ruleId),clause);
+ else assert(!clause.f1RecipientIds?.length,'Unreviewed text coverage introduced an F1 path');
  assert.notEqual(index.get(contract.ruleId).kind,'STRATAGEM');
  if(clause.rosterClassification==='BATTLE_ONLY')assert(clause.conditions.some(p=>p.predicate==='FIELD'&&p.contextLevel==='BATTLE'));
 }
