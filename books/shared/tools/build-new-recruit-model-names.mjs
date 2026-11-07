@@ -156,7 +156,8 @@ export async function buildModelNames(bookId){
  assert(supportedBooks.includes(bookId),'No pinned BSData snapshot for this book');
  const book=read(`books/${bookId}/v2/generated/${bookId==='adeptus-mechanicus'?'roster-runtime':'roster-import'}.json`);
  const metadata=bookId==='adeptus-mechanicus'?{identityAliases:read(`books/${bookId}/v2/roster-import-aliases.json`).aliases}:bookId==='chaos-space-marines'?
-  (await import('../../chaos-space-marines/v2/roster-import-bindings.mjs')).buildImportBindings(book):book.importBindings;
+  (await import('../../chaos-space-marines/v2/roster-import-bindings.mjs')).buildImportBindings(book,
+   {modelNames:{schema:'new-recruit-model-aliases/v1',identityAliases:[]}}):book.importBindings;
  const owners=new Set(book.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.bookId||e.ownerId||book.bookId)),all={identityAliases:[],census:[],outside:[]};
  for(const sourceBook of supportedBooks.filter(b=>owners.has(b))){
   const document=`books/${sourceBook}/sources/bsdata-${sourceBook}-11e.json`,bytes=fs.readFileSync(path.join(root,document));

@@ -1,5 +1,4 @@
 import {appendModelNameAliases} from '../../shared/roster-v2/model-name-aliases.mjs';
-import modelNames from './model-name-aliases.json' with {type:'json'};
 /** Book-owned import vocabulary. Every target is an existing V2 canonical
  * identity; labels are accepted only at the text-import boundary. These
  * bindings neither select missing equipment nor execute an option's effect. */
@@ -59,7 +58,7 @@ const equipment=[
   ['dark-commune','Chaos icon','section:2','/equipmentAndRules/0/text',true]
 ];
 
-export function buildImportBindings(book) {
+export function buildImportBindings(book,{modelNames}={}) {
   requireFact(Array.isArray(book?.entities),'Missing canonical CSM import book');
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   requireFact(records.size===book.entities.length,'Duplicate canonical import identity');

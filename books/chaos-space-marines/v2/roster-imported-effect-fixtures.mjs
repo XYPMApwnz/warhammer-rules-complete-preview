@@ -8,6 +8,7 @@ import {buildCSMContracts} from './rule-contract-build.mjs';
 import {buildCSMRosterEffectBook,executableClauses} from './roster-effect-build.mjs';
 import {clauseFixture} from './roster-effect-fixture.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {buildCSMImportBook} from './roster-import-build.mjs';
 
 // Reviewed canonical equipment from each source's Unit Composition. Rows are
@@ -37,7 +38,7 @@ const selectedWeapons={
 
 export function buildImportedEffectFixtures(book=buildCSMRosterEffectBook(),built=buildCSMContracts()) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
-  const importBindings=buildImportBindings(buildCSMImportBook());
+  const importBindings=buildImportBindings(buildCSMImportBook(),{modelNames});
   const weaponNames=(unitId,ordinals)=>{
     const unit=records.get(unitId),ids=ordinals.map(ordinal=>`${unitId.replace(/^unit-/,'datasheet-')}:weapon:${ordinal}`);
     ids.forEach(id=>assert.ok(unit.data.weaponIds.includes(id),'Unknown fixture weapon: '+id));

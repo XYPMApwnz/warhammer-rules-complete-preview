@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {buildCSMImportBook} from './roster-import-build.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 import {createCSMRosterImport,loadRosterImport} from './roster-import.mjs';
 import {selections} from '../../shared/roster-v2/context.mjs';
 
@@ -54,7 +55,7 @@ assert.equal(princeA.selectedMarkId,undefined);assert.equal(princeB.selectedMark
 assert(!selections(lordA).some(s=>s.canonicalProfileIds.includes('datasheet-chaos-lord:weapon:4')));
 assert.equal(ready(text.replace('+ WARLORD: Char1: Chaos Lord\n','')).warlordInstanceId,null);
 
-const metadata=buildImportBindings(book);
+const metadata=buildImportBindings(book,{modelNames});
 for(const item of metadata.equipmentSelections) {
   const unit=records.get(item.ownerId),state=ready(header+block(unit).replace('(100 pts)',`(100 pts): 1x ${item.label}`));
   assert.deepEqual(state.units[0].selections[0].canonicalEquipmentIds,item.canonicalEquipmentIds);

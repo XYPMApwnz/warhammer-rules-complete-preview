@@ -1,9 +1,10 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {buildImportBindings} from './roster-import-bindings.mjs';
+import modelNames from './model-name-aliases.json' with {type:'json'};
 
 /** Import foundation only. Attachment/effect/guide services are not connected. */
 export function createCSMRosterImport(book) {
-  return createRosterImportService(book,buildImportBindings(book));
+  return createRosterImportService(book,buildImportBindings(book,{modelNames}));
 }
 
 /** Browser/Node consumer entry, using the same import-only service as other books. */
