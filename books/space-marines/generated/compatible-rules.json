@@ -58303,28 +58303,19 @@
       {
         "ruleId": "armoured-speartip-armour-of-contempt",
         "detachmentId": "armoured-speartip",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "armoured-speartip-purgation-doctrine",
         "detachmentId": "armoured-speartip",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "armoured-speartip-rapid-embarkation",
         "detachmentId": "armoured-speartip",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "transport-wounds-characteristic-14-or-more",
         "conditions": [
-          "attachment-unknown",
           "transport-wounds-characteristic-14-or-more",
           "infantry-able-to-embark",
           "infantry-wholly-within-6"
@@ -58333,37 +58324,24 @@
       {
         "ruleId": "bastion-task-force-codex-discipline",
         "detachmentId": "bastion-task-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "bastion-task-force-heresy-undone",
         "detachmentId": "bastion-task-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "bastion-task-force-light-of-vengeance",
         "detachmentId": "bastion-task-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "blade-of-ultramar-armour-of-contempt",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58371,9 +58349,8 @@
         "ruleId": "blade-of-ultramar-courage-and-honour",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58381,9 +58358,8 @@
         "ruleId": "blade-of-ultramar-exemplary-vigilance",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58391,9 +58367,8 @@
         "ruleId": "blade-of-ultramar-practical-tactics",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58401,9 +58376,8 @@
         "ruleId": "blade-of-ultramar-tactical-foresight",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58411,65 +58385,40 @@
         "ruleId": "blade-of-ultramar-ultramarian-adaptivity",
         "detachmentId": "blade-of-ultramar",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
       {
         "ruleId": "ceramite-sentinels-armour-of-contempt",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ceramite-sentinels-augmented-targeting",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ceramite-sentinels-evasive-repositioning",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ceramite-sentinels-priority-strike",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ceramite-sentinels-stand-to-the-end",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ceramite-sentinels-unyielding-might",
         "detachmentId": "ceramite-sentinels",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "core-stratagem-command-re-roll",
@@ -58505,9 +58454,8 @@
         "ruleId": "emperor-s-shield-armour-of-contempt",
         "detachmentId": "emperor-s-shield",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-imperial-fists",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-imperial-fists"
         ]
       },
@@ -58540,9 +58488,8 @@
         "ruleId": "forgefather-s-seekers-armour-of-contempt",
         "detachmentId": "forgefather-s-seekers",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-salamanders",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-salamanders"
         ]
       },
@@ -58550,9 +58497,8 @@
         "ruleId": "forgefather-s-seekers-blazing-earth",
         "detachmentId": "forgefather-s-seekers",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-salamanders",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-salamanders",
           "unit-equipped-with-torrent-weapon"
         ]
@@ -58561,9 +58507,8 @@
         "ruleId": "forgefather-s-seekers-crucible-of-battle",
         "detachmentId": "forgefather-s-seekers",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-salamanders",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-salamanders"
         ]
       },
@@ -58571,9 +58516,8 @@
         "ruleId": "forgefather-s-seekers-immolation-protocols",
         "detachmentId": "forgefather-s-seekers",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-salamanders",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-salamanders"
         ]
       },
@@ -58581,9 +58525,8 @@
         "ruleId": "forgefather-s-seekers-wrathful-inferno",
         "detachmentId": "forgefather-s-seekers",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-salamanders",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-salamanders"
         ]
       },
@@ -58621,29 +58564,20 @@
         "ruleId": "hammer-of-avernii-armour-of-contempt",
         "detachmentId": "hammer-of-avernii",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-iron-hands",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-iron-hands"
         ]
       },
       {
         "ruleId": "headhunter-task-force-armour-of-contempt",
         "detachmentId": "headhunter-task-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "headhunter-task-force-rapid-gunnery",
         "detachmentId": "headhunter-task-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "ironstorm-spearhead-armour-of-contempt",
@@ -58663,19 +58597,14 @@
       {
         "ruleId": "orbital-assault-force-auto-sense-coordination",
         "detachmentId": "orbital-assault-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "orbital-assault-force-blind-screen",
         "detachmentId": "orbital-assault-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "screening-unit-within-9",
         "conditions": [
-          "attachment-unknown",
           "screening-unit-within-9"
         ]
       },
@@ -58683,9 +58612,8 @@
         "ruleId": "orbital-assault-force-onward-for-the-emperor",
         "detachmentId": "orbital-assault-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "infantry-not-set-up-this-turn",
         "conditions": [
-          "attachment-unknown",
           "infantry-not-set-up-this-turn",
           "infantry-able-to-embark"
         ]
@@ -58693,37 +58621,24 @@
       {
         "ruleId": "orbital-assault-force-shock-onslaught",
         "detachmentId": "orbital-assault-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "orbital-assault-force-suppression-strafing",
         "detachmentId": "orbital-assault-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "orbital-assault-force-tactical-decapitation",
         "detachmentId": "orbital-assault-force",
-        "state": "conditional",
-        "condition": "attachment-unknown",
-        "conditions": [
-          "attachment-unknown"
-        ]
+        "state": "match"
       },
       {
         "ruleId": "reclamation-force-crusading-conquerors",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58731,9 +58646,8 @@
         "ruleId": "reclamation-force-fight-to-the-end",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58741,9 +58655,8 @@
         "ruleId": "reclamation-force-furious-dedication",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58751,9 +58664,8 @@
         "ruleId": "reclamation-force-marching-ever-on",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58761,9 +58673,8 @@
         "ruleId": "reclamation-force-scions-of-guilliman",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58771,9 +58682,8 @@
         "ruleId": "reclamation-force-ultramarian-destiny",
         "detachmentId": "reclamation-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-ultramarines",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-ultramarines"
         ]
       },
@@ -58781,9 +58691,8 @@
         "ruleId": "shadowmark-talon-armour-of-contempt",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard"
         ]
       },
@@ -58791,9 +58700,8 @@
         "ruleId": "shadowmark-talon-feint-and-thrust",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard"
         ]
       },
@@ -58801,9 +58709,8 @@
         "ruleId": "shadowmark-talon-into-darkness",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard",
           "up-to-two-phobos-or-scout-units-or-one-other-infantry-unit"
         ]
@@ -58812,9 +58719,8 @@
         "ruleId": "shadowmark-talon-lay-low-the-tyrants",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard"
         ]
       },
@@ -58822,9 +58728,8 @@
         "ruleId": "shadowmark-talon-raptorial-vigilance",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard"
         ]
       },
@@ -58832,9 +58737,8 @@
         "ruleId": "shadowmark-talon-stunning-fusillade",
         "detachmentId": "shadowmark-talon",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-raven-guard",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-raven-guard"
         ]
       },
@@ -58842,9 +58746,8 @@
         "ruleId": "spearpoint-task-force-armour-of-contempt",
         "detachmentId": "spearpoint-task-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-white-scars",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-white-scars"
         ]
       },
@@ -58852,9 +58755,8 @@
         "ruleId": "spearpoint-task-force-hunter-s-instincts",
         "detachmentId": "spearpoint-task-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-white-scars",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-white-scars"
         ]
       },
@@ -58862,9 +58764,8 @@
         "ruleId": "spearpoint-task-force-mobile-lethality",
         "detachmentId": "spearpoint-task-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-white-scars",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-white-scars"
         ]
       },
@@ -58872,9 +58773,8 @@
         "ruleId": "spearpoint-task-force-spear-thrust-and-sabre-swing",
         "detachmentId": "spearpoint-task-force",
         "state": "conditional",
-        "condition": "attachment-unknown",
+        "condition": "detachment-army-restricted-to-white-scars",
         "conditions": [
-          "attachment-unknown",
           "detachment-army-restricted-to-white-scars"
         ]
       },
