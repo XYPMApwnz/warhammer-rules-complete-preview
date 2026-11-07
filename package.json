@@ -17,6 +17,7 @@
     "points:check": "node books/shared/points/build.mjs --check && node tests/effective-points-projection-qa.mjs && node tests/mfm-numeric-ownership-qa.mjs",
     "glossary:build": "node glossary/v2/tools/build-glossary-v2.mjs",
     "glossary:check": "node glossary/v2/tools/build-glossary-v2.mjs --check",
+    "generated:check": "node books/shared/tools/check-generated-rebuild.mjs",
     "cache:check": "node tools/cache-revision.mjs --check",
     "wiring:check": "node tests/repository-wiring-consistency-qa.mjs",
     "architecture:report": "node tests/architecture-conformance-gate.mjs --report",
