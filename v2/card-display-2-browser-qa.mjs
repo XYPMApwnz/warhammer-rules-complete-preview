@@ -77,12 +77,45 @@ async function inspect(page,c,mode,device,id){
       title:row.querySelector('h5')?.textContent,text:row.querySelector('[data-attached-rule-text]')?.textContent,content:row.innerText})),
     f1:[...node.querySelectorAll('[data-detachment-rule-id]')].map(row=>({id:row.dataset.detachmentRuleId,text:row.querySelector('.ds-detachment-fields')?.textContent,
       visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:row.innerText.includes('Source:')})),
-    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map(row=>({text:row.innerText,
-      identity:JSON.parse(row.dataset.policySource),canonicalText:row.querySelector('p:last-child')?.textContent,
-      source:row.innerText.includes('Source:')||JSON.parse(row.dataset.policyAttributionRefs||'[]').some(id=>{
-        const caption=document.getElementById(id),ruleId=JSON.parse(row.dataset.policySource).ruleId;
-        return caption?.innerText.includes('Source:')&&[...caption.querySelectorAll('a[data-target-id]')].some(link=>link.dataset.targetId===ruleId);
-      })}))
+    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map(row=>{
+      const identity=JSON.parse(row.dataset.policySource),localSource=row.innerText.includes('Source:');
+      let sourceIssue=null,sharedSource=null;
+      if(!localSource){
+        const refs=JSON.parse(row.dataset.policyAttributionRefs||'[]');
+        const validRefs=Array.isArray(refs)&&refs.length>0&&new Set(refs).size===refs.length&&refs.every(id=>typeof id==='string'&&id.length);
+        const captions=validRefs?refs.map(id=>document.getElementById(id)).filter(caption=>caption?.tagName==='P'&&caption.innerText.startsWith('Source:')):[];
+        const caption=captions.length===1?captions[0]:null,owner=caption?.closest('.ds-conditional-policy');
+        const ownerSource=owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null;
+        const visible=element=>{
+          if(!element?.getClientRects().length)return false;
+          for(let current=element;current;current=current.parentElement){const style=getComputedStyle(current);
+            if(style.display==='none'||['hidden','collapse'].includes(style.visibility)||Number(style.opacity)===0)return false;}
+          return true;
+        };
+        const links=[...(caption?.querySelectorAll('a[data-target-id]')||[])].map(link=>link.dataset.targetId);
+        sharedSource={refs,captionId:caption?.id||null,
+          uniqueId:Boolean(caption)&&[...document.querySelectorAll('[id]')].filter(element=>element.id===caption.id).length===1,
+          visible:visible(caption),sameCard:Boolean(caption)&&caption.closest('.unit-card')===node&&
+            caption.closest('.unit-card').dataset.rosterInstanceId===node.dataset.rosterInstanceId,
+          sameRule:ownerSource?.ruleId===identity.ruleId&&links.length===1&&links[0]===identity.ruleId,
+          sameProvenance:Boolean(ownerSource?.provenance)&&Boolean(identity.provenance)&&JSON.stringify(ownerSource.provenance)===JSON.stringify(identity.provenance),
+          sameSourceInstance:typeof owner?.dataset.sourceInstanceId==='string'&&owner.dataset.sourceInstanceId===row.dataset.sourceInstanceId,
+          sameModelScope:typeof owner?.dataset.sourceModelScopeId==='string'&&owner.dataset.sourceModelScopeId===row.dataset.sourceModelScopeId,
+          accessibleRefs:validRefs&&JSON.stringify((row.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean))===JSON.stringify(refs)};
+        if(!validRefs)sourceIssue='Linked Source references are missing or invalid';
+        else if(!caption)sourceIssue='Linked Source caption is missing';
+        else if(!sharedSource.uniqueId)sourceIssue='Linked Source caption ID is not unique';
+        else if(!sharedSource.visible)sourceIssue='Linked Source caption is not visible';
+        else if(!sharedSource.sameCard)sourceIssue='Linked Source caption belongs to another physical card';
+        else if(!sharedSource.sameRule)sourceIssue='Linked Source caption belongs to another rule';
+        else if(!sharedSource.sameProvenance)sourceIssue='Linked Source caption has different provenance';
+        else if(!sharedSource.sameSourceInstance)sourceIssue='Linked Source caption has a different physical source';
+        else if(!sharedSource.sameModelScope)sourceIssue='Linked Source caption has a different model scope';
+        else if(!sharedSource.accessibleRefs)sourceIssue='Linked Source accessible references do not match';
+      }
+      return {text:row.innerText,identity,canonicalText:row.querySelector('p:last-child')?.textContent,
+        source:localSource||sourceIssue===null,sourceIssue,sharedSource};
+    })
   })));
   fs.writeFileSync(path.join(out,device+'-'+c.id+'-'+mode+'-'+id+'.json'),JSON.stringify(observed,null,2));
   for(const card of observed){
@@ -113,7 +146,7 @@ async function inspect(page,c,mode,device,id){
     }
     for(const row of card.policies){
       assert.equal(row.text.includes('Conditional — Not automatically resolved'),baseline);
-      assert.ok(row.source,'Typed policy source remains');
+      assert.ok(row.source,'Typed policy source remains'+(row.sourceIssue?': '+row.sourceIssue:''));
       const proof=effective.conditional.find(proof=>proof.ruleId===row.identity.ruleId&&proof.clauseId===row.identity.clauseId);
       assert.equal(row.canonicalText,proof.policy.contextQuote,'Original typed policy prose remains byte-for-byte intact');
     }
