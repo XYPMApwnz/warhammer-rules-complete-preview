@@ -52,5 +52,12 @@ CSM Prey on the Weak, detachment-murdertalon-raiders:rule, contains two legitima
 | File | Before | After | Reason |
 | --- | --- | --- | --- |
 | v2/card-display-2-browser-qa.mjs | Every conditional row contains its own visible Source caption | Each row contains its caption or explicitly references a shared caption for that same canonical rule | Item 3 requires one identical caption rather than duplicates. Clause identity, exact canonical quote and provenance assertions remain unchanged. |
+| v2/card-recipient-browser-qa.mjs | Every clause contains its own Source link and Applies-to paragraph | Each clause resolves its actual direct or explicitly referenced visible caption pair; equivalent clauses share that same pair | Item 3 also applies to detachment clauses. Reference uniqueness, physical card, exact rule group, source provenance, recipient model scopes and accessible field references are checked. Existing canonical text, evidence, conditions, status, physical recipient and no-execution assertions remain intact. |
 
 New cosmetics tests are enrolled in qa:integration and test:browser. The browser suite uses the same owner-authored assertions against the original checkout for negative controls. The layout assertions cover all five requested widths; before/after evidence uses 390, 1200 and 1600 px (plus the other two weapon widths). Existing source text, data and generated outputs are not updated.
+
+## Final run and targeted test correction
+
+The single full pre-FF on e1c03468 completed all 127 jobs in 4,534,983 ms: 126 PASS and one FAIL, the old descendant-only caption assertion in card-recipient-browser-qa. Its original result and complete log remain unchanged. The generated gate passed all 136 files / 61 steps byte-for-byte.
+
+The follow-up changes only that test and this audit. Application files remain byte-identical to e1c03468. The corrected test passed all 12 desktop/mobile scenarios against a freshly packaged feature runtime. On packaged base 61e7c870, the original AM desktop scenario passed; the corrected test rejected that same scenario specifically because the equivalent clauses displayed two separate caption pairs. It did not fail merely because a new DOM attribute was absent. This is a resolved NEW_FAIL of the presentation expectation, not PRE_EXISTING_BASELINE_FAIL. The full pre-FF is not repeated, and no full pre-FF PASS is claimed for the later test-only commit.

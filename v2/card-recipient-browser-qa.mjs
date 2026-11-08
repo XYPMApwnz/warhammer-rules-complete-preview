@@ -115,7 +115,7 @@ async function guide(page,instance){
 }
 const card=(page,instance)=>page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]');
 async function current(page){return page.evaluate(()=>({snapshot:window.ArmyBookAppV2.roster.snapshot(),projection:window.ArmyBookAppV2.roster.projection}));}
-async function rows(page,instance,ruleId){return card(page,instance).locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll((nodes,ruleId)=>nodes.flatMap(node=>{
+async function rows(page,instance,ruleId){return card(page,instance).locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll((nodes,{ruleId,instance})=>nodes.flatMap(node=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId)return [];
   const text=node.querySelector('[data-detachment-clause-text]')||document.getElementById(node.dataset.detachmentClauseTextRef);
   const fieldRefs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
@@ -130,14 +130,54 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
   const fieldText=field=>!field?null:field.matches('table[data-detachment-source-table]')?tableText(field):textWithoutTables(field);
   const fieldEvidence=fields.map((field,index)=>({id:fieldRefs[index],exists:Boolean(field),visible:Boolean(field?.getClientRects().length),
     kind:field?.matches('table[data-detachment-source-table]')?'TABLE':'TEXT',text:fieldText(field)}));
+  // A caption can be owned by this clause or explicitly shared by a sibling.
+  // Never find a replacement merely by searching the whole card for its text.
+  const attributionRefs=node.dataset.policyAttributionRefs===undefined?null:JSON.parse(node.dataset.policyAttributionRefs);
+  const refsValid=Array.isArray(attributionRefs)&&attributionRefs.length===2&&new Set(attributionRefs).size===2&&
+    attributionRefs.every(id=>typeof id==='string'&&id.length);
+  const ownParagraphs=[...node.querySelectorAll('p')];
+  const captions=attributionRefs===null?[
+    ...ownParagraphs.filter(p=>p.innerText.startsWith('Source:')),
+    ...ownParagraphs.filter(p=>p.innerText.startsWith('Applies to:'))
+  ]:refsValid?attributionRefs.map(id=>document.getElementById(id)):[];
+  const visible=element=>{
+    if(!element?.getClientRects().length)return false;
+    for(let current=element;current;current=current.parentElement){const style=getComputedStyle(current);
+      if(style.display==='none'||['hidden','collapse'].includes(style.visibility)||Number(style.opacity)===0)return false;}
+    return true;
+  };
+  const paragraphs=[...document.querySelectorAll('p')],group=node.closest('[data-detachment-rule-id]');
+  const attribution=captions.map((caption,index)=>{
+    const owner=caption?.closest('.ds-conditional-policy'),physical=caption?.closest('.unit-card');
+    return {id:caption?.id||null,identity:caption?paragraphs.indexOf(caption):null,
+      exists:Boolean(caption),visible:visible(caption),paragraph:caption?.tagName==='P',
+      prefix:caption?.innerText.startsWith(index===0?'Source:':'Applies to:')||false,
+      uniqueId:attributionRefs===null||[...document.querySelectorAll('[id]')].filter(element=>element.id===attributionRefs[index]).length===1,
+      sameCard:physical===node.closest('.unit-card')&&physical?.dataset.rosterInstanceId===instance,
+      sameRuleGroup:Boolean(group)&&caption?.closest('[data-detachment-rule-id]')===group&&group.dataset.detachmentRuleId===ruleId,
+      ownerKind:owner?.dataset.conditionalPolicy,ownerSource:owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null,
+      ownerSubject:owner?.dataset.recipientSubject,ownerModels:owner?.dataset.recipientModelScopeIds?JSON.parse(owner.dataset.recipientModelScopeIds):null};
+  });
+  // Count actual visible paragraphs, including any unreferenced duplicate.
+  // Separate provenance or physical model recipients are separate captions.
+  const equivalentOwner=paragraph=>{
+    const owner=paragraph.closest('.ds-conditional-policy');if(owner?.dataset.conditionalPolicy!=='DETACHMENT_TEXT')return false;
+    const policy=JSON.parse(owner.dataset.policySource);
+    return policy.ruleId===source.ruleId&&JSON.stringify(policy.provenance)===JSON.stringify(source.provenance)&&
+      owner.dataset.recipientSubject===node.dataset.recipientSubject&&owner.dataset.recipientModelScopeIds===node.dataset.recipientModelScopeIds;
+  };
+  const captionCopies=['Source:','Applies to:'].map(prefix=>[...(group?.querySelectorAll('p')||[])]
+    .filter(paragraph=>visible(paragraph)&&paragraph.innerText.startsWith(prefix)&&equivalentOwner(paragraph)).length);
   return [{source,subject:node.dataset.recipientSubject,instances:JSON.parse(node.dataset.recipientInstanceIds),models:JSON.parse(node.dataset.recipientModelScopeIds),
     classification:node.dataset.rosterClassification,execution:node.dataset.execution,status:node.dataset.selectionStatus,
     text:fieldRefs.length?fieldEvidence.map(field=>field.text).join('\n'):text?.textContent,fieldRefs,fields:fieldEvidence,
     evidence:node.dataset.detachmentClauseEvidence?JSON.parse(node.dataset.detachmentClauseEvidence):null,
     conditions:node.dataset.detachmentClauseConditions?JSON.parse(node.dataset.detachmentClauseConditions):null,
-    body:node.innerText,applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
-    links:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId)}];
-}),ruleId);}
+    attributionRefs,refsValid,attribution,captionCopies,aria:(node.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean),
+    body:[node.innerText,...captions.map(caption=>caption?.innerText||'')].join('\n'),
+    applies:captions.filter(p=>p?.innerText.startsWith('Applies to:')).map(p=>p.innerText),
+    links:[...(captions[0]?.querySelectorAll('a[data-target-id]')||[])].map(a=>a.dataset.targetId)}];
+}),{ruleId,instance});}
 async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,subject,recipients,status}={}){
   const shown=await rows(page,instance,ruleId),data=await current(page),physical=data.projection.units.find(unit=>unit.instanceId===instance);
   const sourceBook=runtimeSourceBook(data.snapshot.bookId);
@@ -154,11 +194,30 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
     assert.deepEqual(row.models,proof.recipientModelScopeIds);assert.equal(row.classification,'BATTLE_ONLY');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');
     assert.equal(row.status,proof.detachmentText.kind);if(status)assert.equal(row.status,status);if(subject)assert.equal(row.subject,subject);
     if(recipients)assert.deepEqual(row.instances.toSorted(),[...recipients].toSorted());
-    assert.ok(row.links.includes(ruleId),'Each clause keeps source links');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+    assert.equal(row.attribution.length,2,'Each clause has one associated Source and Applies-to paragraph');
+    if(row.attributionRefs!==null)assert.equal(row.refsValid,true,'Shared caption references are two distinct explicit IDs');
+    assert.deepEqual(row.aria,[...(row.attributionRefs||[]),...row.fieldRefs],'Accessible references retain both attribution and exact clause fields');
+    for(const caption of row.attribution){
+      assert.ok(caption.exists&&caption.visible&&caption.paragraph&&caption.prefix&&caption.uniqueId,'Associated caption resolves uniquely to visible source/recipient content');
+      assert.ok(caption.sameCard&&caption.sameRuleGroup,'A caption belongs to this physical card and this exact source rule group');
+      assert.equal(caption.ownerKind,'DETACHMENT_TEXT');assert.equal(caption.ownerSource.ruleId,ruleId);
+      assert.deepEqual(caption.ownerSource.provenance,row.source.provenance,'Shared attribution cannot cross source provenance');
+      assert.equal(caption.ownerSubject,row.subject);assert.deepEqual(caption.ownerModels,row.models,'Shared attribution cannot cross physical model recipients');
+    }
+    assert.deepEqual(row.links,[ruleId],'Each clause resolves exactly its canonical source link');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+    assert.deepEqual(row.captionCopies,[1,1],'One visible Source and Applies-to pair per equivalent source/physical recipient, including unreferenced paragraphs');
     if(row.status==='ELIGIBLE_FOR_SELECTION')assert.doesNotMatch(row.body,/Effect applied|Selection recorded|Selected —/);
-    assert.equal(row.applies.length,1,'Each clause has its own recipient/status annotation');
+    assert.equal(row.applies.length,1,'Each clause resolves one visible recipient/status annotation');
     if(localLabel)assert.ok(row.applies[0].toLowerCase().includes(localLabel.toLowerCase()),'Recipient caption names this component');
     assert.ok(!physical.applied.some(effect=>effect.ruleId===ruleId&&effect.clauseId===row.source.clauseId),'This text-only clause is never executed; independent roster clauses of the same rule retain existing effects');
+  }
+  // Equivalent canonical clauses must share the actual visible paragraphs,
+  // not two independently rendered copies with equal words (the old layout).
+  const equivalent=new Map();
+  for(const row of shown){const key=JSON.stringify([row.source.ruleId,row.source.provenance,row.subject,row.models,row.applies]);
+    const identities=JSON.stringify(row.attribution.map(caption=>caption.identity));
+    if(equivalent.has(key))assert.equal(identities,equivalent.get(key),'Equivalent clauses display one shared Source/Applies-to caption pair');
+    else equivalent.set(key,identities);
   }
   return shown;
 }
