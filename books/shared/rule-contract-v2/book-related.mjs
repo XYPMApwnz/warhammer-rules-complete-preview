@@ -5,7 +5,7 @@ import {prepareSourceProducer} from '../source-refs-v2/producer-io.mjs';
 import {createCompatibilityCompiler,summarizeCompatibility} from './compatibility.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
 
-import {enhancementBearerEligible,epicHeroUnitIds} from '../roster-v2/compatibility-context.mjs';
+import {enhancementBearerEligible,epicHeroUnitIds,enhancementEligibilityState} from '../roster-v2/compatibility-context.mjs';
 const clone=structuredClone;
 const unknown={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
 
@@ -103,10 +103,9 @@ export function buildBookRelatedRules({book,compiler,format={},unitIds,ruleIds,u
   const row={...identity,...result(deferred?null:pairs.get(key)),selectedDetachment:result(deferred?null:chosen.get(key))};
   // Source roles still report their literal book selectors. The independent
   // Core bearer restriction overrides the final Enhancement eligibility only.
-  if(row.kind==='ENHANCEMENT'&&epicOwners.has(unitId)&&
-    (row.applicability!=='NO_MATCH'||row.selectedDetachment.applicability!=='NO_MATCH')){
-    row.state='FALSE';row.applicability='NO_MATCH';
-    row.selectedDetachment.state='FALSE';row.selectedDetachment.applicability='NO_MATCH';
+  for(const evaluated of [row,row.selectedDetachment]){
+    const restricted=enhancementEligibilityState(row.kind,epicOwners.has(unitId),evaluated.state);
+    if(restricted!==evaluated.state){evaluated.state=restricted;evaluated.applicability='NO_MATCH';}
   }
   return row;
  });

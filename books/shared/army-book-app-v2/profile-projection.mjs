@@ -2,7 +2,7 @@
  * Addresses/values stay with their factual owner. Layout aliases never evaluate
  * selectors, grant keywords or compute effective gameplay state.
  */
-import {keywordScopesForUnit} from '../canonical-content-v2/keywords.mjs';
+import {keywordScopesForUnit} from '../roster-v2/keyword-scopes.mjs';
 export function normalizeProfilePresentation(model,payload) {
   const entities=new Map(model.entities.map(entity=>[entity.id,entity]));
   const cards=new Map(payload.cards.map(card=>[card.id,card]));

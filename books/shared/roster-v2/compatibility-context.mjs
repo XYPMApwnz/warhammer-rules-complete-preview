@@ -2,7 +2,7 @@
  * Own derived keywords remain available; another member's keywords never do.
  * Roster/battle conditions keep their existing component-relative context.
  */
-import {keywordScopesForUnit} from '../canonical-content-v2/keywords.mjs';
+import {keywordScopesForUnit} from './keyword-scopes.mjs';
 /** Core 25.04 applies to the physical owner, including UNIT Upgrades.
  * Explicit profile bindings belong to this datasheet; attached components do not.
  * No book selector or source keyword is rewritten by this consumer rule. */
@@ -38,4 +38,9 @@ export function enhancementBearerEligible(contract,role,context,physicalUnit=nul
   physicalUnit.canonicalUnitId===context.owner?.unitId&&
   physicalUnit.profiles.reduce((count,model)=>count+model.quantity,0)===1&&
   physicalUnit.keywords.includes('CHARACTER'));
+}
+
+/** Core eligibility must preserve malformed evaluations for the existing guards. */
+export function enhancementEligibilityState(kind,epicOwner,state){
+  return state==='INVALID'?state:kind==='ENHANCEMENT'&&epicOwner?'FALSE':state;
 }

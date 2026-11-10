@@ -124,9 +124,11 @@ check('40-source-enhancement-upgrade-assignments',()=>{
   detachments:[{instanceId:'det',canonicalDetachmentId:det}],detachmentIds:[det],attachments:[],warlordInstanceId:null,
   units:[{instanceId:'probe',canonicalUnitId:candidate.id,startingStrength:candidate.count,warlord:null,selections:[],enhancementIds:[],
    modelRows:candidate.rows.map((row,n)=>({rowId:'row'+n,canonicalProfileId:book.importBindings.compositions.find(member=>member.id===row.id).profileId,quantity:row.quantity,compositionScope:'MODEL_ROW',selections:[]}))}]});
+ // Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+ const epicBearerIds=new Set(["unit-da-0e189995095847bf9d47","unit-da-4d0a2295a562420599b3","unit-da-955db164dd7144368578","unit-da-d711371794d441bf92a8","unit-da-efa93d33ea414d8b8f11","unit-da-f1f33dda5c5047efb013","unit-da-f8f0629206e744459a9f"]);
  for(const binding of book.importBindings.enhancements){
   let chosen;
-  for(const unit of book.entities.filter(row=>row.kind==='DATASHEET')){
+  for(const unit of book.entities.filter(row=>row.kind==='DATASHEET'&&!epicBearerIds.has(row.id))){
    const candidate=fixture(unit.id,{optional:false}),state=bareState(candidate,binding.detachmentId),projection=formRoster(book,state);
    const predicate=binding.assignmentReference?.selector||{predicate:'UNIT_KEYWORD',subject:'UNIT',contextLevel:'STATIC',arguments:{keyword:'ADEPTUS ASTARTES'}};
    const contract=index.get(binding.id).ruleContract,schema=createDarkAngelsRuleSchema();

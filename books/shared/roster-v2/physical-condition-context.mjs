@@ -112,7 +112,6 @@ export function createEquippedWeaponChoiceConditionContext(book,state,schema,{ru
  if(!options.size)return context=>context;
  const projection=formRoster(book,state),rule=book.entities.find(entity=>entity.id===ruleId),records=new Map(book.entities.map(entity=>[entity.id,entity])),epicOwners=epicHeroUnitIds(book);
  for(const unit of state.units){
-  if(epicOwners.has(unit.canonicalUnitId)&&unit.enhancementIds.includes(ruleId))continue;
   if(unit.selectedUpgradeIds!==undefined)assert(Array.isArray(unit.selectedUpgradeIds),'list');
   const ids=(unit.selectedUpgradeIds||[]).filter(id=>{assert(records.get(id)?.kind==='UPGRADE_OPTION','unknown');return options.has(id);});
   const choiceRecords=selections(unit).filter(selection=>(selection.canonicalOptionIds||[]).some(id=>options.has(id)));
@@ -130,7 +129,9 @@ export function createEquippedWeaponChoiceConditionContext(book,state,schema,{ru
   assert(localChoices.includes(option.id)||unit.startingStrength===1,'physical');
   const weapons=[...model.weapons,...(unit.startingStrength===1?physical.weapons:[])];
   const matching=weapons.filter(weapon=>weapon.canonicalProfileId===weaponId&&weapon.physicalQuantity>0&&weapon.data.mode==='melee');
-  assert(matching.length===1&&matching[0].physicalQuantity===1,'weapon');chosen.set(unit.instanceId,option.id);
+  assert(matching.length===1&&matching[0].physicalQuantity===1,'weapon');
+  // Validate retained physical evidence even when Core forbids using the Enhancement.
+  if(rule.ruleContract?.kind!=='ENHANCEMENT'||!epicOwners.has(unit.canonicalUnitId))chosen.set(unit.instanceId,option.id);
  }
  return context=>{
   if(context?.subject!=='MODEL')return context;

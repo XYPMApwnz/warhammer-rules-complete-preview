@@ -108,15 +108,74 @@ export function verifyBookCompatibility(payload,inputs) {
   const expected=compiler.compileRows({kinds:['STRATAGEM','ENHANCEMENT'],order:'UNIT_RULE',sort:true});
   const actual=new Map(payload.relatedRules.rows.map(row=>[row.unitId+'\0'+row.ruleId,row]));
   assert.equal(actual.size,34*(51+34),'Related Rules Cartesian denominator');
+  // Exact owner-reviewed Core 25.04 result corrections; source selector checks remain strict.
+  const corePairs = [
+    ["unit-belisarius-cawl","detachment-cohort-cybernetica:enhancement:1"],
+    ["unit-belisarius-cawl","detachment-cohort-cybernetica:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-cohort-cybernetica:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-cohort-cybernetica:enhancement:4"],
+    ["unit-belisarius-cawl","detachment-data-psalm-conclave:enhancement:1"],
+    ["unit-belisarius-cawl","detachment-data-psalm-conclave:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-data-psalm-conclave:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-data-psalm-conclave:enhancement:4"],
+    ["unit-belisarius-cawl","detachment-eradication-cohort:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-eradication-cohort:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-explorator-maniple:enhancement:1"],
+    ["unit-belisarius-cawl","detachment-explorator-maniple:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-explorator-maniple:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-explorator-maniple:enhancement:4"],
+    ["unit-belisarius-cawl","detachment-haloscreed-battle-clade:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-haloscreed-battle-clade:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-lords-of-the-forge:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-luminen-auto-choir:enhancement:1"],
+    ["unit-belisarius-cawl","detachment-luminen-auto-choir:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-rad-zone-corps:enhancement:1"],
+    ["unit-belisarius-cawl","detachment-rad-zone-corps:enhancement:2"],
+    ["unit-belisarius-cawl","detachment-rad-zone-corps:enhancement:3"],
+    ["unit-belisarius-cawl","detachment-rad-zone-corps:enhancement:4"],
+    ["unit-thulia-ghuld","detachment-cohort-cybernetica:enhancement:1"],
+    ["unit-thulia-ghuld","detachment-cohort-cybernetica:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-cohort-cybernetica:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-cohort-cybernetica:enhancement:4"],
+    ["unit-thulia-ghuld","detachment-data-psalm-conclave:enhancement:1"],
+    ["unit-thulia-ghuld","detachment-data-psalm-conclave:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-data-psalm-conclave:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-data-psalm-conclave:enhancement:4"],
+    ["unit-thulia-ghuld","detachment-eradication-cohort:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-eradication-cohort:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-explorator-maniple:enhancement:1"],
+    ["unit-thulia-ghuld","detachment-explorator-maniple:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-explorator-maniple:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-explorator-maniple:enhancement:4"],
+    ["unit-thulia-ghuld","detachment-haloscreed-battle-clade:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-haloscreed-battle-clade:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-lords-of-the-forge:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-luminen-auto-choir:enhancement:1"],
+    ["unit-thulia-ghuld","detachment-luminen-auto-choir:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-rad-zone-corps:enhancement:1"],
+    ["unit-thulia-ghuld","detachment-rad-zone-corps:enhancement:2"],
+    ["unit-thulia-ghuld","detachment-rad-zone-corps:enhancement:3"],
+    ["unit-thulia-ghuld","detachment-rad-zone-corps:enhancement:4"],
+  ];
+  const coreExceptions=new Set(corePairs.map(pair=>pair.join('\0'))),coreObserved=[];
   for(const row of expected.rows) {
     const found=actual.get(row.unitId+'\0'+row.ruleId);assert.ok(found,'Missing compatible relationship');
-    assert.equal(found.state,row.state);assert.equal(found.applicability,row.applicability);
+    const coreException=coreExceptions.has(row.unitId+'\0'+row.ruleId);
+    assert.notEqual(row.state,'INVALID','Core prohibition must not mask a compiler failure');
+    if(coreException){
+      assert.equal(index.get(row.ruleId)?.kind,'ENHANCEMENT');assert.equal(row.state,'UNKNOWN');assert.equal(row.applicability,'CONDITIONAL');
+      coreObserved.push([row.unitId,row.ruleId]);
+    }
+    assert.equal(found.state,coreException?'FALSE':row.state);assert.equal(found.applicability,coreException?'NO_MATCH':row.applicability);
     assert.equal(found.detachmentId,index.get(row.ruleId).ruleContract.detachmentId,'Cross-Detachment leakage');
     const selected=compiler.evaluateRule(row.unitId,row.ruleId,{detachmentId:found.detachmentId});
-    assert.equal(found.selectedDetachment.state,selected.state);
-    assert.equal(found.selectedDetachment.applicability,selected.applicability);
+    assert.notEqual(selected.state,'INVALID','Core prohibition must not mask a selected compiler failure');
+    if(coreException){assert.equal(selected.state,'TRUE');assert.equal(selected.applicability,'MATCH');}
+    assert.equal(found.selectedDetachment.state,coreException?'FALSE':selected.state);
+    assert.equal(found.selectedDetachment.applicability,coreException?'NO_MATCH':selected.applicability);
     assert.notEqual(found.state,'INVALID');assert.notEqual(found.selectedDetachment.state,'INVALID');
   }
+  assert.deepEqual(coreObserved.sort(),structuredClone(corePairs).sort(),'Only the exact 46 approved Core corrections');
   let contexts=0;
   for(const unit of inputs.model.entities.filter(entity=>entity.kind==='DATASHEET')) {
     for(const subject of ['MODEL','UNIT','FORMED_ATTACHED_UNIT','ROSTER'])for(const context of compiler.contextsFor(unit.id,subject)) {

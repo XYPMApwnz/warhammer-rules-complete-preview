@@ -8,7 +8,7 @@ const self=fileURLToPath(import.meta.url),fixture=JSON.parse(fs.readFileSync(new
 const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(arg('--root')||fileURLToPath(new URL('../',import.meta.url)));
 const selected=arg('--book'),suite=arg('--suite')||'all',caseId=arg('--case');
-assert(['all','rule','import','manual','faq'].includes(suite),'Unknown Epic Hero suite');
+assert(['all','rule','import','manual','faq','integrity'].includes(suite),'Unknown Epic Hero suite');
 assert(!selected||fixture.books[selected],'Unknown native book');
 const decodeModule=await import(pathToFileURL(path.join(root,'books/shared/source-refs-v2/producer-io.mjs')).href);
 const readJson=file=>decodeModule.parseProducerJSON(fs.readFileSync(path.join(root,file),'utf8'));
@@ -172,6 +172,77 @@ if(['all','faq'].includes(suite)&&(!selected||selected===fixture.faq.book))await
  const snapshot=run.snapshot();run.load(snapshot);assert.equal(run.state.attachments.length,1,'FAQ combination persists');
  return {book:c.book,leader:c.leaderId,bodyguard:c.bodyguardId,upgrade:c.enhancementId,sourceRelation:c.sourceRelationId,fixtureKind:c.kind};
 });
+/** SYNTHETIC_COMPATIBILITY_BOUNDARY: invalid canonical eligibility must remain
+ * an error even when the independent Core bearer restriction would deny it.
+ * No Core helper is called: these exercise the actual book/roster consumers. */
+function invalidCompatibilityFixture(){
+ const contract={kind:'ENHANCEMENT',detachmentId:'det',roles:[{id:'owner',subject:'UNIT',purpose:'OWNER'}],clauses:[]};
+ const book={entities:[
+  {id:'unit',kind:'DATASHEET',data:{keywords:['EPIC HERO'],factionKeywords:[],profileIds:[]}},
+  {id:'det',kind:'DETACHMENT',data:{}},
+  {id:'enh',kind:'ENHANCEMENT',parentId:'det',data:{},ruleContract:contract}
+ ]};
+ const row={unitId:'unit',ruleId:'enh',kind:'ENHANCEMENT',state:'INVALID',applicability:'INVALID',roles:[]};
+ const context={owner:{unitId:'unit',keywords:new Set(['EPIC HERO']),unknownKeywords:new Set()},subject:'UNIT'};
+ return {book,row,context};
+}
+if(['all','integrity'].includes(suite)){
+ await check('integrity/invalid-book-eligibility-is-not-no-match',async()=>{
+  const {buildBookRelatedRules}=await import(pathToFileURL(path.join(root,'books/shared/rule-contract-v2/book-related.mjs')).href);
+  const {book,row}=invalidCompatibilityFixture(),before=structuredClone({book,row});
+  const invalidCompiler={compileRows:()=>({rows:[structuredClone(row)]})};
+  try{
+   assert.throws(()=>buildBookRelatedRules({book,compiler:invalidCompiler}),{message:'Invalid book applicability'},
+    'Invalid canonical book eligibility must be rejected, never masked as Epic NO_MATCH');
+  }finally{
+   assert.deepEqual({book,row},before,'Book boundary rejection must not mutate canonical facts or compiler rows');
+  }
+  return {fixtureKind:'SYNTHETIC_COMPATIBILITY_BOUNDARY',expectedError:'Invalid book applicability'};
+ });
+ await check('integrity/invalid-roster-eligibility-is-not-no-match',async()=>{
+  const {projectRosterRelated}=await import(pathToFileURL(path.join(root,'books/shared/roster-v2/related.mjs')).href);
+  const {book,context}=invalidCompatibilityFixture();
+  const state={detachmentIds:['det'],units:[{instanceId:'one'}]};
+  const projection={units:[{instanceId:'one',canonicalUnitId:'unit',profiles:[]}]};
+  const before=structuredClone({book,state,projection,context});
+  try{
+   assert.throws(()=>projectRosterRelated({book,state,projection,context:()=>context,evaluateRole:()=> 'INVALID',
+    publicResult:{FALSE:'NO_MATCH',INVALID:'INVALID'}},'one'),{message:'Invalid roster-aware rule: enh'},
+    'Invalid canonical roster eligibility must be rejected, never masked as Epic NO_MATCH');
+  }finally{
+   assert.deepEqual({book,state,projection,context},before,'Roster boundary rejection must not mutate facts, state, projection or owner context');
+  }
+  return {fixtureKind:'SYNTHETIC_COMPATIBILITY_BOUNDARY',expectedError:'Invalid roster-aware rule: enh'};
+ });
+ await check('integrity/epic-owner-malformed-weapon-choice-is-rejected',async()=>{
+  const {createEquippedWeaponChoiceConditionContext}=await import(pathToFileURL(path.join(root,'books/shared/roster-v2/physical-condition-context.mjs')).href);
+  const {validateRoster}=await import(pathToFileURL(path.join(root,'books/shared/roster-v2/context.mjs')).href);
+  // SYNTHETIC_WEAPON_CHOICE_BOUNDARY: common state admission succeeds, but a
+  // nonexistent persisted option must still be rejected by the owning guard.
+  const book={bookId:'synthetic',rosterAttachmentPolicies:[],rosterSelectionOptions:[{id:'option'}],entities:[
+   {id:'unit',kind:'DATASHEET',data:{keywords:['CHARACTER','EPIC HERO'],factionKeywords:[],profileIds:['profile'],weaponIds:[],ruleReferenceIds:[]}},
+   {id:'profile',kind:'PROFILE',parentId:'unit',data:{M:'6"',T:'4',SV:'3+',W:'5',LD:'6+',OC:'1'}},
+   {id:'det',kind:'DETACHMENT',data:{}},
+   {id:'enh',kind:'ENHANCEMENT',parentId:'det',data:{},ruleContract:{kind:'ENHANCEMENT'}},
+   {id:'option',kind:'UPGRADE_OPTION',parentId:'enh',data:{unitId:'unit'}}
+  ]};
+  const state={schema:'roster-v2/roster',bookId:'synthetic',rosterId:'guard',detachmentIds:['det'],attachments:[],warlordInstanceId:null,units:[
+   {instanceId:'one',canonicalUnitId:'unit',startingStrength:1,warlord:null,enhancementIds:['enh'],selectedUpgradeIds:['unknown-option'],selections:[],
+    modelRows:[{rowId:'row',canonicalProfileId:'profile',quantity:1,selections:[],loadouts:[]}]}
+  ]};
+  const before=structuredClone({book,state});
+  try{
+   assert.doesNotThrow(()=>validateRoster(book,state,[]),'The common roster validator must admit this state, so the choice guard is actually exercised');
+   assert.throws(()=>createEquippedWeaponChoiceConditionContext(book,state,{},
+    {ruleId:'enh',conditionArguments:{},messages:{unknown:'Unknown physical choice option'}}),{message:'Unknown physical choice option'},
+    'An Epic owner cannot bypass validation of malformed persisted physical-choice metadata');
+  }finally{
+   assert.deepEqual({book,state},before,'Physical-choice rejection must not mutate canonical facts or the persisted roster');
+  }
+  return {fixtureKind:'SYNTHETIC_WEAPON_CHOICE_BOUNDARY',commonRosterValidation:'PASS',expectedError:'Unknown physical choice option'};
+ });
+}
+
 assert(checks.length+failures.length,'No matching Epic Hero scenarios');
 console.log(JSON.stringify({status:failures.length?'FAIL':'PASS',root,baseline:fixture.baseline,suite,checks,failures},null,2));
 if(failures.length)process.exitCode=1;

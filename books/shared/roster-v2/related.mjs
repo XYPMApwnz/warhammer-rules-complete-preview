@@ -1,6 +1,6 @@
 /** Shared canonical roster compatibility view. No rule execution or inferred battle state. */
 import {evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
-import {enhancementOwnerContext,enhancementBearerEligible,epicHeroUnitIds} from './compatibility-context.mjs';
+import {enhancementOwnerContext,enhancementBearerEligible,epicHeroUnitIds,enhancementEligibilityState} from './compatibility-context.mjs';
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function projectRosterRelated({book,state,projection,context,evaluateRole,publicResult},instanceId,detachmentId=null) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
@@ -22,7 +22,7 @@ export function projectRosterRelated({book,state,projection,context,evaluateRole
     });
     const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
       {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>context(candidate.instanceId,subject)});
-    const result=contract.kind==='ENHANCEMENT'&&epicOwner?'FALSE':includeRecipientFeasibility(any(states),recipient);
+    const result=enhancementEligibilityState(contract.kind,epicOwner,includeRecipientFeasibility(any(states),recipient));
     if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
     rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
   }

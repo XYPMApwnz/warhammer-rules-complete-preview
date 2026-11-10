@@ -8297,19 +8297,6 @@
       ]
     },
     {
-      "path": "books/shared/canonical-content-v2/keywords.mjs",
-      "reasons": [
-        {
-          "kind": "module-import",
-          "from": "books/shared/army-book-app-v2/profile-projection.mjs"
-        },
-        {
-          "kind": "module-import",
-          "from": "books/shared/roster-v2/compatibility-context.mjs"
-        }
-      ]
-    },
-    {
       "path": "books/shared/offline-status.js",
       "reasons": [
         {
@@ -8758,6 +8745,19 @@
         {
           "kind": "module-import",
           "from": "books/tyranids/v2/roster-import.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/keyword-scopes.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/army-book-app-v2/profile-projection.mjs"
+        },
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/compatibility-context.mjs"
         }
       ]
     },

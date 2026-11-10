@@ -134,10 +134,12 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
    detachments:[{instanceId:'det',canonicalDetachmentId:det}],detachmentIds:[det],attachments:[],warlordInstanceId:null,
    units:[{instanceId:'probe',canonicalUnitId:input.id,startingStrength:input.count,selections:[],warlord:null,enhancementIds:[],
     modelRows:input.rows.map((r,n)=>({rowId:'row'+n,canonicalProfileId:r.profileId,quantity:r.quantity,compositionScope:'MODEL_ROW',selections:[]}))}]});
+  // Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+  const epicBearerIds=new Set(["unit-ba-3483c88a4df4495ca2e2","unit-ba-4ea9a8226a61470fa157","unit-ba-7f57bc2e255748b09903","unit-ba-92fdb23a526b4c328367","unit-ba-d84ea7c581874feca80b"]);
   for(const binding of book.importBindings.enhancements){let chosen;
    const expectedScope=corrections.scopeCorrections.find(r=>r.entityId===binding.id)?.scope||sources.get(binding.id).data.scope;
    assert.equal(binding.scope,expectedScope,'Source-owned assignment scope changed');assert.equal(binding.eligibilityText,sources.get(binding.id).data.eligibilityText);
-   for(const source of sourceUnits){const input=fixture(source.id,{optional:false}),state=rawState(input,binding.detachmentId),projection=formRoster(book,state),contract=index.get(binding.id).ruleContract;
+   for(const source of sourceUnits.filter(source=>!epicBearerIds.has(source.id))){const input=fixture(source.id,{optional:false}),state=rawState(input,binding.detachmentId),projection=formRoster(book,state),contract=index.get(binding.id).ruleContract;
     const predicate=binding.assignmentReference?.selector||{predicate:'UNIT_KEYWORD',subject:'UNIT',contextLevel:'STATIC',arguments:{keyword:'ADEPTUS ASTARTES'}};
     const contexts=binding.scope==='UNIT'?[predicateContext(state,projection,'probe','UNIT')]:projection.units[0].profiles.filter(p=>p.quantity===1).map(p=>predicateContext(state,projection,'probe','MODEL',p.scopeId));
     if(contexts.some(c=>createBloodAngelsRuleSchema().evaluatePredicate(predicate,enhancementOwnerContext(contract,c))==='TRUE')){chosen=input;break;}

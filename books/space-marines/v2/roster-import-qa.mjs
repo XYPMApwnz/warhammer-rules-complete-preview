@@ -130,10 +130,12 @@ assert.equal(paidResults.length,8);
 // battle conditions. Fixture recipient discovery is not a new eligibility oracle.
 const assignmentResults=[],schema=createSpaceMarinesRuleSchema();
 let enhancementProgress=0;
+// Reviewed physical Epic Hero IDs at f7500b43, including own MODEL keyword scopes; no formation keywords.
+const epicBearerIds=new Set(["unit-sm-02d5dee4717544ad","unit-sm-10396cd2726045a8","unit-sm-1af70808102d4286","unit-sm-2e0979af1d9040af","unit-sm-3460439c3a774c66","unit-sm-3d29619313c24850","unit-sm-55f195878fab446f","unit-sm-611995a1ac614acb","unit-sm-70b477e461b5487a","unit-sm-7ee313f201ab42cf","unit-sm-9f9c66dce3814cc5","unit-sm-ac0e865c5ab94c9b","unit-sm-ad36b4f4c8f14a97","unit-sm-bdf36a7ab1d64d50","unit-sm-c7226873c51d43c0","unit-sm-f169827c554c4eee","unit-sm-f8bea3d5b0fa44a6","unit-sm-f9d22ec2aff840de"]);
 for(const binding of book.importBindings.enhancements){
  progress('enhancements',++enhancementProgress+'/56');
   let chosen=null;
-  for(const source of facts.entities.filter(row=>row.kind==='DATASHEET'&&row.id!==DAINAL_UNIT)){
+  for(const source of facts.entities.filter(row=>row.kind==='DATASHEET'&&row.id!==DAINAL_UNIT&&!epicBearerIds.has(row.id))){
     const candidate=fixture(source.id,{gear:false});
     // Discover a diagnostic recipient from source MODEL rows without repeatedly
     // executing full imports. The chosen fixture still goes through the real
