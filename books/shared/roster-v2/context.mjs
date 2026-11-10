@@ -1,5 +1,6 @@
 /** Roster UNIT instances. Composition/profile scopes are not individual-model simulations. */
 import {getRecordedSourceIdentity,registerBookSources} from '../source-refs-v2/source-refs.mjs';
+import {epicHeroUnitIds} from './compatibility-context.mjs';
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -271,6 +272,7 @@ export function formRoster(book, state) {
     for (const unit of book.entities.filter(e => e.kind === 'DATASHEET'))
       assert(unit.data.profileIds.every(id => profileBindings.has(id)), 'Incomplete intrinsic MODEL bindings');
   }
+  const epicOwners=epicHeroUnitIds(book);
   const units = state.units.map(raw => {
     const canonical = records.get(raw.canonicalUnitId), keywords = [...canonical.data.keywords,...canonical.data.factionKeywords];
     // One semantic MODEL profile per imported composition/loadout group. Quantity
@@ -303,7 +305,8 @@ export function formRoster(book, state) {
     const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => profileBindings.get(id).intrinsicKeywords)) : null;
     const unitKeywords = modelVocabulary ? [...new Set([...keywords.filter(key => !modelVocabulary.has(key)),
       ...profiles.flatMap(profile => profile.keywords)])].sort() : [...keywords];
-    return {...copy(raw),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
+    // Preserve imported ownership and costs in state; only executable projection is gated.
+    return {...copy(raw),...(epicOwners.has(raw.canonicalUnitId)?{enhancementIds:[],...(raw.enhancementAssignments?{enhancementAssignments:[]}:{})}:{}),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
       weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
   });
   const formedUnits = [];
@@ -356,7 +359,7 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
 export function attachmentPermission(book,state,policy,source,target) {
   const detachedIds=state.detachmentIds||[];
   if(policy.availability&&!policy.availability.some(requirement=>
-    detachedIds.includes(requirement.detachmentId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
+    detachedIds.includes(requirement.detachmentId)&&!epicHeroUnitIds(book).has(source.canonicalUnitId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
   if(!book.rosterAttachmentConstraints?.length)return true;
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   const keywords=(unit,constraint)=>{

@@ -1,7 +1,7 @@
 /** Shared physical input computers. Source owners supply verified identities,
  * declarations and mode differences; this module never reads rule prose. */
 import {formRoster,selections,predicateContext,validateRoster} from './context.mjs';
-import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {enhancementOwnerContext,epicHeroUnitIds} from './compatibility-context.mjs';
 import {setConditionValue,findConditionValue,clearConditionValues,translateFieldArguments} from '../rule-contract-v2/conditions.mjs';
 
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
@@ -110,8 +110,9 @@ export function createEquippedWeaponChoiceConditionContext(book,state,schema,{ru
  const assert=(ok,key)=>requireValue(ok,messages[key]);
  const options=new Map((book.rosterSelectionOptions||[]).map(option=>[option.id,option])),chosen=new Map();
  if(!options.size)return context=>context;
- const projection=formRoster(book,state),rule=book.entities.find(entity=>entity.id===ruleId),records=new Map(book.entities.map(entity=>[entity.id,entity]));
+ const projection=formRoster(book,state),rule=book.entities.find(entity=>entity.id===ruleId),records=new Map(book.entities.map(entity=>[entity.id,entity])),epicOwners=epicHeroUnitIds(book);
  for(const unit of state.units){
+  if(epicOwners.has(unit.canonicalUnitId)&&unit.enhancementIds.includes(ruleId))continue;
   if(unit.selectedUpgradeIds!==undefined)assert(Array.isArray(unit.selectedUpgradeIds),'list');
   const ids=(unit.selectedUpgradeIds||[]).filter(id=>{assert(records.get(id)?.kind==='UPGRADE_OPTION','unknown');return options.has(id);});
   const choiceRecords=selections(unit).filter(selection=>(selection.canonicalOptionIds||[]).some(id=>options.has(id)));

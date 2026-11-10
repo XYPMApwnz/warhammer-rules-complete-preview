@@ -1,11 +1,12 @@
 /** Shared canonical roster compatibility view. No rule execution or inferred battle state. */
 import {evaluateRequiredRecipients,includeRecipientFeasibility,evaluateCompatibilityRole} from './compatibility-feasibility.mjs';
-import {enhancementOwnerContext,enhancementBearerEligible} from './compatibility-context.mjs';
+import {enhancementOwnerContext,enhancementBearerEligible,epicHeroUnitIds} from './compatibility-context.mjs';
 const any = values=>values.includes('INVALID')?'INVALID':values.includes('TRUE')?'TRUE':values.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export function projectRosterRelated({book,state,projection,context,evaluateRole,publicResult},instanceId,detachmentId=null) {
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
   if (detachmentId && records.get(detachmentId)?.kind!=='DETACHMENT') throw new TypeError('Unresolved filter Detachment');
   const unit = projection.units.find(u=>u.instanceId===instanceId);if (!unit) throw new TypeError('Unresolved physical related context');
+  const epicOwner=epicHeroUnitIds(book).has(unit.canonicalUnitId);
   const rows = [];
   for (const rule of book.entities.filter(e=>['STRATAGEM','ENHANCEMENT'].includes(e.ruleContract?.kind))) {
     const contract=rule.ruleContract;
@@ -21,7 +22,7 @@ export function projectRosterRelated({book,state,projection,context,evaluateRole
     });
     const recipient=evaluateRequiredRecipients(contract,unit.canonicalUnitId,state.units,
       {book,evaluateRole,sourceInstanceId:instanceId,contextFor:(candidate,subject)=>context(candidate.instanceId,subject)});
-    const result=includeRecipientFeasibility(any(states),recipient);
+    const result=contract.kind==='ENHANCEMENT'&&epicOwner?'FALSE':includeRecipientFeasibility(any(states),recipient);
     if (result==='INVALID') throw new TypeError('Invalid roster-aware rule: '+rule.id);
     rows.push({unitId:unit.canonicalUnitId,instanceId,ruleId:rule.id,detachmentId:contract.detachmentId,kind:contract.kind,state:result,applicability:publicResult[result]});
   }

@@ -5,7 +5,7 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel,importModelLabelCandidates} from '../../shared/roster-v2/import.mjs';
 import {formRoster,predicateContext,validateRoster,selections} from '../../shared/roster-v2/context.mjs';
-import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
+import {enhancementOwnerContext,epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 import {createRosterService,rosterImportBindings,retainRosterBearerBindings} from '../../shared/roster-v2/runtime.mjs';
 import {createSpaceMarinesRosterRuntime} from './roster-runtime.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
@@ -34,7 +34,7 @@ const sourcePredicate=(binding,index)=>{
 };
 
 export function createSpaceMarinesRosterImport(book){
-  const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const metadata=book.importBindings,index=new Map(book.entities.map(entity=>[entity.id,entity])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='space-marines'&&metadata?.schema==='space-marines-v2/import-bindings/v1','Invalid native SM import domain');
   const acceptsFaction=createExportFactionCheck(metadata);
   let sharedImport;
@@ -119,6 +119,7 @@ export function createSpaceMarinesRosterImport(book){
           }
         }
         for(const id of unit.enhancementIds){
+          if(epicOwners.has(unit.canonicalUnitId))continue;
           const binding=metadata.enhancements.find(row=>row.id===id),contract=index.get(id).ruleContract;
           requireValue(binding&&!binding.unresolved,'Unresolved source assignment scope');
           const predicate=sourcePredicate(binding,index),context=(subject,scope)=>enhancementOwnerContext(contract,predicateContext(state,physical,unit.instanceId,subject,scope));

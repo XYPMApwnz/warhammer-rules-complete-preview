@@ -1,4 +1,5 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -12,7 +13,7 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 
 /** Shared text parsing/resolution with book-owned physical source bindings. */
 export function createTyranidsRosterImport(input){
-  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const book=copy(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='tyranids'&&metadata?.schema==='tyranids-v2/import-bindings/v1','Invalid Tyranids import domain');
   const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
@@ -182,6 +183,7 @@ export function createTyranidsRosterImport(input){
         error('INVALID_MODEL_BINDING',id,'Foreign or invalid MODEL Enhancement assignment');
       const physical=formRoster(book,state).units.find(u=>u.instanceId===unit.instanceId);
       for(const id of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(e=>e.id===id);requireValue(binding,'Unknown Enhancement source');
         if(binding.scope==='UNIT'){
           if(!binding.eligibleUnitIds.includes(unit.canonicalUnitId))error('WRONG_UPGRADE_UNIT',unit.instanceId,'UNIT Upgrade has a different source owner');

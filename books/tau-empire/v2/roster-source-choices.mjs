@@ -1,3 +1,4 @@
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 /** Book-owned source decisions over the existing physical selection snapshot.
  * These records select recipients; they never store computed abilities. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -102,6 +103,7 @@ export function setTauStudentChoice(book,snapshot,sourceInstanceId,recipientInst
   for(const container of [unit,...unit.modelRows,...unit.modelRows.flatMap(row=>row.loadouts||[])])
     container.selections=(container.selections||[]).filter(selection=>!decisionRows({selections:[selection]}).length);
   if(recipientInstanceIds.length) {
+    requireValue(!epicHeroUnitIds(book).has(unit.canonicalUnitId),'Epic Hero cannot receive an Enhancement recipient choice');
     const rule=indexOf(book).get(tauStudentRuleId),physical=formRoster(book,state).units.find(item=>item.instanceId===sourceInstanceId);
     const assignment=unit.enhancementAssignments?.find(item=>item.enhancementId===rule.id);
     const models=physical.profiles.filter(model=>(!assignment||model.scopeId===assignment.modelScopeId)&&

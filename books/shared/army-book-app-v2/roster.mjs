@@ -1,4 +1,5 @@
 import {createLifecycle} from './lifecycle.mjs';
+import {epicHeroEnhancementWarning} from '../roster-v2/import.mjs';
 import {playerImportCopy,warlordDisplay} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
@@ -64,6 +65,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
   const forgetParent=parentLifecycle?.cleanup(lifecycle.destroy);
   lifecycle.cleanup(()=>forgetParent?.());
   const catalog = new Map(service.catalog.map(record => [record.id, record]));
+  let activeEnhancementsByInstance=new Map();
   if (catalog.size !== service.catalog.length) throw new TypeError('Duplicate canonical roster catalog identity.');
   const storageKey = `army-book-app-v2:roster:${bookId}`;
   const text = value => value === null || value === undefined ? 'Unknown' : typeof value === 'object' ? JSON.stringify(value) : String(value);
@@ -505,9 +507,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const fill = () => {
       const related = service.related(instanceId, select.value || null);
       const suppliedRows = Array.isArray(related) ? related : related.rows || [];
-      const state=service.state, owner=state.units.find(unit=>unit.instanceId===instanceId);
+      const state=service.state, activeIds=activeEnhancementsByInstance.get(instanceId)||[];
       const rows = suppliedRows.filter(row => state.detachmentIds.includes(row.detachmentId) &&
-        (row.kind!=='ENHANCEMENT' || owner.enhancementIds.includes(row.ruleId)) &&
+        (row.kind!=='ENHANCEMENT' || activeIds.includes(row.ruleId)) &&
         ['MATCH','CONDITIONAL'].includes(row.applicability));
       results.replaceChildren();
       rows.forEach(row => {
@@ -538,8 +540,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     const identity = el('dl', 'v2-roster-identity');
     identity.append(identityField('Starting Strength', unit.startingStrength), identityField('Warlord', warlordDisplay(unit,service.state)));
     const enhancements = el('span');
-    (unit.enhancementIds || []).forEach(id => enhancements.append(reference(id)));
-    if (!unit.enhancementIds?.length) enhancements.textContent = 'None imported';
+    const activeIds=activeEnhancementsByInstance.get(unit.instanceId)||[];
+    activeIds.forEach(id => enhancements.append(reference(id)));
+    if (!activeIds.length) enhancements.textContent = unit.enhancementIds?.length?'None applied':'None imported';
     identity.append(identityField('Enhancements on this unit', enhancements));
     return identity;
   }
@@ -626,10 +629,24 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     rosterArea.replaceChildren();
     const state = service.state;
     if (!state?.units?.length) return;
+    const projection=service.projection;
+    activeEnhancementsByInstance=new Map((projection?.units||state.units).map(unit=>[unit.instanceId,unit.enhancementIds]));
     const summary = el('section', 'v2-card v2-roster-pane');
     summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
     const pointsWarning=renderRosterPointsStatus(document,{service,titleForId:named});
     if(pointsWarning)summary.append(pointsWarning);
+    const enhancementWarnings=state.units.flatMap(unit=>{
+      const activeIds=new Set(activeEnhancementsByInstance.get(unit.instanceId)||[]);
+      return (unit.enhancementIds||[]).filter(id=>!activeIds.has(id)).map(id=>
+        epicHeroEnhancementWarning(named(id),named(unit.canonicalUnitId)));
+    });
+    if(enhancementWarnings.length){
+      const warning=el('section','v2-roster-points-warning'),list=el('ul','v2-roster-list');
+      warning.dataset.rosterImportWarning='EPIC_HERO_ENHANCEMENT';warning.setAttribute('role','status');
+      warning.append(el('h3','','Invalid imported Enhancements'));
+      enhancementWarnings.forEach(message=>list.append(el('li','',message)));
+      warning.append(list);summary.append(warning);
+    }
     const detachments = el('ul', 'v2-roster-list');
     detachments.dataset.rosterDetachments = '';
     for (const detachment of state.detachments) {

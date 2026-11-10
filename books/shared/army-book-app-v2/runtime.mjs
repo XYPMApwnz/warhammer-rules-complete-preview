@@ -177,7 +177,7 @@ export function mount(document, payload, options = {}) {
     titleForId: id => cards.get(id)?.title,
     importLimitations: payload.rulePresentationLimitations?.importLimitations || []
   }) : null;
-  const personalBook = () => projectPersonalBook(payload, options.roster.state);
+  const personalBook = () => projectPersonalBook(payload, options.roster.state, options.roster.projection);
   const scopedIds = () => personalMode ? personalBook().allowedIds : null;
   const datasheets=createDatasheetPresenter({document,payload,cards,el,factValue,anchor,showDetail,lifecycle,assetBaseURL:options.assetBaseURL,
     renderCanonicalRule:card=>bookPresenter.accepts(card)||card.kind==='STRUCTURED_RULE_TABLE'
@@ -422,9 +422,10 @@ export function mount(document, payload, options = {}) {
     const rowsFor=detachmentId=>{
       if(!rosterMode)return (relatedByUnit.get(unitId)||[]).filter(row=>!detachmentId||row.detachmentId===detachmentId)
         .map(row=>detachmentId?{...row,...row.selectedDetachment}:row).filter(row=>['MATCH','CONDITIONAL'].includes(row.applicability));
-      const service=options.roster,unit=service.state.units.find(u=>u.instanceId===instanceId),related=service.related(instanceId);
+      const service=options.roster,related=service.related(instanceId);
+      const activeIds=new Set(service.projection.units.find(unit=>unit.instanceId===instanceId).enhancementIds);
       return (Array.isArray(related)?related:related.rows||[]).filter(row=>service.state.detachmentIds.includes(row.detachmentId)&&
-        (row.kind!=='ENHANCEMENT'||unit.enhancementIds.includes(row.ruleId))&&['MATCH','CONDITIONAL'].includes(row.applicability));
+        (row.kind!=='ENHANCEMENT'||activeIds.has(row.ruleId))&&['MATCH','CONDITIONAL'].includes(row.applicability));
     };
     activeRelatedPanel=createV1RelatedPanel({document,lifecycle,rosterMode,detachmentId:relatedDetachmentId,
       detachments:detachmentCards.filter(card=>!rosterMode||options.roster.state.detachmentIds.includes(card.id)),rowsFor,

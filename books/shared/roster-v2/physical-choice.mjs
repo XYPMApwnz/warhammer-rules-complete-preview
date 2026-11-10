@@ -1,5 +1,6 @@
 import {resolveExecutionEffect,physicalSelectionOwner} from './recipient-execution.mjs';
 import {selections,formRoster} from './context.mjs';
+import {epicHeroUnitIds} from './compatibility-context.mjs';
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot,copySourceEvidence} from '../source-refs-v2/source-refs.mjs';
 
 const requireChoice=(ok,message)=>{if(!ok)throw new TypeError('Physical choice binding: '+message);};
@@ -77,12 +78,13 @@ function weaponDecision(book,projection,rule,binding,source,decision,model){
 /** Returns pending operations for the existing interpreter. No book rewriting
  * and no computed choice state: every entry is reconstructed from this roster. */
 export function resolvePhysicalChoices(book,projection){
-  const entries=[],partitions=[],partitioned=new Set();
+  const entries=[],partitions=[],partitioned=new Set(),epicOwners=epicHeroUnitIds(book);
   for(const rule of book.entities)for(const clause of rule.ruleContract?.clauses||[])for(const declaration of clause.rosterEffects||[]){
     const binding=declaration.physicalChoice;if(!binding)continue;
     const operation=resolveExecutionEffect(rule,clause,declaration);
     validatePhysicalChoiceEffect(book,rule,clause,operation);
     for(const source of projection.units){
+      if(rule.ruleContract?.kind==='ENHANCEMENT'&&epicOwners.has(source.canonicalUnitId))continue;
       const decisions=selections(source).filter(selection=>selection.selectionField===binding.selectionField&&selection.selectionKey===binding.selectionKey);
       if(!decisions.length)continue;
       requireChoice(source.enhancementIds.includes(rule.id)&&projection.detachmentIds.includes(rule.parentId)&&decisions.length===1,'unassigned or duplicate choice source');

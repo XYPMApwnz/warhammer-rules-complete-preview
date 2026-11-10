@@ -1,11 +1,12 @@
 import {formRoster,predicateContext} from './context.mjs';
-import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {enhancementOwnerContext,epicHeroUnitIds} from './compatibility-context.mjs';
 
 /** Resolve only explicitly chosen MODEL bearers when imported unit ownership
  * is insufficient. This collects UI choices; it never executes an effect. */
 export function bindImportedEnhancementBearers(book,input,{evaluatePredicate},choices={}) {
-  const state=structuredClone(input),projection=formRoster(book,state),records=new Map(book.entities.map(entity=>[entity.id,entity])),needs=[];
+  const state=structuredClone(input),projection=formRoster(book,state),records=new Map(book.entities.map(entity=>[entity.id,entity])),needs=[],epicOwners=epicHeroUnitIds(book);
   for(const unit of state.units)for(const enhancementId of unit.enhancementIds){
+    if(epicOwners.has(unit.canonicalUnitId))continue;
     const contract=records.get(enhancementId)?.ruleContract;
     if(!contract?.assignment||contract.roles.find(role=>role.id===contract.assignment.ownerRoleId)?.subject!=='MODEL')continue;
     if(unit.enhancementAssignments?.some(assignment=>assignment.enhancementId===enhancementId))continue;

@@ -276,10 +276,12 @@ export function projectFormedUnitCards(cards, roster, instanceId) {
   }
   return {formedUnitId:group?.formedUnitId||null,components};
 }
-export function projectPersonalBook(payload, state) {
+export function projectPersonalBook(payload, state, projection=null) {
   assert(state?.units?.length && state.detachmentIds?.length, 'No imported roster');
   const cards = new Map(payload.cards.map(card => [card.id,card]));
-  const detachments = new Set(state.detachmentIds), enhancements = new Set(state.units.flatMap(unit=>unit.enhancementIds));
+  const activeOwners=projection?new Map(projection.units.map(unit=>[unit.instanceId,unit.enhancementIds])):null;
+  const detachments = new Set(state.detachmentIds), enhancements = new Set(state.units.flatMap(unit=>activeOwners
+    ?activeOwners.get(unit.instanceId)||[]:unit.enhancementIds));
   const units = new Set(state.units.map(unit=>unit.canonicalUnitId)), allowedIds = new Set();
   const permitted = card => card && (card.kind!=='DETACHMENT' || detachments.has(card.id)) &&
     (card.kind!=='ENHANCEMENT' || enhancements.has(card.id)) &&
@@ -318,7 +320,8 @@ export function projectInstanceCards(cards, unit, effective) {
   assert(effective.instanceId===unit.instanceId && effective.canonicalUnitId===unit.canonicalUnitId,'Wrong physical projection');
   const variants=new Map(), root=clone(cards.get(unit.canonicalUnitId));
   assert(root?.kind==='DATASHEET','Unresolved canonical datasheet');
-  root.rosterEnhancementIds=[...(unit.enhancementIds||[])];
+  root.rosterEnhancementIds=Array.isArray(effective.enhancements)
+    ?effective.enhancements.map(enhancement=>enhancement.canonicalId):[...(unit.enhancementIds||[])];
   root.rosterEnhancements=clone(effective.enhancements||[]);
   for(const id of root.rosterEnhancementIds){
     const enhancement=cards.get(id);

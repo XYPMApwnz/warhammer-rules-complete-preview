@@ -5,7 +5,7 @@ import {prepareSourceProducer} from '../source-refs-v2/producer-io.mjs';
 import {createCompatibilityCompiler,summarizeCompatibility} from './compatibility.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
 
-import {enhancementBearerEligible} from '../roster-v2/compatibility-context.mjs';
+import {enhancementBearerEligible,epicHeroUnitIds} from '../roster-v2/compatibility-context.mjs';
 const clone=structuredClone;
 const unknown={state:'UNKNOWN',applicability:'CONDITIONAL',roles:[]};
 
@@ -85,6 +85,7 @@ export function buildBookRelatedRules({book,compiler,format={},unitIds,ruleIds,u
  const rules=book.entities.filter(e=>kinds.includes(e.kind)&&(!ruleIds||ruleIds.includes(e.id))&&
   (format.sort===false||kinds.includes(e.ruleContract?.kind)));
  const byId=new Map(book.entities.map(e=>[e.id,e]));
+ const epicOwners=epicHeroUnitIds(book);
  const result=value=>{
   if(!value)return clone(unknown);
   const roles=format.roleSummary?value.roles.map(({roleId,subject,state})=>({roleId,subject,state})):value.roles;
@@ -99,7 +100,15 @@ export function buildBookRelatedRules({book,compiler,format={},unitIds,ruleIds,u
   const identity=format.detachmentBeforeKind?{unitId,ruleId,detachmentId,kind:rule.ruleContract?.kind||rule.kind}:
    {unitId,ruleId,kind:rule.kind,detachmentId};
   const deferred=deferredRuleIds.includes(ruleId);
-  return {...identity,...result(deferred?null:pairs.get(key)),selectedDetachment:result(deferred?null:chosen.get(key))};
+  const row={...identity,...result(deferred?null:pairs.get(key)),selectedDetachment:result(deferred?null:chosen.get(key))};
+  // Source roles still report their literal book selectors. The independent
+  // Core bearer restriction overrides the final Enhancement eligibility only.
+  if(row.kind==='ENHANCEMENT'&&epicOwners.has(unitId)&&
+    (row.applicability!=='NO_MATCH'||row.selectedDetachment.applicability!=='NO_MATCH')){
+    row.state='FALSE';row.applicability='NO_MATCH';
+    row.selectedDetachment.state='FALSE';row.selectedDetachment.applicability='NO_MATCH';
+  }
+  return row;
  });
  assert(rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'),'Invalid book applicability');
  const output={schema:'army-book-related-rules/v2',authority:'DISPOSABLE_PROJECTION'};

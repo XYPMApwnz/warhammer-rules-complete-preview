@@ -1,3 +1,7 @@
+import {epicHeroUnitIds} from './compatibility-context.mjs';
+
+export const epicHeroEnhancementWarning=(enhancement,unit)=>`${enhancement} on ${unit}: Core Rules 25.04 prohibits Enhancements on Epic Hero units. This Enhancement is not applied, and the imported army list is invalid. Imported points are retained.`;
+
 // Names are resolved only at this import boundary. Runtime facts and joins
 // retain canonical IDs, physical ownership and quantities from the export.
 const own = (record, key) => record && Object.hasOwn(record, key) ? record[key] : undefined;
@@ -216,7 +220,7 @@ function fieldExists(data, pointer) {
 }
 
 export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId, weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[]} = {}) {
-  const errors = [], needsBindings = [], resolutions = [];
+  const errors = [], needsBindings = [], resolutions = [], warnings = [];
   let draft;
   try { draft = lexicalDraft(rawText, parse, book); }
   catch (error) { return {schema: 'roster-v2/import-result', status: 'INVALID', draft: null,
@@ -431,20 +435,24 @@ export function importNewRecruit(rawText, {parse, bindings = {}, book, rosterId,
       ...optionState,
       enhancementIds: [], raw: {name: raw.name, quantity: raw.rawQuantity, points: raw.points, sourceRef: raw.sourceRef}});
   }
-  const byInstance = new Map(units.map(unit => [unit.instanceId, unit]));
+  const byInstance = new Map(units.map(unit => [unit.instanceId, unit])), epicOwners=Array.isArray(book?.entities)?epicHeroUnitIds(book):new Set();
   for (const raw of draft.enhancements) {
     const enhancement = exact(own(bindings.enhancements, raw.key), 'ENHANCEMENT', raw.key, raw.name);
     if (enhancement && detachmentIds.length && !detachmentIds.includes(enhancement.parentId)) issue('FOREIGN_ENHANCEMENT_CONTEXT', raw.key, 'Enhancement belongs to an unselected Detachment');
     const owner = byInstance.get(raw.ownerUnitId);
     if (raw.ownerStatus !== 'resolved' || !draft.units.some(unit => unit.id === raw.ownerUnitId)) issue('UNRESOLVED_ENHANCEMENT_OWNER', raw.key, 'Imported Enhancement physical owner is unresolved or ambiguous');
-    else if (enhancement && owner) owner.enhancementIds.push(enhancement.id);
+    else if (enhancement && owner) {
+      owner.enhancementIds.push(enhancement.id);
+      if(epicOwners.has(owner.canonicalUnitId))warnings.push(epicHeroEnhancementWarning(
+        enhancement.data.title||enhancement.data.name||raw.name,entities.get(owner.canonicalUnitId).data.title||owner.raw.name));
+    }
   }
   const warlords = units.filter(unit => unit.warlord === true);
   if (warlords.length > 1) issue('AMBIGUOUS_WARLORD_IDENTITY', 'warlord', 'Imported Warlord identity refers to multiple physical instances');
   const id = rosterId ?? defaultRosterId(draft.sourceText);
   if (typeof id !== 'string' || !id.trim()) issue('INVALID_ROSTER_ID', 'rosterId', 'Roster physical namespace is required');
   const status = errors.length ? 'INVALID' : needsBindings.length ? 'NEEDS_BINDINGS' : 'READY';
-  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors, resolutions,
+  return {schema: 'roster-v2/import-result', status, draft, needsBindings, errors, resolutions, ...(warnings.length?{warnings}:{}),
     roster: status === 'READY' ? {schema: 'roster-v2/roster', rosterId: id, bookId: book.bookId,
       detachments, detachmentIds, warlordInstanceId: warlords[0]?.instanceId || null, units, attachments: []} : null};
 }

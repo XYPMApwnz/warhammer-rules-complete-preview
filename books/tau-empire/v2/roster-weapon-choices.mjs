@@ -1,3 +1,4 @@
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 /** T'au-owned decisions over existing physical selections; no weapon IDs or
  * infantry instances are invented to split aggregate inventory. */
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
@@ -105,6 +106,7 @@ export function setTauPrototypeChoice(book,snapshot,sourceInstanceId,ruleId,refe
   for(const container of [unit,...unit.modelRows,...unit.modelRows.flatMap(row=>row.loadouts||[])])
     container.selections=(container.selections||[]).filter(selection=>!old.some(decision=>decision.selectionKey===selection.selectionKey));
   if(reference!==null){
+    assert(!epicHeroUnitIds(book).has(unit.canonicalUnitId),'Epic Hero cannot receive an Enhancement weapon choice');
     const assignment=unit.enhancementAssignments?.find(item=>item.enhancementId===ruleId);
     const model=formRoster(book,state).units.find(item=>item.instanceId===sourceInstanceId).profiles.find(model=>model.scopeId===assignment?.modelScopeId);
     assert(model?.quantity===1,'Prototype requires exact Enhancement MODEL assignment');

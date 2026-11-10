@@ -1,3 +1,4 @@
+import {epicHeroUnitIds} from './compatibility-context.mjs';
 /** Physical roster inputs for explicitly declared common condition computations.
  * An available computation never supplies values for undeclared parameter tuples.
  */
@@ -27,7 +28,7 @@ export function findRosterConditionComputation(book,nodeOrArguments){
 export function createRosterConditionContext(book,state,{abilityProjection=formRoster(book,state)}={}){
   const schema=createRuleContractSchema(book.rosterSchema);
   if(canonicalPlan(book))return createRosterConditionBinding({book,state,schema,inputs:book.conditionComputations,abilityProjection,rosterDetachments:true});
-  const records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const records=new Map(book.entities.map(entity=>[entity.id,entity])),epicOwners=epicHeroUnitIds(book);
   const kernel=withRosterDetachments(schema);
   const computations=Object.entries(book.rosterContextBindings||{}).map(([key,binding])=>({key,...binding}));
   const bind=context=>{
@@ -36,7 +37,7 @@ export function createRosterConditionContext(book,state,{abilityProjection=formR
     if(!unit)return context;
     const rows=context.subject==='MODEL'?unit.modelRows.filter(row=>row.canonicalProfileId===context.modelId):unit.modelRows;
     for(const binding of computations){
-      const result=computeRosterCondition(binding,{records,state,unit,rows,context,abilityProjection});
+      const result=computeRosterCondition(binding,{book,epicOwners,records,state,unit,rows,context,abilityProjection});
       if(result.skip)continue;
       if(result.value!==undefined)roster[binding.key]=result.value;
       else delete roster[binding.key];

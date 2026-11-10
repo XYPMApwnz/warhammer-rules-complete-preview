@@ -2,6 +2,23 @@
  * Own derived keywords remain available; another member's keywords never do.
  * Roster/battle conditions keep their existing component-relative context.
  */
+import {keywordScopesForUnit} from '../canonical-content-v2/keywords.mjs';
+/** Core 25.04 applies to the physical owner, including UNIT Upgrades.
+ * Explicit profile bindings belong to this datasheet; attached components do not.
+ * No book selector or source keyword is rewritten by this consumer rule. */
+export function epicHeroUnitIds(book){
+  if(!Array.isArray(book?.entities))throw new TypeError('Missing canonical Enhancement owner book');
+  const epic=values=>Array.isArray(values)&&values.some(value=>typeof value==='string'&&value.trim().replace(/\s+/g,' ').toUpperCase()==='EPIC HERO');
+  const units=book.entities.filter(entity=>entity.kind==='DATASHEET'),ids=new Set(),entities=new Map(book.entities.map(entity=>[entity.id,entity]));
+  for(const unit of units){
+    const scopes=keywordScopesForUnit(unit,entities);
+    if(epic(unit.data?.keywords)||epic(unit.data?.factionKeywords)||
+      epic(scopes?.data.scopes.flatMap(scope=>scope.keywords))||
+      book.rosterProfileBindings?.some(binding=>binding.unitId===unit.id&&unit.data.profileIds?.includes(binding.profileId)&&epic(binding.intrinsicKeywords)))ids.add(unit.id);
+  }
+  return ids;
+}
+
 export function enhancementOwnerContext(contract, context) {
   if (contract.kind !== 'ENHANCEMENT' || !context) return context;
   const owner = context.owner;

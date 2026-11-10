@@ -59,10 +59,115 @@ for(const rule of rules) {
 const index=buildRelatedRules(book),compatibility=compileCompatibility(book);
 const baseline=JSON.parse(execFileSync('git',['show','c89bb144f30b70fe6d44fb0ce764d2710fcf3ea4:books/death-guard/v2/generated/related-rules-v2.json'],{encoding:'utf8',maxBuffer:20e6}));
 const pmRules=rules.filter(r=>/^PLAGUE MARINES unit only\./.test(r.text));assert.equal(pmRules.length,2);
+// Exact owner-approved Core 25.04 corrections, independently enumerated before test edits.
+const epicHeroEnhancementPairs = [
+  [
+    "unit-mortarion",
+    "detachment-mortarions-hammer:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-mortarions-hammer:enhancement:3"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-tallyband-summoners:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-tallyband-summoners:enhancement:2"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:1"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:2"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:3"
+  ],
+  [
+    "unit-mortarion",
+    "detachment-virulent-vectorium:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-death-lords-chosen:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-mortarions-hammer:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-mortarions-hammer:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-paragons-of-putrescence:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-shamblerot-vectorium:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-shamblerot-vectorium:enhancement:4"
+  ],
+  [
+    "unit-typhus",
+    "detachment-tallyband-summoners:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-tallyband-summoners:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:1"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:2"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:3"
+  ],
+  [
+    "unit-typhus",
+    "detachment-virulent-vectorium:enhancement:4"
+  ]
+];
+const epicPairs=new Set(epicHeroEnhancementPairs.map(pair=>pair.join("\0"))),epicChanged=[];
 const changed=[];
 for(const previous of baseline.rows) {
   const current=index.rows.find(r=>r.ruleId===previous.ruleId&&r.unitId===previous.unitId);
   if(JSON.stringify(current)!==JSON.stringify(previous)) {
+    const pair=[current.unitId,current.ruleId];
+    if(epicPairs.has(pair.join("\0"))){
+      assert.equal(previous.kind,"ENHANCEMENT");
+      assert(sheets.find(sheet=>unitId(sheet)===current.unitId).keywords.includes("EPIC HERO"));
+      assert(["MATCH","CONDITIONAL"].includes(previous.applicability));
+      assert.deepEqual(current,{...previous,state:"FALSE",applicability:"NO_MATCH",
+        selectedDetachment:{...previous.selectedDetachment,state:"FALSE",applicability:"NO_MATCH"}});
+      epicChanged.push(pair);continue;
+    }
     assert(pmRules.some(r=>r.sourceId===current.ruleId));
     assert(!sheets.find(s=>unitId(s)===current.unitId).keywords.includes('PLAGUE MARINES'));
     assert.equal(current.applicability,'NO_MATCH');assert.equal(current.selectedDetachment.applicability,'NO_MATCH');changed.push(current);
@@ -71,6 +176,7 @@ for(const previous of baseline.rows) {
 const sourcePm=source.datasheets.find(s=>s.keywords.includes('PLAGUE MARINES'));
 const sourcePmLeaders=book.rosterAttachmentPolicies.filter(p=>p.targetId===unitId(sourcePm));
 assert.equal(changed.length,pmRules.length*sourcePmLeaders.length);
+assert.deepEqual(epicChanged.sort(),structuredClone(epicHeroEnhancementPairs).sort(),"Only the exact 23 approved Epic pairs changed");
 assert.equal(index.summary.allDetachments.INVALID+index.summary.selectedDetachment.INVALID,0);
 assert(compatibility.rows.every(r=>r.state!=='INVALID'));
 // The new owner scope must not alter a UNIT-target Stratagem context (AH-04).

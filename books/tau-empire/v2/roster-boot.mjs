@@ -44,7 +44,7 @@ export function createTauBrowserRoster(book){
       const state=runtime.state,unit=state?.units.find(unit=>unit.instanceId===instanceId);
       if(!unit)return [];
       const projected=formRoster(book,state).units.find(row=>row.instanceId===instanceId),choices=[];
-      for(const spec of pendingPhysicalBindings.filter(spec=>unit.enhancementIds.includes(spec.ruleId))){
+      for(const spec of pendingPhysicalBindings.filter(spec=>projected.enhancementIds.includes(spec.ruleId))){
         const scope=unit.enhancementAssignments.find(row=>row.enhancementId===spec.ruleId)?.modelScopeId;
         const model=projected.profiles.find(row=>row.scopeId===scope);
         if(model?.quantity!==1)continue;
@@ -56,7 +56,7 @@ export function createTauBrowserRoster(book){
             (weapon.physicalQuantity===2?' — select one of the two imported weapons':' — imported weapon')+
             (weapons.filter(other=>other.canonicalProfileId===weapon.canonicalProfileId).length>1?' · '+weapon.selectionKey:'')}))});
       }
-      if(unit.enhancementIds.includes(tauStudentRuleId)){
+      if(projected.enhancementIds.includes(tauStudentRuleId)){
         const declaration=records.get(tauStudentOptionId),eligible=state.units.filter(row=>declaration.data.recipientUnitIds.includes(row.canonicalUnitId));
         const options=[];
         // Scalar shared controls can select a confirmed set. Values are source

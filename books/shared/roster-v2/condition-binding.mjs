@@ -1,3 +1,4 @@
+import {epicHeroUnitIds} from './compatibility-context.mjs';
 /** Compose declared physical condition inputs without choosing a book, inferring
  * facts, or changing the caller's evaluator/Detachment wrapper position.
  * Inputs are data; source owners still validate their selections and evidence.
@@ -90,6 +91,7 @@ export function createRosterConditionBinding({book,state,schema,inputs=[],abilit
   // The existing computation remains whole-context and uses the caller's pass
   // projection. The two-pass executor and its dependency filtering stay outside.
   const records=state&&computations.length?new Map(book.entities.map(entity=>[entity.id,entity])):null;
+  const epicOwners=state&&computations.some(input=>input.kind==='ENHANCEMENT_ASSIGNED')?epicHeroUnitIds(book):null;
   const projection=state&&computations.some(input=>input.kind==='LED_BODYGUARD_ABILITY')
     ?abilityProjection??formRoster(book,state):abilityProjection;
   const compute=context=>{
@@ -99,7 +101,7 @@ export function createRosterConditionBinding({book,state,schema,inputs=[],abilit
     const rows=context.subject==='MODEL'?unit.modelRows.filter(row=>row.canonicalProfileId===context.modelId):unit.modelRows;
     const roster={...context.roster};
     for(const input of computations){
-      const result=computeRosterCondition(input,{records,state,unit,rows,context,abilityProjection:projection});
+      const result=computeRosterCondition(input,{book,epicOwners,records,state,unit,rows,context,abilityProjection:projection});
       if(!result.skip)setConditionValue(roster,{...input.arguments,key:input.key},result.value);
     }
     return {...context,roster};

@@ -1,4 +1,5 @@
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
@@ -25,7 +26,7 @@ export function withECImportBindings(book,importBook) {
  * Explicit modelBearers/weaponChoices are binding API inputs, not invented
  * New Recruit export lines. Missing decisions are never inferred from loadout. */
 export function createECRosterImport(book) {
-  const metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   reject(book.bookId==='emperors-children'&&metadata?.schema==='ec-v2/import-bindings/v1','Invalid EC import input');
   const acceptsFaction=createExportFactionCheck(metadata);
   const base=()=>createRosterImportService(book,metadata),schema=createRuleContractSchema();let saved=null;
@@ -77,6 +78,7 @@ export function createECRosterImport(book) {
       unit.enhancementAssignments??=[];
       const physical=formRoster(book,state).units.find(u=>u.instanceId===unit.instanceId);
       for(const enhancementId of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(e=>e.id===enhancementId);reject(binding,'Unbound EC Enhancement');
         if(binding.scope==='UNIT'){
           if(unit.canonicalUnitId!==binding.unitId)error('WRONG_UPGRADE_UNIT',unit.instanceId,'UNIT Upgrade belongs to '+binding.unitId);
@@ -127,7 +129,7 @@ export function createECRosterImport(book) {
         if(equipmentOwners.has('datasheet-keeper-of-secrets:section:1'))choices.add('aegis');
         if(choices.size>1)error('EXCLUSIVE_AEGIS_REPLACEMENT',unit.instanceId,'Keeper can select only one of living whip, ritual knife or shining aegis');
       }
-      if(unit.enhancementIds.includes(bladeId)){
+      if(unit.enhancementIds.includes(bladeId)&&!epicOwners.has(unit.canonicalUnitId)){
         const supplied=bindings.weaponChoices?.[unit.instanceId];
         const optionId=supplied||(unit.selectedUpgradeIds||[])[0],option=metadata.weaponChoices.find(o=>o.id===optionId);
         const decisions=selections(unit).flatMap(s=>s.canonicalOptionIds||[]);
@@ -156,7 +158,7 @@ export function createECRosterImport(book) {
               (loadout?.selections||row.selections).push(record);}
           }
         }
-      }else if(bindings.weaponChoices?.[unit.instanceId]||unit.selectedUpgradeIds?.length)error('UNASSIGNED_WEAPON_CHOICE',unit.instanceId,'Possessed Blade is not assigned');
+      }else if((!epicOwners.has(unit.canonicalUnitId)||!unit.enhancementIds.includes(bladeId))&&(bindings.weaponChoices?.[unit.instanceId]||unit.selectedUpgradeIds?.length))error('UNASSIGNED_WEAPON_CHOICE',unit.instanceId,'Possessed Blade is not assigned');
       if(Object.keys(unit).some(k=>/^selected[A-Z]\w*Ids?$/.test(k)&&k!=='selectedUpgradeIds'))error('UNKNOWN_CANONICAL_OPTION',unit.instanceId,'Unknown EC option state');
     }
     if(!needs.length&&!errors.length){try{validateRoster(book,state,[]);}catch(e){error('INVALID_CANONICAL_STATE','roster',e.message);}}

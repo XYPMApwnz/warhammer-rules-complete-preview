@@ -1,12 +1,14 @@
+import {epicHeroUnitIds} from './compatibility-context.mjs';
+
 /** Pure leaf computations shared by canonical and legacy condition contexts. */
 const assert={ok:(condition,message)=>{if(!condition)throw new TypeError(message);}};
 
 /** Compute one previously declared input, preserving undefined as unknown. */
-export function computeRosterCondition(binding,{records,state,unit,rows,context,abilityProjection}){
+export function computeRosterCondition(binding,{book,epicOwners,records,state,unit,rows,context,abilityProjection}){
   let value;
   switch(binding.kind){
     case 'CONTEXT_FIELD':return {skip:true};
-    case 'ENHANCEMENT_ASSIGNED':value=unit.enhancementIds.includes(binding.ruleId);break;
+    case 'ENHANCEMENT_ASSIGNED':value=!(epicOwners||epicHeroUnitIds(book)).has(unit.canonicalUnitId)&&unit.enhancementIds.includes(binding.ruleId);break;
     case 'SELECTED_MARK':
       if(unit.selectedMarkId!==undefined)value=unit.selectedMarkId===binding.markId;
       break;

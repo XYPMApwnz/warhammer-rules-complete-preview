@@ -2,6 +2,7 @@
  * Addresses/values stay with their factual owner. Layout aliases never evaluate
  * selectors, grant keywords or compute effective gameplay state.
  */
+import {keywordScopesForUnit} from '../canonical-content-v2/keywords.mjs';
 export function normalizeProfilePresentation(model,payload) {
   const entities=new Map(model.entities.map(entity=>[entity.id,entity]));
   const cards=new Map(payload.cards.map(card=>[card.id,card]));
@@ -24,8 +25,7 @@ export function normalizeProfilePresentation(model,payload) {
       }
     }
     if(unit.data.keywordScopesId) {
-      const scope=entities.get(unit.data.keywordScopesId),scopeCard=cards.get(scope?.id);
-      if(scope?.kind!=='KEYWORD_SCOPES'||scope.parentId!==unit.id)throw new TypeError('Invalid canonical keyword scope');
+      const scope=keywordScopesForUnit(unit,entities),scopeCard=cards.get(scope.id);
       card.keywordGroups=[];let keywordIndex=0;
       scope.data.scopes.forEach((group,index)=>{
         const label=scopeCard.fields.find(field=>field.source.path===`/scopes/${index}/label`);

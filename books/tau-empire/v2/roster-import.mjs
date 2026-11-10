@@ -1,5 +1,6 @@
 import {cloneSourceBook} from '../../shared/source-refs-v2/source-refs.mjs';
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
+import {epicHeroUnitIds} from '../../shared/roster-v2/compatibility-context.mjs';
 import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mjs';
 import {resolveSingletonCompositionMember} from '../../shared/roster-v2/singleton-model-import.mjs';
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
@@ -17,7 +18,7 @@ const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
 /** T’au physical bindings around the existing parser/resolver. No legality
  * caps, weapon replacements, default loadouts or guessed MODEL bearers. */
 export function createTauRosterImport(input){
-  const book=cloneSourceBook(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e]));
+  const book=cloneSourceBook(input),metadata=book.importBindings,index=new Map(book.entities.map(e=>[e.id,e])),epicOwners=epicHeroUnitIds(book);
   requireValue(book.bookId==='tau-empire'&&metadata?.schema==='tau-empire-v2/import-bindings/v1','Invalid T’au import domain');
   const acceptsFaction=createExportFactionCheck(metadata);
   for(const binding of metadata.compositions){
@@ -118,6 +119,7 @@ export function createTauRosterImport(input){
         else if(!old)unit.enhancementAssignments.push({enhancementId:id,modelScopeId:scope});
       }
       for(const id of unit.enhancementIds){
+        if(epicOwners.has(unit.canonicalUnitId))continue;
         const binding=metadata.enhancements.find(row=>row.id===id);
         if(!binding){error('UNKNOWN_ENHANCEMENT',id,'Missing source-owned Enhancement');continue;}
         const eligible=binding.eligibility;
