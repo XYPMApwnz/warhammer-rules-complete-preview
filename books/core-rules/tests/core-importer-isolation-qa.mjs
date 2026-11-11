@@ -15,7 +15,7 @@ const approvalPath=new URL('./fixtures/core-switch-production-v1.json',import.me
 const fixtureBytes=fs.readFileSync(fixturePath);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const historicalFixtureSHA='fd52f2bb9f7e2de1c02a8df7bb34addf45a32649aa58ff387161ff0c8cd1dab3';
-const approvalSHA='ea301e62c14717226d831b370a50a877646bf38b24b795151c3fd7de5a303d25';
+const approvalSHA='808e470d72b78274673e7a28afa1c11c7434fcdfcab8d2dc90b0b8491d6d55a1';
 const baseline='8ab6787ce503171d852a86f52ffb20467b315959';
 const candidatePrefix='books/core-rules/sources/waha-core-2026-11-11/';
 const acceptedCorpus=candidatePrefix+'waha-core-corpus.v1.json';

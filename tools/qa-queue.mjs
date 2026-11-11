@@ -44,6 +44,7 @@ if(mode==='pre-ff'){
  node('tests/source-catalog-additions-qa.mjs');
  node('books/core-rules/tests/factual-ownership-qa.mjs');
  node('books/core-rules/tests/core-waha-certification-qa.mjs');
+ node('glossary/v2/tests/core-projection-qa.mjs');
  node('books/core-rules/tests/term-bindings-qa.mjs');
  node('books/core-rules/tests/reader-see-also-regression-qa.mjs');
  node('books/core-rules/tests/core-faq-anchor-qa.mjs');
