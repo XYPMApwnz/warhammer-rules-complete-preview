@@ -41,6 +41,12 @@ if(!fs.existsSync(path.join(root,'tests/source-book-clone-qa.mjs')))jobs.at(-1).
 node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
  node('tests/source-catalog-registry-qa.mjs');
+ node('tests/source-catalog-additions-qa.mjs');
+ node('books/core-rules/tests/factual-ownership-qa.mjs');
+ node('books/core-rules/tests/core-waha-certification-qa.mjs');
+ node('books/core-rules/tests/term-bindings-qa.mjs');
+ node('books/core-rules/tests/reader-see-also-regression-qa.mjs');
+ node('books/core-rules/tests/core-faq-anchor-qa.mjs');
  node('tests/generated-rebuild-qa.mjs');
  node('tests/csm-model-alias-bootstrap-qa.mjs');
  node('tests/source-review-execution-book-qa.mjs');
@@ -49,6 +55,7 @@ if(mode==='pre-ff'){
  // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
  expand(pkg.scripts['test:browser']);
+ node('books/core-rules/tests/core-switch-browser-qa.mjs');
  node('tools/pages-runtime-package-qa.mjs',['--source',root,'--published',path.join(work,'runtime'),'--work',path.join(work,'packaging')]);
  for(const f of ['tests/source-enrollment-qa.mjs','books/shared/tools/source-freshness.mjs','tests/source-ingestion-contract-qa.mjs','books/shared/army-book-app-v2/keyword-attribution-qa.mjs'])node(f);
 }

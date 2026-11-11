@@ -5,7 +5,8 @@ export const BOOKS=['space-marines','blood-angels','dark-angels','adeptus-mechan
 export function generatedRebuildPlan(tracked) {
   const steps=[];
   const candidateSource='books/core-rules/sources/waha-core-2026-11-11/';
-  // Candidate-only outputs are checked without changing the active Core corpus.
+  // The accepted offline capture first produces the reviewed candidate, then
+  // the active projection. The historical importer baseline stays immutable.
   steps.push({book:'core-candidate',runtime:'python',
     producer:'books/core-rules/tools/build_waha_core_corpus.py',args:['--write'],
     outputs:['waha-core-corpus.v1.json','waha-core-corpus.manifest.json','waha-core-corpus.census.json']
@@ -13,6 +14,13 @@ export function generatedRebuildPlan(tracked) {
   steps.push({book:'core-candidate',runtime:'python',
     producer:'books/core-rules/tools/build_core_candidate.py',args:['--write'],
     outputs:[candidateSource+'core-rules.candidate.v1.json']});
+  steps.push({book:'core',runtime:'python',
+    producer:'books/core-rules/tools/publish_core_candidate.py',args:['--write'],
+    outputs:['books/core-rules/content/core-rules.digital-11e.json',
+      'books/core-rules/content/core-identities.v1.json',
+      'books/core-rules/content/core-effective-bindings.v1.json',
+      'books/core-rules/content/core-official-source-registry.en.json',
+      candidateSource+'known-source-defects.v1.json']});
   const add=(book,producer,names,args=[],runtime='node',extra={})=>steps.push({
     book,producer,args,runtime,outputs:names.map(name=>`books/${book}/v2/generated/${name}.json`),...extra});
   for(const book of BOOKS){
@@ -56,6 +64,14 @@ export function generatedRebuildPlan(tracked) {
     ['books/space-marines/content/space-marines-related-rules.en.json']);
   external('core','books/core-rules/reader/build.mjs',tracked.filter(file=>/^books\/core-rules\/reader\/[^/]+\.html$/.test(file)||file==='books/core-rules/reader/search-index.json'));
   external('glossary','glossary/v2/tools/build-glossary-v2.mjs',['glossary/v2/generated/index.en.json','glossary/v2/generated/index.en.js']);
+  external('core','books/core-rules/tests/core-waha-player-visible-reference-census-qa.mjs',
+    [candidateSource+'waha-core-player-visible-reference-census.v1.json'],['--write']);
+  external('source-registry','tools/audit/build-source-catalog-additions.mjs',[],['--check']);
+  external('source-registry','tools/audit/build-source-catalog.mjs',
+    ['books/shared/source-refs-v2/source-catalog.json'],['--check'],{
+      preserveOutputSeeds:true,
+      reason:'registry: binding definitions are authored here; append-only; integrity and old-entry bytes checked before writes'
+    });
   const excluded=tracked.filter(file=>/^books\/(blood-angels|dark-angels|chaos-space-marines)\/mobile\/related-rules\.inc$/.test(file))
     .map(file=>({file,reason:'Retired V1 markup: the declared shared CLI now delegates to native app-build and no longer emits this file. No V1 producer is restored.'}));
   if(tracked.includes('books/shared/points/points-data.js'))excluded.push({file:'books/shared/points/points-data.js',
