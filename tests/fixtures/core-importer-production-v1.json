@@ -1,0 +1,3211 @@
+{
+  "schema": "core-importer-production-isolation/v1",
+  "baseline": "7b15dc36425ac577b6928837ec9983409972e278",
+  "protectedFiles": [
+    {
+      "file": ".nojekyll",
+      "bytes": 1,
+      "gitBlob": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "assets/adeptus-mechanicus-cover-480.webp",
+      "bytes": 52998,
+      "gitBlob": "cc01a2128271e39d12f4229b64a20fe25da0eba5",
+      "sha256": "97dcb130c2e4886b8c4c2b27ef9f1b2bc1767bb40bfc5d4299263e530bf7bd5e"
+    },
+    {
+      "file": "assets/adeptus-mechanicus-cover-800.webp",
+      "bytes": 128270,
+      "gitBlob": "8b51f8148030123537f9a5a8ee54beca620c0a49",
+      "sha256": "a478bb9afa8f6d803b887334e156b60773c435d676131a6a65f4d2110926be8b"
+    },
+    {
+      "file": "assets/adeptus-mechanicus-cover-fallback.jpg",
+      "bytes": 173682,
+      "gitBlob": "90d35244e94805b94205b3d58399c6a18a3e0bda",
+      "sha256": "951d23cbbbda764adcd741dad8f4c21c114e7889487d184138019048896ef3fa"
+    },
+    {
+      "file": "assets/adeptus-mechanicus-cover-thumb.jpg",
+      "bytes": 7883,
+      "gitBlob": "2f21656545e2cad7867eedcd368fe8050de8374b",
+      "sha256": "bb66b7f7e04b2110e555871213e4b4e46fd374c5911771373d2fdab1da080274"
+    },
+    {
+      "file": "assets/apple-touch-icon.png",
+      "bytes": 9134,
+      "gitBlob": "0e580f9e7a56795ddf3aa00ede8c3ee92e5ca8da",
+      "sha256": "b47a8522ebf7b50c401d77ecb427060c026d819e1d6eaec4d3777a84d6483290"
+    },
+    {
+      "file": "assets/core-rules-cover-480.webp",
+      "bytes": 53074,
+      "gitBlob": "125092551b0e766156e5ce6affb126ec76ea5459",
+      "sha256": "0ae7b10709305b01d038e4b3d59e8406acf245368ef2522e69cf607e1b603141"
+    },
+    {
+      "file": "assets/core-rules-cover-800.webp",
+      "bytes": 158196,
+      "gitBlob": "94419ba1cbf924a4a401c89b15676eff88317ca3",
+      "sha256": "9d33d35284f73de316188dd0cb4b384f9b93fda0e298c0079ff0611c3c436d18"
+    },
+    {
+      "file": "assets/core-rules-cover-fallback.jpg",
+      "bytes": 185826,
+      "gitBlob": "4c4037848b2cdc49ce834806a87c766616492d61",
+      "sha256": "4c35e035c32d64425df82767edeb57fc6128bc5d9d1d67fa0b9965f4820efc29"
+    },
+    {
+      "file": "assets/core-rules-cover-thumb.jpg",
+      "bytes": 7389,
+      "gitBlob": "b5d331d41c9f865075ecf491b7b1dd928c96e547",
+      "sha256": "5e22b03ed53c1bf35dc47c60c0b364ff56b76fee49ed5fa7e353be07c69c7020"
+    },
+    {
+      "file": "assets/death-guard-cover-480.webp",
+      "bytes": 32960,
+      "gitBlob": "3e2741349844ef34c644e9ca5ed70e44e2a39f86",
+      "sha256": "3415e706a7ef964ce492379eb7e4619be8b3a1f6bd90b2525bf76c7957d9a647"
+    },
+    {
+      "file": "assets/death-guard-cover-800.webp",
+      "bytes": 68710,
+      "gitBlob": "4e58931739ebd7958db565c5ac057bffbb612636",
+      "sha256": "a1839be48bd332c46f5f3cb7fc7334176b0d90d07f3fba7320c9505e64258736"
+    },
+    {
+      "file": "assets/death-guard-cover-fallback.jpg",
+      "bytes": 121424,
+      "gitBlob": "801aa2e795f7c047b7d68ee8d93b236460add102",
+      "sha256": "7f82c6a0581cb55deaca3a541349a370770a35a90cb4ef7128b301a36213e08c"
+    },
+    {
+      "file": "assets/death-guard-cover-thumb.jpg",
+      "bytes": 7722,
+      "gitBlob": "04cad37cfcb85aa6d3bedffdc2571345a08b0e73",
+      "sha256": "d3aca0bdcadcee5a556f7829255e6254058297b9bfc693b5a1a52b639c72be0e"
+    },
+    {
+      "file": "assets/death-guard-cover.jpg",
+      "bytes": 473320,
+      "gitBlob": "a1eeaadf21a2aa3e084d5d8c97ce17eddcdd4aa9",
+      "sha256": "8877bb836bfb77f1514a7bfdc8375deedf7bafdfd04aca3be824afac8b3cfe33"
+    },
+    {
+      "file": "assets/games-workshop-logo.png",
+      "bytes": 53556,
+      "gitBlob": "46cd966ab6cb4e73286bed1696201168a2c8ab9f",
+      "sha256": "71633ad147c01c50a15bc609c3f3cf2f732d77f1d400e980842caf9e4eaf7798"
+    },
+    {
+      "file": "assets/icon-192.png",
+      "bytes": 9631,
+      "gitBlob": "76e2836110cc00f4c53644f5d3d149f9f2e63391",
+      "sha256": "da8fe780d7a6defcae5f572c86fcc75c56e0c1436e836c302a138251c9fa66b2"
+    },
+    {
+      "file": "assets/icon-512.png",
+      "bytes": 54730,
+      "gitBlob": "78edd6cf6011132156b70da9671b4ceee02dc220",
+      "sha256": "412d27a533e0ea10751202eb591fddc7a98bb6167f5d562350777cb97b4de458"
+    },
+    {
+      "file": "assets/icon-maskable-512.png",
+      "bytes": 39165,
+      "gitBlob": "f2aafd511d7390b48cfb281b0e4be3f55017d606",
+      "sha256": "c9977c1b30ca0af106a15dda1718a76a66290618bd0fc9cb8d5fee4905da1b49"
+    },
+    {
+      "file": "assets/tyranids-cover-480.webp",
+      "bytes": 54430,
+      "gitBlob": "5e004563391492bac22611c9944fe8741c89cf02",
+      "sha256": "1e023fd77c6bd8f91ff5f7fd10bfa7f4089e146726139c68a820c9e8d3ac60cc"
+    },
+    {
+      "file": "assets/tyranids-cover-800.webp",
+      "bytes": 116998,
+      "gitBlob": "883427e72f7203c0ff7dd80663f4e707565e62bf",
+      "sha256": "f33be79f935f3497ca92c1ddf76a29c2d902fa9f8b6e98fc359685cf88c9f833"
+    },
+    {
+      "file": "assets/tyranids-cover-fallback.jpg",
+      "bytes": 197170,
+      "gitBlob": "3416dec4ec9a5bdfa2ad19e45a1960faab1fd39e",
+      "sha256": "4e19586dd819514cc6045221d0b84d1f1f34930f3c1f9810db04dae07b2b1b10"
+    },
+    {
+      "file": "assets/tyranids-cover-thumb.jpg",
+      "bytes": 10493,
+      "gitBlob": "a8c75c56248c25eaee826e7d460ac5aa237f4b43",
+      "sha256": "31869fb80f91c4bf4c2c9d185c3e349558e804721da3fba6bd9794d06312df0e"
+    },
+    {
+      "file": "assets/warhammer-40000-logo-optimized.png",
+      "bytes": 63522,
+      "gitBlob": "1d68faae09fe7a8780cdb46473f487f99defb76c",
+      "sha256": "87c11244d0d2ef5eaef946f467d752fdbb9463da44b15a4f72d90ab004c15f4a"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/mechanicus-cover-800.webp",
+      "bytes": 128270,
+      "gitBlob": "8b51f8148030123537f9a5a8ee54beca620c0a49",
+      "sha256": "a478bb9afa8f6d803b887334e156b60773c435d676131a6a65f4d2110926be8b"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/mechanicus-logo.png",
+      "bytes": 132575,
+      "gitBlob": "12e03a30840fc54710c8de2b61636bee8acd33aa",
+      "sha256": "e606091d46eefaa16d657d7ef1c56281efb455f32bc624a278119eb681281080"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/archaeopter-fusilave.webp",
+      "bytes": 122640,
+      "gitBlob": "6e7b0acbefaadafeb08c51a6778ec6174f5a19b2",
+      "sha256": "a42fed0119cd77c9a51b03bc93b20bf923d8444bd9d5a350d5bec48d2cbec49e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/archaeopter-stratoraptor.webp",
+      "bytes": 151132,
+      "gitBlob": "31aed74fb545ae79b16aa9efe355594a3e69cdc3",
+      "sha256": "49224526a51a64e303a746a340aa461f2b2ddc2db9c29141e1e50f717c4734a4"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/archaeopter-transvector.webp",
+      "bytes": 101176,
+      "gitBlob": "18e6781083b81f07db9cc6c20bf4c0e23a9eec1f",
+      "sha256": "54d1487465927f82999a1b319642a3cec286e7d29b689f58a39d3c8688d9a287"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/belisarius-cawl-background.webp",
+      "bytes": 74384,
+      "gitBlob": "67c4cf6f324464f6becfbe6b0f60ee51bf804c4e",
+      "sha256": "6b1ce27cd82af7d6ca326cb7e525fef8abb2e81f131efc44e1d6ec19144f7d17"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/corpuscarii-electro-priests.webp",
+      "bytes": 131432,
+      "gitBlob": "2b16180f330ad9fbfe5f0e45e641cb6abf6ecdb3",
+      "sha256": "511b2f2cd8fdaaad67b1ed0e7c4d96ddbed41d9c38ff607918d683e35abba85a"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/cybernetica-datasmith.webp",
+      "bytes": 93486,
+      "gitBlob": "8c4ec1116e2a3c4603c6a448732ab6f94a5e1b3b",
+      "sha256": "d488b650895ad36ffcfe2a4f723ddf030cb8b5459c67defa1bd3e560a1fdc506"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/fulgurite-electro-priests.webp",
+      "bytes": 106238,
+      "gitBlob": "be67f6516ea84ad6c344bd20a5e3d62016fe0a44",
+      "sha256": "9309461465a334aeaec761367d7470923d0b6efb20060c7b3ca99a2efe4a69b4"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/hastarii-exterminators.webp",
+      "bytes": 170876,
+      "gitBlob": "af6d2f6fd54bef76110c6e8243aa117e8b8b04ea",
+      "sha256": "2c871fe0b539dbcde69d941304a6f37c7435de435a102e385948064fec73142a"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/hastarii-fusiliers.webp",
+      "bytes": 253560,
+      "gitBlob": "08036304311b346c7e0d8cddfb284edca639ad51",
+      "sha256": "5df0d8bb0f85fed1dfed75812c0c4bcd3e0a198bce83ac7e97f52440db9df5ef"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/ironstrider-ballistarii.webp",
+      "bytes": 70526,
+      "gitBlob": "d5e21ef63c834f7493c0bbb64565c64a0fb3e59b",
+      "sha256": "a1f8be2e6ac447d22415f1c1fcfbb38a0d348a6655051f9e0f3f7b9c022eca34"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/kastelan-robots.webp",
+      "bytes": 84320,
+      "gitBlob": "4659581a67b4e8bfcc25d567b855571233aefa02",
+      "sha256": "70dc237c05f9631b6883995ee1695fdbc73e478db3fcd391133615caeecc7d98"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/kataphron-breachers.webp",
+      "bytes": 69094,
+      "gitBlob": "6c78ff5938bde92bc85288130b8d98d4832d332c",
+      "sha256": "4c4012ef19e19b6f7b593266e6db8fca4ff214a3e63606ab0d5c6e38d4c32255"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/kataphron-destroyers.webp",
+      "bytes": 68336,
+      "gitBlob": "7501355ffe078718e7110c94677506ed6da9851e",
+      "sha256": "05dcfbb314cb62aa776396d3c274428f9726995fd0f6e4df30d0f1fbc51a0b12"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/onager-dunecrawler.webp",
+      "bytes": 147050,
+      "gitBlob": "113413ae222eedc1aea79aa7b89cbb3a7b8a2c10",
+      "sha256": "c67d4b6bedd031de49fa83c1e724f4575f75a076d7a365803014d220ec4af271"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/pteraxii-skystalkers.webp",
+      "bytes": 87118,
+      "gitBlob": "e050552463b50419490b7ae34d1fdf40a9a2a1e5",
+      "sha256": "a721847cef992f68e718f58988318bb1031772c2c49bb8da48747d3c2dee2215"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/pteraxii-sterylizors.webp",
+      "bytes": 78030,
+      "gitBlob": "571cfff9d8bd99ba51b30bd811b131def9291d53",
+      "sha256": "8f0da9edb1838ba1068dc2a543a3e5c6716ede95de0a3c121b5cf5fbd1330b8c"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/serberys-raiders.webp",
+      "bytes": 129498,
+      "gitBlob": "0c8b038f76289cd2468babd8c9c70afe00127aa5",
+      "sha256": "1ab64105ec2a603286d1a449bee896ffefde16fde148e2eb30a6d0884a50b318"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/serberys-sulphurhounds.webp",
+      "bytes": 168136,
+      "gitBlob": "bd8f082a630626d2a33e8fb2a4b9f83c30941641",
+      "sha256": "dab9a4ca910d1c235097a8fa9b898c39c62639802ad08bf458789f84a27e520e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/servitor-battleclade.webp",
+      "bytes": 256212,
+      "gitBlob": "dc1297fa06cc10689fa76fdb7727646fb89783f5",
+      "sha256": "89a1bb44151fd03c77dfda085053516dd4c77dcc1fce98accf91968c47ccd40c"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/sicarian-infiltrators.webp",
+      "bytes": 168422,
+      "gitBlob": "b6e97c4d622ac15e49c76878884c936f93d92288",
+      "sha256": "80dc75df9f223d93e269c85510000fdd0684171c657cb67f811671c54d7a34db"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/sicarian-ruststalkers.webp",
+      "bytes": 164444,
+      "gitBlob": "ae5fdca92391350e7e05132d0d4bec50c90c354c",
+      "sha256": "81bc7e009eba6c6c81639a295c22959dde5b6b8604c30fce782530637461a754"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/skitarii-marshal.webp",
+      "bytes": 145954,
+      "gitBlob": "b134921ba33f3fa8c4d827098596f9757916608a",
+      "sha256": "5868be023377d80c32aff8699a1f2b61133e83766fdc29121c0b29b51e783ca0"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/skitarii-rangers.webp",
+      "bytes": 169906,
+      "gitBlob": "08a76f7e079c5cbaa5b4eb01f10831125a7f3855",
+      "sha256": "0ce7e3d0f886bd0f0a3dc250872a7edb5b34ad569f5bf86e177dfea850164c7e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/skitarii-vanguard.webp",
+      "bytes": 147604,
+      "gitBlob": "5b2b7c57028931a36daf1f785a19270db9d0fd23",
+      "sha256": "f1f07380ab3f2c7651711275de44289516e54700d5331c532caa0dba81e2719b"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/skorpius-disintegrator.webp",
+      "bytes": 140134,
+      "gitBlob": "d96f67fc6ec641703992318f5bdc355477ee3a55",
+      "sha256": "244bf7a20671132831c609abb7375998875c68cfc9df318a3509cecb3dc41eff"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/skorpius-dunerider.webp",
+      "bytes": 128244,
+      "gitBlob": "704a5787934acb75a1709743cc8d127e4139aebb",
+      "sha256": "d5c3bbd1b8ba9effff5ee4dc71909f2d0f416d3ac083e1b9562f65d6181b181a"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-radium-jezzails.webp",
+      "bytes": 80626,
+      "gitBlob": "4b4a11660824beb2e21c9485b538f73cd6a5bae7",
+      "sha256": "c991a6ac273744186b0609cb38a771f16af02e11dbe965918372d1981e8321a3"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/sydonian-dragoons-with-taser-lances.webp",
+      "bytes": 82218,
+      "gitBlob": "7b8744b9d2ef40ffdfc290491556c8c29523140e",
+      "sha256": "6843c7fadcdf65b514e1c0126df89650c0f0ab119cf4540a373cdb28365bd01e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/sydonian-skatros.webp",
+      "bytes": 114454,
+      "gitBlob": "d4ed0c7e69040fdb18c678eeb6d9600805ddf2a5",
+      "sha256": "35e0a950e011b096b3fee733cd14d8e10d4e15adb80a0697fb768493e9de99dc"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/tech-priest-dominus.webp",
+      "bytes": 95480,
+      "gitBlob": "3c33d02ccea42267fcf5dc403f3ee0866a6e7508",
+      "sha256": "ea0df1bc3e8897a73fa9b73cdaf999515e94825bfdee4123931c89fe1992ce34"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/tech-priest-enginseer.webp",
+      "bytes": 100760,
+      "gitBlob": "4f6e44ef75ffb01e8c7905131766dd42cc0c2523",
+      "sha256": "326835e79f26e54ea3e10c878638e0c433537b6ea45598d3c975ab119148cb51"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/tech-priest-manipulus.webp",
+      "bytes": 182492,
+      "gitBlob": "eeebb3c3f1cca0354f8ae09553ac8df044a1e0cf",
+      "sha256": "da2badecec01ea6c09cc42f490daa8b4e4a8681268b4c2ab24eeb3f9f7beee41"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/technoarcheologist.webp",
+      "bytes": 131790,
+      "gitBlob": "6c0d775aa28972fcf5d320fbd0d2b065916a176b",
+      "sha256": "56f6a2787a4cd550111314fff9fffd83f80dba7e9aeb16f98ac0542f8067c7b0"
+    },
+    {
+      "file": "books/adeptus-mechanicus/assets/unit-images/thulia-ghuld.webp",
+      "bytes": 235690,
+      "gitBlob": "a231052c08b4d53c58b6e08bdeaa5c26fba6f6b2",
+      "sha256": "bcf29be9b6e4f5437090056ad7b88f9521019d89889060621629554638e849b8"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "bytes": 7598086,
+      "gitBlob": "4971840bf22c29c578f0580349234c071605ddda",
+      "sha256": "eae465e23eca8d116e42d3c4b48602b18b865e8b7213bbb5a33c8235dd171598"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/base.json",
+      "bytes": 2065901,
+      "gitBlob": "33d984fd21e34855aa2698b4e2e0e9e053c5b3e0",
+      "sha256": "536039fb800b2197e4973e224cec19d3f2e182eeb963e629263277ff26a5f4f5"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "bytes": 2071698,
+      "gitBlob": "242c2b4d800acdf4d4b91ca7fd935b6fe499743d",
+      "sha256": "4fdd247997383e74a9d66fecfd9efcdfd7f24d2d84746c4dddce77c5711e88a0"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/factual-census.json",
+      "bytes": 153642,
+      "gitBlob": "595839162567641e4dbe9e6487b867d5ced4298c",
+      "sha256": "6d02c0dbc360197eba09f31ec27fb2fb9fa72d5eb6f9daa1ef2a61583c83978e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "bytes": 4665258,
+      "gitBlob": "82bf9b18fecad5cb1d0851189b0c36ec874bbb73",
+      "sha256": "0ed6e816ee333bd516eceec4b910e598547db4f357e34c1429969464dd3eca25"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contract-census.json",
+      "bytes": 87601,
+      "gitBlob": "fa55db84566e4f3e23c0e1e9303c97a9438afaec",
+      "sha256": "013493b4c827042a3c73ee740bd0b29d08cf116874880d1f6beb9590fa2f9f68"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+      "bytes": 2764082,
+      "gitBlob": "f707cd2c8966f25d9e0f09820a57aa148c8ce3d8",
+      "sha256": "7b11a8032a71b19be9bcc4c7eddd51f561054fffd6cadc6b1eed4d37e7bd7a0e"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+      "bytes": 2388525,
+      "gitBlob": "1bcfcb45df9b09ec7c8a49ef370b5a70d1620846",
+      "sha256": "1ae6582c441b777ec98cc2054caca45d87804ed0a933adc4d6dd9059d2899339"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/model-name-aliases.json",
+      "bytes": 106,
+      "gitBlob": "b74e321530e858e51c842d04a95abe18eb74e2df",
+      "sha256": "1fcb9e90f1c3729c9aa4d9393e2a0c756d2a2faec5167ebb0569821dc5b75a73"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/registration.mjs",
+      "bytes": 917,
+      "gitBlob": "6ca9b03bac90898fdf69fea18509cdbbeea07b0d",
+      "sha256": "6b4e2ab733186aa9d343b01b3b9e0866eeb19f2e7674f21438f6534fad6c6428"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+      "bytes": 973,
+      "gitBlob": "185373ca025fef16bed1d7e690bfc7e8ace9cf0e",
+      "sha256": "aeaf568be0a247046f9b78749d9d605bbaf9f63d707dc5596d07ef6ffa882de1"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-import.mjs",
+      "bytes": 3303,
+      "gitBlob": "fd175c9f4dfd0426064681704cd4e86f11a67d1e",
+      "sha256": "5679dcb606ee9db948e21fca549f1618a909ece94a1be2739799bd240c03d6a4"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/roster-runtime.mjs",
+      "bytes": 2739,
+      "gitBlob": "415c6a3f77346661e402f451f153bfd1a2f7c804",
+      "sha256": "d40181108bb9423f0d632294261f2d401592a917b120c57a32da53b668ef4c87"
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/theme.css",
+      "bytes": 1329,
+      "gitBlob": "8cc1967dbe502de5d8abba2f5c7c2807f16ab8cf",
+      "sha256": "e3c887d7c74e745a82a6d4b1160ae34f4e4a1189cfdcf850c95db355552bb035"
+    },
+    {
+      "file": "books/blood-angels/assets/blood-angels-cover-480.webp",
+      "bytes": 61496,
+      "gitBlob": "4c19e2af129799ad1dca1c2d6bd0d31091ee75b8",
+      "sha256": "bc935f15f339c123cb265a375a6919903d2baf21b2ff8c9ed4436c1d12f59369"
+    },
+    {
+      "file": "books/blood-angels/assets/blood-angels-cover-800.webp",
+      "bytes": 143962,
+      "gitBlob": "2d283aa6e206dcdf171b0ac05c9fa02080b99e42",
+      "sha256": "c103fa0694088f2d4cc2d9a1302ea082142d3baff1f66b63ba87e11b7a11d991"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/app-presentation.json",
+      "bytes": 19338410,
+      "gitBlob": "0b73c8c2f2fe85a7a2d5a19b4a829487f959db06",
+      "sha256": "756aaceb358d166d0e626e082bbc44dcd0dbd2c66a5bd2b477563380be5004a3"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/base.json",
+      "bytes": 479298,
+      "gitBlob": "23321f938346813c3b6a59e10f4cdaaeb22dc570",
+      "sha256": "737b94dac537e1548725090e8dceb9d109cf9ead7c8ecdd4df5ae9ad01a353d7"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/effective.json",
+      "bytes": 479616,
+      "gitBlob": "b641742d386932dd6f696db75edd4fa064173c71",
+      "sha256": "02392b3738963b07e7859fcf9388f0006517b667f52d6f2e6f73debb2935822e"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/factual-census.json",
+      "bytes": 1368,
+      "gitBlob": "560c36bb7e079ada1d723f9e262b1f7ecc51bfcd",
+      "sha256": "e89a6269a563f7ae40d3a62c22813cdbf43caab12921f7d59d92030c685e0efd"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/gameplay-presentation.json",
+      "bytes": 13627759,
+      "gitBlob": "36837a4a3c76c9b297c2862381e550f76029de34",
+      "sha256": "5904936478e057079acc02e854042804b47ca3008db0c947bfa382de09033168"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mfm-coverage.json",
+      "bytes": 4090,
+      "gitBlob": "b4e7d68a5d1ab7ad5a1c0b3a4b52141ed7c7c482",
+      "sha256": "c871a5d421924c67c955111fb5dfebc0096915f1cdbd4fb1944f1c4a19bcd271"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mfm-presentation.json",
+      "bytes": 51552,
+      "gitBlob": "6d03105ade857885648e693ba0ffcbbb1ab6640c",
+      "sha256": "cd666f4d5e3c1dd5eacf90b8df2b37867c4333f53ea8f473566725f501b4d8f2"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-book.json",
+      "bytes": 2304385,
+      "gitBlob": "9940f49aee0cded0ab220e7f431f638dc3de9c4f",
+      "sha256": "823e55fa61171a342e57a3359da97de62ce713633d2bbfead9a36ceddc921295"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-coverage.json",
+      "bytes": 641,
+      "gitBlob": "5ff90d84af3753d350ed5dcd0b30fc9dd62ffb7c",
+      "sha256": "0e9a5eb51d4cca7c8f1a8126cf10fbe22d3fb1be02ae2305db19d9e1bbcaa659"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-points.json",
+      "bytes": 151442,
+      "gitBlob": "7479049cb9b76e951425ef0ebb617095a1360884",
+      "sha256": "c5064c2862cbfc3f11f38a26bc0f6f35a7b46ba1c6a388e2aaa54046d0cd5197"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/mixed-owner-presentation.json",
+      "bytes": 12117340,
+      "gitBlob": "3e5625108ea94dafb84c3d64c7f423eab6c861f3",
+      "sha256": "0c4ff094e17349390a7a231bd39e32404d29f2346a84f36940db5101deedd100"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/native-mfm-book.json",
+      "bytes": 492672,
+      "gitBlob": "b716ede65260d87e9a7811c0b64becbbbaad6ad4",
+      "sha256": "4075622af7826ce29e5925f7d1626a7169a2c71b3ec3be68d72afe25d9c47b05"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-import.json",
+      "bytes": 5901172,
+      "gitBlob": "6ee4fce912990707d95a15b22ab8d291ba4e1ec2",
+      "sha256": "beb0ec6c1ef9520aaa606caaf90f148775c65f73c62d260a9ae533ad115dbbe0"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-runtime.json",
+      "bytes": 4914438,
+      "gitBlob": "5520cbe9cf91d3af6dc8d0842c3505a08a5a6667",
+      "sha256": "82b57cd262a7cf0888e9ef5d76dd4607bb851fea24dff39fefce74d20349512d"
+    },
+    {
+      "file": "books/blood-angels/v2/generated/rule-contracts.json",
+      "bytes": 53029,
+      "gitBlob": "b57044c01a3562acb89a8eb74fb59c9882d1f116",
+      "sha256": "e618b86d2e1c95d09265c7ffb1e70fb2debae4f7afe8f6ef245a74eb3a20bd64"
+    },
+    {
+      "file": "books/blood-angels/v2/registration.mjs",
+      "bytes": 915,
+      "gitBlob": "1cc697f39b6b03f505fa22d29fa62058f7e9b6a1",
+      "sha256": "b18952e2eb1dc4288f4567a5dc8523c321398c87088aa5afd81a00907efa67b6"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-boot.mjs",
+      "bytes": 532,
+      "gitBlob": "66982d43632b47143eea75061ce807eddee0de23",
+      "sha256": "2d4d7d2e8865e0f7638f3049e17619090a75bef6670170ec4d6a6c4b32ac7525"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-import.mjs",
+      "bytes": 19312,
+      "gitBlob": "fbb379359ccde2695dde66e258785af8eb8ec898",
+      "sha256": "84035502e7fae20cd80f3810b6dc7e48eb92bf0522db26dc1b3fb1f4d34f3b9d"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-paid-options.mjs",
+      "bytes": 6593,
+      "gitBlob": "8f68231eb2166d935a1a8cf529cb5beea87da1d5",
+      "sha256": "e0fb5e3985b348996edda7d0bb238a723aae334af8c8e90905c4e3ce0e017892"
+    },
+    {
+      "file": "books/blood-angels/v2/roster-runtime.mjs",
+      "bytes": 2330,
+      "gitBlob": "4618ced14849525836d7f60fbf15b7296937bf08",
+      "sha256": "18ea0b018c76b177409c4d39b96832682ececb6b76b7719c99be0a9655d5034c"
+    },
+    {
+      "file": "books/blood-angels/v2/rule-contract-schema.mjs",
+      "bytes": 341,
+      "gitBlob": "d51116af958a276e68f67b953ac5b5dd7da08b3a",
+      "sha256": "752b1038e38af9d073ef5e3c10cb3cd7607b9722d066b63343bbd08188fb56fd"
+    },
+    {
+      "file": "books/blood-angels/v2/theme.css",
+      "bytes": 998,
+      "gitBlob": "0cc17bc388caeb7c2b65943a32e820136c088af8",
+      "sha256": "efa306e57b8fc9fecb52a5c02ca3c78402d6589a16c46d127c4fe13e2d7ebb74"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/chaos-space-marines-cover-480.webp",
+      "bytes": 59770,
+      "gitBlob": "6130e11083cc1e6399eb4224673cfe3933093878",
+      "sha256": "52908a1f0c5db1cfaca1da7d4b29aaf5d671b6176d9ecdf3df62ec9593721d77"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/chaos-space-marines-cover-800.webp",
+      "bytes": 150756,
+      "gitBlob": "ad5c7f2f0e23517da043d2c2766826f31b743458",
+      "sha256": "002c1465da9105bf2296911d559e5270b7cea1c0c04b648e06d3350e2aa8a731"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-1.png",
+      "bytes": 469,
+      "gitBlob": "d1fa4187036fe3cd75ed7cea6231a0cf6f8669c9",
+      "sha256": "dfcc9154e5a2b14ece19a0a2df8a71d84a66363b17d6f7e4f2131103cdb8e4c8"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-2.png",
+      "bytes": 683,
+      "gitBlob": "a705255710d644845287566fbbde37cd7c5b9587",
+      "sha256": "825301baecdea3f2274bd118521186dfd94a5c64de240d171fe49d42b805ccc7"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-3.png",
+      "bytes": 759,
+      "gitBlob": "e80bf36245ba6cfd41e640c6f9d02b9dfda5ef90",
+      "sha256": "b081685694d1964ceaab304ebfda023838a494cd2954c9acec1fb2b9fb95c5ce"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-4.png",
+      "bytes": 869,
+      "gitBlob": "cdbe26eab3e6056d047bb62eed2c0faf9d6b15b0",
+      "sha256": "5b0e71a650b0b10ad4103ec68c647dcdd8840ec632115952a2939f8bd30c3e73"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-5.png",
+      "bytes": 981,
+      "gitBlob": "a42fc31e824a8120ea66e9a6ddbd40e7804fb245",
+      "sha256": "205e775a1f3dee9d8536ddecdf3179a04c767ae0921b89901cb642f36dc827b8"
+    },
+    {
+      "file": "books/chaos-space-marines/assets/source-die-6.png",
+      "bytes": 1081,
+      "gitBlob": "ffd61c1c43d718c30a82bdbcdcf791ca4929b093",
+      "sha256": "fb17e2670e52e48671e2b6114b8284970020dbe76225afaa8779cfe4d6b284a1"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "bytes": 19550615,
+      "gitBlob": "745c5cf18a001e9d781636160b9224e421c2e424",
+      "sha256": "54cb52660844440798ede4f7dbaf023ebf0badebcc51eb2c413455f832f0b18c"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/base.json",
+      "bytes": 3086023,
+      "gitBlob": "44dd271fb36ac5b17c60c60501a329321d85fe03",
+      "sha256": "f656e75cddb1da7378a82b49fd12c3cc4fc6c256fc950fcd51d46f33977bc9c4"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/effective.json",
+      "bytes": 3235958,
+      "gitBlob": "8074aeebd0b47a8592a6077240e7829a3b8cf3f4",
+      "sha256": "2b9024f4d81a8c7ffac9d753fa6648e77077d4ba17a0ca2c2507e64fe1fcf8c3"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/factual-census.json",
+      "bytes": 1432,
+      "gitBlob": "4f0a52dde26890e982d95c6a5a23dcd0a60ea81d",
+      "sha256": "14e0af1b6cd67557124481688cd87696695eec421cb91cc5f1389caaf9167986"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-import.json",
+      "bytes": 3063451,
+      "gitBlob": "2c8ce1b94ba58d522dd4b667155402201095a2fb",
+      "sha256": "aa1fbea270271a0b36b7bc032ab97ccbfd383ddc21dbbaff3fb373e7495fb163"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/roster-runtime.json",
+      "bytes": 7820101,
+      "gitBlob": "e54ee5a338651ce4d72fa1a6a3396897d4ee9ab9",
+      "sha256": "0559cb50cee64f64acce77bdfb89d6f132ead196c8accd91d5b9351240938047"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-blockers.json",
+      "bytes": 64,
+      "gitBlob": "2c90766c556f719235ee224782ac06cda6b0ef62",
+      "sha256": "83777c12f436bade0317c6f625358273c6b7a058b947d2a358d4e6f01ce2f6e9"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-census.json",
+      "bytes": 691502,
+      "gitBlob": "b7735bf9f4b5aecf0701ba3cebf3724ba694d21d",
+      "sha256": "bb270b63dd4fb3cbaff1982cc7eb999afebc08125063ac216233d5e8861f0434"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contract-compatibility.json",
+      "bytes": 7369700,
+      "gitBlob": "413430012a16688db43c0ff277cd2168b52d00d3",
+      "sha256": "8c9043e19e13357014bb63a0d6c2342832f82156bbc4b650742dbe7fda5bd940"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/rule-contracts.json",
+      "bytes": 4018992,
+      "gitBlob": "773f8f75110d84fa62cb3d137ce2e610b654a7ab",
+      "sha256": "b3c5b65c2339137dc999f7390751faf22d85310ad9babbda678e03b36ea0d351"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/model-name-aliases.json",
+      "bytes": 18727,
+      "gitBlob": "eeb43b83d3b4d5a58f47bcccdffbcce22ef1f4c7",
+      "sha256": "599ae6bba67e04ead55fcad91b737ab2e811fa2015b001d28d2e5c20cdd6d34d"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/registration.mjs",
+      "bytes": 874,
+      "gitBlob": "d0d92c51e7da1916b9c648b4d916594d724737be",
+      "sha256": "de58f4488b1ac8e90baf3c31b715a5d096447a1015f32bd071e5af490783f720"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachment-bindings.json",
+      "bytes": 3676,
+      "gitBlob": "2992f7cac23be0a4eb85e00b31871595c2d90d9d",
+      "sha256": "3dd5578ec5b5cce1f89a4a407cab2c99baab41254d86236059a5958137aecc2b"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachment-build.mjs",
+      "bytes": 5301,
+      "gitBlob": "03c3985922409ef8f75041560279ce5f95623752",
+      "sha256": "4ecdf18696639ddf1aad890bc446e43e10f7e5ae5123c115a70b10f61461327c"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-attachments.mjs",
+      "bytes": 1040,
+      "gitBlob": "5a087bcb2fc1d11b95b1cc49e70a656bc8de5359",
+      "sha256": "7080aab6e666a6fc0a85b1556fb83197fe790bb97369ff4164e86797efba1771"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-boot.mjs",
+      "bytes": 3335,
+      "gitBlob": "976a4986d8af6ba50c7d1e4889cbe8374e12e15e",
+      "sha256": "949a51a88ce56727c6e150ac6eed9ca207ab46ebc5a57f0c19481188ebfa9249"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-effect-context.mjs",
+      "bytes": 3316,
+      "gitBlob": "bfdd2b004860b5b21f8eba1b2609000578e68525",
+      "sha256": "0d66c7af6ef3c2600ff6c4fb5ce422dea18a4627686ed89825d97cfd090d22fc"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import-bindings.mjs",
+      "bytes": 9898,
+      "gitBlob": "345fc1fe89a5d4740479aa72ccb4127882c28c89",
+      "sha256": "c7e8889b469de9540780f4b1c6334621586f4ef7d2e90a01ae40e3fb547459bd"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-import.mjs",
+      "bytes": 835,
+      "gitBlob": "a2825cfdd19208349b549589d168f7b4d96d3cc7",
+      "sha256": "1492fed97648062d2ab366e0875015d377652eb26293d49a4e4c3e4051896fc9"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-presentation.mjs",
+      "bytes": 3236,
+      "gitBlob": "b8f030f06ea5874876b9126c7402e1fe322d571f",
+      "sha256": "61fa93029c1324c13a2d5bbaa40c4fd7edc9b022a58f79b2f33b715dafb3c561"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/roster-runtime.mjs",
+      "bytes": 3386,
+      "gitBlob": "e8778bf6194affe1c0751b611dcb4d42986f8e55",
+      "sha256": "e7fcddfe45ca7bd9af1adaeac7eec01674bb8f637ba20adf2e518709d71fe127"
+    },
+    {
+      "file": "books/chaos-space-marines/v2/theme.css",
+      "bytes": 1130,
+      "gitBlob": "6d54b8be8b211bc3ab5f40a6331eca4ddfa0ab66",
+      "sha256": "bde342e2e057cf1cecfd89ac05742a886f05caa4ec2d2fa272f89bf362c5db23"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/BattleShockExamples1.webp",
+      "bytes": 45656,
+      "gitBlob": "376c938b55c8340aecdbf82d6d6e56917b40f21e",
+      "sha256": "52ea1f32f48e9112b9bebbd985fc72537e3d5aaf1d09b64985627ab20dcff789"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/BattleShockExamples2.webp",
+      "bytes": 31676,
+      "gitBlob": "fd0ec486038713924f7ff8d2c6e19979079b2513",
+      "sha256": "5600fd84928780141fc670b1388f9c8a191c0ae1a15d90eb1cbc878acaa8d062"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/BattleShockExamples3.webp",
+      "bytes": 28020,
+      "gitBlob": "9b3991632d67f96ab5f7d918561562d08304d400",
+      "sha256": "9c1d8cc002f6ed96ffa7b6c972a3bd8dd83e3a9d8180b2ba8330c3b74b5772ab"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/BattleShockExamples4.webp",
+      "bytes": 40682,
+      "gitBlob": "5f8a4871f35b7a3d59d0ec990f740d7f40b02f04",
+      "sha256": "6941d9924624dc2bf567fc8e54b7d50f9e5ddd14f66bc0c38bb964c5a2c6e10e"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/BenefitOfCover.webp",
+      "bytes": 202594,
+      "gitBlob": "00558f70afb34942fdae7c6d02435ecfe8a030d8",
+      "sha256": "c15572d497b5a4bacdfd277e4efec823aba5c312d97248414123b20ea52494e7"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ControllingATerrainObjective.webp",
+      "bytes": 235554,
+      "gitBlob": "71045167e6194f933a9e5d78c6349216734adf98",
+      "sha256": "a1bffe4703da89f975d4ca1615eea314ab0770a978751cd5102973c66e350672"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/DatasheetExample.webp",
+      "bytes": 166430,
+      "gitBlob": "f454245640ee2bf4298d266591c25ca6f9eee5c8",
+      "sha256": "67094cf1083c20c5ef54a25b5e3c08a95ba72d372edb3f8784fc594ab1b9e716"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/EngagedMonstersVehiclesShooting.webp",
+      "bytes": 168840,
+      "gitBlob": "35472877404770a2859cc58cbd684ec7a1af7dbe",
+      "sha256": "62a3109d06ee7f6d4f19e477d23158cc3db4814815bf8c143f2cbebd1bec45a8"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ExampleAction.webp",
+      "bytes": 55392,
+      "gitBlob": "0dded00324f8a47e7450850c2f306a74731598a5",
+      "sha256": "f4b071f4abe85a986fc08b66984dc810f63b383e3aa1a1886ac20b9747cda608"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/HiddenAndObscuring.webp",
+      "bytes": 104800,
+      "gitBlob": "ef80db65b0e080e6badda528a1e1aab2d255bf2d",
+      "sha256": "67a42ea12960a6ab6992c69c9fa74456172131717d781f986621303fb2af1767"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/MakingAChargeMove.webp",
+      "bytes": 171940,
+      "gitBlob": "5dd74d94ed6e4b49263760d08447b96bddc206a3",
+      "sha256": "bc5b568297e36bba4ecc229e2e687f317d2dc7c293e8a47fb9cde3bfbdcd8fa4"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/MakingASurgeMove.webp",
+      "bytes": 139740,
+      "gitBlob": "d7b746f2de74eaad18f48b2ad0f1b6c5fd0860d6",
+      "sha256": "7244d77d6e4fed5fc06bfb9222910d14d84674a8177095b24889c8574803d79c"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ModelFullyVisible.webp",
+      "bytes": 48410,
+      "gitBlob": "8df602e2725726f70077a0c67168ff95ddf47e25",
+      "sha256": "b360901c57bf6af6330c42eb8874ceaa35acaabe04d3dd7f8530b3056c5704c8"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ModelVisible.webp",
+      "bytes": 56738,
+      "gitBlob": "62b790e98eefffba2dffa9ab5f03f57b9460f2fa",
+      "sha256": "0951d4eae15b9388256d28c77a26c965ee263b1fa6591551f5a5942397dcbd46"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/NormalFight.webp",
+      "bytes": 156468,
+      "gitBlob": "622a7a4439525b4699910fea91faec5ec82eac64",
+      "sha256": "bb4d27f767067eb84b2c97f716e92a1d0226d97c2807337bfb7716b53e265b0a"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ObjectiveConsolidation.webp",
+      "bytes": 175112,
+      "gitBlob": "359110deb61e02c16a3268025f1c99a153a8dafb",
+      "sha256": "fc6cd655742e4db6c55aabac20023681e5154241901b9d6f97c2dfa3757f539a"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/OngoingConsolidation.webp",
+      "bytes": 173200,
+      "gitBlob": "08af309a5745a5fa66eaf1f9d203ff7ae8631eb8",
+      "sha256": "8c41d8f90ac37bef71c264c8e54557944ad05bd7b2fb8a65d87ac31dceb131f0"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/OverrunFight.webp",
+      "bytes": 156486,
+      "gitBlob": "01abc5746c2cbffa8800c21aab6040bc85ac6417",
+      "sha256": "f755b77ffc617e554d269ac7e339134ba71b2340c5c2911109466e2920a3ee71"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/PhaseAbility_Fight.webp",
+      "bytes": 690,
+      "gitBlob": "ad29a7684b7daafc6567e4cadb601c73dfacc029",
+      "sha256": "ae3e4627e3dcda554ae2808491b608593163a7490ad2013030e6b22cfa9c5b63"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/PhaseAbility_Shoot.webp",
+      "bytes": 784,
+      "gitBlob": "94ce148a63481ac56d9ab87738f24fea95f4c46f",
+      "sha256": "02e87d71503dc7bc735a239bbe0bb41281ca0053e819ee8552f3a7fed98f538e"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/PileInMoves.webp",
+      "bytes": 164238,
+      "gitBlob": "f62517b84f4824f1d3da6c6f7cfec1a584f3f57f",
+      "sha256": "02fe3702552c285b948c54102e7ca612477e89b37518e5b7d522004eb70e059a"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/PlungingFire.webp",
+      "bytes": 143938,
+      "gitBlob": "9121c89252b170b181bd0644b4317b88920f2f00",
+      "sha256": "1ae92da943439f8975055085c120243ec2851ddb1ecee6547a84b6251e3a9ec3"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/Solid.webp",
+      "bytes": 208274,
+      "gitBlob": "77552b1d56f827a37630533d04546539215ffa30",
+      "sha256": "798d18d61683c09bb36de37f5660690a3c2760b2aba2d21778f167eabc090ac9"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/StartOfFightPhase.webp",
+      "bytes": 157248,
+      "gitBlob": "b93aed9b05d2348f0a9bdc72d94fd6903e7258e9",
+      "sha256": "a19161b43a08412191aa789c490b0ee6260558598adb7165a95155ec5202dacc"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/TakingToTheSkies.webp",
+      "bytes": 150796,
+      "gitBlob": "bc938a7e4f631a2f4e05cfbb05d5a1bc5bdcae94",
+      "sha256": "a17a5e485362e337af01a6f8708cd0aba7b245cda3563d521f123223d2ca2045"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/TerrainAndMovement.webp",
+      "bytes": 190130,
+      "gitBlob": "a7174d484237d4f1f2969843d216e18823f37125",
+      "sha256": "dfa3b142747e9f438c49d1782952355ca0418bcb5fd64849033d55423f134aea"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/TerrainAndMovement2.webp",
+      "bytes": 171464,
+      "gitBlob": "49119bd7c6e97cdf751d60d48fa922fce06c30a4",
+      "sha256": "09475ffe2df59b101158c1a11da19149052ca3229575f68f1f61ee712204ceab"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/TerrainPlacedOnAMat.webp",
+      "bytes": 169956,
+      "gitBlob": "0b6f3052bf1b0118f9b64f80b90a4c6834251b5f",
+      "sha256": "d0d9ff86088400bfcac33f0aea90693be797bd3f9f1e12764700e771e49dde28"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/TerrainPlacedOnTheBattlefield.webp",
+      "bytes": 165162,
+      "gitBlob": "1fefdfc22c6ea24ecfe10de425813a47ef360995",
+      "sha256": "d8084eade5dd68e00cc1d6f084534e4c545c1f829c95a44dc9d441b871cde943"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/UnitFullyVisible.webp",
+      "bytes": 61392,
+      "gitBlob": "5b75e466c514d81230f6903a3ae00e77c67fab4e",
+      "sha256": "14a9a55d96a136d99eed87c61179b60d27be76fcbcfeaced3b97111984ebb305"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/UnitVisible.webp",
+      "bytes": 45076,
+      "gitBlob": "7e420f7fbb28daac4d67ae7a56264f90b8018f9f",
+      "sha256": "ff5d6b3fbe7b7fb9f041032e7cd2abef472d269e57a6a1b02a491eff07416649"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex10.webp",
+      "bytes": 99032,
+      "gitBlob": "92b692bf21068b3b6b1bd3845ff3df6c9dd99dc2",
+      "sha256": "cc3b3780ccf9f116d3e95601337896933127f54d0d58d9db4dd63a991a3c1cda"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex11.webp",
+      "bytes": 240614,
+      "gitBlob": "5fa5524d42ea939ae6f8760b283d629088eeca50",
+      "sha256": "b40f4a88cf79524af698445cfd79f3fdf128066c5162f7ab864784e878759e1c"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex12.webp",
+      "bytes": 214830,
+      "gitBlob": "d612164ca63e7c77c3c3fa3ba46bda9dfc98429a",
+      "sha256": "151ac5974a82b6851ae2f181e7f07b4b74521e0aa5552e9092a64edd7fd9a85b"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex2.webp",
+      "bytes": 59106,
+      "gitBlob": "3b7dfcd73c44b9fb87d232c2f2a81297422cc9ea",
+      "sha256": "9f4117bfc26ce4c4a7669a4e5ab6ade54723cd71375b66b20100ecc041ccc64e"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex4.webp",
+      "bytes": 88726,
+      "gitBlob": "54d8ed85f0ef4824166bf0242ff8f6332ea392d5",
+      "sha256": "a5fff4ea520af8b720cc2393ea0c9fb5450948873eb46698ebc72ace92cbc196"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex5.webp",
+      "bytes": 39530,
+      "gitBlob": "31f7ec18b6b07fbd6f4ccb0cdb8c412dc3bd893c",
+      "sha256": "b64baeac52d84e80970dad2aae4e53eb1cd4d4eead064e656fa478b7c639b703"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex6.webp",
+      "bytes": 95128,
+      "gitBlob": "9632b03a43d751aba52b4005956a3e9f88badcd5",
+      "sha256": "76154cba51620f6f8c85d36ffef1774997823efa1a396a299bd088ed26f26136"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex7.webp",
+      "bytes": 168236,
+      "gitBlob": "5740a60ef6ee7d12da8dde713a69120659a9d41c",
+      "sha256": "183b8413b98bcbb923c89a591bdb95f93f73c07d0e0c1342eaa0fc0f4f81cb39"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex8.webp",
+      "bytes": 106372,
+      "gitBlob": "b7d1ddb0799160399dcd1091675ca064e8c9effc",
+      "sha256": "e5d865c13666a5d3023aef8de13500605fad6775ad4be1aea65b83bfe51f8c3a"
+    },
+    {
+      "file": "books/core-rules/assets/diagrams/ex9.webp",
+      "bytes": 109202,
+      "gitBlob": "4514bc9557b643615d64caccaaf03d6b990c2af9",
+      "sha256": "3d34cfc4b24a95ddcc68829003ce7f2868fa192b3de91b4dd66c267cd3dcc748"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-04.jpg",
+      "bytes": 156473,
+      "gitBlob": "70e5cad85f8e28344a56d301a799f42d1324a779",
+      "sha256": "278e0ed3e34e286927fc9f39b5059fff6496277ffb3e02833218d702f719b77c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-05.jpg",
+      "bytes": 176741,
+      "gitBlob": "b6a755cd1e77512570b1d23e5de79f74fb15bccd",
+      "sha256": "edb639108baf704f5f0cbfda18aa64a6262af6f25c6f95229ae48613f6af29a1"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-08.jpg",
+      "bytes": 163521,
+      "gitBlob": "626a3f6344568d51b73bd4966dd7a5d9c3548cc8",
+      "sha256": "32f9cb70b973b0bddf0fcf1b37f8fd5fcc41480cd1bc1677a19967f8ecb5b3b4"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-09.jpg",
+      "bytes": 156015,
+      "gitBlob": "f6d3eceee5974ed3301b2ce3547d7c6bdeca309e",
+      "sha256": "3b73f5931c6d6e1fb2ce0c1b3632e395f21d60390a902253591ee8c77a159535"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-10.jpg",
+      "bytes": 169666,
+      "gitBlob": "59454cda4735ecb18bc69e8300049df274bc59ec",
+      "sha256": "be1e9378678772fc441eec82ced6c148512eb280de1415b2cbdbd830e361e2bb"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-11.jpg",
+      "bytes": 143215,
+      "gitBlob": "3ea8ca03ef099f62c6332f5ef4984172fd56693a",
+      "sha256": "8f4857b78680552c38575f9e0668c8585443fe78d85df3c89b4d07511024036e"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-12.jpg",
+      "bytes": 163357,
+      "gitBlob": "328c9d6b13bf367ea9a9092e81380cf95a1c4d97",
+      "sha256": "c80f4ebe93353eecffe5d4c98d0f1828580adb9953db78bc989d92eb2374044b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-13.jpg",
+      "bytes": 147166,
+      "gitBlob": "001bfa8568ebbe094f8ea3d5cfae8d7f4c1c0145",
+      "sha256": "6abf5413a76c4dd6e4995f75510968f53ffb1d2df6a16149dd5f0ac8c6924efe"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-14.jpg",
+      "bytes": 153614,
+      "gitBlob": "d107e91221fe76bc1898c5ed31b74bc81a1e1347",
+      "sha256": "70ebfcb7f949920e6220ed716dd05a8915d39a71c1d8538c329f3be62ac7858c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-15.jpg",
+      "bytes": 131220,
+      "gitBlob": "4aa9683671d0953e6a6eba400b62de86442e06e1",
+      "sha256": "6d469af4814ef0baa0c344d476495ec5af11502d0b8507a262e478d2bafe55d7"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-16.jpg",
+      "bytes": 145249,
+      "gitBlob": "7d61663ac7170de6c8860ab1af10e29ca3ff625c",
+      "sha256": "6b58b260003e4523baef79ed0711423b4c7a5c2d9204214adae03c1d90ee290e"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-17.jpg",
+      "bytes": 166569,
+      "gitBlob": "4b1a33e9f066a68aceb2e8ca996ca12c7141a8f8",
+      "sha256": "88e40fffeb98f72b86dcd0238af90273c0e62c6f9faf23a7ee2a18cf1cfd108c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-18.jpg",
+      "bytes": 151092,
+      "gitBlob": "f7f13f68b3607c479b753934c09917e3e9f2dc6b",
+      "sha256": "abe4ee7808ffc960ccb66e659600fa3d2b3da80de77a7f400886919aa72e03b9"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-19.jpg",
+      "bytes": 153154,
+      "gitBlob": "7638401ce12328387baf3a81922888594402a14c",
+      "sha256": "df076137dabd0b2a8ff031783686ae05deb778baa0d10a61920d9bf5167d530d"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-20.jpg",
+      "bytes": 144151,
+      "gitBlob": "77d78d4064a5254f820bb0eb3ffc9fda8311f57c",
+      "sha256": "a51e430dffde2e3fa42755947f5bd675d3ce0a0026f4e8350d79de1f96b51cf9"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-21.jpg",
+      "bytes": 161959,
+      "gitBlob": "5105b35490d852688303c3b0a46af518ff739f78",
+      "sha256": "d0c8969576d19491051bd5263e71bbf1a9d4bc1df26aa24927839904c366a825"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-22.jpg",
+      "bytes": 145403,
+      "gitBlob": "cd9ba74b6d056369513e3791b698b7d789403e96",
+      "sha256": "b26a2cc07a83aaf5066971f14573b9c21649c6d3f7d73cc4806b34c458de5264"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-23.jpg",
+      "bytes": 141848,
+      "gitBlob": "7387a2d7e5af9c99ae871d022aa9ba71bbc12481",
+      "sha256": "b253c85529d665def27228def41a83011a91a17ae7bf6cd0010bf40d8303c285"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-24.jpg",
+      "bytes": 155192,
+      "gitBlob": "6e02a1db273772fba635caccb36cbf4df9c6ec98",
+      "sha256": "156b626d35d98184eba92f7070844b222a28ba4b49a234e3b1d6a071bac561b8"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-25.jpg",
+      "bytes": 168853,
+      "gitBlob": "c207d8548a28705ac18970fe4dc0c1576c80119c",
+      "sha256": "9546928c3aa96bd9237b191973f2d881355bb4bcc5df1924c155bde016a56938"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-28.jpg",
+      "bytes": 157811,
+      "gitBlob": "b073d87646e1b38e86e8b48d33c9dc09eed86eb0",
+      "sha256": "18d26fe1ed1dec91495e083e838659d502be14a5a29d4c3f58d754eb60647797"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-29.jpg",
+      "bytes": 145707,
+      "gitBlob": "993be977910deed960942d86dc0e4eafd5676e04",
+      "sha256": "8633b06338870dc9275f5f405bc3fa348b0191f3dd347b44e3098d9e1f3ac4dd"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-30.jpg",
+      "bytes": 152016,
+      "gitBlob": "53e4c82ce317def79d1bfa4e037501cc86e3338c",
+      "sha256": "98355c34ec54f5d5d804a13fc9e8bc936df44f19b1c1bea7097c94addf3f494c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-31.jpg",
+      "bytes": 141729,
+      "gitBlob": "eda9210bbb9975d5b292de1ec4afbe69205f2f2f",
+      "sha256": "da3856f6c562b1f452bcbe9f695d9c035cbb8a8230e6638a8a438718ac4b7019"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-32.jpg",
+      "bytes": 143219,
+      "gitBlob": "f9c5794789bd5311c010d7dd0c11cbe6410442de",
+      "sha256": "b599b784247939045ab12bd455a7a2966ff767d8d6c9bcc6203830605e529b0c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-33.jpg",
+      "bytes": 165902,
+      "gitBlob": "7d2b2b8e6a69e36afa84b81227462e3e2229088a",
+      "sha256": "1169a9aa43c38aaaadf63384c27b290acbde960fbbb3ccb3097c3a3e40a531e8"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-34.jpg",
+      "bytes": 143884,
+      "gitBlob": "173be94c5f5749f69e1c6898c4f6e0e57ddaff0a",
+      "sha256": "03db64ba46eca06d2b20c67f3e0cc3bd24efa67dd8945d5f26fed7dd29bbde3a"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-35.jpg",
+      "bytes": 144255,
+      "gitBlob": "0fe6a28f55bff69a33db7a591cd9b45de8c94809",
+      "sha256": "7e872c8d4f9698a1cd930b46c81a8527ca9c1836d193e94fc4b632b120bdc05b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-36.jpg",
+      "bytes": 158137,
+      "gitBlob": "19a782f1219c3c548ce2c8604bd69c0135396e0e",
+      "sha256": "2af7650b5be747c8a6eadf6086e467e2f293d94551f4eb4a9e76f9fa3f25e491"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-37.jpg",
+      "bytes": 147405,
+      "gitBlob": "fa888bab0478e4c31847573393ed365a004a7729",
+      "sha256": "e5d6b848a5ae42083fb801c9e08ee3945a5748747d75326ca64086d2edf74dfd"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-38.jpg",
+      "bytes": 147278,
+      "gitBlob": "b35e56a367ba7aa0407a887e78cca8b561d664da",
+      "sha256": "86e45429c627022e4ebd226051071bfbb9e53d0783a58ca87b6fae338b762d0b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-39.jpg",
+      "bytes": 150072,
+      "gitBlob": "1bd40b1dcec21c81f5e72aaa3d468f721dda784d",
+      "sha256": "b7fba1007104758fcb8fad1270c5578427944adb0d84527a0a7d37c290c9e5b2"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-40.jpg",
+      "bytes": 155774,
+      "gitBlob": "61e3611627deef32d21411b73faeecccfb893232",
+      "sha256": "64c38a7cb3b6992b44892791ebeb23becfd7a3f6ad75bb1da00452b9706aa9d4"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-41.jpg",
+      "bytes": 151712,
+      "gitBlob": "9f99f5cc26a6fe00de2dc8138c5cec526c314003",
+      "sha256": "b04bc5deac0621e82326737115e349df12b3851c8221c193f32ca13d40fdcf7a"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-42.jpg",
+      "bytes": 156636,
+      "gitBlob": "9e14fbd62a3c60a3cbc0b8f474035bb8ee44d1d0",
+      "sha256": "1b99627e4a7448af53d3db2bb9b93aafee14913855b04aae96184f6ce7b5dbbd"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-43.jpg",
+      "bytes": 138041,
+      "gitBlob": "fd3089c55bbcbf230fece26272b62e1b1515bebb",
+      "sha256": "78beabe9d811ae430445091ae6bfbff70480a396d98fca891b9a3d6489bb51dd"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-46.jpg",
+      "bytes": 163926,
+      "gitBlob": "20488f531430bcb9ec45557659a20ac23449d1b2",
+      "sha256": "ed0dc7774398ee922fba98d3acb0c336a55838ef1c553557058c7eb9092c4a41"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-47.jpg",
+      "bytes": 143210,
+      "gitBlob": "bbe9b6338340b5aca04dc200ef573d4f68cbec5d",
+      "sha256": "1e91ec1a2ab27434b8da6fb87d81cc7acfd2041d33112cbc3fd01bb721a4b554"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-48.jpg",
+      "bytes": 148730,
+      "gitBlob": "6e1ab61499a3a83d6e7f40db7cff22cbefda163b",
+      "sha256": "37897bfcba42b907009aad58ddecbf09a965cf81a6f11fa697acf7a5b88b2935"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-49.jpg",
+      "bytes": 154248,
+      "gitBlob": "d8d80826d13930ee1f0c24cb69965d2dd8b74eba",
+      "sha256": "83da20f542656cbd5bc1d59a4bc8e148133bc1261784585abe0d51639b9b8b20"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-50.jpg",
+      "bytes": 167300,
+      "gitBlob": "05430821546069a5f3353769c55dd09ed08ef961",
+      "sha256": "d3842c04a0dad7d61be7499860cad6bcc044e5f5289641162a0d50a2856d3e05"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-51.jpg",
+      "bytes": 168867,
+      "gitBlob": "f515f5f1200b5c5afe6480c7f96b3e289feda43b",
+      "sha256": "8fa4b0462cca879e56b31f7dbcba543f4988d7622dc637a5226811caf70922d3"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-52.jpg",
+      "bytes": 155837,
+      "gitBlob": "289d517a65a0a4dc8c774364ff80141d702dad7b",
+      "sha256": "3cdbbc3fc815b4a2acdc766d6313d0aedde75b78fbfbf1620d49f4a3591647ce"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-53.jpg",
+      "bytes": 125548,
+      "gitBlob": "2e86a3892e22b8656cb4e6f97e1f329053c10e75",
+      "sha256": "be986a8df9846f6822326293c30191b23ad72a3463ae931661f57414267c1804"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-54.jpg",
+      "bytes": 145391,
+      "gitBlob": "ba56732054d716442efc615b48758a7f418aa7c2",
+      "sha256": "10d97a684411f424535c5b30d87a0a5c35bb1373ccc8c47836834730f5abb9bb"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-55.jpg",
+      "bytes": 134610,
+      "gitBlob": "4bd6d7411d39eaab97d0ff2dab098f653179f77a",
+      "sha256": "ce45012af74d5270b12528b6d352d65da68cd9c3011d4940c992933930295297"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-56.jpg",
+      "bytes": 169907,
+      "gitBlob": "77de573d5ab0702b1949d50bd096024edabd8e6b",
+      "sha256": "a2d76308a36bf00b5b3f32c812bac5e23754576234cbe0376a3652322985050e"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-57.jpg",
+      "bytes": 166282,
+      "gitBlob": "7fc24384d4cc2dcb5d251536d521173068fa7447",
+      "sha256": "e4e0bb3b3d2f4e716299504d64db170832ff40f4ed23786765e5f0d1bee85fc0"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-58.jpg",
+      "bytes": 143418,
+      "gitBlob": "a48b7404d1240e56fbb4de2e147966c6172a9d00",
+      "sha256": "75f596690d8503d6e995a666b6d0134d02323df5d86cfe044a19e0741d586e41"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-59.jpg",
+      "bytes": 171402,
+      "gitBlob": "8193cd2b59f44677c261a3e52c812bc1f6fc5c72",
+      "sha256": "d8eb66bea664550ca4cb0cf3d8df445cde03b5544e926784da1dddb2644fb918"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-62.jpg",
+      "bytes": 167154,
+      "gitBlob": "09fbc436eb2b4af4bf45466a1c6ea03944d9e4e2",
+      "sha256": "a2c081cc79c61f85926e781079a82bad04f803e3b75d1b1183a783be6f19b5b1"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-63.jpg",
+      "bytes": 144229,
+      "gitBlob": "141e532bb77f6f85feba4209038403a47798d803",
+      "sha256": "dbe18c138f401ee3ffee2e4c4a0f7eca803c90e421716cf3ee9a595e8488cf3d"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-64.jpg",
+      "bytes": 152769,
+      "gitBlob": "320d67bbaa6ee7c63af920d58ff6dc4aa3bdecc1",
+      "sha256": "eae3d09ab62f2a2fb04adc0a8ce845fd3c886811c3131463c0180b36f0075460"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-65.jpg",
+      "bytes": 148389,
+      "gitBlob": "c16adfb8c8f20c02afce4df2235c2849609bd634",
+      "sha256": "36ca0234c38bf2a9eea57dc7106d15abff7727593e775a3a57c43ac120b3de05"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-66.jpg",
+      "bytes": 152869,
+      "gitBlob": "cc54d2ee3f92fa08a9e4ed9a365c794e9d21345c",
+      "sha256": "eda96428be3a07c26dc47706d3687a975e7dfe70159e28ba34486e893c022116"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-67.jpg",
+      "bytes": 146420,
+      "gitBlob": "1863fd7db6ffad2a9227809e41ac30414b5783b8",
+      "sha256": "1b33b052ca223c28dcc74a70f8365bf53d7fecfbb251b8b945401ccccdbcc059"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-68.jpg",
+      "bytes": 156275,
+      "gitBlob": "226ea42533957e903fb7eaa7999348c91c8b9b6a",
+      "sha256": "87e5bf84da9144aa016b6bcc386b7b13cfccf652490393e2886f940e590cfa64"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-69.jpg",
+      "bytes": 130616,
+      "gitBlob": "a8b9fba9f6e6df4cf7f76042e8f78f43612bb11a",
+      "sha256": "0ff08709d04322c2c8882083895502343a8fa834dc143f06ccb82692af122d9e"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-70.jpg",
+      "bytes": 144153,
+      "gitBlob": "0c09e137bf7578fa4943d5467ea69ee10a2723bd",
+      "sha256": "65d1506e9bb1a21f27a34fdbe4967be790910475e9a5872571b6d98af8fb4f1c"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-71.jpg",
+      "bytes": 141452,
+      "gitBlob": "58dd93964633bcd206fb627905c582aafe4ac0b6",
+      "sha256": "a931b718e9b9b84af6d7a309f9bff3b96f5eb5168457403851726234dc4c0207"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-72.jpg",
+      "bytes": 145318,
+      "gitBlob": "bfae81b15f2b9c8a2c49ef682eb89b5b4474d78a",
+      "sha256": "6e6822a32c629477d6d9616c3858843afcb2fd93f90e343d71c3e592e77ace50"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-73.jpg",
+      "bytes": 126149,
+      "gitBlob": "1e5af18f6d2b5b6bfd2710dd809c50e928a77413",
+      "sha256": "73cbe293670ee0a6aa07e1cd38ae73540f9264cac37ed60b733686230cf56a8e"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-74.jpg",
+      "bytes": 138440,
+      "gitBlob": "c87b4315b3aa5f451ccc5bc72dd448d67c1be890",
+      "sha256": "c3426cafa838fc7c27c40e38f166912696c4e7072fef299a36b3e43c11959eb9"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-75.jpg",
+      "bytes": 143638,
+      "gitBlob": "67450d82c2b391218168b523d74da1f8fd5ccbf7",
+      "sha256": "daa42ab42d88817404453068b9d6b5bc17e65c15a402e0ba0797bcb26594478b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-78.jpg",
+      "bytes": 168522,
+      "gitBlob": "6dfb02e0bf747ff9d54c36f7a5b1ab683906d726",
+      "sha256": "ade185766a9242912ed1766cc89ddf20365d825a9db436989c0e2512e980214b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-79.jpg",
+      "bytes": 141713,
+      "gitBlob": "ed52bfd42cea5c88716be9397118f261db7332f1",
+      "sha256": "0aaea195b3bddd584fcf545b40be055855cc49a5689b5628d6a2358c1ac0520b"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-80.jpg",
+      "bytes": 182792,
+      "gitBlob": "065f943c38247c96adbfe0c357344e7fa50243d2",
+      "sha256": "ee729601932f59136e83476307828cd4be70dac8aca2f2874935e40d566f1c1a"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-81.jpg",
+      "bytes": 146072,
+      "gitBlob": "16a29ccee1f00592e521889ed5bb78e52d0ea8a2",
+      "sha256": "d2de16deef1376de4bdff8488fd6c0de6c5d9de540095eef525453903b04ae2f"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-82.jpg",
+      "bytes": 172011,
+      "gitBlob": "6d590db43297014e2561089f42a57845adc06717",
+      "sha256": "4c70b7b713f4257efe82e9e720781937c82bdc93e6b51e02028bc1017b0ee812"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-83.jpg",
+      "bytes": 138296,
+      "gitBlob": "8e3140c91e552ab569d61f81d4488e51ce8c9b59",
+      "sha256": "fff50c709e5d41563bb555321a29b785995e796259c7b2804a78498505fc2eb5"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-84.jpg",
+      "bytes": 171022,
+      "gitBlob": "85f888d5923a14b38a48c9682e5e9e5cf7c6155f",
+      "sha256": "25ffb27f120068e2f4c2e03eb0af3e72dd55d46e399134254dcad94c5133f088"
+    },
+    {
+      "file": "books/core-rules/assets/pages/page-85.jpg",
+      "bytes": 148510,
+      "gitBlob": "220c7946cdc8453ff0277076eae7de58584106e5",
+      "sha256": "69b04cfdc2500251bb8cd8d0f6130d29acf667cba2132c8024f339e224c488d3"
+    },
+    {
+      "file": "books/core-rules/content/core-current-official.mjs",
+      "bytes": 7315,
+      "gitBlob": "003a4628904f7a65308fac13aa68b96fe261300e",
+      "sha256": "36329dbf31202fad01924088ee157a14fa88da1b838ba4eb6badc5bebfb4aaf4"
+    },
+    {
+      "file": "books/core-rules/content/core-effective-bindings.v1.json",
+      "bytes": 14539,
+      "gitBlob": "35c89a6d69da254bca52b8851a33ef10678e2917",
+      "sha256": "e61fa0148f1cdfd823f4990425f93c654d2f831ccc53408241e8f3343edc5ba6"
+    },
+    {
+      "file": "books/core-rules/content/core-fact-projection.mjs",
+      "bytes": 9406,
+      "gitBlob": "d096e2dfefb39e1fdafe6eef32ef1ea59c78e72d",
+      "sha256": "12c840cd663c952e53ad10fc006cad719729173e5c08e5fab56b76adb2df1f4d"
+    },
+    {
+      "file": "books/core-rules/content/core-identities.v1.json",
+      "bytes": 15651,
+      "gitBlob": "881eeea63c0de44f6118e860c934c4313ba7cc5f",
+      "sha256": "d658880cade65aa9832a9dd61feb01b385f8f863db88b5680675641f94b5f1a8"
+    },
+    {
+      "file": "books/core-rules/content/core-official-source-registry.en.json",
+      "bytes": 14543,
+      "gitBlob": "b862701f09f24aa9fe5c2776c606cf22b9a0aa3c",
+      "sha256": "19ad793708a7dbfef68670911ba087777260676fd63d8a332e074c3c9aa68308"
+    },
+    {
+      "file": "books/core-rules/content/core-rules.current-official.en.json",
+      "bytes": 8831,
+      "gitBlob": "b8533c60045ffe6a432a28c7723a2e6a77f6fb02",
+      "sha256": "9cd2348015bef9b909e2d5648d34a6640fd1a8413e5712aef99a67290b5200fa"
+    },
+    {
+      "file": "books/core-rules/content/core-rules.digital-11e.json",
+      "bytes": 218838,
+      "gitBlob": "3f09548b7484146535b3467a253ffe2e9089d719",
+      "sha256": "cde85ae618dbfb458d41a918fc7956d2d0f42697bf1f9cddd846b941e6952244"
+    },
+    {
+      "file": "books/core-rules/content/core-rules.en.js",
+      "bytes": 14308,
+      "gitBlob": "7bd2371bbd7adbc8384af2e471c2669ee05475de",
+      "sha256": "81e8cca1ab01fb9d1e7fed12e6d7475e1fc4a758adff140bc914b792f7abf7fb"
+    },
+    {
+      "file": "books/core-rules/content/core-rules.source.en.js",
+      "bytes": 278821,
+      "gitBlob": "c2dab26e1544ff32587633e2343fcd82163f7e7b",
+      "sha256": "18e7c0d2f4deec1d3a8e0f231cce95954ff4f9cf3243d1532da1429be8298516"
+    },
+    {
+      "file": "books/core-rules/content/core-stratagems.related-rules.inc",
+      "bytes": 21439,
+      "gitBlob": "06020b2a91e6925b34e990460e1154951843eff7",
+      "sha256": "865d033b10c77b72ac3a41414c177b113fca48a8e3cedd11ea2e47f1594a5b2d"
+    },
+    {
+      "file": "books/core-rules/content/effective-core-catalog.mjs",
+      "bytes": 20807,
+      "gitBlob": "ee0f23cdd07bcf9a1352ce0c857f2d190ac41b3d",
+      "sha256": "a2b54e35a37a8d888d1b730c75bc554f6598a36e1c179f220199c3dc1beb14f5"
+    },
+    {
+      "file": "books/core-rules/content/fact-source-bindings.mjs",
+      "bytes": 3889,
+      "gitBlob": "6374a318f6e1cb0c6b6cc23319eb05d2b5ac5c00",
+      "sha256": "6d87c59a4dbaa5df0a6aa861ce3546169f92af86913bd37df4e3ccd92d635646"
+    },
+    {
+      "file": "books/core-rules/content/record-content.mjs",
+      "bytes": 1334,
+      "gitBlob": "2b5724c5432b19ff7a22d413d1a4df10e54778f7",
+      "sha256": "b4aa384e28431626350076e8e8b11e86c9d0a7ed2060eebe408d16dd988b0597"
+    },
+    {
+      "file": "books/core-rules/content/waha-core-source.mjs",
+      "bytes": 11228,
+      "gitBlob": "008bfec71c36c38d212fb31f033dc603f4055fd8",
+      "sha256": "48c194e142b39099178dd5f64c2e01f0a0da42020db31d70cb399341119b0dd2"
+    },
+    {
+      "file": "books/core-rules/reader/actions.html",
+      "bytes": 15719,
+      "gitBlob": "5443fa28f79707619391997a84a92ee4ffe5b8c8",
+      "sha256": "e98b4d1cb1dfa247d7d6e79df452f769a99a2e1e10faad683cdffa43372920f9"
+    },
+    {
+      "file": "books/core-rules/reader/aircraft.html",
+      "bytes": 16347,
+      "gitBlob": "07bdc8adb858ff8f5759697bba535e9a8281c4d4",
+      "sha256": "ef30ad6fd89b97f40566ab0eb571e730d0d194d2375837237351902657cfbc08"
+    },
+    {
+      "file": "books/core-rules/reader/app.js",
+      "bytes": 13201,
+      "gitBlob": "63a3a20e4b4dd4ebb6aa4e5a69f1346be5e92b72",
+      "sha256": "bfa9c55dcb740590dfa2f20833fe5c6da9fadbafb11dbff76a948b3583bfba02"
+    },
+    {
+      "file": "books/core-rules/reader/attached-units.html",
+      "bytes": 39627,
+      "gitBlob": "47f69c8312d4e43c70056f024b7679591417e87d",
+      "sha256": "92944e5b6dd2bcc20488f7f327ee0d7946dec65043db0879cafbec2989f39e59"
+    },
+    {
+      "file": "books/core-rules/reader/attack-sequence.html",
+      "bytes": 88156,
+      "gitBlob": "07ee01961f5783922276a60074b770c5e3010f0d",
+      "sha256": "dcd6607cbd0e8d112b2dec8bd50e886d0b96e889008a46a9c858577395cbbe89"
+    },
+    {
+      "file": "books/core-rules/reader/battle-round-overview.html",
+      "bytes": 13418,
+      "gitBlob": "4287e947fe14681e5d5c63f167351da2b54b4ac4",
+      "sha256": "e587bd1b8f942069964403de7b4840858688fed2f2dc5cdedf9ecec8bbe163eb"
+    },
+    {
+      "file": "books/core-rules/reader/build.mjs",
+      "bytes": 35536,
+      "gitBlob": "faf18042312ce3e746cba58a61aa494f7472d91e",
+      "sha256": "115ea1f38260c5f1132e85b06c3389c53887358efed4ae5258cc307beec45fde"
+    },
+    {
+      "file": "books/core-rules/reader/charge-phase.html",
+      "bytes": 43063,
+      "gitBlob": "5acbf0d43b541ffd3df9a9e80457631294f6c74e",
+      "sha256": "e2fccea34e6a1ab4ae42a43c27fd241049d5407633f789a1ec472f3a4dc43d32"
+    },
+    {
+      "file": "books/core-rules/reader/command-phase.html",
+      "bytes": 28466,
+      "gitBlob": "8802301a3fad167c8dc9028db5f63110ae70769c",
+      "sha256": "f43f53aa08f337e67f21d3eb3fc1bcc7676987ba45cf3a510332e9f36f5ae36b"
+    },
+    {
+      "file": "books/core-rules/reader/core-abilities.html",
+      "bytes": 176133,
+      "gitBlob": "553601142b5a834a348d4776f025a4d18fb50d8e",
+      "sha256": "a4d6653e93ded1e95b13d3a9a7457c3747a207b93c87f026021e4df7ffd65ede"
+    },
+    {
+      "file": "books/core-rules/reader/core-concepts.html",
+      "bytes": 84805,
+      "gitBlob": "902dde6dce8b0b6ab85ac92d06e9381efd3ba50b",
+      "sha256": "dbde32084c6d0b9bde243dcbeaf27309d65b4a8224c2bb5f287aa737ceb19ee3"
+    },
+    {
+      "file": "books/core-rules/reader/datasheets.html",
+      "bytes": 89365,
+      "gitBlob": "ebf03768633b4f9e5e8820faa765fcb18fc0bdf8",
+      "sha256": "24e127fedc4bb0ed9346e82f52a7191f9145da25e19b9de8b745223fbd7deea1"
+    },
+    {
+      "file": "books/core-rules/reader/fight-phase.html",
+      "bytes": 67267,
+      "gitBlob": "24850a763132e61ec14f75ea6ac8a14125c26209",
+      "sha256": "dae9bfb04f7f6fe4e3fba8e44182736ed6ee98d3f8803dda37f6997a33a8ee59"
+    },
+    {
+      "file": "books/core-rules/reader/flying-surging.html",
+      "bytes": 28297,
+      "gitBlob": "7e15dfd7fae921442fe8af63ddf605a5e91e440b",
+      "sha256": "6d72d62362f54639c5e9f07ef55ed8c77f9af36fb615d752f6d6b5b0109ed230"
+    },
+    {
+      "file": "books/core-rules/reader/index.html",
+      "bytes": 242659,
+      "gitBlob": "7b62617186ab9a2cb8ddf2480fda35cd721e2bfa",
+      "sha256": "946fb853652470985c12be72134aaa7c4617fbd76684084d01b10fb46fbdb2d3"
+    },
+    {
+      "file": "books/core-rules/reader/introduction.html",
+      "bytes": 9827,
+      "gitBlob": "8cc119683495a2702652810da9aee832d42b2d7b",
+      "sha256": "e3f5d8393b165e5b617a36ddea7ab4e012300d8127c0a06222e280d89cc01f5b"
+    },
+    {
+      "file": "books/core-rules/reader/making-attacks.html",
+      "bytes": 65698,
+      "gitBlob": "66d1fbaf8cce2b72909c02d3f38ae87543708391",
+      "sha256": "1b1a04add8ea0920430f5f39b3f826dcb908fdce447a997f3d6e43aa063d491b"
+    },
+    {
+      "file": "books/core-rules/reader/monsters-vehicles.html",
+      "bytes": 36251,
+      "gitBlob": "1fb839b91bc5c4cfc804350e91b4aada0ee6b4fd",
+      "sha256": "407e55ba5f3cafb757b7b3086bc3ada05c27c2917500dc32f1164ab367223c03"
+    },
+    {
+      "file": "books/core-rules/reader/mount.mjs",
+      "bytes": 12065,
+      "gitBlob": "ce5a2ad396d2f4326fd1cd44fa4ccc2016298e7c",
+      "sha256": "2c26e03a4afadc6e17a5fd2e4d9ac47a19b6ea3b5479bc7e4aafdeb3b7b966eb"
+    },
+    {
+      "file": "books/core-rules/reader/movement-phase.html",
+      "bytes": 51653,
+      "gitBlob": "aec3a0502e89211bd236291d8e0640cc840216e3",
+      "sha256": "53d2aa0e4fbc692ceb59f6225dc3f9469d74956acf3ab1b0bde607db5aac01c4"
+    },
+    {
+      "file": "books/core-rules/reader/moving.html",
+      "bytes": 43803,
+      "gitBlob": "acf5503a7427c8c876b1df78df2bb6c3d4fb2af8",
+      "sha256": "645972660c9c4e1313d040ec102c6ee4f8ea23aca15a95a1d3019b42bd5684b8"
+    },
+    {
+      "file": "books/core-rules/reader/muster-armies.html",
+      "bytes": 20567,
+      "gitBlob": "1d61d6e44369cbff320e0321d0815cfb0e647cab",
+      "sha256": "470eda24c3edcda7cc1f73ef83bb132b581f25f27c8a67260b5110612d893cbe"
+    },
+    {
+      "file": "books/core-rules/reader/objectives.html",
+      "bytes": 29770,
+      "gitBlob": "a4bbf7bf4591f77e83d73dbf3b6f1e6a6b70f640",
+      "sha256": "622fb9b8648dda25720f4c4546c29168b98cebb4a695edbbc0d5a75259dea7ab"
+    },
+    {
+      "file": "books/core-rules/reader/other-concepts.html",
+      "bytes": 40265,
+      "gitBlob": "6b0c5477f6cadfe94182c8abb44994fb60b7712a",
+      "sha256": "ef10d04ea9d62125da5c8db9ddf0f8ccf13bace10a093381dedca7544247637a"
+    },
+    {
+      "file": "books/core-rules/reader/other-rules-abilities.html",
+      "bytes": 11228,
+      "gitBlob": "4cc961d4bab587f9cf565a1d166bf5230d198e3e",
+      "sha256": "bc95f8ecd4e9c490f011ccce57d731c137528dde45d11d2d4181ea51434a2c1c"
+    },
+    {
+      "file": "books/core-rules/reader/presentation-bindings.json",
+      "bytes": 2805,
+      "gitBlob": "4e3db244df384097ed395c02659d3951111c79e4",
+      "sha256": "896237a5823ebca5a0dea5f7c0e0438a2535d4334c5d84671d43edb113969581"
+    },
+    {
+      "file": "books/core-rules/reader/presentation.mjs",
+      "bytes": 4092,
+      "gitBlob": "18d636a9b78fb70c6d98fa29d88c3c6780c4e192",
+      "sha256": "76867fff845d0e5a35f6b469759b2f7a6c0d90798ed35a8576692e1a70db9cf0"
+    },
+    {
+      "file": "books/core-rules/reader/search-index.json",
+      "bytes": 213565,
+      "gitBlob": "a64112c7046055eec0b313aeb7bf97620e399f13",
+      "sha256": "94ad6724bb3dc56efacbd903ca4937dc87416e1cc507cdf26c66934c1f8342e8"
+    },
+    {
+      "file": "books/core-rules/reader/shooting-phase.html",
+      "bytes": 56758,
+      "gitBlob": "1f32eb009d8305fa4d2f53040c1e79707d3edbb9",
+      "sha256": "7dc0ab46e64e21aff1aa65bce489e7d0bc1134fa65190292078eeaa5019082da"
+    },
+    {
+      "file": "books/core-rules/reader/stratagems.html",
+      "bytes": 70966,
+      "gitBlob": "8e9d353c838071bba1a05d20db85e7a8a7b4a072",
+      "sha256": "3838082c7bc2cb4be37701136467f76a0631e0e988c995755b0c45040b5c0e00"
+    },
+    {
+      "file": "books/core-rules/reader/strategic-reserves.html",
+      "bytes": 34632,
+      "gitBlob": "d044f9eac49ade24be98d456038e4e91dd92ea0a",
+      "sha256": "652e6bd640f67926490a9f525af2821ef7ad93d185acef03a8b9452eb6706476"
+    },
+    {
+      "file": "books/core-rules/reader/styles.css",
+      "bytes": 21777,
+      "gitBlob": "7176dc5603f3ae77e9008869bc43e462a0913e39",
+      "sha256": "764ce3f3d6045ad73da91ee1be51fd94f9bd0f06586256380250bd75a51fbf30"
+    },
+    {
+      "file": "books/core-rules/reader/term-bindings.mjs",
+      "bytes": 1377,
+      "gitBlob": "bce97224a08e2af96bed530c0ed09cd9bdaee4c1",
+      "sha256": "acdcf32915cfc447a5e53ff4b66116b35305f2185570192b11b622056a9dd903"
+    },
+    {
+      "file": "books/core-rules/reader/terrain.html",
+      "bytes": 55966,
+      "gitBlob": "37a32842edff32388cae4b4ff92f752b231157d0",
+      "sha256": "8cb9fdd1243efa38d796c2083da7a01d213852782acf0a53e1e656f352a28de3"
+    },
+    {
+      "file": "books/core-rules/reader/transports.html",
+      "bytes": 73934,
+      "gitBlob": "f782437023204c36e03f9ece444b3cb732b6cbb1",
+      "sha256": "601ac2e1dc61db03afc8e57f0457cfa290701baaa64271ca7aa1a3ec32380149"
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+      "bytes": 1467795,
+      "gitBlob": "c3d643cdbe8e8bfc17b20630008e12c7d71e75eb",
+      "sha256": "7761005215c03f9d0e0a5bc217894f8605662fc41f04052150ff73218a3d588e"
+    },
+    {
+      "file": "books/core-rules/tools/clean_digital_records.mjs",
+      "bytes": 12905,
+      "gitBlob": "7589b779b2207f7fd22887c0790cf87ae58971c6",
+      "sha256": "ff312b9bc87b0e645872e8d6a33d64b46a8cd902cce2093f9624e9ec5fdcca86"
+    },
+    {
+      "file": "books/core-rules/tools/extract_core_pdf.py",
+      "bytes": 8165,
+      "gitBlob": "43ee50a755eb97ef8121caf2acab6e4c5d34d7f3",
+      "sha256": "7cccefd2b046e23c3040d017cd26df814101a9e0a5ff7ee4b992121cf87b9701"
+    },
+    {
+      "file": "books/core-rules/tools/import_wahapedia_11e.py",
+      "bytes": 18119,
+      "gitBlob": "6b0891975236737ecf68d47c50865f32d9f9a444",
+      "sha256": "a09e12fdb5433b59a4436aefcdb43ffec59bb4fd647d4766ec9dc10820dd3827"
+    },
+    {
+      "file": "books/core-rules/tools/verify_pdf_parity.mjs",
+      "bytes": 2057,
+      "gitBlob": "2805b3917f4330e6ff2b323362d21564aab291e0",
+      "sha256": "def859db66e2dafb9cc02ef32894f48b5be378f75bbf3b9e5e25908ac2c9c42e"
+    },
+    {
+      "file": "books/dark-angels/assets/dark-angels-cover-480.webp",
+      "bytes": 71096,
+      "gitBlob": "fe1b529f9525ea78e0a4b66f7eeba9690bb899e0",
+      "sha256": "828dae4e0f351ed5d8d874feb6d1b97e497223af02bdfcc63a74c3dc4766faf5"
+    },
+    {
+      "file": "books/dark-angels/assets/dark-angels-cover-800.webp",
+      "bytes": 149822,
+      "gitBlob": "30fda798b483c300920ea67a4ffe65b1a0690d44",
+      "sha256": "ac34839a136dafc6027ad3ce4e79ffc53fadcd6cc228bceef8937a9c35cc61c3"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/app-presentation.json",
+      "bytes": 19683640,
+      "gitBlob": "94c81f3b8ce73b192a1150512cee16ae1afc04db",
+      "sha256": "db092e0703870a4ad473524ef58d630c0a605dc3a27e9f54e3fd7ed46b1d03c7"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/base.json",
+      "bytes": 501364,
+      "gitBlob": "b49804c1faa382781a3bcf7a9f22012875a76442",
+      "sha256": "c2517dbb9eba51485065b2df0cec2d236fe909ece705cfbe14dd4dfa4a38ad09"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/effective.json",
+      "bytes": 501682,
+      "gitBlob": "6ef6305692819acc9ee801ceb54c1bd6ae031335",
+      "sha256": "848b34c3105c183269a3968c4c1e7258b5d74520f8d2ea6c4e353cddcc3bbd15"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/factual-census.json",
+      "bytes": 1460,
+      "gitBlob": "6e52a57d96f29b63429f78add66a58a14428252b",
+      "sha256": "727b3720e40591fe9e99dc672ec490cff53d51ef94e65683da3ae800dd9fab10"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/gameplay-presentation.json",
+      "bytes": 13834332,
+      "gitBlob": "0d62fbdb7191bb71c9cf1f9414f02169bab318b0",
+      "sha256": "657c444f91b734d692c4b3b8a9bab685b10478a9745b4b47ee9924efdcdba557"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mfm-coverage.json",
+      "bytes": 4044,
+      "gitBlob": "c6c57017953fc2378f1811ddd09d6f4b38061626",
+      "sha256": "61d6a12886218e8721fed45447c2ce507efaeccf55922b8c1c8285e96b7a7b88"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mfm-presentation.json",
+      "bytes": 33994,
+      "gitBlob": "0a96044900f7d3191e96215037f500964a64c67e",
+      "sha256": "aebe81a084dd0bbbda82d48abff29f5a4f4af73622e5e04490dedbfe0230291c"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-book.json",
+      "bytes": 2332397,
+      "gitBlob": "cf6d6a51606975a83af412c2d9a480b4a51a8174",
+      "sha256": "acd5161c57d9b89da8fb854863f0a615508d022d5c5d90a8a0da6fd3db44da15"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-coverage.json",
+      "bytes": 675,
+      "gitBlob": "c99930f7fdd9e52c13b4de4165ee41a8f00624d1",
+      "sha256": "2a79aa90ed5beba94b4ecc8c9eea7d9394a3ac7460cbae508f20fb8b250a25ca"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-points.json",
+      "bytes": 154154,
+      "gitBlob": "d0bed930e3e6e9c83b9d25359b916885bf18f376",
+      "sha256": "cc9181f69f19e2ca2a93e707da6abe63375a7db5c6da49b462b347657cdd60fb"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+      "bytes": 12323377,
+      "gitBlob": "868e0301a92d341b3e8ee8474dd6663aa6ca0006",
+      "sha256": "a66fae77a36f97719d92880fd72b63eda0bea95eacae0e69efe987fd592489b7"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/native-mfm-book.json",
+      "bytes": 516240,
+      "gitBlob": "7554157c2e8c226a775ecd774d1ba987d9f199c6",
+      "sha256": "5a768ab0d0c1e995df5f841a57720e7847ef931656a20bc994ccb54eabf5d8c6"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-import.json",
+      "bytes": 6104188,
+      "gitBlob": "b23294f510056ec67f9e54277d890d77138c361f",
+      "sha256": "f51cc361f97c0fa55de4e24a36ab0b8dc0b6b2e4205dca52fc3fb2787ba03016"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-runtime.json",
+      "bytes": 5058936,
+      "gitBlob": "0650141ccc11193025ae7de9bc2b9a0af5302b1a",
+      "sha256": "83c9abf055fa56ad264522478d093168360f2b54a3242dd2b1f18114616f3a0d"
+    },
+    {
+      "file": "books/dark-angels/v2/generated/rule-contracts.json",
+      "bytes": 56941,
+      "gitBlob": "8f8fa1aa67f8f1b9654055385928973112811a03",
+      "sha256": "cda80e9c366b5518a811900caa4924a263842989b4eaa1b464b905bcd98d5575"
+    },
+    {
+      "file": "books/dark-angels/v2/physical-chapter.mjs",
+      "bytes": 4162,
+      "gitBlob": "bbe2cecbda8717ac94f33ba5ab16125e35dc0838",
+      "sha256": "3cd365237848568383f84184c8d0d3f4009da334b7776d3141d134148bbb910f"
+    },
+    {
+      "file": "books/dark-angels/v2/registration.mjs",
+      "bytes": 909,
+      "gitBlob": "31b30d41ab0a8e0238deb0e0a9c23e78e776ae15",
+      "sha256": "b553aa6ac1fe82b674c1265c1b573cb5f479201da386269bcc904830e36af033"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-boot.mjs",
+      "bytes": 522,
+      "gitBlob": "67d16551ea2f0da2787b4b84e16faaff3471e941",
+      "sha256": "cefcc284ac14913607642c5bd3a42ef78e34e94101516f8beaaff498599965a8"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-import.mjs",
+      "bytes": 17561,
+      "gitBlob": "a085ac6f0a44f7f232c7b1baeb348c68ba6aec6e",
+      "sha256": "70a7e8d021b967b1240880d92950f7b9e6a6cb304925350d41bcc46d378caa84"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-paid-options.mjs",
+      "bytes": 5890,
+      "gitBlob": "45db1091ba14a7b43ccdf9b676f224772eb57c0e",
+      "sha256": "82b825c68f6c8d2a2e605153610fbd5086613810c6eff60865e5efc471d9aafb"
+    },
+    {
+      "file": "books/dark-angels/v2/roster-runtime.mjs",
+      "bytes": 2682,
+      "gitBlob": "77b3f772f586721a9381448d428b65accaaafa3d",
+      "sha256": "dcb07d8082e0b8cf2c49a3d61cec3dee622d9a23ed021a1bfdd587de3a4ff9a5"
+    },
+    {
+      "file": "books/dark-angels/v2/rule-contract-declarations.mjs",
+      "bytes": 5077,
+      "gitBlob": "43d3bf0f7fc9e46a337ea9a7606765acafd0450d",
+      "sha256": "74c11f7bf00e9ce7ca57ab228c39b9dbaf2cd06a72dc03cca454fd7e361527bb"
+    },
+    {
+      "file": "books/dark-angels/v2/rule-contract-schema.mjs",
+      "bytes": 1670,
+      "gitBlob": "e2c844c2f0e61c96b81a456ec56068d4e2ef9942",
+      "sha256": "7ef1c9e2acfb244b85e734c9c762823ccf3de0f3a96933bf0bae6e32752e3890"
+    },
+    {
+      "file": "books/dark-angels/v2/theme.css",
+      "bytes": 997,
+      "gitBlob": "bfc96a043022e553bd2eb866cc3c1890090df085",
+      "sha256": "0d2174427891d9048af2100bb936f800725010c0dbcd0079b1c04f277632bbdf"
+    },
+    {
+      "file": "books/death-guard/assets/icon-v4.svg",
+      "bytes": 708,
+      "gitBlob": "31aec515278e9db5e59a7fb4ef805040ec2b69a8",
+      "sha256": "d2b18b15ac9a5036612aa7573cc4fe8f0e6a126e96dced51364f5c01b0b73dd9"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/beasts-of-nurgle.png",
+      "bytes": 772468,
+      "gitBlob": "ceb97c5ebc1573cc9e1cba9ba36f29c9e9793916",
+      "sha256": "34973da80b373d25fcc8fe8f59c96439f105914967ebc04e665a85375cf24c86"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/biologus-putrifier.png",
+      "bytes": 632537,
+      "gitBlob": "3021b2de4df12711babe26daeeb023625cb714be",
+      "sha256": "cc785c34242fd77cf20a10b48ae3d6250582954377f686a1b87c53d09a4c7aa5"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/blightlord-terminators.png",
+      "bytes": 960040,
+      "gitBlob": "b9469dcae3b3f850991c681acae1f17ebd72cf2a",
+      "sha256": "dccb2960a23644ce6d3ce2e8a109b994cb5eb48ae52c63b6fec10838803c9bcd"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/chaos-land-raider.png",
+      "bytes": 573293,
+      "gitBlob": "5f09a909a7d102efad827fd262dad0f4ac503793",
+      "sha256": "ccb43bb44344df3d7f375fb785b358da04a2144d1ea8c4d1dbcb8c24f7886d8a"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/chaos-predator-annihilator.png",
+      "bytes": 579583,
+      "gitBlob": "a7019e6fe5e5ef3ea1441d906d6bdfccdbc2be35",
+      "sha256": "6bb4ac4b438118741b7d773dc3c2a3d5b4c98b957f8bed0375ee01eef5be416c"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/chaos-rhino.png",
+      "bytes": 558909,
+      "gitBlob": "d65fc576e986b7132f7eedf2a686d3db0880410e",
+      "sha256": "e403114bf43697843c37399704c2f9983fbc5eff22261a1684a1e6fc7bbe6a06"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/chaos-spawn.png",
+      "bytes": 644396,
+      "gitBlob": "7597b2722a3b1d4f5f70de22135f179ea8a4f6f6",
+      "sha256": "1e813b45ca9531abefc58cbd62ce0dd18865e40cec4f55ef1e70bb03cc404f22"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/deathshroud-terminators.png",
+      "bytes": 867808,
+      "gitBlob": "368f5e8e37685d43e4d8ec1b084ee8af977530af",
+      "sha256": "ec264c0929924a8e4aae1ab3c75400284982735a74af2dd16ffd99d624fc4d6b"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/defiler.png",
+      "bytes": 811654,
+      "gitBlob": "4e035268bfd17ab1c2372556f67b7f0b1114e56f",
+      "sha256": "bce1e077a4bca7d717e87e49001e6cda8a65c2b72811410810ff13314b65d906"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/foetid-bloat-drone.png",
+      "bytes": 679428,
+      "gitBlob": "dd8b5cc10d18a65cdc50d14ecc9d639e58a9956f",
+      "sha256": "d9be96ba5c2df6c52df72f750897534f0eb9e8a52f474c4c529e2bc07bbbb7d2"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/foul-blightspawn.png",
+      "bytes": 645541,
+      "gitBlob": "b976dd37ef0e544080d2322c48a7d8d3d4d69722",
+      "sha256": "88456d1b3382305aef132b07ae77d68b0212586869e1ac94ce36561cae225599"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/great-unclean-one.png",
+      "bytes": 971569,
+      "gitBlob": "ae35df0204e9a0f4c3f0b2ee4e9deb104d1bf17c",
+      "sha256": "41daea11fc9e1413a9891f685785368f05c95e7d3d9b207701bf804f90674bc8"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/helbrute.png",
+      "bytes": 532278,
+      "gitBlob": "8ec69f8e788f374a062030cdc71d8f22388e1658",
+      "sha256": "d861f1c60b4da90dbe5c51a02d01e382643eaf7019e16125781879a350cfa106"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/icon-bearer.png",
+      "bytes": 660473,
+      "gitBlob": "ba959972e9dcddde90a8d56b382853439ce04c4c",
+      "sha256": "f572816abf396a51115e6f28b7e6b4ec6c7aa614f725f91369d1f4746fa47d56"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/lord-of-contagion.png",
+      "bytes": 417156,
+      "gitBlob": "cfd45e51537a98384285afe305d0bda16e696383",
+      "sha256": "247466c09d2fce58b0449043fdf2fb2767ec0a995454995b8c0a421374110293"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/lord-of-poxes.png",
+      "bytes": 580908,
+      "gitBlob": "ae79ff4ae8fe624f9d2fd3a91809e97e3f5fb991",
+      "sha256": "9e869ef06929c2e7c137fd561e7b5d5d8f9fd440fb04ab234e4c3755fab4b334"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/lord-of-virulence.png",
+      "bytes": 798837,
+      "gitBlob": "95883bfddb4149eaa25b5a505758a71acb86ab7f",
+      "sha256": "23f11d56523bc41a98722204e77a809fb9f6872b3eef90e1c823a476c308b6a2"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/malignant-plaguecaster.png",
+      "bytes": 320496,
+      "gitBlob": "9d61d17f6d53998725be2a909790b20a7a39f0cf",
+      "sha256": "e33befff808c3d899c5a4591ec24725772fbc7c00f2cb19a4b5e898193f40e44"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/miasmic-malignifier.png",
+      "bytes": 751762,
+      "gitBlob": "860514b47cf27a8d804806d72ec88ad9c9c8854e",
+      "sha256": "d9b357d0cc665d2a4ea415886c94fd9fcfe8c0e3012c3f0e75a1139092713866"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/mortarion.png",
+      "bytes": 773150,
+      "gitBlob": "7cb993bb30a6955859eeeba0f8d4b45a59eb68db",
+      "sha256": "2d3b3111378cfb9c4d3f3a9e590b78a856d3dcc240767f895ea2de721e5fe537"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/myphitic-blight-hauler.png",
+      "bytes": 728571,
+      "gitBlob": "4c062dd65ae4fbf45011d440a2f151841b978b75",
+      "sha256": "bd64f0966b4fae07183c77524d2c597fab024d8c14188c415de79b3850f9daa3"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/noxious-blightbringer.png",
+      "bytes": 543775,
+      "gitBlob": "c06a97f80d65e4210d9ddd79fe58ecbc3ccbdf69",
+      "sha256": "86e72fa85ae68908d3ba7fb37b6b1ff3ac48a8293b86de2d3687c469848a0c12"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/nurglings.png",
+      "bytes": 590907,
+      "gitBlob": "9681a11669f31c66fd3f3050e2b98baa18c33a2c",
+      "sha256": "4e1826d18c6bf57ffe3105df99f96c2d83bb5170cd74b20d7ca182b23d7b3e4e"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/plague-drones.png",
+      "bytes": 590092,
+      "gitBlob": "3d40124ca3fef064e25f6ae470c74f6779ea576a",
+      "sha256": "e388a49ff6fd333a584d4c9dacc45d63521f15d5adffcffd638f3f41ec40ba0f"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/plague-marines.png",
+      "bytes": 1147370,
+      "gitBlob": "c617b4b862fd185c0e1ccd9aca0f623ac5440b18",
+      "sha256": "e4ffe5e52a8c0fb9c66127648da3fe46f286bb521f74c84c90b5a6861be3fbaa"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/plague-surgeon.png",
+      "bytes": 653959,
+      "gitBlob": "20e12d3c62e984c41f1dc5a1ca236388ead294ce",
+      "sha256": "dfaf424ea59bbdfd997cfc3fa5e19f59759676c6469bfd4635109121c64f0d35"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/plaguebearers.png",
+      "bytes": 616287,
+      "gitBlob": "e8f00ad9ee7ce5464dbea103a61a000d19da1459",
+      "sha256": "b06820c7ff1b5e51b272ca17f3bde99c9ed5420de727230c5cf1e5510489b8c8"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/plagueburst-crawler.png",
+      "bytes": 794274,
+      "gitBlob": "f6d0dce8f0066e1f786d7b7025767fb0afbcf4f3",
+      "sha256": "fc3e94ea19d33869ad2b915ee12de9204b313064c9a066b97291c2b5ebc0f7cb"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/poxwalkers.png",
+      "bytes": 772906,
+      "gitBlob": "63a27d10d92a2f0ac077a5847ccc47bf1de88085",
+      "sha256": "26b3f7ae2a7f0e9970c7613eb6d150df06408144016a001b7a35b78719baf96c"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/rotigus.png",
+      "bytes": 896776,
+      "gitBlob": "204091720819a4904073b3aaf31a347ec913239f",
+      "sha256": "f28aef719f8dd4b65b0378d7833a53d3487ebec25a8abef80fdffb6c90c9ebfc"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/tallyman.png",
+      "bytes": 715708,
+      "gitBlob": "ef4d58205ab85829799fd11848b6d54bbc56228e",
+      "sha256": "6c53caab2172a28cbdf1894139504c2b3237a40803bf6d6ce8f37c5d10a64307"
+    },
+    {
+      "file": "books/death-guard/assets/unit-images/typhus.png",
+      "bytes": 662245,
+      "gitBlob": "c8041ed413c43903901cb18f61ec591a7b24e470",
+      "sha256": "c0bbb1601c8b27af431c4dac5755d9533b16c3a1d629dbbc43de404703ce6494"
+    },
+    {
+      "file": "books/death-guard/v2/generated/app-presentation.json",
+      "bytes": 6064728,
+      "gitBlob": "7b0cbc1d2e161da56bae8c8109525378e18f8a8d",
+      "sha256": "8b05e8e27f75676f93463008f598cf02b4847b7da90c9373bcd516a53ee1a7e2"
+    },
+    {
+      "file": "books/death-guard/v2/generated/base.json",
+      "bytes": 661773,
+      "gitBlob": "bdd60d077188d1c83aefaed256842d393773ab5e",
+      "sha256": "04c674d913567df4aa26b2156671012c7a625f837d907f8f93fe3b6528eabd43"
+    },
+    {
+      "file": "books/death-guard/v2/generated/comparison.json",
+      "bytes": 1324840,
+      "gitBlob": "437108716fbd6b29d1c24391f5509566f655e26b",
+      "sha256": "a240d88b8200d59af61a1faa3fef969020826a7f8f2e696f17074424da82c515"
+    },
+    {
+      "file": "books/death-guard/v2/generated/compatibility-v2.json",
+      "bytes": 858857,
+      "gitBlob": "ee447674e5ee9a6f5fbbbdb7f4e74e8c54baecb3",
+      "sha256": "af71ab78accdfe6e385257b3b4d8fc427da5f071ea87afcd06a976d4756719db"
+    },
+    {
+      "file": "books/death-guard/v2/generated/effective.json",
+      "bytes": 882983,
+      "gitBlob": "89b51a294b7c166abb19996f38f322e3ca324e37",
+      "sha256": "4083d7b6733e231ed56e75524cdb31aa1af3e856537b59c7734b63be952aa1de"
+    },
+    {
+      "file": "books/death-guard/v2/generated/glossary-v2.json",
+      "bytes": 143205,
+      "gitBlob": "e74ce838fc57d9f8b4c4435486c16065f2f02596",
+      "sha256": "0b0e4de314d9ff6dbcbbb6f77f3062eadf397686cab245bce6dfcb48b7d0c413"
+    },
+    {
+      "file": "books/death-guard/v2/generated/related-rules-v2.json",
+      "bytes": 1765901,
+      "gitBlob": "73c3304d92c70968176a8c780a07533082997043",
+      "sha256": "0f3a69b1a7718a373126b349a949fa7b6548afd30f28dbef47895e611ca67b01"
+    },
+    {
+      "file": "books/death-guard/v2/generated/roster-contract-closure.json",
+      "bytes": 168235,
+      "gitBlob": "8c87924c42444da9ed3a5ecd0e967e203b942275",
+      "sha256": "201728c00080ad196c9f75872af7b97b846cca93b46ea5ca8cd06489639a1356"
+    },
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-closure.json",
+      "bytes": 319491,
+      "gitBlob": "441178a54114ab014bc601a0b3fd1c7799acf597",
+      "sha256": "b40ccff3353c6c42915a84fcfc77b1f3faf9a0b1df8ba4974836cb537615275a"
+    },
+    {
+      "file": "books/death-guard/v2/generated/rule-contract-effective.json",
+      "bytes": 2291138,
+      "gitBlob": "57e5a699f4f91cc9a825b0ad585f8f8bfe4b84ad",
+      "sha256": "1f5e776d9aeb7a38a9d02013aa9168119a54a7fa80e91018dbeceefdc12d6d28"
+    },
+    {
+      "file": "books/death-guard/v2/instrument-selections.mjs",
+      "bytes": 3882,
+      "gitBlob": "738495dc23d823716cd2807b11ce574d72dc2bfc",
+      "sha256": "49c98f41061c9df1948613d19f38892d7f12361b177f2fe3371fc488edcee8b3"
+    },
+    {
+      "file": "books/death-guard/v2/registration.mjs",
+      "bytes": 865,
+      "gitBlob": "3ab34a705e8a4e92ca00a54d8282494b06440ce4",
+      "sha256": "f69fd317c6bd4d3fe8dbeb478dbc9e41ac324dbfc212d34debc617022c777e8f"
+    },
+    {
+      "file": "books/death-guard/v2/roster-boot.mjs",
+      "bytes": 2212,
+      "gitBlob": "efc3f6fa69f99ceaf63f7cd912db9a23fe52d429",
+      "sha256": "6d2bd3340adcc58725ef38ad4608910823fbb0f36ecfbc7f181a3a8161230f78"
+    },
+    {
+      "file": "books/death-guard/v2/roster-import-bindings.mjs",
+      "bytes": 1685,
+      "gitBlob": "7bf4eabf05462f3bb7423008426c47904fc4a535",
+      "sha256": "8d1ecba6fafd9f6500d83e57429005b3bf39caa180c430d6afd3d817fe3dfcb2"
+    },
+    {
+      "file": "books/death-guard/v2/rule-contract-schema.mjs",
+      "bytes": 543,
+      "gitBlob": "0994d8270633645b6d8cfbbeae8d419f46ec6c96",
+      "sha256": "e2d78cb82ba0734ab83935801df8befde97f291dab242503ced0fc2c47ada143"
+    },
+    {
+      "file": "books/death-guard/v2/rule-contract-state-fields.mjs",
+      "bytes": 15724,
+      "gitBlob": "eecbaaf122a6987b437019ec0701dfe6c604cef7",
+      "sha256": "bc60bdd819fccd229d0bf198f8b0a833a4491f1a253ca16ebe6ad2bd33c3e100"
+    },
+    {
+      "file": "books/emperors-children/assets/emperors-children-cover-480.webp",
+      "bytes": 90072,
+      "gitBlob": "a69293f4c0945a4e78f8ff7f815ae1ba43292721",
+      "sha256": "602da046f3a03da1c519f8dd543a03226b8307270df616caaba12ad2c42ba7b9"
+    },
+    {
+      "file": "books/emperors-children/assets/emperors-children-cover-800.webp",
+      "bytes": 209438,
+      "gitBlob": "24dad09fece06a997dfea1227c7d4c8e3509328e",
+      "sha256": "cd5d65e8bba61365c8d0ad701d0b8feffd42c669a90e5b193a5af5a83ca7bd98"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/app-presentation.json",
+      "bytes": 5390042,
+      "gitBlob": "4c34dec28ded15fce08dc4f6a6a7bb4663af89d3",
+      "sha256": "8edfa16991e8ccff94ffb3e303074d08bb06cca63faa58df0127645620440b58"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/base.json",
+      "bytes": 1873082,
+      "gitBlob": "4bdefabcd9fb479e852b8943193fb073c212decb",
+      "sha256": "3d31025c23299e57f95511b0e676a3a8b5ec550f78c1bb8ea5df7c3e86f2157f"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/effective.json",
+      "bytes": 1926865,
+      "gitBlob": "24a75e2c6fe8ad001cecc69364f3faf725c27136",
+      "sha256": "5adca63c246b6cc08375daf8d633e78e5f1d1bfa1b491dc4d23f73778b204619"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/factual-census.json",
+      "bytes": 755,
+      "gitBlob": "41dcb856a34e61019db1ef9e11de58ceb49279dd",
+      "sha256": "f1e326a3584f076b2247e354679bd0809ef5144c85cf1e2326276da1a9f1c9ce"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-attachments.json",
+      "bytes": 3507434,
+      "gitBlob": "f31fee43e972afcb2dfcb3f95f391868bb36b7e0",
+      "sha256": "089b8fdb02e1e223c0134fe204f0d3fd570953e28b6b6cd54730cbbbd6c4201a"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-import.json",
+      "bytes": 2166207,
+      "gitBlob": "0570cc8a7fc7fe1ae02ee33bbb6035b952f09d3b",
+      "sha256": "2596f045a77547901cacdcc202f656da68da7d9d23e9f4f3d0c7d9ef9ed8efd7"
+    },
+    {
+      "file": "books/emperors-children/v2/generated/rule-contracts.json",
+      "bytes": 1288248,
+      "gitBlob": "da083c3118947baacc606b6f8a82e0fc5c218ffb",
+      "sha256": "2749c3693b09a2cba0f7e3dbb91c5777ca980bac93b09e948e9b7f96dd9c3f7b"
+    },
+    {
+      "file": "books/emperors-children/v2/registration.mjs",
+      "bytes": 889,
+      "gitBlob": "110f95094c2abce52eeed5c99b49569ada738646",
+      "sha256": "1e637b920750665443f89cd16f9a41bbb5c178c58cc009695b886134dc43be73"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-attachments.mjs",
+      "bytes": 3722,
+      "gitBlob": "49a5f26f9949c4638e0b4d14efae54a11ecc70ab",
+      "sha256": "67f09bb77701aa261ea9fda5d761b36800e0cc75cc073b6501bfd2fe7c96336e"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-boot.mjs",
+      "bytes": 5589,
+      "gitBlob": "152bf36a9104469e9f7d27645e226be751718395",
+      "sha256": "c8667f3d848caec5249c4ea666caeac20745a94c4bea6ee8270addb1a0c8fbab"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-equipment-context.mjs",
+      "bytes": 2102,
+      "gitBlob": "4be2126cd8036c1360256a72bef01e90549e1d34",
+      "sha256": "94e0637b96424d2087231c0f28f59f5628af0180c34005f272864427e7551f96"
+    },
+    {
+      "file": "books/emperors-children/v2/roster-import.mjs",
+      "bytes": 17113,
+      "gitBlob": "168edd077875d674fcaa393c6c15e65133e8c013",
+      "sha256": "04bbef57088297a6ed0edf9ee5798d1b0e89877898f994a3d9ebe3c1b72d87fc"
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-choice-context.mjs",
+      "bytes": 1083,
+      "gitBlob": "aac5fca515018061267ba1a92f783010fc3a2719",
+      "sha256": "7d0bdb548382ced1ff755a224a82645ab159a46813d463ba44e6fd687bb41602"
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-formation-context.mjs",
+      "bytes": 875,
+      "gitBlob": "064af20cc7a94ae2f961af0918a0379bdd1cab9d",
+      "sha256": "9a779179db0695f5612d98d2f0af457cefb5375449e4a0af9fb3b60c603fa711"
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-permission-declarations.mjs",
+      "bytes": 4188,
+      "gitBlob": "294ccdba3f46496988f41a7f18065d5860a7ae83",
+      "sha256": "15606f87e278adae304540c6e9bc30a3d2e5c52fa0e29668e42cfd797fc226ff"
+    },
+    {
+      "file": "books/emperors-children/v2/rule-contract-schema.mjs",
+      "bytes": 1118,
+      "gitBlob": "eb3f6ae89184c5d4f1348ea30b37cc03a84bf0a1",
+      "sha256": "f2e43d36193b49325b60c5c847fbf8bf317fdb4c22fc291c04538422af81ebb0"
+    },
+    {
+      "file": "books/emperors-children/v2/theme.css",
+      "bytes": 1077,
+      "gitBlob": "2ef37d04875400ca60d01e422e7656eaa3006a1c",
+      "sha256": "98846a6a2205455c7a682712d8efd1a0be97059165dd6fbabfc5780283ec3a6a"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.css",
+      "bytes": 3031,
+      "gitBlob": "b50628e90082c5ed88a15cce3322263a7bee1057",
+      "sha256": "bbefc00d088a94e525d92a68e81cb28a29db4a267ff75d4e1c50e20270f27d97"
+    },
+    {
+      "file": "books/shared/application-v2/glossary.mjs",
+      "bytes": 7811,
+      "gitBlob": "3b046a7e63ab75ef8eb5dc085047889df802ec0a",
+      "sha256": "4426f0ead69f3a9706a7d9891628eb3187189a01bff421a9c2b54706c8f74d60"
+    },
+    {
+      "file": "books/shared/application-v2/home.css",
+      "bytes": 5991,
+      "gitBlob": "85025ac9b25ee05314cbb1c6ab0cec4b3c2cc321",
+      "sha256": "6e265228d80ec4b510da9a060c9b3a78c74fd07822ba639671077f09f9605c2a"
+    },
+    {
+      "file": "books/shared/application-v2/home.mjs",
+      "bytes": 7327,
+      "gitBlob": "9b89cd2b6cd6845cbb09e78d999e102cd4ca4152",
+      "sha256": "33f2db5085333d9cd4babfebf7b0c9752cf532be5fedd29a849efc528b22d7a5"
+    },
+    {
+      "file": "books/shared/application-v2/registry.mjs",
+      "bytes": 1307,
+      "gitBlob": "fc0285dfcf97a4979a15f66d7d45678c1060f3e0",
+      "sha256": "2c59f1a793f1d34de664857999c81d6ac3f664750ed1b2ed79c76cca37811a38"
+    },
+    {
+      "file": "books/shared/application-v2/routes.mjs",
+      "bytes": 2042,
+      "gitBlob": "514cb1a8d16570410aea99a96a0b33207111cb0f",
+      "sha256": "8747bd983725a3a566fe870f7b81e894e41e62d60d994ca17eae9ba7e81b17c2"
+    },
+    {
+      "file": "books/shared/application-v2/runtime.mjs",
+      "bytes": 14773,
+      "gitBlob": "549ee70a178f6cd16528f11bab79a1facca8392a",
+      "sha256": "b3fca61952fc03b47c2982432f25ebef93fd19f1c8edefe12cb0a318310cfe74"
+    },
+    {
+      "file": "books/shared/application-v2/shell.css",
+      "bytes": 5877,
+      "gitBlob": "f0a7491e85e9999d147f8c7b2e3a475f71ffa2b3",
+      "sha256": "87896bb6676dfc7b666e3a6efef23a11954f52838d53a0ef8faf63c5ff76f328"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/ability-presentation.mjs",
+      "bytes": 7837,
+      "gitBlob": "85eaf743af7b40bebf90663b09f0d7e6aa712842",
+      "sha256": "a55f8c8f5c0fdc3d0d08ff758eeba7b0ec970dec2ebad1a678e6f6361efe3170"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/book-v1.css",
+      "bytes": 21897,
+      "gitBlob": "5a1563e72c277bb26df89a22ddac7c5e0fe19016",
+      "sha256": "5657917681797ba3e70d610bbeacd8280c30598263e9d5710734bd3b2f264f8d"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/book-v1.mjs",
+      "bytes": 14245,
+      "gitBlob": "4b4e84e242150c39548bc911205cd66d9e62b074",
+      "sha256": "0b4b1870ece8414efaa17f9f4efcf5a82e50f53b1753dbf7e5441af22dc17fe5"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/cosmetics.mjs",
+      "bytes": 5097,
+      "gitBlob": "e014732e1aeb09b71c36b01b591c42d487ddca01",
+      "sha256": "fbcda51037fd3aa8de93153b2fb94a89374a103c743541bc6b44dc637d4be096"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1-layout.mjs",
+      "bytes": 9038,
+      "gitBlob": "b47e5a4baf03f9ebc3d95190ca3f5a7cdce69f91",
+      "sha256": "8f9a1db29afd4be9657bb3d9144b1cf079789ab1d6e0663087b5fd04dd8f7e89"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.css",
+      "bytes": 23148,
+      "gitBlob": "4f3488db0e6f96950cb043dfbd4fff528ed8c343",
+      "sha256": "135b050fef177f27a3c9db7c6af5e4ca53e8a27e52cd9522292c2aaa33c32a29"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/datasheet-v1.mjs",
+      "bytes": 85819,
+      "gitBlob": "54448b1713f667803400df575504dfeb01afcb93",
+      "sha256": "31dc6be0d88fe6d6511bd187d5f34273ca78c3f8feca78c6401c0796b4c6f2b4"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/effective-datasheet-presentation.mjs",
+      "bytes": 13984,
+      "gitBlob": "e362d27859b0bf05f71119aa30ec0a0894caee8c",
+      "sha256": "3c98f363b443534d81459deb313e75b106e1b0bd012331ec490245aaa584fadc"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/formed-unit-presentation.mjs",
+      "bytes": 788,
+      "gitBlob": "a8ff1fe390471fb97f63f637b384375b51b2f611",
+      "sha256": "64cafda707879913f280f002a245bf1f06d518d8f311795fbce12a6bf2ce5c8c"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary-content.mjs",
+      "bytes": 48576,
+      "gitBlob": "bf6950cda0ada38e7b91e4eb2eae58aad74931d1",
+      "sha256": "9616d77fcbbf5c575da4d8a80e363c95c2702b6390c21cc7d6eaba42e11449ea"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/global-glossary.mjs",
+      "bytes": 8882,
+      "gitBlob": "39edb25d00887f6f05c20772c4b7d0d4979db610",
+      "sha256": "4f633f182b876be3dc2ea8128c0413fe85b747f6f55fd34f1d76459bb95e2561"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary-v1.mjs",
+      "bytes": 3269,
+      "gitBlob": "6635b9411defe9acfcb7c4f8c41cf45711689fea",
+      "sha256": "c232c1c1f4b37d6a0796c8108e2182abf8c5fbb53bfd9b92b375e6cd1d62caa7"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "bytes": 10719,
+      "gitBlob": "edc06eee1d8236227eae9a8fdb8e7c41465229c4",
+      "sha256": "5fe41b34a3812848ab418de0cdff65b855a286eada621e18bf8cf99db7ae908d"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/lifecycle.mjs",
+      "bytes": 2023,
+      "gitBlob": "641e547e74e9d6fc4602c9a97d2da52b4980419e",
+      "sha256": "934bed96c0e21c5301c51c9016c3b5a8a09dc8e77f7fc9c2a614290fef1e4ee4"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-controller.mjs",
+      "bytes": 23066,
+      "gitBlob": "3121ccec6957fb4768d3a2722bb10feb50cb4874",
+      "sha256": "400b84410b3d3ccfe1cd351abdba4314deaf27d19f7ef393ede8680af1d95069"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1-targets.mjs",
+      "bytes": 2571,
+      "gitBlob": "0a09c30fb7b2a65acf83ba83f42583ea5e28385c",
+      "sha256": "80ba9d6ad5f55312e1ed3a5d1ea05be0867fc6dd1864c597675ee8b116b554b7"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.css",
+      "bytes": 13737,
+      "gitBlob": "1adf7b612fd1ab16f5aa9bd459aea8fa9e1d1ebc",
+      "sha256": "ab9b60b07802ea316d87a75ea4fb7a474ccfcbf55fc1eabedabf2ceb8bfa8b11"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/navigation-v1.mjs",
+      "bytes": 16606,
+      "gitBlob": "e43c20385c15627855d4d46070ef953aaafd1018",
+      "sha256": "12c1670658af03435f330717eb003a5997456dfb495e251974121245129ed237"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/normal-datasheet-bindings.mjs",
+      "bytes": 5467,
+      "gitBlob": "c92a9d014a205c9843c0efae1889cbd727de294a",
+      "sha256": "d20d6cf2619cf826b4e89a6c525148da0ebc019890646f2227b92937a011eee5"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/personal.mjs",
+      "bytes": 46711,
+      "gitBlob": "9f6633b564c3cf6b5d867b9fe72323fdaabc1a21",
+      "sha256": "68fc8bb567146fb5e76a17b75e43f944e52ec6ace56890d3d4cf044d2516b5cc"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/popup-v1.css",
+      "bytes": 12394,
+      "gitBlob": "c6ab12fa05c7715f81fdea21ae3a15a669fbdba5",
+      "sha256": "4fa628131a00f43d224aa3b7c5ef3c9db69e178b333ad2821423736c6c8b08d9"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/popup-v1.mjs",
+      "bytes": 1634,
+      "gitBlob": "a11947b95edf971a2d666f2cab1cf77b5d98bbfc",
+      "sha256": "6e7f587b0882543b382d9c8e35a926a85eea2e5856cbf93d2535da16e75ddae5"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-contract.mjs",
+      "bytes": 9976,
+      "gitBlob": "569cf33af0c1c8e56cb9fd6f1f1162c643b99ab2",
+      "sha256": "865e060d0c9cb5f8f6e321a308314378c2be69c4591b5717b62e55fd3002be4d"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-v1.css",
+      "bytes": 3056,
+      "gitBlob": "925e4779ffd00b6c985e1f85f02abc93ec5b6b11",
+      "sha256": "beb1af303152cb3e797b4695e6607347bc839569355c44a5e9e6b3b16136d43b"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/reference-v1.mjs",
+      "bytes": 5566,
+      "gitBlob": "2fb3ce99887b4fe02ce650ce87127166fc2f215d",
+      "sha256": "44617e89db136f0ce64ace8fd5d19a56f2b513a8b09f478820755310298571bc"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/related-v1.mjs",
+      "bytes": 4315,
+      "gitBlob": "ad3dce7a80142cbce4d7b061b47beebe729d4027",
+      "sha256": "0ff818ffafeaf0e907eec216779167eae6bface1a7483d90fd3305b8115c1eed"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/roster.mjs",
+      "bytes": 45862,
+      "gitBlob": "6e714eeeffa3aa9170c2d7d1817541dac476f787",
+      "sha256": "49e7af0a739cfb3dc35a2fbdec30bb04bbab380bfab4980bccb3474f9f41dc40"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/route-context.mjs",
+      "bytes": 4231,
+      "gitBlob": "d55d2f627e5b07e7f60ce87ef90a9dc73589607a",
+      "sha256": "969228df85c6a74cb84f2d9d8057ecaa1a08e98f1ba68043371ff0eb1e952784"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/runtime.mjs",
+      "bytes": 63445,
+      "gitBlob": "9f8f849bb4a661dd554bee6af22022c2d5d8888e",
+      "sha256": "331c4149119832c3bdb6eb14860a62484374f41a36c1ea0aafcec8cd353672f0"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/source-table.mjs",
+      "bytes": 1975,
+      "gitBlob": "df1131a051f16edd8882a5ac16701955014ff889",
+      "sha256": "7375f879f5712a1e475612e38dee75d81cb80b4570600b7b38373653bcb60f16"
+    },
+    {
+      "file": "books/shared/army-book-app-v2/styles.css",
+      "bytes": 21198,
+      "gitBlob": "9a29d0afd5de8affc3472960c621dab1b7b42b78",
+      "sha256": "c3181bac6a6bcdfb9aea80a702337a47c9ad0816d91224420551f0472417eb24"
+    },
+    {
+      "file": "books/shared/datasheet-system.css",
+      "bytes": 22590,
+      "gitBlob": "68a31e0e920244c1f8ce9049e462bc7f5280e20a",
+      "sha256": "da524eee52ad85819422753e98678c6356078b0a998d61de1184a8897b1677c2"
+    },
+    {
+      "file": "books/shared/offline-status.js",
+      "bytes": 17037,
+      "gitBlob": "a39e7a4c3f8e1ae1748a0192f47143f292586cd5",
+      "sha256": "732af9623e98116cad051b6c93be88a9268f2d8d833ac07dceec5ddbb0ced5ee"
+    },
+    {
+      "file": "books/shared/roster-v2/attached-rule-text.mjs",
+      "bytes": 17813,
+      "gitBlob": "ec79d18962edb785fef6b24f54f6160f2b64fa75",
+      "sha256": "05fe8c92b7da15acc491f57f8518e23e2a1d5c04e7d7dc66fa6d98250c3ea5cb"
+    },
+    {
+      "file": "books/shared/roster-v2/attachment-service.mjs",
+      "bytes": 3433,
+      "gitBlob": "20f4e825f1950146bd9d94569256763ff75adf3e",
+      "sha256": "325f24db73e57d4a655e4f185c475a67c48289f545981fa54ba85af3a09b019e"
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-context.mjs",
+      "bytes": 2794,
+      "gitBlob": "db10c78d646a876eb1496b3fcb5ff4bee4694cf5",
+      "sha256": "d3896f8bfa592f0137a7aba206ab42924d3e50ec55882e8f316d1a7b9507e59e"
+    },
+    {
+      "file": "books/shared/roster-v2/compatibility-feasibility.mjs",
+      "bytes": 13892,
+      "gitBlob": "f747ac06fa68360ac4167d8ae71048fa636a2250",
+      "sha256": "936b70314f9a9c736c798bc5aeef778973076604da2ef6c879573bc5faf5b813"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-binding.mjs",
+      "bytes": 8164,
+      "gitBlob": "f36c17074026cc30f6fac2b3a1f358073dbc7a75",
+      "sha256": "adc35502c3a2eb5f8ee2363f4713bbd4a56c930b4a4fbb48e5ca4624a87ebff6"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-computations.mjs",
+      "bytes": 3848,
+      "gitBlob": "eb4fc998b2aa10a121a74e35e50453dea4a83c09",
+      "sha256": "567e52474cf2d946946a6536a6d9cb220a5552251da48e8649cbf26f7a9a52e0"
+    },
+    {
+      "file": "books/shared/roster-v2/condition-context.mjs",
+      "bytes": 5247,
+      "gitBlob": "247f9944be578bac94536e7348c9d5e8d8a969e4",
+      "sha256": "69553042f8ec919b67ea8363d601b9b60176e82fa9e8278aaed57504beceff96"
+    },
+    {
+      "file": "books/shared/roster-v2/conditional-policy.mjs",
+      "bytes": 29867,
+      "gitBlob": "5c59614a57a9004bac1bfe46f247f5f85fb9d9ae",
+      "sha256": "28aea45d54ca0142d97b128300f8df67c996967fe0ef9061017126b404e6ae3b"
+    },
+    {
+      "file": "books/shared/roster-v2/context.mjs",
+      "bytes": 31699,
+      "gitBlob": "9765b5abb0bdcf9829fe745f96a55731093d32d5",
+      "sha256": "9a56b6322b9df1d99683e2c1ad8ef2ce0ed1cf94c6c1515b6066dd5297aeaca9"
+    },
+    {
+      "file": "books/shared/roster-v2/effective-instance.mjs",
+      "bytes": 18111,
+      "gitBlob": "657c46fb446fe04e0da921c337638ea51fe64c7a",
+      "sha256": "83923703d118fffa6745e60c9b43d9d4a7fb13db81bc2c59f7898582f3e1d042"
+    },
+    {
+      "file": "books/shared/roster-v2/effects.mjs",
+      "bytes": 54776,
+      "gitBlob": "3175c6bd6a025eb0185ad16d339aa0c8608df8ff",
+      "sha256": "334a9647f370016e8cf96f0b564f6782d7cd89eeb77b29596bfa7789d48bac69"
+    },
+    {
+      "file": "books/shared/roster-v2/enhancement-bearers.mjs",
+      "bytes": 2336,
+      "gitBlob": "2b8590cfdb3888a4a690e555b38f8cac7fc95528",
+      "sha256": "486b89950276226621caeb2c9268fcf59eff3398fc4311445ded69a67241de5a"
+    },
+    {
+      "file": "books/shared/roster-v2/export-faction.mjs",
+      "bytes": 853,
+      "gitBlob": "e7582fa8c93b4a85428ef972b56f4e1fcf227163",
+      "sha256": "ccf39bad6b29856ebc075f17b73749b4c6e15e3c6011634ddf907c5f92619c73"
+    },
+    {
+      "file": "books/shared/roster-v2/import-service.mjs",
+      "bytes": 9394,
+      "gitBlob": "dce30a1be1f1da211d1eff40ddfe59b7bb2e8bf8",
+      "sha256": "5fdaa88b1958b2c57d3cd22498285e04f60a8bc17d2a303bb29f41d3a030d517"
+    },
+    {
+      "file": "books/shared/roster-v2/import.mjs",
+      "bytes": 35200,
+      "gitBlob": "844f359cc63e0e89d6c68f4ef2a00b105a4a7de2",
+      "sha256": "72e1c30450c369db876b0a6155e700d3eaffa281e9a24bbbd70abdda6a80e947"
+    },
+    {
+      "file": "books/shared/roster-v2/keyword-scopes.mjs",
+      "bytes": 398,
+      "gitBlob": "f538cc0dd630d67f0846f75a1c6cf18d273d5847",
+      "sha256": "6ec01759576b818da1b2090af1369c16e7a2a5039ed2822da0cc82b08583303b"
+    },
+    {
+      "file": "books/shared/roster-v2/model-name-aliases.mjs",
+      "bytes": 1279,
+      "gitBlob": "ea819532ce4e22f21398d5ba5f7db53f3f335060",
+      "sha256": "782ec8fa271b7921ed75903eb11cbbec1e901d48b1568ee2aba68557e84a240e"
+    },
+    {
+      "file": "books/shared/roster-v2/parser.mjs",
+      "bytes": 14383,
+      "gitBlob": "53e96be535aa6e970b937c0f390396e1af71f149",
+      "sha256": "02ff042b131e3e7da3781ec85c34a0b05ab920698980fb0b322e318f0bb7696c"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-choice.mjs",
+      "bytes": 13239,
+      "gitBlob": "f6d3077548e829f575abc7fe60516c4b260354db",
+      "sha256": "25a53ef662c04d3fc35218efc6aceb1f2943f9a903aa076b2ed82cc1383d1882"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-condition-context.mjs",
+      "bytes": 11866,
+      "gitBlob": "65f9f4dbd68eee0c61fd9d008ab131254fb1585d",
+      "sha256": "cbaa5e7bc99d5bc65f1c5f359d87069cdf3e4211de7ddf96b21d95cd9cdd56ac"
+    },
+    {
+      "file": "books/shared/roster-v2/physical-static-model.mjs",
+      "bytes": 4768,
+      "gitBlob": "309c30c99442dba7e65eca9424a177040b5ba67e",
+      "sha256": "1df03f088649ef591d6b281fe88473a7b819191a94a80b35cedc9e712462cc39"
+    },
+    {
+      "file": "books/shared/roster-v2/recipient-execution.mjs",
+      "bytes": 11223,
+      "gitBlob": "50611b54ba55e3db01bfaaf3a0f7a1e77fe44843",
+      "sha256": "dd80ea53b711ddeb35369c6d123a77a1dcf80953430b2b7d05f468e919abab78"
+    },
+    {
+      "file": "books/shared/roster-v2/related.mjs",
+      "bytes": 2683,
+      "gitBlob": "391700de7da3b24bdae8e084c83ff2fdb9bb55e0",
+      "sha256": "f3c1827140f4485e485786bd207357d78e10f2e86ec3be4f4b3112bb42923b30"
+    },
+    {
+      "file": "books/shared/roster-v2/runtime.mjs",
+      "bytes": 10456,
+      "gitBlob": "04eafd495b7f78aadafeb57dc6fbec1df78c5e7d",
+      "sha256": "64268409db2a3e51f21c9a95e742973bbeb6bfc404506f0b443744026059b829"
+    },
+    {
+      "file": "books/shared/roster-v2/singleton-model-import.mjs",
+      "bytes": 2953,
+      "gitBlob": "bba823d7c774842f61258cb69d6535b9d0715caf",
+      "sha256": "76a18809a0a0a031bb4c4e370007feaaacf8c44fc8e734fc2b64295e0124a696"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions-build.mjs",
+      "bytes": 8120,
+      "gitBlob": "99c0bc862f4f350429c7596c90df469516700872",
+      "sha256": "e6ec19f4e7be7c9630947ace044f5bcb7cf435d4f86d971410d23db3fa2dbb24"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/conditions.mjs",
+      "bytes": 28077,
+      "gitBlob": "2326407be2b8adc802b77d8b17c4b331c1dfcb34",
+      "sha256": "60f876fca2f91c1eef8819645b8a0dabc5960543fd6c53ea5fc897e87ea8e829"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/finalize-recipients.mjs",
+      "bytes": 2559,
+      "gitBlob": "019dd278c3748d9ad81fe8073f55e8016f34ebf4",
+      "sha256": "01913e924d33f6a65bfab1be876bb13dfaf339018ff7626fd8637977dfb1c6b7"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/recipients.mjs",
+      "bytes": 36074,
+      "gitBlob": "4d154e1cac4d69a70a053cc9f6cca79f573c2279",
+      "sha256": "2e97abd326f717bbffb1842b6dc4598bb8d89cc0d5084fbe991343be4a6c95ca"
+    },
+    {
+      "file": "books/shared/rule-contract-v2/schema.mjs",
+      "bytes": 23698,
+      "gitBlob": "58e17e95ab6654ddb007162ea48590a0b69bd5e4",
+      "sha256": "0f98ac2e1ec8e51a4ddb20b2c00e321ba7d467e1aead23406a74ba4776a41d0b"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.json",
+      "bytes": 6465785,
+      "gitBlob": "6e8644877c606faa7e6828894da8eaf54da320c9",
+      "sha256": "ed9cd49443e02fa347f8f395d0a6580a0763b9bce9f89c8123efe1a80e213135"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.mjs",
+      "bytes": 1313,
+      "gitBlob": "d1d17348d0ec73c94dcb247639f32fabd41ee5eb",
+      "sha256": "284236b6a55afd9e718249978b649410e75957e6eebd2f77df697c1a27878ac7"
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-refs.mjs",
+      "bytes": 39606,
+      "gitBlob": "63bdbcad29ac9b29cd9be1228f6ff98995fb0b77",
+      "sha256": "6dfae66e205029154cf6ea21efa04485d74e14b954b99bbf387ad402714e719a"
+    },
+    {
+      "file": "books/shared/stratagem-presentation.mjs",
+      "bytes": 2324,
+      "gitBlob": "04cef612b329920ccc63a56fa2ab118173812cda",
+      "sha256": "07690856ec31fb309680b5774f86104c37a0555570e1d3fdc694bb77b77201b7"
+    },
+    {
+      "file": "books/shared/styles/offline-status.css",
+      "bytes": 3763,
+      "gitBlob": "fca03e9d0dd61f9df4fb100022b7b6d25d62271b",
+      "sha256": "4a7a66405c443b346c0fe2ca9c0de86855bd55127d508bc8cabf75a5144256bc"
+    },
+    {
+      "file": "books/shared/unit-art.css",
+      "bytes": 2643,
+      "gitBlob": "3585b130efb4870fde97d7759425f38cb065e864",
+      "sha256": "80e87a543be5946438af69e0286e0497fa196e11455f9764367d2d6be9e48980"
+    },
+    {
+      "file": "books/space-marines/assets/space-marines-cover-480.webp",
+      "bytes": 70640,
+      "gitBlob": "9a6e459bbd343c1c5d2ea1ab232c0c633999e250",
+      "sha256": "4c94202f3e94dc09a30f0b4bea0282e8ba63743fbbbdcad879fecb40020b3ced"
+    },
+    {
+      "file": "books/space-marines/assets/space-marines-cover-800.webp",
+      "bytes": 160098,
+      "gitBlob": "fe4f1c19f670df1e2df762fe03ec3daebbcbd736",
+      "sha256": "f426d3c0e04d0bb61ce3037870a5e9ce2c7f91b57f56f9bbeb009ae8891e0b50"
+    },
+    {
+      "file": "books/space-marines/v2/generated/app-presentation.json",
+      "bytes": 23197764,
+      "gitBlob": "55e58454b91e03aaf6dd6eb9eb65fd0f1f8f4fb2",
+      "sha256": "5e7628c5b26d99da1222f36ac8cf98a0dbe2b4b946c3ccc26f0709f1d78b0088"
+    },
+    {
+      "file": "books/space-marines/v2/generated/base.json",
+      "bytes": 2212092,
+      "gitBlob": "21560f335b8682213f4b6a246eb96a89279bcf38",
+      "sha256": "a1790607824ebecc5d11e2fc2fa27a0e80d177c7e1b42bd23679ffec73573f93"
+    },
+    {
+      "file": "books/space-marines/v2/generated/book-presentation.json",
+      "bytes": 11708234,
+      "gitBlob": "48e0d82f38bd3e73ed0aad536ceab2c3261388fa",
+      "sha256": "92c5b6daa9a58df4342abc5112e1094e8c3e8fa2052b8862a2b89cf524f79c32"
+    },
+    {
+      "file": "books/space-marines/v2/generated/cross-owner-references.json",
+      "bytes": 10172,
+      "gitBlob": "46818d3e49e4b917a340969274594e4cea29a305",
+      "sha256": "30caf52d952f80191627b78b5d8b5d5c3303c0c2da0c9b13ff3a0dcd93fef684"
+    },
+    {
+      "file": "books/space-marines/v2/generated/datasheet-presentation.json",
+      "bytes": 10163492,
+      "gitBlob": "5cd36bcabe81bd1fee3fb175907a85500b29468e",
+      "sha256": "db65782ba0c8494cf054998602d3a9ac4b7fa98af5d758f0ac2dd71e562f2bdd"
+    },
+    {
+      "file": "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+      "bytes": 237112,
+      "gitBlob": "46a4b61215f6bcd0fa6fd2e0f5212813eb3d9950",
+      "sha256": "eb8fa7ae7fddc63398e74e910a146b38ac423f7f7e66ecf199219bfef32af182"
+    },
+    {
+      "file": "books/space-marines/v2/generated/deathwatch-presentation.json",
+      "bytes": 230324,
+      "gitBlob": "0e37dc6bd9cff168a91035681021c0e28013506f",
+      "sha256": "2a1456fdaea1ea2e10fcfe4de3e3c1684510911982d25ef8f0c09ca50aa67c06"
+    },
+    {
+      "file": "books/space-marines/v2/generated/effective.json",
+      "bytes": 2219806,
+      "gitBlob": "54c7ff53a93e97604453df4e1f1d460187ae4626",
+      "sha256": "3c3572cc2ec0ea399236bc4ea0180b67b649696c11682578116b2ed12f4ee6de"
+    },
+    {
+      "file": "books/space-marines/v2/generated/factual-census.json",
+      "bytes": 1728,
+      "gitBlob": "afee149942b65c9064f9aaaf0cf58bdb08180a09",
+      "sha256": "836eff6653927c1337766cac33ad703ede8042f7ed31c237763af800d4132650"
+    },
+    {
+      "file": "books/space-marines/v2/generated/gameplay-presentation.json",
+      "bytes": 14831175,
+      "gitBlob": "bbda5f11676bbb939a60e2a3adf32f31d63887fe",
+      "sha256": "9a76297d4ef3250881c05bd6f49c81cfed1c3329b439ca6ceb7014f6795faf3c"
+    },
+    {
+      "file": "books/space-marines/v2/generated/mfm-coverage.json",
+      "bytes": 410203,
+      "gitBlob": "05edcacfb4db54f7698681ad6685ba9d36e4a446",
+      "sha256": "52b1e1320474bd85a80a13e252c6d1c5c6776c4310285d29c15783120a551e53"
+    },
+    {
+      "file": "books/space-marines/v2/generated/mfm-presentation.json",
+      "bytes": 13369261,
+      "gitBlob": "654f001b2d8fcfd98c6cad8247b8cb052053720e",
+      "sha256": "ef3a2ef65fb61bbf6f8fcbe9f8047f21d7aefcec4463b978ad79dcd1223d68e0"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-book.json",
+      "bytes": 2063520,
+      "gitBlob": "3a4ffaff79409993887270ec4e954b7d74c3ce39",
+      "sha256": "60190b6a61a524f3afcc68083f1f0e01bee550426bead3e257a479ade772c8e9"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-datasheets.json",
+      "bytes": 1786428,
+      "gitBlob": "57171013e6ce766ae3aad0a88ba3784fa4ccd1fd",
+      "sha256": "d752c3b2f886d32acc6296a53ded89c325c851e68205723b4265c5e1f9cb7939"
+    },
+    {
+      "file": "books/space-marines/v2/generated/native-mfm-book.json",
+      "bytes": 2248128,
+      "gitBlob": "d337f642a5eff97e45f287414fa03916d7f9a79e",
+      "sha256": "d6d66b72f31d005ed18be1b20f66c032d81ca1bc8f0f1967f849bae5cd2df084"
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-import.json",
+      "bytes": 6799242,
+      "gitBlob": "d859319d091c53c1ab05971dda2c45c38ebb7bce",
+      "sha256": "f270866d94cabbcde6f7392031a2471843d2ff93d84e4a3b7dd82f459aecde80"
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-runtime.json",
+      "bytes": 5594194,
+      "gitBlob": "955d06f43ca33e583b384916633b5efead8403dd",
+      "sha256": "34f751918255540dc6224b61f908d75dbf6da0451036f431b6098a3fd287ead6"
+    },
+    {
+      "file": "books/space-marines/v2/generated/rule-contracts.json",
+      "bytes": 3501162,
+      "gitBlob": "62a42de14ab1e43ace6a6f38b00039f5f70b77c1",
+      "sha256": "8284c8407c82c7fd66e64b7ffffc70abf8691c8150d6e8e2e8b2840336a856f2"
+    },
+    {
+      "file": "books/space-marines/v2/generated/source-ledger-coverage.json",
+      "bytes": 381011,
+      "gitBlob": "5b203963c7f76282a0532ba96e00259731021830",
+      "sha256": "ad39da3f99d2e8428141e8c3206ce5069eb73e2cb7112d36e1afe126b26f8003"
+    },
+    {
+      "file": "books/space-marines/v2/registration.mjs",
+      "bytes": 921,
+      "gitBlob": "bd62f9bf5f0be5110826e84726abea4d0b1a9797",
+      "sha256": "e9a866c8fc3b115828320baa5ededccd1db0faab8915c74cc2a58fe10343cc87"
+    },
+    {
+      "file": "books/space-marines/v2/roster-boot.mjs",
+      "bytes": 605,
+      "gitBlob": "aa6ab73b13af3a468beb9e4cf61e5ced488bde53",
+      "sha256": "b1c5b1ca9f900d4bd16ddd8cbff143618502fee76e77e1cd3e376234086d6a14"
+    },
+    {
+      "file": "books/space-marines/v2/roster-import.mjs",
+      "bytes": 17478,
+      "gitBlob": "0933b4d5a98bf8023076c51e221b57dda5aedf3e",
+      "sha256": "3f00af3dbeac07a607a71ac449a488e0ff2cce0ddddf40ca79d9e39669ae84bf"
+    },
+    {
+      "file": "books/space-marines/v2/roster-paid-options.mjs",
+      "bytes": 5868,
+      "gitBlob": "453031b77eeb88be5f78753a29d418e327402c3d",
+      "sha256": "a0b411cda98c0b113888f5c72864077d168a5ec70620d6dc50b5ba2a114b626d"
+    },
+    {
+      "file": "books/space-marines/v2/roster-runtime.mjs",
+      "bytes": 5057,
+      "gitBlob": "93f32299e33564d9a1250a909efb8db4d5c739d0",
+      "sha256": "9dc6b9cde08069dc44efb04491cdd4a6a38586e07f63586ab8620e455f42bf70"
+    },
+    {
+      "file": "books/space-marines/v2/roster-static-model-bindings.mjs",
+      "bytes": 4210,
+      "gitBlob": "4a04fd21c48ba05952efe7555a73056ed30c558d",
+      "sha256": "d7befc34ee33ba86dbbc90955d23eaa0bb146c981f6df09fd512d93b90fe2622"
+    },
+    {
+      "file": "books/space-marines/v2/rule-contract-schema.mjs",
+      "bytes": 988,
+      "gitBlob": "4f056a34c95e8d30800a94905c149c5edb20de40",
+      "sha256": "66155eaacb8763194230014e6fcb92a523edffad4ce49f5345c506bf29866d7d"
+    },
+    {
+      "file": "books/space-marines/v2/theme.css",
+      "bytes": 1045,
+      "gitBlob": "f6523b38711217550c8709140da38dc8e9cc461a",
+      "sha256": "541f46caf2c129fafbe9636bd588849cbf0f1e158c1d296d7c8c1c9e05806bbc"
+    },
+    {
+      "file": "books/tau-empire/assets/tau-empire-cover-800.webp",
+      "bytes": 119340,
+      "gitBlob": "3958527ba9cc1eafc30e4f1574f05c1b35846b85",
+      "sha256": "297271e521031a4c23e314bf117ef74258373f3085cf52cd6422d9531e1148d9"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/app-presentation.json",
+      "bytes": 7044669,
+      "gitBlob": "9a4a2509987371532192f1651b594906b7ae87b6",
+      "sha256": "7b2909c39354ee170e4def3f32f27526c9cc6ecb166def021bd3187611467e86"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/base.json",
+      "bytes": 1034513,
+      "gitBlob": "e73c95a4cb333b1fce6a6f95f8c4cbaa14fdb685",
+      "sha256": "2c344e15c24e8330cb675b9963374d983396ca5a10a96c4108be4682c71e08cf"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/effective.json",
+      "bytes": 1073530,
+      "gitBlob": "ee288aa8bfea131611ba79f31508deb5684a62d2",
+      "sha256": "fdbee26277fc4edc494037348d793f5675aaca92b4f7530fb9e6b418ad71978d"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/factual-census.json",
+      "bytes": 815,
+      "gitBlob": "50bd273ed1d5cb20dd5218d3f7276270d33c3954",
+      "sha256": "4edb0462353895e4eb43863fde4422c1ca44f645d633bcf6772fdbc2a925ea61"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/roster-import.json",
+      "bytes": 3543842,
+      "gitBlob": "2f8457e16d17d2ed5ee9b82e9ef84d1e0329c0d6",
+      "sha256": "7fc31f4107a57352309152368fb338263175be728e2fb69882b63fa49a20b950"
+    },
+    {
+      "file": "books/tau-empire/v2/generated/rule-contracts.json",
+      "bytes": 2962640,
+      "gitBlob": "f00bf04e88d97429238f5f650b2059e7b8651528",
+      "sha256": "6e044731d3b7157672ad806b0e1c128fdfeb0ecfbef687f31803fad5fc83ad2b"
+    },
+    {
+      "file": "books/tau-empire/v2/registration.mjs",
+      "bytes": 882,
+      "gitBlob": "45a4e34f9d0501e941b86ec7bc40493405641bce",
+      "sha256": "acec3d998534ca2f8d92ed8c4a8c4f14a2c8b0437f882a9e7faea9b66e33cbdd"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-boot.mjs",
+      "bytes": 6850,
+      "gitBlob": "7e951814e548cb7dddfb980449810aa610ccc66d",
+      "sha256": "dbf2b39c60e186b40643e4bf34c1c07e28600d907b7ff8f5d661753fde5f4d4d"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-import.mjs",
+      "bytes": 15301,
+      "gitBlob": "040015c12823a6f7786113e0467b832a6836e1e1",
+      "sha256": "05d6a1667b5c1fd698d7cb951134336b175dfc9f9baefe11951b018f73e3ca3e"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-source-choices.mjs",
+      "bytes": 12270,
+      "gitBlob": "e92d9777213e70ef077556c12f17e93ecc1a26b2",
+      "sha256": "a2bf8194521018757cd1fe2601c95b681658bb8f3f48eefb8e821bfbe5de6933"
+    },
+    {
+      "file": "books/tau-empire/v2/roster-weapon-choices.mjs",
+      "bytes": 10218,
+      "gitBlob": "bb867314c579ecb484c522a466502ad0853ab1b6",
+      "sha256": "b52a013cf2d57577c03a1457c530975397803e1c63f1821e157c55750f09e193"
+    },
+    {
+      "file": "books/tau-empire/v2/rule-contract-declarations.mjs",
+      "bytes": 20021,
+      "gitBlob": "a4539bd542d0abae5e9cb2a185d0b462bf859284",
+      "sha256": "86eafc3b2c5685e054b3e81ef8631ca553faab01fe80a97db7b7566f6cedc1b5"
+    },
+    {
+      "file": "books/tau-empire/v2/rule-contract-schema.mjs",
+      "bytes": 951,
+      "gitBlob": "6b478994b397d8422b8ac541ea9ccf4be524faf5",
+      "sha256": "b18eee8ad2a5ec896192a01ef197961b1c2d602ea754ab91506dc7bf97e6ed7f"
+    },
+    {
+      "file": "books/tau-empire/v2/theme.css",
+      "bytes": 1046,
+      "gitBlob": "63dbc15c6a927ea0aef99c8cc8f3e251ff4c20a5",
+      "sha256": "5b9c87ecd01c89a37cf76b876f62f0d795b601d19fb3ab61d1d1ff7046299c14"
+    },
+    {
+      "file": "books/tyranids/v2/generated/app-presentation.json",
+      "bytes": 8700586,
+      "gitBlob": "7d9beb4da460e45effffea31c22412c7caa42ab6",
+      "sha256": "d360a6e5246e4fb2e428070be968d8831e59f2acd07eb0e2dad60e6eafb69c39"
+    },
+    {
+      "file": "books/tyranids/v2/generated/base.json",
+      "bytes": 1245541,
+      "gitBlob": "0b1c4601427b03b121890e41d274043a45952b26",
+      "sha256": "343b2fe22c42accfa50b1cc5ba36ba408be235296f8d8372cc37a483f3c31365"
+    },
+    {
+      "file": "books/tyranids/v2/generated/effective.json",
+      "bytes": 1261451,
+      "gitBlob": "4803f62fba2b7abc2a6c16cac50e349f8572cb3d",
+      "sha256": "7b0eaf5038a9f97ddbe1ad5f4944783cb3f725c6a809fcce6f557051c39fdcca"
+    },
+    {
+      "file": "books/tyranids/v2/generated/factual-census.json",
+      "bytes": 737,
+      "gitBlob": "23e0ba2cc8459c476d0b64f0c97d01659a11658e",
+      "sha256": "33cff29415994b07237322b01ab0b812c2a0c8fd6c926937d292116131caa365"
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-import.json",
+      "bytes": 1632245,
+      "gitBlob": "5ddb1b0df60fa9f2f1734afe1856f3feaa9df557",
+      "sha256": "811fd10cfd7b7d361393e2ed2a118ce6f458f5fe2c14feba0ec499996cd66a5b"
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-runtime.json",
+      "bytes": 3064045,
+      "gitBlob": "2fa6f8a45248db0d01fc317dbee2f4778d3fc99e",
+      "sha256": "6363802d0f58de61c67bf289503ba77cadf8df1463ac6df1e83bb348be2c3354"
+    },
+    {
+      "file": "books/tyranids/v2/generated/rule-contracts.json",
+      "bytes": 1373159,
+      "gitBlob": "0b5ae7ac9823b255b1ab4391a1e2ebabd900cd55",
+      "sha256": "f5b58a27061cb4bafc13bc7b2792ba50be69dbff17dc9acc22f65d68ca4c5bb2"
+    },
+    {
+      "file": "books/tyranids/v2/registration.mjs",
+      "bytes": 889,
+      "gitBlob": "9e2f80d0ca6781e788abac2505f5869fabccf424",
+      "sha256": "5c82b04aa9f4ade12056eb9a69009fdbcbd524f9b06cc6b16d7370a62712ef57"
+    },
+    {
+      "file": "books/tyranids/v2/roster-boot.mjs",
+      "bytes": 5441,
+      "gitBlob": "4cafa1e34a4903c276a63bdfd9b9974c0a6f1cbb",
+      "sha256": "85d69dc6e8d6cc610024c3295c6f0e067940412d6cc65debf852498ab652a1d9"
+    },
+    {
+      "file": "books/tyranids/v2/roster-import.mjs",
+      "bytes": 20277,
+      "gitBlob": "959920e00b11075ff023bf6df9121095403c2464",
+      "sha256": "a9e910103c31aca4b54de3032c79c4fd94ed3ba859135386b88503e6cfe1f040"
+    },
+    {
+      "file": "books/tyranids/v2/roster-source-choices.mjs",
+      "bytes": 7136,
+      "gitBlob": "04d5bcaafa96f10d559a14704ca3139e6df6a589",
+      "sha256": "ec9cb19347f091b362a901fe84fbc83259cc35fbb3c73e25322cbe2487370217"
+    },
+    {
+      "file": "books/tyranids/v2/theme.css",
+      "bytes": 1068,
+      "gitBlob": "f254bc69e8443b30230526fd51ca1ff9426cf7a6",
+      "sha256": "5a5a70f2a2e21d31dd391f0394f94ba4e73f856f4fa87f129090b8ca44cc569d"
+    },
+    {
+      "file": "glossary-return.js",
+      "bytes": 10671,
+      "gitBlob": "fd17516a8485ccc0fb4efab0a0d8618324aad336",
+      "sha256": "ff3f63d027533a1fb3d687443a87f2dd807a9d9b9616c09ac00b81035496805b"
+    },
+    {
+      "file": "glossary/generated/cache-revision.js",
+      "bytes": 71065,
+      "gitBlob": "dd24cb7d72232a7b10beaec6802bd1674d196d57",
+      "sha256": "6dea5b9fe7259f23b06744ee834b3655e0876801669f6c32db508b308fa9ed7f"
+    },
+    {
+      "file": "glossary/v2/generated/index.en.js",
+      "bytes": 23151102,
+      "gitBlob": "46a9a2ab6c1a507c19b7e57738b212a53559405a",
+      "sha256": "320e365ed73400d11107eee512747c10805ea112f1c04d8184640dfcc9eebc80"
+    },
+    {
+      "file": "glossary/v2/generated/index.en.json",
+      "bytes": 31116716,
+      "gitBlob": "148a499a6902baa4fadf0a8d7dcf47b154e197df",
+      "sha256": "bd346c45dde0e5b57676e5a87512b8dc417c4439753011005a8489a5c88dc339"
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "bytes": 48356,
+      "gitBlob": "5dab8d7ecd0e641ae281a0d61bd50753058f3ef7",
+      "sha256": "9627072c8e7aef470ba7e82fa76a9d881d36b05abd5efb0c022c81999abc62ad"
+    },
+    {
+      "file": "index.html",
+      "bytes": 359,
+      "gitBlob": "5e728a8e879525ac5d7d3b957a62d1b0a5763bee",
+      "sha256": "fdd6a5c466645b49e0b44b1f23fcb9cb2d09ce73ba7b62e6190fd231349b7dc0"
+    },
+    {
+      "file": "manifest.webmanifest",
+      "bytes": 730,
+      "gitBlob": "7dd16a8248d658cd554812ddc7f026773a582251",
+      "sha256": "12a5232dcee199c7d4a9f93b915d37bff75d1c424db13cd3e73dc8541164d7fb"
+    },
+    {
+      "file": "service-worker.js",
+      "bytes": 13071,
+      "gitBlob": "f6770a2942d1871b67550a4ef45416ef07c22608",
+      "sha256": "fa3c7a49fdd37083c7b405dfc807e6bc02013ae1396a174144b16d6c880c518d"
+    },
+    {
+      "file": "tools/pages-runtime-manifest.json",
+      "bytes": 291036,
+      "gitBlob": "c0eee6fddd6ceed840d45d1acd0c174132307629",
+      "sha256": "df49c1d1c2459865d370965ac8a9d0e7b3a46501d141b83496124bfe48d4699b"
+    },
+    {
+      "file": "v2/app.html",
+      "bytes": 741,
+      "gitBlob": "ecce73aa70ecbc3bfe59045e7378e30d625ed0e6",
+      "sha256": "486285da63d49b342cc58a8d6033a8e9b215fafe52d39e1301dbb8b640f6a862"
+    },
+    {
+      "file": "v2/army-books.mjs",
+      "bytes": 1049,
+      "gitBlob": "25dc7891aac917706e0c3479cd70f6837634acca",
+      "sha256": "d8620ba3a782043b2ed0c616230e4da6fc88e03029a1fa6bc166a97369a12f4d"
+    },
+    {
+      "file": "v2/boot.mjs",
+      "bytes": 403,
+      "gitBlob": "1821859fd64073e6f13cf582bf2d3b2d37ac4174",
+      "sha256": "cdc776553f3796a50bc19879cb38c42dfda1d67b0283e576d438c8543916547e"
+    }
+  ],
+  "protection": "Every published runtime byte and existing Core producer/content/reader and book generated byte remains at the accepted base; candidate tooling is isolated."
+}

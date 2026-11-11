@@ -1,0 +1,120 @@
+{
+  "schema": "core-importer-exact-representation-exceptions/v1",
+  "baselineHead": "7b15dc36425ac577b6928837ec9983409972e278",
+  "acceptedTypedBlock": {
+    "type": "comparison-table",
+    "columns": [
+      "Starting Strength of 1",
+      "Starting Strength of 2 or more"
+    ],
+    "rows": [
+      {
+        "label": "Below Starting Strength",
+        "cells": [
+          "The model’s remaining wounds are less than its W characteristic.",
+          "The number of remaining models is less than the unit’s starting strength."
+        ]
+      },
+      {
+        "label": "At Half-Strength",
+        "cells": [
+          "The model’s remaining wounds are half of its W characteristic.",
+          "The number of remaining models is half of the unit’s starting strength."
+        ]
+      },
+      {
+        "label": "Below Half-Strength",
+        "cells": [
+          "The model’s remaining wounds are less than half of its W characteristic.",
+          "The number of remaining models is less than half of the unit’s starting strength."
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 1",
+      "cell": "The model’s remaining wounds are less than its W characteristic.",
+      "rowLabel": "Below Starting Strength",
+      "sentence": "Starting Strength of 1: The model’s remaining wounds are less than its W characteristic.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 0,
+      "columnIndex": 0,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    },
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 2 or more",
+      "cell": "The number of remaining models is less than the unit’s starting strength.",
+      "rowLabel": "Below Starting Strength",
+      "sentence": "Starting Strength of 2 or more: The number of remaining models is less than the unit’s starting strength.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 0,
+      "columnIndex": 1,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    },
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 1",
+      "cell": "The model’s remaining wounds are half of its W characteristic.",
+      "rowLabel": "At Half-Strength",
+      "sentence": "Starting Strength of 1: The model’s remaining wounds are half of its W characteristic.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 1,
+      "columnIndex": 0,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    },
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 2 or more",
+      "cell": "The number of remaining models is half of the unit’s starting strength.",
+      "rowLabel": "At Half-Strength",
+      "sentence": "Starting Strength of 2 or more: The number of remaining models is half of the unit’s starting strength.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 1,
+      "columnIndex": 1,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    },
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 1",
+      "cell": "The model’s remaining wounds are less than half of its W characteristic.",
+      "rowLabel": "Below Half-Strength",
+      "sentence": "Starting Strength of 1: The model’s remaining wounds are less than half of its W characteristic.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 2,
+      "columnIndex": 0,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    },
+    {
+      "id": "core-rule-01-02-01-starting-strength-and-half-strength",
+      "kind": "ACCEPTED_COMPARISON_COLUMN_CELL",
+      "column": "Starting Strength of 2 or more",
+      "cell": "The number of remaining models is less than half of the unit’s starting strength.",
+      "rowLabel": "Below Half-Strength",
+      "sentence": "Starting Strength of 2 or more: The number of remaining models is less than half of the unit’s starting strength.",
+      "baselineRecordIndex": 3,
+      "blockIndex": 3,
+      "rowIndex": 2,
+      "columnIndex": 1,
+      "baselineTypedBlockSHA256": "e13b924af06c96d183b546f15f0ff504295033b4c0d2e7ceecfa5a10dba01bf8",
+      "reason": "Exact accepted comparison-table column and cell rendered as one labelled sentence; no new fact or broader exception."
+    }
+  ]
+}

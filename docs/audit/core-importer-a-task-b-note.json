@@ -1,0 +1,38 @@
+{
+  "scope": "Documentation for deferred TaskB only; no collector implemented and no registry changes in TaskA",
+  "warehouse": "f57e61f9c7fb2f30d1723479ed5257257eeb6235",
+  "counts": {
+    "bindings": 111,
+    "contexts": 86,
+    "layouts": 0,
+    "documents": 0
+  },
+  "bindingGroups": {
+    "coreCanonicalRecords": 103,
+    "officialCoreURU": 5,
+    "bloodAngelsCorePolicyEvidence": 1,
+    "spaceMarinesDarkAngelsExistingEffectCoreEvidence": 2
+  },
+  "origin": "Definitions were retained from the earlier partial catalog-builder output, selected using actual serialized producer-output references and verified against the accepted baseline registry. They were not independently re-imported source facts.",
+  "validation": "All197 content-addressed identities and dependency closure were verified, each binding had an actual output witness, old registry entry bytes/order remained unchanged, and all97 outputs were validated before applying the explicit merge.",
+  "deltaSha256": "e2bd7af38acc402d63730f15142d797bc3e29ed1b97be0b3e6b75b1029305981",
+  "deltaBytes": 65163,
+  "existingWriteCommand": "node tools/audit/build-source-catalog.mjs --write --merge=<reviewed-delta.json> --inputs=<verified-producer-output-root>",
+  "missingStandardCommand": {
+    "status": "PROPOSAL_ONLY_NOT_IMPLEMENTED",
+    "example": "node tools/audit/build-source-catalog-additions.mjs --inputs=<producer-metadata-export> --out=<delta.json>",
+    "requirements": [
+      "Use existing producer source-binding/context definitions and sourceContentId; capture definitions before shared metadata is reduced to opaque IDs, or read complete retained local definitions.",
+      "Use existing externalizeSources collect/tables support without rewriting old authored registry entries or changing local/shared placement automatically.",
+      "Compare to the accepted registry, export only new definitions in deterministic order, and preserve producer-output witnesses for every addition.",
+      "Reject missing definitions, conflicting old entries, missing dependencies or unauthenticated inputs; never reconstruct opaque definitions by guessing from their IDs.",
+      "The existing --merge write command then performs append-only checks and validates every97 output before any writes.",
+      "111/86 describes the old WIP, not a forced expected count for a future corrected producer."
+    ]
+  },
+  "proofArtifact": "Core111-delta-verification.json (warehouse audit evidence)",
+  "candidateBaselineBoundary": {
+    "taskA": "The candidate authenticates its unchanged live baseline inputs against 7b15dc36 before preserving old identities and stronger official entries.",
+    "taskB": "Before switching live Core inputs, retain that explicit baseline authority separately from the updated live inputs. Review this transition instead of disabling the baseline guard or treating the historical candidate as a live source."
+  }
+}

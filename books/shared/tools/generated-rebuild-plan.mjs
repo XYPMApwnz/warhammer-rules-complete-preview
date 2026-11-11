@@ -4,6 +4,15 @@ export const BOOKS=['space-marines','blood-angels','dark-angels','adeptus-mechan
 
 export function generatedRebuildPlan(tracked) {
   const steps=[];
+  const candidateSource='books/core-rules/sources/waha-core-2026-11-11/';
+  // Candidate-only outputs are checked without changing the active Core corpus.
+  steps.push({book:'core-candidate',runtime:'python',
+    producer:'books/core-rules/tools/build_waha_core_corpus.py',args:['--write'],
+    outputs:['waha-core-corpus.v1.json','waha-core-corpus.manifest.json','waha-core-corpus.census.json']
+      .map(file=>candidateSource+file)});
+  steps.push({book:'core-candidate',runtime:'python',
+    producer:'books/core-rules/tools/build_core_candidate.py',args:['--write'],
+    outputs:[candidateSource+'core-rules.candidate.v1.json']});
   const add=(book,producer,names,args=[],runtime='node',extra={})=>steps.push({
     book,producer,args,runtime,outputs:names.map(name=>`books/${book}/v2/generated/${name}.json`),...extra});
   for(const book of BOOKS){

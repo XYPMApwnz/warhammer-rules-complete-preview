@@ -1,0 +1,591 @@
+{
+  "schema": "core-importer-authored-faq-identities/v1",
+  "baselineHead": "7b15dc36425ac577b6928837ec9983409972e278",
+  "reason": "The first66 mappings retain the immutable accepted questions and IDs. The seven additional questions are authored explicitly by source heading; array position does not own identity.",
+  "records": [
+    {
+      "id": "core-faq-waha-001",
+      "question": "If a unit has a rule that allows it to start an action when it is battle-shocked can it also continue doing that action if it becomes battle-shocked after starting an action?",
+      "ownerCode": "01.07",
+      "sourceId": "waha-core-faq-001",
+      "sourceHeading": "Battle-shock Rolls 01.07",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-002",
+      "question": "If a unit becomes battle-shocked after starting an action does it stop performing that action?",
+      "ownerCode": "01.07",
+      "sourceId": "waha-core-faq-002",
+      "sourceHeading": "Battle-shock Rolls 01.07",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-003",
+      "question": "My unit has access to a rule that changes the Damage characteristic of an incoming attack to 0. When such an attack is allocated to a model in that unit, is the Damage changed before or after save rolls?",
+      "ownerCode": "02.02",
+      "sourceId": "waha-core-faq-003",
+      "sourceHeading": "2. Profiles 02.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-004",
+      "question": "How do modifiers to the charge roll (or to the maximum distance of the charge move, such as Take to the Skies) affect the selection of charge targets?",
+      "ownerCode": "02.02",
+      "sourceId": "waha-core-faq-004",
+      "sourceHeading": "2. Profiles 02.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-005",
+      "question": "My rule says that \"this units ranged attacks have +1 A\", do each of my attacks get an extra attack dice?",
+      "ownerCode": "02.04",
+      "sourceId": "waha-core-faq-005",
+      "sourceHeading": "4. Weapons 02.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-006",
+      "question": "Do rules that affect a keyword include multi-word keywords that contain that keyword? For example, would rules that affect COMMISSAR units affect a unit that has the COMMISSAR GRAVES keyword?",
+      "ownerCode": "02.05",
+      "sourceId": "waha-core-faq-006",
+      "sourceHeading": "5. Keywords 02.05",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-007",
+      "question": "The Munitorium Field Manual shows my unit can attach to different units then are on it's datasheet, which do I use?",
+      "ownerCode": "02.06",
+      "sourceId": "waha-core-faq-007",
+      "sourceHeading": "6. Unit Composition and Other Rules 02.06",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-008",
+      "question": "Do models destroyed when a unit is out of coherency count for mission objectives?",
+      "ownerCode": "03.03",
+      "sourceId": "waha-core-faq-008",
+      "sourceHeading": "Coherency 03.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-009",
+      "question": "When checking coherency for my unit can my unit be in multiple groups?",
+      "ownerCode": "03.03",
+      "sourceId": "waha-core-faq-009",
+      "sourceHeading": "Coherency 03.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-010",
+      "question": "When a move says that a model or unit must move in a way if it is able, can that requirement force the unit to end their move not in coherency?",
+      "ownerCode": "03.03",
+      "sourceId": "waha-core-faq-010",
+      "sourceHeading": "Coherency 03.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-011",
+      "question": "Does my model or unit become engaged while moving through a enemy units engagement range during a move?",
+      "ownerCode": "03.04",
+      "sourceId": "waha-core-faq-011",
+      "sourceHeading": "Engagement 03.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-012",
+      "question": "When selecting a target unit can the enemy model that is visible to my model and the enemy model that is in range of my model's weapon be different enemy models in the same unit?",
+      "ownerCode": "04.02",
+      "sourceId": "waha-core-faq-012",
+      "sourceHeading": "2. Select Targets 04.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-013",
+      "question": "Can a model be within range of a weapon if it is not visible?",
+      "ownerCode": "04.02",
+      "sourceId": "waha-core-faq-013",
+      "sourceHeading": "2. Select Targets 04.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-014",
+      "question": "My rule says that \"this units ranged attacks have +1 A\", do each of my attacks get an extra attack dice?",
+      "ownerCode": "04.03",
+      "sourceId": "waha-core-faq-014",
+      "sourceHeading": "3. Resolve Attacks 04.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-015",
+      "question": "When my unit shoots at another unit, how does it work if some models in the target unit are fully visible to some models in my unit, while others are within a terrain area/not fully visible?",
+      "ownerCode": "04.03",
+      "sourceId": "waha-core-faq-015",
+      "sourceHeading": "3. Resolve Attacks 04.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-016",
+      "question": "If my unit has weapons that are identical in characteristics, but some of those weapons have [PRECISION] and those weapons targeted a unit without the CHARACTER keyword, do I roll all of those weapons together?",
+      "ownerCode": "04.03",
+      "sourceId": "waha-core-faq-016",
+      "sourceHeading": "3. Resolve Attacks 04.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-017",
+      "question": "My attack has a rule that means it results in a critical hit on a hit roll of 4+. Does this work when snap shooting?",
+      "ownerCode": "05.01",
+      "sourceId": "waha-core-faq-017",
+      "sourceHeading": "1. Hit Roll 05.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-018",
+      "question": "My attack has a rule that means it results in a critical hit on a hit roll of 4+, and I would otherwise need a 5+ to hit. Does a 4+ hit?",
+      "ownerCode": "05.01",
+      "sourceId": "waha-core-faq-018",
+      "sourceHeading": "1. Hit Roll 05.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-019",
+      "question": "When declaring the allocation order of groups in my unit I have more than one non-CHARACTER groups that contain a model with a missing wound, how must I select the order?",
+      "ownerCode": "05.03",
+      "sourceId": "waha-core-faq-019",
+      "sourceHeading": "3. Save Rolls 05.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-020",
+      "question": "I have a unit being attacked with weapons that will modify some of their save rolls to be worse then 6 should I make those save rolls?",
+      "ownerCode": "05.03",
+      "sourceId": "waha-core-faq-020",
+      "sourceHeading": "3. Save Rolls 05.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-021",
+      "question": "Can I group or allocate a wound to a destroyed model?",
+      "ownerCode": "05.03",
+      "sourceId": "waha-core-faq-021",
+      "sourceHeading": "3. Save Rolls 05.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-022",
+      "question": "Fight On Death (05.04.05) requires models awaiting such an ability to stay on the battlefield until their unit has attacked (or until the end of the phase). How do these models function while this is the case?",
+      "ownerCode": "05.04",
+      "sourceId": "waha-core-faq-022",
+      "sourceHeading": "4. Inflict Damage 05.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-023",
+      "question": "In what step during the attack sequence do I roll for Feel No Pain?",
+      "ownerCode": "05.04",
+      "sourceId": "waha-core-faq-023",
+      "sourceHeading": "4. Inflict Damage 05.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-024",
+      "question": "When checking line of sight from one model to another, is this drawn between the bases of those models, or between any part of them?",
+      "ownerCode": "06.01",
+      "sourceId": "waha-core-faq-024",
+      "sourceHeading": "Visibility 06.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-025",
+      "question": "I have a rule that triggers when a mortal wound is allocated to a model, when does this happen?",
+      "ownerCode": "06.02",
+      "sourceId": "waha-core-faq-025",
+      "sourceHeading": "Mortal Wounds 06.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-026",
+      "question": "I failed hazard rolls from [Hazardous] weapons, do those mortal wounds have to be allocated to the models with the [HAZARDOUS] weapons?",
+      "ownerCode": "06.03",
+      "sourceId": "waha-core-faq-026",
+      "sourceHeading": "Hazard Rolls 06.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-027",
+      "question": "If a rule says my unit must make a hazard roll does every model in the unit make a hazard roll?",
+      "ownerCode": "06.03",
+      "sourceId": "waha-core-faq-027",
+      "sourceHeading": "Hazard Rolls 06.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-028",
+      "question": "Can I select a unit to shoot or fight if it doesn't have melee or ranged weapons?",
+      "ownerCode": "10.02",
+      "sourceId": "waha-core-faq-028",
+      "sourceHeading": "2. Shoot 10.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-029",
+      "question": "When a rule instructs you to perform a charge outside of the charge phase, do I resolve step 2 and 3 of the Charge step (11.02)?",
+      "ownerCode": "11.02",
+      "sourceId": "waha-core-faq-029",
+      "sourceHeading": "2. Charge Step 11.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-030",
+      "question": "If a rule modifies how far a unit or model can move during a pile-in move or consolidation move does it also change the distance of the target units?",
+      "ownerCode": "11.04",
+      "sourceId": "waha-core-faq-030",
+      "sourceHeading": "Fight Phase 12",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-031",
+      "question": "If a rule allows my unit to pile-in or consolidate an extra distance in the Fight phase, when can I use that rule?",
+      "ownerCode": "11.04",
+      "sourceId": "waha-core-faq-031",
+      "sourceHeading": "Fight Phase 12",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-032",
+      "question": "If I have a rule that says my unit can move up to 6\" when it makes a pile-in move or consolidation move, does this also mean it changes the maximum distance of those moves to 6\"?",
+      "ownerCode": "11.04",
+      "sourceId": "waha-core-faq-032",
+      "sourceHeading": "Fight Phase 12",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-033",
+      "question": "Can I select a unit to shoot or fight if it doesn't have melee or ranged weapons?",
+      "ownerCode": "12.04",
+      "sourceId": "waha-core-faq-033",
+      "sourceHeading": "3. Fight Step 12.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-034",
+      "question": "Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?",
+      "ownerCode": "13.01",
+      "sourceId": "waha-core-faq-034",
+      "sourceHeading": "Placing Terrain 13.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-035",
+      "question": "When my unit shoots at another unit, how does it work if some models in the target unit are fully visible to some models in my unit, while others are within a terrain area/not fully visible?",
+      "ownerCode": "13.08",
+      "sourceId": "waha-core-faq-035",
+      "sourceHeading": "Benefit of Cover 13.08",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-036",
+      "question": "If a rule refers to an 'objective marker', does this mean an 'objective'?",
+      "ownerCode": "13.11.01",
+      "sourceId": "waha-core-faq-036",
+      "sourceHeading": "Objectives 14",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-037",
+      "question": "Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?",
+      "ownerCode": "14.01",
+      "sourceId": "waha-core-faq-037",
+      "sourceHeading": "Terrain Objectives 14.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-038",
+      "question": "Is being within range of a terrain objective the same as being within range of an objective marker?",
+      "ownerCode": "14.02",
+      "sourceId": "waha-core-faq-038",
+      "sourceHeading": "Level of Control 14.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-039",
+      "question": "If my unit has taken control of an objective at the end of my movement phase and that unit has as an ability that secures an objective they control, can they secure that objective?",
+      "ownerCode": "14.03",
+      "sourceId": "waha-core-faq-039",
+      "sourceHeading": "Secured Objectives 14.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-040",
+      "question": "Can I use the Insane Bravery stratagem on a battle-shocked unit?",
+      "ownerCode": "14.03",
+      "sourceId": "waha-core-faq-040",
+      "sourceHeading": "Stratagems 15",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-041",
+      "question": "After using an ability that increases the CP cost of a stratagem, must my opponent continue to use the selected stratagem at the increased cost if they have the necessary CP available?",
+      "ownerCode": "15.01",
+      "sourceId": "waha-core-faq-041",
+      "sourceHeading": "Using Stratagems 15.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-042",
+      "question": "After using an ability that increases the CP cost of a stratagem, if my opponent does not have the necessary CP available for the selected stratagem, what happens?",
+      "ownerCode": "15.01",
+      "sourceId": "waha-core-faq-042",
+      "sourceHeading": "Using Stratagems 15.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-043",
+      "question": "If a stratagem contains a section that carries an additional CP cost (such as the Into the Fray option of Heroic Intervention), is that additional cost considered to be a modifier?",
+      "ownerCode": "15.01",
+      "sourceId": "waha-core-faq-043",
+      "sourceHeading": "Using Stratagems 15.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-044",
+      "question": "If a unit has a rule that allows it to start an action when it is battle-shocked can it also continue doing that action if it becomes battle-shocked after starting an action?",
+      "ownerCode": "16.01",
+      "sourceId": "waha-core-faq-044",
+      "sourceHeading": "Performing Actions 16.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-045",
+      "question": "If a unit becomes battle-shocked after starting an action does it stop performing that action?",
+      "ownerCode": "16.01",
+      "sourceId": "waha-core-faq-045",
+      "sourceHeading": "Performing Actions 16.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-046",
+      "question": "While making a move type other than a normal/advance move, can my MONSTER/VEHICLE unit move through friendly units?",
+      "ownerCode": "17.01",
+      "sourceId": "waha-core-faq-046",
+      "sourceHeading": "Moving Monsters and Vehicles 17.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-047",
+      "question": "Are models that are within the boundary of a terrain area, but not on the ground floor of a terrain area (e.g. overhanging parts of FRAME VEHICLES or models on terrain features that are within that terrain area) within that terrain area?",
+      "ownerCode": "17.02",
+      "sourceId": "waha-core-faq-047",
+      "sourceHeading": "Frame 17.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-048",
+      "question": "Do a unit's abilities continue to function while they are embarked within a TRANSPORT?",
+      "ownerCode": "18.02",
+      "sourceId": "waha-core-faq-048",
+      "sourceHeading": "Embarking 18.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-049",
+      "question": "If a rule says a unit can embark into a TRANSPORT in a turn that unit disembarked, does this ignore the core rules restriction on embarking in a turn that unit made a set up move (see 18.02)?",
+      "ownerCode": "18.02",
+      "sourceId": "waha-core-faq-049",
+      "sourceHeading": "Embarking 18.02",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-050",
+      "question": "If a unit makes any disembark move in a turn (i.e. Disembark move, Emergency Disembark move etc.) has it disembarked that turn?",
+      "ownerCode": "18.07",
+      "sourceId": "waha-core-faq-050",
+      "sourceHeading": "SHOCK DISEMBARK MOVE18.07",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-051",
+      "question": "The Munitorium Field Manual shows my unit can attach to different units then are on it's datasheet, which do I use?",
+      "ownerCode": "24.23",
+      "sourceId": "waha-core-faq-051",
+      "sourceHeading": "LEADER 24.22 / SUPPORT 24.34",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-052",
+      "question": "Units have all the keywords of all their models, and attached units have all the keywords of all of their component units. How are destroyed models taken into account for these purposes?",
+      "ownerCode": "19.03",
+      "sourceId": "waha-core-faq-052",
+      "sourceHeading": "Keywords in Attached Units 19.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-053",
+      "question": "If I place units in strategic reserves during the battle, can this exceed the 50% of my points limit for the battle restriction as mentioned in Placing Units in Strategic Reserves (20.01)?",
+      "ownerCode": "20.01",
+      "sourceId": "waha-core-faq-053",
+      "sourceHeading": "Placing Units in Strategic Reserves 20.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-054",
+      "question": "Does the limit to the combined points value of my units in strategic reserves only apply until the start of the first battle round?",
+      "ownerCode": "20.01",
+      "sourceId": "waha-core-faq-054",
+      "sourceHeading": "Placing Units in Strategic Reserves 20.01",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-055",
+      "question": "When do the effects of a FLYING unit taking to the skies apply?",
+      "ownerCode": "21.03",
+      "sourceId": "waha-core-faq-055",
+      "sourceHeading": "Flying Models 21.03",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-056",
+      "question": "What does the X\" in Lone Operative X\" mean?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-056",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-057",
+      "question": "I failed hazard rolls from [Hazardous] weapons, do those mortal wounds have to be allocated to the models with the [HAZARDOUS] weapons?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-057",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-058",
+      "question": "If both players have units with the Scouts ability, do they alternate resolving scout moves?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-058",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-059",
+      "question": "In what step during the attack sequence do I roll for Feel No Pain?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-059",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-060",
+      "question": "If my unit has the Deadly Demise ability and has an ability that allows it to Fight on Death, how do I resolve this?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-060",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-061",
+      "question": "If the [ANTI] ability on my unit is ANTI-NON-MONSTER/VEHICLE does it mean the [ANTI] rule triggers when targeting units that do not have the MONSTER or VEHICLE keyword?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-061",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-062",
+      "question": "Does vertical movement in a unit that has taken to the skies count towards the distance a model has used for the purposes of [Heavy]?",
+      "ownerCode": "23.04",
+      "sourceId": "waha-core-faq-062",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-063",
+      "question": "Can an attached unit be given an Upgrade?",
+      "ownerCode": "25.04",
+      "sourceId": "waha-core-faq-063",
+      "sourceHeading": "Fill Your Army Roster 25.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-064",
+      "question": "Can a unit have both an Upgrade and an enhancement?",
+      "ownerCode": "25.04",
+      "sourceId": "waha-core-faq-064",
+      "sourceHeading": "Fill Your Army Roster 25.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-065",
+      "question": "Are Upgrades enhancements?",
+      "ownerCode": "25.04",
+      "sourceId": "waha-core-faq-065",
+      "sourceHeading": "Fill Your Army Roster 25.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-066",
+      "question": "Can an EPIC HERO unit form an attached unit with a unit that has an enhancement?",
+      "ownerCode": "25.04",
+      "sourceId": "waha-core-faq-066",
+      "sourceHeading": "Fill Your Army Roster 25.04",
+      "baselineIdentity": true
+    },
+    {
+      "id": "core-faq-waha-067",
+      "question": "If a rule's effect lasts until the end of a specific part of the battle (e.g. until the end of the phase, until the end of the turn), is that rule still in effect at the end of that part of the battle?",
+      "ownerCode": "01.02",
+      "sourceId": "waha-core-faq-067",
+      "sourceHeading": "Units and Models 01.02",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-068",
+      "question": "When a model overhangs the edge of the battlefield, how does that affect its visibility?",
+      "ownerCode": "06.01",
+      "sourceId": "waha-core-faq-068",
+      "sourceHeading": "Visibility 06.01",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-069",
+      "question": "When determining control over an objective, can the same model's OC count towards more than one objective that model is within range of?",
+      "ownerCode": "14.02",
+      "sourceId": "waha-core-faq-069",
+      "sourceHeading": "Level of Control 14.02",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-070",
+      "question": "Can a unit be controlling more than one objective at once?",
+      "ownerCode": "14.02",
+      "sourceId": "waha-core-faq-070",
+      "sourceHeading": "Level of Control 14.02",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-071",
+      "question": "Can a unit that used the rapid disembark mode this turn (e.g. using a Trukk's Pilin' Out ability) be targeted with the Heroic Intervention stratagem?",
+      "ownerCode": "18.04",
+      "sourceId": "waha-core-faq-071",
+      "sourceHeading": "Transports 18",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-072",
+      "question": "When does a model's or unit's ability in an attached unit apply to all models in that unit?",
+      "ownerCode": "19.04",
+      "sourceId": "waha-core-faq-072",
+      "sourceHeading": "Abilities in Attached Units 19.04",
+      "baselineIdentity": false
+    },
+    {
+      "id": "core-faq-waha-073",
+      "question": "When a unit with Firing Deck is equipped with another unit's weapons, do abilities that affect those weapons while they are equipped by that other unit affect those weapons while they are equipped by the unit with Firing Deck?",
+      "ownerCode": "24.14",
+      "sourceId": "waha-core-faq-073",
+      "sourceHeading": "Core Abilities 24",
+      "baselineIdentity": false
+    }
+  ]
+}

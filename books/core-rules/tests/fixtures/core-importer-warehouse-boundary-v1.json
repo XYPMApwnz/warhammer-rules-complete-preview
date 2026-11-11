@@ -1,0 +1,40 @@
+{
+  "schema": "core-importer-authenticated-warehouse-boundary/v1",
+  "label": "warehouse-boundary-replay",
+  "explanation": "The unchanged accepted base CLI extracts the correct119-character record. This control replays the exact historical warehouse heading scanner that ignored an unnumbered h3 boundary and overflowed into Core Abilities and site footer. No source sentence is fabricated or appended.",
+  "provenance": {
+    "baseCommit": "949d98f9699d660e87c753d3e2385b72a7bf465f",
+    "baseGitBlob": "6b0891975236737ecf68d47c50865f32d9f9a444",
+    "recordedWorkingTreeGitBlob": "0ae1478c486c15f718d2a84676b255124ce91214",
+    "recordedWorkingTreeSHA256": "e099b720090f75e5fbf842d14fce8cd67dc217027ecc65d6e40d038e75063849",
+    "recordedPatchSHA256": "ceb1ac4d022c1ce08a5c2cd7a2a745a52b33e5d0366b8bb2aa2773aeb2fb89d1",
+    "recordedIndexHeader": "index 6b089197..0ae1478c 100644",
+    "function": "heading_record",
+    "functionSHA256": "daa60f1bfe8b4f002da1c2648700b5cc1a4db696ca19aa3072e86d8c1d23e099",
+    "runtimeDependency": "All historical function bytes are embedded here. No unpublished Git object, warehouse checkout or evidence file is read by the test."
+  },
+  "baselineFormatter": {
+    "file": "books/core-rules/tools/import_wahapedia_11e.py",
+    "normalization": "lf",
+    "sha256": "a09e12fdb5433b59a4436aefcdb43ffec59bb4fd647d4766ec9dc10820dd3827",
+    "gitBlob": "6b0891975236737ecf68d47c50865f32d9f9a444"
+  },
+  "rawInput": {
+    "file": "books/core-rules/sources/waha-core-2026-11-11/rules-appendix.html",
+    "sha256": "9de62d73ca6ceeda040b3f6cc0607cddfcbcafc3c760599c51f3214e9bc92bbf"
+  },
+  "heading": {
+    "anchor": "Set-Up-As-Reinforcements",
+    "tag": "h3",
+    "code": "20.03.01"
+  },
+  "globals": {
+    "MUSTER_SUBSECTIONS": {
+      "Select-Detachments": "25.04.01",
+      "Select-Units": "25.04.02",
+      "Attach-Leaders-and-Support-Units": "25.04.03",
+      "Select-Enhancements": "25.04.04"
+    }
+  },
+  "headingRecordSource": "def heading_record(heading) -> dict | None:\n    label = \" \".join(heading.text_content().split())\n    match = CODE_RE.search(label)\n    internal_code = MUSTER_SUBSECTIONS.get(heading.get(\"id\"))\n    if not match and not internal_code:\n        return None\n    code = internal_code or match.group(1)\n    title = label if internal_code else (label[:match.start()] + label[match.end():]).strip(\" -\")\n    holder = html.Element(\"div\")\n    if heading.tail and heading.tail.strip():\n        holder.text = heading.tail\n    sibling = heading.getnext()\n    while sibling is not None:\n        independent = sibling.get(\"id\") in {*MUSTER_SUBSECTIONS, \"Desperate-Escape-Test\"}\n        numbered = sibling.tag in {\"h2\", \"h3\"} and CODE_RE.search(\" \".join(sibling.text_content().split()))\n        if sibling.tag in {\"h1\", \"h2\"} or independent or numbered:\n            break\n        holder.append(deepcopy(sibling))\n        sibling = sibling.getnext()\n    text = clean_text(holder)\n    return {\n        \"code\": code, \"sourceCode\": \"25.04\" if internal_code else code,\n        \"title\": title or code, \"text\": text,\n        \"sourceNode\": {\"sourceUrl\": SOURCE_URL, \"code\": \"25.04\" if internal_code else code, \"anchor\": heading.get(\"id\")},\n    }\n\n\n"
+}
