@@ -63,8 +63,8 @@ print(json.dumps({'rawSourceOwners':checks}))
 assert.equal(raw.status,0,raw.stderr);const rawResult=JSON.parse(raw.stdout);
 const core=createEffectiveCoreCatalog();
 for(const [id,quote,hash]of [
- ['core-rule-01-02-units-and-models','When an effect or ability applies to a unit, it applies to every model in that unit.','9A3E26E62A76BA37CA60B63BFCD22CB4DD9343FB89A10DD69A047C3D88CCF421'],
- ['core-rule-13-06-terrain-and-movement','INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.','7C53E78F2CD965F63AC95D234D8DCD2BDD52903F2DC5EB0179657F27D2BC2A2A']
+ ['core-rule-01-02-units-and-models','When an effect or ability applies to a unit, it applies to every model in that unit.','5CF579FA20A1229423313E19D6E03D628005405666973A3AC7B5885E1B66F1DB'],
+ ['core-rule-13-06-terrain-and-movement','INFANTRY/BEASTS/SWARM/MOBILE models can move horizontally through dense terrain features.','C7C5D4699A151FB3903FAB4FF95FC6B225C0C5BB0BAF934E0464B2E5A908D86D']
 ]){const row=core.getById(id);assert.equal(row.state,'FULL_CONTENT');assert.ok(row.text.includes(quote));assert.ok(row.sourceContentHashes.includes(hash));}
 
 function unit(instanceId,unitId,{enhancementId,secondModel=false}={}){

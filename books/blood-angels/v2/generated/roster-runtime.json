@@ -36498,15 +36498,15 @@
                 "ownerBookId": "core-rules",
                 "code": "15.09",
                 "label": "SNAP SHOOTING",
-                "quote": "ELIGIBLE IF: As stated in the rule allowing this shooting type.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING:\n• You can only target one visible enemy unit within 24\" of your unit (and only if it is an eligible target).\n• Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s BS characteristic or any modifiers).\n• You cannot re-roll hit rolls.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
+                "quote": "ELIGIBLE IF: As stated in the rule allowing this shooting type.\nEFFECT: Your unit shoots as described in Making Attacks (04).\nWHILE SHOOTING:\n• You can only target one visible enemy unit within 24\" of your unit (and only if it is an eligible target).\n• Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s BS characteristic or any modifiers). Those hits are not critical hits.\n• You cannot re-roll hit rolls.\nAFTER SHOOTING: Until the end of the phase, your unit is not eligible to start an action.",
                 "sourceUnitIds": [
                   "waha-core-rule-15-09"
                 ],
                 "sourceContentHashes": [
-                  "E0983D78F2F6BC1144DC4437249D74FF961A915079E3503BFD057B4009719173"
+                  "625990B0C92594F60249E88CA1C4991BA885C22AB4CF95BBAD22353B4D968E0D"
                 ],
                 "sourceRefs": [],
-                "sourceBindings": "bindings-ad33c9cec7d7e9ac"
+                "sourceBindings": "bindings-c03046f0edfb9290"
               },
               "evidence": {
                 "field": [
@@ -36715,10 +36715,10 @@
                   "waha-core-rule-15-11"
                 ],
                 "sourceContentHashes": [
-                  "91B5BDA042E5F65407109036C392BA5B4E43B67F5ACE50EC0E0B5D38DF1056A5"
+                  "7320AF90AA88EA9E4D8D65B498CE7F39C742044C7DC827B52A6189F3B5D9C2D1"
                 ],
                 "sourceRefs": [],
-                "sourceBindings": "bindings-ad33c9cec7d7e9ac"
+                "sourceBindings": "bindings-c03046f0edfb9290"
               },
               "evidence": {
                 "field": [
@@ -121801,7 +121801,7 @@
       "title": "INFILTRATORS",
       "parameters": {},
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-deadly-demise": {
       "id": "core-deadly-demise",
@@ -121813,21 +121813,21 @@
         }
       },
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-deep-strike": {
       "id": "core-deep-strike",
       "title": "DEEP STRIKE",
       "parameters": {},
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-fights-first": {
       "id": "core-fights-first",
       "title": "FIGHTS FIRST",
       "parameters": {},
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-scouts": {
       "id": "core-scouts",
@@ -121839,14 +121839,14 @@
         }
       },
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-stealth": {
       "id": "core-stealth",
       "title": "STEALTH",
       "parameters": {},
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-feel-no-pain": {
       "id": "core-feel-no-pain",
@@ -121858,14 +121858,14 @@
         }
       },
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-lone-operative": {
       "id": "core-lone-operative",
       "title": "LONE OPERATIVE",
       "parameters": {},
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     },
     "core-firing-deck": {
       "id": "core-firing-deck",
@@ -121877,7 +121877,7 @@
         }
       },
       "sourceRefs": [],
-      "sourceBindings": "bindings-b7b9467522e596e1"
+      "sourceBindings": "bindings-98081923f364d335"
     }
   },
   "rosterReviewedScopeCorrections": [],
