@@ -21,7 +21,7 @@ assert.equal(cards.size,payload.cards.length);
 const referenceIds=['detachment-dw-c015c08e99c14972','detachment-rule-dw-b41deacc51464866','mfm-detachment-68a77cb979c24615'];
 const referenceSource=publicationView(read('./generated/deathwatch-mfm-presentation.json'));
 const cross=read('./generated/cross-owner-references.json'),importBook=read('./generated/roster-import.json');
-assert.equal(original.size,2325);
+assert.equal(original.size,2339); // 1954 unchanged native book cards + 385 canonical Core cards.
 function assertReferenceBoundary(view,book=importBook){
   view=publicationView(view);book=sourceDeclarationView(book);
   const index=new Map(view.cards.map(card=>[card.id,card]));
