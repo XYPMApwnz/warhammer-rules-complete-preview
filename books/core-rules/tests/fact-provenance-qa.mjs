@@ -45,7 +45,7 @@ for(const [code,text,page] of numericFacts){
 }
 for(const [code,pointer] of [['02.02.01','/text'],['05.02','/content']]){
   const rule=catalog.getByCode(code),source=rule.provenance.factSources.find(entry=>entry.target.path===pointer);
-  assert.equal(rule.provenance.base.sourceId,'waha-core-corpus-2026-09-25','base supporting occurrence lost');
+  assert.equal(rule.provenance.base.sourceId,'waha-core-corpus-2026-11-11','base supporting occurrence lost');
   assert.equal(source.source.sourceId,'waha-digital-11e-snapshot');
   assert.equal(source.source.sourceClass,'WAHA_SECONDARY');
   assert.equal(source.source.authorityLevel,'SECONDARY');

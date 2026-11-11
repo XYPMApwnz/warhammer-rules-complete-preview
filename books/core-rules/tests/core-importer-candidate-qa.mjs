@@ -25,6 +25,8 @@ const ownerBoundariesFile=fileURLToPath(new URL('./fixtures/core-importer-owner-
 const ownerBoundariesSHA256='ca294ee97b53ba534672b618d0b8425d5cd28211c0a5ade2d81a93403256e6df';
 const historicalBoundaryFile=fileURLToPath(new URL('./fixtures/core-importer-warehouse-boundary-v1.json',import.meta.url));
 const historicalBoundarySHA256='015775d73d58e4f06171faee69bdcc41213b4c74c2121c5684e3e8fa337ee8ab';
+const historicalSourceFile=fileURLToPath(new URL('../sources/core-importer-baselines/7b15dc36.v1.json',import.meta.url));
+const historicalSourceSHA256='075d31795979cbe8feb7ac999d013134a4fe09fc40dd4dbddb0d8d97e83196c0';
 export const sha256=value=>createHash('sha256').update(value).digest('hex');
 export const normalizeCandidateText=value=>String(value??'').normalize('NFKC')
  .replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,'-')
@@ -53,6 +55,25 @@ const protectedOrigins=new Map([
  ...['core-active-player','core-attached-unit','core-critical-hit','core-critical-wound','core-engagement-range',
  'core-objective-control','core-wholly-within','core-within','core-bodyguard'].map(id=>[id,'BASELINE_CONCEPT_UNCHANGED']),
  ['core-support','BASELINE_PRESENTATION_EXCEPTION']]);
+
+export function loadHistoricalSourceBaseline(file=historicalSourceFile){
+ const bytes=fs.readFileSync(file);
+ assert.equal(sha256(bytes),historicalSourceSHA256,'Historical Core baseline fixture integrity failure');
+ const source=JSON.parse(bytes);
+ assert.equal(source.schema,'core-importer-historical-source-baseline/v1');
+ assert.equal(source.baselineHead,'7b15dc36425ac577b6928837ec9983409972e278');
+ assert.equal(source.view.records.length,371);
+ return source;
+}
+
+function historicalDigital(){
+ const artifact=loadHistoricalSourceBaseline().artifacts.digital;
+ const bytes=Buffer.from(artifact.base64,'base64');
+ assert.equal(bytes.length,artifact.bytes);
+ assert.equal(sha256(bytes).toUpperCase(),artifact.sha256);
+ assert.equal(createHash('sha1').update(Buffer.from('blob '+bytes.length+'\0')).update(bytes).digest('hex'),artifact.gitBlob);
+ return JSON.parse(bytes);
+}
 
 export function loadAcceptedBaseline(){
  const bytes=fs.readFileSync(fixtureFile);
@@ -132,7 +153,7 @@ export function loadApprovedSourceChanges(baseline=loadAcceptedBaseline()){
 export function loadRepresentationPermissions(baseline=loadAcceptedBaseline()){
  const bytes=fs.readFileSync(representationsFile);
  assert.equal(sha256(bytes),representationsSHA256,'Changed exact typed comparison representations');
- const fixture=JSON.parse(bytes),accepted=JSON.parse(fs.readFileSync(path.join(repoRoot,'books/core-rules/content/core-rules.digital-11e.json')));
+ const fixture=JSON.parse(bytes),accepted=historicalDigital();
  assert.equal(fixture.baselineHead,baseline.baselineHead);assert.equal(fixture.records.length,6);
  for(const row of fixture.records){
   const record=accepted.records[row.baselineRecordIndex],table=record.content[row.blockIndex];
@@ -172,7 +193,7 @@ function loadExceptionFacts(baseline){
   assert.equal(row.baselineSentence,accepted.sentence);
   assert(row.requiredTableRows.length||row.currentTextWitnesses.length,'A baseline exception needs a current fact witness');
   if(row.acceptedTypedBlocks){
-   const digital=JSON.parse(fs.readFileSync(path.join(repoRoot,'books/core-rules/content/core-rules.digital-11e.json')));
+    const digital=historicalDigital();
    const record=digital.records.find(record=>record.code==='05.02');
    assert.equal(sha256(JSON.stringify(record)),baseline.records.find(record=>record.code==='05.02').acceptedDigitalRecordSHA256);
    assert.deepEqual(row.acceptedTypedBlocks.list,record.content.find(block=>block.type==='list'));
@@ -593,6 +614,15 @@ Path(sys.argv[3]).write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\\n
   fs.appendFileSync(path.join(mutated,'core-rules.candidate.v1.json'),'\n');
   assert.throws(()=>assertDeterministicArtifacts(runs[0],mutated),/Non-deterministic candidate artifact: core-rules.candidate.v1.json/);
   report.negativeControls.push({name:'deterministic-byte-mutation',status:'PASS'});
+  const badHistorical=path.join(temp,'tampered-historical-source.json');
+  fs.writeFileSync(badHistorical,Buffer.concat([fs.readFileSync(historicalSourceFile),Buffer.from('\n')]));
+  assert.throws(()=>loadHistoricalSourceBaseline(badHistorical),/Historical Core baseline fixture integrity failure/);
+  const rejectHistorical=`import sys\nfrom pathlib import Path\nsys.path.insert(0,${JSON.stringify(path.join(repoRoot,'books/core-rules/tools'))})\nfrom build_core_candidate import load_historical_baseline\nload_historical_baseline(Path(sys.argv[1]))\n`;
+  assert.throws(()=>execute('-c',[rejectHistorical,badHistorical]),error=>{
+   assert(String(error.stderr).includes('Historical Core baseline fixture integrity failure'));
+   return true;
+  });
+  report.negativeControls.push({name:'tampered-historical-source-baseline',status:'PASS',producerRejected:true});
   report.status='PASS';
  }catch(error){report.status='FAIL';report.error={message:error.message,stack:error.stack};throw error;}
  finally{

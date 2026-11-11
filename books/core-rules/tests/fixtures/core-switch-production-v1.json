@@ -1,0 +1,845 @@
+{
+  "schema": "core-switch-production-boundary/v1",
+  "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+  "baselineTree": "168d31fca5bb5844e02c46a213bc9038991a1712",
+  "historicalProductionFixture": {
+    "file": "tests/fixtures/core-importer-production-v1.json",
+    "baseline": "7b15dc36425ac577b6928837ec9983409972e278",
+    "sha256": "fd52f2bb9f7e2de1c02a8df7bb34addf45a32649aa58ff387161ff0c8cd1dab3",
+    "unchangedRowsVerifiedAgainstBaseline": 534
+  },
+  "acceptedCorpus": {
+    "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+    "gitBlob": "a65c8a03252370d86111e1a9411298baa8a684f6",
+    "bytes": 2131716,
+    "sha256": "dcccb02c5da68f0af500edaaab7fdcdbb6f9d5060d0f2a7b0075a6685d579b4e",
+    "reason": "The owner accepted the Task A corpus as the active Core source in Task B; only this source JSON may be published."
+  },
+  "changes": [
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "beforeSha256": "eae465e23eca8d116e42d3c4b48602b18b865e8b7213bbb5a33c8235dd171598",
+      "afterSha256": "0db5151aca0b9e2ef4a6132d6c5935cd2a56367e2a599eeee4c9533293fdafbb",
+      "afterBytes": 7645209,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "adeptus-mechanicus"
+      }
+    },
+    {
+      "file": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "beforeSha256": "0ed6e816ee333bd516eceec4b910e598547db4f357e34c1429969464dd3eca25",
+      "afterSha256": "bbe4bf0b488e2e8df842aec6b83a53227bd1c167d1c43eec56b680610d576eb5",
+      "afterBytes": 4665258,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/app-presentation.json",
+      "beforeSha256": "756aaceb358d166d0e626e082bbc44dcd0dbd2c66a5bd2b477563380be5004a3",
+      "afterSha256": "c56cbdfdf11bbbada712946155c0d98c0cee0d95b60bcdc854242efa8231fb62",
+      "afterBytes": 19417687,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "blood-angels"
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/gameplay-presentation.json",
+      "beforeSha256": "5904936478e057079acc02e854042804b47ca3008db0c947bfa382de09033168",
+      "afterSha256": "7ac874de15654081d4b64cf49bc39a910a2414487728fae3bef8a1f7da69102b",
+      "afterBytes": 13707036,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-gameplay-publication-proof.v1.json",
+        "sha256": "4666c595488350ed512b370f4266b416e5b5ba51ae1a2b9383a9c8e0473b1194",
+        "entry": "blood-angels"
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-import.json",
+      "beforeSha256": "beb0ec6c1ef9520aaa606caaf90f148775c65f73c62d260a9ae533ad115dbbe0",
+      "afterSha256": "5bc8e4f61377aae1f955fbe4b9f97bd1872b9765ef8508412e8eec19cfc22c7c",
+      "afterBytes": 5901206,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "812761662212cee122f09405292d1210f969a4f9873ce0b7a211f4aa313674c6",
+        "afterRawSha256": "5bc8e4f61377aae1f955fbe4b9f97bd1872b9765ef8508412e8eec19cfc22c7c",
+        "unchangedDecodedSha256": "c0cfd6245cd90c8a4bd94474afafc671324a0cba546d096b84b79f0bc197e7b7"
+      }
+    },
+    {
+      "file": "books/blood-angels/v2/generated/roster-runtime.json",
+      "beforeSha256": "82b57cd262a7cf0888e9ef5d76dd4607bb851fea24dff39fefce74d20349512d",
+      "afterSha256": "567df3bd96eedcd3dd35f130f630b039eb00695029e8e9ea469ac904534f6e89",
+      "afterBytes": 4914472,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "dffdfc4bbf25bcb5cf5dfe72d2eb25bea33ba148c262e02abc945ecdcfe25b39",
+        "afterRawSha256": "567df3bd96eedcd3dd35f130f630b039eb00695029e8e9ea469ac904534f6e89",
+        "unchangedDecodedSha256": "cce6a87f9aeb12b5da72147b58099d289c0dff0ec8d322ef24a7bd3ff8f2ff9d"
+      }
+    },
+    {
+      "file": "books/chaos-space-marines/v2/generated/app-presentation.json",
+      "beforeSha256": "54cb52660844440798ede4f7dbaf023ebf0badebcc51eb2c413455f832f0b18c",
+      "afterSha256": "886e46f834bb84410bca5238b79ba041dc3310191cbe7828487e153a88890ecb",
+      "afterBytes": 19597738,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "chaos-space-marines"
+      }
+    },
+    {
+      "file": "books/core-rules/content/core-effective-bindings.v1.json",
+      "beforeSha256": "e61fa0148f1cdfd823f4990425f93c654d2f831ccc53408241e8f3343edc5ba6",
+      "afterSha256": "6290a6c1cd12a8a175409095d608de24f64e69fb9a1544e4ce011eac803261e9",
+      "afterBytes": 20751,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Bind the active November corpus fingerprint and accepted candidate digest. Preserve exact source-node occurrence, range and reference witnesses and all old IDs. Remove the two already-applied effective edits. Retain only the 15 historical FAQ appearances authenticated against the historical source fixture and matching current source Q/A. Omit FAQ 050 from unrelated section 18.03 as approved."
+    },
+    {
+      "file": "books/core-rules/content/core-fact-projection.mjs",
+      "beforeSha256": "12c840cd663c952e53ad10fc006cad719729173e5c08e5fab56b76adb2df1f4d",
+      "afterSha256": "5d6138a7b16ab1e2c7dfc8de618b0a2b8e5583ffb65c4ef319ef8bf55bcca405",
+      "afterBytes": 9610,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "For only the four 25.04 child units, cite the actual source code 25.04 and exact DOM anchor. Do not show internal locators as source numbering. All other citation branches remain unchanged."
+    },
+    {
+      "file": "books/core-rules/content/core-identities.v1.json",
+      "beforeSha256": "d658880cade65aa9832a9dd61feb01b385f8f863db88b5680675641f94b5f1a8",
+      "afterSha256": "1e7f59e39fc9aeb36bbed17a0541aab14d723f0189df1fc6e4dfe781243fd385",
+      "afterBytes": 16441,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Preserve every old rule and source-node ID. Add only Appendix 01.02.12 and 01.04.06 and the four explicit 25.04 child source-node identities. Keep the 25.04 parent lookup unchanged."
+    },
+    {
+      "file": "books/core-rules/content/core-official-source-registry.en.json",
+      "beforeSha256": "19ad793708a7dbfef68670911ba087777260676fd63d8a332e074c3c9aa68308",
+      "afterSha256": "966fc450f4695c997b840b1768a88a6286ff0df3d1ec1c24c4b9d5587ec960c1",
+      "afterBytes": 15245,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Preserve every existing source entry. Append the accepted November corpus source with its exact artifact, date and 2E3928 corpus fingerprint. The September source retains its original fingerprint; stronger GW evidence retains precedence."
+    },
+    {
+      "file": "books/core-rules/content/core-rules.digital-11e.json",
+      "beforeSha256": "cde85ae618dbfb458d41a918fc7956d2d0f42697bf1f9cddd846b941e6952244",
+      "afterSha256": "6d276bfd26162f09857dc63a680e1186c539952c0551ee030f1e503ff6505973",
+      "afterBytes": 232708,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Activate the reviewed offline Task A candidate rule texts and exact source-node bindings, including restored subsections. Preserve approved SUPPORT and baseline presentation exceptions, old IDs and stronger official projections."
+    },
+    {
+      "file": "books/core-rules/content/effective-core-catalog.mjs",
+      "beforeSha256": "a2b54e35a37a8d888d1b730c75bc554f6598a36e1c179f220199c3dc1beb14f5",
+      "afterSha256": "56a91fed62d321936022bce491564b4882349a8d5601170c28e50404d276254c",
+      "afterBytes": 25473,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Compose the new accepted Core corpus with all five GW overrides and five URU. Authenticate the candidate and historical source fixture. Retain the 15 exact historical FAQ appearances only when old ownership, matching Q/A and the current source occurrence all agree. Change no book operation or condition."
+    },
+    {
+      "file": "books/core-rules/content/waha-core-source.mjs",
+      "beforeSha256": "48c194e142b39099178dd5f64c2e01f0a0da42020db31d70cb399341119b0dd2",
+      "afterSha256": "56b31dc64dd01d57d2c7c0fc372aa46e2227f1026f3e1770722edfa92978d59d",
+      "afterBytes": 14807,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_INPUT",
+      "reason": "Read the accepted November source directory, date, fingerprint and 368-unit corpus. Authenticate explicit FAQ and erratum identity maps and the 385-record candidate. Preserve full source-node boundary, occurrence and reference validation and generate the current Core provenance."
+    },
+    {
+      "file": "books/core-rules/reader/actions.html",
+      "beforeSha256": "e98b4d1cb1dfa247d7d6e79df452f769a99a2e1e10faad683cdffa43372920f9",
+      "afterSha256": "03b57b42ca54adcbb874cb507680ec0fe6c5c92f42fe17415def7b6df2ea1bbf",
+      "afterBytes": 22073,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/aircraft.html",
+      "beforeSha256": "ef30ad6fd89b97f40566ab0eb571e730d0d194d2375837237351902657cfbc08",
+      "afterSha256": "1e5fb6d2478f924a95c7cc7c46717800f3c27a5a1ea559c473ac8300d0f0e023",
+      "afterBytes": 18214,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/attached-units.html",
+      "beforeSha256": "92944e5b6dd2bcc20488f7f327ee0d7946dec65043db0879cafbec2989f39e59",
+      "afterSha256": "a4129f0c8ec9462f08b64644833f35961402d7c8399f2bbcb8990067bf9dfd35",
+      "afterBytes": 44939,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/attack-sequence.html",
+      "beforeSha256": "dcd6607cbd0e8d112b2dec8bd50e886d0b96e889008a46a9c858577395cbbe89",
+      "afterSha256": "10ec70186d2fa82b7e8de5a8cef41cda26cadd2ac647d4ddcd62af5243cf1f16",
+      "afterBytes": 92872,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/battle-round-overview.html",
+      "beforeSha256": "e587bd1b8f942069964403de7b4840858688fed2f2dc5cdedf9ecec8bbe163eb",
+      "afterSha256": "dcd8b1746a36f3612dcab68385493dd115075f31061109464abe560431ca86fe",
+      "afterBytes": 15099,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/build.mjs",
+      "beforeSha256": "115ea1f38260c5f1132e85b06c3389c53887358efed4ae5258cc307beec45fde",
+      "afterSha256": "6c2bbee9b0eecd39c37308ffcab6ce9204a2266a91c1ac029552d95e4a7b3a9a",
+      "afterBytes": 36015,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/charge-phase.html",
+      "beforeSha256": "e2fccea34e6a1ab4ae42a43c27fd241049d5407633f789a1ec472f3a4dc43d32",
+      "afterSha256": "1f8d492ff385e6718c902022fc2cdb5422aea9daa9b5aff57b0364b19f79776d",
+      "afterBytes": 52562,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/command-phase.html",
+      "beforeSha256": "f43f53aa08f337e67f21d3eb3fc1bcc7676987ba45cf3a510332e9f36f5ae36b",
+      "afterSha256": "f040223a1430acd071fe9e5c7beda7a2b430352853681614733404b0d9aab6c2",
+      "afterBytes": 30632,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/core-abilities.html",
+      "beforeSha256": "a4d6653e93ded1e95b13d3a9a7457c3747a207b93c87f026021e4df7ffd65ede",
+      "afterSha256": "eefd2068615ae7ed02bb57b9db62b8cbcdb1326ddb04c52d27a4ee20db961551",
+      "afterBytes": 189703,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/core-concepts.html",
+      "beforeSha256": "dbde32084c6d0b9bde243dcbeaf27309d65b4a8224c2bb5f287aa737ceb19ee3",
+      "afterSha256": "fbbd016d0f38c722c600bbd2ef40f40c3635640c2afba19ab21afd49cce6c472",
+      "afterBytes": 98069,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/datasheets.html",
+      "beforeSha256": "24e127fedc4bb0ed9346e82f52a7191f9145da25e19b9de8b745223fbd7deea1",
+      "afterSha256": "abf4be12cb7f14ff45149464711e558622b507f4e9fd4b2d5d7324c7a7833035",
+      "afterBytes": 100482,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/fight-phase.html",
+      "beforeSha256": "dae9bfb04f7f6fe4e3fba8e44182736ed6ee98d3f8803dda37f6997a33a8ee59",
+      "afterSha256": "5ce47e4045a172e3a7d56ad432de2965342055a941ffcae2320aaa4d0a415fba",
+      "afterBytes": 87741,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/flying-surging.html",
+      "beforeSha256": "6d72d62362f54639c5e9f07ef55ed8c77f9af36fb615d752f6d6b5b0109ed230",
+      "afterSha256": "b0b778f701e20323ebebd8e7b9a8c06c31747cba37625049d62f6d738579f5a3",
+      "afterBytes": 33268,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/index.html",
+      "beforeSha256": "946fb853652470985c12be72134aaa7c4617fbd76684084d01b10fb46fbdb2d3",
+      "afterSha256": "9b6c3b1b74abebc129d068665e168c80a89a62bce60b6ab82c24bda382afd1a0",
+      "afterBytes": 284302,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/making-attacks.html",
+      "beforeSha256": "1b1a04add8ea0920430f5f39b3f826dcb908fdce447a997f3d6e43aa063d491b",
+      "afterSha256": "5de8e49c9421b57449a950b0e6de27c83c78d8b45640c19ee2e04ab404bd0e13",
+      "afterBytes": 68545,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/monsters-vehicles.html",
+      "beforeSha256": "407e55ba5f3cafb757b7b3086bc3ada05c27c2917500dc32f1164ab367223c03",
+      "afterSha256": "ce685014a8ab0109c45165ac0c74121552fd8768fc7e001b176c1ad56f897b65",
+      "afterBytes": 36306,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/movement-phase.html",
+      "beforeSha256": "53d2aa0e4fbc692ceb59f6225dc3f9469d74956acf3ab1b0bde607db5aac01c4",
+      "afterSha256": "a0627e501347b3de1a19864934eedaffb85b8ab84ddf3d57c6a6de61e50c041c",
+      "afterBytes": 62367,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/moving.html",
+      "beforeSha256": "645972660c9c4e1313d040ec102c6ee4f8ea23aca15a95a1d3019b42bd5684b8",
+      "afterSha256": "c562d04233adacbf0afbdc0462448e91a0aa5aeb535579ba3b10839a3704a702",
+      "afterBytes": 76014,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/muster-armies.html",
+      "beforeSha256": "470eda24c3edcda7cc1f73ef83bb132b581f25f27c8a67260b5110612d893cbe",
+      "afterSha256": "69ca2be82e7cf7de9fc0307958aa7dfd09f149253874712bb1d090a4345ae1d1",
+      "afterBytes": 32066,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/objectives.html",
+      "beforeSha256": "622fb9b8648dda25720f4c4546c29168b98cebb4a695edbbc0d5a75259dea7ab",
+      "afterSha256": "c79b5414db688773ee03b89bc34c615fc7bf67389c2a8040cb2c2810ddb6da9a",
+      "afterBytes": 36904,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/other-concepts.html",
+      "beforeSha256": "ef10d04ea9d62125da5c8db9ddf0f8ccf13bace10a093381dedca7544247637a",
+      "afterSha256": "92e363ca7ce7e34c046422763ce245f0324912766b95c2121b2c26ebc718eab1",
+      "afterBytes": 44626,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/other-rules-abilities.html",
+      "beforeSha256": "bc95f8ecd4e9c490f011ccce57d731c137528dde45d11d2d4181ea51434a2c1c",
+      "afterSha256": "4608d7b3185cad25c17569ed5dd32c927f5f84cc3341e5e3ef502b2da27c5d47",
+      "afterBytes": 11697,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/presentation-bindings.json",
+      "beforeSha256": "896237a5823ebca5a0dea5f7c0e0438a2535d4334c5d84671d43edb113969581",
+      "afterSha256": "8391d70ad38e8c11a459ff2d0d09d518990a800beab3908cf09bfcb8c925b755",
+      "afterBytes": 2805,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/search-index.json",
+      "beforeSha256": "94ad6724bb3dc56efacbd903ca4937dc87416e1cc507cdf26c66934c1f8342e8",
+      "afterSha256": "6c7704cd4c644afa82a475505c676f05a781727667bd742e7283bda20f98fa29",
+      "afterBytes": 235076,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/shooting-phase.html",
+      "beforeSha256": "7dc0ab46e64e21aff1aa65bce489e7d0bc1134fa65190292078eeaa5019082da",
+      "afterSha256": "9b5a6a961fd1c4d76683a05d3477b3582e9e8fc627e05bf4a26660046f24f265",
+      "afterBytes": 58706,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/stratagems.html",
+      "beforeSha256": "3838082c7bc2cb4be37701136467f76a0631e0e988c995755b0c45040b5c0e00",
+      "afterSha256": "e5bd5c741efa0587b762ef089178c3ce4eca7c321d2496f662bf7f8d531ec78d",
+      "afterBytes": 75550,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/strategic-reserves.html",
+      "beforeSha256": "652e6bd640f67926490a9f525af2821ef7ad93d185acef03a8b9452eb6706476",
+      "afterSha256": "2bcb0e57e37b3f4ae9b5ee8773a9ab8ff3d8513899512bfe1ca3796cd31b6262",
+      "afterBytes": 36323,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/terrain.html",
+      "beforeSha256": "8cb9fdd1243efa38d796c2083da7a01d213852782acf0a53e1e656f352a28de3",
+      "afterSha256": "f121e3a76a1aa1863e81aaf5c4120be79feb630b2f1270648ddb0d835c52f560",
+      "afterBytes": 69394,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/core-rules/reader/transports.html",
+      "beforeSha256": "601ac2e1dc61db03afc8e57f0457cfa290701baaa64271ca7aa1a3ec32380149",
+      "afterSha256": "43aa31527b1202d62a173e4721358f133d9aeec505da899e6d3a17ebfea1e5d2",
+      "afterBytes": 74428,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild the accepted Core reader, search and bindings with real 25.04 citations and retained historical appearances. Remove the unrelated 18.03 FAQ 050 duplicate, retaining it at 18.07 and in the FAQ index. Apply the approved minimal flush-before-reset correction, removing exactly three old 15.01 duplicate buttons. No other old link removal is accepted."
+    },
+    {
+      "file": "books/dark-angels/v2/generated/app-presentation.json",
+      "beforeSha256": "db092e0703870a4ad473524ef58d630c0a605dc3a27e9f54e3fd7ed46b1d03c7",
+      "afterSha256": "dd5a9d47228544e22af8a2d9eddef6724499b9dee8b49092cf911febf1eb83e7",
+      "afterBytes": 19762917,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "dark-angels"
+      }
+    },
+    {
+      "file": "books/dark-angels/v2/generated/gameplay-presentation.json",
+      "beforeSha256": "657c444f91b734d692c4b3b8a9bab685b10478a9745b4b47ee9924efdcdba557",
+      "afterSha256": "7ceab464d1eabb1a02f718405b31d837e7188c1a6c90bb7e002d437d2dacaa11",
+      "afterBytes": 13913609,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-gameplay-publication-proof.v1.json",
+        "sha256": "4666c595488350ed512b370f4266b416e5b5ba51ae1a2b9383a9c8e0473b1194",
+        "entry": "dark-angels"
+      }
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-import.json",
+      "beforeSha256": "f51cc361f97c0fa55de4e24a36ab0b8dc0b6b2e4205dca52fc3fb2787ba03016",
+      "afterSha256": "1ff00df1eff718df1c846daa35fabbc1628b116a7abc0c595e5df2c4f24113f8",
+      "afterBytes": 6104188,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "2b014dbf972e37c43db20a7fbbd91f52ec8028ae0374f0db4529b5114ad5239e",
+        "afterRawSha256": "1ff00df1eff718df1c846daa35fabbc1628b116a7abc0c595e5df2c4f24113f8",
+        "unchangedDecodedSha256": "d94ac877153e8c6ad6c90d65e8f617bca45378e33e6a930a3eb14a86d6b27e9b"
+      }
+    },
+    {
+      "file": "books/dark-angels/v2/generated/roster-runtime.json",
+      "beforeSha256": "83c9abf055fa56ad264522478d093168360f2b54a3242dd2b1f18114616f3a0d",
+      "afterSha256": "54beb1d5a3498470b938b001104286d7a3d26037cf16d602456145e867b80961",
+      "afterBytes": 5058936,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "901d1cdcf0dad7bb8e01cf20d5a008abe1b4f7bbda1d30a9f40da205ecc3e948",
+        "afterRawSha256": "54beb1d5a3498470b938b001104286d7a3d26037cf16d602456145e867b80961",
+        "unchangedDecodedSha256": "ab2a8ccc9f9e8c49bb15ba3614ab518563b2a533d5ba615b5902755e55a803f4"
+      }
+    },
+    {
+      "file": "books/death-guard/v2/generated/app-presentation.json",
+      "beforeSha256": "8b05e8e27f75676f93463008f598cf02b4847b7da90c9373bcd516a53ee1a7e2",
+      "afterSha256": "bbd9bdc4915905e1d9377026d60cad96a4359e331e0957a5c9d2d4a2cfb9c95b",
+      "afterBytes": 6111851,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "death-guard"
+      }
+    },
+    {
+      "file": "books/death-guard/v2/generated/compatibility-v2.json",
+      "beforeSha256": "af71ab78accdfe6e385257b3b4d8fc427da5f071ea87afcd06a976d4756719db",
+      "afterSha256": "2dcfb6cbacf5f2648d2a6a0d10c1e6dfc98c855b42816d886845b874a77e9f53",
+      "afterBytes": 858857,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      }
+    },
+    {
+      "file": "books/death-guard/v2/generated/glossary-v2.json",
+      "beforeSha256": "0b0e4de314d9ff6dbcbbb6f77f3062eadf397686cab245bce6dfcb48b7d0c413",
+      "afterSha256": "e5b8602d5673284f1679725094d1fd48885df2c1921896df32599213fd17e04f",
+      "afterBytes": 146785,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/app-presentation.json",
+      "beforeSha256": "8edfa16991e8ccff94ffb3e303074d08bb06cca63faa58df0127645620440b58",
+      "afterSha256": "b7e6bcf54e9613a4f322db88483a27d66a22349bfed50fa07479d88622e3553e",
+      "afterBytes": 5437165,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "emperors-children"
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/roster-attachments.json",
+      "beforeSha256": "089b8fdb02e1e223c0134fe204f0d3fd570953e28b6b6cd54730cbbbd6c4201a",
+      "afterSha256": "98d57d16064844dce02c678cd75fd6f80afff245126e64d98c0e279ca89ab0d7",
+      "afterBytes": 3507434,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "2568e2abd7ae58417b864b8f1fd157d9b0d76031f413f7cbb177f7e3546fae98",
+        "afterRawSha256": "98d57d16064844dce02c678cd75fd6f80afff245126e64d98c0e279ca89ab0d7",
+        "unchangedDecodedSha256": "4d1a5ccb55235dcc9d873cb7f720308e6581bd0c3de068d6c22309ffbe54b422"
+      }
+    },
+    {
+      "file": "books/emperors-children/v2/generated/rule-contracts.json",
+      "beforeSha256": "2749c3693b09a2cba0f7e3dbb91c5777ca980bac93b09e948e9b7f96dd9c3f7b",
+      "afterSha256": "10fb81b60abfe6512571a3144ab3f416c280fd238d51cfda7a2423ab81c64309",
+      "afterBytes": 1288248,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "13e46fee2925c92a55c6eff54d444fa304f4816bdd927c1a0b741fb136968a31",
+        "afterRawSha256": "10fb81b60abfe6512571a3144ab3f416c280fd238d51cfda7a2423ab81c64309",
+        "unchangedDecodedSha256": "9e6870772ec7eb0ab104f6320fc45ec899e0c4fc6dcfaccf530f60301dbd570c"
+      }
+    },
+    {
+      "file": "books/shared/army-book-app-v2/glossary.mjs",
+      "beforeSha256": "5fe41b34a3812848ab418de0cdff65b855a286eada621e18bf8cf99db7ae908d",
+      "afterSha256": "5c31430fbec756b83d605b88fdd586c54529a16ce5a044c769c8a47f2eea0a19",
+      "afterBytes": 10804,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Display real source citation 25.04 and the exact DOM anchor for its four new internal child locators; non-Core display branches are unchanged."
+    },
+    {
+      "file": "books/shared/source-refs-v2/source-catalog.json",
+      "beforeSha256": "ed9cd49443e02fa347f8f395d0a6580a0763b9bce9f89c8123efe1a80e213135",
+      "afterSha256": "599f5bf8f9f08d53a7396d5b1bcd23a945262b3acc0b54d018dae5dfc274ffbe",
+      "afterBytes": 6530013,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "APPEND_ONLY_CORE_REGISTRY",
+      "reason": "Append only the Core producer definitions; all existing registry entries and order remain unchanged and all 97 outputs retain source-reference closure."
+    },
+    {
+      "file": "books/space-marines/v2/generated/app-presentation.json",
+      "beforeSha256": "5e7628c5b26d99da1222f36ac8cf98a0dbe2b4b946c3ccc26f0709f1d78b0088",
+      "afterSha256": "b6248ad27ba94acf51cea6295ecdecce97efd5aedba03be661e1e4b371694f30",
+      "afterBytes": 23277041,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "space-marines"
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/gameplay-presentation.json",
+      "beforeSha256": "9a76297d4ef3250881c05bd6f49c81cfed1c3329b439ca6ceb7014f6795faf3c",
+      "afterSha256": "34535405ab3f9742c11b789920759597f6106600462f0c9413f8d2094cef5412",
+      "afterBytes": 14910452,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-gameplay-publication-proof.v1.json",
+        "sha256": "4666c595488350ed512b370f4266b416e5b5ba51ae1a2b9383a9c8e0473b1194",
+        "entry": "space-marines"
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-import.json",
+      "beforeSha256": "f270866d94cabbcde6f7392031a2471843d2ff93d84e4a3b7dd82f459aecde80",
+      "afterSha256": "d982e0f3208405742fc604475abdd7b283cbc6e2bed2a0b8db279179902e8822",
+      "afterBytes": 6799242,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "bc9113f4b66ba5b61b898c94db57b4b34a6fc01a93398bb7cf7b5ab5827ca787",
+        "afterRawSha256": "d982e0f3208405742fc604475abdd7b283cbc6e2bed2a0b8db279179902e8822",
+        "unchangedDecodedSha256": "b884e85c06306fd431734226cc8155a96fad28687ced05fb7bac2985197542af"
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/roster-runtime.json",
+      "beforeSha256": "34f751918255540dc6224b61f908d75dbf6da0451036f431b6098a3fd287ead6",
+      "afterSha256": "ccdad6f33dc8323084ba961929898af04a23ddf55ee6cfcee62593e90bed24f8",
+      "afterBytes": 5594194,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "74a3112f96266d933bd7810bf149daad6f224baa18ff5729e5cf5c8d46763f64",
+        "afterRawSha256": "ccdad6f33dc8323084ba961929898af04a23ddf55ee6cfcee62593e90bed24f8",
+        "unchangedDecodedSha256": "ea9cbb754124d50400ad6656e1ff4fc3eeb4d672a9ca3b932f4324d63d690e9b"
+      }
+    },
+    {
+      "file": "books/space-marines/v2/generated/rule-contracts.json",
+      "beforeSha256": "8284c8407c82c7fd66e64b7ffffc70abf8691c8150d6e8e2e8b2840336a856f2",
+      "afterSha256": "1f2382bb3d1045d9b35a3d73b8247e4a9b1886ee8a29ccdbb85cafd20a715456",
+      "afterBytes": 3501162,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "61bfd0af6cdcb9f1302ec66b5418436246b064aa9323e2b5fce5cb6d6cd72b57",
+        "afterRawSha256": "1f2382bb3d1045d9b35a3d73b8247e4a9b1886ee8a29ccdbb85cafd20a715456",
+        "unchangedDecodedSha256": "3019219a1034131720ec7f65727d7b5661fe3d281a6ece1814a5a3f45ec7938e"
+      }
+    },
+    {
+      "file": "books/tau-empire/v2/generated/app-presentation.json",
+      "beforeSha256": "7b2909c39354ee170e4def3f32f27526c9cc6ecb166def021bd3187611467e86",
+      "afterSha256": "cb83beba1f20c3f2f287d728d24f5ddcad49cc25c1760f5a70f202b34dc95e1d",
+      "afterBytes": 7091792,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "tau-empire"
+      }
+    },
+    {
+      "file": "books/tau-empire/v2/generated/roster-import.json",
+      "beforeSha256": "7fc31f4107a57352309152368fb338263175be728e2fb69882b63fa49a20b950",
+      "afterSha256": "d0e49306d90f11756310d493b48f3496fd48f4857f948a765c5c6bb3d5fcccae",
+      "afterBytes": 3543842,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports. Normal producer re-emission after the registry merge only compacts source-reference storage; decoded bytes remain exactly equal.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      },
+      "canonicalSerializationEvidence": {
+        "file": "clarification-3/canonical-evidence/DECODED_EQUIVALENCE.json",
+        "sha256": "f3961b61124e0cd4278f51053ca7b999a298ba989792f188fecb730c9813f01e",
+        "beforeRawSha256": "22ab67f069800feaba83ab2806e64beafe71ba7a6f1fd1c8571c399c6a0e6bb5",
+        "afterRawSha256": "d0e49306d90f11756310d493b48f3496fd48f4857f948a765c5c6bb3d5fcccae",
+        "unchangedDecodedSha256": "ff3d5e5060f22dd14022c57fc25a7db2b61798034085fd8a9594ea9fc5b13cdf"
+      }
+    },
+    {
+      "file": "books/tyranids/v2/generated/app-presentation.json",
+      "beforeSha256": "d360a6e5246e4fb2e428070be968d8831e59f2acd07eb0e2dad60e6eafb69c39",
+      "afterSha256": "9488539816fee672390433fa52ee9f860e16e809acc815a99502a4c7a7b879ef",
+      "afterBytes": 8747709,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_MIXED_PAYLOAD",
+      "reason": "Only the accepted Core cards/facts/glossary change; all six complete non-Core/relatedRules/remaining payload components equal immutable 8ab.",
+      "proof": {
+        "file": "v2/fixtures/core-switch-publication-proof.v1.json",
+        "sha256": "77a4e50c4514aa9a5a29ed0fb043307ea4bf87a869710de5fc03fa23f791f9d8",
+        "entry": "tyranids"
+      }
+    },
+    {
+      "file": "books/tyranids/v2/generated/roster-runtime.json",
+      "beforeSha256": "6363802d0f58de61c67bf289503ba77cadf8df1463ac6df1e83bb348be2c3354",
+      "afterSha256": "59224d618c45ca6dfd5ff45294071c53d4bc06c69b6ec0a5784880c846d4c881",
+      "afterBytes": 3064045,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_EVIDENCE",
+      "reason": "Only approved Core evidence hash, provenance or BA Snap Shooting quote changes; the 163-leaf gameplay proof preserves all operations, conditions, recipients, stats, weapons, points and imports.",
+      "evidence": {
+        "file": "GAMEPLAY_AB_FINAL_PROOF.json",
+        "sha256": "1445bfc311d284a064e88943bc9f0a7a66cdc26ad84ae5b197ab52fee6cf88b1"
+      }
+    },
+    {
+      "file": "glossary/v2/generated/index.en.js",
+      "beforeSha256": "320e365ed73400d11107eee512747c10805ea112f1c04d8184640dfcc9eebc80",
+      "afterSha256": "10f27dcb1b10abf9fdbb5b1b6e3fb5b8f80db985f1028533756bce1d2633dcf0",
+      "afterBytes": 23228276,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild global glossary for the 14 accepted new Core records; all 7218 complete non-Core entries and their order are unchanged, with only 8 independently recounted Core/total metadata changes.",
+      "evidence": {
+        "file": "GLOBAL_GLOSSARY_BOUNDARY.json",
+        "sha256": "97a20fa0f56586e9ca2b1301cb761a39429c49a4845ce43b19a4b488cdd18821"
+      }
+    },
+    {
+      "file": "glossary/v2/generated/index.en.json",
+      "beforeSha256": "bd346c45dde0e5b57676e5a87512b8dc417c4439753011005a8489a5c88dc339",
+      "afterSha256": "84729d089dde30f46661d37471d8bb7a8ea65456a0514f114d778017e9d548d8",
+      "afterBytes": 31196219,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Rebuild global glossary for the 14 accepted new Core records; all 7218 complete non-Core entries and their order are unchanged, with only 8 independently recounted Core/total metadata changes.",
+      "evidence": {
+        "file": "GLOBAL_GLOSSARY_BOUNDARY.json",
+        "sha256": "97a20fa0f56586e9ca2b1301cb761a39429c49a4845ce43b19a4b488cdd18821"
+      }
+    },
+    {
+      "file": "glossary/v2/runtime/glossary-v2-runtime.js",
+      "beforeSha256": "9627072c8e7aef470ba7e82fa76a9d881d36b05abd5efb0c022c81999abc62ad",
+      "afterSha256": "2a62f5ba5212146c8626d7175b7c604dd6a220fb1df6b83e8e54c9c8c3358835",
+      "afterBytes": 48543,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "CORE_OUTPUT",
+      "reason": "Display real source citation 25.04 and the exact DOM anchor for its four new internal child locators; non-Core display branches are unchanged."
+    },
+    {
+      "file": "tools/pages-runtime-manifest.json",
+      "beforeSha256": "df49c1d1c2459865d370965ac8a9d0e7b3a46501d141b83496124bfe48d4699b",
+      "afterSha256": "c9f9b2bb52523174de79250a44d81e188809c4b7a91709ea21ffc4caa9fa8603",
+      "afterBytes": 291314,
+      "authorization": "Task B, owner clarifications 1–3, and the exact per-group Core-only proof review",
+      "category": "PUBLICATION_MANIFEST",
+      "reason": "Publish only the exact accepted new Core corpus and its source download; candidate/raw/manifest/census and historical baseline fixtures remain unpublished."
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/known-source-defects.v1.json",
+      "beforeSha256": null,
+      "afterSha256": "7929475c2dc97536cc5983277dd8276d767588ddd2eb409e68b92f01f365a3de",
+      "afterBytes": 2887,
+      "authorization": "Task B active Core inputs and audit outputs, reviewed by the owner and parent",
+      "category": "CORE_INPUT",
+      "reason": "Bind the source-defect ledger to the exact accepted November corpus fingerprint and captured raw page hashes. Preserve source-navigation adjudication without changing book operations. This producer input remains unpublished."
+    },
+    {
+      "file": "books/core-rules/sources/waha-core-2026-11-11/waha-core-player-visible-reference-census.v1.json",
+      "beforeSha256": null,
+      "afterSha256": "92b78a44b5304ede4ba61063e7c8832c847a32e5ad4d4c4babd7a548f46fd218",
+      "afterBytes": 2394346,
+      "authorization": "Task B active Core inputs and audit outputs, reviewed by the owner and parent",
+      "category": "CORE_OUTPUT",
+      "reason": "Record the independently checked current Core reference census and explicit source-navigation defects for the accepted November corpus. This audit output remains unpublished."
+    }
+  ],
+  "status": "ACCEPTED"
+}

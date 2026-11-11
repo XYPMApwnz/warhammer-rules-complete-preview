@@ -2,17 +2,35 @@
   "baseline": "427796be5d29766acedc59338537f04667c0ba67",
   "books": {
     "adeptus-mechanicus": {
-      "otherPayloadSha256": "509a9bf8be857601f14a2e40f74b36c21b8560b95aa1f5c2556a864160f8de60",
+      "otherPayloadSha256": "52b42b692e71d1212a2e0f76a41a75578539a5d52a27331a0453c95816356dc6",
       "rowsSha256": "1b030d41f667f06630be93c48809440ba2134f5ea7de207e4dce18804779d946",
       "enhancements": 34,
-      "wholePayloadSha256": "eae465e23eca8d116e42d3c4b48602b18b865e8b7213bbb5a33c8235dd171598"
+      "wholePayloadSha256": "0db5151aca0b9e2ef4a6132d6c5935cd2a56367e2a599eeee4c9533293fdafbb",
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "05ece43cf65e9f4291a8292969873980af6dcd3c8be490f279f3c776e21ff3a4",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "7721aa5a86cec8ac531eae357d2ce1fd2a67eed7ab23226e2ebdcb0d84728f13",
+          "nonCoreCards": "595cd4f42a1a1db1cd85a39decede0a5d7d56ff210cf3d89cba387a95817bcab",
+          "nonCoreFactManifest": "4ae8a78f6a2d3f902098bf7121d90418793e7b54751b71adbb2a4e5f71886799",
+          "glossaryOutsideCore": "7484479d6836a82e712412bd1c324497f7f6a306d2b42e5ffaf1514b1a1e1c19",
+          "rest": "3313840f42ba5c0e3b8cd43117a638aea883529c59863db1dad0cbc42028daf4"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "adeptus-mechanicus"
+      }
     },
     "blood-angels": {
-      "otherPayloadSha256": "0f128d2e3ef045f20c0c229c4b1b8f3c18381af85b6137224d895904e53f031c",
+      "otherPayloadSha256": "88beb323441e9d8965a8276d2bdcddb9b5ae6a57e75845508a19a0d88dd13146",
       "rowsSha256": "ad09e0e2ab019c48d8815db47f06afd3b5443d465f61a50019b15ec12d780821",
       "enhancements": 40,
       "runtimeFile": "roster-import.json",
-      "priorContractsSha256": "effe1d8dc6a7b4cd113520b04ada121d67f7aab04c55a72b3081cf49143a9cfe",
+      "priorContractsSha256": "825ecaa750f29a8a56bc5377d812c3b07e73cef658a11bed85759ac3a55c8d9c",
       "contractSourceFields": {
         "ability-ba-11c612255925457c89ed": [
           [
@@ -1714,20 +1732,56 @@
             "text"
           ]
         ]
+      },
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+        "hashes": {
+          "nonCore": "cf661daf160d3e0916a23c065e04293160a9627d6e503bb68eb3c90d6d78d23c",
+          "core": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+          "relatedRules": "e1ef8ddc176cd375a455f0a77446be42b94d0fe99c34a03acb98ac72cb990e0b",
+          "nonCoreCards": "ce8e8f1fb414df0c8b8b293a13ff6b3c629143d2e2aded25568408ff327d717c",
+          "nonCoreFactManifest": "7f7716bee34aa4c4d56f7080f02bb64c59eba012aa64db9ab6ac333ddea8d1c6",
+          "glossaryOutsideCore": "e17ce3738b7822b1d68414b035c4e62e477cc8adc4b969450155a37069e82768",
+          "rest": "5843da5047c2817a37b5c002d5bf504e3d13cf811cb1f9758141ddcf0ac137ea"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "blood-angels"
       }
     },
     "chaos-space-marines": {
-      "otherPayloadSha256": "9a280a185ef641ee7f53f62454262d4b9a7a0d2402ed386d5981516a5e82d72f",
+      "otherPayloadSha256": "63a3bea026aee3fb0f210f5cc5d39556cc23a93af16499347cabacdd96bf1d41",
       "rowsSha256": "aa66d9cd27c46cbdc7dffb8834deab90146823e389696896e02056bb0a37035d",
       "enhancements": 62,
-      "wholePayloadSha256": "54cb52660844440798ede4f7dbaf023ebf0badebcc51eb2c413455f832f0b18c"
+      "wholePayloadSha256": "886e46f834bb84410bca5238b79ba041dc3310191cbe7828487e153a88890ecb",
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "214a1bb298782bdff60d10aa8ced6fb9fcbab42e26beb18c3361c9a187a7bc7e",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "26ac736ef660cd431e40f102913a44d66c616b0c1e2e79eaa977843c79d26fef",
+          "nonCoreCards": "b7319e9939860eea79e47c4499856bf37a3b315f0e77f27b70a8a061cf48d239",
+          "nonCoreFactManifest": "8dd43c178ee7e115466adf93532683dc2fdf6264e29b18b27dc23b88b292f1fc",
+          "glossaryOutsideCore": "f590a92fd74dc41d9a72a300f88f37b07f52f612fe53d122355a21aed4fed25c",
+          "rest": "1f5039c4f85b793748a68ef11a3311f71f0e68396bdaa5e0ed3f4508504033fa"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "chaos-space-marines"
+      }
     },
     "dark-angels": {
-      "otherPayloadSha256": "500ca7100654448bab9a996d4f21bf3a4e1e189c0b57cec2a9eca9c5a01e3e85",
+      "otherPayloadSha256": "7a3f67a00d8e43da61f59b647b86ee1d5dc73f264d58830ebc3593f7ddc23d7d",
       "rowsSha256": "802797ddb425afeb9c8f0869eb361c47449f4f1664298003081e66c171cfe1e2",
       "enhancements": 40,
       "runtimeFile": "roster-import.json",
-      "priorContractsSha256": "c3be88b52935ccd4c6733779ca4ddde6f2d0332da6340adedcaf03688109dbfd",
+      "priorContractsSha256": "ad77592fd2b9470c32976c463c5a42f50e6fcfeaea05e3dcdce31db4be4f2713",
       "contractSourceFields": {
         "ability-da-0ef218638a454a2d96de": [
           [
@@ -3359,20 +3413,56 @@
             "text"
           ]
         ]
+      },
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+        "hashes": {
+          "nonCore": "16ba0fe5badc646f1961e11eb2d10603154e150f092d36ebd55a423c07ab2c21",
+          "core": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+          "relatedRules": "a513a67ef8909cb5bb101f57784a2b2e07e1ddec3d247dbb24e3427aa5d59b93",
+          "nonCoreCards": "1dd0387cd76871a319dc2325624d1a8ab5a4b24f84b75fdae203e365e019ba13",
+          "nonCoreFactManifest": "13a3cfde52f0c488a7f10dfe582ea94bb8285f5cde5dcb487e68588c6c24e42a",
+          "glossaryOutsideCore": "b33b05f3400e6cb60d5a4877cbf46d704335f9c4d192d640da5ac7e663eb9545",
+          "rest": "ab30fa62b7a2b01da5f252014d72094f8eb25551fbc48eaa2a9823c3cec02912"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "dark-angels"
       }
     },
     "death-guard": {
-      "otherPayloadSha256": "993c3fbe94f23ced3cbe5f68dadf3c8a792a089b0ca03a64d8eb319c853eba84",
+      "otherPayloadSha256": "61f3e2275b750f136472e165adc147763b5d89c53a0ed8aad77114e4bf8e6ed7",
       "rowsSha256": "9b845150653e219a033f8edbf7fd5f9832dd220d232c7ea3f9df8b5c9c0ec29b",
       "enhancements": 30,
-      "wholePayloadSha256": "8b05e8e27f75676f93463008f598cf02b4847b7da90c9373bcd516a53ee1a7e2"
+      "wholePayloadSha256": "bbd9bdc4915905e1d9377026d60cad96a4359e331e0957a5c9d2d4a2cfb9c95b",
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "af591f7c02334a7cfe36e6f7ad9fdc61006a09e472e20d6692b83f6b9ca3fab4",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "98e2384b76f09e8717efa17920dd93de597f6c500083ab69f49cf8ba8c59e4d5",
+          "nonCoreCards": "d7e87b743d2ea9f711a425e16d27023561b48462b8915125628c2163379e3aff",
+          "nonCoreFactManifest": "5b55f8cf2d0e61e6cdc93fb036a186fd5519c417c8722536fa11ef9ef7f5c8e4",
+          "glossaryOutsideCore": "d032b5c972005a9a43c7fa34476f5390cf5d1e33571dfda81228029ae74b8ce7",
+          "rest": "88a5a01694a79e1c39b909cf101a6185b4e00b23ef01494e27a99d2d629aeb91"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "death-guard"
+      }
     },
     "emperors-children": {
-      "otherPayloadSha256": "dce8a64400452e9fe50aef2bc6cc36ec6abe115b12becf29abf20266c07b26ef",
+      "otherPayloadSha256": "f5a3daca33730fadfb0284434e5112ad6a87619be786d7747a36dc718f1339ce",
       "rowsSha256": "60d9673d1d082ee5c7aee3587a703feaf7a9ae3c6ab0ae7b5a1731489235a611",
       "enhancements": 34,
       "runtimeFile": "roster-attachments.json",
-      "priorContractsSha256": "31587f7ef46f489f74d597a7a15fbb8ea3d63838dc235dd83c36d00900f8bae4",
+      "priorContractsSha256": "baf48a04e99479e71251d468b8c8d3df543d64fea44d92d3eec7562bad7c4592",
       "contractSourceFields": {
         "army-rule-thrill-seekers:definition": [
           [
@@ -4607,14 +4697,32 @@
           "contextLabel": "Spectacle of Slaughter",
           "aliases": []
         }
-      ]
+      ],
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "480686691538518c4dd892f36254c462d8224a308e554a711c697a444d5ee8c9",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "c63242f454e262befe279026e9bf4d95fb9a3c9c8b089322cb231a8e7dad7f8b",
+          "nonCoreCards": "33833cb716b85b4d882a501718334f43cde27bfdea82a86d5b47138502af3cfd",
+          "nonCoreFactManifest": "4d70fbf85f3b3e472a45361ac34cf41f21a39e1320d42b26b52df5ba117bcf07",
+          "glossaryOutsideCore": "2517db13fd0b3f43217cb83115f9a307db79d4985292a793f76ab0d670c09cee",
+          "rest": "0e16467ee465f081580093a48e8c5319e5f417cdefb012d3d19f3528ee0ef4e5"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "emperors-children"
+      }
     },
     "space-marines": {
-      "otherPayloadSha256": "476320702e35d35064cce1080e491f0a3723094c3a99449dae2dd7e504644ea8",
+      "otherPayloadSha256": "7ceeca3164fe662bca0eacbb6b5860b692c866f7550f6ff502d5777f1efb8bc4",
       "rowsSha256": "5233eef8fc20d3ae1a8467cdb3dc855948edec57dfe6d32c5ba034d9c48cb058",
       "enhancements": 56,
       "runtimeFile": "roster-import.json",
-      "priorContractsSha256": "a8e100c794003a6566d93edd1c64b70791e8ff24ef34fbf73fb567d23e2550b8",
+      "priorContractsSha256": "841cedf245ff3aa486a2261cc53476c71750f4891eac474dc9b56df0fce890be",
       "contractSourceFields": {
         "ability-sm-022ef427b01e4c7b": [
           [
@@ -6566,10 +6674,28 @@
             "text"
           ]
         ]
+      },
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "563647bc9dd44a09d4a5385e221c33f5a708da9e52d915d4568312b29cb46d8e",
+        "hashes": {
+          "nonCore": "ff4cd6e002d9d048308258936d25537a662eb196caaf2f202556bb7917c9cc0f",
+          "core": "255d78a8800f89f9aa3146b267fc4760bcdbe2d4508c6cf70f33e8502d20d079",
+          "relatedRules": "66f884b49b0bdc6707ef84bc26c1d488bab911798aa9c6e2847abeef61e66e74",
+          "nonCoreCards": "947437b2a7c6ef5a23d299f7e5be79fc800c20c309f8d9e42f1d8fd6ade23c0e",
+          "nonCoreFactManifest": "7666ff3f61cab3ef6e3840eb0990a0adc110a1e37ac98dedc8615f481f2b4d18",
+          "glossaryOutsideCore": "f5e1acdd9a85815508d70775b8d2fc965a217ce761987ac57e21609673148acb",
+          "rest": "dd58052d68ee58b5c1690ad21405cb858e1981f2d1fceb5a98b94e5399062982"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "space-marines"
       }
     },
     "tau-empire": {
-      "otherPayloadSha256": "a697277ac996dc87107651aab82f6975703152dfcc50b492ca38f2c62d18bf89",
+      "otherPayloadSha256": "b9795f8919f4b643fc769fdb3ccf0b8b53efbd0675dcfc07d89f0cf03a96b310",
       "rowsSha256": "bd044dbbe15b7f4a0b2e4121c5db94e419453d913148961eb87eb4e7260e4e0c",
       "enhancements": 23,
       "runtimeFile": "roster-import.json",
@@ -8131,10 +8257,28 @@
             "text"
           ]
         ]
+      },
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "5ec936ea5ad63f53226ebce40d50d02d5340831cd19241ea0656bed6b3e4dd01",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "3ed6e46f98ed79582f078797e7301d35320051e0f6018e0911d56965784b035f",
+          "nonCoreCards": "1f504e301cb5bdb55f3b17870e09c4c4c00c72f25fb93789cf4a328ef8cc75cc",
+          "nonCoreFactManifest": "c1851a3b0d9391536ff43c41962deb954f0a7e35bcff2a0ed29113e6b8707230",
+          "glossaryOutsideCore": "f5a76f624602b87ab2be7ed4ce875ab9224f34e24151e52dcc4b127f676c0f91",
+          "rest": "f95a5cec1f51478a199b9d25a05f5b38fd0d21529cb652f9d14e9662fffc9b1a"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "tau-empire"
       }
     },
     "tyranids": {
-      "otherPayloadSha256": "66dba368f78d15f45ac2d46c899aecc9bbc93f64708aca5006075add500eb348",
+      "otherPayloadSha256": "bd4e5ee42258b64d9a9e52a17bbf45bc10ecbf6d7b072c3bb650b1896a36f55c",
       "rowsSha256": "6ad224f1824b38545193f70b2cd654891834a0406c9c3c11d2262624d2085975",
       "enhancements": 34,
       "runtimeFile": "roster-runtime.json",
@@ -9825,7 +9969,25 @@
           "contextLabel": "Warrior Bioform Onslaught",
           "aliases": []
         }
-      ]
+      ],
+      "coreBoundary": {
+        "baseline": "8ab6787ce503171d852a86f52ffb20467b315959",
+        "candidateSha256": "a91415eaf2f67438b6326585752dba4fbd8eee0db52dafe5a7b4abf5347b4109",
+        "oldCoreIds": 371,
+        "activeCoreIds": 385,
+        "baselineCoreSha256": "42f4efd5570717f6b9766dca2216ee447e25a41ffe4a0535d5772fc351a23bbe",
+        "hashes": {
+          "nonCore": "c9eea0a3f8432ca5b5e7bc7ae3975388bb2886fdabb9d0782bcb44243046a3ed",
+          "core": "ec3a42a08f65147c3fff7aceb34ae29ba6b6fef965f1dff1cedcca9ae8fb2d93",
+          "relatedRules": "bbad4f5f339b7e8572e441520c3ade09db90e2d1e73ea43e6a6c3729c6662f42",
+          "nonCoreCards": "a60f700fa9ba04c7b6e7054185e5e31a0831f2fbad433bd149fd9a1bbe989768",
+          "nonCoreFactManifest": "b77f783ea08ae26128d52a0472b0af405877c5b29356f8a04de9c78c8954e8d5",
+          "glossaryOutsideCore": "d623cf765b406fed59ba22a69d01c8a2be02257cc487a0af0d76eefd9f9b9b24",
+          "rest": "94e713f8317f00beca5668a7fe4eb32307db9f9c4cc76e497912e6891047de0b"
+        },
+        "coreAcceptance": "ACCEPTED",
+        "bookId": "tyranids"
+      }
     }
   },
   "noEnhancements": [
@@ -9997,5 +10159,6 @@
       "unitId": "unit-sm-59162946fee84360",
       "expected": "NO_MATCH"
     }
-  ]
+  ],
+  "coreSwitchBaseline": "8ab6787ce503171d852a86f52ffb20467b315959"
 }

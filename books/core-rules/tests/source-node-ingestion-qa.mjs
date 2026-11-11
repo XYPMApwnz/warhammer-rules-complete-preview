@@ -22,7 +22,7 @@ assert.throws(()=>bindWahaSourceNodes([{code,sourceNode:{anchor:'Unbound-Third-N
 assert.throws(()=>ingest({...unit,occurrences:[...occurrences,{...occurrences[0],stableDomId:'Unbound-Third-Node'}]},bindings),/Unbound source node/,'an uncatalogued accepted source node must fail closed');
 
 const catalog=createEffectiveCoreCatalog();
-const expected=[['Desperate-Escape-Test',52,'core-rule-09-07-01-desperate-escape-test'],['Desperate-Escape',53,'core-rule-09-07-01-desperate-escape']];
+const expected=[['Desperate-Escape-Test',54,'core-rule-09-07-01-desperate-escape-test'],['Desperate-Escape',53,'core-rule-09-07-01-desperate-escape']];
 const source=catalog.sourceUnits['waha-core-rule-09-07-01'];
 for(const [anchor,order,id] of expected){
   const occurrence=source.occurrences.find(item=>item.stableDomId===anchor);
@@ -38,10 +38,10 @@ for(const [anchor,order,id] of expected){
   assert(!record.semanticContent.includes('Modes are mutually exclusive'));
 }
 assert.equal(catalog.getByCode('09.07.01'),null);
-assert.equal(catalog.records.length,371);
+assert.equal(catalog.records.length,385);
 assert.equal(catalog.records.filter(record=>record.state!=='FULL_CONTENT').length,0);
 const modes=catalog.getById('core-rule-09-02-02-selecting-modes');
 assert(modes.semanticContent.includes('Modes are mutually exclusive'));
 assert.equal(catalog.mainRules.filter(record=>record.semanticContent.includes('Modes are mutually exclusive')).length,1);
-assert.deepEqual(catalog.getByAnchor('Desperate-Escape').sourceStructure.references.map(ref=>ref.label),['stratagem','Desperate Escape','hazard roll','battle-shock roll']);
+assert.deepEqual(catalog.getByAnchor('Desperate-Escape').sourceStructure.references.map(ref=>ref.label),['stratagem','Desperate Escape test','hazard roll','battle-shock roll']);
 console.log(JSON.stringify({status:'PASS',genericDuplicateSourceCodeGuard:'PASS',canonicalRecords:catalog.records.length,distinctNodes:2,sourceCollisionLoss:0,unresolvedVisibleFacts:0,selectingModesDuplication:0}));

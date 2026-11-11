@@ -35,5 +35,7 @@ assert.match(movement,/<a class="rule-reference" href="aircraft.html">Aircraft<\
 const movementRule=projection.catalog.getByCode('09.02');
 assert(movementRule.sourceStructure.references.some(ref=>ref.label==='23.00'&&ref.target?.endsWith('#Aircraft')),'chapter destination must follow accepted source');
 assert.equal(chapters,27); // 26 chapters and the reader landing/FAQ page.
-assert.equal(buttons,852); // All 880 old bindings reviewed: 27 removed, one chapter link.
-console.log(JSON.stringify({status:'PASS',chapters:26,buttons,reviewedOriginalButtons:880,incorrectBindingsRemoved:28,explicitCitations:'preserved',ambiguousFallback:'rejected'}));
+// Reviewed balance: 852 baseline - 6 approved duplicates + 80 source-backed additions.
+// Nine source-owner transfers preserve the same popup references and are net zero.
+assert.equal(buttons,926);
+console.log(JSON.stringify({status:'PASS',chapters:26,buttons,reviewedOriginalButtons:880,incorrectBindingsRemoved:28,baselineButtons:852,approvedDuplicateButtonsRemoved:6,sourceBackedButtonsAdded:80,sourceOwnerTransfers:9,explicitCitations:'preserved',ambiguousFallback:'rejected'}));
