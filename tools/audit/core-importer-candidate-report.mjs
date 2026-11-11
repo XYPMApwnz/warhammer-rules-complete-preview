@@ -3,9 +3,8 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import {execFileSync,spawnSync} from 'node:child_process';
+import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {createEffectiveCoreCatalog} from '../../books/core-rules/content/effective-core-catalog.mjs';
 import {createQaTempDir,cleanupQaTempDir} from '../../tests/helpers/qa-temp.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
@@ -32,10 +31,17 @@ const section=record=>String(record?.code||'').split('.')[0];
 const sourceUnits=corpus=>new Map(corpus.pages.flatMap(page=>['numbered','faqs','errata','universalRulesUpdates'].flatMap(kind=>page[kind]||[])).map(unit=>[unit.id,unit]));
 const unitText=unit=>[unit?.content?.text,...(unit?.occurrences||[]).map(occurrence=>occurrence.content?.text)].filter(Boolean).join('\n');
 
-// The active Core is the immutable comparison baseline, never a candidate input.
-execFileSync('git',['diff','--exit-code',baselineHead,'--','books/core-rules/content','books/core-rules/sources/waha-core-2026-09-25'],{cwd:root,stdio:'pipe'});
-const baseline=createEffectiveCoreCatalog(),oldById=new Map(baseline.records.map(record=>[record.id,record]));
-assert.equal(oldById.size,371,'The active baseline must remain the reviewed371 identities');
+// This archived Task A review keeps its authenticated historical source even
+// after Task B updates the live catalog. It never reads factual test fixtures.
+const historicalBytes=read('books/core-rules/sources/core-importer-baselines/7b15dc36.v1.json');
+assert.equal(sha(historicalBytes),'075d31795979cbe8feb7ac999d013134a4fe09fc40dd4dbddb0d8d97e83196c0','Historical Core baseline fixture integrity failure');
+const historical=JSON.parse(historicalBytes);
+assert.equal(historical.schema,'core-importer-historical-source-baseline/v1');assert.equal(historical.baselineHead,baselineHead);
+const oldCorpusArtifact=historical.artifacts.corpus,oldCorpusBytes=Buffer.from(oldCorpusArtifact.base64,'base64');
+assert.equal(oldCorpusBytes.length,oldCorpusArtifact.bytes);assert.equal(sha(oldCorpusBytes).toUpperCase(),oldCorpusArtifact.sha256);
+assert.equal(crypto.createHash('sha1').update(Buffer.from('blob '+oldCorpusBytes.length+'\0')).update(oldCorpusBytes).digest('hex'),oldCorpusArtifact.gitBlob);
+const baseline={records:historical.view.records,sourceUnits:Object.fromEntries(sourceUnits(JSON.parse(oldCorpusBytes)))},oldById=new Map(baseline.records.map(record=>[record.id,record]));
+assert.equal(oldById.size,371,'The historical baseline must remain the reviewed371 identities');
 const candidateBytes=read(candidateFile),candidate=JSON.parse(candidateBytes);
 assert.equal(candidate.schema,'core-rules-candidate/v1');
 assert.equal(candidate.status,'CANDIDATE_ONLY_NOT_ACTIVE');

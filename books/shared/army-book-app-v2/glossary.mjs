@@ -60,7 +60,7 @@ function projectCore(coreCatalog) {
       add(path, value, path.map(human).join(' · '));
     };
     add(['title'], record.title, 'Title', 'heading');
-    if (record.code) add(['code'], record.code, 'Code');
+    if (record.code) add(record.sourceCode&&record.sourceCode!==record.code?['sourceCode']:['code'], record.sourceCode||record.code, 'Code');
     // An existing derived concept points to its existing definition owner.
     // It does not acquire another independent presentation definition.
     const sourceRuleId = record.relationships?.sourceRuleId;

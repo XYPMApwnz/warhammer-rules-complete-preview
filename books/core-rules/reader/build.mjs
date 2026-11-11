@@ -212,7 +212,7 @@ function prose(text,seen=new Set(),excludedId='',hiddenReferences=[],markers=[])
       bullets.push(line.replace(/^\u2022\s*/,''));
       continue;
     }
-    if(seeAlso&&line!=='PROFILES AND WEAPONS')seeAlso=false;
+    if(seeAlso&&line!=='PROFILES AND WEAPONS'){flush();seeAlso=false;}
     const visuals=markers.filter(marker=>marker.offset>start&&marker.offset<=end).map(marker=>` <img class="rule-marker" src="${escapeHtml(marker.src)}" alt="${escapeHtml(marker.alt)}">`).join('');
     flush();output.push(`<p>${linkedText(line,seen,excludedId)}${visuals}</p>`);
   }
@@ -253,6 +253,11 @@ function pageLabel(pages){
   return pages.length===1?`page ${pages[0]}`:`pages ${pages[0]}–${pages.at(-1)}`;
 }
 function sourceLabel(record){
+  if(record.sourceCode&&record.sourceCode!==record.code){
+    const unit=catalog.sourceUnits[record.sourceNode?.sourceUnitId];
+    if(!unit?.pageUrl||!record.sourceNode.anchor)throw new Error('Missing exact source citation for internal Core locator');
+    return `Wahapedia 11E &middot; ${escapeHtml(record.sourceCode)} &middot; <a href="${escapeHtml(unit.pageUrl+'#'+record.sourceNode.anchor)}" target="_blank" rel="noreferrer">Source ↗</a>`;
+  }
   if(record.sourceConflict)return 'Accepted source variants &middot; unresolved';
   if(record.provenance?.effectiveSourceBindings?.length){
     const labels=record.provenance.effectiveSourceBindings.map(binding=>{
@@ -435,7 +440,7 @@ for(const [index,id] of order.entries())fs.writeFileSync(path.join(root,fileFor(
 const searchIndex=digital.records.map(record=>{
   const sectionId=sectionByNumber.get(record.code.slice(0,2));
   const conflictText=record.sourceConflict?`Unresolved accepted-source conflict. ${record.sourceConflict.occurrences.map(occurrence=>occurrence.content.text).join(' ')}`:'';
-  return {id:record.id,code:record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${conflictText||recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#${recordAnchor(record)}`};
+  return {id:record.id,code:record.sourceCode||record.code,title:record.title,chapter:byId.get(sectionId)?.title||'',text:normalize(`${conflictText||recordText(record)} ${(record.compatibilityAliases||[]).join(' ')}`),url:`${fileFor(sectionId)}#${recordAnchor(record)}`};
 });
 for(const update of digital.universalRulesUpdates||[])searchIndex.push({code:update.id,title:update.title,chapter:'Stratagems',text:update.text,url:`stratagems.html#${update.id}`});
 for(const faq of faqs){

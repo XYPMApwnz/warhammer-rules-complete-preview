@@ -6,7 +6,9 @@ No production snapshot, identity registry, reader or glossary is written.
 from __future__ import annotations
 
 import argparse
+import base64
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -21,10 +23,35 @@ import import_wahapedia_11e as accepted_format
 
 BASELINE = "7b15dc36425ac577b6928837ec9983409972e278"
 CANDIDATE_FILE = "core-rules.candidate.v1.json"
+HISTORICAL_BASELINE = ROOT / "books/core-rules/sources/core-importer-baselines/7b15dc36.v1.json"
+HISTORICAL_BASELINE_SHA256 = "075D31795979CBE8FEB7AC999D013134A4FE09FC40DD4DBDDB0D8D97E83196C0"
+
+
+def load_historical_baseline(file=HISTORICAL_BASELINE):
+    """Authenticate the authored Git export, independently of the live Core."""
+    raw = Path(file).read_bytes()
+    if sha256(raw) != HISTORICAL_BASELINE_SHA256:
+        raise ValueError("Historical Core baseline fixture integrity failure: " + str(file))
+    result = json.loads(raw)
+    if result.get("schema") != "core-importer-historical-source-baseline/v1" or result.get("baselineHead") != BASELINE:
+        raise ValueError("Unknown historical Core baseline source")
+    if len(result["view"]["records"]) != 371:
+        raise ValueError("Historical Core baseline must retain all 371 accepted records")
+    return result
+
+
+def historical_artifact(name, baseline=None):
+    source = (baseline or load_historical_baseline())["artifacts"][name]
+    raw = base64.b64decode(source["base64"], validate=True)
+    blob = hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
+    if len(raw) != source["bytes"] or sha256(raw) != source["sha256"] or blob != source["gitBlob"]:
+        raise ValueError("Historical Core artifact integrity failure: " + source["file"])
+    return json.loads(raw)
 
 
 def verify_baseline_inputs():
-    """Authenticate every accepted input/code read by the baseline interface."""
+    """Verify the frozen source witness against Git, not the new live files."""
+    historical = load_historical_baseline()
     paths = ["books/core-rules/content", "books/core-rules/sources/waha-core-2026-09-25",
              "books/shared/canonical-content-v2", "books/core-rules/tools/import_wahapedia_11e.py"]
     listing = subprocess.run(["git", "ls-tree", "-r", "-z", BASELINE, "--", *paths],
@@ -37,29 +64,21 @@ def verify_baseline_inputs():
         git_blob = metadata.split()[2]
         expected = subprocess.run(["git", "cat-file", "blob", git_blob], cwd=ROOT,
                                   check=True, capture_output=True).stdout
-        target = ROOT / name
-        if not target.exists() or target.read_bytes() != expected:
-            raise ValueError("Baseline input differs from accepted " + BASELINE + ": " + name)
         result.append({"file": name, "gitBlob": git_blob, "sha256": sha256(expected)})
     if not result:
         raise ValueError("Missing accepted baseline input manifest")
+    if result != historical["inputs"]:
+        raise ValueError("Historical Core source witnesses do not match the accepted Git baseline")
+    # The accepted formatter remains code, not an authored factual snapshot.
+    formatter = next(item for item in result if item["file"] == "books/core-rules/tools/import_wahapedia_11e.py")
+    if sha256((ROOT / formatter["file"]).read_bytes()) != formatter["sha256"]:
+        raise ValueError("Accepted Core formatter changed without review")
     return result
 
 
 def baseline_view():
-    """Read the unchanged accepted catalog; never load the candidate into it."""
-    module = (ROOT / "books/core-rules/content/effective-core-catalog.mjs").as_uri()
-    current = ROOT / "books/core-rules/content/core-rules.current-official.en.json"
-    script = f"""import fs from 'node:fs';
-import {{createEffectiveCoreCatalog}} from {json.dumps(module)};
-const c=createEffectiveCoreCatalog(),official=JSON.parse(fs.readFileSync({json.dumps(str(current))}));
-console.log(JSON.stringify({{records:c.records,protectedMain:official.ruleOverrides.map(r=>c.identityRegistry.rules[r.code]),identities:c.identityRegistry}}));"""
-    run = subprocess.run(["node", "--input-type=module", "-e", script], cwd=ROOT,
-                         check=True, capture_output=True, encoding="utf-8")
-    result = json.loads(run.stdout)
-    if len(result["records"]) != 371:
-        raise ValueError("Candidate requires the unchanged 371-record baseline catalog")
-    return result
+    """Keep the 7b source authority while the live catalog accepts a new Core."""
+    return deepcopy(load_historical_baseline()["view"])
 
 
 def raw_body(scope, heading):
@@ -199,7 +218,7 @@ def build_candidate(source_dir, corpus):
 
     records = {record["id"]: deepcopy(record) for record in raw_records}
     records.update(canonical_main)
-    old_corpus = json.loads((ROOT / "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json").read_text("utf-8"))
+    old_corpus = historical_artifact("corpus")
     old_units = {unit["id"]: unit for page in old_corpus["pages"] for unit in page["numbered"]}
     comparable = lambda value: re.sub(r"[•\s]+", "", normalize(value)).lower()
     old_faqs = [unit for page in old_corpus["pages"] for unit in page["faqs"]]

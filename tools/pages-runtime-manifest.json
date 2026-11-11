@@ -8,7 +8,8 @@
     "manifest.webmanifest"
   ],
   "publicSourceDownloads": [
-    "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json"
+    "books/core-rules/sources/waha-core-2026-09-25/waha-core-corpus.v1.json",
+    "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json"
   ],
   "files": [
     {
@@ -6588,6 +6589,14 @@
         {
           "kind": "html-href",
           "from": "books/core-rules/reader/fight-phase.html"
+        }
+      ]
+    },
+    {
+      "path": "books/core-rules/sources/waha-core-2026-11-11/waha-core-corpus.v1.json",
+      "reasons": [
+        {
+          "kind": "existing-public-source-download"
         }
       ]
     },
