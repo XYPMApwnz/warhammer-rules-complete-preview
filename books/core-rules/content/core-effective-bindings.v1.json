@@ -1,43 +1,7 @@
 {
   "schema": "canonical-content-bindings/v1",
   "corpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A",
-  "effectiveEdits": [
-    {
-      "targetRuleId": "core-rule-12-08-consolidation-move",
-      "targetPath": "/content/0/stages/5/items/0",
-      "operation": "REPLACE_VALUE",
-      "preservePrefixThrough": ": ",
-      "source": {
-        "recordId": "core-waha-errata-12-08",
-        "path": "/semanticContent",
-        "contentHash": "D7A3410CB436B19000C4197A968731543A57D5E4FA6B24A18581CD4B33B0ED25"
-      },
-      "previousHash": "e5124b7ef29102b18e582bc6f9dbb876d789bc9707788d1261a0438ad85eb699"
-    },
-    {
-      "targetRuleId": "core-rule-18-05-emergency-disembark-move",
-      "targetPath": "/content/0/stages/4",
-      "operation": "REPLACE_STAGE",
-      "source": {
-        "recordId": "core-waha-errata-18-05",
-        "path": "/sourceStructure",
-        "contentHash": "198CA72CA154B98CAAC7D4994BAF24380633C2795199AA101740270173E02A1D"
-      },
-      "previousHash": "a8c5d7f4965a14a65af1614f3d9b491c3807ae23f5120c5222e932a7803b7e22"
-    },
-    {
-      "targetRuleId": "core-rule-12-08-consolidation-move",
-      "targetPath": "/content/0/stages/5/items/2",
-      "operation": "REPLACE_VALUE",
-      "source": {
-        "unitId": "waha-core-rule-12-08",
-        "sourceOrder": 72,
-        "path": "/content/lists/2/items/2",
-        "contentHash": "2EC853848F2D84495FD97E1D87581BE3685F8A6CA3FCB1C63904B69F83B4B288"
-      },
-      "previousHash": "080d924c7495f04f75bb0f253592a382e4c24867268a0a08b44bb624c3e75282"
-    }
-  ],
+  "effectiveEdits": [],
   "faqRelationships": [
     {
       "faqId": "core-faq-waha-051",

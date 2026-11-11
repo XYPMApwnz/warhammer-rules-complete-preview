@@ -1,0 +1,63 @@
+{
+  "schema": "waha-core-known-source-defects/v1",
+  "corpusBinding": {
+    "corpusSchema": "waha-11e-core-corpus/v1",
+    "corpusFingerprint": "2E39280BEB3D0C92F87F4F3DB231CA3BC40192C12575AF998E5D2A2DB684C14A",
+    "corePageRawSha256": "9343EDEA5BC2C536DA0E4CF19AACDCA875108B61D1D4BF30CA8D5A9F2AC9D695",
+    "appendixPageRawSha256": "9DE62D73CA6CEEDA040B3F6CC0607CDDFCBCAFC3C760599C51F3214E9BC92BBF"
+  },
+  "defects": [
+    {
+      "id": "waha-core-24-23-devastating-wounds-dangling-fragment",
+      "kind": "KNOWN_SOURCE_NAVIGATION_DEFECT",
+      "status": "ADJUDICATED_SOURCE_DEFECT",
+      "source": {
+        "page": "core",
+        "unitId": "waha-core-rule-24-23",
+        "code": "24.23",
+        "sourceOrder": 161,
+        "unitContentHash": "19C4E36CEC50681E3DF79202BC6CD9E40C3126FA704E076C785FD75382F08E8B",
+        "occurrenceContentHash": "2C505B07F0095FD4E20A36F42DE0D1B70BA16A3AFD8C899F1306F293E2D608C1",
+        "label": "[DEVASTATING WOUNDS]",
+        "rawTarget": "/wh40k11ed/the-rules/core-rules/#Assault-"
+      },
+      "adjudicatedTarget": {
+        "page": "core",
+        "unitId": "waha-core-rule-24-10",
+        "code": "24.10",
+        "unitContentHash": "18B63B44E640A07FE2A15315FB75984A9DE42C4CB068DD6D58A3DC98717C4299",
+        "occurrenceContentHash": "F99365825F361D07C2CE2C21F286AB3381B855451E896129638B78BBC49990FC"
+      },
+      "disposition": {
+        "capture": "RETAIN_RAW_TARGET_IN_PINNED_CORPUS",
+        "canonicalNavigation": "MAP_TO_ADJUDICATED_TARGET_CODE",
+        "allowanceScope": "EXACTLY_ONE_MATCHING_DANGLING_REFERENCE",
+        "recertification": "REQUIRE_NEW_ADJUDICATION_IF_ANY_BOUND_HASH_LABEL_TARGET_OR_OCCURRENCE_COUNT_CHANGES",
+        "overridePolicy": "STRICT_UNIQUE_DEFINED_TERM_TARGET_ONLY",
+        "certificationBehavior": "RESOLVE_TO_CANONICAL_24_10_WITHOUT_REPRODUCING_BROKEN_HREF"
+      }
+    },
+    {
+      "id": "waha-appendix-19-01-01-stray-angle-marker",
+      "kind": "KNOWN_SOURCE_MARKUP_DEFECT",
+      "status": "ADJUDICATED_SOURCE_ARTIFACT",
+      "source": {
+        "page": "appendix",
+        "unitId": "waha-appendix-rule-19-01-01",
+        "code": "19.01.01",
+        "sourceOrder": 97,
+        "unitContentHash": "BBA5DF750C8706071005C01424CB6F0DDECFFCADFBE7A8480212640F991F0C88",
+        "occurrenceContentHash": "1831CFF0C9334F48D0D99DD5A8E3D691D38BB28B8F807EA892838DBAA5592703",
+        "rawFragment": "when the <bodyguard unit"
+      },
+      "disposition": {
+        "capture": "RETAIN_VERBATIM_IN_PINNED_CORPUS",
+        "canonicalText": "REMOVE_UNMATCHED_MARKUP_DELIMITER_BEFORE_BODYGUARD",
+        "allowanceScope": "EXACT_BOUND_FRAGMENT_ONLY",
+        "semanticEffect": "NONE",
+        "recertification": "REQUIRE_NEW_ADJUDICATION_IF_ANY_BOUND_HASH_OR_FRAGMENT_CHANGES",
+        "certificationBehavior": "NORMALIZE_SOURCE_MARKUP_ARTIFACT_WITHOUT_CHANGING_GAMEPLAY_SEMANTICS"
+      }
+    }
+  ]
+}
