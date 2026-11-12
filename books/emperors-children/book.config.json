@@ -184,6 +184,10 @@
         {
           "role": "wahaCurrentCorpus",
           "path": "books/emperors-children/sources/waha-11e-current-2026-09-28/corpus.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/emperors-children/v2/official-updates.json"
         }
       ]
     },
@@ -288,7 +292,7 @@
       "joins": "books/emperors-children/v2/model-name-source-bindings.json"
     },
     "official": {
-      "input": "books/emperors-children/v2/official-bindings.json",
+      "input": "books/emperors-children/v2/official-updates.json",
       "stage": "canonical-facts"
     },
     "inheritance": {

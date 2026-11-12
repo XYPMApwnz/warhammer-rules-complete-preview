@@ -22,6 +22,8 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
 from current_mfm_release import read_current_mfm_release
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 BOOK = 'emperors-children'
 SOURCE = 'books/emperors-children/sources/waha-11e-current-2026-09-28'
 read = lambda path: json.loads(Path(path).read_text(encoding='utf-8'))
@@ -310,34 +312,17 @@ def build(root=ROOT):
         records.append({'id': update['id'], 'kind': 'SOURCE_UPDATE_REFERENCE', 'data': {'instruction': update['sourceText'], 'status': update['status'], 'targetIds': sorted({patch['targetId'] for patch in update['patches']}), 'group': update['group'], 'adjudications': update.get('adjudications', [])}, 'provenance': update['provenance']})
     base = {'schema': 'ec-v2-canonical/v1', 'bookId': BOOK, 'edition': '11E', 'acceptedBaseHead': enrollment['acceptedBaseHead'], 'sources': enrollment, 'entities': records, 'sourceAccounting': accounting, 'sourceLeafAccounting': leaf_accounting, 'ruleContractsStarted': False, 'rosterRuntimeStarted': False}
     base['mfmBoundary'] = {'owner': 'CENTRALIZED_MFM', 'sourceVersion': read_current_mfm_release(root)['version'], 'bindingsDocument': 'books/emperors-children/v2/mfm-bindings.json', 'consumerInterface': 'books/emperors-children/v2/mfm-boundary.mjs#consumeMfm', 'valuesCopied': False}
-    effective = copy.deepcopy(base); effective['schema'] = 'ec-v2-effective/v1'; effective['appliedOfficialUpdates'] = []
-    index = unique(effective['entities'], 'id')
-    touched = set()
+    effective = copy.deepcopy(base); effective['schema'] = 'ec-v2-effective/v1'
+    # Authenticate the source-to-canonical bridge independently of application.
     for update in official['updates']:
-        applications = []
         for patch in update['patches']:
             source_row = by_source[patch['sourceId']]
             if bindings[patch['sourceId']]['id'] != patch['targetId'] or not patch['corpusPointer'].startswith(source_row['sourcePointer']+'/'):
                 raise ValueError('Official correction owner/identity changed')
-            target = index[patch['targetId']]
-            field = patch['field']
-            if field != patch['corpusPointer'][len(source_row['sourcePointer']):]:
+            if patch['field'] != patch['corpusPointer'][len(source_row['sourcePointer']):]:
                 raise ValueError('Official canonical field differs from its exact source address')
-            current = resolve(target['data'], field)
-            identity = (target['id'], field)
-            if identity in touched:
-                raise ValueError('Multiple official replacements for one canonical field')
-            if any(owner_id == target['id'] and (field.startswith(path+'/') or path.startswith(field+'/')) for owner_id, path in touched):
-                raise ValueError('Overlapping official field replacement scopes')
-            touched.add(identity)
-            if value_sha(current) != patch['beforeSha256']:
-                raise ValueError('Official canonical input changed: '+str(identity))
-            owner = resolve(target['data'], field.rsplit('/', 1)[0])
-            key = field.rsplit('/', 1)[1]
-            owner[int(key) if isinstance(owner, list) else key] = copy.deepcopy(patch['value'])
-            target.setdefault('fieldProvenance', {})[field.lstrip('/')] = {**update['provenance'], 'correctionId': update['id'], 'sourcePointer': patch['corpusPointer'], 'supersedes': copy.deepcopy(target['provenance'])}
-            applications.append({'targetId': target['id'], 'field': field, 'changed': current != patch['value']})
-        effective['appliedOfficialUpdates'].append({'id': update['id'], 'group': update['group'], 'status': update['status'], 'applications': applications})
+    effective = apply_book_official_updates(BOOK, effective, root, document=official['document'])['model']
+    index = unique(effective['entities'], 'id')
     source_ids = {row['sourceId'] for row in rows}
     census = read(here/'sources/source-census.json')
     if dict(sorted(Counter(row['kind'] for row in rows).items())) != census['sourceKinds'] or sorted(source_ids) != census['sourceEntityIds']:

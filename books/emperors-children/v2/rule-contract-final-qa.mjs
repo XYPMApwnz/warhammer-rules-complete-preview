@@ -89,8 +89,8 @@ const sha=b=>createHash('sha256').update(b).digest('hex').toUpperCase(),norm=t=>
 for(const [id,,text] of expected)check(()=>{
   const e=canonical.get(id),p=path.join(root,e.provenance.document);
   assert.equal(sha(fs.readFileSync(p)),e.provenance.sha256);assert.ok(norm(raw[p]).includes(norm(text)));
-  const official=JSON.parse(fs.readFileSync(path.join(directory,'official-bindings.json'),'utf8'));
-  assert.ok(!official.occurrences.some(o=>o.patches.some(p=>p.sourceId===id)),'Unexpected official overlay requires reconciliation');
+  const official=JSON.parse(fs.readFileSync(path.join(directory,'official-updates.json'),'utf8'));
+  assert.ok(!official.entries.some(p=>p.target.id===id),'Unexpected official overlay requires reconciliation');
 });
 
 const loadouts={'lord-exultant':[1,5,6,8],'flawless-blades':[1,2],'lucius-the-eternal':[1],infractors:[1,4],
