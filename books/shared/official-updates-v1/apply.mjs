@@ -87,7 +87,9 @@ export function applyOfficialUpdates(input,document,{bookId=document?.bookId,sta
   }
   const effective=copy(entry.operation==='REMOVE_RECORD'?undefined:field.length?host[key]:entity);Object.assign(context,{entry,source,entity,before,effective,beforeExists:exists});
   for(const row of[...(document.projection||[]),...(entry.projection||[])])if(row.when===undefined||row.when==='*'||row.when.includes(entry.operation))metadata(model,entity,row,context,bookId,entry.id);
-  applied.push({id:entry.id,bookId,kind:entry.kind,operation:entry.operation,source:copy(entry.source),target:copy(entry.target),before,after:copy(entry.after),effective});
+  // A new record has no previous record. Do not turn an audit row into a copy
+  // of the entire Army Book merely because the collection owns the addition.
+  applied.push({id:entry.id,bookId,kind:entry.kind,operation:entry.operation,source:copy(entry.source),target:copy(entry.target),before:entry.operation==='ADD_RECORD'?undefined:before,after:copy(entry.after),effective:entry.operation==='ADD_RECORD'?copy(entry.after):effective});
  }
  return{model,applied};
 }
