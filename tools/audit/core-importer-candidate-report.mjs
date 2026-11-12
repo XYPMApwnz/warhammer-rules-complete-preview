@@ -6,6 +6,7 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {createQaTempDir,cleanupQaTempDir} from '../../tests/helpers/qa-temp.mjs';
+import {readCoreTransitionFile} from '../../tests/helpers/core-transition-history.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const baselineHead='7b15dc36425ac577b6928837ec9983409972e278';
@@ -36,6 +37,9 @@ const unitText=unit=>[unit?.content?.text,...(unit?.occurrences||[]).map(occurre
 const historicalBytes=read('books/core-rules/sources/core-importer-baselines/7b15dc36.v1.json');
 assert.equal(sha(historicalBytes),'075d31795979cbe8feb7ac999d013134a4fe09fc40dd4dbddb0d8d97e83196c0','Historical Core baseline fixture integrity failure');
 const historical=JSON.parse(historicalBytes);
+// The old formatter is historical evidence for Task A's extraction comparison.
+// Its literal paraphrases and old boundaries must not freeze future HEAD code.
+const historicalFormatterBytes=readCoreTransitionFile('books/core-rules/tools/import_wahapedia_11e.py',{repoRoot:root});
 assert.equal(historical.schema,'core-importer-historical-source-baseline/v1');assert.equal(historical.baselineHead,baselineHead);
 const oldCorpusArtifact=historical.artifacts.corpus,oldCorpusBytes=Buffer.from(oldCorpusArtifact.base64,'base64');
 assert.equal(oldCorpusBytes.length,oldCorpusArtifact.bytes);assert.equal(sha(oldCorpusBytes).toUpperCase(),oldCorpusArtifact.sha256);
@@ -220,7 +224,9 @@ for(const page of corpus.pages){const bytes=fs.readFileSync(rawFiles[page.id]);a
 const legacyTemp=createQaTempDir('core-candidate-legacy-probe-');
 let rawAudit;
 try{
- const raw=spawnSync(python,['-c',worker],{input:JSON.stringify({files:rawFiles,requests:uniqueRequests,sourceBoundaries,oldImporter:path.resolve(root,'books/core-rules/tools/import_wahapedia_11e.py'),legacyTemp}),encoding:'utf8',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'},maxBuffer:64*1024*1024});
+ const oldImporter=path.join(legacyTemp,'historical-import_wahapedia_11e.py');
+ fs.writeFileSync(oldImporter,historicalFormatterBytes);
+ const raw=spawnSync(python,['-c',worker],{input:JSON.stringify({files:rawFiles,requests:uniqueRequests,sourceBoundaries,oldImporter,legacyTemp}),encoding:'utf8',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'},maxBuffer:64*1024*1024});
  assert.equal(raw.status,0,'Independent RAW ownership audit failed: '+raw.stderr);rawAudit=JSON.parse(raw.stdout);
 }finally{cleanupQaTempDir(legacyTemp);}
 const evidenceByKey=new Map(rawAudit.results.map(request=>[request.id+'\0'+key(request.text),request]));
@@ -262,7 +268,7 @@ function exactFormatterPair(record,sentence){
  if(!pair||!contains(text(record),pair[2]))return null;
  const freshWitnesses=sameOwnerWitness(record,pair[2]);
  if(!freshWitnesses.length)return null;
- const oldImporter=fs.readFileSync(path.join(root,'books/core-rules/tools/import_wahapedia_11e.py'),'utf8');
+ const oldImporter=historicalFormatterBytes.toString('utf8');
  if(pair[3]&&!oldImporter.includes(pair[1]))return null;
  return {oldSentence:sentence,candidateSentence:pair[2],kind:pair[3]?'OLD_IMPORTER_LITERAL_PARAPHRASE':'ORDERED_LIST_OR_BULLET_REPRESENTATION',
   oldFormatter:pair[3]?{file:'books/core-rules/tools/import_wahapedia_11e.py',line:pair[3]}:{file:'books/core-rules/content/core-rules.digital-11e.json',representation:'The same second alternative is rendered as an Or bullet instead of inline OR (2).'},

@@ -1,11 +1,13 @@
 /** Core-only publication boundary over the existing lossless source decoder. */
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {parseProducerJSON} from '../../books/shared/source-refs-v2/producer-io.mjs';
+import {parseProducerJSON,prepareSourceProducer} from '../../books/shared/source-refs-v2/producer-io.mjs';
+import {createEffectiveCoreCatalog} from '../../books/core-rules/content/effective-core-catalog.mjs';
+import {buildGlossary} from '../../books/shared/army-book-app-v2/glossary.mjs';
+import {readCoreTransitionFile} from './core-transition-history.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const candidateFile='books/core-rules/sources/waha-core-2026-11-11/core-rules.candidate.v1.json';
@@ -15,13 +17,13 @@ const historicalSHA='075d31795979cbe8feb7ac999d013134a4fe09fc40dd4dbddb0d8d97e83
 export const coreBoundaryBaseline='8ab6787ce503171d852a86f52ffb20467b315959';
 export const byteHash=bytes=>createHash('sha256').update(bytes).digest('hex');
 export const valueHash=value=>byteHash(JSON.stringify(value));
-const candidateBytes=fs.readFileSync(path.join(root,candidateFile));
+const candidateBytes=readCoreTransitionFile(candidateFile);
 assert.equal(byteHash(candidateBytes),candidateSHA,'The reviewed Task A Core identity authority changed');
 const candidate=JSON.parse(candidateBytes);
-const historicalBytes=fs.readFileSync(path.join(root,historicalFile));
+const historicalBytes=readCoreTransitionFile(historicalFile);
 assert.equal(byteHash(historicalBytes),historicalSHA,'Historical Core identity authority changed');
 const historical=JSON.parse(historicalBytes);
-const publicationBaselineBytes=fs.readFileSync(new URL('../fixtures/core-switch-publication-baseline.v1.json',import.meta.url));
+const publicationBaselineBytes=readCoreTransitionFile('tests/fixtures/core-switch-publication-baseline.v1.json');
 assert.equal(byteHash(publicationBaselineBytes),'36143cbc5ff526df4191bb11e7c94336a23ecfc6d4ebd264e7bea0706d691008','The immutable non-Core publication baseline changed');
 const publicationBaseline=JSON.parse(publicationBaselineBytes);
 assert.equal(publicationBaseline.schema,'core-switch-publication-baseline/v1');
@@ -41,23 +43,26 @@ export function decodeSourceJSON(bytes,{sourceRoot=root}={}){
  }));
 }
 
-function isCoreId(id){return typeof id==='string'&&records.has(id);}
+let currentCatalog;
+const currentCoreCatalog=()=>currentCatalog??=createEffectiveCoreCatalog();
 function assertDomain(value,core,label){
  if(value.domain!==undefined)assert.equal(value.domain==='CORE',core,'CORE_DOMAIN_ID_MISMATCH: '+label);
 }
 
-export function partitionCorePublication(payload,{stage='active'}={}){
+export function partitionCorePublication(payload,{stage='active',historical=false,coreCatalog}={}){
  assert(['baseline','active'].includes(stage));
  assert.equal(payload.schema,'army-book-app-v2/presentation');
  assert(Array.isArray(payload.cards)&&Array.isArray(payload.factManifest)&&Array.isArray(payload.glossary?.entries));
- const expectedIds=stage==='baseline'?oldIds:new Set(records.keys()),seen=new Set();
+ const authority=historical?records:new Map((coreCatalog||currentCoreCatalog()).records.map(record=>[record.id,record]));
+ const isCoreId=id=>typeof id==='string'&&authority.has(id);
+ const expectedIds=stage==='baseline'?oldIds:new Set(authority.keys()),seen=new Set();
  for(const card of payload.cards){
   const core=isCoreId(card.id);
   assert.equal(card.domain==='CORE',core,'CORE_DOMAIN_ID_MISMATCH: card '+card.id);
   if(core){
    assert(expectedIds.has(card.id),'UNEXPECTED_CORE_CARD: '+card.id);
    assert(!seen.has(card.id),'DUPLICATE_CORE_CARD: '+card.id);seen.add(card.id);
-   assert.equal(card.kind,'CORE_'+records.get(card.id).recordType,'CORE_KIND_ID_MISMATCH: '+card.id);
+   assert.equal(card.kind,'CORE_'+authority.get(card.id).recordType,'CORE_KIND_ID_MISMATCH: '+card.id);
   }else assert(!String(card.kind).startsWith('CORE_'),'UNRECORDED_CORE_CARD: '+card.id);
  }
  assert.deepEqual([...seen].sort(),[...expectedIds].sort(),'The exact accepted Core card identity set changed');
@@ -77,7 +82,7 @@ export function partitionCorePublication(payload,{stage='active'}={}){
   if(core){
    assert(expectedIds.has(entry.targetId),'UNEXPECTED_CORE_GLOSSARY_TARGET: '+entry.targetId);
    assert(!glossaryIds.has(entry.targetId),'DUPLICATE_CORE_GLOSSARY_TARGET: '+entry.targetId);glossaryIds.add(entry.targetId);
-   assert.equal(entry.category,'CORE_'+records.get(entry.targetId).recordType,'CORE_GLOSSARY_KIND_MISMATCH: '+entry.targetId);
+   assert.equal(entry.category,'CORE_'+authority.get(entry.targetId).recordType,'CORE_GLOSSARY_KIND_MISMATCH: '+entry.targetId);
   }
   (core?coreGlossary:nonCoreGlossary).push(entry);
  }
@@ -97,20 +102,56 @@ export function publicationBoundaryHashes(payload,options={}){
  return {counts:parts.counts,hashes:Object.fromEntries(['nonCore','core','relatedRules','nonCoreCards','nonCoreFactManifest','glossaryOutsideCore','rest'].map(key=>[key,valueHash(parts[key])]))};
 }
 
-export function assertCorePublicationSnapshot(payload,expected,{stage='active'}={}){
+/** Frozen transition evidence belongs to its reviewed historical publication. */
+export function assertHistoricalCorePublicationSnapshot(payload,expected,{stage='active'}={}){
  assert(expected,'Missing explicit Core/non-Core publication expectation');
  assert.equal(expected.coreAcceptance,'ACCEPTED','The new Core publication must be proven before its exact hash is accepted');
  assert.equal(expected.baseline,coreBoundaryBaseline);
  assert.equal(expected.candidateSha256,candidateSHA);
  assert.equal(expected.bookId,payload.book.id,'The publication expectation belongs to another book');
  const before=publicationBaseline.books[payload.book.id];assert(before,'Missing immutable publication baseline: '+payload.book.id);
- const current=publicationBoundaryHashes(payload,{stage});
+ const current=publicationBoundaryHashes(payload,{stage,historical:true});
  for(const part of ['nonCore','relatedRules','nonCoreCards','nonCoreFactManifest','glossaryOutsideCore','rest']){
   assert.equal(expected.hashes[part],before.hashes[part],'The strict non-Core baseline cannot be repinned: '+payload.book.id+' / '+part);
   assert.equal(current.hashes[part],expected.hashes[part],'NON_CORE_PUBLICATION_CHANGED: '+payload.book.id+' / '+part);
  }
  assert.equal(current.hashes.core,expected.hashes.core,'CORE_PUBLICATION_CHANGED_WITHOUT_REVIEW: '+payload.book.id);
  return current;
+}
+
+/** Live books may evolve; Core ownership and the current Core authority may not drift. */
+export function assertCorePublicationSnapshot(payload,_historicalExpectation,{coreCatalog=currentCoreCatalog()}={}){
+ const parts=partitionCorePublication(payload,{coreCatalog});
+ const byId=new Map(coreCatalog.records.map(record=>[record.id,record]));
+ // Independent source-value checks prevent a shared projector bug from making
+ // both the publication and its projected expectation agree on invented text.
+ for(const card of parts.core.cards){
+  const record=byId.get(card.id),prefix='CORE_PUBLICATION_DOES_NOT_MATCH_CURRENT_CATALOG: '+card.id;
+  assert.equal(card.title,record.title,prefix+' / title');
+  for(const field of card.fields){
+   assert.equal(field.source?.entityId,record.id,prefix+' / field owner');
+   assert.equal(typeof field.source?.path,'string',prefix+' / field source path');
+   const value=field.source.path.slice(1).split('/').map(part=>part.replaceAll('~1','/').replaceAll('~0','~')).reduce((item,key)=>item?.[key],record);
+   assert.deepEqual(field.value,value,prefix+' / '+field.source.path);
+  }
+  const paths=new Set(card.fields.map(field=>field.source.path));
+  assert(paths.has('/title'),prefix+' / missing title');
+  if(record.code)assert(paths.has(record.sourceCode&&record.sourceCode!==record.code?'/sourceCode':'/code'),prefix+' / missing source code');
+  if(!record.relationships?.sourceRuleId&&record.semanticContent!=null&&record.state!=='SOURCE_CONFLICT')assert(paths.has('/semanticContent'),prefix+' / missing rule text');
+ }
+ for(const entry of parts.core.glossaryEntries)assert.equal(entry.label,byId.get(entry.targetId).title,'CORE_PUBLICATION_DOES_NOT_MATCH_CURRENT_CATALOG: glossary '+entry.targetId);
+ const projected=prepareSourceProducer(buildGlossary({model:{entities:[]},coreCatalog}));
+ const message='CORE_PUBLICATION_DOES_NOT_MATCH_CURRENT_CATALOG: '+payload.book.id;
+ assert.deepEqual(parts.core.cards,projected.coreCards,message+' / cards');
+ assert.deepEqual(parts.core.glossaryEntries,projected.index.entries,message+' / glossary');
+ // Existing publishers append Core cards and glossary entries, not the optional
+ // Core fact manifest. Any published fact still requires its exact current owner.
+ const expectedFacts=new Map(projected.coreFactManifest.map(fact=>[fact.id,fact])),seen=new Set();
+ for(const fact of parts.core.factManifest){
+  assert(!seen.has(fact.id),'DUPLICATE_CORE_FACT: '+fact.id);seen.add(fact.id);
+  assert.deepEqual(fact,expectedFacts.get(fact.id),message+' / fact '+fact.id);
+ }
+ return publicationBoundaryHashes(payload,{coreCatalog});
 }
 
 function firstDifference(before,after,parts=[]){
@@ -123,7 +164,7 @@ function firstDifference(before,after,parts=[]){
 }
 
 export function compareCorePublications(before,after){
- const old=partitionCorePublication(before,{stage:'baseline'}),current=partitionCorePublication(after,{stage:'active'});
+ const old=partitionCorePublication(before,{stage:'baseline',historical:true}),current=partitionCorePublication(after,{stage:'active',historical:true});
  const comparisons=[];
  for(const name of ['nonCore','relatedRules','nonCoreCards','nonCoreFactManifest','glossaryOutsideCore','rest']){
   const beforeSha256=valueHash(old[name]),afterSha256=valueHash(current[name]),difference=firstDifference(old[name],current[name]);

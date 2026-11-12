@@ -69,10 +69,14 @@ def verify_baseline_inputs():
         raise ValueError("Missing accepted baseline input manifest")
     if result != historical["inputs"]:
         raise ValueError("Historical Core source witnesses do not match the accepted Git baseline")
-    # The accepted formatter remains code, not an authored factual snapshot.
+    # This is a witness for the historical transition, not a pin on future HEAD
+    # formatter code. The active producer still uses accepted_format above.
     formatter = next(item for item in result if item["file"] == "books/core-rules/tools/import_wahapedia_11e.py")
-    if sha256((ROOT / formatter["file"]).read_bytes()) != formatter["sha256"]:
-        raise ValueError("Accepted Core formatter changed without review")
+    historical_formatter = subprocess.run(
+        ["git", "show", "913cfef538bc96b7f2d9b55e21995c631cabffeb:" + formatter["file"]],
+        cwd=ROOT, check=True, capture_output=True).stdout
+    if sha256(historical_formatter) != formatter["sha256"]:
+        raise ValueError("Historical accepted Core formatter changed")
     return result
 
 

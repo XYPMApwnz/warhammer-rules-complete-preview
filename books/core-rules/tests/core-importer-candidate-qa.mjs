@@ -7,6 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import {createQaTempDir,cleanupQaTempDir,qaTempEnvironment} from '../../../tests/helpers/qa-temp.mjs';
+import {readCoreTransitionFile} from '../../../tests/helpers/core-transition-history.mjs';
 
 const repoRoot=fileURLToPath(new URL('../../../',import.meta.url));
 const fixtureFile=fileURLToPath(new URL('./fixtures/core-importer-baseline-v1.json',import.meta.url));
@@ -569,7 +570,11 @@ function main(){
   expectedFailure('same-code-source-and-candidate-overcapture',auditCoreCandidate({candidate:poisonedCandidate,corpus:poisonedScopes,baseline,redistributions,sourceChanges}),
    row=>row.code==='SOURCE_SCOPE_CONTAINS_FOREIGN_OWNER'&&row.id===force.id);
   const legacyFile=path.join(temp,'legacy-digital.json');
-  execute(path.join(repoRoot,'books/core-rules/tools/import_wahapedia_11e.py'),[
+  // This proves the historical transition, not that every future formatter
+  // must remain byte-identical to the formatter used by that transition.
+  const historicalFormatter=path.join(temp,'historical-import_wahapedia_11e.py');
+  fs.writeFileSync(historicalFormatter,readCoreTransitionFile('books/core-rules/tools/import_wahapedia_11e.py',{repoRoot}));
+  execute(historicalFormatter,[
    path.join(repoRoot,'books/core-rules/sources/waha-core-2026-11-11/core-rules.html'),legacyFile]);
   const legacy=JSON.parse(fs.readFileSync(legacyFile));
   const baseRecord=legacy.records.find(record=>record.code==='20.03.01');
@@ -585,7 +590,7 @@ from pathlib import Path
 from lxml import html
 fixture=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
 root=Path(sys.argv[2])
-formatter=root/fixture['baselineFormatter']['file']
+formatter=Path(sys.argv[4])
 assert hashlib.sha256(formatter.read_bytes().replace(b'\\r\\n',b'\\n')).hexdigest()==fixture['baselineFormatter']['sha256']
 spec=importlib.util.spec_from_file_location('accepted_baseline_formatter',formatter)
 module=importlib.util.module_from_spec(spec)
@@ -602,7 +607,7 @@ record=namespace['heading_record'](headings[0])
 assert record['code']==fixture['heading']['code']
 Path(sys.argv[3]).write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
 `;
-  execute('-c',[replay,historicalBoundaryFile,repoRoot,replayFile]);
+  execute('-c',[replay,historicalBoundaryFile,repoRoot,replayFile,historicalFormatter]);
   const bad=JSON.parse(fs.readFileSync(replayFile));
   assert(bad.text.length>baseRecord.text.length&&bad.text.includes('Disable Ads'),'Authenticated warehouse boundary did not overflow into the captured footer');
   report.warehouseBoundaryReplay={label:historical.label,provenance:historical.provenance,

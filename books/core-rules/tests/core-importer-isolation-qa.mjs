@@ -1,4 +1,4 @@
-/** Accept only the reviewed Core switch; preserve every unrelated production byte. */
+/** Preserve the Core B proof at its commit and current Core invariants on HEAD. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -7,7 +7,9 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {createQaTempDir,cleanupQaTempDir,createQaEvidenceDir} from '../../../tests/helpers/qa-temp.mjs';
 import {assertAppendOnlyRegistry} from '../../../tools/audit/build-source-catalog.mjs';
-import {decodeSourceJSON,assertCorePublicationSnapshot,publicationBaselineForFile} from '../../../tests/helpers/core-publication-boundary.mjs';
+import {decodeSourceJSON,assertHistoricalCorePublicationSnapshot,assertCorePublicationSnapshot,publicationBaselineForFile} from '../../../tests/helpers/core-publication-boundary.mjs';
+import {CORE_TRANSITION_COMMIT,readCoreTransitionFile,createCoreTransitionCheckout} from '../../../tests/helpers/core-transition-history.mjs';
+import {WAHA_CORE_SOURCE_DIRECTORY} from '../content/waha-core-source.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const fixturePath=new URL('../../../tests/fixtures/core-importer-production-v1.json',import.meta.url);
@@ -85,7 +87,7 @@ function assertMixedPayloadProof(checkout,row){
   const payload=decodeSourceJSON(fs.readFileSync(path.join(checkout,row.file)),{sourceRoot:checkout});
   assert.equal(payload.book.id,before.bookId,'The mixed publication moved another book into '+row.file);
   const expected=JSON.parse(fs.readFileSync(path.join(checkout,'v2/fixtures/related-panel.json'))).books[payload.book.id]?.coreBoundary;
-  const actual=assertCorePublicationSnapshot(payload,expected);
+  const actual=assertHistoricalCorePublicationSnapshot(payload,expected);
   const names=['nonCore','relatedRules','nonCoreCards','nonCoreFactManifest','glossaryOutsideCore','rest'];
   assert.deepEqual(entry.unchangedParts.map(part=>part.name).sort(),[...names].sort(),'The mixed publication proof must cover every non-Core component');
   for(const part of entry.unchangedParts){
@@ -130,21 +132,63 @@ export function assertCorePublicationBoundary(manifest,approval=loadApprovedCore
  assert.equal(downloads.filter(file=>file===acceptedCorpus).length,1,'The accepted Core corpus must have its source download');
 }
 
+/** HEAD invariants are about current Core ownership and publication, never
+ * unrelated Army text, gameplay values or the bytes of published modules. */
+export function assertCurrentCorePublicationBoundary(manifest){
+ const accepted=`books/core-rules/sources/${WAHA_CORE_SOURCE_DIRECTORY}/waha-core-corpus.v1.json`;
+ const files=manifest.files.map(row=>row.path),downloads=manifest.publicSourceDownloads||[];
+ for(const file of [...files,...downloads]){
+  const capture=file.match(/^books\/core-rules\/sources\/waha-core-[^/]+\/(.+)$/);
+  const forbidden=(capture&&capture[1]!=='waha-core-corpus.v1.json')||
+   file.startsWith(historicalPrefix)||file.startsWith('books/core-rules/tests/fixtures/')||
+   file.startsWith('tests/fixtures/core-')||
+   (file.startsWith('books/core-rules/sources/')&&/\.(?:html?|raw)$/i.test(file));
+  assert(!forbidden,'UNACCEPTED_CORE_SOURCE_PUBLICATION: '+file);
+ }
+ assert.equal(files.filter(file=>file===accepted).length,1,'The current accepted Core corpus must be published exactly once');
+ assert.equal(downloads.filter(file=>file===accepted).length,1,'The current accepted Core corpus must have its source download exactly once');
+ return accepted;
+}
+
+export function assertCurrentCoreTransition(checkout=root){
+ const manifest=JSON.parse(fs.readFileSync(path.join(checkout,'tools/pages-runtime-manifest.json')));
+ const accepted=assertCurrentCorePublicationBoundary(manifest);
+ assert(fs.existsSync(path.join(checkout,accepted)),'CURRENT_CORE_CORPUS_MISSING: '+accepted);
+ const registry=JSON.parse(fs.readFileSync(path.join(checkout,registryFile)));
+ assertAppendOnlyRegistry(JSON.parse(readCoreTransitionFile(registryFile)),registry);
+ // Keep later accepted additions append-only relative to the current commit too.
+ const committed=JSON.parse(git('show','HEAD:'+registryFile));
+ assertAppendOnlyRegistry(committed,registry);
+ const books=JSON.parse(fs.readFileSync(path.join(checkout,'books/publication-inventory.json'))).books.filter(book=>book.library);
+ for(const book of books){
+  const file=`books/${book.id}/v2/generated/app-presentation.json`;
+  const payload=decodeSourceJSON(fs.readFileSync(path.join(checkout,file)));
+  assertCorePublicationSnapshot(payload);
+ }
+ return{acceptedCorpus:accepted,appendOnlyRegistry:true,books:books.length};
+}
+
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const evidence=createQaEvidenceDir('wh-core-importer-isolation-');
  const temp=createQaTempDir('wh-core-importer-isolation-'),rows=[];let completed=false;
+ const historical=createCoreTransitionCheckout(),history=historical.checkout;
  try{
-  const approval=loadApprovedCoreChanges(),checked=assertProductionUnchanged(root,fixture.protectedFiles,approval);
+  const approval=loadApprovedCoreChanges(),checked=assertProductionUnchanged(history,fixture.protectedFiles,approval);
   // Explicit new production files have the same exact-byte rule as old ones.
   for(const row of approval.changes.filter(row=>!oldFiles.has(row.file))){
-   const bytes=fs.readFileSync(path.join(root,row.file));assert.equal(bytes.length,row.afterBytes,'PRODUCTION_CHANGED: '+row.file);
+   const bytes=fs.readFileSync(path.join(history,row.file));assert.equal(bytes.length,row.afterBytes,'PRODUCTION_CHANGED: '+row.file);
    assert.equal(sha(bytes),row.afterSha256,'PRODUCTION_CHANGED: '+row.file);
-   if(row.category==='CORE_MIXED_PAYLOAD')assertMixedPayloadProof(root,row);
+   if(row.category==='CORE_MIXED_PAYLOAD')assertMixedPayloadProof(history,row);
   }
-  assertAcceptedCoreCorpus(root,approval);
-  const manifest=JSON.parse(fs.readFileSync(path.join(root,'tools/pages-runtime-manifest.json')));
+  assertAcceptedCoreCorpus(history,approval);
+  const manifest=JSON.parse(fs.readFileSync(path.join(history,'tools/pages-runtime-manifest.json')));
   assertCorePublicationBoundary(manifest,approval);
-  rows.push({control:'only the literal reviewed Core changes differ from the authenticated production baseline',status:'PASS',files:checked,changed:approval.changes.length});
+  rows.push({control:'only the literal reviewed Core changes differ at the historical Core B commit',status:'PASS',commit:CORE_TRANSITION_COMMIT,files:checked,changed:approval.changes.length});
+  const historicalNonCore='books/blood-angels/v2/roster-paid-options.mjs',historicalTarget=path.join(history,historicalNonCore),historicalOriginal=fs.readFileSync(historicalTarget),historicalPoison=Buffer.from(historicalOriginal);
+  historicalPoison[0]^=1;fs.writeFileSync(historicalTarget,historicalPoison);
+  try{assert.throws(()=>assertProductionUnchanged(history,fixture.protectedFiles,approval),/PRODUCTION_CHANGED/);}
+  finally{fs.writeFileSync(historicalTarget,historicalOriginal);}
+  rows.push({control:'one same-length non-Core byte changed in the actual 913cfef5 checkout',status:'PASS',mutationRejected:true,file:historicalNonCore});
   for(const [name,file,append]of[
    ['changed production digital snapshot','books/core-rules/content/core-rules.digital-11e.json','\n'],
    ['reader connected directly to the historical candidate','books/core-rules/reader/build.mjs',"\nimport '../sources/waha-core-2026-11-11/core-rules.candidate.v1.json' with {type:'json'};\n"],
@@ -154,7 +198,7 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
    const previous=oldFiles.get(file);assert(previous,'The negative control must name a protected file');
    if(name.includes('foreign')||name.includes('unlisted'))assert(!approval.changes.some(row=>row.file===file),'The immutable control must not be approved as a Core delta');
    const target=path.join(temp,file);fs.mkdirSync(path.dirname(target),{recursive:true});
-   fs.writeFileSync(target,Buffer.concat([fs.readFileSync(path.join(root,file)),Buffer.from(append)]));
+   fs.writeFileSync(target,Buffer.concat([fs.readFileSync(path.join(history,file)),Buffer.from(append)]));
    assert.throws(()=>assertProductionUnchanged(temp,[previous],approval),error=>{
     assert.match(error.message,/PRODUCTION_CHANGED/);assert(error.message.includes(file));return true;
    },name+' must fail');rows.push({control:name,status:'PASS',mutationRejected:true,file});
@@ -167,9 +211,37 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
    assert.throws(()=>assertCorePublicationBoundary(poisoned,approval),error=>error.message.includes('UNACCEPTED_CORE_SOURCE_PUBLICATION: '+file));
    rows.push({control:'unaccepted Core artifact stays unpublished',status:'PASS',mutationRejected:true,file});
   }
-  assertProductionUnchanged(root,fixture.protectedFiles,approval);completed=true;
-  console.log(JSON.stringify({status:'PASS',productionFiles:checked,approvedCoreChanges:approval.changes.length,negativeControls:rows.length-1,evidence}));
+  assertProductionUnchanged(history,fixture.protectedFiles,approval);
+  const current=assertCurrentCoreTransition(root);
+  rows.push({control:'HEAD preserves current Core publication and append-only source registry',status:'PASS',...current});
+  const live=path.join(temp,'head');fs.mkdirSync(live);
+  const copy=file=>{const target=path.join(live,file);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(path.join(root,file),target);};
+  for(const file of['tools/pages-runtime-manifest.json','books/publication-inventory.json',registryFile,current.acceptedCorpus])copy(file);
+  for(const book of JSON.parse(fs.readFileSync(path.join(root,'books/publication-inventory.json'))).books.filter(book=>book.library))copy(`books/${book.id}/v2/generated/app-presentation.json`);
+  const nonCore='books/blood-angels/v2/roster-paid-options.mjs';copy(nonCore);
+  fs.appendFileSync(path.join(live,nonCore),'\n// Synthetic later non-Core code change.\n');
+  const newNonCore='books/shared/roster-v2/synthetic-later-module.mjs',newTarget=path.join(live,newNonCore);fs.mkdirSync(path.dirname(newTarget),{recursive:true});fs.writeFileSync(newTarget,'// Synthetic later published module.\n');
+  const laterManifest=JSON.parse(fs.readFileSync(path.join(live,'tools/pages-runtime-manifest.json')));laterManifest.files.push({path:newNonCore});fs.writeFileSync(path.join(live,'tools/pages-runtime-manifest.json'),JSON.stringify(laterManifest));
+  assertCurrentCoreTransition(live);rows.push({control:'HEAD non-Core file update is permitted',status:'PASS',mutationAccepted:true,file:nonCore});
+  rows.push({control:'HEAD later non-Core publication is permitted',status:'PASS',mutationAccepted:true,file:newNonCore});
+  const liveManifest=path.join(live,'tools/pages-runtime-manifest.json'),manifestBytes=fs.readFileSync(liveManifest);
+  for(const name of['core-rules.candidate.v1.json','core-rules.html','waha-core-corpus.manifest.json','waha-core-corpus.census.json']){
+   const changed=JSON.parse(manifestBytes);changed.files.push({path:candidatePrefix+name});fs.writeFileSync(liveManifest,JSON.stringify(changed));
+   assert.throws(()=>assertCurrentCoreTransition(live),/UNACCEPTED_CORE_SOURCE_PUBLICATION/);
+   rows.push({control:'HEAD unaccepted Core source stays unpublished',status:'PASS',mutationRejected:true,file:candidatePrefix+name});
+  }
+  fs.writeFileSync(liveManifest,manifestBytes);
+  const liveRegistry=path.join(live,registryFile),registryBytes=fs.readFileSync(liveRegistry),changedRegistry=JSON.parse(registryBytes);
+  const context=Object.keys(changedRegistry.contexts)[0];changedRegistry.contexts[context]={...changedRegistry.contexts[context],mutation:'SYNTHETIC'};fs.writeFileSync(liveRegistry,JSON.stringify(changedRegistry));
+  assert.throws(()=>assertCurrentCoreTransition(live),/Changed registry entry bytes/);fs.writeFileSync(liveRegistry,registryBytes);
+  rows.push({control:'HEAD old registry entry cannot change',status:'PASS',mutationRejected:true,entry:context});
+  const livePayload=path.join(live,'books/death-guard/v2/generated/app-presentation.json'),payloadBytes=fs.readFileSync(livePayload),changedPayload=JSON.parse(payloadBytes);
+  changedPayload.cards.find(card=>card.domain==='CORE').title+=' [SYNTHETIC CORE DRIFT]';fs.writeFileSync(livePayload,JSON.stringify(changedPayload));
+  assert.throws(()=>assertCurrentCoreTransition(live),/CORE_PUBLICATION_DOES_NOT_MATCH_CURRENT_CATALOG/);fs.writeFileSync(livePayload,payloadBytes);
+  rows.push({control:'HEAD Core publication must match current catalog',status:'PASS',mutationRejected:true});
+  assertCurrentCoreTransition(root);completed=true;
+  console.log(JSON.stringify({status:'PASS',historicalCommit:CORE_TRANSITION_COMMIT,productionFiles:checked,approvedCoreChanges:approval.changes.length,negativeControls:rows.filter(row=>row.mutationRejected).length,evidence}));
  }finally{
-  fs.writeFileSync(path.join(evidence,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',baseline,historicalProductionBaseline:fixture.baseline,rows},null,2)+'\n');cleanupQaTempDir(temp);
+  fs.writeFileSync(path.join(evidence,'RESULTS.json'),JSON.stringify({status:completed?'PASS':'FAIL',baseline,historicalCommit:CORE_TRANSITION_COMMIT,historicalProductionBaseline:fixture.baseline,rows},null,2)+'\n');cleanupQaTempDir(temp);cleanupQaTempDir(historical.folder);
  }
 }
