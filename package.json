@@ -130,6 +130,8 @@
     "test:preview": "npm run publication:check && npm run wiring:check && npm run cache:check && npm run qa:integration && npm run qa:publication && node v2/core-reader-qa.mjs && node v2/glossary-core-navigation-qa.mjs",
     "test:full": "npm run test:preview && npm run qa:effects && npm run qa:points && npm run qa:roster",
     "qa:quick": "node tools/qa-queue.mjs quick",
-    "qa:pre-ff": "node tools/qa-queue.mjs pre-ff"
+    "qa:pre-ff": "node tools/qa-queue.mjs pre-ff",
+    "mfm:update": "node books/shared/tools/mfm-release-cli.mjs update",
+    "mfm:activate": "node books/shared/tools/mfm-release-cli.mjs activate"
   }
 }
