@@ -11,6 +11,7 @@ import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 import {registerHooks} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
+import {getCurrentMfmSource} from '../mfm/content/current-mfm-release.mjs';
 
 const source=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const argv=process.argv.slice(2),argument=name=>argv.includes(name)?argv[argv.indexOf(name)+1]:undefined;
@@ -59,7 +60,7 @@ async function recipes(){
  if(selected('tyranids')){
  const tyrFacts=readJSON('books/tyranids/v2/generated/effective.json'),tyrCode=readSource('books/tyranids/v2/roster-ui-fixtures.mjs');
  const tyrBody=tyrCode.slice(tyrCode.indexOf('const norm='),tyrCode.indexOf('for(const fixture of fixtures)')).replaceAll('export ','');
- const tyr=vm.runInNewContext(tyrBody+'\n({fixtures,make})',{facts:tyrFacts,mfm:readJSON('mfm/sources/v1.6/tyranids.json'),
+ const tyr=vm.runInNewContext(tyrBody+'\n({fixtures,make})',{facts:tyrFacts,mfm:readJSON(getCurrentMfmSource('tyranids',{repoRoot:source}).capturePath),
   records:new Map(tyrFacts.entities.map(row=>[row.id,row])),book:readJSON('books/tyranids/v2/generated/roster-runtime.json'),assert},{timeout:2000});
  for(const fixture of tyr.fixtures)add('tyranids','native-ui/'+fixture.id,fixture.text);
  const seven=readSource('books/tyranids/v2/seven-effects-fixtures.mjs');

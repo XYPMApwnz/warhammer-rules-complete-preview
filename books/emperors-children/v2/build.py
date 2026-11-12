@@ -21,6 +21,7 @@ ROOT = HERE.parents[2]
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+from current_mfm_release import read_current_mfm_release
 BOOK = 'emperors-children'
 SOURCE = 'books/emperors-children/sources/waha-11e-current-2026-09-28'
 read = lambda path: json.loads(Path(path).read_text(encoding='utf-8'))
@@ -308,7 +309,7 @@ def build(root=ROOT):
     for update in official['updates']:
         records.append({'id': update['id'], 'kind': 'SOURCE_UPDATE_REFERENCE', 'data': {'instruction': update['sourceText'], 'status': update['status'], 'targetIds': sorted({patch['targetId'] for patch in update['patches']}), 'group': update['group'], 'adjudications': update.get('adjudications', [])}, 'provenance': update['provenance']})
     base = {'schema': 'ec-v2-canonical/v1', 'bookId': BOOK, 'edition': '11E', 'acceptedBaseHead': enrollment['acceptedBaseHead'], 'sources': enrollment, 'entities': records, 'sourceAccounting': accounting, 'sourceLeafAccounting': leaf_accounting, 'ruleContractsStarted': False, 'rosterRuntimeStarted': False}
-    base['mfmBoundary'] = {'owner': 'CENTRALIZED_MFM', 'sourceVersion': 'v1.6', 'bindingsDocument': 'books/emperors-children/v2/mfm-bindings.json', 'consumerInterface': 'books/emperors-children/v2/mfm-boundary.mjs#consumeMfm', 'valuesCopied': False}
+    base['mfmBoundary'] = {'owner': 'CENTRALIZED_MFM', 'sourceVersion': read_current_mfm_release(root)['version'], 'bindingsDocument': 'books/emperors-children/v2/mfm-bindings.json', 'consumerInterface': 'books/emperors-children/v2/mfm-boundary.mjs#consumeMfm', 'valuesCopied': False}
     effective = copy.deepcopy(base); effective['schema'] = 'ec-v2-effective/v1'; effective['appliedOfficialUpdates'] = []
     index = unique(effective['entities'], 'id')
     touched = set()

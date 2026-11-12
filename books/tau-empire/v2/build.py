@@ -23,6 +23,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+from current_mfm_release import read_current_mfm_release
 BOOK = 'tau-empire'
 SOURCE = 'books/tau-empire/sources/waha-11e-current-2026-09-28'
 HUB = SOURCE+'/tau-empire.html'
@@ -213,7 +214,7 @@ def build():
     base = {'schema':'tau-empire-v2-canonical/v1','bookId':BOOK,'edition':'11E','entities':records,
             'sourceAccounting':[{k:r[k] for k in ['sourceId','kind','ownerSourceId']}|{'document':addresses[r['sourceId']]['document'],'pointer':addresses[r['sourceId']]['xpath']} for r in rows],
             'sourceEnrollment':'books/tau-empire/v2/sources/enrollment.json',
-            'mfmBoundary':{'owner':'CENTRALIZED_MFM','sourceVersion':'v1.6','bindingsDocument':'books/tau-empire/v2/mfm-bindings.json','valuesCopied':False},
+            'mfmBoundary':{'owner':'CENTRALIZED_MFM','sourceVersion':read_current_mfm_release(ROOT)['version'],'bindingsDocument':'books/tau-empire/v2/mfm-bindings.json','valuesCopied':False},
             'coreReferences':copy.deepcopy(sb['coreReferences']),
             'rosterReferenceSemantics':{},'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False}
     effective = apply_official(base)

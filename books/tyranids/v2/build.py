@@ -21,6 +21,7 @@ ROOT = HERE.parents[2]
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+from current_mfm_release import read_current_mfm_release
 SOURCE = 'books/tyranids/sources/waha-11e-current-2026-09-27'
 HUB = SOURCE + '/tyranids.html'
 BOOK = 'tyranids'
@@ -356,7 +357,7 @@ def build():
     base = {'schema': 'tyranids-v2-canonical/v1', 'bookId': BOOK, 'edition': '11E', 'entities': records,
         'sourceAccounting': [{key: row[key] for key in ['sourceId', 'kind', 'ownerSourceId', 'pointer', 'document']} for row in rows],
         'sourceReferences': copy.deepcopy(corpus['references']),
-        'rosterReferenceSemantics': native, 'mfmBoundary': {'owner': 'CENTRALIZED_MFM', 'sourceVersion': 'v1.6',
+        'rosterReferenceSemantics': native, 'mfmBoundary': {'owner': 'CENTRALIZED_MFM', 'sourceVersion': read_current_mfm_release(ROOT)['version'],
             'bindingsDocument': 'books/tyranids/v2/mfm-bindings.json', 'valuesCopied': False},
         'sourceEnrollment': 'books/tyranids/v2/sources/enrollment.json', 'gameplayContractsImplemented': 0,
         'rosterIntegrationImplemented': False, 'presentationImplemented': False, 'contentCertified': False}
