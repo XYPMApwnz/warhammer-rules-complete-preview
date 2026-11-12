@@ -125,6 +125,10 @@
         {
           "role": "wargearOptionContracts",
           "path": "books/death-guard/sources/death-guard-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/death-guard/v2/official-updates.json"
         }
       ]
     },
@@ -224,7 +228,7 @@
       "joins": null
     },
     "official": {
-      "input": "books/death-guard/v2/sources/source-enrollment.json",
+      "input": "books/death-guard/v2/official-updates.json",
       "stage": "canonical-facts"
     },
     "inheritance": {

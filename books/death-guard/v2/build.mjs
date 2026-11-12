@@ -6,7 +6,8 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {normalizeDeathGuardCorpus} from './normalize.mjs';
 import {preserveFoundationFacts} from './foundation-facts.mjs';
-import {applyOverlays,sourceCurrentness} from './overlay-engine.mjs';
+import {sourceCurrentness,validateRegistry} from './overlay-engine.mjs';
+import {applyBookOfficialUpdates} from '../../shared/official-updates-v1/book.mjs';
 import {consumeMfm,assertNoMfmValues} from './mfm-boundary.mjs';
 import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {compareV1Facts,loadV1ComparisonModel} from './compare-v1.mjs';
@@ -18,7 +19,7 @@ const sha = value => createHash('sha256').update(value).digest('hex').toUpperCas
 const corpusPath = 'books/death-guard/sources/waha-11e-current-2026-09-25/corpus.json';
 const hubPath = 'books/death-guard/v2/sources/accepted-waha-pages/death-guard.html';
 
-export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/source-enrollment.json')} = {}) {
+export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/source-enrollment.json'),officialUpdates} = {}) {
   const corpus = read(corpusPath), rawHubHtml = fs.readFileSync(path.join(root,hubPath));
   assert.equal(enrollment.acceptedBase?.path,corpusPath,'Explicit accepted base identity required');
   const baseSource = {id:'dg-waha-2026-09-25',type:'WAHA_CAPTURE',versionOrDate:corpus.captureDate,authority:'ACCEPTED_WAHA',
@@ -44,7 +45,8 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
   const foundationRawSources=Object.fromEntries([...foundationPaths].map(file=>[file,fs.readFileSync(path.join(root,file))]));
   const base=preserveFoundationFacts(normalized,{ledger,rawSources:foundationRawSources,profileSelectionEvidence});
   assertNoMfmValues(base.entities);
-  const projected = applyOverlays(base,sources,enrollment.overlayOperations);
+  validateRegistry(sources);
+  const projected = applyBookOfficialUpdates('death-guard',base,{root,sources,document:officialUpdates}).model;
   assertNoMfmValues(projected.entities);
   const mfm = consumeMfm(projected.entities);
   assert.equal(mfm.source.version,mfmSource.versionOrDate,'Central MFM source version must match enrolled reference');

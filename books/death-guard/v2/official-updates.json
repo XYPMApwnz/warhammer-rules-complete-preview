@@ -1,0 +1,4684 @@
+{
+  "schema": "army-book-official-updates/v1",
+  "bookId": "death-guard",
+  "stage": "canonical-facts",
+  "selection": {
+    "collection": [
+      "entities"
+    ],
+    "identity": "id",
+    "data": [
+      "data"
+    ]
+  },
+  "order": "effective-date-id",
+  "initialize": [
+    {
+      "path": [
+        "appliedOverlays"
+      ],
+      "value": []
+    }
+  ],
+  "projection": [
+    {
+      "scope": "entity",
+      "mode": "append",
+      "path": [
+        "qualifications"
+      ],
+      "when": [
+        "QUALIFY"
+      ],
+      "value": {
+        "field": {
+          "$ref": "entry.target.field"
+        },
+        "value": {
+          "$ref": "entry.after"
+        },
+        "sourceId": {
+          "$ref": "source.id"
+        },
+        "provenance": {
+          "$ref": "entry.provenance"
+        }
+      }
+    },
+    {
+      "scope": "entity",
+      "mode": "set",
+      "path": [
+        "fieldProvenance",
+        {
+          "$join": "entry.target.field"
+        }
+      ],
+      "value": {
+        "$merge": [
+          {
+            "sourceId": {
+              "$ref": "source.id"
+            },
+            "effectiveFrom": {
+              "$ref": "source.effectiveFrom"
+            },
+            "operationId": {
+              "$ref": "entry.id"
+            }
+          },
+          {
+            "$ref": "entry.provenance"
+          }
+        ]
+      }
+    },
+    {
+      "scope": "root",
+      "mode": "append",
+      "path": [
+        "appliedOverlays"
+      ],
+      "when": [
+        "SET",
+        "ADD_FIELD",
+        "ADD_UNIQUE",
+        "REMOVE_FIELD"
+      ],
+      "value": {
+        "id": {
+          "$ref": "entry.id"
+        },
+        "targetId": {
+          "$ref": "entity.id"
+        },
+        "field": {
+          "$ref": "entry.target.field"
+        },
+        "operation": {
+          "$map": {
+            "value": {
+              "$ref": "entry.operation"
+            },
+            "values": {
+              "SET": "REPLACE",
+              "ADD_FIELD": "ADD",
+              "ADD_UNIQUE": "ADD",
+              "QUALIFY": "QUALIFY",
+              "REMOVE_FIELD": "REMOVE"
+            }
+          }
+        },
+        "baseValue": {
+          "$ref": "before"
+        },
+        "effectiveValue": {
+          "$ref": "effective"
+        },
+        "sourceId": {
+          "$ref": "source.id"
+        },
+        "provenance": {
+          "$ref": "entry.provenance"
+        }
+      }
+    },
+    {
+      "scope": "root",
+      "mode": "append",
+      "path": [
+        "appliedOverlays"
+      ],
+      "when": [
+        "QUALIFY"
+      ],
+      "value": {
+        "id": {
+          "$ref": "entry.id"
+        },
+        "targetId": {
+          "$ref": "entity.id"
+        },
+        "field": {
+          "$ref": "entry.target.field"
+        },
+        "operation": {
+          "$map": {
+            "value": {
+              "$ref": "entry.operation"
+            },
+            "values": {
+              "SET": "REPLACE",
+              "ADD_FIELD": "ADD",
+              "ADD_UNIQUE": "ADD",
+              "QUALIFY": "QUALIFY",
+              "REMOVE_FIELD": "REMOVE"
+            }
+          }
+        },
+        "baseValue": {
+          "$ref": "before"
+        },
+        "effectiveValue": {
+          "$ref": "effective"
+        },
+        "qualificationValue": {
+          "$ref": "entry.after"
+        },
+        "sourceId": {
+          "$ref": "source.id"
+        },
+        "provenance": {
+          "$ref": "entry.provenance"
+        }
+      }
+    }
+  ],
+  "entries": [
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:001",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:002",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:3",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:003",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-surgeon"
+      },
+      "target": {
+        "id": "datasheet-plague-surgeon:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-surgeon"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:004",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-surgeon"
+      },
+      "target": {
+        "id": "datasheet-plague-surgeon:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-surgeon"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:005",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / malignant-plaguecaster"
+      },
+      "target": {
+        "id": "datasheet-malignant-plaguecaster:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / malignant-plaguecaster"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:006",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / malignant-plaguecaster"
+      },
+      "target": {
+        "id": "datasheet-malignant-plaguecaster:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / malignant-plaguecaster"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:007",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / icon-bearer"
+      },
+      "target": {
+        "id": "datasheet-icon-bearer:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / icon-bearer"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:008",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / icon-bearer"
+      },
+      "target": {
+        "id": "datasheet-icon-bearer:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / icon-bearer"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:009",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:010",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Boltgun / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:011",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / blightlord-terminators"
+      },
+      "target": {
+        "id": "datasheet-blightlord-terminators:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / blightlord-terminators"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:012",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / blightlord-terminators"
+      },
+      "target": {
+        "id": "datasheet-blightlord-terminators:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / blightlord-terminators"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:013",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-land-raider"
+      },
+      "target": {
+        "id": "datasheet-chaos-land-raider:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-land-raider"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:014",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-land-raider"
+      },
+      "target": {
+        "id": "datasheet-chaos-land-raider:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-land-raider"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:015",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-annihilator"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-annihilator:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-annihilator"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:016",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-annihilator"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-annihilator:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-annihilator"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:017",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-destructor"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-destructor:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-destructor"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:018",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-destructor"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-destructor:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-predator-destructor"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:019",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-rhino"
+      },
+      "target": {
+        "id": "datasheet-chaos-rhino:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-rhino"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:020",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-rhino"
+      },
+      "target": {
+        "id": "datasheet-chaos-rhino:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / chaos-rhino"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:021",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / helbrute"
+      },
+      "target": {
+        "id": "datasheet-helbrute:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / helbrute"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:022",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / helbrute"
+      },
+      "target": {
+        "id": "datasheet-helbrute:weapon:1",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-bolter / helbrute"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:023",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / blightlord-terminators"
+      },
+      "target": {
+        "id": "datasheet-blightlord-terminators:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / blightlord-terminators"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:024",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / blightlord-terminators"
+      },
+      "target": {
+        "id": "datasheet-blightlord-terminators:weapon:3",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / blightlord-terminators"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:025",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-land-raider"
+      },
+      "target": {
+        "id": "datasheet-chaos-land-raider:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-land-raider"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:026",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-land-raider"
+      },
+      "target": {
+        "id": "datasheet-chaos-land-raider:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-land-raider"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:027",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-annihilator"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-annihilator:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-annihilator"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:028",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-annihilator"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-annihilator:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-annihilator"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:029",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-destructor"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-destructor:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-destructor"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:030",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-destructor"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-destructor:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-predator-destructor"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:031",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-rhino"
+      },
+      "target": {
+        "id": "datasheet-chaos-rhino:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-rhino"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:032",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-rhino"
+      },
+      "target": {
+        "id": "datasheet-chaos-rhino:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Combi-weapon / chaos-rhino"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:033",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / blightlord-terminators"
+      },
+      "target": {
+        "id": "datasheet-blightlord-terminators:weapon:7",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / blightlord-terminators"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:034",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / foul-blightspawn"
+      },
+      "target": {
+        "id": "datasheet-foul-blightspawn:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / foul-blightspawn"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:035",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / tallyman"
+      },
+      "target": {
+        "id": "datasheet-tallyman:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Close combat weapon / tallyman"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:036",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knife / icon-bearer"
+      },
+      "target": {
+        "id": "datasheet-icon-bearer:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knife / icon-bearer"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:037",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knife / icon-bearer"
+      },
+      "target": {
+        "id": "datasheet-icon-bearer:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knife / icon-bearer"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:038",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / biologus-putrifier"
+      },
+      "target": {
+        "id": "datasheet-biologus-putrifier:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / biologus-putrifier"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:039",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / biologus-putrifier"
+      },
+      "target": {
+        "id": "datasheet-biologus-putrifier:weapon:3",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / biologus-putrifier"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:040",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:13",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "5",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:041",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / plague-marines"
+      },
+      "target": {
+        "id": "datasheet-plague-marines:weapon:13",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "0",
+      "after": "-1",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Plague knives / plague-marines"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:042",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "army-rule-nurgles-gift:skullsquirm-blight"
+      },
+      "target": {
+        "id": "army-rule-nurgles-gift:skullsquirm-blight",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ARMY_RULE_COMPONENT"
+          }
+        ]
+      },
+      "kind": "ARMY_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Each time a model in this unit makes a ranged attack, enemy units have the benefit of cover against that attack.\nEach time a model in this unit makes a melee attack, subtract 1 from the Hit roll.",
+      "after": "Each time a model in this unit makes a ranged attack, enemy units have the benefit of cover against that attack.\nEach time a model in this unit makes a melee attack, subtract 1 from the Hit roll.",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "army-rule-nurgles-gift:skullsquirm-blight"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:043",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "army-rule-nurgles-gift:contagion-range"
+      },
+      "target": {
+        "id": "army-rule-nurgles-gift:contagion-range",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ARMY_RULE_COMPONENT"
+          }
+        ]
+      },
+      "kind": "ARMY_RULE_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "If your Army Faction is DEATH GUARD, while an enemy unit is within Contagion Range of one or more DEATH GUARD models from your army, it is Afflicted (see below).\nCONTAGION RANGE\nContagion Range changes over the course of the battle:\nContagion Range cannot be greater than 12\" after modifiers.",
+      "after": {
+        "contagionRangeCap": 12,
+        "sourceText": "Contagion Range cannot be greater than 12\" after modifiers."
+      },
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "army-rule-nurgles-gift:contagion-range"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:044",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-mortarions-hammer:stratagem:6"
+      },
+      "target": {
+        "id": "detachment-mortarions-hammer:stratagem:6",
+        "field": [
+          "lines",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "One friendly unengaged DEATH GUARD VEHICLE unit.",
+      "after": "One friendly unengaged DEATH GUARD VEHICLE unit.",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-mortarions-hammer:stratagem:6"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:045",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-mortarions-hammer:stratagem:6"
+      },
+      "target": {
+        "id": "detachment-mortarions-hammer:stratagem:6",
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls.",
+      "after": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, that enemy unit has -1 to charge rolls.",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-mortarions-hammer:stratagem:6"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:046",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-tallyband-summoners:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-tallyband-summoners:enhancement:1",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\".",
+      "after": "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\".",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-tallyband-summoners:enhancement:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:047",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-virulent-vectorium:rule"
+      },
+      "target": {
+        "id": "detachment-virulent-vectorium:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted.",
+      "after": "At the end of your Command phase, if a friendly DEATH GUARD unit is controlling an objective, that objective is secured. Until you lose control of that objective, while an enemy unit is within range of that objective, that enemy unit is Afflicted (pg 71).",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-virulent-vectorium:rule"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:048",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-chaos-land-raider"
+      },
+      "target": {
+        "id": "unit-chaos-land-raider",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "NURGLE",
+        "LAND RAIDER"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-chaos-land-raider"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:049",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-chaos-predator-annihilator"
+      },
+      "target": {
+        "id": "unit-chaos-predator-annihilator",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "VEHICLE",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "NURGLE",
+        "PREDATOR ANNIHILATOR"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-chaos-predator-annihilator"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:050",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-chaos-predator-destructor"
+      },
+      "target": {
+        "id": "unit-chaos-predator-destructor",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "VEHICLE",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "NURGLE",
+        "PREDATOR DESTRUCTOR"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-chaos-predator-destructor"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:051",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-chaos-rhino"
+      },
+      "target": {
+        "id": "unit-chaos-rhino",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "VEHICLE",
+        "FRAME",
+        "SMOKE",
+        "CHAOS",
+        "NURGLE",
+        "TRANSPORT",
+        "DEDICATED TRANSPORT",
+        "RHINO"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-chaos-rhino"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:052",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-miasmic-malignifier"
+      },
+      "target": {
+        "id": "unit-miasmic-malignifier",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "FORTIFICATION",
+        "FRAME",
+        "CHAOS",
+        "NURGLE",
+        "MIASMIC MALIGNIFIER"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-miasmic-malignifier"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:053",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-plagueburst-crawler"
+      },
+      "target": {
+        "id": "unit-plagueburst-crawler",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "ADD_UNIQUE",
+      "expectedBefore": [
+        "VEHICLE",
+        "FRAME",
+        "CHAOS",
+        "NURGLE",
+        "DAEMON",
+        "PLAGUEBURST CRAWLER"
+      ],
+      "after": "FRAME",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-plagueburst-crawler"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:054",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-chaos-predator-destructor:weapon:6"
+      },
+      "target": {
+        "id": "datasheet-chaos-predator-destructor:weapon:6",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "9",
+      "after": "9",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-chaos-predator-destructor:weapon:6"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:055",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-deathshroud-terminators:section:1"
+      },
+      "target": {
+        "id": "datasheet-deathshroud-terminators:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Death Approaches: In your movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units.",
+      "after": "Death Approaches: In your Movement phase, each time this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all Afflicted enemy units, and more than 8\" horizontally away from all other enemy units.",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-deathshroud-terminators:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:056",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-mortarion:section:1"
+      },
+      "target": {
+        "id": "datasheet-mortarion:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Diseased Influence: Just after an enemy unit ends a Normal, Advance or Fall Back move within 8\" of a friendly DEATH GUARD unit that is within 6\" of this model, if that DEATH GUARD unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 5\".",
+      "after": "Diseased Influence: Just after an enemy unit ends a Normal, Advance or Fall Back move within 8\" of a friendly DEATH GUARD unit that is within 6\" of this model, if that DEATH GUARD unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 5\".",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-mortarion:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:057",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 8,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-mortarion:section:1"
+      },
+      "target": {
+        "id": "datasheet-mortarion:section:1",
+        "field": [
+          "blocks",
+          2,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Inflamed Reprisal: In your opponent’s Shooting phase, when a friendly DEATH GUARD unit within 6\" of this model is selected as the target of an attack, this model can use this ability. If it does, after the attacking unit has finished making its attacks, that Death Guard unit can shoot as if it were your Shooting phase, but when resolving those attacks, worsen the BS characteristic of that attack by 1 and it can only target that enemy unit (and only if it is an eligible target).",
+      "after": "Inflamed Reprisal: In your opponent’s Shooting phase, when a friendly DEATH GUARD unit within 6\" of this model is selected as the target of an attack, this model can use this ability. If it does, after the attacking unit has finished making its attacks, that DEATH GUARD unit can shoot as if it were your Shooting phase, but when resolving those attacks, worsen the BS characteristic of that attack by 1 and it can only target that enemy unit (and only if it is an eligible target).",
+      "provenance": {
+        "page": 8,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-mortarion:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:058",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 8,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-typhus:section:1"
+      },
+      "target": {
+        "id": "datasheet-typhus:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Eater Plague (Psychic): In your Shooting phase, you can select one enemy unit within 18\" of and visible to this PSYKER (excluding units with the Lone Operative ability that are not part of an Attached unit and are not within 12\" of this PSYKER) and roll one D6: on a 1, this PSYKER’s unit suffers D3 mortal wounds; on a 2-5, that enemy unit suffers D6 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds.",
+      "after": "Eater Plague (Psychic): In your Shooting phase, you can select one enemy unit within 18\" of and visible to this PSYKER (excluding units with the Lone Operative ability that are not part of an Attached unit and are not within 12\" of this PSYKER) and roll one D6: on a 1, this PSYKER’s unit suffers D3 mortal wounds; on a 2-5, that enemy unit suffers D6 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds.",
+      "provenance": {
+        "page": 8,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-typhus:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:059",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 8,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-plagueburst-crawler:section:1"
+      },
+      "target": {
+        "id": "datasheet-plagueburst-crawler:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "Spore-laced Shock Waves: In your Shooting phase, each time you select a target for this model’s Plagueburst mortar, roll one D6 for the target unit and every other enemy unit within 3\" of the target unit, adding 1 to that roll if the unit being rolled for is Afflicted. On a 6+, the unit being rolled for is struck by spores; after resolving all of this model’s attacks against the target unit, each unit struck by spores suffers D3 mortal wounds.",
+      "after": {
+        "faqId": "gw-dg-v1.3-spore-laced-shock-waves",
+        "sourceText": "Q: Does the Plagueburst Crawler’s Spore-laced Shock Waves ability inflict mortal wounds every turn to units affected by the ability?\nA: No.",
+        "inflictsMortalWoundsEveryTurn": false
+      },
+      "provenance": {
+        "page": 8,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-plagueburst-crawler:section:1"
+      }
+    },
+    {
+      "id": "gw-universal-rules-updates-v1.1-2026-08-26:operation:060",
+      "source": {
+        "id": "gw-universal-rules-updates-v1.1-2026-08-26",
+        "document": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-08-26",
+        "status": "CURRENT",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+        "locator": "MOVE TYPES FOR DISEMBARKING UNITS"
+      },
+      "target": {
+        "id": "datasheet-chaos-land-raider:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "Assault Ramp: Each time a unit disembarks from this model after it has made a Normal move, that unit makes an assault disembark move (Core Rules, 18.06) for that disembarkation.",
+      "after": {
+        "qualificationId": "universal-assault-disembark",
+        "sourceText": "If a rule allows a unit to be eligible to declare a charge after disembarking from a TRANSPORT model that made a normal move that turn, that unit makes an assault disembark move (18.06) for that disembarkation (instead of a disembark move)."
+      },
+      "provenance": {
+        "page": 1,
+        "documentPath": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+        "sourceLocator": "MOVE TYPES FOR DISEMBARKING UNITS"
+      }
+    },
+    {
+      "id": "gw-universal-rules-updates-v1.1-2026-08-26:operation:061",
+      "source": {
+        "id": "gw-universal-rules-updates-v1.1-2026-08-26",
+        "document": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-08-26",
+        "status": "CURRENT",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+        "locator": "STRATAGEMS THAT ADD NEW UNITS TO YOUR ARMY"
+      },
+      "target": {
+        "id": "detachment-tallyband-summoners:stratagem:1",
+        "field": [
+          "lines",
+          3,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "You can only use this Stratagem once per battle.",
+      "after": "You can only use this Stratagem once per battle.",
+      "provenance": {
+        "page": 1,
+        "documentPath": "books/death-guard/v2/sources/gw-universal-rules-updates-2026-08-26.pdf",
+        "sourceLocator": "STRATAGEMS THAT ADD NEW UNITS TO YOUR ARMY"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:062",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:1"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:1",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "12",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:063",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:2"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "6",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:064",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:3"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "10",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:065",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:4"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:4",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "12",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:4"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:066",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:5"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:5",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "7",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:5"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:067",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:6"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:6",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "10",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:6"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:068",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:7"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:7",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "5",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:7"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:069",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:8"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:8",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "9",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:8"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:070",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:9"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:9",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "9",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:9"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:071",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:10"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:10",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "12",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:10"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:072",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:11"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:11",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "16",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:11"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:073",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:weapon:12"
+      },
+      "target": {
+        "id": "datasheet-defiler:weapon:12",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "QUALIFY",
+      "expectedBefore": "6",
+      "after": {
+        "verifiedFields": [
+          "name",
+          "mode",
+          "range",
+          "attacks",
+          "skill",
+          "strength",
+          "ap",
+          "damage",
+          "abilities"
+        ],
+        "qualificationId": "official-profile-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:weapon:12"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:074",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "unit-defiler"
+      },
+      "target": {
+        "id": "datasheet-defiler:profile:default",
+        "field": [
+          "SV"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "PROFILE"
+          }
+        ]
+      },
+      "kind": "DATASHEET_STAT",
+      "operation": "QUALIFY",
+      "expectedBefore": "3+",
+      "after": {
+        "verifiedFields": [
+          "M",
+          "T",
+          "SV",
+          "W",
+          "LD",
+          "OC",
+          "INSV"
+        ],
+        "qualificationId": "official-datasheet-confirmation"
+      },
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "unit-defiler"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:075",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:section:1"
+      },
+      "target": {
+        "id": "datasheet-defiler:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "after": "Scuttling Walker: Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding TITANIC models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed.",
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:076",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 5,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:section:1"
+      },
+      "target": {
+        "id": "datasheet-defiler:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Barrage of Filth: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, that unit cannot have the Benefit of Cover.",
+      "after": "Barrage of Filth: In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, that unit cannot have the Benefit of Cover.",
+      "provenance": {
+        "page": 5,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:section:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:077",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 6,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:section:2"
+      },
+      "target": {
+        "id": "datasheet-defiler:section:2",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "- 1 Defiler\nThis model is equipped with: 1 Hades battle cannon; 2 excruciator cannons; 1 heavy missile launcher; 1 heavy baleflamer; 1 shearing claws",
+      "after": "- 1 Defiler\nThis model is equipped with: 1 Hades battle cannon; 2 excruciator cannons; 1 heavy missile launcher; 1 heavy baleflamer; 1 shearing claws",
+      "provenance": {
+        "page": 6,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:section:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:078",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 6,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "datasheet-defiler:section:3"
+      },
+      "target": {
+        "id": "datasheet-defiler:section:3",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "after": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+      "provenance": {
+        "page": 6,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "datasheet-defiler:section:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:079",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:rule"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "- Friendly FOETID BLOAT-DRONE/FOETID BLOAT-DRONE WITH HEAVY BLIGHT LAUNCHER/HELBRUTE/MYPHITIC BLIGHT-HAULER units have CONTAGION ENGINE.\n- Friendly CONTAGION ENGINE units’ ranged attacks have [ASSAULT].\nThis detachment has the ENGINES tag and cannot be taken with another ENGINES detachment.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:rule"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:080",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:enhancement:1",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "CONTAGION ENGINE unit only. When this unit has fought, one model in this unit heals D3 wounds.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:081",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:enhancement:2"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:enhancement:2",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "Friendly HELBRUTE/MYPHITIC BLIGHT-HAULER unit only. This unit has MOBILE.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:082",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:stratagem:1"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:stratagem:1",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase or the Fight phase, when a friendly CONTAGION ENGINE unit is selected to attack."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s attacks can re-roll wound rolls of 1."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:stratagem:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:083",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:stratagem:2"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:stratagem:2",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly CONTAGION ENGINE unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one visible enemy unit. That enemy unit is Afflicted until your unit has attacked."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:stratagem:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:084",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:stratagem:3"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:stratagem:3",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your opponent’s Movement phase, when an enemy unit is selected to make a fall-back move, if that enemy unit is engaged with a friendly CONTAGION ENGINE unit."
+        },
+        {
+          "label": "TARGET",
+          "text": "That CONTAGION ENGINE unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "When an enemy unit engaged with your unit is selected to make a fall-back move, roll one D6: - On a 1, that enemy unit suffers 1 mortal wound. - On a 2-5, that enemy unit suffers D3 mortal wounds. - On a 6, that enemy unit suffers 3 mortal wounds."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:stratagem:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:085",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:rule"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "In the Declare Battle Formations step, you can select up to two friendly PLAGUE MARINES units. Those units have Infiltrators.\nThis detachment has the FLYBLOWN tag and cannot be taken with another FLYBLOWN detachment.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:rule"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:086",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:enhancement:1",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "PLAGUE MARINES unit only. When this unit’s attacks target a unit within Contagion Range of a friendly unit, those attacks can re-roll wound rolls of 1.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:087",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:enhancement:2"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:enhancement:2",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "PLAGUE MARINES unit only. This unit has -3\" detection range.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:088",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:stratagem:1"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:stratagem:1",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Fight phase"
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly engaged PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one enemy unit engaged with your unit. That enemy unit makes a battle-shock roll, with -1 to that battle-shock roll."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:stratagem:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:089",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:stratagem:2"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:stratagem:2",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s ranged attacks: - Can re-roll hit rolls of 1. - That target a unit within half range, can re-roll wound rolls of 1."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:stratagem:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:090",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:stratagem:3"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:stratagem:3",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly PLAGUE MARINES unit is selected to shoot."
+        },
+        {
+          "label": "TARGET",
+          "text": "That PLAGUE MARINES unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit’s ranged attacks have [CLOSE-QUARTERS]."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:stratagem:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:091",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:rule"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "Friendly DEATH GUARD CHARACTER units have +3\" to their Contagion Range (to a maximum of 12\").",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:rule"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:092",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:enhancement:1",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": "DEATH GUARD INFANTRY model only (excluding TERMINATOR models). Attacks that target this unit with a S greater than this unit’s T have -1 to wound rolls.",
+      "after": {
+        "verifiedFields": [
+          "text"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:enhancement:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:093",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:enhancement:2"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:enhancement:2",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plague listed in Nurgle’s Gift. Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
+      "after": "DEATH GUARD INFANTRY model only. (Once per battle, per army) In your Command phase, you can use this ability. If you do, select one of the Plagues listed in Nurgle’s Gift (see Codex: Death Guard). Enemy units within Contagion Range of this unit also have the effect of that Plague in addition to your army’s chosen Plague until the end of the battle.",
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:enhancement:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:094",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:stratagem:1"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:stratagem:1",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Start of the Command phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Your unit has +1 OC until the end of the turn."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:stratagem:1"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:095",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:stratagem:2"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:stratagem:2",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Start of your Shooting Phase."
+        },
+        {
+          "label": "TARGET",
+          "text": "One friendly DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "Select one visible enemy unit within Contagion Range of your unit. That enemy unit has +6\" detection range."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:stratagem:2"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:096",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-paragons-of-putrescence:stratagem:3"
+      },
+      "target": {
+        "id": "detachment-paragons-of-putrescence:stratagem:3",
+        "field": [
+          "lines"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "QUALIFY",
+      "expectedBefore": [
+        {
+          "label": "WHEN",
+          "text": "Your Shooting phase, when a friendly DEATH GUARD CHARACTER unit starts an action."
+        },
+        {
+          "label": "TARGET",
+          "text": "That DEATH GUARD CHARACTER unit."
+        },
+        {
+          "label": "EFFECT",
+          "text": "That action does not prevent your unit from being eligible to shoot."
+        }
+      ],
+      "after": {
+        "verifiedFields": [
+          "cp",
+          "lines"
+        ],
+        "qualificationId": "official-current-confirmation"
+      },
+      "provenance": {
+        "page": 4,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-paragons-of-putrescence:stratagem:3"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:097",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 7,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "errata-3"
+      },
+      "target": {
+        "id": "errata-3",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "SOURCE_ERRATUM"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "SET",
+      "expectedBefore": "Virulent Vectorum Detachment, Worldblight Detachment Rule",
+      "after": "Virulent Vectorium Detachment, Worldblight Detachment Rule",
+      "provenance": {
+        "page": 7,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "errata-3",
+        "quote": "VIRULENT VECTORIUM DETACHMENT"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:098",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:enhancement:1",
+        "field": [
+          "sourceTypeLabel"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "expectedBefore": {
+        "$absent": true
+      },
+      "after": "UPGRADE",
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:1",
+        "quote": "PARASITIC WOE‑REAPER UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:099",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 2,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-contagion-engines:enhancement:2"
+      },
+      "target": {
+        "id": "detachment-contagion-engines:enhancement:2",
+        "field": [
+          "sourceTypeLabel"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "expectedBefore": {
+        "$absent": true
+      },
+      "after": "UPGRADE",
+      "provenance": {
+        "page": 2,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-contagion-engines:enhancement:2",
+        "quote": "LANCET OF THE WORLDSORE UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:100",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:enhancement:1"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:enhancement:1",
+        "field": [
+          "sourceTypeLabel"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "expectedBefore": {
+        "$absent": true
+      },
+      "after": "UPGRADE",
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:1",
+        "quote": "INSECTILE MURMURATION UPGRADE"
+      }
+    },
+    {
+      "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:101",
+      "source": {
+        "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+        "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "version": "v1.3",
+        "page": 3,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-09-30",
+        "status": "CURRENT",
+        "supersedes": [
+          "death-guard-faction-pack-v1.2"
+        ],
+        "sha256": "EBF3F985BAD14FE61B0224FC0BA35BAB952D4306AB5691629B599114086CB2DD",
+        "locator": "detachment-flyblown-host:enhancement:2"
+      },
+      "target": {
+        "id": "detachment-flyblown-host:enhancement:2",
+        "field": [
+          "sourceTypeLabel"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "expectedBefore": {
+        "$absent": true
+      },
+      "after": "UPGRADE",
+      "provenance": {
+        "page": 3,
+        "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+        "sourceLocator": "detachment-flyblown-host:enhancement:2",
+        "quote": "PLAGUEVEIL UPGRADE"
+      }
+    }
+  ]
+}

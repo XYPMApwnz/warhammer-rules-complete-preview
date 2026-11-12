@@ -61,6 +61,7 @@ def semantic(value):
 def source_census():
     census = json.loads(EXPECTATIONS.read_text('utf8'))
     enrollment = json.loads((DIRECTORY / 'sources/source-enrollment.json').read_text('utf8'))
+    official_updates = json.loads((DIRECTORY / 'official-updates.json').read_text('utf8'))
     accepted_base = enrollment['acceptedBase']
     assert sha256(ROOT / accepted_base['path']) == accepted_base['sha256'].upper(), 'Accepted corpus byte identity changed'
     corpus = json.loads((ROOT / accepted_base['path']).read_text('utf8'))
@@ -95,9 +96,9 @@ def source_census():
 
     enrolled = {item['id']: item for item in enrollment['sources']}
     overlay_by_target = {}
-    for operation in enrollment['overlayOperations']:
-        if ':enhancement:' in operation['targetId']:
-            overlay_by_target.setdefault(operation['targetId'], []).append(operation)
+    for operation in official_updates['entries']:
+        if ':enhancement:' in operation['target']['id']:
+            overlay_by_target.setdefault(operation['target']['id'], []).append(operation)
     official_rows = set()
     source_upgrades = set()
     label_rows = set()
@@ -175,12 +176,12 @@ def source_census():
                 if 'currentText' in official:
                     assert current_body in official_text, ('Reviewed official current text changed', row['id'])
                 operations = overlay_by_target.get(row['id'], [])
-                assert operations and all(item['sourceId'] == official['sourceId'] for item in operations), ('Unbound official Enhancement source', row['id'])
+                assert operations and all(item['source']['id'] == official['sourceId'] for item in operations), ('Unbound official Enhancement source', row['id'])
                 for operation in operations:
                     assert operation['provenance']['page'] == official['page'], row['id']
-                    if operation['field'] == ['sourceTypeLabel']:
+                    if operation['target']['field'] == ['sourceTypeLabel']:
                         assert row['id'] in source_upgrades, ('Invented UPGRADE classification', row['id'])
-                        assert operation['operation'] == 'ADD' and operation['value'] == 'UPGRADE', row['id']
+                        assert operation['operation'] == 'ADD_FIELD' and operation['after'] == 'UPGRADE', row['id']
                         assert operation['provenance']['sourceLocator'] == row['id'], row['id']
                         assert norm(operation['provenance']['quote']) == norm(proof['title'] + ' UPGRADE'), row['id']
                         assert norm(operation['provenance']['quote']) in official_text, ('Official UPGRADE evidence changed', row['id'])
@@ -188,11 +189,11 @@ def source_census():
                         assert row['id'] not in label_rows, ('Duplicate UPGRADE label overlay', row['id'])
                         label_rows.add(row['id'])
                         continue
-                    assert operation['field'] == ['text'], row['id']
-                    if operation['operation'] == 'REPLACE':
-                        assert norm(operation['value']) == current_body, ('Unreviewed current replacement', row['id'])
+                    assert operation['target']['field'] == ['text'], row['id']
+                    if operation['operation'] == 'SET':
+                        assert norm(operation['after']) == current_body, ('Unreviewed current replacement', row['id'])
                     else:
-                        assert operation['operation'] == 'QUALIFY' and operation['value']['verifiedFields'] == ['text'], row['id']
+                        assert operation['operation'] == 'QUALIFY' and operation['after']['verifiedFields'] == ['text'], row['id']
                 official_rows.add(row['id'])
             else:
                 assert row['id'] not in overlay_by_target, ('New unreviewed Enhancement overlay', row['id'])
