@@ -78,9 +78,11 @@ try{
     historicalSources:current.historicalIds.length});
 
   mutation('bad-current-pointer',['mfm/current.json'],()=>{
-    const value=read(fixture,'mfm/current.json');value.factions[0].sourceId='unregistered-mfm-'+release.version;
+    const value=read(fixture,'mfm/current.json');value.version='v1.999';value.registryVersion='v1.999-scoped-nine';
+    value.identityRegistryPath='mfm/content/mfm-v1.999-scoped.identity-registry.json';
+    value.crossDomainBindingsPath='mfm/content/mfm-v1.999-army-mission-bindings.json';
     write(fixture,'mfm/current.json',value);
-  },/MFM current pointer: faction source mismatch/);
+  },/ENOENT[\s\S]*mfm-v1\.999-scoped\.identity-registry\.json/);
 
   const baselineId=BASELINE_HISTORICAL_IDS[0];
   const baselineSource=read(fixture,release.sourceRegistryPath).sources.find(row=>row.sourceId===baselineId);
