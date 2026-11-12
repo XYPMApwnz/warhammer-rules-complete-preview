@@ -113,7 +113,7 @@ try{
     await fullRule.click();await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('chapter')==='monsters-vehicles');await ready(page);frame=await child(page);
     await frame.locator('#termDialog[open]').waitFor();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast','Back did not restore original Core popup');
-    await frame.locator('#termFull').click();await ready(page);assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
+    await frame.locator('#termFull').click();await ready(page);await page.locator('[data-global-glossary]').waitFor({state:'visible'});assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
     const article=await page.locator('.global-glossary-main').innerText();assert(/\bBlast\b/i.test(article),article);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('v2')==='CORE_RULES');await ready(page);frame=await child(page);await frame.locator('#termDialog[open]').waitFor();await frame.locator('#termClose').click();
     for(const chapterId of ['shooting-phase','fight-phase']){
