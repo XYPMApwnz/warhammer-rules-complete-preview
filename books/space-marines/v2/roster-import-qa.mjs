@@ -42,16 +42,25 @@ function fixture(id,{gear=true,unitEquipment='',modelEquipment='',enhancement=''
 function ready(service,text,choices={},options){
   const result=service.import(text,choices,options);assert.equal(result.status,'READY',JSON.stringify({needs:result.needsBindings,errors:result.errors}));return result;
 }
+function sourceMfmUnit(bridge){
+  assert.ok(bridge,'Missing reviewed unit MFM binding');
+  const locator=bridge.sourceLocator;
+  assert.equal(locator.partition,'units','MFM unit locator must address units');
+  assert.equal(locator.factionId,sourceMfm.factionId,'MFM unit locator has a foreign faction');
+  const matches=sourceMfm.units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+  assert.equal(matches.length,1,'MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+  return matches[0];
+}
+assert.throws(()=>sourceMfmUnit({...bridges.unitBindings[0],sourceLocator:{...bridges.unitBindings[0].sourceLocator,sourceTitle:'SYNTHETIC MISSING MFM UNIT'}}),/MFM source locator must resolve exactly once:.*matches=0/);
 function expectedBase(unitId,count,copy=1){
-  const bridge=bridges.unitBindings.find(row=>row.entityId===unitId);
-  const raw=bridge.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],sourceMfm);
+  const raw=sourceMfmUnit(bridges.unitBindings.find(row=>row.entityId===unitId));
   const schedules=raw.pointSchedules.filter(row=>(row.minCopies===undefined||copy>=row.minCopies)&&(row.maxCopies===undefined||copy<=row.maxCopies));
   const prices=schedules.flatMap(row=>row.entries).filter(row=>count>=row.minModels&&count<=row.maxModels);
   return prices.length===1?prices[0].value:null;
 }
 function pricedFixture(unitId,options={}){
   const input=fixture(unitId,options),bridge=bridges.unitBindings.find(row=>row.entityId===unitId);
-  const raw=bridge.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],sourceMfm);
+  const raw=sourceMfmUnit(bridge);
   return fixture(unitId,{...options,extraModels:raw.pointSchedules[0].entries[0].minModels-input.total});
 }
 const physical=[],blocked=[];let inputModelCount=0;
