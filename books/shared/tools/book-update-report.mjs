@@ -186,9 +186,10 @@ export function compareBookGameplay({bookId,before,after,mfmBefore,mfmAfter}){
 }
 
 /** Render one review file. Child logs/error details are supplied by the runner. */
-export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],generatedChanges=[],fallbackReason,steps=[],error,baseHead}={}){
+export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],generatedChanges=[],fallbackReason,steps=[],error,baseHead,scope}={}){
  const lines=['# Book update report','',`Result: **${status}** · ${(elapsedMs/1000).toFixed(3)} seconds`,...(baseHead?['',`Comparison baseline: ${baseHead}`]:[])];
  if(fallbackReason)lines.push('',`Full plan selected: ${fallbackReason}`);
+ if(scope)lines.push('',`Scope: ${scope}`);
  if(error)lines.push('','## Failure','',escape(error));
  for(const book of books){
   lines.push('',`## ${escape(book.bookTitle||book.bookId)}`,'');

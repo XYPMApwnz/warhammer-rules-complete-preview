@@ -53,7 +53,7 @@ export function bookUpdateDeclarations({root,tracked,plan=generatedRebuildPlan(t
   for(const key of Object.keys(row.operations))if(!['updateArgs','checkArgs'].includes(key))throw Error('Unknown update operation: '+row.step.producer+' '+key);
   for(const key of ['updateArgs','checkArgs'])if(row.operations[key]!==null&&(!Array.isArray(row.operations[key])||row.operations[key].some(a=>typeof a!=='string'||/\{(?!work\}|checkout\}|head\})/.test(a))))throw Error('Invalid '+key+': '+row.step.producer);
  }
- return{schema:'book-update-declarations/v1',books,shared,plan};
+ return{schema:'book-update-declarations/v1',books,shared,plan,checkSharedSteps:false};
 }
 function matches(input,file,declarations){
  if(input.kind==='path')return file===input.value;

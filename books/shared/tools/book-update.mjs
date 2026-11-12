@@ -100,6 +100,9 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   const affected=new Set([...initial.changed,...inferredInputs]),executedShared=new Set();
   for(const [i,step]of selection.steps.entries()){
    const policy=declarations.shared.find(row=>row.step.producer===step.producer),args=policy?.operations.updateArgs??step.args;
+   if(policy&&check&&!selection.fullPlan&&!declarations.checkSharedSteps){
+    report.steps.push({book:step.book,label:'OUT_OF_SCOPE '+step.producer,status:'NOT_RUN',elapsedMs:0});continue;
+   }
    if(policy&&!selection.fullPlan&&!sharedStepAffected(policy,[...affected],declarations)&&!inputChanged(root,declaredInputFiles(policy,declarations,tracked),policy.freshnessOutputs,initial)){
     report.steps.push({book:step.book,label:'UNCHANGED '+step.producer,status:'SKIPPED',elapsedMs:0});continue;
    }
@@ -128,6 +131,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   for(const [i,script]of [...checks].entries())await execute({...npmCommand(script),cwd:copy,env,log:path.join(out,'qa-'+String(i+1).padStart(2,'0')+'-'+script.replaceAll(':','-')+'.log'),label:'QA '+script,book:declarations.books.find(b=>b.passport.qa.script===script)?.id??'shared',results:report.steps});
   if(git(root,['rev-parse','HEAD']).trim()!==head||!sameState(initial,workState(root)))throw Error('Working inputs changed while the update was running; no outputs were published. Retry from the new state.');
   report.written=check?[]:publishOutputs(root,copy,declarations.plan.files,work,out);
+  report.scope=check&&!selection.fullPlan&&!declarations.checkSharedSteps?'Selected book outputs only; shared publication freshness is covered by generated:check.':'Affected declared outputs and checks';
   report.status='PASS';save();
   console.log(`[book:update] PASS ${report.elapsedMs}ms; ${report.generatedChanges.length} generated files changed; ${report.books.reduce((n,b)=>n+b.gameplayChanges,0)} gameplay changes. Report: ${path.join(out,'REPORT.md')}`);
   return report;

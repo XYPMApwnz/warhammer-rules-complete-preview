@@ -39,7 +39,9 @@ unless you explicitly run `mfm:update` without saved input.
 2. Fix the proven input or declaration. Missing evidence, unknown identities or
    stale source acceptance require review, not a new expected test value.
 3. Use `npm run book:update -- --book=death-guard --check` to check freshness
-   without writing the checkout. This rebuilds in scratch and skips book QA.
+   without writing the checkout. This checks the selected book outputs in scratch
+   and skips book QA and global publication outputs. Use `npm run generated:check`
+   for freshness of the entire publication.
 4. Run the normal update again after correcting the cause. Use a fresh `--out`
    folder if you provide one, so earlier evidence is not overwritten.
 5. Review the new report before committing. If an old test needs a different

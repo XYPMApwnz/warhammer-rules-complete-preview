@@ -15,7 +15,8 @@ const initial=fingerprints(root),before=execFileSync('git',['status','--porcelai
 const result=await updateBook({root,books:['death-guard'],check:true,out:path.join(evidence,'fresh')});
 assert.equal(result.status,'PASS');assert.deepEqual(result.written,[]);assert.deepEqual(result.generatedChanges,[]);
 assert(result.books.every(b=>b.gameplayChanges===0&&b.metadataChanges===0));
-assert(result.steps.filter(s=>s.label.startsWith('UNCHANGED')).length>0,'Unchanged shared outputs should not be rebuilt');
+assert(result.steps.some(s=>s.label.startsWith('OUT_OF_SCOPE')),'Single-book freshness must not rebuild the global publication');
+assert.match(result.scope,/Selected book outputs only/);
 assert.deepEqual(fingerprints(root),initial);assert.equal(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}),before);
 const scratch=createQaTempDir('wh-book-update-invalid-'),copy=path.join(scratch,'checkout');
 try{
