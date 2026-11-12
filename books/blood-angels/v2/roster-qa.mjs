@@ -21,6 +21,7 @@ import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-a
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
 import {projectAbilityPresentation} from '../../shared/army-book-app-v2/ability-presentation.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
 const read=p=>parseSourceFixtureJSON(fs.readFileSync(new URL(p,import.meta.url),'utf8')),clone=structuredClone;
 const own=read('./generated/effective.json'),sm=read('../../space-marines/v2/generated/effective.json'),ledger=read('./inherited-sm-references.json');
@@ -44,7 +45,8 @@ const PAID=[
  ['mfm-paid-upgrade-f0d7680f02efab10','REPULSOR EXECUTIONER','per Heavy Laser Destroyer',10],
  ['mfm-paid-upgrade-fe9bdd5878ada46f','TERMINATOR ASSAULT SQUAD','per Storm Shield',5]
 ];
-const captures={'blood-angels':read('../../../mfm/sources/v1.6/blood-angels.json'),'space-marines':read('../../../mfm/sources/v1.6/space-marines.json')};
+const captureSources=Object.fromEntries(['blood-angels','space-marines'].map(id=>[id,getCurrentMfmSource(id)]));
+const captures=Object.fromEntries(Object.entries(captureSources).map(([id,source])=>[id,read('../../../'+source.capturePath)]));
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
 const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
 const verifiedCaptures=new Set();
@@ -52,8 +54,8 @@ const verifyCapture=owner=>{
  if(verifiedCaptures.has(owner))return;const capture=captures[owner],{captureSha256,...payload}=capture;
  // captureSha256 identifies the stable JSON payload, not serialized file bytes.
  // Frozen-source acceptance and raw artifact pins separately verify file bytes.
- verifyFrozenSource(owner+'-mfm-v1.6');assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
- for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL('../../../mfm/sources/v1.6/'+artifact.path,import.meta.url));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
+ verifyFrozenSource(captureSources[owner].sourceId);assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
+ for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL(artifact.path,new URL('../../../'+captureSources[owner].capturePath,import.meta.url)));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
  verifiedCaptures.add(owner);
 };
 const pricing=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];

@@ -13,11 +13,12 @@ import {createRosterImportService} from '../../shared/roster-v2/import-service.m
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 const read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
 const book=buildDarkAngelsImportBook(),index=new Map(book.entities.map(row=>[row.id,row]));
 const sources=new Map([...read('./generated/effective.json').entities,...read('../../space-marines/v2/generated/effective.json').entities].map(row=>[row.id,row]));
 const originalSources=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
-const rawCaptures={'dark-angels':read('../../../mfm/sources/v1.6/dark-angels.json'),'space-marines':read('../../../mfm/sources/v1.6/space-marines.json')};
+const rawCaptures=Object.fromEntries(['dark-angels','space-marines'].map(id=>[id,read('../../../'+getCurrentMfmSource(id).capturePath)]));
 const priceBridges=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];
 const sourceBase=(unitId,count,copy=1)=>{
  const binding=priceBridges.find(row=>row.entityId===unitId),owner=sources.get(unitId).bookId;

@@ -6,12 +6,13 @@ import {buildTyranidsImportBook} from './roster-import-build.mjs';
 import {createTyranidsRosterImport,createTyranidsImportAttachments} from './roster-import.mjs';
 import {resolveImportedPoints} from './roster-points.mjs';
 import {formRoster,selections} from '../../shared/roster-v2/context.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
 // Constructed source-backed New Recruit TEXT fixtures, not captured exports.
 // The accepted factual owner, not import metadata, supplies the inventory.
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),source=read('./roster-import-source-bindings.json');
-const mfm=read('../../../mfm/sources/v1.6/tyranids.json'),book=buildTyranidsImportBook();
+const mfm=read('../../../'+getCurrentMfmSource('tyranids').capturePath),book=buildTyranidsImportBook();
 const original=structuredClone(book),records=new Map(facts.entities.map(e=>[e.id,e]));
 const units=facts.entities.filter(e=>e.kind==='DATASHEET'),detachments=facts.entities.filter(e=>e.kind==='DETACHMENT');
 const enhancements=facts.entities.filter(e=>e.kind==='ENHANCEMENT'),weapons=facts.entities.filter(e=>e.kind==='WEAPON_PROFILE');

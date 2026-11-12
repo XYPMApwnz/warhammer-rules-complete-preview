@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {buildECRosterAttachmentBook} from './roster-attachment-build.mjs';
 import {createECRosterAttachments} from './roster-attachments.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
 const clone=structuredClone,{book,schema,contracts}=buildECRosterAttachmentBook(),before=clone(book);
 const records=new Map(book.entities.map(e=>[e.id,e]));
@@ -29,7 +30,7 @@ let checks=0,negative=0,mutations=0;
 const check=fn=>{fn();checks++;};
 check(()=>{
   inventory(book.rosterAttachmentPolicies);
-  const raw=JSON.parse(fs.readFileSync(new URL('../../../mfm/sources/v1.6/emperors-children.json',import.meta.url)));
+  const raw=JSON.parse(fs.readFileSync(new URL('../../../'+getCurrentMfmSource('emperors-children').capturePath,import.meta.url)));
   const rawPairs=raw.units.flatMap(u=>(u.relations?.leader||[]).map(target=>[u.title,target]));
   assert.deepEqual(rawPairs.sort(),pairs.map(pair=>pair.map(id=>records.get('unit-'+id).data.title.toUpperCase())).sort());
   for(const p of book.rosterAttachmentPolicies){assert.equal(p.role,'LEADER');assert.equal(p.additionalLeaders,0);assert.equal(p.availability,undefined);

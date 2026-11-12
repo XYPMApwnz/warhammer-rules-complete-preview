@@ -15,11 +15,12 @@ import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-context.mjs';
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8')),clone=structuredClone;
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(row=>[row.id,row]));
 const built=buildSpaceMarinesContracts();progress('contracts built');
-const book=buildSpaceMarinesImportBook({built}),sourceMfm=read('../../../mfm/sources/v1.6/space-marines.json');
+const book=buildSpaceMarinesImportBook({built}),sourceMfm=read('../../../'+getCurrentMfmSource('space-marines').capturePath);
 const bridges=read('./mfm-bindings.json'),payload=buildGameplayPresentation(built),cards=new Map(payload.cards.map(card=>[card.id,card]));
 const DEFAULT='detachment-sm-6341f5a9b9584677',CAPTAIN='unit-sm-99eb03d4f2d448e2',INTERCESSORS='unit-sm-59162946fee84360';
 const DAINAL_UNIT='unit-sm-c7226873c51d43c0',CATO='unit-sm-02d5dee4717544ad',MARNEUS='unit-sm-1af70808102d4286',VICTRIX='unit-sm-f169827c554c4eee';

@@ -13,6 +13,7 @@ import {
 import {verifyBsdataSource} from '../books/shared/tools/verify-bsdata-source.mjs';
 import {buildSourceEnrollment} from '../books/shared/tools/source-enrollment-contract.mjs';
 import {buildSourceStatus} from '../books/shared/tools/source-freshness.mjs';
+import {mfmReleaseExpectations} from './helpers/mfm-release-expectations.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
@@ -29,7 +30,7 @@ assert.equal(freshness.summary.DECLARED_SOURCE_COUNT,registeredActiveBookSources
 assert.equal(freshness.summary.CLASSIFIED_DECLARED_SOURCE_COUNT,registeredActiveBookSources.length);
 assert.equal(freshness.summary.PUBLIC_ACTIVE_SOURCE_COUNT,registeredPublicSources.length);
 const historicalBookSources=registeredBookSources.filter(source=>!activeKeys.has(`${source.book}\0${source.sourceId}`));
-assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),[
+const releaseExpectations=mfmReleaseExpectations(root,[
   'adeptus-mechanicus-mfm-v1.4','adeptus-mechanicus-mfm-v1.5',
   'blood-angels-mfm-v1.4',
   'chaos-space-marines-mfm-v1.4','chaos-space-marines-mfm-v1.5','csm-mfm-v1.3',
@@ -40,6 +41,7 @@ assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),[
   'tau-empire-mfm-v1.4','tau-empire-mfm-v1.5','tau-mfm-v1.3',
   'tyranids-mfm-v1.3','tyranids-mfm-v1.4','tyranids-mfm-v1.5'
 ]);
+assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),releaseExpectations.historicalIds);
 for(const source of historicalBookSources){
   const manifest=JSON.parse(read(`books/${source.book}/sources/source-manifest.json`));
   const declaration=[...(manifest.layers||[]),...(manifest.sources||[])].find(row=>(row.ingestionSourceId||row.sourceId||row.id)===source.sourceId);
@@ -53,9 +55,12 @@ assert.equal(freshness.summary.REGISTERED_WITHOUT_MANIFEST_DECLARATION_COUNT,fre
 assert.deepEqual(freshness.summary.BOOKS_WITH_COMPLETE_SOURCE_ENROLLMENT,['death-guard','adeptus-mechanicus','tyranids','tau-empire','emperors-children','chaos-space-marines','space-marines','dark-angels','blood-angels','orks']);
 assert.deepEqual(freshness.summary.BOOKS_WITH_PARTIAL_SOURCE_ENROLLMENT,[]);
 assert.deepEqual(freshness.summary.BOOKS_WITH_NO_SOURCE_ENROLLMENT,[]);
-const currentMfm=freshness.sources.filter(source=>source.SOURCE_ID===source.BOOK+'-mfm-v1.6');
+const currentMfm=freshness.sources.filter(source=>releaseExpectations.currentFactionIds.includes(source.SOURCE_ID));
 assert.equal(currentMfm.length,9);
-assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated v1.6 MFM captures may claim currentness');
+assert(currentMfm.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Only authenticated selected-release MFM captures may claim currentness');
+const currentMfmDependencies=freshness.sources.filter(source=>releaseExpectations.currentDependencyIds.includes(source.SOURCE_ID));
+assert.equal(currentMfmDependencies.length,2);
+assert(currentMfmDependencies.every(source=>source.UPSTREAM_OBSERVATION.status==='CURRENT'),'Both authenticated selected-release MFM dependencies must remain current');
 const active=[
   ['books/space-marines/tools/extract-codex-details.cjs','space-marines-codex-details'],
   ['books/chaos-space-marines/tools/extract-mfm.cjs','csm-mfm-v1.3'],

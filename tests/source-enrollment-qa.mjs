@@ -6,6 +6,8 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {buildSourceEnrollment} from '../books/shared/tools/source-enrollment-contract.mjs';
+import {readCurrentMfmRelease} from '../mfm/content/current-mfm-release.mjs';
+import {mfmReleaseExpectations} from './helpers/mfm-release-expectations.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const json=relative=>JSON.parse(fs.readFileSync(path.join(root,relative),'utf8'));
@@ -68,7 +70,9 @@ const fixture=createQaTempDir('warhammer-source-enrollment-');
 try{
   copy(root,fixture,'books/publication-inventory.json');
   copy(root,fixture,'books/source-ingestion-contract.json');
-  copy(root,fixture,'mfm/content/mfm-v1.6-scoped.identity-registry.json');
+  const selectedRelease=readCurrentMfmRelease({repoRoot:root});
+  for(const relative of new Set(['mfm/current.json','mfm/releases.json',selectedRelease.identityRegistryPath,
+    selectedRelease.crossDomainBindingsPath,selectedRelease.sourceRegistryPath]))copy(root,fixture,relative);
   for(const book of publication.books){
     copy(root,fixture,book.config);
     copy(root,fixture,`books/${book.id}/sources/source-manifest.json`);
@@ -98,7 +102,7 @@ try{
   }));
   const declarationFor=source=>declarations.get(`${source.book}\0${source.sourceId}`);
   const historicalBookSources=registeredBookSources.filter(source=>declarationFor(source)?.active===false);
-  assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),[
+  const releaseExpectations=mfmReleaseExpectations(root,[
     'adeptus-mechanicus-mfm-v1.4','adeptus-mechanicus-mfm-v1.5',
     'blood-angels-mfm-v1.4',
     'chaos-space-marines-mfm-v1.4','chaos-space-marines-mfm-v1.5','csm-mfm-v1.3',
@@ -109,6 +113,7 @@ try{
     'tau-empire-mfm-v1.4','tau-empire-mfm-v1.5','tau-mfm-v1.3',
     'tyranids-mfm-v1.3','tyranids-mfm-v1.4','tyranids-mfm-v1.5'
   ]);
+  assert.deepEqual(historicalBookSources.map(source=>source.sourceId).sort(),releaseExpectations.historicalIds);
   for(const source of historicalBookSources){
     assert.equal(declarationFor(source).lifecycle,'HISTORICAL_EVIDENCE',source.sourceId);
     assert(!baseline.rows.some(row=>row.book===source.book&&row.sourceId===source.sourceId),source.sourceId);
@@ -121,9 +126,12 @@ try{
   const tauHistorical=declarations.get('tau-empire\0tau-mfm-v1.3');
   assert.equal(tauHistorical?.active,false);
   assert.equal(tauHistorical.lifecycle,'HISTORICAL_EVIDENCE');
-  const currentMfm=baseline.rows.filter(row=>row.sourceId===row.book+'-mfm-v1.6');
+  const currentMfm=baseline.rows.filter(row=>releaseExpectations.currentFactionIds.includes(row.sourceId));
   assert.equal(currentMfm.length,9);
   assert(currentMfm.every(row=>row.upstreamCurrentness==='CURRENT'));
+  const currentMfmDependencies=baseline.rows.filter(row=>releaseExpectations.currentDependencyIds.includes(row.sourceId));
+  assert.equal(currentMfmDependencies.length,2);
+  assert(currentMfmDependencies.every(row=>row.upstreamCurrentness==='CURRENT'));
 
   const manifest=book=>`books/${book}/sources/source-manifest.json`;
   const mutate=(relative,change,pattern)=>{
