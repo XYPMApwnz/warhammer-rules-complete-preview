@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {getCurrentMfmSource,isModernMfmVersion} from '../../../mfm/content/current-mfm-release.mjs';
 
 const clone = value => structuredClone(value);
 const forbidden = new Set(['__proto__','prototype','constructor']);
@@ -10,8 +11,13 @@ export function validateRegistry(sources) {
     assert.ok(source.id && !ids.has(source.id),`Duplicate independent source ownership: ${source.id}`);
     ids.add(source.id);
     for (const field of ['type','versionOrDate','authority','status']) assert.ok(source[field],`${source.id}: missing ${field}`);
-    if(source.type==='CENTRALIZED_MFM_REFERENCE'&&source.authority==='CENTRALIZED_MFM'&&source.versionOrDate==='v1.6'){
-      assert.equal(source.effectiveDate,null,`${source.id}: MFM effective date is unconfirmed`);
+    if(source.type==='CENTRALIZED_MFM_REFERENCE'&&source.authority==='CENTRALIZED_MFM'&&isModernMfmVersion(source.versionOrDate)){
+      const selected=getCurrentMfmSource('death-guard');
+      if(source.versionOrDate===selected.version){
+        assert.equal(source.effectiveDate,selected.effectiveDate,`${source.id}: MFM effective date must match the accepted source`);
+        assert.equal(source.verifiedAt,selected.verifiedAt,`${source.id}: MFM verification date must match the accepted source`);
+        assert.equal(source.currentnessCutoff,selected.currentnessCutoff,`${source.id}: MFM cutoff must match the accepted source`);
+      }else assert.ok(source.effectiveDate===null||/^\d{4}-\d{2}-\d{2}$/.test(source.effectiveDate),`${source.id}: MFM effective date must be explicit or unconfirmed`);
       assert.equal(source.effectiveFrom,undefined,`${source.id}: observation date is not an effective date`);
       assert.match(source.verifiedAt||'',/^\d{4}-\d{2}-\d{2}$/,`${source.id}: verification date required`);
       assert.equal(source.currentnessCutoff,source.verifiedAt,`${source.id}: MFM observation cutoff drift`);

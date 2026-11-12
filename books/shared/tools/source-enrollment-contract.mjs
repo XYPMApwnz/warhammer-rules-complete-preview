@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {loadPublicationInventory,selectPublicationBooks} from './publication-inventory.mjs';
 import {readSourceRegistry,verifyFrozenSource} from './source-ingestion-contract.mjs';
+import {readCurrentMfmRelease,getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 
 export const SOURCE_LIFECYCLES=new Set(['ACCEPTED_SOURCE','AUTHORITATIVE_RUNTIME_SOURCE','HISTORICAL_EVIDENCE']);
 export const UPSTREAM_CURRENTNESS=new Set(['UNKNOWN','CURRENT','UPDATE_AVAILABLE','N/A']);
@@ -52,17 +53,22 @@ function strings(value,prefix=[],result=[]){
 }
 
 function centralMfmBinding(repo,book,source,registration){
-  if(!source.paths.some(relative=>typeof relative==='string'&&relative.startsWith('mfm/sources/v1.6/')))return null;
-  const identityPath=path.join(repo,'mfm/content/mfm-v1.6-scoped.identity-registry.json');
+  // Resolve lazily: isolated non-MFM enrollment fixtures do not need a release
+  // pointer. Inactive historical declarations return before this check.
+  if(!source.paths.some(relative=>typeof relative==='string'&&relative.startsWith('mfm/sources/')))return null;
+  const release=readCurrentMfmRelease({repoRoot:repo});
+  const identityPath=path.join(repo,release.identityRegistryPath);
   const identities=JSON.parse(fs.readFileSync(identityPath,'utf8'));
   const sourceId=sourceIdentity(source);
   const binding=identities.factionBindings.find(row=>row.factionId===book&&row.sourceId===sourceId)
     ??identities.crossFactionUnitDependencies.find(row=>row.consumerArmyBookId===book&&row.sourceId===sourceId);
-  if(!binding||registration?.sourceType!=='official-web-capture'||registration.acceptedRevision!=='v1.6'
+  const selected=[getCurrentMfmSource(book,{repoRoot:repo}),...release.dependencies].find(row=>row.sourceId===sourceId);
+  if(!binding||!selected||selected.capturePath!==binding.sourceCapturePath
+      ||registration?.sourceType!=='official-web-capture'||registration.acceptedRevision!==release.version
       ||!registration.artifacts.some(artifact=>artifact.path===binding.sourceCapturePath)){
     throw new Error(`${book}/${sourceId}: central MFM source has no registered faction binding`);
   }
-  return binding;
+  return {...binding,release};
 }
 
 function validateManifestSource({repo,book,source,generated,registration,config,configPath}){
@@ -81,10 +87,7 @@ function validateManifestSource({repo,book,source,generated,registration,config,
   if(!Array.isArray(source.paths)||!source.paths.length)throw new Error(`${label}: paths must be non-empty`);
   const central=centralMfmBinding(repo,book,source,registration);
   if(central){
-    const references=central.consumerArmyBookId?config.sources.mfmAlliedCaptures:[config.sources.mfmCurrentCapture];
-    const capture=path.resolve(repo,central.sourceCapturePath);
-    if(!Array.isArray(references)||!references.some(value=>typeof value==='string'
-        &&path.resolve(path.dirname(configPath),value)===capture)){
+    if(config.passport?.mfm?.currentRelease!=='mfm/current.json'||config.passport.mfm.scope!==book){
       throw new Error(`${label}: central MFM capture has no configured consumer`);
     }
   }
@@ -92,7 +95,7 @@ function validateManifestSource({repo,book,source,generated,registration,config,
   for(const [index,value] of source.paths.entries()){
     const relative=normalizeRelative(value,`${label}.paths[${index}]`);
     if(seen.has(relative))throw new Error(`${label}: duplicate path ${relative}`);seen.add(relative);
-    if(!relative.startsWith(`books/${book}/`)&&!(central&&relative.startsWith('mfm/sources/v1.6/')
+    if(!relative.startsWith(`books/${book}/`)&&!(central&&relative.startsWith(`mfm/sources/${central.release.version}/`)
       &&registration.artifacts.some(artifact=>artifact.path===relative)))throw new Error(`${label}: source path is outside its book owner: ${relative}`);
     const absolute=path.resolve(repo,...relative.split('/')),inside=path.relative(repo,absolute);
     if(inside.startsWith(`..${path.sep}`)||inside==='..'||path.isAbsolute(inside))throw new Error(`${label}: source path escapes repository: ${relative}`);
@@ -164,7 +167,10 @@ export function buildSourceEnrollment({repo=path.resolve(process.cwd()),includeF
       const needles=[sourceIdentity(source),source.id,...source.paths.flatMap(relative=>relative.startsWith(`books/${book}/`)
         ?[relative.slice(`books/${book}/`.length),path.posix.basename(relative)]
         :[relative])].filter(Boolean);
-      const referenced=graphFiles.some(file=>!own.has(toPosix(file))&&needles.some(needle=>fs.readFileSync(file,'utf8').includes(needle)));
+      // The selected MFM source is consumed through the book passport and the
+      // shared resolver, so its capture path need not be repeated in book code.
+      const central=centralMfmBinding(root,book,source,registered.get(registryKey(book,sourceIdentity(source))));
+      const referenced=Boolean(central)||graphFiles.some(file=>!own.has(toPosix(file))&&needles.some(needle=>fs.readFileSync(file,'utf8').includes(needle)));
       if(!referenced)throw new Error(`${book}/${sourceIdentity(source)}: active source has no declared consumer graph reference`);
     }
     const bookRegistered=registry.sources.filter(source=>source.book===book),registeredIds=new Set(bookRegistered.map(source=>source.sourceId));

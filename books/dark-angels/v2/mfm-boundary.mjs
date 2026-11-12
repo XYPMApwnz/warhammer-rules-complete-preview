@@ -4,8 +4,9 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
-import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
+import {createEffectiveMfmArmyProjection,projectCurrentMfmBookBindings} from '../../shared/tools/effective-mfm-army-projection.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const rootFile=name=>new URL('../../../'+name,import.meta.url);
@@ -18,14 +19,15 @@ const kinds={unitBindings:['unitPointRecords','DATASHEET','armyUnitId'],
 
 export function consumeMfm(entities,{canonicalFacts,bindings=read('./mfm-bindings.json')}={}){
   assert.deepEqual(bindings,read('./mfm-bindings.json'),'Unreviewed native DA MFM bridges');
-  assert.equal(bindings.sourceId,'dark-angels-mfm-v1.6');
   assert.equal(hash(new URL('./mfm-mapping-review.json',import.meta.url)),bindings.review.mappingReviewSha256,'Mapping review changed');
   const reviewRows=read('./mfm-mapping-review.json').reviewedBindings;
   const reviewed=new Map(reviewRows.map(row=>[row.entityId,row]));assert.equal(reviewed.size,reviewRows.length);
   const owner=createEffectiveMfmCatalog(canonicalFacts?{canonicalFacts}:{}),catalog=owner.catalog;
+  const selected=getCurrentMfmSource('dark-angels');
+  bindings=projectCurrentMfmBookBindings('dark-angels',bindings,{owner});
   const projection=createEffectiveMfmArmyProjection('dark-angels',canonicalFacts?{canonicalFacts}:{});
-  assert.equal(projection.sourceMetadata.version,'v1.6','Historical DA pricing rejected');
-  assert.equal(projection.sourceMetadata.verifiedAt,'2026-10-21');
+  assert.equal(projection.sourceMetadata.version,selected.version,'Historical DA pricing rejected');
+  assert.equal(projection.sourceMetadata.verifiedAt,selected.verifiedAt);
   const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId===bindings.sourceId&&!row.historical);
   assert.ok(snapshot,'Missing active DA source');
   assert.equal(snapshot.captureSha256,bindings.sourceCaptureSha256);
@@ -51,7 +53,7 @@ export function consumeMfm(entities,{canonicalFacts,bindings=read('./mfm-binding
       assert.equal(entity.sourceEntityId,binding.sourceEntityId);
       const review=reviewed.get(entity.id);assert.equal(review?.status,'PROVEN','Mapping lacks independent source proof');
       assert.deepEqual(review.native,entity.provenance);
-      assert.equal(binding.proof.mfm.rawHtmlPointer,review.mfm.pointer);
+      assert.equal((binding.proof.identityMfm||binding.proof.mfm).rawHtmlPointer,review.mfm.pointer);
       assert.deepEqual(binding.proof.corroboratedProperties,review.corroboratedProperties);
       assert.ok(!seen.has(entity.id),'Duplicate native pricing recipient');seen.add(entity.id);
       assert.ok(catalog[centralPart].some(row=>row.id===fact.id));
@@ -93,7 +95,7 @@ export function consumeMfm(entities,{canonicalFacts,bindings=read('./mfm-binding
   const points=projection.pointsForArmyBook('dark-angels');
   const ownIds=new Set(partitions.unitBindings.map(row=>row.entityId));
   assert.deepEqual(points.units.map(row=>row.id).sort(),[...ownIds].sort());
-  assert.ok(points.units.every(row=>row.status==='Current'&&row.pointsSource.version==='v1.6'));
+  assert.ok(points.units.every(row=>row.status==='Current'&&row.pointsSource.version===selected.version));
   return {owner:'CENTRALIZED_MFM',source:clone(projection.sourceMetadata),partitions,records,points,
     referenceOnlyUnits:clone(projection.referenceOnlyUnitRecords),referenceOnlyOwners:clone(projection.referenceOnlyOwnerRecords),
     referenceOnlyRelationTargets:clone(catalog.unitReferences.filter(row=>row.factionId==='dark-angels'&&

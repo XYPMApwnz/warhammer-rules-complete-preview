@@ -1,0 +1,69 @@
+{
+  "schema": "current-mfm-release/v1",
+  "version": "v1.6",
+  "registryVersion": "v1.6-scoped-six",
+  "identityRegistryPath": "mfm/content/mfm-v1.6-scoped.identity-registry.json",
+  "crossDomainBindingsPath": "mfm/content/mfm-v1.6-army-mission-bindings.json",
+  "sourceRegistryPath": "books/source-ingestion-contract.json",
+  "factions": [
+    {
+      "bookId": "death-guard",
+      "sourceId": "death-guard-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/death-guard.json"
+    },
+    {
+      "bookId": "adeptus-mechanicus",
+      "sourceId": "adeptus-mechanicus-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/adeptus-mechanicus.json"
+    },
+    {
+      "bookId": "tyranids",
+      "sourceId": "tyranids-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/tyranids.json"
+    },
+    {
+      "bookId": "tau-empire",
+      "sourceId": "tau-empire-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/tau-empire.json"
+    },
+    {
+      "bookId": "emperors-children",
+      "sourceId": "emperors-children-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/emperors-children.json"
+    },
+    {
+      "bookId": "chaos-space-marines",
+      "sourceId": "chaos-space-marines-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/chaos-space-marines.json"
+    },
+    {
+      "bookId": "space-marines",
+      "sourceId": "space-marines-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/space-marines.json"
+    },
+    {
+      "bookId": "dark-angels",
+      "sourceId": "dark-angels-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/dark-angels.json"
+    },
+    {
+      "bookId": "blood-angels",
+      "sourceId": "blood-angels-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/blood-angels.json"
+    }
+  ],
+  "dependencies": [
+    {
+      "key": "khorne-berzerkers",
+      "bookId": "chaos-space-marines",
+      "sourceId": "csm-allied-khorne-berzerkers-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/csm-khorne-berzerkers.json"
+    },
+    {
+      "key": "rubric-marines",
+      "bookId": "chaos-space-marines",
+      "sourceId": "csm-allied-rubric-marines-mfm-v1.6",
+      "capturePath": "mfm/sources/v1.6/csm-rubric-marines.json"
+    }
+  ]
+}

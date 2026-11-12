@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import {isDeepStrictEqual} from 'node:util';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+import {projectCurrentMfmBookBindings} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const reviewed=read('./mfm-bindings.json');
 const identities=read('./identity-bindings.json').bindings;
-const bookId='emperors-children',sourceId='emperors-children-mfm-v1.6';
+const bookId='emperors-children',selected=getCurrentMfmSource(bookId),sourceId=selected.sourceId;
 const clone=value=>structuredClone(value);
 const fail=message=>{throw new Error(`EC V2 MFM boundary: ${message}`);};
 const check=(condition,message)=>{if(!condition)fail(message);};
@@ -23,7 +25,7 @@ const canonicalIdentities=index(identities,'id','canonical declaration');
 const partitions={unitBindings:['unitPointRecords','MFM_UNIT_POINTS'],detachmentBindings:['detachments','MFM_DETACHMENT'],enhancementBindings:['enhancementCosts','MFM_ENHANCEMENT_COST'],paidUpgradeBindings:['paidUpgradeRecords','MFM_PAID_UPGRADE'],leaderEligibilityBindings:['leaderEligibilityRecords','MFM_LEADER_ELIGIBILITY'],qualifierBindings:['qualifierRecords','MFM_QUALIFIER']};
 const ownedTypes=new Set([...Object.values(partitions).map(([,type])=>type),'MFM_SUPPORT_ELIGIBILITY']);
 let central;
-const centralOwner=()=>central??=createEffectiveMfmCatalog({asOf:'2026-10-14'});
+const centralOwner=()=>central??=createEffectiveMfmCatalog({asOf:selected.currentnessCutoff});
 
 export const mfmOwnedFields=Object.freeze(['points','pointSchedules','wahaPoints','paidOptions','paidWargear','wargearCosts','enhancementCost','enhancementPoints','detachmentPoints','forceDisposition','forceDispositions','forceDispositionIds','mfmForceDispositionIds','missionForceDispositionIds','mfmQualifiers']);
 const ownedFields=new Set(mfmOwnedFields);
@@ -43,7 +45,7 @@ export function assertNoMfmValues(entities){
 export function resolveOwnedFact(recordId){
   const record=centralOwner().getById(recordId);
   check(record&&record.factionId===bookId&&ownedTypes.has(record.recordType),`unknown/non-EC owned fact ${recordId}`);
-  check(record.provenance.sourceId===sourceId&&record.provenance.sourceVersion==='v1.6'&&record.provenance.currentnessCutoff==='2026-10-14',`stale MFM owner ${recordId}`);
+  check(record.provenance.sourceId===sourceId&&record.provenance.sourceVersion===selected.version&&record.provenance.currentnessCutoff===selected.currentnessCutoff,`stale MFM owner ${recordId}`);
   check(Object.isFrozen(record),`mutable central MFM owner ${recordId}`);
   return record;
 }
@@ -57,6 +59,15 @@ export function consumeMfm(entities,{bindings=reviewed}={}){
   const byId=index(entities,'id','canonical entity'),catalog=centralOwner().catalog;
   equal(bindings.schema,reviewed.schema,'binding schema');
   equal(bindings.authority,reviewed.authority,'binding authority');
+  equal(bindings.currentnessCutoff,reviewed.currentnessCutoff,'binding cutoff');
+  // Validate authored bridges before deriving current capture addresses.
+  for(const part of Object.keys(partitions)){
+    check(Array.isArray(bindings[part]),`missing binding partition ${part}`);
+    const accepted=index(reviewed[part],'mfmRecordId','reviewed '+part);
+    for(const binding of bindings[part])equal(binding,accepted.get(binding.mfmRecordId),'reviewed source/selection bridge '+binding.mfmRecordId);
+  }
+  bindings=projectCurrentMfmBookBindings(bookId,bindings,{owner:centralOwner()});
+  const currentReviewed=projectCurrentMfmBookBindings(bookId,reviewed,{owner:centralOwner()});
   equal(bindings.currentnessCutoff,catalog.currentnessCutoff,'binding cutoff');
   const entity=(id,kind)=>{
     const value=byId.get(id),declaration=canonicalIdentities.get(id);
@@ -81,7 +92,7 @@ export function consumeMfm(entities,{bindings=reviewed}={}){
   for(const [part,[centralPart,type]] of Object.entries(partitions)){
     check(Array.isArray(bindings[part]),`missing binding partition ${part}`);
     const declared=index(bindings[part],'mfmRecordId',part);
-    const accepted=index(reviewed[part],'mfmRecordId','reviewed '+part);
+    const accepted=index(currentReviewed[part],'mfmRecordId','reviewed '+part);
     const owned=catalog[centralPart].filter(record=>record.factionId===bookId);
     sameIds(new Set(declared.keys()),new Set(owned.map(record=>record.id)),part);
     result[part]=bindings[part].map(binding=>{

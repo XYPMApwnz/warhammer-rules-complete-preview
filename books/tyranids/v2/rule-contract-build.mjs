@@ -10,6 +10,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {buildTyranidsImportBook} from './roster-import-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {declarations,conditionalCandidates} from './rule-contract-declarations.mjs';
 import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 export {createTyranidsRuleSchema} from './roster-source-choices.mjs';
@@ -103,7 +104,7 @@ export function buildTyranidsContracts({facts=read('./generated/effective.json')
         ...(input.upgrade?{classification:'UNIT_UPGRADE'}:{})};
       const bridge=book.mfmImportReferences.partitions.enhancementBindings.find(b=>b.entityId===input.id),record=resolveOwnedFact(bridge?.mfmRecordId);
       assert.deepEqual(record.qualifierIds,[],'Unlowered central eligibility qualifier');
-      assert.equal(record.provenance.sourceVersion,'v1.6');
+      assert.equal(record.provenance.sourceVersion,getCurrentMfmSource('tyranids').version);
       declaration.mfmReferences={enhancementId:record.id,detachmentId:record.detachmentId,qualifierIds:[],provenance:clone(record.provenance)};
     }
     const addConditional=(id,path,quote,reason)=>{

@@ -26,7 +26,7 @@ export function buildFactualV2({enrollment = read('books/death-guard/v2/sources/
     url:corpus.pages.find(page => page.file === 'death-guard.html').url,provenance:{corpusFingerprint:corpus.corpusFingerprint},reconciled:true};
   const mfmMetadata = createEffectiveMfmArmyProjection('death-guard').sourceMetadata;
   const mfmSource = {id:`centralized-death-guard-mfm-${mfmMetadata.version}`,type:'CENTRALIZED_MFM_REFERENCE',versionOrDate:mfmMetadata.version,authority:'CENTRALIZED_MFM',
-    ...(mfmMetadata.version==='v1.6'?{effectiveDate:null,verifiedAt:mfmMetadata.verifiedAt,currentnessCutoff:mfmMetadata.currentnessCutoff}:
+    ...(Object.hasOwn(mfmMetadata,'effectiveDate')?{effectiveDate:mfmMetadata.effectiveDate,verifiedAt:mfmMetadata.verifiedAt,currentnessCutoff:mfmMetadata.currentnessCutoff}:
       {effectiveFrom:mfmMetadata.currentnessCutoff}),
     status:'CURRENT',url:'https://mfm.warhammer-community.com/en/death-guard',provenance:{module:'books/shared/tools/effective-mfm-army-projection.mjs'},reconciled:true};
   const sources = [baseSource,mfmSource,...enrollment.sources];

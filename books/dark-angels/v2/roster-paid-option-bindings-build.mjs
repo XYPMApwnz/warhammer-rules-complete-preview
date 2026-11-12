@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
 import {createSpaceMarinesPaidOptionBindings} from '../../space-marines/v2/roster-paid-option-bindings-build.mjs';
 
@@ -44,13 +45,14 @@ export function createDarkAngelsPaidOptionBindings({book=read('./generated/mixed
   assert.ok(row.data.text.includes(cyclone.permissionQuote),'Missing reviewed Cyclone replacement permission');
   return {id,quote:cyclone.permissionQuote,provenance:prove(row)};
  });
- const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId==='dark-angels-mfm-v1.6'&&!row.historical);
- assert.ok(snapshot,'Missing active DA MFM v1.6');
+ const selected=getCurrentMfmSource('dark-angels');
+ const snapshot=catalog.sourceSnapshots.find(row=>row.sourceId===selected.sourceId&&!row.historical);
+ assert.ok(snapshot,'Missing active DA MFM '+selected.version);
  const verified=verifyFrozenSource(snapshot.sourceId,{repoRoot:fileURLToPath(new URL('../../../',import.meta.url))});
  assert.equal(verified.aggregateArtifactHash,snapshot.acceptedArtifactHash);
  const capture=read('../../../'+snapshot.sourcePath),cost=catalog.paidUpgradeRecords.find(row=>row.id===cyclone.costRecordId);
  assert.equal(cost?.factionId,'dark-angels');assert.equal(cost.provenance.sourceId,snapshot.sourceId);
- assert.equal(cost.provenance.sourceVersion,'v1.6');
+ assert.equal(cost.provenance.sourceVersion,selected.version);
  const reference=catalog.unitReferences.find(row=>row.id===cost.unitReferenceId);
  assert.equal(reference?.armyBinding?.bindingStatus,'BOUND');assert.equal(reference.armyBinding.armyUnitId,owner.id);
  const locator=cost.provenance.sourceLocator;

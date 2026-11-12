@@ -1,10 +1,13 @@
 import fs from 'node:fs';
 import {isDeepStrictEqual} from 'node:util';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+import {projectCurrentMfmBookBindings} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 
 const reviewed=JSON.parse(fs.readFileSync(new URL('./mfm-bindings.json',import.meta.url),'utf8'));
 const requireFact=(condition,message)=>{if(!condition)throw new Error(`T'au Empire V2 MFM boundary: ${message}`);};
-const owner=createEffectiveMfmCatalog({asOf:'2026-10-14'});
+const selected=getCurrentMfmSource('tau-empire');
+const owner=createEffectiveMfmCatalog({asOf:selected.currentnessCutoff});
 const partitions={unitBindings:['unitPointRecords','DATASHEET'],detachmentBindings:['detachments','DETACHMENT'],
   enhancementBindings:['enhancementCosts','ENHANCEMENT'],leaderBindings:['leaderEligibilityRecords','DATASHEET_SECTION'],
   paidOptionBindings:['paidUpgradeRecords',null]};
@@ -13,15 +16,16 @@ const label=value=>value.replace(/[‘’]/g,"'").replace(/\s*\(Upgrade\)$/i,'')
 /** Resolve the immutable central fact; Army Book entities hold references only. */
 export function resolveOwnedFact(id){
   const fact=owner.getById(id);
-  requireFact(fact?.factionId==='tau-empire'&&fact.provenance.sourceId==='tau-empire-mfm-v1.6'&&
-    fact.provenance.sourceVersion==='v1.6'&&fact.provenance.currentnessCutoff==='2026-10-14'&&
-    fact.provenance.effectiveDate===null&&Object.isFrozen(fact),'wrong/stale MFM owner');
+  requireFact(fact?.factionId==='tau-empire'&&fact.provenance.sourceId===selected.sourceId&&
+    fact.provenance.sourceVersion===selected.version&&fact.provenance.currentnessCutoff===selected.currentnessCutoff&&
+    fact.provenance.effectiveDate===selected.effectiveDate&&Object.isFrozen(fact),'wrong/stale MFM owner');
   return fact;
 }
 
 /** Validate explicit bridges and independently compare current raw Leader recipients. */
 export function consumeMfm(entities,{bindings=reviewed}={}){
   requireFact(isDeepStrictEqual(bindings,reviewed),'reviewed source bridges changed');
+  bindings=projectCurrentMfmBookBindings('tau-empire',bindings,{owner});
   const forbidden=new Set(['points','pointSchedules','wahaPoints','paidOptions','paidWargear','wargearCosts','enhancementCost','enhancementPoints','detachmentPoints',
     'forceDispositions','forceDisposition','forceDispositionIds','missionForceDispositionIds','mfmForceDispositionIds']);
   const checkValues=value=>{
@@ -36,7 +40,7 @@ export function consumeMfm(entities,{bindings=reviewed}={}){
   const refs=new Map(owner.catalog.unitReferences.filter(r=>r.factionId==='tau-empire').map(r=>[r.id,r]));
   const unitId=ref=>{const value=refs.get(ref);requireFact(value?.armyBinding?.bindingStatus==='BOUND'&&
     value.armyBinding.armyBookId==='tau-empire','unbound central unit');return value.armyBinding.armyUnitId;};
-  const result={owner:'CENTRALIZED_MFM',sourceVersion:'v1.6',effectiveDate:null,partitions:{},leaderRelations:[]};
+  const result={owner:'CENTRALIZED_MFM',sourceVersion:selected.version,effectiveDate:selected.effectiveDate,partitions:{},leaderRelations:[]};
   for(const [part,[centralPart,kind]] of Object.entries(partitions)){
     const central=owner.catalog[centralPart].filter(row=>row.factionId==='tau-empire');
     const ids=bindings[part].map(row=>row.mfmRecordId);

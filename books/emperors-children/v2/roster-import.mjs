@@ -4,7 +4,7 @@ import {createExportFactionCheck} from '../../shared/roster-v2/export-faction.mj
 import {normalizeImportLabel} from '../../shared/roster-v2/import.mjs';
 import {validateRoster,formRoster,selections,predicateContext} from '../../shared/roster-v2/context.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
-import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
+import {getRecordedSourceIdentity,sourceSnapshot} from '../../shared/source-refs-v2/source-refs.mjs';
 const clone=structuredClone,bladeId='detachment-carnival-of-excess:enhancement:3';
 const reject=(ok,message)=>{if(!ok)throw new TypeError(message);};
 
@@ -172,7 +172,7 @@ export function createECRosterImport(book) {
       if(status==='READY')saved=bound.state;
       return {...result,status,roster:status==='READY'?clone(bound.state):null,
         ...(status==='READY'?{}:{candidateRoster:clone(bound.state)}),needsBindings:[...result.needsBindings,...bound.needs],errors:[...result.errors,...bound.errors],
-        legality:'NOT_ASSESSED',mfmSourceVersion:'v1.6',
+        legality:'NOT_ASSESSED',mfmSourceVersion:sourceSnapshot(book.mfmImportReferences.unitBindings[0],{book}).sourceVersion,
         unresolvedEquipmentScopes:bound.state.units.filter(u=>!u.equipmentContextKnown).map(u=>u.instanceId)};
     },load(snapshot){reject(snapshot?.attachments?.length===0,'Import-only snapshot cannot contain attachments');
       const checked=validateRoster(book,snapshot,[]),bound=bind(checked);reject(!bound.needs.length&&!bound.errors.length,JSON.stringify({needs:bound.needs,errors:bound.errors}));saved=bound.state;return clone(saved);},

@@ -229,7 +229,7 @@ export function createTyranidsRosterImport(input){
       if(status==='READY')saved=checked.state;
       return {...result,status,roster:status==='READY'?copy(checked.state):null,
         ...(status==='READY'?{}:{candidateRoster:copy(checked.state)}),needsBindings:[...result.needsBindings,...checked.needs],
-        errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED',mfmSourceVersion:'v1.6',
+        errors:[...result.errors,...checked.errors],legality:'NOT_ASSESSED',mfmSourceVersion:book.mfmImportReferences.sourceVersion,
         unresolvedEquipmentScopes:checked.state.units.filter(u=>!u.equipmentContextKnown).map(u=>u.instanceId)};
     },
     load(snapshot){

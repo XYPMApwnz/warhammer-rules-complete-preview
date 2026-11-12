@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildTauImportBook} from './roster-import-build.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-projection.mjs';
@@ -58,7 +59,7 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
     for(const child of [...row.qualifierIds||[],...row.enhancementCostIds||[]])own(child);}return records.get(id);};
   for(const rows of Object.values(mfm))for(const row of rows)own(row.mfmRecordId);
   const model={...clone(book),currentness:{currentness:'ACCEPTED_SNAPSHOT',lastReconciledSource:'T’au Faction Pack v1.1 · 22 July 2026; accepted universal v1.1 · 26 August 2026'},
-    mfm:{...clone(mfm),source:{label:'v1.6'},relations:[],eligibilityEvidenceBindings:[]}};
+    mfm:{...clone(mfm),source:{label:getCurrentMfmSource('tau-empire').version},relations:[],eligibilityEvidenceBindings:[]}};
   for(const e of model.entities){
     if(['ERRATA','FAQ'].includes(e.kind))e.kind='SOURCE_ERRATUM';
     if(e.kind==='DETACHMENT'){assert.ok(e.data.ruleIds.length&&new Set(e.data.ruleIds).size===e.data.ruleIds.length);e.data.ruleId=e.data.ruleIds[0];}

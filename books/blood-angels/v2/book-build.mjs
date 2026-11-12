@@ -8,6 +8,7 @@ import {fileURLToPath} from 'node:url';
 import {buildNativeMfmBook as buildSM} from '../../space-marines/v2/mfm-build.mjs';
 import {bindNativeKeywords} from '../../space-marines/v2/native-ability-bindings.mjs';
 import {readSpaceMarinesRosterCorrections} from '../../space-marines/v2/roster-source-review.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {createEffectiveMfmArmyProjection} from '../../shared/tools/effective-mfm-army-projection.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
@@ -59,6 +60,8 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
     if(entity.sourceKind==='DATASHEET_ABILITY'&&entity.data.wargearAbility)entity.kind='DATASHEET_SECTION';
   }
   const consumed=consumeMfm(baFacts.entities),central=createEffectiveMfmCatalog(),records=new Map();
+  const selectedSources=new Map();
+  const selectedSource=bookId=>{if(!selectedSources.has(bookId))selectedSources.set(bookId,getCurrentMfmSource(bookId));return selectedSources.get(bookId);};
   const partitions={};
   for(const part of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings']){
     partitions[part]=[...consumed.partitions[part],...sm.consumed.partitions[part].filter(binding=>canonicalIds.has(binding.entityId))];
@@ -67,7 +70,7 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
   const own=id=>{
     if(records.has(id))return;
     const fact=central.getById(id);assert.ok(fact,'Unresolved central price reference');
-    assert.equal(fact.provenance.sourceVersion,'v1.6','Stale price');records.set(id,fact);
+    assert.equal(fact.provenance.sourceVersion,selectedSource(fact.factionId).version,'Stale price');records.set(id,fact);
     for(const child of [...fact.qualifierIds||[],...fact.enhancementCostIds||[]])own(child);
   };
   for(const bindings of Object.values(partitions))for(const binding of bindings)own(binding.mfmRecordId);
@@ -75,7 +78,7 @@ export function buildBloodAngelsMixedBook({baFacts=read('./generated/effective.j
     authority:'DISPOSABLE_MIXED_OWNER_CONSUMER_PROJECTION',
     mfmBoundary:{...clone(ba.model.mfmBoundary),integration:'NATIVE_PRICING_BOUND'},
     canonicalMembership:canonicalEntities.map(entity=>({id:entity.id,bookId:entity.bookId,sourceEntityId:entity.sourceEntityId})),
-    mfm:{source:{label:'Official MFM v1.6; source-owned BA/SM partitions'},...partitions,
+    mfm:{source:{label:`Official MFM ${selectedSource('blood-angels').version}; source-owned BA/SM partitions`},...partitions,
       relations:[],eligibilityEvidenceBindings:[]},
     rosterAttachmentPolicies:[],rosterEquipmentCaptionBindings:[],
     chapterContextStatus:'NOT_PROVEN_FOR_INHERITED_PHYSICAL_UNIT',chapterGrantsActive:false};

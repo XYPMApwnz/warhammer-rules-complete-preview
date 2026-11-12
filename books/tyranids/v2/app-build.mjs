@@ -8,6 +8,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {buildTyranidsContracts} from './rule-contract-build.mjs';
 import {consumeMfm,resolveOwnedFact} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 import {projectArmyBook} from '../../shared/army-book-app-v2/project.mjs';
 import {projectBookPresentation} from '../../shared/army-book-app-v2/book-v1-projection.mjs';
 import {buildDatasheetPresentation} from '../../shared/army-book-app-v2/datasheet-v1.mjs';
@@ -55,7 +56,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   const own=id=>{if(!records.has(id)){const record=resolveOwnedFact(id);records.set(id,record);for(const child of [...record.qualifierIds||[],...record.enhancementCostIds||[]])own(child);}return records.get(id);};
   for(const part of ['unitBindings','detachmentBindings','enhancementBindings','paidUpgradeBindings','leaderEligibilityBindings','qualifierBindings'])for(const binding of mfm[part])own(binding.mfmRecordId);
   const model={...clone(built.book),currentness:{currentness:'CURRENT',lastReconciledSource:'Official Tyranids Faction Pack v1.3 · 14 October 2026'},
-    mfm:{...clone(mfm),source:{label:'v1.6'},relations:[],eligibilityEvidenceBindings:[]}};
+    mfm:{...clone(mfm),source:{label:getCurrentMfmSource('tyranids').version},relations:[],eligibilityEvidenceBindings:[]}};
   for(const entity of model.entities){
     if(['FAQ','ERRATA'].includes(entity.kind))entity.kind='SOURCE_ERRATUM';
     if(entity.kind==='DETACHMENT'){

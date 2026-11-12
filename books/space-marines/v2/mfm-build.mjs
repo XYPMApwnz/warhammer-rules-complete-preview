@@ -15,7 +15,7 @@ const clone=structuredClone;
 
 function projectPricedBook(native,consumed){
   const model=clone(native.model),ids=new Set(model.entities.map(entity=>entity.id));
-  model.mfm={source:{label:'v1.6'},...Object.fromEntries(Object.entries(consumed.partitions).map(([part,rows])=>
+  model.mfm={source:{label:consumed.source.version},...Object.fromEntries(Object.entries(consumed.partitions).map(([part,rows])=>
     [part,rows.filter(binding=>ids.has(binding.entityId)).map(value=>clone(value))])),
     relations:[],eligibilityEvidenceBindings:[]};
   // Conditional relations remain typed source declarations until an actual

@@ -4,6 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createEffectiveCoreCatalog} from '../../../books/core-rules/content/effective-core-catalog.mjs';
 import {loadV2ArmyModels,assertV2ArmyBookParity,V2_ARMY_BOOK_IDS,V2_FACTUAL_INTERFACES,V2_REFERENCE_FACTUAL_INTERFACES} from './army-v2-projection.mjs';
+import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../../mfm/content/effective-mfm-catalog.mjs';
 import {createEffectiveMissionCatalog,MISSION_SCOPES} from '../../../missions/content/effective-mission-catalog.mjs';
 
@@ -348,7 +349,7 @@ export async function loadGlossaryV2Inputs(){
 export function createGlossaryV2Index({coreCatalog,armyModels,mfmCatalog,missionCatalogs,editorial,resolutions,supplemental}){
   assertV2ArmyBookParity(armyModels);
   assert.deepEqual(armyModels.map(model=>model.book.id),BOOK_IDS,'Glossary must use exactly the connected V2 books');
-  assert.equal(mfmCatalog.sourceVersion,'v1.6-scoped-six','Glossary MFM source is stale');
+  assert.equal(mfmCatalog.sourceVersion,readCurrentMfmRelease().registryVersion,'Glossary MFM source is stale');
   const entries=new Map();addCoreEntries(entries,coreCatalog);const armyLookups=addArmyEntries(entries,armyModels);addMissionEntries(entries,missionCatalogs);const mfmAugmentation=attachMfm(entries,armyLookups,mfmCatalog);const legacy=applyLegacyPresentation(entries,coreCatalog,editorial,resolutions,supplemental);
   const ordered=[...entries.values()].map(entry=>{entry.aliases=sortStrings(entry.aliases);entry.contexts.sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));entry.canonicalReferences=entry.canonicalReferences.filter(ref=>ref.id).sort((a,b)=>`${a.relationType}:${a.id}`.localeCompare(`${b.relationType}:${b.id}`));if(entry.mfm?.assignedDetachmentIds)entry.mfm.assignedDetachmentIds=sortStrings(entry.mfm.assignedDetachmentIds);for(const context of entry.contexts||[])if(context.mfm?.assignedDetachmentIds)context.mfm.assignedDetachmentIds=sortStrings(context.mfm.assignedDetachmentIds);return entry;}).sort((a,b)=>a.id.localeCompare(b.id));
   const counts={total:ordered.length,standalone:ordered.filter(entry=>!entry.parent).length,scopedChildren:ordered.filter(entry=>entry.parent).length,byDomain:{},byType:{}};for(const entry of ordered){counts.byDomain[entry.domain]=(counts.byDomain[entry.domain]||0)+1;const key=`${entry.domain}:${entry.recordType}`;counts.byType[key]=(counts.byType[key]||0)+1;}

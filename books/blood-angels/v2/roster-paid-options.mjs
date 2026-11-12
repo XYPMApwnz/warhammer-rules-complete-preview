@@ -65,5 +65,5 @@ export function projectBloodAngelsPaidOptions(state,{bindings}={}){
   units.push({unitInstanceId:unit.instanceId,canonicalUnitId:unit.canonicalUnitId,status:unresolved.length?'UNRESOLVED':'RESOLVED',knownPaidPoints,totalPaidPoints:unresolved.length?null:knownPaidPoints,options,unresolved});
  }
  const unresolved=units.flatMap(row=>row.unresolved.map(issue=>({unitInstanceId:row.unitInstanceId,...issue}))),knownPaidPoints=units.reduce((sum,row)=>sum+row.knownPaidPoints,0);
- return {owner:'CENTRALIZED_MFM',source:'blood-angels-and-inherited-space-marines-mfm-v1.6',status:unresolved.length?'UNRESOLVED':'RESOLVED',knownPaidPoints,totalPaidPoints:unresolved.length?null:knownPaidPoints,units,unresolved};
+ return {owner:'CENTRALIZED_MFM',source:`blood-angels-and-inherited-space-marines-mfm-${sourceSnapshot(bindings[0])?.sourceVersion}`,status:unresolved.length?'UNRESOLVED':'RESOLVED',knownPaidPoints,totalPaidPoints:unresolved.length?null:knownPaidPoints,units,unresolved};
 }
