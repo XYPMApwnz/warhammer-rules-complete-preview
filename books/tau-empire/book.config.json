@@ -284,7 +284,17 @@
       "mfmBaseline": {
         "strategy": "published-source-or-manifest",
         "authority": "official-live-mfm"
-      }
+      },
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/tau-empire/v2/build.py",
+          "factualArtifact": "books/tau-empire/v2/generated/effective.json",
+          "reviewArtifact": "books/tau-empire/v2/rule-clause-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion"
+        }
+      ]
     }
   }
 }

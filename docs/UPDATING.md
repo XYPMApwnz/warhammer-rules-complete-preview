@@ -12,12 +12,13 @@ unless you explicitly run `mfm:update` without saved input.
 2. Complete the normal source acceptance checks. If authentication requires
    committed source bytes, commit those accepted input changes locally first.
    A source-review rejection needs explicit acceptance of the exact changed
-   blocks; this command does not grant that acceptance or refresh fingerprints.
+   blocks; this command does not grant that acceptance or refresh source-review
+   acceptance fingerprints.
 3. Run `npm run book:update -- --book=death-guard` (replace the book ID).
    Inherited books are selected from their passports. Checks run sequentially.
 4. Read the printed report path. Review every gameplay change and the changed
    generated-file list. Provenance and hash changes are counted separately.
-5. Commit the reviewed outputs, run `npm run qa:pre-ff`, and request independent
+5. Commit the reviewed outputs and metadata, run `npm run qa:pre-ff`, and request independent
    review before asking the owner to authorize a source fast-forward.
 
 ## A new MFM was published
@@ -66,6 +67,12 @@ The source registry uses the existing explicit delta
 export and append-only merge; old entries cannot be replaced. All production
 work happens in a real temporary Git clone before successful outputs are copied
 back. Keep the checkout unchanged while an update is running.
+
+One declared review pin includes the MFM version label in its factual-file hash.
+The command may migrate that pin only when restoring the previous version label
+reconstructs the exact old full fingerprint. All other factual bytes stay pinned;
+a rule, characteristic or unrelated metadata change still requires explicit
+review. This does not refresh source-review acceptance or rewrite rule clauses.
 
 `--out=E:/Warhammer/qa-evidence/my-update` retains Markdown, JSON and child logs
 outside the checkout. Scratch files use the project's QA temporary directory;

@@ -12,12 +12,13 @@ const enumeration=(...values)=>({type:'enum',values});
 const nullable=rule=>({type:'nullable',rule});
 const file={type:'path'},producer={type:'producer'},text={type:'string'},boolean={type:'boolean'};
 const step=object({book:text,producer,args:array(text),runtime:enumeration('node','python'),outputs:array(file)});
+const metadataPin=object({inputRole:enumeration('currentMfmRelease'),afterProducer:producer,factualArtifact:file,reviewArtifact:file,reviewField:enumeration('factualFingerprint'),metadataField:enumeration('mfmBoundary.sourceVersion')});
 export const bookPassportSchema=object({
   schema:enumeration('army-book-passport/v1'),edition:text,
   sources:object({enrollment:file,effective:file,manifest:file,inputs:array(object({role:text,path:file}))}),
   build:object({steps:array(step),postBuildSteps:array(object({phase:enumeration('model-aliases','retained-source'),step}))}),
   qa:object({script:text,onInputChange:object({currentMfmRelease:text})}),
-  update:object({reportArtifact:file,mfmBaseline:object({strategy:enumeration('published-source-or-manifest'),authority:enumeration('official-live-mfm')})}),
+  update:object({reportArtifact:file,mfmBaseline:object({strategy:enumeration('published-source-or-manifest'),authority:enumeration('official-live-mfm')}),metadataPins:array(metadataPin)}),
   mfm:object({currentRelease:file,bindingPath:nullable(file),scope:text}),
   runtime:object({executionArtifact:file,conditionArtifact:file}),
   canonical:object({enhancementIdentity:object({strategy:enumeration('item-id','source-id','owner-record'),builtInExact:boolean})}),
@@ -75,6 +76,11 @@ export function readBookPassport(bookId,{root=defaultRoot,config}={}) {
     for(const output of s.outputs){if(!output.startsWith(`books/${bookId}/`))fail('passport.build.steps.outputs','output belongs to another book');if(owned.has(output))fail('passport.build.steps.outputs','duplicate output '+output);owned.add(output);}
   }
   if(!owned.has(p.update.reportArtifact))fail('passport.update.reportArtifact','report artifact is not a declared book output');
+  for(const [index,pin]of p.update.metadataPins.entries()){
+    const field='passport.update.metadataPins['+index+']';
+    if(pin.factualArtifact!==p.sources.effective||!p.build.steps.some(step=>step.producer===pin.afterProducer&&step.outputs.includes(pin.factualArtifact)))fail(field+'.factualArtifact','metadata pin must follow its declared factual producer');
+    if(!pin.reviewArtifact.startsWith(`books/${bookId}/`)||!pin.reviewArtifact.endsWith('.json')||!fs.existsSync(path.join(root,pin.reviewArtifact)))fail(field+'.reviewArtifact','unknown book review artifact');
+  }
   if(p.modelNames.enabled){
     if(p.modelNames.sourceDocument===null||p.modelNames.joins===null)fail('passport.modelNames','enabled aliases require sourceDocument and joins');
   }

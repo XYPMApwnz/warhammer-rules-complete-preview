@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 import {bookUpdateDeclarations,selectBookUpdate,sharedStepAffected,declaredInputFiles} from './book-update-declarations.mjs';
 import {compareBookGameplay,renderBookUpdateReport} from './book-update-report.mjs';
 import {publishedMfmSnapshot} from './book-update-snapshots.mjs';
+import {reviewedMfmMetadataChange,writeReviewedMfmMetadata} from './book-update-metadata.mjs';
 import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
 import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import {createQaTempDir,cleanupQaTempDir,createQaEvidenceDir,qaTempEnvironment,registerQaCleanup} from '../../../tests/helpers/qa-temp.mjs';
@@ -77,7 +78,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
  const head=git(root,['rev-parse','HEAD']).trim(),tracked=names(git(root,['ls-tree','-r','--name-only','-z','HEAD'])),initial=workState(root);
  const declarations=bookUpdateDeclarations({root,tracked});let selection=selectBookUpdate(declarations,{books,all,changed:initial.changed});
  fs.mkdirSync(out,{recursive:true});if(fs.existsSync(path.join(out,'RESULTS.json')))throw Error('Choose a fresh --out directory');
- const started=Date.now(),report={schema:'book-update/v1',baseHead:head,root,mode:check?'check':'update',status:'RUNNING',selection,books:[],generatedChanges:[],steps:[],changedInputs:initial.changed};
+ const started=Date.now(),report={schema:'book-update/v1',baseHead:head,root,mode:check?'check':'update',status:'RUNNING',selection,books:[],generatedChanges:[],metadataPinChanges:[],steps:[],changedInputs:initial.changed};
  const save=()=>{report.elapsedMs=Date.now()-started;fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(out,'REPORT.md'),renderBookUpdateReport(report));};
  const scratch=createQaTempDir('wh-book-update-'),copy=path.join(scratch,'checkout'),work=path.join(scratch,'operations');fs.mkdirSync(work,{recursive:true});
  const env={...qaTempEnvironment(),PYTHONDONTWRITEBYTECODE:'1',PYTHONUTF8:'1',PYTHON:resolveQaPython()};
@@ -97,6 +98,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
    if(snapshot.capture.captureSha256!==capture.captureSha256)inferredInputs.add(passport.mfm.currentRelease);
   }
   selection=selectBookUpdate(declarations,{books,all,changed:[...new Set([...initial.changed,...inferredInputs])]});report.selection=selection;
+  const metadataPins=declarations.books.filter(b=>selection.books.includes(b.id)).flatMap(b=>b.passport.update.metadataPins.map(operation=>({book:b.id,operation})));
   const affected=new Set([...initial.changed,...inferredInputs]),executedShared=new Set();
   for(const [i,step]of selection.steps.entries()){
    const policy=declarations.shared.find(row=>row.step.producer===step.producer),args=policy?.operations.updateArgs??step.args;
@@ -111,15 +113,22 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
    const expanded=args.map(arg=>arg.replaceAll('{work}',work).replaceAll('{checkout}',copy).replaceAll('{head}',head));
    await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env,log:path.join(out,String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer,book:step.book,results:report.steps});
    for(const file of step.outputs){if(!fs.existsSync(at(copy,file)))throw Error(step.book+': producer did not emit declared file '+file);if(!fs.existsSync(at(root,file))||!fs.readFileSync(at(copy,file)).equals(fs.readFileSync(at(root,file))))affected.add(file);}
+   for(const {book,operation}of metadataPins.filter(pin=>pin.operation.afterProducer===step.producer)){
+    const facts=decode(copy,fs.readFileSync(at(copy,operation.factualArtifact))),review=JSON.parse(fs.readFileSync(at(copy,operation.reviewArtifact),'utf8'));
+    const change=reviewedMfmMetadataChange({facts,review,beforeVersion:beforeMfm.get(book).version,currentVersion:release.version,operation});
+    writeReviewedMfmMetadata(at(copy,operation.reviewArtifact),change,operation);
+    if(change.changed){report.metadataPinChanges.push({book,file:operation.reviewArtifact,...change});affected.add(operation.reviewArtifact);console.log('[book:update] METADATA '+book+': MFM version only; old factual fingerprint reconstructed exactly');}
+   }
   }
   for(const row of declarations.shared.filter(r=>executedShared.has(r.step.producer)&&r.operations.checkArgs))await execute({command:process.execPath,args:[row.step.producer,...row.operations.checkArgs],cwd:copy,env,log:path.join(out,'verify-'+path.basename(row.step.producer)+'.log'),label:'VERIFY '+row.step.producer,book:row.step.book,results:report.steps});
   for(const id of selection.books){
    const passport=declarations.books.find(b=>b.id===id).passport;
    const after=decode(copy,fs.readFileSync(at(copy,passport.update.reportArtifact))),release=readCurrentMfmRelease({repoRoot:copy}),capture=release.factions.find(f=>f.bookId===id);
-   report.books.push(compareBookGameplay({bookId:id,before:JSON.parse(fs.readFileSync(before.get(id),'utf8')),after,mfmBefore:beforeMfm.get(id),mfmAfter:capture?JSON.parse(fs.readFileSync(at(copy,capture.capturePath),'utf8')):undefined}));
+   const comparison=compareBookGameplay({bookId:id,before:JSON.parse(fs.readFileSync(before.get(id),'utf8')),after,mfmBefore:beforeMfm.get(id),mfmAfter:capture?JSON.parse(fs.readFileSync(at(copy,capture.capturePath),'utf8')):undefined});
+   comparison.metadataChanges+=report.metadataPinChanges.filter(c=>c.book===id).length;report.books.push(comparison);
   }
   for(const file of declarations.plan.files){const target=at(copy,file),original=at(root,file);if(fs.existsSync(target)&&(!fs.existsSync(original)||!fs.readFileSync(target).equals(fs.readFileSync(original))))report.generatedChanges.push({file,beforeSha256:fs.existsSync(original)?sha(fs.readFileSync(original)):null,afterSha256:sha(fs.readFileSync(target))});}
-  if(check&&report.generatedChanges.length)throw Error('Stale generated files: '+report.generatedChanges.map(r=>r.file).join(', ')+'; rebuild with npm run book:update -- '+(all?'--all':books.map(id=>'--book='+id).join(' ')));
+  if(check&&(report.generatedChanges.length||report.metadataPinChanges.length))throw Error('Stale generated files or reviewed MFM metadata: '+[...report.generatedChanges,...report.metadataPinChanges].map(r=>r.file).join(', ')+'; rebuild with npm run book:update -- '+(all?'--all':books.map(id=>'--book='+id).join(' ')));
   const checks=new Set();
   if(!check)for(const id of selection.books){
    const passport=declarations.books.find(b=>b.id===id).passport;checks.add(passport.qa.script);
@@ -130,10 +139,10 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   }
   for(const [i,script]of [...checks].entries())await execute({...npmCommand(script),cwd:copy,env,log:path.join(out,'qa-'+String(i+1).padStart(2,'0')+'-'+script.replaceAll(':','-')+'.log'),label:'QA '+script,book:declarations.books.find(b=>b.passport.qa.script===script)?.id??'shared',results:report.steps});
   if(git(root,['rev-parse','HEAD']).trim()!==head||!sameState(initial,workState(root)))throw Error('Working inputs changed while the update was running; no outputs were published. Retry from the new state.');
-  report.written=check?[]:publishOutputs(root,copy,declarations.plan.files,work,out);
+  report.written=check?[]:publishOutputs(root,copy,[...new Set([...declarations.plan.files,...metadataPins.map(p=>p.operation.reviewArtifact)])],work,out);
   report.scope=check&&!selection.fullPlan&&!declarations.checkSharedSteps?'Selected book outputs only; shared publication freshness is covered by generated:check.':'Affected declared outputs and checks';
   report.status='PASS';save();
-  console.log(`[book:update] PASS ${report.elapsedMs}ms; ${report.generatedChanges.length} generated files changed; ${report.books.reduce((n,b)=>n+b.gameplayChanges,0)} gameplay changes. Report: ${path.join(out,'REPORT.md')}`);
+  console.log(`[book:update] PASS ${report.elapsedMs}ms; ${report.generatedChanges.length} generated files changed; ${report.metadataPinChanges.length} reviewed metadata pins; ${report.books.reduce((n,b)=>n+b.gameplayChanges,0)} gameplay changes. Report: ${path.join(out,'REPORT.md')}`);
   return report;
  }catch(error){report.status='FAIL';report.error=error.message;report.written=[];save();console.error('[book:update] FAIL '+error.message);if(initial.changed.length)console.error('[book:update] Inputs: '+initial.changed.join(', '));throw error;}
  finally{cleanupQaTempDir(scratch);}
