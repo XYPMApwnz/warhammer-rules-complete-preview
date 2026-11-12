@@ -133,6 +133,7 @@
     "qa:pre-ff": "node tools/qa-queue.mjs pre-ff",
     "mfm:update": "node books/shared/tools/mfm-release-cli.mjs update",
     "mfm:activate": "node books/shared/tools/mfm-release-cli.mjs activate",
-    "qa:mfm-current": "node tests/mfm-release-history-qa.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/mfm-numeric-ownership-qa.mjs"
+    "qa:mfm-current": "node tests/mfm-release-history-qa.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/mfm-numeric-ownership-qa.mjs",
+    "book:update": "node books/shared/tools/book-update.mjs"
   }
 }
