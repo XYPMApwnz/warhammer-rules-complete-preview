@@ -20,6 +20,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 BOOK = 'dark-angels'
 RAW = 'books/dark-angels/v2/sources/raw/'
 HUB = RAW+'wahapedia-dark-angels-main.html'
@@ -400,7 +402,8 @@ def build():
           'sourceCompleteness':'PARTIAL','semanticCompleteness':'NOT_PROVEN',
           'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False,
           'mixedOwnerRuntimeStatus':'NOT_PROVEN; reference ledger is not runtime integration'}
-    effective=copy.deepcopy(base)
+    # Local corrections only; inherited SM facts keep their owning application.
+    effective=apply_book_official_updates(BOOK, base, ROOT)['model']
     effective['schema']='dark-angels-v2-effective/v1'
     effective['officialReview']={'applicableDaFieldCorrections':[],
         'status':'NO_ADDITIONAL_APPLICABLE_OFFICIAL_FIELDS_PROVEN; full official App unavailable',

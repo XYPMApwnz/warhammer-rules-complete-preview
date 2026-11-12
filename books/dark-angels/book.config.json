@@ -633,6 +633,10 @@
         {
           "role": "currentMfmRelease",
           "path": "mfm/current.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/dark-angels/v2/official-updates.json"
         }
       ]
     },
@@ -761,7 +765,7 @@
       "joins": "books/dark-angels/v2/model-name-source-bindings.json"
     },
     "official": {
-      "input": null,
+      "input": "books/dark-angels/v2/official-updates.json",
       "stage": "canonical-facts"
     },
     "inheritance": {
