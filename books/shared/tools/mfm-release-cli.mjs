@@ -13,7 +13,7 @@ if(args.includes('--help')){
 
 npm run mfm:update -- --version=v1.7
   Capture all official faction pages. Only this command uses the network.
-npm run mfm:update -- --version=v1.7 --input=E:/saved-pages
+npm run mfm:update -- --version=v1.7 --input=E:/saved-pages --observed-at=2027-01-15
   Read saved official pages offline with the same DOM reader.
   All CURRENT/LEGENDS page filenames must match the selected capture layout.
   Existing accepted releases are never overwritten.
@@ -21,7 +21,7 @@ npm run mfm:update -- --version=v1.7 --input=E:/saved-pages
 Review mfm/releases/v1.7/REPORT.md and capture.json.
 Unknown, renamed, removed or differently owned entries block activation.
 Provide explicit decisions, with opaque IDs and exact source locators:
-npm run mfm:update -- --version=v1.7 --input=E:/saved-pages --decisions=E:/decisions.json
+npm run mfm:update -- --version=v1.7 --input=E:/saved-pages --observed-at=2027-01-15 --decisions=E:/decisions.json
 
 npm run mfm:activate -- --version=v1.7
   Validate every retained artifact and identity, archive the previous eleven
@@ -32,7 +32,7 @@ npm run mfm:update -- --replay --input=mfm/sources/v1.6 --out=E:/Warhammer/qa-tm
   Reproduce v1.6 offline, using its explicit observation/identity input.
   Compare every byte before writing the separate replay directory.
 
-Optional --observed-at=ISO-TIME records an actual observation time.
+Saved-page input requires --observed-at=ISO-TIME: use its actual capture time.
 The official effective date remains unknown unless separately established.`);
  process.exit(0);
 }

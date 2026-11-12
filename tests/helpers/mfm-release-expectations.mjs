@@ -26,6 +26,9 @@ export function mfmReleaseExpectations(root,legacyHistoricalIds){
   const history=read(root,'mfm/releases.json');
   assert.equal(history.schema,'mfm-release-history/v1');
   assert(Array.isArray(history.releases),'MFM archived releases must be an array');
+  if(release.version!=='v1.6')assert(history.releases.length>0,'A selected newer MFM release must retain activation history');
+  if(history.releases.length)assert.equal(history.releases[0].version,'v1.6','Activation history must retain its original v1.6 entry');
+  for(const [index,entry]of history.releases.entries())assert.equal(entry.activatedRelease,history.releases[index+1]?.version??release.version,'Archived release must identify the exact successor activation');
   const archivedIds=new Set(),versions=new Set();
   for(const archived of history.releases){
     assert.match(archived.version,/^v\d+\.\d+$/,'Archived MFM version must be explicit');

@@ -124,7 +124,7 @@ try{
   }
   write(fixture,release.sourceRegistryPath,registry);
   write(fixture,'mfm/releases.json',{...history,releases:[...history.releases,
-    {version:release.version,activatedAt:'2026-11-12T12:00:00.000Z',sourceIds:currentIds}]});
+    {version:release.version,activatedRelease:nextVersion,activatedAt:'2026-11-12T12:00:00.000Z',sourceIds:currentIds}]});
   write(fixture,'mfm/current.json',next);
   const archived=checkHistory();
   assert.equal(archived.historicalIds.length,current.historicalIds.length+11);

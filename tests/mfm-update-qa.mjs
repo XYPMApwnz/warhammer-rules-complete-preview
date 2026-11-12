@@ -64,6 +64,11 @@ try{
 }finally{await browser.close();}
 const {updateMfm,activateMfm}=await import(pathToFileURL(path.join(copy,'books/shared/tools/mfm-release-update.mjs')));
 const args={root:copy,version:'v1.7',input,observedAt:'2026-11-12T12:00:00.000Z',browserFactory:()=>launchChromium()};
+await assert.rejects(()=>updateMfm({...args,observedAt:undefined}),/Saved-page input requires/);
+await assert.rejects(()=>activateMfm({root:copy,version:'../invalid'}),/explicit MFM version/);
+const sourceConfigPath=path.join(copy,'books/death-guard/book.config.json'),sourceConfigBytes=fs.readFileSync(sourceConfigPath),sourceConfig=JSON.parse(sourceConfigBytes);sourceConfig.passport.mfm.currentRelease='mfm/not-selected.json';fs.writeFileSync(sourceConfigPath,JSON.stringify(sourceConfig));
+const{getCurrentMfmSource}=await import(pathToFileURL(path.join(copy,'mfm/content/current-mfm-release.mjs')));assert.throws(()=>getCurrentMfmSource('death-guard',{repoRoot:copy}),/Book passport death-guard/);fs.writeFileSync(sourceConfigPath,sourceConfigBytes);
+results.push({check:'release input and passport controls',status:'PASS',negativeControls:3});
 const dgInput=path.join(input,'death-guard.html'),validDg=fs.readFileSync(dgInput);fs.writeFileSync(dgInput,malformedHtml);
 await assert.rejects(()=>updateMfm(args),/MFM website changed/);assert(!fs.existsSync(path.join(copy,'mfm/sources/v1.7')),'Malformed DOM must not publish a partial release');fs.writeFileSync(dgInput,validDg);
 const missingInput=path.join(input,'death-guard-legends.html'),missingBytes=fs.readFileSync(missingInput);fs.unlinkSync(missingInput);

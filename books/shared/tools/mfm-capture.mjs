@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import {extract,countsFor} from './mfm-dom.mjs';
 import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
 import {readBookPassport} from './book-passport.mjs';
+import {verifyFrozenSource} from './source-ingestion-contract.mjs';
 
 export const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex').toUpperCase();
 const stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
@@ -31,6 +32,8 @@ export async function parseSavedMfm({root,input,version,replay=false,observedAt=
  const identities=read(root,release.identityRegistryPath);
  const replayIdentities=read(root,seed.identityRegistryPath);
  const rows=[...release.factions,...release.dependencies];
+ const acceptedIdentities=replay?replayIdentities:identities;
+ for(const source of[...acceptedIdentities.factionBindings,...acceptedIdentities.crossFactionUnitDependencies])verifyFrozenSource(source.sourceId,{repoRoot:root,registryPath:path.join(root,release.sourceRegistryPath)});
  const launch=browserFactory??launchCaptureBrowser;
  const browser=await launch(),context=await browser.newContext({javaScriptEnabled:false});
  await context.route('**/*',r=>r.abort());
@@ -56,7 +59,7 @@ export async function parseSavedMfm({root,input,version,replay=false,observedAt=
    }
    let payload;
    if(current.unit){
-    const unit=exactly(parsed.units,u=>u.title===current.sourceLocator.sourceTitle&&u.sourceGroup===current.sourceLocator.partition,row.sourceId);
+    const unit=exactly(parsed.units,u=>u.title===accepted.sourceLocator.sourceTitle&&u.sourceGroup===accepted.sourceLocator.partition,row.sourceId);
     payload={...accepted,unit};
    }else{
     // Existing ownership is explicit. Known shared SM/DW rows are not recaptured as BA/DA facts.
@@ -64,11 +67,12 @@ export async function parseSavedMfm({root,input,version,replay=false,observedAt=
     const ownDets=new Set(binding.detachmentBindings.map(b=>b.sourceTitle));
     // Explicit accepted foreign occurrences, not a join by display name against
     // another book. A changed group/status or new occurrence requires review.
-    const scope=current.enrollmentScope?(current.enrollmentScope.foreignOccurrences??read(root,'mfm/capture/owner-scope.json')[row.bookId]):null;
+    const scope=accepted.enrollmentScope?(accepted.enrollmentScope.foreignOccurrences??read(root,'mfm/capture/owner-scope.json')[row.bookId]):null;
     const foreignUnits=new Set((scope?.units??[]).map(locator));
     const foreignDets=new Set(scope?.detachments??[]);
     const units=scope?parsed.units.filter(u=>ownTitles.has(u.title)||!foreignUnits.has(locator(u))):parsed.units;
     const detachments=scope?parsed.detachments.filter(d=>ownDets.has(d.title)||!foreignDets.has(d.title)):parsed.detachments;
+    for(const [label,records]of[['unit',units],['detachment',detachments]])if(new Set(records.map(r=>r.title)).size!==records.length)throw Error(`MFM website changed: ${row.bookId}: ambiguous duplicate ${label} source titles require identity review`);
     payload={...accepted,sourceGroups:[...new Set(units.map(u=>u.sourceGroup))],counts:countsFor(units,detachments),units,detachments};
    }
    payload.rawArtifacts=raws;

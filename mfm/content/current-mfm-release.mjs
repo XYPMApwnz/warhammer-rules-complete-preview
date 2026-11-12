@@ -53,7 +53,9 @@ export function readCurrentMfmRelease({repoRoot=defaultRoot}={}){
 }
 
 export function getCurrentMfmSource(bookId,{repoRoot=defaultRoot}={}){
-  const release=readCurrentMfmRelease({repoRoot}),entry=release.factions.find(row=>row.bookId===bookId);
+  const route=read(repoRoot,`books/${bookId}/book.config.json`).passport?.mfm;
+  if(route?.currentRelease!=='mfm/current.json'||route.scope!==bookId)throw Error(`Book passport ${bookId}: mfm.currentRelease/scope must select the shared current MFM release`);
+  const release=readCurrentMfmRelease({repoRoot}),entry=release.factions.find(row=>row.bookId===route.scope);
   if(!entry)throw Error('Current MFM faction is not registered: '+String(bookId));
   const capture=read(repoRoot,entry.capturePath);
   if(capture.factionId!==bookId||capture.version!==release.version||capture.currentness!=='CURRENT')throw Error('Current MFM capture identity/version mismatch: '+bookId);

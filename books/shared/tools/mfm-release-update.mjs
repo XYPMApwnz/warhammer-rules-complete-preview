@@ -146,7 +146,7 @@ export function projectReleaseIdentities({root,parsed,version,decisions=[]}){
  return{registry,cross,pending,changes,registryVersion};
 }
 
-function writeFiles(root,files){
+function writeFiles(root,files,{expectedPointerHash}={}){
  const tempRoot=process.env.QA_TMP_ROOT||'E:/Warhammer/qa-tmp/mfm-update-v1';fs.mkdirSync(tempRoot,{recursive:true});
  const transaction=path.join(tempRoot,'mfm-transaction-'+hash(path.resolve(root)).slice(0,20)),journalPath=path.join(transaction,'journal.json');
  if(fs.existsSync(transaction))throw Error(`An interrupted MFM transaction needs recovery: ${journalPath}. No files were written.`);
@@ -156,6 +156,7 @@ function writeFiles(root,files){
   for(const entry of written){const target=path.join(root,entry.path);if(entry.before===null)fs.rmSync(target,{force:true});else fs.copyFileSync(path.join(transaction,entry.before),target);}
  };
  try{
+  if(expectedPointerHash&&hash(fs.readFileSync(path.join(root,'mfm/current.json')))!==expectedPointerHash)throw Error('Current MFM changed before the write transaction; nothing was written');
   for(const[p,bytes]of files){
    if(path.isAbsolute(p)||p.includes('\\')||p.split('/').some(x=>!x||x==='.'||x==='..')||!p.startsWith('mfm/')&&!p.startsWith('books/'))throw Error(`Unsafe MFM transaction path ${p}`);
    const target=path.join(root,p),index=entries.length,old=fs.existsSync(target)?fs.readFileSync(target):null;
@@ -186,6 +187,8 @@ export async function updateMfm({root=defaultRoot,version,input,decisionsFile,ob
  const statePath=`mfm/releases/${version}/capture.json`;
  if(fs.existsSync(path.join(root,`mfm/sources/${version}`))&&!fs.existsSync(path.join(root,statePath)))throw Error('Refusing to overwrite an existing unowned MFM release');
  let live;
+ if(input&&!observedAt)throw Error('Saved-page input requires --observed-at=<actual capture time>; an observation date is never guessed');
+ if(observedAt&&(typeof observedAt!=='string'||!Number.isFinite(Date.parse(observedAt))))throw Error('MFM observed-at must be an explicit valid date/time');
  if(!input){
   const temp=process.env.QA_TMP_ROOT||'E:/Warhammer/qa-tmp/mfm-update-v1';
   fs.mkdirSync(temp,{recursive:true});live=fs.mkdtempSync(path.join(temp,'capture-live-'));input=live;
@@ -207,11 +210,12 @@ export async function updateMfm({root=defaultRoot,version,input,decisionsFile,ob
  const display=v=>v&&typeof v==='object'?JSON.stringify(v):String(v);
  const lines=[`# MFM ${version} review`,'',`Status: ${state.pending.length?'NEEDS DECISIONS — activation is blocked':'READY FOR ACTIVATION'}`,'','## Factual changes','',...state.changes.map(c=>`- ${c.book} · ${c.title}${c.selection?' · '+c.selection:''}: ${c.before!==undefined?display(c.before)+' → '+display(c.after):c.kind}`),'','## Decisions needed','',...state.pending.map(p=>`- ${p.book??''} · ${p.title}: ${p.options.join(' / ')}. Key: ${JSON.stringify(p.key)}`),'','Decisions must explicitly preserve or assign opaque identities. No name similarity is used.',''];
  files.set(`mfm/releases/${version}/REPORT.md`,Buffer.from(lines.join('\n')));
- writeFiles(root,files);
+ writeFiles(root,files,{expectedPointerHash:basePointerHash});
  return state;
 }
 
 export async function activateMfm({root=defaultRoot,version,activatedAt=new Date().toISOString(),browserFactory}={}){
+ if(!isModernMfmVersion(version))throw Error('Use an explicit MFM version, for example --version=v1.7');
  const current=readCurrentMfmRelease({repoRoot:root}),state=read(root,`mfm/releases/${version}/capture.json`);
  const keys=['schema','version','basePointerHash','observedAt','pointer','pending','changes','decisions','files'];
  if(Object.keys(state).some(k=>!keys.includes(k))||keys.some(k=>!Object.hasOwn(state,k)))throw Error('MFM candidate fields differ from the supported schema');
@@ -255,7 +259,9 @@ export async function activateMfm({root=defaultRoot,version,activatedAt=new Date
   if(fresh.title)fresh.title=replaceVersion(fresh.title,current.version,version);
   list.push(fresh);files.set(manifestPath,Buffer.from(json(manifest)));
  }
- history.releases.push({version:current.version,activatedAt,sourceIds:rows(current).map(r=>r.sourceId)});
+ // The timestamp describes the successor activation, not an invented date for
+ // the older release (v1.6 was enrolled before this history existed).
+ history.releases.push({version:current.version,activatedRelease:version,activatedAt,sourceIds:rows(current).map(r=>r.sourceId)});
  files.set(current.sourceRegistryPath,Buffer.from(json(registry)));files.set('mfm/releases.json',Buffer.from(json(history)));files.set('mfm/current.json',Buffer.from(json(next)));
  // Validate authenticated sources and all exact identity partitions before touching active files.
  const tempRoot=process.env.QA_TMP_ROOT||'E:/Warhammer/qa-tmp/mfm-update-v1';fs.mkdirSync(tempRoot,{recursive:true});
@@ -263,6 +269,6 @@ export async function activateMfm({root=defaultRoot,version,activatedAt=new Date
  try{createCanonicalMfmFacts({repoRoot:root,identityRegistry:read(root,next.identityRegistryPath),crossDomainBindings:read(root,next.crossDomainBindingsPath),sourceRegistryPath:validationPath});}
  finally{fs.rmSync(validationPath,{force:true});}
  if(state.basePointerHash!==hash(fs.readFileSync(path.join(root,'mfm/current.json'))))throw Error('Current MFM changed during activation; nothing was activated');
- writeFiles(root,files);
+ writeFiles(root,files,{expectedPointerHash:state.basePointerHash});
  return{version,currentSources:9,dependencies:2,historicalAdded:11};
 }

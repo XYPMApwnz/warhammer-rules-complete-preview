@@ -3,6 +3,9 @@
 `current.json` selects the accepted MFM release for all nine Army Books and both
 CSM dependencies. `releases.json` is append-only archive history. Existing raw
 captures and identity files are never overwritten after acceptance.
+Each history entry identifies the archived `version` and the successor
+`activatedRelease`; `activatedAt` is the actual time of that successor activation.
+It does not invent an original activation date for the older v1.6 enrollments.
 
 1. Capture a release:
 
@@ -11,7 +14,9 @@ captures and identity files are never overwritten after acceptance.
    ```
 
    This is the only network step. It contacts the official MFM domain. To read
-   saved official pages offline, add `--input=E:/saved-pages`. The input folder
+   saved official pages offline, add `--input=E:/saved-pages` and
+   `--observed-at=<actual-capture-time>`. Offline observation dates are never
+   guessed. The input folder
    must contain every raw filename listed in the current eleven capture JSON
    files, including their Legends pages. An incomplete page or changed layout
    aborts the whole capture before any candidate is published.

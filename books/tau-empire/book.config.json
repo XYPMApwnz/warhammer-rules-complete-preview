@@ -136,8 +136,8 @@
           "path": "books/tau-empire/content/tau-empire-codex-parity.en.json"
         },
         {
-          "role": "points",
-          "path": "mfm/sources/v1.6/tau-empire.json"
+          "role": "currentMfmRelease",
+          "path": "mfm/current.json"
         },
         {
           "role": "relatedRules",
@@ -146,10 +146,6 @@
         {
           "role": "manifest",
           "path": "books/tau-empire/sources/source-manifest.json"
-        },
-        {
-          "role": "officialMfm",
-          "path": "mfm/sources/v1.6/tau-empire.json"
         },
         {
           "role": "effectContracts",
@@ -162,10 +158,6 @@
         {
           "role": "attachmentGroupConstraints",
           "path": "books/tau-empire/sources/tau-empire-attachment-group-constraints.v1.json"
-        },
-        {
-          "role": "mfmCurrentCapture",
-          "path": "mfm/sources/v1.6/tau-empire.json"
         },
         {
           "role": "wahaCurrentCorpus",
