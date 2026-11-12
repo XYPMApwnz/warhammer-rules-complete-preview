@@ -1,0 +1,5076 @@
+{
+  "schema": "army-book-official-updates/v1",
+  "bookId": "tau-empire",
+  "stage": "canonical-facts",
+  "selection": {
+    "collection": [
+      "entities"
+    ],
+    "identity": "id",
+    "data": [
+      "data"
+    ]
+  },
+  "order": "declared",
+  "initialize": [
+    {
+      "path": [
+        "officialUpdates"
+      ],
+      "value": []
+    },
+    {
+      "path": [
+        "officialSupplementalChecks"
+      ],
+      "value": []
+    },
+    {
+      "path": [
+        "universalChecks"
+      ],
+      "value": {
+        "provenance": {
+          "sourceId": "universal-rules-updates-v1.1",
+          "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+          "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+          "page": 1,
+          "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5",
+          "authority": "AUTHORITATIVE_CURRENT"
+        },
+        "checks": [],
+        "sourceScopeQualification": "These three applicable instructions are already reflected in the current effective native fields; checks verify applicability and current values without changing them. The CP-cost instruction applies only when the rule does not specify the Stratagem name. Homing Beacon explicitly names the Rapid Ingress Stratagem for 0CP, so that named permission is retained and is not converted by the generic CP-cost amendment. No missing effect, eligibility or runtime behavior is inferred from these checks."
+      }
+    }
+  ],
+  "projection": [
+    {
+      "scope": "entity",
+      "mode": "set",
+      "path": [
+        "fieldProvenance",
+        {
+          "$join": "entry.target.field"
+        }
+      ],
+      "when": [
+        "SET"
+      ],
+      "value": {
+        "$ref": "entry.provenance"
+      }
+    }
+  ],
+  "entries": [
+    {
+      "id": "tau-official-v1.1:army-for-the-greater-good::army-rule-for-the-greater-good:definition::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,250,292,462]"
+      },
+      "target": {
+        "id": "army-rule-for-the-greater-good:definition",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "army-rule-for-the-greater-good:definition"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ARMY_RULE_COMPONENT"
+          }
+        ]
+      },
+      "kind": "ARMY_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units.\nDuring your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase.\nUnits from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units.\nUntil the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the MARKERLIGHT keyword, that attack has the [IGNORES COVER] ability.",
+      "after": "If your Army Faction is T’AU EMPIRE, at the start of your Shooting phase you can select units from your army with this ability to become Observer units. During your Shooting phase, for each Observer unit from your army that has not been selected to shoot this phase and is eligible to shoot (excluding FORTIFICATION and Battle-shocked units) select one enemy unit that is visible to be marked as their Spotted unit until the end of the phase. Each enemy unit can only be marked as a Spotted unit once per phase. Units from your army with the For the Greater Good ability (excluding Observer units) are Guided units while targeting one or more Spotted units. Until the end of the phase, each time a model from your army in a Guided unit makes an attack that targets a Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and, if the Spotted unit was marked by an Observer unit that has the Markerlight keyword, that attack has the [IGNORES COVER] ability.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          42,
+          250,
+          292,
+          462
+        ],
+        "textSha256": "0546417BF1FCFE717B39E1CC2B302F7AA5FD6615AEF7CDF2F9F3E13996B28689",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            42,
+            250,
+            292,
+            462
+          ],
+          "textSha256": "0546417BF1FCFE717B39E1CC2B302F7AA5FD6615AEF7CDF2F9F3E13996B28689"
+        },
+        "sourceText": "For the Greater Good\nChange to:\n‘If your Army Faction is T’AU EMPIRE, at the start of your Shooting\nphase you can select units from your army with this ability to become\nObserver units.\nDuring your Shooting phase, for each Observer unit from your army\nthat has not been selected to shoot this phase and is eligible to shoot\n(excluding FORTIFICATION and Battle-shocked units) select one enemy\nunit that is visible to be marked as their Spotted unit until the end of\nthe phase. Each enemy unit can only be marked as a Spotted unit once\nper phase.\nUnits from your army with the For the Greater Good ability (excluding\nObserver units) are Guided units while targeting one or more\nSpotted units.\nUntil the end of the phase, each time a model from your army in a\nGuided unit makes an attack that targets a Spotted unit, improve the\nBallistic Skill characteristic of that attack by 1 and, if the Spotted unit\nwas marked by an Observer unit that has the Markerlight keyword, that\nattack has the [IGNORES COVER] ability.’",
+        "beforeSha256": "39AF90550A56C226B47F8E833FD37F7CE6C2595634C97D83BA34A8BC87B5C65A",
+        "afterSha256": "ED0C86A725514E7E736BCDA0B0CA1B4FC8B7C71689EAAC382A7E569791D6833D"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:army-for-the-greater-good",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "army-rule-for-the-greater-good:definition"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                42,
+                250,
+                292,
+                462
+              ],
+              "textSha256": "0546417BF1FCFE717B39E1CC2B302F7AA5FD6615AEF7CDF2F9F3E13996B28689",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "For the Greater Good\nChange to:\n‘If your Army Faction is T’AU EMPIRE, at the start of your Shooting\nphase you can select units from your army with this ability to become\nObserver units.\nDuring your Shooting phase, for each Observer unit from your army\nthat has not been selected to shoot this phase and is eligible to shoot\n(excluding FORTIFICATION and Battle-shocked units) select one enemy\nunit that is visible to be marked as their Spotted unit until the end of\nthe phase. Each enemy unit can only be marked as a Spotted unit once\nper phase.\nUnits from your army with the For the Greater Good ability (excluding\nObserver units) are Guided units while targeting one or more\nSpotted units.\nUntil the end of the phase, each time a model from your army in a\nGuided unit makes an attack that targets a Spotted unit, improve the\nBallistic Skill characteristic of that attack by 1 and, if the Spotted unit\nwas marked by an Observer unit that has the Markerlight keyword, that\nattack has the [IGNORES COVER] ability.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:kauyon-through-unity-devastation::detachment-kauyon:enhancement:4::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,481,292,550]"
+      },
+      "target": {
+        "id": "detachment-kauyon:enhancement:4",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-kauyon:enhancement:4"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+      "after": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [LETHAL HITS] ability while targeting their Spotted unit.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          42,
+          481,
+          292,
+          550
+        ],
+        "textSha256": "2D5281D8240D339071A32CE116DAA35123433536CA0312C4F60F5CA4AA3D7A22",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            42,
+            481,
+            292,
+            550
+          ],
+          "textSha256": "2D5281D8240D339071A32CE116DAA35123433536CA0312C4F60F5CA4AA3D7A22"
+        },
+        "sourceText": "Through Unity, Devastation Enhancement\nChange to:\n‘T’AU EMPIRE model only (excluding KROOT SHAPER models). While the\nbearer is leading a unit, each time that unit is an Observer unit, until the\nend of the phase, ranged weapons equipped by models in a Guided unit\nhave the [LETHAL HITS] ability while targeting their Spotted unit.’",
+        "beforeSha256": "C0483D1B09AAC5E81B3936AC8C7DE1C480EAC7EAD70E9C880B943C97B10AE66C",
+        "afterSha256": "C0483D1B09AAC5E81B3936AC8C7DE1C480EAC7EAD70E9C880B943C97B10AE66C"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:kauyon-through-unity-devastation",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-kauyon:enhancement:4"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                42,
+                481,
+                292,
+                550
+              ],
+              "textSha256": "2D5281D8240D339071A32CE116DAA35123433536CA0312C4F60F5CA4AA3D7A22",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Through Unity, Devastation Enhancement\nChange to:\n‘T’AU EMPIRE model only (excluding KROOT SHAPER models). While the\nbearer is leading a unit, each time that unit is an Observer unit, until the\nend of the phase, ranged weapons equipped by models in a Guided unit\nhave the [LETHAL HITS] ability while targeting their Spotted unit.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:kauyon-photon-grenades::detachment-kauyon:stratagem:5::/lines/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,558,292,605]"
+      },
+      "target": {
+        "id": "detachment-kauyon:stratagem:5",
+        "field": [
+          "lines",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-kauyon:stratagem:5"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Your opponent's charge phase, just after an enemy unit has selected its charge target.",
+      "after": "Your opponent’s charge phase, just after an enemy unit has selected its charge target.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          42,
+          558,
+          292,
+          605
+        ],
+        "textSha256": "A99A5B6A18107D2B39474F92E0E7FB770A9FBC9165A02061A9CF02B3DE51298D",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            42,
+            558,
+            292,
+            605
+          ],
+          "textSha256": "A99A5B6A18107D2B39474F92E0E7FB770A9FBC9165A02061A9CF02B3DE51298D"
+        },
+        "sourceText": "Photon Grenades Stratagem, When Section\nChange to:\n‘Your opponent’s charge phase, just after an enemy unit has selected its\ncharge target.’",
+        "beforeSha256": "0F51CBA11562F4AA6FBBA1D9FAD0A9C80C8153978E25AE1A13DE1BCB553C7A3E",
+        "afterSha256": "B68363FDC8A47D0C11C1B349B4358C4DAAFBF4AD917A80D42851D7BD58D6543D"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:kauyon-photon-grenades",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-kauyon:stratagem:5"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                42,
+                558,
+                292,
+                605
+              ],
+              "textSha256": "A99A5B6A18107D2B39474F92E0E7FB770A9FBC9165A02061A9CF02B3DE51298D",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Photon Grenades Stratagem, When Section\nChange to:\n‘Your opponent’s charge phase, just after an enemy unit has selected its\ncharge target.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:kauyon-patient-hunter::detachment-kauyon:rule::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,613,292,716]"
+      },
+      "target": {
+        "id": "detachment-kauyon:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-kauyon:rule"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll.",
+      "after": "During the third, fourth and fifth battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [SUSTAINED HITS 1] ability. During the third, fourth and fifth battle rounds, while a unit is a Guided unit (see For the Greater Good), each time a ranged attack is made by a model in that unit that targets a Spotted unit, you can ignore any or all modifiers to that attack’s Ballistic skill characteristics and/or all modifiers to the Hit roll.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          42,
+          613,
+          292,
+          716
+        ],
+        "textSha256": "3113F877FD1226CB75F817FBD3C28C2F93D441CCC26F8A202C7EE4EF266F5044",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            42,
+            613,
+            292,
+            716
+          ],
+          "textSha256": "3113F877FD1226CB75F817FBD3C28C2F93D441CCC26F8A202C7EE4EF266F5044"
+        },
+        "sourceText": "Patient Hunter Detachment Rule\nChange to:\n‘During the third, fourth and fifth battle rounds, ranged weapons\nequipped by T’AU EMPIRE models from your army have the\n[SUSTAINED HITS 1] ability. During the third, fourth and fifth battle\nrounds, while a unit is a Guided unit (see For the Greater Good), each\ntime a ranged attack is made by a model in that unit that targets a\nSpotted unit, you can ignore any or all modifiers to that attack’s Ballistic\nskill characteristics and/or all modifiers to the Hit roll.’",
+        "beforeSha256": "E39651F6A55A6B9FA6853D90C004A2725C5E73E02671F1E66A64CA1E4592AD8B",
+        "afterSha256": "E39651F6A55A6B9FA6853D90C004A2725C5E73E02671F1E66A64CA1E4592AD8B"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:kauyon-patient-hunter",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-kauyon:rule"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                42,
+                613,
+                292,
+                716
+              ],
+              "textSha256": "3113F877FD1226CB75F817FBD3C28C2F93D441CCC26F8A202C7EE4EF266F5044",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Patient Hunter Detachment Rule\nChange to:\n‘During the third, fourth and fifth battle rounds, ranged weapons\nequipped by T’AU EMPIRE models from your army have the\n[SUSTAINED HITS 1] ability. During the third, fourth and fifth battle\nrounds, while a unit is a Guided unit (see For the Greater Good), each\ntime a ranged attack is made by a model in that unit that targets a\nSpotted unit, you can ignore any or all modifiers to that attack’s Ballistic\nskill characteristics and/or all modifiers to the Hit roll.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:montka-coordinated-exploitation::detachment-montka:enhancement:1::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,217,556,286]"
+      },
+      "target": {
+        "id": "detachment-montka:enhancement:1",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-montka:enhancement:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+      "after": "T’AU EMPIRE model only (excluding KROOT SHAPER models). While the bearer is leading a unit, each time that unit is an Observer unit, until the end of the phase, ranged weapons equipped by models in a Guided unit have the [SUSTAINED HITS 1] ability while targeting their Spotted unit.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          217,
+          556,
+          286
+        ],
+        "textSha256": "8654C17EFC3F604F0DEB33179EB8FD5FBEF831DC0AD6304CDEE3A88771F76B4B",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            217,
+            556,
+            286
+          ],
+          "textSha256": "8654C17EFC3F604F0DEB33179EB8FD5FBEF831DC0AD6304CDEE3A88771F76B4B"
+        },
+        "sourceText": "Coordinated Exploitation Enhancement\nChange to:\n‘T’AU EMPIRE model only (excluding KROOT SHAPER models). While the\nbearer is leading a unit, each time that unit is an Observer unit, until the\nend of the phase, ranged weapons equipped by models in a Guided unit\nhave the [SUSTAINED HITS 1] ability while targeting their Spotted unit.’",
+        "beforeSha256": "47C12F3D330B4BFA341DA0188B9DBCB75E10FF21DE575C7D6362A71C908B895E",
+        "afterSha256": "47C12F3D330B4BFA341DA0188B9DBCB75E10FF21DE575C7D6362A71C908B895E"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:montka-coordinated-exploitation",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-montka:enhancement:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                217,
+                556,
+                286
+              ],
+              "textSha256": "8654C17EFC3F604F0DEB33179EB8FD5FBEF831DC0AD6304CDEE3A88771F76B4B",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Coordinated Exploitation Enhancement\nChange to:\n‘T’AU EMPIRE model only (excluding KROOT SHAPER models). While the\nbearer is leading a unit, each time that unit is an Observer unit, until the\nend of the phase, ranged weapons equipped by models in a Guided unit\nhave the [SUSTAINED HITS 1] ability while targeting their Spotted unit.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:montka-strike-swiftly::detachment-montka:enhancement:4::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,294,556,364]"
+      },
+      "target": {
+        "id": "detachment-montka:enhancement:4",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-montka:enhancement:4"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "T’AU EMPIRE model only. In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "after": "In the Resolve Pre-battle Abilities step, you can select up to two friendly T’AU EMPIRE units within 6\" of this model that do not have the Scouts ability. Until the end of the battle, all models in the selected units have the Scouts 6\" ability.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          294,
+          556,
+          364
+        ],
+        "textSha256": "C6F63C33D3DC8CC947E6871B46F1775D099C0039350E772410C5D354C45B356F",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            294,
+            556,
+            364
+          ],
+          "textSha256": "C6F63C33D3DC8CC947E6871B46F1775D099C0039350E772410C5D354C45B356F"
+        },
+        "sourceText": "Strike Swiftly Enhancement\nChange to:\n‘In the Resolve Pre-battle Abilities step, you can select up to two\nfriendly T’AU EMPIRE units within 6\" of this model that do not have the\nScouts ability. Until the end of the battle, all models in the selected units\nhave the Scouts 6\" ability.’",
+        "beforeSha256": "0576F8F187F58477C03C355335ED55485B0AFA456DFFC2EE1671D4AA2ABE59F0",
+        "afterSha256": "18DB5AFD81C91269305A0E78C13112472CD85B994E7A78792E1D77E4C9BCA997"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:montka-strike-swiftly",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "sourceScopeQualification": "The official quoted replacement does not state the raw-source eligibility preface “T’AU EMPIRE model only.”. The replacement body follows the accepted PDF literally; baseline eligibility metadata is separately retained and this omission does not implement or infer expanded eligibility.",
+            "targetIds": [
+              "detachment-montka:enhancement:4"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                294,
+                556,
+                364
+              ],
+              "textSha256": "C6F63C33D3DC8CC947E6871B46F1775D099C0039350E772410C5D354C45B356F",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Strike Swiftly Enhancement\nChange to:\n‘In the Resolve Pre-battle Abilities step, you can select up to two\nfriendly T’AU EMPIRE units within 6\" of this model that do not have the\nScouts ability. Until the end of the battle, all models in the selected units\nhave the Scouts 6\" ability.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:montka-killing-blow::detachment-montka:rule::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,371,556,452]"
+      },
+      "target": {
+        "id": "detachment-montka:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-montka:rule"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit, its ranged weapons have the [LETHAL HITS] ability.",
+      "after": "During the first, second and third battle rounds, ranged weapons equipped by T’AU EMPIRE models from your army have the [ASSAULT] ability. During the first, second and third battle rounds, while a unit is a Guided unit (see For the Greater Good), its ranged weapons have the [LETHAL HITS] ability.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          371,
+          556,
+          452
+        ],
+        "textSha256": "C1BF9A90152DB538DFCC0D4CA3EFBF61C9C8627038CF596C5FD8BDE6B7CEB585",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            371,
+            556,
+            452
+          ],
+          "textSha256": "C1BF9A90152DB538DFCC0D4CA3EFBF61C9C8627038CF596C5FD8BDE6B7CEB585"
+        },
+        "sourceText": "Killing Blow Detachment rule\nChange to:\n‘During the first, second and third battle rounds, ranged weapons\nequipped by T’AU EMPIRE models from your army have the [ASSAULT]\nability. During the first, second and third battle rounds, while a unit is\na Guided unit (see For the Greater Good), its ranged weapons have the\n[LETHAL HITS] ability.’",
+        "beforeSha256": "49919711FD357582B853BE09E5FF6CD2050DB19FA502EB18C23EA4B7A0E9F3AE",
+        "afterSha256": "3D13D8EABBC076529CC56DA1AF7F420328C2D782A8D4A96BFE10675FFE44231D"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:montka-killing-blow",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-montka:rule"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                371,
+                556,
+                452
+              ],
+              "textSha256": "C1BF9A90152DB538DFCC0D4CA3EFBF61C9C8627038CF596C5FD8BDE6B7CEB585",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Killing Blow Detachment rule\nChange to:\n‘During the first, second and third battle rounds, ranged weapons\nequipped by T’AU EMPIRE models from your army have the [ASSAULT]\nability. During the first, second and third battle rounds, while a unit is\na Guided unit (see For the Greater Good), its ranged weapons have the\n[LETHAL HITS] ability.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:retaliation-puretide-neurochip::detachment-retaliation-cadre:enhancement:3::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,470,556,518]"
+      },
+      "target": {
+        "id": "detachment-retaliation-cadre:enhancement:3",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-retaliation-cadre:enhancement:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          }
+        ]
+      },
+      "kind": "ENHANCEMENT_TEXT",
+      "operation": "SET",
+      "expectedBefore": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+      "after": "T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s unit with a Stratagem, roll one D6: on a 4+, you gain 1CP.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          470,
+          556,
+          518
+        ],
+        "textSha256": "AF46E122F7F334092A7C0FBD73C5AA8084745A323A2BBC701AC6A7AEC2BDB1ED",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            470,
+            556,
+            518
+          ],
+          "textSha256": "AF46E122F7F334092A7C0FBD73C5AA8084745A323A2BBC701AC6A7AEC2BDB1ED"
+        },
+        "sourceText": "Puretide Engram Neurochip Enhancement\nChange to:\n‘T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s\nunit with a Stratagem, roll one D6: on a 4+, you gain 1CP.’",
+        "beforeSha256": "1A20D407A57EE8BBE3633DB7A31DC17DEE53CD747314DC8F00550D4E54E405E4",
+        "afterSha256": "1A20D407A57EE8BBE3633DB7A31DC17DEE53CD747314DC8F00550D4E54E405E4"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:retaliation-puretide-neurochip",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-retaliation-cadre:enhancement:3"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                470,
+                556,
+                518
+              ],
+              "textSha256": "AF46E122F7F334092A7C0FBD73C5AA8084745A323A2BBC701AC6A7AEC2BDB1ED",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Puretide Engram Neurochip Enhancement\nChange to:\n‘T’AU EMPIRE BATTLESUIT model only. Each time you target the bearer’s\nunit with a Stratagem, roll one D6: on a 4+, you gain 1CP.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:retaliation-shortened-blade::detachment-retaliation-cadre:stratagem:3::/lines/2/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,525,556,551]"
+      },
+      "target": {
+        "id": "detachment-retaliation-cadre:stratagem:3",
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-retaliation-cadre:stratagem:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.",
+      "after": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          525,
+          556,
+          551
+        ],
+        "textSha256": "32FF2F930A8653164D3C2145F49398993A809738D16C341DE88728FFCF2DBEBA",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            525,
+            556,
+            551
+          ],
+          "textSha256": "32FF2F930A8653164D3C2145F49398993A809738D16C341DE88728FFCF2DBEBA"
+        },
+        "sourceText": "The Shortened Blade Stratagem\nChange 3\" to 6\".",
+        "beforeSha256": "D935F35157ECE9E6DD468CABB4773249E548E296BC64AF59EFC059DA1C65C22F",
+        "afterSha256": "D935F35157ECE9E6DD468CABB4773249E548E296BC64AF59EFC059DA1C65C22F"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:retaliation-shortened-blade",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-retaliation-cadre:stratagem:3"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                525,
+                556,
+                551
+              ],
+              "textSha256": "32FF2F930A8653164D3C2145F49398993A809738D16C341DE88728FFCF2DBEBA",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "The Shortened Blade Stratagem\nChange 3\" to 6\"."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:retaliation-bonded-heroes::detachment-retaliation-cadre:rule::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,558,556,639]"
+      },
+      "target": {
+        "id": "detachment-retaliation-cadre:rule",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-retaliation-cadre:rule"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          }
+        ]
+      },
+      "kind": "DETACHMENT_RULE_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well.",
+      "after": "Each time a T’AU EMPIRE BATTLESUIT model from your army makes a ranged attack that targets a unit within 12\", improve the Strength characteristic of that attack by 1. If that attack targets a unit within 8\", improve the Armour Penetration characteristic of that attack by 1 as well.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          558,
+          556,
+          639
+        ],
+        "textSha256": "D6E4984B4BF709CDC9080B841720E4D929770A80C7DF0A8A21E89FC9ACD729C5",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            558,
+            556,
+            639
+          ],
+          "textSha256": "D6E4984B4BF709CDC9080B841720E4D929770A80C7DF0A8A21E89FC9ACD729C5"
+        },
+        "sourceText": "Bonded Heroes Detachment Rule\nChange to:\n‘Each time a T’AU EMPIRE BATTLESUIT model from your army makes\na ranged attack that targets a unit within 12\", improve the Strength\ncharacteristic of that attack by 1. If that attack targets a unit within\n8\", improve the Armour Penetration characteristic of that attack by 1\nas well.’",
+        "beforeSha256": "004DDF417113FE0BCA89B4782628CD63C5086ED6687C49BB8AA1C7AA4C7B3B8D",
+        "afterSha256": "004DDF417113FE0BCA89B4782628CD63C5086ED6687C49BB8AA1C7AA4C7B3B8D"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:retaliation-bonded-heroes",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "detachment-retaliation-cadre:rule"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                558,
+                556,
+                639
+              ],
+              "textSha256": "D6E4984B4BF709CDC9080B841720E4D929770A80C7DF0A8A21E89FC9ACD729C5",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Bonded Heroes Detachment Rule\nChange to:\n‘Each time a T’AU EMPIRE BATTLESUIT model from your army makes\na ranged attack that targets a unit within 12\", improve the Strength\ncharacteristic of that attack by 1. If that attack targets a unit within\n8\", improve the Armour Penetration characteristic of that attack by 1\nas well.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-devilfish::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-devilfish",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-devilfish"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "TRANSPORT",
+        "DEDICATED TRANSPORT",
+        "DEVILFISH"
+      ],
+      "after": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "TRANSPORT",
+        "DEDICATED TRANSPORT",
+        "DEVILFISH"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "C921029E2D2C6CB48DD18573335AF7B671553CF470740B7B078920AA5D5B9EF0",
+        "afterSha256": "C921029E2D2C6CB48DD18573335AF7B671553CF470740B7B078920AA5D5B9EF0"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-hammerhead-gunship::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-hammerhead-gunship",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-hammerhead-gunship"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "HAMMERHEAD GUNSHIP"
+      ],
+      "after": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "HAMMERHEAD GUNSHIP"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "2D6AE3A18514FCF4AF939B48B90088B02A0A7F579B499BA74E6A6E8A6D5E93A4",
+        "afterSha256": "2D6AE3A18514FCF4AF939B48B90088B02A0A7F579B499BA74E6A6E8A6D5E93A4"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-piranhas::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-piranhas",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-piranhas"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "PIRANHAS"
+      ],
+      "after": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "PIRANHAS"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "BB9388A6FEE2821ED4F2F29A7753739C545264470F5B2760116E9B497B1F9D6E",
+        "afterSha256": "BB9388A6FEE2821ED4F2F29A7753739C545264470F5B2760116E9B497B1F9D6E"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-sky-ray-gunship::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-sky-ray-gunship",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sky-ray-gunship"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "MARKERLIGHT",
+        "SKY RAY GUNSHIP"
+      ],
+      "after": [
+        "VEHICLE",
+        "FLY",
+        "FRAME",
+        "MARKERLIGHT",
+        "SKY RAY GUNSHIP"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "D0DF6038C432A07F4959FBBAC3B8A36E6F760013A58379B82CB2DFFD02194C96",
+        "afterSha256": "D0DF6038C432A07F4959FBBAC3B8A36E6F760013A58379B82CB2DFFD02194C96"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-tidewall-droneport::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-tidewall-droneport",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tidewall-droneport"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FLY",
+        "FRAME",
+        "TIDEWALL DRONEPORT"
+      ],
+      "after": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FLY",
+        "FRAME",
+        "TIDEWALL DRONEPORT"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "DC86642222F06490D1B699A1294CE09768C04D5D8DD4B0E7700D211E595C9237",
+        "afterSha256": "DC86642222F06490D1B699A1294CE09768C04D5D8DD4B0E7700D211E595C9237"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-tidewall-gunrig::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-tidewall-gunrig",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tidewall-gunrig"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FLY",
+        "FRAME",
+        "TIDEWALL GUNRIG"
+      ],
+      "after": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FLY",
+        "FRAME",
+        "TIDEWALL GUNRIG"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "B5F9F8017A90AADDB270F4A7A931A0C3AC61044B1D5844BD63D5400A51434BE2",
+        "afterSha256": "B5F9F8017A90AADDB270F4A7A931A0C3AC61044B1D5844BD63D5400A51434BE2"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:datasheets-frame::unit-tidewall-shieldline::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,657,556,695]"
+      },
+      "target": {
+        "id": "unit-tidewall-shieldline",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tidewall-shieldline"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "FLY",
+        "TIDEWALL SHIELDLINE"
+      ],
+      "after": [
+        "FORTIFICATION",
+        "VEHICLE",
+        "TRANSPORT",
+        "FRAME",
+        "FLY",
+        "TIDEWALL SHIELDLINE"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          657,
+          556,
+          695
+        ],
+        "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            657,
+            556,
+            695
+          ],
+          "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9"
+        },
+        "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'.",
+        "beforeSha256": "135B95DE1DF0831EE360D6320E7826AD944FC2DA288166D4FAD1810920740170",
+        "afterSha256": "135B95DE1DF0831EE360D6320E7826AD944FC2DA288166D4FAD1810920740170"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:datasheets-frame",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "unit-devilfish",
+              "unit-hammerhead-gunship",
+              "unit-piranhas",
+              "unit-sky-ray-gunship",
+              "unit-tidewall-droneport",
+              "unit-tidewall-gunrig",
+              "unit-tidewall-shieldline"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                657,
+                556,
+                695
+              ],
+              "textSha256": "2EE5B7996C1E04A58584BC58ED318F21ABF3965D923FB0E6C1DB61FF4C10F6D9",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Devilfish, Hammerhead Gunship, Piranhas, Sky Ray Gunship, Tidewall\nDroneport, Tidewall Gunrig, Tidewall Shieldline – Keywords Section\nAdd 'FRAME'."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:crisis-sunforge::datasheet-crisis-sunforge-battlesuits:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,701,556,760]"
+      },
+      "target": {
+        "id": "datasheet-crisis-sunforge-battlesuits:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-crisis-sunforge-battlesuits:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Sunforge: Each time a model in this unit makes a ranged attack that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll and you can re-roll the Damage roll.",
+      "after": "Sunforge: Each time a model in this unit makes a ranged attack that targets a MONSTER or VEHICLE unit, you can re-roll the Wound roll and you can re-roll the Damage roll.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 19,
+        "bbox": [
+          303,
+          701,
+          556,
+          760
+        ],
+        "textSha256": "8A13F973EF7B8DC02E8AA3113E261E9CF85B537B8E50AFDBF7A10E058A5D57CD",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 19,
+          "bbox": [
+            303,
+            701,
+            556,
+            760
+          ],
+          "textSha256": "8A13F973EF7B8DC02E8AA3113E261E9CF85B537B8E50AFDBF7A10E058A5D57CD"
+        },
+        "sourceText": "Crisis Sunforge Battlesuits, Sunforge Ability\nChange to:\n‘Each time a model in this unit makes a ranged attack that targets a\nMONSTER or VEHICLE unit, you can re-roll the Wound roll and\nyou can re-roll the Damage roll.’",
+        "beforeSha256": "A61C4940D2993E84EF02F04FB39313F6E6E28F17CA97F8943EA89CD06A9A7EAE",
+        "afterSha256": "A61C4940D2993E84EF02F04FB39313F6E6E28F17CA97F8943EA89CD06A9A7EAE"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:crisis-sunforge",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-crisis-sunforge-battlesuits:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 19,
+              "bbox": [
+                303,
+                701,
+                556,
+                760
+              ],
+              "textSha256": "8A13F973EF7B8DC02E8AA3113E261E9CF85B537B8E50AFDBF7A10E058A5D57CD",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Crisis Sunforge Battlesuits, Sunforge Ability\nChange to:\n‘Each time a model in this unit makes a ranged attack that targets a\nMONSTER or VEHICLE unit, you can re-roll the Wound roll and\nyou can re-roll the Damage roll.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:ethereal-faction-ability::datasheet-ethereal:rule-reference:2::/label",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,63,292,100]"
+      },
+      "target": {
+        "id": "datasheet-ethereal:rule-reference:2",
+        "field": [
+          "label"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-ethereal:rule-reference:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "RULE_REFERENCE"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "For the Greater Good",
+      "after": "For the Greater Good",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          63,
+          292,
+          100
+        ],
+        "textSha256": "87F1BEAC6967B95265B150695057D3487F552537101B48DEBC622F5DCA5FC0AC",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            63,
+            292,
+            100
+          ],
+          "textSha256": "87F1BEAC6967B95265B150695057D3487F552537101B48DEBC622F5DCA5FC0AC"
+        },
+        "sourceText": "Ethereal, Abilities\nAdd the following Faction Abilities section:\n‘FACTION: For the Greater Good’",
+        "beforeSha256": "A6C51E5B295E70B5A63DA1B825AC0F47506B194470BC7F61AD27700C369C0871",
+        "afterSha256": "A6C51E5B295E70B5A63DA1B825AC0F47506B194470BC7F61AD27700C369C0871"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:ethereal-faction-ability",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-ethereal:rule-reference:2"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                63,
+                292,
+                100
+              ],
+              "textSha256": "87F1BEAC6967B95265B150695057D3487F552537101B48DEBC622F5DCA5FC0AC",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Ethereal, Abilities\nAdd the following Faction Abilities section:\n‘FACTION: For the Greater Good’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:firesight-precise-targeting::datasheet-firesight-team:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,107,292,155]"
+      },
+      "target": {
+        "id": "datasheet-firesight-team:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-firesight-team:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Precise Targeting: Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll.",
+      "after": "Precise Targeting: Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          107,
+          292,
+          155
+        ],
+        "textSha256": "45E020B51EBDE7E8BD6524CC061E432E736423093B124340984A8F6253001EC6",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            107,
+            292,
+            155
+          ],
+          "textSha256": "45E020B51EBDE7E8BD6524CC061E432E736423093B124340984A8F6253001EC6"
+        },
+        "sourceText": "Firesight Team, Precise Targeting Ability\nChange to:\n‘Each time a model in this unit makes an attack that targets a Spotted\nunit, you can re-roll the Hit roll.’",
+        "beforeSha256": "C8729CD01B53A6A388F358915B483252792F5D141CEBDBF1F8F042AB7D285C9F",
+        "afterSha256": "C8729CD01B53A6A388F358915B483252792F5D141CEBDBF1F8F042AB7D285C9F"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:firesight-precise-targeting",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-firesight-team:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                107,
+                292,
+                155
+              ],
+              "textSha256": "45E020B51EBDE7E8BD6524CC061E432E736423093B124340984A8F6253001EC6",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Firesight Team, Precise Targeting Ability\nChange to:\n‘Each time a model in this unit makes an attack that targets a Spotted\nunit, you can re-roll the Hit roll.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:kroot-trail-ambush::datasheet-kroot-trail-shaper:section:1::/blocks/1/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,163,292,228]"
+      },
+      "target": {
+        "id": "datasheet-kroot-trail-shaper:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-kroot-trail-shaper:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "after": "Kroot Ambush: After both players have deployed their armies, you can redeploy this model’s unit and one other friendly KROOT unit. When doing so, any of those units can be placed into Strategic Reserves, regardless of how many units are already in Strategic Reserves.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          163,
+          292,
+          228
+        ],
+        "textSha256": "299714029AE0D1990E31FFAEB9D16443C05EB2EAFDB0937F1745E7ACF688B9B5",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            163,
+            292,
+            228
+          ],
+          "textSha256": "299714029AE0D1990E31FFAEB9D16443C05EB2EAFDB0937F1745E7ACF688B9B5"
+        },
+        "sourceText": "Kroot Trail Shaper\n▪ Kroot Ambush Ability – Change to:\n‘After both players have deployed their armies, you can redeploy this\nmodel’s unit and one other friendly KROOT unit. When doing so, any of\nthose units can be placed into Strategic Reserves, regardless of how\nmany units are already in Strategic Reserves.’",
+        "beforeSha256": "EF38F6D7DCF90D754841DC005ED5B84587A0F9159461E2F3B9006DECD7A5AB2D",
+        "afterSha256": "EF38F6D7DCF90D754841DC005ED5B84587A0F9159461E2F3B9006DECD7A5AB2D"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:kroot-trail-ambush",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-kroot-trail-shaper:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                163,
+                292,
+                228
+              ],
+              "textSha256": "299714029AE0D1990E31FFAEB9D16443C05EB2EAFDB0937F1745E7ACF688B9B5",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Kroot Trail Shaper\n▪ Kroot Ambush Ability – Change to:\n‘After both players have deployed their armies, you can redeploy this\nmodel’s unit and one other friendly KROOT unit. When doing so, any of\nthose units can be placed into Strategic Reserves, regardless of how\nmany units are already in Strategic Reserves.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:kroot-trail-finding::datasheet-kroot-trail-shaper:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,228,292,287]"
+      },
+      "target": {
+        "id": "datasheet-kroot-trail-shaper:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-kroot-trail-shaper:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Trail Finding: In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6”.",
+      "after": "Trail Finding: In your opponent’s Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\".",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          228,
+          292,
+          287
+        ],
+        "textSha256": "3A0091A6BE03D67F2E3BE93EF90E82C791B70F3F2B4F0D3CE77C71213BABE2BC",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            228,
+            292,
+            287
+          ],
+          "textSha256": "3A0091A6BE03D67F2E3BE93EF90E82C791B70F3F2B4F0D3CE77C71213BABE2BC"
+        },
+        "sourceText": "▪ Trail Finding Ability – Change to:\n‘In your opponent’s Movement phase, if an enemy unit ends a move\nwithin 8\" of this unit, if this unit is not within Engagement Range of\none or more enemy units, this unit can make a Normal move of up\nto D6\".’",
+        "beforeSha256": "070C7620C5F3435535F1F183E923CB9EB69945883937F71BF0DB8AE811B74367",
+        "afterSha256": "9A50423869837DF4D6058653267218E04FEEB41F51E6937BAEB9B2836FD10862"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:kroot-trail-finding",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-kroot-trail-shaper:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                228,
+                292,
+                287
+              ],
+              "textSha256": "3A0091A6BE03D67F2E3BE93EF90E82C791B70F3F2B4F0D3CE77C71213BABE2BC",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "▪ Trail Finding Ability – Change to:\n‘In your opponent’s Movement phase, if an enemy unit ends a move\nwithin 8\" of this unit, if this unit is not within Engagement Range of\none or more enemy units, this unit can make a Normal move of up\nto D6\".’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:pathfinder-target-uploaded::datasheet-pathfinder-team:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,294,292,353]"
+      },
+      "target": {
+        "id": "datasheet-pathfinder-team:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-pathfinder-team:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Target Uploaded: Each time a model in this unit makes an attack that targets their Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and that attack has the [IGNORES COVER] ability.",
+      "after": "Target Uploaded: Each time a model in this unit makes an attack that targets their Spotted unit, improve the Ballistic Skill characteristic of that attack by 1 and that attack has the [IGNORES COVER] ability.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          294,
+          292,
+          353
+        ],
+        "textSha256": "9906CD154B0D1C46D513D34495D19ABAF21CD62B41E6E8B8DEEC2B26CE12AC33",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            294,
+            292,
+            353
+          ],
+          "textSha256": "9906CD154B0D1C46D513D34495D19ABAF21CD62B41E6E8B8DEEC2B26CE12AC33"
+        },
+        "sourceText": "Pathfinder Team, Target Uploaded Ability\nChange to:\n‘Each time a model in this unit makes an attack that targets their\nSpotted unit, improve the Ballistic Skill characteristic of that attack by 1\nand that attack has the [IGNORES COVER] ability.’",
+        "beforeSha256": "7B1B4AEF33894A9549B8ED7A449063E8C2C5A253E6A68C3CE7F2D5D3FB9D2960",
+        "afterSha256": "7B1B4AEF33894A9549B8ED7A449063E8C2C5A253E6A68C3CE7F2D5D3FB9D2960"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:pathfinder-target-uploaded",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-pathfinder-team:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                294,
+                292,
+                353
+              ],
+              "textSha256": "9906CD154B0D1C46D513D34495D19ABAF21CD62B41E6E8B8DEEC2B26CE12AC33",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Pathfinder Team, Target Uploaded Ability\nChange to:\n‘Each time a model in this unit makes an attack that targets their\nSpotted unit, improve the Ballistic Skill characteristic of that attack by 1\nand that attack has the [IGNORES COVER] ability.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:riptide-nova-charge::datasheet-riptide-battlesuit:section:1::/blocks/1/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,361,292,426]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Nova Charge: Once per battle, when this unit is selected to shoot in your Shooting phase, select one ranged weapon equipped by this model. Until the end of the phase, that weapon has the [DEVASTATING WOUNDS] ability.",
+      "after": "Nova Charge: Once per battle, when this unit is selected to shoot in your Shooting phase, select one ranged weapon equipped by this model. Until the end of the phase, that weapon has the [DEVASTATING WOUNDS] ability.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          361,
+          292,
+          426
+        ],
+        "textSha256": "89AE1F82F475EE95F2DC933C8FB37A1C289C6F90F79164A2A25945CA727139CA",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            361,
+            292,
+            426
+          ],
+          "textSha256": "89AE1F82F475EE95F2DC933C8FB37A1C289C6F90F79164A2A25945CA727139CA"
+        },
+        "sourceText": "Riptide Battlesuit\n▪ Nova Charge Ability\nChange to:\n‘Once per battle, when this unit is selected to shoot in your Shooting\nphase, select one ranged weapon equipped by this model. Until the\nend of the phase, that weapon has the [DEVASTATING WOUNDS] ability.’",
+        "beforeSha256": "2D31C2C6822C262EDB807DCC08AA1686C1FD5B12C85D7F2505AF297403EF37DF",
+        "afterSha256": "2D31C2C6822C262EDB807DCC08AA1686C1FD5B12C85D7F2505AF297403EF37DF"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:riptide-nova-charge",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-riptide-battlesuit:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                361,
+                292,
+                426
+              ],
+              "textSha256": "89AE1F82F475EE95F2DC933C8FB37A1C289C6F90F79164A2A25945CA727139CA",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Riptide Battlesuit\n▪ Nova Charge Ability\nChange to:\n‘Once per battle, when this unit is selected to shoot in your Shooting\nphase, select one ranged weapon equipped by this model. Until the\nend of the phase, that weapon has the [DEVASTATING WOUNDS] ability.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/range",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "range"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "72\"",
+      "after": "72\"",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "3046B17BEE169826DB9692F8D3F7A91E1AE992A1971F3D7E6E7BC41B8E185FE2",
+        "afterSha256": "3046B17BEE169826DB9692F8D3F7A91E1AE992A1971F3D7E6E7BC41B8E185FE2"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/attacks",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "attacks"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "6",
+      "after": "6",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "92E9E7E5922D26E17E48F0869AB25CC99499FDAB722C065DE8E0965C96C68E86",
+        "afterSha256": "92E9E7E5922D26E17E48F0869AB25CC99499FDAB722C065DE8E0965C96C68E86"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/skill",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "skill"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4+",
+      "after": "4+",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "C989898F41C07B242E9B47D3C8E4A510A1010E4B50B585089873A9B05D06D4DB",
+        "afterSha256": "C989898F41C07B242E9B47D3C8E4A510A1010E4B50B585089873A9B05D06D4DB"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/strength",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "9",
+      "after": "9",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "986B79D4B69DFFB1D19836F47B27073D95BF55201B3385ACEB7E0687A21D8667",
+        "afterSha256": "986B79D4B69DFFB1D19836F47B27073D95BF55201B3385ACEB7E0687A21D8667"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/ap",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "-2",
+      "after": "-2",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "F5B482B6880C0E22D43532F5E6CF442839F9469ACC7F373B7C45C82C183A9B9D",
+        "afterSha256": "F5B482B6880C0E22D43532F5E6CF442839F9469ACC7F373B7C45C82C183A9B9D"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/damage",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "damage"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "3",
+      "after": "3",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "A4AAB3F1F08004E907D2357FAFE74CAB56359BCB32E23F52E7EB1D3A9C0A2AD3",
+        "afterSha256": "A4AAB3F1F08004E907D2357FAFE74CAB56359BCB32E23F52E7EB1D3A9C0A2AD3"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:2::/abilities",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:2",
+        "field": [
+          "abilities"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": [],
+      "after": [],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "afterSha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/range",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "range"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "72\"",
+      "after": "72\"",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "3046B17BEE169826DB9692F8D3F7A91E1AE992A1971F3D7E6E7BC41B8E185FE2",
+        "afterSha256": "3046B17BEE169826DB9692F8D3F7A91E1AE992A1971F3D7E6E7BC41B8E185FE2"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/attacks",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "attacks"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "6",
+      "after": "6",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "92E9E7E5922D26E17E48F0869AB25CC99499FDAB722C065DE8E0965C96C68E86",
+        "afterSha256": "92E9E7E5922D26E17E48F0869AB25CC99499FDAB722C065DE8E0965C96C68E86"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/skill",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "skill"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4+",
+      "after": "4+",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "C989898F41C07B242E9B47D3C8E4A510A1010E4B50B585089873A9B05D06D4DB",
+        "afterSha256": "C989898F41C07B242E9B47D3C8E4A510A1010E4B50B585089873A9B05D06D4DB"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/strength",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "strength"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "10",
+      "after": "10",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "536549599EC6C3B859CD3970025779A13D061783C73E663FEA7F963E98379AA8",
+        "afterSha256": "536549599EC6C3B859CD3970025779A13D061783C73E663FEA7F963E98379AA8"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/ap",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "ap"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "-3",
+      "after": "-3",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "199CA7B8A8FD85FC22965DC9D4BBDA340B57045314E2669384679D98C1BDD1D1",
+        "afterSha256": "199CA7B8A8FD85FC22965DC9D4BBDA340B57045314E2669384679D98C1BDD1D1"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/damage",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "damage"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": "4",
+      "after": "4",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460",
+        "afterSha256": "2BF175F9655E7BB7357B9F0A7C6051465A5AE701104FFE741B98E852C0E4D460"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:riptide-ion-accelerator-profiles::datasheet-riptide-battlesuit:weapon:3::/abilities",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,437,292,547]"
+      },
+      "target": {
+        "id": "datasheet-riptide-battlesuit:weapon:3",
+        "field": [
+          "abilities"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-riptide-battlesuit:weapon:3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "SET",
+      "expectedBefore": [
+        "hazardous"
+      ],
+      "after": [
+        "hazardous"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          437,
+          292,
+          547
+        ],
+        "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            437,
+            292,
+            547
+          ],
+          "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778"
+        },
+        "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4",
+        "beforeSha256": "5FE61837923446E977038E25B83087A8E414EEAE747AAFF88A390A7080612DF6",
+        "afterSha256": "5FE61837923446E977038E25B83087A8E414EEAE747AAFF88A390A7080612DF6"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:riptide-ion-accelerator-profiles",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-riptide-battlesuit:weapon:2",
+              "datasheet-riptide-battlesuit:weapon:3"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                437,
+                292,
+                547
+              ],
+              "textSha256": "3C20B148479839FEE272B40298CEA5EC17B4DD78B069CCD70736448227B5A778",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "▪ Change profiles to:\nIon Accelerator ‑ Standard\nRANGE A BS S AP D\n72\" 6 4+ 9 -2 3\nIon Accelerator ‑ Supercharge [HAZARDOUS]\nRANGE A BS S AP D\n72\" 6 4+ 10 -3 4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:stealth-forward-observers::datasheet-stealth-battlesuits:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,548,292,613]"
+      },
+      "target": {
+        "id": "datasheet-stealth-battlesuits:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-stealth-battlesuits:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Forward Observers: Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
+      "after": "Forward Observers: Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          548,
+          292,
+          613
+        ],
+        "textSha256": "A04649AC9D7A4D59068C6D76DC352F7B939D87FD3E5F4549C1685AADE0088C4F",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            548,
+            292,
+            613
+          ],
+          "textSha256": "A04649AC9D7A4D59068C6D76DC352F7B939D87FD3E5F4549C1685AADE0088C4F"
+        },
+        "sourceText": "Stealth Battlesuits\n▪ Forward Observers Ability – Change to:\nEach time this unit is an Observer unit, until the end of the phase,\neach time a ranged attack is made by a model in a Guided unit that\ntargets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound\nroll of 1.’",
+        "beforeSha256": "7B8A227D927552D20B51B827A1F9BA4B75E2B74C0137CB5AD2E7CF7D2A98CBA2",
+        "afterSha256": "7B8A227D927552D20B51B827A1F9BA4B75E2B74C0137CB5AD2E7CF7D2A98CBA2"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:stealth-forward-observers",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-stealth-battlesuits:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                548,
+                292,
+                613
+              ],
+              "textSha256": "A04649AC9D7A4D59068C6D76DC352F7B939D87FD3E5F4549C1685AADE0088C4F",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Stealth Battlesuits\n▪ Forward Observers Ability – Change to:\nEach time this unit is an Observer unit, until the end of the phase,\neach time a ranged attack is made by a model in a Guided unit that\ntargets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound\nroll of 1.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:stealth-homing-beacon::datasheet-stealth-battlesuits:section:1::/blocks/1/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,613,292,630]"
+      },
+      "target": {
+        "id": "datasheet-stealth-battlesuits:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-stealth-battlesuits:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Homing Beacon: Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\nDesigner’s Note: Place a Homing Beacon token next to this unit, removing it once this ability is used.",
+      "after": "Homing Beacon: Once per battle, you can use the Rapid Ingress Stratagem for 0CP. The target must be set up within 3\" of the bearer’s unit and more than 8\" away from all enemy units.\nDesigner’s Note: Place a Homing Beacon token next to this unit, removing it once this ability is used.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          613,
+          292,
+          630
+        ],
+        "textSha256": "2863DF1ABB5E7EFD746ABDCBC2844699F2A2E9FC7D8AE1C872967A0F186E576C",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            613,
+            292,
+            630
+          ],
+          "textSha256": "2863DF1ABB5E7EFD746ABDCBC2844699F2A2E9FC7D8AE1C872967A0F186E576C"
+        },
+        "sourceText": "▪ Homing Beacon Wargear Ability – Change 9\" to 8\".",
+        "beforeSha256": "C67A335BC17E5454D3C8ED5A7F7FCCF404161A2BD2EE0DF3BE519900AAB00149",
+        "afterSha256": "C67A335BC17E5454D3C8ED5A7F7FCCF404161A2BD2EE0DF3BE519900AAB00149"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:stealth-homing-beacon",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-stealth-battlesuits:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                613,
+                292,
+                630
+              ],
+              "textSha256": "2863DF1ABB5E7EFD746ABDCBC2844699F2A2E9FC7D8AE1C872967A0F186E576C",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "▪ Homing Beacon Wargear Ability – Change 9\" to 8\"."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-frame::unit-razorshark-strike-fighter::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,657]"
+      },
+      "target": {
+        "id": "unit-razorshark-strike-fighter",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-razorshark-strike-fighter"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "FRAME",
+        "RAZORSHARK STRIKE FIGHTER"
+      ],
+      "after": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "FRAME",
+        "RAZORSHARK STRIKE FIGHTER"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          657
+        ],
+        "textSha256": "8C023E50DAA86F4CA3459040A80C35DB940742D4A19480FC67429B58AF1560D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            657
+          ],
+          "textSha256": "8C023E50DAA86F4CA3459040A80C35DB940742D4A19480FC67429B58AF1560D9"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.",
+        "beforeSha256": "08FA4BEDFCC65CC74F9D648304C261715E85E739972C55DD615528EDADDCDA06",
+        "afterSha256": "08FA4BEDFCC65CC74F9D648304C261715E85E739972C55DD615528EDADDCDA06"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-frame::unit-sun-shark-bomber::/keywords",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,657]"
+      },
+      "target": {
+        "id": "unit-sun-shark-bomber",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sun-shark-bomber"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "SET",
+      "expectedBefore": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "FRAME",
+        "SUN SHARK BOMBER"
+      ],
+      "after": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "FRAME",
+        "SUN SHARK BOMBER"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          657
+        ],
+        "textSha256": "8C023E50DAA86F4CA3459040A80C35DB940742D4A19480FC67429B58AF1560D9",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            657
+          ],
+          "textSha256": "8C023E50DAA86F4CA3459040A80C35DB940742D4A19480FC67429B58AF1560D9"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.",
+        "beforeSha256": "C8EF822C02DD4AA34C0634F68FB7FED26E52C395C76537B6C8C4A01C962B59C1",
+        "afterSha256": "C8EF822C02DD4AA34C0634F68FB7FED26E52C395C76537B6C8C4A01C962B59C1"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:aircraft-frame",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "unit-razorshark-strike-fighter",
+              "unit-sun-shark-bomber"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                635,
+                292,
+                657
+              ],
+              "textSha256": "8C023E50DAA86F4CA3459040A80C35DB940742D4A19480FC67429B58AF1560D9",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-move-objective-control::datasheet-razorshark-strike-fighter:profile:1::/stats/M",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,672]"
+      },
+      "target": {
+        "id": "datasheet-razorshark-strike-fighter:profile:1",
+        "field": [
+          "stats",
+          "M"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-razorshark-strike-fighter:profile:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "MODEL_PROFILE"
+          }
+        ]
+      },
+      "kind": "DATASHEET_STAT",
+      "operation": "SET",
+      "expectedBefore": "-",
+      "after": "-",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          672
+        ],
+        "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            672
+          ],
+          "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.\n▪ Profile: Change M and OC to ‘-’.",
+        "beforeSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5",
+        "afterSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-move-objective-control::datasheet-razorshark-strike-fighter:profile:1::/stats/OC",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,672]"
+      },
+      "target": {
+        "id": "datasheet-razorshark-strike-fighter:profile:1",
+        "field": [
+          "stats",
+          "OC"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-razorshark-strike-fighter:profile:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "MODEL_PROFILE"
+          }
+        ]
+      },
+      "kind": "DATASHEET_STAT",
+      "operation": "SET",
+      "expectedBefore": "-",
+      "after": "-",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          672
+        ],
+        "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            672
+          ],
+          "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.\n▪ Profile: Change M and OC to ‘-’.",
+        "beforeSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5",
+        "afterSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-move-objective-control::datasheet-sun-shark-bomber:profile:1::/stats/M",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,672]"
+      },
+      "target": {
+        "id": "datasheet-sun-shark-bomber:profile:1",
+        "field": [
+          "stats",
+          "M"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sun-shark-bomber:profile:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "MODEL_PROFILE"
+          }
+        ]
+      },
+      "kind": "DATASHEET_STAT",
+      "operation": "SET",
+      "expectedBefore": "-",
+      "after": "-",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          672
+        ],
+        "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            672
+          ],
+          "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.\n▪ Profile: Change M and OC to ‘-’.",
+        "beforeSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5",
+        "afterSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:aircraft-move-objective-control::datasheet-sun-shark-bomber:profile:1::/stats/OC",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,635,292,672]"
+      },
+      "target": {
+        "id": "datasheet-sun-shark-bomber:profile:1",
+        "field": [
+          "stats",
+          "OC"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sun-shark-bomber:profile:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "MODEL_PROFILE"
+          }
+        ]
+      },
+      "kind": "DATASHEET_STAT",
+      "operation": "SET",
+      "expectedBefore": "-",
+      "after": "-",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          635,
+          292,
+          672
+        ],
+        "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            635,
+            292,
+            672
+          ],
+          "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87"
+        },
+        "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.\n▪ Profile: Change M and OC to ‘-’.",
+        "beforeSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5",
+        "afterSha256": "0933FB667296882D8C45ABCA58AC52E01C8DB6F19E626B30DE88F0F4ED143EC5"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:aircraft-move-objective-control",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-razorshark-strike-fighter:profile:1",
+              "datasheet-sun-shark-bomber:profile:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                635,
+                292,
+                672
+              ],
+              "textSha256": "2CAFA3EDB499C29F066973E65FD2E56A3BE380AE7F1F13D29051470796DC6D87",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Razorshark Strike Fighter, Sun Shark Bomber\n▪ Keywords: Add ‘FRAME’.\n▪ Profile: Change M and OC to ‘-’."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:sun-shark-pulse-bombs::datasheet-sun-shark-bomber:section:1::/blocks/0/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[42,679,292,738]"
+      },
+      "target": {
+        "id": "datasheet-sun-shark-bomber:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sun-shark-bomber:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Pulse Bombs: At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: For each 4+, that unit suffers 1 mortal wound.",
+      "after": "Pulse Bombs: At the end of your opponent’s Fight phase, select one visible enemy unit (excluding Lone Operative units) within 24\" of this unit, and roll six D6 for that unit: For each 4+, that unit suffers 1 mortal wound.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          42,
+          679,
+          292,
+          738
+        ],
+        "textSha256": "477C40D57A4BD32E8263056A81851C1E0E95F76991F0915F78B365016475B81A",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            42,
+            679,
+            292,
+            738
+          ],
+          "textSha256": "477C40D57A4BD32E8263056A81851C1E0E95F76991F0915F78B365016475B81A"
+        },
+        "sourceText": "Sun Shark Bomber, Pulse Bombs Ability\nChange to:\n‘At the end of your opponent’s Fight phase, select one visible enemy\nunit (excluding Lone Operative units) within 24\" of this unit, and roll six\nD6 for that unit: For each 4+, that unit suffers 1 mortal wound.’",
+        "beforeSha256": "7162DA4FF7F881065ED7EE342EE587AA3BE06030610E2B17F89C1FE68AED01B8",
+        "afterSha256": "7162DA4FF7F881065ED7EE342EE587AA3BE06030610E2B17F89C1FE68AED01B8"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:sun-shark-pulse-bombs",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-sun-shark-bomber:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                42,
+                679,
+                292,
+                738
+              ],
+              "textSha256": "477C40D57A4BD32E8263056A81851C1E0E95F76991F0915F78B365016475B81A",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Sun Shark Bomber, Pulse Bombs Ability\nChange to:\n‘At the end of your opponent’s Fight phase, select one visible enemy\nunit (excluding Lone Operative units) within 24\" of this unit, and roll six\nD6 for that unit: For each 4+, that unit suffers 1 mortal wound.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:twin-lance-neocapacitor::datasheet-the-twin-lance:section:1::/blocks/1/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,63,556,133]"
+      },
+      "target": {
+        "id": "datasheet-the-twin-lance:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-the-twin-lance:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Neocapacitor Shields: At the start of your opponent’s Charge phase, you can select one visible enemy unit (excluding MONSTER and VEHICLE units) within 12\" of this unit. That unit must take a Battle-shock test and, until the end of the turn, subtract 1 from Charge rolls made for that unit.",
+      "after": "Neocapacitor Shields: At the start of your opponent’s Charge phase, you can select one visible enemy unit (excluding MONSTER and VEHICLE units) within 12\" of this unit. That unit must take a Battle-shock test and, until the end of the turn, subtract 1 from Charge rolls made for that unit.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          303,
+          63,
+          556,
+          133
+        ],
+        "textSha256": "6B37465CBD34B0761A68CF149C8235456D2B09AFC07ECBB5B5A058BA44BDE83D",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            303,
+            63,
+            556,
+            133
+          ],
+          "textSha256": "6B37465CBD34B0761A68CF149C8235456D2B09AFC07ECBB5B5A058BA44BDE83D"
+        },
+        "sourceText": "The Twin Lance, Neocapacitor Shields ability\nChange to:\n‘At the start of your opponent’s Charge phase, you can select one visible\nenemy unit (excluding MONSTER and VEHICLE units) within 12\" of this\nunit. That unit must take a Battle-shock test and, until the end of the\nturn, subtract 1 from Charge rolls made for that unit.’",
+        "beforeSha256": "E47F30FDD3BC86AF8A3744183C088307901FA3B698E24C83A7155326D6B82FE1",
+        "afterSha256": "E47F30FDD3BC86AF8A3744183C088307901FA3B698E24C83A7155326D6B82FE1"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:twin-lance-neocapacitor",
+            "group": "RULES_UPDATE",
+            "status": "APPLIED",
+            "targetIds": [
+              "datasheet-the-twin-lance:section:1"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                303,
+                63,
+                556,
+                133
+              ],
+              "textSha256": "6B37465CBD34B0761A68CF149C8235456D2B09AFC07ECBB5B5A058BA44BDE83D",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "The Twin Lance, Neocapacitor Shields ability\nChange to:\n‘At the start of your opponent’s Charge phase, you can select one visible\nenemy unit (excluding MONSTER and VEHICLE units) within 12\" of this\nunit. That unit must take a Battle-shock test and, until the end of the\nturn, subtract 1 from Charge rolls made for that unit.’"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:faq-ethereal-embarked::faq-2::/title",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,162,556,199]"
+      },
+      "target": {
+        "id": "faq-2",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "faq-2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "FAQ"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "SET",
+      "expectedBefore": "Can I use an ETHEREAL’s Coordinated Leadership ability while it is embarked within a TRANSPORT?",
+      "after": "Can I use an Ethereal’s Coordinated Leadership ability while it is embarked within a TRANSPORT?",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          303,
+          162,
+          556,
+          199
+        ],
+        "textSha256": "49E4B2851B83CFD2E0FC717B86A39CC7A8DE352BDEDC2F2B85826A08B7ECFD76",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            303,
+            162,
+            556,
+            199
+          ],
+          "textSha256": "49E4B2851B83CFD2E0FC717B86A39CC7A8DE352BDEDC2F2B85826A08B7ECFD76"
+        },
+        "sourceText": "Q: Can I use an Ethereal’s Coordinated Leadership ability while it is\nembarked within a TRANSPORT?\nA: Yes.",
+        "beforeSha256": "5073A3D383FA83B14B1B1C16CD5F51131DD5EE378CDF458BD57C19DC3ACDEAC7",
+        "afterSha256": "9A8EDA9F68E31E04258F647F2B179822C1B4A9843A68443E4451AD8354493E16"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:faq-ethereal-embarked::faq-2::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,162,556,199]"
+      },
+      "target": {
+        "id": "faq-2",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "faq-2"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "FAQ"
+          }
+        ]
+      },
+      "kind": "FAQ",
+      "operation": "SET",
+      "expectedBefore": "Yes.",
+      "after": "Yes.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          303,
+          162,
+          556,
+          199
+        ],
+        "textSha256": "49E4B2851B83CFD2E0FC717B86A39CC7A8DE352BDEDC2F2B85826A08B7ECFD76",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            303,
+            162,
+            556,
+            199
+          ],
+          "textSha256": "49E4B2851B83CFD2E0FC717B86A39CC7A8DE352BDEDC2F2B85826A08B7ECFD76"
+        },
+        "sourceText": "Q: Can I use an Ethereal’s Coordinated Leadership ability while it is\nembarked within a TRANSPORT?\nA: Yes.",
+        "beforeSha256": "CF87B23D0F70CFF8F9CE62B411AD616FD9BE0B93EDEBA67C70F647E5A4B848E1",
+        "afterSha256": "CF87B23D0F70CFF8F9CE62B411AD616FD9BE0B93EDEBA67C70F647E5A4B848E1"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:faq-ethereal-embarked",
+            "group": "FAQ",
+            "status": "APPLIED",
+            "targetIds": [
+              "faq-2"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                303,
+                162,
+                556,
+                199
+              ],
+              "textSha256": "49E4B2851B83CFD2E0FC717B86A39CC7A8DE352BDEDC2F2B85826A08B7ECFD76",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Q: Can I use an Ethereal’s Coordinated Leadership ability while it is\nembarked within a TRANSPORT?\nA: Yes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:faq-hidden-hunters::faq-3::/title",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,206,556,299]"
+      },
+      "target": {
+        "id": "faq-3",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "faq-3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "FAQ"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "SET",
+      "expectedBefore": "If I am using the Kroot Hunting Pack Detachment, if an enemy unit selects a KROOT unit from my army as a target of its ranged attacks, but I use the Hidden Hunters Stratagem so that my KROOT unit is no longer an eligible target for any of those attacks, and there are no other eligible targets for those attacks (as described in the Rules Commentary), can my nearby KROOTOX RIDERS unit still use its Kroot Packmates ability to shoot at that attacking unit?",
+      "after": "If I am using the Kroot Hunting Pack Detachment, if an enemy unit selects a KROOT unit from my army as a target of its ranged attacks, but I use the Hidden Hunters Stratagem so that my KROOT unit is no longer an eligible target for any of those attacks, and there are no other eligible targets for those attacks (as described in the Rules Commentary), can my nearby KROOTOX RIDERS unit still use its Kroot Packmates ability to shoot at that attacking unit?",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          303,
+          206,
+          556,
+          299
+        ],
+        "textSha256": "95065CD1D0B3AAEE3A74ECF23BEF14274B184CB33A9398059A3A39BB7E0507E8",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            303,
+            206,
+            556,
+            299
+          ],
+          "textSha256": "95065CD1D0B3AAEE3A74ECF23BEF14274B184CB33A9398059A3A39BB7E0507E8"
+        },
+        "sourceText": "Q: If I am using the Kroot Hunting Pack Detachment, if an enemy unit\nselects a KROOT unit from my army as a target of its ranged attacks, but\nI use the Hidden Hunters Stratagem so that my KROOT unit is no longer\nan eligible target for any of those attacks, and there are no other eligible\ntargets for those attacks (as described in the Rules Commentary), can my\nnearby KROOTOX RIDERS unit still use its Kroot Packmates ability to shoot\nat that attacking unit?\nA: No.",
+        "beforeSha256": "4CF07CE1B35820D742FC1D1D31A9B2D1CB77D3D35C24B8047D466444BBA4934F",
+        "afterSha256": "4CF07CE1B35820D742FC1D1D31A9B2D1CB77D3D35C24B8047D466444BBA4934F"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:faq-hidden-hunters::faq-3::/text",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[303,206,556,299]"
+      },
+      "target": {
+        "id": "faq-3",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "faq-3"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "FAQ"
+          }
+        ]
+      },
+      "kind": "FAQ",
+      "operation": "SET",
+      "expectedBefore": "No.",
+      "after": "No.",
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 20,
+        "bbox": [
+          303,
+          206,
+          556,
+          299
+        ],
+        "textSha256": "95065CD1D0B3AAEE3A74ECF23BEF14274B184CB33A9398059A3A39BB7E0507E8",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 20,
+          "bbox": [
+            303,
+            206,
+            556,
+            299
+          ],
+          "textSha256": "95065CD1D0B3AAEE3A74ECF23BEF14274B184CB33A9398059A3A39BB7E0507E8"
+        },
+        "sourceText": "Q: If I am using the Kroot Hunting Pack Detachment, if an enemy unit\nselects a KROOT unit from my army as a target of its ranged attacks, but\nI use the Hidden Hunters Stratagem so that my KROOT unit is no longer\nan eligible target for any of those attacks, and there are no other eligible\ntargets for those attacks (as described in the Rules Commentary), can my\nnearby KROOTOX RIDERS unit still use its Kroot Packmates ability to shoot\nat that attacking unit?\nA: No.",
+        "beforeSha256": "A06FCF42F6466D9178EDFCCB0CB3BC4BB0D40C78258D071F83567FB8F6952083",
+        "afterSha256": "A06FCF42F6466D9178EDFCCB0CB3BC4BB0D40C78258D071F83567FB8F6952083"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:faq-hidden-hunters",
+            "group": "FAQ",
+            "status": "APPLIED",
+            "targetIds": [
+              "faq-3"
+            ],
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 20,
+              "bbox": [
+                303,
+                206,
+                556,
+                299
+              ],
+              "textSha256": "95065CD1D0B3AAEE3A74ECF23BEF14274B184CB33A9398059A3A39BB7E0507E8",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "sourceText": "Q: If I am using the Kroot Hunting Pack Detachment, if an enemy unit\nselects a KROOT unit from my army as a target of its ranged attacks, but\nI use the Hidden Hunters Stratagem so that my KROOT unit is no longer\nan eligible target for any of those attacks, and there are no other eligible\ntargets for those attacks (as described in the Rules Commentary), can my\nnearby KROOTOX RIDERS unit still use its Kroot Packmates ability to shoot\nat that attacking unit?\nA: No."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-official-v1.1:tiger-sharks-frame-removed::unit-tiger-shark",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[50,249.55,292,271.55]"
+      },
+      "target": {
+        "id": "unit-tiger-shark",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tiger-shark"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "TIGER SHARK"
+      ],
+      "after": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "TIGER SHARK"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 1,
+        "bbox": [
+          50,
+          249.55,
+          292,
+          271.55
+        ],
+        "textSha256": "5299CC80442D7714870FE1D0D15D75A9395AC49321314208E43EA9B1185924E7",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 1,
+          "bbox": [
+            50,
+            249.55,
+            292,
+            271.55
+          ],
+          "textSha256": "5299CC80442D7714870FE1D0D15D75A9395AC49321314208E43EA9B1185924E7"
+        },
+        "sourceText": "Imperial Armour: Remove 'FRAME' from Tiger Shark and\nAX-1-0 Tiger Shark",
+        "beforeSha256": "6827767B46A8E1F2C859918CAD10F802CC0ED94865BAA8ECFA08F80865A7C373",
+        "absentValue": "FRAME"
+      }
+    },
+    {
+      "id": "tau-official-v1.1:tiger-sharks-frame-removed::unit-ax-1-0-tiger-shark",
+      "source": {
+        "id": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-07-22",
+        "status": "CURRENT",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "locator": "[50,249.55,292,271.55]"
+      },
+      "target": {
+        "id": "unit-ax-1-0-tiger-shark",
+        "field": [
+          "keywords"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-ax-1-0-tiger-shark"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          }
+        ]
+      },
+      "kind": "KEYWORDS",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "AX-1-0 TIGER SHARK"
+      ],
+      "after": [
+        "VEHICLE",
+        "AIRCRAFT",
+        "FLY",
+        "AX-1-0 TIGER SHARK"
+      ],
+      "provenance": {
+        "sourceId": "tau-empire-faction-pack-v1.1",
+        "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+        "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+        "page": 1,
+        "bbox": [
+          50,
+          249.55,
+          292,
+          271.55
+        ],
+        "textSha256": "5299CC80442D7714870FE1D0D15D75A9395AC49321314208E43EA9B1185924E7",
+        "effectiveFrom": "2026-07-22",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 1,
+          "bbox": [
+            50,
+            249.55,
+            292,
+            271.55
+          ],
+          "textSha256": "5299CC80442D7714870FE1D0D15D75A9395AC49321314208E43EA9B1185924E7"
+        },
+        "sourceText": "Imperial Armour: Remove 'FRAME' from Tiger Shark and\nAX-1-0 Tiger Shark",
+        "beforeSha256": "6E6B0A3C8D44A25D8B8044DA3CC97CB57431A2176A91A5F39F806C41A5CC2E5E",
+        "absentValue": "FRAME"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialSupplementalChecks"
+          ],
+          "value": {
+            "id": "tau-official-v1.1:tiger-sharks-frame-removed",
+            "status": "VERIFIED_CURRENT",
+            "targetIds": [
+              "unit-tiger-shark",
+              "unit-ax-1-0-tiger-shark"
+            ],
+            "qualification": "The v1.1 cover identifies removal of FRAME from Tiger Shark and AX-1-0 Tiger Shark. Current raw native keyword arrays already omit FRAME; no overwrite or invented removal is applied.",
+            "sourceText": "Imperial Armour: Remove 'FRAME' from Tiger Shark and\nAX-1-0 Tiger Shark",
+            "provenance": {
+              "sourceId": "tau-empire-faction-pack-v1.1",
+              "document": "books/tau-empire/sources/tau-empire-faction-pack-v1.1.pdf",
+              "sha256": "32B985646BAA02A3B505FF3404E91D374A5F53C1D3B8000D7166CA94D1B52675",
+              "page": 1,
+              "bbox": [
+                50,
+                249.55,
+                292,
+                271.55
+              ],
+              "textSha256": "5299CC80442D7714870FE1D0D15D75A9395AC49321314208E43EA9B1185924E7",
+              "effectiveFrom": "2026-07-22",
+              "authority": "AUTHORITATIVE_CURRENT"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-universal-v1.1:hidden-hunters-18-inches",
+      "source": {
+        "id": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-08-26",
+        "status": "CURRENT",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72"
+      },
+      "target": {
+        "id": "detachment-kroot-hunting-pack:stratagem:6",
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-kroot-hunting-pack:stratagem:6"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": "Until the end of the phase, your unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
+      "after": "Until the end of the phase, your unit can only be selected as the target of a ranged attack if the attacking model is within 18\".",
+      "provenance": {
+        "sourceId": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+        "page": 1,
+        "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 1,
+          "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5"
+        },
+        "beforeSha256": "F63709C43CE8A18BC26BBC52976F8D49007585EEF6D58924C407C7358BD117B0",
+        "instructionHeading": "STRATAGEMS THAT PREVENT UNITS FROM BEING TARGETED",
+        "requiredText": [
+          "within 18\""
+        ]
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "universalChecks",
+            "checks"
+          ],
+          "value": {
+            "id": "tau-universal-v1.1:hidden-hunters-18-inches",
+            "targetId": "detachment-kroot-hunting-pack:stratagem:6",
+            "field": [
+              "lines",
+              2,
+              "text"
+            ],
+            "status": "VERIFIED_CURRENT",
+            "instructionHeading": "STRATAGEMS THAT PREVENT UNITS FROM BEING TARGETED"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-universal-v1.1:join-the-hunt-once-per-battle",
+      "source": {
+        "id": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-08-26",
+        "status": "CURRENT",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72"
+      },
+      "target": {
+        "id": "detachment-kroot-hunting-pack:stratagem:1",
+        "field": [
+          "lines",
+          3,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-kroot-hunting-pack:stratagem:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": "This Stratagem cannot be used to return destroyed CHARACTER units to Attached units. You can only use this Stratagem once per battle.",
+      "after": "This Stratagem cannot be used to return destroyed CHARACTER units to Attached units. You can only use this Stratagem once per battle.",
+      "provenance": {
+        "sourceId": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+        "page": 1,
+        "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 1,
+          "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5"
+        },
+        "beforeSha256": "F6E77DD2E20E8C2B2FB8A36666293B962B5CB5CA23247B51CF487CD59FA7AC3B",
+        "instructionHeading": "STRATAGEMS THAT ADD NEW UNITS TO YOUR ARMY",
+        "requiredText": [
+          "You can only use this Stratagem once per battle."
+        ]
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "universalChecks",
+            "checks"
+          ],
+          "value": {
+            "id": "tau-universal-v1.1:join-the-hunt-once-per-battle",
+            "targetId": "detachment-kroot-hunting-pack:stratagem:1",
+            "field": [
+              "lines",
+              3,
+              "text"
+            ],
+            "status": "VERIFIED_CURRENT",
+            "instructionHeading": "STRATAGEMS THAT ADD NEW UNITS TO YOUR ARMY"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tau-universal-v1.1:devilfish-shock-disembark",
+      "source": {
+        "id": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "version": "v1.1",
+        "page": 1,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-08-26",
+        "status": "CURRENT",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72"
+      },
+      "target": {
+        "id": "datasheet-devilfish:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-devilfish:section:1"
+          },
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "VERIFY_CURRENT",
+      "expectedBefore": "Rapid Deployment: Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
+      "after": "Rapid Deployment: Units can disembark from this TRANSPORT after it has Advanced. Units that do so make a shock disembark move (Core Rules, 18.07) for that disembarkation.",
+      "provenance": {
+        "sourceId": "universal-rules-updates-v1.1",
+        "document": "books/tyranids/v2/sources/universal-rules-updates-v1.1.pdf",
+        "sha256": "E9368C75BF4C9040FA978E7F792080E71D140997DEF77182DD41E71959185A72",
+        "page": 1,
+        "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "annotations": {
+        "sourceBox": {
+          "page": 1,
+          "textSha256": "89306BBB062350D2640F445C616A78A2DF2AEDE40545C058F8ED74CB70C304D5"
+        },
+        "beforeSha256": "A45B2A32B61200C0203569D1FD099D05D761B2FCE80489434D469E3A226CD97E",
+        "instructionHeading": "MOVE TYPES FOR DISEMBARKING UNITS",
+        "requiredText": [
+          "after it has Advanced",
+          "shock disembark move",
+          "18.07"
+        ]
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "universalChecks",
+            "checks"
+          ],
+          "value": {
+            "id": "tau-universal-v1.1:devilfish-shock-disembark",
+            "targetId": "datasheet-devilfish:section:1",
+            "field": [
+              "blocks",
+              0,
+              "text"
+            ],
+            "status": "VERIFIED_CURRENT",
+            "instructionHeading": "MOVE TYPES FOR DISEMBARKING UNITS"
+          }
+        }
+      ]
+    }
+  ]
+}

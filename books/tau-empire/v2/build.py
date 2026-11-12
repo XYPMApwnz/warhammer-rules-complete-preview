@@ -24,6 +24,8 @@ ROOT = HERE.parents[2]
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
 from current_mfm_release import read_current_mfm_release
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 BOOK = 'tau-empire'
 SOURCE = 'books/tau-empire/sources/waha-11e-current-2026-09-28'
 HUB = SOURCE+'/tau-empire.html'
@@ -230,87 +232,63 @@ def build():
               'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False}
     return {'base':base,'effective':effective,'factual-census':census}
 
+def verify_official_evidence(document):
+    """Verify accepted PDF/transcription bytes. All record mutations live in JS."""
+    from contextlib import ExitStack
+    enrolled = {a['path']: a for a in read(HERE/'sources/enrollment.json')['artifacts']}
+    pdfs, excerpts, verified_sources = {}, {}, set()
+    with ExitStack() as stack:
+        for entry in document['entries']:
+            source, evidence = entry['source'], entry.get('annotations', {})
+            filename = source['document']
+            accepted = enrolled.get(filename)
+            if not accepted or accepted['authority'] != 'ACCEPTED_OFFICIAL' or accepted['sha256'] != source.get('sha256'):
+                raise ValueError('Official source is not enrolled: '+entry['id'])
+            if filename not in verified_sources:
+                if sha((ROOT/filename).read_bytes()) != source['sha256']:
+                    raise ValueError('Official source integrity mismatch: '+filename)
+                verified_sources.add(filename)
+            if evidence.get('beforeSha256') and value_sha(entry['expectedBefore']) != evidence['beforeSha256']:
+                raise ValueError('Official before-value transcription changed: '+entry['id'])
+            if evidence.get('afterSha256') and value_sha(entry['after']) != evidence['afterSha256']:
+                raise ValueError('Official value changed: '+entry['id'])
+            if 'absentValue' in evidence and evidence['absentValue'] in entry['expectedBefore']:
+                raise ValueError('Official supplemental target mismatch: '+entry['id'])
+            if any(s not in entry['expectedBefore'] for s in evidence.get('requiredText', [])):
+                raise ValueError('Universal current target mismatch: '+entry['id'])
+            box = evidence.get('sourceBox')
+            if not box:
+                continue
+            key = (filename, box['page'], tuple(box.get('bbox', [])))
+            if key not in excerpts:
+                if filename not in pdfs:
+                    pdfs[filename] = stack.enter_context(pdfplumber.open(ROOT/filename))
+                page = pdfs[filename].pages[box['page']-1]
+                if 'bbox' in box:
+                    page = page.crop(tuple(box['bbox']))
+                excerpts[key] = page.extract_text(x_tolerance=3, y_tolerance=3) or ''
+            excerpt = excerpts[key]
+            if sha(excerpt.encode()) != box['textSha256'] or ('sourceText' in evidence and excerpt != evidence['sourceText']):
+                raise ValueError('Official source occurrence mismatch: '+entry['id'])
+            if evidence.get('instructionHeading') and evidence['instructionHeading'] not in norm(excerpt):
+                raise ValueError('Universal instruction missing: '+entry['id'])
+            proof = {'sourceId': source['id'], 'document': filename, 'sha256': source['sha256'], 'page': box['page'],
+                     **({'bbox': box['bbox']} if 'bbox' in box else {}), 'textSha256': box['textSha256'],
+                     **({'effectiveFrom': source['effectiveFrom']} if 'bbox' in box else {}), 'authority': 'AUTHORITATIVE_CURRENT'}
+            if entry['provenance'] != proof:
+                raise ValueError('Official source provenance changed: '+entry['id'])
+
+
 def apply_official(base):
-    effective = copy.deepcopy(base)
-    effective['schema'] = 'tau-empire-v2-effective/v1'
-    records = unique(effective['entities'],'sourceEntityId')
-    declarations = read(HERE/'official-bindings.json')
-    updates = []
-    document = declarations.get('document',declarations.get('sourceDocument'))
-    document_sha = declarations.get('sha256',declarations.get('sourceSha256'))
-    with pdfplumber.open(ROOT/document) as pdf:
-        for item in declarations['occurrences']:
-            box = item.get('sourceBox',item)
-            text = pdf.pages[box['page']-1].crop(tuple(box['bbox'])).extract_text(x_tolerance=3,y_tolerance=3) or ''
-            if sha(text.encode()) != box['textSha256']:
-                raise ValueError('Official source occurrence mismatch: '+item['id'])
-            proof = {'sourceId':declarations['sourceId'],'document':document,'sha256':document_sha,
-                     'page':box['page'],'bbox':box['bbox'],'textSha256':box['textSha256'],'effectiveFrom':declarations['effectiveFrom'],'authority':'AUTHORITATIVE_CURRENT'}
-            targets = []
-            for patch in item.get('patches',[]):
-                target = records[patch['targetSourceId']]
-                owner = target['data']
-                field = patch['field']
-                for key in field[:-1]:
-                    owner = owner[key]
-                before = owner[field[-1]]
-                if value_sha(before) != patch['beforeSha256']:
-                    raise ValueError('Official target changed: '+patch['targetSourceId']+'/'+str(field))
-                if patch.get('operation','SET') != 'SET':
-                    raise ValueError('Unknown official patch operation')
-                after = patch['after']
-                if patch.get('afterSha256') and value_sha(after) != patch['afterSha256']:
-                    raise ValueError('Official value changed')
-                owner[field[-1]] = copy.deepcopy(after)
-                target.setdefault('fieldProvenance',{})['/'.join(map(str,field))] = copy.deepcopy(proof)
-                targets.append(target['id'])
-            updates.append({'id':item['id'],'group':item['group'],'status':'APPLIED' if item.get('patches') else 'VERIFY_CURRENT',
-                            **({'sourceScopeQualification':item['sourceScopeQualification']} if 'sourceScopeQualification' in item else {}),
-                            'targetIds':list(dict.fromkeys(targets)),'provenance':proof,'sourceText':text})
-        supplemental = []
-        for item in declarations.get('supplementalChecks',[]):
-            box = item['sourceBox']
-            text = pdf.pages[box['page']-1].crop(tuple(box['bbox'])).extract_text(x_tolerance=3,y_tolerance=3) or ''
-            if sha(text.encode()) != box['textSha256']:
-                raise ValueError('Official supplemental source changed: '+item['id'])
-            targets = []
-            for check in item['targets']:
-                target = records[check['targetSourceId']]
-                value = target['data']
-                for key in check['field']:
-                    value = value[key]
-                if value_sha(value) != check['valueSha256'] or check['absentValue'] in value:
-                    raise ValueError('Official supplemental target mismatch: '+check['targetSourceId'])
-                targets.append(target['id'])
-            supplemental.append({'id':item['id'],'status':'VERIFIED_CURRENT','targetIds':targets,
-                'qualification':item['qualification'],'sourceText':text,
-                'provenance':{'sourceId':declarations['sourceId'],'document':document,'sha256':document_sha,
-                    'page':box['page'],'bbox':box['bbox'],'textSha256':box['textSha256'],
-                    'effectiveFrom':declarations['effectiveFrom'],'authority':'AUTHORITATIVE_CURRENT'}})
-    effective['officialUpdates'] = updates
-    effective['officialSupplementalChecks'] = supplemental
-    universal = declarations['universalChecks']
-    with pdfplumber.open(ROOT/universal['sourceDocument']) as pdf:
-        text = pdf.pages[universal['page']-1].extract_text(x_tolerance=3,y_tolerance=3) or ''
-    if sha(text.encode()) != universal['textSha256']:
-        raise ValueError('Universal source occurrence changed')
-    checks = []
-    for item in universal['checks']:
-        if item['instructionHeading'] not in norm(text):
-            raise ValueError('Universal instruction missing: '+item['id'])
-        target = records[item['targetSourceId']]
-        value = target['data']
-        for key in item['field']:
-            value = value[key]
-        if value_sha(value) != item['valueSha256'] or any(s not in value for s in item['requiredText']):
-            raise ValueError('Universal current target mismatch: '+item['targetSourceId'])
-        checks.append({'id':item['id'],'targetId':target['id'],'field':item['field'],
-                       'status':'VERIFIED_CURRENT','instructionHeading':item['instructionHeading']})
-    effective['universalChecks'] = {'provenance':{'sourceId':universal['sourceId'],
-        'document':universal['sourceDocument'],'sha256':universal['sourceSha256'],
-        'page':universal['page'],'textSha256':universal['textSha256'],'authority':'AUTHORITATIVE_CURRENT'},
-        'checks':checks,'sourceScopeQualification':universal['sourceScopeQualification']}
-    return effective
+    # The historical official-bindings file is retained source evidence. It is
+    # no longer an application input or an alternate field-mutation path.
+    passport = read(ROOT/'books'/BOOK/'book.config.json')['passport']
+    document = read(ROOT/passport['official']['input'])
+    verify_official_evidence(document)
+    model = copy.deepcopy(base)
+    model['schema'] = 'tau-empire-v2-effective/v1'
+    return apply_book_official_updates(BOOK, model, ROOT, document=document)['model']
+
 
 def validate(document):
     records = unique(document['entities'])
