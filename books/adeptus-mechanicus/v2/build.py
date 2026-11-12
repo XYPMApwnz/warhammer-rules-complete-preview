@@ -274,11 +274,11 @@ def build():
         assert source['document'] == accepted['sourcePath'] and source['version'] == accepted['version']
         assert source['sha256'] == artifact['sha256'] and source['effectiveFrom'] == accepted['effectiveFrom']
         assert 2 <= source['page'] <= 19, 'Official update outside accepted non-Legends scope'
-        assert entry['annotations']['phase'] in ('base', 'effective'), 'Unknown official update phase'
+        assert entry.get('annotations', {}).get('phase', 'effective') in ('base', 'effective'), 'Unknown official update phase'
 
     def apply_official_phase(model, phase):
         document = {**official_updates, 'entries': [entry for entry in official_updates['entries']
-                                                  if entry['annotations']['phase'] == phase]}
+                                                  if entry.get('annotations', {}).get('phase', 'effective') == phase]}
         return apply_book_official_updates('adeptus-mechanicus', model, ROOT, document=document)['model']
 
     def official_evidence(source_id, page):
