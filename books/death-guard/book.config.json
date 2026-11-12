@@ -192,7 +192,10 @@
       "postBuildSteps": []
     },
     "qa": {
-      "script": "qa:dg"
+      "script": "qa:dg",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -243,6 +246,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/death-guard/v2/generated/app-presentation.json"
     }
   }
 }

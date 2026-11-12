@@ -565,7 +565,10 @@
       ]
     },
     "qa": {
-      "script": "qa:sm"
+      "script": "qa:sm",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -615,6 +618,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/space-marines/v2/generated/app-presentation.json"
     }
   }
 }

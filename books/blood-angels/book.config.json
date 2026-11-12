@@ -555,7 +555,10 @@
       ]
     },
     "qa": {
-      "script": "qa:ba"
+      "script": "qa:ba",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -608,6 +611,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/blood-angels/v2/generated/app-presentation.json"
     }
   }
 }

@@ -199,7 +199,10 @@
       ]
     },
     "qa": {
-      "script": "qa:am"
+      "script": "qa:am",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -249,6 +252,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/adeptus-mechanicus/v2/generated/app-presentation.json"
     }
   }
 }

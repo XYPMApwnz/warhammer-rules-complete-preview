@@ -231,7 +231,10 @@
       ]
     },
     "qa": {
-      "script": "qa:csm"
+      "script": "qa:csm",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -281,6 +284,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/chaos-space-marines/v2/generated/app-presentation.json"
     }
   }
 }

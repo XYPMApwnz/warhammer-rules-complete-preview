@@ -201,7 +201,10 @@
       ]
     },
     "qa": {
-      "script": "qa:tyranids"
+      "script": "qa:tyranids",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -251,6 +254,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/tyranids/v2/generated/app-presentation.json"
     }
   }
 }

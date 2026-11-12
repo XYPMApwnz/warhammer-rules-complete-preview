@@ -256,7 +256,10 @@
       ]
     },
     "qa": {
-      "script": "qa:ec"
+      "script": "qa:ec",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -323,6 +326,9 @@
         }
       ],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/emperors-children/v2/generated/app-presentation.json"
     }
   }
 }

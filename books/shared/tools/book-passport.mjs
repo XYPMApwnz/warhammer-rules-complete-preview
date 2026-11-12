@@ -16,7 +16,8 @@ export const bookPassportSchema=object({
   schema:enumeration('army-book-passport/v1'),edition:text,
   sources:object({enrollment:file,effective:file,manifest:file,inputs:array(object({role:text,path:file}))}),
   build:object({steps:array(step),postBuildSteps:array(object({phase:enumeration('model-aliases','retained-source'),step}))}),
-  qa:object({script:text}),
+  qa:object({script:text,onInputChange:object({currentMfmRelease:text})}),
+  update:object({reportArtifact:file}),
   mfm:object({currentRelease:file,bindingPath:nullable(file),scope:text}),
   runtime:object({executionArtifact:file,conditionArtifact:file}),
   canonical:object({enhancementIdentity:object({strategy:enumeration('item-id','source-id','owner-record'),builtInExact:boolean})}),
@@ -59,6 +60,10 @@ export function readBookPassport(bookId,{root=defaultRoot,config}={}) {
   validate(config.passport,bookPassportSchema,'passport');
   const p=config.passport;
   const scripts=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).scripts;
+  for(const [role,script]of Object.entries(p.qa.onInputChange)){
+    if(!p.sources.inputs.some(input=>input.role===role))fail('passport.qa.onInputChange.'+role,'unknown input role');
+    if(!Object.hasOwn(scripts,script))fail('passport.qa.onInputChange.'+role,'unknown QA script '+script);
+  }
   if(!Object.hasOwn(scripts,p.qa.script))fail('passport.qa.script','unknown QA script '+p.qa.script);
   if(!p.build.steps.length)fail('passport.build.steps','at least one producer is required');
   const owned=new Set();
@@ -69,6 +74,7 @@ export function readBookPassport(bookId,{root=defaultRoot,config}={}) {
     if((s.runtime==='python')!==s.producer.endsWith('.py'))fail('passport.build.steps.runtime','runtime does not match producer');
     for(const output of s.outputs){if(!output.startsWith(`books/${bookId}/`))fail('passport.build.steps.outputs','output belongs to another book');if(owned.has(output))fail('passport.build.steps.outputs','duplicate output '+output);owned.add(output);}
   }
+  if(!owned.has(p.update.reportArtifact))fail('passport.update.reportArtifact','report artifact is not a declared book output');
   if(p.modelNames.enabled){
     if(p.modelNames.sourceDocument===null||p.modelNames.joins===null)fail('passport.modelNames','enabled aliases require sourceDocument and joins');
   }

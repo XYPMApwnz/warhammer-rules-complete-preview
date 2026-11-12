@@ -729,7 +729,10 @@
       ]
     },
     "qa": {
-      "script": "qa:da"
+      "script": "qa:da",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -781,6 +784,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": false
+    },
+    "update": {
+      "reportArtifact": "books/dark-angels/v2/generated/app-presentation.json"
     }
   }
 }

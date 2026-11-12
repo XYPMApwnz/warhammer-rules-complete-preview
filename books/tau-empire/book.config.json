@@ -225,7 +225,10 @@
       ]
     },
     "qa": {
-      "script": "qa:tau"
+      "script": "qa:tau",
+      "onInputChange": {
+        "currentMfmRelease": "qa:mfm-current"
+      }
     },
     "mfm": {
       "currentRelease": "mfm/current.json",
@@ -275,6 +278,9 @@
       },
       "fieldExports": [],
       "dynamicPhysicalChoices": true
+    },
+    "update": {
+      "reportArtifact": "books/tau-empire/v2/generated/app-presentation.json"
     }
   }
 }
