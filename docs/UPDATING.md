@@ -11,6 +11,8 @@ unless you explicitly run `mfm:update` without saved input.
    declarations, including the exact previous value and evidence where required.
 2. Complete the normal source acceptance checks. If authentication requires
    committed source bytes, commit those accepted input changes locally first.
+   A source-review rejection needs explicit acceptance of the exact changed
+   blocks; this command does not grant that acceptance or refresh fingerprints.
 3. Run `npm run book:update -- --book=death-guard` (replace the book ID).
    Inherited books are selected from their passports. Checks run sequentially.
 4. Read the printed report path. Review every gameplay change and the changed

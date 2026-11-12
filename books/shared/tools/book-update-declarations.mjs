@@ -26,7 +26,7 @@ const sharedOperations={
 const freshnessOutputs={
  'tools/audit/build-source-catalog-additions.mjs':['books/shared/source-refs-v2/source-catalog.json']
 };
-const globalInputs=[input('prefix','books/shared/'),input('prefix','mfm/'),input('path','package.json'),input('path','requirements-army-books.txt')];
+const globalInputs=[input('prefix','books/shared/'),input('prefix','books/core-rules/'),input('prefix','mfm/'),input('path','package.json'),input('path','requirements-army-books.txt')];
 const safe=value=>typeof value==='string'&&value&&!value.includes('\\')&&!value.includes(':')&&!path.posix.isAbsolute(value)&&!value.split('/').some(p=>p==='.'||p==='..');
 export function validateUpdateInputs(inputs,{steps,label,root}){
  if(!Array.isArray(inputs)||!inputs.length)throw Error(label+': inputs must be a non-empty array');
@@ -40,7 +40,7 @@ export function validateUpdateInputs(inputs,{steps,label,root}){
  }
 }
 export function bookUpdateDeclarations({root,tracked,plan=generatedRebuildPlan(tracked,{root})}={}){
- const books=BOOK_PASSPORT_IDS.map(id=>({id,passport:readBookPassport(id,{root}),inputs:[input('prefix',`books/${id}/`),...globalInputs]}));
+ const books=BOOK_PASSPORT_IDS.map(id=>{const passport=readBookPassport(id,{root});return{id,passport,inputs:[input('prefix',`books/${id}/`),...passport.sources.inputs.map(row=>input('path',row.path)),...globalInputs]};});
  const shared=plan.steps.filter(s=>!BOOK_PASSPORT_IDS.includes(s.book)).map(step=>{
   const inputs=sharedInputs[step.producer];
   if(!inputs)throw Error('Book update declaration missing for shared producer: '+step.producer);
