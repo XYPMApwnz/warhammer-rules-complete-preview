@@ -428,12 +428,13 @@ def build():
           'gameplayContractsImplemented':0,'rosterIntegrationImplemented':False,'presentationImplemented':False,'contentCertified':False,
           'mixedOwnerRuntimeStatus':'NOT_PROVEN; reference ledger is not runtime integration'}
     # Local corrections only; inherited SM facts keep their owning application.
-    effective=apply_book_official_updates(BOOK, base, ROOT)['model']
+    effective=copy.deepcopy(base)
     effective['schema']='blood-angels-v2-effective/v1'
     effective['officialReview']={'applicableBaFieldCorrections':[],
         'status':'NO_ADDITIONAL_APPLICABLE_OFFICIAL_FIELDS_PROVEN; full official App unavailable',
         'legendsPack':'v1.2 is Legends-only, excluded from current facts',
         'inheritedSmOfficialCorrections':'Existing SM effective owner; not reapplied'}
+    effective=apply_book_official_updates(BOOK, effective, ROOT)['model']
     validate(base);validate(effective)
     counts=dict(Counter(r['kind'] for r in main))
     census={'bookId':BOOK,'sourceRows':len(main),'mainEntities':len(main),'counts':counts,
