@@ -55,6 +55,14 @@ function fieldLabel(card,field,fields){
   const schedulePrefix=prefix.replace(/\/entries\/\d+$/,''),schedule=fields.find(f=>fieldPath(f)===schedulePrefix+'/sourceLabel')?.value;
   return[schedule&&schedule!=='YOUR UNIT COSTS'?schedule:null,row||'Points'].filter(Boolean).join(' · ');
  }
+ // These source blocks carry their own heading before the colon. Read it
+ // from this exact block, not from the bounded changed-word excerpt (which
+ // can start far later in the rule). Separately named cards keep their title.
+ const blockPointer=field.presentationPath||pointer;
+ if(card.kind==='DATASHEET_SECTION'&&['ABILITIES','WARGEAR ABILITIES'].includes(card.title)&&field.label==='Rule'&&/^\/blocks\/\d+\/text$/.test(blockPointer)){
+  const name=String(field.value).match(/^([\p{L}][^:\r\n]{0,119}):\s*\S/u);
+  if(name)return name[1].trim();
+ }
  if(textField(field)&&genericTitle(card)){
   const name=plain(field.value).match(/^([^:]{1,80}):/);
   if(name)return name[1];

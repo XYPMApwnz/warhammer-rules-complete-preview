@@ -29,6 +29,21 @@ check('rule text reports changed words with bounded unchanged context',()=>{
  const r=compare(after);assert.equal(r.gameplayChanges,1);assert(r.changes[0].summary.includes('[-1-] [+2+]'));assert(!r.changes[0].summary.startsWith('Each time'));
  const long=shortWordDiff('prefix '+Array(100).fill('old').join(' ')+' suffix','prefix '+Array(100).fill('new').join(' ')+' suffix');assert(long.length<550);assert(long.includes('…'));
 });
+check('named ability source blocks retain their name when the diff is late',()=>{
+ const before=clone(),after=clone(),text='Foul Infusion: While this model is leading a unit, weapons equipped by models in that unit have the Lethal Hits ability. In addition, each time a model in that unit makes an attack, a Critical Hit is scored on an unmodified Hit roll of 5+.';
+ const section=card('abilities','DATASHEET_SECTION','ABILITIES',[field('abilities::/blocks/0/text','Rule',text),field('abilities::/blocks/1/text','Rule','Extraction of Fresh Disease: Add 6 to Objective Control.')],'unit');
+ before.cards.push(section);after.cards.push(structuredClone(section));after.cards.at(-1).fields[0].value=text.replace('5+.','4+.');
+ const r=compareBookGameplay({bookId:'synthetic',before,after});assert.equal(r.gameplayChanges,1);assert(r.changes[0].label.endsWith(' · Foul Infusion'));assert(r.changes[0].summary.includes('[-5+.-] [+4+.+]'));assert(!r.changes[0].summary.includes('Extraction of Fresh Disease'));
+ const excerpt=shortWordDiff(text,after.cards.at(-1).fields[0].value);assert(!excerpt.includes('Foul Infusion'),'This control must change text too late for the excerpt to contain the name');
+});
+check('ability heading requires the exact named source-block format',()=>{
+ for(const text of['No named heading in this rule.','An unheaded paragraph.\nFoul Infusion: This is a later paragraph.','1: This is a numbered item.']){
+  const before=clone(),after=clone(),section=card('abilities','DATASHEET_SECTION','ABILITIES',[field('abilities::/blocks/0/text','Rule',text)],'unit');before.cards.push(section);after.cards.push(structuredClone(section));after.cards.at(-1).fields[0].value=text+' Added words.';
+  const r=compareBookGameplay({bookId:'synthetic',before,after});assert.equal(r.gameplayChanges,1);assert(r.changes[0].label.endsWith(' · Rule'));
+ }
+ const before=clone(),after=clone(),section=card('named-ability','DATASHEET_SECTION','Accepted Ability',[field('named-ability::/text','Rule','Another Prefix: Source text.')],'unit');before.cards.push(section);after.cards.push(structuredClone(section));after.cards.at(-1).fields[0].value+=' Added words.';
+ const r=compareBookGameplay({bookId:'synthetic',before,after});assert(r.changes[0].label.includes('Accepted Ability'));assert(!r.changes[0].label.includes('Another Prefix'));
+});
 check('duplicate eligibility text is not a second gameplay change',()=>{
  const after=clone(),e=after.cards.find(c=>c.id==='enhancement');e.fields.forEach(f=>f.value='The bearer has Scouts 6".');assert.equal(compare(after).gameplayChanges,1);
 });
