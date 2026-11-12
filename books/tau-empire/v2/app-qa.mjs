@@ -9,12 +9,13 @@ import {createTauBrowserRoster} from './roster-boot.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {assertSourceCompletenessGate,captureSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const book=buildTauImportBook(),original=JSON.stringify(book),facts=read('./generated/effective.json'),index=new Map(facts.entities.map(e=>[e.id,e]));
 const payload=writeApp({check:true}),cards=new Map(payload.cards.map(c=>[c.id,c]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical presentation card');
 for(const [kind,count]of [['DATASHEET',43],['PROFILE',44],['DETACHMENT',7],['DETACHMENT_RULE',9],['ENHANCEMENT',23],['STRATAGEM',31]])assert.equal(payload.cards.filter(c=>c.kind===kind).length,count,kind+' count');
-assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.book.mfmVersion,getCurrentMfmSource('tau-empire').version);
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();

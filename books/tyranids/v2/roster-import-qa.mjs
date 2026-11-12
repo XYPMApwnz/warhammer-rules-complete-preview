@@ -12,7 +12,8 @@ import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs'
 // The accepted factual owner, not import metadata, supplies the inventory.
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const facts=read('./generated/effective.json'),source=read('./roster-import-source-bindings.json');
-const mfm=read('../../../'+getCurrentMfmSource('tyranids').capturePath),book=buildTyranidsImportBook();
+const mfmSource=getCurrentMfmSource('tyranids');
+const mfm=read('../../../'+mfmSource.capturePath),book=buildTyranidsImportBook();
 const original=structuredClone(book),records=new Map(facts.entities.map(e=>[e.id,e]));
 const units=facts.entities.filter(e=>e.kind==='DATASHEET'),detachments=facts.entities.filter(e=>e.kind==='DETACHMENT');
 const enhancements=facts.entities.filter(e=>e.kind==='ENHANCEMENT'),weapons=facts.entities.filter(e=>e.kind==='WEAPON_PROFILE');
@@ -222,7 +223,7 @@ check(()=>{
   const tyr=(weapon,points)=>`1x Tyrannofex (${points} pts)\n• 1x Tyrannofex: ${weapon}, Stinger salvoes, Powerful limbs\n`;
   const text=header('Invasion Fleet')+tyr('Acid spray',180)+tyr('Rupture cannon',190)+tyr('Fleshborer hive',180);
   const state=ready(text).roster,priced=resolveImportedPoints(book,state);
-  assert.equal(priced.status,'KNOWN');assert.equal(priced.sourceVersion,'v1.6');assert.equal(priced.total,550);
+  assert.equal(priced.status,'KNOWN');assert.equal(priced.sourceVersion,mfmSource.version);assert.equal(priced.total,550);
   assert.deepEqual(priced.units.map(u=>[u.basePoints,u.paidOptionPoints,u.total,u.copyOrdinal]),[[170,10,180,1],[170,20,190,2],[180,0,180,3]]);
   assert.deepEqual(resolveImportedPoints(book,state),priced,'Repeated assessment does not accumulate costs');
   const unknown=resolveImportedPoints(book,ready(basic('unit-tyrannofex')).roster);

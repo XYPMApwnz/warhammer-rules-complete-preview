@@ -7,6 +7,7 @@ import {buildECContracts} from './rule-contract-build.mjs';
 import {resolveOwnedFact} from './mfm-boundary.mjs';
 import {validateGlossary} from '../../shared/army-book-app-v2/glossary.mjs';
 import {registration} from './registration.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 const built=buildECContracts(),before=JSON.stringify(built),payload=writeApp({check:true});
 const facts=read('./generated/effective.json'),index=new Map(facts.entities.map(entity=>[entity.id,entity]));
@@ -14,7 +15,7 @@ const cards=new Map(payload.cards.map(card=>[card.id,card]));
 assert.equal(cards.size,payload.cards.length,'Duplicate canonical card');
 for(const [kind,count]of [['DATASHEET',23],['DETACHMENT',10],['ARMY_RULE',2],['ENHANCEMENT',34],['STRATAGEM',51]])
   assert.equal(payload.cards.filter(card=>card.kind===kind).length,count,kind+' inventory');
-assert.equal(payload.ruleContractIds.length,161);assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.ruleContractIds.length,161);assert.equal(payload.book.mfmVersion,getCurrentMfmSource('emperors-children').version);
 const value=(source,path)=>path.slice(1).split('/').reduce((current,key)=>current?.[key.replaceAll('~1','/').replaceAll('~0','~')],source);
 export function assertPresentationParity(candidate){
   const seen=new Set();

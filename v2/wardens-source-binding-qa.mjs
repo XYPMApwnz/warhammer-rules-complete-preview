@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 import {createBrowserRoster} from '../books/space-marines/v2/roster-boot.mjs';
 import {validateSpaceMarinesRosterCorrections} from '../books/space-marines/v2/roster-source-review.mjs';
+import {getCurrentMfmSource} from '../mfm/content/current-mfm-release.mjs';
 
 const read=name=>parseProducerJSON(fs.readFileSync(new URL('../books/space-marines/v2/'+name,import.meta.url),'utf8'));
 const facts=read('generated/effective.json'),review=read('roster-source-corrections.json'),book=read('generated/roster-import.json');
@@ -47,7 +48,7 @@ assert.deepEqual(dainal.selections.flatMap(selection=>selection.canonicalProfile
 
 const declaration=book.mfm.relationDeclarations.find(row=>row.sourceId===UNIT&&row.role==='support');
 assert.ok(declaration,'Existing official MFM SUPPORT declaration');
-assert.equal(declaration.provenance.sourceId,'space-marines-mfm-v1.6');
+assert.equal(declaration.provenance.sourceId,getCurrentMfmSource('space-marines').sourceId);
 assert.ok(declaration.targets.some(row=>row.entityId===BODY&&row.status==='BOUND'),'Intercessors are a proven MFM SUPPORT target');
 assert(service.candidates(source.instanceId).some(candidate=>candidate.instanceId===target.instanceId));
 const banner=id=>service.effective(id).attachedRuleTexts.filter(row=>row.ruleId===BANNER);

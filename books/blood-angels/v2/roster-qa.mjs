@@ -157,7 +157,7 @@ export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  check('7-paid-options-official-prices-physical-counts-and-total-parity',()=>{
   assert.deepEqual(book.mfmPhysicalPaidOptions.map(r=>r.costRecordId).sort(),PAID.map(r=>r[0]).sort());
   for(const [id,owner,label,price]of PAID){const binding=book.mfmPhysicalPaidOptions.find(r=>r.costRecordId===id);assert.equal(binding.value,price);
-   assert.equal(sourceSnapshot(binding).sourceLocator.sourceTitle,owner);assert.equal(sourceSnapshot(binding).sourceLocator.sourceLabel,label);assert.equal(sourceSnapshot(binding).sourceId,'space-marines-mfm-v1.6');
+   assert.equal(sourceSnapshot(binding).sourceLocator.sourceTitle,owner);assert.equal(sourceSnapshot(binding).sourceLocator.sourceLabel,label);assert.equal(sourceSnapshot(binding).sourceId,captureSources['space-marines'].sourceId);
    const service=createBloodAngelsRosterService(book),bare=fixture(binding.ownerUnitId);ready(service,header()+bare.text);
    assert.equal(service.points.status,'UNRESOLVED');assert.equal(service.points.totalPoints,null);
    // Redemptor RAW proves Heavy Onslaught OR Macro; an independent Icarus

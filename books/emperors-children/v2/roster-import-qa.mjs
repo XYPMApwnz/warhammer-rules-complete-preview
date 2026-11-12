@@ -12,6 +12,8 @@ import {projectEffectiveInstance} from '../../shared/roster-v2/effective-instanc
 import {projectInstanceCards} from '../../shared/army-book-app-v2/personal.mjs';
 import {buildApp} from './app-build.mjs';
 import {resolveOwnedFact,assertNoMfmValues} from './mfm-boundary.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+const mfmSource=getCurrentMfmSource('emperors-children');
 const clone=structuredClone,book=buildECImportBook(),original=clone(book),index=new Map(book.entities.map(e=>[e.id,e]));
 const facts=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/effective.json',import.meta.url)));
 const fixtures=parseSourceFixtureJSON(fs.readFileSync(new URL('./roster-import-fixtures.json',import.meta.url))).fixtures;
@@ -48,7 +50,7 @@ check(()=>{
     else assert.equal(result.status,'READY',JSON.stringify({id:e.id,needs:result.needsBindings,errors:result.errors}));
     const state=result.roster||result.candidateRoster;assert.ok(state.units[0].enhancementIds.includes(e.id));
     assert.equal(state.units[0].enhancementAssignments.length,binding.scope==='UNIT'?0:1);
-    assert.equal(sourceSnapshot(resolveOwnedFact(state.units[0].mfmEnhancementRecordIds[0])).sourceVersion,'v1.6');
+    assert.equal(sourceSnapshot(resolveOwnedFact(state.units[0].mfmEnhancementRecordIds[0])).sourceVersion,mfmSource.version);
   }
   const alias=ready(header('Rapid Evisceration')+block(index.get('unit-sorcerer'))+'\nEnhancement: Sublime Presence');
   assert.deepEqual(alias.roster.units[0].enhancementIds,['detachment-rapid-evisceration:enhancement:1']);
@@ -255,7 +257,7 @@ check(()=>{
   for(const e of facts.entities)assert.deepEqual(expected.find(r=>r[0]===e.id),[e.id,sourceDeclarationView(e.data),e.parentId,sourceSnapshot(e)]);
   assertNoMfmValues(book.entities);assert.deepEqual(book,original);
   assert.equal(book.mfmImportReferences.unitBindings.length,23);assert.equal(book.mfmImportReferences.detachmentBindings.length,10);assert.equal(book.mfmImportReferences.enhancementBindings.length,34);
-  for(const part of ['unitBindings','enhancementBindings','detachmentBindings'])for(const b of book.mfmImportReferences[part])assert.equal(sourceSnapshot(resolveOwnedFact(b.mfmRecordId)).sourceVersion,'v1.6');
+  for(const part of ['unitBindings','enhancementBindings','detachmentBindings'])for(const b of book.mfmImportReferences[part])assert.equal(sourceSnapshot(resolveOwnedFact(b.mfmRecordId)).sourceVersion,mfmSource.version);
 });
 for(const mutate of [b=>b.importBindings.compositions[0].profileId='datasheet-sorcerer:profile:1',
   b=>b.importBindings.equipmentSelections.find(e=>e.label==='shining aegis').canonicalFieldPaths={'datasheet-keeper-of-secrets:section:1':['/blocks/0/text']},

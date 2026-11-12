@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import {buildApp,writeApp,assertSpaceMarinesAppSourceReview} from './app-build.mjs';
 import {buildGameplayPresentation} from './gameplay-presentation-build.mjs';
 import {registration} from './registration.mjs';
+import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
 const read=name=>parseSourceFixtureJSON(fs.readFileSync(new URL(name,import.meta.url),'utf8'));
 // Compare the publication JSON domain: undefined constructor placeholders are
 // omitted by the existing JSON writer; every recorded value is retained.
@@ -113,7 +114,7 @@ for(const row of payload.relatedRules.rows){
 assertRelatedPanelSnapshot(payload);
 const costCards=payload.cards.filter(card=>card.kind==='MFM_PAID_UPGRADE');assert.equal(costCards.length,8);
 for(const card of costCards)assert.ok(card.fields.some(field=>field.source.path==='/value'&&Number.isFinite(field.value)));
-assert.equal(payload.book.mfmVersion,'v1.6');
+assert.equal(payload.book.mfmVersion,getCurrentMfmSource('space-marines').version);
 assert.equal(payload.sourceCompleteness.status,'PARTIAL');assert.equal(payload.sourceCompleteness.semanticCompleteness,'NOT_PROVEN');
 assert.deepEqual(assertSpaceMarinesAppSourceReview(),payload.sourceCompleteness);
 assert.equal(payload.rulePresentationLimitations.realNewRecruitExportTested,false);
