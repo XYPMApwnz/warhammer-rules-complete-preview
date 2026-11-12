@@ -445,6 +445,10 @@
         {
           "role": "currentMfmRelease",
           "path": "mfm/current.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/space-marines/v2/official-updates.json"
         }
       ]
     },
@@ -597,7 +601,7 @@
       "joins": "books/space-marines/v2/model-name-source-bindings.json"
     },
     "official": {
-      "input": "books/space-marines/v2/official-bindings.json",
+      "input": "books/space-marines/v2/official-updates.json",
       "stage": "canonical-facts"
     },
     "inheritance": {
