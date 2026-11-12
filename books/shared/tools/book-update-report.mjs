@@ -212,8 +212,41 @@ export function compareBookGameplay({bookId,before,after,mfmBefore,mfmAfter,mfmO
  return{bookId,bookTitle:after.book?.title||before.book?.title||bookId,gameplayChanges:changes.length,metadataChanges,changes};
 }
 
+/** Successful producer transactions only. Repeated builds must describe the
+ * same update; contradictory audit rows must never become a plausible report. */
+export function collectOfficialUpdates(transactions){
+ const rows=new Map();
+ for(const transaction of transactions){
+  assert(typeof transaction.bookId==='string'&&Array.isArray(transaction.applied),'Invalid official update transaction');
+  for(const row of transaction.applied){
+   assert(row.bookId===transaction.bookId&&typeof row.id==='string'&&row.id&&row.target&&row.source,'Invalid official update ownership or identity');
+   const key=JSON.stringify([row.bookId,row.id,stable(row.target)]),previous=rows.get(key);
+   if(previous)assert(equal(previous,row),`Official update audit changed between builds: ${row.bookId} · ${row.id}`);
+   else rows.set(key,structuredClone(row));
+  }
+ }
+ return [...rows.values()];
+}
+
+function renderOfficialUpdates(lines,rows){
+ if(!rows.length)return;
+ lines.push('','### Official updates applied','',
+  'These are the accepted updates applied while rebuilding, including existing updates and explicit checks. Gameplay changes since HEAD are listed above.',
+  '', '| Update ID | Source | Target / field | Operation | Before → after |',
+  '| --- | --- | --- | --- | --- |');
+ for(const row of rows){
+  const source=[row.source.document,row.source.version,row.source.page===null?null:'page '+valueText(row.source.page)].filter(Boolean).join(' · ');
+  const identity=row.target.id??row.target.sourceLocator?.identity;
+  const target=valueText(identity)+' · '+row.target.field.join('/');
+  const after=row.operation==='ADD_UNIQUE'?row.effective:row.after;
+  const values=row.kind?.endsWith('_TEXT')&&typeof row.before==='string'&&typeof after==='string'&&row.before!==after
+   ?shortWordDiff(row.before,after):valueText(row.before)+' → '+valueText(after);
+  lines.push(`| ${escape(row.id)} | ${escape(source)} | ${escape(target)} | ${escape(row.operation)} | ${escape(values)} |`);
+ }
+}
+
 /** Render one review file. Child logs/error details are supplied by the runner. */
-export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],generatedChanges=[],fallbackReason,steps=[],error,baseHead,scope,buildPasses=1}={}){
+export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],generatedChanges=[],fallbackReason,steps=[],error,baseHead,scope,buildPasses=1,officialUpdates=[]}={}){
  const lines=['# Book update report','',`Result: **${status}** · ${(elapsedMs/1000).toFixed(3)} seconds`,...(baseHead?['',`Comparison baseline: ${baseHead}`]:[])];
  if(fallbackReason)lines.push('',`Full plan selected: ${fallbackReason}`);
  if(scope)lines.push('',`Scope: ${scope}`);
@@ -224,6 +257,11 @@ export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],gener
   if(!book.changes.length)lines.push('No gameplay values changed.');
   else for(const change of book.changes)lines.push('- '+escape(change.summary));
   lines.push('',`Other publication-field changes (provenance, hashes and derived fields): ${book.metadataChanges}.`);
+  renderOfficialUpdates(lines,officialUpdates.filter(row=>row.bookId===book.bookId));
+ }
+ for(const bookId of sorted(officialUpdates.map(row=>row.bookId).filter(id=>!books.some(book=>book.bookId===id)))){
+  lines.push('',`## ${escape(bookId)} (declared dependency)`);
+  renderOfficialUpdates(lines,officialUpdates.filter(row=>row.bookId===bookId));
  }
  lines.push('','## Generated files','');
  if(!generatedChanges.length)lines.push('No generated files changed.');

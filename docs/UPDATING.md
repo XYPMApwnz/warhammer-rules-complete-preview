@@ -7,8 +7,41 @@ unless you explicitly run `mfm:update` without saved input.
 
 ## A balance update was published
 
-1. Save and review the official source. Update the book's existing reviewed
-   declarations, including the exact previous value and evidence where required.
+1. Save and review the official source. Open the file named by
+   `passport.official.input` in the book's `book.config.json`. Add an entry using
+   the shared format: a unique ID, source document/version/page, exact entity
+   ID and field, operation, previous value and replacement. Never target a rule
+   by its displayed name. This real DG entry changes a Plague Marines bolt
+   pistol's Strength from 4 to 5:
+
+   ```json
+   {
+     "id": "gw-death-guard-faction-pack-v1.3-2026-09-30:operation:001",
+     "source": {
+       "id": "gw-death-guard-faction-pack-v1.3-2026-09-30",
+       "document": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+       "version": "v1.3", "page": 7, "authority": "OFFICIAL_GW",
+       "effectiveFrom": "2026-09-30"
+     },
+     "target": {
+       "id": "datasheet-plague-marines:weapon:3",
+       "field": ["strength"],
+       "guards": [{"path": ["kind"], "expected": "WEAPON_PROFILE"}]
+     },
+     "kind": "WEAPON_PROFILE", "operation": "SET",
+     "expectedBefore": "4", "after": "5",
+     "provenance": {
+       "page": 7,
+       "documentPath": "books/death-guard/v2/sources/gw-death-guard-faction-pack-2026-09-30.pdf",
+       "sourceLocator": "Rules Updates / DATASHEETS / Weapon changes / Bolt pistol / plague-marines"
+     }
+   }
+   ```
+
+   Keep the existing document's selection and audit declarations. The example
+   is already present in DG: do not add it a second time. Use the exact value
+   types (`"4"` is different from `4`). Only additions may omit
+   `expectedBefore`.
 2. Complete the normal source acceptance checks. If authentication requires
    committed source bytes, commit those accepted input changes locally first.
    A source-review rejection needs explicit acceptance of the exact changed
@@ -17,7 +50,11 @@ unless you explicitly run `mfm:update` without saved input.
 3. Run `npm run book:update -- --book=death-guard` (replace the book ID).
    Inherited books are selected from their passports. Checks run sequentially.
 4. Read the printed report path. Review every gameplay change and the changed
-   generated-file list. Provenance and hash changes are counted separately.
+   generated-file list. The **Official updates applied** table shows each
+   update ID, source, exact target and previous/replacement value. This includes
+   existing accepted updates applied again while rebuilding; the gameplay list
+   separately identifies what changed since HEAD. Provenance and hash changes
+   are counted separately.
 5. Commit the reviewed outputs and metadata, run `npm run qa:pre-ff`, and request independent
    review before asking the owner to authorize a source fast-forward.
 
@@ -41,6 +78,12 @@ unless you explicitly run `mfm:update` without saved input.
    A failed build or QA publishes no outputs back to the checkout.
 2. Fix the proven input or declaration. Missing evidence, unknown identities or
    stale source acceptance require review, not a new expected test value.
+   **GW update no longer matches** means the exact target value differs from
+   `expectedBefore`. Compare the named entity/field with the accepted source
+   and earlier updates. Correct the source binding or explicitly supersede the
+   earlier update after review; do not simply copy the error's found value into
+   `expectedBefore` to force a pass. The failed update publishes no generated
+   files, and no part of a failed official-update transaction is applied.
 3. Use `npm run book:update -- --book=death-guard --check` to check freshness
    without writing the checkout. This checks the selected book outputs in scratch
    and skips book QA and global publication outputs. Use `npm run generated:check`

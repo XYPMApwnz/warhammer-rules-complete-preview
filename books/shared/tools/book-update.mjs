@@ -5,7 +5,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {execFileSync,spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {bookUpdateDeclarations,selectBookUpdate,sharedStepAffected,declaredInputFiles} from './book-update-declarations.mjs';
-import {compareBookGameplay,renderBookUpdateReport} from './book-update-report.mjs';
+import {compareBookGameplay,renderBookUpdateReport,collectOfficialUpdates} from './book-update-report.mjs';
 import {publishedMfmSnapshot,ownedMfmRecordIds} from './book-update-snapshots.mjs';
 import {reviewedMfmMetadataChange,writeReviewedMfmMetadata} from './book-update-metadata.mjs';
 import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
@@ -84,10 +84,15 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
  const head=git(root,['rev-parse','HEAD']).trim(),tracked=names(git(root,['ls-tree','-r','--name-only','-z','HEAD'])),initial=workState(root);
  const declarations=bookUpdateDeclarations({root,tracked});let selection=selectBookUpdate(declarations,{books,all,changed:initial.changed});
  fs.mkdirSync(out,{recursive:true});if(fs.existsSync(path.join(out,'RESULTS.json')))throw Error('Choose a fresh --out directory');
- const started=Date.now(),report={schema:'book-update/v1',baseHead:head,root,mode:check?'check':'update',status:'RUNNING',selection,books:[],generatedChanges:[],metadataPinChanges:[],steps:[],changedInputs:initial.changed};
+ const started=Date.now(),report={schema:'book-update/v1',baseHead:head,root,mode:check?'check':'update',status:'RUNNING',selection,books:[],generatedChanges:[],metadataPinChanges:[],officialUpdates:[],steps:[],changedInputs:initial.changed};
  const save=()=>{report.elapsedMs=Date.now()-started;fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(out,'REPORT.md'),renderBookUpdateReport(report));};
  const scratch=createQaTempDir('wh-book-update-'),copy=path.join(scratch,'checkout'),work=path.join(scratch,'operations');fs.mkdirSync(work,{recursive:true});
  const env={...qaTempEnvironment(),PYTHONDONTWRITEBYTECODE:'1',PYTHONUTF8:'1',PYTHON:resolveQaPython()};
+ // QA includes successful poisoned/synthetic transactions; never report those
+ // as accepted book updates. Only producer subprocesses receive this sink.
+ delete env.BOOK_UPDATE_OFFICIAL_LOG;
+ const officialLog=path.join(work,'official-updates.ndjson'),buildEnv={...env,BOOK_UPDATE_OFFICIAL_LOG:officialLog};
+ const readOfficialLog=()=>fs.existsSync(officialLog)?collectOfficialUpdates(fs.readFileSync(officialLog,'utf8').split(/\r?\n/).filter(Boolean).map(line=>JSON.parse(line))):[];
  try{
   console.log('[book:update] '+selection.books.join(', '));if(selection.fallbackReason)console.log('[book:update] '+selection.fallbackReason);
   const cloneLog=path.join(out,'checkout.log'),fd=fs.openSync(cloneLog,'w');
@@ -121,7 +126,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
    const oldOutputHashes=policy?.operations.rebuildAfterChange?step.outputs.map(file=>fs.existsSync(at(copy,file))?sha(fs.readFileSync(at(copy,file))):null):null;
    if(!step.preserveOutputSeeds)for(const file of step.outputs)if(fs.existsSync(at(copy,file)))fs.unlinkSync(at(copy,file));
    const expanded=args.map(arg=>arg.replaceAll('{work}',work).replaceAll('{checkout}',copy).replaceAll('{head}',head));
-   await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env,log:path.join(out,(pass>1?'pass-'+pass+'-':'')+String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer+(pass>1?' (stabilization pass '+pass+')':''),book:step.book,results:report.steps});
+   await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env:buildEnv,log:path.join(out,(pass>1?'pass-'+pass+'-':'')+String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer+(pass>1?' (stabilization pass '+pass+')':''),book:step.book,results:report.steps});
    for(const file of step.outputs){if(!fs.existsSync(at(copy,file)))throw Error(step.book+': producer did not emit declared file '+file);if(!fs.existsSync(at(root,file))||!fs.readFileSync(at(copy,file)).equals(fs.readFileSync(at(root,file))))affected.add(file);}
    if(oldOutputHashes&&step.outputs.some((file,n)=>sha(fs.readFileSync(at(copy,file)))!==oldOutputHashes[n]))rebuildReasons.push({producer:step.producer,files:step.outputs});
    for(const {book,operation}of metadataPins.filter(pin=>pin.operation.afterProducer===step.producer)){
@@ -138,6 +143,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   if(pass===maxPasses)throw Error('Declared build outputs did not stabilize after '+maxPasses+' passes: '+rebuildReasons.map(row=>row.producer).join(', ')+'; no outputs were published');
   console.log('[book:update] Declared shared output changed; rebuilding the selected plan to stabilize source serialization (pass '+(pass+1)+'/'+maxPasses+')');
   }
+  report.officialUpdates=readOfficialLog();
   for(const row of declarations.shared.filter(r=>executedShared.has(r.step.producer)&&r.operations.checkArgs))await execute({command:process.execPath,args:[row.step.producer,...row.operations.checkArgs],cwd:copy,env,log:path.join(out,'verify-'+path.basename(row.step.producer)+'.log'),label:'VERIFY '+row.step.producer,book:row.step.book,results:report.steps});
   for(const id of selection.books){
    const passport=declarations.books.find(b=>b.id===id).passport;
@@ -161,7 +167,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   report.written=check?[]:publishOutputs(root,copy,[...new Set([...declarations.plan.files,...metadataPins.map(p=>p.operation.reviewArtifact)])],work,out);
   report.scope=check&&!selection.fullPlan&&!declarations.checkSharedSteps?'Selected book outputs only; shared publication freshness is covered by generated:check.':'Affected declared outputs and checks';
   report.status='PASS';save();
-  console.log(`[book:update] PASS ${report.elapsedMs}ms; ${report.generatedChanges.length} generated files changed; ${report.metadataPinChanges.length} reviewed metadata pins; ${report.books.reduce((n,b)=>n+b.gameplayChanges,0)} gameplay changes. Report: ${path.join(out,'REPORT.md')}`);
+  console.log(`[book:update] PASS ${report.elapsedMs}ms; ${report.generatedChanges.length} generated files changed; ${report.metadataPinChanges.length} reviewed metadata pins; ${report.books.reduce((n,b)=>n+b.gameplayChanges,0)} gameplay changes; ${report.officialUpdates.length} accepted official update entries applied or checked. Report: ${path.join(out,'REPORT.md')}`);
   return report;
  }catch(error){report.status='FAIL';report.error=error.message;report.written=[];save();console.error('[book:update] FAIL '+error.message);if(initial.changed.length)console.error('[book:update] Inputs: '+initial.changed.join(', '));throw error;}
  finally{cleanupQaTempDir(scratch);}
