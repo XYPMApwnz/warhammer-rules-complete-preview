@@ -390,7 +390,7 @@ def build(root=ROOT):
             "sourceAccounting": accounting, "referenceMetadata": references, "ruleContractsStarted": False,
             "rosterRuntimeStarted": False}
     # The source module applies only adjudicated fields from the enrolled PDF.
-    corrected = apply_official_overrides(corpus, official)
+    corrected = apply_official_overrides(corpus, official, root=root)
     # Build effective rows without overwriting the immutable captured corpus.
     effective_rows = copy.deepcopy(rows)
     replacements = {}

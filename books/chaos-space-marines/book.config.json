@@ -156,6 +156,10 @@
         {
           "role": "mfmCrossFactionDependencies",
           "path": "books/chaos-space-marines/sources/official-mfm-v1.5-thousand-sons-csm-dependency.html"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/chaos-space-marines/v2/official-updates.json"
         }
       ]
     },
@@ -263,7 +267,7 @@
       "joins": "books/chaos-space-marines/v2/model-name-source-bindings.json"
     },
     "official": {
-      "input": "books/chaos-space-marines/v2/official-bindings.json",
+      "input": "books/chaos-space-marines/v2/official-updates.json",
       "stage": "source-corpus"
     },
     "inheritance": {

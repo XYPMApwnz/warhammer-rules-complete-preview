@@ -11,9 +11,28 @@ import copy
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 import pdfplumber
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
+
+
+def _official_document(root):
+    root = Path(root)
+    passport = json.loads((root/'books/chaos-space-marines/book.config.json').read_text(encoding='utf-8'))['passport']
+    return json.loads((root/passport['official']['input']).read_text(encoding='utf-8'))
+
+
+def _source_bindings(root):
+    document = _official_document(root)
+    source = document.get('evidence', {}).get('sourceBindings')
+    if not isinstance(source, dict):
+        raise ValueError('CSM official input needs its accepted PDF extraction grammar')
+    return source
 
 
 def _sha(text: str) -> str:
@@ -72,8 +91,7 @@ def read_official(root: Path) -> dict:
     and verified replacement payloads for canonical normalization.
     """
     root = Path(root)
-    binding_path = root / "books/chaos-space-marines/v2/official-bindings.json"
-    binding = json.loads(binding_path.read_text(encoding="utf-8"))
+    binding = _source_bindings(root)
     pdf_path = root / binding["sourceDocument"]
     if hashlib.sha256(pdf_path.read_bytes()).hexdigest() != binding["sourceSha256"]:
         raise ValueError("The enrolled official CSM PDF hash changed")
@@ -165,31 +183,69 @@ def read_official(root: Path) -> dict:
             "sourceDocument": binding["sourceDocument"], "sourceSha256": binding["sourceSha256"]}
 
 
-def apply_official_overrides(corpus: dict, official: dict) -> dict:
-    """Deep-copy source extraction and apply only explicitly bound official edits.
+def _source_pointer(parts):
+    return '/' + '/'.join(str(part).replace('~', '~0').replace('/', '~1') for part in parts)
 
-    The caller retains immutable raw input. A changed source owner or value
-    fails closed instead of permitting a title, prose or position fallback.
+
+def apply_official_overrides(corpus: dict, official: dict, root=ROOT) -> dict:
+    """Authenticate source evidence, then call the one shared interpreter.
+
+    Historical PDF extraction is retained as source grammar inside the shared
+    document. It neither selects targets by title nor mutates corpus fields.
     """
-    replacements = [*official["updates"], *official.get("nativeRules", [])]
-    for update in replacements:
-        for target in update["targets"]:
+    document = _official_document(root)
+    updates = {update['sourceEntityId']: update for update in [*official['updates'], *official.get('nativeRules', [])]}
+    for update in updates.values():
+        for target in update['targets']:
             _validate_target(corpus, target)
-    effective = copy.deepcopy(corpus)
-    touched = set()
-    for update in replacements:
-        for patch in update["patches"]:
-            target = update["targets"][patch["targetIndex"]]
-            pointer = target["corpusPointer"]
-            if pointer in touched:
-                raise ValueError("Multiple uncomposed official replacements target one factual field")
-            touched.add(pointer)
-            current, _ = _resolve(effective, pointer)
-            if patch["mode"] == "replace_fragment":
-                current = current.replace(patch["expectedFragment"], patch["replacement"])
-            else:
-                current = patch["replacement"]
-            parent_pointer, key = pointer.rsplit("/", 1)
-            parent, _ = _resolve(effective, parent_pointer)
-            parent[int(key) if isinstance(parent, list) else key] = current
-    return effective
+    accepted = {item['path']: item for item in json.loads((Path(root)/'books/chaos-space-marines/v2/sources/enrollment.json').read_text(encoding='utf-8'))['artifacts']}
+    verified_sources, seen = set(), set()
+    for entry in document['entries']:
+        source = entry['source']
+        artifact = accepted.get(source['document'])
+        if not artifact or artifact['authority'] != 'AUTHORITATIVE_CURRENT' or artifact['sha256'].lower() != source.get('sha256', '').lower():
+            raise ValueError('Official source is not enrolled: '+entry['id'])
+        if artifact.get('version') and source['version'].removeprefix('v') != artifact['version']:
+            raise ValueError('Official source version changed: '+entry['id'])
+        if artifact.get('effectiveDate') and source.get('effectiveFrom') != artifact['effectiveDate']:
+            raise ValueError('Official source effective date changed: '+entry['id'])
+        if source['document'] not in verified_sources:
+            if hashlib.sha256((Path(root)/source['document']).read_bytes()).hexdigest() != source['sha256'].lower():
+                raise ValueError('Official source integrity mismatch: '+source['document'])
+            verified_sources.add(source['document'])
+        evidence = entry.get('annotations', {})
+        if 'sourceCorrectionId' not in evidence:
+            continue  # A new explicit update is still checked by the interpreter.
+        update = updates.get(evidence['sourceCorrectionId'])
+        if update is None or not (isinstance(evidence['targetIndex'], int) and 0 <= evidence['targetIndex'] < len(update['targets'])):
+            raise ValueError('Official source occurrence target missing: '+entry['id'])
+        target = update['targets'][evidence['targetIndex']]
+        key = (update['sourceEntityId'], evidence['targetIndex'])
+        if key in seen:
+            raise ValueError('Official source target has multiple application owners')
+        seen.add(key)
+        current = _validate_target(corpus, target)
+        locator = entry['target']['sourceLocator']
+        pointer = _source_pointer([*locator['pointer'], *entry['target']['field']])
+        if locator['identity'] != target['sourceId'] or pointer != target['corpusPointer'] or evidence['corpusPointer'] != pointer:
+            raise ValueError('Official target source owner changed: '+entry['id'])
+        if evidence['expectedInputSha256'] != target['expectedInputSha256']:
+            raise ValueError('Official target input changed: '+pointer)
+        if entry['source']['document'] != official['sourceDocument'] or entry['source'].get('sha256') != official['sourceSha256'] or entry['source']['page'] != update['sourcePage']:
+            raise ValueError('Official source identity changed: '+entry['id'])
+        patches = [patch for patch in update['patches'] if patch['targetIndex'] == evidence['targetIndex']]
+        if len(patches) > 1:
+            raise ValueError('Multiple uncomposed official replacements target one factual field')
+        if not patches:
+            if entry['operation'] != 'VERIFY_CURRENT' or entry['after'] != current:
+                raise ValueError('Already-current official fact must remain verification-only')
+        elif patches[0]['mode'] == 'replace_fragment':
+            patch = patches[0]
+            if entry['operation'] != 'REPLACE_FRAGMENT' or entry['fragment'] != {'before': patch['expectedFragment'], 'after': patch['replacement']}:
+                raise ValueError('Official replacement fragment differs from its verified source')
+        elif entry['operation'] != 'SET' or entry['after'] != patches[0]['replacement']:
+            raise ValueError('Official replacement value differs from its verified source')
+    expected = {(update['sourceEntityId'], i) for update in updates.values() for i, _ in enumerate(update['targets'])}
+    if seen != expected:
+        raise ValueError('Official application target inventory changed')
+    return apply_book_official_updates('chaos-space-marines', corpus, root, document=document)['model']
