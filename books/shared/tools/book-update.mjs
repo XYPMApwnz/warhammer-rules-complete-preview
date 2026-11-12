@@ -6,7 +6,7 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {bookUpdateDeclarations,selectBookUpdate,sharedStepAffected,declaredInputFiles} from './book-update-declarations.mjs';
 import {compareBookGameplay,renderBookUpdateReport} from './book-update-report.mjs';
-import {publishedMfmSnapshot} from './book-update-snapshots.mjs';
+import {publishedMfmSnapshot,ownedMfmRecordIds} from './book-update-snapshots.mjs';
 import {reviewedMfmMetadataChange,writeReviewedMfmMetadata} from './book-update-metadata.mjs';
 import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
 import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
@@ -126,7 +126,8 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   for(const id of selection.books){
    const passport=declarations.books.find(b=>b.id===id).passport;
    const after=decode(copy,fs.readFileSync(at(copy,passport.update.reportArtifact))),release=readCurrentMfmRelease({repoRoot:copy}),capture=release.factions.find(f=>f.bookId===id);
-   const comparison=compareBookGameplay({bookId:id,before:JSON.parse(fs.readFileSync(before.get(id),'utf8')),after,mfmBefore:beforeMfm.get(id),mfmAfter:capture?JSON.parse(fs.readFileSync(at(copy,capture.capturePath),'utf8')):undefined});
+   const mfmOwnedIds=[...new Set([beforeMfm.get(id).version,release.version].flatMap(version=>ownedMfmRecordIds({root:copy,head,bookId:id,passport,version})))];
+   const comparison=compareBookGameplay({bookId:id,before:JSON.parse(fs.readFileSync(before.get(id),'utf8')),after,mfmBefore:beforeMfm.get(id),mfmAfter:capture?JSON.parse(fs.readFileSync(at(copy,capture.capturePath),'utf8')):undefined,mfmOwnedIds});
    comparison.metadataChanges+=report.metadataPinChanges.filter(c=>c.book===id).length;report.books.push(comparison);
   }
   for(const file of declarations.plan.files){const target=at(copy,file),original=at(root,file);if(fs.existsSync(target)&&(!fs.existsSync(original)||!fs.readFileSync(target).equals(fs.readFileSync(original))))report.generatedChanges.push({file,beforeSha256:fs.existsSync(original)?sha(fs.readFileSync(original)):null,afterSha256:sha(fs.readFileSync(target))});}

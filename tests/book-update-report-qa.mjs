@@ -71,8 +71,28 @@ check('new unit is reported once instead of every new child field',()=>{
 const mfm={version:'v1.6',captureSha256:'old',units:[{title:'PLAGUE MARINES',sourceGroup:'UNITS',status:'CURRENT',pointSchedules:[{sourceLabel:'YOUR UNIT COSTS',entries:[{sourceLabel:'5 models',minModels:5,maxModels:5,value:90}]}]}],detachments:[{title:'TEST',detachmentPoints:1,forceDispositions:['A','B'],enhancements:[{title:'Test Enhancement',value:15,qualifiers:[]}]}]};
 check('complete MFM capture covers invisible source rows without duplicating cards',()=>{
  const after=clone();after.cards.find(c=>c.id==='cost').fields[2].value=95;const mfmAfter=structuredClone(mfm);mfmAfter.units[0].pointSchedules[0].entries[0].value=95;mfmAfter.captureSha256='new';
- const r=compareBookGameplay({bookId:'synthetic',before:baseline,after,mfmBefore:mfm,mfmAfter});assert.equal(r.gameplayChanges,1);assert.equal(r.changes[0].after,95);assert(r.changes[0].summary.includes('PLAGUE MARINES · 5 models: 90 → 95'));
- mfmAfter.units.push({title:'REFERENCE ONLY UNIT',sourceGroup:'LEGENDS',status:'LEGENDS',pointSchedules:[]});assert(compareBookGameplay({bookId:'synthetic',before:baseline,after,mfmBefore:mfm,mfmAfter}).changes.some(c=>c.kind==='ADDED'&&c.label==='REFERENCE ONLY UNIT'));
+ const r=compareBookGameplay({bookId:'synthetic',before:baseline,after,mfmBefore:mfm,mfmAfter,mfmOwnedIds:['cost']});assert.equal(r.gameplayChanges,1);assert.equal(r.changes[0].after,95);assert(r.changes[0].summary.includes('PLAGUE MARINES · 5 models: 90 → 95'));
+ mfmAfter.units.push({title:'REFERENCE ONLY UNIT',sourceGroup:'LEGENDS',status:'LEGENDS',pointSchedules:[]});assert(compareBookGameplay({bookId:'synthetic',before:baseline,after,mfmBefore:mfm,mfmAfter,mfmOwnedIds:new Set(['cost'])}).changes.some(c=>c.kind==='ADDED'&&c.label==='REFERENCE ONLY UNIT'));
+});
+check('inherited foreign-owner MFM prices remain visible with own capture supplied',()=>{
+ const before=clone(),after=clone();
+ for(const payload of[before,after])payload.cards.find(c=>c.id==='cost').provenance={sourceLocator:{factionId:'another-owner'}};
+ after.cards.find(c=>c.id==='cost').fields[2].value=91;
+ // Even incorrect caller coverage cannot override explicit foreign evidence.
+ const r=compareBookGameplay({bookId:'synthetic',before,after,mfmBefore:mfm,mfmAfter:mfm,mfmOwnedIds:['cost']});
+ assert.equal(r.gameplayChanges,1);assert.equal(r.changes[0].summary,'Plague Marines · 5 models: 90 → 91');
+});
+check('unknown MFM ownership stays visible rather than assuming own coverage',()=>{
+ const after=clone();after.cards.find(c=>c.id==='cost').fields[2].value=91;
+ const r=compareBookGameplay({bookId:'synthetic',before:baseline,after,mfmBefore:mfm,mfmAfter:mfm});
+ assert.equal(r.gameplayChanges,1);assert.equal(r.changes[0].summary,'Plague Marines · 5 models: 90 → 91');
+});
+check('explicit own MFM provenance replaces duplicate prices without ID coverage',()=>{
+ const before=clone(),after=clone(),mfmAfter=structuredClone(mfm);
+ for(const payload of[before,after])payload.cards.find(c=>c.id==='cost').provenance={sourceLocator:{factionId:'synthetic'}};
+ after.cards.find(c=>c.id==='cost').fields[2].value=95;mfmAfter.units[0].pointSchedules[0].entries[0].value=95;
+ const r=compareBookGameplay({bookId:'synthetic',before,after,mfmBefore:mfm,mfmAfter});
+ assert.equal(r.gameplayChanges,1);assert(r.changes[0].summary.includes('PLAGUE MARINES · 5 models: 90 → 95'));
 });
 check('MFM paid equipment and Enhancement prices are separate source rows',()=>{
  const after=structuredClone(mfm);after.units[0].paidOptions=[{title:'Icon',sourceLabel:'per Icon',sourceGroup:'WARGEAR OPTIONS',value:5}];

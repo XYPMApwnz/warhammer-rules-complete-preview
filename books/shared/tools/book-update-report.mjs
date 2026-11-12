@@ -61,10 +61,21 @@ function fieldLabel(card,field,fields){
  }
  return label;
 }
-function recordSnapshot(payload,{replaceMfm=false}={}){
+function replaceOwnedMfmCard(card,owner,ownedIds){
+ if(owner===undefined||!card.kind.startsWith('MFM_'))return false;
+ const provenance=Array.isArray(card.provenance)?card.provenance:[card.provenance];
+ const owners=new Set(provenance.map(p=>p?.sourceLocator?.factionId).filter(Boolean));
+ // An inherited source remains a game value in this publication: its price is
+ // absent from the supplied own-faction capture. Explicit foreign ownership
+ // therefore takes precedence over caller coverage, including mixed witnesses.
+ if(owners.size)return owners.size===1&&owners.has(owner);
+ return ownedIds.has(card.id);
+}
+function recordSnapshot(payload,{mfmOwner,mfmOwnedIds=new Set()}={}){
  const cards=cardsOf(payload),records=new Map(),metadata={...payload,cards:{}};
  for(const card of cards.values()){
   const fields=card.fields||[],primary=fields.find(f=>fieldPath(f)==='/text'),values=new Map();
+  const replaceMfm=replaceOwnedMfmCard(card,mfmOwner,mfmOwnedIds);
   const metaCard={...card,fields:{}};delete metaCard.title;
   for(const field of fields){
    const pointer=fieldPath(field);assert(typeof pointer==='string','Presentation field has no stable identity: '+card.id);
@@ -73,7 +84,7 @@ function recordSnapshot(payload,{replaceMfm=false}={}){
    // Whole accepted text owns its derived list/eligibility copies.
    if(primary&&(pointer.startsWith('/listStructure/')||pointer==='/eligibilityText'&&plain(primary.value)===plain(field.value)))continue;
    if(field.presentation==='heading'||((pointer==='/name'||pointer==='/title'||pointer==='/label')&&plain(field.value)===plain(card.title)))continue;
-   if(replaceMfm&&card.kind.startsWith('MFM_')){delete meta.value;continue;}
+   if(replaceMfm){delete meta.value;continue;}
    const grouped=field.type==='tokens'||field.type==='reference'&&/\/\d+$/.test(pointer);
    const localKey=grouped?pointer.replace(/\/\d+$/,''):pointer;
    const key=field.source?.entityId&&field.source.entityId!==card.id?field.source.entityId+'::'+localKey:localKey;
@@ -88,7 +99,7 @@ function recordSnapshot(payload,{replaceMfm=false}={}){
    delete meta.value;
   }
   metadata.cards[card.id]=metaCard;
-  if(replaceMfm&&card.kind.startsWith('MFM_'))continue;
+  if(replaceMfm)continue;
   records.set(card.id,{id:card.id,kind:card.kind,parentId:card.parentId,contextId:card.contextId,title:card.title,label:titleTrail(card,cards),values});
  }
  // Compatibility is a visible game selection, not provenance.
@@ -171,14 +182,22 @@ function representationChanges(before,after){
  return count;
 }
 
-/** Compare already-decoded snapshots. Optional MFM captures include reference-only
- * prices; when present they replace the duplicate published MFM card projection. */
-export function compareBookGameplay({bookId,before,after,mfmBefore,mfmAfter}){
+/** Compare already-decoded snapshots. Optional own-faction MFM captures include
+ * reference-only prices. mfmOwnedIds is an array/Set of exact own record IDs
+ * from the accepted before/after registries, never names or inferred IDs. Only
+ * proven own cards are replaced; foreign and unknown owners remain visible. */
+export function compareBookGameplay({bookId,before,after,mfmBefore,mfmAfter,mfmOwnedIds}){
  assert(typeof bookId==='string'&&bookId,'A book ID is required');
  for(const payload of[before,after])if(payload?.book?.id)assert.equal(payload.book.id,bookId,'Gameplay report must not compare different book owners');
  assert((mfmBefore===undefined)===(mfmAfter===undefined),'Both MFM snapshots must be supplied together');
  const hasMfm=mfmBefore!==undefined;
- const old=recordSnapshot(before,{replaceMfm:hasMfm}),next=recordSnapshot(after,{replaceMfm:hasMfm});
+ assert(mfmOwnedIds===undefined||Array.isArray(mfmOwnedIds)||mfmOwnedIds instanceof Set,'Own MFM record coverage must be an array or Set');
+ const ownedIds=new Set(mfmOwnedIds||[]);
+ assert([...ownedIds].every(id=>typeof id==='string'&&id.length>0),'Own MFM coverage contains an invalid record ID');
+ assert(hasMfm||ownedIds.size===0,'Own MFM coverage requires both MFM snapshots');
+ for(const capture of[mfmBefore,mfmAfter])if(capture?.factionId)assert.equal(capture.factionId,bookId,'MFM capture must belong to the requested book');
+ const replacement={mfmOwner:hasMfm?bookId:undefined,mfmOwnedIds:ownedIds};
+ const old=recordSnapshot(before,replacement),next=recordSnapshot(after,replacement);
  let changes=changesBetween(old.records,next.records),metadataChanges=leafChanges(old.metadata,next.metadata)+representationChanges(old.records,next.records);
  if(hasMfm){const a=mfmSnapshot(mfmBefore),b=mfmSnapshot(mfmAfter);changes.push(...changesBetween(a.records,b.records));metadataChanges+=leafChanges(a.metadata,b.metadata);}
  changes.sort((a,b)=>a.label.localeCompare(b.label,'en')||a.entityId.localeCompare(b.entityId,'en')||String(a.field||'').localeCompare(String(b.field||''),'en'));

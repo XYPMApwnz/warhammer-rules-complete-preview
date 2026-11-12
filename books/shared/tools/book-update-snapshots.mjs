@@ -3,6 +3,19 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 const git=(root,args)=>execFileSync('git',['-C',root,...args],{encoding:'utf8',maxBuffer:96*1024*1024});
 const read=(root,ref,file)=>JSON.parse(git(root,['show',ref+':'+file]));
+/** Exact ownership comes from the accepted release registry, including removed rows. */
+export function ownedMfmRecordIds({root,head,bookId,passport,version}){
+ const pointerFile=passport.mfm.currentRelease;
+ const refs=[head,...git(root,['log','--format=%H',head,'--',pointerFile]).trim().split(/\r?\n/).filter(Boolean)];
+ for(const ref of new Set(refs)){
+  const pointer=read(root,ref,pointerFile);if(pointer.version!==version)continue;
+  const registry=read(root,ref,pointer.identityRegistryPath),bindings=registry.factionBindings.filter(b=>b.factionId===bookId);
+  assert.equal(bindings.length,1,'No unique MFM ownership declaration: '+bookId+' / '+version);
+  const ids=new Set(),visit=value=>{if(typeof value==='string'&&value.startsWith('mfm-'))ids.add(value);else if(Array.isArray(value))value.forEach(visit);else if(value&&typeof value==='object')Object.values(value).forEach(visit);};
+  visit(bindings[0]);return [...ids].sort();
+ }
+ throw Error('No accepted MFM pointer history for report ownership: '+bookId+' / '+version);
+}
 export function publishedMfmSnapshot({root,head,bookId,passport,payload,sourceRegistryPath}){
  const policy=passport.update.mfmBaseline;
  assert.equal(policy.strategy,'published-source-or-manifest','Unknown MFM report baseline policy');
