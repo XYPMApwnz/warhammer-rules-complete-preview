@@ -1,0 +1,302 @@
+{
+  "schema": "army-book-official-updates/v1",
+  "bookId": "adeptus-mechanicus",
+  "stage": "canonical-facts",
+  "selection": {
+    "collection": [
+      "entities"
+    ],
+    "identity": "id",
+    "data": [
+      "data"
+    ]
+  },
+  "order": "declared",
+  "entries": [
+    {
+      "id": "gw-am-faction-pack-v1.4:add:faq-2",
+      "source": {
+        "id": "gw-am-faction-pack-v1.4",
+        "document": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "version": "1.4",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149"
+      },
+      "target": {
+        "id": "@root",
+        "field": [
+          "entities"
+        ]
+      },
+      "kind": "FAQ",
+      "operation": "ADD_RECORD",
+      "after": {
+        "id": "faq-2",
+        "kind": "SOURCE_ERRATUM",
+        "data": {
+          "class": "FAQ",
+          "title": "When I select one of Thulia Ghuld’s Icon of War abilities, when do I select the unit that ability affects?",
+          "text": "When you have selected the Icon of War ability you want to use."
+        },
+        "provenance": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 19
+        }
+      },
+      "annotations": {
+        "phase": "base"
+      }
+    },
+    {
+      "id": "gw-am-faction-pack-v1.4:detachment-luminen-auto-choir:stratagem:2:lines/0/text",
+      "source": {
+        "id": "gw-am-faction-pack-v1.4",
+        "document": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "version": "1.4",
+        "page": 4,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149"
+      },
+      "target": {
+        "id": "detachment-luminen-auto-choir:stratagem:2",
+        "field": [
+          "lines",
+          0,
+          "text"
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Your Movement phase, when a friendly ELECTRO-PRIESTS BATTLECLADE unit is selected to make an advance move.",
+      "after": "Your Movement phase, when a friendly ELECTRO-PRIESTS unit is selected to make an advance move.",
+      "annotations": {
+        "phase": "effective",
+        "evidence": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 4
+        }
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            {
+              "$join": "entry.target.field"
+            }
+          ],
+          "value": {
+            "$merge": [
+              {
+                "$ref": "entry.annotations.evidence"
+              },
+              {
+                "supersedes": {
+                  "$ref": "entity.provenance"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "appliedOfficialUpdates"
+          ],
+          "value": {
+            "targetId": {
+              "$ref": "entry.target.id"
+            },
+            "field": {
+              "$ref": "entry.target.field"
+            },
+            "before": {
+              "$ref": "entry.expectedBefore"
+            },
+            "after": {
+              "$ref": "entry.after"
+            },
+            "page": {
+              "$ref": "entry.source.page"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-am-faction-pack-v1.4:detachment-haloscreed-battle-clade:stratagem:5:lines/0/text",
+      "source": {
+        "id": "gw-am-faction-pack-v1.4",
+        "document": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "version": "1.4",
+        "page": 8,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149"
+      },
+      "target": {
+        "id": "detachment-haloscreed-battle-clade:stratagem:5",
+        "field": [
+          "lines",
+          0,
+          "text"
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Your Movement phase, just after an ADEPTUS MECHANICUS unit from your army makes a Fall Back move.",
+      "after": "Your Movement phase, when a friendly ADEPTUS MECHANICUS unit is selected to make a fall-back move.",
+      "annotations": {
+        "phase": "effective",
+        "evidence": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 8
+        }
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            {
+              "$join": "entry.target.field"
+            }
+          ],
+          "value": {
+            "$merge": [
+              {
+                "$ref": "entry.annotations.evidence"
+              },
+              {
+                "supersedes": {
+                  "$ref": "entity.provenance"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "appliedOfficialUpdates"
+          ],
+          "value": {
+            "targetId": {
+              "$ref": "entry.target.id"
+            },
+            "field": {
+              "$ref": "entry.target.field"
+            },
+            "before": {
+              "$ref": "entry.expectedBefore"
+            },
+            "after": {
+              "$ref": "entry.after"
+            },
+            "page": {
+              "$ref": "entry.source.page"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-am-faction-pack-v1.4:detachment-haloscreed-battle-clade:stratagem:5:lines/2/text",
+      "source": {
+        "id": "gw-am-faction-pack-v1.4",
+        "document": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+        "version": "1.4",
+        "page": 8,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "status": "CURRENT",
+        "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149"
+      },
+      "target": {
+        "id": "detachment-haloscreed-battle-clade:stratagem:5",
+        "field": [
+          "lines",
+          2,
+          "text"
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "expectedBefore": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back, and, if it is a HALO OVERRIDE unit, you can re-roll Desperate Escape tests taken for it.",
+      "after": "• If your unit is a HALO OVERRIDE unit, your unit can re-roll hazard rolls.\n• That fall-back move does not prevent your unit from:\n  • Being eligible to shoot.\n  • Being eligible to declare a charge.",
+      "annotations": {
+        "phase": "effective",
+        "evidence": {
+          "sourceId": "gw-am-faction-pack-v1.4",
+          "sourcePath": "books/adeptus-mechanicus/v2/sources/gw-adeptus-mechanicus-faction-pack-v1.4.pdf",
+          "sha256": "35908C5BFA7BD6428936B00F48CA0C4B666AC14575CDF38341180C23650D0149",
+          "page": 8
+        }
+      },
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            {
+              "$join": "entry.target.field"
+            }
+          ],
+          "value": {
+            "$merge": [
+              {
+                "$ref": "entry.annotations.evidence"
+              },
+              {
+                "supersedes": {
+                  "$ref": "entity.provenance"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "appliedOfficialUpdates"
+          ],
+          "value": {
+            "targetId": {
+              "$ref": "entry.target.id"
+            },
+            "field": {
+              "$ref": "entry.target.field"
+            },
+            "before": {
+              "$ref": "entry.expectedBefore"
+            },
+            "after": {
+              "$ref": "entry.after"
+            },
+            "page": {
+              "$ref": "entry.source.page"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
