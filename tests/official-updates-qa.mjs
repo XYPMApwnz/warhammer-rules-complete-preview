@@ -21,6 +21,8 @@ const verified=applyOfficialUpdates(initial,make([entry({operation:'VERIFY_CURRE
 const locator=entry({target:{sourceLocator:{pointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});assert.equal(applyOfficialUpdates(initial,make([locator])).model.entities[0].data.strength,'5');
 const ownedLocator=entry({target:{sourceLocator:{pointer:['entities',0,'data'],identityPointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});
 assert.equal(applyOfficialUpdates(initial,make([ownedLocator],{selection:{collection:['entities'],identity:'id',data:[]}})).model.entities[0].data.strength,'5','Source-corpus fields retain an exact ancestor identity guard');
+const removeLocated=entry({kind:'RULE_REMOVE',operation:'REMOVE_RECORD',target:{sourceLocator:{pointer:['entities',0],identityPath:['id'],identity:'one'},field:[]},expectedBefore:initial.entities[0],after:{$absent:true}});
+assert.deepEqual(applyOfficialUpdates(initial,make([removeLocated])).model.entities,[],'An explicitly located source record can be removed without title lookup');
 let controls=0;const rejects=(fn,pattern)=>{assert.throws(fn,pattern);controls++;assert.deepEqual(initial,before,'A refused transaction changed its input');};
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'missing',field:['strength']}})])),/synthetic.*test-1.*exactly 1, found 0/);
 rejects(()=>applyOfficialUpdates({entities:[initial.entities[0],structuredClone(initial.entities[0])]},make([entry()])),/exactly 1, found 2/);
