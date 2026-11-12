@@ -333,7 +333,17 @@
         "strategy": "published-source-or-manifest",
         "authority": "official-live-mfm"
       },
-      "metadataPins": []
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/emperors-children/v2/build.py",
+          "factualArtifact": "books/emperors-children/v2/generated/effective.json",
+          "reviewArtifact": "books/emperors-children/v2/text-rule-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion",
+          "hashEncoding": "sha256-json-lower"
+        }
+      ]
     }
   }
 }

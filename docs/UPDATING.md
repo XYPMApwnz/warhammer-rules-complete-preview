@@ -68,7 +68,7 @@ export and append-only merge; old entries cannot be replaced. All production
 work happens in a real temporary Git clone before successful outputs are copied
 back. Keep the checkout unchanged while an update is running.
 
-One declared review pin includes the MFM version label in its factual-file hash.
+Three declared review pins include the MFM version label in their factual-file hashes.
 The command may migrate that pin only when restoring the previous version label
 reconstructs the exact old full fingerprint. All other factual bytes stay pinned;
 a rule, characteristic or unrelated metadata change still requires explicit

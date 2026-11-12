@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {reviewedMfmMetadataChange} from '../books/shared/tools/book-update-metadata.mjs';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex').toUpperCase();
-const operation={inputRole:'currentMfmRelease',metadataField:'mfmBoundary.sourceVersion',reviewField:'factualFingerprint'};
+const operation={inputRole:'currentMfmRelease',metadataField:'mfmBoundary.sourceVersion',reviewField:'factualFingerprint',hashEncoding:'sha256-json-upper'};
 const old={mfmBoundary:{sourceVersion:'v1.6',valuesCopied:false},entities:[{id:'weapon-qa',data:{strength:'9'}}]},review={factualFingerprint:hash(old),clauses:[{id:'retained-clause',classification:'BATTLE_ONLY'}]};
 const next=structuredClone(old);next.mfmBoundary.sourceVersion='v1.7';
 const args={facts:next,review,beforeVersion:'v1.6',currentVersion:'v1.7',operation},result=reviewedMfmMetadataChange(args);
@@ -16,4 +16,6 @@ assert.throws(()=>reviewedMfmMetadataChange({...args,review:{...review,factualFi
 assert.throws(()=>reviewedMfmMetadataChange({...args,currentVersion:'v1.8'}),/validated pointer/);
 assert.throws(()=>reviewedMfmMetadataChange({...args,operation:{...operation,metadataField:'entities.0.data.strength'}}),/Gameplay fields/);
 assert.throws(()=>reviewedMfmMetadataChange({...args,operation:{...operation,reviewField:'clauses'}}),/Unknown reviewed fingerprint/);
-console.log(JSON.stringify({status:'PASS',metadataOnly:true,unchangedFactsRemainFullyPinned:true,negativeControls:6}));
+assert.throws(()=>reviewedMfmMetadataChange({...args,operation:{...operation,hashEncoding:'md5'}}),/Unknown metadata fingerprint encoding/);
+assert.equal(reviewedMfmMetadataChange({...args,review:{...review,factualFingerprint:hash(old).toLowerCase()},operation:{...operation,hashEncoding:'sha256-json-lower'}}).after,hash(next).toLowerCase());
+console.log(JSON.stringify({status:'PASS',metadataOnly:true,unchangedFactsRemainFullyPinned:true,negativeControls:7}));

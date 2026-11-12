@@ -261,7 +261,17 @@
         "strategy": "published-source-or-manifest",
         "authority": "official-live-mfm"
       },
-      "metadataPins": []
+      "metadataPins": [
+        {
+          "inputRole": "currentMfmRelease",
+          "afterProducer": "books/tyranids/v2/build.py",
+          "factualArtifact": "books/tyranids/v2/generated/effective.json",
+          "reviewArtifact": "books/tyranids/v2/text-rule-review.json",
+          "reviewField": "factualFingerprint",
+          "metadataField": "mfmBoundary.sourceVersion",
+          "hashEncoding": "sha256-json-lower"
+        }
+      ]
     }
   }
 }

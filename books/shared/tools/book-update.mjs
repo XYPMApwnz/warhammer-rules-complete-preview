@@ -114,10 +114,12 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
    await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env,log:path.join(out,String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer,book:step.book,results:report.steps});
    for(const file of step.outputs){if(!fs.existsSync(at(copy,file)))throw Error(step.book+': producer did not emit declared file '+file);if(!fs.existsSync(at(root,file))||!fs.readFileSync(at(copy,file)).equals(fs.readFileSync(at(root,file))))affected.add(file);}
    for(const {book,operation}of metadataPins.filter(pin=>pin.operation.afterProducer===step.producer)){
-    const facts=decode(copy,fs.readFileSync(at(copy,operation.factualArtifact))),review=JSON.parse(fs.readFileSync(at(copy,operation.reviewArtifact),'utf8'));
-    const change=reviewedMfmMetadataChange({facts,review,beforeVersion:beforeMfm.get(book).version,currentVersion:release.version,operation});
-    writeReviewedMfmMetadata(at(copy,operation.reviewArtifact),change,operation);
-    if(change.changed){report.metadataPinChanges.push({book,file:operation.reviewArtifact,...change});affected.add(operation.reviewArtifact);console.log('[book:update] METADATA '+book+': MFM version only; old factual fingerprint reconstructed exactly');}
+    try{
+     const facts=decode(copy,fs.readFileSync(at(copy,operation.factualArtifact))),review=JSON.parse(fs.readFileSync(at(copy,operation.reviewArtifact),'utf8'));
+     const change=reviewedMfmMetadataChange({facts,review,beforeVersion:beforeMfm.get(book).version,currentVersion:release.version,operation});
+     writeReviewedMfmMetadata(at(copy,operation.reviewArtifact),change,operation);
+     if(change.changed){report.metadataPinChanges.push({book,file:operation.reviewArtifact,...change});affected.add(operation.reviewArtifact);console.log('[book:update] METADATA '+book+': MFM version only; old factual fingerprint reconstructed exactly');}
+    }catch(error){throw Error(book+': '+operation.reviewArtifact+': '+error.message);}
    }
   }
   for(const row of declarations.shared.filter(r=>executedShared.has(r.step.producer)&&r.operations.checkArgs))await execute({command:process.execPath,args:[row.step.producer,...row.operations.checkArgs],cwd:copy,env,log:path.join(out,'verify-'+path.basename(row.step.producer)+'.log'),label:'VERIFY '+row.step.producer,book:row.step.book,results:report.steps});

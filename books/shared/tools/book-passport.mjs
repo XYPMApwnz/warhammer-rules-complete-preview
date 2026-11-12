@@ -12,7 +12,7 @@ const enumeration=(...values)=>({type:'enum',values});
 const nullable=rule=>({type:'nullable',rule});
 const file={type:'path'},producer={type:'producer'},text={type:'string'},boolean={type:'boolean'};
 const step=object({book:text,producer,args:array(text),runtime:enumeration('node','python'),outputs:array(file)});
-const metadataPin=object({inputRole:enumeration('currentMfmRelease'),afterProducer:producer,factualArtifact:file,reviewArtifact:file,reviewField:enumeration('factualFingerprint'),metadataField:enumeration('mfmBoundary.sourceVersion')});
+const metadataPin=object({inputRole:enumeration('currentMfmRelease'),afterProducer:producer,factualArtifact:file,reviewArtifact:file,reviewField:enumeration('factualFingerprint'),metadataField:enumeration('mfmBoundary.sourceVersion'),hashEncoding:enumeration('sha256-json-upper','sha256-json-lower')});
 export const bookPassportSchema=object({
   schema:enumeration('army-book-passport/v1'),edition:text,
   sources:object({enrollment:file,effective:file,manifest:file,inputs:array(object({role:text,path:file}))}),
