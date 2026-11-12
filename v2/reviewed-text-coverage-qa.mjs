@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import {parseProducerJSON,prepareSourceProducer,serializeSourceJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 import {appendReviewedTextCoverage,reviewedTextFields,textFieldPointer,textCoverageHash} from '../books/shared/rule-contract-v2/reviewed-text-coverage.mjs';
 import {detachmentTextDeclaration} from '../books/shared/roster-v2/conditional-policy.mjs';
+import {verifyAcceptedMfmHistory} from '../tests/helpers/accepted-mfm-history.mjs';
+import {currentMfmContractExpectation} from '../tests/helpers/current-mfm-contract.mjs';
 
 const bookId=process.argv.find(arg=>arg.startsWith('--book='))?.slice(7);
 assert(['tyranids','emperors-children'].includes(bookId),'Explicit supported coverage book required');
@@ -17,6 +19,11 @@ const publishedContracts=new Map(published.contracts.map(c=>[c.ruleId,c]));
 const rawContracts=new Map(raw.contracts.map(c=>[c.ruleId,c]));
 const old=new Map(baseline.contracts.map(c=>[c.ruleId,c])),index=new Map(book.entities.map(e=>[e.id,e]));
 const hash=value=>textCoverageHash(JSON.stringify(value));
+const historicalFile='books/'+bookId+'/v2/generated/rule-contracts.json';
+const historical=verifyAcceptedMfmHistory({script:'v2/reviewed-text-coverage-qa.mjs',args:['--book='+bookId],
+ fixtures:['books/'+bookId+'/v2/text-rule-baseline.json'],decodedFiles:[historicalFile],label:bookId+' text contracts'});
+const historicalContracts=new Map(historical.decoded[historicalFile].contracts.map(c=>[c.ruleId,c]));
+const {resolveOwnedFact}=await import(new URL('mfm-boundary.mjs',base));
 const detachmentReview=new Map(read('detachment-recipient-declarations.json')
  .filter(row=>row.disposition==='RECORD').map(row=>[row.ruleId+'\0'+row.clauseId,row]));
 function assertReviewedDetachmentText(rule,clause){
@@ -47,11 +54,14 @@ for(const {entity,field,text}of fields){
 const appended=[];
 for(const [id,prior]of old){
  const current=publishedContracts.get(id);
+ const accepted=historicalContracts.get(id);assert(accepted,'A protected accepted contract was lost');
+ const expected=currentMfmContractExpectation(accepted,{bookId,resolveOwnedFact});
  for(const clause of current.clauses)if(detachmentReview.has(id+'\0'+clause.id))assertReviewedDetachmentText(index.get(id),clause);
  for(const clause of prior.clauses)assert.equal(hash(rawContracts.get(id).clauses.find(c=>c.id===clause.id)),clause.rawSha256,'Published source-refs clause bytes changed '+id+'/'+clause.id);
- if(hash(current)===prior.sha256){assert.equal(hash(rawContracts.get(id)),prior.rawSha256,'Published original contract bytes changed');continue;}
+ if(hash(accepted)===prior.sha256){assert.deepEqual(current,expected,'Protected contract differs beyond authenticated current MFM provenance');continue;}
  assert.equal(bookId,'emperors-children','Existing Tyranids contract changed');
- assert.equal(hash(Object.fromEntries(Object.entries(current).filter(([k])=>!['clauses','sourceFields'].includes(k)))),prior.withoutClausesAndFieldsSha256,
+ assert.deepEqual(Object.fromEntries(Object.entries(current).filter(([k])=>!['clauses','sourceFields'].includes(k))),
+  Object.fromEntries(Object.entries(expected).filter(([k])=>!['clauses','sourceFields'].includes(k))),
   'Existing contract participant, condition, source or metadata changed');
  for(const clause of prior.clauses)assert.equal(hash(current.clauses.find(c=>c.id===clause.id)),clause.sha256,'Existing executable clause changed '+id+'/'+clause.id);
  for(const field of prior.sourceFields)assert(current.sourceFields.some(f=>JSON.stringify(f)===JSON.stringify(field)));
