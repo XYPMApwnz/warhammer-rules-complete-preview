@@ -14,19 +14,57 @@ import {enhancementOwnerContext} from '../../shared/roster-v2/compatibility-cont
 import {projectInstanceCards,projectPersonalBook} from '../../shared/army-book-app-v2/personal.mjs';
 import {renderRosterPointsStatus} from '../../shared/army-book-app-v2/roster.mjs';
 import {getCurrentMfmSource} from '../../../mfm/content/current-mfm-release.mjs';
+import {verifyFrozenSource} from '../../shared/tools/source-ingestion-contract.mjs';
+import {createHash} from 'node:crypto';
 const read=path=>parseSourceFixtureJSON(fs.readFileSync(new URL(path,import.meta.url),'utf8')),clone=structuredClone;
 const book=buildDarkAngelsImportBook(),index=new Map(book.entities.map(row=>[row.id,row]));
 const sources=new Map([...read('./generated/effective.json').entities,...read('../../space-marines/v2/generated/effective.json').entities].map(row=>[row.id,row]));
 const originalSources=JSON.stringify([...sources.values()]),payload=buildGameplayPresentation(),cards=new Map(payload.cards.map(card=>[card.id,card]));
-const rawCaptures=Object.fromEntries(['dark-angels','space-marines'].map(id=>[id,read('../../../'+getCurrentMfmSource(id).capturePath)]));
+const captureSources=Object.fromEntries(['dark-angels','space-marines'].map(id=>[id,getCurrentMfmSource(id)]));
+const rawCaptures=Object.fromEntries(Object.entries(captureSources).map(([id,source])=>[id,read('../../../'+source.capturePath)]));
+const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value;
+const sha=value=>createHash('sha256').update(value).digest('hex').toUpperCase();
+const verifiedCaptures=new Set();
+const verifyCapture=owner=>{
+ if(verifiedCaptures.has(owner))return;const capture=rawCaptures[owner],{captureSha256,...payload}=capture;
+ verifyFrozenSource(captureSources[owner].sourceId);assert.equal(sha(JSON.stringify(stable(payload))),captureSha256);
+ for(const artifact of capture.rawArtifacts){const bytes=fs.readFileSync(new URL(artifact.path,new URL('../../../'+captureSources[owner].capturePath,import.meta.url)));assert.equal(sha(bytes),artifact.sha256);assert.equal(bytes.length,artifact.bytes);}
+ verifiedCaptures.add(owner);
+};
 const priceBridges=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];
+const historicalCaptures=new Map();
+function reviewedMfmUnit(binding,owner){
+ assert.ok(binding,'Missing reviewed unit MFM binding');
+ assert.ok(binding.sourceLocator,'Missing reviewed MFM source locator');
+ const locator=binding.sourceLocator,proof=binding.proof.mfm;
+ assert.equal(locator.partition,'units','MFM fixture locator must address units');
+ assert.equal(locator.factionId,owner,'MFM fixture locator has a foreign faction');
+ let historical=historicalCaptures.get(proof.sourcePath);
+ if(!historical){
+  historical=read('../../../'+proof.sourcePath);verifyFrozenSource(proof.sourceId);
+  const {captureSha256,...payload}=historical;
+  assert.equal(sha(JSON.stringify(stable(payload))),captureSha256,'Historical MFM capture fingerprint changed');
+  historicalCaptures.set(proof.sourcePath,historical);
+ }
+ assert.equal(historical.captureSha256,proof.captureSha256,'Historical reviewed MFM capture changed');
+ assert.equal(historical.factionId,owner,'Historical MFM proof has a foreign faction');
+ const oldRow=proof.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],historical);
+ assert.deepEqual([oldRow.title,oldRow.sourceGroup,oldRow.status],[locator.sourceTitle,locator.sourceGroup,locator.status],'Historical pointer no longer proves the reviewed source locator');
+ verifyCapture(owner);
+ assert.equal(rawCaptures[owner].factionId,owner,'Current MFM capture has a foreign faction');
+ const matches=rawCaptures[owner].units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+ assert.equal(matches.length,1,'Current MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+ return matches[0];
+}
 const sourceBase=(unitId,count,copy=1)=>{
  const binding=priceBridges.find(row=>row.entityId===unitId),owner=sources.get(unitId).bookId;
- const source=binding.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],rawCaptures[owner]);
+ const source=reviewedMfmUnit(binding,owner);
  const prices=source.pointSchedules.filter(row=>(row.minCopies===undefined||copy>=row.minCopies)&&(row.maxCopies===undefined||copy<=row.maxCopies))
   .flatMap(row=>row.entries).filter(row=>count>=row.minModels&&count<=row.maxModels);
  return prices.length===1?prices[0].value:null;
 };
+const missingMfmLocator={...priceBridges.find(binding=>binding.bookId==='dark-angels'),sourceLocator:null};
+assert.throws(()=>reviewedMfmUnit(missingMfmLocator,missingMfmLocator.bookId),/Missing reviewed MFM source locator/);
 const ID={azrael:'unit-da-f8f0629206e744459a9f',command:'unit-da-467009b00bb9402dadee',sammael:'unit-da-0e189995095847bf9d47',
  out:'unit-sm-0dd92e6d8ad54ee6',ordinary:'unit-sm-59162946fee84360',darkflight:'detachment-da-d7c1a2b23f2e443aa22a',
  cyclone:'unit-da-9f8f2ccbdb7d4c72857c',lazarus:'unit-da-efa93d33ea414d8b8f11'};

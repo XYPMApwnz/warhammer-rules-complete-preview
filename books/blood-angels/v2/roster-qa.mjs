@@ -59,14 +59,39 @@ const verifyCapture=owner=>{
  verifiedCaptures.add(owner);
 };
 const pricing=[...read('./mfm-bindings.json').unitBindings,...read('../../space-marines/v2/mfm-bindings.json').unitBindings];
+const historicalCaptures=new Map();
+function reviewedMfmUnit(binding,owner){
+ assert.ok(binding,'Missing reviewed unit MFM binding');
+ assert.ok(binding.sourceLocator,'Missing reviewed MFM source locator');
+ const locator=binding.sourceLocator,proof=binding.proof.mfm;
+ assert.equal(locator.partition,'units','MFM fixture locator must address units');
+ assert.equal(locator.factionId,owner,'MFM fixture locator has a foreign faction');
+ let historical=historicalCaptures.get(proof.sourcePath);
+ if(!historical){
+  historical=read('../../../'+proof.sourcePath);verifyFrozenSource(proof.sourceId);
+  const {captureSha256,...payload}=historical;
+  assert.equal(sha(JSON.stringify(stable(payload))),captureSha256,'Historical MFM capture fingerprint changed');
+  historicalCaptures.set(proof.sourcePath,historical);
+ }
+ assert.equal(historical.captureSha256,proof.captureSha256,'Historical reviewed MFM capture changed');
+ assert.equal(historical.factionId,owner,'Historical MFM proof has a foreign faction');
+ const oldRow=proof.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],historical);
+ assert.deepEqual([oldRow.title,oldRow.sourceGroup,oldRow.status],[locator.sourceTitle,locator.sourceGroup,locator.status],'Historical pointer no longer proves the reviewed source locator');
+ verifyCapture(owner);
+ assert.equal(captures[owner].factionId,owner,'Current MFM capture has a foreign faction');
+ const matches=captures[owner].units.filter(row=>row.title===locator.sourceTitle&&row.sourceGroup===locator.sourceGroup&&row.status===locator.status);
+ assert.equal(matches.length,1,'Current MFM source locator must resolve exactly once: '+JSON.stringify(locator)+'; matches='+matches.length);
+ return matches[0];
+}
 const sourceBase=(id,count,copy=1)=>{
  const binding=pricing.find(r=>r.entityId===id),owner=sources.get(id).bookId;
- verifyCapture(owner);assert.equal(captures[owner].captureSha256,binding.proof.mfm.captureSha256);
- assert.ok(binding);const source=binding.proof.mfm.jsonPointer.slice(1).split('/').reduce((node,key)=>node[key],captures[owner]);
+ const source=reviewedMfmUnit(binding,owner);
  const values=source.pointSchedules.filter(s=>(s.minCopies===undefined||copy>=s.minCopies)&&(s.maxCopies===undefined||copy<=s.maxCopies))
   .flatMap(s=>s.entries).filter(e=>count>=e.minModels&&count<=e.maxModels);
  return values.length===1?values[0].value:null;
 };
+const missingMfmLocator={...pricing.find(binding=>binding.bookId==='blood-angels'),sourceLocator:null};
+assert.throws(()=>reviewedMfmUnit(missingMfmLocator,missingMfmLocator.bookId),/Missing reviewed MFM source locator/);
 
 export function runBloodAngelsRosterQA({onlyGroups=null}={}){
  const progress=qaProgress('BA roster');
