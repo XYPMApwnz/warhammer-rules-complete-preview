@@ -77,7 +77,9 @@ export function projectReleaseIdentities({root,parsed,version,decisions=[]}){
     if(d.action==='RENAME'){
      const u=payload.units.filter(u=>u.title===d.sourceTitle&&u.sourceGroup===d.sourceGroup&&u.status===d.status);
      if(u.length!==1)throw Error(`${key}: approved rename does not identify one exact source row`);
-     Object.assign(b,{sourceTitle:d.sourceTitle,sourceGroup:d.sourceGroup,status:d.status});
+     const group=binding.groupBindings.find(g=>g.sourceLabel===d.sourceGroup);
+     if(!group)throw Error(`${key}: destination pricing group needs an explicit reviewed binding`);
+     Object.assign(b,{sourceTitle:d.sourceTitle,sourceGroup:d.sourceGroup,status:d.status,pricingGroupId:group.id});
     }else if(d.action==='REMOVE'){
      if(neededTargets.has(b.sourceTitle)){
       // A still-used relation target retains its opaque reference, without a price.

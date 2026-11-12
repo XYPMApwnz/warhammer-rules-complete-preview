@@ -29,6 +29,19 @@ assert.equal(decided.pending.length,0,'An explicit new-enhancement identity deci
 const changedId=structuredClone(approved);changedId.unitBindings[0].unitReferenceId='mfm-unit-ref-a999999999999999';
 assert.throws(()=>projectReleaseIdentities({root,parsed:structuredReview,version:'v1.7',decisions:[{key:need.key,kind:need.kind,note:'Poison identity',expectedBindingHash:need.expectedBindingHash,binding:changedId}]}),/unchanged locator cannot change opaque identity/);
 results.push({check:'new enhancement binding review',status:'PASS',negativeControls:1});
+// An explicitly reviewed regrouping changes a reference, never the unit identity.
+const regroup=structuredClone({...replay,files:undefined}),regroupDg=regroup.captures.find(c=>c.payload.factionId==='death-guard');
+const moved=regroupDg.payload.units[0],oldGroup=moved.sourceGroup,destination=regroupDg.payload.units.find(u=>u.status===moved.status&&u.sourceGroup!==oldGroup).sourceGroup;
+const originalBinding=regroup.identities.factionBindings.find(f=>f.factionId==='death-guard').unitBindings.find(b=>b.sourceTitle===moved.title),oldIdentity=structuredClone(originalBinding);
+moved.sourceGroup=destination;
+const moveDecision={key:'death-guard:missing:'+oldIdentity.unitReferenceId,kind:'REMOVE_OR_RENAME_UNIT',action:'RENAME',sourceTitle:moved.title,sourceGroup:destination,status:moved.status,note:'Synthetic exact-locator regrouping approved explicitly; opaque identities stay unchanged.'};
+const movedRelease=projectReleaseIdentities({root,parsed:regroup,version:'v1.7',decisions:[moveDecision]}),movedFaction=movedRelease.registry.factionBindings.find(f=>f.factionId==='death-guard'),movedBinding=movedFaction.unitBindings.find(b=>b.unitReferenceId===oldIdentity.unitReferenceId);
+assert.equal(movedRelease.pending.length,0);assert.equal(movedBinding.unitPointRecordId,oldIdentity.unitPointRecordId);
+assert.equal(movedBinding.pricingGroupId,movedFaction.groupBindings.find(g=>g.sourceLabel===destination).id);
+assert.deepEqual(movedBinding.paidUpgradeBindings,oldIdentity.paidUpgradeBindings);
+const unknownGroup=structuredClone(regroup);unknownGroup.captures.find(c=>c.payload.factionId==='death-guard').payload.units[0].sourceGroup='SYNTHETIC_UNREVIEWED_GROUP';
+assert.throws(()=>projectReleaseIdentities({root,parsed:unknownGroup,version:'v1.7',decisions:[{...moveDecision,sourceGroup:'SYNTHETIC_UNREVIEWED_GROUP'}]}),/destination pricing group needs an explicit reviewed binding/);
+results.push({check:'explicit regrouping preserves opaque identities',status:'PASS',negativeControls:1});
 execFileSync('git',['clone','--local','--no-hardlinks','--config','core.autocrlf=false',root,copy],{cwd:root,stdio:'pipe'});
 // During development, include the same working implementation that this test imports.
 const tracked=execFileSync('git',['ls-files','--cached','--others','--exclude-standard','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
