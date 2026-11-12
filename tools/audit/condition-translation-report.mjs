@@ -9,6 +9,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {conditionDefinitions,conditionSpec,conditionIdentity,translateFieldArguments} from '../../books/shared/rule-contract-v2/conditions.mjs';
 import {conditionDeclarationView,validateBookConditions} from '../../books/shared/rule-contract-v2/conditions-build.mjs';
+import {readBookPassport} from '../../books/shared/tools/book-passport.mjs';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const base='98342d0670117e15dd8fb7871b2132252a128a92';
@@ -52,17 +53,8 @@ const sharedRefs={
  equipment:reference('books/shared/roster-v2/effects.mjs','equipmentRequirementSatisfied'),
  rosterComputations:reference('books/shared/roster-v2/condition-context.mjs','export function computeRosterCondition')
 };
-const schemaFiles={
- 'adeptus-mechanicus':['books/adeptus-mechanicus/v2/rule-contract-schema.mjs'],
- 'blood-angels':['books/blood-angels/v2/rule-contract-schema.mjs','books/space-marines/v2/rule-contract-schema.mjs'],
- 'chaos-space-marines':['books/chaos-space-marines/v2/rule-contract-build.mjs'],
- 'dark-angels':['books/dark-angels/v2/rule-contract-schema.mjs'],
- 'death-guard':['books/death-guard/v2/rule-contract-schema.mjs','books/death-guard/v2/rule-contract-state-fields.mjs'],
- 'emperors-children':['books/emperors-children/v2/rule-contract-schema.mjs','books/emperors-children/v2/rule-contract-permission-declarations.mjs'],
- 'space-marines':['books/space-marines/v2/rule-contract-schema.mjs'],
- 'tau-empire':['books/tau-empire/v2/rule-contract-schema.mjs'],
- 'tyranids':['books/tyranids/v2/roster-source-choices.mjs']
-};
+const auditCapabilities=Object.fromEntries(Object.keys(artifacts).map(bookId=>[bookId,readBookPassport(bookId,{root}).audit]));
+const schemaFiles=Object.fromEntries(Object.entries(auditCapabilities).map(([bookId,audit])=>[bookId,audit.conditionSchemas]));
 const spec=(contextLevel,valueType)=>({contextLevel,valueType});
 function literalFields(file){
  return Object.fromEntries([...oldText(file).matchAll(/\b([A-Za-z]\w*):\s*\{contextLevel:'(ROSTER|BATTLE)',valueType:'(boolean|string|number)'/g)]
@@ -71,31 +63,33 @@ function literalFields(file){
 /** These are source-code declaration forms, not gameplay-text heuristics. */
 function originalSchemaFields(bookId,book){
  if(book.rosterSchema?.stateFields)return clone(book.rosterSchema.stateFields);
- if(bookId==='blood-angels')return literalFields('books/space-marines/v2/rule-contract-schema.mjs');
- if(['space-marines','tau-empire'].includes(bookId))return literalFields(schemaFiles[bookId][0]);
- if(bookId==='death-guard'){
-  const text=oldText('books/death-guard/v2/rule-contract-state-fields.mjs');
+ const declaration=auditCapabilities[bookId].originalSchema;
+ if(declaration.mode==='literal')return literalFields(declaration.sourcePath);
+ if(declaration.mode==='frozen-json'){
+  const text=oldText(declaration.sourcePath);
   return JSON.parse(text.slice(text.indexOf('Object.freeze(')+'Object.freeze('.length,text.lastIndexOf(');')));
  }
- if(bookId==='dark-angels'){
-  const text=oldText(schemaFiles[bookId][0]),result=literalFields(schemaFiles[bookId][0]);
+ if(declaration.mode==='state-factory'){
+  const text=oldText(declaration.sourcePath),result=literalFields(declaration.sourcePath);
   for(const match of text.matchAll(/for\s*\(const key of\s*(\[[^\]]+\])\)\s*stateFields\[key\]=\{contextLevel:'(ROSTER|BATTLE)',valueType:'(boolean|string|number)'\}/g))
    for(const key of [...match[1].matchAll(/'([^']+)'/g)].map(value=>value[1]))result[key]=spec(match[2],match[3]);
   for(const match of text.matchAll(/stateFields\.([A-Za-z]\w*)=\{contextLevel:'(ROSTER|BATTLE)',valueType:'(boolean|string|number)'\}/g))result[match[1]]=spec(match[2],match[3]);
   return result;
  }
- if(bookId==='emperors-children'){
-  const file=schemaFiles[bookId][0],text=oldText(file),result=literalFields(file);
-  const id=text.match(/export const bladeId='([^']+)'/);assert.ok(id,'Missing original explicit Blade identity');
-  result['selectedUpgrade:'+id[1]]=spec('ROSTER','string');
-  const permissions=oldText(schemaFiles[bookId][1]);
+ if(declaration.mode==='upgrade-and-events'){
+  const file=declaration.sourcePath,text=oldText(file),result=literalFields(file);
+  const id=[...text.matchAll(/export const ([A-Za-z]\w*)='([^']+)'/g)].find(match=>match[1]===declaration.constantName);
+  assert.ok(id,'Missing original explicit Blade identity');
+  result['selectedUpgrade:'+id[2]]=spec('ROSTER','string');
+  const permissions=oldText(declaration.auxiliaryPath);
   for(const match of permissions.matchAll(/event:\{[^}]*key:'([^']+)'/g))result[match[1]]=spec('BATTLE','boolean');
   return result;
  }
- if(bookId==='tyranids'){
-  const file=schemaFiles[bookId][0],text=oldText(file),result=literalFields(file);
-  const key=text.match(/export const trygonChoiceField='([^']+)'/);assert.ok(key,'Missing original explicit source-choice key');
-  result[key[1]]=spec('ROSTER','string');return result;
+ if(declaration.mode==='source-choice'){
+  const file=declaration.sourcePath,text=oldText(file),result=literalFields(file);
+  const key=[...text.matchAll(/export const ([A-Za-z]\w*)='([^']+)'/g)].find(match=>match[1]===declaration.constantName);
+  assert.ok(key,'Missing original explicit source-choice key');
+  result[key[2]]=spec('ROSTER','string');return result;
  }
  throw new Error('Unregistered schema producer '+bookId);
 }

@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 import {armyBooks} from '../../../v2/army-books.mjs';
 import {resolveExecutionEffect} from './recipient-execution.mjs';
 import {sourceDeclarationView} from '../source-refs-v2/source-refs.mjs';
+import {readBookPassport} from '../tools/book-passport.mjs';
 
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const reviewPath='books/shared/roster-v2/source-completeness-review.json';
@@ -35,7 +36,7 @@ const provenanceSourceIds=provenance=>{
  * No captures, baseline refreshes, source edits or network requests occur here. */
 export function captureSourceReview(bookId,facts=read(`books/${bookId}/v2/generated/effective.json`)) {
   facts=sourceDeclarationView(facts);
-  const enrollmentPath=`books/${bookId}/v2/sources/${bookId==='death-guard'?'source-enrollment':'enrollment'}.json`;
+  const enrollmentPath=readBookPassport(bookId,{root}).sources.enrollment;
   const enrollment=read(enrollmentPath),files=new Set([enrollmentPath]);
   const visit=value=>{
     if(typeof value==='string'&&/^(?:books|mfm|roster-guides)\//.test(value)){
@@ -61,8 +62,8 @@ export function loadSourceCompletenessInputs({bookIds=armyBooks.map(book=>book.i
   const review=read(reviewPath),books=bookIds.map(bookId=>{
     requireValue(review.books[bookId],'UNREVIEWED_ARMY_BOOK',bookId);
     const facts=read(`books/${bookId}/v2/generated/effective.json`);
-    const runtimeFile=bookId==='death-guard'?'rule-contract-effective':bookId==='emperors-children'?'roster-attachments':bookId==='tau-empire'?'roster-import':'roster-runtime';
-    return {bookId,facts,executionBook:executionBooks[bookId]||read(`books/${bookId}/v2/generated/${runtimeFile}.json`),sourceReview:captureSourceReview(bookId,facts)};
+    const runtimeArtifact=readBookPassport(bookId,{root}).runtime.executionArtifact;
+    return {bookId,facts,executionBook:executionBooks[bookId]||read(runtimeArtifact),sourceReview:captureSourceReview(bookId,facts)};
   });
   return {review,books,expectations:loadIndependentExpectations(review),registeredBookIds:armyBooks.map(book=>book.id)};
 }

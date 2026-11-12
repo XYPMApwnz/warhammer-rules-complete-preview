@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {readBookPassport} from './book-passport.mjs';
 import {parseProducerJSON} from '../source-refs-v2/producer-io.mjs';
 import {importModelLabelCandidates,normalizeImportLabel as key} from '../roster-v2/import.mjs';
 const root=fileURLToPath(new URL('../../../',import.meta.url));
@@ -154,9 +155,9 @@ export function deriveModelAliases({book,identityAliases,source,document,bytes,j
 
 export async function buildModelNames(bookId){
  assert(supportedBooks.includes(bookId),'No pinned BSData snapshot for this book');
- const book=read(`books/${bookId}/v2/generated/${bookId==='adeptus-mechanicus'?'roster-runtime':'roster-import'}.json`);
- const metadata=bookId==='adeptus-mechanicus'?{identityAliases:read(`books/${bookId}/v2/roster-import-aliases.json`).aliases}:bookId==='chaos-space-marines'?
-  (await import('../../chaos-space-marines/v2/roster-import-bindings.mjs')).buildImportBindings(book,
+ const passport=readBookPassport(bookId,{root}),book=read(passport.modelNames.artifact),metadataSource=passport.modelNames.metadata;
+ const metadata=metadataSource.mode==='aliases-file'?{identityAliases:read(metadataSource.path).aliases}:metadataSource.mode==='module-export'?
+  (await import(pathToFileURL(path.join(root,metadataSource.path)).href))[metadataSource.exportName](book,
    {modelNames:{schema:'new-recruit-model-aliases/v1',identityAliases:[]}}):book.importBindings;
  const owners=new Set(book.entities.filter(e=>e.kind==='DATASHEET').map(e=>e.bookId||e.ownerId||book.bookId)),all={identityAliases:[],census:[],outside:[]};
  for(const sourceBook of supportedBooks.filter(b=>owners.has(b))){

@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {subjects,levels,predicateTypes} from '../../books/shared/rule-contract-v2/schema.mjs';
 import {detachmentTextDeclaration} from '../../books/shared/roster-v2/conditional-policy.mjs';
+import {readBookPassport} from '../../books/shared/tools/book-passport.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const BASE='8dbbb9e5f9032a009939d3dd70a62f1ac068ef8a';
@@ -2546,7 +2547,9 @@ for(const [bookId,p]of Object.entries(PRODUCTION)){
  for(const name of fs.readdirSync(path.join(ROOT,folder)).sort(cmp))if(/(?:declarations|bindings|schema|state-fields|review).*\.(?:json|mjs)$/.test(name))read(folder+'/'+name);
 }
 const outputBooks=[],records=[],exclusions=[];
+const auditCapabilities=new Map();
 for(const [bookId,artifact]of Object.entries(BOOKS)){
+ const audit=readBookPassport(bookId,{root:ROOT}).audit;auditCapabilities.set(bookId,audit);
  const file=`books/${bookId}/v2/generated/${artifact}.json`,book=json(file),index=new Map();
  invariant(book.bookId===bookId,'Missing/wrong book '+bookId);
  for(const e of book.entities){invariant(!index.has(e.id),'Duplicate entity '+bookId+'/'+e.id);index.set(e.id,e);if(e.ruleContract)invariant(new Set((e.ruleContract.clauses||[]).map(c=>c.id)).size===(e.ruleContract.clauses||[]).length,'Duplicate clause '+bookId+'/'+e.id);}
@@ -2560,7 +2563,7 @@ for(const [bookId,artifact]of Object.entries(BOOKS)){
  const census={bookId,runtime:file,entityCount:book.entities.length,contractOwners:book.entities.filter(e=>e.ruleContract).length,
   contractClauseCount:sum(book.entities.map(e=>({n:e.ruleContract?.clauses?.length||0})),'n'),dictionary:dictionary(book),
   runtimeSchema:book.schema,fieldDefinitions:book.rosterSchema?.stateFields??'UNKNOWN',lineage:PRODUCTION[bookId]||'UNKNOWN',sourceConfig:config.sources??config.inputs??config,sourceConfigReferences:sourceConfigReferences.sort((a,b)=>cmp(a.declaration,b.declaration)),
-  verification:'STATIC_CODE_ONLY',dynamicOverlays:bookId==='tau-empire'?{
+  verification:'STATIC_CODE_ONLY',dynamicOverlays:audit.dynamicPhysicalChoices?{
    status:'PHYSICAL_CONTEXT_DEPENDENT_NOT_ENUMERATED_AS_TEMPLATE_CLAUSES',evidence:PRODUCTION[bookId].producerRefs.filter(r=>/roster-(?:source|import|runtime)/.test(r.path)),
    note:'Confirmed physical Student/prototype/Shield decisions can add clauses. No fabricated roster is used; template counts are not a census of all future physical instantiations.'}: {status:'STATIC_ARTIFACT_WITH_CONTEXTUAL_EXECUTION',note:'Physical assignments and attachments are evaluated at runtime; this census does not instantiate a roster.'},
   leaderSourceUnitIds:sorted(leaderIds),fieldDeclarationEvidence:PRODUCTION[bookId].producerRefs.filter(r=>/schema|state-fields/.test(r.path))};
@@ -2628,13 +2631,12 @@ for(const [bookId,artifact]of Object.entries(BOOKS)){
   for(const m of text.matchAll(/stateFields\.(\w+)\s*=\s*\{contextLevel:'(ROSTER|BATTLE)',valueType:'(boolean|string|number)'\}/g))
    declarations[m[1]]??={contextLevel:m[2],valueType:m[3],evidence:{path:p,line:text.slice(0,m.index).split(/\r?\n/).length},extraction:'JS_EXPLICIT_PROPERTY_DECLARATION_NOT_PROSE'};
  }
- if(bookId==='emperors-children'){
+ for(const declaration of audit.fieldExports){
   // Explicit producer exports, including computed declaration keys. No effects
   // are executed and no source prose is interpreted by the census.
-  const schemaPath='books/emperors-children/v2/rule-contract-schema.mjs',permissionPath='books/emperors-children/v2/rule-contract-permission-declarations.mjs';
-  const schema=await import('../../'+schemaPath),permission=await import('../../'+permissionPath);
-  for(const [specs,p,anchor]of [[schema.finalStateFields,schemaPath,'export const finalStateFields'],[schema.formationStateFields,schemaPath,'export const formationStateFields'],[permission.permissionStateFields,permissionPath,'export const permissionStateFields']])
-   for(const[key,value]of Object.entries(specs))declarations[key]={...value,evidence:cite(p,anchor),extraction:'EXPLICIT_READ_ONLY_PRODUCER_EXPORT'};
+  const module=await import('../../'+declaration.path),specs=module[declaration.exportName];
+  invariant(specs&&typeof specs==='object','Missing declared schema export '+declaration.path+'#'+declaration.exportName);
+  for(const[key,value]of Object.entries(specs))declarations[key]={...value,evidence:cite(declaration.path,declaration.anchor),extraction:'EXPLICIT_READ_ONLY_PRODUCER_EXPORT'};
  }
  census.fieldDefinitions=declarations;
  census.usedFieldsWithoutLiteralDefinition=Object.keys(census.dictionary['FIELD.key']||{}).filter(key=>!declarations[key]).sort(cmp);
@@ -2721,7 +2723,7 @@ function markdown(data){
   lines.push('','**Проверенная цепочка producers → runtime/presentation:**');
   for(const ref of b.lineage.producerRefs)lines.push('- '+link(ref)+' — '+inline(ref.anchor)+'.');
   lines.push('','Полные роли звеньев и ограничения: `books[].lineage` в JSON. Каждый anchor проверяется по указанной строке; первичные пути каждой записи — `source.paths[]`, исходная provenance сохранена целиком.');
-  if(b.bookId==='tau-empire')lines.push('','**Ограничение шаблона:** Student/prototype/Shield могут добавлять clauses по подтверждённому физическому выбору при импорте. Они не считаются отсутствующим игровым механизмом; отдельные будущие физические экземпляры этой статической описью не порождаются.');
+  if(auditCapabilities.get(b.bookId).dynamicPhysicalChoices)lines.push('','**Ограничение шаблона:** Student/prototype/Shield могут добавлять clauses по подтверждённому физическому выбору при импорте. Они не считаются отсутствующим игровым механизмом; отдельные будущие физические экземпляры этой статической описью не порождаются.');
   lines.push('');
  }
  lines.push('## 2. Полный словарь используемых конструкций','',
