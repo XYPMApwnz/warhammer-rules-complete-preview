@@ -68,6 +68,11 @@ export and append-only merge; old entries cannot be replaced. All production
 work happens in a real temporary Git clone before successful outputs are copied
 back. Keep the checkout unchanged while an update is running.
 
+New source bindings can change how the same evidence is serialized. When a
+declared registry operation adds entries, the command runs the selected declared
+plan once more before QA. This is reported as a second build pass. A registry
+that keeps changing fails instead of publishing an unstable result.
+
 Three declared review pins include the MFM version label in their factual-file hashes.
 The command may migrate that pin only when restoring the previous version label
 reconstructs the exact old full fingerprint. All other factual bytes stay pinned;

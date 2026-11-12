@@ -106,19 +106,24 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   selection=selectBookUpdate(declarations,{books,all,changed:[...new Set([...initial.changed,...inferredInputs])]});report.selection=selection;
   const metadataPins=declarations.books.filter(b=>selection.books.includes(b.id)).flatMap(b=>b.passport.update.metadataPins.map(operation=>({book:b.id,operation})));
   const affected=new Set([...initial.changed,...inferredInputs]),executedShared=new Set();
+  const maxPasses=Math.max(1,...declarations.shared.map(row=>row.operations.rebuildAfterChange?.maxPasses||1));
+  for(let pass=1;pass<=maxPasses;pass++){
+  const rebuildReasons=[];report.buildPasses=pass;
   for(const [i,step]of selection.steps.entries()){
    const policy=declarations.shared.find(row=>row.step.producer===step.producer),args=policy?.operations.updateArgs??step.args;
    if(policy&&check&&!selection.fullPlan&&!declarations.checkSharedSteps){
     report.steps.push({book:step.book,label:'OUT_OF_SCOPE '+step.producer,status:'NOT_RUN',elapsedMs:0});continue;
    }
-   if(policy&&!selection.fullPlan&&!sharedStepAffected(policy,[...affected],declarations)&&!inputChanged(root,declaredInputFiles(policy,declarations,tracked),policy.freshnessOutputs,initial)){
+   if(pass===1&&policy&&!selection.fullPlan&&!sharedStepAffected(policy,[...affected],declarations)&&!inputChanged(root,declaredInputFiles(policy,declarations,tracked),policy.freshnessOutputs,initial)){
     report.steps.push({book:step.book,label:'UNCHANGED '+step.producer,status:'SKIPPED',elapsedMs:0});continue;
    }
    if(policy)executedShared.add(step.producer);
+   const oldOutputHashes=policy?.operations.rebuildAfterChange?step.outputs.map(file=>fs.existsSync(at(copy,file))?sha(fs.readFileSync(at(copy,file))):null):null;
    if(!step.preserveOutputSeeds)for(const file of step.outputs)if(fs.existsSync(at(copy,file)))fs.unlinkSync(at(copy,file));
    const expanded=args.map(arg=>arg.replaceAll('{work}',work).replaceAll('{checkout}',copy).replaceAll('{head}',head));
-   await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env,log:path.join(out,String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer,book:step.book,results:report.steps});
+   await execute({command:step.runtime==='python'?env.PYTHON:process.execPath,args:[step.producer,...expanded],cwd:copy,env,log:path.join(out,(pass>1?'pass-'+pass+'-':'')+String(i+1).padStart(2,'0')+'-'+step.book+'-'+path.basename(step.producer)+'.log'),label:'BUILD '+step.producer+(pass>1?' (stabilization pass '+pass+')':''),book:step.book,results:report.steps});
    for(const file of step.outputs){if(!fs.existsSync(at(copy,file)))throw Error(step.book+': producer did not emit declared file '+file);if(!fs.existsSync(at(root,file))||!fs.readFileSync(at(copy,file)).equals(fs.readFileSync(at(root,file))))affected.add(file);}
+   if(oldOutputHashes&&step.outputs.some((file,n)=>sha(fs.readFileSync(at(copy,file)))!==oldOutputHashes[n]))rebuildReasons.push({producer:step.producer,files:step.outputs});
    for(const {book,operation}of metadataPins.filter(pin=>pin.operation.afterProducer===step.producer)){
     try{
      const facts=decode(copy,fs.readFileSync(at(copy,operation.factualArtifact))),review=JSON.parse(fs.readFileSync(at(copy,operation.reviewArtifact),'utf8'));
@@ -127,6 +132,11 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
      if(change.changed){report.metadataPinChanges.push({book,file:operation.reviewArtifact,...change});affected.add(operation.reviewArtifact);console.log('[book:update] METADATA '+book+': MFM version only; old factual fingerprint reconstructed exactly');}
     }catch(error){throw Error(book+': '+operation.reviewArtifact+': '+error.message);}
    }
+  }
+  if(!rebuildReasons.length)break;
+  report.stabilizationReasons=[...(report.stabilizationReasons||[]),{pass,changes:rebuildReasons}];
+  if(pass===maxPasses)throw Error('Declared build outputs did not stabilize after '+maxPasses+' passes: '+rebuildReasons.map(row=>row.producer).join(', ')+'; no outputs were published');
+  console.log('[book:update] Declared shared output changed; rebuilding the selected plan to stabilize source serialization (pass '+(pass+1)+'/'+maxPasses+')');
   }
   for(const row of declarations.shared.filter(r=>executedShared.has(r.step.producer)&&r.operations.checkArgs))await execute({command:process.execPath,args:[row.step.producer,...row.operations.checkArgs],cwd:copy,env,log:path.join(out,'verify-'+path.basename(row.step.producer)+'.log'),label:'VERIFY '+row.step.producer,book:row.step.book,results:report.steps});
   for(const id of selection.books){

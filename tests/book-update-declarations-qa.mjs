@@ -7,7 +7,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {BOOK_PASSPORT_IDS,readBookPassport} from '../books/shared/tools/book-passport.mjs';
 import {generatedRebuildPlan} from '../books/shared/tools/generated-rebuild-plan.mjs';
-import {bookUpdateDeclarations,selectBookUpdate,validateUpdateInputs} from '../books/shared/tools/book-update-declarations.mjs';
+import {bookUpdateDeclarations,selectBookUpdate,validateUpdateInputs,validateUpdateOperations} from '../books/shared/tools/book-update-declarations.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const tracked=execFileSync('git',['ls-tree','-r','--name-only','-z','HEAD'],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024}).split('\0').filter(Boolean);
@@ -65,6 +65,14 @@ rejectInput('nonexistent-input-path',[{kind:'path',value:'books/shared/nonexiste
 rejectInput('nonexistent-input-prefix',[{kind:'prefix',value:'books/nonexistent-book-update-input/'}],/input path/);
 
 const declarations=bookUpdateDeclarations({root,tracked,plan});
+const stabilization=declarations.shared.find(row=>row.operations.rebuildAfterChange);
+assert.deepEqual(stabilization.operations.rebuildAfterChange,{scope:'selected-plan',maxPasses:2});
+for(const [name,mutate]of[
+ ['unbounded-rebuild',ops=>{ops.rebuildAfterChange.maxPasses=Infinity;}],
+ ['unknown-rebuild-scope',ops=>{ops.rebuildAfterChange.scope='guessed-producers';}],
+ ['unknown-rebuild-field',ops=>{ops.rebuildAfterChange.extra=true;}],
+ ['unknown-operation',ops=>{ops.arbitraryCommand=[];}]
+]){const ops=structuredClone(stabilization.operations);mutate(ops);assert.throws(()=>validateUpdateOperations(ops,{step:stabilization.step,label:name}),new RegExp(name+':'));mutations.push({control:name,status:'REJECTED'});}
 assert.deepEqual(declarations.books.map(b=>b.id),BOOK_PASSPORT_IDS,'All nine public books must have update declarations');
 const reader='books/core-rules/reader/build.mjs';
 const glossary='glossary/v2/tools/build-glossary-v2.mjs';

@@ -21,7 +21,8 @@ const sharedOperations={
  'tools/audit/build-source-catalog-additions.mjs':{
   updateArgs:['--out={work}/source-catalog-delta.json','--inputs={checkout}','--baseline={head}'],checkArgs:['--check']},
  'tools/audit/build-source-catalog.mjs':{
-  updateArgs:['--write','--merge={work}/source-catalog-delta.json','--inputs={checkout}'],checkArgs:['--check']}
+  updateArgs:['--write','--merge={work}/source-catalog-delta.json','--inputs={checkout}'],checkArgs:['--check'],
+  rebuildAfterChange:{scope:'selected-plan',maxPasses:2}}
 };
 const freshnessOutputs={
  'tools/audit/build-source-catalog-additions.mjs':['books/shared/source-refs-v2/source-catalog.json']
@@ -39,6 +40,15 @@ export function validateUpdateInputs(inputs,{steps,label,root}){
   if(row.kind==='stepOutputs'&&!steps.some(s=>s.producer===row.value))throw Error(label+': unknown producer input '+row.value);
  }
 }
+export function validateUpdateOperations(operations,{step,label}){
+ if(!operations||typeof operations!=='object'||Array.isArray(operations))throw Error(label+': update operations must be an object');
+ for(const key of Object.keys(operations))if(!['updateArgs','checkArgs','rebuildAfterChange'].includes(key))throw Error(label+': unknown update operation '+key);
+ for(const key of ['updateArgs','checkArgs'])if(operations[key]!==null&&(!Array.isArray(operations[key])||operations[key].some(a=>typeof a!=='string'||/\{(?!work\}|checkout\}|head\})/.test(a))))throw Error(label+': invalid '+key);
+ if(Object.hasOwn(operations,'rebuildAfterChange')){
+  const rebuild=operations.rebuildAfterChange;
+  if(!rebuild||Object.keys(rebuild).sort().join(',')!=='maxPasses,scope'||rebuild.scope!=='selected-plan'||rebuild.maxPasses!==2||!step.outputs.length)throw Error(label+': invalid rebuildAfterChange; use selected-plan, maxPasses=2 and declared outputs');
+ }
+}
 export function bookUpdateDeclarations({root,tracked,plan=generatedRebuildPlan(tracked,{root})}={}){
  const books=BOOK_PASSPORT_IDS.map(id=>{const passport=readBookPassport(id,{root});return{id,passport,inputs:[input('prefix',`books/${id}/`),...passport.sources.inputs.map(row=>input('path',row.path)),...globalInputs]};});
  const shared=plan.steps.filter(s=>!BOOK_PASSPORT_IDS.includes(s.book)).map(step=>{
@@ -50,8 +60,7 @@ export function bookUpdateDeclarations({root,tracked,plan=generatedRebuildPlan(t
  for(const row of shared){
   validateUpdateInputs(row.inputs,{steps:plan.steps,label:'Shared '+row.step.producer,root});
   if(!row.freshnessOutputs.length||row.freshnessOutputs.some(f=>!plan.files.includes(f)))throw Error('Invalid shared freshness output: '+row.step.producer);
-  for(const key of Object.keys(row.operations))if(!['updateArgs','checkArgs'].includes(key))throw Error('Unknown update operation: '+row.step.producer+' '+key);
-  for(const key of ['updateArgs','checkArgs'])if(row.operations[key]!==null&&(!Array.isArray(row.operations[key])||row.operations[key].some(a=>typeof a!=='string'||/\{(?!work\}|checkout\}|head\})/.test(a))))throw Error('Invalid '+key+': '+row.step.producer);
+  validateUpdateOperations(row.operations,{step:row.step,label:'Shared '+row.step.producer});
  }
  return{schema:'book-update-declarations/v1',books,shared,plan,checkSharedSteps:false};
 }

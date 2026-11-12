@@ -126,4 +126,8 @@ check('comparison and rendering never mutate snapshots',()=>{
  const r=compare(clone());const md=renderBookUpdateReport({status:'FAIL',books:[r],generatedChanges:[{file:'books/synthetic/generated/example.json',kind:'changed'}],fallbackReason:'Uncovered input',error:'Synthetic Army: data.json: missing rule',steps:[{book:'synthetic',rebuild:'node producer.mjs',status:'FAIL',elapsedMs:1200}]});
  assert(md.includes('**FAIL**'));assert(md.includes('Synthetic Army: data.json'));assert(md.includes('Full plan selected: Uncovered input'));assert(md.includes('node producer.mjs'));assert(md.includes('1.200'));
 });
+check('a declared stabilization pass is visible in the review report',()=>{
+ assert.match(renderBookUpdateReport({buildPasses:2}),/Build passes: 2\./);
+ assert(!renderBookUpdateReport({buildPasses:1}).includes('Build passes:'));
+});
 console.log(JSON.stringify({status:'PASS',checks:rows.length,rows}));
