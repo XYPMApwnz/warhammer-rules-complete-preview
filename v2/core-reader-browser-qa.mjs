@@ -24,6 +24,16 @@ const origin=`http://127.0.0.1:${server.address().port}`,entry=`${origin}/v2/app
 const core={destination:'CORE_RULES',registryId:'core-rules'};
 const ready=async page=>{await page.waitForFunction(()=>!!window.WarhammerAppV2);await page.evaluate(()=>window.WarhammerAppV2.ready);};
 const child=async page=>(await page.locator('iframe.v2-core-reader').elementHandle()).contentFrame();
+async function readyPopupLink(frame,selector,href){
+  // CSS visibility alone does not mean the asynchronous reference URL is ready.
+  await frame.waitForFunction(({selector,href})=>{
+    const link=document.querySelector(selector);
+    return link instanceof HTMLAnchorElement&&!link.hidden&&link.href===href&&link.target==='_top';
+  },{selector,href},{timeout:15000});
+  const link=frame.locator(selector);
+  assert.equal(await link.getAttribute('href'),href,'Popup link lost its exact canonical destination');
+  return link;
+}
 async function assertCorePopup(tab,href,readerPath){
   const target=new URL(href);
   const section=target.searchParams.get('section');
@@ -104,16 +114,22 @@ try{
     await navigate(page,{...core,chapterId:'monsters-vehicles'});frame=await child(page);
     assert.equal(await frame.locator('dialog[open]').count(),0,'Fresh same-chapter route retained an old popup');
     await frame.locator('[data-term="core-blast"]').first().click();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast');
-    const fullRule=frame.locator('#termRule');await fullRule.waitFor({state:'visible'});
+    const expectedRuleURL=encodeRoute(entry,{...core,chapterId:'core-abilities',sectionId:'rule-24-05',canonicalId:'core-blast'});
+    const fullRule=await readyPopupLink(frame,'#termRule',expectedRuleURL);
     const fullRuleURL=await fullRule.getAttribute('href');
     assert.equal(new URL(fullRuleURL).hash,'#core-blast','Full rule link lost canonical identity');
     assert.equal(new URL(fullRuleURL).searchParams.get('section'),'rule-24-05');
     const popupPromise=context.waitForEvent('page');await fullRule.click({modifiers:['Control']});const native=await popupPromise;await assertCorePopup(native,fullRuleURL,'/books/core-rules/reader/core-abilities.html');await native.close();
     await frame.locator('[data-term="core-blast"]').first().click();
-    await fullRule.click();await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
+    await readyPopupLink(frame,'#termRule',expectedRuleURL);
+    await Promise.all([page.waitForURL(expectedRuleURL,{timeout:15000}),fullRule.click()]);await ready(page);assert.equal(await (await child(page)).locator('#rule-24-05').count(),1);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('chapter')==='monsters-vehicles');await ready(page);frame=await child(page);
     await frame.locator('#termDialog[open]').waitFor();assert.equal(await frame.locator('#termDialog').getAttribute('data-open-term'),'core::core-blast','Back did not restore original Core popup');
-    await frame.locator('#termFull').click();await ready(page);await page.locator('[data-global-glossary]').waitFor({state:'visible'});assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
+    const expectedArticleURL=encodeRoute(entry,{destination:'REFERENCE',registryId:'core-rules',canonicalId:'core-blast',fieldPath:'/glossary/core::core-blast'});
+    const fullArticle=await readyPopupLink(frame,'#termFull',expectedArticleURL);
+    assert.equal(new URL(await fullArticle.getAttribute('href')).hash,'#core-blast','Full article link lost canonical identity');
+    assert.equal(new URL(await fullArticle.getAttribute('href')).searchParams.get('field'),'/glossary/core::core-blast');
+    await Promise.all([page.waitForURL(expectedArticleURL,{timeout:15000}),fullArticle.click()]);await ready(page);await page.locator('[data-global-glossary]').waitFor({state:'visible'});assert.equal(await page.locator('[data-global-glossary]').count(),1,'Core article did not use existing shared reference presenter');assert.equal(await page.locator('iframe').count(),0);
     const article=await page.locator('.global-glossary-main').innerText();assert(/\bBlast\b/i.test(article),article);
     await page.evaluate(()=>history.back());await page.waitForURL(url=>url.searchParams.get('v2')==='CORE_RULES');await ready(page);frame=await child(page);await frame.locator('#termDialog[open]').waitFor();await frame.locator('#termClose').click();
     for(const chapterId of ['shooting-phase','fight-phase']){
