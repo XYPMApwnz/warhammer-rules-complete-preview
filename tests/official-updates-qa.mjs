@@ -19,6 +19,8 @@ const fragment=entry({target:{id:'one',field:['text']},kind:'ABILITY_TEXT',opera
 const qualify=entry({target:{id:'one',field:['text']},kind:'ABILITY_TEXT',operation:'QUALIFY',expectedBefore:'old text',after:{rangeCap:12}});const qualified=applyOfficialUpdates(initial,make([qualify],{projection:[{scope:'entity',mode:'append',path:['qualifications'],when:['QUALIFY'],value:{field:{$ref:'entry.target.field'},value:{$ref:'entry.after'}}}]}));assert.equal(qualified.model.entities[0].data.text,'old text');assert.deepEqual(qualified.model.entities[0].qualifications,[{field:['text'],value:{rangeCap:12}}]);
 const verified=applyOfficialUpdates(initial,make([entry({operation:'VERIFY_CURRENT',after:'4'})]));assert.deepEqual(verified.model,initial);const unresolved=applyOfficialUpdates(initial,make([entry({operation:'UNRESOLVED_EVIDENCE',after:{status:'SOURCE_CONFLICT'}})]));assert.deepEqual(unresolved.model,initial);
 const locator=entry({target:{sourceLocator:{pointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});assert.equal(applyOfficialUpdates(initial,make([locator])).model.entities[0].data.strength,'5');
+const ownedLocator=entry({target:{sourceLocator:{pointer:['entities',0,'data'],identityPointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});
+assert.equal(applyOfficialUpdates(initial,make([ownedLocator],{selection:{collection:['entities'],identity:'id',data:[]}})).model.entities[0].data.strength,'5','Source-corpus fields retain an exact ancestor identity guard');
 let controls=0;const rejects=(fn,pattern)=>{assert.throws(fn,pattern);controls++;assert.deepEqual(initial,before,'A refused transaction changed its input');};
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'missing',field:['strength']}})])),/synthetic.*test-1.*exactly 1, found 0/);
 rejects(()=>applyOfficialUpdates({entities:[initial.entities[0],structuredClone(initial.entities[0])]},make([entry()])),/exactly 1, found 2/);
@@ -38,4 +40,5 @@ rejects(()=>applyOfficialUpdates(initial,make([fragment]),{stage:'source-corpus'
 rejects(()=>applyOfficialUpdates(initial,make([entry()],{projection:[{scope:'entity',mode:'set',path:['data','strength'],value:'9'}]})),/unknown metadata/);
 rejects(()=>applyOfficialUpdates(initial,make([entry()],{projection:[{scope:'entity',mode:'set',path:['fieldProvenance','strength'],value:{$ref:'entry.missing'}}]})),/unresolved/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'one',field:['__proto__','polluted']}})])),/safe field/);
+rejects(()=>applyOfficialUpdates(initial,make([{...ownedLocator,target:{...ownedLocator.target,sourceLocator:{...ownedLocator.target.sourceLocator,identityPointer:['entities',1]}}}])),/identity must own/);
 console.log(JSON.stringify({status:'PASS',kinds:Object.keys(kindCases).length,actions:10,negativeControls:controls,baseImmutable:true,atomic:true}));
