@@ -22,6 +22,8 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT/'books/shared/tools'))
 from source_refs_output import serialized_source_outputs
 from current_mfm_release import read_current_mfm_release
+sys.path.insert(0, str(ROOT/'books/shared/official-updates-v1'))
+from bridge import apply_book_official_updates
 SOURCE = 'books/tyranids/sources/waha-11e-current-2026-09-27'
 HUB = SOURCE + '/tyranids.html'
 BOOK = 'tyranids'
@@ -183,17 +185,10 @@ def official_occurrences():
     return result
 
 
-def official_body(text):
-    value = text.split('Change to:', 1)[1].strip().strip('‘’\'')
-    return value.replace('MONSTER/ VEHICLE', 'MONSTER/VEHICLE').replace('‑', '-').replace('▪ ', '\n- ')
-
-
-def apply_official(base, official, bindings):
-    effective = copy.deepcopy(base)
-    effective['schema'] = 'tyranids-v2-effective/v1'
-    records = unique(effective['entities'])
+def verify_official_evidence(base, official, bindings):
+    """Authenticate accepted PDF occurrences; never apply gameplay mutations."""
+    records = unique(base['entities'])
     ids = {r['sourceEntityId']: r['id'] for r in bindings['bindings']}
-    updates = []
     for proof in official:
         mode = proof['mode']
         if mode in {'VERIFY_CURRENT', 'UNRESOLVED_EVIDENCE'}:
@@ -201,8 +196,6 @@ def apply_official(base, official, bindings):
             if any(identity not in records for identity in target_ids):
                 raise ValueError('Unresolved official source target')
             if mode == 'VERIFY_CURRENT':
-                # The source address must contain its named occurrence; merely
-                # finding a valid canonical ID cannot establish PDF provenance.
                 for identity in target_ids:
                     record = records[identity]
                     label = record['data'].get('title', record['data'].get('name'))
@@ -210,58 +203,30 @@ def apply_official(base, official, bindings):
                         label = records[record['parentId']]['data']['title']
                     if not label or norm(label).casefold() not in norm(proof['text']).casefold():
                         raise ValueError('Official source crop does not contain its named owner: '+identity)
-            updates.append({'id': proof['id'], 'status': mode, 'provenance': proof['provenance'], 'targetIds': target_ids})
             continue
         target = records[ids[proof['targetSourceId']]] if proof.get('targetSourceId') else None
         if mode == 'REPLACE_BLOCK':
-            old = target['data']['blocks'][proof['blockIndex']]['text']
-            if sha(old.encode()) != proof['beforeSha256']:
+            before = target['data']['blocks'][proof['blockIndex']]['text']
+            if sha(before.encode()) != proof['beforeSha256']:
                 raise ValueError('Official block target changed')
-            name = proof['ruleName']
-            target['data']['blocks'][proof['blockIndex']]['text'] = name+': '+official_body(proof['text'])
-            # The obsolete Designer's Note belongs to the replaced Malign
-            # Presence block in the accepted source, not to an unrelated rule.
-            target.setdefault('fieldProvenance', {})[f'blocks/{proof["blockIndex"]}/text'] = proof['provenance']
         elif mode == 'REPLACE_STRATAGEM_EFFECT':
             line, = [r for r in target['data']['lines'] if r['label'] == 'EFFECT']
             if sha(line['text'].encode()) != proof['beforeSha256']:
                 raise ValueError('Official Stratagem target changed')
-            value = proof['text'].split('EFFECT: ', 1)[1].split('VANGUARD ONLSAUGHT DETACHMENT')[0].strip().rstrip('’')
-            line['text'] = value.replace('‑', '-')
-            target.setdefault('fieldProvenance', {})['lines/EFFECT'] = proof['provenance']
         elif mode == 'SUPPRESS_REFERENCE':
             if target['data']['label'] != 'Hover':
                 raise ValueError('Wrong official suppression target')
-            target['data'].update(status='SUPERSEDED', suppressionProvenance=proof['provenance'])
-            records[target['parentId']]['data']['ruleReferenceIds'].remove(target['id'])
-        elif mode == 'ADD_REFERENCE':
-            identity = ids[proof['newSourceId']]
-            if identity in records:
-                raise ValueError('Duplicate official ability reference')
-            unit = target
-            record = {'id': identity, 'kind': 'RULE_REFERENCE', 'bookId': BOOK, 'parentId': unit['id'], 'sourceEntityId': proof['newSourceId'],
-                'data': {'label': 'Shadow in the Warp', 'scope': 'MODEL', 'conditionalOnly': True,
-                         'recipient': {'scope': 'MODEL', 'modelProfileIds': unit['data']['profileIds'],
-                                       'compositionMemberIds': unit['data']['compositionMemberIds']}}, 'provenance': proof['provenance']}
-            effective['entities'].append(record); records[identity] = record
-            unit['data']['ruleReferenceIds'].append(identity)
-        elif mode == 'REPLACE_WEAPON_ABILITY':
-            target['data']['text'] = official_body(proof['text'])
-            target['fieldProvenance'] = {'text': proof['provenance']}
-        elif mode == 'ADD_FAQ':
-            identity = ids[proof['newSourceId']]
-            question, answer = proof['text'].removeprefix('Q: ').split(' A: ', 1)
-            record = {'id': identity, 'kind': 'FAQ', 'bookId': BOOK, 'sourceEntityId': proof['newSourceId'],
-                'parentId': ids['datasheet-biovores'], 'data': {'title': question, 'text': answer, 'conditionalOnly': True},
-                'provenance': proof['provenance']}
-            if identity in records:
-                raise ValueError('Duplicate official FAQ')
-            effective['entities'].append(record); records[identity] = record
-        else:
+        elif mode in {'ADD_REFERENCE', 'ADD_FAQ'}:
+            if ids[proof['newSourceId']] in records:
+                raise ValueError('Duplicate official ability reference or FAQ')
+        elif mode != 'REPLACE_WEAPON_ABILITY':
             raise ValueError('Unknown source correction mode '+mode)
-        updates.append({'id': proof['id'], 'status': 'APPLIED', 'provenance': proof['provenance'],
-                        'targetIds': [target['id']] if target else [ids[proof['newSourceId']]]})
-    effective['officialUpdates'] = updates
+
+
+def apply_official(base, official, bindings):
+    verify_official_evidence(base, official, bindings)
+    effective = apply_book_official_updates(BOOK, base, ROOT)['model']
+    effective['schema'] = 'tyranids-v2-effective/v1'
     return effective
 
 
@@ -363,16 +328,6 @@ def build():
         'rosterIntegrationImplemented': False, 'presentationImplemented': False, 'contentCertified': False}
     effective = apply_official(base, official, bindings)
     conflicts = read(HERE/'source-issues.json')
-    effective['unresolvedSources'] = conflicts['unresolved']
-    for proof in official:
-        if proof['mode'] == 'UNRESOLVED_EVIDENCE':
-            effective['unresolvedSources'][0].setdefault('officialEvidence', []).append({'text': proof['text'], 'provenance': proof['provenance']})
-    effective['entities'].append({'id': 'tyranids-source-conflict-foul-spores', 'kind': 'SOURCE_CONFLICT', 'bookId': BOOK,
-        'parentId': cid('datasheet-venomthropes'), 'data': copy.deepcopy(effective['unresolvedSources'][0]),
-        'provenance': [p['provenance'] for p in official if p['mode'] == 'UNRESOLVED_EVIDENCE']})
-    for record in effective['entities']:
-        if record['id'] == cid('datasheet-venomthropes:section:1'):
-            record['data']['unresolvedSourceIds'] = ['tyranids-source-conflict-foul-spores']
     validate(base); validate(effective)
     counts = dict(sorted(Counter(r['kind'] for r in effective['entities']).items()))
     census = {'schema': 'tyranids-v2-factual-census/v1', 'counts': counts, 'nativeFnpBindings': len(native),

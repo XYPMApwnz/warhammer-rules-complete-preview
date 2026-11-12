@@ -1,0 +1,2999 @@
+{
+  "schema": "army-book-official-updates/v1",
+  "bookId": "tyranids",
+  "stage": "canonical-facts",
+  "selection": {
+    "collection": [
+      "entities"
+    ],
+    "identity": "id",
+    "data": [
+      "data"
+    ]
+  },
+  "order": "declared",
+  "initialize": [
+    {
+      "path": [
+        "officialUpdates"
+      ],
+      "value": []
+    }
+  ],
+  "entries": [
+    {
+      "id": "gw-v1.3-datasheet-the-swarmlord-ability",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-datasheet-the-swarmlord-ability"
+      },
+      "target": {
+        "id": "datasheet-the-swarmlord:section:1",
+        "field": [
+          "blocks",
+          1,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-the-swarmlord:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-the-swarmlord"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "after": "Malign Presence: Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do increase the CP cost of that use of that stratagem by 1CP.",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          327,
+          558,
+          382
+        ],
+        "textSha256": "A0341B98AC6A46BB268F671876E73C44EA8BDF84631FC4086A69452EB66567D7",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Malign Presence (Aura): If this model is your WARLORD, each time your opponent targets a unit from their army with a Stratagem, if that unit is within 12\" of this model, increase the cost of that use of that Stratagem by 1CP.\nDesigner’s Note: This ability takes precedence over the Lord of Deceit ability presented in the Balance Dataslate June 2024.",
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "blocks/1/text"
+          ],
+          "value": {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 20,
+            "bbox": [
+              301,
+              327,
+              558,
+              382
+            ],
+            "textSha256": "A0341B98AC6A46BB268F671876E73C44EA8BDF84631FC4086A69452EB66567D7",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-datasheet-the-swarmlord-ability",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                301,
+                327,
+                558,
+                382
+              ],
+              "textSha256": "A0341B98AC6A46BB268F671876E73C44EA8BDF84631FC4086A69452EB66567D7",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-the-swarmlord:section:1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-datasheet-hive-tyrant-ability",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-datasheet-hive-tyrant-ability"
+      },
+      "target": {
+        "id": "datasheet-hive-tyrant:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-hive-tyrant:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-hive-tyrant"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "after": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          569,
+          292,
+          636
+        ],
+        "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that usage of that Stratagem by 1CP.",
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "blocks/0/text"
+          ],
+          "value": {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 20,
+            "bbox": [
+              40,
+              569,
+              292,
+              636
+            ],
+            "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-datasheet-hive-tyrant-ability",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                40,
+                569,
+                292,
+                636
+              ],
+              "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-hive-tyrant:section:1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-datasheet-winged-hive-tyrant-ability",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-datasheet-winged-hive-tyrant-ability"
+      },
+      "target": {
+        "id": "datasheet-winged-hive-tyrant:section:1",
+        "field": [
+          "blocks",
+          0,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-winged-hive-tyrant:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-winged-hive-tyrant"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "after": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP.",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          569,
+          292,
+          636
+        ],
+        "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Will of the Hive Mind: Once per battle round, one model from your army with this ability can use it when a friendly TYRANIDS unit within 12\" of that model is targeted with a Stratagem. If it does, reduce the CP cost of that usage of that Stratagem by 1CP.",
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "blocks/0/text"
+          ],
+          "value": {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 20,
+            "bbox": [
+              40,
+              569,
+              292,
+              636
+            ],
+            "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-datasheet-winged-hive-tyrant-ability",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                40,
+                569,
+                292,
+                636
+              ],
+              "textSha256": "95CDAA9FE9A7ED70A32BA02AEA048A1162864A2232029013846DEC197A286548",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-winged-hive-tyrant:section:1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-synaptic-goading-effect",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-synaptic-goading-effect"
+      },
+      "target": {
+        "id": "detachment-unending-swarm:stratagem:1",
+        "field": [
+          "lines",
+          2,
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-unending-swarm:stratagem:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-unending-swarm"
+          },
+          {
+            "path": [
+              "data",
+              "lines",
+              2,
+              "label"
+            ],
+            "expected": "EFFECT"
+          }
+        ]
+      },
+      "kind": "STRATAGEM_TEXT",
+      "operation": "SET",
+      "after": "When making that surge move, you can re-roll the D6 to determine how far your unit moves, and your unit can end that move as close as possible to the closest objective marker (instead of as close as possible to the closest enemy unit). All other rules for making surge moves still apply.",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          613,
+          558,
+          712
+        ],
+        "textSha256": "B43131AF7299CCAB5AD35993EBCDD5DEF2BBFA9F6FD08D5765411B07EFF3534E",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "When making that surge move, you can re-roll the D6 to determine how far your unit moves, and your unit can end that move as close as possible to the closest objective marker (instead of as close as possible to the closest enemy unit]. All other rules for making surge moves still apply.",
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "lines/EFFECT"
+          ],
+          "value": {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 19,
+            "bbox": [
+              301,
+              613,
+              558,
+              712
+            ],
+            "textSha256": "B43131AF7299CCAB5AD35993EBCDD5DEF2BBFA9F6FD08D5765411B07EFF3534E",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-synaptic-goading-effect",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 19,
+              "bbox": [
+                301,
+                613,
+                558,
+                712
+              ],
+              "textSha256": "B43131AF7299CCAB5AD35993EBCDD5DEF2BBFA9F6FD08D5765411B07EFF3534E",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "detachment-unending-swarm:stratagem:1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-harpy-hover-removal:status",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 21,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-harpy-hover-removal"
+      },
+      "target": {
+        "id": "datasheet-harpy:rule-reference:2",
+        "field": [
+          "status"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "RULE_REFERENCE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-harpy:rule-reference:2"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-harpy"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "after": "SUPERSEDED",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          162,
+          292,
+          194
+        ],
+        "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": {
+        "$absent": true
+      }
+    },
+    {
+      "id": "gw-v1.3-harpy-hover-removal:provenance",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 21,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-harpy-hover-removal"
+      },
+      "target": {
+        "id": "datasheet-harpy:rule-reference:2",
+        "field": [
+          "suppressionProvenance"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "RULE_REFERENCE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-harpy:rule-reference:2"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-harpy"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "after": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          162,
+          292,
+          194
+        ],
+        "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          162,
+          292,
+          194
+        ],
+        "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": {
+        "$absent": true
+      }
+    },
+    {
+      "id": "gw-v1.3-harpy-hover-removal",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 21,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-harpy-hover-removal"
+      },
+      "target": {
+        "id": "unit-harpy",
+        "field": [
+          "ruleReferenceIds"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-harpy"
+          }
+        ]
+      },
+      "kind": "RULE_REMOVE",
+      "operation": "SET",
+      "after": [
+        "datasheet-harpy:rule-reference:1",
+        "datasheet-harpy:rule-reference:3"
+      ],
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          162,
+          292,
+          194
+        ],
+        "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": [
+        "datasheet-harpy:rule-reference:1",
+        "datasheet-harpy:rule-reference:2",
+        "datasheet-harpy:rule-reference:3"
+      ],
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-harpy-hover-removal",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 21,
+              "bbox": [
+                40,
+                162,
+                292,
+                194
+              ],
+              "textSha256": "B6B501EA25B52D45F51FB64E2AFA05AF4F59042F2E6B8421F59CB5B97DD99019",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-harpy:rule-reference:2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-parasite-shadow-in-the-warp:record",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-parasite-shadow-in-the-warp"
+      },
+      "target": {
+        "id": "@root",
+        "field": [
+          "entities"
+        ]
+      },
+      "kind": "RULE_ADD",
+      "operation": "ADD_RECORD",
+      "after": {
+        "id": "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official",
+        "kind": "RULE_REFERENCE",
+        "bookId": "tyranids",
+        "parentId": "unit-parasite-of-mortrex",
+        "sourceEntityId": "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official",
+        "data": {
+          "label": "Shadow in the Warp",
+          "scope": "MODEL",
+          "conditionalOnly": true,
+          "recipient": {
+            "scope": "MODEL",
+            "modelProfileIds": [
+              "datasheet-parasite-of-mortrex:profile:1"
+            ],
+            "compositionMemberIds": [
+              "datasheet-parasite-of-mortrex:section:2:member:1"
+            ]
+          }
+        },
+        "provenance": {
+          "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+          "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+          "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+          "page": 20,
+          "bbox": [
+            40,
+            228,
+            292,
+            255
+          ],
+          "textSha256": "28B29D001783D131932284ED8CF0E64E240276BC0103F019D9A00C83D3D872DA",
+          "effectiveFrom": "2026-10-14",
+          "authority": "AUTHORITATIVE_CURRENT"
+        }
+      },
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          228,
+          292,
+          255
+        ],
+        "textSha256": "28B29D001783D131932284ED8CF0E64E240276BC0103F019D9A00C83D3D872DA",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      }
+    },
+    {
+      "id": "gw-v1.3-parasite-shadow-in-the-warp",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-parasite-shadow-in-the-warp"
+      },
+      "target": {
+        "id": "unit-parasite-of-mortrex",
+        "field": [
+          "ruleReferenceIds"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-parasite-of-mortrex"
+          }
+        ]
+      },
+      "kind": "RULE_ADD",
+      "operation": "SET",
+      "after": [
+        "datasheet-parasite-of-mortrex:rule-reference:1",
+        "datasheet-parasite-of-mortrex:rule-reference:2",
+        "datasheet-parasite-of-mortrex:rule-reference:3",
+        "datasheet-parasite-of-mortrex:rule-reference:4",
+        "datasheet-parasite-of-mortrex:rule-reference:shadow-in-the-warp-official"
+      ],
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          228,
+          292,
+          255
+        ],
+        "textSha256": "28B29D001783D131932284ED8CF0E64E240276BC0103F019D9A00C83D3D872DA",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": [
+        "datasheet-parasite-of-mortrex:rule-reference:1",
+        "datasheet-parasite-of-mortrex:rule-reference:2",
+        "datasheet-parasite-of-mortrex:rule-reference:3",
+        "datasheet-parasite-of-mortrex:rule-reference:4"
+      ],
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-parasite-shadow-in-the-warp",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                40,
+                228,
+                292,
+                255
+              ],
+              "textSha256": "28B29D001783D131932284ED8CF0E64E240276BC0103F019D9A00C83D3D872DA",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "unit-parasite-of-mortrex"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-norn-assimilator-harpooned",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-norn-assimilator-harpooned"
+      },
+      "target": {
+        "id": "datasheet-norn-assimilator:weapon:1:ability:harpooned",
+        "field": [
+          "text"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_ABILITY"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-norn-assimilator:weapon:1:ability:harpooned"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "datasheet-norn-assimilator:weapon:1"
+          }
+        ]
+      },
+      "kind": "ABILITY_TEXT",
+      "operation": "SET",
+      "after": "Harpooned: When this unit declares a charge, if an enemy MONSTER/VEHICLE unit is within 12\" of this unit and was hit by an attack made by this weapon this turn, you can use this ability. If you do: \n- This unit has +2 to charge rolls until the end of the phase. \n- This unit must end that charge move engaged with that MONSTER/VEHICLE unit.",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          63,
+          558,
+          153
+        ],
+        "textSha256": "898BC72563C56767881F10CA6856AA2DF66DA8E44E08146454EFDC09D0537350",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Harpooned: When this unit declares a charge, if an enemy MONSTER/VEHICLE unit is within 12\" of this unit and was hit by an attack made by this weapon this turn, you can use this ability. If you do:\n- This unit has +2 to charge rolls until the end of the phase.\n- This unit must end that charge move engaged with that MONSTER/VEHICLE unit.",
+      "projection": [
+        {
+          "scope": "entity",
+          "mode": "set",
+          "path": [
+            "fieldProvenance",
+            "text"
+          ],
+          "value": {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 20,
+            "bbox": [
+              301,
+              63,
+              558,
+              153
+            ],
+            "textSha256": "898BC72563C56767881F10CA6856AA2DF66DA8E44E08146454EFDC09D0537350",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        },
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-norn-assimilator-harpooned",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                301,
+                63,
+                558,
+                153
+              ],
+              "textSha256": "898BC72563C56767881F10CA6856AA2DF66DA8E44E08146454EFDC09D0537350",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-norn-assimilator:weapon:1:ability:harpooned"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-biovores-hidden-faq",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 21,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-biovores-hidden-faq"
+      },
+      "target": {
+        "id": "@root",
+        "field": [
+          "entities"
+        ]
+      },
+      "kind": "FAQ",
+      "operation": "ADD_RECORD",
+      "after": {
+        "id": "faq-biovores-seed-spore-mines-hidden-v1.3",
+        "kind": "FAQ",
+        "bookId": "tyranids",
+        "sourceEntityId": "faq-biovores-seed-spore-mines-hidden-v1.3",
+        "parentId": "unit-biovores",
+        "data": {
+          "title": "When my Biovores unit uses the Seed Spore Mines ability, does my unit lose hidden?",
+          "text": "No.",
+          "conditionalOnly": true
+        },
+        "provenance": {
+          "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+          "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+          "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+          "page": 21,
+          "bbox": [
+            40,
+            228,
+            292,
+            261
+          ],
+          "textSha256": "71A2F8C5D12D961A7DF2A8D673C1DBABC528E751E56702BB9A1016CEB33A6F2F",
+          "effectiveFrom": "2026-10-14",
+          "authority": "AUTHORITATIVE_CURRENT"
+        }
+      },
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          228,
+          292,
+          261
+        ],
+        "textSha256": "71A2F8C5D12D961A7DF2A8D673C1DBABC528E751E56702BB9A1016CEB33A6F2F",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-biovores-hidden-faq",
+            "status": "APPLIED",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 21,
+              "bbox": [
+                40,
+                228,
+                292,
+                261
+              ],
+              "textSha256": "71A2F8C5D12D961A7DF2A8D673C1DBABC528E751E56702BB9A1016CEB33A6F2F",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "faq-biovores-seed-spore-mines-hidden-v1.3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-foul-spores-update",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-foul-spores-update"
+      },
+      "target": {
+        "id": "datasheet-venomthropes:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-venomthropes:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-venomthropes"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "UNRESOLVED_EVIDENCE",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          744,
+          558,
+          782
+        ],
+        "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-foul-spores-update",
+            "status": "UNRESOLVED_EVIDENCE",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                301,
+                744,
+                558,
+                782
+              ],
+              "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "datasheet-venomthropes:section:1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-foul-spores-faq",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 21,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-foul-spores-faq"
+      },
+      "target": {
+        "id": "faq-20",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "FAQ"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "faq-20"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "UNRESOLVED_EVIDENCE",
+      "after": "Does an Attached unit containing a HIVE TYRANT and TYRANT GUARD receive the Stealth ability from a VENOMTHROPE’s Foul Spore's ability?",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 21,
+        "bbox": [
+          40,
+          679,
+          292,
+          724
+        ],
+        "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Does an Attached unit containing a HIVE TYRANT and TYRANT GUARD receive the Stealth ability from a VENOMTHROPE’s Foul Spore's ability?",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-foul-spores-faq",
+            "status": "UNRESOLVED_EVIDENCE",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 21,
+              "bbox": [
+                40,
+                679,
+                292,
+                724
+              ],
+              "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "faq-20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-left:target:1",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-left"
+      },
+      "target": {
+        "id": "army-rule-synapse:definition",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ARMY_RULE_COMPONENT"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "army-rule-synapse:definition"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "army-rule-synapse"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Synapse",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          40,
+          195,
+          292,
+          790
+        ],
+        "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Synapse"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-left:target:2",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-left"
+      },
+      "target": {
+        "id": "army-rule-shadow-in-the-warp:definition",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ARMY_RULE_COMPONENT"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "army-rule-shadow-in-the-warp:definition"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "army-rule-shadow-in-the-warp"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Shadow in the Warp",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          40,
+          195,
+          292,
+          790
+        ],
+        "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Shadow in the Warp"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-left:target:3",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-left"
+      },
+      "target": {
+        "id": "detachment-assimilation-swarm:rule",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-assimilation-swarm:rule"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-assimilation-swarm"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Feed the Swarm",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          40,
+          195,
+          292,
+          790
+        ],
+        "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Feed the Swarm"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-left",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-left"
+      },
+      "target": {
+        "id": "detachment-assimilation-swarm:enhancement:2",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-assimilation-swarm:enhancement:2"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-assimilation-swarm"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Instinctive Defence",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          40,
+          195,
+          292,
+          790
+        ],
+        "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Instinctive Defence",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-retained-updates-page19-left",
+            "status": "VERIFY_CURRENT",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 19,
+              "bbox": [
+                40,
+                195,
+                292,
+                790
+              ],
+              "textSha256": "EBBB357EA96A766B96C6D099E0CA12B4A24353CD909B8ED3874536D6474F2381",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "army-rule-synapse:definition",
+              "army-rule-shadow-in-the-warp:definition",
+              "detachment-assimilation-swarm:rule",
+              "detachment-assimilation-swarm:enhancement:2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right:target:1",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-right"
+      },
+      "target": {
+        "id": "detachment-crusher-stampede:rule",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-crusher-stampede:rule"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-crusher-stampede"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Enraged Behemoths",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          195,
+          558,
+          790
+        ],
+        "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Enraged Behemoths"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right:target:2",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-right"
+      },
+      "target": {
+        "id": "detachment-crusher-stampede:stratagem:4",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-crusher-stampede:stratagem:4"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-crusher-stampede"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "UNTRAMMELLED FEROCITY",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          195,
+          558,
+          790
+        ],
+        "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "UNTRAMMELLED FEROCITY"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right:target:3",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-right"
+      },
+      "target": {
+        "id": "detachment-synaptic-nexus:stratagem:4",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "STRATAGEM"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-synaptic-nexus:stratagem:4"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-synaptic-nexus"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "REINFORCED HIVE NODE",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          195,
+          558,
+          790
+        ],
+        "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "REINFORCED HIVE NODE"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right:target:4",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-right"
+      },
+      "target": {
+        "id": "detachment-unending-swarm:rule",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DETACHMENT_RULE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-unending-swarm:rule"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-unending-swarm"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Insurmountable Odds",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          195,
+          558,
+          790
+        ],
+        "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Insurmountable Odds"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page19-right",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 19,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page19-right"
+      },
+      "target": {
+        "id": "detachment-vanguard-onslaught:enhancement:2",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-vanguard-onslaught:enhancement:2"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-vanguard-onslaught"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Chameleonic",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 19,
+        "bbox": [
+          301,
+          195,
+          558,
+          790
+        ],
+        "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Chameleonic",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-retained-updates-page19-right",
+            "status": "VERIFY_CURRENT",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 19,
+              "bbox": [
+                301,
+                195,
+                558,
+                790
+              ],
+              "textSha256": "23D828D1856FF19C663FD251EEBB97B13153D0C654ED64C12569F787C98CE11C",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "detachment-crusher-stampede:rule",
+              "detachment-crusher-stampede:stratagem:4",
+              "detachment-synaptic-nexus:stratagem:4",
+              "detachment-unending-swarm:rule",
+              "detachment-vanguard-onslaught:enhancement:2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:1",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "detachment-vanguard-onslaught:enhancement:4",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "ENHANCEMENT"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "detachment-vanguard-onslaught:enhancement:4"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "detachment-vanguard-onslaught"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Neuronode",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Neuronode"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:2",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "datasheet-biovores:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-biovores:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-biovores"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:3",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "datasheet-carnifexes:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-carnifexes:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-carnifexes"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:4",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "datasheet-exocrine:weapon:1",
+        "field": [
+          "name"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-exocrine:weapon:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-exocrine"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "VERIFY_CURRENT",
+      "after": "Bio-plasmic cannon",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Bio-plasmic cannon"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:5",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "datasheet-harpy:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-harpy:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-harpy"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left:target:6",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "unit-neurolictor",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-neurolictor"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Neurolictor",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Neurolictor"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-left",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-left"
+      },
+      "target": {
+        "id": "unit-norn-assimilator",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-norn-assimilator"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Norn Assimilator",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          40,
+          60,
+          292,
+          799
+        ],
+        "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Norn Assimilator",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-retained-updates-page20-left",
+            "status": "VERIFY_CURRENT",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                40,
+                60,
+                292,
+                799
+              ],
+              "textSha256": "DBBD23DB8805A7AF783F0174ECAA9FFD3B10B6EFD479049FE2F608A6D48374F5",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "detachment-vanguard-onslaught:enhancement:4",
+              "datasheet-biovores:section:1",
+              "datasheet-carnifexes:section:1",
+              "datasheet-exocrine:weapon:1",
+              "datasheet-harpy:section:1",
+              "unit-neurolictor",
+              "unit-norn-assimilator"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:1",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "unit-psychophage",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-psychophage"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "Psychophage",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Psychophage"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:2",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-sporocyst:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-sporocyst:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-sporocyst"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:3",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-termagants:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-termagants:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-termagants"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:4",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-trygon:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-trygon:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-trygon"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:5",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-tyranid-warriors-with-melee-bio-weapons"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right:target:6",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-tyrannocyte:section:1",
+        "field": [
+          "title"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tyrannocyte:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-tyrannocyte"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "VERIFY_CURRENT",
+      "after": "ABILITIES",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "ABILITIES"
+    },
+    {
+      "id": "gw-v1.3-retained-updates-page20-right",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-retained-updates-page20-right"
+      },
+      "target": {
+        "id": "datasheet-tyrannofex:weapon:3",
+        "field": [
+          "name"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "WEAPON_PROFILE"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-tyrannofex:weapon:3"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-tyrannofex"
+          }
+        ]
+      },
+      "kind": "WEAPON_PROFILE",
+      "operation": "VERIFY_CURRENT",
+      "after": "Rupture cannon",
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          155,
+          558,
+          742
+        ],
+        "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": "Rupture cannon",
+      "projection": [
+        {
+          "scope": "root",
+          "mode": "append",
+          "path": [
+            "officialUpdates"
+          ],
+          "value": {
+            "id": "gw-v1.3-retained-updates-page20-right",
+            "status": "VERIFY_CURRENT",
+            "provenance": {
+              "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+              "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+              "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+              "page": 20,
+              "bbox": [
+                301,
+                155,
+                558,
+                742
+              ],
+              "textSha256": "D49B8F6645BE09B09BBE1FAB5D546B3FFDD373909A9BEFE80962AE90FABB3E6B",
+              "effectiveFrom": "2026-10-14",
+              "authority": "AUTHORITATIVE_CURRENT"
+            },
+            "targetIds": [
+              "unit-psychophage",
+              "datasheet-sporocyst:section:1",
+              "datasheet-termagants:section:1",
+              "datasheet-trygon:section:1",
+              "datasheet-tyranid-warriors-with-melee-bio-weapons:section:1",
+              "datasheet-tyrannocyte:section:1",
+              "datasheet-tyrannofex:weapon:3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gw-v1.3-foul-spores-update:unresolved-metadata",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-foul-spores-update"
+      },
+      "target": {
+        "id": "@root",
+        "field": [
+          "unresolvedSources"
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "after": [
+        {
+          "id": "tyranids-source-conflict-foul-spores",
+          "classification": "UNRESOLVED_OFFICIAL_CONTRADICTION",
+          "ownerSourceId": "datasheet-venomthropes",
+          "sourceOccurrenceIds": [
+            "datasheet-venomthropes:section:1",
+            "faq-20"
+          ],
+          "decision": "Preserve official update and FAQ; no invented MONSTER exclusion or executable aura.",
+          "executable": false,
+          "officialEvidence": [
+            {
+              "text": "Venomthropes, Foul Spores ability Change to: ‘Friendly TYRANIDS units within 6\" of this unit have Stealth.’",
+              "provenance": {
+                "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+                "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+                "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+                "page": 20,
+                "bbox": [
+                  301,
+                  744,
+                  558,
+                  782
+                ],
+                "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+                "effectiveFrom": "2026-10-14",
+                "authority": "AUTHORITATIVE_CURRENT"
+              }
+            },
+            {
+              "text": "Q: Does an Attached unit containing a Hive Tyrant and Tyrant Guard receive the Stealth ability from a Venomthrope’s Foul Spores ability? A: No. The unit has the MONSTER keyword and the ability excludes MONSTERS.",
+              "provenance": {
+                "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+                "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+                "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+                "page": 21,
+                "bbox": [
+                  40,
+                  679,
+                  292,
+                  724
+                ],
+                "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+                "effectiveFrom": "2026-10-14",
+                "authority": "AUTHORITATIVE_CURRENT"
+              }
+            }
+          ]
+        },
+        {
+          "id": "regenerating-monstrosity-legacy-assertion",
+          "classification": "UNVERIFIED_LEGACY_OFFICIAL_CORRECTION_ASSERTION",
+          "ownerSourceId": "detachment-assimilation-swarm:enhancement:1",
+          "decision": "Preserve accepted MONSTERS text. Current official PDF does not contain this claimed singular-MONSTER correction.",
+          "executable": false
+        }
+      ],
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          744,
+          558,
+          782
+        ],
+        "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": {
+        "$absent": true
+      }
+    },
+    {
+      "id": "gw-v1.3-foul-spores-update:conflict-record",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-foul-spores-update"
+      },
+      "target": {
+        "id": "@root",
+        "field": [
+          "entities"
+        ]
+      },
+      "kind": "RULE_ADD",
+      "operation": "ADD_RECORD",
+      "after": {
+        "id": "tyranids-source-conflict-foul-spores",
+        "kind": "SOURCE_CONFLICT",
+        "bookId": "tyranids",
+        "parentId": "unit-venomthropes",
+        "data": {
+          "id": "tyranids-source-conflict-foul-spores",
+          "classification": "UNRESOLVED_OFFICIAL_CONTRADICTION",
+          "ownerSourceId": "datasheet-venomthropes",
+          "sourceOccurrenceIds": [
+            "datasheet-venomthropes:section:1",
+            "faq-20"
+          ],
+          "decision": "Preserve official update and FAQ; no invented MONSTER exclusion or executable aura.",
+          "executable": false,
+          "officialEvidence": [
+            {
+              "text": "Venomthropes, Foul Spores ability Change to: ‘Friendly TYRANIDS units within 6\" of this unit have Stealth.’",
+              "provenance": {
+                "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+                "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+                "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+                "page": 20,
+                "bbox": [
+                  301,
+                  744,
+                  558,
+                  782
+                ],
+                "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+                "effectiveFrom": "2026-10-14",
+                "authority": "AUTHORITATIVE_CURRENT"
+              }
+            },
+            {
+              "text": "Q: Does an Attached unit containing a Hive Tyrant and Tyrant Guard receive the Stealth ability from a Venomthrope’s Foul Spores ability? A: No. The unit has the MONSTER keyword and the ability excludes MONSTERS.",
+              "provenance": {
+                "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+                "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+                "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+                "page": 21,
+                "bbox": [
+                  40,
+                  679,
+                  292,
+                  724
+                ],
+                "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+                "effectiveFrom": "2026-10-14",
+                "authority": "AUTHORITATIVE_CURRENT"
+              }
+            }
+          ]
+        },
+        "provenance": [
+          {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 20,
+            "bbox": [
+              301,
+              744,
+              558,
+              782
+            ],
+            "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          },
+          {
+            "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+            "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+            "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+            "page": 21,
+            "bbox": [
+              40,
+              679,
+              292,
+              724
+            ],
+            "textSha256": "D21AE0E9D46FB4F02C23A75A8DA5443CBB80FE6E1F7493769BA57B1FF57C1D2D",
+            "effectiveFrom": "2026-10-14",
+            "authority": "AUTHORITATIVE_CURRENT"
+          }
+        ]
+      },
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          744,
+          558,
+          782
+        ],
+        "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      }
+    },
+    {
+      "id": "gw-v1.3-foul-spores-update:conflict-reference",
+      "source": {
+        "id": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "version": "v1.3",
+        "page": 20,
+        "authority": "OFFICIAL_GW",
+        "effectiveFrom": "2026-10-14",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "locator": "gw-v1.3-foul-spores-update"
+      },
+      "target": {
+        "id": "datasheet-venomthropes:section:1",
+        "field": [
+          "unresolvedSourceIds"
+        ],
+        "guards": [
+          {
+            "path": [
+              "kind"
+            ],
+            "expected": "DATASHEET_SECTION"
+          },
+          {
+            "path": [
+              "sourceEntityId"
+            ],
+            "expected": "datasheet-venomthropes:section:1"
+          },
+          {
+            "path": [
+              "parentId"
+            ],
+            "expected": "unit-venomthropes"
+          }
+        ]
+      },
+      "kind": "SOURCE_METADATA",
+      "operation": "ADD_FIELD",
+      "after": [
+        "tyranids-source-conflict-foul-spores"
+      ],
+      "provenance": {
+        "sourceId": "gw-tyranids-faction-pack-v1.3-2026-10-14",
+        "document": "books/tyranids/v2/sources/tyranids-faction-pack-v1.3.pdf",
+        "sha256": "B8AF0DF04063ACC6E935C8B8C29A2E722367B4B90BF5023E06F441E2B8DE8E6F",
+        "page": 20,
+        "bbox": [
+          301,
+          744,
+          558,
+          782
+        ],
+        "textSha256": "721177E3E29230FAA21800AF45AB9905FD02D2E7F01F695A2FFEADFA3869AB3F",
+        "effectiveFrom": "2026-10-14",
+        "authority": "AUTHORITATIVE_CURRENT"
+      },
+      "expectedBefore": {
+        "$absent": true
+      }
+    }
+  ]
+}

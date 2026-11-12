@@ -137,6 +137,10 @@
         {
           "role": "wargearOptionContracts",
           "path": "books/tyranids/sources/tyranids-wargear-option-contracts.v1.json"
+        },
+        {
+          "role": "officialApplication",
+          "path": "books/tyranids/v2/official-updates.json"
         }
       ]
     },
@@ -233,7 +237,7 @@
       "joins": "books/tyranids/v2/model-name-source-bindings.json"
     },
     "official": {
-      "input": "books/tyranids/v2/official-bindings.json",
+      "input": "books/tyranids/v2/official-updates.json",
       "stage": "canonical-facts"
     },
     "inheritance": {
