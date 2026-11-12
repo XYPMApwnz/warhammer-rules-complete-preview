@@ -29,5 +29,11 @@ try{
  assert.equal(fs.readFileSync(path.join(copy,input),'utf8'),invalid,'The command must not repair or overwrite authored input');
  const failed=JSON.parse(fs.readFileSync(path.join(evidence,'invalid/RESULTS.json'),'utf8'));
  assert.equal(failed.status,'FAIL');assert.deepEqual(failed.written,[]);assert(failed.changedInputs.includes(input));
- console.log(JSON.stringify({status:'PASS',freshness:'read-only',invalidInput:input,partialWrites:0,evidence}));
+ execFileSync('git',['restore','--',input],{cwd:copy});const renamed=input+'.renamed.json';
+ execFileSync('git',['mv','--',input,renamed],{cwd:copy});
+ await assert.rejects(updateBook({root:copy,books:['death-guard'],out:path.join(evidence,'renamed')}),/death-guard:.*failed/);
+ const moved=JSON.parse(fs.readFileSync(path.join(evidence,'renamed/RESULTS.json'),'utf8'));
+ assert(moved.changedInputs.includes(input)&&moved.changedInputs.includes(renamed),'A staged rename must carry both deletion and addition into scratch');
+ assert.deepEqual(moved.written,[]);assert.deepEqual(fingerprints(copy),old);assert(!fs.existsSync(path.join(copy,input)));
+ console.log(JSON.stringify({status:'PASS',freshness:'read-only',invalidInput:input,stagedRename:'missing old source rejected',partialWrites:0,evidence}));
 }finally{cleanupQaTempDir(scratch);}

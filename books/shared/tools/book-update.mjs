@@ -23,7 +23,7 @@ const at=(root,file)=>{
 const outside=(root,target)=>{if(target===root||target.startsWith(root+path.sep))throw Error('Book update evidence must be outside the checkout');};
 function workState(root){
  const status=git(root,['status','--porcelain=v1','--untracked-files=all']);
- const changed=[...new Set([...names(git(root,['diff','--name-only','-z','HEAD'])),...names(git(root,['ls-files','--others','--exclude-standard','-z']))])];
+ const changed=[...new Set([...names(git(root,['diff','--no-renames','--name-only','-z','HEAD'])),...names(git(root,['ls-files','--others','--exclude-standard','-z']))])];
  return{status,changed,fingerprints:Object.fromEntries(changed.map(f=>[f,fs.existsSync(at(root,f))?sha(fs.readFileSync(at(root,f))):null]))};
 }
 function sameState(a,b){return a.status===b.status&&JSON.stringify(a.fingerprints)===JSON.stringify(b.fingerprints);}
