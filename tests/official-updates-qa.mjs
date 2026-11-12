@@ -41,4 +41,7 @@ rejects(()=>applyOfficialUpdates(initial,make([entry()],{projection:[{scope:'ent
 rejects(()=>applyOfficialUpdates(initial,make([entry()],{projection:[{scope:'entity',mode:'set',path:['fieldProvenance','strength'],value:{$ref:'entry.missing'}}]})),/unresolved/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'one',field:['__proto__','polluted']}})])),/safe field/);
 rejects(()=>applyOfficialUpdates(initial,make([{...ownedLocator,target:{...ownedLocator.target,sourceLocator:{...ownedLocator.target.sourceLocator,identityPointer:['entities',1]}}}])),/identity must own/);
+const cpCheck=entry({kind:'STRATAGEM_TEXT',operation:'VERIFY_CURRENT',target:{id:'one',field:['cp']},expectedBefore:'1CP',after:'1CP'});
+assert.equal(applyOfficialUpdates({entities:[{id:'one',data:{cp:'1CP'}}]},make([cpCheck])).model.entities[0].data.cp,'1CP');
+rejects(()=>validateOfficialUpdates(make([{...cpCheck,operation:'SET',after:'2CP'}])),/CP is verification-only/);
 console.log(JSON.stringify({status:'PASS',kinds:Object.keys(kindCases).length,actions:10,negativeControls:controls,baseImmutable:true,atomic:true}));
