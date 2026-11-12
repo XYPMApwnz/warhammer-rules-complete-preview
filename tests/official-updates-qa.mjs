@@ -50,4 +50,31 @@ rejects(()=>applyOfficialUpdates(initial,make([{...ownedLocator,target:{...owned
 const cpCheck=entry({kind:'STRATAGEM_TEXT',operation:'VERIFY_CURRENT',target:{id:'one',field:['cp']},expectedBefore:'1CP',after:'1CP'});
 assert.equal(applyOfficialUpdates({entities:[{id:'one',data:{cp:'1CP'}}]},make([cpCheck])).model.entities[0].data.cp,'1CP');
 rejects(()=>validateOfficialUpdates(make([{...cpCheck,operation:'SET',after:'2CP'}])),/CP is verification-only/);
+rejects(()=>validateOfficialUpdates(make([entry({operation:'REMOVE_RECORD',after:{$absent:true}})])),/record removal requires an empty field/);
+// Authored ID/locator aliases must not create independent write owners.
+const idWrite=entry({id:'physical-id'}),locatedWrite={...locator,id:'physical-locator'};
+for(const pair of [[idWrite,locatedWrite],[locatedWrite,idWrite]]){
+ const entries=pair.map((row,index)=>({...row,expectedBefore:index?'5':'4',after:index?'6':'5'}));
+ rejects(()=>applyOfficialUpdates(initial,make(entries)),/conflicting current updates/);
+}
+const collectionWrite=entry({id:'collection-owner',kind:'RULE_ADD',target:{id:'@root',field:['entities']},expectedBefore:initial.entities,after:[{...initial.entities[0],data:{...initial.entities[0].data,strength:'5'}}]});
+rejects(()=>applyOfficialUpdates(initial,make([collectionWrite,entry({id:'child-owner',expectedBefore:'5',after:'6'})])),/conflicting current updates/);
+rejects(()=>applyOfficialUpdates(initial,make([entry(),{...collectionWrite,expectedBefore:collectionWrite.after,after:initial.entities}])),/conflicting current updates/);
+const corpusInput={entities:[{id:'one',profile:{strength:'4'}}]},corpusSelection={selection:{collection:['entities'],identity:'id',data:[]}};
+const parentLocator=entry({id:'parent-locator',target:{sourceLocator:{pointer:['entities',0],identityPath:['id'],identity:'one'},field:['profile']},expectedBefore:{strength:'4'},after:{strength:'5'}});
+const childLocator=entry({id:'child-locator',target:{sourceLocator:{pointer:['entities',0,'profile'],identityPointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']},expectedBefore:'5',after:'6'});
+rejects(()=>applyOfficialUpdates(corpusInput,make([parentLocator,childLocator],corpusSelection)),/conflicting current updates/);
+rejects(()=>applyOfficialUpdates(corpusInput,make([{...childLocator,expectedBefore:'4',after:'5'},{...parentLocator,expectedBefore:{strength:'5'},after:{strength:'6'}}],corpusSelection)),/conflicting current updates/);
+const spare={id:'spare',data:{strength:'4'}},shiftInput={entities:[spare,structuredClone(initial.entities[0])]};
+const removeSpare=entry({id:'remove-spare',kind:'RULE_REMOVE',operation:'REMOVE_RECORD',target:{id:'spare',field:[]},expectedBefore:spare,after:{$absent:true}});
+const beforeShift={...locatedWrite,target:{...locatedWrite.target,sourceLocator:{...locatedWrite.target.sourceLocator,pointer:['entities',1]}}};
+rejects(()=>applyOfficialUpdates(shiftInput,make([beforeShift,removeSpare,{...locatedWrite,id:'after-shift',expectedBefore:'5',after:'6'}])),/conflicting current updates/);
+const independent=applyOfficialUpdates(shiftInput,make([removeSpare,entry()]));
+assert.equal(independent.model.entities[0].data.strength,'5','Removing another record does not transfer its write ownership');
+const distinctInput={entities:[structuredClone(initial.entities[0]),{...structuredClone(initial.entities[0]),id:'other'}]};
+assert.deepEqual(applyOfficialUpdates(distinctInput,make([entry(),entry({id:'other-write',target:{id:'other',field:['strength']},after:'6'})])).model.entities.map(row=>row.data.strength),['5','6'],'Distinct record IDs remain independent');
+rejects(()=>applyOfficialUpdates(initial,make([additions[0],entry({id:'new-record-child',kind:'FAQ',target:{id:'two',field:['answer']},expectedBefore:'A',after:'B'})])),/conflicting current updates/);
+assert.equal(applyOfficialUpdates(initial,make([idWrite,{...locatedWrite,expectedBefore:'5',after:'6',supersedes:['physical-id']}])).model.entities[0].data.strength,'6','Explicit supersession still permits an intentional physical-field replacement');
+assert.deepEqual(corpusInput,{entities:[{id:'one',profile:{strength:'4'}}]});
+assert.deepEqual(shiftInput,{entities:[spare,initial.entities[0]]},'Rejected alias writes never mutate the accepted input');
 console.log(JSON.stringify({status:'PASS',kinds:Object.keys(kindCases).length,actions:10,negativeControls:controls,baseImmutable:true,atomic:true}));

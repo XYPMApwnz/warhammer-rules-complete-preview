@@ -30,6 +30,7 @@ export function validateOfficialUpdates(document,{bookId=document?.bookId,stage}
   if(!['ADD_FIELD','ADD_RECORD'].includes(e.operation)&&!has(e,'expectedBefore'))fail(bookId,e.id,'expectedBefore is required');
   keys(e.source,['id','document','version','page','authority','effectiveFrom','status','supersedes','sha256','locator'],['id','document','version','page','authority'],bookId,e.id,'source');for(const k of['id','document','version'])if(typeof e.source[k]!=='string'||!e.source[k])fail(bookId,e.id,'source.'+k+' is required');if(e.source.authority!=='OFFICIAL_GW')fail(bookId,e.id,'accepted official source required');if(!(e.source.page===null||Number.isSafeInteger(e.source.page)&&e.source.page>0||Array.isArray(e.source.page)&&e.source.page.length&&e.source.page.every(p=>Number.isSafeInteger(p)&&p>0)))fail(bookId,e.id,'invalid source page');
   keys(e.target,['id','sourceLocator','field','guards'],['field'],bookId,e.id,'target');if(Number(has(e.target,'id'))+Number(has(e.target,'sourceLocator'))!==1)fail(bookId,e.id,'exactly one stable target id or sourceLocator required');fieldPath(e.target.field,bookId,e.id,'target.field',{empty:e.operation==='REMOVE_RECORD'});
+  if(e.operation==='REMOVE_RECORD'&&e.target.field.length)fail(bookId,e.id,'record removal requires an empty field and the complete expected record');
   if(e.target.id!==undefined&&(typeof e.target.id!=='string'||!e.target.id))fail(bookId,e.id,'invalid target id');
   if(e.target.sourceLocator){const locator=e.target.sourceLocator;keys(locator,['pointer','identityPath','identity','identityPointer'],['pointer','identityPath','identity'],bookId,e.id,'target.sourceLocator');fieldPath(locator.pointer,bookId,e.id,'sourceLocator.pointer',{empty:true});fieldPath(locator.identityPath,bookId,e.id,'sourceLocator.identityPath');if(locator.identityPointer!==undefined){fieldPath(locator.identityPointer,bookId,e.id,'sourceLocator.identityPointer',{empty:true});if(locator.identityPointer.length>locator.pointer.length||locator.identityPointer.some((key,index)=>key!==locator.pointer[index]))fail(bookId,e.id,'source identity must own the target locator');}}
   if(e.target.field.length&&!KIND_FIELDS[e.kind].includes(e.target.field[0]))fail(bookId,e.id,'unknown field '+e.target.field.join('/')+' for '+e.kind);
@@ -54,10 +55,28 @@ function metadata(root,entity,row,context,book,id){
  for(const key of parts.slice(0,-1)){if(!has(host,key))host[key]={};if(!object(host[key])&&!Array.isArray(host[key]))fail(book,id,'metadata path is not an object');host=host[key];}
  const key=parts.at(-1),value=resolveTemplate(row.value,context,book,id);if(row.mode==='append'){if(!has(host,key))host[key]=[];if(!Array.isArray(host[key]))fail(book,id,'metadata append needs an array');host[key].push(value);}else host[key]=value;
 }
+function recordAddress(record,identity){
+ if(!object(record))return null;
+ for(const field of new Set([identity,'id','sourceId']))if(has(record,field)&&
+   (typeof record[field]==='string'&&record[field]||Number.isSafeInteger(record[field])))
+  return JSON.stringify(['record',field,record[field]]);
+ return null;
+}
+// Resolve aliases to one physical address. Stable record tokens survive array
+// removals; an index is used only where the accepted input has no record ID.
+function physicalAddress(model,parts,selection){
+ const address=[];let host=model;
+ for(const part of parts){
+  const child=host?.[part];
+  address.push(Array.isArray(host)?recordAddress(child,selection.identity)||JSON.stringify(['index',String(part)]):JSON.stringify(['field',String(part)]));
+  host=child;
+ }
+ return address;
+}
 function resolveTarget(model,selection,e,book){
- if(e.target.id==='@root')return{entity:model,data:model};
- if(e.target.sourceLocator){const l=e.target.sourceLocator,entity=valueAt(model,l.pointer,book,e.id,'target locator'),owner=l.identityPointer===undefined?entity:valueAt(model,l.identityPointer,book,e.id,'source owner');assert.deepEqual(valueAt(owner,l.identityPath,book,e.id,'source identity'),l.identity,`${book} · ${e.id}: source identity changed`);const parent=l.pointer.length?valueAt(model,l.pointer.slice(0,-1),book,e.id,'target parent'):null;return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),...(Array.isArray(parent)?{collection:parent,index:l.pointer.at(-1)}:{})};}
- const list=valueAt(model,selection.collection,book,e.id,'target collection');if(!Array.isArray(list))fail(book,e.id,'target collection is not an array');const matches=list.map((entity,index)=>({entity,index})).filter(x=>x.entity[selection.identity]===e.target.id);if(matches.length!==1)fail(book,e.id,`target ${e.target.id}: expected exactly 1, found ${matches.length}`);const{entity,index}=matches[0];return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),collection:list,index};
+ if(e.target.id==='@root')return{entity:model,data:model,entityPath:[],dataPath:[]};
+ if(e.target.sourceLocator){const l=e.target.sourceLocator,entity=valueAt(model,l.pointer,book,e.id,'target locator'),owner=l.identityPointer===undefined?entity:valueAt(model,l.identityPointer,book,e.id,'source owner');assert.deepEqual(valueAt(owner,l.identityPath,book,e.id,'source identity'),l.identity,`${book} · ${e.id}: source identity changed`);const parent=l.pointer.length?valueAt(model,l.pointer.slice(0,-1),book,e.id,'target parent'):null;return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),entityPath:l.pointer,dataPath:[...l.pointer,...selection.data],...(Array.isArray(parent)?{collection:parent,index:l.pointer.at(-1)}:{})};}
+ const list=valueAt(model,selection.collection,book,e.id,'target collection');if(!Array.isArray(list))fail(book,e.id,'target collection is not an array');const matches=list.map((entity,index)=>({entity,index})).filter(x=>x.entity[selection.identity]===e.target.id);if(matches.length!==1)fail(book,e.id,`target ${e.target.id}: expected exactly 1, found ${matches.length}`);const{entity,index}=matches[0],entityPath=[...selection.collection,index];return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),entityPath,dataPath:[...entityPath,...selection.data],collection:list,index};
 }
 export function applyOfficialUpdates(input,document,{bookId=document?.bookId,stage,sources}={}){
  validateOfficialUpdates(document,{bookId,stage});const model=copy(input),applied=[],writes=[];const context={entry:undefined,source:undefined,entity:undefined,before:undefined,effective:undefined,beforeExists:false,changed:false};
@@ -71,9 +90,14 @@ export function applyOfficialUpdates(input,document,{bookId=document?.bookId,sta
   const key=field.at(-1),exists=field.length?has(host,key):true,before=copy(field.length?host[key]:entity);
   if(has(entry,'expectedBefore')){const matches=isAbsent(entry.expectedBefore)?!exists:(()=>{try{assert.deepEqual(before,entry.expectedBefore);return exists;}catch{return false;}})();if(!matches)fail(bookId,entry.id,`GW update no longer matches: ${bookId} · ${entry.target.id||entry.target.sourceLocator.identity} · ${field.join('/')}: expected ${JSON.stringify(entry.expectedBefore)}, found ${exists?JSON.stringify(before):'<absent>'}`);}
   if(!['VERIFY_CURRENT','UNRESOLVED_EVIDENCE'].includes(entry.operation)){
-   const writeField=entry.operation==='ADD_RECORD'?[...field,entry.after[document.selection.identity]]:field;
-   const previous=writes.filter(p=>p.target===JSON.stringify(entry.target.id??entry.target.sourceLocator.pointer)&&p.field.slice(0,Math.min(p.field.length,writeField.length)).every((x,i)=>String(x)===String(writeField[i])));
-   for(const p of previous)if(!entry.supersedes?.includes(p.id)&&!(source.supersedes?.includes(p.sourceId)&&p.sourceStatus==='SUPERSEDED'))fail(bookId,entry.id,'conflicting current updates or ambiguous precedence');writes.push({id:entry.id,target:JSON.stringify(entry.target.id??entry.target.sourceLocator.pointer),field:writeField,sourceId:source.id,sourceStatus:source.status});
+   let address=physicalAddress(model,entry.operation==='REMOVE_RECORD'?selected.entityPath:[...selected.dataPath,...field],document.selection);
+   if(entry.operation==='ADD_RECORD'){
+    const record=recordAddress(entry.after,document.selection.identity);
+    if(!record||!entry.after[document.selection.identity])fail(bookId,entry.id,'ADD_RECORD requires an explicit record and collection');
+    address=[...address,record];
+   }
+   const previous=writes.filter(p=>p.address.slice(0,Math.min(p.address.length,address.length)).every((part,index)=>part===address[index]));
+   for(const p of previous)if(!entry.supersedes?.includes(p.id)&&!(source.supersedes?.includes(p.sourceId)&&p.sourceStatus==='SUPERSEDED'))fail(bookId,entry.id,'conflicting current updates or ambiguous precedence');writes.push({id:entry.id,address,sourceId:source.id,sourceStatus:source.status});
   }
   switch(entry.operation){
    case'SET':if(!exists)fail(bookId,entry.id,'replacement target missing');host[key]=copy(entry.after);break;
