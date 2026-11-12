@@ -5,11 +5,13 @@ from pathlib import Path
 import subprocess
 
 
-def apply_book_official_updates(book_id, model, root, sources=None):
+def apply_book_official_updates(book_id, model, root, sources=None, document=None):
     root = Path(root)
     request = {'bookId': book_id, 'model': model, 'root': str(root)}
     if sources is not None:
         request['sources'] = sources
+    if document is not None:
+        request['document'] = document
     result = subprocess.run(
         ['node', str(root / 'books/shared/official-updates-v1/book.mjs')],
         input=json.dumps(request, ensure_ascii=False), text=True,
