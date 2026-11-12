@@ -38,6 +38,8 @@ unless you explicitly run `mfm:update` without saved input.
    }
    ```
 
+   Copy a reviewed entry of the same kind, including its source evidence and
+   provenance/audit projections. Keep explicit base-phase tags when present.
    Keep the existing document's selection and audit declarations. The example
    is already present in DG: do not add it a second time. Use the exact value
    types (`"4"` is different from `4`). Only additions may omit

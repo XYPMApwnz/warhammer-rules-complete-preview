@@ -35,6 +35,7 @@ node('tests/book-passport-qa.mjs');
 node('tests/official-updates-qa.mjs');
 node('tests/official-update-books-qa.mjs');
 node('tests/official-update-report-qa.mjs');
+node('tests/official-update-integration-qa.mjs');
 node('books/core-rules/tests/core-importer-candidate-qa.mjs');
 node('books/core-rules/tests/core-importer-isolation-qa.mjs');
 if(mode==='quick')expand(pkg.scripts['qa:workflow']);
