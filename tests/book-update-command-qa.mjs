@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {updateBook} from '../books/shared/tools/book-update.mjs';
+import {updateBook,publishOutputs} from '../books/shared/tools/book-update.mjs';
 import {createQaTempDir,cleanupQaTempDir,createQaEvidenceDir,qaTempEnvironment} from './helpers/qa-temp.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),evidence=createQaEvidenceDir('book-update-command-qa-');
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
@@ -35,5 +35,18 @@ try{
  const moved=JSON.parse(fs.readFileSync(path.join(evidence,'renamed/RESULTS.json'),'utf8'));
  assert(moved.changedInputs.includes(input)&&moved.changedInputs.includes(renamed),'A staged rename must carry both deletion and addition into scratch');
  assert.deepEqual(moved.written,[]);assert.deepEqual(fingerprints(copy),old);assert(!fs.existsSync(path.join(copy,input)));
- console.log(JSON.stringify({status:'PASS',freshness:'read-only',invalidInput:input,stagedRename:'missing old source rejected',partialWrites:0,evidence}));
+ const target=path.join(scratch,'publish-target'),source=path.join(scratch,'publish-source'),work=path.join(scratch,'publish-work');
+ for(const dir of[target,source,work])fs.mkdirSync(dir,{recursive:true});
+ const outputs=['one.json','two.json'];for(const file of outputs){fs.writeFileSync(path.join(target,file),'old '+file);fs.writeFileSync(path.join(source,file),'new '+file);}
+ const rename=fs.renameSync,copyFile=fs.copyFileSync;
+ try{
+  fs.renameSync=()=>{throw Object.assign(Error('Synthetic cross-device rename'),{code:'EXDEV'});};
+  assert.deepEqual(publishOutputs(target,source,outputs,work,evidence),outputs);
+  for(const file of outputs)assert.equal(fs.readFileSync(path.join(target,file),'utf8'),'new '+file);
+  for(const file of outputs)fs.writeFileSync(path.join(target,file),'old '+file);
+  fs.copyFileSync=(from,to,...args)=>{if(to===path.join(target,'two.json')){fs.writeFileSync(to,'partial');throw Error('Synthetic interrupted publication');}return copyFile(from,to,...args);};
+  assert.throws(()=>publishOutputs(target,source,outputs,work,evidence),/Synthetic interrupted publication/);
+  for(const file of outputs)assert.equal(fs.readFileSync(path.join(target,file),'utf8'),'old '+file,'An interrupted cross-device publication must restore every old byte');
+ }finally{fs.renameSync=rename;fs.copyFileSync=copyFile;}
+ console.log(JSON.stringify({status:'PASS',freshness:'read-only',invalidInput:input,stagedRename:'missing old source rejected',crossDevicePublication:'PASS',interruptedPublicationRollback:'PASS',partialWrites:0,evidence}));
 }finally{cleanupQaTempDir(scratch);}

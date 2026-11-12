@@ -61,13 +61,19 @@ async function execute({command,args,cwd,env,log,label,book,results}){
  }
  return row;
 }
-function publishOutputs(root,copy,files,work,evidence){
+export function publishOutputs(root,copy,files,work,evidence){
  const pending=files.filter(f=>fs.existsSync(at(copy,f))&&(!fs.existsSync(at(root,f))||!fs.readFileSync(at(root,f)).equals(fs.readFileSync(at(copy,f)))));
  const backups=new Map(pending.map(f=>[f,fs.existsSync(at(root,f))?fs.readFileSync(at(root,f)):null])),done=[];
  try{for(const [i,f]of pending.entries()){
-  const staged=path.join(work,'publish-'+i);fs.copyFileSync(at(copy,f),staged);fs.mkdirSync(path.dirname(at(root,f)),{recursive:true});fs.renameSync(staged,at(root,f));done.push(f);
+  const staged=path.join(work,'publish-'+i);fs.copyFileSync(at(copy,f),staged);fs.mkdirSync(path.dirname(at(root,f)),{recursive:true});
+  try{fs.renameSync(staged,at(root,f));done.push(f);}catch(error){
+   if(error.code!=='EXDEV')throw error;
+   // The checkout may be on C: while all scratch files must stay on E:.
+   // Include the attempted copy in rollback even if it fails after writing.
+   done.push(f);fs.copyFileSync(staged,at(root,f));
+  }
  }}catch(error){
-  const failures=[];for(const f of done.reverse())try{const before=backups.get(f);if(before)fs.writeFileSync(at(root,f),before);else fs.unlinkSync(at(root,f));}catch(rollback){failures.push(f+': '+rollback.message);}
+  const failures=[];for(const f of done.reverse())try{const before=backups.get(f);if(before)fs.writeFileSync(at(root,f),before);else if(fs.existsSync(at(root,f)))fs.unlinkSync(at(root,f));}catch(rollback){failures.push(f+': '+rollback.message);}
   if(failures.length){const recovery=path.join(evidence,'recovery');for(const [f,bytes]of backups)if(bytes){const target=at(recovery,f);fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,bytes);}throw Error(error.message+'; output rollback failed: '+failures.join('; ')+'; original bytes: '+recovery);}
   throw error;
  }
