@@ -597,5 +597,191 @@
       "title": "SWORD BRETHREN SQUAD",
       "disposition": "non-effective-external-datasheet"
     }
-  ]
+  ],
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/dark-angels/v2/sources/enrollment.json",
+      "effective": "books/dark-angels/v2/generated/effective.json",
+      "manifest": "books/dark-angels/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/dark-angels/content/dark-angels-faction-pack.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/dark-angels/content/dark-angels-codex-datasheets.en.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/dark-angels/content/dark-angels-related-rules.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/dark-angels/sources/source-manifest.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/dark-angels/content/dark-angels-codex-parity.en.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/dark-angels/sources/dark-angels-effect-contracts.v1.json"
+        },
+        {
+          "role": "mfmCurrentCapture",
+          "path": "mfm/sources/v1.6/dark-angels.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/dark-angels/v2/generated/base.json",
+            "books/dark-angels/v2/generated/effective.json",
+            "books/dark-angels/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/book-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/mixed-owner-book.json",
+            "books/dark-angels/v2/generated/mixed-owner-presentation.json",
+            "books/dark-angels/v2/generated/mixed-owner-points.json",
+            "books/dark-angels/v2/generated/mixed-owner-coverage.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/mfm-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/native-mfm-book.json",
+            "books/dark-angels/v2/generated/mfm-presentation.json",
+            "books/dark-angels/v2/generated/mfm-coverage.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/rule-contracts.json",
+            "books/dark-angels/v2/generated/roster-runtime.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/gameplay-presentation-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/gameplay-presentation.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "dark-angels",
+          "producer": "books/dark-angels/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/dark-angels/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "dark-angels",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/dark-angels/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=dark-angels",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:da"
+    },
+    "mfm": {
+      "capture": "mfm/sources/v1.6/dark-angels.json",
+      "identityRegistry": "mfm/content/mfm-v1.6-scoped.identity-registry.json",
+      "bindingPath": "books/dark-angels/v2/mfm-bindings.json",
+      "scope": "dark-angels"
+    },
+    "runtime": {
+      "executionArtifact": "books/dark-angels/v2/generated/roster-runtime.json",
+      "conditionArtifact": "books/dark-angels/v2/generated/roster-import.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "source-id",
+        "builtInExact": true
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/dark-angels/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": "books/dark-angels/sources/bsdata-dark-angels-11e.json",
+      "joins": "books/dark-angels/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": null,
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": [
+        "space-marines"
+      ]
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/dark-angels/v2/rule-contract-schema.mjs"
+      ],
+      "originalSchema": {
+        "mode": "state-factory",
+        "sourcePath": "books/dark-angels/v2/rule-contract-schema.mjs",
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    }
+  }
 }

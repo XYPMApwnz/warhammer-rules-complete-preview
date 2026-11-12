@@ -405,5 +405,217 @@
     "forgefather-s-seekers": "SALAMANDERS",
     "emperor-s-shield": "IMPERIAL FISTS",
     "shadowmark-talon": "RAVEN GUARD"
+  },
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/space-marines/v2/sources/enrollment.json",
+      "effective": "books/space-marines/v2/generated/effective.json",
+      "manifest": "books/space-marines/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionPack",
+          "path": "books/space-marines/content/space-marines-faction-pack.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/space-marines/content/space-marines-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/space-marines/content/space-marines-current-overlay.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/space-marines/content/space-marines-codex-wargear.en.json"
+        },
+        {
+          "role": "relatedRules",
+          "path": "books/space-marines/content/space-marines-related-rules.en.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/space-marines/sources/source-manifest.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/space-marines/sources/space-marines-effect-contracts.v1.json"
+        },
+        {
+          "role": "mfmCurrentCapture",
+          "path": "mfm/sources/v1.6/space-marines.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/space-marines/v2/generated/base.json",
+            "books/space-marines/v2/generated/effective.json",
+            "books/space-marines/v2/generated/cross-owner-references.json",
+            "books/space-marines/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/datasheet-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/native-datasheets.json",
+            "books/space-marines/v2/generated/datasheet-presentation.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/book-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/native-book.json",
+            "books/space-marines/v2/generated/book-presentation.json",
+            "books/space-marines/v2/generated/deathwatch-presentation.json",
+            "books/space-marines/v2/generated/source-ledger-coverage.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/mfm-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/native-mfm-book.json",
+            "books/space-marines/v2/generated/mfm-presentation.json",
+            "books/space-marines/v2/generated/deathwatch-mfm-presentation.json",
+            "books/space-marines/v2/generated/mfm-coverage.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/rule-contracts.json",
+            "books/space-marines/v2/generated/roster-runtime.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/gameplay-presentation-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/gameplay-presentation.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/roster-import-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/roster-import.json"
+          ]
+        },
+        {
+          "book": "space-marines",
+          "producer": "books/space-marines/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/space-marines/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "space-marines",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/space-marines/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=space-marines",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        },
+        {
+          "phase": "retained-source",
+          "step": {
+            "book": "space-marines",
+            "producer": "books/space-marines/tools/build-related-rules.mjs",
+            "outputs": [
+              "books/space-marines/content/space-marines-related-rules.en.json"
+            ],
+            "args": [],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:sm"
+    },
+    "mfm": {
+      "capture": "mfm/sources/v1.6/space-marines.json",
+      "identityRegistry": "mfm/content/mfm-v1.6-scoped.identity-registry.json",
+      "bindingPath": "books/space-marines/v2/mfm-bindings.json",
+      "scope": "space-marines"
+    },
+    "runtime": {
+      "executionArtifact": "books/space-marines/v2/generated/roster-runtime.json",
+      "conditionArtifact": "books/space-marines/v2/generated/roster-import.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "source-id",
+        "builtInExact": true
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/space-marines/v2/generated/roster-import.json",
+      "metadata": {
+        "mode": "embedded",
+        "path": null,
+        "exportName": null
+      },
+      "sourceDocument": "books/space-marines/sources/bsdata-space-marines-11e.json",
+      "joins": "books/space-marines/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/space-marines/v2/official-bindings.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/space-marines/v2/rule-contract-schema.mjs"
+      ],
+      "originalSchema": {
+        "mode": "literal",
+        "sourcePath": "books/space-marines/v2/rule-contract-schema.mjs",
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    }
   }
 }

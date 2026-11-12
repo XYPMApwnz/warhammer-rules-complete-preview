@@ -72,5 +72,184 @@
     "mode": "authoritative-runtime-source",
     "path": "mobile/related-rules.inc"
   },
-  "generatedOutputs": []
+  "generatedOutputs": [],
+  "passport": {
+    "schema": "army-book-passport/v1",
+    "edition": "11E",
+    "sources": {
+      "enrollment": "books/adeptus-mechanicus/v2/sources/enrollment.json",
+      "effective": "books/adeptus-mechanicus/v2/generated/effective.json",
+      "manifest": "books/adeptus-mechanicus/sources/source-manifest.json",
+      "inputs": [
+        {
+          "role": "factionRules",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-rules.en.json"
+        },
+        {
+          "role": "sourceTranscript",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-source.en.json"
+        },
+        {
+          "role": "codexDetachments",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-detachments.en.json"
+        },
+        {
+          "role": "codexParity",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-parity.en.json"
+        },
+        {
+          "role": "codexDatasheets",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-datasheets.en.json"
+        },
+        {
+          "role": "codexWargear",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-codex-wargear.en.json"
+        },
+        {
+          "role": "points",
+          "path": "books/adeptus-mechanicus/content/adeptus-mechanicus-points.en.json"
+        },
+        {
+          "role": "officialMfm",
+          "path": "books/adeptus-mechanicus/sources/official-mfm-v1.3.json"
+        },
+        {
+          "role": "unitImages",
+          "path": "books/adeptus-mechanicus/presentation/unit-images.json"
+        },
+        {
+          "role": "manifest",
+          "path": "books/adeptus-mechanicus/sources/source-manifest.json"
+        },
+        {
+          "role": "effectContracts",
+          "path": "books/adeptus-mechanicus/sources/adeptus-mechanicus-effect-contracts.v1.json"
+        },
+        {
+          "role": "attachmentGroupConstraints",
+          "path": "books/adeptus-mechanicus/sources/adeptus-mechanicus-attachment-group-constraints.v1.json"
+        },
+        {
+          "role": "mfmCurrentCapture",
+          "path": "mfm/sources/v1.6/adeptus-mechanicus.json"
+        }
+      ]
+    },
+    "build": {
+      "steps": [
+        {
+          "book": "adeptus-mechanicus",
+          "producer": "books/adeptus-mechanicus/v2/build.py",
+          "args": [],
+          "runtime": "python",
+          "outputs": [
+            "books/adeptus-mechanicus/v2/generated/base.json",
+            "books/adeptus-mechanicus/v2/generated/effective.json"
+          ]
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "producer": "books/adeptus-mechanicus/v2/factual-qa.py",
+          "args": [
+            "--write-census"
+          ],
+          "runtime": "python",
+          "outputs": [
+            "books/adeptus-mechanicus/v2/generated/factual-census.json"
+          ]
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "producer": "books/adeptus-mechanicus/v2/rule-contract-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/adeptus-mechanicus/v2/generated/rule-contracts.json",
+            "books/adeptus-mechanicus/v2/generated/rule-contract-compatibility.json",
+            "books/adeptus-mechanicus/v2/generated/rule-contract-census.json"
+          ]
+        },
+        {
+          "book": "adeptus-mechanicus",
+          "producer": "books/adeptus-mechanicus/v2/app-build.mjs",
+          "args": [],
+          "runtime": "node",
+          "outputs": [
+            "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+            "books/adeptus-mechanicus/v2/generated/app-presentation.json"
+          ]
+        }
+      ],
+      "postBuildSteps": [
+        {
+          "phase": "model-aliases",
+          "step": {
+            "book": "adeptus-mechanicus",
+            "producer": "books/shared/tools/build-new-recruit-model-names.mjs",
+            "outputs": [
+              "books/adeptus-mechanicus/v2/model-name-aliases.json"
+            ],
+            "args": [
+              "--book=adeptus-mechanicus",
+              "--write"
+            ],
+            "runtime": "node"
+          }
+        }
+      ]
+    },
+    "qa": {
+      "script": "qa:am"
+    },
+    "mfm": {
+      "capture": "mfm/sources/v1.6/adeptus-mechanicus.json",
+      "identityRegistry": "mfm/content/mfm-v1.6-scoped.identity-registry.json",
+      "bindingPath": null,
+      "scope": "adeptus-mechanicus"
+    },
+    "runtime": {
+      "executionArtifact": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "conditionArtifact": "books/adeptus-mechanicus/v2/generated/roster-runtime.json"
+    },
+    "canonical": {
+      "enhancementIdentity": {
+        "strategy": "owner-record",
+        "builtInExact": false
+      }
+    },
+    "modelNames": {
+      "enabled": true,
+      "artifact": "books/adeptus-mechanicus/v2/generated/roster-runtime.json",
+      "metadata": {
+        "mode": "aliases-file",
+        "path": "books/adeptus-mechanicus/v2/roster-import-aliases.json",
+        "exportName": null
+      },
+      "sourceDocument": "books/adeptus-mechanicus/sources/bsdata-adeptus-mechanicus-11e.json",
+      "joins": "books/adeptus-mechanicus/v2/model-name-source-bindings.json"
+    },
+    "official": {
+      "input": "books/adeptus-mechanicus/v2/sources/official-v1.4-updates.json",
+      "stage": "canonical-facts"
+    },
+    "inheritance": {
+      "owners": []
+    },
+    "publication": {
+      "manifest": "tools/pages-runtime-manifest.json"
+    },
+    "audit": {
+      "conditionSchemas": [
+        "books/adeptus-mechanicus/v2/rule-contract-schema.mjs"
+      ],
+      "originalSchema": {
+        "mode": "embedded-only",
+        "sourcePath": null,
+        "auxiliaryPath": null,
+        "constantName": null
+      },
+      "fieldExports": [],
+      "dynamicPhysicalChoices": false
+    }
+  }
 }
