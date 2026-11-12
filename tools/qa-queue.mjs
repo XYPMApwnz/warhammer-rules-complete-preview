@@ -43,6 +43,7 @@ node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
  node('tests/book-update-declarations-qa.mjs');
  node('tests/book-update-report-qa.mjs');
+ node('tests/book-update-snapshots-qa.mjs');
  node('tests/book-update-command-qa.mjs');
  node('tests/mfm-release-history-qa.mjs');
  node('tests/mfm-update-qa.mjs');

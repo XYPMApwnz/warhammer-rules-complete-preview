@@ -280,7 +280,11 @@
       "dynamicPhysicalChoices": true
     },
     "update": {
-      "reportArtifact": "books/tau-empire/v2/generated/app-presentation.json"
+      "reportArtifact": "books/tau-empire/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      }
     }
   }
 }

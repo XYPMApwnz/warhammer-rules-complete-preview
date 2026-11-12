@@ -4,8 +4,9 @@ import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {execFileSync,spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {bookUpdateDeclarations,selectBookUpdate,sharedStepAffected} from './book-update-declarations.mjs';
+import {bookUpdateDeclarations,selectBookUpdate,sharedStepAffected,declaredInputFiles} from './book-update-declarations.mjs';
 import {compareBookGameplay,renderBookUpdateReport} from './book-update-report.mjs';
+import {publishedMfmSnapshot} from './book-update-snapshots.mjs';
 import {readCurrentMfmRelease} from '../../../mfm/content/current-mfm-release.mjs';
 import {resolveQaPython} from '../../../tests/helpers/qa-python.cjs';
 import {createQaTempDir,cleanupQaTempDir,createQaEvidenceDir,qaTempEnvironment,registerQaCleanup} from '../../../tests/helpers/qa-temp.mjs';
@@ -34,11 +35,12 @@ function npmCommand(script){
  if(!fs.existsSync(cli))throw Error('Launch through npm run book:update so declared npm checks can run');
  return{command:process.execPath,args:[cli,'run',script]};
 }
-function inputChanged(root,input,outputs,working){
- if(working.changed.includes(input))return true;
+function inputChanged(root,inputs,outputs,working){
+ if(working.changed.some(f=>inputs.includes(f)))return true;
+ if(!inputs.length||!outputs.length)return false;
  // Accepted inputs may already be committed before an authenticated build.
  // Compare history to the declared report artifact, not only the dirty diff.
- const inputCommit=git(root,['log','-1','--format=%H','HEAD','--',input]).trim();
+ const inputCommit=git(root,['log','-1','--format=%H','HEAD','--',...inputs]).trim();
  const outputCommit=git(root,['log','-1','--format=%H','HEAD','--',...outputs]).trim();
  if(!inputCommit||!outputCommit)return true;
  try{git(root,['merge-base','--is-ancestor',inputCommit,outputCommit]);return false;}catch{return true;}
@@ -53,7 +55,7 @@ async function execute({command,args,cwd,env,log,label,book,results}){
  finally{unregister();fs.closeSync(fd);}
  const row={book,label,command:[command,...args],log,elapsedMs:Date.now()-started,...result,status:result.exitCode===0?'PASS':'FAIL'};results.push(row);
  if(row.status!=='PASS'){
-  const lines=fs.readFileSync(log,'utf8').split(/\r?\n/),detail=lines.find(l=>/Error:|AssertionError|ValueError|SyntaxError|Traceback|ENOENT|FAIL/.test(l))||lines.find(l=>l.trim())||result.error||'No diagnostic output';
+  const lines=fs.readFileSync(log,'utf8').split(/\r?\n/),detail=lines.findLast(l=>/Error:|AssertionError|ValueError|SyntaxError|ENOENT|FAIL/.test(l))||lines.findLast(l=>l.trim())||result.error||'No diagnostic output';
   throw Error(`${book}: ${label} failed (exit ${result.exitCode}): ${detail}; log: ${log}`);
  }
  return row;
@@ -73,7 +75,7 @@ function publishOutputs(root,copy,files,work,evidence){
 export async function updateBook({root=defaultRoot,books=[],all=false,check=false,out}={}){
  root=fs.realpathSync(root);out=path.resolve(out||createQaEvidenceDir('book-update-'));outside(root,out);
  const head=git(root,['rev-parse','HEAD']).trim(),tracked=names(git(root,['ls-tree','-r','--name-only','-z','HEAD'])),initial=workState(root);
- const declarations=bookUpdateDeclarations({root,tracked}),selection=selectBookUpdate(declarations,{books,all,changed:initial.changed});
+ const declarations=bookUpdateDeclarations({root,tracked});let selection=selectBookUpdate(declarations,{books,all,changed:initial.changed});
  fs.mkdirSync(out,{recursive:true});if(fs.existsSync(path.join(out,'RESULTS.json')))throw Error('Choose a fresh --out directory');
  const started=Date.now(),report={schema:'book-update/v1',baseHead:head,root,mode:check?'check':'update',status:'RUNNING',selection,books:[],generatedChanges:[],steps:[],changedInputs:initial.changed};
  const save=()=>{report.elapsedMs=Date.now()-started;fs.writeFileSync(path.join(out,'RESULTS.json'),JSON.stringify(report,null,2)+'\n');fs.writeFileSync(path.join(out,'REPORT.md'),renderBookUpdateReport(report));};
@@ -85,17 +87,20 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
   try{execFileSync('git',['clone','--local','--no-hardlinks','--no-checkout','--config','core.autocrlf=false',root,copy],{env,stdio:['ignore',fd,fd]});execFileSync('git',['-C',copy,'checkout','--detach',head],{env,stdio:['ignore',fd,fd]});}finally{fs.closeSync(fd);}
   for(const file of initial.changed){const source=at(root,file),target=at(copy,file);if(fs.existsSync(source)){fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(source,target);}else if(fs.existsSync(target))fs.unlinkSync(target);}
   if(fs.existsSync(path.join(root,'node_modules')))fs.symlinkSync(fs.realpathSync(path.join(root,'node_modules')),path.join(copy,'node_modules'),process.platform==='win32'?'junction':'dir');
-  const before=new Map(),beforeMfm=new Map(),oldPointers=new Map();
-  for(const id of selection.books){
-   const passport=declarations.books.find(b=>b.id===id).passport;
-   const file=path.join(work,'before-'+id+'.json');fs.writeFileSync(file,JSON.stringify(decode(copy,git(root,['show',head+':'+passport.update.reportArtifact],null))));before.set(id,file);
-   if(!oldPointers.has(passport.mfm.currentRelease))oldPointers.set(passport.mfm.currentRelease,JSON.parse(git(root,['show',head+':'+passport.mfm.currentRelease])));
-   const capture=oldPointers.get(passport.mfm.currentRelease).factions.find(f=>f.bookId===id);if(capture)beforeMfm.set(id,JSON.parse(git(root,['show',head+':'+capture.capturePath])));
+  const before=new Map(),beforeMfm=new Map(),inferredInputs=new Set(),release=readCurrentMfmRelease({repoRoot:copy});report.mfmBaselines={};
+  for(const {id,passport}of declarations.books){
+   const decoded=decode(copy,git(root,['show',head+':'+passport.update.reportArtifact],null));
+   const file=path.join(work,'before-'+id+'.json');fs.writeFileSync(file,JSON.stringify(decoded));before.set(id,file);
+   const snapshot=publishedMfmSnapshot({root,head,bookId:id,passport,payload:decoded,sourceRegistryPath:release.sourceRegistryPath});beforeMfm.set(id,snapshot.capture);
+   const current=release.factions.find(f=>f.bookId===id),capture=JSON.parse(fs.readFileSync(at(copy,current.capturePath),'utf8'));
+   report.mfmBaselines[id]={method:snapshot.method,ref:snapshot.ref,file:snapshot.file,version:snapshot.capture.version};
+   if(snapshot.capture.captureSha256!==capture.captureSha256)inferredInputs.add(passport.mfm.currentRelease);
   }
-  const affected=new Set(initial.changed),executedShared=new Set();
+  selection=selectBookUpdate(declarations,{books,all,changed:[...new Set([...initial.changed,...inferredInputs])]});report.selection=selection;
+  const affected=new Set([...initial.changed,...inferredInputs]),executedShared=new Set();
   for(const [i,step]of selection.steps.entries()){
    const policy=declarations.shared.find(row=>row.step.producer===step.producer),args=policy?.operations.updateArgs??step.args;
-   if(policy&&!selection.fullPlan&&!sharedStepAffected(policy,[...affected],declarations)){
+   if(policy&&!selection.fullPlan&&!sharedStepAffected(policy,[...affected],declarations)&&!inputChanged(root,declaredInputFiles(policy,declarations,tracked),policy.freshnessOutputs,initial)){
     report.steps.push({book:step.book,label:'UNCHANGED '+step.producer,status:'SKIPPED',elapsedMs:0});continue;
    }
    if(policy)executedShared.add(step.producer);
@@ -117,7 +122,7 @@ export async function updateBook({root=defaultRoot,books=[],all=false,check=fals
    const passport=declarations.books.find(b=>b.id===id).passport;checks.add(passport.qa.script);
    for(const [role,script]of Object.entries(passport.qa.onInputChange)){
     const input=passport.sources.inputs.find(i=>i.role===role).path;
-    if(inputChanged(root,input,[passport.update.reportArtifact],initial))checks.add(script);
+    if(initial.changed.includes(input)||inferredInputs.has(input))checks.add(script);
    }
   }
   for(const [i,script]of [...checks].entries())await execute({...npmCommand(script),cwd:copy,env,log:path.join(out,'qa-'+String(i+1).padStart(2,'0')+'-'+script.replaceAll(':','-')+'.log'),label:'QA '+script,book:declarations.books.find(b=>b.passport.qa.script===script)?.id??'shared',results:report.steps});

@@ -53,8 +53,12 @@ output changed. Uncovered changed files select the full declared plan, with the
 reason printed in the report. The Core reader is not rebuilt merely because a
 book was selected.
 
-Input-change checks also recognize accepted input commits newer than a book's
-declared report artifact. The source registry uses the existing explicit delta
+The report uses the MFM source witnessed by the saved publication. Where that
+projection has no explicit current-MFM witness, its accepted source manifest at
+the publication's Git commit is the declared fallback. An already committed
+activation therefore does not erase the old prices from the comparison.
+Shared steps also check declared input history against their output history.
+The source registry uses the existing explicit delta
 export and append-only merge; old entries cannot be replaced. All production
 work happens in a real temporary Git clone before successful outputs are copied
 back. Keep the checkout unchanged while an update is running.

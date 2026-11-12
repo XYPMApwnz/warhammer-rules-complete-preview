@@ -254,7 +254,11 @@
       "dynamicPhysicalChoices": false
     },
     "update": {
-      "reportArtifact": "books/adeptus-mechanicus/v2/generated/app-presentation.json"
+      "reportArtifact": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      }
     }
   }
 }

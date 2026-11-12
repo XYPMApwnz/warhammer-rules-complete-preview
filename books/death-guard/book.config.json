@@ -248,7 +248,11 @@
       "dynamicPhysicalChoices": false
     },
     "update": {
-      "reportArtifact": "books/death-guard/v2/generated/app-presentation.json"
+      "reportArtifact": "books/death-guard/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      }
     }
   }
 }

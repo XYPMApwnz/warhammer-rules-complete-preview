@@ -5,7 +5,7 @@ import {readBookPassport,BOOK_PASSPORT_IDS} from './book-passport.mjs';
 import {generatedRebuildPlan} from './generated-rebuild-plan.mjs';
 
 const input=(kind,value)=>({kind,value});
-const coreInputs=[input('prefix','books/core-rules/content/'),input('prefix','books/core-rules/tools/'),input('prefix','books/core-rules/sources/')];
+const coreInputs=[input('prefix','books/core-rules/content/'),input('path','books/core-rules/tools/verify_pdf_parity.mjs'),input('prefix','books/core-rules/sources/')];
 // These are the existing shared producers, not a second producer chain.
 const sharedInputs={
  'books/core-rules/tools/build_waha_core_corpus.py':[input('prefix','books/core-rules/sources/'),input('prefix','books/core-rules/tools/')],
@@ -22,6 +22,9 @@ const sharedOperations={
   updateArgs:['--out={work}/source-catalog-delta.json','--inputs={checkout}','--baseline={head}'],checkArgs:['--check']},
  'tools/audit/build-source-catalog.mjs':{
   updateArgs:['--write','--merge={work}/source-catalog-delta.json','--inputs={checkout}'],checkArgs:['--check']}
+};
+const freshnessOutputs={
+ 'tools/audit/build-source-catalog-additions.mjs':['books/shared/source-refs-v2/source-catalog.json']
 };
 const globalInputs=[input('prefix','books/shared/'),input('prefix','mfm/'),input('path','package.json'),input('path','requirements-army-books.txt')];
 const safe=value=>typeof value==='string'&&value&&!value.includes('\\')&&!value.includes(':')&&!path.posix.isAbsolute(value)&&!value.split('/').some(p=>p==='.'||p==='..');
@@ -41,11 +44,12 @@ export function bookUpdateDeclarations({root,tracked,plan=generatedRebuildPlan(t
  const shared=plan.steps.filter(s=>!BOOK_PASSPORT_IDS.includes(s.book)).map(step=>{
   const inputs=sharedInputs[step.producer];
   if(!inputs)throw Error('Book update declaration missing for shared producer: '+step.producer);
-  return{step,inputs,operations:sharedOperations[step.producer]??{updateArgs:step.args,checkArgs:null}};
+  return{step,inputs,freshnessOutputs:freshnessOutputs[step.producer]??step.outputs,operations:sharedOperations[step.producer]??{updateArgs:step.args,checkArgs:null}};
  });
  for(const book of books)validateUpdateInputs(book.inputs,{steps:plan.steps,label:'Book '+book.id,root});
  for(const row of shared){
   validateUpdateInputs(row.inputs,{steps:plan.steps,label:'Shared '+row.step.producer,root});
+  if(!row.freshnessOutputs.length||row.freshnessOutputs.some(f=>!plan.files.includes(f)))throw Error('Invalid shared freshness output: '+row.step.producer);
   for(const key of Object.keys(row.operations))if(!['updateArgs','checkArgs'].includes(key))throw Error('Unknown update operation: '+row.step.producer+' '+key);
   for(const key of ['updateArgs','checkArgs'])if(row.operations[key]!==null&&(!Array.isArray(row.operations[key])||row.operations[key].some(a=>typeof a!=='string'||/\{(?!work\}|checkout\}|head\})/.test(a))))throw Error('Invalid '+key+': '+row.step.producer);
  }
@@ -59,6 +63,9 @@ function matches(input,file,declarations){
  return declarations.plan.files.includes(file);
 }
 export const sharedStepAffected=(row,files,declarations)=>files.some(file=>row.inputs.some(input=>matches(input,file,declarations)));
+export function declaredInputFiles(row,declarations,tracked){
+ return tracked.filter(file=>!row.step.outputs.includes(file)&&row.inputs.some(input=>matches(input,file,declarations)));
+}
 export function selectBookUpdate(declarations,{books=[],all=false,changed=[]}={}){
  const ids=new Set(declarations.books.map(b=>b.id));
  if(!all&&!books.length)throw Error('Choose --book=<id> or --all');

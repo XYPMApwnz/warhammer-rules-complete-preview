@@ -613,7 +613,11 @@
       "dynamicPhysicalChoices": false
     },
     "update": {
-      "reportArtifact": "books/blood-angels/v2/generated/app-presentation.json"
+      "reportArtifact": "books/blood-angels/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      }
     }
   }
 }

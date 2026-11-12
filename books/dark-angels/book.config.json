@@ -786,7 +786,11 @@
       "dynamicPhysicalChoices": false
     },
     "update": {
-      "reportArtifact": "books/dark-angels/v2/generated/app-presentation.json"
+      "reportArtifact": "books/dark-angels/v2/generated/app-presentation.json",
+      "mfmBaseline": {
+        "strategy": "published-source-or-manifest",
+        "authority": "official-live-mfm"
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ export const bookPassportSchema=object({
   sources:object({enrollment:file,effective:file,manifest:file,inputs:array(object({role:text,path:file}))}),
   build:object({steps:array(step),postBuildSteps:array(object({phase:enumeration('model-aliases','retained-source'),step}))}),
   qa:object({script:text,onInputChange:object({currentMfmRelease:text})}),
-  update:object({reportArtifact:file}),
+  update:object({reportArtifact:file,mfmBaseline:object({strategy:enumeration('published-source-or-manifest'),authority:enumeration('official-live-mfm')})}),
   mfm:object({currentRelease:file,bindingPath:nullable(file),scope:text}),
   runtime:object({executionArtifact:file,conditionArtifact:file}),
   canonical:object({enhancementIdentity:object({strategy:enumeration('item-id','source-id','owner-record'),builtInExact:boolean})}),
