@@ -43,7 +43,7 @@ export function validateOfficialUpdates(document,{bookId=document?.bookId,stage}
 }
 function resolveTemplate(value,context,book,id){
  if(Array.isArray(value))return value.map(v=>resolveTemplate(v,context,book,id));if(!object(value))return copy(value);
- if(has(value,'$ref')){if(Object.keys(value).length!==1||typeof value.$ref!=='string')fail(book,id,'invalid metadata reference');const parts=value.$ref.split('.');if(!['entry','source','entity','before','effective','beforeExists'].includes(parts[0])||parts.some(k=>forbidden.has(k)))fail(book,id,'unknown metadata reference '+value.$ref);return copy(valueAt(context,parts,book,id,'metadata reference'));}
+ if(has(value,'$ref')){if(Object.keys(value).length!==1||typeof value.$ref!=='string')fail(book,id,'invalid metadata reference');const parts=value.$ref.split('.');if(!['entry','source','entity','before','effective','beforeExists','changed'].includes(parts[0])||parts.some(k=>forbidden.has(k)))fail(book,id,'unknown metadata reference '+value.$ref);return copy(valueAt(context,parts,book,id,'metadata reference'));}
  if(has(value,'$join')){if(Object.keys(value).length!==1)fail(book,id,'invalid metadata join');const parts=resolveTemplate({$ref:value.$join},context,book,id);if(!Array.isArray(parts))fail(book,id,'metadata join expects a field path');return parts.join('/');}
  if(has(value,'$merge')){if(Object.keys(value).length!==1||!Array.isArray(value.$merge))fail(book,id,'invalid metadata merge');const out={};for(const item of value.$merge){const part=resolveTemplate(item,context,book,id);if(!object(part))fail(book,id,'metadata merge expects objects');Object.assign(out,part);}return out;}
  if(has(value,'$map')){if(Object.keys(value).length!==1||!object(value.$map)||!object(value.$map.values))fail(book,id,'invalid metadata map');const key=resolveTemplate(value.$map.value,context,book,id);if(!has(value.$map.values,key))fail(book,id,'unknown metadata map key '+key);return resolveTemplate(value.$map.values[key],context,book,id);}
@@ -60,7 +60,7 @@ function resolveTarget(model,selection,e,book){
  const list=valueAt(model,selection.collection,book,e.id,'target collection');if(!Array.isArray(list))fail(book,e.id,'target collection is not an array');const matches=list.map((entity,index)=>({entity,index})).filter(x=>x.entity[selection.identity]===e.target.id);if(matches.length!==1)fail(book,e.id,`target ${e.target.id}: expected exactly 1, found ${matches.length}`);const{entity,index}=matches[0];return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),collection:list,index};
 }
 export function applyOfficialUpdates(input,document,{bookId=document?.bookId,stage,sources}={}){
- validateOfficialUpdates(document,{bookId,stage});const model=copy(input),applied=[],writes=[];const context={entry:undefined,source:undefined,entity:undefined,before:undefined,effective:undefined,beforeExists:false};
+ validateOfficialUpdates(document,{bookId,stage});const model=copy(input),applied=[],writes=[];const context={entry:undefined,source:undefined,entity:undefined,before:undefined,effective:undefined,beforeExists:false,changed:false};
  for(const row of document.initialize||[])metadata(model,model,{scope:'root',mode:'set',...row},context,bookId,'document');
  const entries=[...document.entries];if(document.order==='effective-date-id')entries.sort((a,b)=>(a.source.effectiveFrom||'').localeCompare(b.source.effectiveFrom||'')||a.id.localeCompare(b.id));
  for(const entry of entries){
@@ -86,7 +86,7 @@ export function applyOfficialUpdates(input,document,{bookId=document?.bookId,sta
    case'VERIFY_CURRENT':if(!exists)fail(bookId,entry.id,'verified target missing');assert.deepEqual(before,entry.after,`${bookId} · ${entry.id}: VERIFY_CURRENT after contradicts current value`);break;
    case'QUALIFY':case'UNRESOLVED_EVIDENCE':if(!exists)fail(bookId,entry.id,'verified/qualified target missing');break;
   }
-  const effective=copy(entry.operation==='REMOVE_RECORD'?undefined:field.length?host[key]:entity);Object.assign(context,{entry,source,entity,before,effective,beforeExists:exists});
+  const effective=copy(entry.operation==='REMOVE_RECORD'?undefined:field.length?host[key]:entity);let changed=true;try{assert.deepEqual(before,effective);changed=false;}catch{}Object.assign(context,{entry,source,entity,before,effective,beforeExists:exists,changed});
   for(const row of[...(document.projection||[]),...(entry.projection||[])])if(row.when===undefined||row.when==='*'||row.when.includes(entry.operation))metadata(model,entity,row,context,bookId,entry.id);
   // A new record has no previous record. Do not turn an audit row into a copy
   // of the entire Army Book merely because the collection owns the addition.

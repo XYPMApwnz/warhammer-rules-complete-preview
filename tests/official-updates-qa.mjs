@@ -18,6 +18,9 @@ const removedRecord=applyOfficialUpdates(initial,make([entry({target:{id:'one',f
 const fragment=entry({target:{id:'one',field:['text']},kind:'ABILITY_TEXT',operation:'REPLACE_FRAGMENT',expectedBefore:'old text',after:'new text',fragment:{before:'old',after:'new'}});assert.equal(applyOfficialUpdates(initial,make([fragment])).model.entities[0].data.text,'new text');
 const qualify=entry({target:{id:'one',field:['text']},kind:'ABILITY_TEXT',operation:'QUALIFY',expectedBefore:'old text',after:{rangeCap:12}});const qualified=applyOfficialUpdates(initial,make([qualify],{projection:[{scope:'entity',mode:'append',path:['qualifications'],when:['QUALIFY'],value:{field:{$ref:'entry.target.field'},value:{$ref:'entry.after'}}}]}));assert.equal(qualified.model.entities[0].data.text,'old text');assert.deepEqual(qualified.model.entities[0].qualifications,[{field:['text'],value:{rangeCap:12}}]);
 const verified=applyOfficialUpdates(initial,make([entry({operation:'VERIFY_CURRENT',after:'4'})]));assert.deepEqual(verified.model,initial);const unresolved=applyOfficialUpdates(initial,make([entry({operation:'UNRESOLVED_EVIDENCE',after:{status:'SOURCE_CONFLICT'}})]));assert.deepEqual(unresolved.model,initial);
+const audit=[{scope:'root',mode:'append',path:['appliedOfficialUpdates'],value:{changed:{$ref:'changed'}}}];
+assert.deepEqual(applyOfficialUpdates(initial,make([entry()],{projection:audit})).model.appliedOfficialUpdates,[{changed:true}]);
+assert.deepEqual(applyOfficialUpdates(initial,make([entry({after:'4'})],{projection:audit})).model.appliedOfficialUpdates,[{changed:false}]);
 const locator=entry({target:{sourceLocator:{pointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});assert.equal(applyOfficialUpdates(initial,make([locator])).model.entities[0].data.strength,'5');
 const ownedLocator=entry({target:{sourceLocator:{pointer:['entities',0,'data'],identityPointer:['entities',0],identityPath:['id'],identity:'one'},field:['strength']}});
 assert.equal(applyOfficialUpdates(initial,make([ownedLocator],{selection:{collection:['entities'],identity:'id',data:[]}})).model.entities[0].data.strength,'5','Source-corpus fields retain an exact ancestor identity guard');
@@ -33,6 +36,7 @@ rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'one',field:['s
 rejects(()=>applyOfficialUpdates(initial,make([entry({kind:'UNKNOWN_KIND'})])),/synthetic.*test-1.*unknown kind/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'one',field:['unknownField']}})])),/unknown field/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({target:{id:'one',field:['profile','unknownField']}})])),/unknown nested field/);
+rejects(()=>validateOfficialUpdates(make([entry({target:{id:'one',field:['profile','unknownField','strength']}})])),/unknown nested field/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({operation:'UNKNOWN_ACTION'})])),/unknown operation/);
 const missing=entry();delete missing.expectedBefore;rejects(()=>validateOfficialUpdates(make([missing])),/expectedBefore.*required/);
 rejects(()=>applyOfficialUpdates(initial,make([entry({source:{...source,authority:'SECONDARY'}})])),/accepted official source/);
