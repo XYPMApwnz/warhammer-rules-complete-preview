@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createTyranidsRuleSchema} from './roster-source-choices.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -158,7 +159,7 @@ export function buildApp(built=buildTyranidsContracts(),{coreCatalog=createEffec
   payload.sourceEnrollment=read('./sources/enrollment.json');
   payload.deferredRules=clone(built.deferred);
   assert.equal(JSON.stringify(built.book),original,'Presentation changed its factual/contract owner');
-  return finalizeSourceOutput(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}) {
   const built=buildTyranidsContracts();

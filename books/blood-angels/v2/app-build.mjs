@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createBloodAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -40,7 +41,7 @@ export function buildApp(){
     }]};
   // Allied source references are reachable from imported occurrences. They do
   // not expand the BA-owned/inherited SM browsing groups or rule assignments.
-  return finalizeSourceOutput(appendDetachmentReferencePresentation(payload));
+  return finalizeSourceOutput(appendLibraryDataVersions(appendDetachmentReferencePresentation(payload)));
 }
 export function writeApp({check=false}={}){
   const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=serializeSourceJSON(payload);

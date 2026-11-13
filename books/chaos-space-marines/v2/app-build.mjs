@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 /** Disposable normal-book projection. The canonical catalog remains the sole factual owner. */
@@ -213,7 +214,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
   assert.ok(payload.relatedRules.rows.every(row=>row.state!=='INVALID'&&row.selectedDetachment.state!=='INVALID'));
   payload.ruleContractIds=built.book.entities.filter(e=>e.ruleContract).map(e=>e.id);
   payload.rosterPresentation=buildCSMRosterPresentation(facts);
-  return finalizeSourceOutput(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}){
   assertBookSourceReview('chaos-space-marines',{executionBook:buildCSMRosterEffectBook()});

@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createECRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -144,7 +145,7 @@ export function buildApp(built=buildECContracts(),{coreCatalog=createEffectiveCo
   payload.sourceEnrollment=clone(facts.sources);
   payload.attachmentAdjudications=clone(built.book.rosterAttachmentAdjudications);
   assert.equal(JSON.stringify(built.book),original,'Presentation changed its factual/contract owner');
-  return finalizeSourceOutput(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}) {
   assertBookSourceReview('emperors-children',{executionBook:buildECRosterAttachmentBook().book});

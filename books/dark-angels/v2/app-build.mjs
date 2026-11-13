@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createDarkAngelsRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -38,7 +39,7 @@ export function buildApp(){
       ownerId:'dark-angels',title:'Source and import limitations',
       message:'Ten MFM reference-only relations remain inactive. This importer has constructed-input coverage; an authentic Dark Angels New Recruit export has not been verified.'
     }]};
-  return finalizeSourceOutput(appendDetachmentReferencePresentation(payload));
+  return finalizeSourceOutput(appendLibraryDataVersions(appendDetachmentReferencePresentation(payload)));
 }
 export function writeApp({check=false}={}){
   const payload=buildApp(),file=new URL('./generated/app-presentation.json',import.meta.url),bytes=serializeSourceJSON(payload);

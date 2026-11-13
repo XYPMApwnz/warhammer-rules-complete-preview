@@ -514,11 +514,19 @@ export function mount(document, payload, options = {}) {
     }
     hero.append(el('span', 'v2-eyebrow', 'YOUR ARMY. EVERY RULE.'), el('h1', '', payload.book.title), el('p', 'v2-hero-subtitle', 'Explore your army book. Find a datasheet, read a rule, or dive into a detachment.'));
     const meta = el('div', 'v2-book-meta');
-    // Dataset versions/currentness remain provenance metadata, not player labels.
     if (payload.book.edition !== undefined && payload.book.edition !== null) {
       const badge = el('span', 'v2-meta-badge');
       badge.append(el('span', '', 'Edition '), el('strong', '', exactValue(payload.book.edition)));
       meta.append(badge);
+    }
+    // Separate source dates: a snapshot, a points release, and book corrections.
+    const versions=payload.book.dataVersions;
+    if(versions){
+      const updates=versions.officialUpdates.map(update=>update.date?`${update.version} · ${update.date}`:update.version).join('; ')||'None recorded';
+      for(const [key,label,value] of [['core','Core rules snapshot',versions.coreSnapshotDate],['mfm','MFM points',versions.mfmVersion],['official','Book corrections',updates]]){
+        const badge=el('span','v2-meta-badge');badge.dataset.bookDataVersion=key;
+        badge.append(el('span','',label+': '),el('strong','',value));meta.append(badge);
+      }
     }
     hero.append(meta);
     main.append(hero);

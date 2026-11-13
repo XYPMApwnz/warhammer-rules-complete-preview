@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createTauRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -95,7 +96,7 @@ export function buildApp(book=buildTauImportBook(),{coreCatalog=createEffectiveC
     ruleIds:model.entities.filter(e=>['ENHANCEMENT','STRATAGEM'].includes(e.kind)).map(e=>e.id)});
   payload.sourceEnrollment=read('./sources/enrollment.json');
   payload.rulePresentationLimitations={authority:'EXISTING_STAGE_3_REVIEW',review:'books/tau-empire/v2/rule-clause-review.json',capabilityMissing:3,unverifiedExportFormats:['DIRECT_GENERIC_WEAPON_ONLY_IMPORT'],battleState:'NOT_SIMULATED',legality:'NOT_ASSESSED'};
-  assert.equal(JSON.stringify(book),original,'Presentation changed factual/contract owner');return finalizeSourceOutput(payload);
+  assert.equal(JSON.stringify(book),original,'Presentation changed factual/contract owner');return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}){
   const book=buildTauImportBook(),sourceGate=assertTauAppSourceReview(book),payload=buildApp(book);

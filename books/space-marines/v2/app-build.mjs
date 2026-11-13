@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildUnboundBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {createSpaceMarinesRuleSchema} from './rule-contract-schema.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
@@ -37,7 +38,7 @@ export function buildApp(){
     unsupportedAutomaticMechanics:'books/space-marines/v2/static-gameplay-review.json',
     paidOptions:'EXACT_PHYSICAL_SELECTION_REQUIRED_ELSE_UNRESOLVED',
     deathwatch:'TEXT_ONLY_SOURCE_BACKED_SELECTED_DETACHMENT_REFERENCE'};
-  return finalizeSourceOutput(appendDetachmentReferencePresentation(payload));
+  return finalizeSourceOutput(appendLibraryDataVersions(appendDetachmentReferencePresentation(payload)));
 }
 
 export function writeApp({check=false}={}){

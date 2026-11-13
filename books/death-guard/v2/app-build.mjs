@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
 import {buildRuleContractV2} from './rule-contract-build.mjs';
@@ -40,7 +41,7 @@ export function buildApp(inputs=readAppInputs()) {
   payload.datasheetPresentation.referenceBindings=buildDatasheetReferenceBindings(payload.cards);
   payload.bookPresentation=prepareSourceProducer(projectBookPresentation(inputs.model,inputs.records));
   payload.bookPresentation.coverImage='../../../assets/death-guard-cover.jpg';
-  return finalizeSourceOutput(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}) {
   assertBookSourceReview('death-guard',{executionBook:buildRuleContractV2()});

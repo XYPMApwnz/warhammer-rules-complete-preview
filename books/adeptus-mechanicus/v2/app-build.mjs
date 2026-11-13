@@ -1,3 +1,4 @@
+import {appendLibraryDataVersions} from '../../shared/army-book-app-v2/library-currentness-build.mjs';
 import {buildBookRelatedRules} from '../../shared/rule-contract-v2/book-related.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer,finalizeSourceOutput} from '../../shared/source-refs-v2/producer-io.mjs';
 import {assertBookSourceReview} from '../../shared/roster-v2/source-completeness.mjs';
@@ -89,7 +90,7 @@ export function buildApp(inputs=readAppInputs()) {
     if(effect.operation==='CONTRIBUTE_WEAPON_PROFILE')cards.get(effect.weaponProfileId).weaponMode=effect.weaponMode;
   }
   payload.ruleContractIds=model.entities.filter(entity=>entity.ruleContract).map(entity=>entity.id);
-  return finalizeSourceOutput(payload);
+  return finalizeSourceOutput(appendLibraryDataVersions(payload));
 }
 export function writeApp({check=false}={}) {
   assertBookSourceReview('adeptus-mechanicus',{executionBook:buildRosterRuntimeBook()});
