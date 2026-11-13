@@ -61,3 +61,10 @@ export function sourceRuleCaption(origin,cards){
   }
   return names.size===1?[...names][0]:fallback;
 }
+
+/** Explain incomplete physical input without supplying equipment or models. */
+export const incompleteExportCopy=Object.freeze({
+  weapons:'This export does not specify weapons for this unit. Export the list from New Recruit with equipment included, then import it again.',
+  composition:'The export does not say how many models of each type are in this unit. Include the model composition in your New Recruit export, or add a separate line with the quantity for each model type, then import it again.',
+  noWeapons:'This unit has no listed weapon profiles.'
+});

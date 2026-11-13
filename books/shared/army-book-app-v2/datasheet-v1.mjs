@@ -1,5 +1,5 @@
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
-import {sourceRuleCaption,enhancementTextParts} from './cosmetics.mjs';
+import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
@@ -750,6 +750,11 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       }
       if(!grouped||view.childElementCount)wrapper.append(view);
       }
+    }
+    if(instanceId&&!children.some(child=>child.kind==='WEAPON_PROFILE')){
+      const available=(cards.get(card.id)?.children||[]).some(id=>cards.get(id)?.kind==='WEAPON_PROFILE');
+      const hint=el('p','ds-import-hint',available?incompleteExportCopy.weapons:incompleteExportCopy.noWeapons);
+      hint.dataset.importHint=available?'weapons':'no-weapons';profile.append(hint);
     }
     for(const mode of ['ranged','melee']){
       const weapons=children.filter(c=>c.kind==='WEAPON_PROFILE'&&single(c,'mode')?.value===mode);if(!weapons.length)continue;

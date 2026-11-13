@@ -1,6 +1,6 @@
 import {createLifecycle} from './lifecycle.mjs';
 import {epicHeroEnhancementWarning} from '../roster-v2/import.mjs';
-import {playerImportCopy,warlordDisplay} from './cosmetics.mjs';
+import {playerImportCopy,warlordDisplay,incompleteExportCopy} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
@@ -216,6 +216,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     status.classList.toggle('v2-roster-error', error);
   }
   function playerError(error) {
+    if(error?.code==='FOREIGN_FACTION_EXPORT')return error.message;
     const messages = {
       EMPTY_IMPORT: 'No supported units were found. Paste a New Recruit text export.',
       INVALID_COMPOSITION: 'The imported unit composition could not be read safely. Check the New Recruit export.',
@@ -329,7 +330,7 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     } else {
       renderBindings(importResult.needsBindings || []);
       const errors = (importResult.errors || []).map(playerError).join(' ');
-      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>playerImportCopy(importLimitationForNeed(need,importLimitations)?.message)).filter(Boolean))];
+      const explanations=[...new Set((importResult.needsBindings||[]).map(need=>need.kind==='COMPOSITION_MEMBER'?incompleteExportCopy.composition:playerImportCopy(importLimitationForNeed(need,importLimitations)?.message)).filter(Boolean))];
       setStatus(errors || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
         'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.'), importResult.status === 'INVALID');
     }
@@ -359,6 +360,9 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       fieldset.dataset.bindingKind = need.kind;
       fieldset.dataset.bindingKey = need.key;
       fieldset.append(el('legend', '', need.rawLabel || 'Imported entry'));
+      if(need.kind==='COMPOSITION_MEMBER'){
+        const hint=el('p','v2-roster-hint',incompleteExportCopy.composition);hint.dataset.importHint='composition';fieldset.append(hint);
+      }
       const candidates = ['SELECTION','ENHANCEMENT_BEARER'].includes(need.kind)
         ? (need.candidates || [])
         : (need.candidateIds || []).map(id => catalog.get(id)).filter(Boolean);
@@ -633,6 +637,15 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     activeEnhancementsByInstance=new Map((projection?.units||state.units).map(unit=>[unit.instanceId,unit.enhancementIds]));
     const summary = el('section', 'v2-card v2-roster-pane');
     summary.append(el('h2', '', 'Attachment Setup'), el('p', 'v2-roster-hint', `${state.units.length} imported unit instances. Attachments are optional; imported army selections remain unchanged.`));
+    for(const unit of state.units){
+      const projected=projection?.units?.find(row=>row.instanceId===unit.instanceId);
+      const available=service.catalog.some(row=>row.kind==='WEAPON_PROFILE'&&row.parentId===unit.canonicalUnitId);
+      const selected=projected&&(projected.weapons.length||projected.profiles.some(row=>row.weapons.length));
+      if(available&&projected&&!selected){
+        const hint=el('p','v2-roster-hint',named(unit.canonicalUnitId)+': '+incompleteExportCopy.weapons);
+        hint.dataset.importHint='weapons';hint.dataset.importHintInstanceId=unit.instanceId;summary.append(hint);
+      }
+    }
     const pointsWarning=renderRosterPointsStatus(document,{service,titleForId:named});
     if(pointsWarning)summary.append(pointsWarning);
     const enhancementWarnings=state.units.flatMap(unit=>{
