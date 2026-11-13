@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {updateBook,publishOutputs} from '../books/shared/tools/book-update.mjs';
+import {readBookPassport} from '../books/shared/tools/book-passport.mjs';
 import {createQaTempDir,cleanupQaTempDir,createQaEvidenceDir,qaTempEnvironment} from './helpers/qa-temp.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),evidence=createQaEvidenceDir('book-update-command-qa-');
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
@@ -22,7 +23,7 @@ const scratch=createQaTempDir('wh-book-update-invalid-'),copy=path.join(scratch,
 try{
  execFileSync('git',['clone','--local','--no-hardlinks','--config','core.autocrlf=false',root,copy],{env:qaTempEnvironment(),stdio:'pipe'});
  if(fs.existsSync(path.join(root,'node_modules')))fs.symlinkSync(fs.realpathSync(path.join(root,'node_modules')),path.join(copy,'node_modules'),process.platform==='win32'?'junction':'dir');
- const input='books/death-guard/content/official-update-ledger.en.json',invalid='{ INVALID BOOK UPDATE QA';
+ const input=readBookPassport('death-guard',{root:copy}).official.input,invalid='{ INVALID BOOK UPDATE QA';
  fs.writeFileSync(path.join(copy,input),invalid);const old=fingerprints(copy);
  await assert.rejects(updateBook({root:copy,books:['death-guard'],out:path.join(evidence,'invalid')}),/death-guard:.*failed/);
  assert.deepEqual(fingerprints(copy),old,'Failed source input must not publish partial generated outputs');
