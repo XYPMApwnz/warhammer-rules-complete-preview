@@ -8,10 +8,12 @@ import os from 'node:os';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {loadGlossaryV2Inputs,createGlossaryV2Index,assertGlossaryV2Parity} from '../content/glossary-v2-index.mjs';
-import {assertV2ArmyBookParity,V2_ARMY_BOOK_IDS} from '../content/army-v2-projection.mjs';
+import {assertV2ArmyBookParity,assertV2CrossOwnerReferenceAdmission,V2_ARMY_BOOK_IDS} from '../content/army-v2-projection.mjs';
+import {parseProducerJSON} from '../../../books/shared/source-refs-v2/producer-io.mjs';
 import {createGlobalGlossaryContent} from '../../../books/shared/army-book-app-v2/global-glossary-content.mjs';
 import {adaptGlobalGlossary} from '../../../books/shared/army-book-app-v2/global-glossary.mjs';
 import {createReferenceContract} from '../../../books/shared/army-book-app-v2/reference-contract.mjs';
+import {createGlossaryOwnerHistory,GLOSSARY_OWNER_TRANSITIONS,assertCurrentCoreOwnerParity} from '../../../tests/helpers/glossary-owner-history.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../..');
 const read=relative=>JSON.parse(fs.readFileSync(path.join(repo,relative),'utf8'));
@@ -19,8 +21,13 @@ const inputs=await loadGlossaryV2Inputs(),index=createGlossaryV2Index(inputs);
 const published=read('glossary/v2/generated/index.en.json');
 assertGlossaryV2Parity(published,inputs);
 assert.deepEqual(index.supportedArmyBooks,V2_ARMY_BOOK_IDS);
-const precedingSeven=JSON.parse(execFileSync('git',['show','c21b5881a8d38be02cf56fe0428ce8841a7cba76:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
-const currentEntries=new Map(index.entries.map(article=>[article.id,article]));
+assertCurrentCoreOwnerParity(index,inputs.coreCatalog);
+assertCurrentCoreOwnerParity(published,inputs.coreCatalog);
+const history=createGlossaryOwnerHistory({repoRoot:repo}),glossaryFile='glossary/v2/generated/index.en.json';
+// These are transition proofs, not a permanent freeze of future Core/book data.
+const precedingSeven=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.sevenToEight.baseline,glossaryFile);
+const eightOwnerIndex=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.sevenToEight.accepted,glossaryFile);
+const currentEntries=new Map(eightOwnerIndex.entries.map(article=>[article.id,article]));
 for(const article of precedingSeven.entries){
   const current=currentEntries.get(article.id);assert.ok(current,'Predecessor canonical record lost '+article.id);
   for(const field of ['label','facts','provenance','fieldProvenance','sourceOwner','currentness'])assert.deepEqual(current[field],article[field],'Predecessor canonical fact changed '+article.id+'/'+field);
@@ -32,8 +39,15 @@ const daFacts=read('books/dark-angels/v2/generated/effective.json').entities;
 const daEntries=index.entries.filter(article=>article.sourceOwner.bookId==='dark-angels');
 assert.deepEqual(new Set(daEntries.map(article=>article.sourceOwner.canonicalId)),new Set(daFacts.map(entity=>entity.id)),'Only independently owned DA factual records may be added');
 assert.ok(daEntries.every(article=>!article.sourceOwner.canonicalId.includes('-sm-')),'Inherited SM references duplicated as DA owners');
-const excludedBooks=new Set(index.entries.filter(entry=>entry.domain==='ARMY').map(entry=>entry.sourceOwner.bookId).filter(book=>!V2_ARMY_BOOK_IDS.includes(book)));
-assert.ok(index.entries.every(entry=>entry.domain!=='ARMY'||!excludedBooks.has(entry.sourceOwner.bookId)),'Unconnected standalone Army Book leaked into V2');
+// A foreign book is not enrolled as another standalone book merely because a
+// declared root/direct child is referenced by a supported consumer. Authenticate
+// those exact entities against the same current canonical admission source.
+const smReferenceModel=inputs.armyModels.find(model=>model.book.id==='space-marines');
+const acceptedCrossOwnerSource={
+  crossOwnerReferenceIds:parseProducerJSON(fs.readFileSync(path.join(repo,'books/space-marines/v2/generated/effective.json'),'utf8')).crossOwnerReferenceIds,
+  entities:parseProducerJSON(fs.readFileSync(path.join(repo,'books/space-marines/v2/generated/cross-owner-references.json'),'utf8')).entities
+};
+assertV2CrossOwnerReferenceAdmission(smReferenceModel.referenceEntities,acceptedCrossOwnerSource);
 const centralKinds=new Set(['POINTS_SCHEDULE_ROW','PAID_WARGEAR_COST','DETACHMENT_ROSTER_METADATA','ENHANCEMENT_COST_QUALIFIERS','ALLIED_POINTS_DEPENDENCY','ATTACHMENT_RELATION']);
 const ownerKey=(book,id)=>book+'\0'+id;
 const armyEntries=index.entries.filter(entry=>entry.domain==='ARMY');
@@ -53,7 +67,48 @@ for(const model of inputs.armyModels)for(const entity of model.entities){
   assert.equal(entry.parent?.canonicalId||null,parent,'Wrong physical/canonical owner '+key);
   canonicalFacts++;
 }
-assert.deepEqual(new Set(army.keys()),expectedArmyKeys,'Missing/extra canonical Army inventory');
+const ownEntities=new Map(inputs.armyModels.flatMap(model=>model.entities.map(entity=>[ownerKey(model.book.id,entity.id),entity])));
+const admittedReferences=new Map(smReferenceModel.referenceEntities.map(entity=>[ownerKey(entity.bookId,entity.id),entity]));
+const foreignOwners=new Map();
+for(const model of inputs.armyModels)for(const entity of model.referenceEntities||[]){
+  const key=ownerKey(entity.bookId,entity.id);
+  if(ownEntities.has(key)){
+    assert.deepEqual(entity,ownEntities.get(key),'Inherited reference changed its existing canonical owner '+key);
+    continue;
+  }
+  assert.ok(admittedReferences.has(key),'Unadmitted foreign Army owner '+key);
+  assert.deepEqual(entity,admittedReferences.get(key),'Admitted foreign Army owner changed '+key);
+  if(centralKinds.has(entity.kind)||entity.data.status==='SUPERSEDED')continue;
+  expectedArmyKeys.add(key);
+  if(!foreignOwners.has(key))foreignOwners.set(key,{entity,contexts:[]});
+  const context={effectiveBookId:model.book.id,sourceBookId:entity.bookId,...(entity.parentId?{parentUnitId:entity.parentId}:{})};
+  const contexts=foreignOwners.get(key).contexts;
+  if(!contexts.some(current=>JSON.stringify(current)===JSON.stringify(context)))contexts.push(context);
+}
+function verifyCanonicalArmyInventory(publication){
+  const articles=publication.entries.filter(article=>article.domain==='ARMY');
+  const byOwner=new Map(articles.map(article=>[ownerKey(article.sourceOwner.bookId,article.sourceOwner.canonicalId),article]));
+  assert.equal(byOwner.size,articles.length,'Duplicated canonical Army owner');
+  assert.deepEqual(new Set(byOwner.keys()),expectedArmyKeys,'Missing/extra canonical Army inventory');
+  for(const [key,{entity,contexts}]of foreignOwners){
+    const article=byOwner.get(key),parent=entity.parentId||entity.ownerId;
+    assert.deepEqual(article.facts.canonicalData,entity.data,'Foreign canonical data mismatch '+key);
+    assert.deepEqual(article.provenance,entity.provenance,'Foreign canonical provenance mismatch '+key);
+    assert.deepEqual(article.fieldProvenance,entity.fieldProvenance,'Foreign field provenance mismatch '+key);
+    assert.deepEqual(article.sourceOwner,{domain:'ARMY',bookId:entity.bookId,canonicalId:entity.id,interface:smReferenceModel.referenceFactualInterface},'Foreign factual interface changed '+key);
+    const parentId=admittedReferences.has(ownerKey(entity.bookId,parent))?parent:null;
+    assert.deepEqual(article.parent,parentId?{domain:'ARMY',canonicalId:parentId}:null,'Foreign canonical parent changed '+key);
+    const sorted=value=>value.map(context=>JSON.stringify(context)).sort();
+    assert.deepEqual(sorted(article.contexts),sorted(contexts),'Foreign consuming contexts changed '+key);
+  }
+  for(const model of inputs.armyModels)for(const entity of model.referenceEntities||[]){
+    const article=byOwner.get(ownerKey(entity.bookId,entity.id));
+    assert.ok(article,'Missing admitted inherited factual owner '+entity.id);
+    const context={effectiveBookId:model.book.id,sourceBookId:entity.bookId,...(entity.parentId?{parentUnitId:entity.parentId}:{})};
+    assert.ok(article.contexts.some(current=>JSON.stringify(current)===JSON.stringify(context)),'Missing exact inherited consuming context '+model.book.id+'/'+entity.id);
+  }
+}
+verifyCanonicalArmyInventory(index);verifyCanonicalArmyInventory(published);
 const entry=(book,id)=>{const result=army.get(ownerKey(book,id));assert.ok(result,book+'/'+id);return result;};
 
 // These compare source-owned annotations, not a freshly regenerated projection
@@ -136,7 +191,7 @@ for(const fact of daModel.entities){
 }
 for(const fact of daModel.referenceEntities){
   const article=entry(fact.bookId,fact.id);
-  assert.ok(article.contexts.some(context=>context.effectiveBookId==='dark-angels'&&context.sourceBookId==='space-marines'),'Inherited consumer context missing '+fact.id);
+  assert.ok(article.contexts.some(context=>context.effectiveBookId==='dark-angels'&&context.sourceBookId===fact.bookId),'Inherited consumer context missing '+fact.id);
   if(fact.kind==='DATASHEET')assert.equal(tauReference.resolveAlias(fact.id,{registryId:'dark-angels'}),article.id,'Inherited UNIT reference must resolve to original SM owner');
 }
 const noMembership=structuredClone(inputs.armyModels);
@@ -155,19 +210,25 @@ for(const profile of sm.entities.filter(entity=>entity.kind==='MODEL_PROFILE')){
   assert.ok(saves.length<=1);
   assert.equal(entry('space-marines',profile.id).facts.stats.INSV,saves[0]?.data.value,'Native static invulnerable scope '+profile.id);
 }
-const precedingSix=JSON.parse(execFileSync('git',['show','3e0c219f1210284a912faba71d46f3afa9710cea:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
-const currentById=new Map(index.entries.map(article=>[article.id,article]));
-const priorFormatterSource=execFileSync('git',['show','3e0c219f1210284a912faba71d46f3afa9710cea:books/shared/army-book-app-v2/global-glossary-content.mjs'],{cwd:repo,encoding:'utf8'});
+const precedingSix=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.sixToSeven.baseline,glossaryFile);
+const sevenOwnerIndex=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.sixToSeven.accepted,glossaryFile);
+const currentById=new Map(sevenOwnerIndex.entries.map(article=>[article.id,article]));
+const formatterFile='books/shared/army-book-app-v2/global-glossary-content.mjs';
+const priorFormatterSource=history.read(GLOSSARY_OWNER_TRANSITIONS.sixToSeven.baseline,formatterFile).toString('utf8');
 const {createGlobalGlossaryContent:priorFormatter}=await import('data:text/javascript;base64,'+Buffer.from(priorFormatterSource).toString('base64'));
 const priorDisplay=priorFormatter(precedingSix);
+const sevenFormatterSource=history.read(GLOSSARY_OWNER_TRANSITIONS.sixToSeven.accepted,formatterFile).toString('utf8');
+const {createGlobalGlossaryContent:sevenFormatter}=await import('data:text/javascript;base64,'+Buffer.from(sevenFormatterSource).toString('base64'));
+const sevenDisplay=sevenFormatter(sevenOwnerIndex);
 
 for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
   assert.deepEqual({...currentById.get(article.id),contexts:article.contexts},article,'Six predecessor Army facts/provenance/references changed '+article.id);
 for(const article of precedingSix.entries.filter(article=>article.domain==='ARMY'))
-  assert.deepEqual(display.project(currentById.get(article.id)).mfm.lines,priorDisplay.project(article).mfm.lines,'Six predecessor MFM display changed '+article.id);
+  assert.deepEqual(sevenDisplay.project(currentById.get(article.id)).mfm.lines,priorDisplay.project(article).mfm.lines,'Six predecessor MFM display changed '+article.id);
 
-const predecessor=JSON.parse(execFileSync('git',['show','f5e3ebc5ff5d57674e842f47656a59c39c0c58f0:glossary/v2/generated/index.en.json'],{cwd:repo,encoding:'utf8',maxBuffer:100*1024*1024}));
-const fiveBooks=V2_ARMY_BOOK_IDS.filter(book=>book!=='tau-empire'),currentArticles=new Map(index.entries.map(article=>[article.id,article]));
+const predecessor=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.fiveToSix.baseline,glossaryFile);
+const sixOwnerIndex=history.readJSON(GLOSSARY_OWNER_TRANSITIONS.fiveToSix.accepted,glossaryFile);
+const fiveBooks=sixOwnerIndex.supportedArmyBooks.filter(book=>book!=='tau-empire'),currentArticles=new Map(sixOwnerIndex.entries.map(article=>[article.id,article]));
 const previousArmyArticles=predecessor.entries.filter(article=>fiveBooks.includes(article.sourceOwner.bookId));
 for(const article of previousArmyArticles)assert.deepEqual({...currentArticles.get(article.id),contexts:article.contexts},article,'Prior Army canonical text/provenance/references changed '+article.id);
 for(const model of inputs.armyModels)for(const unit of model.entities.filter(entity=>entity.kind==='DATASHEET')){
@@ -296,6 +357,25 @@ let mutations=0;
 function rejected(action,label){let error;try{action();}catch(cause){error=cause;}assert.ok(error&&error.code==='ERR_ASSERTION','Comparator failed to detect '+label);mutations++;}
 function publicationMutation(label,mutate){const changed=structuredClone(index);mutate(changed);rejected(()=>assertGlossaryV2Parity(changed,inputs),label);}
 function annotationMutation(label,mutate,verify=verifySourceAnnotations){const changed=structuredClone(index);mutate(changed);rejected(()=>verify(changed),label);}
+// Historical freezes do not replace current canonical-owner checks. Poison
+// every one of the six Core fields and one immutable byte of each transition.
+const currentCoreOnly={entries:index.entries.filter(article=>article.domain==='CORE')};
+for(const field of ['label','facts','provenance','fieldProvenance','sourceOwner','currentness']){
+  const changed=structuredClone(currentCoreOnly);changed.entries[0][field]='CURRENT_CORE_FIELD_POISON';
+  rejected(()=>assertCurrentCoreOwnerParity(changed,inputs.coreCatalog),'current Core '+field);
+}
+for(const [name,transition]of Object.entries(GLOSSARY_OWNER_TRANSITIONS)){
+  const poisonedHistory=createGlossaryOwnerHistory({repoRoot:repo,transformBytes:({bytes})=>Buffer.concat([bytes,Buffer.from(' ')])});
+  rejected(()=>poisonedHistory.read(transition.accepted,glossaryFile),'changed historical glossary byte '+name);
+}
+const foreignExample=army.get(foreignOwners.keys().next().value);assert.ok(foreignExample,'Current admission must exercise a foreign canonical owner');
+const unadmitted=structuredClone(foreignExample);unadmitted.id='qa-unadmitted-foreign-article';
+unadmitted.sourceOwner={...unadmitted.sourceOwner,bookId:'qa-unadmitted-book',canonicalId:'qa-unadmitted-owner'};
+const unknownForeign={entries:[...armyEntries,unadmitted]};
+rejected(()=>verifyCanonicalArmyInventory(unknownForeign),'unadmitted foreign Army owner');
+const wrongForeign={entries:armyEntries.map(article=>article.id===foreignExample.id?structuredClone(article):article)};
+wrongForeign.entries.find(article=>article.id===foreignExample.id).facts.canonicalData.qaUnreviewedFact='FOREIGN_FACT_POISON';
+rejected(()=>verifyCanonicalArmyInventory(wrongForeign),'changed admitted foreign canonical fact');
 publicationMutation('missing native SM owner',publication=>{publication.entries=publication.entries.filter(record=>record.sourceOwner.canonicalId!==sm.entities.find(entity=>entity.kind==='STRATAGEM').id);});
 publicationMutation('lost native SM complete Stratagem',publication=>{publication.entries.find(record=>record.sourceOwner.bookId==='space-marines'&&record.recordType==='STRATAGEM').facts.lines=[];});
 publicationMutation('wrong native SM equipment category',publication=>{publication.entries.find(record=>record.sourceOwner.bookId==='space-marines'&&record.recordType==='WARGEAR_ABILITY').recordType='ABILITY';});
