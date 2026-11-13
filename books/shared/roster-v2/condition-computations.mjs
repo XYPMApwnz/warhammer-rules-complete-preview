@@ -40,10 +40,11 @@ export function computeRosterCondition(binding,{book,epicOwners,records,state,un
       break;
     }
     case 'INITIAL_ATTACHMENT':{
-      if(state.initialAttachments!==undefined){
-        const current=state.attachments.find(edge=>edge.leaderInstanceId===unit.instanceId);
-        value=Boolean(current&&state.initialAttachments.some(edge=>edge.leaderInstanceId===unit.instanceId&&edge.bodyguardInstanceId===current.bodyguardInstanceId));
-      }
+      // The roster declares the start-of-battle formation unless an explicit
+      // historical snapshot supplies a different initial attachment.
+      const initial=state.initialAttachments===undefined?state.attachments:state.initialAttachments;
+      const current=state.attachments.find(edge=>edge.leaderInstanceId===unit.instanceId);
+      value=Boolean(current&&initial.some(edge=>edge.leaderInstanceId===unit.instanceId&&edge.bodyguardInstanceId===current.bodyguardInstanceId));
       break;
     }
     case 'LED_BODYGUARD_ABILITY':{

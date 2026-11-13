@@ -139,8 +139,8 @@ export function createEquippedWeaponChoiceConditionContext(book,state,schema,{ru
  };
 }
 
-/** A historical formation must have its original named timing and valid
- * canonical attachment evidence. Current attachment never invents history. */
+/** The roster supplies the declared pre-battle formation by default. An
+ * explicit historical snapshot retains its named timing and validation. */
 export function createInitialAttachmentConditionContext(book,state,{binding,conditionArguments,bindContext=context=>context,messages}){
  const assert=(ok,key)=>requireValue(ok,messages[key]);
  const records=new Map(book.entities.map(entity=>[entity.id,entity]));let initial;
@@ -148,6 +148,7 @@ export function createInitialAttachmentConditionContext(book,state,{binding,cond
   assert(state.initialAttachmentStep===binding?.step,'step');assert(Array.isArray(state.initialAttachments),'missing');
   initial=validateRoster(book,{...state,attachments:structuredClone(state.initialAttachments)},book.rosterAttachmentPolicies).attachments;
  }else if(state.initialAttachments!==undefined)assert(Array.isArray(state.initialAttachments),'malformed');
+ else initial=state.attachments;
  return input=>{
   const context=bindContext(input);
   if(!binding||context?.subject!=='MODEL'||context.modelId!==binding.profileId)return context;
