@@ -11,6 +11,7 @@ import {fileURLToPath} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {readAcceptedSourceCorpus} from '../tests/helpers/accepted-source-corpus.mjs';
+import {readBookPassport} from '../books/shared/tools/book-passport.mjs';
 
 const repo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
@@ -20,7 +21,8 @@ fs.mkdirSync(out,{recursive:true});
 const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").trim();
 const sourceBooks=Object.fromEntries(['death-guard','adeptus-mechanicus'].map(book=>[book,
   readAcceptedSourceCorpus(repo,`books/${book}/sources/waha-11e-current-2026-09-25/corpus.json`,
-    book==='death-guard'?'books/death-guard/v2/sources/source-enrollment.json':undefined)]));
+    book==='death-guard'?'books/death-guard/v2/sources/source-enrollment.json':undefined,
+    book==='death-guard'?readBookPassport(book,{root:repo}).official.input:undefined)]));
 const cases=[];
 function scenario(book,rule,leader,bodyguard,{enhancement=false,reverse=false,negative=[]}={}){
   const corpus=sourceBooks[book],owner=reverse?bodyguard:leader;
