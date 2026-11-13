@@ -39,6 +39,6 @@ Start with [README.md](README.md), the current task and the nearest scoped `AGEN
 ## Branches, review and cleanup
 
 - Work in a separate feature branch from current `codex/unified-v2-source`; push only that feature branch.
-- Update `codex/unified-v2-source` only by fast-forward to the independently reviewed (Claude PASS) feature head, with explicit owner authorization. Never push to `unified-v2-release` or `main`.
-- Release candidate: `git commit-tree` with current release as parent and reviewed source tree, then push to a review branch, obtain Claude review, and let the owner fast-forward `unified-v2-release`. See [release procedure](tools/PAGES_RUNTIME_RELEASE.md#source-review-and-release-authorization).
+- Update `codex/unified-v2-source` only by fast-forward to the independently reviewed (Claude PASS) feature head, with explicit owner authorization. Never push to `main`.
+- Release candidate: `git commit-tree` with current release as parent and reviewed source tree, then push to a review branch and obtain Claude review. Move `unified-v2-release` only by ordinary fast-forward to the exact reviewed candidate SHA, after separate explicit owner authorization for that SHA; Codex may perform that fast-forward only with that authorization. All [release procedure](tools/PAGES_RUNTIME_RELEASE.md#source-review-and-release-authorization) checks still apply.
 - After verification, delete temporary worktrees, clones, runtime packages, QA work directories and anything not referenced by the report. Keep screenshots referenced by the report. Record SHA, branch, commands, results and limitations in the report.
