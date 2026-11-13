@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
+import {inspect,isDeepStrictEqual} from 'node:util';
 import {buildRuleContractV2,compileCompatibility} from './rule-contract-build.mjs';
 import {buildRelatedRules,armyBookContext} from './related-rules-build.mjs';
 import * as evaluator from './rule-contract-schema.mjs';
@@ -251,6 +252,29 @@ all.load(fixture);scan(all);
 for(const policy of book.rosterAttachmentPolicies){all.attach(policy.sourceId+'/1',policy.targetId+'/1');scan(all);all.detach(policy.sourceId+'/1');}
 // Source and effect definitions are immutable: eligibility is a consumer fix.
 const baselineBook=JSON.parse(execFileSync('git',['show','c89bb144f30b70fe6d44fb0ce764d2710fcf3ea4:books/death-guard/v2/generated/rule-contract-effective.json'],{encoding:'utf8',maxBuffer:30e6}));
-assert.deepEqual(book,baselineBook);assert.deepEqual(buildRelatedRules(book),index);
+// Keep the historical equality requirement, but never ask node:assert to
+// format a diff of the entire book. Store only the first 20 bounded values.
+function historicalDifferences(actual,expected) {
+  let count=0;const first=[];
+  const value=(item,present)=>present?inspect(item,{depth:0,maxArrayLength:3,maxStringLength:160,breakLength:Infinity,compact:true}):'<missing>';
+  function visit(a,b,at,hasA=true,hasB=true) {
+    if(hasA===hasB&&Object.is(a,b))return;
+    const objects=hasA&&hasB&&a!==null&&b!==null&&typeof a==='object'&&typeof b==='object'&&Array.isArray(a)===Array.isArray(b);
+    if(objects){
+      for(const key of new Set([...Object.keys(a),...Object.keys(b)]))
+        visit(a[key],b[key],at+'/'+key.replaceAll('~','~0').replaceAll('/','~1'),Object.hasOwn(a,key),Object.hasOwn(b,key));
+      return;
+    }
+    count++;
+    if(first.length<20)first.push({path:at||'/',historical:value(b,hasB),current:value(a,hasA)});
+  }
+  visit(actual,expected,'');return {count,first};
+}
+if(!isDeepStrictEqual(book,baselineBook)){
+  const differences=historicalDifferences(book,baselineBook);
+  console.error('DG_OWNER_MEMORY '+JSON.stringify({...process.memoryUsage(),maxRssBytes:process.resourceUsage().maxRSS*1024}));
+  throw Error('book differs from historical c89bb144: '+differences.count+' differences, first: '+JSON.stringify(differences.first));
+}
+assert.deepEqual(buildRelatedRules(book),index);
 console.log(JSON.stringify({status:'PASS',enhancementsScanned:rules.length,modelOwners:rules.filter(r=>specs.get(r.sourceId).subject==='MODEL').length,unitOwners:rules.filter(r=>specs.get(r.sourceId).subject==='UNIT').length,
   ownerCases,relationsFixed:changed.length,characterOwner:'NO_MATCH',plagueMarinesOwner:'EXPECTED',formedKeywordLeakage:0,ownerInstanceLeakage:0,ah04:'UNCHANGED',invalid:0,unresolved:0}));
