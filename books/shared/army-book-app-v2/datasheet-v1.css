@@ -618,3 +618,6 @@
   color: var(--muted);
   font-size: 12px;
 }
+.unit-card .ds-source-text > p { margin: 0; white-space: pre-line; }
+.unit-card .ds-source-text-list { margin: 8px 0; padding-left: 18px; list-style: none; }
+.unit-card .ds-source-text-list > li { white-space: pre-line; }

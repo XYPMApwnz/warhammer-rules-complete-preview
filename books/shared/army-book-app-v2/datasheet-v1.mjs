@@ -1,9 +1,9 @@
-import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
+import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
-import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey} from './effective-datasheet-presentation.mjs';
+import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey,sourceTextBlocks,conditionalSourceTextKey} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
 import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields,validateAttachedRuleTextPresentation} from './personal.mjs';
 const sectionRoles = new Map([
@@ -122,6 +122,27 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return link;
   };
   const heading=(card,tag='h4')=>{const field=card.fields.find(f=>f.presentation==='heading');return field?factValue(tag,field):el(tag,'',card.title);};
+  const sourceText=(value,{field,heading:repeatedHeading}={})=>{
+    const blocks=sourceTextBlocks(value,{heading:repeatedHeading});
+    const hasList=blocks.some(block=>block.kind==='LIST');
+    const node=field?factValue(hasList?'div':'p',field):el(hasList?'div':'p','');
+    node.replaceChildren();node.classList.add('ds-source-text');
+    blocks.forEach((block,index)=>{
+      if(index)node.append(document.createTextNode('\n'));
+      if(block.kind==='LIST'){
+        const list=el('ul','ds-source-text-list');
+        block.lines.forEach((line,index)=>{if(index)list.append(document.createTextNode('\n'));list.append(el('li','',line));});
+        node.append(list);
+      }else node.append(hasList?el('p','',block.lines.join('\n')):document.createTextNode(block.lines.join('\n')));
+    });
+    return node;
+  };
+  const policyTextReference=(id,label)=>{
+    const link=el('a','ds-policy-text-reference','Rule text: '+label);link.href='#'+id;
+    link.dataset.policyTextRef=id;
+    listen(link,'click',event=>{event.preventDefault();document.getElementById(link.dataset.policyTextRef)?.scrollIntoView({block:'center'});});
+    return link;
+  };
   const scopeCaption=card=>card.presentationScope
     ?`${card.presentationScope.label} · ${card.presentationScope.quantity} ${card.presentationScope.quantity===1?'model':'models'}`:null;
   const physicalProfiles=instanceId=>{
@@ -391,7 +412,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     if(popup){row.append(table);for(const key of Object.keys(fieldLabels)){const note=modifierSourceNote(card,single(card,key),instanceId);if(note)row.append(note);}}
     return row;
   };
-  const renderSection=(card,{instanceId,inDialog=false,omitSourceHeading=false}={})=>{
+  const renderSection=(card,{instanceId,inDialog=false,omitSourceHeading=false,sourceListFieldIds=new Set()}={})=>{
     const role=config.sectionRoles[card.id] || 'additional';
     const section=identity(el('section','unit-part'),card,instanceId);section.dataset.datasheetSection=role;
     section.id='ds-'+domKey(JSON.stringify([card.id,instanceId || null,card.scopeId || null]));
@@ -400,15 +421,15 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const field of card.fields.filter(f=>/^\/blocks\/\d+\/text$/.test(layoutPath(f) || ''))){
       const content=el(role==='abilities'||role==='wargear-abilities'?'article':'div',role==='abilities'||role==='wargear-abilities'?'ability':'content-block');
       identity(content,card,instanceId);content.dataset.sourceFieldPath=field.source.path;
-      const value=factValue('p',field);
+      const value=sourceListFieldIds.has(field.id)?sourceText(field.displayValue??field.value,{field,heading:title?.value}):factValue('p',field);
       // Flat source sections include their heading in /text as well as /title.
       // Split that exact display prefix only; retain the source field identity.
-      if(omitSourceHeading&&title&&field.source?.path==='/text'&&typeof field.value==='string'&&field.value.startsWith(title.value+'\n'))
-        value.textContent=field.value.slice(title.value.length+1);
+      if(!sourceListFieldIds.has(field.id)&&typeof value.textContent==='string')
+        value.textContent=sourceTextBlocks(value.textContent,{heading:title?.value}).map(block=>block.lines.join('\n')).join('\n');
       if(role==='abilities'||role==='wargear-abilities'){
         // Split a display caption, retaining exactly the same factual string.
-        const text=value.textContent,colon=text.indexOf(':');
-        if(colon>0){value.replaceChildren();const label=scopedAnchor(text.slice(0,colon+1),card,instanceId,field.source.path);value.append(label,document.createTextNode(text.slice(colon+1)));}
+        const caption=value.querySelector('p')||value,text=caption.textContent,colon=text.indexOf(':');
+        if(colon>0&&(caption!==value||value.tagName==='P')){caption.replaceChildren();const label=scopedAnchor(text.slice(0,colon+1),card,instanceId,field.source.path);caption.append(label,document.createTextNode(text.slice(colon+1)));}
       }
       content.append(value);used.add(field.id);
       list.append(content);
@@ -485,7 +506,9 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return node;
   };
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
-    const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set();
+    const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set(),policyTextRows=[];
+    const sourceListFieldIds=new Set((card.rosterConditionalPolicies||[]).flatMap(row=>
+      (cards.get(row.ruleId)?.fields||[]).filter(field=>field.value===row.policy.contextQuote).map(field=>field.id)));
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
     const groupedSources=groupedAbilitySources(children),groupedIds=new Set([...groupedSources.values()].flat().map(card=>card.id));
     const abilityPresentation=instanceId?projectAbilityPresentation({instanceId,
@@ -597,13 +620,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const prefix=row.title+':';
         const parts=cards.get(row.ruleId).kind==='ENHANCEMENT'?enhancementTextParts(cards.get(row.ruleId).title,canonicalText):null;
         const changed=parts&&parts.body!==canonicalText;
-        const text=el(changed?'div':'p','',changed?'':canonicalText.startsWith(prefix)?canonicalText.slice(prefix.length):canonicalText);text.dataset.attachedRuleText='';
+        const text=changed?el('div',''):sourceText(canonicalText.startsWith(prefix)?canonicalText.slice(prefix.length):canonicalText);text.dataset.attachedRuleText='';
         if(changed){
           const pointer='/'+row.sourcePath.join('/'),field=cards.get(row.ruleId).fields.find(field=>(field.presentationPath??field.source?.path)===pointer);
           text.dataset.enhancementText=field.id;
           if(parts.upgrade){const marker=el('p','ds-enhancement-restriction','UPGRADE');marker.dataset.enhancementUpgrade='';text.append(marker);}
           if(parts.restriction){const restriction=el('p','ds-enhancement-restriction',parts.restriction);restriction.dataset.enhancementRestriction='';text.append(restriction);}
-          const body=el('p','',parts.body);body.dataset.enhancementBody='';text.append(body);
+          const body=sourceText(parts.body);body.dataset.enhancementBody='';text.append(body);
         }
         node.append(text);
         const source=el('p','','Source: '+row.sourceLabel+' · ');
@@ -689,6 +712,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           }
           group.node.append(node);
       }
+      const policyTexts=new Map();
       for(const row of card.rosterConditionalPolicies||[]){
         if(row.recipient?.id!==row.recipientId||row.policy.recipientId!==row.recipientId)throw new TypeError('Unresolved conditional policy recipient presentation');
         const node=el('div','ds-conditional-policy');node.dataset.conditionalPolicy=row.policy.kind;node.dataset.execution=row.execution;
@@ -700,7 +724,19 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           [row.recipient.how,row.recipientLabels]);
         if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
         if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
-        node.append(el('p','',row.policy.contextQuote));section.append(node);
+        const textKey=conditionalSourceTextKey(row,sourceSnapshot(row,{slot:'sourceProvenance'}));
+        let textId=textKey&&policyTexts.get(textKey);
+        if(!textId){
+          const text=sourceText(row.policy.contextQuote);text.dataset.policyRuleText='';
+          textId='ds-policy-text-'+domKey(JSON.stringify([card.id,instanceId,textKey||[row.ruleId,row.clauseId,policyTextRows.length]]));text.id=textId;
+          text.dataset.ruleId=row.ruleId;text.dataset.sourceInstanceId=row.sourceInstanceId??'';
+          text.dataset.sourceModelScopeId=row.sourceModelScopeId||'';
+          text.dataset.sourceProvenance=JSON.stringify(sourceSnapshot(row,{slot:'sourceProvenance'}));
+          node.append(text);if(textKey)policyTexts.set(textKey,textId);
+        }else{
+          node.append(policyTextReference(textId,row.label));
+        }
+        node.dataset.policyTextRef=textId;node.setAttribute('aria-details',textId);policyTextRows.push({node,row,textId});section.append(node);
       }root.append(section);
     }
     const profileStatFields=member=>[...member.fields,...(member.profileFieldIds||[]).map(id=>boundFields.get(id))]
@@ -860,7 +896,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     for(const id of groupedIds)rendered.add(id);
     for(const child of children.filter(c=>config.sectionRoles[c.id]==='abilities')){
       if(groupedIds.has(child.id))continue;
-      const section=renderSection(child,{instanceId,inDialog}),items=[...section.querySelector('.ability-list').children];
+      const section=renderSection(child,{instanceId,inDialog,sourceListFieldIds}),items=[...section.querySelector('.ability-list').children];
       const titleField=child.fields.find(f=>f.presentation==='heading');if(titleField){const caption=factValue('span',titleField);caption.textContent='Abilities';abilities.querySelector('h4').replaceChildren(caption);}
       items.forEach(item=>abilityList.append(item));
       const updates=[...section.querySelectorAll('.ds-source-update')];abilityList.append(...updates);
@@ -999,7 +1035,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         }
         root.append(composition);
       }else {
-        const section=renderSection(child,{instanceId,inDialog,omitSourceHeading:groupedSources.has(child.id)});
+        const section=renderSection(child,{instanceId,inDialog,sourceListFieldIds,omitSourceHeading:groupedSources.has(child.id)});
         if(groupedSources.has(child.id)){
           const source=el('p','ds-section-sources','Source: ');
           groupedSources.get(child.id).forEach((ability,index)=>{if(index)source.append(document.createTextNode('; '));
@@ -1067,6 +1103,28 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         if(metric.sources.every(source=>hasInlineUnitMetricSource(root,source,cards)))node.remove();
       }
       if(unitModifiers.childElementCount>1)nav.after(unitModifiers);
+    }
+    // Prefer the original inline canonical field on THIS physical card when
+    // its identity, full text and provenance exactly prove the same source.
+    // Every policy row/effect remains independent and points at that one text.
+    for(const {node,row}of policyTextRows){
+      if(row.sourceInstanceId!==instanceId)continue;
+      const rule=cards.get(row.ruleId),proof=sourceSnapshot(row,{slot:'sourceProvenance'});
+      if(!rule||!proof||!sameSourceEvidence(row,rule,{slot:'sourceProvenance',otherSlot:'provenance'}))continue;
+      const fields=rule.fields.filter(field=>field.source?.entityId===row.ruleId&&field.value===row.policy.contextQuote);
+      if(fields.length!==1)continue;
+      const matches=[...root.querySelectorAll('[data-fact-id]')].filter(field=>field.dataset.factId===fields[0].id&&
+        !field.closest('.ds-conditional-policy')&&field.textContent===row.policy.contextQuote&&
+        field.closest('[data-card-id]')?.dataset.cardId===row.ruleId&&
+        (!row.sourceModelScopeId||field.closest('[data-composition-id]')?.dataset.compositionId===row.sourceModelScopeId));
+      if(matches.length!==1)continue;
+      const text=matches[0];
+      text.id||='ds-policy-canonical-text-'+domKey(JSON.stringify([card.id,instanceId,row.ruleId,fields[0].id,row.sourceModelScopeId??null]));
+      const old=node.querySelector('[data-policy-rule-text]');if(old)old.remove();
+      let reference=node.querySelector('[data-policy-text-ref]');
+      if(!reference){reference=policyTextReference(text.id,row.label);node.append(reference);}
+      reference.href='#'+text.id;reference.dataset.policyTextRef=text.id;
+      node.dataset.policyTextRef=text.id;node.setAttribute('aria-details',text.id);
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;

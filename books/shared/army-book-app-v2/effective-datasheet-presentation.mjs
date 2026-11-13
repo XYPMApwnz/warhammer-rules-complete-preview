@@ -4,6 +4,27 @@ const value=field=>field?.displayValue??field?.value??null;
 const stable=item=>Array.isArray(item)?item.map(stable):item&&typeof item==='object'
   ?Object.fromEntries(Object.keys(item).sort().map(key=>[key,stable(item[key])])):item;
 const key=item=>JSON.stringify(stable(item));
+/** Display-only source blocks. Keep every source character, including the
+ * printed bullet marker, so field text/provenance can still be checked exactly.
+ * Only an exact heading already supplied by this section is omitted. */
+export function sourceTextBlocks(value,{heading}={}) {
+  if(typeof value!=='string')return [];
+  const text=heading&&value.startsWith(heading+'\n')?value.slice(heading.length+1):value;
+  const blocks=[];
+  for(const line of text.split('\n')){
+    const kind=/^\s*[-•] /.test(line)?'LIST':'PARAGRAPH';
+    const previous=blocks.at(-1);
+    if(previous?.kind===kind)previous.lines.push(line);
+    else blocks.push({kind,lines:[line]});
+  }
+  return blocks;
+}
+/** Clauses remain separate. Only identical full prose from the same recorded
+ * rule and physical source may share a display node on this component card. */
+export function conditionalSourceTextKey(row,provenance) {
+  if(!provenance||typeof row.ruleId!=='string'||!row.ruleId||typeof row.sourceInstanceId!=='string'||!row.sourceInstanceId||typeof row.policy?.contextQuote!=='string')return null;
+  return key([row.ruleId,provenance,row.sourceInstanceId??null,row.sourceModelScopeId??null,row.policy.contextQuote]);
+}
 export const profileCharacteristics=['M','T','SV','W','LD','OC','INSV'];
 export function profileDisplayKey(card,boundFields=new Map()) {
   const fields=[...card.fields,...(card.profileFieldIds||[]).map(id=>boundFields.get(id)).filter(Boolean)];
