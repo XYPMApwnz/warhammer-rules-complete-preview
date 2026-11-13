@@ -8929,6 +8929,15 @@
       ]
     },
     {
+      "path": "books/shared/roster-v2/text-roster-facts.mjs",
+      "reasons": [
+        {
+          "kind": "confirmed-native-module-or-url-dependency",
+          "from": "books/shared/roster-v2/attached-rule-text.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/rule-contract-v2/conditions-build.mjs",
       "reasons": [
         {

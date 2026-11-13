@@ -4296,6 +4296,22 @@
             "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
           },
           "rosterEffects": [],
+          "textRosterFacts": [
+            {
+              "kind": "SOURCE_LEADER_MODEL_KEYWORD",
+              "key": "characterModelLeadingSource",
+              "roleId": "source",
+              "keyword": "CHARACTER",
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "While a CHARACTER model is leading this unit"
+              }
+            }
+          ],
           "recipients": [
             {
               "id": "block-1::recipient/role/1",
@@ -9935,6 +9951,36 @@
                 }
               },
               "conditions": []
+            },
+            {
+              "id": "text-recipient",
+              "subject": "UNIT",
+              "allegiance": "FRIENDLY",
+              "binding": "SOURCE_UNIT",
+              "scope": "FORMED",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action."
+              }
             }
           ],
           "conditions": [
@@ -9977,8 +10023,56 @@
             "reason": "Battle resolution remains source-backed prose; declared participants and applicability do not execute the rule."
           },
           "rosterEffects": [],
-          "recipients": [],
-          "recipientStatus": "NOT_RECORDED"
+          "textRosterFacts": [
+            {
+              "kind": "SOURCE_FORMED_MODEL_KEYWORD",
+              "key": "containsTechPriestModel",
+              "roleId": "source",
+              "keyword": "TECH-PRIEST",
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "While this unit contains one or more Tech-Priest models"
+              }
+            }
+          ],
+          "recipients": [
+            {
+              "id": "block-1::recipient/role/1",
+              "who": "UNIT",
+              "roleId": "text-recipient",
+              "side": "FRIENDLY",
+              "from": "SOURCE_UNIT",
+              "purpose": "EFFECT_RECIPIENT",
+              "selector": {
+                "predicate": "ALWAYS",
+                "subject": "UNIT",
+                "contextLevel": "STATIC",
+                "arguments": {},
+                "evidence": {
+                  "field": [
+                    "blocks",
+                    0,
+                    "text"
+                  ],
+                  "quote": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action."
+                }
+              },
+              "evidence": {
+                "field": [
+                  "blocks",
+                  0,
+                  "text"
+                ],
+                "quote": "Network Override: While this unit contains one or more Tech-Priest models, this unit is:\n- Eligible to perform an Action in a turn in which it Advanced.\n- Eligible to shoot in a turn in which it started an Action."
+              },
+              "scope": "FORMED"
+            }
+          ],
+          "recipientStatus": "RECORDED"
         }
       ],
       "contextLevel": "BATTLE",

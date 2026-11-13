@@ -1,6 +1,7 @@
 /** Book-owned source evidence for text recipients, lowered by the existing finalizer.
  * These declarations add no executable effects, battle state or conditions. */
 import assert from 'node:assert/strict';
+import {validateBookTextRosterFacts} from '../../shared/roster-v2/text-roster-facts.mjs';
 
 const declarations=[];
 const text=['text'];
@@ -77,6 +78,9 @@ adopt("detachment-shamblerot-vectorium:enhancement:1","test-modifier",text,
 adopt("detachment-shamblerot-vectorium:enhancement:2","setup-round",text,
   "DEATH GUARD model only. If the bearer is leading a POXWALKER unit, and is in Strategic Reserves, for the purposes of setting up that unit on the battlefield, treat the current battle round as the third battle round.","affected-unit",
   {"subject": "FORMED_ATTACHED_UNIT"});
+adopt("detachment-shamblerot-vectorium:enhancement:3","bodyguard-destruction",text,
+  "Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed.","affected-bodyguard-model",
+  {"subject":"MODEL","binding":"SOURCE_FORMED_MODELS"});
 adopt("detachment-tallyband-summoners:enhancement:1","deep-strike",text,
   "DEATH GUARD model only. Each time a PLAGUE LEGIONS unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within 12\" of the bearer, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\".","affected-unit",
   {"subject": "UNIT", "binding": "ROSTER_UNITS", "scope": "FORMED"});
@@ -212,5 +216,8 @@ export function recordDeathGuardTextRecipients(book){
       else clause.roles.push(role);
     }
   }
-  return book;
+  const battleClause=entities.get('detachment-shamblerot-vectorium:enhancement:3').ruleContract.clauses.find(clause=>clause.id==='bodyguard-destruction');
+  battleClause.textRosterFacts=[{kind:'MEMBER_OF_SOURCE_UNIT',key:'memberOfBearerUnit',
+    evidence:{field:['text'],quote:'from the bearer’s unit'}}];
+  return validateBookTextRosterFacts(book);
 }

@@ -5683,7 +5683,21 @@
                 "text"
               ],
               "quote": "Malign Sacrifice: At the start of the Fight phase, if this unit contains one or more Dark Disciple models, you can select one of those models and one enemy unit within Engagement Range of this unit, then roll one D6: on a 2-5, that enemy unit suffers 1 mortal wound; on a 6, that enemy unit suffers D3 mortal wounds. That Dark Disciple model is then destroyed."
-            }
+            },
+            "textRosterFacts": [
+              {
+                "kind": "SOURCE_PROFILE_PRESENT",
+                "key": "sourceProfilePresent",
+                "roleId": "source",
+                "profileId": "datasheet-dark-apostle:profile:2",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "contains one or more Dark Disciple models"
+                }
+              }
+            ]
           }
         ]
       }
@@ -13631,7 +13645,21 @@
                 "text"
               ],
               "quote": "Brutal Example: Once per turn, while this unit is leading a unit and contains a TRAITOR ENFORCER model, you can target that unit with the Fire Overwatch Stratagem for 0CP, and can do so even if you have already targeted a different unit from your army with that Stratagem this turn. Each time you use this ability, one Bodyguard model in that unit is destroyed."
-            }
+            },
+            "textRosterFacts": [
+              {
+                "kind": "SOURCE_PROFILE_PRESENT",
+                "key": "sourceProfilePresent",
+                "roleId": "source",
+                "profileId": "datasheet-traitor-enforcer:profile:1",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "contains a TRAITOR ENFORCER model"
+                }
+              }
+            ]
           }
         ]
       }

@@ -6,6 +6,7 @@ import {predicateContext,createSelectedSourceFieldPredicate,sourceEquipmentSelec
 import {equipmentSatisfied} from './effects.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
 import {resolvePhysicalStaticModelEffects} from './physical-static-model.mjs';
+import {createTextRosterFactEvaluator} from './text-roster-facts.mjs';
 
 const at=(value,path)=>path.reduce((item,key)=>item?.[key],value);
 const all=values=>values.includes('FALSE')?'FALSE':values.every(value=>value==='TRUE')?'TRUE':'UNKNOWN';
@@ -171,7 +172,9 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
               if(member(node))return selectedSourceField(undefined,undefined,[requirement.entityId],[node.arguments.equals])?'TRUE':'UNKNOWN';
               return selectedSourceField(undefined,undefined,[requirement.entityId])?'TRUE':'FALSE';
             };
-            const evaluate=(node,fallback)=>textGate(node,fallback,resolveRole,evaluatePredicate,equipmentCondition);
+            const textFact=createTextRosterFactEvaluator({book,state,projection,records,rule,clause,source,target,targetContext});
+            const evaluate=(node,fallback)=>textGate(node,fallback,resolveRole,evaluatePredicate,
+              node=>equipmentCondition(node)??textFact(node));
             const roleGate=(roleId,seen=new Set())=>{
               if(seen.has(roleId))return false;
               seen=new Set([...seen,roleId]);const role=roles.get(roleId),ctx=resolveRole(roleId);

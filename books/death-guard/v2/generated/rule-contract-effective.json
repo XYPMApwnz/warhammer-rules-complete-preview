@@ -26925,6 +26925,14 @@
                       }
                     }
                   ]
+                },
+                "binding": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed."
                 }
               }
             ],
@@ -26970,8 +26978,70 @@
               "reason": "Requires attack/test resolution, phase/usage availability, battlefield proximity, selected Plague, or a pregame declaration event."
             },
             "rosterEffects": [],
-            "recipients": [],
-            "recipientStatus": "NOT_RECORDED"
+            "textRosterFacts": [
+              {
+                "kind": "MEMBER_OF_SOURCE_UNIT",
+                "key": "memberOfBearerUnit",
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "from the bearer’s unit"
+                }
+              }
+            ],
+            "recipients": [
+              {
+                "id": "bodyguard-destruction::recipient/role/1",
+                "who": "MODEL",
+                "roleId": "affected-bodyguard-model",
+                "side": "FRIENDLY",
+                "from": "SOURCE_FORMED_MODELS",
+                "purpose": "EFFECT_RECIPIENT",
+                "selector": {
+                  "op": "ALL",
+                  "args": [
+                    {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "isBodyguardModel",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "Bodyguard models"
+                      }
+                    },
+                    {
+                      "predicate": "FIELD",
+                      "subject": "MODEL",
+                      "contextLevel": "ROSTER",
+                      "arguments": {
+                        "key": "memberOfBearerUnit",
+                        "equals": true
+                      },
+                      "evidence": {
+                        "field": [
+                          "text"
+                        ],
+                        "quote": "from the bearer’s unit"
+                      }
+                    }
+                  ]
+                },
+                "evidence": {
+                  "field": [
+                    "text"
+                  ],
+                  "quote": "Each time the bearer makes one or more attacks with a Plague Wind weapon, after the bearer’s unit has resolved its attacks, D3 Bodyguard models from the bearer’s unit are destroyed."
+                }
+              }
+            ],
+            "recipientStatus": "RECORDED"
           }
         ],
         "sourceFields": [

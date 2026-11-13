@@ -1,4 +1,5 @@
 import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
+import {validateBookTextRosterFacts} from '../../shared/roster-v2/text-roster-facts.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
@@ -106,6 +107,7 @@ export function buildCSMContracts({facts=readJson('generated/effective.json'),in
       currentness:{acceptedBaseHead:facts.acceptedBaseHead,sourceEvidence:entity.provenance.sourceEvidence}});
   }
   recordReviewedTextRecipients(book,readJson('recipient-declarations.json'));
+  validateBookTextRosterFacts(book);
   const valid=schema.evaluator.validateContractDeclarations(book);
   assert.equal(valid.rules,declarations.size);
   rejectPairwiseAuthority(book);
