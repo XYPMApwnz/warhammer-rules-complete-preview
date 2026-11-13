@@ -198,10 +198,10 @@ test('Bearer-owned weapons remain isolated from Disciples and attached Bodyguard
   service.attach(bodyguard.instanceId,a.instanceId);assert.ok(rows(service.projection,f).every(row=>row.targetInstanceId===a.instanceId));
   service.detach(a.instanceId);assert.deepEqual(profile(service.projection,a.instanceId).weapons,profile(runtime(f).projection,a.instanceId).weapons);
 });
-test('Fabius requires explicit initial attachment and does not transfer to another Bodyguard',()=>{
+test('Fabius defaults to roster formation and explicit history does not transfer',()=>{
   const f=fixture('datasheet-fabius-bile:section:1:block:0:text','bodyguard-toughness'),service=runtime(f),state=service.snapshot();
   assert.ok(rows(service.projection,f).length);const absent=clone(state);delete absent.initialAttachments;
-  assert.equal(rows(runtimeFromState(absent).projection,f).length,0,'Current attachment must not invent initial history');
+  assert.ok(rows(runtimeFromState(absent).projection,f).length,'Roster attachment qualifies when explicit history is absent');
   service.detach(state.units[0].instanceId);assert.equal(rows(service.projection,f).length,0);
   service.reattach(state.units[3].instanceId,state.units[0].instanceId);assert.equal(rows(service.projection,f).length,0);
   service.reattach(state.units[2].instanceId,state.units[0].instanceId);assert.ok(rows(service.projection,f).length);

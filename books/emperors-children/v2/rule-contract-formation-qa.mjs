@@ -163,9 +163,12 @@ const hostGranted=r=>{assert.ok(hasModel(r,'l','core-infiltrators'));assert.ok(h
   const scouts=physical(r,'l').profiles[0].abilities.find(a=>a.canonicalId==='core-scouts');assert.deepEqual(scouts.parameters,{distance:6});
   for(const id of ['other','a','b','f']){assert.equal(hasModel(r,id,'core-infiltrators'),false);assert.equal(hasModel(r,id,'core-scouts'),false);}};
 check(()=>{
-  let r=change(evaluate(hostState()),'ATTACH','l','a');assert.equal(hasModel(r,'l','core-scouts'),false,'Current attachment is not timing evidence');
+  let r=change(evaluate(hostState()),'ATTACH','l','a');hostGranted(r);
   const context=createFormationContext(book,r.state,schema),predicate=effects(added.find(c=>c.ruleId===HOST))[0].conditions[0].predicate;
-  assert.equal(context.evaluatePredicate(predicate,predicateContext(r.state,r.projection,'l','MODEL')),'UNKNOWN');
+  assert.equal(context.evaluatePredicate(predicate,predicateContext(r.state,r.projection,'l','MODEL')),'TRUE');
+  const unattached=change(r,'DETACH','l');assert.equal(hasModel(unattached,'l','core-scouts'),false);
+  assert.equal(hasModel(unattached,'l','core-infiltrators'),false);
+  assert.equal(createFormationContext(book,unattached.state,schema).evaluatePredicate(predicate,predicateContext(unattached.state,unattached.projection,'l','MODEL')),'FALSE');
   r=evaluate(confirm(structuredClone(r.state)));hostGranted(r);
   r=change(r,'DETACH','l');hostGranted(r); // source specifies no loss-on-detach clause
   r=change(r,'REATTACH','l','b');hostGranted(r);assert.deepEqual(evaluate(r.state).projection,r.projection);
@@ -181,6 +184,8 @@ check(()=>{
   const nonBattleline=structuredClone(book);nonBattleline.entities.find(e=>e.id==='unit-infractors').data.keywords=
     nonBattleline.entities.find(e=>e.id==='unit-infractors').data.keywords.filter(k=>k!=='BATTLELINE');
   input=hostState();input.attachments=[{leaderInstanceId:'l',bodyguardInstanceId:'a',role:'LEADER'}];
+  assert.equal(hasModel(evaluate(input,nonBattleline),'l','core-scouts'),false,'Implicit formation still requires BATTLELINE');
+  assert.equal(hasModel(evaluate(input,nonBattleline),'l','core-infiltrators'),false);
   r=evaluate(confirm(input),nonBattleline);assert.equal(hasModel(r,'l','core-scouts'),false,'Non-BATTLELINE recipient does not qualify');
 });
 check(()=>{

@@ -248,8 +248,8 @@ try{
    assert.match(visible.find(v=>v.id==='parsed-unit-1').text,/Declare Battle Formations/);
    assert.match(visible.find(v=>v.id==='parsed-unit-1').text,/Once per battle, at the start of the Fight phase/);
    assert.match(visible.find(v=>v.id==='parsed-unit-2').text,/Infractor/);
-   assert.equal((await snapshot(page)).initialAttachmentStep,undefined,'Current attachment cannot fabricate timing evidence');
-   assert.equal(await page.locator('main .unit-card[data-roster-instance-id="parsed-unit-1"] .shared-abilities [data-target-id="core-scouts"],main .unit-card[data-roster-instance-id="parsed-unit-1"] .shared-abilities [data-target-id="core-infiltrators"]').count(),0,'Unconfirmed Lord of the Host became permanent on Exultant MODEL');
+   assert.equal((await snapshot(page)).initialAttachmentStep,undefined,'The default formation does not write an explicit timing snapshot');
+   assert.equal(await page.locator('main .unit-card[data-roster-instance-id="parsed-unit-1"] .shared-abilities [data-target-id="core-scouts"],main .unit-card[data-roster-instance-id="parsed-unit-1"] .shared-abilities [data-target-id="core-infiltrators"]').count(),2,'Roster formation grants Scouts and Infiltrators to the Exultant MODEL');
    await guide(page);assert.equal(await page.locator('main [data-roster-nav-instance-id]').count(),2);
    await guideUnit(page,'parsed-unit-2');assert.equal((await units(page)).length,2);
    await page.reload();await ready(page);assert.equal((await snapshot(page)).attachments.length,1);

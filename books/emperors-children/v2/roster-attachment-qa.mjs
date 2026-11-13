@@ -92,8 +92,8 @@ check(()=>{
 });
 check(()=>{
   const {s}=imported(fixture('character-bodyguard'));s.attach('parsed-unit-2','parsed-unit-1');
-  assert.equal(has(s,'parsed-unit-1','core-scouts'),false);assert.equal(has(s,'parsed-unit-1','core-infiltrators'),false);
-  assert.equal(s.state.initialAttachmentStep,undefined,'Current attachment never fabricates historical evidence');
+  assert.ok(has(s,'parsed-unit-1','core-scouts'));assert.ok(has(s,'parsed-unit-1','core-infiltrators'));
+  assert.equal(s.state.initialAttachmentStep,undefined,'The default formation does not write an explicit timing snapshot');
   const undated=s.snapshot();undated.initialAttachments=clone(undated.attachments);s.load(undated);assert.equal(has(s,'parsed-unit-1','core-scouts'),false);
   const confirmed=s.snapshot();confirmed.initialAttachmentStep='DECLARE_BATTLE_FORMATIONS';s.load(confirmed);
   assert.ok(has(s,'parsed-unit-1','core-scouts'));assert.ok(has(s,'parsed-unit-1','core-infiltrators'));

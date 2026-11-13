@@ -216,7 +216,8 @@ check('equipped weapon choice then historical attachment preserves reviewed wrap
     book:detachmentEligibilityBook,state:ecState,schema,inputs,rosterDetachments}),/bearer/,
     'Equipped eligibility must keep the original schema even when final evaluation wraps Detachments');
   const missingHistory=clone(ecState);delete missingHistory.initialAttachmentStep;delete missingHistory.initialAttachments;
-  assert.equal(condition(createRosterConditionBinding({book:ecBook,state:missingHistory,schema,inputs}).bindContext(context()),'initialAttachmentBattleline').present,false);
+  const implicitFormation=condition(createRosterConditionBinding({book:ecBook,state:missingHistory,schema,inputs}).bindContext(context()),'initialAttachmentBattleline');
+  assert.equal(implicitFormation.present,true);assert.equal(implicitFormation.value,false,'The unattached roster is a known negative formation');
   const invalid=clone(ecState);invalid.initialAttachmentStep='WRONG';
   assert.throws(()=>createRosterConditionBinding({book:ecBook,state:invalid,schema,inputs}),/step/);
   assert.equal(condition(bound.bindContext(context()),'initialAttachmentBattleline').value,true);

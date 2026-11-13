@@ -311,10 +311,10 @@ check('Presentation rejects foreign components, text, source paths and card owne
   const field=altered.get(row.ruleId).fields.find(field=>field.source?.path==='/blocks/0/text');field.value+=' Changed';
   assert.throws(()=>validateAttachedRuleTextPresentation(altered,unit,effective,row),/canonical text/);
 });
-check('Fabius: current attachment cannot substitute for initialAttachments',()=>{
+check('Fabius: roster formation is the default and explicit initial history wins',()=>{
   const book=books.get('chaos-space-marines'),scenario=fixture(book,['Enhanced Warriors','fabius-bile','chosen']);
   const state=attached(book,scenario.state);
-  assert.equal(matching(view(book,state,'body').rows,scenario).length,0,'Unknown initial attachment is withheld');
+  assert.equal(matching(view(book,state,'body').rows,scenario).length,1,'Roster formation permits the bodyguard text');
   const initial=clone(state);initial.initialAttachments=clone(state.attachments);
   assert.equal(matching(view(book,initial,'body').rows,scenario).length,1,'Explicit initial attachment permits the bodyguard text');
   const falseInitial=clone(state);falseInitial.initialAttachments=[];

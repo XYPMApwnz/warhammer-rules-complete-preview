@@ -139,11 +139,13 @@ test('Cult Demagogue exact canonical profile presence controls invulnerable gran
   withoutRow(input,0,0);assert.equal(applied(outputs(input),rule).length,0);
   input.attachments=[];assert.equal(applied(outputs(input),rule).length,0);
 });
-test('Fabius requires explicit matching initial attachment and bodyguard scope',()=>{
+test('Fabius uses roster formation unless explicit initial history is supplied',()=>{
   const id='datasheet-fabius-bile:section:1:block:0:text';
   const input=state('renegade-raiders',[physical('leader','unit-fabius-bile'),physical('bodyguard','unit-legionaries'),
     physical('other','unit-legionaries')],[edge('leader','bodyguard')]);
-  assert.equal(applied(outputs(input),id).length,0,'Current attachment must not invent initial attachment');
+  assert.ok(applied(outputs(input),id).length,'Roster formation supplies the initial attachment');
+  const unattached=clone(input);unattached.attachments=[];
+  assert.equal(applied(outputs(unattached),id).length,0,'Unattached Fabius has no Bodyguard to enhance');
   input.initialAttachments=[];assert.equal(applied(outputs(input),id).length,0);
   input.initialAttachments=[edge('leader','bodyguard')];
   const yes=outputs(input);assert.ok(applied(yes,id).length);
