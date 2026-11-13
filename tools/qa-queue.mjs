@@ -47,6 +47,7 @@ node('tests/source-book-clone-qa.mjs',['--root='+root]);
 if(!fs.existsSync(path.join(root,'tests/source-book-clone-qa.mjs')))jobs.at(-1).args[0]=path.join(harnessRoot,'tests/source-book-clone-qa.mjs');
 node('books/shared/source-refs-v2/source-catalog-qa.mjs');
 if(mode==='pre-ff'){
+ node('v2/unit-recipient-scope-qa.mjs');
  node('tests/book-update-declarations-qa.mjs');
  node('tests/book-update-report-qa.mjs');
  node('tests/book-update-snapshots-qa.mjs');
@@ -70,6 +71,9 @@ if(mode==='pre-ff'){
  // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
  expand(pkg.scripts['test:browser']);
+ // Each fixture is admitted once by the existing recipient browser runner.
+ node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json']);
+ node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json']);
  node('books/core-rules/tests/core-switch-browser-qa.mjs');
  node('tools/pages-runtime-package-qa.mjs',['--source',root,'--published',path.join(work,'runtime'),'--work',path.join(work,'packaging')]);
  for(const f of ['tests/source-enrollment-qa.mjs','books/shared/tools/source-freshness.mjs','tests/source-ingestion-contract-qa.mjs','books/shared/army-book-app-v2/keyword-attribution-qa.mjs'])node(f);

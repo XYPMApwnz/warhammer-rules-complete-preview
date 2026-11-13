@@ -16,6 +16,23 @@ const out=path.resolve(option('--out')||createQaEvidenceDir('wh-dg-am-enrollment
 assert.ok(out!==repo&&!out.startsWith(repo+path.sep),'Keep browser evidence outside the repository');
 fs.mkdirSync(out,{recursive:true});
 const norm=value=>String(value).replace(/\s+/g,' ').replace(/[‘’]/g,"'").trim();
+// The accepted SM presentation removes only this exact repeated first line.
+// Keep independent source expectations for the complete restriction and body.
+function enhancementExpectation(c,value=c.canonical.text){
+  const prefix='- '+c.rule+'\n';
+  if(!value?.startsWith(prefix))return null;
+  const text=value.slice(prefix.length),end=text.indexOf('.');
+  assert(end>=0,'Source enhancement restriction is complete');
+  const restriction=text.slice(0,end+1),body=text.slice(end+1).trimStart();
+  assert.match(restriction,/\b(?:model|unit)\b.*\bonly\.$/,'Source enhancement restriction is explicit');
+  assert(body,'Source enhancement body is complete');
+  return {text,restriction,body};
+}
+function assertEnhancementCopy(actual,wanted){
+  assert.deepEqual(actual.restrictions,[wanted.restriction],'Complete enhancement restriction on the same physical block');
+  assert.deepEqual(actual.bodies,[wanted.body],'Full enhancement body on the same physical block');
+  assert.equal(norm(actual.displayText),norm(wanted.text),'Full source text after removing only the exact repeated heading');
+}
 const fixtures=option('--fixtures')?JSON.parse(fs.readFileSync(option('--fixtures'),'utf8')):
   ['death-guard','adeptus-mechanicus'].flatMap(book=>{const file=path.join(repo,'books',book,'v2/recipient-enrollment-qa.json');return fs.existsSync(file)?[JSON.parse(fs.readFileSync(file,'utf8'))]:[];});
 if(process.argv.includes('--equipment-only'))fixtures.push(...JSON.parse(fs.readFileSync(new URL('./fixtures/source-equipment-entity-browser.json',import.meta.url),'utf8')));
@@ -84,7 +101,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
   const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(node=>({
     ruleId:node.dataset.attachedRuleId,sourceInstanceId:node.dataset.sourceInstanceId,sourcePath:JSON.parse(node.dataset.sourceFieldPath),
     title:node.querySelector('h5')?.textContent||'',text:node.querySelector('[data-attached-rule-text]')?.textContent||'',
-    visible:!!node.getClientRects().length,content:node.innerText})));
+    visible:!!node.getClientRects().length,content:node.innerText,
+    restrictions:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-restriction]')].map(part=>part.textContent),
+    bodies:[...node.querySelectorAll('[data-attached-rule-text] [data-enhancement-body]')].map(part=>part.textContent),
+    displayText:node.querySelector('[data-attached-rule-text]')?.innerText||''})));
   const found=rows.filter(row=>norm(row.title)===norm(c.rule));
   assert.equal(found.length,wanted?1:0,`${c.rule}: ${stage} ${mode} on ${id}`);
   if(wanted){
@@ -94,9 +114,11 @@ async function inspect(page,c,device,mode,id,stage,wanted){
     assert.equal(row.ruleId,c.canonical.ruleId,'Exact canonical rule identity');assert.deepEqual(row.sourcePath,c.canonical.sourcePath,'Exact source block');
     const prefix=row.title+':';
     const expectedBody=c.canonical.text.startsWith(prefix)?c.canonical.text.slice(prefix.length):c.canonical.text;
-    assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
+    const enhancement=enhancementExpectation(c);
+    if(enhancement)assertEnhancementCopy(row,enhancement);
+    else assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
     assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
-    if(c.quote)assert.ok(norm(row.text).includes(norm(body)),'Full independent accepted source text, including conditions');
+    if(c.quote)assert.ok(norm(enhancement?row.displayText:row.text).includes(norm(enhancementExpectation(c,c.quote)?.text??body)),'Full independent accepted source text, including conditions');
     assert.ok(norm(row.content).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
     assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');
     const rowNode=card.locator('article[data-attached-rule-id]').filter({has:page.locator('h5',{hasText:c.rule})}).first();
@@ -151,7 +173,24 @@ try{
           const ownerText=await page.locator('main .unit-card[data-roster-instance-id="'+first.ownerInstance+'"]').innerText();
           for(const c of group){
             const original=c.canonical.text.startsWith(c.rule+':')?c.canonical.text.slice(c.rule.length+1):c.canonical.text;
-            assert.equal(norm(ownerText).includes(norm(original)),c.expectedOwner??true,'Owner uses the same physical equipment source gate');
+            const enhancement=enhancementExpectation(c);
+            if(enhancement){
+              const ownerRule=page.locator('main .unit-card[data-roster-instance-id="'+c.ownerInstance+'"] [data-enhancement-owner-instance-id="'+c.ownerInstance+'"][data-card-id="'+c.canonical.ruleId+'"]');
+              assert.equal(await ownerRule.count(),(c.expectedOwner??true)?1:0,'One selected enhancement on the exact physical owner');
+              if(c.expectedOwner??true){
+                assert.ok(await ownerRule.isVisible(),'Owner enhancement is visible');
+                const copy=await ownerRule.evaluate(node=>({
+                  restrictions:[...node.querySelectorAll('[data-enhancement-restriction]')].map(part=>part.textContent),
+                  bodies:[...node.querySelectorAll('[data-enhancement-body]')].map(part=>part.textContent),
+                  displayText:node.querySelector('[data-enhancement-text]')?.innerText||'',
+                  heading:node.querySelector('h4 .book-fact-value')?.textContent,
+                  ruleId:node.dataset.cardId,owner:node.dataset.enhancementOwnerInstanceId}));
+                assert.equal(copy.ruleId,c.canonical.ruleId,'Exact owner rule identity');
+                assert.equal(copy.owner,c.ownerInstance,'Exact physical enhancement owner');
+                assert.equal(copy.heading,c.rule,'One exact source heading');
+                assertEnhancementCopy(copy,enhancement);
+              }
+            }else assert.equal(norm(ownerText).includes(norm(original)),c.expectedOwner??true,'Owner uses the same physical equipment source gate');
           }
           const before=await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection));
           for(const mode of ['Effective','Guide']){
