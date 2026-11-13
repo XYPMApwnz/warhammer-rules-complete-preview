@@ -44,6 +44,12 @@ unless you explicitly run `mfm:update` without saved input.
    is already present in DG: do not add it a second time. Use the exact value
    types (`"4"` is different from `4`). Only additions may omit
    `expectedBefore`.
+   If a text update affects a rule with executable clauses, roster effects or
+   conditions, add `"effectReview": "unchanged"` (or `"updated"`) and a short
+   `"effectReviewNote"` explaining the review. Missing review stops the build.
+   The flag does not update effects: any effect change needs its own accepted
+   implementation. Check the **Automation review for GW text updates** block
+   at the beginning of the report before accepting the outputs.
 2. Complete the normal source acceptance checks. If authentication requires
    committed source bytes, commit those accepted input changes locally first.
    A source-review rejection needs explicit acceptance of the exact changed

@@ -21,3 +21,10 @@ are declarations interpreted by the same code, not book-specific callbacks.
 
 `BOOK_UPDATE_OFFICIAL_LOG` optionally collects successful applications outside
 the checkout for the update command's report. It does not alter generated data.
+
+Text updates to an automated rule require `effectReview: "unchanged"` or
+`"updated"`, together with a short `effectReviewNote`. Fresh contract producers
+check this before publishing contracts, including executable clauses, roster
+effects and conditions. They never read their previous generated output for
+this decision. The update report lists these reviews before book changes.
+The review metadata does not itself change an effect or approve a new one.

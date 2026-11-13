@@ -1,3 +1,4 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {recordReviewedTextRecipients} from '../../shared/rule-contract-v2/reviewed-text-recipients.mjs';
@@ -109,6 +110,7 @@ export function buildCSMContracts({facts=readJson('generated/effective.json'),in
   assert.equal(valid.rules,declarations.size);
   rejectPairwiseAuthority(book);
   assert.equal(JSON.stringify(facts),original,'Canonical factual input mutated');
+  assertBookOfficialEffectReviews(book);
   if(recipientStage==='CANONICAL'){finalizeRecipientBook(book);schema.evaluator.validateContracts(book);}
   return {facts,...semantic,schema,declarations,classifications,inventory};
 }

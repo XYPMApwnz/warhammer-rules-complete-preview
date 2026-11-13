@@ -1,3 +1,4 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
 import {parseProducerJSON,serializeSourceJSON,prepareSourceProducer} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {compileConditionSchema} from '../../shared/rule-contract-v2/conditions-build.mjs';
@@ -105,6 +106,7 @@ export function buildAdMechContracts({book=readJson('generated/effective.json'),
   }
   const valid=schema.evaluator.validateContractDeclarations(result);
   assert.equal(valid.rules,owners.length-blockedIds.size,'Owner accounting mismatch');
+  assertBookOfficialEffectReviews(result);
   finalizeRecipientBook(result);
   schema.evaluator.validateContracts(result);
   return {book:result,schema,declarations,inventory,blocked,blockedIds};

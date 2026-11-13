@@ -252,6 +252,12 @@ export function renderBookUpdateReport({status='PASS',elapsedMs=0,books=[],gener
  if(scope)lines.push('',`Scope: ${scope}`);
  if(buildPasses>1)lines.push('',`Build passes: ${buildPasses}. The selected declared plan was rebuilt after a shared output changed, keeping source serialization fresh.`);
  if(error)lines.push('','## Failure','',escape(error));
+ const reviewed=officialUpdates.filter(row=>row.effectReview);
+ if(reviewed.length){
+  lines.push('','## Automation review for GW text updates','','Confirm that the declared automation review covers the accepted wording change.','',
+   '| Book | Rule / field | Update | Effect review | Note |','| --- | --- | --- | --- | --- |');
+  for(const row of reviewed)lines.push(`| ${escape(row.bookId)} | ${escape(valueText(row.target.id??row.target.sourceLocator?.identity)+' · '+row.target.field.join('/'))} | ${escape(row.id)} | ${escape(row.effectReview)} | ${escape(row.effectReviewNote)} |`);
+ }
  for(const book of books){
   lines.push('',`## ${escape(book.bookTitle||book.bookId)}`,'');
   if(!book.changes.length)lines.push('No gameplay values changed.');

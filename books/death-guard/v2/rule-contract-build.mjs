@@ -1,3 +1,4 @@
+import {assertBookOfficialEffectReviews} from '../../shared/official-updates-v1/effect-review.mjs';
 import {parseProducerJSON,serializeSourceJSON} from '../../shared/source-refs-v2/producer-io.mjs';
 import {finalizeRecipientBook} from '../../shared/rule-contract-v2/finalize-recipients.mjs';
 import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
@@ -81,6 +82,7 @@ export function buildRuleContractV2() {
       distinctCanonicalLeaders:true,sourceIds:[relation.mfmRecordId,...(exception?[exception.sourceEntityId]:[])]};
   });
   extended.compatibilityFeasibility=buildCompatibilityFeasibility(extended);
+  assertBookOfficialEffectReviews(extended);
   finalizeRecipientBook(extended);
   validateContracts(extended);
   validateRosterEffects(extended,validatePredicate,evaluatePredicate);

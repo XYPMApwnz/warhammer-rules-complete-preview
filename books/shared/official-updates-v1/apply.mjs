@@ -1,5 +1,6 @@
 /** One transactional field/record interpreter. No book-specific mutation code. */
 import assert from 'node:assert/strict';
+import {changesRuleText,hasAutomation,requireEffectReview} from './effect-review-policy.mjs';
 export const OFFICIAL_SCHEMA='army-book-official-updates/v1';
 export const ACTIONS=Object.freeze(['SET','ADD_FIELD','ADD_UNIQUE','ADD_RECORD','REMOVE_FIELD','REMOVE_RECORD','REPLACE_FRAGMENT','QUALIFY','VERIFY_CURRENT','UNRESOLVED_EVIDENCE']);
 const TEXT=['text','description','body','lines','blocks','effect','target','when','duration','restrictions','abilities','rules','sourceText','label'];
@@ -25,7 +26,8 @@ export function validateOfficialUpdates(document,{bookId=document?.bookId,stage}
  for(const row of document.initialize||[]){keys(row,['path','value'],['path','value'],bookId,id,'initialize');fieldPath(row.path,bookId,id,'initialize.path');if(!metadataRoots.has(row.path[0]))fail(bookId,id,'unknown initialized metadata field');safeValue(row.value,bookId,id);}
  for(const row of document.projection||[])validateProjection(row,bookId,id);
  const ids=new Set();for(const e of document.entries){
-  keys(e,['id','source','target','kind','operation','expectedBefore','after','fragment','provenance','annotations','supersedes','projection'],['id','source','target','kind','operation','after'],bookId,e?.id||'entry','entry');if(typeof e.id!=='string'||!e.id||ids.has(e.id))fail(bookId,e.id,'duplicate or missing update id');ids.add(e.id);
+  keys(e,['id','source','target','kind','operation','expectedBefore','after','fragment','provenance','annotations','supersedes','projection','effectReview','effectReviewNote'],['id','source','target','kind','operation','after'],bookId,e?.id||'entry','entry');if(typeof e.id!=='string'||!e.id||ids.has(e.id))fail(bookId,e.id,'duplicate or missing update id');ids.add(e.id);
+  if(has(e,'effectReview')||has(e,'effectReviewNote')){if(!['unchanged','updated'].includes(e.effectReview)||typeof e.effectReviewNote!=='string'||!e.effectReviewNote.trim())fail(bookId,e.id,'effectReview requires unchanged or updated and a non-empty effectReviewNote');}
   if(!ACTIONS.includes(e.operation))fail(bookId,e.id,'unknown operation '+e.operation);if(!Object.hasOwn(KIND_FIELDS,e.kind))fail(bookId,e.id,'unknown kind '+e.kind);
   if(!['ADD_FIELD','ADD_RECORD'].includes(e.operation)&&!has(e,'expectedBefore'))fail(bookId,e.id,'expectedBefore is required');
   keys(e.source,['id','document','version','page','authority','effectiveFrom','status','supersedes','sha256','locator'],['id','document','version','page','authority'],bookId,e.id,'source');for(const k of['id','document','version'])if(typeof e.source[k]!=='string'||!e.source[k])fail(bookId,e.id,'source.'+k+' is required');if(e.source.authority!=='OFFICIAL_GW')fail(bookId,e.id,'accepted official source required');if(!(e.source.page===null||Number.isSafeInteger(e.source.page)&&e.source.page>0||Array.isArray(e.source.page)&&e.source.page.length&&e.source.page.every(p=>Number.isSafeInteger(p)&&p>0)))fail(bookId,e.id,'invalid source page');
@@ -78,6 +80,12 @@ function resolveTarget(model,selection,e,book){
  if(e.target.sourceLocator){const l=e.target.sourceLocator,entity=valueAt(model,l.pointer,book,e.id,'target locator'),owner=l.identityPointer===undefined?entity:valueAt(model,l.identityPointer,book,e.id,'source owner');assert.deepEqual(valueAt(owner,l.identityPath,book,e.id,'source identity'),l.identity,`${book} · ${e.id}: source identity changed`);const parent=l.pointer.length?valueAt(model,l.pointer.slice(0,-1),book,e.id,'target parent'):null;return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),entityPath:l.pointer,dataPath:[...l.pointer,...selection.data],...(Array.isArray(parent)?{collection:parent,index:l.pointer.at(-1)}:{})};}
  const list=valueAt(model,selection.collection,book,e.id,'target collection');if(!Array.isArray(list))fail(book,e.id,'target collection is not an array');const matches=list.map((entity,index)=>({entity,index})).filter(x=>x.entity[selection.identity]===e.target.id);if(matches.length!==1)fail(book,e.id,`target ${e.target.id}: expected exactly 1, found ${matches.length}`);const{entity,index}=matches[0],entityPath=[...selection.collection,index];return{entity,data:valueAt(entity,selection.data,book,e.id,'target data'),entityPath,dataPath:[...entityPath,...selection.data],collection:list,index};
 }
+/** Shared exact addressing for inspection/guards, never a second interpreter. */
+export function resolveOfficialUpdateTarget(model,document,entry,{bookId=document.bookId}={}){
+ const selected=resolveTarget(model,document.selection,entry,bookId);
+ for(const guard of entry.target.guards||[])assert.deepEqual(valueAt(selected.entity,guard.path,bookId,entry.id,'target guard'),guard.expected,`${bookId} · ${entry.id}: target guard changed (${guard.path.join('/')})`);
+ return selected;
+}
 export function applyOfficialUpdates(input,document,{bookId=document?.bookId,stage,sources}={}){
  validateOfficialUpdates(document,{bookId,stage});const model=copy(input),applied=[],writes=[];const context={entry:undefined,source:undefined,entity:undefined,before:undefined,effective:undefined,beforeExists:false,changed:false};
  for(const row of document.initialize||[])metadata(model,model,{scope:'root',mode:'set',...row},context,bookId,'document');
@@ -88,6 +96,7 @@ export function applyOfficialUpdates(input,document,{bookId=document?.bookId,sta
   const selected=resolveTarget(model,document.selection,entry,bookId),{entity,data}=selected;for(const guard of entry.target.guards||[])assert.deepEqual(valueAt(entity,guard.path,bookId,entry.id,'target guard'),guard.expected,`${bookId} · ${entry.id}: target guard changed (${guard.path.join('/')})`);
   const field=entry.target.field;let host=data;for(const part of field.slice(0,-1)){if(!has(host,part)||host[part]===null||typeof host[part]!=='object')fail(bookId,entry.id,'unresolved field '+field.join('/'));host=host[part];}
   const key=field.at(-1),exists=field.length?has(host,key):true,before=copy(field.length?host[key]:entity);
+  if(changesRuleText(entry)&&hasAutomation(entity.ruleContract))requireEffectReview(bookId,entity.id||entry.target.id,entry);
   if(has(entry,'expectedBefore')){const matches=isAbsent(entry.expectedBefore)?!exists:(()=>{try{assert.deepEqual(before,entry.expectedBefore);return exists;}catch{return false;}})();if(!matches)fail(bookId,entry.id,`GW update no longer matches: ${bookId} · ${entry.target.id||entry.target.sourceLocator.identity} · ${field.join('/')}: expected ${JSON.stringify(entry.expectedBefore)}, found ${exists?JSON.stringify(before):'<absent>'}`);}
   if(!['VERIFY_CURRENT','UNRESOLVED_EVIDENCE'].includes(entry.operation)){
    let address=physicalAddress(model,entry.operation==='REMOVE_RECORD'?selected.entityPath:[...selected.dataPath,...field],document.selection);
@@ -114,7 +123,7 @@ export function applyOfficialUpdates(input,document,{bookId=document?.bookId,sta
   for(const row of[...(document.projection||[]),...(entry.projection||[])])if(row.when===undefined||row.when==='*'||row.when.includes(entry.operation))metadata(model,entity,row,context,bookId,entry.id);
   // A new record has no previous record. Do not turn an audit row into a copy
   // of the entire Army Book merely because the collection owns the addition.
-  applied.push({id:entry.id,bookId,kind:entry.kind,operation:entry.operation,source:copy(entry.source),target:copy(entry.target),before:entry.operation==='ADD_RECORD'?undefined:before,after:copy(entry.after),effective:entry.operation==='ADD_RECORD'?copy(entry.after):effective});
+  applied.push({id:entry.id,bookId,kind:entry.kind,operation:entry.operation,source:copy(entry.source),target:copy(entry.target),before:entry.operation==='ADD_RECORD'?undefined:before,after:copy(entry.after),effective:entry.operation==='ADD_RECORD'?copy(entry.after):effective,...(entry.effectReview?{effectReview:entry.effectReview,effectReviewNote:entry.effectReviewNote}:{})});
  }
  return{model,applied};
 }
