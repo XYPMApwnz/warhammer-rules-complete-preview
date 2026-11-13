@@ -6,6 +6,8 @@ import {verifyAcceptedMfmHistory} from './accepted-mfm-history.mjs';
 import {currentMfmContractExpectation} from './current-mfm-contract.mjs';
 import {getCurrentMfmSource} from '../../mfm/content/current-mfm-release.mjs';
 import {createEffectiveMfmCatalog} from '../../mfm/content/effective-mfm-catalog.mjs';
+import {readOfficialUpdates} from '../../books/shared/official-updates-v1/book.mjs';
+import {assertCurrentGwContracts} from './current-gw-contract.mjs';
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 function priorContracts(book,expected){
  const restored=[];
@@ -38,7 +40,9 @@ export function assertRealTargetContracts(bookId,expected){
   return record;
  };
  const currentExpected=accepted.map(row=>({...row,contract:currentMfmContractExpectation(row.contract,{bookId,resolveOwnedFact})}));
- assert.deepEqual(priorContracts(book,expected),currentExpected,'Existing roles/clauses/effects/conditions/CP/timing/duration changed');
+ assertCurrentGwContracts(priorContracts(book,expected),currentExpected,{
+  historicalBook:historical.decoded[runtimeFile],currentBook:book,document:readOfficialUpdates(bookId).document
+ });
  const single=declarations[0],old=()=>{const copy=structuredClone(book);const c=copy.entities.find(e=>e.id===single.ruleId).ruleContract;
   c.roles=c.roles.filter(r=>r.id!=='compatibility-target');delete c.compatibilityRoleIds;return copy;};
  const success=old(),data=hash(success.entities.map(e=>e.data));recordReviewedStratagemTargets(success,[single]);assert.equal(hash(success.entities.map(e=>e.data)),data);
