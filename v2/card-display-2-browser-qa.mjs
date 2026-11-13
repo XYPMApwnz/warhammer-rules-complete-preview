@@ -10,6 +10,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {displayDuplicateCensus} from './card-display-2-qa.mjs';
+import {sourceSnapshot,registerBookSources} from '../books/shared/source-refs-v2/source-refs.mjs';
 
 const option=name=>process.argv.find(arg=>arg.startsWith(name+'='))?.slice(name.length+1);
 const repo=path.resolve(option('--root')||fileURLToPath(new URL('../',import.meta.url)));
@@ -63,7 +64,7 @@ function count(text,quote){return text.split(quote).length-1;}
 async function inspect(page,c,mode,device,id){
   await view(page,id,mode);await page.evaluate(()=>document.fonts.ready);
   const projection=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
-  const payload=read(`books/${c.book}/v2/generated/app-presentation.json`),cards=new Map(payload.cards.map(card=>[card.id,card]));
+  const payload=read(`books/${c.book}/v2/generated/app-presentation.json`),cards=new Map(payload.cards.map(card=>[card.id,card]));registerBookSources(payload);
   const observed=await page.locator('main .unit-card[data-roster-instance-id]').evaluateAll(nodes=>nodes.map(node=>({
     id:node.dataset.rosterInstanceId,title:node.querySelector('h3')?.textContent,text:node.innerText,
     keywords:[...node.querySelectorAll('[data-datasheet-section="keywords"] [data-fact-id]')].map(field=>({id:field.dataset.factId,text:field.textContent})),
@@ -113,7 +114,17 @@ async function inspect(page,c,mode,device,id){
         else if(!sharedSource.sameModelScope)sourceIssue='Linked Source caption has a different model scope';
         else if(!sharedSource.accessibleRefs)sourceIssue='Linked Source accessible references do not match';
       }
-      return {text:row.innerText,identity,canonicalText:row.querySelector('p:last-child')?.textContent,
+      const ref=row.dataset.policyTextRef,text=ref?document.getElementById(ref):row.querySelector('p:last-child');
+      const sharedText=ref?{ref,unique:[...document.querySelectorAll('[id]')].filter(n=>n.id===ref).length===1,
+        visible:!!text?.getClientRects().length&&getComputedStyle(text).visibility!=='hidden',
+        sameCard:!!text&&text.closest('.unit-card')===node,
+        ruleId:text?.dataset.ruleId||text?.dataset.entityId,
+        fieldId:text?.dataset.factId||null,
+        sourceInstanceId:text?.dataset.sourceInstanceId??text?.closest('.unit-card')?.dataset.rosterInstanceId,
+        modelScope:text?.dataset.sourceModelScopeId??text?.closest('[data-composition-id]')?.dataset.compositionId??'',
+        provenance:text?.dataset.sourceProvenance?JSON.parse(text.dataset.sourceProvenance):null,
+        accessible:row.getAttribute('aria-details')===ref}:null;
+      return {text:row.innerText,identity,canonicalText:text?.textContent,sharedText,
         source:localSource||sourceIssue===null,sourceIssue,sharedSource};
     })
   })));
@@ -148,13 +159,22 @@ async function inspect(page,c,mode,device,id){
       assert.equal(row.text.includes('Conditional — Not automatically resolved'),baseline);
       assert.ok(row.source,'Typed policy source remains'+(row.sourceIssue?': '+row.sourceIssue:''));
       const proof=effective.conditional.find(proof=>proof.ruleId===row.identity.ruleId&&proof.clauseId===row.identity.clauseId);
+      if(!baseline){
+        assert.ok(row.sharedText?.unique&&row.sharedText.visible&&row.sharedText.sameCard&&row.sharedText.accessible,'Shared full source text must be unique, visible and on the same physical card');
+        assert.equal(row.sharedText.ruleId,row.identity.ruleId,'Shared text belongs to the exact rule');
+        assert.equal(row.sharedText.sourceInstanceId,proof.sourceInstanceId,'Shared text belongs to the exact physical source');
+        assert.equal(row.sharedText.modelScope,proof.sourceModelScopeId||'','Shared text preserves MODEL scope');
+        const source=cards.get(row.identity.ruleId);
+        assert.deepEqual(row.sharedText.provenance||sourceSnapshot(source,{book:payload}),row.identity.provenance,'Shared text has the same source evidence');
+        if(row.sharedText.fieldId)assert.ok(source.fields.some(field=>field.id===row.sharedText.fieldId&&field.value===proof.policy.contextQuote),'Shared canonical field retains the full original quote');
+      }
       assert.equal(row.canonicalText,proof.policy.contextQuote,'Original typed policy prose remains byte-for-byte intact');
     }
     if(c.id==='da-psychic-aura'&&card.id==='parsed-unit-2'){
       assert.ok(card.policies.length>=3,'Reachable real aura policies');
       assert.equal(card.policies.some(row=>row.text.includes('Recipient unresolved; requires measured')),baseline);
       for(const row of card.policies.filter(row=>/Martial Exemplar|No Hiding from the Watchers/.test(row.text)))
-        assert.match(row.text,/within 6"/,'Original range remains in canonical prose');
+        assert.match(row.canonicalText,/within 6"/,'Original range remains in canonical prose');
     }
     if(c.id==='am-lum'){
       const row=card.f1.find(row=>row.id==='detachment-luminen-auto-choir:rule');

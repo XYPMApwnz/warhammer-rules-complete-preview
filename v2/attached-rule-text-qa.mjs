@@ -159,10 +159,11 @@ check('DG recorded group rule transfers while personal and unrecorded siblings d
   const leaderText=view(book,state,'leader').rows.map(row=>row.text).join('\n');
   assert.match(leaderText,/Death Approaches/);assert.doesNotMatch(leaderText,/Icon of Despair/);
 });
-check('AM UNKNOWN roster prerequisite does not become TRUE',()=>{
+check('AM declared CHARACTER leading fact exposes Electro-infusion text only while attached',()=>{
   const book=books.get('adeptus-mechanicus');
   const scenario=fixture(book,['Electro-infusion','tech-priest-dominus','fulgurite-electro-priests',null,true]);
-  assert.equal(matching(view(book,attached(book,scenario.state),'leader').rows,scenario).length,0);
+  assert.equal(matching(view(book,scenario.state,'leader').rows,scenario).length,0);
+  assert.equal(matching(view(book,attached(book,scenario.state),'leader').rows,scenario).length,1);
 });
 check('The seven unproved range-origin links remain hidden on other components',()=>{
   const book=books.get('adeptus-mechanicus');
