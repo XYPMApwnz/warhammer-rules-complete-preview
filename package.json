@@ -7,6 +7,7 @@
   "scripts": {
     "core:build": "node books/core-rules/reader/build.mjs",
     "source:check": "node books/shared/tools/source-freshness.mjs && node tests/source-enrollment-qa.mjs && node tests/source-ingestion-contract-qa.mjs && node tests/sm-authenticated-bsdata-argument-binding-qa.mjs",
+    "qa:sm:prepare-bsdata": "node tools/prepare-sm-bsdata.mjs",
     "tau:sources:check": "node books/tau-empire/tools/extract-mfm.cjs --check && node books/tau-empire/tools/extract-wargear.cjs --check && node books/tau-empire/tools/extract-codex-parity.cjs --check && node books/tau-empire/tests/tau-empire-waha-source-corpus-qa.mjs && node books/tau-empire/tools/build-related-rules.mjs --check && node tests/tau-related-rules-owner-qa.mjs",
     "blood-angels:extract": "\"%USERPROFILE%\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" books/blood-angels/tools/extract-faction-pack.py && node books/blood-angels/tools/build-related-rules.mjs && node books/shared/tools/extract-bsdata-11e.mjs books/blood-angels/sources/bsdata-extract.config.json",
     "blood-angels:extract:check": "\"%USERPROFILE%\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" books/blood-angels/tools/extract-faction-pack.py --check && node books/blood-angels/tools/build-related-rules.mjs --check && node books/shared/tools/extract-bsdata-11e.mjs books/blood-angels/sources/bsdata-extract.config.json --check",

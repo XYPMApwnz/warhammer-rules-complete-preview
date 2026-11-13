@@ -36,6 +36,10 @@ for(const [operation,classification] of [['--check','OUTPUT_OR_CHECK_BEHAVIOR'],
 assert.deepEqual(validateForwardedArguments([]),[]);
 assert.throws(()=>validateForwardedArguments(['--candidate-dir','elsewhere']),/Unsupported Space Marines Faction Pack wrapper argument/);
 
+for(const file of Object.values(authenticatedInputPaths)){
+  if(!fs.existsSync(file))throw Error(`No prepared BSData checkout: run npm run qa:sm:prepare-bsdata (missing ${file})`);
+}
+
 let childInvocation;
 const outcome=runExtractor(['--check'],{
   spawn:(command,args,options)=>{
