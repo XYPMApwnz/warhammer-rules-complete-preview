@@ -4,7 +4,11 @@ Run `npm run qa:help` for the command list. Begin with minimum QA, add dependent
 
 `npm run qa:quick -- --books=am,dg` runs diff hygiene, the selected native books,
 shared effects/roster/integration and workflow checks. Without `--books`, only
-the shared gates run. `npm run qa:pre-ff` runs all nine books, the shared gates,
+the shared gates run. Accepted book keys are `am`, `ba`, `csm`, `da`, `dg`, `ec`,
+`sm`, `tau`, `tyranids`, and the alias `tyr` for `tyranids`. Repeated keys and
+aliases for the same book run that book once (`--books=tyr,tyranids` is equivalent
+to `--books=tyranids`). Use `node tools/qa-queue.mjs --help` for queue options.
+`npm run qa:pre-ff` runs all nine books, the shared gates,
 the existing browser suite, runtime packaging/determinism and the three source
 gates, plus keyword attribution and the full `glossary:check` producer gate.
 `qa:glossary` starts with strict cross-owner admission and published-reference

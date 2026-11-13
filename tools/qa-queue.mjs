@@ -7,11 +7,21 @@ import {fileURLToPath} from 'node:url';
 const args=process.argv.slice(2),option=name=>args.find(a=>a.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(option('--root')||fileURLToPath(new URL('../',import.meta.url)));
 const harnessRoot=fileURLToPath(new URL('../',import.meta.url));
+const books={am:'adeptus-mechanicus',ba:'blood-angels',csm:'chaos-space-marines',da:'dark-angels',dg:'death-guard',ec:'emperors-children',sm:'space-marines',tau:'tau-empire',tyranids:'tyranids'};
+const aliases={tyr:'tyranids'};
+const acceptedBookKeys=[...Object.keys(books),...Object.keys(aliases)];
+if(args.includes('--help')||args.includes('-h')){
+ console.log('Usage: node tools/qa-queue.mjs <quick|pre-ff> [--books=<keys>] [--list] [--out=<external-directory>]');
+ console.log('Accepted book keys: '+acceptedBookKeys.join(', ')+'. Alias: tyr = tyranids. Repeated books run once.');
+ console.log('quick: selected books and shared checks; without --books, shared checks only. pre-ff: all books and full verification gates.');
+ process.exit(0);
+}
 const mode=args[0];
 if(!['quick','pre-ff'].includes(mode))throw Error('Use quick or pre-ff');
-const books={am:'adeptus-mechanicus',ba:'blood-angels',csm:'chaos-space-marines',da:'dark-angels',dg:'death-guard',ec:'emperors-children',sm:'space-marines',tau:'tau-empire',tyranids:'tyranids'};
-const selected=mode==='pre-ff'?Object.keys(books):(option('--books')||'').split(',').filter(Boolean);
-if(new Set(selected).size!==selected.length||selected.some(b=>!books[b]))throw Error('Unknown or duplicate --books');
+const requested=(option('--books')||'').split(',').filter(Boolean);
+const unknown=requested.filter(b=>!Object.hasOwn(books,b)&&!Object.hasOwn(aliases,b));
+if(unknown.length)throw Error('Unknown --books key: '+unknown.join(', ')+'. Accepted book keys: '+acceptedBookKeys.join(', '));
+const selected=mode==='pre-ff'?Object.keys(books):[...new Set(requested.map(b=>aliases[b]||b))];
 if(!args.includes('--list')&&process.env.QA_SKIP_TMP_SWEEP!=='1'){
  const sweep=sweepQaTempDirs();console.log('[qa-temp] Sweep '+JSON.stringify(sweep));
  if(sweep.errors.length)throw Error('QA temporary sweep could not clean owned stale directories');
