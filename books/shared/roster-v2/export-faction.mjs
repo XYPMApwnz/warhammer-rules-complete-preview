@@ -13,3 +13,12 @@ export function createExportFactionCheck({factionIdentityLabels,allowNormalizedE
     return names.has(key)||allowNormalizedEmptyFaction&&!key;
   };
 }
+
+/** The importer supplies the declared header and the book-owned display name.
+ * This explains a rejection without changing faction admission or roster state. */
+export function exportFactionError(faction,bookName) {
+  if(typeof faction!=='string'||typeof bookName!=='string'||!bookName.trim())
+    throw new TypeError('Missing export faction rejection context');
+  return {code:'FOREIGN_FACTION_EXPORT',key:'faction',
+    message:`This list is ${faction}, but ${bookName} is open.`};
+}

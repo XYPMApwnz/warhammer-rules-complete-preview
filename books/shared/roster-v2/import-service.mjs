@@ -2,7 +2,7 @@ import {parse as parseText} from './parser.mjs';
 import {lexicalDraft,importNewRecruit} from './import.mjs';
 import {validateRoster} from './context.mjs';
 import {bindSingletonModelEquipment} from './singleton-model-import.mjs';
-import {createExportFactionCheck} from './export-faction.mjs';
+import {createExportFactionCheck,exportFactionError} from './export-faction.mjs';
 import {getRecordedSourceIdentity,registerBookSources,cloneSourceBook} from '../source-refs-v2/source-refs.mjs';
 
 const copy=value=>structuredClone(value);
@@ -73,8 +73,11 @@ function importBook(book,aliases,weaponSelections,equipmentSelections,optionSele
 
 /** Import-only boundary. No effect projection, battle state or attachment edits.
  * Callers get the same canonical UNIT_INSTANCE snapshot used by Roster V2. */
-export function createRosterImportService(book,{parse=parseText,identityAliases=[],weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[],factionIdentityLabels,allowNormalizedEmptyFaction=false}={}) {
+export function createRosterImportService(book,{parse=parseText,identityAliases=[],weaponSelections=[],equipmentSelections=[],optionSelections=[],deferredUnits=[],factionIdentityLabels,allowNormalizedEmptyFaction=false,gateAllFactionHeaders=false,factionDisplayName}={}) {
   registerBookSources(book);
+  reject(typeof gateAllFactionHeaders==='boolean','Invalid export faction header policy');
+  reject(!gateAllFactionHeaders||Array.isArray(factionIdentityLabels)&&typeof factionDisplayName==='string'&&factionDisplayName.trim(),
+    'Missing all-header export faction vocabulary/display name');
   const canonical=copy(book),declaredSelections=copy(weaponSelections),equipment=copy(equipmentSelections),options=copy(optionSelections),deferred=copy(deferredUnits),view=importBook(canonical,identityAliases,declaredSelections,equipment,options);
   let state=null;
   const acceptsPlainFaction=factionIdentityLabels===undefined?null:createExportFactionCheck({factionIdentityLabels,allowNormalizedEmptyFaction});
@@ -83,11 +86,13 @@ export function createRosterImportService(book,{parse=parseText,identityAliases=
     draft:text=>lexicalDraft(text,parse,view),
     import(text,bindings) {
       const result=importNewRecruit(text,{parse,bindings,book:view,weaponSelections:declaredSelections,equipmentSelections:equipment,optionSelections:options,deferredUnits:deferred});
-      // Existing book data opts into its current faction gate. Check the new
-      // plain format before any load, even when foreign units need bindings.
-      // Labelled exports keep their established native admission path.
-      if(result.draft?.metadata.plainHeader&&acceptsPlainFaction&&!acceptsPlainFaction(result.draft.metadata.faction))
-        return {...result,status:'INVALID',roster:null,needsBindings:[],errors:[{code:'FOREIGN_FACTION_EXPORT',key:'faction',message:'Export identifies a different Army Book'}]};
+      // Existing books retain their native labelled admission path. Books that
+      // opt into the common all-header policy reject before any state load,
+      // including when foreign UNIT identities would otherwise need bindings.
+      if((gateAllFactionHeaders||result.draft?.metadata.plainHeader)&&acceptsPlainFaction&&!acceptsPlainFaction(result.draft?.metadata.faction))
+        return {...result,status:'INVALID',roster:null,needsBindings:[],errors:[gateAllFactionHeaders
+          ?exportFactionError(result.draft.metadata.faction,factionDisplayName)
+          :{code:'FOREIGN_FACTION_EXPORT',key:'faction',message:'Export identifies a different Army Book'}]};
       if (result.status==='READY') {
         bindSingletonModelEquipment(result.roster,equipment);
         service.load(result.roster);

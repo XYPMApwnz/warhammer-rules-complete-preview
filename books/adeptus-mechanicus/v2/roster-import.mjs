@@ -3,6 +3,9 @@ import modelNames from './model-name-aliases.json' with {type:'json'};
 import {createRosterImportService} from '../../shared/roster-v2/import-service.mjs';
 import {getRecordedSourceIdentity} from '../../shared/source-refs-v2/source-refs.mjs';
 
+/** Book title and the catalogue name in sources/bsdata-adeptus-mechanicus-11e.json. */
+export const factionIdentityLabels=Object.freeze(['Adeptus Mechanicus','Imperium - Adeptus Mechanicus']);
+
 /** Reviewed presentation link, not an equipment identity or effect declaration.
  * The selected ability block and the option spelling retain their own owners. */
 export function withEquipmentCaptionBindings(book) {
@@ -37,7 +40,8 @@ export function createAdMechRosterImport(book,metadata) {
   if (metadata?.schema!=='roster-v2/import-aliases') throw new TypeError('Invalid import metadata');
   const input=withEquipmentCaptionBindings(book);
   return createRosterImportService(input,{identityAliases:appendModelNameAliases([...metadata.aliases],modelNames),weaponSelections:metadata.weaponSelections,
-    equipmentSelections:input.rosterEquipmentCaptionBindings});
+    equipmentSelections:input.rosterEquipmentCaptionBindings,factionIdentityLabels,
+    factionDisplayName:factionIdentityLabels[0],gateAllFactionHeaders:true,allowNormalizedEmptyFaction:true});
 }
 
 /** Browser/Node entrypoint for import consumers. Intentionally not connected to
