@@ -1176,7 +1176,7 @@ async function prototypePresenterAcceptance(){
   if(pathname==='/cases.json'){response.setHeader('Content-Type','application/json');response.end(JSON.stringify(cases));return;}
   const file=path.resolve(repo,'.'+pathname);
   if(!file.startsWith(path.resolve(repo)+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){response.statusCode=404;response.end();return;}
-  response.setHeader('Content-Type',file.endsWith('.mjs')?'text/javascript':'application/octet-stream');response.end(fs.readFileSync(file));
+  response.setHeader('Content-Type',/\.(?:mjs|js)$/.test(file)?'text/javascript':file.endsWith('.json')?'application/json':'application/octet-stream');response.end(fs.readFileSync(file));
  });
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));let browser;
  const results=[],errors=[];

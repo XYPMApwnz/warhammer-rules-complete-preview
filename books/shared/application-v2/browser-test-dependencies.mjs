@@ -5,6 +5,10 @@ const dependencies=new Map([
   ['/v2/app.html','text/html'],
   ['/v2/boot.mjs','text/javascript'],
   ['/v2/army-books.mjs','text/javascript'],
+  ...armyBooks.map(book=>[`/books/${book.id}/book.config.json`,'application/json']),
+  ['/books/shared/keyword-values.mjs','text/javascript'],
+  ['/books/shared/rule-facts.js','text/javascript'],
+  ['/books/shared/roster-v2/keywords.mjs','text/javascript'],
   ...['routes','registry','runtime','home','glossary'].map(name=>[
     `/books/shared/application-v2/${name}.mjs`,'text/javascript']),
   ['/books/shared/application-v2/shell.css','text/css'],
