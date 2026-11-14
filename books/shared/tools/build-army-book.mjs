@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 import {execFileSync as runNativeBuild} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -110,11 +111,11 @@ for(const dependency of dependencyCodices){
   for(const unitId of Object.keys(dependency.config.unitCompatibleChapterKeywords||{}))if(!unitIds.has(unitId))throw new Error(`${dependency.id}: unit compatibility references unknown unit ${unitId}`);
 }
 const dependencyUnits=dependencyCodices.flatMap(dependency=>(dependencyScope.currentOnly?[...(dependency.codex.datasheets||[]),...(dependency.codex.imperialArmour||[])]:unitInventory(dependency.codex))
-  .filter(unit=>![...(unit.keywords||[]),...dependencyCompatibilityKeywords(dependency,unit)].some(keyword=>excludedDependencyKeywords.has(clean(keyword).toUpperCase())))
+  .filter(unit=>![...(requiredKeywordField(unit)||[]),...dependencyCompatibilityKeywords(dependency,unit)].some(keyword=>excludedDependencyKeywords.has(clean(keyword).toUpperCase())))
   .map(unit=>{
     const point=dependency.pointsById.get(unit.id),exact=dependency.wargearByUnitId.get(unit.id),official=dependency.officialByUnitId.get(unit.id);
     const overlayKeywords=dependencyKeywordOverlays.get(unit.id)||new Set();
-    return {...unit,keywords:[...new Set([...(unit.keywords||[]),...overlayKeywords])],...(point?{points:point.points,paidWargear:point.paidWargear,pointsSource:point.pointsSource}:{}),...(exact?{wargear:exact.wargear,compositionText:exact.composition,wargearSource:{label:dependency.wargearSource?.label||'Current 11e reference',url:exact.url}}:{}),...(official?{sourcePages:official.sourcePages,provenance:official.provenance}:{}),dependencyBook:dependency.id,dependencyTitle:dependency.config.title,dependencySourceFile:path.basename(dependency.pack.meta.file),dependencySourceVersion:dependency.pack.meta.version,dependencyCompactSharedAbilities:dependency.config.compactSharedAbilities||[],sourceLayer:`${dependency.id}-${official&&unit.sourceLayer==='codex'?'faction-pack':unit.sourceLayer||'source'}`};
+    return {...unit,keywords:[...new Set([...(requiredKeywordField(unit)||[]),...overlayKeywords])],...(point?{points:point.points,paidWargear:point.paidWargear,pointsSource:point.pointsSource}:{}),...(exact?{wargear:exact.wargear,compositionText:exact.composition,wargearSource:{label:dependency.wargearSource?.label||'Current 11e reference',url:exact.url}}:{}),...(official?{sourcePages:official.sourcePages,provenance:official.provenance}:{}),dependencyBook:dependency.id,dependencyTitle:dependency.config.title,dependencySourceFile:path.basename(dependency.pack.meta.file),dependencySourceVersion:dependency.pack.meta.version,dependencyCompactSharedAbilities:dependency.config.compactSharedAbilities||[],sourceLayer:`${dependency.id}-${official&&unit.sourceLayer==='codex'?'faction-pack':unit.sourceLayer||'source'}`};
   }));
 const dependencyUnitIds=new Set(dependencyUnits.map(unit=>unit.id));
 for(const unitId of dependencyCanonicalPublicationTitleIds)if(!dependencyUnitIds.has(unitId))throw new Error(`${config.id}: canonical publication title references unknown dependency unit ${unitId}`);
@@ -181,7 +182,7 @@ const dependencyDetachments=!dependencyDetachmentScope||dependencyDetachmentScop
 });
 let detachments=unique([...localDetachments,...dependencyDetachments],item=>item.id);
 
-const allKeywords=new Set(units.flatMap(unit=>unit.keywords||[]).map(value=>clean(value).toUpperCase()));
+const allKeywords=new Set(units.flatMap(unit=>requiredKeywordField(unit)||[]).map(value=>clean(value).toUpperCase()));
 const namedGroups=[
   ['TYRANID WARRIORS',units.filter(unit=>/^Tyranid Warriors/i.test(unit.title)).map(unit=>unit.id)],
   ['DEATHLEAPER',units.filter(unit=>titleKey(unit.title)==='deathleaper').map(unit=>unit.id)],
@@ -298,7 +299,7 @@ for(const unit of units){
 const weaponAbilityTokens=(value,termScope=config.id)=>`<div class="weapon-tags">${String(value).split(',').map(rawLabel=>{const label=rawLabel.trim(),key=coreBaseKey(label),termId=corePresentationTermsByLabel.get(key)||scopedAbilityTerms.get(`${termScope}\0${key}`);return termId?`<button class="tag" data-term="${termId}">${esc(label.toUpperCase())}</button>`:`<span class="tag">${esc(label.toUpperCase())}</span>`;}).join('')}</div>`;
 const compileUnitRuleFacts=unit=>{
   const sourceAbilities=[...(unit.abilities||[])],relations=relationGraphs.get(unit.id),canAttach=Object.values(relations).some(items=>items.length);
-  return {id:unit.id,unitId:unit.id,slug:unit.id.replace(/^unit-/,''),keywords:unit.keywords||[],intrinsicKeywords:unit.keywords||[],abilities:[...new Set(sourceAbilities.map(item=>/^deadly demise\b/i.test(item.title)?'DEADLY DEMISE':item.title))],termIds:[...new Set([...sourceAbilities,...(unit.weapons||[])].map(item=>item.termId).filter(Boolean))],epic:(unit.keywords||[]).some(item=>titleKey(item)==='epic hero'),deadlyDemise:sourceAbilities.some(item=>item.coreAbilityId==='core-deadly-demise'),attached:canAttach?null:false,attachmentKnown:!canAttach,characterCount:(unit.keywords||[]).some(item=>titleKey(item)==='character')?1:0,twoCharacters:null,warlord:null,relations};
+  return {id:unit.id,unitId:unit.id,slug:unit.id.replace(/^unit-/,''),keywords:requiredKeywordField(unit)||[],intrinsicKeywords:requiredKeywordField(unit)||[],abilities:[...new Set(sourceAbilities.map(item=>/^deadly demise\b/i.test(item.title)?'DEADLY DEMISE':item.title))],termIds:[...new Set([...sourceAbilities,...(unit.weapons||[])].map(item=>item.termId).filter(Boolean))],epic:(requiredKeywordField(unit)||[]).some(item=>titleKey(item)==='epic hero'),deadlyDemise:sourceAbilities.some(item=>item.coreAbilityId==='core-deadly-demise'),attached:canAttach?null:false,attachmentKnown:!canAttach,characterCount:(requiredKeywordField(unit)||[]).some(item=>titleKey(item)==='character')?1:0,twoCharacters:null,warlord:null,relations};
 };
 let unitRuleFacts=new Map(units.map(unit=>[unit.id,compileUnitRuleFacts(unit)]));
 let unitRuleProfiles=new Map([...unitRuleFacts].map(([id,facts])=>[id,ruleFactsApi.serializeRuleProfile(ruleFactsApi.profileFromRecord(facts))]));
@@ -413,7 +414,7 @@ for(const det of detachments){
   for(const item of det.stratagems||[])addTermTo(glossaryProjectionTerms,item.title,[item.when,item.target,item.effect,item.restrictions].filter(Boolean).join(' '),`detachment-${det.id}`,'stratagem','',det.dependencyBook||config.id);
   for(const {rule,anchor,additional} of detachmentRuleEntries(det))addTermTo(glossaryProjectionTerms,rule.title,sourceAwareText(rule),additional?anchor:`detachment-${det.id}`,'detachment-rule','',det.dependencyBook||config.id);
 }
-for(const unit of categories.flatMap(group=>group.units))for(const model of canonicalRosterModelsFor(unit).filter(model=>model.intrinsicKeywords?.length))addTermTo(glossaryProjectionTerms,model.title,`${model.title} only: ${model.intrinsicKeywords.join(', ')}.`,`${unit.id.replace(/^unit-/,'')}-keywords`,'model-keywords',unit.id,unit.dependencyBook||config.id);
+for(const unit of categories.flatMap(group=>group.units))for(const model of canonicalRosterModelsFor(unit).filter(model=>requiredKeywordField(model, "intrinsicKeywords")?.length))addTermTo(glossaryProjectionTerms,model.title,`${model.title} only: ${requiredKeywordField(model, "intrinsicKeywords").join(', ')}.`,`${unit.id.replace(/^unit-/,'')}-keywords`,'model-keywords',unit.id,unit.dependencyBook||config.id);
 for(const item of effectiveModel.rules.armyRules){const termId=addTermTo(glossaryProjectionTerms,item.title,item.text,item.id,'army-rule','',item.sourceBook||config.id);if(glossaryV2CompatibilityTerms)item.presentationTermId=termId;}
 const glossaryProjection=[...glossaryProjectionTerms].map(([id,item])=>({id,title:item.title,summary:item.summary,full:item.full,glossary:item.glossary,...(item.rule?{rule:item.rule}:{}),...(item.units.length?{units:item.units,datasheet:item.units[0],statline:item.units[0].replace(/^unit-/,'')+'-profile'}:{})}));
 effectiveModel=createEffectiveBookModel({...effectiveModel,glossary:glossaryProjection});

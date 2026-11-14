@@ -1,3 +1,4 @@
+import {keywordField} from '../keyword-values.mjs';
 /** V2 identity/DOM adapter for the actual V1 Contents interaction core. */
 import {NavigationController} from './navigation-v1-controller.mjs';
 import {Highlighter} from './navigation-v1-targets.mjs';
@@ -8,7 +9,7 @@ const categories=[['EPIC HERO','Epic Heroes'],['CHARACTER','Characters'],['BATTL
   ['BEAST','Beasts'],['VEHICLE','Vehicles'],['MONSTER','Monsters'],['MOUNTED','Mounted'],['SWARM','Swarms']];
 const list=value=>Array.isArray(value)?value:[];
 const currentRelation=relation=>relation?.certainty==='current'&&getSourceContext(relation).kind==='explicit-roster-attachment';
-const keywordsFor=unit=>new Set(list(unit?.intrinsicKeywords).map(value=>String(value).trim().toUpperCase()));
+const keywordsFor=unit=>new Set(list(keywordField(unit, "intrinsicKeywords")).map(value=>String(value).trim().toUpperCase()));
 // Actual V1 presentation ordering; its inputs below are adapted solely from V2.
   function physicalRosterOrder(game,catalog){
     const catalogOrder=new Map(list(catalog.units).map((unit,index)=>[unit.id,index])),catalogById=new Map(list(catalog.units).map(unit=>[unit.id,unit]));

@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -434,10 +435,10 @@ for(const unit of parsed){
   const correction=config.unitCorrections?.[unit.title];
   if(!correction)continue;
   if(correction.sourceLayer)unit.sourceLayer=correction.sourceLayer;
-  if(correction.addKeywords)unit.keywords=unique([...unit.keywords,...correction.addKeywords],key);
+  if(correction.addKeywords)unit.keywords=unique([...requiredKeywordField(unit),...correction.addKeywords],key);
   if(correction.removeKeywords){
     const removed=new Set(correction.removeKeywords.map(key));
-    unit.keywords=unit.keywords.filter(keyword=>!removed.has(key(keyword)));
+    unit.keywords=requiredKeywordField(unit).filter(keyword=>!removed.has(key(keyword)));
   }
   if(correction.removeAbilities){
     const removed=new Set(correction.removeAbilities.map(key));

@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Pure display projection of the enrolled global corpus. No identity, alias, search or route policy. */
 export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', registryLabels={}}) {
   if(!Array.isArray(entries))throw new TypeError('Global glossary entries are required');
@@ -71,7 +72,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
       const count=minimum===null?'':minimum===maximum?String(minimum):`${minimum}–${maximum}`;
       const models=Array.isArray(item.models)?item.models.map(text).filter(Boolean):[];
       const modelDetail=models.length&&!(models.length===1&&normalize(models[0])===normalize(label))?`Models: ${models.join(', ')}`:'';
-      const keywords=Array.isArray(item.intrinsicKeywords)&&item.intrinsicKeywords.length?`Keywords: ${item.intrinsicKeywords.join(', ')}`:'';
+      const keywords=Array.isArray(requiredKeywordField(item, "intrinsicKeywords"))&&requiredKeywordField(item, "intrinsicKeywords").length?`Keywords: ${requiredKeywordField(item, "intrinsicKeywords").join(', ')}`:'';
       return [`• ${[label,count].filter(Boolean).join(': ')}`,modelDetail,keywords].filter(Boolean).join('\n');
     }).filter(Boolean).join('\n');
   };
@@ -91,8 +92,8 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
     }).filter(Boolean):[];
     if(abilities.length)sections.push(`ABILITIES\n${abilities.map(ability=>`• ${ability}`).join('\n')}`);
     for(const section of facts.referenceSections||[])if(text(section.title)&&section.lines?.length)sections.push(`${section.title.toLocaleUpperCase()}\n${section.lines.join('\n')}`);
-    if((facts.keywords||[]).length)sections.push(`KEYWORDS\n${facts.keywords.join(', ')}`);
-    if((facts.factionKeywords||[]).length)sections.push(`FACTION KEYWORDS\n${facts.factionKeywords.join(', ')}`);
+    if((requiredKeywordField(facts)||[]).length)sections.push(`KEYWORDS\n${requiredKeywordField(facts).join(', ')}`);
+    if((requiredKeywordField(facts, "factionKeywords")||[]).length)sections.push(`FACTION KEYWORDS\n${requiredKeywordField(facts, "factionKeywords").join(', ')}`);
     return sections.join('\n\n');
   };
   const weaponProfileDefinition=facts=>{
@@ -432,7 +433,7 @@ export function createGlobalGlossaryContent({entries, bookId:defaultBookId='', r
       if(entry.recordType==='COMPOSITION_MEMBER')return text(facts.sourceText);
       if(facts.officialQuestion||facts.officialAnswer)return [facts.officialQuestion,facts.officialAnswer].filter(Boolean).join('\n');
       if(text(facts.instruction))return facts.instruction;
-      if(entry.recordType==='KEYWORD_SCOPES')return (facts.scopes||[]).map(scope=>scope.label+'\n'+scope.keywords.join(', ')).join('\n\n');
+      if(entry.recordType==='KEYWORD_SCOPES')return (facts.scopes||[]).map(scope=>scope.label+'\n'+requiredKeywordField(scope).join(', ')).join('\n\n');
       if(entry.recordType==='RULE_REFERENCE'&&facts.groups)return facts.groups.map(group=>group.label+'\n'+group.entries.map(record=>record.label).join(', ')).join('\n\n');
       if(entry.recordType==='SOURCE_UPDATE_REFERENCE')return ['Official update · Page '+facts.page,...(facts.targetIds||[]).map(id=>owned(id)?.label).filter(Boolean)].join('\n');
       if(facts.sourceSectionId)return referenceContent([facts.sourceSectionId]);

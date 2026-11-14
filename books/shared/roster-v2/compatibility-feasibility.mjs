@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Disposable capability bounds and mandatory-recipient feasibility.
  * Only typed canonical identities/relations enter this module; no source prose.
  */
@@ -10,9 +11,9 @@ export function buildAttachmentFeasibility(book, composition) {
     intrinsicCharacterModelsMax:0,maxCharacterModels:0,leaderTargetIds:[]} ]));
   for(const unit of units) {
     const profiles=composition.filter(row=>row.unitId===unit.id);
-    if(profiles.length!==unit.data.profileIds.length||profiles.some(row=>!unit.data.profileIds.includes(row.profileId)||!Number.isSafeInteger(row.maxModels)||row.maxModels<1||!Array.isArray(row.intrinsicKeywords))) throw new TypeError('Unresolved intrinsic composition: '+unit.id);
+    if(profiles.length!==unit.data.profileIds.length||profiles.some(row=>!unit.data.profileIds.includes(row.profileId)||!Number.isSafeInteger(row.maxModels)||row.maxModels<1||!Array.isArray(requiredKeywordField(row, "intrinsicKeywords")))) throw new TypeError('Unresolved intrinsic composition: '+unit.id);
     const row=rows.get(unit.id);
-    row.intrinsicCharacterModelsMax=profiles.reduce((n,p)=>n+(p.intrinsicKeywords.includes('CHARACTER')?p.maxModels:0),0);
+    row.intrinsicCharacterModelsMax=profiles.reduce((n,p)=>n+(requiredKeywordField(p, "intrinsicKeywords").includes('CHARACTER')?p.maxModels:0),0);
     row.maxCharacterModels=row.intrinsicCharacterModelsMax;
   }
   const policies=book.rosterAttachmentPolicies;

@@ -1,6 +1,7 @@
 /** Roster UNIT instances. Composition/profile scopes are not individual-model simulations. */
 import {getRecordedSourceIdentity,registerBookSources} from '../source-refs-v2/source-refs.mjs';
 import {epicHeroUnitIds} from './compatibility-context.mjs';
+import {createKeywordAccess,keywordValues,requiredKeywordField,keywordField} from './keywords.mjs';
 const copy = value => structuredClone(value);
 const assert = (value, message) => { if (!value) throw new TypeError(message); };
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -265,7 +266,7 @@ export function formRoster(book, state) {
       const unit = records.get(binding.unitId), profile = records.get(binding.profileId);
       assert(unit?.kind === 'DATASHEET' && profile?.kind === 'PROFILE' && profile.parentId === unit.id &&
         unit.data.profileIds.includes(profile.id) && !profileBindings.has(profile.id) &&
-        Array.isArray(binding.intrinsicKeywords) && binding.intrinsicKeywords.every(key => typeof key === 'string' && key),
+        Array.isArray(requiredKeywordField(binding, "intrinsicKeywords")) && requiredKeywordField(binding, "intrinsicKeywords").every(key => typeof key === 'string' && key),
         'Unresolved or duplicate intrinsic MODEL binding');
       profileBindings.set(profile.id, binding);
     }
@@ -273,8 +274,9 @@ export function formRoster(book, state) {
       assert(unit.data.profileIds.every(id => profileBindings.has(id)), 'Incomplete intrinsic MODEL bindings');
   }
   const epicOwners=epicHeroUnitIds(book);
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   const units = state.units.map(raw => {
-    const canonical = records.get(raw.canonicalUnitId), keywords = [...canonical.data.keywords,...canonical.data.factionKeywords];
+    const canonical = records.get(raw.canonicalUnitId), keywords = keywordAccess.allUnitKeywords(canonical);
     // One semantic MODEL profile per imported composition/loadout group. Quantity
     // never creates physical infantry IDs. Singleton units already identify their
     // sole model; explicit one-model rows can additionally identify that row.
@@ -296,15 +298,15 @@ export function formRoster(book, state) {
         });
         return {subject:'MODEL',scopeId,quantity:group.quantity,modelInstanceId,unitInstanceId:raw.instanceId,
           canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,
-          ...(profileBindings ? {intrinsicKeywords:[...profileBindings.get(row.canonicalProfileId).intrinsicKeywords]} : {}),
-          keywords:[...(profileBindings?.get(row.canonicalProfileId).intrinsicKeywords || keywords)],
+          ...(profileBindings ? {intrinsicKeywords:keywordValues(profileBindings.get(row.canonicalProfileId),'intrinsicKeywords')} : {}),
+          keywords:keywordAccess.modelKeywords(canonical,row.canonicalProfileId),
           profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
           selections:copy(selected),weapons};
       });
     });
-    const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => profileBindings.get(id).intrinsicKeywords)) : null;
+    const modelVocabulary = profileBindings ? new Set(canonical.data.profileIds.flatMap(id => keywordValues(profileBindings.get(id),'intrinsicKeywords'))) : null;
     const unitKeywords = modelVocabulary ? [...new Set([...keywords.filter(key => !modelVocabulary.has(key)),
-      ...profiles.flatMap(profile => profile.keywords)])].sort() : [...keywords];
+      ...profiles.flatMap(profile => requiredKeywordField(profile))])].sort() : [...keywords];
     // Preserve imported ownership and costs in state; only executable projection is gated.
     return {...copy(raw),...(epicOwners.has(raw.canonicalUnitId)?{enhancementIds:[],...(raw.enhancementAssignments?{enhancementAssignments:[]}:{})}:{}),subject:'UNIT',intrinsicKeywords:[...keywords],keywords:unitKeywords,profiles,metrics:{},applied:[],conditional:[],
       weapons:(raw.selections || []).flatMap(s => s.physicalQuantity ? s.canonicalProfileIds.map(id => ({modelInstanceId:raw.startingStrength===1?raw.instanceId:null,canonicalProfileId:id,physicalQuantity:s.physicalQuantity,selectionKey:s.selectionKey,data:copy(records.get(id).data)})) : [])};
@@ -323,7 +325,7 @@ export function formRoster(book, state) {
   return projection;
 }
 export function refreshFormedKeywords(projection) {
-  for (const group of projection.formedUnits) group.keywords = [...new Set(group.memberInstanceIds.flatMap(id=>projection.units.find(u=>u.instanceId===id).keywords))].sort();
+  for (const group of projection.formedUnits) group.keywords = [...new Set(group.memberInstanceIds.flatMap(id=>requiredKeywordField(projection.units.find(u=>u.instanceId===id))))].sort();
 }
 export function predicateContext(state, projection, unitId, subject, modelId, extra = {}) {
   if (subject === 'ROSTER') return {subject,roster:{detachmentIds:[...state.detachmentIds],...extra},battle:{}};
@@ -336,8 +338,8 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   const members = group ? projection.units.filter(u=>group.memberInstanceIds.includes(u.instanceId)) : [unit];
   const roster = {detachmentIds:[...state.detachmentIds],leading:Boolean(group?.leaderInstanceIds.includes(unitId)),attached:Boolean(group),
     bodyguardId:group ? projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId : null,
-    characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>m.keywords.includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
-    hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>projection.units.find(u=>u.instanceId===id).intrinsicKeywords.includes('CHARACTER'))),
+    characterModelCount:members.reduce((n,u)=>n+u.profiles.filter(m=>requiredKeywordField(m).includes('CHARACTER')).reduce((count,m)=>count+m.quantity,0),0),
+    hasFriendlyCharacterLeader:Boolean(group?.leaderInstanceIds.some(id=>requiredKeywordField(projection.units.find(u=>u.instanceId===id), "intrinsicKeywords").includes('CHARACTER'))),
     hasAtLeastTwoLeaderUnits:(group?.leaderInstanceIds.length || 0)>=2,
     modelFromYourArmy:true,isBodyguardModel:Boolean(group&&group.bodyguardInstanceId===unitId),
     ...extra};
@@ -350,8 +352,8 @@ export function predicateContext(state, projection, unitId, subject, modelId, ex
   return {subject,instanceId:unit.instanceId,formedUnitId:group?.formedUnitId||null,
     ...(subject==='MODEL'?{modelScopeId:model.scopeId,modelInstanceId:model.modelInstanceId}:{}),
     unitId:subject==='MODEL'?unit.canonicalUnitId:group?projection.units.find(u=>u.instanceId===group.bodyguardInstanceId).canonicalUnitId:unit.canonicalUnitId,
-    owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?model.keywords:unit.keywords),unknownKeywords:new Set()},
-    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? model.intrinsicKeywords || unit.intrinsicKeywords : unit.intrinsicKeywords),keywords:new Set(subject==='MODEL'?model?.keywords:group?group.keywords:unit.keywords),abilities:new Set(abilityNames),roster,battle:{}};
+    owner:{unitId:unit.canonicalUnitId,keywords:new Set(subject==='MODEL'?requiredKeywordField(model):requiredKeywordField(unit)),unknownKeywords:new Set()},
+    modelId:model?.canonicalProfileId,intrinsicKeywords:new Set(subject==='MODEL' ? requiredKeywordField(model, "intrinsicKeywords") || requiredKeywordField(unit, "intrinsicKeywords") : requiredKeywordField(unit, "intrinsicKeywords")),keywords:new Set(subject==='MODEL'?keywordField(model):group?requiredKeywordField(group):requiredKeywordField(unit)),abilities:new Set(abilityNames),roster,battle:{}};
 }
 
 // Typed, book-bound roster prerequisites. This checks attachment permission;
@@ -362,9 +364,9 @@ export function attachmentPermission(book,state,policy,source,target) {
     detachedIds.includes(requirement.detachmentId)&&!epicHeroUnitIds(book).has(source.canonicalUnitId)&&source.enhancementIds.includes(requirement.enhancementId)))return false;
   if(!book.rosterAttachmentConstraints?.length)return true;
   const records=new Map(book.entities.map(entity=>[entity.id,entity]));
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   const keywords=(unit,constraint)=>{
-    const data=records.get(unit.canonicalUnitId).data;
-    return new Set([...data.keywords,...data.factionKeywords,
+    return new Set([...keywordAccess.allUnitKeywords(unit.canonicalUnitId),
       ...selections(unit).flatMap(selection=>(selection.canonicalOptionIds||[]).map(id=>constraint.optionKeywords[id]).filter(Boolean))]);
   };
   for(const constraint of book.rosterAttachmentConstraints||[]) {

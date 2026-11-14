@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
@@ -1055,7 +1056,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const metadata=el('details','ds-model-metadata');metadata.append(el('summary','','Model details'),...baseMetadata);composition.append(metadata);
     }
     const keywords=part('keywords','Keywords'),keywordNotes=[];
-    if(card.keywordGroups){for(const group of card.keywordGroups){
+    if(requiredKeywordField(card, "keywordGroups")){for(const group of requiredKeywordField(card, "keywordGroups")){
       const line=el('p'),label=card.fields.find(field=>field.id===group.labelFieldId);
       const caption=factValue('b',label);
       if(instanceId&&group.labelFieldId===`${card.id}::/rosterKeywordGroups/unit/label`)caption.textContent='Keywords';

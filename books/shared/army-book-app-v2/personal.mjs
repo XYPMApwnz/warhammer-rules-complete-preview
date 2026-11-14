@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Disposable presentation views. Roster services own eligibility and effects. */
 import {getRecordedSourceIdentity,sameSourceEvidence,sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 import {createSelectedSourceFieldPredicate} from '../roster-v2/context.mjs';
@@ -539,11 +540,11 @@ export function projectInstanceCards(cards, unit, effective) {
     return sources.length?{keywordSources:clone(sources)}:{};
   };
   root.fields=root.fields.filter(field=>!field.source?.path.startsWith('/keywords/'));
-  const physicalKeywords=effective.physicalKeywords||effective.keywords;
+  const physicalKeywords=requiredKeywordField(effective, "physicalKeywords")||requiredKeywordField(effective);
   physicalKeywords.forEach((keyword,index)=>root.fields.push({...firstKeyword,id:`${root.id}::/keywords/${index}`,
     label:'Keywords',type:'tokens',value:keyword,contextId:root.contextId,
     source:{entityId:root.id,path:`/keywords/${index}`},runtimeDerived:true,...keywordAttribution(keyword)}));
-  if(root.keywordGroups) {
+  if(requiredKeywordField(root, "keywordGroups")) {
     const factionFields=root.fields.filter(field=>field.presentationPath?.startsWith('/factionKeywords/'));
     const faction=new Set(factionFields.map(field=>field.value));
     // Nested keyword storage uses the same effective interface as flat storage.
@@ -564,9 +565,9 @@ export function projectInstanceCards(cards, unit, effective) {
       const canonicalName=profileName(profile.id),scope=scopeCaptions.get(profile.scopeId);
       const name=scope?.canonicalLabelIncluded?scope.label:
         scope?.label && scope.label!==canonicalName ? `${scope.label} (${canonicalName})` : canonicalName;
-      add(`${name} · Model keywords`,(profile.keywords||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`,profile);
+      add(`${name} · Model keywords`,(requiredKeywordField(profile)||[]).filter(keyword=>!faction.has(keyword)),`profile-${index}`,profile);
     }
-    const factionGroup=root.keywordGroups.find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
+    const factionGroup=requiredKeywordField(root, "keywordGroups").find(group=>group.fieldIds.some(id=>factionFields.some(field=>field.id===id)));
     if(factionGroup)groups.push(clone(factionGroup));
     root.keywordGroups=groups;
   }

@@ -1,3 +1,4 @@
+import {keywordField,requiredKeywordField} from '../keyword-values.mjs';
 /** Opt-in conditional rule policies. These describe permissions/defences;
  * they never resolve a roll, select a battle target or mutate characteristics. */
 import {predicateContext,withRosterDetachments} from './context.mjs';
@@ -76,7 +77,7 @@ function validateConditionalPolicyRecord(book,rule,clause,policy,recipient){
 // selects consumers only; it never changes intrinsic UNIT or MODEL keywords.
 const detachmentRecipients=(projection,recipient)=>projection.units.filter(unit=>{
  const group=projection.formedUnits.find(row=>row.formedUnitId===unit.formedUnitId);
- return recipient.unitKeywords.every(keyword=>(group?.keywords||unit.keywords).includes(keyword));
+ return recipient.unitKeywords.every(keyword=>(keywordField(group)||requiredKeywordField(unit)).includes(keyword));
 });
 const componentRecipients=(projection,unit)=>projection.formedUnits.find(group=>group.formedUnitId===unit.formedUnitId)?.memberInstanceIds||[unit.instanceId];
 const evidenceText=(rule,evidence)=>evidence?.field?.reduce((value,key)=>value?.[key],rule.data);

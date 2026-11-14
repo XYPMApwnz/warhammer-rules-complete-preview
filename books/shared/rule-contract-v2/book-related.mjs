@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {prepareSourceProducer} from '../source-refs-v2/producer-io.mjs';
 import {createCompatibilityCompiler,summarizeCompatibility} from './compatibility.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
+import {createKeywordAccess,keywordValues,keywordGroups,requiredKeywordField} from '../roster-v2/keywords.mjs';
 
 import {enhancementBearerEligible,epicHeroUnitIds,enhancementEligibilityState} from '../roster-v2/compatibility-context.mjs';
 const clone=structuredClone;
@@ -19,21 +20,22 @@ export function createBookCompatibilityInputs(source){
  for(const entity of book.entities)if(entity.ruleContract&&!['ENHANCEMENT','STRATAGEM'].includes(entity.ruleContract.kind)&&
   !entity.ruleContract.clauses.some(clause=>clause.keywordProjection))delete entity.ruleContract;
  const units=book.entities.filter(e=>e.kind==='DATASHEET');
+ const keywords=createKeywordAccess(book,{entities:index});
  for(const e of book.entities)if(e.kind==='MODEL_PROFILE')e.kind='PROFILE';
  const referenceSemantics=Object.fromEntries(book.entities.filter(e=>e.kind==='RULE_REFERENCE').map(e=>[e.id,
   (book.rosterReferenceSemantics?.[e.id]?.abilities||[]).map(ability=>ability.name).filter(Boolean)]));
  const profileBindings=units.flatMap(unit=>unit.data.profileIds.map(profileId=>{
   const explicit=book.rosterProfileBindings?.find(row=>row.unitId===unit.id&&row.profileId===profileId);
-  assert(explicit||!unit.data.keywordGroups,'Mixed MODEL keywords require explicit source bindings');
-  const intrinsicKeywords=clone(explicit?.intrinsicKeywords||[...unit.data.keywords,...unit.data.factionKeywords]);
+  assert(explicit||!keywordGroups(unit.data),'Mixed MODEL keywords require explicit source bindings');
+  const intrinsicKeywords=explicit?keywordValues(explicit,'intrinsicKeywords'):keywords.modelKeywords(unit,profileId,{bindings:null});
   const abilities=unit.data.ruleReferenceIds.flatMap(id=>{
    const ref=book.rosterReferenceSemantics?.[id];
    return ref&&(!ref.modelProfileIds||ref.modelProfileIds.includes(profileId))?(ref.abilities||[]).map(a=>a.name).filter(Boolean):[];
   });
   return {unitId:unit.id,profileId,intrinsicKeywords,abilities};
  }));
- for(const unit of units)unit.data.keywords=[...new Set([...unit.data.keywords,
-  ...profileBindings.filter(row=>row.unitId===unit.id).flatMap(row=>row.intrinsicKeywords).filter(k=>!unit.data.factionKeywords.includes(k))])];
+ for(const unit of units)unit.data.keywords=[...new Set([...keywords.unitKeywords(unit),
+  ...profileBindings.filter(row=>row.unitId===unit.id).flatMap(row=>keywordValues(row,'intrinsicKeywords')).filter(k=>!requiredKeywordField(keywords, "factionKeywords")(unit).includes(k))])];
  // An Army Book does not know ARMY_UNIT_PRESENT. All source-declared possible
  // relations contribute capability bounds, without claiming any attachment.
  const declarations=book.mfmImportReferences?.relationDeclarations;

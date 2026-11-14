@@ -3,6 +3,7 @@ import {subjects} from './schema.mjs';
 import {staticCapabilities,validateCompatibilityFeasibility,evaluateRequiredRecipients,
   includeRecipientFeasibility,evaluateCompatibilityRole} from '../roster-v2/compatibility-feasibility.mjs';
 import {enhancementOwnerContext} from '../roster-v2/compatibility-context.mjs';
+import {createKeywordAccess,keywordValues,keywordField,requiredKeywordField} from '../roster-v2/keywords.mjs';
 
 const any=states=>states.includes('INVALID')?'INVALID':states.includes('TRUE')?'TRUE':states.includes('UNKNOWN')?'UNKNOWN':'FALSE';
 export const summarizeCompatibility=rows=>rows.reduce((out,row)=>{out[row.applicability]++;return out;},
@@ -45,16 +46,17 @@ export function createCompatibilityCompiler(options) {
   const records=new Map(book.entities.map(e=>[e.id,e]));
   assert.equal(records.size,book.entities.length,'Duplicate canonical identity');
   const units=book.entities.filter(e=>e.kind==='DATASHEET');
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   assert.ok(Array.isArray(bindings)&&references&&Array.isArray(attachmentRelations),'Explicit compiler bindings required');
   const profiles=new Map();
   for (const unit of units) {
-    assert.ok(Array.isArray(unit.data.keywords)&&Array.isArray(unit.data.factionKeywords),'Missing canonical keyword context: '+unit.id);
+    keywordAccess.unitKeywords(unit);requiredKeywordField(keywordAccess, "factionKeywords")(unit);
     const rows=bindings.filter(row=>row.unitId===unit.id);
     assert.deepEqual(new Set(rows.map(row=>row.profileId)),new Set(unit.data.profileIds),'Incomplete explicit profile bindings');
     assert.equal(rows.length,unit.data.profileIds.length,'Duplicate profile binding');
     for (const row of rows) {
       assert.ok(records.get(row.profileId)?.kind==='PROFILE'&&records.get(row.profileId).parentId===unit.id,'Unresolved MODEL identity: '+row.profileId);
-      assert.ok(Array.isArray(row.intrinsicKeywords)&&row.intrinsicKeywords.every(value=>typeof value==='string'),'Missing intrinsic MODEL keywords');
+      assert.ok(Array.isArray(keywordField(row,'intrinsicKeywords'))&&keywordValues(row,'intrinsicKeywords').every(value=>typeof value==='string'),'Missing intrinsic MODEL keywords');
       if (row.abilities!==undefined) assert.ok(Array.isArray(row.abilities)&&row.abilities.every(value=>typeof value==='string'),'Malformed MODEL abilities');
       else {
         assert.ok(Array.isArray(row.referenceIds),'Explicit MODEL reference bindings required');
@@ -87,7 +89,7 @@ export function createCompatibilityCompiler(options) {
     if (detachmentId) assert.equal(records.get(detachmentId)?.kind,'DETACHMENT','Invalid canonical Detachment context: '+detachmentId);
     const profile=subject==='MODEL'?profiles.get(unitId).find(row=>row.profileId===profileId):null;
     if (subject==='MODEL') assert.ok(profile,'Explicit MODEL profile required');
-    const intrinsicKeywords=new Set(profile?profile.intrinsicKeywords:[...unit.data.keywords,...unit.data.factionKeywords]);
+    const intrinsicKeywords=new Set(profile?keywordValues(profile,'intrinsicKeywords'):keywordAccess.allUnitKeywords(unit));
     const keywords=new Set(intrinsicKeywords),unknownKeywords=new Set();
     const abilities=new Set(profile?(profile.abilities??profile.referenceIds.flatMap(id=>references[id]||[])):
       unit.data.ruleReferenceIds.flatMap(id=>references[id]||[]));
@@ -106,14 +108,14 @@ export function createCompatibilityCompiler(options) {
     if (['UNIT','FORMED_ATTACHED_UNIT'].includes(subject)) {
       for (const edge of attachmentRelations.filter(edge=>edge.targetId===unitId||edge.sourceId===unitId)) {
         const other=records.get(edge.targetId===unitId?edge.sourceId:edge.targetId);
-        for (const keyword of [...other.data.keywords,...other.data.factionKeywords]) if (!keywords.has(keyword)) unknownKeywords.add(keyword);
+        for (const keyword of keywordAccess.allUnitKeywords(other)) if (!keywords.has(keyword)) unknownKeywords.add(keyword);
       }
     }
     const owner={unitId,keywords:new Set(keywords),unknownKeywords:new Set()};
     if (!detachmentId&&unknownDetachmentKeywords&&['UNIT','FORMED_ATTACHED_UNIT'].includes(subject)) {
       for (const detachment of book.entities.filter(e=>e.kind==='DETACHMENT')) for (const keyword of grants(detachment.id)) {
         if (!keywords.has(keyword)) unknownKeywords.add(keyword);
-        if (!owner.keywords.has(keyword)) owner.unknownKeywords.add(keyword);
+        if (!requiredKeywordField(owner).has(keyword)) requiredKeywordField(owner, "unknownKeywords").add(keyword);
       }
     }
     const base={subject,unitId,...(profile?{modelId:profile.profileId}:{}),intrinsicKeywords,keywords,unknownKeywords,owner,
@@ -131,7 +133,7 @@ export function createCompatibilityCompiler(options) {
     // Intrinsic facts always come from canonical profile/unit bindings. Formed
     // keywords never substitute for the exact component's owner keyword bag.
     return {...base,...supplied,instanceId,intrinsicKeywords,owner:{...(supplied.owner||base.owner),instanceId},
-      unknownKeywords:supplied.unknownKeywords??(supplied.keywords?new Set():base.unknownKeywords),
+      unknownKeywords:requiredKeywordField(supplied, "unknownKeywords")??(requiredKeywordField(supplied)?new Set():requiredKeywordField(base, "unknownKeywords")),
       roster:{...(supplied.roster||{}),...(detachmentId?{detachmentId}:{})}};
   }
   function contextsFor(unitId,subject,options={}) {

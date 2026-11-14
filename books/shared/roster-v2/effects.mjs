@@ -1,6 +1,7 @@
 import {validateConditionalPolicy,validateConditionalPolicyDeclaration,appendConditionalPolicy} from './conditional-policy.mjs';
 import {formRoster, predicateContext, refreshFormedKeywords, selections} from './context.mjs';
 import {enhancementOwnerContext} from './compatibility-context.mjs';
+import {createKeywordAccess,keywordField,requiredKeywordField} from './keywords.mjs';
 import {validateBookRecipients} from '../rule-contract-v2/recipients.mjs';
 import {resolveExecutionEffect,validatePhysicalSelectionEffect,resolvePhysicalSelectionEffects,executionBindingSubjects as bindingSubjects} from './recipient-execution.mjs';
 import {validatePhysicalChoiceEffect,resolvePhysicalChoices,weaponPartitionKey} from './physical-choice.mjs';
@@ -70,6 +71,7 @@ export function validateRosterEffectDeclarations(book,validatePredicate,evaluate
 }
 function validateEffectOperations(book,validatePredicate,evaluatePredicate,effectView,validatePolicy) {
   const records = new Map(book.entities.map(e => [e.id,e]));
+  const keywordAccess=createKeywordAccess(book,{entities:records});
   for (const entity of book.entities.filter(e=>e.ruleContract)) for (const clause of entity.ruleContract.clauses) {
     if (!['ROSTER_EXECUTABLE','BATTLE_ONLY','DISPLAY_ONLY','NOT_AN_EFFECT'].includes(clause.rosterClassification)) throw new TypeError('Unclassified roster clause');
     if ((clause.rosterEffects.length > 0) !== (clause.rosterClassification === 'ROSTER_EXECUTABLE')) throw new TypeError('Execution classification mismatch');
@@ -174,7 +176,7 @@ function validateEffectOperations(book,validatePredicate,evaluatePredicate,effec
       for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[])]) if (records.get(id)?.kind !== 'WEAPON_PROFILE') throw new TypeError('Unresolved weapon identity');
       const sourceOwners = entity.kind==='ENHANCEMENT' && evaluatePredicate ? book.entities.filter(e=>e.kind==='DATASHEET').filter(unit=>unit.data.profileIds.some(id=> {
         const ownerRole=entity.ruleContract.roles.find(r=>r.id===entity.ruleContract.assignment.ownerRoleId);
-        return evaluatePredicate(ownerRole.selector,{subject:ownerRole.subject,unitId:unit.id,modelId:id,keywords:new Set([...unit.data.keywords,...unit.data.factionKeywords]),abilities:new Set(),roster:{},battle:{}})==='TRUE';
+        return evaluatePredicate(ownerRole.selector,{subject:ownerRole.subject,unitId:unit.id,modelId:id,keywords:new Set(keywordAccess.allUnitKeywords(unit)),abilities:new Set(),roster:{},battle:{}})==='TRUE';
       })).map(unit=>unit.id) : [entity.parentId];
       if (['SOURCE_MODEL','SOURCE_UNIT','SOURCE_UNIT_MODELS'].includes(effect.targetBinding)) {
         for (const id of [...(effect.weaponIds||[]),...(effect.excludeWeaponIds||[]),...(effect.equipmentRequirement?.excludeWeaponIds||[]),...(effect.equipmentRequirement?.equipmentId?[effect.equipmentRequirement.equipmentId]:[])]) {
@@ -334,9 +336,9 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   // override never rewrites MODEL facts; removing one MODEL contribution does
   // not remove an identical contribution supplied by another profile.
   const keywordBases = new Map(result.units.map(unit => {
-    const modelKeys = new Set(unit.profiles.flatMap(model => model.keywords));
-    return [unit,{unit:[...unit.keywords],own:unit.keywords.filter(key => !modelKeys.has(key)),
-      models:new Map(unit.profiles.map(model => [model,[...model.keywords]]))}];
+    const modelKeys = new Set(unit.profiles.flatMap(model => requiredKeywordField(model)));
+    return [unit,{unit:[...requiredKeywordField(unit)],own:requiredKeywordField(unit).filter(key => !modelKeys.has(key)),
+      models:new Map(unit.profiles.map(model => [model,[...requiredKeywordField(model)]]))}];
   }));
   const keywordDeltas = new Map();
   const resetKeywords = () => {
@@ -354,7 +356,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
   resetKeywords();
   const derivedUnitKeywords = unit => {
     const delta=keywordDeltas.get(unit),base=keywordBases.get(unit);
-    return [...new Set([...base.own,...unit.profiles.flatMap(model=>model.keywords),...delta.grants])]
+    return [...new Set([...base.own,...unit.profiles.flatMap(model=>requiredKeywordField(model)),...delta.grants])]
       .filter(key=>!delta.removals.has(key)).sort();
   };
   const eligible = ({rule,clause,effect,source,ownerModel}, target) => {
@@ -365,7 +367,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       const unitContext=predicateContext(state,result,target.unit.instanceId,'UNIT');
       if (effect.containingUnitScope==='PHYSICAL') {
         unitContext.unitId=target.unit.canonicalUnitId;
-        unitContext.keywords=new Set(target.unit.keywords);
+        unitContext.keywords=new Set(requiredKeywordField(target.unit));
       }
       const modelContext=predicateContext(state,result,target.unit.instanceId,'MODEL',target.model.scopeId);
       const statuses=[];
@@ -391,7 +393,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
       if ((effect.operation==='GRANT_ABILITY' || effect.operation==='GRANT_UNIT_KEYWORD'||
           effect.operation==='MODIFY_RULE_METRIC'&&effect.field==='detectionRange') && effect.unitScope==='PHYSICAL' && subject==='UNIT') {
         ctx.unitId=participant.canonicalUnitId;
-        ctx.keywords=new Set(participant.keywords);
+        ctx.keywords=new Set(requiredKeywordField(participant));
       }
       const status = evaluatePredicate(condition.predicate,ctx);
       if (status === 'INVALID') throw new TypeError('Invalid roster predicate: '+rule.id+'/'+effect.id);
@@ -464,7 +466,7 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     else if (effect.operation === 'GRANT_UNIT_KEYWORD') for (const unit of unitRecipients) {
       const original=target.unit;target.unit=unit;
       keywordDeltas.get(unit).grants.add(effect.keyword);
-      mutate(unit,'keywords',scopedKeywords ? derivedUnitKeywords(unit) : [...new Set([...unit.keywords,effect.keyword])].sort());target.unit=original;
+      mutate(unit,'keywords',scopedKeywords ? derivedUnitKeywords(unit) : [...new Set([...requiredKeywordField(unit),effect.keyword])].sort());target.unit=original;
     }
     else if (effect.operation === 'GRANT_MODEL_KEYWORD' || effect.operation === 'REMOVE_KEYWORD') {
       if (effect.targetSubject === 'MODEL') {
@@ -613,8 +615,8 @@ export function executeRosterEffects(book, state, {evaluatePredicate,resolveWeap
     keyword.sort((a,b)=>rank[a.effect.operation]-rank[b.effect.operation] ||
       a.rule.id.localeCompare(b.rule.id,'en') || a.effect.id.localeCompare(b.effect.id,'en') ||
       (a.source?.instanceId||'').localeCompare(b.source?.instanceId||'','en'));
-    const signature=()=>JSON.stringify(result.units.map(unit=>[unit.instanceId,[...unit.keywords].sort(),
-      unit.profiles.map(model=>[model.scopeId,[...model.keywords].sort()])]));
+    const signature=()=>JSON.stringify(result.units.map(unit=>[unit.instanceId,[...requiredKeywordField(unit)].sort(),
+      unit.profiles.map(model=>[model.scopeId,[...requiredKeywordField(model)].sort()])]));
     const seen=new Set();
     const bound=keyword.reduce((n,item)=>n+targets(item).length,0)+1;
     for (let pass=0;pass<=bound;pass++) {

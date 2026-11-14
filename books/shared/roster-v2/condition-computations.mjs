@@ -1,4 +1,5 @@
 import {epicHeroUnitIds} from './compatibility-context.mjs';
+import {createKeywordAccess,requiredKeywordField} from './keywords.mjs';
 
 /** Pure leaf computations shared by canonical and legacy condition contexts. */
 const assert={ok:(condition,message)=>{if(!condition)throw new TypeError(message);}};
@@ -14,14 +15,13 @@ export function computeRosterCondition(binding,{book,epicOwners,records,state,un
       break;
     case 'MARK_SELECTION_ELIGIBLE':{
       // Eligibility observes source inputs, not effective formation keywords.
-      const data=records.get(unit.canonicalUnitId).data;
-      const keywords=new Set([...data.keywords,...data.factionKeywords]);
+      const keywords=new Set(createKeywordAccess(book,{entities:records}).allUnitKeywords(unit.canonicalUnitId));
       const upgrades=new Set([...(unit.selectedUpgradeIds||[]),...unit.modelRows.flatMap(row=>row.selectedUpgradeIds||[])]);
       for(const id of upgrades)for(const clause of records.get(id)?.ruleContract?.clauses||[])
         for(const effect of clause.rosterEffects||[])if(['GRANT_MODEL_KEYWORD','GRANT_UNIT_KEYWORD'].includes(effect.operation))
           keywords.add(effect.keyword);
       assert.ok(Array.isArray(binding.requiredKeywords)&&Array.isArray(binding.excludedKeywords),'Missing recorded keyword eligibility inputs');
-      value=binding.requiredKeywords.every(keyword=>keywords.has(keyword))&&!binding.excludedKeywords.some(keyword=>keywords.has(keyword))&&!binding.keywords.some(keyword=>keywords.has(keyword));
+      value=binding.requiredKeywords.every(keyword=>keywords.has(keyword))&&!binding.excludedKeywords.some(keyword=>keywords.has(keyword))&&!requiredKeywordField(binding).some(keyword=>keywords.has(keyword));
       break;
     }
     case 'SELECTED_OPTION':{

@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Bounded, typed applicability predicates. This module never reads source prose. */
 import {validateBookRecipients,recipientDeclarationView} from './recipients.mjs';
 import {conditionSpec,isCanonicalCondition,findConditionValue,declarationFieldArguments,translateFieldArguments} from './conditions.mjs';
@@ -248,7 +249,7 @@ export function createRuleContractSchema({stateFields = {}, conditionFields = []
     const available=(bag,key,compare)=>!bag||!Object.hasOwn(bag,key)?'UNKNOWN':compare(bag[key]);
     switch(node.predicate) {
       case 'ALWAYS': return 'TRUE';
-      case 'MODEL_KEYWORD': case 'UNIT_KEYWORD': return context.keywords instanceof Set?(context.keywords.has(a.keyword)?'TRUE':node.predicate==='UNIT_KEYWORD'&&context.unknownKeywords?.has(a.keyword)?'UNKNOWN':'FALSE'):'INVALID';
+      case 'MODEL_KEYWORD': case 'UNIT_KEYWORD': return requiredKeywordField(context) instanceof Set?(requiredKeywordField(context).has(a.keyword)?'TRUE':node.predicate==='UNIT_KEYWORD'&&requiredKeywordField(context, "unknownKeywords")?.has(a.keyword)?'UNKNOWN':'FALSE'):'INVALID';
       case 'MODEL_ABILITY': return acceptedAbilities.has(a.ability)&&context.abilities instanceof Set?truth(context.abilities.has(a.ability)):'INVALID';
       case 'MODEL_ID': return context.modelId?truth(context.modelId===a.id):'INVALID';
       case 'UNIT_ID': return context.unitId?truth(context.unitId===a.id):'INVALID';
@@ -289,8 +290,8 @@ export function createRuleContractSchema({stateFields = {}, conditionFields = []
         // inherited from an Attached Unit. Unknown roster state stays unknown
         // only after this prerequisite has been met.
         if(spec.intrinsicAllKeywords) {
-          if(!(context.intrinsicKeywords instanceof Set))return 'INVALID';
-          if(!spec.intrinsicAllKeywords.every(keyword=>context.intrinsicKeywords.has(keyword)))return truth(false===a.equals);
+          if(!(requiredKeywordField(context, "intrinsicKeywords") instanceof Set))return 'INVALID';
+          if(!spec.intrinsicAllKeywords.every(keyword=>requiredKeywordField(context, "intrinsicKeywords").has(keyword)))return truth(false===a.equals);
         }
         const bag=context[node.contextLevel==='BATTLE'?'battle':'roster'];
         if(isCanonicalCondition(a)){

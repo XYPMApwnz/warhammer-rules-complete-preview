@@ -3,6 +3,7 @@
 import {formRoster,selections,predicateContext,validateRoster} from './context.mjs';
 import {enhancementOwnerContext,epicHeroUnitIds} from './compatibility-context.mjs';
 import {setConditionValue,findConditionValue,clearConditionValues,translateFieldArguments} from '../rule-contract-v2/conditions.mjs';
+import {createKeywordAccess} from './keywords.mjs';
 
 const requireValue=(ok,message)=>{if(!ok)throw new TypeError(message);};
 const put=(bag,key,value,parameters={})=>setConditionValue(bag,{key,...parameters},value);
@@ -143,7 +144,7 @@ export function createEquippedWeaponChoiceConditionContext(book,state,schema,{ru
  * explicit historical snapshot retains its named timing and validation. */
 export function createInitialAttachmentConditionContext(book,state,{binding,conditionArguments,bindContext=context=>context,messages}){
  const assert=(ok,key)=>requireValue(ok,messages[key]);
- const records=new Map(book.entities.map(entity=>[entity.id,entity]));let initial;
+ const records=new Map(book.entities.map(entity=>[entity.id,entity])),keywords=createKeywordAccess(book,{entities:records});let initial;
  if(state.initialAttachmentStep!==undefined){
   assert(state.initialAttachmentStep===binding?.step,'step');assert(Array.isArray(state.initialAttachments),'missing');
   initial=validateRoster(book,{...state,attachments:structuredClone(state.initialAttachments)},book.rosterAttachmentPolicies).attachments;
@@ -155,8 +156,8 @@ export function createInitialAttachmentConditionContext(book,state,{binding,cond
   const roster={...context.roster};setConditionValue(roster,conditionArguments,undefined);
   if(initial!==undefined){
    const unit=state.units.find(row=>row.instanceId===context.instanceId),edge=initial.find(row=>row.leaderInstanceId===unit?.instanceId);
-   const bodyguard=state.units.find(row=>row.instanceId===edge?.bodyguardInstanceId),data=records.get(bodyguard?.canonicalUnitId)?.data;
-   setConditionValue(roster,conditionArguments,unit?.canonicalUnitId===binding.sourceId&&Boolean(data&&binding.bodyguardKeywords.every(keyword=>[...data.keywords,...data.factionKeywords].includes(keyword))));
+   const bodyguard=state.units.find(row=>row.instanceId===edge?.bodyguardInstanceId),owner=records.get(bodyguard?.canonicalUnitId);
+   setConditionValue(roster,conditionArguments,unit?.canonicalUnitId===binding.sourceId&&Boolean(owner&&binding.bodyguardKeywords.every(keyword=>keywords.allUnitKeywords(owner).includes(keyword))));
   }
   return {...context,roster};
  };

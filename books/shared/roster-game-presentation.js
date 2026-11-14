@@ -59,7 +59,7 @@
       listNode.prepend(article);
     }
   }
-  function applyEffectiveKeywords(card,gameUnit){const section=partEnding(card,'-keywords'),host=section?.querySelector('.keyword-list');if(!host)return;const effective=unique(gameUnit.effective?.keywords),keys=new Set(effective.map(value=>String(value).toLowerCase()));for(const tag of host.children)tag.hidden=!keys.has(tag.textContent.trim().toLowerCase());for(const keyword of effective)if(![...host.children].some(tag=>tag.textContent.trim().toLowerCase()===String(keyword).toLowerCase()))host.append(element('span','roster-derived-keyword',keyword));}
+  function applyEffectiveKeywords(card,gameUnit){const section=partEnding(card,'-keywords'),host=section?.querySelector('.keyword-list');if(!host)return;const effective=unique(root.WHRuleFacts.keywordAccess.keywordField(gameUnit.effective)),keys=new Set(effective.map(value=>String(value).toLowerCase()));for(const tag of host.children)tag.hidden=!keys.has(tag.textContent.trim().toLowerCase());for(const keyword of effective)if(![...host.children].some(tag=>tag.textContent.trim().toLowerCase()===String(keyword).toLowerCase()))host.append(element('span','roster-derived-keyword',keyword));}
   function applyEffectiveState(card,gameUnit,projection){applyEffectiveStats(card,gameUnit,projection);applyEffectiveWeapons(card,gameUnit,projection);applyEffectiveAbilities(card,gameUnit,projection);applyEffectiveKeywords(card,gameUnit);}
   function replaceCost(card,gameUnit){
     const points=gameUnit.selection.points,models=gameUnit.selection.modelCount;

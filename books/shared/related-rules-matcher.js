@@ -71,7 +71,7 @@
     const relations=relationKeys.flatMap(key=>context.relations?.[key]||[]);
     const contexts=context.formationRequired?[]:[{...context,attached:false,attachmentKnown:true}];
     for(const relation of relations){
-      const removed=relation.removeKeywords||set(),combined=new Set([...(context.keywords||set()),...(relation.keywords||set())]);
+      const removed=relation.removeKeywords||set(),combined=new Set([...(root.WHRuleFacts.keywordAccess.requiredKeywordField(context)||set()),...(root.WHRuleFacts.keywordAccess.requiredKeywordField(relation)||set())]);
       for(const keyword of removed)combined.delete(keyword);
       const conditionalKeywords=new Set(context.conditionalKeywords||set());
       for(const keyword of removed)conditionalKeywords.delete(keyword);
@@ -83,13 +83,13 @@
   function selectorResult(selector,context,subject,relationMode){
     const choices=selector.alternatives?.length?selector.alternatives:[selector];
     const candidates=subject==='model'
-      ?(context.members||[{keywords:context.intrinsicKeywords||context.keywords}]).map(member=>({...context,...member,unitId:member.unitId||context.unitId,keywords:member.keywords||context.intrinsicKeywords}))
+      ?(context.members||[{keywords:root.WHRuleFacts.keywordAccess.requiredKeywordField(context, "intrinsicKeywords")||root.WHRuleFacts.keywordAccess.requiredKeywordField(context)}]).map(member=>({...context,...member,unitId:member.unitId||context.unitId,keywords:root.WHRuleFacts.keywordAccess.requiredKeywordField(member)||root.WHRuleFacts.keywordAccess.requiredKeywordField(context, "intrinsicKeywords")}))
       :(relationMode==='direct'?[context]:(context.candidates||relationContexts(context)));
     const results=candidates.map(raw=>{
       const candidate={...context,...raw};
       let conditional=false;
       for(const choice of choices){
-        const result=keywordResult(choice,candidate.keywords||candidate.effectiveKeywords||set(),candidate);
+        const result=keywordResult(choice,root.WHRuleFacts.keywordAccess.requiredKeywordField(candidate)||candidate.effectiveKeywords||set(),candidate);
         if(result==='match')return 'match';
         if(result==='conditional')conditional=true;
       }

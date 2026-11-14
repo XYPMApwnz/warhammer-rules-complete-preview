@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Read-only text propagation through recorded recipient paths in the current
  * physical attachment group. This does not execute an effect or infer a fact. */
 import {presentationRecipientLinks,validatePresentationRecipientLink,validateRuleRecipients} from '../rule-contract-v2/recipients.mjs';
@@ -149,7 +150,7 @@ export function projectAttachedRuleTexts(book,projection,instanceId,{state,evalu
               if(role.subject==='FORMED_ATTACHED_UNIT')return context(source,role.subject);
               if(role.binding==='SOURCE_MODEL'||(role.purpose==='OWNER'||role.id===ownerRole?.id)&&role.subject==='MODEL')return ownerModel?enhancementOwnerContext(rule.ruleContract,context(source,'MODEL',ownerModel)):null;
               if(role.binding==='SOURCE_UNIT'||role.purpose==='OWNER'&&role.subject==='UNIT'){
-                const ctx=context(source,'UNIT');return {...ctx,unitId:source.canonicalUnitId,keywords:new Set(source.keywords)};
+                const ctx=context(source,'UNIT');return {...ctx,unitId:source.canonicalUnitId,keywords:new Set(requiredKeywordField(source))};
               }
               return null;
             };

@@ -1,3 +1,4 @@
+import {keywordField,requiredKeywordField} from '../keyword-values.mjs';
 import {getSourceContext,copySourceEvidence,mergeSourceEvidence} from '../source-refs-v2/source-refs.mjs';
 import {projectConditionalRow} from './conditional-policy.mjs';
 import {resolveExecutionEffect,resolvePhysicalSelectionAttribution} from './recipient-execution.mjs';
@@ -44,7 +45,7 @@ export function projectEffectiveInstance(book,projection,instanceId,context={}) 
           row.targetInstanceId!==member.instanceId||row.field!=='keywords'||!Array.isArray(row.after)||!row.after.includes(effect.keyword)||
           row.operation==='GRANT_MODEL_KEYWORD'&&!model)
         throw new TypeError('Unresolved typed keyword grant provenance');
-      if(!(model?.keywords||member.keywords).includes(effect.keyword))return []; // A later removal is not a current grant.
+      if(!(keywordField(model)||requiredKeywordField(member)).includes(effect.keyword))return []; // A later removal is not a current grant.
       const canonicalRuleId=effect.referencedRuleId||getSourceContext(effect,{book}).canonicalRuleId||row.ruleId;
       const origin=records.get(canonicalRuleId);
       if(!origin||effect.referencedRuleId&&getSourceContext(effect,{book}).canonicalRuleId&&effect.referencedRuleId!==getSourceContext(effect,{book}).canonicalRuleId)
@@ -137,10 +138,10 @@ export function projectEffectiveInstance(book,projection,instanceId,context={}) 
     enhancements,
     ...(unit.abilities?{unitAbilities:clone(unit.abilities)}:{}),
     ...(Object.keys(unitMetrics).length?{unitMetrics,unitMetricSources}:{}),
-    formedUnit:group?clone(group):null,keywords:group?[...group.keywords]:[...unit.keywords],
-    physicalKeywords:[...unit.keywords],intrinsicKeywords:[...unit.intrinsicKeywords],
+    formedUnit:group?clone(group):null,keywords:group?[...requiredKeywordField(group)]:[...requiredKeywordField(unit)],
+    physicalKeywords:[...requiredKeywordField(unit)],intrinsicKeywords:[...requiredKeywordField(unit, "intrinsicKeywords")],
     profiles:unit.profiles.map(m=>({id:m.canonicalProfileId,scopeId:m.scopeId,ownerInstanceId:instanceId,quantity:m.quantity,modelInstanceId:m.modelInstanceId,title:canonical.data.title,
-      fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...m.keywords],intrinsicKeywords:[...(m.intrinsicKeywords||unit.intrinsicKeywords)],metrics:clone(m.metrics),abilities:clone(m.abilities),
+      fields:[...fields(m.profile),...book.entities.filter(e=>e.kind==='MODEL_BASE'&&e.parentId===m.canonicalProfileId).map(e=>({label:'Base',value:e.data.text,source:{entityId:e.id}}))],keywords:[...requiredKeywordField(m)],intrinsicKeywords:[...(requiredKeywordField(m, "intrinsicKeywords")||requiredKeywordField(unit, "intrinsicKeywords"))],metrics:clone(m.metrics),abilities:clone(m.abilities),
       ...(m.suppressedAbilityIds?{suppressedAbilityIds:[...m.suppressedAbilityIds]}:{})})),
     weapons:weapons.map(w=>{
       const unambiguousLegacy=!w.quantityPartition&&weapons.filter(other=>other.canonicalProfileId===w.canonicalProfileId&&

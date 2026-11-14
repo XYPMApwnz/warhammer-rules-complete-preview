@@ -1,3 +1,4 @@
+import {requiredKeywordField} from '../keyword-values.mjs';
 /** Source-declared prerequisites for attached text only. These inputs never
  * enter the effect interpreter or turn a battle event into a roster fact. */
 import {translateFieldArguments} from '../rule-contract-v2/conditions.mjs';
@@ -71,11 +72,11 @@ export function createTextRosterFactEvaluator({book,state,projection,records,rul
     let value;
     switch(fact.kind){
       case 'SOURCE_FORMED_MODEL_KEYWORD':
-        value=sourceMembers.some(unit=>unit.profiles.some(profile=>profile.quantity>0&&profile.intrinsicKeywords?.includes(fact.keyword)));
+        value=sourceMembers.some(unit=>unit.profiles.some(profile=>profile.quantity>0&&requiredKeywordField(profile, "intrinsicKeywords")?.includes(fact.keyword)));
         break;
       case 'SOURCE_LEADER_MODEL_KEYWORD':
         value=state.attachments.some(edge=>edge.bodyguardInstanceId===source.instanceId&&projection.units.find(unit=>
-          unit.instanceId===edge.leaderInstanceId)?.profiles.some(profile=>profile.quantity>0&&profile.intrinsicKeywords?.includes(fact.keyword)));
+          unit.instanceId===edge.leaderInstanceId)?.profiles.some(profile=>profile.quantity>0&&requiredKeywordField(profile, "intrinsicKeywords")?.includes(fact.keyword)));
         break;
       case 'SOURCE_PROFILE_PRESENT':
         value=Boolean(physical?.modelRows.some(row=>row.quantity>0&&
