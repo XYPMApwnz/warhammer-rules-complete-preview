@@ -25,7 +25,7 @@ const aRevision=readCacheRevision({root:A}),bRevision=writeCacheRevision({root:B
 assert.notEqual(aRevision,bRevision,'Synthetic B must have a different publication revision');
 const staleRevision='cccccccccccccccc';assert(![aRevision,bRevision].includes(staleRevision));
 const report={source,publication,aRevision,bRevision,results:[]},prefix='/warhammer-rules-complete-preview/';
-let generation='A',failBoot=false,holdBoot=false,staleHtmlResponses=0,staleHtmlServed=0,browser;
+let generation='A',failBoot=false,holdBoot=false,staleHtmlResponses=0,staleHtmlServed=0,staleDeclaredRevision=staleRevision,browser;
 const heldBoot=[];
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.webmanifest':'application/manifest+json'};
 const server=http.createServer((request,response)=>{
@@ -42,7 +42,7 @@ const server=http.createServer((request,response)=>{
     }
     let bytes=fs.readFileSync(file);
     if(staleHtmlResponses>0&&url.pathname.endsWith('/v2/app.html')){
-      const original=bytes.toString('utf8'),injected=original.replace(/(WHPwaExpectedRevision\s*=\s*["'])[a-f0-9]{16}(["'])/,'$1'+staleRevision+'$2');
+      const original=bytes.toString('utf8'),injected=original.replace(/(WHPwaExpectedRevision\s*=\s*["'])[a-f0-9]{16}(["'])/,'$1'+staleDeclaredRevision+'$2');
       assert.notEqual(injected,original,'The stale HTML fault must change only the declared document revision');
       bytes=Buffer.from(injected,'utf8');staleHtmlResponses--;staleHtmlServed++;
     }
@@ -61,7 +61,7 @@ async function poll(page,fn,arg,timeout=15000){
     await sleep(75);
   }
   const diagnosis=await page.evaluate(()=>({url:location.href,bootstrap:document.body?.dataset.pwaBootstrapState,updater:document.querySelector('[data-pwa-updater]')?.dataset.state,text:document.body?.innerText})).catch(()=>null);
-  throw Error('Browser condition timed out: '+fn.toString().slice(0,160)+' '+JSON.stringify(diagnosis));
+  throw Error('Browser condition timed out: '+fn.toString().slice(0,160)+' '+JSON.stringify({diagnosis,worker:await worker(page).catch(()=>null),observations:await observations(page).catch(()=>null)}));
 }
 async function ready(page){await poll(page,()=>!!window.WarhammerAppV2&&!document.querySelector('[data-v2-loading]'));await page.evaluate(()=>WarhammerAppV2.ready);}
 async function go(page,query=''){await page.goto(entry+query,{waitUntil:'load'});await ready(page);}
@@ -83,6 +83,12 @@ async function workerIs(page,revision,{waiting=false}={}){
 // explicit refusal of SKIP_WAITING, leaving the real prepared B worker waiting.
 async function contextFor(viewport={width:1440,height:900}){
   const context=await browser.newContext({viewport,serviceWorkers:'allow'});
+  context.on('page',page=>{
+    page.on('console',message=>{if(['warning','error'].includes(message.type())){report.browserMessages??=[];report.browserMessages.push({type:message.type(),text:message.text(),url:page.url()});}});
+    page.on('pageerror',error=>{report.browserMessages??=[];report.browserMessages.push({type:'pageerror',text:error.stack,url:page.url()});});
+    page.on('requestfailed',request=>{report.browserMessages??=[];report.browserMessages.push({type:'requestfailed',text:request.failure()?.errorText,url:request.url()});});
+    page.on('response',response=>{if(response.status()>=400){report.browserMessages??=[];report.browserMessages.push({type:'response',status:response.status(),url:response.url()});}});
+  });
   await context.addInitScript(()=>{
     const key='qa:pwa-bootstrap-observations',read=()=>{try{return JSON.parse(sessionStorage.getItem(key)||'{"navigations":0,"activations":[],"states":[]}');}catch{return{navigations:0,activations:[],states:[]};}};
     const record=change=>{try{const value=read();change(value);sessionStorage.setItem(key,JSON.stringify(value));}catch{/* A case deliberately blocks sessionStorage. */}};
@@ -134,6 +140,34 @@ async function rosterState(page){return page.evaluate(()=>({storage:Object.fromE
 
 try{
   browser=await launchChromium();
+  {
+    const context=await contextFor({width:390,height:844});
+    try{
+      const installed=await seed(context),before=await storage(installed);await prepareB(installed);
+      await context.setOffline(true);
+      const page=await context.newPage();await page.goto(entry,{waitUntil:'load'});
+      await ready(page);await workerIs(page,bRevision);
+      assert.equal(await page.evaluate(()=>WHPwaExpectedRevision),bRevision,'An already prepared waiting B must open automatically even when initial offline HTML is compatible A');
+      const log=await observations(page);assert.deepEqual(log.activations,[bRevision]);assert.equal(log.navigations,2,'A prepared offline update must reload exactly once');
+      assert.deepEqual(await storage(page),before,'Prepared offline activation must preserve every saved setting and roster value');
+      assert(log.states.some(value=>value.state==='updating'&&value.loading&&!value.shell),'Offline activation must stay inside the initial Loading boundary');
+      await page.screenshot({path:path.join(out,'prepared-update-offline-before-startup-390.png'),fullPage:true});
+      report.results.push({case:'already prepared waiting B auto-applies offline before a compatible cached A startup can open',status:'PASS',observations:log});
+    }finally{await context.close();}
+  }
+  {
+    const context=await contextFor();
+    try{
+      const installed=await seed(context),before=await storage(installed);await prepareB(installed);
+      staleDeclaredRevision=aRevision;staleHtmlResponses=1;
+      const page=await context.newPage();await page.goto(entry+'?v2=ROSTER&book=space-marines',{waitUntil:'load'});
+      await ready(page);await workerIs(page,bRevision);
+      assert.equal(await page.evaluate(()=>WHPwaExpectedRevision),bRevision,'Delayed compatible A HTML must not bypass a ready B or strand the roster route');
+      const log=await observations(page);assert.deepEqual(log.activations,[bRevision]);assert.equal(log.navigations,2);
+      assert.deepEqual(await storage(page),before);
+      report.results.push({case:'delayed online HTML declaring active A still auto-applies prepared B before opening a roster',status:'PASS',observations:log});
+    }finally{staleHtmlResponses=0;staleDeclaredRevision=staleRevision;await context.close();}
+  }
   for(const [mode,viewport] of [['fresh',{width:1440,height:900}],['reload',{width:390,height:844}]]){
     const context=await contextFor(viewport);
     try{

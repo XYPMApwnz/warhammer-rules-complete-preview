@@ -59,16 +59,18 @@
     return !bootstrapReleased&&!bootstrapFailed&&!reloaded&&startupScreen()&&!root.WarhammerAppV2&&!document.querySelector('[data-v2-shell]');
   }
   async function automaticallyInstall(worker){
-    if(!automaticStartupAllowed()||automaticUpdate||!worker||worker!==registration?.waiting)return false;
+    if(automaticUpdate)return automaticUpdate;
+    if(!automaticStartupAllowed()||!worker||worker!==registration?.waiting)return false;
     automaticUpdate=(async()=>{
       try{
         const active=registration.active||navigator.serviceWorker.controller;
         if(!active||!/^[a-f0-9]{16}$/.test(expectedRevision)){reportBootstrapFailure();return false;}
-        if(await readRevision(active)===expectedRevision)return false;
+        const activeRevision=await readRevision(active);
         const status=await query(worker);
         if(!automaticStartupAllowed())return false;
         if(worker!==registration.waiting){reportBootstrapFailure();return false;}
         if(status.type!==MESSAGE||!/^[a-f0-9]{16}$/.test(status.revision)||status.status!=='ready'||!Number.isSafeInteger(status.total)||status.total<=0||status.completed!==status.total){reportBootstrapFailure();return false;}
+        if(status.revision===activeRevision)return false;
         if(unsavedStartupInput()){
           startupText('An update is ready. Save your unfinished input, then select Install and restart.','blocked');setUpdateState('ready');return false;
         }
@@ -167,7 +169,19 @@
     // Each app startup/controller change retries an interrupted data transfer.
     // Never ask an installing/waiting publication to clean the active cache.
     request(worker,'WH_PWA_MIGRATE_V2_DATA').catch(()=>{});
-    try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;if(v2Bootstrap){if(payload.revision===expectedRevision)releaseBootstrap();else {reloadRequired=true;if(startupScreen()&&!bootstrapFailed&&document.body.dataset?.pwaBootstrapState!=='blocked')startupText('Updating to the new version…','updating');setUpdateState('changed');automaticallyInstall(registration?.waiting);}}}catch{}
+    try{
+      const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;
+      if(!v2Bootstrap)return;
+      if(payload.revision!==expectedRevision){
+        reloadRequired=true;if(startupScreen()&&!bootstrapFailed&&document.body.dataset?.pwaBootstrapState!=='blocked')startupText('Updating to the new version…','updating');
+        setUpdateState('changed');automaticallyInstall(registration?.waiting);return;
+      }
+      // Cached or delayed A HTML must not open ahead of an already prepared B.
+      // Adjudicate that waiting publication before releasing any app module.
+      if(automaticUpdate||automaticStartupAllowed())await automaticallyInstall(registration.waiting);
+      if(bootstrapFailed||reloaded||activationRequested||document.body.dataset?.pwaBootstrapState==='blocked')return;
+      releaseBootstrap();
+    }catch{}
   }
   async function updateReady(worker){
     if(!worker||!registration?.active)return;
