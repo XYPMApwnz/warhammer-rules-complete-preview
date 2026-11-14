@@ -104,6 +104,27 @@ for(const expected of census){
  results.push({book:expected.id,units:units.length,modelScopes:modelCount,mixedUnits:mixed.length});
 }
 
+// Identity-only import registries intentionally contain no gameplay facts.
+// An explicit import-only request must not relax an enrolled book or accept
+// another native layout without its passport.
+const importOnly={bookId:'keyword-import-only',entities:[
+ {id:'crew',kind:'DATASHEET',data:{profileIds:['crew-model']}},
+ {id:'crew-model',kind:'PROFILE',parentId:'crew',data:{}}
+]};
+assert.throws(()=>createKeywordAccess(importOnly).allUnitKeywords('crew'),/missing keywords/);
+const importAccess=createKeywordAccess(importOnly,{allowIncompleteFlat:true});
+assert.deepEqual(importAccess.allUnitKeywords('crew'),[]);
+assert.deepEqual(importAccess.modelKeywords('crew','crew-model'),[]);
+const conflictingImport=structuredClone(importOnly);
+conflictingImport.entities[0].data.keywordScopesId='foreign-scope';
+assert.throws(()=>createKeywordAccess(conflictingImport,{allowIncompleteFlat:true}).allUnitKeywords('crew'),
+ /native layout contradicts passport.keywords.format/);
+const enrolledMissing=structuredClone(loaded.get('death-guard').book);
+const enrolledUnit=enrolledMissing.entities.find(entity=>entity.kind==='DATASHEET');
+delete enrolledUnit.data.keywords;
+assert.throws(()=>createKeywordAccess(enrolledMissing,{allowIncompleteFlat:true}).unitKeywords(enrolledUnit),
+ /Keyword access death-guard .*missing keywords/,'Import-only tolerance must not relax enrolled native facts');
+
 // Fixed independent source examples guard against merging models that share
 // the same statline: OTHER MODELS in Dark Commune and the Masters' first profile.
 const csm=loaded.get('chaos-space-marines');
@@ -129,6 +150,31 @@ for(const control of [
  assert.throws(()=>csm.access.modelKeywords(control.unit,member(control.positive).data.composition.modelProfileSourceId),
   /ambiguous MODEL statline/,control.unit+': ambiguous statline must require composition identity');
 }
+
+// A native faction row keeps its explicit MODEL membership even when the UNIT
+// still declares that faction. Remove one shared-statline member only, in a
+// disposable source copy; another member of that statline must remain unchanged.
+const factionMutation=structuredClone(csm.book),factionOriginal=JSON.stringify(csm.book);
+const factionAccess=createKeywordAccess(factionMutation,{passport:csm.passport});
+const factionUnit='unit-dark-commune',factionMember='datasheet-dark-commune:section:2:member:2';
+const factionSibling='datasheet-dark-commune:section:2:member:3';
+const factionOwner=factionMutation.entities.find(entity=>entity.id===factionUnit);
+const factionRow=factionMutation.entities.find(entity=>entity.id==='datasheet-dark-commune:factionKeywords:1');
+assert.equal(factionRow.kind,'FACTION_KEYWORD');assert.equal(factionRow.data.keyword,'HERETIC ASTARTES');
+assert(factionRow.data.compositionMemberSourceIds.includes(factionMember));
+assert(factionRow.data.compositionMemberSourceIds.includes(factionSibling));
+const factionSiblingBefore=factionAccess.modelKeywords(factionUnit,factionSibling);
+assert(factionAccess.modelKeywords(factionUnit,factionMember).includes('HERETIC ASTARTES'));
+factionRow.data.compositionMemberSourceIds=factionRow.data.compositionMemberSourceIds.filter(id=>id!==factionMember);
+const factionExpected=rawFacts(factionMutation,factionOwner,csm.passport.keywords.format);
+same(factionAccess.modelKeywords(factionUnit,factionMember),
+ factionExpected.models.find(model=>model.id===factionMember).keywords,'Faction MODEL membership must follow the native source link');
+assert(!factionAccess.modelKeywords(factionUnit,factionMember).includes('HERETIC ASTARTES'),
+ 'A UNIT faction keyword widened a removed MODEL membership');
+same(factionAccess.modelKeywords(factionUnit,factionSibling),factionSiblingBefore,'Faction mutation changed a sibling MODEL');
+same(factionAccess.factionKeywords(factionUnit),csm.access.factionKeywords(factionUnit),'MODEL mutation changed the UNIT faction declaration');
+assert(csm.access.modelKeywords(factionUnit,factionMember).includes('HERETIC ASTARTES'),'Faction mutation reached original facts');
+assert.equal(JSON.stringify(csm.book),factionOriginal,'Faction mutation changed the original native book');
 
 // Mutate only a disposable native source scope, after creating its accessor.
 // This proves MODEL membership is read from its owner rather than cached or
@@ -183,4 +229,5 @@ assert.equal(runtimeFailures.length,0,'Published runtime keyword parity failed: 
  failures:runtimeFailures.length,firstFailures:runtimeFailures.slice(0,10)},null,2));
 
 console.log(JSON.stringify({status:'PASS',books:results,runtimeViews:runtimeResults,
- controls:{wrongFormat:9,unknownFormat:9,sharedStatlines:2,modelSourceMutation:1}},null,2));
+ controls:{wrongFormat:9,unknownFormat:9,sharedStatlines:2,modelSourceMutation:1,factionModelMembershipMutation:1,
+  importOnlyFlat:1,enrolledStrict:1}},null,2));

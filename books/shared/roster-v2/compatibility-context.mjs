@@ -9,7 +9,7 @@ import {createKeywordAccess,keywordField} from './keywords.mjs';
 export function epicHeroUnitIds(book){
   if(!Array.isArray(book?.entities))throw new TypeError('Missing canonical Enhancement owner book');
   const epic=values=>Array.isArray(values)&&values.some(value=>typeof value==='string'&&value.trim().replace(/\s+/g,' ').toUpperCase()==='EPIC HERO');
-  const units=book.entities.filter(entity=>entity.kind==='DATASHEET'),ids=new Set(),access=createKeywordAccess(book);
+  const units=book.entities.filter(entity=>entity.kind==='DATASHEET'),ids=new Set(),access=createKeywordAccess(book,{allowIncompleteFlat:true});
   for(const unit of units){
     if(epic(access.allUnitKeywords(unit))||epic(access.allModelKeywords(unit)))ids.add(unit.id);
   }

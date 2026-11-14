@@ -186,10 +186,13 @@
 
   /** Generic flat fixtures use the established flat canonical interface. Public
    * book layouts always come from their passport, never a book-name branch. */
-  function createKeywordAccess(book,{passport,entities}={}){
+  function createKeywordAccess(book,{passport,entities,allowIncompleteFlat=false}={}){
    const bookId=book.bookId||book.book?.id||book.id||'<anonymous>';
    const declared=passport||keywordPassports.get(bookId);
    const format=declared?.keywords?.format??(declared?undefined:'flat');
+   // Import-only registries may carry identities without gameplay keyword
+   // facts. This opt-in never relaxes a passport's native representation.
+   const incompleteFlat=allowIncompleteFlat&&!declared&&format==='flat';
    const fail=(unit,message)=>{throw new TypeError(`Keyword access ${bookId} · ${unit?.id||'<unit>'}: ${message}`);};
    if(!Array.isArray(book.entities))fail(null,'missing keyword entity collection');
    if(!KEYWORD_FORMATS.includes(format))fail(book.entities.find(entity=>entity.kind==='DATASHEET'),'unknown passport.keywords.format '+JSON.stringify(format));
@@ -222,6 +225,7 @@
    const factionKeywords=value=>{
     const unit=unitFor(value);
     if(unit.data.factionKeywords!==undefined)return strings(unit.data.factionKeywords,unit,'factionKeywords');
+    if(incompleteFlat)return [];
     if(format==='linked-scopes')return scopes(unit).filter(scope=>scope.label==='FACTION KEYWORDS').flatMap(scope=>scope.keywords);
     if(format==='composition-memberships')return records(unit).filter(record=>record.kind==='FACTION_KEYWORD').map(record=>record.data.keyword);
     fail(unit,'missing factionKeywords');
@@ -231,6 +235,7 @@
     // A source's declared UNIT bag and the union of all possible MODELs are
     // different interfaces. Preserve the declared bag, including source tokens.
     if(unit.data.keywords!==undefined)return strings(unit.data.keywords,unit,'keywords');
+    if(incompleteFlat)return [];
     if(format==='linked-scopes')return scopes(unit).filter(scope=>scope.label!=='FACTION KEYWORDS').flatMap(scope=>scope.keywords);
     if(format==='composition-memberships')return records(unit).filter(record=>record.kind==='KEYWORD_MEMBERSHIP'&&record.data.unitContribution).map(record=>record.data.keyword);
     fail(unit,'missing keywords');
@@ -264,7 +269,7 @@
       return sets[0];
      }
      const memberId=member.sourceEntityId||member.id;
-     return unique(records(unit).filter(record=>record.kind==='FACTION_KEYWORD'||record.data.compositionMemberSourceIds?.includes(memberId)).map(record=>record.data.keyword));
+     return unique(records(unit).filter(record=>record.data.compositionMemberSourceIds?.includes(memberId)).map(record=>record.data.keyword));
     }
     if(format==='profile-declarations'){
      if(unit.data.keywordScope!=='ALL_SOURCE_MODELS'||!Array.isArray(unit.data.modelKeywordDeclarations))fail(unit,'invalid MODEL declaration layout');

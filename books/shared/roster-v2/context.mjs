@@ -299,7 +299,7 @@ export function formRoster(book, state) {
         return {subject:'MODEL',scopeId,quantity:group.quantity,modelInstanceId,unitInstanceId:raw.instanceId,
           canonicalProfileId:row.canonicalProfileId,canonicalUnitId:raw.canonicalUnitId,
           ...(profileBindings ? {intrinsicKeywords:keywordValues(profileBindings.get(row.canonicalProfileId),'intrinsicKeywords')} : {}),
-          keywords:keywordAccess.modelKeywords(canonical,row.canonicalProfileId),
+          keywords:profileBindings?keywordValues(profileBindings.get(row.canonicalProfileId),'intrinsicKeywords'):keywordAccess.modelKeywords(canonical,row.canonicalProfileId),
           profile:copy(records.get(row.canonicalProfileId).data),abilities:canonical.data.ruleReferenceIds.flatMap(id=>copy(book.rosterReferenceSemantics?.[id]?.abilities || [])),metrics:{},
           selections:copy(selected),weapons};
       });
