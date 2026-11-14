@@ -507,7 +507,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     return node;
   };
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
-    const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set(),policyTextRows=[],executableTexts=[];
+    const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set(),policyTextRows=[],choiceTexts=new Map(),executableTexts=[];
     const sourceListFieldIds=new Set((card.rosterConditionalPolicies||[]).flatMap(row=>
       (cards.get(row.ruleId)?.fields||[]).filter(field=>field.value===row.policy.contextQuote).map(field=>field.id)));
     const children=(card.children || []).flatMap(id=>variants?.get(id) || [cards.get(id)]);
@@ -723,7 +723,19 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));
         appendAttribution(node,row,source,row.recipient.how!=='AURA'?el('p','','Applies to: '+row.recipientLabels.join('; ')):null,
           [row.recipient.how,row.recipientLabels]);
-        if(row.activationContext){const required=el('p','','Required battle choice: ');required.append(anchor(row.activationContext.label,row.activationContext.canonicalId,true),document.createTextNode(' — '+row.activationContext.text));node.append(required);}
+        if(row.activationContext){
+          const choice=row.activationContext,key=JSON.stringify([choice.canonicalId,sourceSnapshot(choice),
+            row.sourceInstanceId??null,row.sourceModelScopeId??null,choice.text]);
+          let shared=choiceTexts.get(key);
+          if(!shared){
+            const text=sourceText(choice.text);text.id='ds-battle-choice-'+domKey(JSON.stringify([card.id,instanceId,key]));
+            text.dataset.battleChoiceText=choice.canonicalId;text.dataset.sourceInstanceId=row.sourceInstanceId??'';
+            text.dataset.sourceModelScopeId=row.sourceModelScopeId||'';text.dataset.sourceProvenance=JSON.stringify(sourceSnapshot(choice));
+            shared={text,row,links:[]};choiceTexts.set(key,shared);section.append(text);
+          }
+          const required=el('p','','Required battle choice: '),link=policyTextReference(shared.text.id,choice.label);
+          link.textContent=choice.label;link.dataset.battleChoiceRef=choice.canonicalId;shared.links.push(link);required.append(link);node.append(required);
+        }
         if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
         const textKey=conditionalSourceTextKey(row,sourceSnapshot(row,{slot:'sourceProvenance'}));
         let textId=textKey&&policyTexts.get(textKey);
@@ -1168,6 +1180,20 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         if(!refs.includes(text.id)){refs.push(text.id);node.append(document.createTextNode(' · '),policyTextReference(text.id,ruleCard.title));}
         node.dataset.executableTextRefs=JSON.stringify(refs);
       }
+    }
+    for(const {text,row,links}of choiceTexts.values()){
+      const choice=row.activationContext,rule=cards.get(choice.canonicalId);
+      if(row.sourceInstanceId!==instanceId||!rule||!sameSourceEvidence(choice,rule))continue;
+      const fields=rule.fields.filter(field=>field.source?.entityId===rule.id&&field.value===choice.text);
+      if(fields.length!==1)continue;
+      const matches=[...root.querySelectorAll('[data-fact-id]')].filter(node=>node.dataset.factId===fields[0].id&&
+        node.textContent===choice.text&&node.closest('[data-card-id]')?.dataset.cardId===rule.id&&
+        node.closest('.unit-card')===root&&(!row.sourceModelScopeId||node.closest('[data-composition-id]')?.dataset.compositionId===row.sourceModelScopeId));
+      if(matches.length!==1)continue;
+      const native=matches[0];native.id||=text.id+'-canonical';native.dataset.battleChoiceText=rule.id;
+      native.dataset.sourceProvenance=text.dataset.sourceProvenance;native.dataset.sourceInstanceId=text.dataset.sourceInstanceId;
+      native.dataset.sourceModelScopeId=text.dataset.sourceModelScopeId;text.remove();
+      for(const link of links){link.href='#'+native.id;link.dataset.policyTextRef=native.id;}
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
     return root;
