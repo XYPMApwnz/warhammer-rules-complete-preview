@@ -1,6 +1,6 @@
 import {createLifecycle} from './lifecycle.mjs';
 import {epicHeroEnhancementWarning} from '../roster-v2/import.mjs';
-import {playerImportCopy,warlordDisplay,incompleteExportCopy} from './cosmetics.mjs';
+import {playerImportCopy,warlordDisplay,incompleteExportCopy,plainHeaderImportExplanation} from './cosmetics.mjs';
 import {sourceSnapshot} from '../source-refs-v2/source-refs.mjs';
 /** Display the service's existing uncertainty; never calculate or complete costs. */
 export function renderRosterPointsStatus(document,{service,instanceId=null,titleForId=()=>null}) {
@@ -126,6 +126,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     .v2-roster-bindings fieldset { margin:0; border:1px solid var(--v2-line); padding:14px; border-radius:9px; min-width:0; }
     .v2-roster-bindings legend { padding:0 6px; font-size:13px; font-weight:700; overflow-wrap:anywhere; }
     .v2-roster-hint { color:var(--v2-muted); font-size:12px; margin:7px 0; }
+    .v2-roster-header-example { white-space:pre-wrap; overflow-wrap:anywhere; }
+    .v2-roster-header-example { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; font-size:13px; line-height:1.6; }
     .v2-roster-instance { margin:0; }
     .v2-roster-instance-header { padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; border-bottom:1px solid var(--v2-line); }
     .v2-roster-instance-header h2 { margin:4px 0 0; }
@@ -328,10 +330,11 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
       saveAndReport('Roster imported. Attachments are optional. Open your personal guide when ready.');
       rosterArea.scrollIntoView({block: 'start', behavior: 'instant'});
     } else {
-      renderBindings(importResult.needsBindings || []);
+      const headerExplanation=plainHeaderImportExplanation(importResult);
+      renderBindings(importResult.needsBindings || [],headerExplanation);
       const errors = (importResult.errors || []).map(playerError).join(' ');
       const explanations=[...new Set((importResult.needsBindings||[]).map(need=>need.kind==='COMPOSITION_MEMBER'?incompleteExportCopy.composition:playerImportCopy(importLimitationForNeed(need,importLimitations)?.message)).filter(Boolean))];
-      setStatus(errors || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
+      setStatus(errors || headerExplanation?.message || (explanations.length?explanations.join(' ')+' No roster changes were saved.':
         'Some imported labels need clarification. Resolve the ambiguous entries below or provide a corrected New Recruit export.'), importResult.status === 'INVALID');
     }
   }
@@ -348,9 +351,16 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     });
     return select;
   }
-  function renderBindings(needs) {
+  function renderBindings(needs,headerExplanation=null) {
     if(!lifecycle.active)return;
     bindingArea.replaceChildren();
+    if(headerExplanation){
+      const notice=el('section','');notice.dataset.importHint='plain-header';
+      notice.append(el('p','',headerExplanation.instruction),el('pre','v2-roster-header-example',headerExplanation.example),el('p','',headerExplanation.guidance));
+      bindingArea.append(notice);
+      // Hide only the absent-header placeholder, leaving real unresolved entries.
+      needs=needs.filter(need=>!(need.kind==='DETACHMENT'&&need.rawLabel==='—'&&!need.candidateIds?.length));
+    }
     if (!needs.length) return;
     const form = el('form', 'v2-roster-bindings');
     const read = [];

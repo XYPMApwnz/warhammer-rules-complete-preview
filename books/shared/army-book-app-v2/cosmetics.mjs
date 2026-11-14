@@ -28,6 +28,20 @@ export function playerImportCopy(value){
   for(const [before,after]of importCopy)text=text.replaceAll(before,after);
   return text.replace(/ {2,}/g,' ').trim();
 }
+const plainHeaderHelp=Object.freeze({
+  message:'The export header could not be recognized. Your current roster and saved roster were not changed.',
+  instruction:'The supported plain New Recruit header has exactly three nonempty lines before the units, for example:',
+  example:'Unnamed list (950 Points)\nDeath Guard\nContagion Engines and Paragons of Putrescence (2 Detachment Points)',
+  guidance:'Re-export the roster as text from New Recruit and try again. If the header is still different, send the original export as a sample to the site owner.'
+});
+/** Explain missing recognized header metadata only after import is unresolved.
+ * This does not inspect, repair or admit any input spelling or header format. */
+export function plainHeaderImportExplanation(result){
+  const draft=result?.draft,metadata=draft?.metadata;
+  return result?.status==='NEEDS_BINDINGS'&&!result.errors?.length&&draft?.units?.length>0&&
+    !metadata?.plainHeader&&metadata?.faction==='—'&&metadata.detachment==='—'&&
+    Array.isArray(draft.detachments)&&draft.detachments.length===0?plainHeaderHelp:null;
+}
 export function warlordDisplay(unit,state){
   if(unit.warlord===true||typeof state?.warlordInstanceId==='string'&&state.warlordInstanceId===unit.instanceId)return 'Yes';
   return state?.warlordInstanceId||state?.units?.some(item=>item.warlord===true)?'No':'Not set';
