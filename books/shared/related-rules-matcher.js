@@ -27,11 +27,11 @@
     })),conditions:value?.conditions||[]};
   }
   function keywordResult(selector,keywords,context){
-    const conditionalKeywords=context.conditionalKeywords||set();
+    const conditionalKeywords=root.WHRuleFacts.keywordAccess.requiredKeywordField(context, "conditionalKeywords")||set();
     const ids=selector.unitIds||[];
     const contextIds=context.unitIds||new Set([context.unitId].filter(Boolean));
     if(ids.length&&!ids.some(id=>contextIds.has(id)))return 'no-match';
-    const possibleKeywords=context.possibleKeywords||keywords;
+    const possibleKeywords=root.WHRuleFacts.keywordAccess.requiredKeywordField(context, "possibleKeywords")||keywords;
     if((selector.noneKeywords||[]).some(value=>possibleKeywords.has(normalize(value))))return 'no-match';
     let conditional=false;
     for(const value of selector.allKeywords||[]){
@@ -71,9 +71,9 @@
     const relations=relationKeys.flatMap(key=>context.relations?.[key]||[]);
     const contexts=context.formationRequired?[]:[{...context,attached:false,attachmentKnown:true}];
     for(const relation of relations){
-      const removed=relation.removeKeywords||set(),combined=new Set([...(root.WHRuleFacts.keywordAccess.requiredKeywordField(context)||set()),...(root.WHRuleFacts.keywordAccess.requiredKeywordField(relation)||set())]);
+      const removed=root.WHRuleFacts.keywordAccess.requiredKeywordField(relation, "removeKeywords")||set(),combined=new Set([...(root.WHRuleFacts.keywordAccess.requiredKeywordField(context)||set()),...(root.WHRuleFacts.keywordAccess.requiredKeywordField(relation)||set())]);
       for(const keyword of removed)combined.delete(keyword);
-      const conditionalKeywords=new Set(context.conditionalKeywords||set());
+      const conditionalKeywords=new Set(root.WHRuleFacts.keywordAccess.requiredKeywordField(context, "conditionalKeywords")||set());
       for(const keyword of removed)conditionalKeywords.delete(keyword);
       const mandatory=relation.mandatory===true;
       contexts.push({...context,unitIds:new Set([context.unitId,relation.unitId].filter(Boolean)),keywords:combined,conditionalKeywords,possibleKeywords:combined,attached:true,attachmentKnown:true,characterCount:(context.characterCount||0)+(relation.characterCount||0),possibleCharacterCount:relation.maxCharacters??null});
@@ -89,7 +89,7 @@
       const candidate={...context,...raw};
       let conditional=false;
       for(const choice of choices){
-        const result=keywordResult(choice,root.WHRuleFacts.keywordAccess.requiredKeywordField(candidate)||candidate.effectiveKeywords||set(),candidate);
+        const result=keywordResult(choice,root.WHRuleFacts.keywordAccess.requiredKeywordField(candidate)||root.WHRuleFacts.keywordAccess.requiredKeywordField(candidate, "effectiveKeywords")||set(),candidate);
         if(result==='match')return 'match';
         if(result==='conditional')conditional=true;
       }

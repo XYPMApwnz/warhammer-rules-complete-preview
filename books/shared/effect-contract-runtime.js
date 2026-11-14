@@ -5,7 +5,7 @@
   const canonicalId=unit=>unit?.identity?.canonicalDatasheetId||unit?.item?.catalogUnit?.id||unit?.canonicalUnitId||unit?.datasheetId||'';
   const instanceId=unit=>unit?.identity?.instanceId||unit?.id||'';
   const catalogUnit=unit=>unit?.item?.catalogUnit||list(root.WH_BOOK_ROSTER_CATALOG?.units).find(item=>item.id===canonicalId(unit))||{};
-  const keywordValues=unit=>[...list(unit?.rosterState?.keywordProfile?.effective),...list(unit?.rosterState?.keywordProfile?.intrinsic),...list(unit?.rosterState?.keywordProfile?.added),...list(root.WHRuleFacts.keywordAccess.keywordField(catalogUnit(unit), "intrinsicKeywords"))];
+  const keywordValues=unit=>[...list(root.WHRuleFacts.keywordAccess.keywordField(root.WHRuleFacts.keywordAccess.keywordField(unit?.rosterState, "keywordProfile"), "effective")),...list(root.WHRuleFacts.keywordAccess.keywordField(root.WHRuleFacts.keywordAccess.keywordField(unit?.rosterState, "keywordProfile"), "intrinsic")),...list(root.WHRuleFacts.keywordAccess.keywordField(root.WHRuleFacts.keywordAccess.keywordField(unit?.rosterState, "keywordProfile"), "added")),...list(root.WHRuleFacts.keywordAccess.keywordField(catalogUnit(unit), "intrinsicKeywords"))];
   const keywords=(unit,env)=>new Set([...keywordValues(unit),...(env?.effectiveKeywordGrants?.get(instanceId(unit))||[])].map(normalize));
   const abilityIds=unit=>new Set([...list(catalogUnit(unit)?.gameSelections?.abilities),...list(catalogUnit(unit)?.gameSelections?.wargearAbilities)].flatMap(item=>[item?.id,item?.sectionId]).filter(Boolean));
   const selectedIds=(unit,key)=>new Set(list(unit?.selection?.loadout?.[key]).map(item=>typeof item==='string'?item:item?.id).filter(Boolean));

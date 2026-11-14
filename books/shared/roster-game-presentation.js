@@ -126,7 +126,7 @@
   }
   function emphasizeKeywords(card,gameUnit){
     const section=partEnding(card,'-keywords');if(!section)return;section.dataset.rosterGameEffective='true';const heading=section.querySelector(':scope > h4');if(heading)heading.textContent='Keywords';
-    const profile=gameUnit.rosterState.keywordProfile||{},added=unique([...list(profile.added),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation!=='remove').map(effect=>effect.targetId)]),removed=unique([...list(profile.removed),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation==='remove').map(effect=>effect.targetId)]);
+    const profile=root.WHRuleFacts.keywordAccess.requiredKeywordField(gameUnit.rosterState, "keywordProfile")||{},added=unique([...list(root.WHRuleFacts.keywordAccess.requiredKeywordField(profile, "added")),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation!=='remove').map(effect=>effect.targetId)]),removed=unique([...list(root.WHRuleFacts.keywordAccess.requiredKeywordField(profile, "removed")),...list(gameUnit.effects).filter(effect=>effect.component==='keyword'&&effect.operation==='remove').map(effect=>effect.targetId)]);
     if(!added.length&&!removed.length)return;const changes=element('div','roster-game-keyword-changes');for(const value of added)changes.append(element('span','roster-game-added',`+ ${value}`));for(const value of removed)changes.append(element('span','roster-game-removed',`− ${value}`));section.append(changes);
   }
   function syncNavigation(card){
