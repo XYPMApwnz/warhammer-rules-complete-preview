@@ -1161,7 +1161,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       const text=matches[0];
       text.id||='ds-policy-canonical-text-'+domKey(JSON.stringify([card.id,instanceId,row.ruleId,fields[0].id,row.sourceModelScopeId??null]));
       const old=node.querySelector('[data-policy-rule-text]');if(old)old.remove();
-      let reference=node.querySelector('[data-policy-text-ref]');
+      let reference=node.querySelector('[data-policy-text-ref]:not([data-battle-choice-ref])');
       if(!reference){reference=policyTextReference(text.id,row.label);node.append(reference);}
       reference.href='#'+text.id;reference.dataset.policyTextRef=text.id;
       node.dataset.policyTextRef=text.id;node.setAttribute('aria-details',text.id);

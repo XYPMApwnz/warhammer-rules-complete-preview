@@ -90,6 +90,14 @@ async function runLion(width){
   assert.equal(await page.locator('[id="'+id+'"]').count(),1);
   const native=read('books/dark-angels/v2/generated/roster-runtime.json').entities.find(row=>row.id===choice.canonicalId);
   assert.equal(norm(await source.innerText()),norm(native.data.text),'Complete choice source is retained');
+  for(const link of await node.locator('a[data-policy-text-ref]').all()){
+   const target=await link.getAttribute('data-policy-text-ref');
+   const text=node.locator('[id="'+target+'"]');
+   assert.equal(await text.count(),1,'Every independent rule/choice link resolves on its own physical card');
+   assert.ok(await text.isVisible(),'Every linked rule/choice source is visible');
+   assert.equal(await page.locator('[id="'+target+'"]').count(),1,'Every linked source has a unique document ID');
+   assert.equal(await link.getAttribute('href'),'#'+target);
+  }
  }
  return {case:'lion',width,fullTextOccurrences:occurrences,separateEffects:rows.length,screenshots:[await shot('lion-choice-'+width,node.locator('[data-battle-choice-text]').first().or(node).first())]};
 }
