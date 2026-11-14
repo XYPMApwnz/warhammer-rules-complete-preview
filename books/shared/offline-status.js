@@ -12,6 +12,77 @@
     document.body.prepend(panel);const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./styles/offline-status.css',script.src).href;document.head.append(style);
   }
   const draftKey='wh40k:pwa-import-drafts:v1';
+  const automaticPrefix='wh40k:pwa-auto-update:'+new URL(swUrl,location.href).pathname+':';
+  const automaticKey=revision=>automaticPrefix+revision;
+  function pendingAutomaticAttempt(){return Object.keys(sessionStorage).some(key=>key.startsWith(automaticPrefix)&&sessionStorage.getItem(key)==='attempted');}
+  let bootstrapReleased=false,bootstrapFinished=!v2Bootstrap,bootstrapFailed=false,bootstrapTimer=0,automaticUpdate=null;
+  function workingScreen(){
+    const children=document.querySelector('[data-v2-mount-root]')?.children||[];
+    return [...children].some(child=>!child.hidden&&!['LINK','STYLE','SCRIPT'].includes(child.tagName));
+  }
+  function startupScreen(){return v2Bootstrap&&!bootstrapFinished&&!workingScreen()&&Boolean(document.querySelector('[data-v2-loading]'));}
+  function startupText(text,state){
+    const loading=document.querySelector('[data-v2-loading]');if(loading)loading.textContent=text;
+    if(document.body.dataset)document.body.dataset.pwaBootstrapState=state;
+  }
+  function completeBootstrap(){
+    const recovered=bootstrapFailed;
+    bootstrapFailed=false;
+    bootstrapFinished=true;clearTimeout(bootstrapTimer);
+    try{const key=automaticKey(expectedRevision);if(sessionStorage.getItem(key)==='attempted')sessionStorage.setItem(key,'completed');}catch{/* Retaining an attempted marker is safe when storage becomes unavailable. */}
+    if(document.body.dataset)delete document.body.dataset.pwaBootstrapState;
+    document.querySelector('[data-v2-loading]')?.remove();
+    if(recovered)setUpdateState('up_to_date');
+  }
+  function reportBootstrapFailure(message='The new version could not open. Select Try again to restart. Your saved rosters have not been changed.'){
+    if(!v2Bootstrap||bootstrapFinished||workingScreen())return;
+    bootstrapFailed=true;clearTimeout(bootstrapTimer);
+    startupText(message,'failed');
+    setUpdateState('startup_failed');
+  }
+  function watchAutomaticStartup(){
+    clearTimeout(bootstrapTimer);
+    bootstrapTimer=setTimeout(()=>{if(workingScreen())completeBootstrap();else reportBootstrapFailure();},30000);
+  }
+  function releaseBootstrap(){
+    if(bootstrapFailed||activationRequested)return;
+    bootstrapReleased=true;resolveReady();
+  }
+  function unsavedStartupInput(){
+    for(const input of document.querySelectorAll?.('textarea,select,input:not([type="button"]):not([type="submit"]):not([type="hidden"]),[contenteditable]')||[]){
+      if(input.value||input.isContentEditable&&input.textContent)return true;
+    }
+    const drafts=JSON.parse(sessionStorage.getItem(draftKey)||'{}');
+    return Object.values(drafts).some(draft=>Boolean(draft?.value));
+  }
+  function automaticStartupAllowed(){
+    return !bootstrapReleased&&!bootstrapFailed&&!reloaded&&startupScreen()&&!root.WarhammerAppV2&&!document.querySelector('[data-v2-shell]');
+  }
+  async function automaticallyInstall(worker){
+    if(!automaticStartupAllowed()||automaticUpdate||!worker||worker!==registration?.waiting)return false;
+    automaticUpdate=(async()=>{
+      try{
+        const active=registration.active||navigator.serviceWorker.controller;
+        if(!active||!/^[a-f0-9]{16}$/.test(expectedRevision)){reportBootstrapFailure();return false;}
+        if(await readRevision(active)===expectedRevision)return false;
+        const status=await query(worker);
+        if(!automaticStartupAllowed())return false;
+        if(worker!==registration.waiting){reportBootstrapFailure();return false;}
+        if(status.type!==MESSAGE||!/^[a-f0-9]{16}$/.test(status.revision)||status.status!=='ready'||!Number.isSafeInteger(status.total)||status.total<=0||status.completed!==status.total){reportBootstrapFailure();return false;}
+        if(unsavedStartupInput()){
+          startupText('An update is ready. Save your unfinished input, then select Install and restart.','blocked');setUpdateState('ready');return false;
+        }
+        // Reserve before requesting activation. Never erase the per-version
+        // reservation: a failed activation/reload must require a user action.
+        if(sessionStorage.getItem(automaticKey(status.revision))!==null){reportBootstrapFailure();return false;}
+        sessionStorage.setItem(automaticKey(status.revision),'attempted');
+        if(sessionStorage.getItem(automaticKey(status.revision))!=='attempted')throw new Error('Automatic update reservation unavailable');
+        startupText('Updating to the new version…','updating');setUpdateState('startup_updating');watchAutomaticStartup();
+        await installUpdate({automatic:true,worker,revision:status.revision});return true;
+      }catch(error){console.warn('Automatic startup update could not finish',error);reportBootstrapFailure();return false;}
+    })();
+    try{return await automaticUpdate;}finally{automaticUpdate=null;}
+  }
   function activeBook(){return root.ArmyBookAppV2?.payload?.book?.id;}
   function restoreDraft(){
     const book=activeBook(),input=document.querySelector('[data-roster-input="raw-text"]');if(!book||!input||input.value)return;
@@ -37,10 +108,15 @@
     downloading:['Downloading update…','Downloading update…',true],
     ready:['Update ready','Install and restart',false],
     failed:['Could not check for updates','Retry',false],
-    changed:['Сайт обновился. Перезагрузить?','Перезагрузить',false]
+    changed:['Сайт обновился. Перезагрузить?','Перезагрузить',false],
+    startup_updating:['Updating to the new version…','Updating…',true],
+    startup_failed:['The update could not open. Please try again.','Try again',false]
   };
   function setUpdateState(state){
     if(!updater)return;
+    if(document.body.dataset?.pwaBootstrapState==='blocked'&&state==='changed')state='ready';
+    if(bootstrapFailed&&state!=='startup_failed')return;
+    if(activationRequested&&startupScreen()&&!['startup_failed','startup_updating'].includes(state))return;
     const values=updateStates[state]||updateStates.idle;
     updater.dataset.state=state;updateStatus.textContent=values[0];updateAction.textContent=values[1];updateAction.disabled=values[2];
   }
@@ -62,6 +138,10 @@
     if(!payload||payload.type!==MESSAGE)return;
     const sequence=Number(payload.sequence)||0,lastSequence=worker&&workerSequences.get(worker)||0;if(worker&&sequence<lastSequence)return;if(worker)workerSequences.set(worker,sequence);
     if(failedRevision&&payload.revision===failedRevision&&payload.status!=='error'&&payload.status!=='ready')return;
+    if(startupScreen()&&!bootstrapFailed&&document.body.dataset?.pwaBootstrapState!=='blocked'&&payload.revision===expectedRevision){
+      if(payload.status==='updating')startupText('Updating to the new version…','updating');
+      if(payload.status==='error'){reportBootstrapFailure();return;}
+    }
     const target=mount();if(!target)return;clearTimeout(readyTimer);
     const total=Math.max(0,Number(payload.total)||0),completed=Math.max(0,Math.min(total,Number(payload.completed)||0)),percent=total?Math.round(completed/total*100):0,state=payload.status;
     target.dataset.state=state;target.dataset.revision=payload.revision||'';target.dataset.completed=String(completed);target.dataset.total=String(total);meter.setAttribute('aria-valuenow',String(percent));bar.style.setProperty('--offline-progress',`${percent}%`);
@@ -87,12 +167,13 @@
     // Each app startup/controller change retries an interrupted data transfer.
     // Never ask an installing/waiting publication to clean the active cache.
     request(worker,'WH_PWA_MIGRATE_V2_DATA').catch(()=>{});
-    try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;if(v2Bootstrap){if(payload.revision===expectedRevision)resolveReady();else {reloadRequired=true;setUpdateState('changed');}}}catch{}
+    try{const payload=await query(worker);if(installedVersion&&payload.revision)installedVersion.textContent=payload.revision;if(v2Bootstrap){if(payload.revision===expectedRevision)releaseBootstrap();else {reloadRequired=true;if(startupScreen()&&!bootstrapFailed&&document.body.dataset?.pwaBootstrapState!=='blocked')startupText('Updating to the new version…','updating');setUpdateState('changed');automaticallyInstall(registration?.waiting);}}}catch{}
   }
   async function updateReady(worker){
     if(!worker||!registration?.active)return;
     try{showAvailable(await readRevision(worker));}catch{try{showAvailable((await query(worker)).revision);}catch{showAvailable('unknown');}}
     setUpdateState('ready');
+    await automaticallyInstall(worker);
   }
   function watch(worker){
     if(!worker||watchedWorkers.has(worker))return;watchedWorkers.add(worker);if(worker.state!=='installing')query(worker).catch(()=>{});
@@ -157,35 +238,57 @@
     }
     return true;
   }
-  async function installUpdate(){
-    if(v2Bootstrap&&registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
-    const waiting=registration?.waiting;if(!waiting){setUpdateState('failed');return;}
-    activationRequested=true;updateAction.disabled=true;
+  async function installUpdate({automatic=false,worker:expectedWorker=null,revision:expectedTarget=null}={}){
     try{
-      const revision=availableVersion?.textContent||await readRevision(waiting),reply=await request(waiting,ACTIVATE_UPDATE,{revision});
+      if(!automatic&&v2Bootstrap&&registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
+      const waiting=registration?.waiting;if(!waiting){if(automatic)throw new Error('Prepared startup update unavailable');setUpdateState('failed');return;}
+      if(automatic&&(!automaticStartupAllowed()||waiting!==expectedWorker))throw new Error('Prepared startup update changed');
+      activationRequested=true;updateAction.disabled=true;
+      const revision=automatic?expectedTarget:availableVersion?.textContent||await readRevision(waiting);
+      if(automatic&&await readRevision(waiting)!==revision)throw new Error('Prepared startup update changed');
+      if(automatic&&(!automaticStartupAllowed()||waiting!==registration.waiting||unsavedStartupInput()))throw new Error('Startup is no longer safe to restart');
+      const reply=await request(waiting,ACTIVATE_UPDATE,{revision});
       if(!reply?.accepted)throw new Error('Waiting worker declined activation');
       if(waiting.state!=='activated')await new Promise((resolve,reject)=>{
         const timer=setTimeout(()=>reject(new Error('Worker activation timed out')),15000);
         const changed=()=>{if(waiting.state==='activated'){clearTimeout(timer);waiting.removeEventListener('statechange',changed);resolve();}};waiting.addEventListener('statechange',changed);changed();
       });
+      if(automatic){
+        if(bootstrapFailed)return;
+        if(!automaticStartupAllowed()||unsavedStartupInput()){
+          activationRequested=false;
+          if(workingScreen()){completeBootstrap();setUpdateState('changed');}
+          else reportBootstrapFailure('The update is ready. Save your unfinished input, then select Try again to restart.');
+          return;
+        }
+      }
       confirmedReload();
-    }catch(error){console.warn('Service worker update activation failed',error);activationRequested=false;setUpdateState('failed');}
+    }catch(error){console.warn('Service worker update activation failed',error);activationRequested=false;if(startupScreen())reportBootstrapFailure();else setUpdateState('failed');}
   }
   async function confirmChanged(){
-    // A duplicate waiting registration must not block a version already active.
-    if(registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
-    if(registration?.waiting){await installUpdate();return;}
-    if(!navigator.onLine){confirmedReload();return;}
     try{
+      // A duplicate waiting registration must not block a version already active.
+      if(registration?.active){const active=await readRevision(registration.active);if(active!==expectedRevision&&active===availableVersion?.textContent){confirmedReload();return;}}
+      if(registration?.waiting){await installUpdate();return;}
+      if(!navigator.onLine){confirmedReload();return;}
       await checkForUpdate({quiet:true});
       if(registration?.waiting){await installUpdate();return;}
       if(registration?.installing){setUpdateState('downloading');return;}
       confirmedReload();
-    }catch{setUpdateState('failed');}
+    }catch{if(startupScreen())reportBootstrapFailure();else setUpdateState('failed');}
   }
   async function start(){
     try{
       registration=await navigator.serviceWorker.getRegistration();
+      if(v2Bootstrap){
+        try{
+          const marker=sessionStorage.getItem(automaticKey(expectedRevision)),pending=pendingAutomaticAttempt();
+          if(marker!==null||pending){
+            if(marker==='attempted'||pending)startupText('Updating to the new version…','updating');
+            watchAutomaticStartup();
+          }
+        }catch{/* A blocked store never grants permission to auto-activate. */}
+      }
       if(!registration&&navigator.serviceWorker.controller)registration=await navigator.serviceWorker.ready;
       if(updater&&navigator.onLine&&registration?.updateViaCache!=='none'){registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});autoChecked=true;}
       else if(!registration)registration=await navigator.serviceWorker.register(swUrl,{updateViaCache:'none'});
@@ -197,9 +300,9 @@
       if(!navigator.serviceWorker.controller&&navigator.onLine){if(v2Bootstrap)updater.dataset.unavailable='true';resolveReady();}
     }
   }
-  updateAction?.addEventListener('click',()=>{if(updater.dataset.state==='changed')confirmChanged();else if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});});
+  updateAction?.addEventListener('click',()=>{if(updater.dataset.state==='startup_failed'){bootstrapFailed=false;startupText('Updating to the new version…','updating');setUpdateState('startup_updating');confirmChanged();}else if(updater.dataset.state==='changed')confirmChanged();else if(updater.dataset.state==='ready')installUpdate();else checkForUpdate().catch(()=>{});});
   navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='WH_PWA_DATA_CHANGED'){reloadRequired=true;setUpdateState('changed');return;}apply(event.data,event.source);});
   navigator.serviceWorker.addEventListener('controllerchange',()=>{controlledWorker=navigator.serviceWorker.controller;syncInstalled();});
   if(v2Bootstrap||document.readyState==='complete')start();else addEventListener('load',start,{once:true});
-  root.WHOfflineStatus=Object.freeze({ready,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
+  root.WHOfflineStatus=Object.freeze({ready,completeBootstrap,reportBootstrapFailure,checkRunningVersion,reportLoadFailure:()=>setUpdateState('failed'),query:()=>navigator.serviceWorker.getRegistration().then(value=>value&&query(value.installing||value.waiting||value.active)),check:()=>checkForUpdate()});
 })(window);
