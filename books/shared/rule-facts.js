@@ -255,7 +255,7 @@
     }
     if(format==='composition-memberships'){
      const nativeId=profile.sourceEntityId||profile.id;
-     const members=book.entities.filter(entity=>entity.kind==='COMPOSITION_MEMBER'&&entity.ownerId===unit.id);
+     const members=book.entities.filter(entity=>(entity.kind==='COMPOSITION_MEMBER'||entity.kind==='PROFILE'&&entity.data.composition)&&entity.ownerId===unit.id);
      const member=members.find(entity=>entity.id===modelId||entity.sourceEntityId===nativeId);
      if(!member){
       const sameProfile=members.filter(entity=>entity.data.composition?.modelProfileSourceId===(profile.sourceEntityId||modelId));

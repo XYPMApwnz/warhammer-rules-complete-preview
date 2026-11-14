@@ -50,7 +50,7 @@ export function createCompatibilityCompiler(options) {
   assert.ok(Array.isArray(bindings)&&references&&Array.isArray(attachmentRelations),'Explicit compiler bindings required');
   const profiles=new Map();
   for (const unit of units) {
-    keywordAccess.unitKeywords(unit);requiredKeywordField(keywordAccess, "factionKeywords")(unit);
+    keywordAccess.unitKeywords(unit);keywordAccess.factionKeywords(unit);
     const rows=bindings.filter(row=>row.unitId===unit.id);
     assert.deepEqual(new Set(rows.map(row=>row.profileId)),new Set(unit.data.profileIds),'Incomplete explicit profile bindings');
     assert.equal(rows.length,unit.data.profileIds.length,'Duplicate profile binding');

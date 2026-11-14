@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {prepareSourceProducer} from '../source-refs-v2/producer-io.mjs';
 import {createCompatibilityCompiler,summarizeCompatibility} from './compatibility.mjs';
 import {buildAttachmentFeasibility} from '../roster-v2/compatibility-feasibility.mjs';
-import {createKeywordAccess,keywordValues,keywordGroups,requiredKeywordField} from '../roster-v2/keywords.mjs';
+import {createKeywordAccess,keywordValues,keywordGroups} from '../roster-v2/keywords.mjs';
 
 import {enhancementBearerEligible,epicHeroUnitIds,enhancementEligibilityState} from '../roster-v2/compatibility-context.mjs';
 const clone=structuredClone;
@@ -35,7 +35,7 @@ export function createBookCompatibilityInputs(source){
   return {unitId:unit.id,profileId,intrinsicKeywords,abilities};
  }));
  for(const unit of units)unit.data.keywords=[...new Set([...keywords.unitKeywords(unit),
-  ...profileBindings.filter(row=>row.unitId===unit.id).flatMap(row=>keywordValues(row,'intrinsicKeywords')).filter(k=>!requiredKeywordField(keywords, "factionKeywords")(unit).includes(k))])];
+  ...profileBindings.filter(row=>row.unitId===unit.id).flatMap(row=>keywordValues(row,'intrinsicKeywords')).filter(k=>!keywords.factionKeywords(unit).includes(k))])];
  // An Army Book does not know ARMY_UNIT_PRESENT. All source-declared possible
  // relations contribute capability bounds, without claiming any attachment.
  const declarations=book.mfmImportReferences?.relationDeclarations;

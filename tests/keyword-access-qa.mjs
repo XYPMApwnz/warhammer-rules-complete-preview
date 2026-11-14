@@ -107,6 +107,16 @@ for(const expected of census){
 // Fixed independent source examples guard against merging models that share
 // the same statline: OTHER MODELS in Dark Commune and the Masters' first profile.
 const csm=loaded.get('chaos-space-marines');
+// The compiler's disposable view exposes the same composition identities as
+// PROFILEs. Their explicit composition link remains the MODEL authority.
+const compilerView=structuredClone(csm.book);
+for(const entity of compilerView.entities)if(entity.kind==='COMPOSITION_MEMBER')entity.kind='PROFILE';
+for(const unit of compilerView.entities.filter(entity=>entity.kind==='DATASHEET')){
+ const raw=rawFacts(csm.book,csm.book.entities.find(entity=>entity.id===unit.id),csm.passport.keywords.format);
+ unit.data.profileIds=raw.models.map(model=>model.id);
+ const viewAccess=createKeywordAccess(compilerView,{passport:csm.passport});
+ for(const model of raw.models)same(viewAccess.modelKeywords(unit,model.id),model.keywords,unit.id+': compiler composition identity');
+}
 for(const control of [
  {unit:'unit-dark-commune',positive:'datasheet-dark-commune:section:2:member:2',negative:'datasheet-dark-commune:section:2:member:3'},
  {unit:'unit-masters-of-the-maelstrom',positive:'datasheet-masters-of-the-maelstrom:section:2:member:2',negative:'datasheet-masters-of-the-maelstrom:section:2:member:1'}
