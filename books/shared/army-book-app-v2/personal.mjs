@@ -7,7 +7,7 @@ const assert = (value, message) => { if (!value) throw new TypeError(message); }
 export const instanceRoute = id => `roster-unit/${encodeURIComponent(id)}`;
 /** Read-only presentation context from already published native runtime assets.
  * This never adds facts to the roster, executes clauses or changes F1 rows.
- * Missing/ambiguous metadata simply leaves table placement unproved. */
+ * Missing/ambiguous metadata cannot prove table placement or executable text. */
 export async function loadDetachmentPresentationSources({payload,assetBaseURL,fetch:read}){
   const result=new Map(),wanted=new Set(payload.cards.filter(card=>card.kind==='DETACHMENT_RULE').map(card=>card.id));
   if(!wanted.size||!assetBaseURL||!read)return result;
@@ -31,6 +31,37 @@ export async function loadDetachmentPresentationSources({payload,assetBaseURL,fe
     for(const id of ambiguous)result.delete(id);
   }catch{/* Render canonical fields without a guessed table insertion point. */}
   return result;
+}
+/** Read-only source lookup for effects already assigned to this physical view.
+ * Eligibility, conditions and recipients remain the executor's decisions. In
+ * particular, full prose is not a declaration that every clause was executed. */
+export function executableDetachmentSources(cards,effective,sources=new Map()){
+  const result=new Map();
+  for(const row of [...(effective.applied||[]),...(effective.conditional||[]).filter(row=>!row.policy&&!row.detachmentText)]){
+    const card=cards.get(row.ruleId),rule=sources.get(row.ruleId);
+    if(card?.kind!=='DETACHMENT_RULE'||!rule)continue;
+    const clauses=rule.ruleContract.clauses.filter(clause=>clause.id===row.clauseId);
+    assert(clauses.length===1,'Unresolved executable Detachment text clause: '+row.ruleId);
+    const clause=clauses[0];
+    if(clause.rosterClassification!=='ROSTER_EXECUTABLE')continue;
+    assert(!row.targetInstanceId||row.targetInstanceId===effective.instanceId,'Executable Detachment text belongs to another physical unit');
+    if(row.effectId)assert(clause.rosterEffects.some(effect=>effect.id===row.effectId&&effect.operation===row.operation),
+      'Unresolved executable Detachment text effect: '+row.ruleId);
+    assert(getRecordedSourceIdentity(rule),'Missing executable Detachment text source: '+row.ruleId);
+    // Publication fields and runtime clauses must identify the same source
+    // content. AM/CSM/DG use distinct publication provenance envelopes, so do
+    // not require those envelopes to equal the native clause envelope.
+    for(const sourcePath of clause.sourceFields||[]){
+      const value=sourcePath.reduce((value,key)=>value?.[key],rule.data);
+      if(typeof value!=='string')continue;
+      const pointer='/'+sourcePath.map(key=>String(key).replaceAll('~','~0').replaceAll('/','~1')).join('/');
+      assert(card.fields.some(field=>(field.source?.path===pointer||field.presentationPath===pointer)&&field.value===value),
+        'Executable Detachment text differs from its published source: '+row.ruleId+' '+pointer);
+    }
+    if(!result.has(rule.id))result.set(rule.id,{card,rule,contributions:[]});
+    result.get(rule.id).contributions.push(clone(row));
+  }
+  return [...result.values()];
 }
 /** Field identity, not flattened text, owns display deduplication. Native row
  * proof is validated separately and is never rewritten by this display plan. */
