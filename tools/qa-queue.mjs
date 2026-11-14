@@ -42,6 +42,7 @@ function expand(script){for(const part of script.split(/\s*&&\s*/)){const tokens
 jobs.push({command:'git',args:['diff','--check'],id:'git diff --check'});
 node('tests/qa-temp-qa.mjs');
 node('tests/book-passport-qa.mjs');
+node('tests/keyword-access-qa.mjs');
 node('tests/official-updates-qa.mjs');
 node('tests/official-update-books-qa.mjs');
 node('tests/official-update-report-qa.mjs');
