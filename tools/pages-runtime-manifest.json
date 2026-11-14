@@ -1123,6 +1123,15 @@
       ]
     },
     {
+      "path": "books/adeptus-mechanicus/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/adeptus-mechanicus/v2/generated/app-presentation.json",
       "reasons": [
         {
@@ -1264,6 +1273,15 @@
         {
           "kind": "script-asset-literal",
           "from": "service-worker.js"
+        }
+      ]
+    },
+    {
+      "path": "books/blood-angels/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -1459,6 +1477,15 @@
       "reasons": [
         {
           "kind": "native-v2-reviewed-runtime"
+        }
+      ]
+    },
+    {
+      "path": "books/chaos-space-marines/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -6653,6 +6680,15 @@
       ]
     },
     {
+      "path": "books/dark-angels/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/dark-angels/v2/generated/app-presentation.json",
       "reasons": [
         {
@@ -7376,6 +7412,15 @@
       ]
     },
     {
+      "path": "books/death-guard/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/death-guard/v2/generated/app-presentation.json",
       "reasons": [
         {
@@ -7534,6 +7579,15 @@
         {
           "kind": "script-asset-literal",
           "from": "service-worker.js"
+        }
+      ]
+    },
+    {
+      "path": "books/emperors-children/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },
@@ -8306,6 +8360,15 @@
       ]
     },
     {
+      "path": "books/shared/keyword-values.mjs",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/offline-status.js",
       "reasons": [
         {
@@ -8761,12 +8824,17 @@
       "path": "books/shared/roster-v2/keyword-scopes.mjs",
       "reasons": [
         {
-          "kind": "module-import",
-          "from": "books/shared/army-book-app-v2/profile-projection.mjs"
-        },
+          "kind": "compatibility-api",
+          "detail": "Retained keywordScopesForUnit export delegates to the common keyword access."
+        }
+      ]
+    },
+    {
+      "path": "books/shared/roster-v2/keywords.mjs",
+      "reasons": [
         {
           "kind": "module-import",
-          "from": "books/shared/roster-v2/compatibility-context.mjs"
+          "from": "books/shared/roster-v2/context.mjs"
         }
       ]
     },
@@ -9020,6 +9088,15 @@
       ]
     },
     {
+      "path": "books/shared/rule-facts.js",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/keyword-values.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/shared/source-refs-v2/source-catalog.json",
       "reasons": [
         {
@@ -9204,6 +9281,15 @@
       ]
     },
     {
+      "path": "books/space-marines/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/space-marines/v2/generated/app-presentation.json",
       "reasons": [
         {
@@ -9359,6 +9445,15 @@
       ]
     },
     {
+      "path": "books/tau-empire/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
+        }
+      ]
+    },
+    {
       "path": "books/tau-empire/v2/generated/app-presentation.json",
       "reasons": [
         {
@@ -9491,6 +9586,15 @@
         {
           "kind": "module-url",
           "from": "books/tau-empire/v2/registration.mjs"
+        }
+      ]
+    },
+    {
+      "path": "books/tyranids/book.config.json",
+      "reasons": [
+        {
+          "kind": "module-import",
+          "from": "books/shared/roster-v2/keywords.mjs"
         }
       ]
     },

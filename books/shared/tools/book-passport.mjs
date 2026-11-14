@@ -15,6 +15,7 @@ const step=object({book:text,producer,args:array(text),runtime:enumeration('node
 const metadataPin=object({inputRole:enumeration('currentMfmRelease'),afterProducer:producer,factualArtifact:file,reviewArtifact:file,reviewField:enumeration('factualFingerprint'),metadataField:enumeration('mfmBoundary.sourceVersion'),hashEncoding:enumeration('sha256-json-upper','sha256-json-lower')});
 export const bookPassportSchema=object({
   schema:enumeration('army-book-passport/v1'),edition:text,
+  keywords:object({format:enumeration('flat','linked-scopes','composition-memberships','profile-declarations','profile-groups')}),
   sources:object({enrollment:file,effective:file,manifest:file,inputs:array(object({role:text,path:file}))}),
   build:object({steps:array(step),postBuildSteps:array(object({phase:enumeration('model-aliases','retained-source'),step}))}),
   qa:object({script:text,onInputChange:object({currentMfmRelease:text})}),
