@@ -19,6 +19,8 @@ exit code remains nonzero if any check failed; historical failures are not PASS.
 `test:pwa-update` includes both working-screen manual updates and the initial
 bootstrap auto-update regression (`test:pwa-bootstrap`), with once-per-version
 failure recovery, saved-state retention, prepared offline startup and offline reopening controls.
+`test:startup-precache` parses the eager startup import/resource graph independently
+and rejects missing mandatory resources, including a removed-file mutation control.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card
 parity is a separate review tool and is not included in either queue.
 

@@ -8,6 +8,9 @@ The existing worker prepares the V2 entry/code/shared styles. Large Army Book
 JSON and both glossary payloads remain lazy. Both datasheet-system.css and
 unit-art.css are mandatory. The Core reader still needs its lazy
 glossary/v2/generated/index.en.js definition data.
+The shared source registry, nine keyword passports and rule-facts bridge are
+eager startup dependencies. They and the book-shell AM logo are mandatory;
+native Army Book payloads and both large glossary payloads remain lazy.
 
 Updates on a working screen require the existing explicit confirmation button.
 Only the initial loading boundary can activate a verified prepared worker
