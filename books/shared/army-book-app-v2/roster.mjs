@@ -356,7 +356,8 @@ export function createRosterPanel(document, {service, bookId, open, showDetail, 
     bindingArea.replaceChildren();
     if(headerExplanation){
       const notice=el('section','');notice.dataset.importHint='plain-header';
-      notice.append(el('p','',headerExplanation.instruction),el('pre','v2-roster-header-example',headerExplanation.example),el('p','',headerExplanation.guidance));
+      notice.append(el('p','',headerExplanation.instruction),el('pre','v2-roster-header-example',headerExplanation.example),
+        el('p','',headerExplanation.optionalInstruction),el('pre','v2-roster-header-example',headerExplanation.newExample),el('p','',headerExplanation.guidance));
       bindingArea.append(notice);
       // Hide only the absent-header placeholder, leaving real unresolved entries.
       needs=needs.filter(need=>!(need.kind==='DETACHMENT'&&need.rawLabel==='—'&&!need.candidateIds?.length));

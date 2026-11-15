@@ -61,8 +61,10 @@ export function playerImportCopy(value){
 }
 const plainHeaderHelp=Object.freeze({
   message:'The export header could not be recognized. Your current roster and saved roster were not changed.',
-  instruction:'The supported plain New Recruit header has exactly three nonempty lines before the units, for example:',
+  instruction:'The supported plain New Recruit header starts with exactly three nonempty lines: list name and total points, faction, and Detachment(s). For example:',
   example:'Unnamed list (950 Points)\nDeath Guard\nContagion Engines and Paragons of Putrescence (2 Detachment Points)',
+  optionalInstruction:'Newer exports may add a Force Disposition and an Incursion or Strike Force battle size after the Detachment line, in either order. Each optional line can appear only once. Five-line example:',
+  newExample:'Unnamed list (760 Points)\nDeath Guard\nShamblerot Vectorium and Virulent Vectorium (5 Detachment Points)\nDisruption\nStrike Force (2,000 Points)',
   guidance:'Re-export the roster as text from New Recruit and try again. If the header is still different, send the original export as a sample to the site owner.'
 });
 /** Explain missing recognized header metadata only after import is unresolved.
