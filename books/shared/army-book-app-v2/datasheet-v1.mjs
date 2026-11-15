@@ -745,7 +745,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           link.textContent=choice.label;link.dataset.battleChoiceRef=choice.canonicalId;shared.links.push(link);required.append(link);node.append(required);
         }
         if(row.policy.coreReference){const reference=el('p','','Core action: ');reference.append(anchor(row.policy.coreReference.label,row.policy.coreReference.canonicalId,true));node.append(reference);}
-        const textKey=conditionalSourceTextKey(row,sourceSnapshot(row,{slot:'sourceProvenance'}));
+        const textKey=conditionalSourceTextKey(row,sourceSnapshot(row,{slot:'sourceProvenance'}),{sourceKind:cards.get(row.ruleId)?.kind});
         let textId=textKey&&policyTexts.get(textKey);
         if(!textId){
           const text=sourceText(row.policy.contextQuote);text.dataset.policyRuleText='';

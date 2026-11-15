@@ -29,9 +29,14 @@ export function sourceTextBlocks(value,{heading}={}) {
 }
 /** Clauses remain separate. Only identical full prose from the same recorded
  * rule and physical source may share a display node on this component card. */
-export function conditionalSourceTextKey(row,provenance) {
-  if(!provenance||typeof row.ruleId!=='string'||!row.ruleId||typeof row.sourceInstanceId!=='string'||!row.sourceInstanceId||typeof row.policy?.contextQuote!=='string')return null;
-  return key([row.ruleId,provenance,row.sourceInstanceId??null,row.sourceModelScopeId??null,row.policy.contextQuote]);
+export function conditionalSourceTextKey(row,provenance,{sourceKind=null}={}) {
+  if(!provenance||typeof row.ruleId!=='string'||!row.ruleId||typeof row.policy?.contextQuote!=='string')return null;
+  const physical=typeof row.sourceInstanceId==='string'&&row.sourceInstanceId.length>0;
+  // A canonical Detachment rule has no physical bearer. Its explicit kind and
+  // provenance prove ownership; an unspecified physical source still does not.
+  const detachment=sourceKind==='DETACHMENT_RULE'&&row.sourceInstanceId===null&&row.sourceModelScopeId===null;
+  if(!physical&&!detachment)return null;
+  return key([row.ruleId,provenance,physical?row.sourceInstanceId:{kind:'DETACHMENT_RULE'},row.sourceModelScopeId??null,row.policy.contextQuote]);
 }
 export const profileCharacteristics=['M','T','SV','W','LD','OC','INSV'];
 export function profileDisplayKey(card,boundFields=new Map()) {
