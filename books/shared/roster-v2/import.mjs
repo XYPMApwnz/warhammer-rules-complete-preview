@@ -17,6 +17,30 @@ const gearNouns = {knives:'knife',weapons:'weapon',cannons:'cannon',gauntlets:'g
 const gearLabel = value => normalizeImportLabel(value).replace(/^additional /,'').split(' ').map(word=>gearNouns[word] || word).join(' ');
 const entryLabel = (kind,value) => normalizeImportLabel(kind==='DETACHMENT'?String(value ?? '').replace(/\s*\([^)]*\)\s*$/,''):value);
 const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases || [])].filter(value=>typeof value==='string');
+/** Lexical names from the book's existing source-owned MFM presentation.
+ * This runtime-only context changes no canonical entity, rule or roster field.
+ * The parser receives names as options and never loads a book or a file. */
+export async function loadImportHeaderContext(book,moduleURL,read=globalThis.fetch){
+  const response=await read(new URL('./generated/app-presentation.json',moduleURL));
+  if(!response.ok)throw new TypeError('Book import header vocabulary unavailable: '+book.bookId);
+  const payload=await response.json();
+  if(payload.book?.id!==book.bookId||payload.bookPresentation?.schema!=='army-book-app-v2/book-v1-presentation')
+    throw new TypeError('Wrong book import header vocabulary: '+book.bookId);
+  const detachments=new Set(book.entities.filter(entity=>entity.kind==='DETACHMENT').map(entity=>entity.id));
+  const cards=new Map(payload.cards.map(card=>[card.id,card])),names=new Set();
+  for(const record of Object.values(payload.bookPresentation.records)){
+    if(record.kind!=='DETACHMENT'||!detachments.has(record.id))continue;
+    for(const field of record.forceDispositions||[]){
+      const owner=cards.get(record.pointRecordId),source=owner?.fields.find(item=>item.id===field.id);
+      const name=field.displayValue??field.value;
+      if(!source||field.source?.entityId!==record.pointRecordId||source.value!==field.value||typeof name!=='string'||!normalizeImportLabel(name))
+        throw new TypeError('Unproven Force Disposition header name: '+book.bookId+' · '+record.id);
+      names.add(name);
+    }
+  }
+  if(!names.size)throw new TypeError('Missing Force Disposition header names: '+book.bookId);
+  return {...book,importHeaderContext:{forceDispositions:[...names]}};
+}
 // Import spelling equivalence only, never canonical identity creation. The
 // caller must provide the exact UNIT's declared MODEL records. Exact reviewed
 // names/aliases take precedence; plural collisions remain multiple candidates.
@@ -166,11 +190,11 @@ function plainDetachmentLabels(label,book) {
 
 export function lexicalDraft(rawText, parse, book) {
   if (typeof parse !== 'function') throw new TypeError('An independent lexical parse function is required');
-  const sourceText = String(rawText ?? ''), parsed = parse(sourceText);
+  const sourceText = String(rawText ?? ''), parsed = parse(sourceText,book?.importHeaderContext??{});
   if (!parsed || !Array.isArray(parsed.units)) throw new TypeError('Malformed lexical parser result');
   if(parsed.plainHeader&&book){
     const labels=plainDetachmentLabels(parsed.detachments[0].label,book);
-    parsed.detachments=labels.map(label=>({label,name:label,rule:'',disposition:'—'}));
+    parsed.detachments=labels.map(label=>({label,name:label,rule:'',disposition:parsed.disposition}));
     parsed.detachment=labels[0];
   }
   const units = parsed.units.map((raw, i) => {

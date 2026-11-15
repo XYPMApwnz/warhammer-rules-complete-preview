@@ -1,3 +1,4 @@
+import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
 import {createTauRosterImport,createTauRosterRuntime} from './roster-import.mjs';
 import {formRoster,changeAttachment,selections} from '../../shared/roster-v2/context.mjs';
 import {preserveTauSourceChoices,validateTauAttachmentSourceConditions,tauStudentRuleId,tauStudentOptionId,tauStudentField} from './roster-source-choices.mjs';
@@ -92,5 +93,5 @@ export function createTauBrowserRoster(book){
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}){
   const response=await read(new URL('./generated/roster-import.json',import.meta.url));
   if(!response.ok)throw new Error('T’au V2 roster input unavailable');
-  return createTauBrowserRoster(await response.json());
+  return createTauBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read));
 }

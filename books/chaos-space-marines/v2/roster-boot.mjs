@@ -1,3 +1,4 @@
+import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
 import {createCSMRosterRuntime} from './roster-runtime.mjs';
 import {createCSMRosterImport} from './roster-import.mjs';
 import {createCSMRosterEffectContext} from './roster-effect-context.mjs';
@@ -49,5 +50,7 @@ export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
     if(!response.ok)throw new TypeError('Canonical roster input unavailable');
     return response.json();
   }));
+  inputs[0]=await loadImportHeaderContext(inputs[0],import.meta.url,read);
+  inputs[1]={...inputs[1],importHeaderContext:inputs[0].importHeaderContext};
   return createCSMBrowserRoster(...inputs);
 }

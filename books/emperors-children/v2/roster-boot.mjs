@@ -1,3 +1,4 @@
+import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
 import {createECRosterAttachments} from './roster-attachments.mjs';
 import {createECRosterImport} from './roster-import.mjs';
 import {createRosterService} from '../../shared/roster-v2/runtime.mjs';
@@ -73,5 +74,5 @@ export function createECBrowserRoster(book) {
 }
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
   const response=await read(new URL('./generated/roster-attachments.json',import.meta.url));
-  if(!response.ok)throw new Error('EC V2 roster input unavailable');return createECBrowserRoster(await response.json());
+  if(!response.ok)throw new Error('EC V2 roster input unavailable');return createECBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read));
 }

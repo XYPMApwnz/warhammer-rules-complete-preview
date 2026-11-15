@@ -1,3 +1,4 @@
+import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
 import {createRosterRuntime,createRosterService} from '../../shared/roster-v2/runtime.mjs';
 import {createRosterConditionBinding} from '../../shared/roster-v2/condition-binding.mjs';
 import {createRuleContractSchema} from '../../shared/rule-contract-v2/schema.mjs';
@@ -40,5 +41,5 @@ export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
     return response.json();
   };
   const [book,metadata]=await Promise.all([readJson('./generated/roster-runtime.json'),readJson('./roster-import-aliases.json')]);
-  return createAdMechRosterRuntime(book,metadata);
+  return createAdMechRosterRuntime(await loadImportHeaderContext(book,import.meta.url,read),metadata);
 }

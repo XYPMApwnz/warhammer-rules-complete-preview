@@ -1,3 +1,4 @@
+import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
 import {createTyranidsRosterImport} from './roster-import.mjs';
 import {createRosterRuntime,createRosterService,rosterImportBindings,rejectRosterImport} from '../../shared/roster-v2/runtime.mjs';
 import {formRoster} from '../../shared/roster-v2/context.mjs';
@@ -84,5 +85,5 @@ export function createTyranidsBrowserRoster(book) {
 export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
   const response=await read(new URL('./generated/roster-runtime.json',import.meta.url));
   if(!response.ok)throw new Error('Tyranids V2 roster input unavailable');
-  return createTyranidsBrowserRoster(await response.json());
+  return createTyranidsBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read));
 }
