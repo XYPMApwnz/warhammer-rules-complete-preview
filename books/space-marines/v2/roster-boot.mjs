@@ -3,8 +3,8 @@ import {loadImportHeaderContext} from '../../shared/roster-v2/import.mjs';
  * navigation remain deferred; no production Home route is added here. */
 export {createSpaceMarinesRosterService} from './roster-import.mjs';
 import {createSpaceMarinesRosterService} from './roster-import.mjs';
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}){
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}){
   const response=await read(new URL('./generated/roster-import.json',import.meta.url));
   if(!response.ok)throw new Error('Space Marines native roster input unavailable');
-  return createSpaceMarinesRosterService(await loadImportHeaderContext(await response.json(),import.meta.url,read));
+  return createSpaceMarinesRosterService(await loadImportHeaderContext(await response.json(),import.meta.url,read,presentation));
 }

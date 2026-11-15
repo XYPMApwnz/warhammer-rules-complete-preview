@@ -82,8 +82,8 @@ export function createTyranidsBrowserRoster(book) {
   return service;
 }
 
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}) {
   const response=await read(new URL('./generated/roster-runtime.json',import.meta.url));
   if(!response.ok)throw new Error('Tyranids V2 roster input unavailable');
-  return createTyranidsBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read));
+  return createTyranidsBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read,presentation));
 }

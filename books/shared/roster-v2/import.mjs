@@ -20,10 +20,15 @@ const named = entity => [entity.data?.title,entity.data?.name,...(entity.aliases
 /** Lexical names from the book's existing source-owned MFM presentation.
  * This runtime-only context changes no canonical entity, rule or roster field.
  * The parser receives names as options and never loads a book or a file. */
-export async function loadImportHeaderContext(book,moduleURL,read=globalThis.fetch){
-  const response=await read(new URL('./generated/app-presentation.json',moduleURL));
-  if(!response.ok)throw new TypeError('Book import header vocabulary unavailable: '+book.bookId);
-  const payload=await response.json();
+export async function loadImportHeaderContext(book,moduleURL,read=globalThis.fetch,presentation){
+  // The application passes its existing payload promise. Isolated factories
+  // may load that input themselves, without a process-global data cache.
+  let payload=await presentation;
+  if(payload===undefined){
+    const response=await read(new URL('./generated/app-presentation.json',moduleURL));
+    if(!response.ok)throw new TypeError('Book import header vocabulary unavailable: '+book.bookId);
+    payload=await response.json();
+  }
   if(payload.book?.id!==book.bookId||payload.bookPresentation?.schema!=='army-book-app-v2/book-v1-presentation')
     throw new TypeError('Wrong book import header vocabulary: '+book.bookId);
   const detachments=new Set(book.entities.filter(entity=>entity.kind==='DETACHMENT').map(entity=>entity.id));

@@ -72,7 +72,7 @@ export function createECBrowserRoster(book) {
   });
   return service;
 }
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}) {
   const response=await read(new URL('./generated/roster-attachments.json',import.meta.url));
-  if(!response.ok)throw new Error('EC V2 roster input unavailable');return createECBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read));
+  if(!response.ok)throw new Error('EC V2 roster input unavailable');return createECBrowserRoster(await loadImportHeaderContext(await response.json(),import.meta.url,read,presentation));
 }

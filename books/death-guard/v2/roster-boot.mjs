@@ -41,8 +41,8 @@ export function createDGRosterRuntime(book) {
   return createRosterService({runtime,importCandidate});
 }
 
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}) {
   const response=await read(new URL('./generated/rule-contract-effective.json',import.meta.url));
   if(!response.ok)throw new Error('Canonical Rule Contract snapshot unavailable');
-  return createDGRosterRuntime(await loadImportHeaderContext(await response.json(),import.meta.url,read));
+  return createDGRosterRuntime(await loadImportHeaderContext(await response.json(),import.meta.url,read,presentation));
 }

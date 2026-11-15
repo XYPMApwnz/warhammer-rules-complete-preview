@@ -34,12 +34,12 @@ export function createAdMechRosterRuntime(book,metadata,{evaluator=createRuleCon
   return createRosterService({runtime,draft:text=>importer.draft(text),
     importCandidate:(text,bindings)=>importer.import(text,bindings)});
 }
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}) {
   const readJson=async path=>{
     const response=await read(new URL(path,import.meta.url));
     if(!response.ok)throw new TypeError('Canonical roster input unavailable');
     return response.json();
   };
   const [book,metadata]=await Promise.all([readJson('./generated/roster-runtime.json'),readJson('./roster-import-aliases.json')]);
-  return createAdMechRosterRuntime(await loadImportHeaderContext(book,import.meta.url,read),metadata);
+  return createAdMechRosterRuntime(await loadImportHeaderContext(book,import.meta.url,read,presentation),metadata);
 }

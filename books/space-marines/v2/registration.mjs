@@ -10,5 +10,5 @@ export const registration=Object.freeze({
     if(!response.ok)throw new Error('Space Marines V2 presentation unavailable');
     return response.json();
   },
-  async createRoster(){return (await import('./roster-boot.mjs')).createBrowserRoster();}
+  async createRoster(options){return (await import('./roster-boot.mjs')).createBrowserRoster(options);}
 });

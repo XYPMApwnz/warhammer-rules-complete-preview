@@ -44,13 +44,13 @@ export function createCSMBrowserRoster(book,importBook,bindings) {
   });
   return service;
 }
-export async function createBrowserRoster({fetch:read=globalThis.fetch}={}) {
+export async function createBrowserRoster({fetch:read=globalThis.fetch,presentation}={}) {
   const inputs=await Promise.all(['./generated/roster-runtime.json','./generated/roster-import.json','./roster-attachment-bindings.json'].map(async path=>{
     const response=await read(new URL(path,import.meta.url));
     if(!response.ok)throw new TypeError('Canonical roster input unavailable');
     return response.json();
   }));
-  inputs[0]=await loadImportHeaderContext(inputs[0],import.meta.url,read);
+  inputs[0]=await loadImportHeaderContext(inputs[0],import.meta.url,read,presentation);
   inputs[1]={...inputs[1],importHeaderContext:inputs[0].importHeaderContext};
   return createCSMBrowserRoster(...inputs);
 }

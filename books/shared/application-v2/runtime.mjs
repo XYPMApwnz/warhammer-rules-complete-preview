@@ -167,7 +167,8 @@ export function createApplication(document,{registry,entryURL=new URL('../../../
     const registration=registry.get(route.bookId);
     try {
       if(!await transitionAllowed(token))return activeModule;
-      const [payload,roster]=await Promise.all([registration.loadPayload(),registration.createRoster?.()]);
+      const presentation=registration.loadPayload();
+      const [payload,roster]=await Promise.all([presentation,registration.createRoster?.({presentation})]);
       const presentationRuleSources=roster?await loadDetachmentPresentationSources({payload,assetBaseURL:registration.assetBaseURL,fetch:view.fetch?.bind(view)}):new Map();
       if(!await transitionAllowed(token,startedOnline))return activeModule;
       if(payload.book?.id!==registration.id)throw new TypeError('Book registry identity mismatch');
