@@ -33,7 +33,7 @@ function normalizedHeaderImport(result,{actualNamespace,namespace,sourceText,lab
  assert.equal(body(sourceText),body(labelledText),'Header normalization must not replace any body byte');
  assert.deepEqual(value.draft.metadata,expectedMetadata,'Only the exact audited header metadata may differ');
  value.draft.sourceText=labelledText;
- for(const key of ['faction','pointsLimit','plainHeader']){
+ for(const key of ['faction','pointsLimit','declared','plainHeader']){
   if(Object.hasOwn(labelledMetadata,key))value.draft.metadata[key]=structuredClone(labelledMetadata[key]);
   else delete value.draft.metadata[key];
  }
@@ -81,14 +81,14 @@ for(const bookId of books.filter(id=>!selected||selected===id)){
   const currentOptions={namespace,labelledText:plus,labelledMetadata:labelled.draft.metadata};
   const labelledResult=normalizedHeaderImport(labelled,{...currentOptions,actualNamespace:service.state.rosterId,sourceText:plus,expectedMetadata:labelled.draft.metadata});
   const labelledView=normalizedHeaderObservation(service,{namespace});
-  const draft=service.draft(owner);assert.equal(draft.metadata.faction,'Death Guard');assert.equal(draft.metadata.pointsLimit,950);
+  const draft=service.draft(owner);assert.equal(draft.metadata.faction,'Death Guard');assert.equal(draft.metadata.pointsLimit,null);assert.equal(draft.metadata.declared,950);
   assert.deepEqual(draft.metadata.plainHeader,{listName:'Unnamed list',detachmentPoints:2});
   assert.deepEqual(draft.detachments.map(row=>row.name),['Contagion Engines','Paragons of Putrescence']);
   assert.deepEqual(parse(owner).units,parse(plus).units,'Unit, N with, warlord and equipment decoding stay identical');
   let result=service.import(owner,{}, {replaceExisting:true});assert.equal(result.status,'READY',JSON.stringify(result.needsBindings||result.errors));
   ownerUnits(service);assert.deepEqual(service.state.detachmentIds,['detachment-contagion-engines','detachment-paragons-of-putrescence']);
   assert.deepEqual(normalizedHeaderImport(result,{...currentOptions,actualNamespace:service.state.rosterId,sourceText:owner,
-   expectedMetadata:{...labelled.draft.metadata,faction:'Death Guard',pointsLimit:950,plainHeader:{listName:'Unnamed list',detachmentPoints:2}}}),labelledResult,'Complete current plain and labelled import results agree');
+   expectedMetadata:{...labelled.draft.metadata,faction:'Death Guard',pointsLimit:null,declared:950,plainHeader:{listName:'Unnamed list',detachmentPoints:2}}}),labelledResult,'Complete current plain and labelled import results agree');
   assert.deepEqual(normalizedHeaderObservation(service,{namespace}),labelledView,'Complete current plain and labelled execution agrees');
   const corrupted=structuredClone(service.projection);
   function corruptModel(node){
@@ -105,7 +105,7 @@ for(const bookId of books.filter(id=>!selected||selected===id)){
   assert.equal(result.status,'READY');assert.equal(result.draft.metadata.plainHeader.detachmentPoints,99);
   assert.deepEqual(normalizedHeaderObservation(service,{namespace}),labelledView,'Declared DP does not change prices, effects or legality');
   assert.deepEqual(normalizedHeaderImport(result,{...currentOptions,actualNamespace:service.state.rosterId,sourceText:owner.replace('(2 Detachment Points)','(99 Detachment Points)'),
-   expectedMetadata:{...labelled.draft.metadata,faction:'Death Guard',pointsLimit:950,plainHeader:{listName:'Unnamed list',detachmentPoints:99}}}),labelledResult,'Declared DP changes no other complete import field');
+   expectedMetadata:{...labelled.draft.metadata,faction:'Death Guard',pointsLimit:null,declared:950,plainHeader:{listName:'Unnamed list',detachmentPoints:99}}}),labelledResult,'Declared DP changes no other complete import field');
   checks.push('declared DP count is informational');
   result=service.import(owner.replace('Contagion Engines and Paragons of Putrescence (2 Detachment Points)','Contagion Engines (1 Detachment Point)'),{}, {replaceExisting:true});
   assert.equal(result.status,'READY');ownerUnits(service);assert.deepEqual(service.state.detachmentIds,['detachment-contagion-engines']);
@@ -127,9 +127,9 @@ for(const bookId of books.filter(id=>!selected||selected===id)){
   assert.deepEqual(service.state.detachmentIds,c.expectedDetachmentIds);assert.equal(service.state.attachments.length,0);
   assert.deepEqual(parse(c.plainText).units,parse(c.plusText).units,'Identical body decoding');
   const header={listName:c.listName,detachmentPoints:1};
-  const expected=c.expectedBaselineImportEvidence===null?null:{...structuredClone(c.expectedBaselineImportEvidence),faction:c.faction,pointsLimit:c.pointsLimit,plainHeader:header};
+  const expected=c.expectedBaselineImportEvidence===null?null:{...structuredClone(c.expectedBaselineImportEvidence),faction:c.faction,pointsLimit:null,declared:c.pointsLimit,plainHeader:header};
   assert.deepEqual(normalizedHeaderImport(result,{...currentOptions,actualNamespace:service.state.rosterId,sourceText:c.plainText,
-   expectedMetadata:{...original.draft.metadata,faction:c.faction,pointsLimit:c.pointsLimit,plainHeader:header},plainEvidence:expected}),labelledResult,'Complete current plain and labelled import results agree');
+   expectedMetadata:{...original.draft.metadata,faction:c.faction,pointsLimit:null,declared:c.pointsLimit,plainHeader:header},plainEvidence:expected}),labelledResult,'Complete current plain and labelled import results agree');
   assert.deepEqual(normalizedHeaderObservation(service,{namespace:c.expectedBaselineNamespace,baselineEvidence:c.expectedBaselineImportEvidence,plainEvidence:expected}),
     labelledView,'Only the exact audited header information and input namespace can differ');
   checks.push(bookId+': existing plus and derived plain input agree');
@@ -140,4 +140,57 @@ for(const bookId of books.filter(id=>!selected||selected===id)){
   }
  }
 }
-console.log(JSON.stringify({status:'PASS',checks:checks.length,results:checks}));
+// Separate current fixture: the accepted historical fixture and its SHA pins
+// above remain byte-for-byte unchanged.
+const current=JSON.parse(fs.readFileSync(new URL('./fixtures/new-recruit-plain-header-v37.25.json',import.meta.url)));
+assert.equal(current.schema,'new-recruit-plain-header-qa/v37.25');
+const currentOwnerBytes=fs.readFileSync(new URL('./fixtures/'+current.owner.file,import.meta.url)),currentOwner=currentOwnerBytes.toString('utf8');
+assert.equal(createHash('sha256').update(currentOwnerBytes).digest('hex'),current.owner.sha256);
+assert(!currentOwnerBytes.subarray(0,3).equals(Buffer.from([239,187,191])));assert(!currentOwner.includes('\r'));assert(currentOwner.endsWith('\n'));
+const currentChecks=[];
+for(const row of current.derived.filter(row=>!selected||row.bookId===selected)){
+ const bookId=row.bookId,entry=bookId==='adeptus-mechanicus'?'roster-runtime':'roster-boot';
+ const service=await (await import(`../books/${bookId}/v2/${entry}.mjs`)).createBrowserRoster({fetch:read});
+ const original=service.import(row.originalPlainText,row.bindings,{replaceExisting:true});assert.equal(original.status,'READY');
+ const state=service.snapshot(),namespace=state.rosterId,baselineEvidence=state.importEvidence??null;
+ const baseline=normalizedHeaderObservation(service,{namespace,baselineEvidence});
+ const body=text=>text.slice(text.search(/^(?:Char\d+:\s*)?\d+x\s/m));
+ for(const [name,text,size,disposition] of [
+  ['five',row.plainText,2000,row.disposition],['reversed',row.reversedText,2000,row.disposition],
+  ['size-only',row.sizeOnlyText,2000,'—'],['disposition-only',row.dispositionOnlyText,null,row.disposition]]){
+  assert.equal(body(text),body(row.originalPlainText),'Every original physical body byte remains: '+bookId+'/'+name);
+  const result=service.import(text,row.bindings,{replaceExisting:true});assert.equal(result.status,'READY',bookId+'/'+name+': '+JSON.stringify(result.errors));
+  assert.deepEqual(result.roster.detachmentIds,row.expectedDetachmentIds);
+  const expected={...structuredClone(original.draft.metadata),declared:row.declared,pointsLimit:size,
+   battleSize:size===2000?'Strike Force':'—',disposition,
+   detachments:original.draft.metadata.detachments.map(d=>({...d,disposition}))};
+  assert.deepEqual(result.draft.metadata,expected,'Exact header fields, no other changes: '+bookId+'/'+name);
+  const evidence=baselineEvidence===null?null:expected;
+  assert.deepEqual(normalizedHeaderObservation(service,{namespace,baselineEvidence,plainEvidence:evidence}),baseline,
+   'Complete current native state/projection/points unchanged by size or disposition: '+bookId+'/'+name);
+  currentChecks.push(bookId+'/'+name);
+ }
+}
+if(!selected||selected==='death-guard'){
+ const service=await(await import('../books/death-guard/v2/roster-boot.mjs')).createBrowserRoster({fetch:read});
+ const result=service.import(currentOwner,{}, {replaceExisting:true});assert.equal(result.status,'READY');
+ assert.equal(result.roster.units.length,8);assert.deepEqual(result.roster.detachmentIds,['detachment-shamblerot-vectorium','detachment-virulent-vectorium']);
+ assert.equal(result.draft.metadata.declared,760);assert.equal(result.draft.metadata.pointsLimit,2000);
+ assert.equal(result.draft.metadata.battleSize,'Strike Force');assert.equal(result.draft.metadata.disposition,'Disruption');
+ assert(result.draft.metadata.detachments.every(d=>d.disposition==='Disruption'));
+ const lexical=parse(currentOwner,{forceDispositions:['Disruption']});assert.equal(lexical.exportMatches,true);assert.equal(lexical.unitLineTotal,760);
+ const saved=service.snapshot();
+ for(const refusal of current.rejectionCases){
+  const denied=service.import(refusal.text,{}, {replaceExisting:true});assert.equal(denied.status,'NEEDS_BINDINGS',refusal.id);
+  assert.equal(denied.draft.metadata.plainHeader,undefined,refusal.id);assert.deepEqual(service.snapshot(),saved,'Refusal preserves complete roster: '+refusal.id);
+  currentChecks.push('refusal/'+refusal.id);
+ }
+ const isolation=current.vocabularyIsolation;
+ assert.equal(isolation.kind,'SYNTHETIC_VOCABULARY_ISOLATION');
+ const text=currentOwner.replace('Disruption',isolation.foreignDisposition);
+ assert.equal(parse(text,{forceDispositions:isolation.allowedDispositions}).plainHeader,undefined,'Synthetic foreign vocabulary remains fail-closed');
+ assert.equal(parse(currentOwner,{forceDispositions:isolation.allowedDispositions}).disposition,'Disruption');
+ assert.equal(parse(currentOwner.replace('Strike Force (2,000 Points)','Incursion (1,000 Points)'),{forceDispositions:['Disruption']}).pointsLimit,1000);
+ currentChecks.push('literal v37.25 owner: eight units / two detachments / exact metadata / matching exported total','synthetic foreign vocabulary','Incursion 1000');
+}
+console.log(JSON.stringify({status:'PASS',checks:checks.length,results:checks,currentChecks,dpWarning:'not implemented, backlog'}));
