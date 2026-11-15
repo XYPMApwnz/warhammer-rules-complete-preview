@@ -51,8 +51,14 @@ for(const rule of book.entities.filter(entity=>['ENHANCEMENT','STRATAGEM'].inclu
 const mutant=service.snapshot();mutant.units[0].modelRows[0].sourceRuleReferenceIds=['datasheet-psychophage:rule-reference:2'];
 assert.throws(()=>createTyranidsBrowserRoster(book).load(mutant));
 assert.throws(()=>createTyranidsBrowserRoster({...book,bookId:'foreign'}));
+const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
+const fetchInputs=new Map([
+  [new URL('./generated/roster-runtime.json',import.meta.url).href,book],
+  [new URL('./generated/app-presentation.json',import.meta.url).href,payload]
+]);
 const loaded=await createBrowserRoster({fetch:async url=>{
-  assert.ok(url.pathname.endsWith('/generated/roster-runtime.json'));return {ok:true,json:async()=>book};}});
+  assert.ok(fetchInputs.has(url.href),'Unexpected Tyranids input URL: '+url.href);
+  return {ok:true,json:async()=>fetchInputs.get(url.href)};}});
 assert.equal(loaded.import(text).status,'READY');
 // Production Effective/Guide projection preserves UNIT inventory while leaving
 // unknown MODEL weapon ownership empty, independently for repeated units.
@@ -60,7 +66,6 @@ const aggregate=createTyranidsBrowserRoster(book),aggregateText='+ DETACHMENT: I
   '10x Termagants (60 pts): 10x Fleshborer, 10x Chitinous claws and teeth\n'+
   '10x Termagants (60 pts): 10x Termagant spinefists, 10x Chitinous claws and teeth\n';
 assert.equal(aggregate.import(aggregateText).status,'READY');
-const payload=parseSourceFixtureJSON(fs.readFileSync(new URL('./generated/app-presentation.json',import.meta.url)));
 const cards=prepareRosterPresentationCards(new Map(payload.cards.map(card=>[card.id,card])),payload.rosterPresentation);
 for(const [n,expected]of [[0,['datasheet-termagants:weapon:1','datasheet-termagants:weapon:7']],
   [1,['datasheet-termagants:weapon:6','datasheet-termagants:weapon:7']]]){

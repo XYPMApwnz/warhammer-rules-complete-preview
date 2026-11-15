@@ -40,6 +40,13 @@ async function submit(page,text){
  const replace=page.locator('[data-roster-action="confirm-replace-roster"]');
  if(await replace.count()){await replace.click();await page.waitForFunction(()=>!document.querySelector('.v2-roster[aria-busy=true]'));}
 }
+async function assertPresentationReused(page,bookId){
+ const usage=await page.evaluate(id=>({requests:performance.getEntriesByType('resource').filter(row=>new URL(row.name).pathname==='/books/'+id+'/v2/generated/app-presentation.json').length,
+  parses:window.__plainHeaderPresentationParses}),bookId);
+ assert.equal(usage.requests,1,bookId+': importing must reuse the already loaded presentation');
+ assert.equal(usage.parses,1,bookId+': importing must not parse the presentation again');
+ return usage;
+}
 async function inspect(page){
  assert.equal(await page.locator('.v2-roster-instance').count(),9,'Nine actual roster articles');
  const rows=page.locator('[data-roster-detachments] li');assert.equal(await rows.count(),2);
@@ -57,6 +64,10 @@ try{
  browser=await launchChromium();
  for(const [device,viewport]of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
   const context=await browser.newContext({viewport,serviceWorkers:'block'}),page=await context.newPage();
+  await page.addInitScript(()=>{
+   window.__plainHeaderPresentationParses=0;const json=Response.prototype.json;
+   Response.prototype.json=function(...args){if(new URL(this.url,location.href).pathname.endsWith('/generated/app-presentation.json'))window.__plainHeaderPresentationParses++;return json.apply(this,args);};
+  });
   context.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
   try{
    await openRoster(page);await page.getByRole('textbox',{name:'New Recruit text export',exact:true}).fill(text);
@@ -75,6 +86,7 @@ try{
    assert.deepEqual(imported.state.detachmentIds,['detachment-shamblerot-vectorium','detachment-virulent-vectorium']);
    for(const [key,value]of Object.entries({declared:760,pointsLimit:2000,battleSize:'Strike Force',disposition:'Disruption'}))assert.equal(imported.metadata[key],value,key);
    assert.equal(parse(owner,{forceDispositions:['Disruption']}).exportMatches,true);
+   await assertPresentationReused(page,'death-guard');
    assert(!/Detachment Points limit exceeded/.test(await page.locator('main').innerText()),'No new native DP legality warning');
    await page.screenshot({path:path.join(out,device+'-owner-v37.25-import.png'),fullPage:true});
    const deathshroud=imported.state.units.find(unit=>unit.canonicalUnitId==='unit-deathshroud-terminators');assert(deathshroud);
@@ -104,6 +116,7 @@ try{
      assert.deepEqual(actual.state.detachmentIds,derived.expectedDetachmentIds);
      assert.equal(actual.metadata.pointsLimit,2000);assert.equal(actual.metadata.declared,derived.declared);
      assert.equal(actual.metadata.battleSize,'Strike Force');assert.equal(actual.metadata.disposition,derived.disposition);
+     if(['death-guard','space-marines'].includes(derived.bookId))await assertPresentationReused(page,derived.bookId);
      results.push({device,book:derived.bookId,variant,status:'PASS'});
     }
    }

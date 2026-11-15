@@ -80,7 +80,8 @@ if(['all','import'].includes(suite))for(const c of fixture.importCases.filter(c=
  assert.equal(raw.canonicalUnitId,c.unitId,'Literal unit identity');
  assert.deepEqual(raw.enhancementIds,[c.enhancementId],'Keep the imported selection as evidence; never silently edit the exported list');
  assert.equal(Number(raw.raw.points),c.exportPoints,'Retain the unit point figure from the export');
- assert.equal(state.importEvidence.pointsLimit,2000,'Preserve the declared list limit');
+ assert.equal(state.importEvidence.pointsLimit,null,'No battle-size line means no declared list limit');
+ assert.equal(state.importEvidence.declared,2000,'Preserve the declared roster total');
  assert.equal(result.draft.sourceText,c.text,'Keep the original export text byte-for-byte');
  assert.equal(result.draft.enhancements[0].exportedCost,c.exportEnhancementPoints,'Keep the exported Enhancement charge');
  assert.deepEqual(raw.mfmEnhancementRecordIds,[c.expectedMfmEnhancementRecordId],'Retain the exact accepted Enhancement cost identity');

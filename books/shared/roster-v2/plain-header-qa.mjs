@@ -18,7 +18,7 @@ check('A, A',['A','A']); // Canonical admission retains its existing duplicate s
 check('Unknown',['Unknown']);
 const parsed=parse(input('Steel and Fire',{count:99}));
 assert.deepEqual(parsed.plainHeader,{listName:'League: example',detachmentPoints:99});
-assert.equal(parsed.pointsLimit,950);assert.equal(parsed.faction,'Example faction');
+assert.equal(parsed.pointsLimit,null);assert.equal(parsed.declared,950);assert.equal(parsed.faction,'Example faction');
 assert.equal(parsed.units.length,1);assert.equal(parsed.units[0].warlord,true);
 const labelled=input('Steel and Fire').replace('Example faction\nSteel and Fire (2 Detachment Points)',
  '+ FACTION KEYWORD: Example faction\n+ DETACHMENT: Steel and Fire');
