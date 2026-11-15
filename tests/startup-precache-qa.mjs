@@ -27,7 +27,15 @@ try{
   const {calculateCacheRevision}=await import(pathToFileURL(path.join(root,'tools/cache-revision.mjs')).href);
   const cache=calculateCacheRevision({root});
   assertCovered(graph,cache.urls);
-  report.checks.push({name:'all-eager-startup-imports-and-resources-are-mandatory',status:'PASS',nodes:graph.nodes.length,edges:graph.edges.length});
+  report.checks.push({name:'eager-and-selected-book-startup-code-and-resources-are-mandatory',status:'PASS',nodes:graph.nodes.length,edges:graph.edges.length,eagerNodes:graph.eagerNodeCount,selectedBookNodes:graph.selectedBookNodeCount});
+  const registrySource=fs.readFileSync(path.join(root,'v2/army-books.mjs'),'utf8');
+  const registeredModules=[...registrySource.matchAll(/\bfrom\s*["']([^"']+\/v2\/registration\.mjs)["']/g)].map(match=>decodeURIComponent(new URL(match[1],'https://startup.invalid/v2/army-books.mjs').pathname).slice(1)).sort();
+  assert.equal(registeredModules.length,9,'The registry must provide nine native book startup roots');
+  assert.deepEqual(graph.registrationModules,registeredModules,'Selected-book roots must come from the actual registry, not a separate list');
+  assert.equal(graph.selectedBookRoots.length,registeredModules.length,'Each native registration must supply its selected-book factory module');
+  assert.deepEqual([...new Set(graph.selectedBookRoots.map(row=>row.registration))].sort(),registeredModules,'Every registered book must have its factory code covered');
+  assert(graph.selectedBookNodeCount>0,'Selected-book factory code must extend the eager graph');
+  report.checks.push({name:'all-nine-registered-book-factory-code-closures-covered',status:'PASS',roots:graph.selectedBookRoots});
   const critical='books/shared/rule-facts.js';
   assert(graph.nodes.some(node=>node.path===critical),'The eager graph must reach the keyword bridge implementation');
   const mutated=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==critical);
@@ -35,6 +43,11 @@ try{
   let mutationMessage;
   assert.throws(()=>assertCovered(graph,mutated),error=>{mutationMessage=error.message;return error.code==='ERR_ASSERTION'&&error.message.includes(critical);},'Removing a required startup resource must fail and identify that file');
   report.checks.push({name:'removed-startup-resource-is-rejected',status:'PASS',removed:critical,message:mutationMessage});
+  const bookModule=graph.selectedBookRoots[0].path;
+  const removedBookCode=cache.urls.filter(url=>decodeURIComponent(new URL(url,'https://startup.invalid/').pathname).slice(1)!==bookModule);
+  assert.equal(removedBookCode.length,cache.urls.length-1,'Selected-book code mutation must remove exactly one precache entry');
+  assert.throws(()=>assertCovered(graph,removedBookCode),error=>error.code==='ERR_ASSERTION'&&error.message.includes(bookModule),'Missing selected-book code must fail with its filename');
+  report.checks.push({name:'removed-selected-book-code-is-rejected',status:'PASS',removed:bookModule});
   const forbidden=cache.urls.filter(url=>/\/v2\/generated\/.*\.json(?:[?#]|$)|glossary\/v2\/generated\/.*\.(?:json|js)(?:[?#]|$)/.test(url));
   assert.deepEqual(forbidden,[],'Army Book and large glossary payloads must remain lazy');
   assert(graph.nodes.some(node=>node.path==='books/shared/source-refs-v2/source-catalog.json'),'The source registry must be present as a genuine static JSON dependency');
