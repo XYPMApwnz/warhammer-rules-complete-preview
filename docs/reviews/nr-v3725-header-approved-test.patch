@@ -1,0 +1,22 @@
+diff --git a/v2/card-polish-2-browser-qa.mjs b/v2/card-polish-2-browser-qa.mjs
+index 332b2535..0718912b 100644
+--- a/v2/card-polish-2-browser-qa.mjs
++++ b/v2/card-polish-2-browser-qa.mjs
+@@ -114,8 +114,16 @@ async function runPlain(width){
+   assert.match(status,/header could not be recognized/);assert.match(status,/current roster and saved roster were not changed/);
+   assert.equal(await help.count(),1);assert.ok(await help.isVisible());
+   assert.match(await help.innerText(),/exactly three nonempty lines/);assert.match(await help.innerText(),/New Recruit/);assert.match(await help.innerText(),/site owner/);
+-  const example=help.locator('pre');assert.equal((await example.innerText()).split('\n').length,3);
++  const examples=help.locator('pre');assert.equal(await examples.count(),2,'Both supported header examples are shown');
++  const example=examples.filter({hasText:/^Unnamed list \(950 Points\)\n/});assert.equal(await example.count(),1);
++  assert.equal((await example.innerText()).split('\n').length,3);
+   const bounds=await example.boundingBox();assert.ok(bounds.x>=0&&bounds.x+bounds.width<=width,'Three-line example fits the viewport');
++  const currentExample=examples.filter({hasText:/^Unnamed list \(760 Points\)\n/});assert.equal(await currentExample.count(),1);
++  assert.equal(await currentExample.innerText(),[
++   'Unnamed list (760 Points)','Death Guard','Shamblerot Vectorium and Virulent Vectorium (5 Detachment Points)',
++   'Disruption','Strike Force (2,000 Points)'].join('\n'));
++  const currentBounds=await currentExample.boundingBox();
++  assert.ok(currentBounds.x>=0&&currentBounds.x+currentBounds.width<=width,'Five-line example fits the viewport');
+  }
+  return {case:'plain',width,status,explanationCount:await help.count(),savedRosterUnchanged:true,screenshots:[await shot('plain-four-lines-'+width,page.locator('.v2-roster-status'))]};
+ }
