@@ -1,6 +1,6 @@
 import {requiredKeywordField} from '../keyword-values.mjs';
 import {sourceSnapshot,sameSourceEvidence} from '../source-refs-v2/source-refs.mjs';
-import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy} from './cosmetics.mjs';
+import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy,physicalUnitCaption,physicalModelCaption} from './cosmetics.mjs';
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
@@ -152,6 +152,24 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       .filter(profile=>profile.kind==='PROFILE').map(profile=>({...profile,title:profile.title==='PROFILE'
         ?cards.get(profile.parentId)?.title:profile.title}));
   };
+  let captionRevision=null;
+  const captionProfiles=new Map();
+  const humanPhysicalCaption=(instanceId,model=null)=>{
+    const state=roster.state;
+    if(!model)return physicalUnitCaption(state,cards,instanceId);
+    const revision=JSON.stringify(state);
+    if(revision!==captionRevision){captionRevision=revision;captionProfiles.clear();}
+    if(!captionProfiles.has(instanceId)){
+      const effective=roster.effective(instanceId);
+      const profiles=physicalProfiles(instanceId).map(profile=>{
+        const matches=effective.profiles.filter(record=>record.id===profile.id&&record.scopeId===profile.scopeId);
+        if(matches.length!==1)throw new TypeError('Unresolved physical attribution profile');
+        return {...profile,modelInstanceId:matches[0].modelInstanceId??null,rosterQuantity:matches[0].quantity};
+      });
+      captionProfiles.set(instanceId,profiles);
+    }
+    return physicalModelCaption(state,cards,instanceId,captionProfiles.get(instanceId),model);
+  };
   const modifiers=(card,field,instanceId)=>{
     if(!instanceId)return null;
     const effective=roster.effective(instanceId),weapon=card.kind==='WEAPON_PROFILE';
@@ -248,8 +266,8 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           const title=cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId;
           const label=title+(peers.length>1?` #${peers.findIndex(unit=>unit.instanceId===physical.instanceId)+1}`:'');
           attribution.append(document.createTextNode(' — '),el('span','',label));
-          // Exact MODEL identity is exposed only when the executed trace has it.
-          if(source.sourceModelInstanceId)attribution.append(document.createTextNode(` (${source.sourceModelInstanceId})`));
+          if(source.sourceModelInstanceId||source.sourceCompositionId)attribution.append(document.createTextNode(' · Bearer: '+
+            humanPhysicalCaption(source.sourceInstanceId,{scopeId:source.sourceCompositionId??null,modelInstanceId:source.sourceModelInstanceId??null,profileId:source.sourceProfileId??null})));
         }
         // A common ability may be native on some MODELs and granted on others.
         // Its placement at Core must not imply this source granted it to all.
@@ -290,18 +308,15 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       link.dataset.keywordSourceInstanceId=source.sourceInstanceId||'';
       link.dataset.keywordRecipientInstanceId=source.targetInstanceId;
       note.append(link);
-      const physicalLabel=id=>{
-        const physical=roster.state.units.find(unit=>unit.instanceId===id);if(!physical)return null;
-        const peers=roster.state.units.filter(unit=>unit.canonicalUnitId===physical.canonicalUnitId);
-        return (cards.get(physical.canonicalUnitId)?.title||physical.canonicalUnitId)+(peers.length>1?` #${peers.findIndex(unit=>unit.instanceId===id)+1}`:'');
-      };
-      const bearer=physicalLabel(source.sourceInstanceId);
+      const bearer=source.sourceInstanceId?humanPhysicalCaption(source.sourceInstanceId):null;
       if(bearer)note.append(document.createTextNode(' — '+bearer));
-      if(source.sourceModelInstanceId||source.sourceCompositionId)note.append(document.createTextNode(` (${source.sourceModelInstanceId||source.sourceCompositionId})`));
+      if(source.sourceModelInstanceId||source.sourceCompositionId)note.append(document.createTextNode(' · Bearer: '+
+        humanPhysicalCaption(source.sourceInstanceId,{scopeId:source.sourceCompositionId??null,modelInstanceId:source.sourceModelInstanceId??null,profileId:source.sourceProfileId??null})));
       // A formed keyword union must not suggest every component/MODEL was
       // granted a physical or MODEL-scoped keyword.
-      const recipient=physicalLabel(source.targetInstanceId);
-      if(recipient)note.append(document.createTextNode(' · Applies to: '+recipient+(source.subject==='MODEL'?` (${source.targetCompositionId})`:'')));
+      const recipient=humanPhysicalCaption(source.targetInstanceId,source.subject==='MODEL'
+        ?{scopeId:source.targetCompositionId??null,modelInstanceId:source.targetModelInstanceId??null,profileId:source.targetProfileId??null}:null);
+      note.append(document.createTextNode(' · Applies to: '+recipient));
     }
     notes.push(note);return node;
   };
@@ -728,9 +743,12 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         node.dataset.sourceInstanceId=row.sourceInstanceId??'';node.dataset.sourceModelScopeId=row.sourceModelScopeId||'';node.dataset.recipientInstanceIds=JSON.stringify(row.recipientInstanceIds);
         node.dataset.policySource=JSON.stringify({ruleId:row.ruleId,clauseId:row.clauseId,provenance:sourceSnapshot(row,{slot:'sourceProvenance'})});
         node.append(el('h5','',labels[row.policy.kind]));
-        const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+row.sourceLabel+(row.sourceModelLabel?' · Bearer: '+row.sourceModelLabel:'')));
-        appendAttribution(node,row,source,row.recipient.how!=='AURA'?el('p','','Applies to: '+row.recipientLabels.join('; ')):null,
-          [row.recipient.how,row.recipientLabels]);
+        const sourceLabel=row.sourceInstanceId?humanPhysicalCaption(row.sourceInstanceId):row.sourceLabel;
+        const bearer=row.sourceModelScopeId?humanPhysicalCaption(row.sourceInstanceId,{scopeId:row.sourceModelScopeId}):null;
+        const recipientLabels=row.recipientInstanceIds.map(id=>humanPhysicalCaption(id));
+        const source=el('p','','Source: ');source.append(anchor(row.label,row.ruleId,true),document.createTextNode(' · '+sourceLabel+(bearer?' · Bearer: '+bearer:'')));
+        appendAttribution(node,row,source,row.recipient.how!=='AURA'?el('p','','Applies to: '+recipientLabels.join('; ')):null,
+          [row.recipient.how,recipientLabels]);
         if(row.activationContext){
           const choice=row.activationContext,key=JSON.stringify([choice.canonicalId,sourceSnapshot(choice),
             row.sourceInstanceId??null,row.sourceModelScopeId??null,choice.text]);

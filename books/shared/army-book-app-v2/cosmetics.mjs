@@ -1,4 +1,35 @@
 /** Display-only formatting. Accepted fields and roster state stay untouched. */
+const captionName=(value,id)=>{
+  if(typeof value!=='string'||!value.trim()||value===id)throw new TypeError('Missing human name for physical attribution: '+id);
+  return value;
+};
+/** Canonical names plus local ordinals distinguish repeated physical units. */
+export function physicalUnitCaption(state,cards,instanceId){
+  const matches=state.units.filter(unit=>unit.instanceId===instanceId);
+  if(matches.length!==1)throw new TypeError('Unresolved physical attribution unit: '+instanceId);
+  const unit=matches[0],name=captionName(cards.get(unit.canonicalUnitId)?.title,unit.canonicalUnitId);
+  const peers=state.units.filter(other=>other.canonicalUnitId===unit.canonicalUnitId);
+  return name+(peers.length>1?' #'+(peers.findIndex(other=>other.instanceId===instanceId)+1):'');
+}
+/** Resolve the exact existing MODEL scope; IDs remain in the underlying trace.
+ * Profiles are the normal presenter projection, annotated with runtime MODEL
+ * identity. Neither quantities nor scope membership are inferred from an ID. */
+export function physicalModelCaption(state,cards,instanceId,profiles,{scopeId=null,modelInstanceId=null,profileId=null}={}){
+  if(!scopeId&&!modelInstanceId&&!profileId)throw new TypeError('Missing physical MODEL attribution identity');
+  const matches=profiles.filter(profile=>profile.instanceId===instanceId&&
+    (!scopeId||profile.scopeId===scopeId)&&(!modelInstanceId||profile.modelInstanceId===modelInstanceId)&&
+    (!profileId||profile.id===profileId));
+  if(matches.length!==1)throw new TypeError('Unresolved physical MODEL attribution: '+instanceId);
+  const profile=matches[0],field=profile.fields.find(field=>(field.presentationPath??field.source?.path)==='/name');
+  const name=captionName(profile.presentationScope?.label||field?.value||(profile.title!=='PROFILE'?profile.title:null),profile.id);
+  const quantity=profile.rosterQuantity;
+  if(!Number.isSafeInteger(quantity)||quantity<1||modelInstanceId&&quantity!==1)throw new TypeError('Unresolved physical MODEL attribution quantity');
+  const peers=profiles.filter(other=>other.id===profile.id),ordinal=peers.findIndex(other=>other.scopeId===profile.scopeId)+1;
+  const group=peers.length>1&&!profile.presentationScope?.label?' · Group '+ordinal:'';
+  const unit=state.units.find(unit=>unit.instanceId===instanceId),unitLabel=physicalUnitCaption(state,cards,instanceId);
+  const namedScope=name===cards.get(unit.canonicalUnitId).title?unitLabel:unitLabel+' — '+name;
+  return namedScope+group+' · '+quantity+(quantity===1?' model':' models');
+}
 const importCopy=new Map([
   ['Source and physical import limitations','Import limitations'],
   ['Gameplay and points limitations','Rules and points'],
