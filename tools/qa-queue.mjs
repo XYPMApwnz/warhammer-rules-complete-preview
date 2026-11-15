@@ -45,6 +45,7 @@ node('tests/book-passport-qa.mjs');
 node('tests/keyword-access-qa.mjs');
 node('v2/executable-detachment-source-qa.mjs');
 node('books/shared/army-book-app-v2/plain-header-explanation-qa.mjs');
+node('v2/sweep-polish-qa.mjs');
 node('tests/official-updates-qa.mjs');
 node('tests/official-update-books-qa.mjs');
 node('tests/official-update-report-qa.mjs');
@@ -84,6 +85,7 @@ if(mode==='pre-ff'){
  // not edited source files paired with the checkout's old cache inventory.
  node('tools/pages-runtime-package.mjs',['--source',root,'--out',path.join(work,'runtime')]);
  expand(pkg.scripts['test:browser']);
+ node('v2/sweep-polish-browser-qa.mjs');
  // Each fixture is admitted once by the existing recipient browser runner.
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/sm-da-recipient-gaps-v1-browser.json']);
  node('v2/dg-am-recipient-enrollment-browser-qa.mjs',['--fixtures=v2/fixtures/csm-tau-recipient-gaps-v1-browser.json']);
@@ -100,7 +102,8 @@ for(const [i,job]of jobs.entries()){
  const childEvidence=path.join(out,String(i+1).padStart(2,'0')+'-'+path.basename(job.id).replace(/[^\w.-]/g,'_')+'-evidence');
  const publishedRoot=path.join(work,'runtime');
  const browserRoots=mode!=='pre-ff'?{}:job.id==='v2/detachment-recipient-browser-qa.mjs'?{F1_BROWSER_ROOT:publishedRoot}:
-  job.id==='v2/card-recipient-browser-qa.mjs'?{F2_BROWSER_ROOT:publishedRoot}:{};
+  job.id==='v2/card-recipient-browser-qa.mjs'?{F2_BROWSER_ROOT:publishedRoot}:
+  job.id==='v2/sweep-polish-browser-qa.mjs'?{SWEEP_POLISH_ROOT:publishedRoot}:{};
  const child=spawn(job.command,profile?['--cpu-prof','--cpu-prof-interval=10000','--cpu-prof-dir='+out,...job.args]:job.args,{cwd:root,
   env:{...qaTempEnvironment(),...browserRoots,QA_EVIDENCE_DIR:childEvidence},stdio:['ignore','pipe','pipe']});
  const unregister=registerQaCleanup(()=>new Promise(resolve=>{if(child.exitCode!==null)return resolve();child.once('close',resolve);child.kill('SIGTERM');}));

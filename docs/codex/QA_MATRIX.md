@@ -23,6 +23,11 @@ failure recovery, saved-state retention, prepared offline startup and offline re
 and rejects missing mandatory resources, including a removed-file mutation control.
 Use `--out=<external-directory>` to retain `RESULTS.json` and logs. Full A/B card
 parity is a separate review tool and is not included in either queue.
+`npm run test:sweep-polish` checks human-facing reference text, physical caption
+ownership, shared rule prose and visible technical-label leaks. Its browser guard
+covers all nine full libraries, the 20 common glossary searches and representative
+imported model scopes at 390/1440 (about one minute). It runs in pre-FF against
+the packaged runtime; its pure display controls also run in quick.
 
 Python-based tests resolve their interpreter through `tests/helpers/qa-python.cjs`:
 an explicit CLI override, then `QA_PYTHON` (or a preserved caller-specific legacy

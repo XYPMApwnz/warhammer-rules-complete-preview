@@ -1,0 +1,759 @@
+{
+  "schema": "sweep-polish-display-fixtures/v1",
+  "base": "62b16eb233c4df5dff7b3ba17a55d39fd31093f3",
+  "scope": "Bounded exact existing QA texts selected from prior positive visible-caption observations. These are not authenticity or factual-label expectations. No book facts are introduced.",
+  "books": [
+    "adeptus-mechanicus",
+    "blood-angels",
+    "dark-angels",
+    "chaos-space-marines",
+    "death-guard",
+    "emperors-children",
+    "space-marines",
+    "tau-empire",
+    "tyranids"
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "glossaryQueries": [
+    "Blast",
+    "Deep Strike",
+    "Leader",
+    "Battle-shock",
+    "Stealth",
+    "Lone Operative",
+    "Feel No Pain",
+    "Devastating Wounds",
+    "Lethal Hits",
+    "Sustained Hits",
+    "Precision",
+    "Scouts",
+    "Infiltrators",
+    "Fights First",
+    "Hazardous",
+    "Torrent",
+    "Melta",
+    "Twin-linked",
+    "Ignores Cover",
+    "Indirect Fire"
+  ],
+  "cases": [
+    {
+      "id": "input-0045",
+      "bookId": "adeptus-mechanicus",
+      "text": "+ FACTION KEYWORD: Imperium - Adeptus Mechanicus\n+ DETACHMENT: Haloscreed Battle Clade\n1x Cybernetica Datasmith (0 pts)\nEnhancement: Transoracular Dyad Wafers\n2x Kastelan Robots (0 pts)\n2x Kastelan Robots (0 pts)",
+      "sha256": "3759a58ee4445e1f18691c42b8a2b63fd5ed4a4be227e535ced8dee0b74e58cc",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Tracked QA input; no authenticity claim inferred from footer."
+      ],
+      "sources": [
+        {
+          "path": "books/adeptus-mechanicus/v2/recipient-enrollment-qa.json",
+          "key": "/browserCases/30/text"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/44"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "adeptus-mechanicus",
+            "type": "attached-card",
+            "inputId": "input-0045",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": [
+              "HALO OVERRIDE · Source: Transoracular Dyad Wafers — Cybernetica Datasmith · Applies to: Cybernetica Datasmith (parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate); Transoracular Dyad Wafers — Cybernetica Datasmith · Applies to: Kastelan Robots #1 (parsed-unit-2/parsed-unit-2/aggregate/PROFILE/parsed-unit-2/aggregate)",
+              "HALO OVERRIDE · Source: Transoracular Dyad Wafers — Cybernetica Datasmith · Applies to: Cybernetica Datasmith (parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate); Transoracular Dyad Wafers — Cybernetica Datasmith · Applies to: Kastelan Robots #1 (parsed-unit-2/parsed-unit-2/aggregate/PROFILE/parsed-unit-2/aggregate)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "adeptus-mechanicus",
+            "type": "enhanced-card",
+            "inputId": "input-0045",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": []
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    },
+    {
+      "id": "input-0357",
+      "bookId": "tyranids",
+      "text": "+ FACTION KEYWORD: Tyranids\n+ DETACHMENT: Subterranean Assault\nChar1: 1x Trygon (135 pts)\n• 1x Trygon: Bio-electric pulse, Trygon scything talons\nEnhancement: Trygon Prime\n1x Trygon (135 pts)\n• 1x Trygon: Bio-electric pulse, Trygon scything talons\n1x Psychophage (95 pts)\n• 1x Psychophage: Psychoclastic torrent, Talons and betentacled maw\n",
+      "sha256": "ceebd6e5bde9869a8572dadb5fdc2c5605f6652ae6d14846907dc04b282b5e31",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Tracked QA input; no authenticity claim inferred from footer."
+      ],
+      "sources": [
+        {
+          "path": "books/tyranids/v2/roster-ui-qa.mjs",
+          "key": "javascript-static-expression",
+          "line": 88
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/328"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "tyranids",
+            "type": "enhanced-card",
+            "inputId": "input-0357",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "SYNAPSE · Source: Trygon Prime — Trygon #1 (parsed-unit-1) · Applies to: Trygon #1 (parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1)"
+            ]
+          }
+        ]
+      },
+      "attachment": null
+    },
+    {
+      "id": "input-0469",
+      "bookId": "tau-empire",
+      "text": "Epic Hero regression (2000 Points)\n\nT'au Empire\nRetaliation Cadre (1 Detachment Point)\n\nChar1: 1x Commander in Coldstar Battlesuit (95 pts): High-output burst cannon, Battlesuit fists\nEnhancement: Internal Grenade Racks (+20 pts)\n\nCreated with newrecruit.eu v37.15\n",
+      "sha256": "d19f3749d8b878efbf1701c64b4d9da3edaa978830518c42894227ab91dd05a8",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Tracked QA input; no authenticity claim inferred from footer."
+      ],
+      "sources": [
+        {
+          "path": "v2/fixtures/epic-hero-enhancements.json",
+          "key": "/importCases/3/text"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/440"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "tau-empire",
+            "type": "enhanced-card",
+            "inputId": "input-0469",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "GRENADES · Source: Internal Grenade Racks — Commander In Coldstar Battlesuit (parsed-unit-1) · Applies to: Commander In Coldstar Battlesuit (parsed-unit-1/parsed-unit-1/aggregate/PROFILE/parsed-unit-1/aggregate)"
+            ]
+          }
+        ]
+      },
+      "attachment": null
+    },
+    {
+      "id": "input-0421",
+      "bookId": "emperors-children",
+      "text": "+ FACTION KEYWORD: Chaos - Emperor's Children\n+ DETACHMENT: Elegant Brutes\nChar1: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\nEnhancement: Cacophonic Accompaniment\nChar2: 1x Lord Kakophonist (70 pts): Screamer pistol, Power sword\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n6x Noise Marines (160 pts)\n• 1x Disharmonist: Sonic blaster, Close combat weapon\n• 4x Noise Marine w/ sonic blaster: Sonic blaster, Close combat weapon\n• 1x Noise Marine w/ blastmaster: Blastmaster, Close combat weapon\n",
+      "sha256": "3c1366d4e67ad2dcfd086a96c66e96c94f879aad44a13bc51e9db99209aa2f78",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Constructed source-backed New Recruit-compatible fixtures, not real exports."
+      ],
+      "sources": [
+        {
+          "path": "v2/enhancement-presentation-fixtures.json",
+          "key": "/cases/6/text"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/392"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "emperors-children",
+            "type": "attached-card",
+            "inputId": "input-0421",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-3",
+            "duplicates": [],
+            "extraLabels": [
+              "Leader, DEEP STRIKE · Source: Cacophonic Accompaniment — Lord Kakophonist #1 (parsed-unit-1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "emperors-children",
+            "type": "enhanced-card",
+            "inputId": "input-0421",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "Leader, DEEP STRIKE · Source: Cacophonic Accompaniment — Lord Kakophonist #1 (parsed-unit-1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "emperors-children",
+            "type": "attached-card",
+            "inputId": "input-0421",
+            "leader": "parsed-unit-2",
+            "target": "parsed-unit-3",
+            "duplicates": [],
+            "extraLabels": []
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      }
+    },
+    {
+      "id": "input-0120",
+      "bookId": "chaos-space-marines",
+      "text": "+ FACTION KEYWORD: Chaos - Chaos Space Marines\n\n+ DETACHMENT: Chaos Cult\n\n3x Dark Apostle (70 pts)\nEnhancement: Warped Foresight\n• 1x Dark Apostle: Bolt pistol, Accursed crozius\n• 2x Dark Disciples: Close combat weapon\n\n3x Dark Apostle (70 pts)\n• 1x Dark Apostle: Bolt pistol, Accursed crozius\n• 2x Dark Disciples: Close combat weapon\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\n8x Accursed Cultists (90 pts)\n• 3x Torments: Hideous mutations\n• 5x Mutants: Blasphemous appendages\n\nCreated with newrecruit.eu\n",
+      "sha256": "7e39904278f521e1ba801f6442561c1d800f21ec056e55a74006fbc3e1233194",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Tracked QA input; no authenticity claim inferred from footer."
+      ],
+      "sources": [
+        {
+          "path": "books/chaos-space-marines/v2/audit/roster-execution-matrix.json",
+          "key": "/matrix/17/NEW_RECRUIT_TEXT"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/119"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "chaos-space-marines",
+            "type": "attached-card",
+            "inputId": "input-0120",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-3",
+            "duplicates": [],
+            "extraLabels": [
+              "Feel No Pain 6+, Scouts 6\" · Source: Warped Foresight — Dark Apostle #1 (import-57d520b79acbbc2b/parsed-unit-1/parsed-unit-1/model-row/1)",
+              "Leader, Scouts 6\" · Source: Warped Foresight — Dark Apostle #1 (import-57d520b79acbbc2b/parsed-unit-1/parsed-unit-1/model-row/1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "chaos-space-marines",
+            "type": "enhanced-card",
+            "inputId": "input-0120",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": []
+          },
+          {
+            "width": 390,
+            "bookId": "chaos-space-marines",
+            "type": "attached-card",
+            "inputId": "input-0120",
+            "leader": "parsed-unit-2",
+            "target": "parsed-unit-3",
+            "duplicates": [],
+            "extraLabels": []
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-3"
+      }
+    },
+    {
+      "id": "additional-0012",
+      "bookId": "space-marines",
+      "text": "Cosmetic fixture (2000 Points)\n\nSpace Marines\nGravis Linebreaker Force (1 Detachment Point)\n\n1x Captain in Gravis Armour (0 pts)\nEnhancement: Relentless Advance (+0 pts)\n5x Heavy Intercessor Squad (0 pts)\n• 1x Heavy Intercessor Sergeant\n• 4x Heavy Intercessor\n",
+      "sha256": "1e8dc55830aa21264e5dc569c99c50e6d29f8e3baf3c8f3b5fbda63c1cbe73c6",
+      "authenticity": "constructed-source-backed-not-real-export",
+      "classification": "constructed-bounded-existing-factory",
+      "provenance": [
+        "Original bounded fixture function and existing invocation arguments; no browser, build or QA program executed."
+      ],
+      "sources": [
+        {
+          "path": "v2/cards-cosmetics-browser-qa.mjs",
+          "key": "bounded-factory/textFor/space-marines"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/ADDITIONAL-INPUTS.json",
+        "pointer": "/inputs/11"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "space-marines",
+            "type": "attached-card",
+            "inputId": "additional-0012",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)",
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "space-marines",
+            "type": "enhanced-card",
+            "inputId": "additional-0012",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    },
+    {
+      "id": "additional-0010",
+      "bookId": "blood-angels",
+      "text": "Cosmetic fixture (2000 Points)\n\nBlood Angels\nGravis Linebreaker Force (1 Detachment Point)\n\n1x Captain in Gravis Armour (0 pts)\nEnhancement: Relentless Advance (+0 pts)\n5x Heavy Intercessor Squad (0 pts)\n• 1x Heavy Intercessor Sergeant\n• 4x Heavy Intercessor\n",
+      "sha256": "bc292c8d4044686804c108b7f6dd4390f89c348f63f486196ad220c286460194",
+      "authenticity": "constructed-source-backed-not-real-export",
+      "classification": "constructed-bounded-existing-factory",
+      "provenance": [
+        "Original bounded fixture function and existing invocation arguments; no browser, build or QA program executed."
+      ],
+      "sources": [
+        {
+          "path": "v2/cards-cosmetics-browser-qa.mjs",
+          "key": "bounded-factory/textFor/blood-angels"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/ADDITIONAL-INPUTS.json",
+        "pointer": "/inputs/9"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "blood-angels",
+            "type": "attached-card",
+            "inputId": "additional-0010",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)",
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "blood-angels",
+            "type": "enhanced-card",
+            "inputId": "additional-0010",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    },
+    {
+      "id": "character-pair-0039",
+      "bookId": "blood-angels",
+      "text": "+ FACTION KEYWORD: blood-angels\n+ DETACHMENT: Angelic Inheritors\n1x Lemartes (110 pts)\n• 1x Lemartes\n5x Death Company Marines With Jump Packs (130 pts)\n• 5x Death Company Marines with Jump Packs\n",
+      "sha256": "02cf0a6c6184d72915a624cacf868aedced7546eeed33bede0f5ecee1191f8e8",
+      "classification": "derived-native-character-first-policy-pair",
+      "provenance": [
+        "DERIVED_FROM_ACCEPTED_NATIVE_POLICY_AND_COMPOSITION; explicit stable IDs, no name-based eligibility join; equipment deliberately unspecified"
+      ],
+      "sources": [
+        {
+          "path": "books/blood-angels/v2/generated/roster-import.json",
+          "key": "books/blood-angels/v2/generated/roster-import.json#/rosterAttachmentPolicies/18"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/CHARACTER-PAIR-INPUTS.json",
+        "pointer": "/inputs/39"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "blood-angels",
+            "type": "attached-card",
+            "inputId": "character-pair-0039",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [
+              {
+                "cardId": "unit-ba-6903525e7ae0497e943a",
+                "text": "Legacy of the Angel Friendly BLOOD ANGELS CHARACTER units:",
+                "count": 2,
+                "owners": [
+                  [
+                    {
+                      "tag": "P",
+                      "className": "",
+                      "dataset": {},
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-source-text",
+                      "dataset": {
+                        "policyRuleText": "",
+                        "ruleId": "detachment-rule-ba-10c56bef78b24440bb5f",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "sourceProvenance": "{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-conditional-policy",
+                      "dataset": {
+                        "conditionalPolicy": "REROLL",
+                        "execution": "CONDITIONAL_TEXT_ONLY",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "recipientInstanceIds": "[\"parsed-unit-2\",\"parsed-unit-1\"]",
+                        "policySource": "{\"ruleId\":\"detachment-rule-ba-10c56bef78b24440bb5f\",\"clauseId\":\"review/detachment-rule-ba-10c56bef78b24440bb5f/text/59:88\",\"provenance\":{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}}",
+                        "policyAttributionRefs": "[\"ds-attribution-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-source\",\"ds-attribution-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-recipient\"]",
+                        "policyTextRef": "ds-policy-text-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_5B_22detachment-rule-ba-10c56bef78b24440bb5f_22_2C_22review_2Fdetachment-rule-ba-10c56bef78b24440bb5f_2Ftext_2F59_3A88_22_2C2_5D_5D"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "SECTION",
+                      "className": "unit-part",
+                      "dataset": {
+                        "datasheetSection": "conditional-policies"
+                      },
+                      "headings": [
+                        "Conditional mechanics"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "tag": "P",
+                      "className": "",
+                      "dataset": {},
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-source-text",
+                      "dataset": {
+                        "policyRuleText": "",
+                        "ruleId": "detachment-rule-ba-10c56bef78b24440bb5f",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "sourceProvenance": "{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-conditional-policy",
+                      "dataset": {
+                        "conditionalPolicy": "REROLL",
+                        "execution": "CONDITIONAL_TEXT_ONLY",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "recipientInstanceIds": "[\"parsed-unit-2\",\"parsed-unit-1\"]",
+                        "policySource": "{\"ruleId\":\"detachment-rule-ba-10c56bef78b24440bb5f\",\"clauseId\":\"review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120\",\"provenance\":{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}}",
+                        "policyAttributionRefs": "[\"ds-attribution-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-source\",\"ds-attribution-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-recipient\"]",
+                        "policyTextRef": "ds-policy-text-_5B_22unit-ba-6903525e7ae0497e943a_22_2C_22parsed-unit-2_22_2C_5B_22detachment-rule-ba-10c56bef78b24440bb5f_22_2C_22review_2Fdetachment-rule-ba-10c56bef78b24440bb5f_2Ftext_2F89_3A120_22_2C3_5D_5D"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "SECTION",
+                      "className": "unit-part",
+                      "dataset": {
+                        "datasheetSection": "conditional-policies"
+                      },
+                      "headings": [
+                        "Conditional mechanics"
+                      ]
+                    }
+                  ]
+                ]
+              },
+              {
+                "cardId": "unit-ba-3483c88a4df4495ca2e2",
+                "text": "Legacy of the Angel Friendly BLOOD ANGELS CHARACTER units:",
+                "count": 2,
+                "owners": [
+                  [
+                    {
+                      "tag": "P",
+                      "className": "",
+                      "dataset": {},
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-source-text",
+                      "dataset": {
+                        "policyRuleText": "",
+                        "ruleId": "detachment-rule-ba-10c56bef78b24440bb5f",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "sourceProvenance": "{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-conditional-policy",
+                      "dataset": {
+                        "conditionalPolicy": "REROLL",
+                        "execution": "CONDITIONAL_TEXT_ONLY",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "recipientInstanceIds": "[\"parsed-unit-2\",\"parsed-unit-1\"]",
+                        "policySource": "{\"ruleId\":\"detachment-rule-ba-10c56bef78b24440bb5f\",\"clauseId\":\"review/detachment-rule-ba-10c56bef78b24440bb5f/text/59:88\",\"provenance\":{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}}",
+                        "policyAttributionRefs": "[\"ds-attribution-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-source\",\"ds-attribution-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-recipient\"]",
+                        "policyTextRef": "ds-policy-text-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_5B_22detachment-rule-ba-10c56bef78b24440bb5f_22_2C_22review_2Fdetachment-rule-ba-10c56bef78b24440bb5f_2Ftext_2F59_3A88_22_2C2_5D_5D"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "SECTION",
+                      "className": "unit-part",
+                      "dataset": {
+                        "datasheetSection": "conditional-policies"
+                      },
+                      "headings": [
+                        "Conditional mechanics"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "tag": "P",
+                      "className": "",
+                      "dataset": {},
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-source-text",
+                      "dataset": {
+                        "policyRuleText": "",
+                        "ruleId": "detachment-rule-ba-10c56bef78b24440bb5f",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "sourceProvenance": "{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "DIV",
+                      "className": "ds-conditional-policy",
+                      "dataset": {
+                        "conditionalPolicy": "REROLL",
+                        "execution": "CONDITIONAL_TEXT_ONLY",
+                        "sourceInstanceId": "",
+                        "sourceModelScopeId": "",
+                        "recipientInstanceIds": "[\"parsed-unit-2\",\"parsed-unit-1\"]",
+                        "policySource": "{\"ruleId\":\"detachment-rule-ba-10c56bef78b24440bb5f\",\"clauseId\":\"review/detachment-rule-ba-10c56bef78b24440bb5f/text/89:120\",\"provenance\":{\"sourceId\":\"blood-angels-waha-11e-2026-10-22\",\"document\":\"books/blood-angels/v2/sources/raw/wahapedia-blood-angels-main.html\",\"sha256\":\"1843A4B2841F7C404CEF7C1B797CFC4344F39B8063ADB236B1DF63A5F43332D4\",\"pointer\":\"/html/body/div/div[1]/div[3]/div[22]/div[2]/div[2]\",\"sourceEntityId\":\"ba-source-a7492f8b30cc4cd59788\",\"authority\":\"ACCEPTED_SECONDARY\"}}",
+                        "policyAttributionRefs": "[\"ds-attribution-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-source\",\"ds-attribution-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_22_5B_5C_22detachment-rule-ba-10c56bef78b24440bb5f_5C_22_2Cnull_2Cnull_2Cnull_2C_5C_22Angelic_20Inheritors_5C_22_2C_5C_22UNIT_5C_22_2Cnull_2C_5Bnull_2C_5B_5C_22Death_20Company_20Marines_20With_20Jump_20Packs_20(parsed-unit-2)_5C_22_2C_5C_22Lemartes_20(parsed-unit-1)_5C_22_5D_5D_5D_22_5D-recipient\"]",
+                        "policyTextRef": "ds-policy-text-_5B_22unit-ba-3483c88a4df4495ca2e2_22_2C_22parsed-unit-1_22_2C_5B_22detachment-rule-ba-10c56bef78b24440bb5f_22_2C_22review_2Fdetachment-rule-ba-10c56bef78b24440bb5f_2Ftext_2F89_3A120_22_2C3_5D_5D"
+                      },
+                      "headings": []
+                    },
+                    {
+                      "tag": "SECTION",
+                      "className": "unit-part",
+                      "dataset": {
+                        "datasheetSection": "conditional-policies"
+                      },
+                      "headings": [
+                        "Conditional mechanics"
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ],
+            "extraLabels": [
+              "Source: Guardian of the Lost · Lemartes (parsed-unit-1)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)",
+              "Source: Black Rage · Death Company Marines With Jump Packs (parsed-unit-2)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)",
+              "Source: Guardian of the Lost · Lemartes (parsed-unit-1)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)",
+              "Source: Black Rage · Death Company Marines With Jump Packs (parsed-unit-2)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)",
+              "Applies to: Death Company Marines With Jump Packs (parsed-unit-2); Lemartes (parsed-unit-1)"
+            ]
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    },
+    {
+      "id": "input-0171",
+      "bookId": "dark-angels",
+      "text": "+ FACTION KEYWORD: Dark Angels\n+ DETACHMENT: Tactical Brethren\n1x Sammael (9999 pts)\n• 1x Sammael: 1x Bolt Pistol, 1x The Raven Sword\n3x Ravenwing Black Knights (9999 pts)\n• 1x Ravenwing Huntmaster: 1x Bolt Pistol, 1x Corvus Hammers\n• 2x Ravenwing Black Knight\n3x Ravenwing Black Knights (9999 pts)\n• 1x Ravenwing Huntmaster: 1x Bolt Pistol, 1x Corvus Hammers\n• 2x Ravenwing Black Knight\n3x Ravenwing Command Squad (9999 pts)\n• 1x Ravenwing Champion: 1x Bolt Pistol, 1x Corvus Hammers\n• 1x Ravenwing Apothecary\n• 1x Ravenwing Ancient\n",
+      "sha256": "c99e4df19d6ce4d290b466cdf41ffa3e288bd7ac455a5d3dd44cc9bfa92ef799",
+      "authenticity": "constructed-or-unspecified-qa",
+      "classification": "full-export-or-derived-input",
+      "provenance": [
+        "Tracked QA input; no authenticity claim inferred from footer."
+      ],
+      "sources": [
+        {
+          "path": "books/dark-angels/v2/advance-gameplay-qa.mjs",
+          "key": "javascript-static-expression",
+          "line": 12
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/INPUTS.json",
+        "pointer": "/inputs/170"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "dark-angels",
+            "type": "attached-card",
+            "inputId": "input-0171",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": [
+              "MOBILE · Source: Grand Master of the Ravenwing — Sammael · Applies to: Sammael (parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1); Grand Master of the Ravenwing — Sammael · Applies to: Ravenwing Black Knights #1 (parsed-unit-2/parsed-unit-2/model-row/1/PROFILE/parsed-unit-2/model-row/1); Grand Master of the Ravenwing — Sammael · Applies to: Ravenwing Black Knights #1 (parsed-unit-2/parsed-unit-2/model-row/2/PROFILE/parsed-unit-2/model-row/2)",
+              "MOBILE · Source: Grand Master of the Ravenwing — Sammael · Applies to: Sammael (parsed-unit-1/parsed-unit-1/model-row/1/PROFILE/parsed-unit-1/model-row/1); Grand Master of the Ravenwing — Sammael · Applies to: Ravenwing Black Knights #1 (parsed-unit-2/parsed-unit-2/model-row/1/PROFILE/parsed-unit-2/model-row/1); Grand Master of the Ravenwing — Sammael · Applies to: Ravenwing Black Knights #1 (parsed-unit-2/parsed-unit-2/model-row/2/PROFILE/parsed-unit-2/model-row/2)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "dark-angels",
+            "type": "attached-card",
+            "inputId": "input-0171",
+            "leader": "parsed-unit-4",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": []
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    },
+    {
+      "id": "additional-0011",
+      "bookId": "dark-angels",
+      "text": "Cosmetic fixture (2000 Points)\n\nDark Angels\nGravis Linebreaker Force (1 Detachment Point)\n\n1x Captain in Gravis Armour (0 pts)\nEnhancement: Relentless Advance (+0 pts)\n5x Heavy Intercessor Squad (0 pts)\n• 1x Heavy Intercessor Sergeant\n• 4x Heavy Intercessor\n",
+      "sha256": "ef7fb4d8dbbbae2d2a940b67aefdc9816cc18bf0bf934bbcdcababff332e4f96",
+      "authenticity": "constructed-source-backed-not-real-export",
+      "classification": "constructed-bounded-existing-factory",
+      "provenance": [
+        "Original bounded fixture function and existing invocation arguments; no browser, build or QA program executed."
+      ],
+      "sources": [
+        {
+          "path": "v2/cards-cosmetics-browser-qa.mjs",
+          "key": "bounded-factory/textFor/dark-angels"
+        }
+      ],
+      "inventory": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/inventory/ADDITIONAL-INPUTS.json",
+        "pointer": "/inputs/10"
+      },
+      "priorVisibleEvidence": {
+        "path": "E:/Warhammer/qa-evidence/auto-qa-sweep-v1-2026-11-15/short-paragraphs.jsonl",
+        "observations": [
+          {
+            "width": 390,
+            "bookId": "dark-angels",
+            "type": "attached-card",
+            "inputId": "additional-0011",
+            "leader": "parsed-unit-1",
+            "target": "parsed-unit-2",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)",
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          },
+          {
+            "width": 390,
+            "bookId": "dark-angels",
+            "type": "enhanced-card",
+            "inputId": "additional-0011",
+            "id": "parsed-unit-1",
+            "duplicates": [],
+            "extraLabels": [
+              "SCOUTS 5 · Source: Relentless Advance — Captain In Gravis Armour (parsed-unit-1)"
+            ]
+          }
+        ]
+      },
+      "attachment": {
+        "leader": "parsed-unit-1",
+        "target": "parsed-unit-2"
+      }
+    }
+  ]
+}
