@@ -32,6 +32,10 @@ const server=http.createServer((request,response)=>{
   const url=new URL(request.url,'http://localhost');
   try{
     assert(url.pathname.startsWith(prefix));
+    if(url.pathname===prefix+'installation-probe.html'){
+      response.writeHead(200,{'content-type':'text/html','cache-control':'no-store'});
+      response.end('<!doctype html><html lang="en"><title>Installation-only QA probe</title><body>Installation only; application modules are not loaded.</body></html>');return;
+    }
     const root=generation==='A'?A:B;
     let file=path.resolve(root,url.pathname.slice(prefix.length));
     assert(file===root||file.startsWith(root+path.sep));
@@ -94,6 +98,7 @@ async function contextFor(viewport={width:1440,height:900}){
     const record=change=>{try{const value=read();change(value);sessionStorage.setItem(key,JSON.stringify(value));}catch{/* A case deliberately blocks sessionStorage. */}};
     record(value=>value.navigations++);
     window.qaPwaActivationAttempts=[];
+    if(typeof ServiceWorker==='undefined')return;
     const original=ServiceWorker.prototype.postMessage;
     ServiceWorker.prototype.postMessage=function(message,ports){
       if(message?.type==='SKIP_WAITING'){
@@ -140,6 +145,23 @@ async function rosterState(page){return page.evaluate(()=>({storage:Object.fromE
 
 try{
   browser=await launchChromium();
+  {
+    const context=await contextFor({width:390,height:844});
+    try{
+      generation='A';const installer=await context.newPage();
+      await installer.goto(entry.replace('/v2/app.html','/installation-probe.html'));
+      await installer.evaluate(async()=>{await navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'});await navigator.serviceWorker.ready;localStorage.setItem('pwa-fresh-install-setting','preserve before first application start');});
+      await workerIs(installer,aRevision);const before=await storage(installer);
+      assert.equal(await installer.evaluate(()=>typeof window.WarhammerAppV2),'undefined','Installation must not warm the application module graph online');
+      await context.setOffline(true);
+      const page=await context.newPage();await page.goto(entry,{waitUntil:'load'});await ready(page);await workerIs(page,aRevision);
+      await page.locator('[data-v2-destination="ROSTER"]').click();await page.evaluate(()=>WarhammerAppV2.ready);
+      assert.equal(await page.locator('[data-v2-book]').count(),9,'The first offline launch must offer all nine books without fetching lazy book payloads');
+      assert.deepEqual(await storage(page),before);assert.deepEqual((await observations(page)).activations,[]);
+      await page.screenshot({path:path.join(out,'fresh-install-first-offline-startup-390.png'),fullPage:true});
+      report.results.push({case:'fresh installation only, no online app warmup, then first offline Home and nine-book chooser startup',status:'PASS'});
+    }finally{await context.close();}
+  }
   {
     const context=await contextFor({width:390,height:844});
     try{
