@@ -346,6 +346,8 @@ body.v2-book-surface .v2-section-heading .v2-count { border-radius: 0; backgroun
   .v2-book-record.stratagem::before, .v2-book-record .stratagem::before { width: 58px; }
   .v2-book-record.stratagem[data-turn]::after, .v2-book-record .stratagem[data-turn]::after { left: 5px; width: 48px; font-size: 9px; }
   .v2-book-record .stratagem-head { padding-right: 14px; }
+  .v2-book-record .stratagem-head > div:not(.cp) { min-width: 0; max-width: 100%; }
+  .v2-book-record .stratagem-head h3 { overflow-wrap: anywhere; }
   .v2-book-record .cp { left: -52px; width: 46px; height: 46px; font-size: 11px; }
   .v2-book-detail .v2-dialog-content { padding: 10px; }
 }
