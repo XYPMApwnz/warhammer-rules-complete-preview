@@ -156,7 +156,7 @@ export function searchGlossary(index, query) {
   const normalized = normalizeGlossaryQuery(query);
   const results = [];
   for (const entry of index.entries) {
-    const candidates = [{label: entry.label}, ...entry.aliases];
+    const candidates = [{label: entry.label}, ...entry.aliases.filter(alias=>alias.match!=='EXACT')];
     let best = null;
     for (const candidate of candidates) {
       const value = normalizeGlossaryQuery(candidate.label);

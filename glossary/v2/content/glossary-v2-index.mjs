@@ -158,7 +158,28 @@ function addArmyEntries(entries,models){
       return false;
     });
     const entryByCanonical=new Map();
-    const label=e=>e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||(types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null)||e.id;
+    const label=e=>{
+      const existing=e.displayName||e.label||e.data.title||e.data.name||e.data.composition?.name||
+        (types[e.kind]==='PROFILE'||e.kind==='PROFILE'?records.get(ownerOf(e))?.data.title:null);
+      if(existing)return existing;
+      // Display names are a projection of existing source text and named
+      // owners. Canonical data, identities and source evidence stay untouched.
+      if(typeof e.data.label==='string'&&e.data.label)return e.data.label
+        .replace(/(CORE ABILITIES|ARMY RULES)/g,' $1: ').trim();
+      const parent=records.get(ownerOf(e));
+      if(typeof e.data.roleHeading==='string'&&e.data.roleHeading)return [parent&&label(parent),e.data.roleHeading].filter(Boolean).join(' · ');
+      if(e.kind==='RULE_REFERENCE'&&Array.isArray(e.data.groups))return [label(parent),...e.data.groups.map(group=>
+        group.label+': '+group.entries.map(entry=>entry.label).join(', '))].join(' · ');
+      if(['WARGEAR_OPTION','MODEL_BASE'].includes(e.kind)&&typeof e.data.text==='string'&&e.data.text)return e.data.text;
+      if(['SOURCE_PRESENTATION_NOTE','STRUCTURED_RULE_TABLE'].includes(e.kind)&&parent)return label(parent);
+      if(e.kind==='INVULNERABLE_SAVE'&&e.data.value)return 'Invulnerable Save: '+e.data.value;
+      if(e.kind==='KEYWORD_SCOPES'&&parent&&Array.isArray(e.data.scopes))return [label(parent),...e.data.scopes.map(scope=>scope.label)].join(' · ');
+      if(e.kind==='SOURCE_UPDATE_REFERENCE'){
+        const title=model.appPayload.cards.find(card=>card.id===e.id)?.title;
+        if(title&&title!==e.id)return title;
+      }
+      return e.id;
+    };
     const children=e=>projectedEntities.filter(child=>ownerOf(child)===e.id);
     const blockText=(e,seen=new Set())=>{
       if(!e||seen.has(e.id))return'';seen=new Set([...seen,e.id]);

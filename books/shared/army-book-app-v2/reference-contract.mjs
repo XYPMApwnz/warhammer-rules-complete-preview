@@ -93,7 +93,7 @@ export function createReferenceContract({cards,index,registryId='book',coreRegis
     const normalized=normalizeGlossaryQuery(query),available=scope(allowedIds),results=[];
     for(const entry of entries.values()) {
       if(!available.has(entry.targetId)||(category&&categoryFor(cards.get(entry.targetId))!==(categories[category] || 'Reference')))continue;
-      const candidates=[{label:entry.label},...entry.aliases];
+      const candidates=[{label:entry.label},...entry.aliases.filter(alias=>alias.match!=='EXACT')];
       let best=null,model=null;
       const resolved=()=>model??=resolve(entry.targetId,allowedIds);
       for(const candidate of candidates) {
