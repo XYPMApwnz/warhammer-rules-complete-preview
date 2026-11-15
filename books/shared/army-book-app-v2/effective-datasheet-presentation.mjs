@@ -4,6 +4,14 @@ const value=field=>field?.displayValue??field?.value??null;
 const stable=item=>Array.isArray(item)?item.map(stable):item&&typeof item==='object'
   ?Object.fromEntries(Object.keys(item).sort().map(key=>[key,stable(item[key])])):item;
 const key=item=>JSON.stringify(stable(item));
+/** A reference is a player-facing name and optional definition. Binding status
+ * and scope remain facts on its canonical record, not ability prose. */
+export function ruleReferenceTextFields(card) {
+  const label=card.fields.find(field=>path(field)==='/label');
+  return card.fields.filter(field=>['/label','/text'].includes(path(field))&&
+    typeof field.value==='string'&&field.value.length&&
+    !(path(field)==='/text'&&field.value===label?.value));
+}
 /** Display-only source blocks. Keep every source character, including the
  * printed bullet marker, so field text/provenance can still be checked exactly.
  * Only an exact heading already supplied by this section is omitted. */

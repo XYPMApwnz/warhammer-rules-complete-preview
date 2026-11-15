@@ -4,7 +4,7 @@ import {sourceRuleCaption,enhancementTextParts,incompleteExportCopy} from './cos
 /** V1 presentation contract over V2 records. No eligibility or effect execution. */
 import {buildNormalDatasheetBindings,selectsNormalDatasheetBindings} from './normal-datasheet-bindings.mjs';
 import {collectAbilityReferences,projectAbilityPresentation,abilityPresentationLabel} from './ability-presentation.mjs';
-import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey,sourceTextBlocks,conditionalSourceTextKey} from './effective-datasheet-presentation.mjs';
+import {groupDisplayRecords,profileDisplayKey,weaponDisplayKey,projectSelectedComposition,uniformProfileAnnotations,countPhysicalCarriers,formatPhysicalCarriers,effectContributionKey,sourceTextBlocks,conditionalSourceTextKey,ruleReferenceTextFields} from './effective-datasheet-presentation.mjs';
 import {renderRosterPointsStatus} from './roster.mjs';
 import {validateComponentDetachmentText,groupDetachmentTextRows,projectInstanceCards,prepareRosterPresentationCards,projectDetachmentFields,validateAttachedRuleTextPresentation,executableDetachmentSources} from './personal.mjs';
 const sectionRoles = new Map([
@@ -478,7 +478,15 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
         }node.append(group);
       }return node;
     }
-    for(const field of card.fields){const value=factValue('p',field);
+    const sourceSection=card.fields.find(field=>layoutPath(field)==='/sourceSection');
+    if(['CORE ABILITIES','ARMY RULES'].includes(sourceSection?.value)){
+      const caption=factValue('strong',sourceSection);caption.classList.add('ds-rule-reference-label');node.append(caption);
+    }
+    const textFields=ruleReferenceTextFields(card);
+    if(!textFields.length)throw new TypeError('Missing player-facing rule reference text: '+card.id);
+    node.dataset.referenceDeclaration=JSON.stringify(card.fields.filter(field=>!textFields.includes(field))
+      .map(field=>({id:field.id,path:layoutPath(field),value:field.value})));
+    for(const field of textFields){const value=factValue('p',field);
       // Source markers format Core/Faction paragraphs only. No rule definition
       // or identity is looked up from their contents.
       if(field.source?.path==='/label'){
