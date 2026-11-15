@@ -73,6 +73,19 @@ function minimalPrecache(root,paths){
       relative.startsWith('v2/')||/\/v2\/theme\.css$/.test(relative)||relative==='books/shared/styles/offline-status.css'))add(relative);
   }
   for(const relative of ['index.html','v2/app.html','manifest.webmanifest','assets/apple-touch-icon.png','assets/icon-192.png','assets/icon-512.png','assets/icon-maskable-512.png','assets/warhammer-40000-logo-optimized.png','assets/games-workshop-logo.png','books/core-rules/reader/search-index.json','books/shared/datasheet-system.css','books/shared/unit-art.css'])add(relative);
+  // Eager imports of the V2 shell: the source-reference registry and keyword
+  // access module/passports are needed before Home or a book can mount. Book
+  // payloads and glossary definitions remain lazy. The independent startup
+  // dependency-graph test rejects omissions from this small additional set.
+  for(const relative of [
+    'books/shared/rule-facts.js','books/shared/source-refs-v2/source-catalog.json',
+    'books/space-marines/book.config.json','books/blood-angels/book.config.json',
+    'books/dark-angels/book.config.json','books/adeptus-mechanicus/book.config.json',
+    'books/chaos-space-marines/book.config.json','books/death-guard/book.config.json',
+    'books/tau-empire/book.config.json','books/tyranids/book.config.json',
+    'books/emperors-children/book.config.json',
+    'books/adeptus-mechanicus/assets/mechanicus-logo.png'
+  ])add(relative);
   if(allowed.has('index.html'))urls.add('./');
   if(allowed.has('books/shared/offline-status.js')){
     add('books/shared/offline-status.js','?v=4');
