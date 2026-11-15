@@ -52,6 +52,12 @@ check(()=>{
   assert.equal(r.status,'READY');assert.equal(s.state.units[0].enhancementAssignments[0].modelScopeId,chosen.id);
 });
 assert.deepEqual(book,before,'UI adapter changed its owner');
-const loaded=await createBrowserRoster({fetch:async()=>({ok:true,json:async()=>structuredClone(book)})});
+const fetchInputs=new Map([
+  [new URL('./generated/roster-attachments.json',import.meta.url).href,book],
+  [new URL('./generated/app-presentation.json',import.meta.url).href,payload]
+]);
+const loaded=await createBrowserRoster({fetch:async url=>{
+  assert.ok(fetchInputs.has(url.href),'Unexpected EC input URL: '+url.href);
+  return {ok:true,json:async()=>structuredClone(fetchInputs.get(url.href))};}});
 assert.equal(loaded.import(text('character-bodyguard')).status,'READY');
 console.log(JSON.stringify({status:'PASS',checks,negative,sharedRenderer:true,battleSimulation:false,armyLegality:'NOT_ASSESSED'}));
