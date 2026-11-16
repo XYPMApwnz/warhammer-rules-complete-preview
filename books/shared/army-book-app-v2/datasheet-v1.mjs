@@ -141,7 +141,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const policyTextReference=(id,label)=>{
     const link=el('a','ds-policy-text-reference','Rule text: '+label);link.href='#'+id;
     link.dataset.policyTextRef=id;
-    listen(link,'click',event=>{event.preventDefault();document.getElementById(link.dataset.policyTextRef)?.scrollIntoView({block:'center'});});
+    listen(link,'click',event=>{event.preventDefault();const target=document.getElementById(link.dataset.policyTextRef);for(let node=target?.parentElement;node;node=node.parentElement)if(node.tagName==='DETAILS')node.open=true;target?.scrollIntoView({block:'center'});});
     return link;
   };
   const scopeCaption=card=>card.presentationScope
@@ -354,6 +354,13 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
   const renderWeapon=(card,{instanceId,popup=false,displayMembers=[card]}={})=>{
     const row=identity(el(popup?'article':'div',popup?'popup-weapon-profile':'weapon-row'),card,instanceId),used=new Set();
     if(!popup)row.setAttribute('role','row');
+    if(instanceId)row.dataset.weaponOccurrences=JSON.stringify(displayMembers.map(member=>{
+      const matches=roster.effective(instanceId).weapons.filter(record=>record.id===member.id&&
+        (record.scopeId??null)===(member.scopeId??null)&&(record.selectionKey??null)===(member.selectionKey??null));
+      if(matches.length!==1)throw new TypeError('Unresolved physical weapon occurrence');
+      const record=matches[0];return {id:member.id,scopeId:member.scopeId??null,selectionKey:member.selectionKey??null,
+        quantity:member.rosterQuantity,modelInstanceId:record.modelInstanceId??null};
+    }));
     const name=single(card,'name'),mode=single(card,'mode');
     const nameCell=el('div','weapon-name'),nameLine=el('div');nameCell.setAttribute('role','rowheader');const link=scopedAnchor('',card,instanceId);
     link.classList.add('weapon-button');link.classList.remove('v2-reference');
@@ -402,7 +409,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     nameCell.append(tags);
     if(card.criticalHitThreshold!==undefined) {
       const note=el('small','ds-critical-hit-threshold',`Critical hits: ${card.criticalHitThreshold}+ · `);
-      note.dataset.criticalHitThreshold=String(card.criticalHitThreshold);
+      note.dataset.criticalHitThreshold=String(card.criticalHitThreshold);note.dataset.criticalHitSources=JSON.stringify(card.criticalHitSources);
       note.dataset.recipientInstanceId=instanceId;note.dataset.recipientScope=card.scopeId||'';
       const sources=new Map(card.criticalHitSources.map(source=>[JSON.stringify([source.ruleId,source.sourceInstanceId,source.sourceCompositionId]),source]));
       for(const [index,source]of [...sources.values()].entries()) {
@@ -529,6 +536,338 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
     }
     return node;
   };
+  // Roster-only presentation. All values, scopes and source proofs below are
+  // read from the already validated projection; nothing is written back to it.
+  const presentGainedRules=(root,card,instanceId,inDialog)=>{
+    root.classList.add('ds-roster-card');
+    const unit=roster.state.units.find(value=>value.instanceId===instanceId);
+    const effective=roster.effective(instanceId),groups=new Map();
+    const section=el('section','unit-part ds-gained-rules');section.dataset.datasheetSection='gained-rules';
+    section.id='ds-gained-'+domKey(JSON.stringify([card.id,instanceId]));section.append(el('h4','','Gained rules'));root.append(section);
+    const ownerOf=id=>{let current=cards.get(id),seen=new Set();while(current&&!seen.has(current.id)){
+      if(['DETACHMENT','DATASHEET'].includes(current.kind))return current;
+      seen.add(current.id);current=cards.get(current.parentId);
+    }return null;};
+    const sourceGroup=(ruleId,sourceInstanceId)=>{
+      const rule=cards.get(ruleId),owner=ownerOf(ruleId);let kind,label,key;
+      if(rule?.kind==='ENHANCEMENT'){
+        kind='ENHANCEMENT';label='From enhancement: '+rule.title+(sourceInstanceId?' ('+humanPhysicalCaption(sourceInstanceId)+')':'');key=ruleId+'|'+(sourceInstanceId||'');
+      }else if(owner?.kind==='DETACHMENT'){
+        kind='DETACHMENT';label='From detachment: '+owner.title;key=owner.id;
+      }else if(sourceInstanceId&&sourceInstanceId!==instanceId){
+        const edge=roster.state.attachments.find(value=>value.leaderInstanceId===sourceInstanceId&&value.bodyguardInstanceId===instanceId);
+        kind=edge&&!['SUPPORT','SUPPORT_EXCEPTION'].includes(edge.role)?'LEADER':'ATTACHED_UNIT';
+        label=(kind==='LEADER'?'From leader: ':'From attached unit: ')+humanPhysicalCaption(sourceInstanceId);key=sourceInstanceId;
+      }else return null;
+      const identity=kind+'|'+key;
+      if(!groups.has(identity)){
+        const node=el(kind==='DETACHMENT'?'details':'div','ds-gained-source');node.dataset.gainedSourceKind=kind;
+        node.dataset.sourceInstanceId=sourceInstanceId||'';node.dataset.sourceRuleId=ruleId;
+        node.append(el(kind==='DETACHMENT'?'summary':'h5','ds-gained-source-heading',label));
+        groups.set(identity,node);section.append(node);
+      }
+      return groups.get(identity);
+    };
+    const rank={LEADER:0,ATTACHED_UNIT:0,ENHANCEMENT:1,DETACHMENT:2};
+    let sequence=0;
+    const sourceLabel=source=>{
+      const rule=source.canonicalRuleId||source.ruleId;
+      const label=sourceRuleCaption({...source,ruleId:rule,canonicalRuleId:rule},cards);
+      const owner=roster.state.units.find(unit=>unit.instanceId===source.sourceInstanceId);
+      const model=owner?.startingStrength>1&&(source.sourceCompositionId||source.sourceModelInstanceId)?
+        humanPhysicalCaption(source.sourceInstanceId,{scopeId:source.sourceCompositionId??null,
+          modelInstanceId:source.sourceModelInstanceId??null,profileId:source.sourceProfileId??null}):null;
+      return label+(source.sourceInstanceId&&source.sourceInstanceId!==instanceId?' · '+humanPhysicalCaption(source.sourceInstanceId):'')+
+        (model?' · '+model:'');
+    };
+    const closeTips=except=>{for(const tip of root.querySelectorAll('.ds-gained-tooltip'))if(tip!==except){tip.hidden=true;
+      const button=root.querySelector('[aria-controls="'+tip.id+'"]');button?.setAttribute('aria-expanded','false');}};
+    listen(root,'keydown',event=>{if(event.key!=='Escape')return;
+      const open=[...root.querySelectorAll('.ds-gained-tooltip')].filter(tip=>!tip.hidden);if(!open.length)return;
+      event.stopPropagation();for(const tip of open)tip.dataset.dismissed='';closeTips();
+    });
+    const hasForeignSource=sources=>sources.some(source=>source.sourceInstanceId!==instanceId||
+      cards.get(source.canonicalRuleId||source.ruleId)?.kind==='ENHANCEMENT'||ownerOf(source.canonicalRuleId||source.ruleId)?.kind==='DETACHMENT');
+    const gainedChip=(label,proof,sources=[])=>{
+      const wrap=el('span','ds-gained-control');
+      const foreign=hasForeignSource(sources);
+      const chip=el(foreign?'button':'span','ds-gained-chip','+ '+label);chip.dataset.gained='';
+      if(foreign){
+        chip.type='button';proof.classList.add('ds-gained-tooltip');proof.setAttribute('role','tooltip');
+        proof.id||='ds-gained-tip-'+domKey(JSON.stringify([card.id,instanceId,++sequence]));proof.hidden=true;
+        chip.setAttribute('aria-describedby',proof.id);chip.setAttribute('aria-controls',proof.id);chip.setAttribute('aria-expanded','false');
+        const show=value=>{if(value)closeTips(proof);proof.hidden=!value;chip.setAttribute('aria-expanded',String(value));
+          if(value){proof.style.left='0px';proof.style.top='100%';proof.style.bottom='auto';
+            const box=proof.getBoundingClientRect(),bounds=root.getBoundingClientRect();
+            const left=Math.max(12,bounds.left+8),right=Math.min(document.documentElement.clientWidth-12,bounds.right-8);
+            proof.style.left=(Math.min(0,right-box.right)+Math.max(0,left-box.left))+'px';
+            if(box.bottom>Math.min(document.defaultView.innerHeight-12,bounds.bottom-8)&&
+              chip.getBoundingClientRect().top-box.height>=Math.max(12,bounds.top+8)){
+              proof.style.top='auto';proof.style.bottom='100%';
+            }
+          }
+        };
+        listen(chip,'click',()=>{delete proof.dataset.dismissed;show(true);});
+        listen(wrap,'mouseenter',()=>{if(!Object.hasOwn(proof.dataset,'dismissed'))show(true);});
+        listen(wrap,'mouseleave',()=>{delete proof.dataset.dismissed;if(!wrap.contains(document.activeElement))show(false);});
+        listen(chip,'focus',()=>{if(chip.matches(':focus-visible')){delete proof.dataset.dismissed;show(true);}});
+        listen(wrap,'focusout',event=>{if(!wrap.contains(event.relatedTarget))show(false);});
+      }else{proof.hidden=true;proof.replaceChildren();}
+      wrap.append(chip,proof);return wrap;
+    };
+    // Moving a MODEL annotation above its profile must not promote its scope
+    // to the whole unit. Resolve only the existing physical/canonical address.
+    const modelRecipientCaption=targets=>{
+      const unique=[...new Map(targets.map(target=>[JSON.stringify(target),target])).values()];
+      const ownProfiles=physicalProfiles(instanceId).filter(profile=>profile.rosterQuantity!==0);
+      const key=target=>JSON.stringify([target.instanceId,target.profileId,target.scopeId??null]);
+      const whole=new Set(ownProfiles.map(profile=>key({instanceId,profileId:profile.id,scopeId:profile.scopeId})));
+      const selected=new Set(unique.map(key));
+      const completeScopes=unique.every(target=>!target.modelInstanceId||roster.effective(target.instanceId).profiles.some(profile=>
+        profile.id===target.profileId&&(profile.scopeId??null)===(target.scopeId??null)&&profile.modelInstanceId===target.modelInstanceId&&profile.quantity===1));
+      if(unique.length&&completeScopes&&selected.size===whole.size&&[...selected].every(value=>whole.has(value)))return null;
+      const records=unique.map(target=>{
+        const profiles=physicalProfiles(target.instanceId),matches=profiles.filter(profile=>profile.instanceId===target.instanceId&&
+          profile.id===target.profileId&&(profile.scopeId??null)===(target.scopeId??null));
+        if(matches.length!==1)throw new TypeError('Unresolved gained MODEL recipient: '+target.instanceId);
+        return {...matches[0],...(target.modelInstanceId?{modelInstanceId:target.modelInstanceId}:{})};
+      });
+      if(!records.length)throw new TypeError('Missing gained MODEL recipient');
+      return countPhysicalCarriers(records,records).map(group=>
+        (group.instanceId!==instanceId?humanPhysicalCaption(group.instanceId)+' — ':'')+formatPhysicalCarriers([group])[0]).join('; ')+' only';
+    };
+    const traceRecipientCaption=(sources,subject)=>{
+      if(subject==='KEYWORD'){
+        if(sources.some(source=>source.subject==='UNIT'&&source.unitScope==='FORMED'))return null;
+        const targets=sources.flatMap(source=>source.subject==='MODEL'?[{instanceId:source.targetInstanceId,
+          profileId:source.targetProfileId,scopeId:source.targetCompositionId??null,modelInstanceId:source.targetModelInstanceId??null}]:
+          source.subject==='UNIT'?physicalProfiles(source.targetInstanceId).filter(profile=>profile.rosterQuantity!==0)
+            .map(profile=>({instanceId:source.targetInstanceId,profileId:profile.id,scopeId:profile.scopeId??null})):
+          (()=>{throw new TypeError('Unknown gained keyword recipient subject');})());
+        return modelRecipientCaption(targets);
+      }
+      if(subject==='MODEL')return modelRecipientCaption(sources.map(source=>({instanceId:source.targetInstanceId,
+        profileId:source.targetProfileId,scopeId:source.targetCompositionId??null,modelInstanceId:source.targetModelInstanceId??null})));
+      if(subject==='UNIT'){
+        if(sources.some(source=>source.unitScope==='FORMED'))return null;
+        const recipients=[...new Set(sources.map(source=>source.targetInstanceId))];
+        const formed=effective.formedUnit?.memberInstanceIds||[instanceId];
+        if(recipients.length===formed.length&&recipients.every(id=>formed.includes(id)))return null;
+        return recipients.map(id=>humanPhysicalCaption(id)).join('; ')+' only';
+      }
+      return null;
+    };
+    const appendRecipientCaption=(node,caption)=>{
+      if(caption)node.append(el('small','ds-gained-recipient',caption));
+    };
+    const readableProof=(proof,sources,recipientSubject=null)=>{
+      proof.replaceChildren();
+      const contributions=new Map();for(const source of sources){const key=effectContributionKey(source);if(!contributions.has(key))contributions.set(key,[]);contributions.get(key).push(source);}
+      const labelled=recipientSubject?[...contributions.values()].map(traces=>{
+        const caption=recipientSubject?traceRecipientCaption(traces,recipientSubject):null;
+        return {source:traces[0],label:sourceLabel(traces[0])+(caption?' · '+caption:'')};
+      }):sources.map(source=>({source,label:sourceLabel(source)}));
+      const unique=[...new Map(labelled.map(entry=>{const source=entry.source;return [JSON.stringify([
+        source.canonicalRuleId||source.ruleId,source.sourceInstanceId??null,source.sourceCompositionId??null,
+        source.sourceModelInstanceId??null,source.sourceFields,sourceSnapshot(source),entry.label]),entry];})).values()];
+      unique.forEach(({label,source},index)=>{if(index)proof.append(document.createTextNode('; '));
+        proof.append(anchor(label,source.canonicalRuleId||source.ruleId,true));});
+    };
+    // Price facts remain MFM-owned. Select their already declared model/copy
+    // bounds rather than parsing human captions or using exported prices.
+    const priced=roster.points?.units?.find(value=>(value.unitInstanceId||value.instanceId)===instanceId);
+    const copyOrdinal=roster.state.units.filter(value=>value.canonicalUnitId===unit.canonicalUnitId).findIndex(value=>value.instanceId===instanceId)+1;
+    const selectedPrices=[];
+    for(const id of cards.get(card.id).children||[]){const price=cards.get(id);if(price?.kind!=='MFM_UNIT_POINTS')continue;
+      const at=path=>price.fields.find(field=>field.source?.path===path)?.value;
+      for(const field of price.fields.filter(field=>field.source?.path.endsWith('/value'))){
+        const prefix=field.source.path.slice(0,-5),schedule=field.source.path.split('/entries/')[0];
+        const min=at(prefix+'minModels'),max=at(prefix+'maxModels');
+        if(typeof min==='number'&&unit.startingStrength>=min&&unit.startingStrength<=(max??min)&&
+          copyOrdinal>=(at(schedule+'/minCopies')??price.pointsSchedule?.minCopies??1)&&
+          copyOrdinal<=(at(schedule+'/maxCopies')??price.pointsSchedule?.maxCopies??Infinity))selectedPrices.push(field);
+      }
+    }
+    const cost=root.querySelector('.ds-cost');cost.replaceChildren();cost.dataset.rosterPrice='';
+    const actual=priced?.totalPoints!==undefined&&priced.totalPoints!==null?priced.totalPoints-(priced.enhancementPoints||0):
+      priced?.total!==undefined&&priced.total!==null?priced.total-(priced.enhancementPoints||0):
+      priced?.basePoints??(selectedPrices.length===1?selectedPrices[0].value:null);
+    cost.append(el('strong','ds-instance-price',`${unit.startingStrength} ${unit.startingStrength===1?'model':'models'} · ${actual===null?'points unresolved':actual+' pts'}`));
+    for(const id of card.rosterEnhancementIds||[]){const rule=cards.get(id),prices=(rule.children||[]).map(id=>cards.get(id)).filter(child=>['MFM_ENHANCEMENT_COST','ENHANCEMENT_COST_QUALIFIERS'].includes(child?.kind));
+      const values=prices.flatMap(price=>price.fields.filter(field=>field.source?.path==='/value'));
+      const value=values.length===1?values[0].value:(card.rosterEnhancementIds.length===1?priced?.enhancementPoints:null);
+      cost.append(el('small','ds-instance-enhancement-price',`+ ${value??'?'} pts · ${rule.title}`));
+    }
+    // Relocate existing, validated text nodes. Their canonical field IDs,
+    // source chains, scopes and complete text survive unchanged.
+    for(const node of [...root.querySelectorAll('.ds-attached-rule')]){
+      const group=sourceGroup(node.dataset.attachedRuleId,node.dataset.sourceInstanceId);
+      if(group){node.querySelector('[data-attached-source-caption]')?.remove();group.append(node);}
+    }
+    for(const node of [...root.querySelectorAll('[data-enhancement-owner-instance-id]')]){
+      if(node.closest('[data-enhancement-owner-instance-id]')!==node)continue;
+      const group=sourceGroup(node.dataset.cardId,node.dataset.enhancementOwnerInstanceId);if(group)group.append(node);
+    }
+    for(const node of [...root.querySelectorAll('[data-detachment-rule-id], [data-executable-detachment-rule-id]')]){
+      if(node.parentElement?.closest('[data-detachment-rule-id], [data-executable-detachment-rule-id]'))continue;
+      const id=node.dataset.detachmentRuleId||node.dataset.executableDetachmentRuleId;
+      const group=sourceGroup(id,null);if(group)group.append(node);
+    }
+    // Conditional rows keep their existing proof/aria ownership. A tooltip
+    // replaces only their repeated display paragraphs, never a policy/effect.
+    for(const row of [...root.querySelectorAll('.ds-conditional-policy')]){
+      const source=JSON.parse(row.dataset.policySource||'null');if(!source)continue;
+      const group=sourceGroup(source.ruleId,row.dataset.sourceInstanceId||null);
+      if(group&&!row.closest('[data-detachment-rule-id]'))group.append(row);
+      const ids=JSON.parse(row.dataset.policyAttributionRefs||'[]');
+      const caption=ids.map(id=>root.querySelector('[id="'+id+'"]')||section.querySelector('[id="'+id+'"]')||[...groups.values()].flatMap(group=>[...group.querySelectorAll('[id]')]).find(n=>n.id===id)).filter(Boolean);
+      if(!caption.length)continue;
+      const tip=el('span','ds-policy-source-tooltip');tip.dataset.policySource=row.dataset.policySource;
+      for(const paragraph of caption){
+        if(Object.hasOwn(paragraph.dataset,'gainedCaption'))continue;paragraph.dataset.gainedCaption='';
+        const recipient=/^Applies to:/.test(paragraph.textContent);
+        paragraph.dataset[recipient?'recipientCaption':'sourceCaption']=paragraph.textContent;
+        paragraph.dataset.sourceRuleId=source.ruleId;paragraph.dataset.sourceInstanceId=row.dataset.sourceInstanceId||'';
+        paragraph.dataset.sourceModelScopeId=row.dataset.sourceModelScopeId||'';paragraph.dataset.policySource=row.dataset.policySource;
+        if(recipient){
+          const full=formatPhysicalCarriers(countPhysicalCarriers(physicalProfiles(instanceId))).join('; ');
+          const text=paragraph.textContent.replace(/^Applies to:\s*/,''),whole=row.dataset.recipientSubject==='UNIT'||text===full||text===humanPhysicalCaption(instanceId);
+          paragraph.textContent=whole?'':text.replace(/ · \d+ models?/g,'')+' only';paragraph.hidden=whole;
+          paragraph.dataset.recipientInstanceIds=row.dataset.recipientInstanceIds||'[]';paragraph.dataset.recipientModelScopeIds=row.dataset.recipientModelScopeIds||'[]';
+        }else{
+          const link=paragraph.querySelector('a[data-target-id]');
+          if(link){paragraph.replaceChildren(link);if(group&&row.dataset.sourceInstanceId&&row.dataset.sourceInstanceId!==instanceId)
+            paragraph.append(document.createTextNode(' · '+humanPhysicalCaption(row.dataset.sourceInstanceId)));}
+          else paragraph.textContent=paragraph.textContent.replace(/^Source:\s*/,'');
+        }
+        tip.append(paragraph);
+      }
+      if(tip.childNodes.length){const label=cards.get(source.ruleId)?.title||'';
+        const src={ruleId:source.ruleId,sourceInstanceId:row.dataset.sourceInstanceId||null};
+        if(group)row.prepend(gainedChip(sourceRuleCaption(src,cards),tip,[src]));
+        else{for(const paragraph of tip.children)paragraph.hidden=true;row.append(tip);tip.hidden=true;}
+      }
+    }
+    for(const row of root.querySelectorAll('.weapon-row:not(.weapon-head)')){
+      const tags=row.querySelector('.weapon-tags');if(!tags)continue;
+      for(const note of [...tags.querySelectorAll('[data-weapon-grant-sources]')]){
+        const sources=JSON.parse(note.dataset.weaponGrantSources),previous=note.previousElementSibling;
+        if(!previous?.classList.contains('weapon-tag'))throw new TypeError('Missing granted weapon chip');
+        const label=previous.textContent.trim();const content=[...previous.childNodes];const wrap=gainedChip(label,note,sources);wrap.querySelector('.ds-gained-chip').replaceChildren(document.createTextNode('+ '),...content);readableProof(note,sources);
+        if(!hasForeignSource(sources))note.replaceChildren();
+        previous.replaceWith(wrap);
+      }
+      const critical=row.querySelector('[data-critical-hit-threshold]');if(critical){
+        const sources=JSON.parse(critical.dataset.criticalHitSources||'[]');const value=critical.dataset.criticalHitThreshold;
+        const wrap=gainedChip('CRIT '+value+'+',critical,sources);readableProof(critical,sources);
+        if(!hasForeignSource(sources))critical.replaceChildren();tags.append(wrap);
+      }
+      for(const change of [...row.querySelectorAll('.ds-modifier-breakdown[data-modifier-attribution]')]){
+        const cell=change.parentElement,sources=JSON.parse(change.dataset.modifierAttribution),proof=el('span','ds-weapon-modifier-proof');
+        proof.dataset.modifierAttribution=change.dataset.modifierAttribution;readableProof(proof,sources);
+        const wrap=gainedChip(cell.dataset.label+' '+change.textContent,proof,sources);
+        // Keep the original typed cell trace for consumers; display its value
+        // only in the keyword row, without duplicating any factual field node.
+        change.hidden=true;tags.append(wrap);
+      }
+    }
+    for(const ability of root.querySelectorAll('.ds-effective-ability[data-ability-sources]')){
+      const sources=JSON.parse(ability.dataset.abilitySources),note=ability.querySelector('.ds-ability-sources');if(!note)continue;
+      const label=ability.querySelector('a')?.textContent||ability.textContent;const wrap=gainedChip(label,note,sources);readableProof(note,sources,ability.dataset.recipientSubject);
+      if(!hasForeignSource(sources))note.replaceChildren();ability.replaceChildren(wrap);
+      if(ability.dataset.recipientSubject==='MODEL')appendRecipientCaption(ability,modelRecipientCaption(JSON.parse(ability.dataset.recipientScopes).map(scope=>{
+        const [targetInstanceId,profileId,scopeId]=JSON.parse(scope);return {instanceId:targetInstanceId,profileId,scopeId};
+      })));
+    }
+    for(const keyword of root.querySelectorAll('.ds-effective-keyword[data-keyword-sources]')){
+      const sources=JSON.parse(keyword.dataset.keywordSources),value=keyword.querySelector('.v2-field-value')||keyword.firstChild;
+      const note=el('span','ds-keyword-source-proof');note.dataset.keywordSources=keyword.dataset.keywordSources;
+      readableProof(note,sources,'KEYWORD');const wrap=gainedChip(value.textContent,note,sources);wrap.querySelector('.ds-gained-chip').replaceChildren(document.createTextNode('+ '),value);
+      if(!hasForeignSource(sources))note.replaceChildren();keyword.replaceChildren(wrap);
+      appendRecipientCaption(keyword,traceRecipientCaption(sources,'KEYWORD'));
+    }
+    root.querySelectorAll('.ds-keyword-source:not(.ds-keyword-source-proof), .ds-stat-modifier-sources').forEach(note=>{note.hidden=true;});
+    for(const node of root.querySelectorAll('.ds-modifier-breakdown')){node.classList.add('ds-gained-value');node.dataset.gained='';}
+    for(const change of [...root.querySelectorAll('.ds-modifier-breakdown[data-modifier-attribution]:not([hidden])')]){
+      const sources=JSON.parse(change.dataset.modifierAttribution),proof=el('span','ds-profile-modifier-proof');
+      proof.dataset.modifierAttribution=change.dataset.modifierAttribution;readableProof(proof,sources);
+      const wrap=gainedChip(change.textContent,proof,sources);change.replaceWith(wrap);
+      wrap.querySelector('.ds-gained-chip').replaceChildren(document.createTextNode('+ '),change);
+    }
+    for(const group of root.querySelectorAll('.weapon-group')){
+      const rows=[...group.querySelectorAll('.weapon-row:not(.weapon-head)')],bySource=new Map();
+      for(const row of rows){for(const proof of row.querySelectorAll('[data-weapon-grant-sources], [data-critical-hit-sources]')){
+        const sources=JSON.parse(proof.dataset.weaponGrantSources||proof.dataset.criticalHitSources||'[]');
+        const chip=proof.closest('.ds-gained-control')?.querySelector('.ds-gained-chip');if(!chip)continue;
+        for(const source of sources){const key=JSON.stringify([source.canonicalRuleId||source.ruleId,source.sourceInstanceId,source.sourceCompositionId||null,source.sourceModelInstanceId||null,source.sourceFields,sourceSnapshot(source)]);
+          if(!bySource.has(key))bySource.set(key,{source,rows:new Map(),contributions:new Map()});const value=bySource.get(key);if(!value.rows.has(row))value.rows.set(row,new Set());value.rows.get(row).add(chip.textContent);if(!value.contributions.has(chip.textContent))value.contributions.set(chip.textContent,[]);value.contributions.get(chip.textContent).push(source);
+        }
+      }}
+      const occurrences=rows.flatMap(row=>JSON.parse(row.dataset.weaponOccurrences||'[]'));
+      for(const {source,rows:coverage,contributions}of bySource.values()){
+        if(!rows.length)continue;
+        const covers=(trace,weapon)=>trace.targetInstanceId===instanceId&&trace.targetWeaponProfileId===weapon.id&&
+          (trace.targetCompositionId??null)===weapon.scopeId&&(!trace.targetModelInstanceId||weapon.modelInstanceId===trace.targetModelInstanceId)&&
+          (trace.targetWeaponSelectionKey?trace.targetWeaponSelectionKey===weapon.selectionKey:occurrences.filter(other=>other.id===weapon.id&&other.scopeId===weapon.scopeId).length===1);
+        const commonLabels=[...contributions].filter(([,traces])=>occurrences.length&&occurrences.every(weapon=>traces.some(trace=>covers(trace,weapon)))).map(([label])=>label);
+        if(!commonLabels.length)continue;
+        const mode=group.querySelector('.weapon-table')?.getAttribute('aria-label')?.startsWith('melee')?'melee':'ranged';
+        const title=sourceRuleCaption(source,cards),physical=source.sourceInstanceId&&source.sourceInstanceId!==instanceId?humanPhysicalCaption(source.sourceInstanceId):null;
+        const attribution=hasForeignSource([source])?` — ${title}${physical?' ('+physical+')':''}`:'';
+        const line=el('p','ds-gained-weapon-summary',`All ${mode} weapons: ${commonLabels.join(', ')}${attribution}`);
+        line.dataset.gainedWeaponSummary='';line.dataset.gainedSourceIdentity=JSON.stringify(source);group.insertBefore(line,group.querySelector('.weapon-table'));
+      }
+    }
+    for(const old of [...root.children].filter(node=>['attached-rules','enhancements','executable-detachment-rules','conditional-policies'].includes(node.dataset.datasheetSection))){
+      if(old.children.length===1)old.remove();
+    }
+    if(!groups.size)section.remove();
+    if(groups.size){
+      [...groups.values()].sort((a,b)=>rank[a.dataset.gainedSourceKind]-rank[b.dataset.gainedSourceKind]).forEach(group=>section.append(group));root.append(section);
+      const nav=root.querySelector('.local-nav');for(const tab of [...nav.children])if(!root.querySelector('[id="'+tab.dataset.datasheetTarget+'"]'))tab.remove();
+      const tab=el('button','local-tab','Gained rules');tab.type='button';tab.dataset.datasheetTarget=section.id;
+      listen(tab,'click',()=>{if(inDialog)section.scrollIntoView({block:'start'});else navigateSection(card.id,section,nav,instanceId);});nav.append(tab);
+    }
+    // Move already computed granted abilities/keywords and retained UNIT
+    // metrics above the profile. Their physical ownership/proof nodes survive.
+    const overview=el('div','ds-gained-overview');overview.dataset.gainedOverview='';
+    // The old view omitted a numeric summary when its complete rule prose was
+    // present. Gained rules now live at the bottom (detachments are collapsed),
+    // so expose that same validated computed value at the top as well. Keep
+    // the original source-missing fallback section and its proof contract.
+    for(const metric of card.rosterUnitMetrics||[]){
+      if([...root.querySelectorAll('[data-unit-metric]')].some(node=>node.dataset.unitMetric===metric.key))continue;
+      const node=el('span','ds-gained-unit-metric');node.dataset.gainedUnitMetric=metric.key;
+      node.dataset.metricModifier=String(metric.value.modifier);node.dataset.metricSources=JSON.stringify(metric.sources);
+      node.dataset.unitScope=metric.unitScope;node.dataset.recipientInstanceIds=JSON.stringify(metric.recipientInstanceIds);
+      if(metric.formedUnitId)node.dataset.formedUnitId=metric.formedUnitId;
+      const proof=el('span','ds-metric-source-proof');readableProof(proof,metric.sources);
+      node.append(gainedChip(metric.label+': '+metric.displayValue,proof,metric.sources));overview.append(node);
+    }
+    for(const node of [...root.querySelectorAll('.ds-effective-ability[data-ability-sources], .ds-effective-keyword[data-keyword-sources], [data-unit-metric]')]){
+      if(node.matches('[data-unit-metric]')){
+        const sources=JSON.parse(node.dataset.metricSources),proof=el('span','ds-metric-source-proof');readableProof(proof,sources);
+        const label=node.querySelector('.ds-effective-metric')?.textContent;
+        // Preserve the existing exact same-card Rule text targets when the
+        // numeric effect is condensed; only their presentation moves.
+        proof.append(...node.querySelectorAll('[data-policy-text-ref]'));
+        node.replaceChildren(gainedChip(label,proof,sources));
+      }else{
+        // The original inline list owns its punctuation, not the moved gain.
+        const separator=node.previousSibling?.nodeType===3&&/^\s*,\s*$/.test(node.previousSibling.textContent)?node.previousSibling:
+          node.nextSibling?.nodeType===3&&/^\s*,\s*$/.test(node.nextSibling.textContent)?node.nextSibling:null;
+        separator?.remove();const container=node.parentElement;overview.append(node);
+        if(container?.classList.contains('ds-granted-ability')&&!container.childNodes.length)container.remove();
+      }
+    }
+    if(overview.childElementCount)root.querySelector('.unit-header').after(overview);
+    for(const old of root.querySelectorAll('[data-datasheet-section="unit-modifiers"]'))if(old.children.length===1){
+      for(const tab of root.querySelectorAll('.local-tab'))if(tab.dataset.datasheetTarget===old.id)tab.remove();old.remove();
+    }
+    const retainedMetrics=root.querySelector('[data-datasheet-section="unit-modifiers"]');
+    if(retainedMetrics){if(overview.parentElement)overview.after(retainedMetrics);else root.querySelector('.unit-header').after(retainedMetrics);}
+    if(root.querySelector('[data-gained]')||groups.size){const legend=el('p','ds-gained-legend','+ gained from another rule');root.querySelector('.unit-header').after(legend);}
+  };
   const renderDatasheet=(card,{variants=null,instanceId=null,inDialog=false}={})=>{
     const root=identity(el('article','unit-card surface v2-card v2-kind-DATASHEET'),card,instanceId),used=new Set(),policyTextRows=[],choiceTexts=new Map(),executableTexts=[];
     const sourceListFieldIds=new Set((card.rosterConditionalPolicies||[]).flatMap(row=>
@@ -653,7 +992,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
           const body=sourceText(parts.body);body.dataset.enhancementBody='';text.append(body);
         }
         node.append(text);
-        const source=el('p','','Source: '+row.sourceLabel+' · ');
+        const source=el('p','','Source: '+row.sourceLabel+' · ');source.dataset.attachedSourceCaption='';
         source.append(anchor(row.title,row.ruleId,true));node.append(source);section.append(node);
       }
       root.append(section);
@@ -1222,6 +1561,7 @@ export function createDatasheetPresenter({document,payload,cards,el,factValue,an
       for(const link of links){link.href='#'+native.id;link.dataset.policyTextRef=native.id;}
     }
     if(payload.relatedRules)root.append(related(card.id,instanceId));
+    if(instanceId)presentGainedRules(root,card,instanceId,inDialog);
     return root;
   };
   return {renderDatasheet,renderProfile,renderWeapon,renderSection};

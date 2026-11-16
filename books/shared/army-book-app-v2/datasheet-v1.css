@@ -621,3 +621,40 @@
 .unit-card .ds-source-text > p { margin: 0; white-space: pre-line; }
 .unit-card .ds-source-text-list { margin: 8px 0; padding-left: 18px; list-style: none; }
 .unit-card .ds-source-text-list > li { white-space: pre-line; }
+
+/* Physical roster gains use one accent; canonical Full Army Book cards retain
+   their original layout. The plus sign carries meaning without color. */
+.ds-roster-card { --ds-gained-accent: #c7ae75; }
+.ds-roster-card .ability, .ds-roster-card .ability:nth-child(even),
+.ds-roster-card .ds-bound-weapon-ability { border-left: 0; }
+.ds-roster-card .ds-composition-scope { color: var(--muted); }
+.ds-roster-card .ds-gained-legend { margin: 8px 14px; color: var(--muted); font-size: 11px; }
+.ds-roster-card .ds-gained-overview { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 8px 14px; }
+.ds-roster-card .ds-gained-overview .ds-effective-unit-metric { margin: 0; }
+.ds-roster-card .ds-gained-recipient { display: inline; margin-left: 6px; color: var(--muted); font: 500 11px/1.5 var(--ds-ui); overflow-wrap: anywhere; }
+.ds-roster-card .ds-gained-control { position: relative; display: inline-flex; align-items: baseline; max-width: 100%; }
+.ds-roster-card .ds-gained-chip { display: inline-block; padding: 3px 7px; border: 1px solid currentColor; border-radius: 4px; background: transparent; color: var(--ds-gained-accent); font: 700 11px/1.5 var(--ds-ui); text-align: left; overflow-wrap: anywhere; }
+.ds-roster-card button.ds-gained-chip { cursor: pointer; }
+.ds-roster-card .ds-gained-chip:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.ds-roster-card .ds-gained-tooltip:not([hidden]) { display: block; position: absolute; left: 0; top: 100%; z-index: 40; width: max-content; max-width: min(280px, 75vw); padding: 10px; border: 1px solid var(--ds-gained-accent); border-radius: 5px; background: var(--panel, #161a19); color: var(--ink); font: 500 12px/1.6 var(--ds-ui); white-space: normal; overflow-wrap: anywhere; box-shadow: 0 5px 15px #0006; }
+.ds-roster-card .ds-gained-tooltip[hidden], .ds-roster-card [hidden] { display: none !important; }
+.ds-roster-card .ds-gained-tooltip p { margin: 0; }
+.ds-roster-card .ds-gained-value { color: var(--ds-gained-accent); }
+.ds-roster-card .ds-gained-weapon-summary { margin: 5px 0 10px; color: var(--ds-gained-accent); font: 600 12px/1.6 var(--ds-ui); }
+.ds-roster-card .weapon-tags { display: flex; flex-wrap: wrap; gap: 5px; overflow: visible; }
+.ds-roster-card .ds-instance-price { display: block; font-size: 16px; }
+.ds-roster-card .ds-instance-enhancement-price { display: block; font-size: 12px; line-height: 1.6; }
+.ds-roster-card .ds-gained-source { padding: 12px; margin: 10px 0; border-left: 3px solid var(--ds-gained-accent); }
+.ds-roster-card .ds-gained-source-heading { margin: 0 0 8px; color: var(--ds-gained-accent); font: 700 14px/1.6 var(--ds-ui); }
+.ds-roster-card details.ds-gained-source > summary { cursor: pointer; }
+.ds-roster-card .ds-attached-rule { margin: 10px 0; }
+.ds-roster-card .ds-attached-rule > h5 { display: inline; }
+.ds-roster-card .ds-attached-rule > h5::after { content: ': '; }
+.ds-roster-card .ds-attached-rule > [data-attached-rule-text] { margin-top: 4px; }
+
+.ds-roster-card .ds-gained-chip .v2-field-value { color: var(--ds-gained-accent); font: inherit; }
+.ds-roster-card .ds-gained-chip > .ds-modifier-breakdown { display: inline; margin: 0; font: inherit; }
+.ds-roster-card .statline .stat .ds-gained-control { display: inline-flex; margin-top: 0; }
+.ds-roster-card .statline .stat .ds-gained-chip { margin-top: 0; color: var(--ds-gained-accent); font: 700 11px/1.5 var(--ds-ui); }
+.ds-roster-card .statline .stat .ds-gained-tooltip:not([hidden]) { margin-top: 0; color: var(--ink); font: 500 12px/1.6 var(--ds-ui); }
+.ds-roster-card .ds-enhancement-restriction { border-left-color: var(--ds-gained-accent); }
