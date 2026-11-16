@@ -56,6 +56,7 @@ export function buildApp(built=buildCSMContracts(),{relatedRules}={}){
     if(sourceUnit.pointSchedules.length>1){
       cards.get(entity.id).pointsSchedule={label:schedule.maxCopies==null?`Units ${schedule.minCopies}+`:
         schedule.minCopies===schedule.maxCopies?`Unit ${schedule.minCopies}`:`Units ${schedule.minCopies}–${schedule.maxCopies}`,
+        minCopies:schedule.minCopies,maxCopies:schedule.maxCopies??null,
         source:{...occurrence,location:address.join('/')}};
     }
   }
