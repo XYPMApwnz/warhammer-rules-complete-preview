@@ -9,6 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {readAcceptedSourceCorpus} from '../tests/helpers/accepted-source-corpus.mjs';
 import {readBookPassport} from '../books/shared/tools/book-passport.mjs';
@@ -156,7 +157,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
   const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(node=>({
     ruleId:node.dataset.attachedRuleId,sourceInstanceId:node.dataset.sourceInstanceId,
     title:node.querySelector('h5')?.textContent||'',text:node.querySelector('[data-attached-rule-text]')?.textContent||'',
-    visible:!!node.getClientRects().length,content:node.innerText})));
+    visible:!!node.getClientRects().length,content:node.innerText,
+    gained:(()=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
+      return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.innerText||'',headingCount:headings.length,
+        headingVisible:!!headings[0]?.getClientRects().length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};})()})));
   const found=rows.filter(row=>norm(row.title)===norm(c.rule));
   assert.equal(found.length,wanted?1:0,`${c.rule}: ${stage} ${mode} on ${id}`);
   if(wanted){
@@ -169,7 +173,10 @@ async function inspect(page,c,device,mode,id,stage,wanted){
     assert.equal(row.text,expectedBody,'Original source body is byte-for-byte identical after removing only its repeated heading');
     assert.ok(!row.text.startsWith(prefix),'Rule heading is not repeated in the body');
     if(c.quote)assert.ok(norm(row.text).includes(norm(body)),'Full independent accepted source text, including conditions');
-    assert.ok(norm(row.content).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
+    assert.ok(norm(row.gained.heading).toLowerCase().includes(norm(c.owner).toLowerCase()),'Visible source owner');
+    assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind),'Attached source has its exact typed gained group');
+    assert.equal(row.gained.source,c.ownerInstance,'The source group retains the exact physical owner');
+    assert.equal(row.gained.headingCount,1);assert.ok(row.gained.headingVisible&&row.gained.sameCard,'The exact owner heading is visible on this physical recipient card');
     assert.doesNotMatch(row.content,/Conditional rule|Not automatically|source-clause-|recipient\//i,'No technical labels on O-1 text');
     const rowNode=card.locator('article[data-attached-rule-id]').filter({has:page.locator('h5',{hasText:c.rule})}).first();
     await rowNode.scrollIntoViewIfNeeded();assert.ok(await rowNode.isVisible());
@@ -180,6 +187,7 @@ async function inspect(page,c,device,mode,id,stage,wanted){
   }
   for(const title of c.negative)assert.ok(!rows.some(row=>norm(row.title)===norm(title)),title+' must not transfer');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'No horizontal overflow');
+  await assertNoVisibleLegacyAttribution(card);
   results.push({book:c.book,rule:c.rule,source:c.owner,target:id===c.target?(c.reverse?c.leader:c.bodyguard):'Independent duplicate',
     device,mode,stage,wanted,status:'PASS',observed:found});
 }

@@ -4,6 +4,7 @@ import fs from 'node:fs';import path from 'node:path';import http from 'node:htt
 import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';import {createHash} from 'node:crypto';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 const own=fileURLToPath(new URL('../',import.meta.url)),arg=name=>process.argv.find(a=>a.startsWith(name+'='))?.slice(name.length+1);
 const root=path.resolve(arg('--root')||own),negative=process.argv.includes('--negative-control');
@@ -31,10 +32,21 @@ async function imported(page,text){await roster(page);await page.getByRole('text
  assert.match(await page.locator('.v2-roster-status').innerText(),/^Roster imported\./,'Fixture must import through ordinary controls');}
 async function effective(page,id){await roster(page);await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();await page.evaluate(()=>document.fonts.ready);
- await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));return card;}
+ await page.waitForFunction(()=>Boolean(document.querySelector('main .unit-card.ds-layout')));if(!negative)await assertNoVisibleLegacyAttribution(card);return card;}
 async function shot(page,node,id){
  await (id.startsWith('p1-')?node.locator('h2').first():node).scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
  const file=path.join(out,id+'.png');await page.screenshot({path:file,fullPage:false});screenshots.push({id,file});}
+async function gainedTooltip(page,card,proof){
+ const id=await proof.getAttribute('id');assert(id,'A foreign source tooltip has a stable identity');
+ const chip=card.locator('.ds-gained-chip[aria-controls="'+id+'"]');assert.equal(await chip.count(),1,'One chip controls the exact source tooltip');
+ assert.match(await chip.innerText(),/^\+ /,'Gained information is not encoded by colour alone');
+ assert.equal(await chip.getAttribute('aria-describedby'),id);await page.keyboard.press('Tab');await chip.focus();
+ await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),id);
+ assert.equal(await chip.getAttribute('aria-expanded'),'true');assert.equal(await proof.getAttribute('role'),'tooltip');assert(await proof.isVisible());
+ assert.equal(await proof.evaluate((node,instance)=>node.closest('.unit-card')?.dataset.rosterInstanceId===instance,await card.getAttribute('data-roster-instance-id')),true,'Tooltip belongs to the exact physical card');
+ if(!negative)await assertNoVisibleLegacyAttribution(card);
+ return proof;
+}
 async function check(item,book,width,fn){try{await fn();rows.push({item,book,width,status:'PASS'});}catch(e){rows.push({item,book,width,status:'FAIL',error:e.message});if(!negative)throw e;}}
 async function game(page,book,width){const value=await page.evaluate(()=>{const r=window.ArmyBookAppV2.roster;return {state:r.snapshot(),projection:r.projection,points:r.points,effective:r.state.units.map(u=>r.effective(u.instanceId))};});
  observations.push({book,width,sha256:createHash('sha256').update(JSON.stringify(value)).digest('hex'),value});}
@@ -81,19 +93,37 @@ try{
       await check(4,book,w,async()=>{const lines=await card.locator('[data-label="Range"] [data-fact-id]').evaluateAll(nodes=>nodes.filter(n=>n.textContent==='Melee').map(n=>{const range=document.createRange();range.selectNodeContents(n);return range.getClientRects().length;}));assert(lines.length,'A melee range must be present');for(const count of lines)assert.equal(count,1,'Melee must occupy one line independently of table clipping');});
      }
      await page.setViewportSize({width,height:1000});card=await effective(page,'parsed-unit-7');const keywords=card.locator('[data-datasheet-section="keywords"]');await shot(page,keywords,`p2-dg-${width}`);
-     await check(2,book,width,async()=>{const lines=await keywords.locator(':scope > p').allTextContents();assert(lines[0].includes('CONTAGION ENGINE'));assert(lines[0].includes('FLY'));assert(!lines[0].includes('Source:'));const note=keywords.locator('.ds-keyword-source').filter({hasText:'Warped and Rusted Animus'});assert(await note.count());assert((await note.innerText()).includes('Applies to: Foetid Bloat-drone'));});
+     await check(2,book,width,async()=>{const lines=await keywords.locator(':scope > p').allTextContents();
+      const physicalKeywords=lines[0]+' '+(await card.locator('[data-gained-overview] .ds-effective-keyword .ds-gained-chip').allTextContents()).join(' ');
+      assert(physicalKeywords.includes('CONTAGION ENGINE'));assert(physicalKeywords.includes('FLY'));assert(!physicalKeywords.includes('Source:'));
+      const keyword=card.locator('[data-gained-overview] .ds-effective-keyword[data-keyword-sources]').filter({hasText:'CONTAGION ENGINE'});assert.equal(await keyword.count(),1);
+      const sources=await keyword.evaluate(node=>JSON.parse(node.dataset.keywordSources));assert(sources.length);
+      assert(sources.every(source=>source.canonicalRuleId==='detachment-contagion-engines:rule'&&source.sourceInstanceId===null&&source.targetInstanceId==='parsed-unit-7'&&source.subject==='UNIT'&&source.unitScope==='FORMED'),'Warped and Rusted Animus retains its exact detachment source and physical recipient');
+      const chip=keyword.locator('.ds-gained-chip');assert.equal(await chip.count(),1);assert.equal(await chip.innerText(),'+ CONTAGION ENGINE');
+      assert.equal(await chip.evaluate(node=>node.tagName),'BUTTON','A detachment grant has an accessible source');
+      const note=keyword.locator('.ds-keyword-source-proof');assert.equal(await note.count(),1);await gainedTooltip(page,card,note);assert((await note.innerText()).includes('Warped and Rusted Animus'));
+      const recipient=card.locator('.ds-keyword-source').filter({hasText:'Warped and Rusted Animus'});assert.equal(await recipient.count(),1);assert((await recipient.textContent()).includes('Applies to: Foetid Bloat-drone'));assert.equal(await recipient.evaluate(node=>node.hidden),true,'The exact whole-unit recipient proof remains without a redundant visible paragraph');assert.equal(await recipient.isVisible(),false,'The retained Source/Applies proof is actually absent from the visible card');});
     }
     if(book==='tau-empire'){
-     const card=await effective(page,'parsed-unit-1'),policies=card.locator('[data-datasheet-section="conditional-policies"]');await shot(page,policies,`p3-tau-${width}`);
-     await check(3,book,width,async()=>{const source=policies.locator('p').filter({hasText:/^Source: Killing Blow/});assert.equal(await source.count(),1,'One source caption per rule/recipient');const applies=policies.locator('p').filter({hasText:/^Applies to: AX-1-0 Tiger Shark/});assert.equal(await applies.count(),1,'One recipient caption per rule');});
+     const card=await effective(page,'parsed-unit-1');
+     await check(3,book,width,async()=>{
+      const captions=await card.locator('p[data-source-caption]').evaluateAll(nodes=>nodes.filter(node=>node.dataset.sourceCaption.startsWith('Source: Killing Blow')).map(node=>({id:node.id,ruleId:node.dataset.sourceRuleId,tooltip:node.closest('.ds-gained-tooltip')?.id})));
+      assert.equal(captions.length,1,'One canonical source proof per rule/recipient');
+      const source=card.locator('[id="'+captions[0].id+'"]'),details=source.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');assert.equal(await details.count(),1);assert.equal(await details.evaluate(node=>node.open),false,'Detachment text starts collapsed');
+      await details.locator(':scope > summary').click();const note=card.locator('[id="'+captions[0].tooltip+'"]');await gainedTooltip(page,card,note);
+      assert((await note.innerText()).includes('Killing Blow'),'The same human rule name is shown on request');
+      const recipient=note.locator('p[data-recipient-caption]');assert.equal(await recipient.count(),1,'One physical-recipient proof per rule');assert((await recipient.getAttribute('data-recipient-caption')).startsWith('Applies to: AX-1-0 Tiger Shark'),'The original exact recipient identity remains in metadata');
+      assert.doesNotMatch(await note.innerText(),/Source:|Applies to:/,'Tooltip uses the compact player-facing wording');
+      assert.equal(await source.getAttribute('data-source-rule-id'),captions[0].ruleId);await shot(page,details,`p3-tau-${width}`);
+     });
      await shot(page,card.locator('.ds-main-grid'),`p5-tau-${width}`);
      await check(5,book,width,async()=>{const ability=card.locator('.ability').filter({hasText:'Titan Hunter'}).first();assert(await ability.count());assert(await ability.evaluate(n=>Boolean(n.closest('.ds-support'))));});
     }
     if(['space-marines','blood-angels','dark-angels'].includes(book)){
-     const card=await effective(page,'parsed-unit-1'),enhancement=card.locator('[data-datasheet-section="enhancements"]');await shot(page,enhancement,`p7-${book}-${width}`);
+     const card=await effective(page,'parsed-unit-1'),enhancement=card.locator('[data-gained-source-kind="ENHANCEMENT"][data-source-rule-id="enhancement-sm-07e95c69297b4d6f"]');await shot(page,enhancement,`p7-${book}-${width}`);
      await check(7,book,width,async()=>{const text=await enhancement.innerText();assert(!text.includes('- Relentless Advance'));const restriction=enhancement.locator('.ds-enhancement-restriction');assert.equal(await restriction.innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));});
      const bodyguard=await effective(page,'parsed-unit-2'),attached=bodyguard.locator('[data-attached-rule-id="enhancement-sm-07e95c69297b4d6f"]');await shot(page,attached,`p7-attached-${book}-${width}`);
-     await check(7,book,width,async()=>{const text=await attached.innerText();assert(!text.includes('- Relentless Advance'));assert.equal(await attached.locator('.ds-enhancement-restriction').innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));assert(text.includes('Source: Captain In Gravis Armour'));});
+     await check(7,book,width,async()=>{const text=await attached.innerText();assert(!text.includes('- Relentless Advance'));assert.equal(await attached.locator('.ds-enhancement-restriction').innerText(),'GRAVIS model only.');assert(text.includes('This unit has Scouts 5".'));const group=attached.locator('xpath=ancestor::*[@data-gained-source-kind="ENHANCEMENT"][1]');assert.equal(await group.count(),1);assert.equal(await group.getAttribute('data-source-rule-id'),'enhancement-sm-07e95c69297b4d6f');assert.equal(await group.getAttribute('data-source-instance-id'),'parsed-unit-1');assert.equal(await group.locator(':scope > .ds-gained-source-heading').innerText(),'From enhancement: Relentless Advance (Captain In Gravis Armour)');});
     }
     if(book==='emperors-children'){
      const card=await effective(page,'parsed-unit-1');await shot(page,card.locator('.ds-profile-strip'),`p8-ec-${width}`);

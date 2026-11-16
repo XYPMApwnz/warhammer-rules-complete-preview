@@ -11,6 +11,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const sourceRepo=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
@@ -115,7 +116,30 @@ async function guide(page,instance){
 }
 const card=(page,instance)=>page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]');
 async function current(page){return page.evaluate(()=>({snapshot:window.ArmyBookAppV2.roster.snapshot(),projection:window.ArmyBookAppV2.roster.projection}));}
-async function rows(page,instance,ruleId){return card(page,instance).locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll((nodes,{ruleId,instance})=>nodes.flatMap(node=>{
+async function rows(page,instance,ruleId){
+  const physical=card(page,instance),ruleGroup=physical.locator('[data-detachment-rule-id="'+ruleId+'"]');
+  if(await ruleGroup.count()){
+    const gained=ruleGroup.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
+    assert.equal(await gained.count(),1,'Each detachment rule belongs to one exact gained-source group');
+    if(!await gained.evaluate(node=>node.open))await gained.locator(':scope > summary').click();
+    assert.equal(await gained.evaluate(node=>node.open),true,'The exact source group is expanded before checking full fields');
+  }
+  const all=physical.locator('.ds-conditional-policy[data-conditional-policy="DETACHMENT_TEXT"]');
+  const indexes=await all.evaluateAll((nodes,ruleId)=>nodes.flatMap((node,index)=>JSON.parse(node.dataset.policySource||'{}').ruleId===ruleId?[index]:[]),ruleId),collected=[];
+  for(const index of indexes){
+    const row=all.nth(index),tooltipId=await row.evaluate(node=>{
+      const refs=node.dataset.policyAttributionRefs===undefined?null:JSON.parse(node.dataset.policyAttributionRefs);
+      const caption=refs?document.getElementById(refs[0]):node.querySelector('p[data-source-caption]');
+      return caption?.closest('.ds-gained-tooltip')?.id||null;
+    });
+    assert.ok(tooltipId,'The exact source caption is associated with a gained tooltip');
+    const chip=physical.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
+    assert.equal(await chip.count(),1,'Exactly one chip controls this source tooltip');
+    await page.keyboard.press('Tab');await chip.focus();
+    await page.waitForFunction(id=>document.getElementById(id)?.getClientRects().length>0,tooltipId);
+    assert.equal(await chip.getAttribute('aria-expanded'),'true','Keyboard focus opens the accessible source tooltip');
+    assert.equal(await chip.getAttribute('aria-describedby'),tooltipId,'The chip explicitly describes the same exact tooltip');
+    const observed=await row.evaluate((node,{ruleId,instance})=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId)return [];
   const text=node.querySelector('[data-detachment-clause-text]')||document.getElementById(node.dataset.detachmentClauseTextRef);
   const fieldRefs=JSON.parse(node.dataset.detachmentClauseFieldRefs||'[]');
@@ -137,8 +161,8 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
     attributionRefs.every(id=>typeof id==='string'&&id.length);
   const ownParagraphs=[...node.querySelectorAll('p')];
   const captions=attributionRefs===null?[
-    ...ownParagraphs.filter(p=>p.innerText.startsWith('Source:')),
-    ...ownParagraphs.filter(p=>p.innerText.startsWith('Applies to:'))
+    ...ownParagraphs.filter(p=>p.dataset.sourceCaption!==undefined),
+    ...ownParagraphs.filter(p=>p.dataset.recipientCaption!==undefined)
   ]:refsValid?attributionRefs.map(id=>document.getElementById(id)):[];
   const visible=element=>{
     if(!element?.getClientRects().length)return false;
@@ -151,23 +175,27 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
     const owner=caption?.closest('.ds-conditional-policy'),physical=caption?.closest('.unit-card');
     return {id:caption?.id||null,identity:caption?paragraphs.indexOf(caption):null,
       exists:Boolean(caption),visible:visible(caption),paragraph:caption?.tagName==='P',
-      prefix:caption?.innerText.startsWith(index===0?'Source:':'Applies to:')||false,
+      prefix:(index===0?caption?.dataset.sourceCaption:caption?.dataset.recipientCaption)?.startsWith(index===0?'Source:':'Applies to:')||false,
+      recipientHidden:index===1&&(caption?.hidden===true||caption?.getAttribute('aria-hidden')==='true'),
+      currentText:caption?.innerText||'',metadataCaption:index===0?caption?.dataset.sourceCaption:caption?.dataset.recipientCaption,
+      actualRuleId:caption?.dataset.sourceRuleId,captionSource:caption?.dataset.policySource?JSON.parse(caption.dataset.policySource):null,
+      recipientProof:index===1,actualRecipients:index===1?JSON.parse(caption?.dataset.recipientInstanceIds||'null'):null,actualModels:index===1?JSON.parse(caption?.dataset.recipientModelScopeIds||'null'):null,
       uniqueId:attributionRefs===null||[...document.querySelectorAll('[id]')].filter(element=>element.id===attributionRefs[index]).length===1,
       sameCard:physical===node.closest('.unit-card')&&physical?.dataset.rosterInstanceId===instance,
       sameRuleGroup:Boolean(group)&&caption?.closest('[data-detachment-rule-id]')===group&&group.dataset.detachmentRuleId===ruleId,
       ownerKind:owner?.dataset.conditionalPolicy,ownerSource:owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null,
       ownerSubject:owner?.dataset.recipientSubject,ownerModels:owner?.dataset.recipientModelScopeIds?JSON.parse(owner.dataset.recipientModelScopeIds):null};
   });
-  // Count actual visible paragraphs, including any unreferenced duplicate.
-  // Separate provenance or physical model recipients are separate captions.
+  // Count actual source/recipient proof nodes, including any unreferenced duplicate.
+  // Visibility is checked while opening the chip; separate physical scopes never merge.
   const equivalentOwner=paragraph=>{
     const owner=paragraph.closest('.ds-conditional-policy');if(owner?.dataset.conditionalPolicy!=='DETACHMENT_TEXT')return false;
     const policy=JSON.parse(owner.dataset.policySource);
     return policy.ruleId===source.ruleId&&JSON.stringify(policy.provenance)===JSON.stringify(source.provenance)&&
       owner.dataset.recipientSubject===node.dataset.recipientSubject&&owner.dataset.recipientModelScopeIds===node.dataset.recipientModelScopeIds;
   };
-  const captionCopies=['Source:','Applies to:'].map(prefix=>[...(group?.querySelectorAll('p')||[])]
-    .filter(paragraph=>visible(paragraph)&&paragraph.innerText.startsWith(prefix)&&equivalentOwner(paragraph)).length);
+  const captionCopies=['sourceCaption','recipientCaption'].map(key=>[...(group?.querySelectorAll('p')||[])]
+    .filter(paragraph=>paragraph.dataset[key]!==undefined&&equivalentOwner(paragraph)).length);
   return [{source,subject:node.dataset.recipientSubject,instances:JSON.parse(node.dataset.recipientInstanceIds),models:JSON.parse(node.dataset.recipientModelScopeIds),
     classification:node.dataset.rosterClassification,execution:node.dataset.execution,status:node.dataset.selectionStatus,
     text:fieldRefs.length?fieldEvidence.map(field=>field.text).join('\n'):text?.textContent,fieldRefs,fields:fieldEvidence,
@@ -175,9 +203,13 @@ async function rows(page,instance,ruleId){return card(page,instance).locator('.d
     conditions:node.dataset.detachmentClauseConditions?JSON.parse(node.dataset.detachmentClauseConditions):null,
     attributionRefs,refsValid,attribution,captionCopies,aria:(node.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean),
     body:[node.innerText,...captions.map(caption=>caption?.innerText||'')].join('\n'),
-    applies:captions.filter(p=>p?.innerText.startsWith('Applies to:')).map(p=>p.innerText),
+    applies:captions.filter(p=>p?.dataset.recipientCaption!==undefined).map(p=>p.dataset.recipientCaption),
     links:[...(captions[0]?.querySelectorAll('a[data-target-id]')||[])].map(a=>a.dataset.targetId)}];
-}),{ruleId,instance});}
+},{ruleId,instance});
+    collected.push(...observed);
+  }
+  return collected;
+}
 async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,subject,recipients,status}={}){
   const shown=await rows(page,instance,ruleId),data=await current(page),physical=data.projection.units.find(unit=>unit.instanceId===instance);
   const sourceBook=runtimeSourceBook(data.snapshot.bookId);
@@ -194,29 +226,36 @@ async function validateClauses(page,instance,ruleId,{expectedClauses,localLabel,
     assert.deepEqual(row.models,proof.recipientModelScopeIds);assert.equal(row.classification,'BATTLE_ONLY');assert.equal(row.execution,'CONDITIONAL_TEXT_ONLY');
     assert.equal(row.status,proof.detachmentText.kind);if(status)assert.equal(row.status,status);if(subject)assert.equal(row.subject,subject);
     if(recipients)assert.deepEqual(row.instances.toSorted(),[...recipients].toSorted());
-    assert.equal(row.attribution.length,2,'Each clause has one associated Source and Applies-to paragraph');
+    assert.equal(row.attribution.length,2,'Each clause retains one exact source proof and one exact physical-recipient proof');
     if(row.attributionRefs!==null)assert.equal(row.refsValid,true,'Shared caption references are two distinct explicit IDs');
     assert.deepEqual(row.aria,[...(row.attributionRefs||[]),...row.fieldRefs],'Accessible references retain both attribution and exact clause fields');
     for(const caption of row.attribution){
-      assert.ok(caption.exists&&caption.visible&&caption.paragraph&&caption.prefix&&caption.uniqueId,'Associated caption resolves uniquely to visible source/recipient content');
+      assert.ok(caption.exists&&caption.paragraph&&caption.prefix&&caption.uniqueId,'Associated source/recipient proof resolves uniquely');
+      assert.ok(caption.visible||caption.recipientHidden,'An opened tooltip exposes its source; whole-component recipient labels may only be explicitly hidden');
+      if(caption.recipientHidden)assert.equal(caption.visible,false,'A retained hidden recipient proof is not visible to the player');
+      assert.doesNotMatch(caption.visible?caption.currentText:'',/Source:|Applies to:/,'The opened attribution uses compact wording; legacy labels remain metadata only');
       assert.ok(caption.sameCard&&caption.sameRuleGroup,'A caption belongs to this physical card and this exact source rule group');
       assert.equal(caption.ownerKind,'DETACHMENT_TEXT');assert.equal(caption.ownerSource.ruleId,ruleId);
+      assert.equal(caption.actualRuleId,ruleId,'The actual referenced proof belongs to the canonical rule');
+      if(caption.recipientProof){assert.deepEqual(caption.actualRecipients,row.instances,'The caption itself retains exact recipient UNIT identities');assert.deepEqual(caption.actualModels,row.models,'The caption itself retains exact recipient MODEL scopes');}
+      assert.equal(caption.captionSource?.ruleId,ruleId);assert.deepEqual(caption.captionSource?.provenance,row.source.provenance);
       assert.deepEqual(caption.ownerSource.provenance,row.source.provenance,'Shared attribution cannot cross source provenance');
       assert.equal(caption.ownerSubject,row.subject);assert.deepEqual(caption.ownerModels,row.models,'Shared attribution cannot cross physical model recipients');
     }
-    assert.deepEqual(row.links,[ruleId],'Each clause resolves exactly its canonical source link');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
-    assert.deepEqual(row.captionCopies,[1,1],'One visible Source and Applies-to pair per equivalent source/physical recipient, including unreferenced paragraphs');
+    assert.deepEqual(row.links,[ruleId],'Each clause retains exactly its canonical source identity');assert.doesNotMatch(row.body,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
+    assert.deepEqual(row.captionCopies,[1,1],'One exact source/physical-recipient proof pair, including any unreferenced duplicate');
     if(row.status==='ELIGIBLE_FOR_SELECTION')assert.doesNotMatch(row.body,/Effect applied|Selection recorded|Selected —/);
-    assert.equal(row.applies.length,1,'Each clause resolves one visible recipient/status annotation');
+    assert.equal(row.applies.length,1,'Each clause retains its one full physical-recipient proof even when the redundant label is hidden');
     if(localLabel)assert.ok(row.applies[0].toLowerCase().includes(localLabel.toLowerCase()),'Recipient caption names this component');
     assert.ok(!physical.applied.some(effect=>effect.ruleId===ruleId&&effect.clauseId===row.source.clauseId),'This text-only clause is never executed; independent roster clauses of the same rule retain existing effects');
   }
+  await assertNoVisibleLegacyAttribution(card(page,instance));
   // Equivalent canonical clauses must share the actual visible paragraphs,
   // not two independently rendered copies with equal words (the old layout).
   const equivalent=new Map();
   for(const row of shown){const key=JSON.stringify([row.source.ruleId,row.source.provenance,row.subject,row.models,row.applies]);
     const identities=JSON.stringify(row.attribution.map(caption=>caption.identity));
-    if(equivalent.has(key))assert.equal(identities,equivalent.get(key),'Equivalent clauses display one shared Source/Applies-to caption pair');
+    if(equivalent.has(key))assert.equal(identities,equivalent.get(key),'Equivalent clauses retain one shared source/physical-recipient proof pair');
     else equivalent.set(key,identities);
   }
   return shown;
@@ -225,23 +264,38 @@ async function screen(page,name){const file=path.join(out,name+'.png');await pag
 async function weaponNote(page,instance,weapon,expected,expectedRows=1){
   const visible=card(page,instance),weapons=visible.locator('.weapon-row').filter({has:page.locator('.weapon-button').filter({hasText:weapon})});
   assert.equal(await weapons.count(),expectedRows,'Each canonical displayed weapon profile is grouped once');
-  const notes=await weapons.locator('.ds-weapon-grant-sources').evaluateAll(nodes=>nodes.map(node=>({text:node.innerText,sources:JSON.parse(node.dataset.weaponGrantSources)})));
+  const notes=await weapons.locator('[data-weapon-grant-sources]').evaluateAll(nodes=>nodes.map(node=>{const control=[...node.closest('.unit-card').querySelectorAll('.ds-gained-chip[aria-controls]')].find(chip=>chip.getAttribute('aria-controls')===node.id);return {text:node.textContent,sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null'),tooltip:node.matches('.ds-gained-tooltip[role="tooltip"]'),chip:control?.textContent||'',accessible:!!control&&control.getAttribute('aria-describedby')===node.id};}));
   const vector=notes.filter(note=>note.sources.some(source=>source.canonicalRuleId==='datasheet-lord-of-contagion:section:1'));
   assert.equal(vector.length,expectedRows*2,'The two actual Vector effects stay separate for every weapon profile');
-  for(const note of vector)assert.ok(note.text.includes('Applies to: '+expected),'Explicit physical carrier counts: '+note.text);
+  for(const note of vector){
+    assert.ok(note.tooltip&&note.accessible&&note.chip.startsWith('+'),'Each independent Vector effect is an accessible gained chip with its exact tooltip');
+    assert.ok(Array.isArray(note.carriers)&&note.carriers.length,'Each Vector effect retains its independent physical-carrier proof');
+    const caption=note.carriers.map(group=>group.label+' · '+group.quantity+' '+(group.quantity===1?'model':'models')).join('; ');
+    assert.equal(caption,expected,'The exact previously expected physical labels/counts remain in carrier evidence');
+    assert.ok(note.carriers.every(group=>group.instanceId===instance),'Carrier evidence stays on this physical UNIT');
+    assert.doesNotMatch(note.text,/Source:|Applies to:/,'The tooltip no longer repeats service-style source/recipient prefixes');
+  }
+  assert.equal(new Set(vector.map(note=>note.chip)).size,2,'The two actual Vector effects retain separate gained chips');
   return {weapon,text:(await weapons.allInnerTexts()).join('\n'),vector};
 }
 async function ownWeaponCarriers(page,instance,profiles,{rules,label,profileId,contributionCounts={}}){
   const evidence=[];
+  const kinds=await page.evaluate(ids=>Object.fromEntries(ids.map(id=>{
+    const matches=window.ArmyBookAppV2.roster.catalog.filter(record=>record.id===id);
+    if(matches.length!==1)throw Error('Expected one canonical source kind: '+id);
+    return [id,matches[0].kind];
+  })),rules);
   for(const id of profiles){
     const weapon=card(page,instance).locator('.weapon-row[data-card-id="'+id+'"]');assert.equal(await weapon.count(),1,'Exact selected weapon-profile identity');
-    const notes=await weapon.locator('.ds-weapon-grant-sources').evaluateAll(nodes=>nodes.map(node=>({text:node.innerText,
-      sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null')})));
+    const notes=await weapon.locator('[data-weapon-grant-sources]').evaluateAll(nodes=>nodes.map(node=>{const control=[...node.closest('.unit-card').querySelectorAll('.ds-gained-chip[aria-controls]')].find(chip=>chip.getAttribute('aria-controls')===node.id);return {text:node.textContent,hidden:node.hidden,
+      sources:JSON.parse(node.dataset.weaponGrantSources),carriers:JSON.parse(node.dataset.physicalCarriers||'null'),tooltip:node.matches('.ds-gained-tooltip[role="tooltip"]'),chip:control?.textContent||'',accessible:!!control&&control.getAttribute('aria-describedby')===node.id};}));
     for(const ruleId of rules){
       const contributions=notes.filter(note=>note.sources.some(source=>source.canonicalRuleId===ruleId&&source.targetWeaponProfileId===id));
       assert.equal(contributions.length,contributionCounts[ruleId]||1,'All distinct actual source contributions are shown on exact physical weapon profile '+id+'/'+ruleId);
       for(const note of contributions){
-        assert.ok(note.text.includes('Applies to: '+label+' · 1 model'),'Visible caption names exactly the one physical model, not its weapon');
+        const self=note.sources.every(source=>source.sourceInstanceId===instance&&kinds[source.canonicalRuleId]!=='ENHANCEMENT');
+        if(self){assert.equal(note.text,'','A same-unit source has no redundant visible source/recipient caption');assert.equal(note.hidden,true,'Self-source evidence remains nonvisual');}
+        else assert.ok(note.tooltip&&note.accessible&&note.chip.startsWith('+'),'A foreign source is reachable through its accessible gained chip');
         assert.ok(Array.isArray(note.carriers)&&note.carriers.length,'The renderer exposes the actual physical-carrier evidence');
         for(const group of note.carriers){
           assert.equal(group.instanceId,instance);assert.equal(group.profileId,profileId);

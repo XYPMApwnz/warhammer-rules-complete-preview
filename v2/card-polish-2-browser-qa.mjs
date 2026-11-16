@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 import {files,cases,createExecutableDetachmentSnapshot} from '../tests/helpers/executable-detachment-cases.mjs';
@@ -52,22 +53,37 @@ async function card(id){
  const node=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').first();await node.waitFor();return node;
 }
 async function shot(name,node){await node.scrollIntoViewIfNeeded();const file=path.join(out,name+'.png');await page.screenshot({path:file});return file;}
+async function openExactGainedGroup(node){
+ for(const match of await node.all()){
+  const group=match.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
+  if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
+ }
+}
 async function runDeathBlow(width){
  await open(deathBlow.book);await submit(deathBlow.text);const node=await card(deathBlow.instance);
  const rule=read('books/space-marines/v2/generated/roster-runtime.json').entities.find(row=>row.id===deathBlow.ruleId);
  const view=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),deathBlow.instance);
  assert.equal(view.unitMetrics.chargeRoll.modifier,1,'Existing charge-roll effect remains +1');
  if(mutation==='remove-rule-text')await node.locator('[data-executable-detachment-rule-id]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
+ if(!observe)await openExactGainedGroup(node.locator('[data-executable-detachment-rule-id="'+rule.id+'"]'));
  const source=node.locator('[data-executable-detachment-rule-id="'+rule.id+'"]'),occurrences=count(await node.innerText(),rule.data.text);
  if(!observe){
   assert.equal(occurrences,1,'One complete Death Blow source text on the physical card');
   assert.equal(await source.count(),1);assert.ok(await source.isVisible());
   const metric=node.locator('[data-unit-metric="chargeRoll"]');assert.equal(await metric.count(),1,'The separate charge modifier is retained');
+  const sourceId=await source.getAttribute('id');
+  const tips=metric.locator('[data-policy-text-ref="'+sourceId+'"]').locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," ds-gained-tooltip ")][1]');
+  for(const tip of await tips.all()){
+   const tooltipId=await tip.getAttribute('id'),chip=metric.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
+   assert.equal(await chip.count(),1,'One chip opens this exact metric source tooltip');
+   await page.keyboard.press('Tab');await chip.focus();await tip.waitFor({state:'visible'});
+  }
   assert.ok((await metric.innerText()).includes('+1'));assert.ok((await metric.innerText()).includes('Death Blow'));
   const id=await source.getAttribute('id'),ref=metric.locator('[data-policy-text-ref="'+id+'"]');assert.equal(await ref.count(),1,'Effect links to full source');
   assert.equal(await page.locator('[id="'+id+'"]').count(),1,'Source ID is unique in the document');
   assert.equal(await ref.evaluate(link=>link.closest('.unit-card')===document.getElementById(link.dataset.policyTextRef).closest('.unit-card')),true);
   const provenance=JSON.parse(await source.getAttribute('data-executable-source-provenance'));assert.ok(provenance.sourceId);
+  await assertNoVisibleLegacyAttribution(node);
  }
  return {case:'death-blow',width,fullTextOccurrences:occurrences,effects:view.applied.filter(row=>row.ruleId===rule.id),screenshots:[await shot('death-blow-'+width,occurrences?source:node)]};
 }
@@ -75,7 +91,9 @@ async function runLion(width){
  await open(lion.bookId);await submit(lion.text);const node=await card('parsed-unit-2');
  const view=await page.evaluate(()=>window.ArmyBookAppV2.roster.effective('parsed-unit-2'));
  const rows=view.conditional.filter(row=>row.activationContext);assert.equal(rows.length,3,'Three separate conditional effects remain');
- const choice=rows[0].activationContext,occurrences=count(await node.innerText(),choice.text);
+ const choice=rows[0].activationContext;
+ if(!observe)await openExactGainedGroup(node.locator('[data-battle-choice-text="'+choice.canonicalId+'"]'));
+ const occurrences=count(await node.innerText(),choice.text);
  if(mutation==='remove-choice-text')await node.locator('[data-battle-choice-text]').evaluateAll(nodes=>nodes.forEach(node=>node.remove()));
  if(!observe){
   const source=node.locator('[data-battle-choice-text="'+choice.canonicalId+'"]');
@@ -94,10 +112,12 @@ async function runLion(width){
    const target=await link.getAttribute('data-policy-text-ref');
    const text=node.locator('[id="'+target+'"]');
    assert.equal(await text.count(),1,'Every independent rule/choice link resolves on its own physical card');
+   await openExactGainedGroup(text);
    assert.ok(await text.isVisible(),'Every linked rule/choice source is visible');
    assert.equal(await page.locator('[id="'+target+'"]').count(),1,'Every linked source has a unique document ID');
    assert.equal(await link.getAttribute('href'),'#'+target);
   }
+  await assertNoVisibleLegacyAttribution(node);
  }
  return {case:'lion',width,fullTextOccurrences:occurrences,separateEffects:rows.length,screenshots:[await shot('lion-choice-'+width,node.locator('[data-battle-choice-text]').first().or(node).first())]};
 }
@@ -167,6 +187,7 @@ async function runInventory(book){
   const node=await card('physical/right'),before=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
   const source=node.locator('[data-executable-detachment-rule-id="'+ruleId+'"]');
   assert.equal(await source.count(),1,book+'/'+title+': one full physical source, including mixed F1/executable rules');
+  await openExactGainedGroup(source);
   assert.ok(await source.isVisible());
   const canonical=publication.cards.find(row=>row.id===ruleId);
   const fields=canonical.fields.filter(field=>typeof field.value==='string'&&
@@ -185,6 +206,7 @@ async function runInventory(book){
     book+'/'+title+': full canonical paragraph shown once, not repeated by a mixed battle-only clause');
   const id=await source.getAttribute('id');assert.equal(await page.locator('[id="'+id+'"]').count(),1);
   assert.deepEqual(await page.evaluate(()=>window.ArmyBookAppV2.roster.projection),before,'Rendering does not mutate gameplay');
+  await assertNoVisibleLegacyAttribution(node);
   results.push({case:'inventory',book,ruleId,title,width:1440,status:'PASS',canonicalFields:fields.map(field=>field.id)});
  }
 }

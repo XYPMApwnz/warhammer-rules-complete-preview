@@ -8,6 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {displayDuplicateCensus} from './card-display-2-qa.mjs';
 import {sourceSnapshot,registerBookSources} from '../books/shared/source-refs-v2/source-refs.mjs';
@@ -61,24 +62,80 @@ async function view(page,id,mode){
   await page.locator('main .unit-card[data-roster-instance-id="'+id+'"]').waitFor();
 }
 function count(text,quote){return text.split(quote).length-1;}
+async function gainedPolicySources(page){
+  const result={},physicalCards=page.locator('main .unit-card[data-roster-instance-id]');
+  for(let cardIndex=0;cardIndex<await physicalCards.count();cardIndex++){
+    const physical=physicalCards.nth(cardIndex),details=physical.locator('details[data-gained-source-kind="DETACHMENT"]');
+    for(const group of await details.all())if(!await group.evaluate(node=>node.open))await group.locator(':scope > summary').click();
+    const policies=physical.locator('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])');
+    for(let policyIndex=0;policyIndex<await policies.count();policyIndex++){
+      const policy=policies.nth(policyIndex),context=await policy.evaluate(row=>{
+        const refs=JSON.parse(row.dataset.policyAttributionRefs||'[]'),captions=refs.map(id=>document.getElementById(id)).filter(caption=>caption?.dataset.sourceCaption!==undefined);
+        return {self:row.dataset.sourceInstanceId===row.closest('.unit-card')?.dataset.rosterInstanceId,tooltipId:captions[0]?.closest('.ds-gained-tooltip')?.id||null};
+      });
+      let opened=false;
+      if(context.tooltipId){
+        const chip=physical.locator('.ds-gained-chip[aria-controls="'+context.tooltipId+'"]');
+        assert.equal(await chip.count(),1,'One keyboard-accessible chip owns this exact source tooltip');
+        await page.keyboard.press('Tab');await chip.focus();await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),context.tooltipId);
+        assert.equal(await chip.getAttribute('aria-expanded'),'true');assert.equal(await chip.getAttribute('aria-describedby'),context.tooltipId);opened=true;
+      }else assert.ok(context.self,'A foreign policy source cannot lose its accessible tooltip');
+      result[cardIndex+':'+policyIndex]=await policy.evaluate((row,{self,opened})=>{
+        const physical=row.closest('.unit-card'),identity=JSON.parse(row.dataset.policySource),refs=JSON.parse(row.dataset.policyAttributionRefs||'[]');
+        const validRefs=Array.isArray(refs)&&refs.length>0&&new Set(refs).size===refs.length&&refs.every(id=>typeof id==='string'&&id.length);
+        const captions=validRefs?refs.map(id=>document.getElementById(id)).filter(caption=>caption?.tagName==='P'&&caption.dataset.sourceCaption!==undefined):[];
+        const caption=captions.length===1?captions[0]:null,owner=caption?.closest('.ds-conditional-policy'),ownerSource=owner?.dataset.policySource?JSON.parse(owner.dataset.policySource):null;
+        const visible=element=>{if(!element?.getClientRects().length)return false;for(let current=element;current;current=current.parentElement){const style=getComputedStyle(current);if(style.display==='none'||['hidden','collapse'].includes(style.visibility)||Number(style.opacity)===0)return false;}return true;};
+        const links=[...(caption?.querySelectorAll('a[data-target-id]')||[])].map(link=>link.dataset.targetId);
+        const evidence={refs,captionId:caption?.id||null,
+          uniqueId:Boolean(caption)&&[...document.querySelectorAll('[id]')].filter(element=>element.id===caption.id).length===1,
+          visible:visible(caption),sameCard:Boolean(caption)&&caption.closest('.unit-card')===physical&&physical.dataset.rosterInstanceId===row.closest('.unit-card').dataset.rosterInstanceId,
+          visibleAttributionText:(validRefs?refs:[]).map(id=>document.getElementById(id)).filter(visible).map(node=>node.innerText).join('\n'),
+          sameRule:ownerSource?.ruleId===identity.ruleId&&caption?.dataset.sourceRuleId===identity.ruleId&&links.length===1&&links[0]===identity.ruleId,
+          sameProvenance:Boolean(ownerSource?.provenance)&&Boolean(identity.provenance)&&JSON.stringify(ownerSource.provenance)===JSON.stringify(identity.provenance)&&caption?.dataset.policySource&&JSON.stringify(JSON.parse(caption.dataset.policySource).provenance)===JSON.stringify(identity.provenance),
+          sameSourceInstance:typeof owner?.dataset.sourceInstanceId==='string'&&owner.dataset.sourceInstanceId===row.dataset.sourceInstanceId&&caption?.dataset.sourceInstanceId===row.dataset.sourceInstanceId,
+          sameModelScope:typeof owner?.dataset.sourceModelScopeId==='string'&&owner.dataset.sourceModelScopeId===row.dataset.sourceModelScopeId&&caption?.dataset.sourceModelScopeId===row.dataset.sourceModelScopeId,
+          accessibleRefs:validRefs&&JSON.stringify((row.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean))===JSON.stringify(refs),self,opened};
+        let issue=null;
+        if(!validRefs)issue='Linked Source references are missing or invalid';
+        else if(!caption)issue='Linked Source caption is missing';
+        else if(!evidence.uniqueId)issue='Linked Source caption ID is not unique';
+        else if(!self&&(!opened||!evidence.visible))issue='Linked Source caption is not visible after opening its tooltip';
+        else if(self&&!opened&&evidence.visible)issue='Same-unit Source proof is unexpectedly visible';
+        else if(/Source:|Applies to:/.test(evidence.visibleAttributionText))issue='Legacy Source/Applies labels are unexpectedly visible';
+        else if(!evidence.sameCard)issue='Linked Source caption belongs to another physical card';
+        else if(!evidence.sameRule)issue='Linked Source caption belongs to another rule';
+        else if(!evidence.sameProvenance)issue='Linked Source caption has different provenance';
+        else if(!evidence.sameSourceInstance)issue='Linked Source caption has a different physical source';
+        else if(!evidence.sameModelScope)issue='Linked Source caption has a different model scope';
+        else if(!evidence.accessibleRefs)issue='Linked Source accessible references do not match';
+        return {source:issue===null,sourceIssue:issue,sharedSource:evidence};
+      },{self:context.self,opened});
+    }
+  }
+  return result;
+}
 async function inspect(page,c,mode,device,id){
   await view(page,id,mode);await page.evaluate(()=>document.fonts.ready);
   const projection=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
   const payload=read(`books/${c.book}/v2/generated/app-presentation.json`),cards=new Map(payload.cards.map(card=>[card.id,card]));registerBookSources(payload);
-  const observed=await page.locator('main .unit-card[data-roster-instance-id]').evaluateAll(nodes=>nodes.map(node=>({
+  const gainedSources=baseline?{}:await gainedPolicySources(page);
+  if(!baseline)await assertNoVisibleLegacyAttribution(page.locator('main .unit-card[data-roster-instance-id]'));
+  const observed=await page.locator('main .unit-card[data-roster-instance-id]').evaluateAll((nodes,{baseline,gainedSources})=>nodes.map((node,cardIndex)=>({
     id:node.dataset.rosterInstanceId,title:node.querySelector('h3')?.textContent,text:node.innerText,
-    keywords:[...node.querySelectorAll('[data-datasheet-section="keywords"] [data-fact-id]')].map(field=>({id:field.dataset.factId,text:field.textContent})),
-    keywordText:node.querySelector('[data-datasheet-section="keywords"]')?.innerText,
+    keywords:[...node.querySelectorAll('[data-datasheet-section="keywords"] [data-fact-id], [data-gained-overview] .ds-effective-keyword [data-fact-id]')].map(field=>({id:field.dataset.factId,text:field.textContent})),
+    keywordText:[node.querySelector('[data-datasheet-section="keywords"]')?.innerText,
+      ...[...node.querySelectorAll('[data-gained-overview] .ds-effective-keyword .ds-gained-chip')].map(chip=>chip.innerText)].filter(Boolean).join(' '),
     paragraphs:[...node.querySelectorAll('p[data-fact-id]')].map(p=>({id:p.dataset.factId,text:p.textContent,visible:!!p.getClientRects().length})),
     ruleParagraphs:[...node.querySelectorAll('p')].filter(p=>p.getClientRects().length&&p.textContent.length>=60&&
       !p.textContent.startsWith('Source:')&&!p.textContent.startsWith('Applies to:')).map(p=>p.textContent),
     sections:[...node.querySelectorAll('section.unit-part')].map(section=>({id:section.dataset.cardId,title:section.querySelector('h4')?.textContent,text:section.innerText})),
     links:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),
     attached:[...node.querySelectorAll('[data-attached-rule-id]')].map(row=>({id:row.dataset.attachedRuleId,source:row.dataset.sourceInstanceId,
-      title:row.querySelector('h5')?.textContent,text:row.querySelector('[data-attached-rule-text]')?.textContent,content:row.innerText})),
+      title:row.querySelector('h5')?.textContent,text:row.querySelector('[data-attached-rule-text]')?.textContent,content:row.innerText,gained:(()=>{const group=row.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',headingCount:headings.length,sameCard:group?.closest('.unit-card')===node};})()})),
     f1:[...node.querySelectorAll('[data-detachment-rule-id]')].map(row=>({id:row.dataset.detachmentRuleId,text:row.querySelector('.ds-detachment-fields')?.textContent,
-      visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:row.innerText.includes('Source:')})),
-    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map(row=>{
+      visible:!!row.querySelector('.ds-detachment-fields')?.getClientRects().length,source:baseline?row.innerText.includes('Source:'):(()=>{const group=row.closest('details[data-gained-source-kind="DETACHMENT"]');return Boolean(group)&&group.closest('.unit-card')===node&&/^From detachment:\s*\S/.test(group.querySelector(':scope > summary')?.textContent||'');})()})),
+    policies:[...node.querySelectorAll('.ds-conditional-policy:not([data-conditional-policy="DETACHMENT_TEXT"])')].map((row,policyIndex)=>{
       const identity=JSON.parse(row.dataset.policySource),localSource=row.innerText.includes('Source:');
       let sourceIssue=null,sharedSource=null;
       if(!localSource){
@@ -124,10 +181,10 @@ async function inspect(page,c,mode,device,id){
         modelScope:text?.dataset.sourceModelScopeId??text?.closest('[data-composition-id]')?.dataset.compositionId??'',
         provenance:text?.dataset.sourceProvenance?JSON.parse(text.dataset.sourceProvenance):null,
         accessible:row.getAttribute('aria-details')===ref}:null;
-      return {text:row.innerText,identity,canonicalText:text?.textContent,sharedText,
-        source:localSource||sourceIssue===null,sourceIssue,sharedSource};
+      const attribution=baseline?{source:localSource||sourceIssue===null,sourceIssue,sharedSource}:gainedSources[cardIndex+':'+policyIndex];
+      return {text:row.innerText,identity,canonicalText:text?.textContent,sharedText,...attribution};
     })
-  })));
+  })),{baseline,gainedSources});
   fs.writeFileSync(path.join(out,device+'-'+c.id+'-'+mode+'-'+id+'.json'),JSON.stringify(observed,null,2));
   for(const card of observed){
     const unit=projection.units.find(unit=>unit.instanceId===card.id);assert.ok(unit);
@@ -191,7 +248,9 @@ async function inspect(page,c,mode,device,id){
     for(const row of card.attached){
       const source=cards.get(row.id),fields=source.fields.filter(field=>typeof field.value==='string'&&
         (field.value===row.text||field.value===row.title+':'+row.text));
-      assert.equal(fields.length,1,'O-1 canonical text unchanged');assert.match(row.content,/Source:/);
+      assert.equal(fields.length,1,'O-1 canonical text unchanged');
+      if(baseline)assert.match(row.content,/Source:/);
+      else{assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(row.gained.kind));assert.equal(row.gained.source,row.source,'Exact attached source instance remains in the group');assert.ok(row.gained.sameCard);assert.equal(row.gained.headingCount,1);assert.match(row.gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/,'Attached provenance is identified once by its source-group heading');}
       assert.ok(!row.text.startsWith(row.title+':'));
     }
     if(c.id==='dg-physical'&&card.id==='parsed-unit-2')assert.ok(card.attached.some(row=>row.title==='Vector of Disease'),'O-1 owner-to-bodyguard retained');

@@ -2,6 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-wardens-source-browser-');
@@ -28,8 +29,14 @@ async function inspect(page,id,mode,wanted,stage,device){
   else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator('main a[data-target-id="roster-unit/'+id+'"]').click();}
   const card=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');await card.waitFor();
   const block=card.locator('article[data-attached-rule-id="'+BANNER+'"]');assert.equal(await block.count(),wanted?1:0,device+'/'+mode+'/'+stage+'/'+id);
-  if(wanted){assert.equal(await block.locator('[data-attached-rule-text]').innerText(),body);assert((await block.innerText()).includes('Source: Wardens of Ultramar'));assert.equal(await block.getAttribute('data-source-instance-id'),'parsed-unit-1');}
+  if(wanted){assert.equal(await block.locator('[data-attached-rule-text]').innerText(),body);assert.equal(await block.getAttribute('data-source-instance-id'),'parsed-unit-1');
+    const gained=await block.evaluate(node=>{const group=node.closest('[data-gained-source-kind]'),headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',headingCount:headings.length,sameCard:group?.closest('.unit-card')===node.closest('.unit-card')};});
+    assert.equal(gained.kind,'ATTACHED_UNIT','The proven SUPPORT component remains an attached-unit source');
+    assert.equal(gained.source,'parsed-unit-1');assert.ok(gained.sameCard);assert.equal(gained.headingCount,1);
+    assert.match(gained.heading,/^From attached unit:\s*Wardens of Ultramar$/,'The exact Wardens owner is named once in the group heading');}
+
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+  await assertNoVisibleLegacyAttribution(card);
   results.push({device,mode,stage,instanceId:id,expected:wanted,status:'PASS'});
 }
 let browser,completed=false;

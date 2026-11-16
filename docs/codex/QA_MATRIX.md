@@ -28,6 +28,11 @@ ownership, shared rule prose and visible technical-label leaks. Its browser guar
 covers all nine full libraries, the 20 common glossary searches and representative
 imported model scopes at 390/1440 (about one minute). It runs in pre-FF against
 the packaged runtime; its pure display controls also run in quick.
+`npm run test:card-gained-rules` checks physical roster-card prices, separate
+weapon-effect proofs, accessible source chips, ordered gained-rule groups and
+visible technical-label leaks across all nine books at 390/1440. It also checks
+three-copy MFM tiers in CSM and DG and preserves the Full Army Book price grid.
+The same browser check runs sequentially in pre-FF.
 
 Python-based tests resolve their interpreter through `tests/helpers/qa-python.cjs`:
 an explicit CLI override, then `QA_PYTHON` (or a preserved caller-specific legacy

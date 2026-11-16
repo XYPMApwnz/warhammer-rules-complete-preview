@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {createDetachmentBrowserFixture} from '../tests/helpers/detachment-card-text-browser-fixtures.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-detachment-card-text-browser-');
@@ -40,6 +41,13 @@ async function inspect(page,spec,unit,id,mode,device,stage){
   assert.equal(await groups.count(),unit.expectText?1:0,`${spec.id}/${device}/${mode}/${stage}/${unit.unitId}`);
   let content=null;
   if(unit.expectText){
+    const gained=groups.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
+    assert.equal(await gained.count(),1,'Rule belongs to one exact detachment source group');
+    assert.equal(await gained.evaluate(node=>node.open),false,'Detachment source group starts collapsed');
+    const summary=gained.locator(':scope > summary');assert.equal(await summary.count(),1);
+    assert.match(await summary.innerText(),/^From detachment:\s*\S/,'The detachment has one human source heading');
+    await summary.click();assert.equal(await gained.evaluate(node=>node.open),true,'Opening its summary exposes the full canonical rule');
+    assert.equal(await gained.evaluate(node=>node.closest('.unit-card')?.dataset.rosterInstanceId),id,'Source text stays on the same physical card');
     content=await groups.innerText();assert(norm(content).includes(norm(spec.quote)),'Exact English source clause missing');
     const rows=await groups.locator('[data-conditional-policy="DETACHMENT_TEXT"]').evaluateAll(nodes=>nodes.map(node=>({
       source:JSON.parse(node.dataset.policySource),subject:node.dataset.recipientSubject,kind:node.dataset.selectionStatus,
@@ -47,11 +55,13 @@ async function inspect(page,spec,unit,id,mode,device,stage){
     })));
     const row=rows.find(row=>row.source.clauseId===spec.clauseId);assert(row,'Expected source clause identity missing');
     assert.equal(row.source.ruleId,spec.ruleId);assert.equal(row.subject,spec.subject);assert.equal(row.kind,spec.textKind);
-    assert(row.content.includes('Source:'));assert(row.refs.length,'Source text is not linked to its visible field');
+    assert(row.refs.length,'Source text is not linked to its visible field');
+    assert.equal(await groups.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]').count(),1,'Every original clause retains its exact detachment source group');
     for(const ref of row.refs)assert(await page.locator('[id="'+ref+'"]').isVisible(),'Referenced source field must be visible');
     assert.doesNotMatch(content,/Not automatically calculated|Selection not recorded|Conditional rule|model count unresolved/);
   }
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+  await assertNoVisibleLegacyAttribution(card);
   results.push({case:spec.id,device,mode,stage,unitId:unit.unitId,expected:unit.expectText,status:'PASS',content});
 }
 let browser,completed=false;

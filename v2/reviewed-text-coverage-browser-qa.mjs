@@ -2,6 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import assert from 'node:assert/strict';import {fileURLToPath} from 'node:url';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {parseProducerJSON} from '../books/shared/source-refs-v2/producer-io.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url)),out=createQaEvidenceDir('wh-text-coverage-browser-');
@@ -41,10 +42,11 @@ async function inspect(page,c,device,id,mode,stage,wanted){
  if(mode==='Effective')await page.locator(`[data-roster-instance-id="${id}"]`).getByRole('button',{name:'Effective datasheet',exact:true}).click();
  else{await page.getByRole('button',{name:'Open personal guide',exact:true}).click();await page.locator(`main a[data-target-id="roster-unit/${id}"]`).click();}
  const card=page.locator(`main .unit-card[data-roster-instance-id="${id}"]`);await card.waitFor();
- const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.attachedRuleId,source:n.dataset.sourceInstanceId,title:n.querySelector('h5')?.textContent,text:n.querySelector('[data-attached-rule-text]')?.textContent,content:n.innerText})));
+ const rows=await card.locator('article[data-attached-rule-id]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.attachedRuleId,source:n.dataset.sourceInstanceId,title:n.querySelector('h5')?.textContent,text:n.querySelector('[data-attached-rule-text]')?.textContent,content:n.innerText,gained:(()=>{const group=n.closest('[data-gained-source-kind]'),heading=[...(group?.children||[])].find(child=>child.matches('h4,h5,h6,summary'));return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:heading?.textContent||'',sameCard:group?.closest('.unit-card')===n.closest('.unit-card')};})()})));
  const found=rows.filter(row=>row.id===c.ruleId&&row.title===c.title);assert.equal(found.length,wanted?1:0,`${c.id}/${device}/${mode}/${stage}`);
- if(wanted){assert.equal(found[0].text,c.body,'Original English text changes only by removing its duplicate heading');assert.equal(found[0].source,'parsed-unit-1');assert(found[0].content.includes('Source:'));assert(found[0].content.includes(c.owner));assert.doesNotMatch(found[0].content,/Not automatically|Conditional rule|source-clause-/i);}
+ if(wanted){assert.equal(found[0].text,c.body,'Original English text changes only by removing its duplicate heading');assert.equal(found[0].source,'parsed-unit-1');assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(found[0].gained.kind));assert.equal(found[0].gained.source,'parsed-unit-1');assert.ok(found[0].gained.sameCard,'Source group belongs to the physical recipient');assert.match(found[0].gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/);assert(found[0].gained.heading.includes(c.owner),'Exact physical owner remains named in its source-group heading');assert.doesNotMatch(found[0].content,/Not automatically|Conditional rule|source-clause-/i);}
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+ await assertNoVisibleLegacyAttribution(card);
  results.push({id:c.id,book:c.book,device,mode,stage,target:id,expected:wanted,status:'PASS',observed:found});
 }
 let browser,completed=false;

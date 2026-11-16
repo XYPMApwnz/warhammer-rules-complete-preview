@@ -1,4 +1,5 @@
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 /** F1: source-backed text-only Detachment recipients in the real main app.
  * Constructed New Recruit input and normal import/attachment/Guide controls.
  * Browser evaluation reads evidence only; it never patches state or the DOM. */
@@ -87,7 +88,14 @@ async function attach(page,leader,bodyguard){
   await page.locator('[data-attached-leader-instance-id="'+leader+'"]').waitFor();
 }
 const attachDominus=page=>attach(page,'parsed-unit-1','parsed-unit-4');
-async function rows(page,ruleId,clauseId){const found=await page.locator('main .ds-conditional-policy').evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
+async function openExactGainedGroup(node){
+  const group=node.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
+  if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
+}
+async function rows(page,ruleId,clauseId){
+  const policies=page.locator('main .ds-conditional-policy'),indexes=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap((node,index)=>{const source=JSON.parse(node.dataset.policySource||'{}');return source.ruleId===ruleId&&source.clauseId===clauseId?[index]:[];}),{ruleId,clauseId});
+  for(const index of indexes)await openExactGainedGroup(policies.nth(index));
+  const found=await policies.evaluateAll((nodes,{ruleId,clauseId})=>nodes.flatMap(node=>{
   const source=JSON.parse(node.dataset.policySource||'{}');if(source.ruleId!==ruleId||source.clauseId!==clauseId)return [];
   const shared=node.dataset.detachmentClauseTextRef?document.getElementById(node.dataset.detachmentClauseTextRef):null;
   const clauseText=node.querySelector('[data-detachment-clause-text]')||shared;
@@ -102,7 +110,16 @@ async function rows(page,ruleId,clauseId){const found=await page.locator('main .
     execution:node.dataset.execution,classification:node.dataset.rosterClassification,subject:node.dataset.recipientSubject,
     instances:JSON.parse(node.dataset.recipientInstanceIds||'[]'),models:JSON.parse(node.dataset.recipientModelScopeIds||'[]'),
     selectionStatus:node.dataset.selectionStatus,text:node.innerText+' '+(canonicalText||'')+' '+(node.closest('[data-detachment-rule-id]')?.querySelector('h5')?.textContent||''),clauseText:canonicalText,
-    applies:[...node.querySelectorAll('p')].map(p=>p.innerText).filter(text=>text.startsWith('Applies to:')),
+    applies:[...node.querySelectorAll('p[data-recipient-caption]')].map(p=>{
+      if(p.closest('.unit-card')!==node.closest('.unit-card')||p.dataset.sourceRuleId!==ruleId||
+        p.dataset.recipientInstanceIds!==node.dataset.recipientInstanceIds||
+        JSON.stringify(JSON.parse(p.dataset.recipientModelScopeIds||'[]'))!==JSON.stringify(JSON.parse(node.dataset.recipientModelScopeIds||'[]')))
+        throw new Error('Recipient caption belongs to a different physical rule scope: '+JSON.stringify({
+          expected:{ruleId,instances:node.dataset.recipientInstanceIds,models:node.dataset.recipientModelScopeIds},
+          actual:{ruleId:p.dataset.sourceRuleId,instances:p.dataset.recipientInstanceIds,models:p.dataset.recipientModelScopeIds,
+            sameCard:p.closest('.unit-card')===node.closest('.unit-card')}}));
+      return p.dataset.recipientCaption;
+    }).filter(text=>text.startsWith('Applies to:')),
     options:[...node.querySelectorAll('[data-detachment-options] [data-option-table-id]')].map(option=>({tableId:option.dataset.optionTableId,rowIndex:Number(option.dataset.optionRowIndex),clauseId:option.dataset.optionClauseId,text:option.textContent})),
     sourceLinks:[...node.querySelectorAll('a[data-target-id]')].map(a=>a.dataset.targetId),visible:Boolean(node.getClientRects().length)}];
 }),{ruleId,clauseId});
@@ -124,6 +141,13 @@ async function sourceLink(page,ruleId,clauseId,quote){
   const index=await all.evaluateAll((nodes,{ruleId,clauseId})=>nodes.findIndex(node=>{
     const source=JSON.parse(node.dataset.policySource||'{}');return source.ruleId===ruleId&&source.clauseId===clauseId;
   }),{ruleId,clauseId});assert.ok(index>=0);
+  const exact=all.nth(index);await openExactGainedGroup(exact);
+  const sourceAnchor=exact.locator('a[data-target-id="'+ruleId+'"]'),tooltipId=await sourceAnchor.evaluate(anchor=>anchor.closest('.ds-gained-tooltip')?.id||null);
+  if(tooltipId){
+    const physical=exact.locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," unit-card ")][1]');
+    const chip=physical.locator('.ds-gained-chip[aria-controls="'+tooltipId+'"]');
+    await page.keyboard.press('Tab');await chip.focus();await page.waitForFunction(id=>Boolean(document.getElementById(id)?.getClientRects().length),tooltipId);
+  }
   await all.nth(index).locator('a[data-target-id="'+ruleId+'"]').click();
   await page.locator('dialog[open]').waitFor();
   assert.ok(norm(await page.locator('dialog[open]').innerText()).includes(norm(quote)),'Source dialog contains accepted rule text');
@@ -148,6 +172,7 @@ async function assertModelText(page,instance,profile,label,stage,{absent=false}=
     assert.equal(model.profile.INSV,'4+','Existing invulnerable save remains 4+');
     assert.deepEqual(model.abilities.filter(a=>a.name==='Feel No Pain').map(a=>a.value),[5],'Existing FNP remains 5+');
     const visible=page.locator('main .unit-card[data-roster-instance-id="'+instance+'"]');
+    await assertNoVisibleLegacyAttribution(visible);
     const values=await visible.locator('[data-card-id="'+profile+'"] [data-fact-id]').evaluateAll(nodes=>nodes
       .filter(node=>node.dataset.factId.endsWith('::/INSV')).map(node=>JSON.parse(node.dataset.factValue)));
     assert.ok(values.length&&values.every(value=>value==='4+'),'Visible MODEL invulnerable save stays 4+');

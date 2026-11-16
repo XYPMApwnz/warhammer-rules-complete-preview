@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {createQaEvidenceDir} from '../tests/helpers/qa-temp.mjs';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 
 const arg=name=>process.argv.find(value=>value.startsWith(name+'='))?.slice(name.length+1);
@@ -77,7 +78,14 @@ async function attached(width,c){
  if(!observe){
   assert.equal(present,1,'Full source text must appear on the exact attached recipient: '+c.id);
   assert.ok(await block.isVisible(),'Attached source text is visible');
-  assert.ok(await block.locator('[data-source-attribution],.v2-source-caption,.ds-source-caption,.ds-source').count()||/Source:/.test(await block.innerText()),'Attached rule has a source caption');
+  const gained=await block.evaluate(node=>{const group=node.closest('[data-gained-source-kind]'),card=node.closest('.unit-card');
+    const headings=[...(group?.children||[])].filter(child=>child.matches('h4,h5,h6,summary'));
+    return {kind:group?.dataset.gainedSourceKind,source:group?.dataset.sourceInstanceId,heading:headings[0]?.textContent||'',
+      headingCount:headings.length,sameCard:group?.closest('.unit-card')===card,recipient:card?.dataset.rosterInstanceId};});
+  assert.ok(['LEADER','ATTACHED_UNIT','ENHANCEMENT'].includes(gained.kind),'Attached text has one typed gained-source group');
+  assert.equal(gained.headingCount,1,'Source name is a single group heading, not a repeated per-rule caption');
+  assert.ok(gained.sameCard,'Source group belongs to the same physical card');
+  assert.match(gained.heading,/^From (?:leader|attached unit|enhancement):\s*\S/,'Source is identified by the human group heading');
   const view=await effective(target),row=view.attachedRuleTexts.find(row=>row.ruleId===c.ruleId);
   assert.ok(row,'Public effective view must carry the source-backed text');
   const body=await block.locator('[data-attached-rule-text]').textContent();
@@ -86,7 +94,10 @@ async function attached(width,c){
   assert.equal(restored,row.text,'Full rule text is retained, with its source heading shown separately');
   assert.equal(row.recipientInstanceId,target,'Exact physical recipient');
   assert.ok(row.sourceInstanceId===leader||row.sourceInstanceId===bodyguard,'Source is the attached component');
+  assert.equal(gained.source,row.sourceInstanceId,'Gained group names the exact physical source');
+  assert.equal(gained.recipient,target,'Gained group stays on the exact physical recipient');
  }
+ if(!observe)await assertNoVisibleLegacyAttribution(node);
  shots.push(await screenshot(c.id+'-attached-'+width,present?block:node));
  if(c.id!=='p43-lion-candidate'){
   const isolated=await effective('parsed-unit-3');
@@ -95,6 +106,7 @@ async function attached(width,c){
  await detach();node=await card(target);assert.equal(await node.locator(selector).count(),0,'Detach removes dependent text');
  const after=await page.evaluate(()=>window.ArmyBookAppV2.roster.projection);
  assert.deepEqual(after,before,'Attach then detach must restore the whole gameplay projection');
+ if(!observe)await assertNoVisibleLegacyAttribution(node);
  results.push({case:c.id,width,status:observe?'OBSERVED':'PASS',attachedTextCount:present,screenshots:shots});
 }
 async function lion(width){
@@ -119,6 +131,7 @@ async function lion(width){
    assert.deepEqual(await node.locator('[id="'+id+'"] ul.ds-source-text-list > li').allTextContents(),policy.policy.contextQuote.split('\n').filter(line=>/^\s*[-•] /.test(line)),'Conditional bullets remain individual list items in source order');
   }
  }
+ if(!observe)await assertNoVisibleLegacyAttribution(node);
  results.push({case:'lion',width,status:observe?'OBSERVED':'PASS',effects:rows.length,fullTextOccurrences:quoteCount,refs,screenshots:[await screenshot('lion-'+width,node)]});
 }
 async function titus(width){
@@ -126,6 +139,7 @@ async function titus(width){
  const section=node.locator('section.unit-part[data-datasheet-section="wargear"]');assert.equal(await section.count(),1,'One WARGEAR OPTIONS section');
  const count=occurrences(normalized(await section.innerText()),'WARGEAR OPTIONS');
  if(!observe)assert.equal(count,1,'Derived Titus Bodyguard: WARGEAR OPTIONS heading once');
+ if(!observe)await assertNoVisibleLegacyAttribution(node);
  results.push({case:'titus',width,status:observe?'OBSERVED':'PASS',headingOccurrences:count,screenshots:[await screenshot('titus-wargear-'+width,section)]});
 }
 async function headers(width,book){

@@ -8,6 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {launchChromium} from '../tests/helpers/browser-launch.mjs';
+import {assertNoVisibleLegacyAttribution} from '../tests/helpers/gained-attribution-assertions.mjs';
 import {parseSourceFixtureJSON} from '../tests/helpers/source-refs-fixtures.mjs';
 import {isApplicationTestDependency} from '../books/shared/application-v2/browser-test-dependencies.mjs';
 import {chargeFixtures} from './charge-qa-fixtures.mjs';
@@ -99,6 +100,13 @@ async function inspect(page,c,mode,device){
     const root=page.locator('main .unit-card[data-roster-instance-id="'+id+'"]');
     const effective=await page.evaluate(id=>window.ArmyBookAppV2.roster.effective(id),id);
     const sources=effective.applied.filter(source=>source.operation==='MODIFY_RULE_METRIC'&&c.effects.includes(source.field));
+    for(const source of sources)for(const field of sourceFields(c,source)){
+      const fields=root.locator('[data-fact-id="'+field.id+'"]');
+      for(const node of await fields.all()){
+        const group=node.locator('xpath=ancestor::details[@data-gained-source-kind="DETACHMENT"][1]');
+        if(await group.count()&&!await group.evaluate(element=>element.open))await group.locator(':scope > summary').click();
+      }
+    }
     const observed=await root.evaluate(node=>({
       fields:[...node.querySelectorAll('[data-fact-id]')].filter(field=>!field.closest('a,dialog,[hidden],details:not([open])')).map(field=>({id:field.dataset.factId,text:field.textContent,visible:!!field.getClientRects().length})),
       attached:[...node.querySelectorAll('[data-attached-rule-id]')].map(rule=>({id:rule.dataset.attachedRuleId,source:rule.dataset.sourceInstanceId,
@@ -142,6 +150,7 @@ async function inspect(page,c,mode,device){
     if(expectedUnitExceptions.length)assert.ok(observed.metrics.length,'Missing source text retains metric');
     const expectedProfileExceptions=sources.some(source=>retained.has(source.ruleId));
     assert.equal(observed.profileMetrics.length>0,expectedProfileExceptions&&effective.profiles.some(profile=>Object.keys(profile.metrics).length>0),'Range annotations yield only to complete source text');
+    await assertNoVisibleLegacyAttribution(root);
     results.push({book:c.bookId,ruleId:c.ruleId,device,mode,instance:id,sources:sources.map(source=>source.ruleId),retained:observed.metrics,profileMetrics:observed.profileMetrics,status:'PASS'});
   }
   assert.equal(await page.evaluate(()=>JSON.stringify(window.ArmyBookAppV2.roster.projection)),before,'Display cannot alter effects or conditions');
